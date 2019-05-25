@@ -1,5 +1,5 @@
 ---
-title: "Harekaze CTF 2019"
+title: "Harekaze CTF 2019 Writeup"
 date: 2019-05-18T13:49:54+09:00
 lastmod: 2019-05-25T15:05:00+08:00
 draft: false
@@ -7,7 +7,7 @@ keywords: []
 description: ""
 tags: ["CTF"]
 categories: ["CTF"]
-author: "CaptureAmerica"
+author: "きゃぷあめ"
 ---
 
 # [Crypto 100] Twenty-five

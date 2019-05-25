@@ -7,7 +7,7 @@ keywords: []
 description: ""
 tags: ["CTF"]
 categories: ["CTF"]
-author: "CaptureAmerica"
+author: "きゃぷあめ"
 ---
 
 # cant_even_unplug_it
