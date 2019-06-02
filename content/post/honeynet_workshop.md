@@ -400,11 +400,11 @@ Attachment:
 <br />
 <img src="https://captureamerica.github.io/writeups/img/bit_extract.png" alt="bit_extract.png">
 <br /><br />
-ただし、ところどころFFで埋まっていて文字が不明な箇所があります。
+ただし、ところどころFFで埋まっていて文字が不明な箇所があります。保存ボタンでバイナリを保存し、エディタでチェックしていきます。
 <br /><br />
 不明な文字は、他の箇所を探していると見つかります。
 <br />
-<img src="https://captureamerica.github.io/writeups/img/bit_extract.png" alt="bin_check.png">
+<img src="https://captureamerica.github.io/writeups/img/bit_check.png" alt="bin_check.png">
 
 
 
