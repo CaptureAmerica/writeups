@@ -404,7 +404,7 @@ Attachment:
 <br /><br />
 不明な文字は、他の箇所を探していると見つかります。
 <br />
-<img src="https://captureamerica.github.io/writeups/img/bit_check.png" alt="bin_check.png">
+<img src="https://captureamerica.github.io/writeups/img/bin_check.png" alt="bin_check.png">
 
 
 
