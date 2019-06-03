@@ -51,7 +51,7 @@
 
 <meta itemprop="datePublished" content="2019-06-03T00:00:00&#43;08:00" />
 <meta itemprop="dateModified" content="2019-06-03T07:33:00&#43;08:00" />
-<meta itemprop="wordCount" content="3909">
+<meta itemprop="wordCount" content="4274">
 
 
 
@@ -182,13 +182,17 @@
 <ul>
 <li><a href="#solution-9">Solution</a></li>
 </ul></li>
-<li><a href="#weird-website-easy-network">Weird Website (easy, network)</a>
+<li><a href="#there-is-no-such-thing-as-a-free-flag-easy-network">There is no such thing as a free flag (easy, network)</a>
 <ul>
 <li><a href="#solution-10">Solution</a></li>
 </ul></li>
-<li><a href="#superbank-easy-network-multi-stage">SuperBank (easy, network, multi-stage)</a>
+<li><a href="#weird-website-easy-network">Weird Website (easy, network)</a>
 <ul>
 <li><a href="#solution-11">Solution</a></li>
+</ul></li>
+<li><a href="#superbank-easy-network-multi-stage">SuperBank (easy, network, multi-stage)</a>
+<ul>
+<li><a href="#solution-12">Solution</a></li>
 </ul></li>
 <li><a href="#superbanknotes">SuperBankNotes (?)</a>
 <ul>
@@ -196,31 +200,31 @@
 </ul></li>
 <li><a href="#h-ashing-as-a-service-medium-web">(H)ashing-as-a-Service (medium, web)</a>
 <ul>
-<li><a href="#solution-12">Solution</a></li>
+<li><a href="#solution-13">Solution</a></li>
 </ul></li>
 <li><a href="#terrific-encryption-medium-cryptography">Terrific Encryption (medium, cryptography)</a>
 <ul>
-<li><a href="#solution-13">Solution</a></li>
+<li><a href="#solution-14">Solution</a></li>
 </ul></li>
 <li><a href="#you-know-the-rules-and-so-do-i-medium-image-forensics">You know the rules, and so do I&hellip; ?? (medium, image-forensics)</a>
 <ul>
-<li><a href="#solution-14">Solution</a></li>
+<li><a href="#solution-15">Solution</a></li>
 </ul></li>
 <li><a href="#coinflip-medium-binary">CoinFlip (medium, binary)</a>
 <ul>
-<li><a href="#solution-15">Solution</a></li>
+<li><a href="#solution-16">Solution</a></li>
 </ul></li>
 <li><a href="#git-exposed-medium-web">Git Exposed (medium, web)</a>
 <ul>
-<li><a href="#solution-16">Solution</a></li>
+<li><a href="#solution-17">Solution</a></li>
 </ul></li>
 <li><a href="#hidden-in-plain-sight-medium-misc">Hidden in Plain Sight (medium, misc)</a>
 <ul>
-<li><a href="#solution-17">Solution</a></li>
+<li><a href="#solution-18">Solution</a></li>
 </ul></li>
 <li><a href="#directory-listing-hard-cryptography">Directory Listing (hard, cryptography)</a>
 <ul>
-<li><a href="#solution-18">Solution</a></li>
+<li><a href="#solution-19">Solution</a></li>
 </ul></li>
 <li><a href="#passworddb-hard-network">PasswordDB (hard, network)</a>
 <ul>
@@ -454,6 +458,66 @@ wget -O - &ldquo;<a href="http://ctf.honeynet.org:8204/&quot;">http://ctf.honeyn
 <p><br /><br />
 <br /><br /></p>
 
+<h1 id="there-is-no-such-thing-as-a-free-flag-easy-network">There is no such thing as a free flag (easy, network)</h1>
+
+<hr />
+
+<blockquote>
+<p>You have asked the organizers to give you a flag for free. &ldquo;Sure&rdquo;, they said, &ldquo;just go to <a href="http://ctf.honeynet.org:8101/flag.txt">http://ctf.honeynet.org:8101/flag.txt</a> and get it!&rdquo;
+<br /><br />
+Unfortunately, it looks like someone put firewall rules in place that will prevent you from simply opening the URL in your favorite web browser&hellip; can you find a way around?
+<br /><br />
+iptables_rules.txt
+<br /><br />
+If you do this from your home network, Network Address Translation will get into your way.</p>
+</blockquote>
+
+<p>Attachment:</p>
+
+<ul>
+<li>iptables_rules.txt</li>
+</ul>
+
+<pre>
+Chain firewall (1 references)
+target     prot opt source               destination
+REJECT     udp  --  0.0.0.0/0            0.0.0.0/0
+ACCEPT     icmp --  0.0.0.0/0            0.0.0.0/0
+ACCEPT     all  --  0.0.0.0/0            0.0.0.0/0            MAC 11:22:33:AA:BB:CC
+ACCEPT     all  --  192.168.1.42         0.0.0.0/0
+ACCEPT     all  --  0.0.0.0/0            192.168.1.42
+LOG        all  --  0.0.0.0/0            0.0.0.0/0            limit: avg 3/min burst 5 LOG level warning prefix "[UFW LIMIT BLOCK] "
+ACCEPT     tcp  --  0.0.0.0/0            0.0.0.0/0            tcp dpt:8000
+REJECT     tcp  --  0.0.0.0/0            0.0.0.0/0            tcp spts:1024:65535 reject-with tcp-reset
+ACCEPT     tcp  --  0.0.0.0/0            0.0.0.0/0
+</pre>
+
+<h2 id="solution-10">Solution</h2>
+
+<p>上から順番に見ていくと、当たってしまうルールは以下なのがわかります。
+<pre>
+REJECT     tcp  &ndash;  0.0.0.0/0            0.0.0.0/0            tcp spts:1024:65535 reject-with tcp-reset
+</pre></p>
+
+<p>問題の最後の一文（&rdquo;If you do this ~&ldquo;）は、ホームネットワークでNAPTしてる場合は気をつけてね、の意味ですね。
+<br /><br />
+送信元ポートをルールの範囲外にしてやって、GETを送るとフラグが返ってきます。（HTTPヘッダの終わりを示すため、エンターは2回押します。）
+<pre>
+$ nc ctf.honeynet.org 8101 -p 1023
+GET /flag.txt HTTP/1.1</p>
+
+<p>HTTP/1.1 200 OK
+Content-Type: text/plain; charset=utf-8
+Content-Length: 42
+Date: Sat, 01 Jun 2019 03:22:37 GMT
+Server: Python/3.7 aiohttp/3.5.4</p>
+
+<p>__flag__{155ece9cf99a4de280a166f8100f947b}
+</pre></p>
+
+<p><br /><br />
+<br /><br /></p>
+
 <h1 id="weird-website-easy-network">Weird Website (easy, network)</h1>
 
 <hr />
@@ -468,7 +532,7 @@ wget -O - &ldquo;<a href="http://ctf.honeynet.org:8204/&quot;">http://ctf.honeyn
 <li>weirdwebsite.pcap</li>
 </ul>
 
-<h2 id="solution-10">Solution</h2>
+<h2 id="solution-11">Solution</h2>
 
 <p><a href="http://codertab.com/JsUnFuck">http://codertab.com/JsUnFuck</a></p>
 
@@ -493,7 +557,7 @@ To start things off, download the superbank client and log into your account wit
 <li>superbank-linux</li>
 </ul>
 
-<h2 id="solution-11">Solution</h2>
+<h2 id="solution-12">Solution</h2>
 
 <p>問題の中で、API Endpoint, Username, PINが与えられます。添付されているプログラムを実行すると、それらを入力するようになっているので入力すると、以下に見えるように最初は42トークンを持っているようなので、
 <pre>
@@ -534,7 +598,7 @@ Currently registered accounts:
 <p>Developers must make sure to not store passwords as plaintext, but scramble them with a password hashing algorithm first. Unfortunately, they often use insecure hashing algorithms such as MD5 to do this. To tackle this problem, we developed Hashing-as-a-Service (HaaS), a modern approach to perfect password security. Using the HaaS API, you can securely hash any password you want!</p>
 </blockquote>
 
-<h2 id="solution-12">Solution</h2>
+<h2 id="solution-13">Solution</h2>
 
 <p>コマンドインジェクション。セミコロンで区切ると、2つ目がコマンドとして実行される。
 <br /><br />
@@ -611,7 +675,7 @@ SHA-256: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
         <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">enc</span><span class="p">)</span></code></pre></td></tr></table>
 </div>
 </div>
-<h2 id="solution-13">Solution</h2>
+<h2 id="solution-14">Solution</h2>
 
 <p>コードを読み解くと、入力したmsgの部分と、cur_timeはそれぞれ計算されて連結されてるだけなのがわかります。
 <br /><br />
@@ -825,7 +889,7 @@ randで乱数を使ってますが、random.seedに固定値を入れると、�
 <li>qrcode.png</li>
 </ul>
 
-<h2 id="solution-14">Solution</h2>
+<h2 id="solution-15">Solution</h2>
 
 <p>「青い空を見上げればいつもそこに白い猫」のステガノグラフィー解析、ビット抽出へ行くと、フラグっぽいのが見えます。
 <br />
@@ -854,7 +918,7 @@ randで乱数を使ってますが、random.seedに固定値を入れると、�
 <li>coinflip.exe</li>
 </ul>
 
-<h2 id="solution-15">Solution</h2>
+<h2 id="solution-16">Solution</h2>
 
 <p>coinflipに100回勝つとフラグが取れる、ってやつでした。いろんな解法があると思います。自分はx32dbg.exeで解きました。<br />
 <br />
@@ -872,7 +936,7 @@ rand()を使っている00401633のところをnopで埋めて（バイナリ -&
 <p>Rumor has it that a flag has been hidden on this web server&hellip;</p>
 </blockquote>
 
-<h2 id="solution-16">Solution</h2>
+<h2 id="solution-17">Solution</h2>
 
 <p>サイトにアクセスし、view page sourceした後、/files/ディレクトリを見ると、todo.txtというファイルが見つかります。
 <pre>
@@ -917,7 +981,7 @@ index c047bcb..0000000
 <p>（説明なし）</p>
 </blockquote>
 
-<h2 id="solution-17">Solution</h2>
+<h2 id="solution-18">Solution</h2>
 
 <p>これは説明がなにもないんですが、タイトルより、なにか文字があるけど見えないよ、みたいなことだとわかります。
 <br /><br />
@@ -1126,7 +1190,7 @@ Burp Suite経由でアクセスしたら、以下が取れました。
     <span class="n">web</span><span class="o">.</span><span class="n">run_app</span><span class="p">(</span><span class="n">app</span><span class="p">)</span></code></pre></td></tr></table>
 </div>
 </div>
-<h2 id="solution-18">Solution</h2>
+<h2 id="solution-19">Solution</h2>
 
 <p>ご親切に、lecture-slides.pdfというのがついていて、hash length extension attacksをしてください、というもの。
 <br /><br /></p>

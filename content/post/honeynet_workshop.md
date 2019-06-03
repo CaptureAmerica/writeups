@@ -167,6 +167,61 @@ Attachment:
 
 <br /><br />
 <br /><br />
+# There is no such thing as a free flag (easy, network)
+- - -
+> You have asked the organizers to give you a flag for free. "Sure", they said, "just go to http://ctf.honeynet.org:8101/flag.txt and get it!"
+<br /><br />
+Unfortunately, it looks like someone put firewall rules in place that will prevent you from simply opening the URL in your favorite web browser... can you find a way around?
+<br /><br />
+iptables_rules.txt
+<br /><br />
+If you do this from your home network, Network Address Translation will get into your way.
+
+
+Attachment:
+
+- iptables_rules.txt
+
+<pre>
+Chain firewall (1 references)
+target     prot opt source               destination
+REJECT     udp  --  0.0.0.0/0            0.0.0.0/0
+ACCEPT     icmp --  0.0.0.0/0            0.0.0.0/0
+ACCEPT     all  --  0.0.0.0/0            0.0.0.0/0            MAC 11:22:33:AA:BB:CC
+ACCEPT     all  --  192.168.1.42         0.0.0.0/0
+ACCEPT     all  --  0.0.0.0/0            192.168.1.42
+LOG        all  --  0.0.0.0/0            0.0.0.0/0            limit: avg 3/min burst 5 LOG level warning prefix "[UFW LIMIT BLOCK] "
+ACCEPT     tcp  --  0.0.0.0/0            0.0.0.0/0            tcp dpt:8000
+REJECT     tcp  --  0.0.0.0/0            0.0.0.0/0            tcp spts:1024:65535 reject-with tcp-reset
+ACCEPT     tcp  --  0.0.0.0/0            0.0.0.0/0
+</pre>
+
+
+## Solution
+上から順番に見ていくと、当たってしまうルールは以下なのがわかります。
+<pre>
+REJECT     tcp  --  0.0.0.0/0            0.0.0.0/0            tcp spts:1024:65535 reject-with tcp-reset
+</pre>
+
+問題の最後の一文（"If you do this ~"）は、ホームネットワークでNAPTしてる場合は気をつけてね、の意味ですね。
+<br /><br />
+送信元ポートをルールの範囲外にしてやって、GETを送るとフラグが返ってきます。（HTTPヘッダの終わりを示すため、エンターは2回押します。）
+<pre>
+$ nc ctf.honeynet.org 8101 -p 1023
+GET /flag.txt HTTP/1.1
+
+HTTP/1.1 200 OK
+Content-Type: text/plain; charset=utf-8
+Content-Length: 42
+Date: Sat, 01 Jun 2019 03:22:37 GMT
+Server: Python/3.7 aiohttp/3.5.4
+
+\__flag__{155ece9cf99a4de280a166f8100f947b}
+</pre>
+
+
+<br /><br />
+<br /><br />
 # Weird Website (easy, network)
 - - -
 > Analyze the network traffic to get the flag.
