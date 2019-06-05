@@ -364,6 +364,7 @@ int find_curtime()
 		printf( "%c", (char)( curtime[i] ^ 0x42 ) );
 	}
 	puts("");
+	fclose( fp );
 	return 0;
 }
 
@@ -415,6 +416,7 @@ int find_curtime()
 		printf( "%c", (char)( curtime[i] ^ 0x42 ) );
 	}
 	puts("");
+	fclose( fp );
 	return 0;
 }
 

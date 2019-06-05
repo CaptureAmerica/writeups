@@ -51,7 +51,7 @@
 
 <meta itemprop="datePublished" content="2019-06-03T00:00:00&#43;08:00" />
 <meta itemprop="dateModified" content="2019-06-03T07:33:00&#43;08:00" />
-<meta itemprop="wordCount" content="4274">
+<meta itemprop="wordCount" content="4282">
 
 
 
@@ -715,6 +715,7 @@ randで乱数を使ってますが、random.seedに固定値を入れると、�
 </span><span class="lnt">29
 </span><span class="lnt">30
 </span><span class="lnt">31
+</span><span class="lnt">32
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-c :tea.c" data-lang="c :tea.c"><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
@@ -741,6 +742,7 @@ randで乱数を使ってますが、random.seedに固定値を入れると、�
 		<span class="n">printf</span><span class="p">(</span> <span class="s">&#34;%c&#34;</span><span class="p">,</span> <span class="p">(</span><span class="kt">char</span><span class="p">)(</span> <span class="n">curtime</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">^</span> <span class="mh">0x42</span> <span class="p">)</span> <span class="p">);</span>
 	<span class="p">}</span>
 	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;&#34;</span><span class="p">);</span>
+	<span class="n">fclose</span><span class="p">(</span> <span class="n">fp</span> <span class="p">);</span>
 	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
 
@@ -824,6 +826,7 @@ randで乱数を使ってますが、random.seedに固定値を入れると、�
 </span><span class="lnt">42
 </span><span class="lnt">43
 </span><span class="lnt">44
+</span><span class="lnt">45
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-c :tea.c" data-lang="c :tea.c"><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
@@ -850,6 +853,7 @@ randで乱数を使ってますが、random.seedに固定値を入れると、�
 		<span class="n">printf</span><span class="p">(</span> <span class="s">&#34;%c&#34;</span><span class="p">,</span> <span class="p">(</span><span class="kt">char</span><span class="p">)(</span> <span class="n">curtime</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">^</span> <span class="mh">0x42</span> <span class="p">)</span> <span class="p">);</span>
 	<span class="p">}</span>
 	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;&#34;</span><span class="p">);</span>
+	<span class="n">fclose</span><span class="p">(</span> <span class="n">fp</span> <span class="p">);</span>
 	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
 
