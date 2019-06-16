@@ -7,15 +7,15 @@ weight: 50
 
 ---
 
-Hugo is a static site engine written in Go.
 
-
-It makes use of a variety of open source projects including:
-
-* [Cobra](https://github.com/spf13/cobra)
-* [Viper](https://github.com/spf13/viper)
-* [J Walter Weatherman](https://github.com/spf13/jWalterWeatherman)
-* [Cast](https://github.com/spf13/cast)
-
-Learn more and contribute on [GitHub](https://github.com/gohugoio).
-
+2019-04-30に開催された令和CTF辺りから、ちょこちょこCTFに参加してます。
+<br /><br />
+TSGのCTFにて、チーム名を決めないといけなかったので、ちょうど流行ってたAvengersをもじってAhengersにしました。
+<br /><br />
+Capture Americaというのは、その後に思いついた名前です。（通称：きゃぷあめ）
+<br /><br />
+別にMarvelファンでもなんでもないし、アメリカ人でもないです。
+<br /><br />
+今のところ、チームAhengers内に他のスーパーヒーローは居ないです。（要は、独り参加です。。）
+<br /><br />
+Writeupのトップページは[こちら](https://captureamerica.github.io/writeups/)です。
