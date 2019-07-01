@@ -51,7 +51,7 @@
 
 <meta itemprop="datePublished" content="2019-06-16T13:00:00&#43;09:00" />
 <meta itemprop="dateModified" content="2019-06-16T13:00:00&#43;09:00" />
-<meta itemprop="wordCount" content="7081">
+<meta itemprop="wordCount" content="7319">
 
 
 
@@ -240,6 +240,11 @@
 <ul>
 <li><a href="#challenge-19">Challenge</a></li>
 <li><a href="#solution-18">Solution</a></li>
+</ul></li>
+<li><a href="#forensics-wavey-150">Forensics: wavey (150)</a>
+<ul>
+<li><a href="#challenge-20">Challenge</a></li>
+<li><a href="#solution-19">Solution</a></li>
 </ul></li>
 </ul>
 </nav>
@@ -1807,6 +1812,44 @@ Hint2: 123 and 240 are hexdumps (not necessarily compression)</p>
 <p>hexdumpのテキスト アウトプットのやつは、<code>xxd -r</code>で解凍できます。</p>
 
 <p><code>bcactf{A_l0t_0f_c0mPr3s510n}</code></p>
+
+<p><br /><br />
+<br /><br />
+<img src="https://captureamerica.github.io/writeups/img/orange_bar.png" alt="orange_bar.png">
+<br />
+ここから下はCTF終了後に行った復習です。
+<br /><br />
+<br /><br /></p>
+
+<h1 id="forensics-wavey-150">Forensics: wavey (150)</h1>
+
+<hr />
+
+<h2 id="challenge-20">Challenge</h2>
+
+<blockquote>
+<p>My friend sent me his new mixtape, but honestly I don&rsquo;t think it&rsquo;s that good. Can you take a look at it and figure out what&rsquo;s going on?
+<br /><br />
+Hint: He specifically described it as wavey&hellip;</p>
+</blockquote>
+
+<p>Attachment:</p>
+
+<ul>
+<li>straightfire.wav</li>
+</ul>
+
+<h2 id="solution-19">Solution</h2>
+
+<p>正直、ヒントの意味がわからなかったです。waveyでいろいろ検索したりもした。。。
+<br /><br />
+スペクトラムを見ると、視覚的にフラグが見えるようです。
+<br /><br />
+Audacityでやってみました。
+<br />
+<img src="https://captureamerica.github.io/writeups/img/straightfire.png" alt="straightfire.png">
+<br />
+左のとこのファイル名（straightfire）が出ているところがプルダウンになってて、デフォルトだとWaveformだけど、そこでSpectrogramを選ぶとこれが出てきます。</p>
 
 <p><br /><br />
 <br /><br /></p>

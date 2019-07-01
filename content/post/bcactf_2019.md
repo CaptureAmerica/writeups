@@ -1073,6 +1073,37 @@ hexdumpのテキスト アウトプットのやつは、`xxd -r`で解凍でき�
 `bcactf{A_l0t_0f_c0mPr3s510n}`
 
 
+
+<br /><br />
+<br /><br />
+<img src="https://captureamerica.github.io/writeups/img/orange_bar.png" alt="orange_bar.png">
+<br />
+ここから下はCTF終了後に行った復習です。
+<br /><br />
+<br /><br />
+# Forensics: wavey (150)
+- - -
+## Challenge
+> My friend sent me his new mixtape, but honestly I don't think it's that good. Can you take a look at it and figure out what's going on?
+<br /><br />
+Hint: He specifically described it as wavey...
+
+Attachment:
+
+- straightfire.wav
+
+## Solution
+正直、ヒントの意味がわからなかったです。waveyでいろいろ検索したりもした。。。
+<br /><br />
+スペクトラムを見ると、視覚的にフラグが見えるようです。
+<br /><br />
+Audacityでやってみました。
+<br />
+<img src="https://captureamerica.github.io/writeups/img/straightfire.png" alt="straightfire.png">
+<br />
+左のとこのファイル名（straightfire）が出ているところがプルダウンになってて、デフォルトだとWaveformだけど、そこでSpectrogramを選ぶとこれが出てきます。
+
+
 <br /><br />
 <br /><br />
 - - -
