@@ -29,7 +29,7 @@ Ciphertext: 112 101 97 67 84 70 123 52 115 99 49 49 105 115 99 48 48 108 125
 ## Solution
 普通に1個1個変換したら面白くないので、ワンライナーで挑戦。
 ```python
-$ python -c 'print([chr(int(x)) for x in "112 101 97 67 84 70 123 52 115 99 49 49 105 115 99 48 48 108 125".split()])' | tr -d "'" | tr -d " " | tr -d ','
+$ python -c 'print("".join([chr(int(x)) for x in "112 101 97 67 84 70 123 52 115 99 49 49 105 115 99 48 48 108 125".split()]))'
 ```
 flag: `peaCTF{4sc11isc00l}`
 

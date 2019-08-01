@@ -51,7 +51,7 @@
 
 <meta itemprop="datePublished" content="2019-08-01T19:00:00&#43;09:00" />
 <meta itemprop="dateModified" content="2019-08-01T19:00:00&#43;09:00" />
-<meta itemprop="wordCount" content="1139">
+<meta itemprop="wordCount" content="1126">
 
 
 
@@ -213,7 +213,7 @@ Ciphertext: 112 101 97 67 84 70 123 52 115 99 49 49 105 115 99 48 48 108 125</p>
 <pre class="chroma"><code class="language-python" data-lang="python"><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="err">$</span> <span class="n">python</span> <span class="o">-</span><span class="n">c</span> <span class="s1">&#39;print([chr(int(x)) for x in &#34;112 101 97 67 84 70 123 52 115 99 49 49 105 115 99 48 48 108 125&#34;.split()])&#39;</span> <span class="o">|</span> <span class="n">tr</span> <span class="o">-</span><span class="n">d</span> <span class="s2">&#34;&#39;&#34;</span> <span class="o">|</span> <span class="n">tr</span> <span class="o">-</span><span class="n">d</span> <span class="s2">&#34; &#34;</span> <span class="o">|</span> <span class="n">tr</span> <span class="o">-</span><span class="n">d</span> <span class="s1">&#39;,&#39;</span></code></pre></td></tr></table>
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="err">$</span> <span class="n">python</span> <span class="o">-</span><span class="n">c</span> <span class="s1">&#39;print(&#34;&#34;.join([chr(int(x)) for x in &#34;112 101 97 67 84 70 123 52 115 99 49 49 105 115 99 48 48 108 125&#34;.split()]))&#39;</span></code></pre></td></tr></table>
 </div>
 </div>
 <p>flag: <code>peaCTF{4sc11isc00l}</code></p>
