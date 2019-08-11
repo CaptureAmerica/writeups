@@ -227,7 +227,7 @@ flag: `peaCTF{read_banned_it}`
 
 <br /><br />
 <br /><br />
-# We are E.xtr
+# The Wonderful Wizard
 - - -
 ## Challenge
 > 特に記載なし（添付ファイルのみ）
