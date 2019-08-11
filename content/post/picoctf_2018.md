@@ -1,0 +1,597 @@
+---
+title: "picoCTF 2018 Writeup"
+date: 2019-08-11T23:00:00+09:00
+lastmod: 2019-08-11T23:00:00+09:00
+draft: false
+keywords: []
+description: ""
+tags: ["CTF"]
+categories: ["CTF"]
+author: "きゃぷあめ"
+---
+URL: [https://2018game.picoctf.com/](https://2018game.picoctf.com/)
+<br /><br />
+すでにイベントは終了してるんですが、続けて勉強ができるようになっているので、他のCTFイベントがない平日とかにちょこちょこやってます。
+<br /><br />
+問題の作者の「何かを学習して身につけてもらいたい」という気持ちがこもったチャレンジが揃っているのがいいですね。
+<br /><br />
+ここでは、自力で解いた問題のWriteupを記録に残していこうと思います。今後も付け足すかも知れないし、付け足さないかも知れないです。
+<br /><br />
+序盤の簡単すぎるやつは、書きません。
+
+
+<br /><br />
+# Desrouleaux
+- - -
+## Challenge
+> Our network administrator is having some trouble handling the tickets for all of of our incidents. Can you help him out by answering all the questions? Connect with nc 2018shell.picoctf.com 54782. 
+<br /><br />
+Hint: If you need to code, python has some good libraries for it.
+
+Attachment:
+
+- incidents.json
+<pre>
+{
+    "tickets": [
+        {
+            "ticket_id": 0,
+            "timestamp": "2016/02/08 08:45:56",
+            "file_hash": "33d81fec987b8a8c",
+            "src_ip": "246.69.53.233",
+            "dst_ip": "48.173.183.246"
+        },
+        {
+            "ticket_id": 1,
+            "timestamp": "2017/03/05 06:01:41",
+            "file_hash": "f2d2c758fe8853b5",
+            "src_ip": "246.69.53.233",
+            "dst_ip": "164.217.208.88"
+        },
+        {
+            "ticket_id": 2,
+            "timestamp": "2015/02/28 12:24:15",
+            "file_hash": "33d81fec987b8a8c",
+            "src_ip": "251.165.34.242",
+            "dst_ip": "125.130.154.106"
+        },
+        {
+            "ticket_id": 3,
+            "timestamp": "2015/06/24 12:14:19",
+            "file_hash": "581dc312cc8c16c6",
+            "src_ip": "246.69.53.233",
+            "dst_ip": "48.173.183.246"
+        },
+        {
+            "ticket_id": 4,
+            "timestamp": "2015/11/15 22:34:03",
+            "file_hash": "8aa16b403ac7de3e",
+            "src_ip": "215.239.98.18",
+            "dst_ip": "231.12.49.241"
+        },
+        {
+            "ticket_id": 5,
+            "timestamp": "2015/02/06 15:42:17",
+            "file_hash": "8aa16b403ac7de3e",
+            "src_ip": "246.69.53.233",
+            "dst_ip": "168.138.219.19"
+        },
+        {
+            "ticket_id": 6,
+            "timestamp": "2017/12/29 05:54:41",
+            "file_hash": "8aa16b403ac7de3e",
+            "src_ip": "251.165.34.242",
+            "dst_ip": "168.138.219.19"
+        },
+        {
+            "ticket_id": 7,
+            "timestamp": "2017/10/10 13:11:20",
+            "file_hash": "6629fde09ed2dab7",
+            "src_ip": "251.165.34.242",
+            "dst_ip": "187.229.175.225"
+        },
+        {
+            "ticket_id": 8,
+            "timestamp": "2015/01/26 00:01:08",
+            "file_hash": "581dc312cc8c16c6",
+            "src_ip": "231.205.245.44",
+            "dst_ip": "48.173.183.246"
+        },
+        {
+            "ticket_id": 9,
+            "timestamp": "2017/05/07 09:51:22",
+            "file_hash": "8aa16b403ac7de3e",
+            "src_ip": "251.165.34.242",
+            "dst_ip": "168.138.219.19"
+        }
+    ]
+}
+</pre>
+
+<br />
+## Solution
+ncで繋ぐと、そこで問題が出てきます。
+
+ヒントを無視してLinuxコマンドで全部解こうかと思ったけど、勉強のために最後だけはPythonで解きました。
+
+> What is the most common source IP address? If there is more than one IP address that is the most common, you may give any of the most common ones.
+
+```
+$ grep src incidents.json | cut -d: -f2 | sort | uniq -c
+   1  "215.239.98.18",
+   1  "231.205.245.44",
+   4  "246.69.53.233",
+   4  "251.165.34.242",
+```
+答え：251.165.34.242
+
+
+<br />
+
+> How many unique destination IP addresses were targeted by the source IP address 246.69.53.233?
+
+```
+$ grep 251.165.34.242 incidents.json -A 2 | grep dst | sort | uniq | wc -l
+       3
+```
+答え：3
+
+<br />
+
+> What is the number of unique destination ips a file is sent, on average? Needs to be correct to 2 decimal places.
+
+```Python
+#!/usr/bin/env python
+# coding: UTF-8
+
+import json
+
+f = open('incidents.json', 'r')
+json_dict = json.load(f)
+
+# uniqにするために一旦リストにする。
+hash_list = []
+for key in json_dict['tickets']:
+    hash_list.append(key['file_hash'])  # hashだけ取り出して、リストにappend
+
+uniq_hash = list(set(hash_list))
+
+uniq_dst = 0
+for hash in uniq_hash:
+    dstip_list = []
+    for key in json_dict['tickets']:
+        if key['file_hash'] == hash:
+            dstip_list.append(key['dst_ip'])
+    uniq_dst = uniq_dst + len(list(set(dstip_list)))
+
+print("{:.2f}".format(uniq_dst / len(uniq_hash)))
+```
+答え：1.40
+
+
+
+
+<br /><br />
+<br /><br />
+# Safe RSA
+- - -
+## Challenge
+> Now that you know about RSA can you help us decrypt this ciphertext? We don't have the decryption key but something about those values looks funky..
+<br /><br />
+Hint1: RSA [tutorial](https://en.wikipedia.org/wiki/RSA_(cryptosystem))<br />
+Hint2: Hmmm that e value looks kinda small right?<br />
+Hint3: These are some really big numbers.. Make sure you're using functions that don't lose any precision!<br />
+
+
+Attachment:
+
+- ciphertext（以下が中身）
+
+\-\-\-\-\-\-\-\-<br />
+N: 374159235470172130988938196520880526947952521620932362050308663243595788308583992120881359365258949723819911758198013202644666489247987314025169670926273213367237020188587742716017314320191350666762541039238241984934473188656610615918474673963331992408750047451253205158436452814354564283003696666945950908549197175404580533132142111356931324330631843602412540295482841975783884766801266552337129105407869020730226041538750535628619717708838029286366761470986056335230171148734027536820544543251801093230809186222940806718221638845816521738601843083746103374974120575519418797642878012234163709518203946599836959811
+
+e: 3
+
+ciphertext \(c\): 2205316413931134031046440767620541984801091216351222789180535786851451917462804449135087209259828503848304180574549372616172217553002988241140344023060716738565104171296716554122734607654513009667720334889869007276287692856645210293194853 
+<br />\-\-\-\-\-\-\-\-
+
+<br />
+## Solution
+RsaCtfTool \( [https://github.com/Ganapati/RsaCtfTool](https://github.com/Ganapati/RsaCtfTool) \) を使ったら解けました。
+
+\-\-\-\-\-\-\-\-<br />
+$ python RsaCtfTool.py -n 374159235470172130988938196520880526947952521620932362050308663243595788308583992120881359365258949723819911758198013202644666489247987314025169670926273213367237020188587742716017314320191350666762541039238241984934473188656610615918474673963331992408750047451253205158436452814354564283003696666945950908549197175404580533132142111356931324330631843602412540295482841975783884766801266552337129105407869020730226041538750535628619717708838029286366761470986056335230171148734027536820544543251801093230809186222940806718221638845816521738601843083746103374974120575519418797642878012234163709518203946599836959811 -e 3 --uncipher 2205316413931134031046440767620541984801091216351222789180535786851451917462804449135087209259828503848304180574549372616172217553002988241140344023060716738565104171296716554122734607654513009667720334889869007276287692856645210293194853
+
+[+] Clear text : b'picoCTF{e_w4y_t00_sm411_34096259}'
+<br />\-\-\-\-\-\-\-\-
+<br /><br />
+Flag: `picoCTF{e_w4y_t00_sm411_34096259}`
+
+
+<br /><br />
+<br /><br />
+# be-quick-or-be-dead-1
+- - -
+## Challenge
+> You find [this](https://www.youtube.com/watch?v=CTt1vk9nM9c) when searching for some music, which leads you to be-quick-or-be-dead-1. Can you run it fast enough? You can also find the executable in /problems/be-quick-or-be-dead-1_3_aeb48854203a88fb1da963f41ae06a1c.
+<br /><br />
+Hint: What will the key finally be?
+
+Attachment:
+
+- be-quick-or-be-dead-1  (ELF 64-bit)
+
+<br />
+## Solution
+これは、いろんな解き方があると思います。<br />
+
+alert(1)でタイマーを起動していて、flagをprintする前にタイムアウトしちゃうので、gdbでalert(1)をコールしているところで止めて、引数1を0xffとかに書き換えたらオッケー。
+
+
+
+<br /><br />
+<br /><br />
+# keygen-me-1
+- - -
+## Challenge
+> Can you generate a valid product key for the validation program in /problems/keygen-me-1_2_74297f5e012cf93ee059a2be15d77734
+
+Attachment:
+
+- activate (ELF 32-bit)
+
+<br />
+## Solution
+Ghidra使っていきます。
+
+```C
+undefined4 main(int param_1,int param_2)
+
+{
+  char cVar1;
+  undefined4 uVar2;
+  undefined4 *puVar3;
+  
+  puVar3 = &param_1;
+  setvbuf(stdout,(char *)0x0,2,0);
+  if (param_1 < 2) {
+    puts("Usage: ./activate <PRODUCT_KEY>");
+    uVar2 = 0xffffffff;
+  }
+  else {
+    cVar1 = check_valid_key(*(undefined4 *)(param_2 + 4));
+    if (cVar1 == 0) {
+      puts("Please Provide a VALID 16 byte Product Key."); // <--- 16バイト
+      uVar2 = 0xffffffff;
+    }
+    else {
+      cVar1 = validate_key(*(undefined4 *)(param_2 + 4)); // 以下を参照
+      if (cVar1 == 0) {
+        puts("INVALID Product Key.");
+        uVar2 = 0xffffffff;
+      }
+      else {
+        printf("Product Activated Successfully: ");
+        print_flag(puVar3);
+        uVar2 = 0;
+      }
+    }
+  }
+  return uVar2;
+}
+```
+
+```C
+undefined4 validate_key(char *param_1)
+
+{
+  char cVar1;
+  size_t sVar2;
+  uint local_18;
+  int local_14;
+  
+  sVar2 = strlen(param_1);   // <-- 16文字
+  local_18 = 0;
+  local_14 = 0;
+  while (local_14 < (int)(sVar2 - 1)) {   // 16-1で、15回ループ
+    cVar1 = ord((int)param_1[local_14]);
+    local_18 = local_18 + (local_14 + 1) * ((int)cVar1 + 1);
+    local_14 = local_14 + 1;
+  }
+  cVar1 = ord((int)param_1[sVar2 - 1]);   // param_1の最後の文字。
+  return CONCAT31((undefined3)(cVar1 >> 7),local_18 % 0x24 == (int)cVar1);
+}
+```
+処理を完全に把握しなくても、16文字のうちの先頭からの15文字をなんか処理して、最後の1文字となんかしているのがわかれば十分でした。
+
+以下のように、文字の範囲は決まっているので、Brute Forceで行けます。
+```C
+undefined4 check_valid_char(char param_1)
+
+{
+  undefined4 uVar1;
+
+  // 0~9とA~Zのみ
+  if (((param_1 < '0') || ('9' < param_1)) && ((param_1 < 'A' || ('Z' < param_1)))) {
+    uVar1 = 0;
+  }
+  else {
+    uVar1 = 1;
+  }
+  return uVar1;
+}
+```
+
+<br />
+以下のようにシェルスクリプトで解きました。適当な15文字と、最後の1文字をBrute Forceしてます。なお、ローカルで実行する際には、flag.txtを自前で適当に作っておきます。
+```Bash
+# cat activate_solve.sh 
+#!/bin/bash
+ARRAY=(A B C D E F G H I J K L M N O P Q R S T U V W X Y Z 0 1 2 3 4 5 6 7 8 9)
+
+for item in ${ARRAY[@]}; do
+    echo "AAAAAAAAAAAAAAA"$item
+    ./activate "AAAAAAAAAAAAAAA"$item
+done
+
+#  ./activate_solve.sh 
+AAAAAAAAAAAAAAAA
+INVALID Product Key.
+AAAAAAAAAAAAAAAB
+INVALID Product Key.
+AAAAAAAAAAAAAAAC
+INVALID Product Key.
+AAAAAAAAAAAAAAAD
+INVALID Product Key.
+AAAAAAAAAAAAAAAE
+INVALID Product Key.
+AAAAAAAAAAAAAAAF
+INVALID Product Key.
+AAAAAAAAAAAAAAAG
+INVALID Product Key.
+AAAAAAAAAAAAAAAH
+INVALID Product Key.
+AAAAAAAAAAAAAAAI
+INVALID Product Key.
+AAAAAAAAAAAAAAAJ
+INVALID Product Key.
+AAAAAAAAAAAAAAAK
+INVALID Product Key.
+AAAAAAAAAAAAAAAL
+INVALID Product Key.
+AAAAAAAAAAAAAAAM
+INVALID Product Key.
+AAAAAAAAAAAAAAAN
+INVALID Product Key.
+AAAAAAAAAAAAAAAO
+Product Activated Successfully: xxx{abcdefg}
+AAAAAAAAAAAAAAAP
+INVALID Product Key.
+AAAAAAAAAAAAAAAQ
+INVALID Product Key.
+AAAAAAAAAAAAAAAR
+INVALID Product Key.
+AAAAAAAAAAAAAAAS
+INVALID Product Key.
+AAAAAAAAAAAAAAAT
+INVALID Product Key.
+AAAAAAAAAAAAAAAU
+INVALID Product Key.
+AAAAAAAAAAAAAAAV
+INVALID Product Key.
+AAAAAAAAAAAAAAAW
+INVALID Product Key.
+AAAAAAAAAAAAAAAX
+INVALID Product Key.
+AAAAAAAAAAAAAAAY
+INVALID Product Key.
+AAAAAAAAAAAAAAAZ
+INVALID Product Key.
+AAAAAAAAAAAAAAA0
+INVALID Product Key.
+AAAAAAAAAAAAAAA1
+INVALID Product Key.
+AAAAAAAAAAAAAAA2
+INVALID Product Key.
+AAAAAAAAAAAAAAA3
+INVALID Product Key.
+AAAAAAAAAAAAAAA4
+INVALID Product Key.
+AAAAAAAAAAAAAAA5
+INVALID Product Key.
+AAAAAAAAAAAAAAA6
+INVALID Product Key.
+AAAAAAAAAAAAAAA7
+INVALID Product Key.
+AAAAAAAAAAAAAAA8
+INVALID Product Key.
+AAAAAAAAAAAAAAA9
+INVALID Product Key.
+```
+flag: `AAAAAAAAAAAAAAAO`
+
+
+<br /><br />
+<br /><br />
+# script me
+- - -
+## Challenge
+> Can you understand the language and answer the questions to retrieve the flag? Connect to the service with nc 2018shell.picoctf.com 1542
+Maybe try writing a python script?
+
+<pre>
+$ nc 2018shell.picoctf.com 1542
+Rules:
+() + () = ()()                                      => [combine]
+((())) + () = ((())())                              => [absorb-right]
+() + ((())) = (()(()))                              => [absorb-left]
+(())(()) + () = (())(()())                          => [combined-absorb-right]
+() + (())(()) = (()())(())                          => [combined-absorb-left]
+(())(()) + ((())) = ((())(())(()))                  => [absorb-combined-right]
+((())) + (())(()) = ((())(())(()))                  => [absorb-combined-left]
+() + (()) + ((())) = (()()) + ((())) = ((()())(())) => [left-associative]
+
+Example: 
+(()) + () = () + (()) = (()())
+</pre>
+
+<br />
+## Solution
+なんかカッコが多くて、複雑そうに見えるけど、()を別の文字に置き換えるとわかりやすいと思います｡
+<pre>
+x + x = xx
+((x)) + x = ((x)x)
+x + ((x)) = (x(x))
+(x)(x) + x = (x)(xx)
+x + (x)(x) = (xx)(x)
+(x)(x) + ((x)) = ((x)(x)(x))
+((x)) + (x)(x) = ((x)(x)(x))
+x + (x) + ((x)) = (xx) + ((x)) = ((xx)(x))
+</pre>
+
+要は、カッコが何重になっているかによって処理が異なっていて、以下の通り。
+
+- 同じ深さの場合は、連結
+- 左の方が深かければ、左のカッコの中の最後に連結
+- 右の方が深かければ、右のカッコの中の先頭に連結
+
+<br>
+書いたコード。
+```Python
+#!/usr/bin/env python
+# coding: UTF-8
+import re
+from pwn import *
+
+host = "2018shell.picoctf.com"
+port = 1542
+s = remote( host, port )
+
+while 1:
+    msg = s.recvregex("\?\?\?|picoCTF{.*}")
+    print(msg)
+    if re.search("picoCTF", msg):
+        exit(0)
+        
+    lines = msg.split("\n")
+    sample = lines[len(lines)-1]
+    msg = s.recvuntil("> ")
+        
+    # まず+で分ける。
+    list = sample.split("+")
+
+    for i in range(0,len(list)-1):
+        # 2つ取り出して、余分な文字の削除。
+        if i == 0:
+            a = list[i].strip(' ')
+        else:
+            a = c
+        b = list[i+1].replace(' ', '')
+        b = b.replace('=', '')
+        b = b.replace('?', '')
+
+        # ()をxに変えておく。
+        a = a.replace("()", 'x')
+        b = b.replace("()", 'x')
+            
+        depth = 0
+        a_max_depth = 0
+        for ch in a:
+            if ch == '(':
+                depth += 1
+                if depth > a_max_depth:
+                    a_max_depth = depth
+            if ch == ')':
+                depth -= 1
+
+        depth = 0
+        b_max_depth = 0
+        for ch in b:
+            if ch == '(':
+                depth += 1
+                if depth > b_max_depth:
+                    b_max_depth = depth
+            if ch == ')':
+                depth -= 1
+
+        if a_max_depth == b_max_depth:
+            c = a + b
+        elif a_max_depth > b_max_depth:
+            c = a[:-1] + b + ')'
+        else:
+            c = '(' + a + b[1:]
+
+        c = c.replace('x', "()")
+
+    s.sendline(c)
+    print "> %s" % c
+```
+
+<br>
+[コード解説]
+
+- コードの中でも、わかりやすくするために()をxで置き換えてます。
+- + で分けて、2つずつ処理。1個目をa、2個目をbにしてます。
+- aとbそれぞれ、余計な文字を削除してます。
+- あとは、それぞれカッコの深さを調べて、規則にのっとった処理をするだけ。
+
+<br><br>
+以下が、実行結果です。
+
+```
+~/Python2$ ./pico_script_me.py
+[+] Opening connection to 2018shell.picoctf.com on port 1542: Done
+Rules:
+() + () = ()()                                      => [combine]
+((())) + () = ((())())                              => [absorb-right]
+() + ((())) = (()(()))                              => [absorb-left]
+(())(()) + () = (())(()())                          => [combined-absorb-right]
+() + (())(()) = (()())(())                          => [combined-absorb-left]
+(())(()) + ((())) = ((())(())(()))                  => [absorb-combined-right]
+((())) + (())(()) = ((())(())(()))                  => [absorb-combined-left]
+() + (()) + ((())) = (()()) + ((())) = ((()())(())) => [left-associative]
+
+Example:
+(()) + () = () + (()) = (()())
+
+Let's start with a warmup.
+((())()) + (()) = ???
+> ((())()(()))
+Correct!
+
+Okay, now we're cookin!
+() + ((())()) + (()()()) = ???
+> (()(())()(()()()))
+Correct!
+
+Alright see if you can get this one.
+(()(())) + (()(())) + (()) + (()()()()()()()()) + (()()()(())()()) = ???
+> (()(()))(()(())(())(()()()()()()()()))(()()()(())()())
+Correct!
+
+This one's a little bigger!
+((())()) + ()() + ()() + (()()) + (()(())((()))(((())))((((()))))) + (((()())()())()) + ()() + (()()) + (()(())((()))(((())))((((()))))) + (((()(())((()))(((())))()()))()) = ???
+> ((((())()()()()()(()()))()(())((()))(((())))((((()))))(((()())()())())()()(()()))(()(())((()))(((())))((((())))))((()(())((()))(((())))()()))())
+Correct!
+
+Ha. No more messin around. Final Round.
+(()(())()()())(()()()(())()()) + ((()(())(()()()()()()()()))()(((()()())()())()())) + (((())()()())()(())((()))(((())))((((()))))) + (((()())()(((()()())()())()()))((((()))))(((())))((()))(())()) + (()()(()))(()()()(())()()) + (((()())()(())(()))((((()))))(((())))((()))(())()) + (()()()())(()()()()()()()()) + (((()(()))((()())()())())((((()))))(((())))((()))(())()) + ((()()(((()()())()())()()))()(())((()))(((())))((((()))))) + ((()(())())((()(())((()))(((())))()()))()(((((()))))(((())))((()))(())())) + ((()())(()()()()()()()())((()())()())()) + ((()()()()()())()()()(())()()) + ((()()()())((((()))))(((())))((()))(())()) + ((()(())()()()())()(((()()())()())()())) + (()()((((()))))(((())))((()))(())()) + ((()())()(())) + (((()()()()()()()()())((()())()())())((()(())((()))(((())))()()))()) + ((()(())()(()))()(((()()())()())()())) + (()(()))((())()()()) + (()()()()()(())((()))(((())))((((())))))(((((()))))(((())))((()))(())()) + (()()()()())(()()()) + (((()())(())()()())((()(())((()))(((())))()()))()) + ((()())((()(())((()))(((())))()()))()) + (((()()())()(()))((()(())((()))(((())))()()))()) + (()()()(((()()())()())()())) + ((()()()((()())()())())()(((()()())()())()())) + (()()(())()()()) + ((()(())()()()())()(((()()())()())()())) + ((()()())((()(())((()))(((())))()()))()(((((()))))(((())))((()))(())())) + ((())()()()()) + ((()()()()(((()()())()())()()))((()(())((()))(((())))()()))()) + (()()()()()()) + (((()())()(()))((())())((()(())((()))(((())))()()))()) + (((()()()())()()()(())()())((()(())((()))(((())))()()))()) + (()()())(()()()) + (()(())()()()(())) + (((()()()(())()())((()())()())())((((()))))(((())))((()))(())()) + (()()()()()())(()()()()()()()()) + (()()(())()()())(()()()(())()()) + (()(())()(())) + ((()()())(()()())()()()(())()()) + ((()())((()(())((()))(((())))()()))()(()(())((()))(((())))((((())))))) + ((()(())()(()()()))((()())()())()) + ((()(())()()()())()(((()()())()())()())) + ((()()())()(())(())) + ((()(((()()())()())()()))()(())((()))(((())))((((()))))) + ((()())(()()()()()()()())()(((()()())()())()())) + (((()())()(()))(()()()(())()())((()(())((()))(((())))()()))()) + (((()()())()(((()()())()())()()))()(())((()))(((())))((((()))))) + (()()(()))((())())(()()()(())()()) = ???
+> ((((()(())()()())(()()()(())()())(()(())(()()()()()()()()))()(((()()())()())()()))((())()()())()(())((()))(((())))((((())))))(((()())()(((()()())()())()()))((((()))))(((())))((()))(())()(()()(()))(()()()(())()()))(((()())()(())(()))((((()))))(((())))((()))(())()(()()()())(()()()()()()()()))(((()(()))((()())()())())((((()))))(((())))((()))(())())((()()(((()()())()())()()))()(())((()))(((())))((((())))))(()(())())((()(())((()))(((())))()()))()(((((()))))(((())))((()))(())())((()())(()()()()()()()())((()())()())())((()()()()()())()()()(())()())((()()()())((((()))))(((())))((()))(())())((()(())()()()())()(((()()())()())()()))(()()((((()))))(((())))((()))(())())((()())()(())))(((()()()()()()()()())((()())()())())((()(())((()))(((())))()()))()((()(())()(()))()(((()()())()())()()))(()(()))((())()()())(()()()()()(())((()))(((())))((((())))))(((((()))))(((())))((()))(())())(()()()()())(()()()))(((()())(())()()())((()(())((()))(((())))()()))())((()())((()(())((()))(((())))()()))())(((()()())()(()))((()(())((()))(((())))()()))()(()()()(((()()())()())()()))((()()()((()())()())())()(((()()())()())()()))(()()(())()()())((()(())()()()())()(((()()())()())()())))((()()())((()(())((()))(((())))()()))()(((((()))))(((())))((()))(())())((())()()()()))((()()()()(((()()())()())()()))((()(())((()))(((())))()()))()(()()()()()()))(((()())()(()))((())())((()(())((()))(((())))()()))())(((()()()())()()()(())()())((()(())((()))(((())))()()))()(()()())(()()())(()(())()()()(()))(((()()()(())()())((()())()())())((((()))))(((())))((()))(())())(()()()()()())(()()()()()()()())(()()(())()()())(()()()(())()())(()(())()(()))((()()())(()()())()()()(())()()))((()())((()(())((()))(((())))()()))()(()(())((()))(((())))((((())))))((()(())()(()()()))((()())()())())((()(())()()()())()(((()()())()())()()))((()()())()(())(()))((()(((()()())()())()()))()(())((()))(((())))((((())))))((()())(()()()()()()()())()(((()()())()())()())))(((()())()(()))(()()()(())()())((()(())((()))(((())))()()))()(((()()())()(((()()())()())()()))()(())((()))(((())))((((())))))(()()(()))((())())(()()()(())()()))
+Correct!
+
+Congratulations, here's your flag: picoCTF{5cr1pt1nG_l1k3_4_pRo_0466cdd7}
+[*] Closed connection to 2018shell.picoctf.com port 1542
+
+```
+最後はめっちゃ長いのが来た！
+
+flag `picoCTF{5cr1pt1nG_l1k3_4_pRo_0466cdd7}`
+
+
+
+<br /><br />
+<br /><br />
+- - -
+<br /><br />
+<br /><br />
+
