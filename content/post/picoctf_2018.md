@@ -1,7 +1,7 @@
 ---
 title: "picoCTF 2018 Writeup"
 date: 2019-08-11T23:00:00+09:00
-lastmod: 2019-08-25T21:00:00+09:00
+lastmod: 2019-08-25T22:00:00+09:00
 draft: false
 keywords: []
 description: ""
