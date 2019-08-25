@@ -1,7 +1,7 @@
 ---
 title: "picoCTF 2018 Writeup"
 date: 2019-08-11T23:00:00+09:00
-lastmod: 2019-08-11T23:00:00+09:00
+lastmod: 2019-08-25T21:00:00+09:00
 draft: false
 keywords: []
 description: ""
@@ -14,10 +14,21 @@ URL: [https://2018game.picoctf.com/](https://2018game.picoctf.com/)
 すでにイベントは終了してるんですが、続けて勉強ができるようになっているので、他のCTFイベントがない平日とかにちょこちょこやってます。
 <br /><br />
 問題の作者の「何かを学習して身につけてもらいたい」という気持ちがこもったチャレンジが揃っているのがいいですね。
+
 <br /><br />
-ここでは、自力で解いた問題のWriteupを記録に残していこうと思います。今後も付け足すかも知れないし、付け足さないかも知れないです。
+進み具合はこんな感じ。
+
+<img src="https://captureamerica.github.io/writeups/img/pico_Score.png" alt="pico_Score.png">
+
+Web Exploitationは、サーバにアクセスできないやつがいくつかあって、進みません。。。
+
+ReversingとBinary Exploitationは、続けて勉強していきます。その他のCrypto等は、、、もうスルーしようかと思います。
+
+<br /><br />
+ここでは、自分のオリジナル感が出るやつとか、自分自身の記録として残しておきたいものだけ書きます。
 <br /><br />
 序盤の簡単すぎるやつは、書きません。
+
 
 
 <br /><br />
@@ -304,7 +315,7 @@ undefined4 validate_key(char *param_1)
 ```
 処理を完全に把握しなくても、16文字のうちの先頭からの15文字をなんか処理して、最後の1文字となんかしているのがわかれば十分でした。
 
-以下のように、文字の範囲は決まっているので、Brute Forceで行けます。
+以下のチェック関数があって、文字の範囲は決まっているので、Brute Forceで行けます。
 ```C
 undefined4 check_valid_char(char param_1)
 
@@ -323,6 +334,8 @@ undefined4 check_valid_char(char param_1)
 ```
 
 <br />
+ここからが答えです。
+
 以下のようにシェルスクリプトで解きました。適当な15文字と、最後の1文字をBrute Forceしてます。なお、ローカルで実行する際には、flag.txtを自前で適当に作っておきます。
 ```Bash
 # cat activate_solve.sh 
@@ -613,7 +626,7 @@ BMPファイルだったので、いつもの青猫（「青い空を見上げ�
 ただ、実際、青猫で解いているWriteupもあったので、目からウロコでした。
 
 <br />
-見たところ、C言語で解いているWriteupは無かったので、Cで書いてみました。
+他のWriteupを見たところ、C言語で解いているWriteupは無かったので、Cで書いてみました。
 ```C
 #include <stdio.h>
 
@@ -660,13 +673,351 @@ int main( void ) {
 }
 ```
 
-どこをデータの先頭にするかで結果が違うので、最初main()で書いてたやつをsub()にして、offset処理を後付けしました。。
+どこをデータの先頭にするかで結果が違うので、最初main()で書いてたやつを途中でsub()に変えて、offset処理を後付けしました。。
 
 以下が実行結果の一部です。
 
 DpicoCTF{st0r3d_iN_tH3_l345t_s1gn1f1c4nT_b1t5_770554193}~8?p???q???p??????????????????????????????????????????????????pp?????q8q8??8p?888ppqp?????8?8??????8??8???????????p?????????q8?p??????8???
 
 Flag: `picoCTF{st0r3d_iN_tH3_l345t_s1gn1f1c4nT_b1t5_770554193}`
+
+
+
+
+
+<br /><br />
+<br /><br />
+# keygen-me-2
+- - -
+## Challenge
+> The software has been updated. Can you find us a new product key for the program in /problems/keygen-me-2_1_762036cde49fef79146a706d0eda80a3
+<br /><br />
+Hint: z3
+
+Attachment:
+
+- activate
+
+
+<br />
+## Solution
+Ghidra使って解析していきます。keygen-me-1がベースなので、以下の辺りは同じです。
+
+- 16バイトのキーを入れる。
+- 正しいキーを入れたら、flag.txtが表示される。
+- valid charは、[0-9A-Z]
+
+今回ポイントとなる箇所は、ここ。
+```C
+undefined4 validate_key(char *param_1)
+
+{
+  char cVar1;
+  size_t sVar2;
+  
+  sVar2 = strlen(param_1);
+  cVar1 = key_constraint_01(param_1,sVar2);
+  if (((((cVar1 != 0) && (cVar1 = key_constraint_02(param_1,sVar2), cVar1 != 0)) &&
+       (cVar1 = key_constraint_03(param_1,sVar2), cVar1 != 0)) &&
+      ((((cVar1 = key_constraint_04(param_1,sVar2), cVar1 != 0 &&
+         (cVar1 = key_constraint_05(param_1,sVar2), cVar1 != 0)) &&
+        ((cVar1 = key_constraint_06(param_1,sVar2), cVar1 != 0 &&
+         ((cVar1 = key_constraint_07(param_1,sVar2), cVar1 != 0 &&
+          (cVar1 = key_constraint_08(param_1,sVar2), cVar1 != 0)))))) &&
+       (cVar1 = key_constraint_09(param_1,sVar2), cVar1 != 0)))) &&
+     (((cVar1 = key_constraint_10(param_1,sVar2), cVar1 != 0 &&
+       (cVar1 = key_constraint_11(param_1,sVar2), cVar1 != 0)) &&
+      (cVar1 = key_constraint_12(param_1,sVar2), cVar1 != 0)))) {
+    return 1;
+  }
+  return 0;
+}
+```
+
+<br />
+全部載せると多いので、2つくらい載せます。
+```C
+uint key_constraint_01(char *param_1)
+
+{
+  char cVar1;
+  char cVar2;
+  uint uVar3;
+  
+  cVar1 = ord((int)*param_1);
+  cVar2 = ord((int)param_1[1]);
+  uVar3 = mod((int)cVar2 + (int)cVar1,0x24);
+  return uVar3 & 0xffffff00 | (uint)(uVar3 == 0xe);
+}
+```
+==> (param_1[0] + param_1[1]) mod 0x24 = 0xE
+
+
+```C
+uint key_constraint_02(int param_1)
+
+{
+  char cVar1;
+  char cVar2;
+  uint uVar3;
+  
+  cVar1 = ord((int)*(char *)(param_1 + 2));
+  cVar2 = ord((int)*(char *)(param_1 + 3));
+  uVar3 = mod((int)cVar2 + (int)cVar1,0x24);
+  return uVar3 & 0xffffff00 | (uint)(uVar3 == 0x18);
+}
+```
+==> (param_1[2] + param_1[3]) mod 0x24 = 0x18
+
+
+<br />
+まとめ。こんな感じで全部見ていくと、それぞれの判定文は以下の通りです。（"param_1"を省略してます）<br />
+==> ([0] + [1]) mod 0x24 = 0xE<br />
+==> ([2] + [3]) mod 0x24 = 0x18<br />
+==> ([2] - [0]) mod 0x24 = 0x6<br />
+==> ([1] + [3] + [5]) mod 0x24 = 0x4<br />
+==> ([2] + [4] + [6]) mod 0x24 = 0xd<br />
+==> ([3] + [4] + [5]) mod 0x24 = 0x16<br />
+==> ([6] + [8] + [10]) mod 0x24 = 0x1f<br />
+==> ([1] + [4] + [7]) mod 0x24 = 0x7<br />
+==> ([9] + [12] + [15]) mod 0x24 = 0x14<br />
+==> ([13] + [14] + [15]) mod 0x24 = 0xc<br />
+==> ([8] + [9] + [10]) mod 0x24 = 0x1b<br />
+==> ([7] + [12] + [13]) mod 0x24 = 0x17<br />
+
+
+<br />
+ちなみに、上記に出てくるord()関数は、別途独自定義されていて、以下のようになってます。
+```C
+int ord(byte param_1)
+
+{
+  int iVar1;
+  
+  if (((char)param_1 < '0') || ('9' < (char)param_1)) {
+    if (((char)param_1 < 'A') || ('Z' < (char)param_1)) {
+      puts("Found Invalid Character!");
+                    /* WARNING: Subroutine does not return */
+      exit(0);
+    }
+    iVar1 = (uint)param_1 - 0x37;
+  }
+  else {
+    iVar1 = (uint)param_1 - 0x30;
+  }
+  return iVar1;
+}
+```
+
+最初、これを完全に見逃していて、相当悩みました。<br />
+
+gdbで追っかけて行ったときに、ord()を読んだ後に、レジスタの値が予想外に変わる所まで見てたんですが、別途定義されているという発想が全くなかったです。。。凹○ コテッ
+
+
+
+<br />
+以下は、そのord()も加味した解法です。（pico_ord()の部分を後付しました。）
+
+文字の範囲も限られているので、Brute Forceでやりました。
+```C
+#include <stdio.h>
+
+#define CHAR_0  48
+#define CHAR_9  57
+#define CHAR_A  65
+#define CHAR_Z  90
+
+void print_flag( int *p ) {
+	int i;
+	char flag[16];
+	for ( i = 0 ; i < 16 ; i++ ) {
+		printf( "%c", (char)*( p + i ) );
+	}
+	puts("");
+
+}
+
+int validate_key( int p )
+{
+	if ( p > CHAR_9 && p < CHAR_A ) {
+		return 1;
+	} else {
+		return 0;
+	}
+}
+
+int pico_ord( int p )
+{
+	if ( p <= CHAR_9 ) {
+		return p - 0x30;
+	} else {
+		return p - 0x37;
+	}
+}
+
+int main( void )
+{
+	int p[16];
+	p[11] = CHAR_0;
+
+	//==> ([0] + [1]) mod 0x24 = 0xE
+	for ( p[0] = CHAR_0 ; p[0] <= CHAR_Z ; p[0]++ ) {
+		if ( validate_key( p[0] ) ) {
+			continue;
+		}
+		for ( p[1] = CHAR_0 ; p[1] <= CHAR_Z ; p[1]++ ) {
+			if ( validate_key( p[1] ) ) {
+				continue;
+			}
+			if ( ( pico_ord( p[0] ) + pico_ord( p[1] ) ) % 0x24 == 0xE ) {
+				break;
+			}
+		}
+		if ( p[1] > CHAR_Z ) {
+			continue;
+		}
+
+		//==> ([2] + [3]) mod 0x24 = 0x18
+		for ( p[2] = CHAR_0 ; p[2] <= CHAR_Z ; p[2]++ ) {
+			if ( validate_key( p[2] ) ) {
+				continue;
+			}
+			for ( p[3] = CHAR_0 ; p[3] <= CHAR_Z ; p[3]++ ) {
+				if ( validate_key( p[3] ) ) {
+					continue;
+				}
+				if ( ( pico_ord( p[2] ) + pico_ord( p[3] ) ) % 0x24 == 0x18 ) {
+					break;
+				}
+			}
+			if ( p[3] > CHAR_Z ) {
+				continue;
+			}
+
+			//==> ([2] - [0]) mod 0x24 = 0x6
+			if ( ( pico_ord( p[2] ) - pico_ord( p[0] ) ) % 0x24 == 0x6 ) {
+				
+				//==> ([1] + [3] + [5]) mod 0x24 = 0x4
+				for ( p[5] = CHAR_0 ; p[5] <= CHAR_Z ; p[5]++ ) {
+					if ( validate_key( p[5] ) ) {
+						continue;
+					}
+					if ( ( pico_ord( p[1] ) + pico_ord( p[3] ) + pico_ord( p[5] ) ) % 0x24 == 0x4 ) {
+						break;
+					}
+				}
+				if ( p[5] > CHAR_Z ) {
+					continue;
+				}
+				//==> ([2] + [4] + [6]) mod 0x24 = 0xd
+				for ( p[4] = CHAR_0 ; p[4] <= CHAR_Z ; p[4]++ ) {
+					if ( validate_key( p[4] ) ) {
+						continue;
+					}
+					for ( p[6] = CHAR_0 ; p[6] <= CHAR_Z ; p[6]++ ) {
+						if ( validate_key( p[6] ) ) {
+							continue;
+						}
+						if ( ( pico_ord( p[2] ) + pico_ord( p[4] ) + pico_ord( p[6] ) ) % 0x24 == 0xd ) {
+							break;
+						}
+					}
+					if ( p[6] > CHAR_Z ) {
+						continue;
+					}
+
+					//==> ([3] + [4] + [5]) mod 0x24 = 0x16
+					if ( ( pico_ord( p[3] ) + pico_ord( p[4] ) + pico_ord( p[5] ) ) % 0x24 == 0x16 ) {
+
+						//==> ([6] + [8] + [10]) mod 0x24 = 0x1f
+						for ( p[8] = CHAR_0 ; p[8] <= CHAR_Z ; p[8]++ ) {
+							if ( validate_key( p[8] ) ) {
+								continue;
+							}
+							for ( p[10] = CHAR_0 ; p[10] <= CHAR_Z ; p[10]++ ) {
+								if ( validate_key( p[10] ) ) {
+									continue;
+								}
+								if ( ( pico_ord( p[6] ) + pico_ord( p[8] ) + pico_ord( p[10] ) ) % 0x24 == 0x1f ) {
+									break;
+								}
+							}
+							if ( p[10] > CHAR_Z ) {
+								continue;
+							}
+							// ==> ([1] + [4] + [7]) mod 0x24 = 0x7
+							for ( p[7] = CHAR_0 ; p[7] <= CHAR_Z ; p[7]++ ) {
+								if ( validate_key( p[7] ) ) {
+									continue;
+								}
+								if ( ( pico_ord( p[1] ) + pico_ord( p[4] ) + pico_ord( p[7] ) ) % 0x24 == 0x7 ) {
+									break;
+								}
+							}
+							if ( p[7] > CHAR_Z ) {
+								continue;
+							}
+							// ==> ([9] + [12] + [15]) mod 0x24 = 0x14
+							for ( p[9] = CHAR_0 ; p[9] <= CHAR_Z ; p[9]++ ) {
+								if ( validate_key( p[9] ) ) {
+									continue;
+								}
+								for ( p[12] = CHAR_0 ; p[12] <= CHAR_Z ; p[12]++ ) {
+									if ( validate_key( p[12] ) ) {
+										continue;
+									}
+									for ( p[15] = CHAR_0 ; p[15] <= CHAR_Z ; p[15]++ ) {
+										if ( validate_key( p[15] ) ) {
+											continue;
+										}
+										if ( ( pico_ord( p[9] ) + pico_ord( p[12] ) + pico_ord( p[15] ) ) % 0x24 == 0x14 ) {
+											break;
+										}
+									}
+									if ( p[15] > CHAR_Z ) {
+										continue;
+									}
+									// ==> ([13] + [14] + [15]) mod 0x24 = 0xc
+									for ( p[13] = CHAR_0 ; p[13] <= CHAR_Z ; p[13]++ ) {
+										if ( validate_key( p[13] ) ) {
+											continue;
+										}
+										for ( p[14] = CHAR_0 ; p[14] <= CHAR_Z ; p[14]++ ) {
+											if ( validate_key( p[14] ) ) {
+												continue;
+											}
+											if ( ( pico_ord( p[13] ) + pico_ord( p[14] ) + pico_ord( p[15] ) ) % 0x24 == 0xc ) {
+												break;
+											}
+										}
+										if ( p[14] > CHAR_Z ) {
+											continue;
+										}
+										// ==> ([8] + [9] + [10]) mod 0x24 = 0x1b
+										if ( ( pico_ord( p[8] ) + pico_ord( p[9] ) + pico_ord( p[10] ) ) % 0x24 == 0x1b ) {
+											// ==> ([7] + [12] + [13]) mod 0x24 = 0x17
+											if ( ( pico_ord( p[7] ) + pico_ord( p[12] ) + pico_ord( p[13] ) ) % 0x24 == 0x17 ) {
+												print_flag( p );
+												return 0;
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+```
+
+```
+captureamerica@pico-2018-shell:/problems/keygen-me-2_1_762036cde49fef79146a706d0eda80a3$ ./activate 0E6IW8BX07K00Q9D
+Product Activated Successfully: picoCTF{c0n5tr41nt_50lv1nG_15_W4y_f45t3r_3846045707}
+```
+Flag: `picoCTF{c0n5tr41nt_50lv1nG_15_W4y_f45t3r_3846045707}`
 
 
 
