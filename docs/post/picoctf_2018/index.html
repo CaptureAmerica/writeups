@@ -51,7 +51,7 @@
 
 <meta itemprop="datePublished" content="2019-08-11T23:00:00&#43;09:00" />
 <meta itemprop="dateModified" content="2019-08-11T23:00:00&#43;09:00" />
-<meta itemprop="wordCount" content="2894">
+<meta itemprop="wordCount" content="3396">
 
 
 
@@ -165,6 +165,11 @@
 <ul>
 <li><a href="#challenge-4">Challenge</a></li>
 <li><a href="#solution-4">Solution</a></li>
+</ul></li>
+<li><a href="#loadsomebits">LoadSomeBits</a>
+<ul>
+<li><a href="#challenge-5">Challenge</a></li>
+<li><a href="#solution-5">Solution</a></li>
 </ul></li>
 </ul>
 </nav>
@@ -1113,6 +1118,138 @@ Congratulations, here&#39;s your flag: picoCTF{5cr1pt1nG_l1k3_4_pRo_0466cdd7}
 <p>最後はめっちゃ長いのが来た！</p>
 
 <p>flag <code>picoCTF{5cr1pt1nG_l1k3_4_pRo_0466cdd7}</code></p>
+
+<p><br /><br />
+<br /><br /></p>
+
+<h1 id="loadsomebits">LoadSomeBits</h1>
+
+<hr />
+
+<h2 id="challenge-5">Challenge</h2>
+
+<blockquote>
+<p>Can you find the flag encoded inside this image?
+<br /><br />
+Hint1: Look through the Least Significant Bits for the image<br />
+Hint2: If you interpret a binary sequence (seq) as ascii and then try interpreting the same binary sequence from an offset of 1 (seq[1:]) as ascii do you get something similar or completely different?</p>
+</blockquote>
+
+<p>Attachment:</p>
+
+<ul>
+<li>pico2018-special-logo.bmp</li>
+</ul>
+
+<p><br /></p>
+
+<h2 id="solution-5">Solution</h2>
+
+<p>BMPファイルだったので、いつもの青猫（「青い空を見上げればいつもそこに白い猫」）が使えなかったし、ちょっと意味不明な部分もあったので、他の方のWriteupを少し参照しました。</p>
+
+<p>ただ、実際、青猫で解いているWriteupもあったので、目からウロコでした。</p>
+
+<p><br />
+見たところ、C言語で解いているWriteupは無かったので、Cで書いてみました。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-C" data-lang="C"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-C" data-lang="C"><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
+</span><span class="cp"></span>
+<span class="kt">int</span> <span class="nf">sub</span><span class="p">(</span> <span class="kt">int</span> <span class="n">offset</span> <span class="p">)</span>
+<span class="p">{</span>
+	<span class="n">FILE</span> <span class="o">*</span><span class="n">fp</span><span class="p">;</span>
+	<span class="kt">int</span>  <span class="n">c</span><span class="p">;</span>
+	<span class="kt">int</span> <span class="n">i</span><span class="p">;</span>
+	<span class="kt">char</span> <span class="n">ch</span><span class="p">;</span>
+
+	<span class="k">if</span> <span class="p">(</span> <span class="p">(</span> <span class="n">fp</span> <span class="o">=</span> <span class="n">fopen</span><span class="p">(</span> <span class="s">&#34;pico2018-special-logo.bmp&#34;</span><span class="p">,</span> <span class="s">&#34;rb&#34;</span> <span class="p">)</span> <span class="p">)</span> <span class="o">==</span> <span class="nb">NULL</span> <span class="p">)</span> <span class="p">{</span>
+		<span class="n">perror</span><span class="p">(</span> <span class="s">&#34;Can&#39;t fopen&#34;</span> <span class="p">);</span>
+		<span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+        <span class="p">}</span>
+	<span class="k">for</span> <span class="p">(</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span> <span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">offset</span> <span class="p">;</span> <span class="n">i</span><span class="o">++</span> <span class="p">)</span> <span class="p">{</span>
+		<span class="n">fgetc</span><span class="p">(</span> <span class="n">fp</span> <span class="p">);</span>
+	<span class="p">}</span>
+
+	<span class="n">i</span> <span class="o">=</span> <span class="mi">7</span><span class="p">;</span>
+	<span class="n">ch</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+	<span class="k">while</span> <span class="p">(</span> <span class="p">(</span> <span class="n">c</span> <span class="o">=</span> <span class="n">fgetc</span><span class="p">(</span> <span class="n">fp</span> <span class="p">)</span> <span class="p">)</span> <span class="o">!=</span> <span class="n">EOF</span> <span class="p">)</span> <span class="p">{</span>
+		<span class="n">c</span> <span class="o">=</span> <span class="n">c</span> <span class="o">&amp;</span> <span class="mh">0x01</span><span class="p">;</span>
+		<span class="n">ch</span> <span class="o">=</span> <span class="n">ch</span> <span class="o">|</span> <span class="p">(</span> <span class="n">c</span> <span class="o">&lt;&lt;</span> <span class="n">i</span><span class="p">);</span>
+		<span class="n">i</span><span class="o">--</span><span class="p">;</span>
+		<span class="k">if</span> <span class="p">(</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="p">)</span> <span class="p">{</span>
+			<span class="k">if</span> <span class="p">(</span> <span class="p">(</span> <span class="n">ch</span> <span class="o">&gt;=</span> <span class="mh">0x20</span> <span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="n">ch</span> <span class="o">&lt;=</span> <span class="mh">0x7e</span> <span class="p">)</span> <span class="p">)</span> <span class="p">{</span>
+				<span class="n">printf</span><span class="p">(</span> <span class="s">&#34;%c&#34;</span><span class="p">,</span> <span class="n">ch</span> <span class="p">);</span>
+			<span class="p">}</span>
+			<span class="n">i</span> <span class="o">=</span> <span class="mi">7</span><span class="p">;</span>
+			<span class="n">ch</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+		<span class="p">}</span>
+	<span class="p">}</span>
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;&#34;</span><span class="p">);</span>
+        <span class="n">fclose</span><span class="p">(</span> <span class="n">fp</span> <span class="p">);</span>
+	
+	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span> <span class="kt">void</span> <span class="p">)</span> <span class="p">{</span>
+	<span class="kt">int</span> <span class="n">i</span><span class="p">;</span>
+	<span class="k">for</span> <span class="p">(</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span> <span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">8</span> <span class="p">;</span> <span class="n">i</span><span class="o">++</span> <span class="p">)</span> <span class="p">{</span>
+		<span class="n">sub</span><span class="p">(</span> <span class="n">i</span> <span class="p">);</span>
+	<span class="p">}</span>
+<span class="p">}</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>どこをデータの先頭にするかで結果が違うので、最初main()で書いてたやつをsub()にして、offset処理を後付けしました。。</p>
+
+<p>以下が実行結果の一部です。</p>
+
+<p>DpicoCTF{st0r3d_iN_tH3_l345t_s1gn1f1c4nT_b1t5_770554193}~8?p???q???p??????????????????????????????????????????????????pp?????q8q8??8p?888ppqp?????8?8??????8??8???????????p?????????q8?p??????8???</p>
+
+<p>Flag: <code>picoCTF{st0r3d_iN_tH3_l345t_s1gn1f1c4nT_b1t5_770554193}</code></p>
 
 <p><br /><br />
 <br /><br /></p>

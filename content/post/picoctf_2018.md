@@ -589,6 +589,87 @@ flag `picoCTF{5cr1pt1nG_l1k3_4_pRo_0466cdd7}`
 
 
 
+
+
+<br /><br />
+<br /><br />
+# LoadSomeBits
+- - -
+## Challenge
+> Can you find the flag encoded inside this image?
+<br /><br />
+Hint1: Look through the Least Significant Bits for the image<br />
+Hint2: If you interpret a binary sequence (seq) as ascii and then try interpreting the same binary sequence from an offset of 1 (seq[1:]) as ascii do you get something similar or completely different?
+
+Attachment:
+
+- pico2018-special-logo.bmp
+
+
+<br />
+## Solution
+BMPファイルだったので、いつもの青猫（「青い空を見上げればいつもそこに白い猫」）が使えなかったし、ちょっと意味不明な部分もあったので、他の方のWriteupを少し参照しました。
+
+ただ、実際、青猫で解いているWriteupもあったので、目からウロコでした。
+
+<br />
+見たところ、C言語で解いているWriteupは無かったので、Cで書いてみました。
+```C
+#include <stdio.h>
+
+int sub( int offset )
+{
+	FILE *fp;
+	int  c;
+	int i;
+	char ch;
+
+	if ( ( fp = fopen( "pico2018-special-logo.bmp", "rb" ) ) == NULL ) {
+		perror( "Can't fopen" );
+		return -1;
+        }
+	for ( i = 0 ; i < offset ; i++ ) {
+		fgetc( fp );
+	}
+
+	i = 7;
+	ch = 0;
+	while ( ( c = fgetc( fp ) ) != EOF ) {
+		c = c & 0x01;
+		ch = ch | ( c << i);
+		i--;
+		if ( i < 0 ) {
+			if ( ( ch >= 0x20 ) && (ch <= 0x7e ) ) {
+				printf( "%c", ch );
+			}
+			i = 7;
+			ch = 0;
+		}
+	}
+	puts("");
+        fclose( fp );
+	
+	return 0;
+}
+
+int main( void ) {
+	int i;
+	for ( i = 0 ; i < 8 ; i++ ) {
+		sub( i );
+	}
+}
+```
+
+どこをデータの先頭にするかで結果が違うので、最初main()で書いてたやつをsub()にして、offset処理を後付けしました。。
+
+以下が実行結果の一部です。
+
+DpicoCTF{st0r3d_iN_tH3_l345t_s1gn1f1c4nT_b1t5_770554193}~8?p???q???p??????????????????????????????????????????????????pp?????q8q8??8p?888ppqp?????8?8??????8??8???????????p?????????q8?p??????8???
+
+Flag: `picoCTF{st0r3d_iN_tH3_l345t_s1gn1f1c4nT_b1t5_770554193}`
+
+
+
 <br /><br />
 <br /><br />
 - - -
