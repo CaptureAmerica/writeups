@@ -1,7 +1,7 @@
 ---
 title: "Codefest'19 CTF Writeup"
 date: 2019-08-25T15:00:00+09:00
-lastmod: 2019-08-25T15:00:00+09:00
+lastmod: 2019-08-29T23:00:00+09:00
 draft: false
 keywords: []
 description: ""
@@ -15,7 +15,7 @@ URL: [https://www.hackerrank.com/codefest19-ctf](https://www.hackerrank.com/code
 <br /><br />
 その9問中の1問を解きました。
 <br /><br />
-
+（後日、残りの問題の復習もやりました。）
 
 
 <br /><br />
@@ -234,6 +234,193 @@ local_62: l
 </pre>
 
 Flag: `CodefestCTF{shouldve_used_some_tool}`
+
+
+
+<br /><br />
+<br /><br />
+<img src="https://captureamerica.github.io/writeups/img/orange_bar.png" alt="orange_bar.png">
+<br />
+ここから下はCTF終了後に行った復習です。他の方のWriteupを参照しました。
+<br /><br />
+何気にいろいろと勉強になりました。
+<br /><br />
+<br /><br />
+
+# What language is this?
+- - -
+## Challenge
+> Decode this piece of text that Alice got from a friend of hers. 
+<br /><br />
+iiisdsiiioiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiodddddddddddoioiodoiiiiiiiiiiiiiioiodddddddddddddddddddddddddddddddddddddddddddddddddoiiiiiiiiiiiiiiiiioddddddddddddddoiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiioddddddddddddddddddddddddddddddddddddoiiiiiiiiiiiiiioiiiiiiiodddddddddodddddddddddddddddddddddddddddddddddddddddddddddddddoddddddddddddddddddddddddddddddddddddddsiiiiiiiiioddddddddoddddddoiiiiiiiiiiiiiiiiiiiiioddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddoddddddddddddddddddddddddddddddddsiiisisdddddoddddddddddddddddddddddddddddodddddddddddddddddddoddddddddddddddddddddddddddddddddsiiisisoioiodoiiiiiiiiiiiiiioiodddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddoiiiiiiiioddddddddddddddddddddddddddddddddddddddddddddddsiiiio
+
+<br />
+## Solution
+i, s, d, oの4文字を使ったesolangだろうということで、いろいろググったんですが、何なのかわかんなかったんですよね。
+
+deadfishというやつらしいです。覚えておきます。
+
+
+
+<br /><br />
+<br /><br />
+# Gibberish file
+- - -
+## Challenge
+> This file seems to have a weird encoding. Reverse it to find the flag.
+
+Attachment:
+
+- output.txt (weird_file.zip)
+
+
+<br />
+## Solution
+
+"Reverse it" を、"データを反転せよ" と解釈するのがミソ。そういう発想が大事なのがわかりました。
+
+
+
+<br /><br />
+<br /><br />
+# Image Corruption
+- - -
+## Challenge
+> You are given a corrupted file. This file has the flag. Find it.
+
+Attachment:
+
+- image.bmp
+
+<br />
+## Solution
+
+このファイル、一部バイナリだけど、ほとんどテキストでmatrixmatrixmatrixがいっぱい出てくるところまでは見れていたんですが、そこからXORしようという発想がなかったです。
+
+一応、コードはそれなりに自分で書いてみました。
+
+```Python
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+import struct
+
+infile = open("image.bmp", "rb")
+outfile = open("image_out.bmp", "wb")
+
+data = infile.read()
+
+for i in range(len(data)//6):
+    outfile.write(struct.pack("B", data[6*i+0] ^ ord('m')))
+    outfile.write(struct.pack("B", data[6*i+1] ^ ord('a')))
+    outfile.write(struct.pack("B", data[6*i+2] ^ ord('t')))
+    outfile.write(struct.pack("B", data[6*i+3] ^ ord('r')))
+    outfile.write(struct.pack("B", data[6*i+4] ^ ord('i')))
+    outfile.write(struct.pack("B", data[6*i+5] ^ ord('x')))
+
+infile.close()
+outfile.close()
+```
+
+
+<br /><br />
+<br /><br />
+# Mail capture
+- - -
+## Challenge
+> Bob got hold of this file when going through the files of the email client on his old computer. Help him find the hidden message.
+
+Attachment: （後日ダウンロードし直したら、ちゃんと問題用ファイルが入ってました。）
+
+- encoded_file
+
+```
+$ cat encoded_file
+begin 664 flag_encoded
+E0V]D969E<W1#5$9[-V@Q-5\Q-5\T7V,P,#%?,VYC,&0Q;CE]"@``
+`
+end
+```
+
+<br />
+## Solution
+
+$ uudecode encoded_file
+
+これもちゃんと覚えておきます。
+
+
+<br /><br />
+<br /><br />
+# Cats are innocent, right?
+- - -
+## Challenge
+> This image has a flag hidden in it. Find it.
+
+Attachment:
+
+- cute_kittens.jpg
+
+<br />
+## Solution
+
+この問題だけSuccess Rateがダントツに低いんです（4.76%）。みんな解けなかったみたいですね。
+
+[stegify](https://github.com/DimitarPetrov/stegify)というツールと使って解くそうです。
+
+それ以外の解き方はないのかなぁ。。
+
+
+<br />
+しかも、出力されたZipにはDecoyが入っているし。
+
+Zipを解凍せずにバイナリで見るとか、面白いと思いました。
+
+```
+root@kali:~/Codefest_CTF_2019# stegify -op decode -carrier cute_kittens.jpg -result hello
+root@kali:~/Codefest_CTF_2019# ll
+total 204
+drwxr-xr-x  2 root root   4096 Aug 29 22:40 ./
+drwxr-xr-x 50 root root   4096 Aug 29 22:39 ../
+-rw-r--r--  1 root root 193231 Aug 29 22:26 cute_kittens.jpg
+-rw-r--r--  1 root root    192 Aug 29 22:40 hello
+root@kali:~/Codefest_CTF_2019# file hello 
+hello: Zip archive data, at least v?[0x30a] to extract
+root@kali:~/Codefest_CTF_2019# zipinfo hello
+Archive:  hello
+Zip file size: 192 bytes, number of entries: 1
+-rw-rw-r--  6.3 unx       16 bx stor 19-Aug-14 16:36 is this the flag?
+1 file, 16 bytes uncompressed, 16 bytes compressed:  0.0%
+root@kali:~/Codefest_CTF_2019# 
+root@kali:~/Codefest_CTF_2019# 
+root@kali:~/Codefest_CTF_2019# unzip hello
+Archive:  hello
+ extracting: is this the flag?       
+root@kali:~/Codefest_CTF_2019# ll
+total 208
+drwxr-xr-x  2 root root   4096 Aug 29 22:40  ./
+drwxr-xr-x 50 root root   4096 Aug 29 22:39  ../
+-rw-r--r--  1 root root 193231 Aug 29 22:26  cute_kittens.jpg
+-rw-r--r--  1 root root    192 Aug 29 22:40  hello
+-rw-rw-r--  1 root root     16 Aug 14 16:36 'is this the flag?'
+root@kali:~/Codefest_CTF_2019# emacs
+root@kali:~/Codefest_CTF_2019# 
+root@kali:~/Codefest_CTF_2019# 
+root@kali:~/Codefest_CTF_2019# xxd hello 
+00000000: 504b 0304 0a03 0000 0000 9984 0e4f 7826  PK...........Ox&
+00000010: 3bec 1000 0000 1000 0000 1100 0000 6973  ;.............is
+00000020: 2074 6869 7320 7468 6520 666c 6167 3f4e   this the flag?N
+00000030: 6f70 652c 206e 6f74 2068 6572 652e 0a50  ope, not here..P
+00000040: 4b01 023f 030a 0300 0000 0099 840e 4f78  K..?..........Ox
+00000050: 263b ec10 0000 0010 0000 0011 0000 0000  &;..............
+00000060: 0000 0000 0020 80b4 8100 0000 0069 7320  ..... .......is 
+00000070: 7468 6973 2074 6865 2066 6c61 673f 504b  this the flag?PK
+00000080: 0506 0000 0000 0100 0100 3f00 0000 3f00  ..........?...?.
+00000090: 0000 0000 436f 6465 6665 7374 4354 467b  ....CodefestCTF{
+000000a0: 6831 6431 6e67 5f62 3368 316e 645f 316e  h1d1ng_b3h1nd_1n
+000000b0: 6e30 6333 6e74 5f6b 3174 7433 6e35 7d0a  n0c3nt_k1tt3n5}.
+```
+
+stegifyは、これからのCTFで使っていこうと思います。
 
 
 <br /><br />

@@ -735,7 +735,7 @@ undefined4 validate_key(char *param_1)
 ```
 
 <br />
-全部載せると多いので、2つくらい載せます。
+全部載せると多いので、2つくらい載せます。このタイプのGhidraのデコンパイルの仕方は、以前Redpwn CTFをやったときに見たので、もうビックリしません。
 ```C
 uint key_constraint_01(char *param_1)
 
