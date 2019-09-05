@@ -43,15 +43,15 @@
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://captureamerica.github.io/writeups/post/picoctf_2018/" />
 <meta property="article:published_time" content="2019-08-11T23:00:00&#43;09:00"/>
-<meta property="article:modified_time" content="2019-08-25T22:00:00&#43;09:00"/>
+<meta property="article:modified_time" content="2019-09-05T22:00:00&#43;09:00"/>
 
 <meta itemprop="name" content="picoCTF 2018 Writeup">
 <meta itemprop="description" content="URL: https://2018game.picoctf.com/ すでにイベントは終了してるんですが、続けて勉強ができるようになっているので、他のCTFイベントがない平日とかにちょこちょこやってます。 問">
 
 
 <meta itemprop="datePublished" content="2019-08-11T23:00:00&#43;09:00" />
-<meta itemprop="dateModified" content="2019-08-25T22:00:00&#43;09:00" />
-<meta itemprop="wordCount" content="5583">
+<meta itemprop="dateModified" content="2019-09-05T22:00:00&#43;09:00" />
+<meta itemprop="wordCount" content="6271">
 
 
 
@@ -141,40 +141,45 @@
   <div class="post-toc-content always-active">
     <nav id="TableOfContents">
 <ul>
-<li><a href="#desrouleaux">Desrouleaux</a>
+<li><a href="#forensics-desrouleaux">Forensics: Desrouleaux</a>
 <ul>
 <li><a href="#challenge">Challenge</a></li>
 <li><a href="#solution">Solution</a></li>
 </ul></li>
-<li><a href="#safe-rsa">Safe RSA</a>
+<li><a href="#cryptography-safe-rsa">Cryptography: Safe RSA</a>
 <ul>
 <li><a href="#challenge-1">Challenge</a></li>
 <li><a href="#solution-1">Solution</a></li>
 </ul></li>
-<li><a href="#be-quick-or-be-dead-1">be-quick-or-be-dead-1</a>
+<li><a href="#reversing-be-quick-or-be-dead-1">Reversing: be-quick-or-be-dead-1</a>
 <ul>
 <li><a href="#challenge-2">Challenge</a></li>
 <li><a href="#solution-2">Solution</a></li>
 </ul></li>
-<li><a href="#keygen-me-1">keygen-me-1</a>
+<li><a href="#reversing-keygen-me-1">Reversing: keygen-me-1</a>
 <ul>
 <li><a href="#challenge-3">Challenge</a></li>
 <li><a href="#solution-3">Solution</a></li>
 </ul></li>
-<li><a href="#script-me">script me</a>
+<li><a href="#general-skills-script-me">General Skills: script me</a>
 <ul>
 <li><a href="#challenge-4">Challenge</a></li>
 <li><a href="#solution-4">Solution</a></li>
 </ul></li>
-<li><a href="#loadsomebits">LoadSomeBits</a>
+<li><a href="#forensics-loadsomebits">Forensics: LoadSomeBits</a>
 <ul>
 <li><a href="#challenge-5">Challenge</a></li>
 <li><a href="#solution-5">Solution</a></li>
 </ul></li>
-<li><a href="#keygen-me-2">keygen-me-2</a>
+<li><a href="#reversing-keygen-me-2">Reversing: keygen-me-2</a>
 <ul>
 <li><a href="#challenge-6">Challenge</a></li>
 <li><a href="#solution-6">Solution</a></li>
+</ul></li>
+<li><a href="#reversing-be-quick-or-be-dead-3">Reversing: be-quick-or-be-dead-3</a>
+<ul>
+<li><a href="#challenge-7">Challenge</a></li>
+<li><a href="#solution-7">Solution</a></li>
 </ul></li>
 </ul>
 </nav>
@@ -194,9 +199,9 @@
 
 <p><img src="https://captureamerica.github.io/writeups/img/pico_Score.png" alt="pico_Score.png"></p>
 
-<p>Web Exploitationは、サーバにアクセスできないやつがいくつかあって、進みません。。。</p>
+<p>もう、これくらいやったら十分かなぁ。気が向いたら、もう少しやるかもです。</p>
 
-<p>ReversingとBinary Exploitationは、続けて勉強していきます。その他のCrypto等は、、、もうスルーしようかと思います。</p>
+<p>picoCTF 2019がそろそろ始まりますね (2019年9月末〜)。楽しみ！！</p>
 
 <p><br /><br />
 ここでは、自分のオリジナル感が出るやつとか、自分自身の記録として残しておきたいものだけ書きます。
@@ -205,7 +210,7 @@
 
 <p><br /><br /></p>
 
-<h1 id="desrouleaux">Desrouleaux</h1>
+<h1 id="forensics-desrouleaux">Forensics: Desrouleaux</h1>
 
 <hr />
 
@@ -409,7 +414,7 @@ Hint: If you need to code, python has some good libraries for it.</p>
 <p><br /><br />
 <br /><br /></p>
 
-<h1 id="safe-rsa">Safe RSA</h1>
+<h1 id="cryptography-safe-rsa">Cryptography: Safe RSA</h1>
 
 <hr />
 
@@ -454,7 +459,7 @@ Flag: <code>picoCTF{e_w4y_t00_sm411_34096259}</code></p>
 <p><br /><br />
 <br /><br /></p>
 
-<h1 id="be-quick-or-be-dead-1">be-quick-or-be-dead-1</h1>
+<h1 id="reversing-be-quick-or-be-dead-1">Reversing: be-quick-or-be-dead-1</h1>
 
 <hr />
 
@@ -483,7 +488,7 @@ Hint: What will the key finally be?</p>
 <p><br /><br />
 <br /><br /></p>
 
-<h1 id="keygen-me-1">keygen-me-1</h1>
+<h1 id="reversing-keygen-me-1">Reversing: keygen-me-1</h1>
 
 <hr />
 
@@ -837,7 +842,7 @@ INVALID Product Key.</code></pre></td></tr></table>
 <p><br /><br />
 <br /><br /></p>
 
-<h1 id="script-me">script me</h1>
+<h1 id="general-skills-script-me">General Skills: script me</h1>
 
 <hr />
 
@@ -1139,7 +1144,7 @@ Congratulations, here&#39;s your flag: picoCTF{5cr1pt1nG_l1k3_4_pRo_0466cdd7}
 <p><br /><br />
 <br /><br /></p>
 
-<h1 id="loadsomebits">LoadSomeBits</h1>
+<h1 id="forensics-loadsomebits">Forensics: LoadSomeBits</h1>
 
 <hr />
 
@@ -1271,7 +1276,7 @@ Hint2: If you interpret a binary sequence (seq) as ascii and then try interpreti
 <p><br /><br />
 <br /><br /></p>
 
-<h1 id="keygen-me-2">keygen-me-2</h1>
+<h1 id="reversing-keygen-me-2">Reversing: keygen-me-2</h1>
 
 <hr />
 
@@ -1888,6 +1893,207 @@ Product Activated Successfully: picoCTF{c0n5tr41nt_50lv1nG_15_W4y_f45t3r_3846045
 <p><br /><br />
 <br /><br /></p>
 
+<h1 id="reversing-be-quick-or-be-dead-3">Reversing: be-quick-or-be-dead-3</h1>
+
+<hr />
+
+<h2 id="challenge-7">Challenge</h2>
+
+<blockquote>
+<p>As the <a href="https://www.youtube.com/watch?v=CTt1vk9nM9c">song</a> draws closer to the end, another executable be-quick-or-be-dead-3 suddenly pops up. This one requires even faster machines. Can you run it fast enough too?
+<br /><br />
+Hint: How do you speed up a very repetitive computation?</p>
+</blockquote>
+
+<p>Attachment:</p>
+
+<ul>
+<li>be-quick-or-be-dead-3  (ELF 64-bit)</li>
+</ul>
+
+<p><br /></p>
+
+<h2 id="solution-7">Solution</h2>
+
+<p>まず、Ghidraにかけます。</p>
+
+<p>以下の箇所が再帰関数になっており、時間がかかるところです。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-C" data-lang="C"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-C" data-lang="C"><span class="n">ulong</span> <span class="nf">calc</span><span class="p">(</span><span class="n">uint</span> <span class="n">uParm1</span><span class="p">)</span>
+
+<span class="p">{</span>
+  <span class="kt">int</span> <span class="n">iVar1</span><span class="p">;</span>
+  <span class="kt">int</span> <span class="n">iVar2</span><span class="p">;</span>
+  <span class="kt">int</span> <span class="n">iVar3</span><span class="p">;</span>
+  <span class="kt">int</span> <span class="n">iVar4</span><span class="p">;</span>
+  <span class="kt">int</span> <span class="n">iVar5</span><span class="p">;</span>
+  <span class="n">uint</span> <span class="n">local_1c</span><span class="p">;</span>
+  
+  <span class="k">if</span> <span class="p">(</span><span class="n">uParm1</span> <span class="o">&lt;</span> <span class="mi">5</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">local_1c</span> <span class="o">=</span> <span class="n">uParm1</span> <span class="o">*</span> <span class="n">uParm1</span> <span class="o">+</span> <span class="mh">0x2345</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="k">else</span> <span class="p">{</span>
+    <span class="n">iVar1</span> <span class="o">=</span> <span class="n">calc</span><span class="p">((</span><span class="n">ulong</span><span class="p">)(</span><span class="n">uParm1</span> <span class="o">-</span> <span class="mi">1</span><span class="p">));</span>
+    <span class="n">iVar2</span> <span class="o">=</span> <span class="n">calc</span><span class="p">((</span><span class="n">ulong</span><span class="p">)(</span><span class="n">uParm1</span> <span class="o">-</span> <span class="mi">2</span><span class="p">));</span>
+    <span class="n">iVar3</span> <span class="o">=</span> <span class="n">calc</span><span class="p">((</span><span class="n">ulong</span><span class="p">)(</span><span class="n">uParm1</span> <span class="o">-</span> <span class="mi">3</span><span class="p">));</span>
+    <span class="n">iVar4</span> <span class="o">=</span> <span class="n">calc</span><span class="p">((</span><span class="n">ulong</span><span class="p">)(</span><span class="n">uParm1</span> <span class="o">-</span> <span class="mi">4</span><span class="p">));</span>
+    <span class="n">iVar5</span> <span class="o">=</span> <span class="n">calc</span><span class="p">((</span><span class="n">ulong</span><span class="p">)(</span><span class="n">uParm1</span> <span class="o">-</span> <span class="mi">5</span><span class="p">));</span>
+    <span class="n">local_1c</span> <span class="o">=</span> <span class="n">iVar5</span> <span class="o">*</span> <span class="mh">0x1234</span> <span class="o">+</span> <span class="p">(</span><span class="n">iVar1</span> <span class="o">-</span> <span class="n">iVar2</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="n">iVar3</span> <span class="o">-</span> <span class="n">iVar4</span><span class="p">);</span>
+  <span class="p">}</span>
+  <span class="k">return</span> <span class="p">(</span><span class="n">ulong</span><span class="p">)</span><span class="n">local_1c</span><span class="p">;</span>
+<span class="p">}</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>ヒントにしたがって、&rdquo;再帰関数 高速化&rdquo; でググってみると、「メモ化」というのがありました。</p>
+
+<p>&ldquo;一度処理した結果を保存しておく方法を「メモ化」といい、保存する量が多くなってくるとメモリの使用量は増えますが、処理が圧倒的に高速になります。&rdquo; とのことです。</p>
+
+<p>Rubyでできるようなので、普段Rubyは使わないのですが、ウェブで見つけたサンプルをならって以下を書きました。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-Ruby" data-lang="Ruby"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-Ruby" data-lang="Ruby"><span class="vi">@memo</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="k">def</span> <span class="nf">calc</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+  <span class="k">return</span> <span class="vi">@memo</span><span class="o">[[</span><span class="n">a</span><span class="o">]]</span> <span class="k">if</span> <span class="vi">@memo</span><span class="o">[[</span><span class="n">a</span><span class="o">]]</span>
+  <span class="k">if</span> <span class="n">a</span> <span class="o">&lt;</span> <span class="mi">5</span> <span class="k">then</span>
+    <span class="n">ret</span> <span class="o">=</span> <span class="n">a</span><span class="o">*</span><span class="n">a</span><span class="o">+</span><span class="mh">0x2345</span>
+  <span class="k">else</span>
+    <span class="n">ret</span> <span class="o">=</span> <span class="n">calc</span><span class="p">(</span><span class="n">a</span><span class="o">-</span><span class="mi">5</span><span class="p">)</span><span class="o">*</span><span class="mh">0x1234</span> <span class="o">+</span> <span class="p">(</span><span class="n">calc</span><span class="p">(</span><span class="n">a</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">-</span><span class="n">calc</span><span class="p">(</span><span class="n">a</span><span class="o">-</span><span class="mi">2</span><span class="p">))</span> <span class="o">+</span><span class="p">(</span><span class="n">calc</span><span class="p">(</span><span class="n">a</span><span class="o">-</span><span class="mi">3</span><span class="p">)</span><span class="o">-</span><span class="n">calc</span><span class="p">(</span><span class="n">a</span><span class="o">-</span><span class="mi">4</span><span class="p">))</span>
+  <span class="k">end</span>
+  <span class="vi">@memo</span><span class="o">[[</span><span class="n">a</span><span class="o">]]</span> <span class="o">=</span> <span class="n">ret</span>
+  <span class="k">return</span> <span class="n">ret</span>
+<span class="k">end</span>
+<span class="nb">printf</span><span class="p">(</span><span class="s2">&#34;0x%x</span><span class="se">\n</span><span class="s2">&#34;</span><span class="p">,</span> <span class="n">calc</span><span class="p">(</span><span class="mh">0x18f4b</span><span class="p">)</span> <span class="o">&amp;</span> <span class="mh">0xFFFFFFFF</span> <span class="p">)</span></code></pre></td></tr></table>
+</div>
+</div>
+<p><br />
+最初に実行した際に、以下のエラーが出ました。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span><span class="lnt">2
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">$ ruby be-quick-or-be-dead-3_solve.rb 
+be-quick-or-be-dead-3_solve.rb:7:in `calc&#39;: stack level too deep (SystemStackError)</pre></td></tr></table>
+</div>
+</div>
+<p><br />
+これは、RUBY_THREAD_VM_STACK_SIZEという環境変数で回避できるそうなので、テキトーに100MBでやってみました。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">$ export RUBY_THREAD_VM_STACK_SIZE=100000000
+$ ruby be-quick-or-be-dead-3_solve.rb 
+0x2f8cdc3f</pre></td></tr></table>
+</div>
+</div>
+<p><br />
+gdbでcalc()をコールする直前でbreakして、戻り値をセットして、jumpでcalc()をスキップします。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">gef➤  i b
+Num     Type           Disp Enb Address            What
+1       breakpoint     keep y   0x000000000040079b &lt;calculate_key+9&gt;
+	breakpoint already hit 1 time
+
+gef➤  disas calculate_key
+Dump of assembler code for function calculate_key:
+   0x0000000000400792 &lt;+0&gt;:	push   rbp
+   0x0000000000400793 &lt;+1&gt;:	mov    rbp,rsp
+   0x0000000000400796 &lt;+4&gt;:	mov    edi,0x18f4b
+=&gt; 0x000000000040079b &lt;+9&gt;:	call   0x400706 &lt;calc&gt;
+   0x00000000004007a0 &lt;+14&gt;:	pop    rbp
+   0x00000000004007a1 &lt;+15&gt;:	ret    
+End of assembler dump.
+
+gef➤  set $eax=0x2f8cdc3f
+
+gef➤  jump *0x00000000004007a0
+Continuing at 0x4007a0.
+
+Program received signal SIGALRM, Alarm clock.
+Done calculating key
+Printing flag:
+picoCTF{dynamic_pr0gramming_ftw_22ac7d81}
+[Inferior 1 (process 1492) exited normally]</pre></td></tr></table>
+</div>
+</div>
+<p>Flag: <code>picoCTF{dynamic_pr0gramming_ftw_22ac7d81}</code></p>
+
+<p><br /><br />
+<br /><br /></p>
+
 <hr />
 
 <p><br /><br />
@@ -1903,7 +2109,7 @@ Product Activated Successfully: picoCTF{c0n5tr41nt_50lv1nG_15_W4y_f45t3r_3846045
   <p class="copyright-item">
     <span class="item-title">LastMod</span>
     <span class="item-content">
-        2019-08-25
+        2019-09-05
         
     </span>
   </p>

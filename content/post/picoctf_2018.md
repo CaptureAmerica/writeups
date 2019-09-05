@@ -1,7 +1,7 @@
 ---
 title: "picoCTF 2018 Writeup"
 date: 2019-08-11T23:00:00+09:00
-lastmod: 2019-08-25T22:00:00+09:00
+lastmod: 2019-09-05T22:00:00+09:00
 draft: false
 keywords: []
 description: ""
@@ -20,9 +20,11 @@ URL: [https://2018game.picoctf.com/](https://2018game.picoctf.com/)
 
 <img src="https://captureamerica.github.io/writeups/img/pico_Score.png" alt="pico_Score.png">
 
-Web Exploitationは、サーバにアクセスできないやつがいくつかあって、進みません。。。
+もう、これくらいやったら十分かなぁ。気が向いたら、もう少しやるかもです。
 
-ReversingとBinary Exploitationは、続けて勉強していきます。その他のCrypto等は、、、もうスルーしようかと思います。
+picoCTF 2019がそろそろ始まりますね (2019年9月末〜)。楽しみ！！
+
+
 
 <br /><br />
 ここでは、自分のオリジナル感が出るやつとか、自分自身の記録として残しておきたいものだけ書きます。
@@ -32,7 +34,7 @@ ReversingとBinary Exploitationは、続けて勉強していきます。その�
 
 
 <br /><br />
-# Desrouleaux
+# Forensics: Desrouleaux
 - - -
 ## Challenge
 > Our network administrator is having some trouble handling the tickets for all of of our incidents. Can you help him out by answering all the questions? Connect with nc 2018shell.picoctf.com 54782. 
@@ -184,7 +186,7 @@ print("{:.2f}".format(uniq_dst / len(uniq_hash)))
 
 <br /><br />
 <br /><br />
-# Safe RSA
+# Cryptography: Safe RSA
 - - -
 ## Challenge
 > Now that you know about RSA can you help us decrypt this ciphertext? We don't have the decryption key but something about those values looks funky..
@@ -221,7 +223,7 @@ Flag: `picoCTF{e_w4y_t00_sm411_34096259}`
 
 <br /><br />
 <br /><br />
-# be-quick-or-be-dead-1
+# Reversing: be-quick-or-be-dead-1
 - - -
 ## Challenge
 > You find [this](https://www.youtube.com/watch?v=CTt1vk9nM9c) when searching for some music, which leads you to be-quick-or-be-dead-1. Can you run it fast enough? You can also find the executable in /problems/be-quick-or-be-dead-1_3_aeb48854203a88fb1da963f41ae06a1c.
@@ -242,7 +244,7 @@ alert(1)でタイマーを起動していて、flagをprintする前にタイム
 
 <br /><br />
 <br /><br />
-# keygen-me-1
+# Reversing: keygen-me-1
 - - -
 ## Challenge
 > Can you generate a valid product key for the validation program in /problems/keygen-me-1_2_74297f5e012cf93ee059a2be15d77734
@@ -426,7 +428,7 @@ flag: `AAAAAAAAAAAAAAAO`
 
 <br /><br />
 <br /><br />
-# script me
+# General Skills: script me
 - - -
 ## Challenge
 > Can you understand the language and answer the questions to retrieve the flag? Connect to the service with nc 2018shell.picoctf.com 1542
@@ -606,7 +608,7 @@ flag `picoCTF{5cr1pt1nG_l1k3_4_pRo_0466cdd7}`
 
 <br /><br />
 <br /><br />
-# LoadSomeBits
+# Forensics: LoadSomeBits
 - - -
 ## Challenge
 > Can you find the flag encoded inside this image?
@@ -687,7 +689,7 @@ Flag: `picoCTF{st0r3d_iN_tH3_l345t_s1gn1f1c4nT_b1t5_770554193}`
 
 <br /><br />
 <br /><br />
-# keygen-me-2
+# Reversing: keygen-me-2
 - - -
 ## Challenge
 > The software has been updated. Can you find us a new product key for the program in /problems/keygen-me-2_1_762036cde49fef79146a706d0eda80a3
@@ -1020,6 +1022,119 @@ Product Activated Successfully: picoCTF{c0n5tr41nt_50lv1nG_15_W4y_f45t3r_3846045
 Flag: `picoCTF{c0n5tr41nt_50lv1nG_15_W4y_f45t3r_3846045707}`
 
 
+
+<br /><br />
+<br /><br />
+# Reversing: be-quick-or-be-dead-3
+- - -
+## Challenge
+> As the [song](https://www.youtube.com/watch?v=CTt1vk9nM9c) draws closer to the end, another executable be-quick-or-be-dead-3 suddenly pops up. This one requires even faster machines. Can you run it fast enough too?
+<br /><br />
+Hint: How do you speed up a very repetitive computation?
+
+Attachment:
+
+- be-quick-or-be-dead-3  (ELF 64-bit)
+
+<br />
+## Solution
+まず、Ghidraにかけます。
+
+以下の箇所が再帰関数になっており、時間がかかるところです。
+```C
+ulong calc(uint uParm1)
+
+{
+  int iVar1;
+  int iVar2;
+  int iVar3;
+  int iVar4;
+  int iVar5;
+  uint local_1c;
+  
+  if (uParm1 < 5) {
+    local_1c = uParm1 * uParm1 + 0x2345;
+  }
+  else {
+    iVar1 = calc((ulong)(uParm1 - 1));
+    iVar2 = calc((ulong)(uParm1 - 2));
+    iVar3 = calc((ulong)(uParm1 - 3));
+    iVar4 = calc((ulong)(uParm1 - 4));
+    iVar5 = calc((ulong)(uParm1 - 5));
+    local_1c = iVar5 * 0x1234 + (iVar1 - iVar2) + (iVar3 - iVar4);
+  }
+  return (ulong)local_1c;
+}
+```
+
+ヒントにしたがって、"再帰関数 高速化" でググってみると、「メモ化」というのがありました。
+
+"一度処理した結果を保存しておく方法を「メモ化」といい、保存する量が多くなってくるとメモリの使用量は増えますが、処理が圧倒的に高速になります。" とのことです。
+
+Rubyでできるようなので、普段Rubyは使わないのですが、ウェブで見つけたサンプルをならって以下を書きました。
+```Ruby
+@memo = {}
+def calc(a)
+  return @memo[[a]] if @memo[[a]]
+  if a < 5 then
+    ret = a*a+0x2345
+  else
+    ret = calc(a-5)*0x1234 + (calc(a-1)-calc(a-2)) +(calc(a-3)-calc(a-4))
+  end
+  @memo[[a]] = ret
+  return ret
+end
+printf("0x%x\n", calc(0x18f4b) & 0xFFFFFFFF )
+```
+
+<br />
+最初に実行した際に、以下のエラーが出ました。
+```
+$ ruby be-quick-or-be-dead-3_solve.rb 
+be-quick-or-be-dead-3_solve.rb:7:in `calc': stack level too deep (SystemStackError)
+```
+
+
+<br />
+これは、RUBY_THREAD_VM_STACK_SIZEという環境変数で回避できるそうなので、テキトーに100MBでやってみました。
+```
+$ export RUBY_THREAD_VM_STACK_SIZE=100000000
+$ ruby be-quick-or-be-dead-3_solve.rb 
+0x2f8cdc3f
+```
+
+<br />
+gdbでcalc()をコールする直前でbreakして、戻り値をセットして、jumpでcalc()をスキップします。
+
+```
+gef➤  i b
+Num     Type           Disp Enb Address            What
+1       breakpoint     keep y   0x000000000040079b <calculate_key+9>
+	breakpoint already hit 1 time
+
+gef➤  disas calculate_key
+Dump of assembler code for function calculate_key:
+   0x0000000000400792 <+0>:	push   rbp
+   0x0000000000400793 <+1>:	mov    rbp,rsp
+   0x0000000000400796 <+4>:	mov    edi,0x18f4b
+=> 0x000000000040079b <+9>:	call   0x400706 <calc>
+   0x00000000004007a0 <+14>:	pop    rbp
+   0x00000000004007a1 <+15>:	ret    
+End of assembler dump.
+
+gef➤  set $eax=0x2f8cdc3f
+
+gef➤  jump *0x00000000004007a0
+Continuing at 0x4007a0.
+
+Program received signal SIGALRM, Alarm clock.
+Done calculating key
+Printing flag:
+picoCTF{dynamic_pr0gramming_ftw_22ac7d81}
+[Inferior 1 (process 1492) exited normally]
+```
+
+Flag: `picoCTF{dynamic_pr0gramming_ftw_22ac7d81}`
 
 <br /><br />
 <br /><br />
