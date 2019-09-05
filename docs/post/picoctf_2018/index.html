@@ -51,7 +51,7 @@
 
 <meta itemprop="datePublished" content="2019-08-11T23:00:00&#43;09:00" />
 <meta itemprop="dateModified" content="2019-09-05T22:00:00&#43;09:00" />
-<meta itemprop="wordCount" content="6271">
+<meta itemprop="wordCount" content="6519">
 
 
 
@@ -141,45 +141,50 @@
   <div class="post-toc-content always-active">
     <nav id="TableOfContents">
 <ul>
-<li><a href="#forensics-desrouleaux">Forensics: Desrouleaux</a>
+<li><a href="#forensics-desrouleaux-150-points">[Forensics]: Desrouleaux (150 points)</a>
 <ul>
 <li><a href="#challenge">Challenge</a></li>
 <li><a href="#solution">Solution</a></li>
 </ul></li>
-<li><a href="#cryptography-safe-rsa">Cryptography: Safe RSA</a>
+<li><a href="#general-skills-you-can-t-see-me-200-points">[General Skills]: you can&rsquo;t see me (200 points)</a>
 <ul>
 <li><a href="#challenge-1">Challenge</a></li>
 <li><a href="#solution-1">Solution</a></li>
 </ul></li>
-<li><a href="#reversing-be-quick-or-be-dead-1">Reversing: be-quick-or-be-dead-1</a>
+<li><a href="#cryptography-safe-rsa-250-points">[Cryptography]: Safe RSA (250 points)</a>
 <ul>
 <li><a href="#challenge-2">Challenge</a></li>
 <li><a href="#solution-2">Solution</a></li>
 </ul></li>
-<li><a href="#reversing-keygen-me-1">Reversing: keygen-me-1</a>
+<li><a href="#reversing-be-quick-or-be-dead-1-200-points">[Reversing]: be-quick-or-be-dead-1 (200 points)</a>
 <ul>
 <li><a href="#challenge-3">Challenge</a></li>
 <li><a href="#solution-3">Solution</a></li>
 </ul></li>
-<li><a href="#general-skills-script-me">General Skills: script me</a>
+<li><a href="#reversing-keygen-me-1-400-points">[Reversing]: keygen-me-1 (400 points)</a>
 <ul>
 <li><a href="#challenge-4">Challenge</a></li>
 <li><a href="#solution-4">Solution</a></li>
 </ul></li>
-<li><a href="#forensics-loadsomebits">Forensics: LoadSomeBits</a>
+<li><a href="#general-skills-script-me-500-points">[General Skills]: script me (500 points)</a>
 <ul>
 <li><a href="#challenge-5">Challenge</a></li>
 <li><a href="#solution-5">Solution</a></li>
 </ul></li>
-<li><a href="#reversing-keygen-me-2">Reversing: keygen-me-2</a>
+<li><a href="#forensics-loadsomebits-550-points">[Forensics]: LoadSomeBits (550 points)</a>
 <ul>
 <li><a href="#challenge-6">Challenge</a></li>
 <li><a href="#solution-6">Solution</a></li>
 </ul></li>
-<li><a href="#reversing-be-quick-or-be-dead-3">Reversing: be-quick-or-be-dead-3</a>
+<li><a href="#reversing-keygen-me-2-750-points">[Reversing]: keygen-me-2 (750 points)</a>
 <ul>
 <li><a href="#challenge-7">Challenge</a></li>
 <li><a href="#solution-7">Solution</a></li>
+</ul></li>
+<li><a href="#reversing-be-quick-or-be-dead-3-350-points">[Reversing]: be-quick-or-be-dead-3 (350 points)</a>
+<ul>
+<li><a href="#challenge-8">Challenge</a></li>
+<li><a href="#solution-8">Solution</a></li>
 </ul></li>
 </ul>
 </nav>
@@ -210,7 +215,7 @@
 
 <p><br /><br /></p>
 
-<h1 id="forensics-desrouleaux">Forensics: Desrouleaux</h1>
+<h1 id="forensics-desrouleaux-150-points">[Forensics]: Desrouleaux (150 points)</h1>
 
 <hr />
 
@@ -414,11 +419,73 @@ Hint: If you need to code, python has some good libraries for it.</p>
 <p><br /><br />
 <br /><br /></p>
 
-<h1 id="cryptography-safe-rsa">Cryptography: Safe RSA</h1>
+<h1 id="general-skills-you-can-t-see-me-200-points">[General Skills]: you can&rsquo;t see me (200 points)</h1>
 
 <hr />
 
 <h2 id="challenge-1">Challenge</h2>
+
+<p>&rsquo;&hellip;reading transmission&hellip; Y.O.U. .C.A.N.&lsquo;.T. .S.E.E. .M.E. &hellip;transmission ended&hellip;&rsquo; Maybe something lies in /problems/you-can-t-see-me_3_1a39ec6c80b3f3a18610074f68acfe69.</p>
+
+<p><br /></p>
+
+<h2 id="solution-1">Solution</h2>
+
+<p>SSHでアクセスした後、emacsのdiredからファイルを開いたらすぐフラグ見つかりました。
+<img src="https://captureamerica.github.io/writeups/img/emacs_dired.png" alt="emacs_dired.png"></p>
+
+<p><br />
+逆にemacsが使えなかったらどうするのか気になって、別解も調べてみました。</p>
+
+<p>ファイル名に空白文字が含まれているようなので、trでアンダースコアに置き換えて可視化しました。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">captureamerica@pico-2018-shell:/problems/you-can-t-see-me_3_1a39ec6c80b3f3a18610074f68acfe69$ ll
+total 60
+drwxr-xr-x   2 root       root        4096 Mar 25 19:57 ./
+-rw-rw-r--   1 hacksports hacksports    57 Mar 25 19:57 .  
+drwxr-x--x 556 root       root       53248 Mar 25 19:58 ../
+
+captureamerica@pico-2018-shell:/problems/you-can-t-see-me_3_1a39ec6c80b3f3a18610074f68acfe69$ ls -la | tr &#34; &#34; &#34;_&#34;
+total_60
+drwxr-xr-x___2_root_______root________4096_Mar_25_19:57_.
+-rw-rw-r--___1_hacksports_hacksports____57_Mar_25_19:57_.__
+drwxr-x--x_556_root_______root_______53248_Mar_25_19:58_..
+
+captureamerica@pico-2018-shell:/problems/you-can-t-see-me_3_1a39ec6c80b3f3a18610074f68acfe69$ cat &#34;. &#34;
+cat: &#39;. &#39;: No such file or directory
+
+captureamerica@pico-2018-shell:/problems/you-can-t-see-me_3_1a39ec6c80b3f3a18610074f68acfe69$ cat &#34;.  &#34;
+picoCTF{j0hn_c3na_paparapaaaaaaa_paparapaaaaaa_cf5156ef}</pre></td></tr></table>
+</div>
+</div>
+<p><br /><br />
+<br /><br /></p>
+
+<h1 id="cryptography-safe-rsa-250-points">[Cryptography]: Safe RSA (250 points)</h1>
+
+<hr />
+
+<h2 id="challenge-2">Challenge</h2>
 
 <blockquote>
 <p>Now that you know about RSA can you help us decrypt this ciphertext? We don&rsquo;t have the decryption key but something about those values looks funky..
@@ -444,7 +511,7 @@ N: 37415923547017213098893819652088052694795252162093236205030866324359578830858
 
 <p><br /></p>
 
-<h2 id="solution-1">Solution</h2>
+<h2 id="solution-2">Solution</h2>
 
 <p>RsaCtfTool ( <a href="https://github.com/Ganapati/RsaCtfTool">https://github.com/Ganapati/RsaCtfTool</a> ) を使ったら解けました。</p>
 
@@ -459,11 +526,11 @@ Flag: <code>picoCTF{e_w4y_t00_sm411_34096259}</code></p>
 <p><br /><br />
 <br /><br /></p>
 
-<h1 id="reversing-be-quick-or-be-dead-1">Reversing: be-quick-or-be-dead-1</h1>
+<h1 id="reversing-be-quick-or-be-dead-1-200-points">[Reversing]: be-quick-or-be-dead-1 (200 points)</h1>
 
 <hr />
 
-<h2 id="challenge-2">Challenge</h2>
+<h2 id="challenge-3">Challenge</h2>
 
 <blockquote>
 <p>You find <a href="https://www.youtube.com/watch?v=CTt1vk9nM9c">this</a> when searching for some music, which leads you to be-quick-or-be-dead-1. Can you run it fast enough? You can also find the executable in /problems/be-quick-or-be-dead-1_3_aeb48854203a88fb1da963f41ae06a1c.
@@ -479,7 +546,7 @@ Hint: What will the key finally be?</p>
 
 <p><br /></p>
 
-<h2 id="solution-2">Solution</h2>
+<h2 id="solution-3">Solution</h2>
 
 <p>これは、いろんな解き方があると思います。<br /></p>
 
@@ -488,11 +555,11 @@ Hint: What will the key finally be?</p>
 <p><br /><br />
 <br /><br /></p>
 
-<h1 id="reversing-keygen-me-1">Reversing: keygen-me-1</h1>
+<h1 id="reversing-keygen-me-1-400-points">[Reversing]: keygen-me-1 (400 points)</h1>
 
 <hr />
 
-<h2 id="challenge-3">Challenge</h2>
+<h2 id="challenge-4">Challenge</h2>
 
 <blockquote>
 <p>Can you generate a valid product key for the validation program in /problems/keygen-me-1_2_74297f5e012cf93ee059a2be15d77734</p>
@@ -506,7 +573,7 @@ Hint: What will the key finally be?</p>
 
 <p><br /></p>
 
-<h2 id="solution-3">Solution</h2>
+<h2 id="solution-4">Solution</h2>
 
 <p>Ghidra使っていきます。</p>
 <div class="highlight"><div class="chroma">
@@ -842,11 +909,11 @@ INVALID Product Key.</code></pre></td></tr></table>
 <p><br /><br />
 <br /><br /></p>
 
-<h1 id="general-skills-script-me">General Skills: script me</h1>
+<h1 id="general-skills-script-me-500-points">[General Skills]: script me (500 points)</h1>
 
 <hr />
 
-<h2 id="challenge-4">Challenge</h2>
+<h2 id="challenge-5">Challenge</h2>
 
 <blockquote>
 <p>Can you understand the language and answer the questions to retrieve the flag? Connect to the service with nc 2018shell.picoctf.com 1542
@@ -871,7 +938,7 @@ Example:
 
 <p><br /></p>
 
-<h2 id="solution-4">Solution</h2>
+<h2 id="solution-5">Solution</h2>
 
 <p>なんかカッコが多くて、複雑そうに見えるけど、()を別の文字に置き換えるとわかりやすいと思います｡
 <pre>
@@ -1144,11 +1211,11 @@ Congratulations, here&#39;s your flag: picoCTF{5cr1pt1nG_l1k3_4_pRo_0466cdd7}
 <p><br /><br />
 <br /><br /></p>
 
-<h1 id="forensics-loadsomebits">Forensics: LoadSomeBits</h1>
+<h1 id="forensics-loadsomebits-550-points">[Forensics]: LoadSomeBits (550 points)</h1>
 
 <hr />
 
-<h2 id="challenge-5">Challenge</h2>
+<h2 id="challenge-6">Challenge</h2>
 
 <blockquote>
 <p>Can you find the flag encoded inside this image?
@@ -1165,7 +1232,7 @@ Hint2: If you interpret a binary sequence (seq) as ascii and then try interpreti
 
 <p><br /></p>
 
-<h2 id="solution-5">Solution</h2>
+<h2 id="solution-6">Solution</h2>
 
 <p>BMPファイルだったので、いつもの青猫（「青い空を見上げればいつもそこに白い猫」）が使えなかったし、ちょっと意味不明な部分もあったので、他の方のWriteupを少し参照しました。</p>
 
@@ -1276,11 +1343,11 @@ Hint2: If you interpret a binary sequence (seq) as ascii and then try interpreti
 <p><br /><br />
 <br /><br /></p>
 
-<h1 id="reversing-keygen-me-2">Reversing: keygen-me-2</h1>
+<h1 id="reversing-keygen-me-2-750-points">[Reversing]: keygen-me-2 (750 points)</h1>
 
 <hr />
 
-<h2 id="challenge-6">Challenge</h2>
+<h2 id="challenge-7">Challenge</h2>
 
 <blockquote>
 <p>The software has been updated. Can you find us a new product key for the program in /problems/keygen-me-2_1_762036cde49fef79146a706d0eda80a3
@@ -1296,7 +1363,7 @@ Hint: z3</p>
 
 <p><br /></p>
 
-<h2 id="solution-6">Solution</h2>
+<h2 id="solution-7">Solution</h2>
 
 <p>Ghidra使って解析していきます。keygen-me-1がベースなので、以下の辺りは同じです。</p>
 
@@ -1893,11 +1960,11 @@ Product Activated Successfully: picoCTF{c0n5tr41nt_50lv1nG_15_W4y_f45t3r_3846045
 <p><br /><br />
 <br /><br /></p>
 
-<h1 id="reversing-be-quick-or-be-dead-3">Reversing: be-quick-or-be-dead-3</h1>
+<h1 id="reversing-be-quick-or-be-dead-3-350-points">[Reversing]: be-quick-or-be-dead-3 (350 points)</h1>
 
 <hr />
 
-<h2 id="challenge-7">Challenge</h2>
+<h2 id="challenge-8">Challenge</h2>
 
 <blockquote>
 <p>As the <a href="https://www.youtube.com/watch?v=CTt1vk9nM9c">song</a> draws closer to the end, another executable be-quick-or-be-dead-3 suddenly pops up. This one requires even faster machines. Can you run it fast enough too?
@@ -1913,7 +1980,7 @@ Hint: How do you speed up a very repetitive computation?</p>
 
 <p><br /></p>
 
-<h2 id="solution-7">Solution</h2>
+<h2 id="solution-8">Solution</h2>
 
 <p>まず、Ghidraにかけます。</p>
 

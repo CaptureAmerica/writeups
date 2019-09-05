@@ -34,7 +34,7 @@ picoCTF 2019がそろそろ始まりますね (2019年9月末〜)。楽しみ！
 
 
 <br /><br />
-# Forensics: Desrouleaux
+# [Forensics]: Desrouleaux (150 points)
 - - -
 ## Challenge
 > Our network administrator is having some trouble handling the tickets for all of of our incidents. Can you help him out by answering all the questions? Connect with nc 2018shell.picoctf.com 54782. 
@@ -183,10 +183,51 @@ print("{:.2f}".format(uniq_dst / len(uniq_hash)))
 
 
 
+<br /><br />
+<br /><br />
+# [General Skills]: you can't see me (200 points)
+- - -
+## Challenge
+'...reading transmission... Y.O.U. .C.A.N.'.T. .S.E.E. .M.E. ...transmission ended...' Maybe something lies in /problems/you-can-t-see-me_3_1a39ec6c80b3f3a18610074f68acfe69.
+
+<br />
+## Solution
+SSHでアクセスした後、emacsのdiredからファイルを開いたらすぐフラグ見つかりました。
+<img src="https://captureamerica.github.io/writeups/img/emacs_dired.png" alt="emacs_dired.png">
+
+
+<br />
+逆にemacsが使えなかったらどうするのか気になって、別解も調べてみました。
+
+ファイル名に空白文字が含まれているようなので、trでアンダースコアに置き換えて可視化しました。
+```
+captureamerica@pico-2018-shell:/problems/you-can-t-see-me_3_1a39ec6c80b3f3a18610074f68acfe69$ ll
+total 60
+drwxr-xr-x   2 root       root        4096 Mar 25 19:57 ./
+-rw-rw-r--   1 hacksports hacksports    57 Mar 25 19:57 .  
+drwxr-x--x 556 root       root       53248 Mar 25 19:58 ../
+
+captureamerica@pico-2018-shell:/problems/you-can-t-see-me_3_1a39ec6c80b3f3a18610074f68acfe69$ ls -la | tr " " "_"
+total_60
+drwxr-xr-x___2_root_______root________4096_Mar_25_19:57_.
+-rw-rw-r--___1_hacksports_hacksports____57_Mar_25_19:57_.__
+drwxr-x--x_556_root_______root_______53248_Mar_25_19:58_..
+
+captureamerica@pico-2018-shell:/problems/you-can-t-see-me_3_1a39ec6c80b3f3a18610074f68acfe69$ cat ". "
+cat: '. ': No such file or directory
+
+captureamerica@pico-2018-shell:/problems/you-can-t-see-me_3_1a39ec6c80b3f3a18610074f68acfe69$ cat ".  "
+picoCTF{j0hn_c3na_paparapaaaaaaa_paparapaaaaaa_cf5156ef}
+```
+
+
+
+
+
 
 <br /><br />
 <br /><br />
-# Cryptography: Safe RSA
+# [Cryptography]: Safe RSA (250 points)
 - - -
 ## Challenge
 > Now that you know about RSA can you help us decrypt this ciphertext? We don't have the decryption key but something about those values looks funky..
@@ -223,7 +264,7 @@ Flag: `picoCTF{e_w4y_t00_sm411_34096259}`
 
 <br /><br />
 <br /><br />
-# Reversing: be-quick-or-be-dead-1
+# [Reversing]: be-quick-or-be-dead-1 (200 points)
 - - -
 ## Challenge
 > You find [this](https://www.youtube.com/watch?v=CTt1vk9nM9c) when searching for some music, which leads you to be-quick-or-be-dead-1. Can you run it fast enough? You can also find the executable in /problems/be-quick-or-be-dead-1_3_aeb48854203a88fb1da963f41ae06a1c.
@@ -244,7 +285,7 @@ alert(1)でタイマーを起動していて、flagをprintする前にタイム
 
 <br /><br />
 <br /><br />
-# Reversing: keygen-me-1
+# [Reversing]: keygen-me-1 (400 points)
 - - -
 ## Challenge
 > Can you generate a valid product key for the validation program in /problems/keygen-me-1_2_74297f5e012cf93ee059a2be15d77734
@@ -428,7 +469,7 @@ flag: `AAAAAAAAAAAAAAAO`
 
 <br /><br />
 <br /><br />
-# General Skills: script me
+# [General Skills]: script me (500 points)
 - - -
 ## Challenge
 > Can you understand the language and answer the questions to retrieve the flag? Connect to the service with nc 2018shell.picoctf.com 1542
@@ -608,7 +649,7 @@ flag `picoCTF{5cr1pt1nG_l1k3_4_pRo_0466cdd7}`
 
 <br /><br />
 <br /><br />
-# Forensics: LoadSomeBits
+# [Forensics]: LoadSomeBits (550 points)
 - - -
 ## Challenge
 > Can you find the flag encoded inside this image?
@@ -689,7 +730,7 @@ Flag: `picoCTF{st0r3d_iN_tH3_l345t_s1gn1f1c4nT_b1t5_770554193}`
 
 <br /><br />
 <br /><br />
-# Reversing: keygen-me-2
+# [Reversing]: keygen-me-2 (750 points)
 - - -
 ## Challenge
 > The software has been updated. Can you find us a new product key for the program in /problems/keygen-me-2_1_762036cde49fef79146a706d0eda80a3
@@ -1025,7 +1066,7 @@ Flag: `picoCTF{c0n5tr41nt_50lv1nG_15_W4y_f45t3r_3846045707}`
 
 <br /><br />
 <br /><br />
-# Reversing: be-quick-or-be-dead-3
+# [Reversing]: be-quick-or-be-dead-3 (350 points)
 - - -
 ## Challenge
 > As the [song](https://www.youtube.com/watch?v=CTt1vk9nM9c) draws closer to the end, another executable be-quick-or-be-dead-3 suddenly pops up. This one requires even faster machines. Can you run it fast enough too?
