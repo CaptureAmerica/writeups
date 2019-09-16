@@ -43,15 +43,15 @@
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://captureamerica.github.io/writeups/post/peactf_2019/" />
 <meta property="article:published_time" content="2019-08-01T19:00:00&#43;09:00"/>
-<meta property="article:modified_time" content="2019-08-01T19:00:00&#43;09:00"/>
+<meta property="article:modified_time" content="2019-09-15T19:00:00&#43;09:00"/>
 
 <meta itemprop="name" content="peactf 2019 Writeup">
 <meta itemprop="description" content="URL: https://2019.peactf.com/problems 前回のcybricsに引き続き、風邪が長引いていたのと、アクセスができない時があったりして、簡単なやつをちょこっと解いて終了。 いちおう、">
 
 
 <meta itemprop="datePublished" content="2019-08-01T19:00:00&#43;09:00" />
-<meta itemprop="dateModified" content="2019-08-01T19:00:00&#43;09:00" />
-<meta itemprop="wordCount" content="1126">
+<meta itemprop="dateModified" content="2019-09-15T19:00:00&#43;09:00" />
+<meta itemprop="wordCount" content="1202">
 
 
 
@@ -289,6 +289,11 @@ flag: <code>peaCTF{eggwaffles}</code></p>
 ＃問題文の中で、<b>bacon</b>の部分だけ太字になっているのがナゾ。なんかのヒントなの？ スライスするとか言うことかな。。</p>
 
 <p><br /><br />
+(2019/09/15 追記)</p>
+
+<p>復習してたら、これは<a href="https://en.wikipedia.org/wiki/Bacon%27s_cipher">Bacon&rsquo;s cipher</a>っていうらしいですね。知らなくても解けたけど。</p>
+
+<p><br /><br />
 <br /><br /></p>
 
 <h1 id="hide-and-seek">Hide and Seek</h1>
@@ -331,6 +336,8 @@ zswGXU{ljwdhsqmags}</p>
 <p><br /></p>
 
 <h2 id="solution-3">Solution</h2>
+
+<p>単一換字式暗号 (monoalphabetic substitution ciphers)です。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><code class="language-Perl" data-lang="Perl"><span class="lnt"> 1
@@ -516,7 +523,7 @@ E.xtr: PNG image data, 1280 x 720, 8-bit colormap, interlaced
   <p class="copyright-item">
     <span class="item-title">LastMod</span>
     <span class="item-content">
-        2019-08-01
+        2019-09-15
         
     </span>
   </p>

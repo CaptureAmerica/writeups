@@ -1,7 +1,7 @@
 ---
 title: "CyBRICS CTF 2019 Writeup"
 date: 2019-07-25T12:00:00+09:00
-lastmod: 2019-07-25T12:00:00+09:00
+lastmod: 2019-09-16T14:00:00+09:00
 draft: false
 keywords: []
 description: ""
@@ -69,22 +69,24 @@ QUIT
 
 <br />
 ## Solution
-メールの本文に出てくる数値はアスキーの範囲っぽいので、文字に直します。
+メールの本文はquoted-printableでエンコードされています。一旦別ファイルに落とした後、nkfでデコードします。
 
 ```
-$ grep ^= intercepted_text.txt | tr -d '=' | tr -d ' ' | tr -d '\n' ; echo
-6274772E0A0A70617373776F7264666F727468656172636869766577697468666C61673A637261636B30576573746F6E383876657274656272610A0A636865657273210A
+$ cat printable.txt
+=62=74=77=2E=0A=0A=70=61=73=73=77=6F=72=64 =66=6F=72 =74=68=65 =61=72=63=
+=68=69=76=65 =77=69=74=68 =66=6C=61=67=3A =63=72=61=63=6B=30=57=65=73=74=
+=6F=6E=38=38=76=65=72=74=65=62=72=61=0A=0A=63=68=65=65=72=73=21=0A
 
-$ python
->>> import binascii
->>> binascii.unhexlify("6274772E0A0A70617373776F7264666F727468656172636869766577697468666C61673A637261636B30576573746F6E383876657274656272610A0A636865657273210A").decode('utf-8')
-u'btw.\n\npasswordforthearchivewithflag:crack0Weston88vertebra\n\ncheers!\n'
->>> exit()
+$ cat printable.txt | nkf -WmQ
+btw.
+
+password for the archive with flag: crack0Weston88vertebra
+
+cheers!
 ```
 
-password for the archive with flag : crack0Weston88vertebra
-<br />
-だそうです。
+パスワード（crack0Weston88vertebra）がわかりました。
+
 
 <br /><br />
 上記に出てくるSMTPサーバでは、POP3も動いていて、メールの受信も可能です。ユーザ名とパスワードは以下の通り。

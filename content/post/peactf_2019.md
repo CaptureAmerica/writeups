@@ -1,7 +1,7 @@
 ---
 title: "peactf 2019 Writeup"
 date: 2019-08-01T19:00:00+09:00
-lastmod: 2019-08-01T19:00:00+09:00
+lastmod: 2019-09-15T19:00:00+09:00
 draft: false
 keywords: []
 description: ""
@@ -99,6 +99,13 @@ flag: `peaCTF{eggwaffles}`
 
 
 <br /><br />
+(2019/09/15 追記)
+
+復習してたら、これは[Bacon's cipher](https://en.wikipedia.org/wiki/Bacon%27s_cipher)っていうらしいですね。知らなくても解けたけど。
+
+
+
+<br /><br />
 <br /><br />
 # Hide and Seek
 - - -
@@ -128,6 +135,7 @@ zswGXU{ljwdhsqmags}
 
 <br />
 ## Solution
+単一換字式暗号 (monoalphabetic substitution ciphers)です。
 ```Perl
 #!/usr/bin/perl
 use strict;
