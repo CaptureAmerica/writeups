@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>SEC-T CTF 2019 Writeup - CTF Writeups</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="きゃぷあめ" /><meta name="description" content="URL: https://sect.ctf.rocks/ 平日に一日やってたやつです。難しそうだったしスルーかなぁと思ってましたが、2つ解けました。 [Misc/Forensics]: Diagram Challenge Don&amp;rsquo;t trust the word of an android, they might cheat. Attachment: diagram.tar.gz Solution 解凍して出てき" /><meta name="keywords" content="Hugo, theme, even" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.55.6 with even 4.0.0" />
+
+
+<link rel="canonical" href="https://captureamerica.github.io/writeups/post/sect_ctf_2019/" />
+<link rel="apple-touch-icon" sizes="180x180" href="https://captureamerica.github.io/writeups/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://captureamerica.github.io/writeups/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://captureamerica.github.io/writeups/favicon-16x16.png">
+<link rel="manifest" href="https://captureamerica.github.io/writeups/manifest.json">
+<link rel="mask-icon" href="https://captureamerica.github.io/writeups/safari-pinned-tab.svg" color="#5bbad5">
+
+
+<link href="https://captureamerica.github.io/writeups/dist/even.c2a46f00.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="SEC-T CTF 2019 Writeup" />
+<meta property="og:description" content="URL: https://sect.ctf.rocks/ 平日に一日やってたやつです。難しそうだったしスルーかなぁと思ってましたが、2つ解けました。 [Misc/Forensics]: Diagram Challenge Don&rsquo;t trust the word of an android, they might cheat. Attachment: diagram.tar.gz Solution 解凍して出てき" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://captureamerica.github.io/writeups/post/sect_ctf_2019/" />
+<meta property="article:published_time" content="2019-09-22T03:00:00&#43;09:00"/>
+<meta property="article:modified_time" content="2019-09-22T03:00:00&#43;09:00"/>
+
+<meta itemprop="name" content="SEC-T CTF 2019 Writeup">
+<meta itemprop="description" content="URL: https://sect.ctf.rocks/ 平日に一日やってたやつです。難しそうだったしスルーかなぁと思ってましたが、2つ解けました。 [Misc/Forensics]: Diagram Challenge Don&rsquo;t trust the word of an android, they might cheat. Attachment: diagram.tar.gz Solution 解凍して出てき">
+
+
+<meta itemprop="datePublished" content="2019-09-22T03:00:00&#43;09:00" />
+<meta itemprop="dateModified" content="2019-09-22T03:00:00&#43;09:00" />
+<meta itemprop="wordCount" content="1544">
+
+
+
+<meta itemprop="keywords" content="CTF," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="SEC-T CTF 2019 Writeup"/>
+<meta name="twitter:description" content="URL: https://sect.ctf.rocks/ 平日に一日やってたやつです。難しそうだったしスルーかなぁと思ってましたが、2つ解けました。 [Misc/Forensics]: Diagram Challenge Don&rsquo;t trust the word of an android, they might cheat. Attachment: diagram.tar.gz Solution 解凍して出てき"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="https://captureamerica.github.io/writeups/" class="logo">CTF Writeups</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="https://captureamerica.github.io/writeups/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="https://captureamerica.github.io/writeups/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="https://captureamerica.github.io/writeups/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="https://captureamerica.github.io/writeups/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a><a href="https://captureamerica.github.io/writeups/about/">
+        <li class="mobile-menu-item">About</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="https://captureamerica.github.io/writeups/" class="logo">CTF Writeups</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="https://captureamerica.github.io/writeups/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="https://captureamerica.github.io/writeups/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="https://captureamerica.github.io/writeups/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="https://captureamerica.github.io/writeups/categories/">Categories</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="https://captureamerica.github.io/writeups/about/">About</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">SEC-T CTF 2019 Writeup</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2019-09-22 </span>
+        <div class="post-category">
+            <a href="https://captureamerica.github.io/writeups/categories/ctf/"> CTF </a>
+            </div>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contents</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+<ul>
+<li><a href="#misc-forensics-diagram">[Misc/Forensics]: Diagram</a>
+<ul>
+<li><a href="#challenge">Challenge</a></li>
+<li><a href="#solution">Solution</a></li>
+</ul></li>
+<li><a href="#misc-forensics-mycat">[Misc/Forensics]: Mycat</a>
+<ul>
+<li><a href="#challenge-1">Challenge</a></li>
+<li><a href="#solution-1">Solution</a></li>
+</ul></li>
+<li><a href="#misc-forensics-memory-favorite">[Misc/Forensics/Memory]: favorite</a>
+<ul>
+<li><a href="#challenge-2">Challenge</a></li>
+<li><a href="#not-solved">Not Solved</a></li>
+</ul></li>
+</ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      
+
+<p>URL: <a href="https://sect.ctf.rocks/">https://sect.ctf.rocks/</a>
+<br /><br />
+平日に一日やってたやつです。難しそうだったしスルーかなぁと思ってましたが、2つ解けました。
+<br /><br />
+<img src="https://captureamerica.github.io/writeups/img/sectctf_Score.png" alt="sectctf_Score.png">
+<br /><br /></p>
+
+<p><br /><br /></p>
+
+<h1 id="misc-forensics-diagram">[Misc/Forensics]: Diagram</h1>
+
+<hr />
+
+<h2 id="challenge">Challenge</h2>
+
+<blockquote>
+<p>Don&rsquo;t trust the word of an android, they might cheat.</p>
+</blockquote>
+
+<p>Attachment:</p>
+
+<ul>
+<li>diagram.tar.gz</li>
+</ul>
+
+<p><br /></p>
+
+<h2 id="solution">Solution</h2>
+
+<p>解凍して出てきたファイルはRTFファイルでした。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span><span class="lnt">2
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">$ file diagram
+diagram: Rich Text Format data, version 1, unknown character set</pre></td></tr></table>
+</div>
+</div>
+<p><br />
+rtf用のツール（rtfdump.py, rtfobj）を使っていきます。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">$ rtfobj diagram.rtf -s all
+rtfobj 0.53.1 on Python 2.7.15 - http://decalage.info/python/oletools
+THIS IS WORK IN PROGRESS - Check updates regularly!
+Please report any issue at https://github.com/decalage2/oletools/issues
+
+===============================================================================
+File: &#39;diagram.rtf&#39; - size: 1456998 bytes
+---+----------+---------------------------------------------------------------
+id |index     |OLE Object                                                     
+---+----------+---------------------------------------------------------------
+0  |001235CDh |format_id: 2 (Embedded)                                        
+   |          |class name: &#39;Excel.SheetMacroEnabled.12&#39;                       
+   |          |data size: 19456                                               
+   |          |CLSID: 00020832-0000-0000-C000-000000000046                    
+   |          |Microsoft Excel sheet with macro enabled                       
+   |          |(Excel.SheetMacroEnabled.12)                                   
+---+----------+---------------------------------------------------------------
+Saving file embedded in OLE object #0:
+  format_id  = 2
+  class name = &#39;Excel.SheetMacroEnabled.12&#39;
+  data size  = 19456
+  saving to file diagram.rtf_object_001235CD.bin
+
+
+$ file diagram.rtf_object_001235CD.bin 
+diagram.rtf_object_001235CD.bin: Composite Document File V2 Document, Cannot read section info
+
+
+$ oledump.py diagram_object_001235CD.bin 
+  1:       106 &#39;\x01CompObj&#39;
+  2:         6 &#39;\x03ObjInfo&#39;
+  3:     16871 &#39;Package&#39;</pre></td></tr></table>
+</div>
+</div>
+<p>olebrowseを使って、Packageの部分を取り出します。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">$ olebrowse diagram_object_001235CD.bin</pre></td></tr></table>
+</div>
+</div>
+<p><img src="https://captureamerica.github.io/writeups/img/olebrowse1.png" alt="olebrowse1.png"></p>
+
+<p><img src="https://captureamerica.github.io/writeups/img/olebrowse2.png" alt="olebrowse2.png"></p>
+
+<p>stream.bin としてファイルが取り出せました。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">$ file stream.bin 
+stream.bin: Microsoft Excel 2007+
+
+$ mv stream.bin stream.xls</pre></td></tr></table>
+</div>
+</div>
+<p>リネームして、Libre Officeで開きます。</p>
+
+<p><img src="https://captureamerica.github.io/writeups/img/stream_sheet1.png" alt="stream_sheet1.png"></p>
+
+<p><br />
+画像の下に何か隠れているかな〜、と思ったけど、何もなかったです。</p>
+
+<p>オフィス文書系の問題は、文字が白色で隠れていることが多いので、各シートでフォントの色を変えてみたら、シート3に数字が隠れてました。</p>
+
+<p><img src="https://captureamerica.github.io/writeups/img/stream_sheet3.png" alt="stream_sheet3.png"></p>
+
+<p>どうやら、このデータをベースにグラフを描いているみたいですね。</p>
+
+<p><br />
+たぶん、これがフラグだろう、ってことで文字に直します。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span><span class="lnt">2
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">$ python -c &#39;print(&#34;&#34;.join([chr(int(x)) for x in &#34;83 69 67 84 123 52 110 100 114 48 105 100 115 95 115 104 48 117 108 100 95 98 51 95 110 49 99 101 125&#34;.split()]))&#39;
+SECT{4ndr0ids_sh0uld_b3_n1ce}</pre></td></tr></table>
+</div>
+</div>
+<p>Flag: <code>SECT{4ndr0ids_sh0uld_b3_n1ce}</code></p>
+
+<p><br /><br />
+<br /><br /></p>
+
+<h1 id="misc-forensics-mycat">[Misc/Forensics]: Mycat</h1>
+
+<hr />
+
+<h2 id="challenge-1">Challenge</h2>
+
+<blockquote>
+<p>My cat is planing something, find the hidden msg</p>
+</blockquote>
+
+<p>Attachment:</p>
+
+<ul>
+<li>mycat.tar.gz</li>
+</ul>
+
+<p><br /></p>
+
+<h2 id="solution-1">Solution</h2>
+
+<p>解凍して出てきたファイルはPDFファイルでした。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">$ file mycat
+mycat: PDF document, version 1.4
+
+
+$ mv mycat mycat.pdf</pre></td></tr></table>
+</div>
+</div>
+<p><br />
+pdf用のツールを使っていきます。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">$ pdf-parser.py mycat.pdf
+PDF Comment &#39;%PDF-1.4\n&#39;
+
+PDF Comment &#39;%\xe2\xe3\xcf\xd3\n&#39;
+
+obj 3 0
+ Type: /EmbeddeDFile
+ Referencing: 1 0 R, 2 0 R
+ Contains stream
+
+  &lt;&lt;
+    /Type /EmbeddeDFile
+    /Filter /FlateDecode
+    /Params 1 0 R
+    /Length 2 0 R
+  &gt;&gt;
+
+
+obj 2 0
+ Type: 
+ Referencing: 
+
+:
+(長いので省略)
+:
+
+
+$ pdf-parser.py mycat.pdf --object=3 -d dump
+obj 3 0
+ Type: /EmbeddeDFile
+ Referencing: 1 0 R, 2 0 R
+ Contains stream
+
+  &lt;&lt;
+    /Type /EmbeddeDFile
+    /Filter /FlateDecode
+    /Params 1 0 R
+    /Length 2 0 R
+  &gt;&gt;
+
+
+$ file dump
+dump: zlib compressed data
+
+
+$ zlib-flate -uncompress &lt; dump &gt; aaa
+
+
+$ file aaa
+aaa: PDF document, version 1.4
+
+
+$ mv aaa aaa.pdf</pre></td></tr></table>
+</div>
+</div>
+<p>object 3を取り出したらzlibで圧縮されてて、解凍したら別のPDFファイルが出てきました。</p>
+
+<p><br />
+PDFを開くと、ちょっと怖い顔のネコちゃんが出てきました。</p>
+
+<p><img src="https://captureamerica.github.io/writeups/img/mycat_pdf.png" alt="mycat_pdf.png"></p>
+
+<p><br />
+最初、ステガノかと思っていろいろ画像を調べてたけど、さっぱりわからなくて諦めようかと思ったけど、よくよくPDFを見たら下の方が真っ黒な四角になっているのに気づきました。</p>
+
+<p>確かに、調べてた画像サイズ（上のネコ部分）と、PDFで見えてる画像サイズが違う！</p>
+
+<p><br />
+画像付きのPDFは、Libre Officeで開くパターンでしたね。（令和CTF、その他のCTFでも同様なものがありました。）</p>
+
+<p>画像を移動したら、裏側からフラグが出てきました。</p>
+
+<p><img src="https://captureamerica.github.io/writeups/img/mycat_pdf2.png" alt="mycat_pdf2.png"></p>
+
+<p>Flag: <code>SECT{3mb3dd3d_f1l3s_c0uld_b3_tr1cky}</code></p>
+
+<p><br /><br /></p>
+
+<h1 id="misc-forensics-memory-favorite">[Misc/Forensics/Memory]: favorite</h1>
+
+<hr />
+
+<h2 id="challenge-2">Challenge</h2>
+
+<blockquote>
+<p>Androids are attack us, they are planing something big. We don&rsquo;t know where.</p>
+</blockquote>
+
+<p>Attachment:</p>
+
+<ul>
+<li>favorite.7z</li>
+</ul>
+
+<p><br /></p>
+
+<h2 id="not-solved">Not Solved</h2>
+
+<p>これは解けなかったんですけど、ちょっとトライしました。後で、復習したいと思います。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">root@kali:~/SECTCTF_2019# volatility -f favorite.vmem imageinfo
+Volatility Foundation Volatility Framework 2.6
+INFO    : volatility.debug    : Determining profile based on KDBG search...
+          Suggested Profile(s) : Win8SP0x64, Win81U1x64, Win2012R2x64_18340, Win2012R2x64, Win2012x64, Win8SP1x64_18340, Win8SP1x64
+                     AS Layer1 : SkipDuplicatesAMD64PagedMemory (Kernel AS)
+                     AS Layer2 : FileAddressSpace (/root/SECTCTF_2019/favorite.vmem)
+                      PAE type : No PAE
+                           DTB : 0x1a7000L
+                          KDBG : 0xf800be0aea30L
+          Number of Processors : 2
+     Image Type (Service Pack) : 0
+                KPCR for CPU 0 : 0xfffff800be109000L
+                KPCR for CPU 1 : 0xffffd00020be7000L
+             KUSER_SHARED_DATA : 0xfffff78000000000L
+           Image date and time : 2019-09-12 06:42:46 UTC+0000
+     Image local date and time : 2019-09-11 23:42:46 -0700</pre></td></tr></table>
+</div>
+</div>
+<p><br />
+プロファイルによっては、結果が出ないようです。。。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">root@kali:~/SECTCTF_2019# volatility -f favorite.vmem --profile Win8SP0x64 filescan
+Volatility Foundation Volatility Framework 2.6
+Offset(P)            #Ptr   #Hnd Access Name
+------------------ ------ ------ ------ ----
+root@kali:~/SECTCTF_2019# 
+root@kali:~/SECTCTF_2019# </pre></td></tr></table>
+</div>
+</div>
+<p><br />
+2番目の<code>Win81U1x64</code>をプロファイルに指定しました。</p>
+
+<p>チャレンジ名がfavoriteだし、ここら辺なのは間違いない気がするんですけど。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">root@kali:~/SECTCTF_2019# volatility -f favorite.vmem --profile Win81U1x64 filescan | grep -i favorite
+Volatility Foundation Volatility Framework 2.6
+0x000000003c626580     16      0 R--rwd \Device\HarddiskVolume2\Users\cyber\Favorites\desktop.ini
+0x000000003d023c80  32768      1 R--rwd \Device\HarddiskVolume2\Users\cyber\Favorites
+0x000000003d228cf0  32768      1 R--rwd \Device\HarddiskVolume2\Users\cyber\Favorites
+0x000000003d9fa690     16      0 RW---- \Device\HarddiskVolume2\Users\cyber\Favorites\Bing.url
+
+
+root@kali:~/SECTCTF_2019# volatility -f favorite.vmem --profile Win81U1x64 dumpfiles -Q 0x000000003d9fa690 -D .
+Volatility Foundation Volatility Framework 2.6
+DataSectionObject 0x3d9fa690   None   \Device\HarddiskVolume2\Users\cyber\Favorites\Bing.url
+
+
+root@kali:~/SECTCTF_2019# cat file.None.0xffffe00001b639e0.dat 
+[{000214A0-0000-0000-C000-000000000046}]
+Prop3=19,2
+[InternetShortcut]
+IDList=
+URL=http://go.microsoft.com/fwlink/p/?LinkId=255142
+IconIndex=0
+IconFile=%ProgramFiles%\Internet Explorer\Images\bing.ico</pre></td></tr></table>
+</div>
+</div>
+<p>他の箇所もいろいろ調べましたけど、わからなくて詰みました。</p>
+
+<p>てかこれ、解けた人ひとりしかいないし。Writeup出てこないかもなぁ。。。</p>
+
+<p><br /><br />
+<br /><br /></p>
+
+<hr />
+
+<p><br /><br />
+<br /><br /></p>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content">きゃぷあめ</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">
+        2019-09-22
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="https://captureamerica.github.io/writeups/tags/ctf/">CTF</a>
+          </div>
+      <nav class="post-nav">
+        
+        <a class="next" href="https://captureamerica.github.io/writeups/post/csaw_ctf_2019/">
+            <span class="next-text nav-default">CSAW CTF&#39;19 CTF Writeup</span>
+            <span class="next-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="https://github.com/CaptureAmerica/" class="iconfont icon-github" title="github"></a>
+  <a href="https://captureamerica.github.io/writeups/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2019
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">きゃぷあめ</span>
+  </span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+<script type="text/javascript" src="https://captureamerica.github.io/writeups/dist/even.26188efa.min.js"></script>
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-104910699-2', 'auto');
+	ga('set', 'anonymizeIp', true);
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+
+
+
+
+
+</body>
+</html>
