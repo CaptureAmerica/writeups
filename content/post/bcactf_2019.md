@@ -1,7 +1,7 @@
 ---
 title: "BCACTF Writeup"
 date: 2019-06-16T13:00:00+09:00
-lastmod: 2019-06-16T13:00:00+09:00
+lastmod: 2019-09-23T09:00:00+09:00
 draft: false
 keywords: []
 description: ""
@@ -1079,6 +1079,8 @@ hexdumpのテキスト アウトプットのやつは、`xxd -r`で解凍でき�
 <img src="https://captureamerica.github.io/writeups/img/orange_bar.png" alt="orange_bar.png">
 <br />
 ここから下はCTF終了後に行った復習です。
+
+
 <br /><br />
 <br /><br />
 # Forensics: wavey (150)
@@ -1102,6 +1104,55 @@ Audacityでやってみました。
 <img src="https://captureamerica.github.io/writeups/img/straightfire.png" alt="straightfire.png">
 <br />
 左のとこのファイル名（straightfire）が出ているところがプルダウンになってて、デフォルトだとWaveformだけど、そこでSpectrogramを選ぶとこれが出てきます。
+
+
+
+
+<br /><br />
+<br /><br />
+(2019-09-23)
+# Forensics: one-punch-zip (250)
+- - -
+## Challenge
+> One Punch Man seemed to have lost the password to his super secret archive. Can you help him crack it?
+
+Attachment:
+
+- opm.png
+- superSecure.zip（パスワード不明）
+
+## Solution
+Writeupを参照されてもらって、fcrackzipというコマンドで解けることがわかりました。
+
+考えてみたら、wordlistがあればパスワード付きのZipはCrackできるわけだし、別のファイルが添付されているということはそこからwordlistを生成すればいいということですもんね。
+
+zip2johnでも同じことができるかやってみました。
+```
+root@kali:~/BCACTF# strings opm.png > opm_wordlist.txt
+
+
+root@kali:~/BCACTF# john hash.txt --wordlist=opm_wordlist.txt
+Using default input encoding: UTF-8
+Loaded 1 password hash (PKZIP [32/64])
+Will run 2 OpenMP threads
+Press 'q' or Ctrl-C to abort, almost any other key for status
+w\8VH"$.         (superSecure.zip/flag.txt)   <--- パスワード出てきた！
+1g 0:00:00:00 DONE (2019-09-23 09:34) 100.0g/s 540900p/s 540900c/s 540900C/s Po$,c..IEND
+Use the "--show" option to display all of the cracked passwords reliably
+Session completed
+
+
+root@kali:~/BCACTF# unzip superSecure.zip 
+Archive:  superSecure.zip
+[superSecure.zip] flag.txt password: 
+ extracting: flag.txt                
+
+
+root@kali:~/BCACTF# cat flag.txt 
+bcactf{u5ing_4ll_string5_0f_1mag3_@s_dictionary?}
+```
+
+
 
 
 <br /><br />
