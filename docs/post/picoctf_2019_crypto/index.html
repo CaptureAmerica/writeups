@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>picoCTF 2019 Writeup (Cryptography) - CTF Writeups</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="きゃぷあめ" /><meta name="description" content="URL: https://2019game.picoctf.com/ お疲れ様でした！ （実際、ほんとに疲れた） 最終結果は、こんな感じ。 イベント終了時点で、ユーザは4万人弱でした。 PwnとWeb系があんまりで" /><meta name="keywords" content="Hugo, theme, even" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.55.6 with even 4.0.0" />
+
+
+<link rel="canonical" href="https://captureamerica.github.io/writeups/post/picoctf_2019_crypto/" />
+<link rel="apple-touch-icon" sizes="180x180" href="https://captureamerica.github.io/writeups/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://captureamerica.github.io/writeups/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://captureamerica.github.io/writeups/favicon-16x16.png">
+<link rel="manifest" href="https://captureamerica.github.io/writeups/manifest.json">
+<link rel="mask-icon" href="https://captureamerica.github.io/writeups/safari-pinned-tab.svg" color="#5bbad5">
+
+
+<link href="https://captureamerica.github.io/writeups/dist/even.c2a46f00.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="picoCTF 2019 Writeup (Cryptography)" />
+<meta property="og:description" content="URL: https://2019game.picoctf.com/ お疲れ様でした！ （実際、ほんとに疲れた） 最終結果は、こんな感じ。 イベント終了時点で、ユーザは4万人弱でした。 PwnとWeb系があんまりで" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://captureamerica.github.io/writeups/post/picoctf_2019_crypto/" />
+<meta property="article:published_time" content="2019-10-13T11:20:00&#43;09:00"/>
+<meta property="article:modified_time" content="2019-10-13T11:20:00&#43;09:00"/>
+
+<meta itemprop="name" content="picoCTF 2019 Writeup (Cryptography)">
+<meta itemprop="description" content="URL: https://2019game.picoctf.com/ お疲れ様でした！ （実際、ほんとに疲れた） 最終結果は、こんな感じ。 イベント終了時点で、ユーザは4万人弱でした。 PwnとWeb系があんまりで">
+
+
+<meta itemprop="datePublished" content="2019-10-13T11:20:00&#43;09:00" />
+<meta itemprop="dateModified" content="2019-10-13T11:20:00&#43;09:00" />
+<meta itemprop="wordCount" content="1711">
+
+
+
+<meta itemprop="keywords" content="CTF," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="picoCTF 2019 Writeup (Cryptography)"/>
+<meta name="twitter:description" content="URL: https://2019game.picoctf.com/ お疲れ様でした！ （実際、ほんとに疲れた） 最終結果は、こんな感じ。 イベント終了時点で、ユーザは4万人弱でした。 PwnとWeb系があんまりで"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="https://captureamerica.github.io/writeups/" class="logo">CTF Writeups</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="https://captureamerica.github.io/writeups/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="https://captureamerica.github.io/writeups/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="https://captureamerica.github.io/writeups/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="https://captureamerica.github.io/writeups/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a><a href="https://captureamerica.github.io/writeups/about/">
+        <li class="mobile-menu-item">About</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="https://captureamerica.github.io/writeups/" class="logo">CTF Writeups</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="https://captureamerica.github.io/writeups/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="https://captureamerica.github.io/writeups/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="https://captureamerica.github.io/writeups/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="https://captureamerica.github.io/writeups/categories/">Categories</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="https://captureamerica.github.io/writeups/about/">About</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">picoCTF 2019 Writeup (Cryptography)</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2019-10-13 </span>
+        <div class="post-category">
+            <a href="https://captureamerica.github.io/writeups/categories/ctf/"> CTF </a>
+            </div>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contents</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+<ul>
+<li><a href="#cryptography-flags-200-points">[Cryptography]: Flags (200 points)</a>
+<ul>
+<li><a href="#challenge">Challenge</a></li>
+<li><a href="#solution">Solution</a></li>
+</ul></li>
+<li><a href="#cryptography-mr-worldwide-200-points">[Cryptography]: Mr-Worldwide (200 points)</a>
+<ul>
+<li><a href="#challenge-1">Challenge</a></li>
+<li><a href="#solution-1">Solution</a></li>
+</ul></li>
+<li><a href="#cryptography-la-cifra-de-200-points">[Cryptography]: la cifra de (200 points)</a>
+<ul>
+<li><a href="#challenge-2">Challenge</a></li>
+<li><a href="#solution-2">Solution</a></li>
+</ul></li>
+<li><a href="#cryptography-minirsa-300-points">[Cryptography]: miniRSA (300 points)</a>
+<ul>
+<li><a href="#challenge-3">Challenge</a></li>
+<li><a href="#solution-3">Solution</a></li>
+</ul></li>
+<li><a href="#cryptography-waves-over-lambda-300-points">[Cryptography]: waves over lambda (300 points)</a>
+<ul>
+<li><a href="#challenge-4">Challenge</a></li>
+<li><a href="#solution-4">Solution</a></li>
+</ul></li>
+<li><a href="#cryptography-b00tl3grsa2-400-points">[Cryptography]: b00tl3gRSA2 (400 points)</a>
+<ul>
+<li><a href="#challenge-5">Challenge</a></li>
+<li><a href="#solution-5">Solution</a></li>
+</ul></li>
+<li><a href="#cryptography-b00tl3grsa3-400-points">[Cryptography]: b00tl3gRSA3 (400 points)</a>
+<ul>
+<li><a href="#challenge-6">Challenge</a></li>
+<li><a href="#solution-6">Solution</a></li>
+</ul></li>
+<li><a href="#cryptography-john-pollard-500-points">[Cryptography]: john_pollard (500 points)</a>
+<ul>
+<li><a href="#challenge-7">Challenge</a></li>
+<li><a href="#solution-7">Solution</a></li>
+</ul></li>
+</ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      
+
+<p>URL: <a href="https://2019game.picoctf.com/">https://2019game.picoctf.com/</a>
+<br /><br />
+お疲れ様でした！ （実際、ほんとに疲れた）</p>
+
+<p><br /><br />
+最終結果は、こんな感じ。</p>
+
+<p><img src="https://captureamerica.github.io/writeups/img/pico2019_Score.png" alt="pico2019_Score.png"></p>
+
+<p><br />
+イベント終了時点で、ユーザは4万人弱でした。</p>
+
+<p><img src="https://captureamerica.github.io/writeups/img/pico2019_Users.png" alt="pico2019_Users.png"></p>
+
+<p><img src="https://captureamerica.github.io/writeups/img/pico2019_Rank.png" alt="pico2019_Rank.png"></p>
+
+<p>PwnとWeb系があんまりできてないけど、スコアも切りのいい20000に行ったし、Globalで目標の300位以内 (283位) にも入れたのでかなり満足です。</p>
+
+<p>2週間の間、土日もずっとピコってたし、一日年休も取って頑張りました。</p>
+
+<p>去年出た問題に似てるものも結構あったので、picoCTF 2018をそれなりにやった人は結構アドバンテージがあったと思います。</p>
+
+<p><br /><br />
+Cryptography の Writeupです。</p>
+
+<p><br /><br /></p>
+
+<h1 id="cryptography-flags-200-points">[Cryptography]: Flags (200 points)</h1>
+
+<hr />
+
+<h2 id="challenge">Challenge</h2>
+
+<blockquote>
+<p>What do the flags mean?
+<br /><br />
+Hint: The flag is in the format PICOCTF{}</p>
+</blockquote>
+
+<p><img src="https://captureamerica.github.io/writeups/img/pico2019_flag.png" alt="pico2019_flag.png"></p>
+
+<p><br /></p>
+
+<h2 id="solution">Solution</h2>
+
+<p>&ldquo;CTF&rdquo; &ldquo;flag&rdquo;とかいうキーワードでググっても絶対見つからないので、何気に手こずりました。</p>
+
+<p>&ldquo;International Code of Signals&rdquo; っていうんですね。</p>
+
+<p><a href="https://en.wikipedia.org/wiki/International_Code_of_Signals">https://en.wikipedia.org/wiki/International_Code_of_Signals</a> <br />
+<a href="http://marinegyaan.com/what-is-meaning-of-all-alphabet-as-per-interco-or-international-code-of-signals/">http://marinegyaan.com/what-is-meaning-of-all-alphabet-as-per-interco-or-international-code-of-signals/</a></p>
+
+<p>Flag: <code>PICOCTF{F1AG5AND5TUFF}</code></p>
+
+<p><br /><br />
+<br /><br /></p>
+
+<h1 id="cryptography-mr-worldwide-200-points">[Cryptography]: Mr-Worldwide (200 points)</h1>
+
+<hr />
+
+<h2 id="challenge-1">Challenge</h2>
+
+<blockquote>
+<p>A musician left us a message. What&rsquo;s it mean?
+<br /><br /></p>
+</blockquote>
+
+<p>Attachment:</p>
+
+<ul>
+<li>message.txt</li>
+</ul>
+
+<p>中身：<br />
+picoCTF{(35.028309, 135.753082)(46.469391, 30.740883)(39.758949, -84.191605)(41.015137, 28.979530)(24.466667, 54.366669)(3.140853, 101.693207)_(9.005401, 38.763611)(-3.989038, -79.203560)(52.377956, 4.897070)(41.085651, -73.858467)(57.790001, -152.407227)(31.205753, 29.924526)}</p>
+
+<p><br /></p>
+
+<h2 id="solution-1">Solution</h2>
+
+<p>どれか一個でググってみると、グーグルマップ上のとある場所が出てくるので、ぞれぞれが緯度と経度（longitude latitude）なのはわかります。</p>
+
+<p>それぞれの場所から1文字取る際に、どこを取るか、だけの問題です。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">(35.028309, 135.753082)  : Kamigyo Ward, Kyoto, Kyoto Prefecture, Japan Geographic Information
+(46.469391, 30.740883)   : Odesa, Odessa Province, Ukraine Geographic Information
+(39.758949, -84.191605)  : US, Ohio, Dayton
+(41.015137, 28.979530)   : Turkey, Istanbul
+(24.466667, 54.366669)   : United Arab Emirates
+(3.140853, 101.693207)   : Unnamed Road, 50480 Kuala Lumpur, Federal Territory of Kuala Lumpur, マレーシア
+_
+(9.005401, 38.763611)    : Ethiopia
+(-3.989038, -79.203560)  : Av Nueva Loja, Loja, エクアドル
+(52.377956, 4.897070)    : Martelaarsgracht 5, 1012 TN Amsterdam, オランダ
+(41.085651, -73.858467)  : Sleepy Hollow, NY 10591 アメリカ合衆国
+(57.790001, -152.407227) : Kodiak, AK 99615 アメリカ合衆国
+(31.205753, 29.924526)   : Faculty Of Engineering, Al Azaritah WA Ash Shatebi, Qism Bab Sharqi, Alexandria Governorate, エジプト</pre></td></tr></table>
+</div>
+</div>
+<p>City名の頭文字でした。</p>
+
+<p>Flag: <code>picoCTF{KODIAK_ALASKA}</code></p>
+
+<p><br /><br />
+<br /><br /></p>
+
+<h1 id="cryptography-la-cifra-de-200-points">[Cryptography]: la cifra de (200 points)</h1>
+
+<hr />
+
+<h2 id="challenge-2">Challenge</h2>
+
+<blockquote>
+<p>I found this cipher in an old book. Can you figure out what it says? Connect with nc 2019shell1.picoctf.com 39776.
+<br /><br />
+Hint1 : There are tools that make this easy.<br />
+Hint2 : Perhaps looking at history will help.</p>
+</blockquote>
+
+<pre>
+$ nc 2019shell1.picoctf.com 39776
+Encrypted message:
+Ne iy nytkwpsznyg nth it mtsztcy vjzprj zfzjy rkhpibj nrkitt ltc tnnygy ysee itd tte cxjltk
+
+Ifrosr tnj noawde uk siyyzre, yse Bnretèwp Cousex mls hjpn xjtnbjytki xatd eisjd
+
+Iz bls lfwskqj azycihzeej yz Brftsk ip Volpnèxj ls oy hay tcimnyarqj dkxnrogpd os 1553 my Mnzvgs Mazytszf Merqlsu ny hox moup Wa inqrg ipl. Ynr. Gotgat Gltzndtg Gplrfdo 
+
+Ltc tnj tmvqpmkseaznzn uk ehox nivmpr g ylbrj ts ltcmki my yqtdosr tnj wocjc hgqq ol fy oxitngwj arusahje fuw ln guaaxjytrd catizm tzxbkw zf vqlckx hizm ceyupcz yz tnj fpvjc hgqqpohzCZK{m311a50_0x_a1rn3x3_h1ah3xi00pbhf3}
+
+Ehk ktryy herq-ooizxetypd jjdcxnatoty ol f aordllvmlbkytc inahkw socjgex, bls sfoe gwzuti 1467 my Rjzn Hfetoxea Gqmexyt.
+
+Tnj Gimjyèrk Htpnjc iy ysexjqoxj dosjeisjd cgqwej yse Gqmexyt Doxn ox Fwbkwei Inahkw.
+
+Tn 1508, Ptsatsps Zwttnjxiax tnbjytki ehk xz-cgqwej ylbaql rkhea (g rltxni ol xsilypd gqahggpty) ysaz bzuri wazjc bk f nroytcgq nosuznkse ol yse Bnretèwp Cousex.
+
+Gplrfdo’y xpcuso butvlky lpvjlrki tn 1555 gx l cuseitzltoty ol yse lncsz. Yse rthex mllbjd ol yse gqahggpty fce tth snnqtki cemzwaxqj, bay ehk fwpnfmezx lnj yse osoed qptzjcs gwp mocpd hd xegsd ol f xnkrznoh vee usrgxp, wnnnh ify bk itfljcety hizm paim noxwpsvtydkse.
+</pre>
+
+<p><br /></p>
+
+<h2 id="solution-2">Solution</h2>
+
+<p>&ldquo;la cifra de 1553 1467 1555 book&rdquo; でググったら、以下が見つかりました。<br />
+Cryptography &lsquo;Vigenère cipher&rsquo; first described by Giovan Battista Bellaso in his book La cifra del. Sig. Giovan Battista Bellaso (Venice).</p>
+
+<p>ヴィジュネル暗号ですね。</p>
+
+<p>かつ、スペイン語が使われているようなので、以下のサイトでスペイン語を指定して解析させたら一発で解けました。</p>
+
+<p><a href="https://www.guballa.de/vigenere-solver">https://www.guballa.de/vigenere-solver</a></p>
+
+<p>Flag: <code>picoCTF{b311a50_0r_v1gn3r3_c1ph3rd00ebba3}</code></p>
+
+<p><br /><br />
+<br /><br /></p>
+
+<h1 id="cryptography-minirsa-300-points">[Cryptography]: miniRSA (300 points)</h1>
+
+<hr />
+
+<h2 id="challenge-3">Challenge</h2>
+
+<blockquote>
+<p>Lets decrypt this: ciphertext? Something seems a bit small
+<br /><br />
+Hints :<br />
+RSA tutorial (<a href="https://en.wikipedia.org/wiki/RSA_(cryptosystem)">https://en.wikipedia.org/wiki/RSA_(cryptosystem)</a>)<br />
+How could having too small an e affect the security of this 2048 bit key?<br />
+Make sure you dont lose precision, the numbers are pretty big (besides the e value)</p>
+</blockquote>
+
+<p><br /></p>
+
+<h2 id="solution-3">Solution</h2>
+
+<p>RsaCtfTool.pyで解けます。</p>
+
+<p>Flag: <code>picoCTF{n33d_a_lArg3r_e_11db861f}</code></p>
+
+<p><br /><br />
+<br /><br /></p>
+
+<h1 id="cryptography-waves-over-lambda-300-points">[Cryptography]: waves over lambda (300 points)</h1>
+
+<hr />
+
+<h2 id="challenge-4">Challenge</h2>
+
+<blockquote>
+<p>We made alot of substitutions to encrypt this. Can you decrypt it? Connect with nc 2019shell1.picoctf.com 45185.
+<br /><br />
+Hints : Flag is not in the usual flag format</p>
+</blockquote>
+
+<pre>
+$ nc 2019shell1.picoctf.com 45185
+-------------------------------------------------------------------------------
+fysjexqz cded oz uyve arxj - aedkvdsfu_oz_f_ynde_rxmtwx_mvljldssyw
+-------------------------------------------------------------------------------
+pd pded syq mvfc myed qcxs x kvxeqde ya xs cyve yvq ya yve zcol qorr pd zxp cde zosg, xsw qcds o vswdezqyyw aye qcd aoezq qomd pcxq pxz mdxsq tu x zcol ayvswdeosj os qcd zdx.  o mvzq xfgsyprdwjd o cxw cxewru dudz qy ryyg vl pcds qcd zdxmds qyrw md zcd pxz zosgosj; aye aeym qcd mymdsq qcxq qcdu exqcde lvq md osqy qcd tyxq qcxs qcxq o mojcq td zxow qy jy os, mu cdxeq pxz, xz oq pded, wdxw poqcos md, lxeqru poqc aeojcq, lxeqru poqc cyeeye ya mosw, xsw qcd qcyvjcqz ya pcxq pxz udq tdayed md.
+</pre>
+
+<p><br /></p>
+
+<h2 id="solution-4">Solution</h2>
+
+<p>単一換字式暗号 (monoalphabetic substitution ciphers)です。</p>
+
+<pre>
+/Volumes/NO NAME/CTF/picoCTF_2019 $ ./mono_cipher_solve.pl 
+-------------------------------------------------------------------------------
+CONGRATS HERE IS YOUR FLAG - FREQUENCY_IS_C_OVER_LAMBDA_MUPGPENNOD
+-------------------------------------------------------------------------------
+WE WERE NOT MUCH MORE THAN A QUARTER OF AN HOUR OUT OF OUR SHIP TILL WE SAW HER SINK, AND THEN I UNDERSTOOD FOR THE FIRST TIME WHAT WAS MEANT BY A SHIP FOUNDERING IN THE SEA.  I MUST ACKNOWLEDGE I HAD HARDLY EYES TO LOOK UP WHEN THE SEAMEN TOLD ME SHE WAS SINKING; FOR FROM THE MOMENT THAT THEY RATHER PUT ME INTO THE BOAT THAN THAT I MIGHT BE SAID TO GO IN, MY HEART WAS, AS IT WERE, DEAD WITHIN ME, PARTLY WITH FRIGHT, PARTLY WITH HORROR OF MIND, AND THE THOUGHTS OF WHAT WAS YET BEFORE ME.
+</pre>
+
+<p>Flag: <code>frequency_is_c_over_lambda_mupgpennod</code></p>
+
+<p><br /><br />
+<br /><br /></p>
+
+<h1 id="cryptography-b00tl3grsa2-400-points">[Cryptography]: b00tl3gRSA2 (400 points)</h1>
+
+<hr />
+
+<h2 id="challenge-5">Challenge</h2>
+
+<blockquote>
+<p>In RSA d is alot bigger than e, why dont we use d to encrypt instead of e? Connect with nc 2019shell1.picoctf.com 1723.
+<br /><br />
+Hints : What is e generally?</p>
+</blockquote>
+
+<p><br /></p>
+
+<h2 id="solution-5">Solution</h2>
+
+<p>これも RsaCtfTool.py で解けます。</p>
+
+<p>Flag: <code>picoCTF{bad_1d3a5_6786084}</code></p>
+
+<p><br /><br />
+<br /><br /></p>
+
+<h1 id="cryptography-b00tl3grsa3-400-points">[Cryptography]: b00tl3gRSA3 (400 points)</h1>
+
+<hr />
+
+<h2 id="challenge-6">Challenge</h2>
+
+<blockquote>
+<p>Why use p and q when I can use more? Connect with nc 2019shell1.picoctf.com 12275.
+<br /><br />
+Hints : There&rsquo;s more prime factors than p and q, finding d is going to be different.</p>
+</blockquote>
+
+<p><br /></p>
+
+<h2 id="solution-6">Solution</h2>
+
+<p>picoCTF 2018のSuper RSA3と同じです。</p>
+
+<p>以下で、factorize。<br />
+<a href="https://www.alpertron.com.ar/ECM.HTM">https://www.alpertron.com.ar/ECM.HTM</a></p>
+
+<p>Solverコードは、去年のどなたかのWriteupのほぼ流用なので、ここには載せません。</p>
+
+<p>Flag: <code>picoCTF{too_many_fact0rs_4817985}</code></p>
+
+<p><br /><br />
+<br /><br /></p>
+
+<h1 id="cryptography-john-pollard-500-points">[Cryptography]: john_pollard (500 points)</h1>
+
+<hr />
+
+<h2 id="challenge-7">Challenge</h2>
+
+<blockquote>
+<p>Sometimes RSA certificates are breakable
+<br /><br />
+Hints :<br />
+The flag is in the format picoCTF{p,q}<br />
+Try swapping p and q if it does not work<br /></p>
+</blockquote>
+
+<p>Attachment:</p>
+
+<pre>
+-----BEGIN CERTIFICATE-----
+MIIB6zCB1AICMDkwDQYJKoZIhvcNAQECBQAwEjEQMA4GA1UEAxMHUGljb0NURjAe
+Fw0xOTA3MDgwNzIxMThaFw0xOTA2MjYxNzM0MzhaMGcxEDAOBgNVBAsTB1BpY29D
+VEYxEDAOBgNVBAoTB1BpY29DVEYxEDAOBgNVBAcTB1BpY29DVEYxEDAOBgNVBAgT
+B1BpY29DVEYxCzAJBgNVBAYTAlVTMRAwDgYDVQQDEwdQaWNvQ1RGMCIwDQYJKoZI
+hvcNAQEBBQADEQAwDgIHEaTUUhKxfwIDAQABMA0GCSqGSIb3DQEBAgUAA4IBAQAH
+al1hMsGeBb3rd/Oq+7uDguueopOvDC864hrpdGubgtjv/hrIsph7FtxM2B4rkkyA
+eIV708y31HIplCLruxFdspqvfGvLsCynkYfsY70i6I/dOA6l4Qq/NdmkPDx7edqO
+T/zK4jhnRafebqJucXFH8Ak+G6ASNRWhKfFZJTWj5CoyTMIutLU9lDiTXng3rDU1
+BhXg04ei1jvAf0UrtpeOA6jUyeCLaKDFRbrOm35xI79r28yO8ng1UAzTRclvkORt
+b8LMxw7e+vdIntBGqf7T25PLn/MycGPPvNXyIsTzvvY/MXXJHnAqpI5DlqwzbRHz
+q16/S1WLvzg4PsElmv1f
+-----END CERTIFICATE-----
+</pre>
+
+<p><br /></p>
+
+<h2 id="solution-7">Solution</h2>
+
+<p>opensslコマンドを使って証明書の内容を確認します。</p>
+
+<pre>
+$ openssl x509 -text -noout -in cert
+
+Certificate:
+    Data:
+        Version: 1 (0x0)
+        Serial Number: 12345 (0x3039)
+    Signature Algorithm: md2WithRSAEncryption
+        Issuer: CN=PicoCTF
+        Validity
+            Not Before: Jul  8 07:21:18 2019 GMT
+            Not After : Jun 26 17:34:38 2019 GMT
+        Subject: OU=PicoCTF, O=PicoCTF, L=PicoCTF, ST=PicoCTF, C=US, CN=PicoCTF
+        Subject Public Key Info:
+            Public Key Algorithm: rsaEncryption
+                Public-Key: (53 bit)
+                Modulus: 4966306421059967 (0x11a4d45212b17f)   <--- (p*q)
+                Exponent: 65537 (0x10001)                      <--- e
+    Signature Algorithm: md2WithRSAEncryption
+         07:6a:5d:61:32:c1:9e:05:bd:eb:77:f3:aa:fb:bb:83:82:eb:
+         9e:a2:93:af:0c:2f:3a:e2:1a:e9:74:6b:9b:82:d8:ef:fe:1a:
+         c8:b2:98:7b:16:dc:4c:d8:1e:2b:92:4c:80:78:85:7b:d3:cc:
+         b7:d4:72:29:94:22:eb:bb:11:5d:b2:9a:af:7c:6b:cb:b0:2c:
+         a7:91:87:ec:63:bd:22:e8:8f:dd:38:0e:a5:e1:0a:bf:35:d9:
+         a4:3c:3c:7b:79:da:8e:4f:fc:ca:e2:38:67:45:a7:\de:6e:a2:
+         6e:71:71:47:f0:09:3e:1b:a0:12:35:15:a1:29:f1:59:25:35:
+         a3:e4:2a:32:4c:c2:2e:b4:b5:3d:94:38:93:5e:78:37:ac:35:
+         35:06:15:e0:d3:87:a2:d6:3b:c0:7f:45:2b:b6:97:8e:03:a8:
+         d4:c9:e0:8b:68:a0:c5:45:ba:ce:9b:7e:71:23:bf:6b:db:cc:
+         8e:f2:78:35:50:0c:d3:45:c9:6f:90:e4:6d:6f:c2:cc:c7:0e:
+         de:fa:f7:48:9e:d0:46:a9:fe:d3:db:93:cb:9f:f3:32:70:63:
+         cf:bc:d5:f2:22:c4:f3:be:f6:3f:31:75:c9:1e:70:2a:a4:8e:
+         43:96:ac:33:6d:11:f3:ab\:5e:bf:4b:55:8b:bf:38:38:3e:c1:
+         25:9a:fd:5f
+</pre>
+
+<p>Modulus 4966306421059967 を factorize。<br /></p>
+
+<p>Flag: <code>picoCTF{73176001,67867967}</code></p>
+
+<p><br /><br />
+<br /><br /></p>
+
+<hr />
+
+<p><br /><br />
+<br /><br /></p>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content">きゃぷあめ</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">
+        2019-10-13
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="https://captureamerica.github.io/writeups/tags/ctf/">CTF</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="https://captureamerica.github.io/writeups/post/picoctf_2019_web/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">picoCTF 2019 Writeup (Web Exploitation)</span>
+            <span class="prev-text nav-mobile">Prev</span>
+          </a>
+        <a class="next" href="https://captureamerica.github.io/writeups/post/picoctf_2019_binary/">
+            <span class="next-text nav-default">picoCTF 2019 Writeup (Binary Exploitation)</span>
+            <span class="next-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="https://github.com/CaptureAmerica/" class="iconfont icon-github" title="github"></a>
+  <a href="https://captureamerica.github.io/writeups/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2019
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">きゃぷあめ</span>
+  </span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+<script type="text/javascript" src="https://captureamerica.github.io/writeups/dist/even.26188efa.min.js"></script>
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-104910699-2', 'auto');
+	ga('set', 'anonymizeIp', true);
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+
+
+
+
+
+</body>
+</html>

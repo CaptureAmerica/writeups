@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>picoCTF 2019 Writeup (General Skills) - CTF Writeups</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="きゃぷあめ" /><meta name="description" content="URL: https://2019game.picoctf.com/ お疲れ様でした！ （実際、ほんとに疲れた） 最終結果は、こんな感じ。 イベント終了時点で、ユーザは4万人弱でした。 PwnとWeb系があんまりで" /><meta name="keywords" content="Hugo, theme, even" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.55.6 with even 4.0.0" />
+
+
+<link rel="canonical" href="https://captureamerica.github.io/writeups/post/picoctf_2019_general/" />
+<link rel="apple-touch-icon" sizes="180x180" href="https://captureamerica.github.io/writeups/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://captureamerica.github.io/writeups/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://captureamerica.github.io/writeups/favicon-16x16.png">
+<link rel="manifest" href="https://captureamerica.github.io/writeups/manifest.json">
+<link rel="mask-icon" href="https://captureamerica.github.io/writeups/safari-pinned-tab.svg" color="#5bbad5">
+
+
+<link href="https://captureamerica.github.io/writeups/dist/even.c2a46f00.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="picoCTF 2019 Writeup (General Skills)" />
+<meta property="og:description" content="URL: https://2019game.picoctf.com/ お疲れ様でした！ （実際、ほんとに疲れた） 最終結果は、こんな感じ。 イベント終了時点で、ユーザは4万人弱でした。 PwnとWeb系があんまりで" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://captureamerica.github.io/writeups/post/picoctf_2019_general/" />
+<meta property="article:published_time" content="2019-10-13T12:00:00&#43;09:00"/>
+<meta property="article:modified_time" content="2019-10-13T12:00:00&#43;09:00"/>
+
+<meta itemprop="name" content="picoCTF 2019 Writeup (General Skills)">
+<meta itemprop="description" content="URL: https://2019game.picoctf.com/ お疲れ様でした！ （実際、ほんとに疲れた） 最終結果は、こんな感じ。 イベント終了時点で、ユーザは4万人弱でした。 PwnとWeb系があんまりで">
+
+
+<meta itemprop="datePublished" content="2019-10-13T12:00:00&#43;09:00" />
+<meta itemprop="dateModified" content="2019-10-13T12:00:00&#43;09:00" />
+<meta itemprop="wordCount" content="1005">
+
+
+
+<meta itemprop="keywords" content="CTF," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="picoCTF 2019 Writeup (General Skills)"/>
+<meta name="twitter:description" content="URL: https://2019game.picoctf.com/ お疲れ様でした！ （実際、ほんとに疲れた） 最終結果は、こんな感じ。 イベント終了時点で、ユーザは4万人弱でした。 PwnとWeb系があんまりで"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="https://captureamerica.github.io/writeups/" class="logo">CTF Writeups</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="https://captureamerica.github.io/writeups/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="https://captureamerica.github.io/writeups/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="https://captureamerica.github.io/writeups/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="https://captureamerica.github.io/writeups/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a><a href="https://captureamerica.github.io/writeups/about/">
+        <li class="mobile-menu-item">About</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="https://captureamerica.github.io/writeups/" class="logo">CTF Writeups</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="https://captureamerica.github.io/writeups/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="https://captureamerica.github.io/writeups/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="https://captureamerica.github.io/writeups/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="https://captureamerica.github.io/writeups/categories/">Categories</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="https://captureamerica.github.io/writeups/about/">About</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">picoCTF 2019 Writeup (General Skills)</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2019-10-13 </span>
+        <div class="post-category">
+            <a href="https://captureamerica.github.io/writeups/categories/ctf/"> CTF </a>
+            </div>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contents</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+<ul>
+<li><a href="#general-skills-whats-the-difference-200-points">[General Skills]: whats-the-difference (200 points)</a>
+<ul>
+<li><a href="#challenge">Challenge</a></li>
+<li><a href="#solution">Solution</a></li>
+</ul></li>
+<li><a href="#general-skills-flag-shop-300-points">[General Skills]: flag_shop (300 points)</a>
+<ul>
+<li><a href="#challenge-1">Challenge</a></li>
+<li><a href="#solution-1">Solution</a></li>
+</ul></li>
+<li><a href="#general-skills-mus1c-300-points">[General Skills]: mus1c (300 points)</a>
+<ul>
+<li><a href="#challenge-2">Challenge</a></li>
+<li><a href="#solution-2">Solution</a></li>
+</ul></li>
+<li><a href="#general-skills-1-wanna-b3-a-r0ck5tar-350-points">[General Skills]: 1_wanna_b3_a_r0ck5tar (350 points)</a>
+<ul>
+<li><a href="#challenge-3">Challenge</a></li>
+<li><a href="#solution-3">Solution</a></li>
+</ul></li>
+</ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      
+
+<p>URL: <a href="https://2019game.picoctf.com/">https://2019game.picoctf.com/</a>
+<br /><br />
+お疲れ様でした！ （実際、ほんとに疲れた）</p>
+
+<p><br /><br />
+最終結果は、こんな感じ。</p>
+
+<p><img src="https://captureamerica.github.io/writeups/img/pico2019_Score.png" alt="pico2019_Score.png"></p>
+
+<p><br />
+イベント終了時点で、ユーザは4万人弱でした。</p>
+
+<p><img src="https://captureamerica.github.io/writeups/img/pico2019_Users.png" alt="pico2019_Users.png"></p>
+
+<p><img src="https://captureamerica.github.io/writeups/img/pico2019_Rank.png" alt="pico2019_Rank.png"></p>
+
+<p>PwnとWeb系があんまりできてないけど、スコアも切りのいい20000に行ったし、Globalで目標の300位以内 (283位) にも入れたのでかなり満足です。</p>
+
+<p>2週間の間、土日もずっとピコってたし、一日年休も取って頑張りました。</p>
+
+<p>去年出た問題に似てるものも結構あったので、picoCTF 2018をそれなりにやった人は結構アドバンテージがあったと思います。</p>
+
+<p><br /><br />
+General Skills の Writeupです。</p>
+
+<p><br /><br /></p>
+
+<h1 id="general-skills-whats-the-difference-200-points">[General Skills]: whats-the-difference (200 points)</h1>
+
+<hr />
+
+<h2 id="challenge">Challenge</h2>
+
+<blockquote>
+<p>Can you spot the difference? kitters cattos.
+<br /><br />
+Hints :<br />
+How do you find the difference between two files?<br />
+Dumping the data from a hex editor may make it easier to compare.</p>
+</blockquote>
+
+<p>Attachment:</p>
+
+<ul>
+<li>cattos.jpg<br /></li>
+<li>kitters.jpg</li>
+</ul>
+
+<p><br /></p>
+
+<h2 id="solution">Solution</h2>
+
+<p>ここら辺から、<br />
+diff &lt;(od -x cattos.jpg) &lt;(od -x kitters.jpg)<br />
+diff &lt;(hexdump -c cattos.jpg) &lt;(hexdump -c kitters.jpg)<br /></p>
+
+<p>grep, trとか駆使してごちゃごちゃやって、いちおうフラグっぽいのが取れてたんですが、なかなかフラグとして通らないので、Cで書いてみました。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-C" data-lang="C"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-C" data-lang="C"><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
+</span><span class="cp"></span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span> <span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">**</span><span class="n">argv</span> <span class="p">)</span>
+<span class="p">{</span>
+	<span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+	<span class="kt">char</span> <span class="n">c1</span><span class="p">,</span> <span class="n">c2</span><span class="p">;</span>
+	<span class="n">FILE</span> <span class="o">*</span><span class="n">fp1</span><span class="p">,</span> <span class="o">*</span><span class="n">fp2</span><span class="p">;</span>
+	
+	<span class="k">if</span> <span class="p">(</span> <span class="p">(</span> <span class="n">fp1</span> <span class="o">=</span> <span class="n">fopen</span><span class="p">(</span> <span class="s">&#34;cattos.jpg&#34;</span><span class="p">,</span> <span class="s">&#34;r&#34;</span> <span class="p">)</span> <span class="p">)</span> <span class="o">==</span> <span class="nb">NULL</span> <span class="p">)</span> <span class="p">{</span>
+		<span class="n">printf</span><span class="p">(</span> <span class="s">&#34;No such file.</span><span class="se">\n</span><span class="s">&#34;</span> <span class="p">);</span>
+		<span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+	<span class="p">}</span>
+	<span class="k">if</span> <span class="p">(</span> <span class="p">(</span> <span class="n">fp2</span> <span class="o">=</span> <span class="n">fopen</span><span class="p">(</span> <span class="s">&#34;kitters.jpg&#34;</span><span class="p">,</span> <span class="s">&#34;r&#34;</span> <span class="p">)</span> <span class="p">)</span> <span class="o">==</span> <span class="nb">NULL</span> <span class="p">)</span> <span class="p">{</span>
+		<span class="n">printf</span><span class="p">(</span> <span class="s">&#34;No such file.</span><span class="se">\n</span><span class="s">&#34;</span> <span class="p">);</span>
+		<span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+	<span class="p">}</span>
+	
+	<span class="k">while</span> <span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+		<span class="k">if</span> <span class="p">(</span> <span class="p">(</span> <span class="n">c1</span> <span class="o">=</span> <span class="n">fgetc</span><span class="p">(</span> <span class="n">fp1</span> <span class="p">)</span> <span class="p">)</span> <span class="o">==</span> <span class="n">EOF</span> <span class="p">)</span> <span class="p">{</span>
+			<span class="c1">//break;
+</span><span class="c1"></span>		<span class="p">}</span>
+		<span class="k">if</span> <span class="p">(</span> <span class="p">(</span> <span class="n">c2</span> <span class="o">=</span> <span class="n">fgetc</span><span class="p">(</span> <span class="n">fp2</span> <span class="p">)</span> <span class="p">)</span> <span class="o">==</span> <span class="n">EOF</span> <span class="p">)</span> <span class="p">{</span>
+			<span class="c1">//break;
+</span><span class="c1"></span>		<span class="p">}</span>
+		<span class="k">if</span> <span class="p">(</span> <span class="n">c1</span> <span class="o">!=</span> <span class="n">c2</span> <span class="p">)</span> <span class="p">{</span>
+			<span class="n">printf</span><span class="p">(</span> <span class="s">&#34;%c&#34;</span><span class="p">,</span> <span class="n">c1</span> <span class="p">);</span>
+			<span class="c1">//printf( &#34;%c&#34;, c2 );
+</span><span class="c1"></span>		<span class="p">}</span>
+		<span class="n">i</span><span class="o">++</span><span class="p">;</span>
+		<span class="k">if</span>  <span class="p">(</span> <span class="n">i</span> <span class="o">&gt;</span> <span class="mi">3406694</span> <span class="p">)</span> <span class="p">{</span>
+			<span class="k">break</span><span class="p">;</span>
+		<span class="p">}</span>
+	<span class="p">}</span>
+	<span class="n">fclose</span><span class="p">(</span> <span class="n">fp1</span> <span class="p">);</span>
+	<span class="n">fclose</span><span class="p">(</span> <span class="n">fp2</span> <span class="p">);</span>
+	<span class="n">printf</span><span class="p">(</span> <span class="s">&#34;</span><span class="se">\n</span><span class="s">i = %d</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">i</span> <span class="p">);</span>
+	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>かつ、ローカルPC上で実行したときと、シェルサーバ上でやった結果も違うという。。。</p>
+
+<p>Flag: <code>picoCTF{th3yr3_a5_d1ff3r3nt_4s_bu773r_4nd_j311y_aslkjfdsalkfslkflkjdsfdszmz10548}</code></p>
+
+<p><br /><br />
+<br /><br /></p>
+
+<h1 id="general-skills-flag-shop-300-points">[General Skills]: flag_shop (300 points)</h1>
+
+<hr />
+
+<h2 id="challenge-1">Challenge</h2>
+
+<blockquote>
+<p>There&rsquo;s a flag shop selling stuff, can you buy a flag? Source. Connect with nc 2019shell1.picoctf.com 25858.
+<br /><br />
+Hints :<br />
+Two&rsquo;s compliment can do some weird things when numbers get really big!</p>
+</blockquote>
+
+<p>Attachment:</p>
+
+<ul>
+<li>store.c</li>
+</ul>
+
+<p><br /></p>
+
+<h2 id="solution-1">Solution</h2>
+
+<p>これも去年と同じで、整数のオーバーフローを使う問題です。</p>
+
+<p>テキトーにやってたのでよくわからないけど、21475000あたりを使って解いたと思います。</p>
+
+<p>Flag: <code>picoCTF{m0n3y_bag5_325fcd2e}</code></p>
+
+<p><br /><br />
+<br /><br /></p>
+
+<h1 id="general-skills-mus1c-300-points">[General Skills]: mus1c (300 points)</h1>
+
+<hr />
+
+<h2 id="challenge-2">Challenge</h2>
+
+<blockquote>
+<p>I wrote you a song. Put it in the picoCTF{} flag format.
+<br /><br />
+Hints : Do you think you can master rockstar?<br /></p>
+</blockquote>
+
+<p>Attachment:</p>
+
+<ul>
+<li>lyrics.txt</li>
+</ul>
+
+<p><br /></p>
+
+<h2 id="solution-2">Solution</h2>
+
+<p>ヒントのおかげで解けました。</p>
+
+<p>rockstarというesolangでした。</p>
+
+<p>以下で解けます。
+<a href="https://codewithrockstar.com/online">https://codewithrockstar.com/online</a></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">python -c &#39;print(&#34;&#34;.join([chr(int(x)) for x in &#34;114 114 114 111 99 107 110 114 110 48 49 49 51 114&#34;.split()]))&#39;</pre></td></tr></table>
+</div>
+</div>
+<p>Flag: <code>picoCTF{rrrocknrn0113r}</code></p>
+
+<p><br /><br />
+<br /><br /></p>
+
+<h1 id="general-skills-1-wanna-b3-a-r0ck5tar-350-points">[General Skills]: 1_wanna_b3_a_r0ck5tar (350 points)</h1>
+
+<hr />
+
+<h2 id="challenge-3">Challenge</h2>
+
+<blockquote>
+<p>I wrote you another song. Put the flag in the picoCTF{} flag format</p>
+</blockquote>
+
+<p>Attachment:</p>
+
+<ul>
+<li>lyrics.txt</li>
+</ul>
+
+<p><br /></p>
+
+<h2 id="solution-3">Solution</h2>
+
+<p>不要なIF文やListen (scanfみたいなの) をコメントアウトするだけです。</p>
+
+<p>コメントアウトは、()でできます。</p>
+
+<pre>
+Rocknroll is right
+Silence is wrong
+A guitar is a six-string
+Tommy's been down
+Music is a billboard-burning razzmatazz!
+(Listen to the music)
+(If the music is a guitar)
+(Say "Keep on rocking!")
+(Listen to the rhythm)
+(If the rhythm without Music is nothing)
+Tommy is rockin guitar
+Shout Tommy!
+Music is amazing sensation 
+Jamming is awesome presence
+Scream Music!
+Scream Jamming!
+Tommy is playing rock
+Scream Tommy!
+They are dazzled audiences
+Shout it!
+Rock is electric heaven
+Scream it!
+Tommy is jukebox god
+Say it!
+Break it down
+Shout "Bring on the rock!"
+(Else Whisper "That ain't it, Chief")
+Break it down
+</pre>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span><span class="lnt">2
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">python -c &#39;print(&#34;&#34;.join([chr(int(x)) for x in &#34;66 79 78 74 79 86 73&#34;.split()]))&#39;
+BONJOVI</pre></td></tr></table>
+</div>
+</div>
+<p>Flag: <code>picoCTF{BONJOVI}</code></p>
+
+<p><br /><br />
+<br /><br /></p>
+
+<hr />
+
+<p><br /><br />
+<br /><br /></p>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content">きゃぷあめ</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">
+        2019-10-13
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="https://captureamerica.github.io/writeups/tags/ctf/">CTF</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="https://captureamerica.github.io/writeups/post/picoctf_2019_forensics/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">picoCTF 2019 Writeup (Forensics)</span>
+            <span class="prev-text nav-mobile">Prev</span>
+          </a>
+        <a class="next" href="https://captureamerica.github.io/writeups/post/picoctf_2019_reverse/">
+            <span class="next-text nav-default">picoCTF 2019 Writeup (Reverse Engineering)</span>
+            <span class="next-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="https://github.com/CaptureAmerica/" class="iconfont icon-github" title="github"></a>
+  <a href="https://captureamerica.github.io/writeups/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2019
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">きゃぷあめ</span>
+  </span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+<script type="text/javascript" src="https://captureamerica.github.io/writeups/dist/even.26188efa.min.js"></script>
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-104910699-2', 'auto');
+	ga('set', 'anonymizeIp', true);
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+
+
+
+
+
+</body>
+</html>

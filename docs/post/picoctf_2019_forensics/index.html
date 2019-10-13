@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>picoCTF 2019 Writeup (Forensics) - CTF Writeups</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="きゃぷあめ" /><meta name="description" content="URL: https://2019game.picoctf.com/ お疲れ様でした！ （実際、ほんとに疲れた） 最終結果は、こんな感じ。 イベント終了時点で、ユーザは4万人弱でした。 PwnとWeb系があんまりで" /><meta name="keywords" content="Hugo, theme, even" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.55.6 with even 4.0.0" />
+
+
+<link rel="canonical" href="https://captureamerica.github.io/writeups/post/picoctf_2019_forensics/" />
+<link rel="apple-touch-icon" sizes="180x180" href="https://captureamerica.github.io/writeups/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://captureamerica.github.io/writeups/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://captureamerica.github.io/writeups/favicon-16x16.png">
+<link rel="manifest" href="https://captureamerica.github.io/writeups/manifest.json">
+<link rel="mask-icon" href="https://captureamerica.github.io/writeups/safari-pinned-tab.svg" color="#5bbad5">
+
+
+<link href="https://captureamerica.github.io/writeups/dist/even.c2a46f00.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="picoCTF 2019 Writeup (Forensics)" />
+<meta property="og:description" content="URL: https://2019game.picoctf.com/ お疲れ様でした！ （実際、ほんとに疲れた） 最終結果は、こんな感じ。 イベント終了時点で、ユーザは4万人弱でした。 PwnとWeb系があんまりで" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://captureamerica.github.io/writeups/post/picoctf_2019_forensics/" />
+<meta property="article:published_time" content="2019-10-13T12:00:00&#43;09:00"/>
+<meta property="article:modified_time" content="2019-10-13T12:00:00&#43;09:00"/>
+
+<meta itemprop="name" content="picoCTF 2019 Writeup (Forensics)">
+<meta itemprop="description" content="URL: https://2019game.picoctf.com/ お疲れ様でした！ （実際、ほんとに疲れた） 最終結果は、こんな感じ。 イベント終了時点で、ユーザは4万人弱でした。 PwnとWeb系があんまりで">
+
+
+<meta itemprop="datePublished" content="2019-10-13T12:00:00&#43;09:00" />
+<meta itemprop="dateModified" content="2019-10-13T12:00:00&#43;09:00" />
+<meta itemprop="wordCount" content="1150">
+
+
+
+<meta itemprop="keywords" content="CTF," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="picoCTF 2019 Writeup (Forensics)"/>
+<meta name="twitter:description" content="URL: https://2019game.picoctf.com/ お疲れ様でした！ （実際、ほんとに疲れた） 最終結果は、こんな感じ。 イベント終了時点で、ユーザは4万人弱でした。 PwnとWeb系があんまりで"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="https://captureamerica.github.io/writeups/" class="logo">CTF Writeups</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="https://captureamerica.github.io/writeups/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="https://captureamerica.github.io/writeups/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="https://captureamerica.github.io/writeups/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="https://captureamerica.github.io/writeups/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a><a href="https://captureamerica.github.io/writeups/about/">
+        <li class="mobile-menu-item">About</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="https://captureamerica.github.io/writeups/" class="logo">CTF Writeups</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="https://captureamerica.github.io/writeups/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="https://captureamerica.github.io/writeups/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="https://captureamerica.github.io/writeups/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="https://captureamerica.github.io/writeups/categories/">Categories</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="https://captureamerica.github.io/writeups/about/">About</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">picoCTF 2019 Writeup (Forensics)</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2019-10-13 </span>
+        <div class="post-category">
+            <a href="https://captureamerica.github.io/writeups/categories/ctf/"> CTF </a>
+            </div>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contents</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+<ul>
+<li><a href="#forensics-whitepages-250-points">[Forensics]: WhitePages (250 points)</a>
+<ul>
+<li><a href="#challenge">Challenge</a></li>
+<li><a href="#solution">Solution</a></li>
+</ul></li>
+<li><a href="#forensics-c0rrupt-250-points">[Forensics]: c0rrupt (250 points)</a>
+<ul>
+<li><a href="#challenge-1">Challenge</a></li>
+<li><a href="#solution-1">Solution</a></li>
+</ul></li>
+<li><a href="#forensics-shark-on-wire-2-300-points">[Forensics]: shark on wire 2 (300 points)</a>
+<ul>
+<li><a href="#challenge-2">Challenge</a></li>
+<li><a href="#solution-2">Solution</a></li>
+</ul></li>
+<li><a href="#forensics-webnet0-350-points">[Forensics]: WebNet0 (350 points)</a>
+<ul>
+<li><a href="#challenge-3">Challenge</a></li>
+<li><a href="#solution-3">Solution</a></li>
+</ul></li>
+<li><a href="#forensics-webnet1-450-points">[Forensics]: WebNet1 (450 points)</a>
+<ul>
+<li><a href="#challenge-4">Challenge</a></li>
+<li><a href="#solution-4">Solution</a></li>
+</ul></li>
+</ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      
+
+<p>URL: <a href="https://2019game.picoctf.com/">https://2019game.picoctf.com/</a>
+<br /><br />
+お疲れ様でした！ （実際、ほんとに疲れた）</p>
+
+<p><br /><br />
+最終結果は、こんな感じ。</p>
+
+<p><img src="https://captureamerica.github.io/writeups/img/pico2019_Score.png" alt="pico2019_Score.png"></p>
+
+<p><br />
+イベント終了時点で、ユーザは4万人弱でした。</p>
+
+<p><img src="https://captureamerica.github.io/writeups/img/pico2019_Users.png" alt="pico2019_Users.png"></p>
+
+<p><img src="https://captureamerica.github.io/writeups/img/pico2019_Rank.png" alt="pico2019_Rank.png"></p>
+
+<p>PwnとWeb系があんまりできてないけど、スコアも切りのいい20000に行ったし、Globalで目標の300位以内 (283位) にも入れたのでかなり満足です。</p>
+
+<p>2週間の間、土日もずっとピコってたし、一日年休も取って頑張りました。</p>
+
+<p>去年出た問題に似てるものも結構あったので、picoCTF 2018をそれなりにやった人は結構アドバンテージがあったと思います。</p>
+
+<p><br /><br />
+Forensics の Writeupです。</p>
+
+<p><br /><br /></p>
+
+<h1 id="forensics-whitepages-250-points">[Forensics]: WhitePages (250 points)</h1>
+
+<hr />
+
+<h2 id="challenge">Challenge</h2>
+
+<blockquote>
+<p>I stopped using YellowPages and moved onto WhitePages&hellip; but the page they gave me is all blank!</p>
+</blockquote>
+
+<p><br /></p>
+
+<h2 id="solution">Solution</h2>
+
+<p>てっきりwhitespaceというesolangだと思ったので、少し手こずりました。</p>
+
+<p>あと、たぶんだけど、チャレンジが始まった頃にダウンロードしたファイルと、後日ダウンロードし直したファイルが異なってた気がします。。。</p>
+
+<p>スペースとタブ（？）の2種類の文字があるので、それを0と1に変えてから、2進数を文字に変えるのが解き方です。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span><span class="lnt">2
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">$ xxd whitepages.txt | cut -c 10- | cut -c -40 | sed -e &#39;s/e2//g&#39; | sed -e &#39;s/80//g&#39; | sed -e &#39;s/20/1/g&#39; | sed -e &#39;s/83/0/g&#39; | tr -d &#34; \n&#34; ; echo
+00001010000010010000100101110000011010010110001101101111010000110101010001000110000010100000101000001001000010010101001101000101010001010010000001010000010101010100001001001100010010010100001100100000010100100100010101000011010011110101001001000100010100110010000000100110001000000100001001000001010000110100101101000111010100100100111101010101010011100100010000100000010100100100010101010000010011110101001001010100000010100000100100001001001101010011000000110000001100000010000001000110011011110111001001100010011001010111001100100000010000010111011001100101001011000010000001010000011010010111010001110100011100110110001001110101011100100110011101101000001011000010000001010000010000010010000000110001001101010011001000110001001100110000101000001001000010010111000001101001011000110110111101000011010101000100011001111011011011100110111101110100010111110110000101101100011011000101111101110011011100000110000101100011011001010111001101011111011000010111001001100101010111110110001101110010011001010110000101110100011001010110010001011111011001010111000101110101011000010110110001011111011000110011000100110110001101110011000000110100001100000110001100110111001100110011100001100101001110000110001001100011011000010110010100110010001100010011000000111001011001010110011000110100011000100110010100110101001110010011011000110000011000100011000101111101000010100000100100001001</pre></td></tr></table>
+</div>
+</div>
+<p>Flag: <code>picoCTF{not_all_spaces_are_created_equal_c167040c738e8bcae2109ef4be5960b1}</code></p>
+
+<p><br /><br />
+<br /><br /></p>
+
+<h1 id="forensics-c0rrupt-250-points">[Forensics]: c0rrupt (250 points)</h1>
+
+<hr />
+
+<h2 id="challenge-1">Challenge</h2>
+
+<blockquote>
+<p>We found this file. Recover the flag.
+<br /><br />
+Hints : Try fixing the file header</p>
+</blockquote>
+
+<p>Attachment:</p>
+
+<ul>
+<li>mystery</li>
+</ul>
+
+<p><br /></p>
+
+<h2 id="solution-1">Solution</h2>
+
+<p>先頭の16バイトくらい直せば通るかと思いきや、結構壊れててハマりました。</p>
+
+<p>1番目のIDATチャンクのとこも修正が必要。</p>
+
+<p>CRCは、pngcsumで直しました。<br />
+<a href="http://schaik.com/png/pngcsum.html">http://schaik.com/png/pngcsum.html</a></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">root@kali:~/picoCTF_2019# pngcsum mystery mystery_crcfixed.png
+IHDR ( 13 ) - csum = 7c8bab78
+sRGB (  1 ) - csum = aece1ce9
+gAMA (  4 ) - csum = 0bfc6105
+pHYs (  9 ) - csum = 495224f0 -&gt; 38d82c82
+IDAT (65445 ) - csum = 6927db59
+IDAT (65524 ) - csum = ba6bc1fa
+IDAT (65524 ) - csum = 5997d200
+IDAT (6304 ) - csum = 6ff175b8
+IEND (  0 ) - csum = ae426082</pre></td></tr></table>
+</div>
+</div>
+<p>Flag: <code>picoCTF{c0rrupt10n_1847995}</code></p>
+
+<p><br /><br />
+<br /><br /></p>
+
+<h1 id="forensics-shark-on-wire-2-300-points">[Forensics]: shark on wire 2 (300 points)</h1>
+
+<hr />
+
+<h2 id="challenge-2">Challenge</h2>
+
+<blockquote>
+<p>We found this packet capture. Recover the flag that was pilfered from the network. You can also find the file in /problems/shark-on-wire-2_0_5b5597f90483360b4480373bed30738e.</p>
+</blockquote>
+
+<p>Attachment:</p>
+
+<ul>
+<li>capture.pcap</li>
+</ul>
+
+<p><br /></p>
+
+<h2 id="solution-2">Solution</h2>
+
+<p>udpのフローを順番に見ていくと、フラグっぽい文字列が出てきます。</p>
+
+<p>&ldquo;kfdsalkfsalkico{N0t_a_fLag}&rdquo;<br />
+&ldquo;icoCTF{StaT31355e&rdquo;<br /></p>
+
+<p>あと、<br />
+&ldquo;start&rdquo;<br />
+&ldquo;end&rdquo;<br />
+というのも出てくるんですが、その間のPayloadにはフラグっぽい文字列はなかったので、最初無視してました。</p>
+
+<p>udp.port==8888 あたりを集中して見てたんですが、どうしてもフラグにはならなくて、その後、tcp あたりをがっつり見てそこもさっぱりフラグにならなかったので、挫けそうでした。</p>
+
+<p>&ldquo;start&rdquo; &ldquo;end&rdquo;が出てるのは (udp.port==22) で、眺めていたらSource Portが全部バラけてて、しかも文字になりそうな値になっているのに気づきました。</p>
+
+<p>一旦、フィルターしたものを別ファイル（capture_filtered.pcap）として保存し、Scapyで読み込みました。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-Python" data-lang="Python"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-Python" data-lang="Python"><span class="ch">#!/usr/bin/env python</span>
+<span class="kn">from</span> <span class="nn">scapy.all</span> <span class="kn">import</span> <span class="o">*</span>
+
+<span class="n">pkt</span><span class="o">=</span><span class="n">rdpcap</span><span class="p">(</span><span class="s2">&#34;./capture_filtered.pcap&#34;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">pkt</span><span class="p">)):</span>
+    <span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="nb">chr</span><span class="p">(</span><span class="n">pkt</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">sport</span><span class="o">-</span><span class="mi">5000</span><span class="p">))</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>Flag: <code>picoCTF{p1LLf3r3d_data_v1a_st3g0}</code></p>
+
+<p><br /><br />
+<br /><br /></p>
+
+<h1 id="forensics-webnet0-350-points">[Forensics]: WebNet0 (350 points)</h1>
+
+<hr />
+
+<h2 id="challenge-3">Challenge</h2>
+
+<blockquote>
+<p>We found this packet capture and key. Recover the flag.
+<br /><br />
+Hints :<br />
+Try using a tool like Wireshark<br />
+How can you decrypt the TLS stream?</p>
+</blockquote>
+
+<p>Attachment:</p>
+
+<ul>
+<li>capture.pcap</li>
+<li>picopico.key</li>
+</ul>
+
+<p><br /></p>
+
+<h2 id="solution-3">Solution</h2>
+
+<p>Go to Preference -&gt; TLS -&gt; RSA key list <br />
+172.31.22.220, 443, http, C:\Temp\picopico.key</p>
+
+<p>Flag: <code>picoCTF{nongshim.shrimp.crackers}</code></p>
+
+<p><br /><br />
+<br /><br /></p>
+
+<h1 id="forensics-webnet1-450-points">[Forensics]: WebNet1 (450 points)</h1>
+
+<hr />
+
+<h2 id="challenge-4">Challenge</h2>
+
+<blockquote>
+<p>We found this packet capture and key. Recover the flag.
+<br /><br />
+Hints :<br />
+Try using a tool like Wireshark<br />
+How can you decrypt the TLS stream?</p>
+</blockquote>
+
+<p>Attachment:</p>
+
+<ul>
+<li>capture.pcap</li>
+<li>picopico.key</li>
+</ul>
+
+<p><br /></p>
+
+<h2 id="solution-4">Solution</h2>
+
+<p>復号したトラフィックから、HTTP objectを抽出し、stringsコマンドでフラグサーチ。</p>
+
+<p>Flag: <code>picoCTF{honey.roasted.peanuts}</code></p>
+
+<p><br /><br />
+<br /><br /></p>
+
+<hr />
+
+<p><br /><br />
+<br /><br /></p>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content">きゃぷあめ</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">
+        2019-10-13
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="https://captureamerica.github.io/writeups/tags/ctf/">CTF</a>
+          </div>
+      <nav class="post-nav">
+        
+        <a class="next" href="https://captureamerica.github.io/writeups/post/picoctf_2019_general/">
+            <span class="next-text nav-default">picoCTF 2019 Writeup (General Skills)</span>
+            <span class="next-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="https://github.com/CaptureAmerica/" class="iconfont icon-github" title="github"></a>
+  <a href="https://captureamerica.github.io/writeups/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2019
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">きゃぷあめ</span>
+  </span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+<script type="text/javascript" src="https://captureamerica.github.io/writeups/dist/even.26188efa.min.js"></script>
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-104910699-2', 'auto');
+	ga('set', 'anonymizeIp', true);
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+
+
+
+
+
+</body>
+</html>

