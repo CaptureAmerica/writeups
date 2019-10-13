@@ -54,11 +54,12 @@ Attachment:
 <br />
 ## Solution
 ```
-curl -k -H 'Cookie: admin=True; time=1400'  https://2019shell1.picoctf.com/problem/32249/flag
+cat temp.txt | cut -d'(' -f2 | sort -n | cut -d"'" -f2 | tr -d "\n" ; echo
+d35cr4mbl3_tH3_cH4r4cT3r5_82e029
 ```
 
 
-Flag: `picoCTF{0p3n_t0_adm1n5_cc661e91}`
+Flag: `picoCTF{d35cr4mbl3_tH3_cH4r4cT3r5_82e029}`
 
 
 

@@ -453,6 +453,8 @@ Flag: `picoCTF{A_s0ng_0f_1C3_and_f1r3_db12a9ed}`
 ## Challenge
 > Exploit the function pointers in this program.
 <br /><br />
+Hint : A function pointer can be used to call any function
+
 
 Attachment:
 
@@ -583,7 +585,7 @@ int main()
 		local_14 = local_14 + 1;
 	}
 }
-
+```
 
 時間を合わせないといけないので、Shell server上で以下のように実行します。
 ```

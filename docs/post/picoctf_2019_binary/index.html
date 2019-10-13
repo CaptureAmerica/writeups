@@ -51,7 +51,7 @@
 
 <meta itemprop="datePublished" content="2019-10-12T07:45:00&#43;09:00" />
 <meta itemprop="dateModified" content="2019-10-13T10:30:00&#43;09:00" />
-<meta itemprop="wordCount" content="2614">
+<meta itemprop="wordCount" content="2623">
 
 
 
@@ -884,7 +884,8 @@ picoCTF{A_s0ng_0f_1C3_and_f1r3_db12a9ed}</pre></td></tr></table>
 
 <blockquote>
 <p>Exploit the function pointers in this program.
-<br /><br /></p>
+<br /><br />
+Hint : A function pointer can be used to call any function</p>
 </blockquote>
 
 <p>Attachment:</p>
@@ -1083,9 +1084,6 @@ WRONG! Sorry, better luck next time!</pre></td></tr></table>
 </span><span class="lnt">21
 </span><span class="lnt">22
 </span><span class="lnt">23
-</span><span class="lnt">24
-</span><span class="lnt">25
-</span><span class="lnt">26
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-C" data-lang="C"><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
@@ -1110,15 +1108,18 @@ WRONG! Sorry, better luck next time!</pre></td></tr></table>
 		<span class="n">printf</span><span class="p">(</span><span class="s">&#34;%d</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">local_1c</span><span class="p">);</span>
 		<span class="n">local_14</span> <span class="o">=</span> <span class="n">local_14</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
 	<span class="p">}</span>
-<span class="p">}</span>
-
-
-<span class="err">時間を合わせないといけないので、</span><span class="n">Shell</span> <span class="n">server上で以下のように実行します</span><span class="err">。</span></code></pre></td></tr></table>
+<span class="p">}</span></code></pre></td></tr></table>
 </div>
 </div>
-<p>$ ./seed_spring_solve.o ; nc 2019shell1.picoctf.com 12269
-```</p>
-
+<p>時間を合わせないといけないので、Shell server上で以下のように実行します。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">$ ./seed_spring_solve.o ; nc 2019shell1.picoctf.com 12269</pre></td></tr></table>
+</div>
+</div>
 <p>あとは出てきた値を1つずつ入れるだけです。</p>
 
 <p>Flag: <code>picoCTF{pseudo_random_number_generator_not_so_random_66aacad47c332de30eb8d8170d96b772}</code></p>
