@@ -11,7 +11,7 @@ author: "きゃぷあめ"
 ---
 URL: [https://2019game.picoctf.com/](https://2019game.picoctf.com/)
 <br /><br />
-お疲れ様でした！ （実際、ほんとに疲れた）
+2週間、お疲れ様です。
 
 <br /><br />
 最終結果は、こんな感じ。
@@ -26,8 +26,6 @@ URL: [https://2019game.picoctf.com/](https://2019game.picoctf.com/)
 <img src="https://captureamerica.github.io/writeups/img/pico2019_Rank.png" alt="pico2019_Rank.png">
 
 PwnとWeb系があんまりできてないけど、スコアも切りのいい20000に行ったし、Globalで目標の300位以内 (283位) にも入れたのでかなり満足です。
-
-2週間の間、土日もずっとピコってたし、一日年休も取って頑張りました。
 
 去年出た問題に似てるものも結構あったので、picoCTF 2018をそれなりにやった人は結構アドバンテージがあったと思います。
 
