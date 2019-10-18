@@ -55,59 +55,15 @@ Attachment:
 
 <br />
 ## Solution
-ここら辺から、<br />
-diff <(od -x cattos.jpg) <(od -x kitters.jpg)<br />
-diff <(hexdump -c cattos.jpg) <(hexdump -c kitters.jpg)<br />
-
-grep, trとか駆使してごちゃごちゃやって、いちおうフラグっぽいのが取れてたんですが、なかなかフラグとして通らないので、Cで書いてみました。
-
-
-```C
-#include <stdio.h>
-
-int main( int argc, char **argv )
-{
-	int i = 0;
-	char c1, c2;
-	FILE *fp1, *fp2;
-	
-	if ( ( fp1 = fopen( "cattos.jpg", "r" ) ) == NULL ) {
-		printf( "No such file.\n" );
-		return -1;
-	}
-	if ( ( fp2 = fopen( "kitters.jpg", "r" ) ) == NULL ) {
-		printf( "No such file.\n" );
-		return -1;
-	}
-	
-	while (1) {
-		if ( ( c1 = fgetc( fp1 ) ) == EOF ) {
-			//break;
-		}
-		if ( ( c2 = fgetc( fp2 ) ) == EOF ) {
-			//break;
-		}
-		if ( c1 != c2 ) {
-			printf( "%c", c1 );
-			//printf( "%c", c2 );
-		}
-		i++;
-		if  ( i > 3406694 ) {
-			break;
-		}
-	}
-	fclose( fp1 );
-	fclose( fp2 );
-	printf( "\ni = %d\n", i );
-	return 0;
-}
+```
+$ cmp -bl cattos.jpg kitters.jpg | awk '{print $3}' | tr -d "\n" ; echo
+picoCTF{th3yr3_a5_d1ff3r3nt_4s_bu773r_4nd_j311y_3ee85466bc13cfbe57b6a695bee9dcdd}
 ```
 
-かつ、ローカルPC上で実行したときと、シェルサーバ上でやった結果も違うという。。。
+Flag: `picoCTF{th3yr3_a5_d1ff3r3nt_4s_bu773r_4nd_j311y_3ee85466bc13cfbe57b6a695bee9dcdd}`
 
-
-Flag: `picoCTF{th3yr3_a5_d1ff3r3nt_4s_bu773r_4nd_j311y_aslkjfdsalkfslkflkjdsfdszmz10548}`
-
+<br />
+なお、picoCTFはイベント期間中にファイルやフラグが書き換わることがあるようで、少しハマりました。
 
 
 

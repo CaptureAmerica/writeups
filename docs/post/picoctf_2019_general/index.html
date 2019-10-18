@@ -16,7 +16,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="きゃぷあめ" /><meta name="description" content="URL: https://2019game.picoctf.com/ 2週間、お疲れ様です。 最終結果は、こんな感じ。 イベント終了時点で、ユーザは4万人弱でした。 PwnとWeb系があんまりできてないけど、スコ" /><meta name="keywords" content="Hugo, theme, even" />
+<meta name="author" content="きゃぷあめ" /><meta name="description" content="URL: https://2019game.picoctf.com/ 2週間、お疲れ様です。 最終結果は、こんな感じ。 イベント終了時点で、ユーザは4万人弱でした。 PwnとWeb系があんまりできてないけど、スコ" /><meta name="keywords" content="CTF, Writeup, captureamerica, picoCTF" />
 
 
 
@@ -51,7 +51,7 @@
 
 <meta itemprop="datePublished" content="2019-10-13T12:00:00&#43;09:00" />
 <meta itemprop="dateModified" content="2019-10-13T12:00:00&#43;09:00" />
-<meta itemprop="wordCount" content="962">
+<meta itemprop="wordCount" content="725">
 
 
 
@@ -217,97 +217,20 @@ Dumping the data from a hex editor may make it easier to compare.</p>
 <p><br /></p>
 
 <h2 id="solution">Solution</h2>
-
-<p>ここら辺から、<br />
-diff &lt;(od -x cattos.jpg) &lt;(od -x kitters.jpg)<br />
-diff &lt;(hexdump -c cattos.jpg) &lt;(hexdump -c kitters.jpg)<br /></p>
-
-<p>grep, trとか駆使してごちゃごちゃやって、いちおうフラグっぽいのが取れてたんですが、なかなかフラグとして通らないので、Cで書いてみました。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-C" data-lang="C"><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span><span class="lnt">18
-</span><span class="lnt">19
-</span><span class="lnt">20
-</span><span class="lnt">21
-</span><span class="lnt">22
-</span><span class="lnt">23
-</span><span class="lnt">24
-</span><span class="lnt">25
-</span><span class="lnt">26
-</span><span class="lnt">27
-</span><span class="lnt">28
-</span><span class="lnt">29
-</span><span class="lnt">30
-</span><span class="lnt">31
-</span><span class="lnt">32
-</span><span class="lnt">33
-</span><span class="lnt">34
-</span><span class="lnt">35
-</span><span class="lnt">36
-</span><span class="lnt">37
-</span><span class="lnt">38
-</span></code></pre></td>
+<pre class="chroma"><span class="lnt">1
+</span><span class="lnt">2
+</span></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-C" data-lang="C"><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
-</span><span class="cp"></span>
-<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span> <span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">**</span><span class="n">argv</span> <span class="p">)</span>
-<span class="p">{</span>
-	<span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-	<span class="kt">char</span> <span class="n">c1</span><span class="p">,</span> <span class="n">c2</span><span class="p">;</span>
-	<span class="n">FILE</span> <span class="o">*</span><span class="n">fp1</span><span class="p">,</span> <span class="o">*</span><span class="n">fp2</span><span class="p">;</span>
-	
-	<span class="k">if</span> <span class="p">(</span> <span class="p">(</span> <span class="n">fp1</span> <span class="o">=</span> <span class="n">fopen</span><span class="p">(</span> <span class="s">&#34;cattos.jpg&#34;</span><span class="p">,</span> <span class="s">&#34;r&#34;</span> <span class="p">)</span> <span class="p">)</span> <span class="o">==</span> <span class="nb">NULL</span> <span class="p">)</span> <span class="p">{</span>
-		<span class="n">printf</span><span class="p">(</span> <span class="s">&#34;No such file.</span><span class="se">\n</span><span class="s">&#34;</span> <span class="p">);</span>
-		<span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
-	<span class="p">}</span>
-	<span class="k">if</span> <span class="p">(</span> <span class="p">(</span> <span class="n">fp2</span> <span class="o">=</span> <span class="n">fopen</span><span class="p">(</span> <span class="s">&#34;kitters.jpg&#34;</span><span class="p">,</span> <span class="s">&#34;r&#34;</span> <span class="p">)</span> <span class="p">)</span> <span class="o">==</span> <span class="nb">NULL</span> <span class="p">)</span> <span class="p">{</span>
-		<span class="n">printf</span><span class="p">(</span> <span class="s">&#34;No such file.</span><span class="se">\n</span><span class="s">&#34;</span> <span class="p">);</span>
-		<span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
-	<span class="p">}</span>
-	
-	<span class="k">while</span> <span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
-		<span class="k">if</span> <span class="p">(</span> <span class="p">(</span> <span class="n">c1</span> <span class="o">=</span> <span class="n">fgetc</span><span class="p">(</span> <span class="n">fp1</span> <span class="p">)</span> <span class="p">)</span> <span class="o">==</span> <span class="n">EOF</span> <span class="p">)</span> <span class="p">{</span>
-			<span class="c1">//break;
-</span><span class="c1"></span>		<span class="p">}</span>
-		<span class="k">if</span> <span class="p">(</span> <span class="p">(</span> <span class="n">c2</span> <span class="o">=</span> <span class="n">fgetc</span><span class="p">(</span> <span class="n">fp2</span> <span class="p">)</span> <span class="p">)</span> <span class="o">==</span> <span class="n">EOF</span> <span class="p">)</span> <span class="p">{</span>
-			<span class="c1">//break;
-</span><span class="c1"></span>		<span class="p">}</span>
-		<span class="k">if</span> <span class="p">(</span> <span class="n">c1</span> <span class="o">!=</span> <span class="n">c2</span> <span class="p">)</span> <span class="p">{</span>
-			<span class="n">printf</span><span class="p">(</span> <span class="s">&#34;%c&#34;</span><span class="p">,</span> <span class="n">c1</span> <span class="p">);</span>
-			<span class="c1">//printf( &#34;%c&#34;, c2 );
-</span><span class="c1"></span>		<span class="p">}</span>
-		<span class="n">i</span><span class="o">++</span><span class="p">;</span>
-		<span class="k">if</span>  <span class="p">(</span> <span class="n">i</span> <span class="o">&gt;</span> <span class="mi">3406694</span> <span class="p">)</span> <span class="p">{</span>
-			<span class="k">break</span><span class="p">;</span>
-		<span class="p">}</span>
-	<span class="p">}</span>
-	<span class="n">fclose</span><span class="p">(</span> <span class="n">fp1</span> <span class="p">);</span>
-	<span class="n">fclose</span><span class="p">(</span> <span class="n">fp2</span> <span class="p">);</span>
-	<span class="n">printf</span><span class="p">(</span> <span class="s">&#34;</span><span class="se">\n</span><span class="s">i = %d</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">i</span> <span class="p">);</span>
-	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-<span class="p">}</span></code></pre></td></tr></table>
+<pre class="chroma">$ cmp -bl cattos.jpg kitters.jpg | awk &#39;{print $3}&#39; | tr -d &#34;\n&#34; ; echo
+picoCTF{th3yr3_a5_d1ff3r3nt_4s_bu773r_4nd_j311y_3ee85466bc13cfbe57b6a695bee9dcdd}</pre></td></tr></table>
 </div>
 </div>
-<p>かつ、ローカルPC上で実行したときと、シェルサーバ上でやった結果も違うという。。。</p>
+<p>Flag: <code>picoCTF{th3yr3_a5_d1ff3r3nt_4s_bu773r_4nd_j311y_3ee85466bc13cfbe57b6a695bee9dcdd}</code></p>
 
-<p>Flag: <code>picoCTF{th3yr3_a5_d1ff3r3nt_4s_bu773r_4nd_j311y_aslkjfdsalkfslkflkjdsfdszmz10548}</code></p>
+<p><br />
+なお、picoCTFはイベント期間中にファイルやフラグが書き換わることがあるようで、少しハマりました。</p>
 
 <p><br /><br />
 <br /><br /></p>
