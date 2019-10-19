@@ -246,7 +246,7 @@ Attachments:
 
 <br />
 ## Solution
-いつもの青空白猫で赤色ビット0抽出すると、数字が出てくるので、それをHex Decodeするだけ。<br />
+「青い空を見上げればいつもそこに白い猫」で赤色ビット0抽出すると、数字が出てくるので、それをHex Decodeするだけ。<br />
 <img src="https://captureamerica.github.io/writeups/img/TheWonderfulWizard_Neko.PNG" alt="TheWonderfulWizard_Neko.PNG">
 
 <pre>

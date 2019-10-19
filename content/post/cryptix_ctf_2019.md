@@ -31,7 +31,7 @@ Attachments:
 
 <br />
 ## Solution
-青空白猫でLSB立てたらPNGのヘッダが見えたので、バイナリデータ保存したところ、"flag{Haha_fake_flag}" と書かれたPNGファイルになりました。
+「青い空を見上げればいつもそこに白い猫」でLSB立てたらPNGのヘッダが見えたので、バイナリデータ保存したところ、"flag{Haha_fake_flag}" と書かれたPNGファイルになりました。
 
 そのPNGに対してZstegかけたらフラグが取れました。
 
