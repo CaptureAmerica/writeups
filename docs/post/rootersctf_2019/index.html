@@ -16,7 +16,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="きゃぷあめ" /><meta name="description" content="URL: https://rootersctf.in/ picoCTF 2019の直後でほとんど時間がなかったですが、ちょっとだけやりました。 [Forensics]: You Can&amp;rsquo;t See Me Challenge See for yourself Attachments: youcantseeme.pdf Solution 100 ページくらい真っ白が続くPDFが与えら" /><meta name="keywords" content="CTF, Writeup, captureamerica, picoCTF" />
+<meta name="author" content="きゃぷあめ" /><meta name="description" content="URL: https://rootersctf.in/ picoCTF 2019の直後でほとんど時間がなかったですが、ちょっとだけやりました。 後日、復習もやりました（偉い）。 [Forensics]: You Can&amp;rsquo;t See Me Challenge See for yourself Attachments: youcantseeme.pdf Solution 100 ページ" /><meta name="keywords" content="CTF, Writeup, captureamerica, picoCTF" />
 
 
 
@@ -39,26 +39,26 @@
 
 
 <meta property="og:title" content="Rooters CTF 2019 Writeup" />
-<meta property="og:description" content="URL: https://rootersctf.in/ picoCTF 2019の直後でほとんど時間がなかったですが、ちょっとだけやりました。 [Forensics]: You Can&rsquo;t See Me Challenge See for yourself Attachments: youcantseeme.pdf Solution 100 ページくらい真っ白が続くPDFが与えら" />
+<meta property="og:description" content="URL: https://rootersctf.in/ picoCTF 2019の直後でほとんど時間がなかったですが、ちょっとだけやりました。 後日、復習もやりました（偉い）。 [Forensics]: You Can&rsquo;t See Me Challenge See for yourself Attachments: youcantseeme.pdf Solution 100 ページ" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://captureamerica.github.io/writeups/post/rootersctf_2019/" />
 <meta property="article:published_time" content="2019-10-14T16:00:00&#43;09:00"/>
-<meta property="article:modified_time" content="2019-10-14T16:00:00&#43;09:00"/>
+<meta property="article:modified_time" content="2019-10-20T11:00:00&#43;09:00"/>
 
 <meta itemprop="name" content="Rooters CTF 2019 Writeup">
-<meta itemprop="description" content="URL: https://rootersctf.in/ picoCTF 2019の直後でほとんど時間がなかったですが、ちょっとだけやりました。 [Forensics]: You Can&rsquo;t See Me Challenge See for yourself Attachments: youcantseeme.pdf Solution 100 ページくらい真っ白が続くPDFが与えら">
+<meta itemprop="description" content="URL: https://rootersctf.in/ picoCTF 2019の直後でほとんど時間がなかったですが、ちょっとだけやりました。 後日、復習もやりました（偉い）。 [Forensics]: You Can&rsquo;t See Me Challenge See for yourself Attachments: youcantseeme.pdf Solution 100 ページ">
 
 
 <meta itemprop="datePublished" content="2019-10-14T16:00:00&#43;09:00" />
-<meta itemprop="dateModified" content="2019-10-14T16:00:00&#43;09:00" />
-<meta itemprop="wordCount" content="492">
+<meta itemprop="dateModified" content="2019-10-20T11:00:00&#43;09:00" />
+<meta itemprop="wordCount" content="2074">
 
 
 
 <meta itemprop="keywords" content="CTF," />
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Rooters CTF 2019 Writeup"/>
-<meta name="twitter:description" content="URL: https://rootersctf.in/ picoCTF 2019の直後でほとんど時間がなかったですが、ちょっとだけやりました。 [Forensics]: You Can&rsquo;t See Me Challenge See for yourself Attachments: youcantseeme.pdf Solution 100 ページくらい真っ白が続くPDFが与えら"/>
+<meta name="twitter:description" content="URL: https://rootersctf.in/ picoCTF 2019の直後でほとんど時間がなかったですが、ちょっとだけやりました。 後日、復習もやりました（偉い）。 [Forensics]: You Can&rsquo;t See Me Challenge See for yourself Attachments: youcantseeme.pdf Solution 100 ページ"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -151,6 +151,21 @@
 <li><a href="#challenge-1">Challenge</a></li>
 <li><a href="#solution-1">Solution</a></li>
 </ul></li>
+<li><a href="#forensics-luna-3">[Forensics]: Luna - 3</a>
+<ul>
+<li><a href="#challenge-2">Challenge</a></li>
+<li><a href="#solution-2">Solution</a></li>
+</ul></li>
+<li><a href="#forensics-frames-per-story">[Forensics]: Frames per Story</a>
+<ul>
+<li><a href="#challenge-3">Challenge</a></li>
+<li><a href="#solution-3">Solution</a></li>
+</ul></li>
+<li><a href="#forensics-mind-awake-body-asleep">[Forensics]: Mind Awake Body Asleep!</a>
+<ul>
+<li><a href="#challenge-4">Challenge</a></li>
+<li><a href="#solution-4">Solution</a></li>
+</ul></li>
 </ul>
 </nav>
   </div>
@@ -161,6 +176,8 @@
 <p>URL: <a href="https://rootersctf.in/">https://rootersctf.in/</a>
 <br /><br />
 picoCTF 2019の直後でほとんど時間がなかったですが、ちょっとだけやりました。</p>
+
+<p>後日、復習もやりました（偉い）。</p>
 
 <p><br /><br /></p>
 
@@ -280,6 +297,289 @@ Credentials: admin:blu3_c0rp_p4ss
 <p><br /><br />
 <br /><br /></p>
 
+<h1 id="forensics-luna-3">[Forensics]: Luna - 3</h1>
+
+<hr />
+
+<h2 id="challenge-2">Challenge</h2>
+
+<blockquote>
+<p>Luna - 3 is sending some images of the far side of the moon we need to show the world the unseen part of the moon help us retrieve the images.</p>
+</blockquote>
+
+<p>Attachments:</p>
+
+<ul>
+<li>recv_13.10.1959.wav</li>
+</ul>
+
+<p><br /></p>
+
+<h2 id="solution-2">Solution</h2>
+
+<p>picoCTF 2019で出てきたm00nwalkと同じ問題です。</p>
+
+<p>RX-SSTV というツールを使いました。<br />
+<a href="http://users.belgacom.net/hamradio/rxsstv.htm">http://users.belgacom.net/hamradio/rxsstv.htm</a></p>
+
+<p><img src="https://captureamerica.github.io/writeups/img/Luna3.PNG" alt="Luna3.PNG"></p>
+
+<p>なんて書いてあるのか、よく見えないけどね。。。</p>
+
+<p>Flag: <code>rooters{Looq_L1x3_Lun4-3}ctf</code> (予想)</p>
+
+<p><br /><br />
+<br /><br />
+<img src="https://captureamerica.github.io/writeups/img/orange_bar.png" alt="orange_bar.png">
+<br />
+ここから下はCTF終了後に行った復習です。（他の方のWriteupとか参照してます。）</p>
+
+<p><br /><br /></p>
+
+<h1 id="forensics-frames-per-story">[Forensics]: Frames per Story</h1>
+
+<hr />
+
+<h2 id="challenge-3">Challenge</h2>
+
+<blockquote>
+<p>Finally, Toby is out of the frames. I hope he never returns again.</p>
+</blockquote>
+
+<p>Attachments:</p>
+
+<ul>
+<li>結構な数のjpegファイル</li>
+</ul>
+
+<p><br /></p>
+
+<h2 id="solution-3">Solution</h2>
+
+<p>exiftoolをかけると、Comment欄に少しずつ文字が入っているのがわかるので、全ファイルに対してexiftoolをかけて、がっちゃんこします。</p>
+
+<table><tr><td>
+<b>$ exiftool * | grep Comment | cut -d: -f2 | tr -d "\n" ; echo </b><br />
+ MICHAEL right Jim, your quarterlies look very good. How the thing is going at the library?JIM Oh I told you couldn't close it soMICHAEL So you've come to the master for guidance? (imitating) Is http ny.cc/rosvdz this what you're saying grass hopper?JIM Actually you called me in here, but ye ah.MICHAEL All right, well let me show you how it's done. h ttp c/rosvdz (gets on phone) Yes, I liked to speak to your office manager please. Yes hello this is Michael Scott, I am the regional manager of Dunder Mifflin paper products. Just wanted to talk to you, manager-on- manager. (cut to the office and cut back) All right done deal, thank you very much sir, you're a gentleman and a scholar. Oh I'm sorry, ok, I'm sorry, my mistake. (hangs up) That was a woman I was talking to she had a very low voice. Probably a smoker. So, so that's the way it's done. Michael the camera) I've been in Dundler Mifflin for twelve years, the last four as regional manager. If you want to come through here, (opens the door to the main office) so we have the entire floor, so this is my kingdom, as far as the eye can see, ah this is our receptionist Pam. (goes to the recep tionist) Pam, Pam Pam! http tiny.cc/rosv dz Pam Beesly. Pam has been with us for' for ever, Lavc57.70.100
+</td></tr></table>
+
+<p><br />
+URLっぽいの（http ny.cc/rosvdz）があるのでアクセスしてみると、final.pngが手に入ります。</p>
+
+<p>（ここまでは自力でいけました）</p>
+
+<p><br />
+final.pngを開いて、よーーく目を凝らすと、変なデータが見つかります。（オレンジで囲ったところ）</p>
+
+<p><img src="https://captureamerica.github.io/writeups/img/rooters_final.png" alt="rooters_final.png"></p>
+
+<p>いやー、これはわからんよな。。。</p>
+
+<p><br />
+Previewで拡大、選択、コピー、New from Clipboardをして、別ファイルとして保存します。</p>
+
+<p><img src="https://captureamerica.github.io/writeups/img/rooters_final2.png" alt="rooters_final2.png"></p>
+
+<p><br />
+「青い空を見上げればいつもそこに白い猫」で開いて、ビット抽出前バイト列を確認します。
+<img src="https://captureamerica.github.io/writeups/img/rooters_final3.png" alt="rooters_final3.png"></p>
+
+<p>Flag: <code>rooters{WHY_4R3_TH3_W4Y_TH4T_Y0U_4R3!}ctf</code></p>
+
+<p><br /><br />
+<br /><br /></p>
+
+<h1 id="forensics-mind-awake-body-asleep">[Forensics]: Mind Awake Body Asleep!</h1>
+
+<hr />
+
+<h2 id="challenge-4">Challenge</h2>
+
+<blockquote>
+<p>Everything visible has a flip side, like a coin.</p>
+</blockquote>
+
+<p>Attachments:</p>
+
+<ul>
+<li>challenge.wav</li>
+</ul>
+
+<p><br /></p>
+
+<h2 id="solution-4">Solution</h2>
+
+<p>challenge.wavを再生すると、誰かがモニャモニャ喋っていて、ほんとに眠たくなるファイルでした。</p>
+
+<p>とりあえず、audacityでスペクトラムとか見てみましたが、何も見つからず。</p>
+
+<p><br />
+こういうやつは、LSBをチェックするのがいいらしいです。</p>
+
+<p>LSBを取り出すやつは、picoCTF 2018 の LoadSomeBits で以前書いたコードがあったので、それを流用しました。</p>
+
+<p>いちおう、以下が以前書いたWriteupです。<br />
+<a href="https://captureamerica.github.io/writeups/post/picoctf_2018/">https://captureamerica.github.io/writeups/post/picoctf_2018/</a></p>
+
+<p>今後も使うことあるかもしれないので、ファイル名を引き数に取るようにしておきました。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-C" data-lang="C"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-C" data-lang="C"><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
+</span><span class="cp"></span>
+<span class="kt">int</span> <span class="nf">sub</span><span class="p">(</span> <span class="kt">int</span> <span class="n">offset</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span><span class="n">fname</span> <span class="p">)</span>
+<span class="p">{</span>
+	<span class="n">FILE</span> <span class="o">*</span><span class="n">fp</span><span class="p">;</span>
+	<span class="kt">int</span>  <span class="n">c</span><span class="p">;</span>
+	<span class="kt">int</span> <span class="n">i</span><span class="p">;</span>
+	<span class="kt">char</span> <span class="n">ch</span><span class="p">;</span>
+
+	<span class="k">if</span> <span class="p">(</span> <span class="p">(</span> <span class="n">fp</span> <span class="o">=</span> <span class="n">fopen</span><span class="p">(</span> <span class="n">fname</span><span class="p">,</span> <span class="s">&#34;rb&#34;</span> <span class="p">)</span> <span class="p">)</span> <span class="o">==</span> <span class="nb">NULL</span> <span class="p">)</span> <span class="p">{</span>
+		<span class="n">perror</span><span class="p">(</span> <span class="s">&#34;Can&#39;t fopen&#34;</span> <span class="p">);</span>
+		<span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+        <span class="p">}</span>
+	<span class="k">for</span> <span class="p">(</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span> <span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">offset</span> <span class="p">;</span> <span class="n">i</span><span class="o">++</span> <span class="p">)</span> <span class="p">{</span>
+		<span class="n">fgetc</span><span class="p">(</span> <span class="n">fp</span> <span class="p">);</span>
+	<span class="p">}</span>
+
+	<span class="n">i</span> <span class="o">=</span> <span class="mi">7</span><span class="p">;</span>
+	<span class="n">ch</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+	<span class="k">while</span> <span class="p">(</span> <span class="p">(</span> <span class="n">c</span> <span class="o">=</span> <span class="n">fgetc</span><span class="p">(</span> <span class="n">fp</span> <span class="p">)</span> <span class="p">)</span> <span class="o">!=</span> <span class="n">EOF</span> <span class="p">)</span> <span class="p">{</span>
+		<span class="n">c</span> <span class="o">=</span> <span class="n">c</span> <span class="o">&amp;</span> <span class="mh">0x01</span><span class="p">;</span>
+		<span class="n">ch</span> <span class="o">=</span> <span class="n">ch</span> <span class="o">|</span> <span class="p">(</span> <span class="n">c</span> <span class="o">&lt;&lt;</span> <span class="n">i</span><span class="p">);</span>
+		<span class="n">i</span><span class="o">--</span><span class="p">;</span>
+		<span class="k">if</span> <span class="p">(</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="p">)</span> <span class="p">{</span>
+			<span class="k">if</span> <span class="p">(</span> <span class="p">(</span> <span class="n">ch</span> <span class="o">&gt;=</span> <span class="mh">0x20</span> <span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="n">ch</span> <span class="o">&lt;=</span> <span class="mh">0x7e</span> <span class="p">)</span> <span class="p">)</span> <span class="p">{</span>
+				<span class="n">printf</span><span class="p">(</span> <span class="s">&#34;%c&#34;</span><span class="p">,</span> <span class="n">ch</span> <span class="p">);</span>
+			<span class="p">}</span>
+			<span class="n">i</span> <span class="o">=</span> <span class="mi">7</span><span class="p">;</span>
+			<span class="n">ch</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+		<span class="p">}</span>
+	<span class="p">}</span>
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;&#34;</span><span class="p">);</span>
+        <span class="n">fclose</span><span class="p">(</span> <span class="n">fp</span> <span class="p">);</span>
+	
+	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span> <span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">**</span><span class="n">argv</span> <span class="p">)</span>
+<span class="p">{</span>
+	<span class="kt">int</span> <span class="n">i</span><span class="p">;</span>
+
+	<span class="k">if</span> <span class="p">(</span> <span class="n">argc</span> <span class="o">!=</span> <span class="mi">2</span> <span class="p">)</span> <span class="p">{</span>
+		<span class="n">printf</span><span class="p">(</span> <span class="s">&#34;Usage: lsb.o filename</span><span class="se">\n</span><span class="s">&#34;</span> <span class="p">);</span>
+		<span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+	<span class="p">}</span>
+	<span class="k">for</span> <span class="p">(</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span> <span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">8</span> <span class="p">;</span> <span class="n">i</span><span class="o">++</span> <span class="p">)</span> <span class="p">{</span>
+		<span class="n">sub</span><span class="p">(</span> <span class="n">i</span><span class="p">,</span> <span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="p">);</span>
+	<span class="p">}</span>
+<span class="p">}</span></code></pre></td></tr></table>
+</div>
+</div>
+<p><br />
+出力がやたらと多いので、もうちょっと改良した方がいいかもだけど。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span><span class="lnt">2
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">$ ./lsb.o challenge.wav | fold -120 | grep -i http
+-@@RMr. Robot is an American drama thriller television series created by Sam Esmail. http://tiny.cc/72nwdz##############</pre></td></tr></table>
+</div>
+</div>
+<p>長い文字列が1行で出てくるので、foldで適当に区切って、その中で&rdquo;http&rdquo;やら&rdquo;ctf&rdquo;やらのキーワードになりそうなものをサーチする感じですかね。</p>
+
+<p><br />
+見つかった <a href="http://tiny.cc/72nwdz">http://tiny.cc/72nwdz</a> にアクセスすると、newというテキストファイルが入手できます。</p>
+
+<pre>
+$ file new 
+new: ASCII text, with very long lines, with no line terminators
+
+$ cat new | fold -32 | tail -n 4 ; echo
+81c9a9001031b0000031b00000379584
+0790000000457e3cec00000060800610
+00003950000025448494d0000000a0a1
+a0d074e40598
+</pre>
+
+<p><br />
+この末尾の文字列から、PNGヘッダ(89 50 4E 47 0D 0A 1A 0A)が思いつくかどうかと言われたら、普通思いつかないですよね。</p>
+
+<p>問題文にある<code>flip</code>でそれに気づくかどうかかな。</p>
+
+<p><br />
+リバースしてバイナリとして保存します。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">$ python -c &#39;import binascii; open(&#34;output&#34;, &#34;wb&#34;).write(binascii.unhexlify(open(&#34;new&#34;, &#34;rb&#34;).read()[::-1]))&#39;
+$ file output
+output: PNG image data, 1427 x 352, 8-bit/color RGBA, non-interlaced</pre></td></tr></table>
+</div>
+</div>
+<p><img src="https://captureamerica.github.io/writeups/img/rooters_python_is_awesome.png" alt="rooters_python_is_awesome.png"></p>
+
+<p>Flag: <code>rooters{pyth0n_is_aw3s0m3}ctf</code></p>
+
+<p><br /><br />
+<br /><br /></p>
+
 <hr />
 
 <p><br /><br />
@@ -295,7 +595,7 @@ Credentials: admin:blu3_c0rp_p4ss
   <p class="copyright-item">
     <span class="item-title">LastMod</span>
     <span class="item-content">
-        2019-10-14
+        2019-10-20
         
     </span>
   </p>
