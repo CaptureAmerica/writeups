@@ -1078,7 +1078,7 @@ hexdumpのテキスト アウトプットのやつは、`xxd -r`で解凍でき�
 <br /><br />
 <img src="https://captureamerica.github.io/writeups/img/orange_bar.png" alt="orange_bar.png">
 <br />
-ここから下はCTF終了後に行った復習です。
+ここから下はイベント終了後に行った復習です。
 
 
 <br /><br />
