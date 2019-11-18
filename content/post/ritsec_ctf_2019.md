@@ -12,7 +12,7 @@ author: "きゃぷあめ"
 URL: [https://ctf.ritsec.club/challenges](https://ctf.ritsec.club/challenges)
 <br /><br />
 
-以下のスコアは、イベント中のものなので、最終順位はもう少し下がっているはずです。。。
+1012ポイントで、201番でした。
 
 <img src="https://captureamerica.github.io/writeups/img/ritsec_ctf_2019_score1.png" alt="ritsec_ctf_2019_score1.png"> <br />
 <img src="https://captureamerica.github.io/writeups/img/ritsec_ctf_2019_score2.png" alt="ritsec_ctf_2019_score2.png">
