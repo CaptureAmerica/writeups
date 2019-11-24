@@ -1,31 +1,35 @@
 ---
 title: "RITSEC CTF 2019 Writeup"
 date: 2019-11-18T13:00:00+09:00
-lastmod: 2019-11-18T13:00:00+09:00
+lastmod: 2019-11-24T18:00:00+09:00
 draft: false
 keywords: []
 description: ""
-tags: ["CTF"]
+tags: ["CTF", "Reviewed"]
 categories: ["CTF"]
 author: "きゃぷあめ"
 ---
 URL: [https://ctf.ritsec.club/challenges](https://ctf.ritsec.club/challenges)
 <br /><br />
 
-1012ポイントで、201番でした。
+1012ポイントで、最終順位は201番でした。
 
 <img src="https://captureamerica.github.io/writeups/img/ritsec_ctf_2019_score1.png" alt="ritsec_ctf_2019_score1.png"> <br />
 <img src="https://captureamerica.github.io/writeups/img/ritsec_ctf_2019_score2.png" alt="ritsec_ctf_2019_score2.png">
 
 <br /><br />
-以下は、チャレンジ一覧です。
+以下は、チャレンジ一覧ですが、このスクリーンショットを撮った後で追加された問題もあったようです。
+
+スクリーンショットに入っているやつも、追加されたことに気づかずに手を付けてないのもいくつかあります。。。凹○ コテッ
+
 
 <img src="https://captureamerica.github.io/writeups/img/ritsec_ctf_2019_chall_list1.png" alt="ritsec_ctf_2019_chall_list1.png"> <br />
 <img src="https://captureamerica.github.io/writeups/img/ritsec_ctf_2019_chall_list2.png" alt="ritsec_ctf_2019_chall_list2.png">
 <br /><br />
 
 
-結構、興味深いチャレンジがいくつかありました。解けなかったものは、後日復習しておきます。
+結構、興味深いチャレンジがいくつかあって、まぁまぁ楽しかったです。
+
 
 
 <br /><br />
@@ -571,6 +575,342 @@ Crackできないやつもいくつかありましたが、何回かやってい
 Flag: `RS{H@$HM31FY0UCAN}`
 
 
+
+<br /><br />
+<br /><br />
+# [Web]: Knock knock
+- - -
+## Challenge
+> While performing a pentest, we managed to get limited access to a box on the network (listener@129.21.228.115) with password of password. There's probably some cool stuff you can find on the network if you go looking.
+<br /><br />
+ssh listener@129.21.228.115
+
+
+<br />
+## Unsolved
+
+これは解けませんでした。
+
+sshでログインすると、ホームにbinディレクトリがあり、これらのコマンドしか使えないようです。
+
+<pre>
+-bash-4.4$ ls -la bin
+total 2652
+drwxr-xr-x 2 0 0    4096 Nov 16 18:10 .
+drwxr-xr-x 5 0 0    4096 Nov 15 09:30 ..
+-rwxr-xr-x 1 0 0 1113504 Nov 15 08:57 bash
+-rwxr-xr-x 1 0 0  223304 Nov 15 09:56 curl
+-rwxr-xr-x 1 0 0  133792 Nov 15 09:55 ls
+-rwxr-xr-x 1 0 0   35312 Nov 15 08:59 nc
+-rwxr-xr-x 1 0 0   64424 Nov 16 18:10 ping
+-rwxr-xr-x 1 0 0 1130096 Nov 15 08:59 tcpdump
+</pre>
+
+<br />
+まずは、Port 22以外の通信を見てみました。
+
+<pre>
+-bash-4.4$ tcpdump port not 22                                                                                                                                                                                          
+tcpdump: verbose output suppressed, use -v or -vv for full protocol decode
+listening on ens3, link-type EN10MB (Ethernet), capture size 262144 bytes
+04:24:32.865073 IP 192.168.0.33.47408 > 1.0.0.1.53: 13249+ A? ntp.ubuntu.com. (32)
+04:24:32.865147 IP 192.168.0.33.35748 > 1.1.1.1.53: 20808+ A? ntp.ubuntu.com.ritsec.co. (42)
+04:24:32.865205 IP 192.168.0.33.47876 > 1.0.0.1.53: Flags [S], seq 893482652, win 28200, options [mss 1410,sackOK,TS val 1676423091 ecr 0,nop,wscale 7], length 0
+04:24:32.985232 IP 192.168.0.33.47872 > 1.0.0.1.53: Flags [S], seq 2498129201, win 28200, options [mss 1410,sackOK,TS val 1676423211 ecr 0,nop,wscale 7], length 0
+04:24:33.758441 IP 192.168.0.33.34908 > 69.253.122.14.4236: Flags [S], seq 753516354, win 28200, options [mss 1410,sackOK,TS val 760775552 ecr 0,nop,wscale 7], length 0
+04:24:33.881227 IP 192.168.0.33.47876 > 1.0.0.1.53: Flags [S], seq 893482652, win 28200, options [mss 1410,sackOK,TS val 1676424107 ecr 0,nop,wscale 7], length 0
+04:24:34.759791 IP 192.168.0.33.59088 > 69.253.122.14.4237: Flags [S], seq 2979994560, win 28200, options [mss 1410,sackOK,TS val 760776553 ecr 0,nop,wscale 7], length 0
+04:24:35.001224 IP 192.168.0.33.47872 > 1.0.0.1.53: Flags [S], seq 2498129201, win 28200, options [mss 1410,sackOK,TS val 1676425227 ecr 0,nop,wscale 7], length 0
+04:24:35.033231 IP 192.168.0.33.32984 > 1.1.1.1.53: Flags [S], seq 1552630073, win 28200, options [mss 1410,sackOK,TS val 3025227637 ecr 0,nop,wscale 7], length 0
+04:24:35.761200 IP 192.168.0.33.34364 > 69.253.122.14.4238: Flags [S], seq 976634792, win 28200, options [mss 1410,sackOK,TS val 760777555 ecr 0,nop,wscale 7], length 0
+04:24:35.897236 IP 192.168.0.33.47876 > 1.0.0.1.53: Flags [S], seq 893482652, win 28200, options [mss 1410,sackOK,TS val 1676426123 ecr 0,nop,wscale 7], length 0
+04:24:36.762575 IP 192.168.0.33.39078 > 69.253.122.14.4239: Flags [S], seq 964353877, win 28200, options [mss 1410,sackOK,TS val 760778556 ecr 0,nop,wscale 7], length 0
+:
+</pre>
+
+<br />
+69.253.122.14 宛ての通信があったので、しばらく眺めてみましたが、ポート番号がインクリメントされていてSynをひたすら投げて全く応答がないので、他の誰かがポートスキャンしているものと判断しました。
+
+どこからこのIPアドレスを取ってきたのかは知りませんが、紛らわしいです。
+```
+-bash-4.4$ tcpdump -Xs 1600 port not 22 and host 69.253.122.14
+tcpdump: verbose output suppressed, use -v or -vv for full protocol decode
+listening on ens3, link-type EN10MB (Ethernet), capture size 1600 bytes
+04:30:50.267827 IP 192.168.0.33.55074 > 69.253.122.14.4612: Flags [S], seq 1926877104, win 28200, options [mss 1410,sackOK,TS val 761152061 ecr 0,nop,wscale 7], length 0
+	0x0000:  4500 003c 72c0 4000 4006 4727 c0a8 0021  E..<r.@.@.G'...!
+	0x0010:  45fd 7a0e d722 1204 72d9 cfb0 0000 0000  E.z.."..r.......
+	0x0020:  a002 6e28 8103 0000 0204 0582 0402 080a  ..n(............
+	0x0030:  2d5e 423d 0000 0000 0103 0307            -^B=........
+04:30:51.269207 IP 192.168.0.33.47368 > 69.253.122.14.4613: Flags [S], seq 2080205647, win 28200, options [mss 1410,sackOK,TS val 761153063 ecr 0,nop,wscale 7], length 0
+	0x0000:  4500 003c d524 4000 4006 e4c2 c0a8 0021  E..<.$@.@......!
+	0x0010:  45fd 7a0e b908 1205 7bfd 6b4f 0000 0000  E.z.....{.kO....
+	0x0020:  a002 6e28 8103 0000 0204 0582 0402 080a  ..n(............
+	0x0030:  2d5e 4627 0000 0000 0103 0307            -^F'........
+04:30:52.270604 IP 192.168.0.33.45528 > 69.253.122.14.4614: Flags [S], seq 2845867688, win 28200, options [mss 1410,sackOK,TS val 761154064 ecr 0,nop,wscale 7], length 0
+	0x0000:  4500 003c c1cd 4000 4006 f819 c0a8 0021  E..<..@.@......!
+	0x0010:  45fd 7a0e b1d8 1206 a9a0 7ea8 0000 0000  E.z.......~.....
+	0x0020:  a002 6e28 8103 0000 0204 0582 0402 080a  ..n(............
+	0x0030:  2d5e 4a10 0000 0000 0103 0307            -^J.........
+:
+```
+
+<br />
+どうやら192.168.0.14が居て、443でたまに応答が返っているみたいなのがわかります。
+
+```
+04:24:45.492388 IP 192.168.0.33.47540 > 192.168.0.14.443: Flags [S], seq 3430797911, win 28200, options [mss 1410,sackOK,TS val 996231414 ecr 0,nop,wscale 7], length 0
+04:24:45.493305 IP 192.168.0.14.443 > 192.168.0.33.47540: Flags [S.], seq 960529478, ack 3430797912, win 27960, options [mss 1410,sackOK,TS val 2321810964 ecr 996231414,nop,wscale 7], length 0
+04:24:45.493355 IP 192.168.0.33.47540 > 192.168.0.14.443: Flags [.], ack 1, win 221, options [nop,nop,TS val 996231415 ecr 2321810964], length 0
+04:24:45.502594 IP 192.168.0.33.47540 > 192.168.0.14.443: Flags [P.], seq 1:518, ack 1, win 221, options [nop,nop,TS val 996231424 ecr 2321810964], length 517
+04:24:45.503510 IP 192.168.0.14.443 > 192.168.0.33.47540: Flags [.], ack 518, win 227, options [nop,nop,TS val 2321810974 ecr 996231424], length 0
+04:24:45.506205 IP 192.168.0.14.443 > 192.168.0.33.47540: Flags [P.], seq 1:1336, ack 518, win 227, options [nop,nop,TS val 2321810977 ecr 996231424], length 1335
+04:24:45.506223 IP 192.168.0.33.47540 > 192.168.0.14.443: Flags [.], ack 1336, win 243, options [nop,nop,TS val 996231428 ecr 2321810977], length 0
+04:24:45.507078 IP 192.168.0.33.47540 > 192.168.0.14.443: Flags [P.], seq 518:611, ack 1336, win 243, options [nop,nop,TS val 996231428 ecr 2321810977], length 93
+04:24:45.508063 IP 192.168.0.14.443 > 192.168.0.33.47540: Flags [P.], seq 1336:1387, ack 611, win 227, options [nop,nop,TS val 2321810979 ecr 996231428], length 51
+```
+
+<br />
+ただし、Synのみで終わっているのがほとんどで、curlで繋ごうとしても繋がりませんでした。
+
+おそらく、Source portを見てて、繰り返しやっていたらフラグが取れたかもです。
+
+
+<br /><br />
+<br /><br />
+# [Forensics]: Lion
+- - -
+## Challenge
+> when the lion rars, it's time to GO
+<br /><br />
+us-central-1.ritsec.club/l/lioncap
+
+
+<br />
+## Unsolved
+
+これも解けませんでした。Writeupも見つからないですね。(2019/11/24時点)
+
+lioncapはpcapなので、wiresharkで開きます。
+
+f1.rar ~ f12.rar がexportできます。
+
+bh.exe が入ってます。
+
+wiresharkでキャプチャーしながら実行してみると、192.168.206.161:3333 にアクセスに行こうとしますが、結局繋がらないのでそのまま終了します。
+
+この動きは、VirusTotalでも確認できます。他の誰かがすでにアップロード済みでした。
+
+<pre>
+$ sha256sum bh.exe 
+059e215a39cef204cc9cd2fd531d741b1cc3a84993d81b7505608a07741b652c  bh.exe
+</pre>
+
+https://www.virustotal.com/gui/file/059e215a39cef204cc9cd2fd531d741b1cc3a84993d81b7505608a07741b652c/detection
+
+<br />
+ローカル環境で192.168.206.161を用意して、
+<pre>
+$ nc -l -p 3333
+</pre>
+で待ち受けて、いちおうコネクションは張られましたが、データは何も確認できませんでした。
+
+Give up!
+
+
+
+
+
+<br /><br />
+<br /><br />
+<img src="https://captureamerica.github.io/writeups/img/orange_bar.png" alt="orange_bar.png">
+<br />
+ここから下はCTF終了後に行った復習です。（他の方のWriteupとか参照してます。）
+
+
+<br /><br />
+<br /><br />
+# [Misc]: Patch Tuesday
+- - -
+## Challenge
+> Happy patch Tuesday!
+
+Attachments:
+
+- patch-tuesday
+- win32k.sys
+
+
+<br />
+## Solution
+単純な問題だったみたいです。
+
+<img src="https://captureamerica.github.io/writeups/img/win32k.PNG" alt="win32k.PNG">
+
+<br />
+あるいは、sysinternalのsigcheck.exeにて、
+```
+$ sigcheck.exe -a -nobanner win32k.sys
+
+        Verified:       Unsigned
+        Link date:      12:03 AM 9/1/2035
+        Publisher:      n/a
+        Company:        Microsoft Corporation
+        Description:    Full/Desktop Multi-User Win32 Driver
+        Product:        Microsoft? Windows? Operating System
+        Prod version:   10.0.18362.239
+        File version:   10.0.18362.239 (WinBuild.160101.0800)
+        MachineType:    64-bit
+        Binary Version: 10.0.18362.239
+        Original Name:  win32k.sys
+        Internal Name:  win32k.sys
+        Copyright:      ? RITSEC{PATCHM3IFYOUCAN} No rights reserved.
+        Comments:       n/a
+        Entropy:        6.019
+```
+
+<br />
+Flag: `RITSEC{PATCHM3IFYOUCAN}`
+
+
+
+<br /><br />
+<br /><br />
+# [Stego]: exfiltrated_duck
+- - -
+## Challenge
+> If it walks like a duck, pcaps like a duck, and looks like a duck, what is it?
+
+Attachments:
+
+- exfiltrated_duck.pcap
+
+
+<br />
+## Solution
+duckでpcapだったので、まず直感でduplicate_ack（tcp.analysis.duplicate_ack）かと思ったけど、違いました。。
+
+tcp streamが2つあるんですが、これをBase64 Decodeするようです。
+
+ただし、途中で余計な文字列が出てくるので、それを削除しないといけません。
+
+[https://regex101.com/](https://regex101.com/)で動作確認。
+
+<img src="https://captureamerica.github.io/writeups/img/ritsec_regex101.png" alt="ritsec_regex101.png">
+
+tcp streamをテキスト(tcp_stream.txt)に保存しておいて、
+
+<pre>
+$ cat tcp_stream.txt | tr -d "\n" | perl -pe 's/\..*?JA..//g' | base64 -D > data.bin
+
+$ file data.bin
+data.bin: PNG image data, 2800 x 1867, 8-bit/color RGBA, non-interlaced
+
+$ mv data.bin data.png
+</pre>
+
+(Note)<br />
+- tcp_stream.txtの末尾のゴミデータは手動で削除してます。<br />
+- Macでやっているので、base64の引き数は "-D" (大文字のD) です。<br />
+- sedでやると shortest match がうまくいかないので、perlでやってます。<br />
+- ちなみに、ちょっと壊れたPNGになっちゃうみたいです。
+
+<br />
+data.pngを「青い空を見上げればいつもそこに白い猫」で開いて、内包ファイルをサーチするとZIPファイルが見つかるので取り出します。
+
+<img src="https://captureamerica.github.io/writeups/img/ritsec_duck_zip.PNG" alt="ritsec_duck_zip.PNG">
+
+そのままWindows上でZipを解凍しました。
+
+中身は、dai2.jpgです。
+
+strings コマンドで、長い文字列 952bpNXY25WS51mcBt2Y1RUZoR1bUVWbvNGbld1eDV0UUlkU が取れます。
+
+<pre>
+$ echo 952bpNXY25WS51mcBt2Y1RUZoR1bUVWbvNGbld1eDV0UUlkU | rev | base64 -D ; echo
+RITSEC{WelcomeToTheDuckArmyInvasion}
+</pre>
+
+<br />
+Flag: `RITSEC{WelcomeToTheDuckArmyInvasion}`
+
+<br />
+反転 (rev) とか気づきにくいけど、CTFイベントの開始時に Flag format "RITSEC{}"の確認をしたあと、Base64した文字列を取ってアタマの隅に置いておくといいんでしょうね。
+
+<pre>
+$ echo RITSEC | base64
+UklUU0VDCg==
+</pre>
+
+
+
+<br /><br />
+<br /><br />
+# [Forensics]: findme
+- - -
+## Challenge
+> Find me! Challenge created by Security Risk Advisors for RITSEC CTF
+
+Attachments:
+
+- findme.pcap
+
+
+<br />
+## Solution
+Decoyが紛らわしいだけの問題でした。
+
+<br />
+`tcp stream 0` にでっかいBase64のデータがあります。こっちは結局Decoyでした。
+
+いろいろやってると、pngやらjpegやらthumbnailやらが取れます。これに結構時間を取られました。
+
+<br />
+`tcp stream 1` は以下の通りです。
+
+<pre>
+aHR0cHM6Ly93d3cueW91dHViZS5jb20vd2F0Y2g/dj1kUXc0dzlXZ1hjUQo=
+H4sIAFSZx10AA+3OMQuCQBiH8Zv9FPcFgrvUcw2kIWgydzG1EkQPvZui757S0lSTRPD8lmd43+F/
+6cqrWJmaGRMt1Ums3vtitkKHsdGJDqNtKJSeGwup1h628JMrRymFP/ve+Q9/X+5/Kjvkp316t1Vp
+p0KNReuKuq17V9x21jb9IwjSPDtuKukGWXXD1AS/XgwAAAAAAAAAAAAAAAAAWDwB38XEewAoAAA=
+
+CTRL-c to close
+</pre>
+
+<br />
+
+1行目は、YouTubeへのリンクです。これもDecoyです。┐(´д｀)┌
+<pre>
+$ echo "aHR0cHM6Ly93d3cueW91dHViZS5jb20vd2F0Y2g/dj1kUXc0dzlXZ1hjUQo=" | base64 -D
+https://www.youtube.com/watch?v=dQw4w9WgXcQ
+</pre>
+
+<br />
+残りの行からフラグが取れます。
+
+<pre>
+$ echo "H4sIAFSZx10AA+3OMQuCQBiH8Zv9FPcFgrvUcw2kIWgydzG1EkQPvZui757S0lSTRPD8lmd43+F/6cqrWJmaGRMt1Ums3vtitkKHsdGJDqNtKJSeGwup1h628JMrRymFP/ve+Q9/X+5/Kjvkp316t1Vpp0KNReuKuq17V9x21jb9IwjSPDtuKukGWXXD1AS/XgwAAAAAAAAAAAAAAAAAWDwB38XEewAoAAA=" | base64 -D > data.bin
+
+$ file data.bin
+data.bin: gzip compressed data, last modified: Sun Nov 10 05:00:04 2019, from Unix, original size 10240
+
+$ mv data.bin data.gz
+
+$ gunzip -d data.gz 
+
+$ file data
+data: POSIX tar archive (GNU)
+
+$ tar zxvf data
+x flag
+
+$ cat flag
+RITSEC{pcaps_0r_it_didnt_h@ppen}
+
+CTRL-c to close
+</pre>
+
+<br />
+Flag: `RITSEC{pcaps_0r_it_didnt_h@ppen}`
 
 
 <br /><br />
