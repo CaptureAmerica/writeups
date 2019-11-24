@@ -631,7 +631,6 @@ listening on ens3, link-type EN10MB (Ethernet), capture size 262144 bytes
 <br />
 69.253.122.14 宛ての通信があったので、しばらく眺めてみましたが、ポート番号がインクリメントされていてSynをひたすら投げて全く応答がないので、他の誰かがポートスキャンしているものと判断しました。
 
-どこからこのIPアドレスを取ってきたのかは知りませんが、紛らわしいです。
 ```
 -bash-4.4$ tcpdump -Xs 1600 port not 22 and host 69.253.122.14
 tcpdump: verbose output suppressed, use -v or -vv for full protocol decode
@@ -653,9 +652,12 @@ listening on ens3, link-type EN10MB (Ethernet), capture size 1600 bytes
 	0x0030:  2d5e 4a10 0000 0000 0103 0307            -^J.........
 :
 ```
+どこからこのIPアドレス(69.253.122.14)を取ってきたのかは知りませんが、紛らわしいですね。。
+
 
 <br />
-どうやら192.168.0.14が居て、443でたまに応答が返っているみたいなのがわかります。
+<br />
+Port 53とかも省いて眺めていると、どうやら192.168.0.14が居て、443でたまに応答が返っているみたいなのがわかります。ただし、Synのみで終わっているのがほとんどでした。
 
 ```
 04:24:45.492388 IP 192.168.0.33.47540 > 192.168.0.14.443: Flags [S], seq 3430797911, win 28200, options [mss 1410,sackOK,TS val 996231414 ecr 0,nop,wscale 7], length 0
@@ -670,9 +672,12 @@ listening on ens3, link-type EN10MB (Ethernet), capture size 1600 bytes
 ```
 
 <br />
-ただし、Synのみで終わっているのがほとんどで、curlで繋ごうとしても繋がりませんでした。
+Web問題だし、port 80か443にフォーカスするのが方向性的に正解なんでしょうね。
+
+curlで繋ごうとしても繋がらないし、HTTP Methodとか、Headertとか変えると取れるのか、とかいろいろ悩みましたが、
 
 おそらく、Source portを見てて、繰り返しやっていたらフラグが取れたかもです。
+
 
 
 <br /><br />
@@ -696,7 +701,7 @@ f1.rar ~ f12.rar がexportできます。
 
 bh.exe が入ってます。
 
-wiresharkでキャプチャーしながら実行してみると、192.168.206.161:3333 にアクセスに行こうとしますが、結局繋がらないのでそのまま終了します。
+wiresharkでキャプチャーしながら実行してみると、192.168.206.161:33333 にアクセスに行こうとしますが、結局繋がらないのでそのまま終了します。
 
 この動きは、VirusTotalでも確認できます。他の誰かがすでにアップロード済みでした。
 
@@ -710,7 +715,7 @@ https://www.virustotal.com/gui/file/059e215a39cef204cc9cd2fd531d741b1cc3a84993d8
 <br />
 ローカル環境で192.168.206.161を用意して、
 <pre>
-$ nc -l -p 3333
+$ nc -l -p 33333
 </pre>
 で待ち受けて、いちおうコネクションは張られましたが、データは何も確認できませんでした。
 
@@ -793,7 +798,7 @@ tcp streamが2つあるんですが、これをBase64 Decodeするようです�
 
 ただし、途中で余計な文字列が出てくるので、それを削除しないといけません。
 
-[https://regex101.com/](https://regex101.com/)で動作確認。
+[https://regex101.com/](https://regex101.com/) で動作確認。
 
 <img src="https://captureamerica.github.io/writeups/img/ritsec_regex101.png" alt="ritsec_regex101.png">
 
@@ -834,7 +839,7 @@ RITSEC{WelcomeToTheDuckArmyInvasion}
 Flag: `RITSEC{WelcomeToTheDuckArmyInvasion}`
 
 <br />
-反転 (rev) とか気づきにくいけど、CTFイベントの開始時に Flag format "RITSEC{}"の確認をしたあと、Base64した文字列を取ってアタマの隅に置いておくといいんでしょうね。
+反転 (rev) ってなかなか気づけないと思うんだけど、CTFイベントの開始時に Flag format "RITSEC{}"の確認をしたあと、Base64した文字列を取ってアタマの隅に置いておくといいんでしょうね。
 
 <pre>
 $ echo RITSEC | base64

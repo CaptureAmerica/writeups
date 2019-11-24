@@ -51,7 +51,7 @@
 
 <meta itemprop="datePublished" content="2019-11-18T13:00:00&#43;09:00" />
 <meta itemprop="dateModified" content="2019-11-24T18:00:00&#43;09:00" />
-<meta itemprop="wordCount" content="5231">
+<meta itemprop="wordCount" content="5340">
 
 
 
@@ -1062,8 +1062,6 @@ listening on ens3, link-type EN10MB (Ethernet), capture size 262144 bytes
 
 <p><br />
 69.253.122.14 宛ての通信があったので、しばらく眺めてみましたが、ポート番号がインクリメントされていてSynをひたすら投げて全く応答がないので、他の誰かがポートスキャンしているものと判断しました。</p>
-
-<p>どこからこのIPアドレスを取ってきたのかは知りませんが、紛らわしいです。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><span class="lnt"> 1
@@ -1108,8 +1106,11 @@ listening on ens3, link-type EN10MB (Ethernet), capture size 1600 bytes
 :</pre></td></tr></table>
 </div>
 </div>
+<p>どこからこのIPアドレス(69.253.122.14)を取ってきたのかは知りませんが、紛らわしいですね。。</p>
+
 <p><br />
-どうやら192.168.0.14が居て、443でたまに応答が返っているみたいなのがわかります。</p>
+<br />
+Port 53とかも省いて眺めていると、どうやら192.168.0.14が居て、443でたまに応答が返っているみたいなのがわかります。ただし、Synのみで終わっているのがほとんどでした。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><span class="lnt">1
@@ -1135,7 +1136,9 @@ listening on ens3, link-type EN10MB (Ethernet), capture size 1600 bytes
 </div>
 </div>
 <p><br />
-ただし、Synのみで終わっているのがほとんどで、curlで繋ごうとしても繋がりませんでした。</p>
+Web問題だし、port 80か443にフォーカスするのが方向性的に正解なんでしょうね。</p>
+
+<p>curlで繋ごうとしても繋がらないし、HTTP Methodとか、Headertとか変えると取れるのか、とかいろいろ悩みましたが、</p>
 
 <p>おそらく、Source portを見てて、繰り返しやっていたらフラグが取れたかもです。</p>
 
@@ -1166,7 +1169,7 @@ us-central-1.ritsec.club/l/lioncap</p>
 
 <p>bh.exe が入ってます。</p>
 
-<p>wiresharkでキャプチャーしながら実行してみると、192.168.206.161:3333 にアクセスに行こうとしますが、結局繋がらないのでそのまま終了します。</p>
+<p>wiresharkでキャプチャーしながら実行してみると、192.168.206.161:33333 にアクセスに行こうとしますが、結局繋がらないのでそのまま終了します。</p>
 
 <p>この動きは、VirusTotalでも確認できます。他の誰かがすでにアップロード済みでした。</p>
 
@@ -1180,7 +1183,7 @@ $ sha256sum bh.exe
 <p><br />
 ローカル環境で192.168.206.161を用意して、
 <pre>
-$ nc -l -p 3333
+$ nc -l -p 33333
 </pre>
 で待ち受けて、いちおうコネクションは張られましたが、データは何も確認できませんでした。</p>
 
@@ -1294,7 +1297,7 @@ Flag: <code>RITSEC{PATCHM3IFYOUCAN}</code></p>
 
 <p>ただし、途中で余計な文字列が出てくるので、それを削除しないといけません。</p>
 
-<p><a href="https://regex101.com/">https://regex101.com/</a>で動作確認。</p>
+<p><a href="https://regex101.com/">https://regex101.com/</a> で動作確認。</p>
 
 <p><img src="https://captureamerica.github.io/writeups/img/ritsec_regex101.png" alt="ritsec_regex101.png"></p>
 
@@ -1335,7 +1338,7 @@ RITSEC{WelcomeToTheDuckArmyInvasion}
 Flag: <code>RITSEC{WelcomeToTheDuckArmyInvasion}</code></p>
 
 <p><br />
-反転 (rev) とか気づきにくいけど、CTFイベントの開始時に Flag format &ldquo;RITSEC{}&ldquo;の確認をしたあと、Base64した文字列を取ってアタマの隅に置いておくといいんでしょうね。</p>
+反転 (rev) ってなかなか気づけないと思うんだけど、CTFイベントの開始時に Flag format &ldquo;RITSEC{}&ldquo;の確認をしたあと、Base64した文字列を取ってアタマの隅に置いておくといいんでしょうね。</p>
 
 <pre>
 $ echo RITSEC | base64
