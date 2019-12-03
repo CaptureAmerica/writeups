@@ -35,7 +35,7 @@
 
 
 <link href="https://captureamerica.github.io/writeups/dist/even.c2a46f00.min.css" rel="stylesheet">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
 
 
 <meta property="og:title" content="The Honeynet Project: Innsbruck Workshop CTF Writeup" />
@@ -48,7 +48,7 @@
 <meta itemprop="description" content="https://www.reddit.com/r/netsec/new/を見ていたら、たまたまCTFを見つけたのでやってみました。 Junior CTFな">
 <meta itemprop="datePublished" content="2019-06-03T00:00:00&#43;08:00" />
 <meta itemprop="dateModified" content="2019-06-03T07:33:00&#43;08:00" />
-<meta itemprop="wordCount" content="4260">
+<meta itemprop="wordCount" content="4279">
 
 
 
@@ -134,99 +134,147 @@
 
     <div class="post-toc" id="post-toc">
   <h2 class="post-toc-title">Contents</h2>
-  <div class="post-toc-content always-active">
+  <div class="post-toc-content">
     <nav id="TableOfContents">
   <ul>
-    <li><a href="#challenge">Challenge</a></li>
-    <li><a href="#solution">Solution</a></li>
-  </ul>
-
-  <ul>
-    <li><a href="#solution1">Solution</a></li>
-  </ul>
-
-  <ul>
-    <li><a href="#solution2">Solution</a></li>
-  </ul>
-
-  <ul>
-    <li><a href="#solution3">Solution</a></li>
-  </ul>
-
-  <ul>
-    <li><a href="#solution4">Solution</a></li>
-  </ul>
-
-  <ul>
-    <li><a href="#solution5">Solution</a></li>
-  </ul>
-
-  <ul>
-    <li><a href="#solution6">Solution</a></li>
-  </ul>
-
-  <ul>
-    <li><a href="#solution7">Solution</a></li>
-  </ul>
-
-  <ul>
-    <li><a href="#solution8">Solution</a></li>
-  </ul>
-
-  <ul>
-    <li><a href="#solution9">Solution</a></li>
-  </ul>
-
-  <ul>
-    <li><a href="#solution10">Solution</a></li>
-  </ul>
-
-  <ul>
-    <li><a href="#solution11">Solution</a></li>
-  </ul>
-
-  <ul>
-    <li><a href="#solution12">Solution</a></li>
-  </ul>
-
-  <ul>
-    <li><a href="#not-solved">(Not solved)</a></li>
-  </ul>
-
-  <ul>
-    <li><a href="#solution13">Solution</a></li>
-  </ul>
-
-  <ul>
-    <li><a href="#solution14">Solution</a></li>
-  </ul>
-
-  <ul>
-    <li><a href="#solution15">Solution</a></li>
-  </ul>
-
-  <ul>
-    <li><a href="#solution16">Solution</a></li>
-  </ul>
-
-  <ul>
-    <li><a href="#solution17">Solution</a></li>
-  </ul>
-
-  <ul>
-    <li><a href="#solution18">Solution</a></li>
-  </ul>
-
-  <ul>
-    <li><a href="#solution19">Solution</a></li>
-  </ul>
-
-  <ul>
-    <li><a href="#not-solved1">(Not solved)</a></li>
-  </ul>
-
-  <ul>
-    <li><a href="#not-solved2">(Not solved)</a></li>
+    <li><a href="#too-meta-easy-imageforensics">Too Meta (easy, image-forensics)</a>
+      <ul>
+        <li><a href="#challenge">Challenge</a></li>
+        <li><a href="#solution">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#dns-records-easy-network">DNS Records (easy, network)</a>
+      <ul>
+        <li><a href="#challenge1">Challenge</a></li>
+        <li><a href="#solution1">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#wanna-buy-a-flag-easy-network">Wanna buy a flag? (easy, network)</a>
+      <ul>
+        <li><a href="#challenge2">Challenge</a></li>
+        <li><a href="#solution2">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#find-the-flag-easy-binary">Find The Flag (easy, binary)</a>
+      <ul>
+        <li><a href="#challenge3">Challenge</a></li>
+        <li><a href="#solution3">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#antivaxx-easy-web">Anti-Vaxx (easy, web)</a>
+      <ul>
+        <li><a href="#challenge4">Challenge</a></li>
+        <li><a href="#solution4">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#prime-factory-easy-crypto">Prime Factory (easy, crypto)</a>
+      <ul>
+        <li><a href="#challenge5">Challenge</a></li>
+        <li><a href="#solution5">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#port-scanning-easy-network">Port Scanning (easy, network)</a>
+      <ul>
+        <li><a href="#challenge6">Challenge</a></li>
+        <li><a href="#solution6">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#systeme-anwendungen-produkte-easy-web">Systeme, Anwendungen, Produkte. (easy, web)</a>
+      <ul>
+        <li><a href="#challenge7">Challenge</a></li>
+        <li><a href="#solution7">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#sharks-easy-network">Sharks (easy, network)</a>
+      <ul>
+        <li><a href="#challenge8">Challenge</a></li>
+        <li><a href="#solution8">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#texture-easy-imageforensics">Texture (easy, image-forensics)</a>
+      <ul>
+        <li><a href="#challenge9">Challenge</a></li>
+        <li><a href="#solution9">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#there-is-no-such-thing-as-a-free-flag-easy-network">There is no such thing as a free flag (easy, network)</a>
+      <ul>
+        <li><a href="#challenge10">Challenge</a></li>
+        <li><a href="#solution10">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#weird-website-easy-network">Weird Website (easy, network)</a>
+      <ul>
+        <li><a href="#challenge11">Challenge</a></li>
+        <li><a href="#solution11">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#superbank-easy-network-multistage">SuperBank (easy, network, multi-stage)</a>
+      <ul>
+        <li><a href="#challenge12">Challenge</a></li>
+        <li><a href="#solution12">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#superbanknotes-">SuperBankNotes (?)</a>
+      <ul>
+        <li><a href="#challenge13">Challenge</a></li>
+        <li><a href="#unsolved">(Unsolved)</a></li>
+      </ul>
+    </li>
+    <li><a href="#hashingasaservice-medium-web">(H)ashing-as-a-Service (medium, web)</a>
+      <ul>
+        <li><a href="#challenge14">Challenge</a></li>
+        <li><a href="#solution13">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#terrific-encryption-medium-cryptography">Terrific Encryption (medium, cryptography)</a>
+      <ul>
+        <li><a href="#challenge15">Challenge</a></li>
+        <li><a href="#solution14">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#you-know-the-rules-and-so-do-i--medium-imageforensics">You know the rules, and so do I ?? (medium, image-forensics)</a>
+      <ul>
+        <li><a href="#challenge16">Challenge</a></li>
+        <li><a href="#solution15">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#coinflip-medium-binary">CoinFlip (medium, binary)</a>
+      <ul>
+        <li><a href="#challenge17">Challenge</a></li>
+        <li><a href="#solution16">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#git-exposed-medium-web">Git Exposed (medium, web)</a>
+      <ul>
+        <li><a href="#challenge18">Challenge</a></li>
+        <li><a href="#solution17">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#hidden-in-plain-sight-medium-misc">Hidden in Plain Sight (medium, misc)</a>
+      <ul>
+        <li><a href="#challenge19">Challenge</a></li>
+        <li><a href="#solution18">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#directory-listing-hard-cryptography">Directory Listing (hard, cryptography)</a>
+      <ul>
+        <li><a href="#challenge20">Challenge</a></li>
+        <li><a href="#solution19">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#passworddb-hard-network">PasswordDB (hard, network)</a>
+      <ul>
+        <li><a href="#challenge21">Challenge</a></li>
+        <li><a href="#unsolved1">(Unsolved)</a></li>
+      </ul>
+    </li>
+    <li><a href="#cookiecopter-hard-cryptography-web">CookieCopter (hard, cryptography, web)</a>
+      <ul>
+        <li><a href="#challenge22">Challenge</a></li>
+        <li><a href="#unsolved2">(Unsolved)</a></li>
+      </ul>
+    </li>
   </ul>
 </nav>
   </div>
@@ -242,9 +290,9 @@ Junior CTFなので簡単なものがほとんどですが、Hardの2つとわ�
 <br />
 <img src="https://captureamerica.github.io/writeups/img/honey_rank.png" alt="honey_rank.png"></p>
 <p><br /><br /></p>
-<h1 id="too-meta-easy-imageforensics">Too Meta (easy, image-forensics)</h1>
+<h2 id="too-meta-easy-imageforensics">Too Meta (easy, image-forensics)</h2>
 <hr>
-<h2 id="challenge">Challenge</h2>
+<h3 id="challenge">Challenge</h3>
 <blockquote>
 <p>There's a flag hidden in the image. Can you find it?</p>
 </blockquote>
@@ -252,21 +300,23 @@ Junior CTFなので簡単なものがほとんどですが、Hardの2つとわ�
 <ul>
 <li>meta.jpg</li>
 </ul>
-<h2 id="solution">Solution</h2>
+<h3 id="solution">Solution</h3>
 <p>ExifTool</p>
 <p><br /><br />
 <br /><br /></p>
-<h1 id="dns-records-easy-network">DNS Records (easy, network)</h1>
+<h2 id="dns-records-easy-network">DNS Records (easy, network)</h2>
 <hr>
+<h3 id="challenge1">Challenge</h3>
 <blockquote>
 <p>Any suspicious records on hi.ls?</p>
 </blockquote>
-<h2 id="solution1">Solution</h2>
+<h3 id="solution1">Solution</h3>
 <p>$ dig @8.8.8.8 hi.ls txt</p>
 <p><br /><br />
 <br /><br /></p>
-<h1 id="wanna-buy-a-flag-easy-network">Wanna buy a flag? (easy, network)</h1>
+<h2 id="wanna-buy-a-flag-easy-network">Wanna buy a flag? (easy, network)</h2>
 <hr>
+<h3 id="challenge2">Challenge</h3>
 <blockquote>
 <p>Analyze the network traffic to get the flag.</p>
 </blockquote>
@@ -274,12 +324,13 @@ Junior CTFなので簡単なものがほとんどですが、Hardの2つとわ�
 <ul>
 <li>buyaflag.pcap</li>
 </ul>
-<h2 id="solution2">Solution</h2>
+<h3 id="solution2">Solution</h3>
 <p>Wireshark -&gt; Follow TCP stream</p>
 <p><br /><br />
 <br /><br /></p>
-<h1 id="find-the-flag-easy-binary">Find The Flag (easy, binary)</h1>
+<h2 id="find-the-flag-easy-binary">Find The Flag (easy, binary)</h2>
 <hr>
+<h3 id="challenge3">Challenge</h3>
 <blockquote>
 <p>There is a flag hidden in this binary. Can you find it?</p>
 </blockquote>
@@ -287,33 +338,36 @@ Junior CTFなので簡単なものがほとんどですが、Hardの2つとわ�
 <ul>
 <li>findtheflag</li>
 </ul>
-<h2 id="solution3">Solution</h2>
+<h3 id="solution3">Solution</h3>
 <p>strings &amp; grep</p>
 <p><br /><br />
 <br /><br /></p>
-<h1 id="antivaxx-easy-web">Anti-Vaxx (easy, web)</h1>
+<h2 id="antivaxx-easy-web">Anti-Vaxx (easy, web)</h2>
 <hr>
+<h3 id="challenge4">Challenge</h3>
 <blockquote>
 <p>How do you defeat an anti-vaxxer?</p>
 </blockquote>
-<h2 id="solution4">Solution</h2>
+<h3 id="solution4">Solution</h3>
 <p>view sourceで、&ldquo;OWASP A1:2107&quot;が見つかります。ググったら、よくあるSQL Injectionなのがわかります。</p>
 <pre>' or '1'='1</pre>
 <p><br /><br />
 <br /><br /></p>
-<h1 id="prime-factory-easy-crypto">Prime Factory (easy, crypto)</h1>
+<h2 id="prime-factory-easy-crypto">Prime Factory (easy, crypto)</h2>
 <hr>
+<h3 id="challenge5">Challenge</h3>
 <blockquote>
 <p>The following two numbers have three prime factors each. Take the largest prime factor x, and submit it as a flag like so: _<em>flag</em>_{x}.<br />
 786157563836987543027608510735334168859
 275030867366686996969667414354528430922804392211206745642631729</p>
 </blockquote>
-<h2 id="solution5">Solution</h2>
+<h3 id="solution5">Solution</h3>
 <p><a href="http://factordb.com/index.php"><a href="http://factordb.com/index.php">http://factordb.com/index.php</a></a> で、factorize。</p>
 <p><br /><br />
 <br /><br /></p>
-<h1 id="port-scanning-easy-network">Port Scanning (easy, network)</h1>
+<h2 id="port-scanning-easy-network">Port Scanning (easy, network)</h2>
 <hr>
+<h3 id="challenge6">Challenge</h3>
 <blockquote>
 <p>Knock, knock!
 <br />
@@ -325,7 +379,7 @@ A hidden service running on ctf.honeynet.org, but we won't tell you where.
 <br />
 Port 9000?10000, stop asking bruh!</p>
 </blockquote>
-<h2 id="solution6">Solution</h2>
+<h3 id="solution6">Solution</h3>
 <p><code>nmap -sT ctf.honeynet.org -p 9000-10000</code>で、ポート9413がオープンなのがわかります。NetCatで繋ぐと、&ldquo;Knock, knock!&ldquo;とくるので、&ldquo;Who's there?&ldquo;を返すとフラグが取れます。</p>
 <pre>
 $ nc -v ctf.honeynet.org 9413
@@ -336,20 +390,22 @@ Who's there?
 </pre>
 <p><br /><br />
 <br /><br /></p>
-<h1 id="systeme-anwendungen-produkte-easy-web">Systeme, Anwendungen, Produkte. (easy, web)</h1>
+<h2 id="systeme-anwendungen-produkte-easy-web">Systeme, Anwendungen, Produkte. (easy, web)</h2>
 <hr>
+<h3 id="challenge7">Challenge</h3>
 <blockquote>
 <p>To manage the ever-increasing number of flags for the CTF system, the administrators have decided to use SAP as a management platform.</p>
 </blockquote>
-<h2 id="solution7">Solution</h2>
+<h3 id="solution7">Solution</h3>
 <p>ウェブサイトにアクセスすると、&ldquo;This website only works on Internet Explorer 6&rdquo; と出るので、User-Agentを変えればOK。</p>
 <pre>
 wget -O - "http://ctf.honeynet.org:8204/" --user-agent="Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1)"
 </pre>
 <p><br /><br />
 <br /><br /></p>
-<h1 id="sharks-easy-network">Sharks (easy, network)</h1>
+<h2 id="sharks-easy-network">Sharks (easy, network)</h2>
 <hr>
+<h3 id="challenge8">Challenge</h3>
 <blockquote>
 <p>Analyze the network traffic to get the flag.</p>
 </blockquote>
@@ -357,12 +413,13 @@ wget -O - "http://ctf.honeynet.org:8204/" --user-agent="Mozilla/4.0 (compatible;
 <ul>
 <li>shark.pcap</li>
 </ul>
-<h2 id="solution8">Solution</h2>
+<h3 id="solution8">Solution</h3>
 <p>WireSharkで、httpのobjectをexport。</p>
 <p><br /><br />
 <br /><br /></p>
-<h1 id="texture-easy-imageforensics">Texture (easy, image-forensics)</h1>
+<h2 id="texture-easy-imageforensics">Texture (easy, image-forensics)</h2>
 <hr>
+<h3 id="challenge9">Challenge</h3>
 <blockquote>
 <p>There's a flag hidden in the image. Can you find it?</p>
 </blockquote>
@@ -370,14 +427,15 @@ wget -O - "http://ctf.honeynet.org:8204/" --user-agent="Mozilla/4.0 (compatible;
 <ul>
 <li>texture.png</li>
 </ul>
-<h2 id="solution9">Solution</h2>
+<h3 id="solution9">Solution</h3>
 <p>「青い空を見上げればいつもそこに白い猫」のステガノグラフィー解析より、灰色ピクセルを強調。
 <br />
 フラグの文字列は右下に出るので、フルスクリーンにしておかないと見逃すかも。</p>
 <p><br /><br />
 <br /><br /></p>
-<h1 id="there-is-no-such-thing-as-a-free-flag-easy-network">There is no such thing as a free flag (easy, network)</h1>
+<h2 id="there-is-no-such-thing-as-a-free-flag-easy-network">There is no such thing as a free flag (easy, network)</h2>
 <hr>
+<h3 id="challenge10">Challenge</h3>
 <blockquote>
 <p>You have asked the organizers to give you a flag for free. &ldquo;Sure&rdquo;, they said, &ldquo;just go to <a href="http://ctf.honeynet.org:8101/flag.txt">http://ctf.honeynet.org:8101/flag.txt</a> and get it!&rdquo;
 <br /><br />
@@ -404,7 +462,7 @@ ACCEPT     tcp  --  0.0.0.0/0            0.0.0.0/0            tcp dpt:8000
 REJECT     tcp  --  0.0.0.0/0            0.0.0.0/0            tcp spts:1024:65535 reject-with tcp-reset
 ACCEPT     tcp  --  0.0.0.0/0            0.0.0.0/0
 </pre>
-<h2 id="solution10">Solution</h2>
+<h3 id="solution10">Solution</h3>
 <p>上から順番に見ていくと、当たってしまうルールは以下なのがわかります。</p>
 <pre>
 REJECT     tcp  --  0.0.0.0/0            0.0.0.0/0            tcp spts:1024:65535 reject-with tcp-reset
@@ -426,8 +484,9 @@ Server: Python/3.7 aiohttp/3.5.4
 </pre>
 <p><br /><br />
 <br /><br /></p>
-<h1 id="weird-website-easy-network">Weird Website (easy, network)</h1>
+<h2 id="weird-website-easy-network">Weird Website (easy, network)</h2>
 <hr>
+<h3 id="challenge11">Challenge</h3>
 <blockquote>
 <p>Analyze the network traffic to get the flag.</p>
 </blockquote>
@@ -435,12 +494,13 @@ Server: Python/3.7 aiohttp/3.5.4
 <ul>
 <li>weirdwebsite.pcap</li>
 </ul>
-<h2 id="solution11">Solution</h2>
+<h3 id="solution11">Solution</h3>
 <p><a href="http://codertab.com/JsUnFuck"><a href="http://codertab.com/JsUnFuck">http://codertab.com/JsUnFuck</a></a></p>
 <p><br /><br />
 <br /><br /></p>
-<h1 id="superbank-easy-network-multistage">SuperBank (easy, network, multi-stage)</h1>
+<h2 id="superbank-easy-network-multistage">SuperBank (easy, network, multi-stage)</h2>
 <hr>
+<h3 id="challenge12">Challenge</h3>
 <blockquote>
 <p>@maximilianhils decided that honeypots aren't challenging enough, so he went out and started a new venture: a blockchain-powered console-based banking app. The first prototype is ready and he happily gives you beta access to test things out. Such excite!
 <br /><br />
@@ -452,7 +512,7 @@ To start things off, download the superbank client and log into your account wit
 <li>superbank-osx</li>
 <li>superbank-linux</li>
 </ul>
-<h2 id="solution12">Solution</h2>
+<h3 id="solution12">Solution</h3>
 <p>問題の中で、API Endpoint, Username, PINが与えられます。添付されているプログラムを実行すると、それらを入力するようになっているので入力すると、以下に見えるように最初は42トークンを持っているようなので、</p>
 <pre>
 \================================================================
@@ -466,21 +526,23 @@ Currently registered accounts:
 <p><code>__flag__{42}</code>が答え。</p>
 <p><br /><br />
 <br /><br /></p>
-<h1 id="superbanknotes-">SuperBankNotes (?)</h1>
+<h2 id="superbanknotes-">SuperBankNotes (?)</h2>
 <hr>
+<h3 id="challenge13">Challenge</h3>
 <blockquote>
 <p>The SuperBank app seems to work great, but is it secure? You decide to investigate what @maximilianhils's app is sending on the network. Maybe there is more data on the blockchain than you initially thought?</p>
 </blockquote>
-<h2 id="not-solved">(Not solved)</h2>
+<h3 id="unsolved">(Unsolved)</h3>
 <p>カテゴリも付いていない。ちょっと降参。</p>
 <p><br /><br />
 <br /><br /></p>
-<h1 id="hashingasaservice-medium-web">(H)ashing-as-a-Service (medium, web)</h1>
+<h2 id="hashingasaservice-medium-web">(H)ashing-as-a-Service (medium, web)</h2>
 <hr>
+<h3 id="challenge14">Challenge</h3>
 <blockquote>
 <p>Developers must make sure to not store passwords as plaintext, but scramble them with a password hashing algorithm first. Unfortunately, they often use insecure hashing algorithms such as MD5 to do this. To tackle this problem, we developed Hashing-as-a-Service (HaaS), a modern approach to perfect password security. Using the HaaS API, you can securely hash any password you want!</p>
 </blockquote>
-<h2 id="solution13">Solution</h2>
+<h3 id="solution13">Solution</h3>
 <p>コマンドインジェクション。セミコロンで区切ると、2つ目がコマンドとして実行される。
 <br /><br />
 入力：<code>aaa;cat flag.txt;aaa</code>
@@ -494,8 +556,9 @@ SHA-256: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
 </pre>
 <p><br /><br />
 <br /><br /></p>
-<h1 id="terrific-encryption-medium-cryptography">Terrific Encryption (medium, cryptography)</h1>
+<h2 id="terrific-encryption-medium-cryptography">Terrific Encryption (medium, cryptography)</h2>
 <hr>
+<h3 id="challenge15">Challenge</h3>
 <blockquote>
 <p>In a major breakthrough, undergrads at Stanford have unveiled TEA (Terrific Encryption Algorithm) the first quantum-resistant encryption algorithm that can be used on the blockchain. Having learned about the security benefits of TEA, we have immediately encrypted all our flags and are sure that they won't be cracked anytime soon.</p>
 </blockquote>
@@ -550,7 +613,7 @@ SHA-256: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
         <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">enc</span><span class="p">)</span>
 </code></pre></td></tr></table>
 </div>
-</div><h2 id="solution14">Solution</h2>
+</div><h3 id="solution14">Solution</h3>
 <p>コードを読み解くと、入力したmsgの部分と、cur_timeはそれぞれ計算されて連結されてるだけなのがわかります。
 <br /><br />
 具体的に言うと、添付されているflag (encrypted)は、42バイトのフラグ文字列をencryptしたものと、日時の18バイトをencryptしたものの連結です。
@@ -752,8 +815,9 @@ randで乱数を使ってますが、random.seedに固定値を入れると、�
 </div>
 </div><p><br /><br />
 <br /><br /></p>
-<h1 id="you-know-the-rules-and-so-do-i--medium-imageforensics">You know the rules, and so do I&hellip; ?? (medium, image-forensics)</h1>
+<h2 id="you-know-the-rules-and-so-do-i--medium-imageforensics">You know the rules, and so do I&hellip; ?? (medium, image-forensics)</h2>
 <hr>
+<h3 id="challenge16">Challenge</h3>
 <blockquote>
 <p>There's a flag hidden in the image. Can you find it?</p>
 </blockquote>
@@ -761,7 +825,7 @@ randで乱数を使ってますが、random.seedに固定値を入れると、�
 <ul>
 <li>qrcode.png</li>
 </ul>
-<h2 id="solution15">Solution</h2>
+<h3 id="solution15">Solution</h3>
 <p>「青い空を見上げればいつもそこに白い猫」のステガノグラフィー解析、ビット抽出へ行くと、フラグっぽいのが見えます。
 <br />
 <img src="https://captureamerica.github.io/writeups/img/bit_extract.png" alt="bit_extract.png">
@@ -773,8 +837,9 @@ randで乱数を使ってますが、random.seedに固定値を入れると、�
 <img src="https://captureamerica.github.io/writeups/img/bin_check.png" alt="bin_check.png"></p>
 <p><br /><br />
 <br /><br /></p>
-<h1 id="coinflip-medium-binary">CoinFlip (medium, binary)</h1>
+<h2 id="coinflip-medium-binary">CoinFlip (medium, binary)</h2>
 <hr>
+<h3 id="challenge17">Challenge</h3>
 <blockquote>
 <p>Can you find a way to win the game?</p>
 </blockquote>
@@ -782,19 +847,20 @@ randで乱数を使ってますが、random.seedに固定値を入れると、�
 <ul>
 <li>coinflip.exe</li>
 </ul>
-<h2 id="solution16">Solution</h2>
+<h3 id="solution16">Solution</h3>
 <p>coinflipに100回勝つとフラグが取れる、ってやつでした。いろんな解法があると思います。自分はx32dbg.exeで解きました。<br />
 <br />
 rand()を使っている00401633のところをnopで埋めて（バイナリ -&gt; nopで埋める）、先にブレークポイントをセットしておいてから、エンターを押し続ける。<br /><br />
 ステップで進めていたら、そのうちフラグが見つかります。</p>
 <p><br /><br />
 <br /><br /></p>
-<h1 id="git-exposed-medium-web">Git Exposed (medium, web)</h1>
+<h2 id="git-exposed-medium-web">Git Exposed (medium, web)</h2>
 <hr>
+<h3 id="challenge18">Challenge</h3>
 <blockquote>
 <p>Rumor has it that a flag has been hidden on this web server&hellip;</p>
 </blockquote>
-<h2 id="solution17">Solution</h2>
+<h3 id="solution17">Solution</h3>
 <p>サイトにアクセスし、view page sourceした後、/files/ディレクトリを見ると、todo.txtというファイルが見つかります。</p>
 <pre>
 1. build website
@@ -827,12 +893,13 @@ index c047bcb..0000000
 </pre>
 <p><br /><br />
 <br /><br /></p>
-<h1 id="hidden-in-plain-sight-medium-misc">Hidden in Plain Sight (medium, misc)</h1>
+<h2 id="hidden-in-plain-sight-medium-misc">Hidden in Plain Sight (medium, misc)</h2>
 <hr>
+<h3 id="challenge19">Challenge</h3>
 <blockquote>
 <p>（説明なし）</p>
 </blockquote>
-<h2 id="solution18">Solution</h2>
+<h3 id="solution18">Solution</h3>
 <p>これは説明がなにもないんですが、タイトルより、なにか文字があるけど見えないよ、みたいなことだとわかります。
 <br /><br />
 Inspect Elementすると、&lt;small&gt;に囲まれた文字列があって、クリップボード経由でコピペしてもエディタ上では?????になってしまいます。
@@ -862,8 +929,9 @@ Burp Suite経由でアクセスしたら、以下が取れました。</p>
 <a href="https://dencode.com/ja/string/bin"><a href="https://dencode.com/ja/string/bin">https://dencode.com/ja/string/bin</a></a></p>
 <p><br /><br />
 <br /><br /></p>
-<h1 id="directory-listing-hard-cryptography">Directory Listing (hard, cryptography)</h1>
+<h2 id="directory-listing-hard-cryptography">Directory Listing (hard, cryptography)</h2>
 <hr>
+<h3 id="challenge20">Challenge</h3>
 <blockquote>
 <p>To serve all players with new challenges in case the CTF system goes down, we are providing an alternative file server.</p>
 </blockquote>
@@ -1030,7 +1098,7 @@ Burp Suite経由でアクセスしたら、以下が取れました。</p>
     <span class="n">web</span><span class="o">.</span><span class="n">run_app</span><span class="p">(</span><span class="n">app</span><span class="p">)</span>
 </code></pre></td></tr></table>
 </div>
-</div><h2 id="solution19">Solution</h2>
+</div><h3 id="solution19">Solution</h3>
 <p>ご親切に、lecture-slides.pdfというのがついていて、hash length extension attacksをしてください、というもの。
 <br /><br /></p>
 <p>サーバのView page sourceより、ネコちゃん画像（とsecret）を元に計算されたHash値を使うことにします。</p>
@@ -1054,8 +1122,9 @@ __flag__{97397db12c32f93ac9c9bf6dc871fd1f}
 </pre>
 <p><br /><br />
 <br /><br /></p>
-<h1 id="passworddb-hard-network">PasswordDB (hard, network)</h1>
+<h2 id="passworddb-hard-network">PasswordDB (hard, network)</h2>
 <hr>
+<h3 id="challenge21">Challenge</h3>
 <blockquote>
 <p>Because data theft has become such a rampant problem, We have created PasswordDB, a new and secure way of storing secrets. PasswordDB's unique technology makes it possible that the password is never stored in a single location, making it the bane of attackers&rsquo; respective existences. Instead, the password is sliced into smaller parts that are stored on different machines around the world for added security.
 <br /><br />
@@ -1069,18 +1138,19 @@ It is infeasible to brute-force all 10¹² combinations.</p>
 <li>PasswordDB API Endpoint (個人のメアドが入っているので省略)</li>
 <li>Example Invocation (個人のメアドが入っているので省略)</li>
 </ul>
-<h2 id="not-solved1">(Not solved)</h2>
+<h3 id="unsolved1">(Unsolved)</h3>
 <p>降参</p>
 <p><br /><br />
 <br /><br /></p>
-<h1 id="cookiecopter-hard-cryptography-web">CookieCopter (hard, cryptography, web)</h1>
+<h2 id="cookiecopter-hard-cryptography-web">CookieCopter (hard, cryptography, web)</h2>
 <hr>
+<h3 id="challenge22">Challenge</h3>
 <blockquote>
 <p>CookieCopter is a new service delivering locally-sourced organic cookies hot off of vintage cookie ovens straight to your location using quad-rotor GPS-enabled helicopters. The service is modeled after TacoCopter, an innovative and highly successful early contender in the airborne food delivery industry. CookieCopter is currently being tested in private beta in select locations.
 <br /><br />
 Your goal is to order one of the special premium cookies, which comes with a flag as a side.</p>
 </blockquote>
-<h2 id="not-solved2">(Not solved)</h2>
+<h3 id="unsolved2">(Unsolved)</h3>
 <p>降参</p>
 <p><br /><br />
 <br /><br /></p>
@@ -1169,7 +1239,7 @@ Your goal is to order one of the special premium cookies, which comes with a fla
   
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+  
 <script type="text/javascript" src="https://captureamerica.github.io/writeups/dist/even.26188efa.min.js"></script>
 
 

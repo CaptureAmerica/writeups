@@ -35,7 +35,7 @@
 
 
 <link href="https://captureamerica.github.io/writeups/dist/even.c2a46f00.min.css" rel="stylesheet">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
 
 
 <meta property="og:title" content="peactf 2019 Writeup" />
@@ -134,41 +134,51 @@
 
     <div class="post-toc" id="post-toc">
   <h2 class="post-toc-title">Contents</h2>
-  <div class="post-toc-content always-active">
+  <div class="post-toc-content">
     <nav id="TableOfContents">
   <ul>
-    <li><a href="#challenge">Challenge</a></li>
-    <li><a href="#solution">Solution</a></li>
-  </ul>
-
-  <ul>
-    <li><a href="#challenge1">Challenge</a></li>
-    <li><a href="#solution1">Solution</a></li>
-  </ul>
-
-  <ul>
-    <li><a href="#challenge2">Challenge</a></li>
-    <li><a href="#solution2">Solution</a></li>
-  </ul>
-
-  <ul>
-    <li><a href="#challenge3">Challenge</a></li>
-    <li><a href="#solution3">Solution</a></li>
-  </ul>
-
-  <ul>
-    <li><a href="#challenge4">Challenge</a></li>
-    <li><a href="#solution4">Solution</a></li>
-  </ul>
-
-  <ul>
-    <li><a href="#challenge5">Challenge</a></li>
-    <li><a href="#solution5">Solution</a></li>
-  </ul>
-
-  <ul>
-    <li><a href="#challenge6">Challenge</a></li>
-    <li><a href="#solution6">Solution</a></li>
+    <li><a href="#broken-keyboard">Broken Keyboard</a>
+      <ul>
+        <li><a href="#challenge">Challenge</a></li>
+        <li><a href="#solution">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#breakfast">Breakfast</a>
+      <ul>
+        <li><a href="#challenge1">Challenge</a></li>
+        <li><a href="#solution1">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#hide-and-seek">Hide and Seek</a>
+      <ul>
+        <li><a href="#challenge2">Challenge</a></li>
+        <li><a href="#solution2">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#school">School</a>
+      <ul>
+        <li><a href="#challenge3">Challenge</a></li>
+        <li><a href="#solution3">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#coffee-time">Coffee Time</a>
+      <ul>
+        <li><a href="#challenge4">Challenge</a></li>
+        <li><a href="#solution4">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#we-are-extr">We are E.xtr</a>
+      <ul>
+        <li><a href="#challenge5">Challenge</a></li>
+        <li><a href="#solution5">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#the-wonderful-wizard">The Wonderful Wizard</a>
+      <ul>
+        <li><a href="#challenge6">Challenge</a></li>
+        <li><a href="#solution6">Solution</a></li>
+      </ul>
+    </li>
   </ul>
 </nav>
   </div>
@@ -180,16 +190,16 @@
 <br /><br />
 いちおう、やった記録として残しておきます。</p>
 <p><br /><br /></p>
-<h1 id="broken-keyboard">Broken Keyboard</h1>
+<h2 id="broken-keyboard">Broken Keyboard</h2>
 <hr>
-<h2 id="challenge">Challenge</h2>
+<h3 id="challenge">Challenge</h3>
 <blockquote>
 <p>Help! My keyboard only types numbers!
 <br /><br />
 Ciphertext: 112 101 97 67 84 70 123 52 115 99 49 49 105 115 99 48 48 108 125</p>
 </blockquote>
 <p><br /></p>
-<h2 id="solution">Solution</h2>
+<h3 id="solution">Solution</h3>
 <p>普通に1個1個変換したら面白くないので、ワンライナーで挑戦。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -202,16 +212,16 @@ Ciphertext: 112 101 97 67 84 70 123 52 115 99 49 49 105 115 99 48 48 108 125</p>
 </div><p>flag: <code>peaCTF{4sc11isc00l}</code></p>
 <p><br /><br />
 <br /><br /></p>
-<h1 id="breakfast">Breakfast</h1>
+<h2 id="breakfast">Breakfast</h2>
 <hr>
-<h2 id="challenge1">Challenge</h2>
+<h3 id="challenge1">Challenge</h3>
 <blockquote>
 <p>Mmm I ate some nice <b>bacon</b> and eggs this morning. Find out what else I had for an easy flag. Don’t forget to capitalize CTF!
 <br /><br />
 Ciphertext: 011100010000000000101001000101{00100001100011010100000000010100101010100010010001}</p>
 </blockquote>
 <p><br /></p>
-<h2 id="solution1">Solution</h2>
+<h3 id="solution1">Solution</h3>
 <p>他の問題を解いていると、フラグのフォーマットが peaCTF{xxxx} なのがわかるので、011100010000000000101001000101の部分がpeaCTFだとして6等分すると、</p>
 <p>01110   p<br />
 00100   e<br />
@@ -263,14 +273,14 @@ flag: <code>peaCTF{eggwaffles}</code></p>
 <p>復習してたら、これは<a href="https://en.wikipedia.org/wiki/Bacon%27s_cipher">Bacon's cipher</a>っていうらしいですね。知らなくても解けたけど。</p>
 <p><br /><br />
 <br /><br /></p>
-<h1 id="hide-and-seek">Hide and Seek</h1>
+<h2 id="hide-and-seek">Hide and Seek</h2>
 <hr>
-<h2 id="challenge2">Challenge</h2>
+<h3 id="challenge2">Challenge</h3>
 <blockquote>
 <p>Try to find to the flag file located somewhere in the folders located in: /problems/hide-and-seek_16_d386ec3561e6180b95a47434c62a78be</p>
 </blockquote>
 <p><br /></p>
-<h2 id="solution2">Solution</h2>
+<h3 id="solution2">Solution</h3>
 <p>これはシェルサーバに入って解く問題。</p>
 <pre>
 $ find . -name *flag*
@@ -279,9 +289,9 @@ $ cat ./926c7fc91293cbdcbb5a99c561782682/80dee25b24cac38a8a7f7214c732974c/d9f58f
 <p>flag: <code>flag{peactf_linux_is_fun_f4ca42f3f34f4674d511eade889d74f7}</code></p>
 <p><br /><br />
 <br /><br /></p>
-<h1 id="school">School</h1>
+<h2 id="school">School</h2>
 <hr>
-<h2 id="challenge3">Challenge</h2>
+<h3 id="challenge3">Challenge</h3>
 <blockquote>
 <p>My regular teacher was out sick so we had a substitute today.
 <br /><br />
@@ -289,7 +299,7 @@ Alphabet: ​WCGPSUHRAQYKFDLZOJNXMVEBTI<br />
 zswGXU{ljwdhsqmags}</p>
 </blockquote>
 <p><br /></p>
-<h2 id="solution3">Solution</h2>
+<h3 id="solution3">Solution</h3>
 <p>単一換字式暗号 (monoalphabetic substitution ciphers)です。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -340,9 +350,9 @@ zswGXU{ljwdhsqmags}</p>
 <p>flag: <code>peaCTF{orangejuice}</code></p>
 <p><br /><br />
 <br /><br /></p>
-<h1 id="coffee-time">Coffee Time</h1>
+<h2 id="coffee-time">Coffee Time</h2>
 <hr>
-<h2 id="challenge4">Challenge</h2>
+<h3 id="challenge4">Challenge</h3>
 <blockquote>
 <p>Run this jar executable in a virtual machine and see what happens.</p>
 </blockquote>
@@ -351,7 +361,7 @@ zswGXU{ljwdhsqmags}</p>
 <li>coffeetime.jar</li>
 </ul>
 <p><br /></p>
-<h2 id="solution4">Solution</h2>
+<h3 id="solution4">Solution</h3>
 <p>実行しろというので、とりあえず実行。</p>
 <pre>
 $ java coffeetime.jar 
@@ -368,9 +378,9 @@ System.out.println("peaCTF{nice_cup_of_coffee}");
 <p>flag: <code>peaCTF{nice_cup_of_coffee}</code></p>
 <p><br /><br />
 <br /><br /></p>
-<h1 id="we-are-extr">We are E.xtr</h1>
+<h2 id="we-are-extr">We are E.xtr</h2>
 <hr>
-<h2 id="challenge5">Challenge</h2>
+<h3 id="challenge5">Challenge</h3>
 <blockquote>
 <p>特に記載なし（添付ファイルのみ）</p>
 </blockquote>
@@ -379,7 +389,7 @@ System.out.println("peaCTF{nice_cup_of_coffee}");
 <li>E.xtr</li>
 </ul>
 <p><br /></p>
-<h2 id="solution5">Solution</h2>
+<h3 id="solution5">Solution</h3>
 <pre>
 $ file E.xtr 
 E.xtr: data
@@ -400,9 +410,9 @@ E.xtr: PNG image data, 1280 x 720, 8-bit colormap, interlaced
 <p>flag: <code>peaCTF{read_banned_it}</code></p>
 <p><br /><br />
 <br /><br /></p>
-<h1 id="the-wonderful-wizard">The Wonderful Wizard</h1>
+<h2 id="the-wonderful-wizard">The Wonderful Wizard</h2>
 <hr>
-<h2 id="challenge6">Challenge</h2>
+<h3 id="challenge6">Challenge</h3>
 <blockquote>
 <p>特に記載なし（添付ファイルのみ）</p>
 </blockquote>
@@ -411,7 +421,7 @@ E.xtr: PNG image data, 1280 x 720, 8-bit colormap, interlaced
 <li>TheWonderfulWizard.png</li>
 </ul>
 <p><br /></p>
-<h2 id="solution6">Solution</h2>
+<h3 id="solution6">Solution</h3>
 <p>「青い空を見上げればいつもそこに白い猫」で赤色ビット0抽出すると、数字が出てくるので、それをHex Decodeするだけ。<br />
 <img src="https://captureamerica.github.io/writeups/img/TheWonderfulWizard_Neko.PNG" alt="TheWonderfulWizard_Neko.PNG"></p>
 <pre>
@@ -507,7 +517,7 @@ E.xtr: PNG image data, 1280 x 720, 8-bit colormap, interlaced
   
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+  
 <script type="text/javascript" src="https://captureamerica.github.io/writeups/dist/even.26188efa.min.js"></script>
 
 

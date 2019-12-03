@@ -10,9 +10,9 @@ categories: ["CTF"]
 author: "きゃぷあめ"
 ---
 
-# [Crypto 100] Twenty-five
+## [Crypto]: Twenty-five
 - - -
-## Challenge
+### Challenge
 > With “ppencode”, you can write Perl code using only Perl reserved words.
 
 Attachments:
@@ -22,7 +22,7 @@ Attachments:
 - twenty-five.pl（crypto.txtを読み込んで、変換して実行）
 
 <br />
-## Solution
+### Solution
 とりあえず、twenty-five.plをそのまま実行してみると、エラーになります。
 <pre>
 $ perl --version
@@ -450,8 +450,12 @@ eval($text);
 **Flag:** HarekazeCTF{en.wikipedia.org/wiki/Frequency_analysis}
 
 <br /><br />
-## 作問者（nkhrlabさん）による解説
+作問者（nkhrlabさん）による解説<br />
 [https://nkhrlab.hatenablog.com/entry/2019/05/19/224643](https://nkhrlab.hatenablog.com/entry/2019/05/19/224643)
+
+
+<br /><br />
+<br /><br />
 - - -
 <br /><br />
 <br /><br />

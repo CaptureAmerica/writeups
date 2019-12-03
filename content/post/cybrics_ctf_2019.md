@@ -14,9 +14,9 @@ URL: [https://cybrics.net/](https://cybrics.net/)
 結構難しかったのと、風邪をひいてしまったのもあって、2問だけです。（うち、1問は解けてないし。。）
 
 <br /><br />
-# [Network] Sender
+## [Network]: Sender
 - - -
-## Challenge
+### Challenge
 > We've intercepted this text off the wire of some conspirator, but we have no idea what to do with that.
 <br /><br />
 Get us their secret documents
@@ -68,7 +68,7 @@ QUIT
 
 
 <br />
-## Solution
+### Solution
 メールの本文はquoted-printableでエンコードされています。一旦別ファイルに落とした後、nkfでデコードします。
 
 ```
@@ -111,15 +111,15 @@ Flag:
 
 <br /><br />
 <br /><br />
-# [Forensic] Tone
+## [Forensic]: Tone
 - - -
-## Challenge
+### Challenge
 > Ha! Looks like this guy forgot to turn off his video stream and entered his password on his phone!
 <br /><br />
 [youtu.be/11k0n7TOYeM](youtu.be/11k0n7TOYeM)
 
 <br />
-## Solution
+### Solution
 なんか変なURLですけど、アクセスするとYouTubeに飛びます。
 <br /><br />
 音がちっちゃいですが、よく聞くと電話のトーンの音（プッシュ音）が聞こえます。

@@ -16,7 +16,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="きゃぷあめ" /><meta name="description" content="URL: https://cybrics.net/ 結構難しかったのと、風邪をひいてしまったのもあって、2問だけです。（うち、1問は解けてないし。。） [Network] Sender Challenge We&#39;ve intercepted this text off the wire of some conspirator, but we have no idea what" /><meta name="keywords" content="CTF, Writeup, captureamerica, picoCTF" />
+<meta name="author" content="きゃぷあめ" /><meta name="description" content="URL: https://cybrics.net/ 結構難しかったのと、風邪をひいてしまったのもあって、2問だけです。（うち、1問は解けてないし。。） [Network]: Sender Challenge We&#39;ve intercepted this text off the wire of some conspirator, but we have no idea what" /><meta name="keywords" content="CTF, Writeup, captureamerica, picoCTF" />
 
 
 
@@ -35,17 +35,17 @@
 
 
 <link href="https://captureamerica.github.io/writeups/dist/even.c2a46f00.min.css" rel="stylesheet">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
 
 
 <meta property="og:title" content="CyBRICS CTF 2019 Writeup" />
-<meta property="og:description" content="URL: https://cybrics.net/ 結構難しかったのと、風邪をひいてしまったのもあって、2問だけです。（うち、1問は解けてないし。。） [Network] Sender Challenge We&#39;ve intercepted this text off the wire of some conspirator, but we have no idea what" />
+<meta property="og:description" content="URL: https://cybrics.net/ 結構難しかったのと、風邪をひいてしまったのもあって、2問だけです。（うち、1問は解けてないし。。） [Network]: Sender Challenge We&#39;ve intercepted this text off the wire of some conspirator, but we have no idea what" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://captureamerica.github.io/writeups/post/cybrics_ctf_2019/" />
 <meta property="article:published_time" content="2019-07-25T12:00:00+09:00" />
 <meta property="article:modified_time" content="2019-09-16T14:00:00+09:00" />
 <meta itemprop="name" content="CyBRICS CTF 2019 Writeup">
-<meta itemprop="description" content="URL: https://cybrics.net/ 結構難しかったのと、風邪をひいてしまったのもあって、2問だけです。（うち、1問は解けてないし。。） [Network] Sender Challenge We&#39;ve intercepted this text off the wire of some conspirator, but we have no idea what">
+<meta itemprop="description" content="URL: https://cybrics.net/ 結構難しかったのと、風邪をひいてしまったのもあって、2問だけです。（うち、1問は解けてないし。。） [Network]: Sender Challenge We&#39;ve intercepted this text off the wire of some conspirator, but we have no idea what">
 <meta itemprop="datePublished" content="2019-07-25T12:00:00&#43;09:00" />
 <meta itemprop="dateModified" content="2019-09-16T14:00:00&#43;09:00" />
 <meta itemprop="wordCount" content="1007">
@@ -54,7 +54,7 @@
 
 <meta itemprop="keywords" content="CTF," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="CyBRICS CTF 2019 Writeup"/>
-<meta name="twitter:description" content="URL: https://cybrics.net/ 結構難しかったのと、風邪をひいてしまったのもあって、2問だけです。（うち、1問は解けてないし。。） [Network] Sender Challenge We&#39;ve intercepted this text off the wire of some conspirator, but we have no idea what"/>
+<meta name="twitter:description" content="URL: https://cybrics.net/ 結構難しかったのと、風邪をひいてしまったのもあって、2問だけです。（うち、1問は解けてないし。。） [Network]: Sender Challenge We&#39;ve intercepted this text off the wire of some conspirator, but we have no idea what"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -134,16 +134,21 @@
 
     <div class="post-toc" id="post-toc">
   <h2 class="post-toc-title">Contents</h2>
-  <div class="post-toc-content always-active">
+  <div class="post-toc-content">
     <nav id="TableOfContents">
   <ul>
-    <li><a href="#challenge">Challenge</a></li>
-    <li><a href="#solution">Solution</a></li>
-  </ul>
-
-  <ul>
-    <li><a href="#challenge1">Challenge</a></li>
-    <li><a href="#solution1">Solution</a></li>
+    <li><a href="#network-sender">[Network]: Sender</a>
+      <ul>
+        <li><a href="#challenge">Challenge</a></li>
+        <li><a href="#solution">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#forensic-tone">[Forensic]: Tone</a>
+      <ul>
+        <li><a href="#challenge1">Challenge</a></li>
+        <li><a href="#solution1">Solution</a></li>
+      </ul>
+    </li>
   </ul>
 </nav>
   </div>
@@ -153,9 +158,9 @@
 <br /><br />
 結構難しかったのと、風邪をひいてしまったのもあって、2問だけです。（うち、1問は解けてないし。。）</p>
 <p><br /><br /></p>
-<h1 id="network-sender">[Network] Sender</h1>
+<h2 id="network-sender">[Network]: Sender</h2>
 <hr>
-<h2 id="challenge">Challenge</h2>
+<h3 id="challenge">Challenge</h3>
 <blockquote>
 <p>We've intercepted this text off the wire of some conspirator, but we have no idea what to do with that.
 <br /><br />
@@ -206,7 +211,7 @@ QUIT
 221 2.0.0 Bye
 </pre>
 <p><br /></p>
-<h2 id="solution">Solution</h2>
+<h3 id="solution">Solution</h3>
 <p>メールの本文はquoted-printableでエンコードされています。一旦別ファイルに落とした後、nkfでデコードします。</p>
 <pre><code>$ cat printable.txt
 =62=74=77=2E=0A=0A=70=61=73=73=77=6F=72=64 =66=6F=72 =74=68=65 =61=72=63=
@@ -239,16 +244,16 @@ Flag:
 <code>cybrics{crack0Weston88vertebra}</code></p>
 <p><br /><br />
 <br /><br /></p>
-<h1 id="forensic-tone">[Forensic] Tone</h1>
+<h2 id="forensic-tone">[Forensic]: Tone</h2>
 <hr>
-<h2 id="challenge1">Challenge</h2>
+<h3 id="challenge1">Challenge</h3>
 <blockquote>
 <p>Ha! Looks like this guy forgot to turn off his video stream and entered his password on his phone!
 <br /><br />
 <a href="youtu.be/11k0n7TOYeM">youtu.be/11k0n7TOYeM</a></p>
 </blockquote>
 <p><br /></p>
-<h2 id="solution1">Solution</h2>
+<h3 id="solution1">Solution</h3>
 <p>なんか変なURLですけど、アクセスするとYouTubeに飛びます。
 <br /><br />
 音がちっちゃいですが、よく聞くと電話のトーンの音（プッシュ音）が聞こえます。
@@ -363,7 +368,7 @@ CYBRICSSECREUONALFLAG
   
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+  
 <script type="text/javascript" src="https://captureamerica.github.io/writeups/dist/even.26188efa.min.js"></script>
 
 

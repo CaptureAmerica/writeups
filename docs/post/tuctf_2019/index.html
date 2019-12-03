@@ -35,7 +35,7 @@
 
 
 <link href="https://captureamerica.github.io/writeups/dist/even.c2a46f00.min.css" rel="stylesheet">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
 
 
 <meta property="og:title" content="TUCTF 2019 Writeup" />
@@ -134,46 +134,57 @@
 
     <div class="post-toc" id="post-toc">
   <h2 class="post-toc-title">Contents</h2>
-  <div class="post-toc-content always-active">
+  <div class="post-toc-content">
     <nav id="TableOfContents">
   <ul>
-    <li><a href="#challenge">Challenge</a></li>
-    <li><a href="#solution">Solution</a></li>
-  </ul>
-
-  <ul>
-    <li><a href="#challenge1">Challenge</a></li>
-    <li><a href="#solution1">Solution</a></li>
-  </ul>
-
-  <ul>
-    <li><a href="#challenge2">Challenge</a></li>
-    <li><a href="#solution2">Solution</a></li>
-  </ul>
-
-  <ul>
-    <li><a href="#challenge3">Challenge</a></li>
-    <li><a href="#solution3">Solution</a></li>
-  </ul>
-
-  <ul>
-    <li><a href="#challenge4">Challenge</a></li>
-    <li><a href="#solution4">Solution</a></li>
-  </ul>
-
-  <ul>
-    <li><a href="#challenge5">Challenge</a></li>
-    <li><a href="#solution5">Solution</a></li>
-  </ul>
-
-  <ul>
-    <li><a href="#challenge6">Challenge</a></li>
-    <li><a href="#unsolved">Unsolved</a></li>
-  </ul>
-
-  <ul>
-    <li><a href="#challenge7">Challenge</a></li>
-    <li><a href="#solution6">Solution</a></li>
+    <li><a href="#misc-onions">[Misc]: Onions</a>
+      <ul>
+        <li><a href="#challenge">Challenge</a></li>
+        <li><a href="#solution">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#misc-super-secret">[Misc]: Super Secret</a>
+      <ul>
+        <li><a href="#challenge1">Challenge</a></li>
+        <li><a href="#solution1">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#misc-rngeesus">[Misc]: RNGeesus</a>
+      <ul>
+        <li><a href="#challenge2">Challenge</a></li>
+        <li><a href="#solution2">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#mega-cup-of-joe-the-server">[Mega]: Cup of Joe: The Server</a>
+      <ul>
+        <li><a href="#challenge3">Challenge</a></li>
+        <li><a href="#solution3">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#mega-broken">[Mega]: Broken</a>
+      <ul>
+        <li><a href="#challenge4">Challenge</a></li>
+        <li><a href="#solution4">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#crypto-something-in-common">[Crypto]: Something in Common</a>
+      <ul>
+        <li><a href="#challenge5">Challenge</a></li>
+        <li><a href="#solution5">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#crypto-crypto-infinite">[Crypto]: Crypto Infinite</a>
+      <ul>
+        <li><a href="#challenge6">Challenge</a></li>
+        <li><a href="#unsolved">Unsolved</a></li>
+      </ul>
+    </li>
+    <li><a href="#reversing-faker">[Reversing]: faker</a>
+      <ul>
+        <li><a href="#challenge7">Challenge</a></li>
+        <li><a href="#solution6">Solution</a></li>
+      </ul>
+    </li>
   </ul>
 </nav>
   </div>
@@ -186,9 +197,9 @@
 <img src="https://captureamerica.github.io/writeups/img/tuctf_chal2.png" alt="tuctf_chal2.png">
 <br /><br />
 <p><br /><br /></p>
-<h1 id="misc-onions">[Misc]: Onions</h1>
+<h2 id="misc-onions">[Misc]: Onions</h2>
 <hr>
-<h2 id="challenge">Challenge</h2>
+<h3 id="challenge">Challenge</h3>
 <blockquote>
 <p>Ogres are like files &ndash; they have layers!</p>
 </blockquote>
@@ -197,7 +208,7 @@
 <li>shrek.jpg</li>
 </ul>
 <p><br /></p>
-<h2 id="solution">Solution</h2>
+<h3 id="solution">Solution</h3>
 <p>シュレックのJPEG画像です。著作権は大丈夫なんでしょうか。</p>
 <p>foremostではなにも取れなかったので、binwalkから始めます。</p>
 <p>binwalk -e でもextractされなかったので、&ndash;ddを使いました。</p>
@@ -291,9 +302,9 @@ TUCTF{F1L3S4R3L1K30N10NSTH3YH4V3L4Y3RS}
 Flag: <code>TUCTF{F1L3S4R3L1K30N10NSTH3YH4V3L4Y3RS}</code></p>
 <p><br /><br />
 <br /><br /></p>
-<h1 id="misc-super-secret">[Misc]: Super Secret</h1>
+<h2 id="misc-super-secret">[Misc]: Super Secret</h2>
 <hr>
-<h2 id="challenge1">Challenge</h2>
+<h3 id="challenge1">Challenge</h3>
 <blockquote>
 <p>Something's blocking my flag from this file&hellip;</p>
 </blockquote>
@@ -302,7 +313,7 @@ Flag: <code>TUCTF{F1L3S4R3L1K30N10NSTH3YH4V3L4Y3RS}</code></p>
 <li>document.odt</li>
 </ul>
 <p><br /></p>
-<h2 id="solution1">Solution</h2>
+<h3 id="solution1">Solution</h3>
 <pre>
 $ file document.odt
 document.odt: OpenDocument Text
@@ -321,16 +332,16 @@ End Sub
 Flag: <code>TUCTF{ST0P_TRUST1NG_M4CR0S_FR0M_4N_UNKN0WN_S0URC3}</code></p>
 <p><br><br>
 <br><br></p>
-<h1 id="misc-rngeesus">[Misc]: RNGeesus</h1>
+<h2 id="misc-rngeesus">[Misc]: RNGeesus</h2>
 <hr>
-<h2 id="challenge2">Challenge</h2>
+<h3 id="challenge2">Challenge</h3>
 <blockquote>
 <p>RNGeesus has a secret technique, can you guess it?
 <br><br>
 nc chal.tuctf.com 30300</p>
 </blockquote>
 <p><br /></p>
-<h2 id="solution2">Solution</h2>
+<h3 id="solution2">Solution</h3>
 <p>まずは繋げてみます。2回繋げて、毎回同じ問題であることを確認しました。</p>
 <p>また、適当に答えを入れると、ググれ！というヒントがもらえました。</p>
 <pre>
@@ -371,16 +382,16 @@ Hmm, that wasn't right. Try some more searching. There's source code out there s
 Flag: <code>TUCTF{D0NT_1NS3CUR3LY_S33D_Y0UR_LCGS}</code></p>
 <p><br><br>
 <br><br></p>
-<h1 id="mega-cup-of-joe-the-server">[Mega]: Cup of Joe: The Server</h1>
+<h2 id="mega-cup-of-joe-the-server">[Mega]: Cup of Joe: The Server</h2>
 <hr>
-<h2 id="challenge3">Challenge</h2>
+<h3 id="challenge3">Challenge</h3>
 <blockquote>
 <p>On the first leg of the journey, I was looking at all the life, there were plants and hills and rocks and things, there was java and mugs and caffeine.
 <br><br>
 chal.tuctf.com:32000</p>
 </blockquote>
 <p><br /></p>
-<h2 id="solution3">Solution</h2>
+<h3 id="solution3">Solution</h3>
 <p>上記のウェブサイトにアクセスすると、以下にリダイレクトされます。</p>
 <p><a href="http://chal.tuctf.com:32000/coffeepot?">http://chal.tuctf.com:32000/coffeepot?</a></p>
 <p><br />
@@ -516,22 +527,22 @@ warning [broken.zip]:  110 extra bytes at beginning or within zipfile
 Flag: <code>TUCTF{d0_y0u_cr4v3_th3_418}</code></p>
 <p><br><br>
 <br><br></p>
-<h1 id="mega-broken">[Mega]: Broken</h1>
+<h2 id="mega-broken">[Mega]: Broken</h2>
 <hr>
-<h2 id="challenge4">Challenge</h2>
+<h3 id="challenge4">Challenge</h3>
 <blockquote>
 <p>Sometimes things that are broken have been broken on purpose.</p>
 </blockquote>
 <p><br /></p>
-<h2 id="solution4">Solution</h2>
+<h3 id="solution4">Solution</h3>
 <p>添付ファイルがありません。どうやら、先程の問題で取れた broken.img を使うようです。</p>
 <p>フラグはstringsで見つかりました。</p>
 <p>Flag: <code>TUCTF{D1S4ST3R_R3C0V3RY}</code></p>
 <p><br><br>
 <br><br></p>
-<h1 id="crypto-something-in-common">[Crypto]: Something in Common</h1>
+<h2 id="crypto-something-in-common">[Crypto]: Something in Common</h2>
 <hr>
-<h2 id="challenge5">Challenge</h2>
+<h3 id="challenge5">Challenge</h3>
 <blockquote>
 <p>We've managed to gather the details in the given file. We need a professional cryptographer to decipher the message. Are you up to the task?</p>
 </blockquote>
@@ -546,7 +557,7 @@ n = 5196832088920565976847626600109930685983685377698793940303688567224093844213
 <p>c1 = 2042084937526293083328581576825435106672034183860987592520636048680382212041801675344422421233222921527377650749831658168085014081281116990629250092000069</p>
 <p>c2 = 199621218068987060560259773620211396108271911964032609729865342591708524675430090445150449567825472793342358513366241310112450278540477486174011171344408</p>
 <p><br /></p>
-<h2 id="solution5">Solution</h2>
+<h3 id="solution5">Solution</h3>
 <p>&ldquo;rsa ctf c1 c2 e1 e2&quot;とか、&ldquo;Common Modulus Attack&rdquo; をキーワードにでググるのがコツです。</p>
 <p>過去のCTF (Square CTF 2018) でほぼ同じ問題があり、Writeupが見つかります。</p>
 <p>他の方が書いたWriteupそのままになっちゃうので、ここにはコードは載せません。</p>
@@ -558,16 +569,16 @@ TUCTF{Y0U_SH0ULDNT_R3US3_TH3_M0DULUS}
 Flag: <code>TUCTF{Y0U_SH0ULDNT_R3US3_TH3_M0DULUS}</code></p>
 <p><br><br>
 <br><br></p>
-<h1 id="crypto-crypto-infinite">[Crypto]: Crypto Infinite</h1>
+<h2 id="crypto-crypto-infinite">[Crypto]: Crypto Infinite</h2>
 <hr>
-<h2 id="challenge6">Challenge</h2>
+<h3 id="challenge6">Challenge</h3>
 <blockquote>
 <p>Crypto has been around forever. Does this challenge go on forever? Let us know in the comments below or find the flag to prove us wrong.
 <br><br>
 nc chal.tuctf.com 30102</p>
 </blockquote>
 <p><br /></p>
-<h2 id="unsolved">Unsolved</h2>
+<h3 id="unsolved">Unsolved</h3>
 <p>これは解けませんでした。。。</p>
 <p><b>無駄に</b>レベルが分かれていて、Level 0 ~ 4 は全く同じコードで解けたので、そこまでを載せておきます。Level 5以降は不明です。</p>
 <p><br /><br />
@@ -699,11 +710,11 @@ Encryptedの部分をスペース区切りとみなすと26パターンあり、
 <span class="k">print</span> <span class="n">s</span><span class="o">.</span><span class="n">recvall</span><span class="p">(</span><span class="p">)</span>
 </code></pre></td></tr></table>
 </div>
-</div><p><br><br>
-<br><br></p>
-<h1 id="reversing-faker">[Reversing]: faker</h1>
+</div><p><br /><br />
+<br /><br /></p>
+<h2 id="reversing-faker">[Reversing]: faker</h2>
 <hr>
-<h2 id="challenge7">Challenge</h2>
+<h3 id="challenge7">Challenge</h3>
 <blockquote>
 <p>One of these things is not like the other. Can you uncover the flag?
 <br><br>
@@ -714,7 +725,7 @@ Hint: Is there anything hidden inside the binary?</p>
 <li>faker (ELF 64-bit)</li>
 </ul>
 <p><br /></p>
-<h2 id="solution6">Solution</h2>
+<h3 id="solution6">Solution</h3>
 <p>Ghidraでコードを確認します。printFlag()という関数と、それを呼んでいるA(), B(), C()関数が見つかります。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -1005,7 +1016,7 @@ Flag: <code>TUCTF{7h3r35_4lw4y5_m0r3_70_4_b1n4ry_7h4n_m3375_7h3_d3bu663r}</code>
   
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+  
 <script type="text/javascript" src="https://captureamerica.github.io/writeups/dist/even.26188efa.min.js"></script>
 
 

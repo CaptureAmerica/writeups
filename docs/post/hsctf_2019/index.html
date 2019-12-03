@@ -35,7 +35,7 @@
 
 
 <link href="https://captureamerica.github.io/writeups/dist/even.c2a46f00.min.css" rel="stylesheet">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
 
 
 <meta property="og:title" content="HSCTF 6 Writeup" />
@@ -48,7 +48,7 @@
 <meta itemprop="description" content="やり始めてから気づいたんですけど、HSってHigh Schoolerの略で、高校生用のCTFみたいですね。 Rulesを見たら、「アメリカの高校">
 <meta itemprop="datePublished" content="2019-06-08T00:00:00&#43;08:00" />
 <meta itemprop="dateModified" content="2019-06-08T11:20:00&#43;08:00" />
-<meta itemprop="wordCount" content="5263">
+<meta itemprop="wordCount" content="5280">
 
 
 
@@ -134,95 +134,141 @@
 
     <div class="post-toc" id="post-toc">
   <h2 class="post-toc-title">Contents</h2>
-  <div class="post-toc-content always-active">
+  <div class="post-toc-content">
     <nav id="TableOfContents">
   <ul>
-    <li><a href="#challenge">Challenge</a></li>
-    <li><a href="#solution">Solution</a></li>
-  </ul>
-
-  <ul>
-    <li><a href="#solution1">Solution</a></li>
-  </ul>
-
-  <ul>
-    <li><a href="#solution2">Solution</a></li>
-  </ul>
-
-  <ul>
-    <li><a href="#solution3">Solution</a></li>
-  </ul>
-
-  <ul>
-    <li><a href="#solution4">Solution</a></li>
-  </ul>
-
-  <ul>
-    <li><a href="#not-solved">(Not solved)</a></li>
-  </ul>
-
-  <ul>
-    <li><a href="#not-solved1">(Not solved)</a></li>
-  </ul>
-
-  <ul>
-    <li><a href="#solution5">Solution</a></li>
-  </ul>
-
-  <ul>
-    <li><a href="#solution6">Solution</a></li>
-  </ul>
-
-  <ul>
-    <li><a href="#solution7">Solution</a></li>
-  </ul>
-
-  <ul>
-    <li><a href="#solution8">Solution</a></li>
-  </ul>
-
-  <ul>
-    <li><a href="#solution9">Solution</a></li>
-  </ul>
-
-  <ul>
-    <li><a href="#solution10">Solution</a></li>
-  </ul>
-
-  <ul>
-    <li><a href="#solution11">Solution</a></li>
-  </ul>
-
-  <ul>
-    <li><a href="#solution12">Solution</a></li>
-  </ul>
-
-  <ul>
-    <li><a href="#solution13">Solution</a></li>
-  </ul>
-
-  <ul>
-    <li><a href="#solution14">Solution</a></li>
-  </ul>
-
-  <ul>
-    <li><a href="#solution15">Solution</a></li>
-  </ul>
-
-  <ul>
-    <li><a href="#solution16">Solution</a></li>
-  </ul>
-
-  <ul>
-    <li><a href="#solution17">Solution</a></li>
-  </ul>
-
-  <ul>
-    <li><a href="#solution18">Solution</a></li>
-  </ul>
-
-  <ul>
-    <li><a href="#solution19">Solution</a></li>
+    <li><a href="#misc-locked-up">[Misc]: Locked Up</a>
+      <ul>
+        <li><a href="#challenge">Challenge</a></li>
+        <li><a href="#solution">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#misc-verbose">[Misc]: Verbose</a>
+      <ul>
+        <li><a href="#challenge1">Challenge</a></li>
+        <li><a href="#solution1">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#misc-admin-pass">[Misc]: Admin Pass</a>
+      <ul>
+        <li><a href="#challenge2">Challenge</a></li>
+        <li><a href="#solution2">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#misc-a-simple-conversation">[Misc]: A Simple Conversation</a>
+      <ul>
+        <li><a href="#challenge3">Challenge</a></li>
+        <li><a href="#solution3">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#misc-broken-gps">[Misc]: Broken GPS</a>
+      <ul>
+        <li><a href="#challenge4">Challenge</a></li>
+        <li><a href="#solution4">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#misc-broken-repl">[Misc]: Broken REPL</a>
+      <ul>
+        <li><a href="#challenge5">Challenge</a></li>
+        <li><a href="#unsolved">(Unsolved)</a></li>
+      </ul>
+    </li>
+    <li><a href="#misc-english-sucks">[Misc]: English Sucks</a>
+      <ul>
+        <li><a href="#challenge6">Challenge</a></li>
+        <li><a href="#unsolved1">(Unsolved)</a></li>
+      </ul>
+    </li>
+    <li><a href="#crypto-reverse-search-algorithm">[Crypto]: Reverse Search Algorithm</a>
+      <ul>
+        <li><a href="#challenge7">Challenge</a></li>
+        <li><a href="#solution5">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#reversing-a-byte">[Reversing]: A Byte</a>
+      <ul>
+        <li><a href="#challenge8">Challenge</a></li>
+        <li><a href="#solution6">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#pwn-return-to-sender">[Pwn]: Return to Sender</a>
+      <ul>
+        <li><a href="#challenge9">Challenge</a></li>
+        <li><a href="#solution7">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#pwn-combo-chain-lite">[Pwn]: Combo Chain Lite</a>
+      <ul>
+        <li><a href="#challenge10">Challenge</a></li>
+        <li><a href="#solution8">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#forensics-chicken-crossing">[Forensics]: Chicken Crossing</a>
+      <ul>
+        <li><a href="#challenge11">Challenge</a></li>
+        <li><a href="#solution9">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#forensics-cool-image">[Forensics]: Cool Image</a>
+      <ul>
+        <li><a href="#challenge12">Challenge</a></li>
+        <li><a href="#solution10">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#forensics-cool-image-2">[Forensics]: Cool Image 2</a>
+      <ul>
+        <li><a href="#challenge13">Challenge</a></li>
+        <li><a href="#solution11">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#forensics-slap">[Forensics]: Slap</a>
+      <ul>
+        <li><a href="#challenge14">Challenge</a></li>
+        <li><a href="#solution12">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#forensics-fish">[Forensics]: Fish</a>
+      <ul>
+        <li><a href="#challenge15">Challenge</a></li>
+        <li><a href="#solution13">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#web-inspect-me">[Web]: Inspect Me</a>
+      <ul>
+        <li><a href="#challenge16">Challenge</a></li>
+        <li><a href="#solution14">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#web-agent-keith">[Web]: Agent Keith</a>
+      <ul>
+        <li><a href="#challenge17">Challenge</a></li>
+        <li><a href="#solution15">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#web-sql">[Web]: S-Q-L</a>
+      <ul>
+        <li><a href="#challenge18">Challenge</a></li>
+        <li><a href="#solution16">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#web-the-quest">[Web]: The Quest</a>
+      <ul>
+        <li><a href="#challenge19">Challenge</a></li>
+        <li><a href="#solution17">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#web-keith-logger">[Web]: Keith Logger</a>
+      <ul>
+        <li><a href="#challenge20">Challenge</a></li>
+        <li><a href="#solution18">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#web-accessible-rich-internet-applications">[Web]: Accessible Rich Internet Applications</a>
+      <ul>
+        <li><a href="#challenge21">Challenge</a></li>
+        <li><a href="#solution19">Solution</a></li>
+      </ul>
+    </li>
   </ul>
 </nav>
   </div>
@@ -240,9 +286,9 @@ Rulesを見たら、「アメリカの高校生じゃないと賞はもらえな
 <p>ちなみに、参加チームは全体で1000チームくらいでした。</p>
 <p><br /><br />
 <br /><br /></p>
-<h1 id="locked-up-miscellaneous">Locked Up (Miscellaneous)</h1>
+<h2 id="misc-locked-up">[Misc]: Locked Up</h2>
 <hr>
-<h2 id="challenge">Challenge</h2>
+<h3 id="challenge">Challenge</h3>
 <blockquote>
 <p>My friend gave me a zip file with the flag in it, but the zip file is encrypted. Can you help me open the zip file?</p>
 </blockquote>
@@ -250,15 +296,16 @@ Rulesを見たら、「アメリカの高校生じゃないと賞はもらえな
 <ul>
 <li>locked.zip</li>
 </ul>
-<h2 id="solution">Solution</h2>
+<h3 id="solution">Solution</h3>
 <pre>
 $ zipinfo locked.zip | grep hsctf
 -rwxrwxrwx  3.0 unx        0 BX stor 19-Jun-03 13:22 hsctf{w0w_z1ps_ar3nt_th@t_secUr3}
 </pre>
 <p><br /><br />
 <br /><br /></p>
-<h1 id="verbose-miscellaneous">Verbose (Miscellaneous)</h1>
+<h2 id="misc-verbose">[Misc]: Verbose</h2>
 <hr>
+<h3 id="challenge1">Challenge</h3>
 <blockquote>
 <p>My friend sent me this file, but I don't understand what I can do with these 6 different characters&hellip;</p>
 </blockquote>
@@ -266,23 +313,25 @@ $ zipinfo locked.zip | grep hsctf
 <ul>
 <li>verbose.txt</li>
 </ul>
-<h2 id="solution1">Solution</h2>
+<h3 id="solution1">Solution</h3>
 <p><a href="http://codertab.com/JsUnFuck"><a href="http://codertab.com/JsUnFuck">http://codertab.com/JsUnFuck</a></a></p>
 <p>サイズが大きいので、結果が出るまで数分かかりました。<br />
 var flag = &ldquo;hsctf{esoteric_javascript_is_very_verbose}&quot;; window.location = &ldquo;<a href="https://hsctf.com">https://hsctf.com</a>&rdquo;;</p>
 <p><br /><br />
 <br /><br /></p>
-<h1 id="admin-pass-miscellaneous">Admin Pass (Miscellaneous)</h1>
+<h2 id="misc-admin-pass">[Misc]: Admin Pass</h2>
 <hr>
+<h3 id="challenge2">Challenge</h3>
 <blockquote>
 <p>Hey guys, found a super cool website at <a href="http://misc.hsctf.com:8001">http://misc.hsctf.com:8001</a>!</p>
 </blockquote>
-<h2 id="solution2">Solution</h2>
+<h3 id="solution2">Solution</h3>
 <p>gitlab.comへのリンクがあって、そこに飛んでファイルの過去の履歴とか見ているとフラグが見つかります。</p>
 <p><br /><br />
 <br /><br /></p>
-<h1 id="a-simple-conversation-miscellaneous">A Simple Conversation (Miscellaneous)</h1>
+<h2 id="misc-a-simple-conversation">[Misc]: A Simple Conversation</h2>
 <hr>
+<h3 id="challenge3">Challenge</h3>
 <blockquote>
 <p>Someone on the internet wants to talk to you. Can you find out what they want?</p>
 </blockquote>
@@ -327,7 +376,7 @@ var flag = &ldquo;hsctf{esoteric_javascript_is_very_verbose}&quot;; window.locat
 <span class="k">print</span><span class="p">(</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2">Well, it was nice meeting you, </span><span class="si">%s</span><span class="s2">-year-old.</span><span class="s2">&#34;</span> <span class="o">%</span> <span class="n">age</span><span class="p">)</span>
 </code></pre></td></tr></table>
 </div>
-</div><h2 id="solution3">Solution</h2>
+</div><h3 id="solution3">Solution</h3>
 <p><code>open('flag.txt').read()</code></p>
 <pre>
 $ nc misc.hsctf.com 9001
@@ -345,8 +394,9 @@ Goodbye!
 </pre>
 <p><br /><br />
 <br /><br /></p>
-<h1 id="broken-gps-miscellaneous">Broken GPS (Miscellaneous)</h1>
+<h2 id="misc-broken-gps">[Misc]: Broken GPS</h2>
 <hr>
+<h3 id="challenge4">Challenge</h3>
 <blockquote>
 <p>Ella is following a broken GPS. The GPS tells her to move in the opposite direction than the one she should be travelling in to get to her destination, and she follows her GPS exactly. For instance, every time she is supposed to move west, the GPS tells her to move east and she does so. Eventually she ends up in a totally different place than her intended location. What is the shortest distance between these two points? Assume that she moves one unit every time a direction is specified. For instance, if the GPS tells her to move &ldquo;north,&rdquo; she moves one unit north. If the GPS tells her to move &ldquo;northwest,&rdquo; then she moves one unit north and one unit west.
 <br /><br />
@@ -362,7 +412,7 @@ Find the letter for each test case and string them together. The result is the f
 <ul>
 <li>input.zip</li>
 </ul>
-<h2 id="solution4">Solution</h2>
+<h3 id="solution4">Solution</h3>
 <p>問題文がとにかく長いけど、言われるがままにコーディングするだけの問題。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -571,8 +621,9 @@ Find the letter for each test case and string them together. The result is the f
 hsctf{garminesuckz}</p>
 <p><br /><br />
 <br /><br /></p>
-<h1 id="broken-repl-miscellaneous">Broken REPL (Miscellaneous)</h1>
+<h2 id="misc-broken-repl">[Misc]: Broken REPL</h2>
 <hr>
+<h3 id="challenge5">Challenge</h3>
 <blockquote>
 <p>My friend says that there is a bug in my REPL. Can you help me find it?</p>
 </blockquote>
@@ -636,12 +687,13 @@ hsctf{garminesuckz}</p>
 
 </code></pre></td></tr></table>
 </div>
-</div><h2 id="not-solved">(Not solved)</h2>
+</div><h3 id="unsolved">(Unsolved)</h3>
 <p>MemoryError例外を起こせばいいようだけど、できませんでした。raise使ったり、ウェブでMemoryError例外の事象のサンプルとか見つけてやったけれど、意図的に発生させようとするとなかなか難しいもんですね。</p>
 <p><br /><br />
 <br /><br /></p>
-<h1 id="english-sucks-miscellaneous">English Sucks (Miscellaneous)</h1>
+<h2 id="misc-english-sucks">[Misc]: English Sucks</h2>
 <hr>
+<h3 id="challenge6">Challenge</h3>
 <blockquote>
 <p>English is such a confusing language. Can you help me understand it?
 <br /><br />
@@ -770,7 +822,7 @@ Hint: Watch out for the order of the output.</p>
     <span class="p">}</span>
 </code></pre></td></tr></table>
 </div>
-</div><h2 id="not-solved1">(Not solved)</h2>
+</div><h3 id="unsolved1">(Unsolved)</h3>
 <p>なんとなく方向性はわかった気がしたんですが、解けませんでした。。
 <br /><br />
 mt19937 疑似乱数は連続した624個の結果があると、その次に出てくる乱数が予測できます。
@@ -785,8 +837,9 @@ mt19937 疑似乱数は連続した624個の結果があると、その次に出
 問題が間違っているかと思って問い合わせをしてみたんですが、返事もないし、実際解いている人が何人かいたので、なんかしら解き方があるようです。。</p>
 <p><br /><br />
 <br /><br /></p>
-<h1 id="reverse-search-algorithm-cryptography">Reverse Search Algorithm (Cryptography)</h1>
+<h2 id="crypto-reverse-search-algorithm">[Crypto]: Reverse Search Algorithm</h2>
 <hr>
+<h3 id="challenge7">Challenge</h3>
 <blockquote>
 <p>WWPHSN students, gotta get these points to boost your grade.
 <br /><br />
@@ -796,7 +849,7 @@ e = 65537
 <br />
 c = 328055279212128616898203809983039708787490384650725890748576927208883055381430000756624369636820903704775835777</p>
 </blockquote>
-<h2 id="solution5">Solution</h2>
+<h3 id="solution5">Solution</h3>
 <p>SECCON Beginners CTF 2018 で出た「RSA is Power」とほぼ同じ問題のようです。</p>
 <p>以下のWriteupを参考にさせてもらいました。
 <br />
@@ -852,8 +905,9 @@ c = 3280552792121286168982038099830397087874903846507258907485769272088830553814
 </div><p>hsctf{y3s_rsa_1s_s0lved_10823704961253}</p>
 <p><br /><br />
 <br /><br /></p>
-<h1 id="a-byte-reversal">A Byte (Reversal)</h1>
+<h2 id="reversing-a-byte">[Reversing]: A Byte</h2>
 <hr>
+<h3 id="challenge8">Challenge</h3>
 <blockquote>
 <p>Just one byte makes all the difference.</p>
 </blockquote>
@@ -861,7 +915,7 @@ c = 3280552792121286168982038099830397087874903846507258907485769272088830553814
 <ul>
 <li>a-byte</li>
 </ul>
-<h2 id="solution6">Solution</h2>
+<h3 id="solution6">Solution</h3>
 <p>ghidraでde-compileすると、FUN_0010073a()のところで、以下の部分が見つかります。
 <br />
 （以下、抜粋です。）</p>
@@ -994,8 +1048,9 @@ $ python
 hsctf{w0w_y0u_kn0w_d4_wA3_8h2bA029}</p>
 <p><br /><br />
 <br /><br /></p>
-<h1 id="return-to-sender-binary-exploitation">Return to Sender (Binary Exploitation)</h1>
+<h2 id="pwn-return-to-sender">[Pwn]: Return to Sender</h2>
 <hr>
+<h3 id="challenge9">Challenge</h3>
 <blockquote>
 <p>Who knew the USPS could lose a letter so many times?</p>
 </blockquote>
@@ -1004,7 +1059,7 @@ hsctf{w0w_y0u_kn0w_d4_wA3_8h2bA029}</p>
 <li>return-to-sender</li>
 <li>return-to-sender.c</li>
 </ul>
-<h2 id="solution7">Solution</h2>
+<h3 id="solution7">Solution</h3>
 <p>バッファオーバーフローの問題です。EIPが奪えるので、オフセット20バイトの後に、<code>system(&quot;/bin/sh&quot;);</code>を呼んでいる<code>win()</code>のアドレス<code>0x080491b6</code>を設定するだけです。
 <br /><br /></p>
 <pre>
@@ -1025,8 +1080,9 @@ hsctf{fedex_dont_fail_me_now}
 </pre>
 <p><br /><br />
 <br /><br /></p>
-<h1 id="combo-chain-lite-binary-exploitation">Combo Chain Lite (Binary Exploitation)</h1>
+<h2 id="pwn-combo-chain-lite">[Pwn]: Combo Chain Lite</h2>
 <hr>
+<h3 id="challenge10">Challenge</h3>
 <blockquote>
 <p>Training wheels!
 <br /><br />
@@ -1085,7 +1141,7 @@ Hint: What's a ROP?</p>
 <span class="p">}</span>
 </code></pre></td></tr></table>
 </div>
-</div><h2 id="solution8">Solution</h2>
+</div><h3 id="solution8">Solution</h3>
 <p>system()関数のアドレス（毎回異なる）がprintされるので、それを使います。</p>
 <pre>
 # checksec combo-chain-lite 
@@ -1224,8 +1280,9 @@ hsctf<span class="o">{</span>wheeeeeee_that_was_fun<span class="o">}</span>
 </div>
 </div><p><br /><br />
 <br /><br /></p>
-<h1 id="chicken-crossing-forensics">Chicken Crossing (Forensics)</h1>
+<h2 id="forensics-chicken-crossing">[Forensics]: Chicken Crossing</h2>
 <hr>
+<h3 id="challenge11">Challenge</h3>
 <blockquote>
 <p>Keith is watching chickens cross a road in his grandfather’s farm. He once heard from his grandfather that there was something significant about this behavior, but he can’t figure out why. Help Keith discover what the chickens are doing from this seemingly simple behavior.</p>
 </blockquote>
@@ -1233,15 +1290,16 @@ hsctf<span class="o">{</span>wheeeeeee_that_was_fun<span class="o">}</span>
 <ul>
 <li>hsctf-chicken_crossing.jpg</li>
 </ul>
-<h2 id="solution9">Solution</h2>
+<h3 id="solution9">Solution</h3>
 <pre>
 $ strings hsctf-chicken_crossing.jpg | grep hsctf
 hsctf{2_get_2_the_other_side}
 </pre>
 <p><br /><br />
 <br /><br /></p>
-<h1 id="cool-image-forensics">Cool Image (Forensics)</h1>
+<h2 id="forensics-cool-image">[Forensics]: Cool Image</h2>
 <hr>
+<h3 id="challenge12">Challenge</h3>
 <blockquote>
 <p>My friend told me he found a really cool image, but I couldn't open it. Can you help me access the image?</p>
 </blockquote>
@@ -1249,15 +1307,16 @@ hsctf{2_get_2_the_other_side}
 <ul>
 <li>cool.pdf</li>
 </ul>
-<h2 id="solution10">Solution</h2>
+<h3 id="solution10">Solution</h3>
 <pre>
 $ file cool.pdf
 cool.pdf: PNG image data, 1326 x 89, 8-bit/color RGBA, non-interlaced
 </pre>
 <p><br /><br />
 <br /><br /></p>
-<h1 id="cool-image-2-forensics">Cool Image 2 (Forensics)</h1>
+<h2 id="forensics-cool-image-2">[Forensics]: Cool Image 2</h2>
 <hr>
+<h3 id="challenge13">Challenge</h3>
 <blockquote>
 <p>My friend sent me this image, but I can't open it. Can you help me open the image?</p>
 </blockquote>
@@ -1265,7 +1324,7 @@ cool.pdf: PNG image data, 1326 x 89, 8-bit/color RGBA, non-interlaced
 <ul>
 <li>cool.png</li>
 </ul>
-<h2 id="solution11">Solution</h2>
+<h3 id="solution11">Solution</h3>
 <p>ファイルの先頭にゴミがついているので、消すだけです。</p>
 <pre>
 $ xxd cool.png | head -n 4
@@ -1276,8 +1335,9 @@ $ xxd cool.png | head -n 4
 </pre>
 <p><br /><br />
 <br /><br /></p>
-<h1 id="slap-forensics">Slap (Forensics)</h1>
+<h2 id="forensics-slap">[Forensics]: Slap</h2>
 <hr>
+<h3 id="challenge14">Challenge</h3>
 <blockquote>
 <p>Don't get slapped too hard.</p>
 </blockquote>
@@ -1285,15 +1345,16 @@ $ xxd cool.png | head -n 4
 <ul>
 <li>slap.jpg</li>
 </ul>
-<h2 id="solution12">Solution</h2>
+<h3 id="solution12">Solution</h3>
 <p>Lorem ipsum （俗に言うダミーテキスト）だったので、うっかり見逃しそうでした。</p>
 <p><code>$ exiftool slap.jpg | grep hsctf</code>
 <br />
 Location Shown Country Name     : Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut la bore et dolore magna aliqua. Massa id neque aliquam vestibulum morbi blandit cursu <code>hsctf{twoslapsnonetforce}</code> s risus. Sed viverra ipsum nunc aliquet bibendum. Nisl purus in mollis nunc sed. Risus commodo viverra maecenas accumsan lacus vel facil&hellip;(snip)</p>
 <p><br /><br />
 <br /><br /></p>
-<h1 id="fish-forensics">Fish (Forensics)</h1>
+<h2 id="forensics-fish">[Forensics]: Fish</h2>
 <hr>
+<h3 id="challenge15">Challenge</h3>
 <blockquote>
 <p>I got a weird image from some fish. What is this?</p>
 </blockquote>
@@ -1301,7 +1362,7 @@ Location Shown Country Name     : Lorem ipsum dolor sit amet, consectetur adipis
 <ul>
 <li>fish.jpg</li>
 </ul>
-<h2 id="solution13">Solution</h2>
+<h3 id="solution13">Solution</h3>
 <p>「青い空を見上げればいつもそこに白い猫」で開くと、&ldquo;Steghide適用可能性データ&quot;というのが見えます。
 <br />
 <img src="https://captureamerica.github.io/writeups/img/possible_steg.png" alt="possible_steg.png"></p>
@@ -1319,8 +1380,9 @@ hsctf{fishy_fishy_fishy_fishy_fishy_fishy_fishy123123123123}
 </pre>
 <p><br /><br />
 <br /><br /></p>
-<h1 id="inspect-me-web">Inspect Me (Web)</h1>
+<h2 id="web-inspect-me">[Web]: Inspect Me</h2>
 <hr>
+<h3 id="challenge16">Challenge</h3>
 <blockquote>
 <p>Keith's little brother messed up some things&hellip;
 <br /><br />
@@ -1328,18 +1390,19 @@ hsctf{fishy_fishy_fishy_fishy_fishy_fishy_fishy123123123123}
 <br /><br />
 Note: There are 3 parts to the flag!</p>
 </blockquote>
-<h2 id="solution14">Solution</h2>
+<h3 id="solution14">Solution</h3>
 <p>View page source</p>
 <p><br /><br />
 <br /><br /></p>
-<h1 id="agent-keith-web">Agent Keith (Web)</h1>
+<h2 id="web-agent-keith">[Web]: Agent Keith</h2>
 <hr>
+<h3 id="challenge17">Challenge</h3>
 <blockquote>
 <p>Keith was looking at some old browsers and made a site to hold his flag.
 <br /><br />
 <a href="https://agent-keith.web.chal.hsctf.com">https://agent-keith.web.chal.hsctf.com</a></p>
 </blockquote>
-<h2 id="solution15">Solution</h2>
+<h3 id="solution15">Solution</h3>
 <p>上記にアクセスすると、</p>
 <pre>
 If you're not Keith, you won't get the flag!
@@ -1394,28 +1457,31 @@ hsctf{wow_you_are_agent_keith_now}
 </pre>
 <p><br /><br />
 <br /><br /></p>
-<h1 id="sql-web">S-Q-L (Web)</h1>
+<h2 id="web-sql">[Web]: S-Q-L</h2>
 <hr>
+<h3 id="challenge18">Challenge</h3>
 <blockquote>
 <p>Keith keeps trying to keep his flag safe. This time, he used a database and some PHP.
 <br /><br />
 <a href="https://s-q-l.web.chal.hsctf.com/">https://s-q-l.web.chal.hsctf.com/</a></p>
 </blockquote>
-<h2 id="solution16">Solution</h2>
+<h3 id="solution16">Solution</h3>
 <p><code>' or '1'='1</code></p>
 <p><br /><br />
 <br /><br /></p>
-<h1 id="the-quest-web">The Quest (Web)</h1>
+<h2 id="web-the-quest">[Web]: The Quest</h2>
 <hr>
+<h3 id="challenge19">Challenge</h3>
 <blockquote>
 <p>You think you are worthy of obtaining the flag? Try your hand at <a href="https://forms.gle/7pyAWuG3GvYL443NA">The Quest to Obtain the Flag.</a></p>
 </blockquote>
-<h2 id="solution17">Solution</h2>
+<h3 id="solution17">Solution</h3>
 <p>View Page Sourceでフラグを見つけてしまった。</p>
 <p><br /><br />
 <br /><br /></p>
-<h1 id="keith-logger-web">Keith Logger (Web)</h1>
+<h2 id="web-keith-logger">[Web]: Keith Logger</h2>
 <hr>
+<h3 id="challenge20">Challenge</h3>
 <blockquote>
 <p>Keith is up to some evil stuff! Can you figure out what he's doing and find the flag?
 <br /><br />
@@ -1425,7 +1491,7 @@ Note: nothing is actually saved</p>
 <ul>
 <li>extension.crx</li>
 </ul>
-<h2 id="solution18">Solution</h2>
+<h3 id="solution18">Solution</h3>
 <p>これは今までやったことのないタイプの問題で面白かったです。
 <br /><br />
 crxは、Chromeのエクステンション。
@@ -1514,8 +1580,9 @@ mongodbには、<code>Robo 3T</code>というツールを使いました。
 <img src="https://captureamerica.github.io/writeups/img/Keith_Bot_Mongo.png" alt="Keith_Bot_Mongo.png"></p>
 <p><br /><br />
 <br /><br /></p>
-<h1 id="accessible-rich-internet-applications-web">Accessible Rich Internet Applications (Web)</h1>
+<h2 id="web-accessible-rich-internet-applications">[Web]: Accessible Rich Internet Applications</h2>
 <hr>
+<h3 id="challenge21">Challenge</h3>
 <blockquote>
 <p>A very considerate fellow, Rob believes that accessibility is very important!
 <br /><br />
@@ -1525,7 +1592,7 @@ NOTE: The flag for this challenge starts with flag{ instead of hsctf{</p>
 <ul>
 <li>index.html</li>
 </ul>
-<h2 id="solution19">Solution</h2>
+<h3 id="solution19">Solution</h3>
 <p>添付の<code>index.html</code>には難読化された非常に長いJavascriptが含まれています。
 <br />
 ChromeのDeveloper ToolsでまずBeautifyして、mをWatchに追加して実行し、mを別ファイル（aaa.htm）として保存しました。
@@ -1632,7 +1699,7 @@ ChromeのDeveloper ToolsでまずBeautifyして、mをWatchに追加して実行
   
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+  
 <script type="text/javascript" src="https://captureamerica.github.io/writeups/dist/even.26188efa.min.js"></script>
 
 

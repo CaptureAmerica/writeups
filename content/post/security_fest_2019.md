@@ -10,9 +10,9 @@ categories: ["CTF"]
 author: "きゃぷあめ"
 ---
 
-# Signal
+## [Misc]: Signal
 - - -
-## Challenge
+### Challenge
 > There is no signal, everything is silent. Nothing is impossible.
 
 Attachment:
@@ -25,7 +25,7 @@ Attachment:
 
 
 <br />
-## Solution
+### Solution
 回答だけじゃなくて、一応やったことも記録に残しておきます。
 
 - pdf系の問題は、とりあえず、テキストエディタで開いてさらっと中身をチェックします。script使っているかどうかとか。

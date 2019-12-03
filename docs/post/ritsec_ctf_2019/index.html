@@ -35,7 +35,7 @@
 
 
 <link href="https://captureamerica.github.io/writeups/dist/even.c2a46f00.min.css" rel="stylesheet">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
 
 
 <meta property="og:title" content="RITSEC CTF 2019 Writeup" />
@@ -134,66 +134,81 @@
 
     <div class="post-toc" id="post-toc">
   <h2 class="post-toc-title">Contents</h2>
-  <div class="post-toc-content always-active">
+  <div class="post-toc-content">
     <nav id="TableOfContents">
   <ul>
-    <li><a href="#challenge">Challenge</a></li>
-    <li><a href="#solution">Solution</a></li>
-  </ul>
-
-  <ul>
-    <li><a href="#challenge1">Challenge</a></li>
-    <li><a href="#solution1">Solution</a></li>
-  </ul>
-
-  <ul>
-    <li><a href="#challenge2">Challenge</a></li>
-    <li><a href="#solution2">Solution</a></li>
-  </ul>
-
-  <ul>
-    <li><a href="#challenge3">Challenge</a></li>
-    <li><a href="#solution3">Solution</a></li>
-  </ul>
-
-  <ul>
-    <li><a href="#challenge4">Challenge</a></li>
-    <li><a href="#solution4">Solution</a></li>
-  </ul>
-
-  <ul>
-    <li><a href="#challenge5">Challenge</a></li>
-    <li><a href="#solution5">Solution</a></li>
-  </ul>
-
-  <ul>
-    <li><a href="#challenge6">Challenge</a></li>
-    <li><a href="#solution6">Solution</a></li>
-  </ul>
-
-  <ul>
-    <li><a href="#challenge7">Challenge</a></li>
-    <li><a href="#unsolved">Unsolved</a></li>
-  </ul>
-
-  <ul>
-    <li><a href="#challenge8">Challenge</a></li>
-    <li><a href="#unsolved1">Unsolved</a></li>
-  </ul>
-
-  <ul>
-    <li><a href="#challenge9">Challenge</a></li>
-    <li><a href="#solution7">Solution</a></li>
-  </ul>
-
-  <ul>
-    <li><a href="#challenge10">Challenge</a></li>
-    <li><a href="#solution8">Solution</a></li>
-  </ul>
-
-  <ul>
-    <li><a href="#challenge11">Challenge</a></li>
-    <li><a href="#solution9">Solution</a></li>
+    <li><a href="#pwn-999-bottles">[Pwn]: 999 Bottles</a>
+      <ul>
+        <li><a href="#challenge">Challenge</a></li>
+        <li><a href="#solution">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#forensics-take-it-to-the-cleaners">[Forensics]: Take it to the Cleaners</a>
+      <ul>
+        <li><a href="#challenge1">Challenge</a></li>
+        <li><a href="#solution1">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#forensics-long-gone">[Forensics]: Long Gone</a>
+      <ul>
+        <li><a href="#challenge2">Challenge</a></li>
+        <li><a href="#solution2">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#web-misdirection">[Web]: misdirection</a>
+      <ul>
+        <li><a href="#challenge3">Challenge</a></li>
+        <li><a href="#solution3">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#stego-thedoge">[Stego]: the_doge</a>
+      <ul>
+        <li><a href="#challenge4">Challenge</a></li>
+        <li><a href="#solution4">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#misc-onion-layer-encoding">[Misc]: Onion Layer Encoding</a>
+      <ul>
+        <li><a href="#challenge5">Challenge</a></li>
+        <li><a href="#solution5">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#misc-crack-me-if-you-can">[Misc]: Crack me If You Can</a>
+      <ul>
+        <li><a href="#challenge6">Challenge</a></li>
+        <li><a href="#solution6">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#web-knock-knock">[Web]: Knock knock</a>
+      <ul>
+        <li><a href="#challenge7">Challenge</a></li>
+        <li><a href="#unsolved">(Unsolved)</a></li>
+      </ul>
+    </li>
+    <li><a href="#forensics-lion">[Forensics]: Lion</a>
+      <ul>
+        <li><a href="#challenge8">Challenge</a></li>
+        <li><a href="#unsolved1">(Unsolved)</a></li>
+      </ul>
+    </li>
+    <li><a href="#misc-patch-tuesday">[Misc]: Patch Tuesday</a>
+      <ul>
+        <li><a href="#challenge9">Challenge</a></li>
+        <li><a href="#solution7">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#stego-exfiltratedduck">[Stego]: exfiltrated_duck</a>
+      <ul>
+        <li><a href="#challenge10">Challenge</a></li>
+        <li><a href="#solution8">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#forensics-findme">[Forensics]: findme</a>
+      <ul>
+        <li><a href="#challenge11">Challenge</a></li>
+        <li><a href="#solution9">Solution</a></li>
+      </ul>
+    </li>
   </ul>
 </nav>
   </div>
@@ -212,9 +227,9 @@
 <br /><br /></p>
 <p>結構、興味深いチャレンジがいくつかあって、まぁまぁ楽しかったです。</p>
 <p><br /><br /></p>
-<h1 id="pwn-999-bottles">[Pwn]: 999 Bottles</h1>
+<h2 id="pwn-999-bottles">[Pwn]: 999 Bottles</h2>
 <hr>
-<h2 id="challenge">Challenge</h2>
+<h3 id="challenge">Challenge</h3>
 <blockquote>
 <p>Well, this is embarassing&hellip; I've accidentally compiled 999 ELF files with my password somewhere along the line, one character at a time.
 <br /><br />
@@ -227,7 +242,7 @@ Good luck, and thanks for the help!</p>
 <li>bottles.zip</li>
 </ul>
 <p><br /></p>
-<h2 id="solution">Solution</h2>
+<h3 id="solution">Solution</h3>
 <p>bottles.zip の中には、999個（001.c.out ~ 999.c.out）のelf実行ファイルが入ってます。</p>
 <p>ひとつGhidraにかけてみます。（001.c.out）</p>
 <div class="highlight"><div class="chroma">
@@ -471,9 +486,9 @@ F&quot;)|/f,:PsUUmKL*z(;N`QPtDZvX@j~=]q)AJ$w#g|Kehk)_$D_k;ESDz@ZK#=ZWfCo[GYG;FQ`
 </code></pre><p>Flag <code>RITSEC{AuT057v}</code></p>
 <p><br /><br />
 <br /><br /></p>
-<h1 id="forensics-take-it-to-the-cleaners">[Forensics]: Take it to the Cleaners</h1>
+<h2 id="forensics-take-it-to-the-cleaners">[Forensics]: Take it to the Cleaners</h2>
 <hr>
-<h2 id="challenge1">Challenge</h2>
+<h3 id="challenge1">Challenge</h3>
 <blockquote>
 <p>People hide things in images all the time! See if you can find what the artist forgot to take out in this one!</p>
 </blockquote>
@@ -482,7 +497,7 @@ F&quot;)|/f,:PsUUmKL*z(;N`QPtDZvX@j~=]q)AJ$w#g|Kehk)_$D_k;ESDz@ZK#=ZWfCo[GYG;FQ`
 <li>ritsec_logo2.png</li>
 </ul>
 <p><br /></p>
-<h2 id="solution1">Solution</h2>
+<h3 id="solution1">Solution</h3>
 <ol>
 <li>exiftoolの結果</li>
 </ol>
@@ -536,9 +551,9 @@ RITSEC{FORENSICS_FAILS_WONT_HELP_YOU_HERE}</p>
 Flag: <code>RITSEC{FORENSICS_FAILS_WONT_HELP_YOU_HERE}</code></p>
 <p><br /><br />
 <br /><br /></p>
-<h1 id="forensics-long-gone">[Forensics]: Long Gone</h1>
+<h2 id="forensics-long-gone">[Forensics]: Long Gone</h2>
 <hr>
-<h2 id="challenge2">Challenge</h2>
+<h3 id="challenge2">Challenge</h3>
 <blockquote>
 <p>That data? No it's long gone. It's basically history</p>
 </blockquote>
@@ -547,7 +562,7 @@ Flag: <code>RITSEC{FORENSICS_FAILS_WONT_HELP_YOU_HERE}</code></p>
 <li>chromebin (232MB)</li>
 </ul>
 <p><br /></p>
-<h2 id="solution2">Solution</h2>
+<h3 id="solution2">Solution</h3>
 <ol>
 <li>フラグフォーマットの文字列 &ldquo;RITSEC&rdquo; をサーチ</li>
 </ol>
@@ -606,9 +621,9 @@ us-central-1.ritsec.club/l/relaxfizzblur</p>
 Flag: <code>RITSEC{SP00KY_BR0WS3R_H1ST0RY}</code></p>
 <p><br /><br />
 <br /><br /></p>
-<h1 id="web-misdirection">[Web]: misdirection</h1>
+<h2 id="web-misdirection">[Web]: misdirection</h2>
 <hr>
-<h2 id="challenge3">Challenge</h2>
+<h3 id="challenge3">Challenge</h3>
 <blockquote>
 <p>Looks like someone gave you the wrong directions!
 <br /><br />
@@ -617,7 +632,7 @@ Flag: <code>RITSEC{SP00KY_BR0WS3R_H1ST0RY}</code></p>
 Flag format is RS{ }</p>
 </blockquote>
 <p><br /></p>
-<h2 id="solution3">Solution</h2>
+<h3 id="solution3">Solution</h3>
 <p>リダイレクトが走るので、-Lを付けてcurlを実行します。</p>
 <pre>
 curl -v -L http://ctfchallenges.ritsec.club:5000/
@@ -693,9 +708,9 @@ $ cat curl.log | grep GET | cut -c 8 | tr -d '\n' ; echo
 <p>Flag <code>RS{4!way5_Ke3p-m0v1ng}</code></p>
 <p><br /><br />
 <br /><br /></p>
-<h1 id="stego-thedoge">[Stego]: the_doge</h1>
+<h2 id="stego-thedoge">[Stego]: the_doge</h2>
 <hr>
-<h2 id="challenge4">Challenge</h2>
+<h3 id="challenge4">Challenge</h3>
 <blockquote>
 <p>Steganography is the practice of concealing messages or information within other nonsecret data and images. The doge holds the information you want, feed the doge a treat to get the hidden message.</p>
 </blockquote>
@@ -704,7 +719,7 @@ $ cat curl.log | grep GET | cut -c 8 | tr -d '\n' ; echo
 <li>the_doge.jpg</li>
 </ul>
 <p><br /></p>
-<h2 id="solution4">Solution</h2>
+<h3 id="solution4">Solution</h3>
 <p>問題文より、「ワンちゃんにtreatをあげて」(feed the doge a treat)とのことなので、</p>
 <pre>
 # steghide extract -p 'treat' -sf the_doge.jpg 
@@ -717,9 +732,9 @@ RITSEC{hAppY_l1L_doG3}
 Flag: <code>RITSEC{hAppY_l1L_doG3}</code></p>
 <p><br /><br />
 <br /><br /></p>
-<h1 id="misc-onion-layer-encoding">[Misc]: Onion Layer Encoding</h1>
+<h2 id="misc-onion-layer-encoding">[Misc]: Onion Layer Encoding</h2>
 <hr>
-<h2 id="challenge5">Challenge</h2>
+<h3 id="challenge5">Challenge</h3>
 <blockquote>
 <p>Encoding is not encryption, but what if I just encode the flag with base16,32,64? If I encode my precious flag for 150 times, surely no one will be able to decode it, right?</p>
 </blockquote>
@@ -728,7 +743,7 @@ Flag: <code>RITSEC{hAppY_l1L_doG3}</code></p>
 <li>onionlayerencoding.txt</li>
 </ul>
 <p><br /></p>
-<h2 id="solution5">Solution</h2>
+<h3 id="solution5">Solution</h3>
 <p>Base16, Base32, Base64を150回かけたもの、ということで以下のようなコードを書きました。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -791,9 +806,9 @@ Flag: <code>RITSEC{hAppY_l1L_doG3}</code></p>
 <p>Flag: <code>RITSEC{0n1On_L4y3R}</code></p>
 <p><br /><br />
 <br /><br /></p>
-<h1 id="misc-crack-me-if-you-can">[Misc]: Crack me If You Can</h1>
+<h2 id="misc-crack-me-if-you-can">[Misc]: Crack me If You Can</h2>
 <hr>
-<h2 id="challenge6">Challenge</h2>
+<h3 id="challenge6">Challenge</h3>
 <blockquote>
 <p>Rev up your GPUs&hellip;
 <br /><br />
@@ -802,7 +817,7 @@ nc ctfchallenges.ritsec.club 8080
 Flag format RS{ }</p>
 </blockquote>
 <p><br /></p>
-<h2 id="solution6">Solution</h2>
+<h3 id="solution6">Solution</h3>
 <p>とりあえず繋いでみるとmd5が出てきたので、rainbowテーブル （https://crackstation.net/） でいけたんですが、shadow passwordは後回し。</p>
 <pre><code>$ nc ctfchallenges.ritsec.club 8080
 Some moron just breached Meme Corp and decided to dump their passwords...  
@@ -839,16 +854,16 @@ Crackできないやつもいくつかありましたが、何回かやってい
 <p>Flag: <code>RS{H@$HM31FY0UCAN}</code></p>
 <p><br /><br />
 <br /><br /></p>
-<h1 id="web-knock-knock">[Web]: Knock knock</h1>
+<h2 id="web-knock-knock">[Web]: Knock knock</h2>
 <hr>
-<h2 id="challenge7">Challenge</h2>
+<h3 id="challenge7">Challenge</h3>
 <blockquote>
 <p>While performing a pentest, we managed to get limited access to a box on the network (<a href="mailto:listener@129.21.228.115">listener@129.21.228.115</a>) with password of password. There's probably some cool stuff you can find on the network if you go looking.
 <br /><br />
 ssh <a href="mailto:listener@129.21.228.115">listener@129.21.228.115</a></p>
 </blockquote>
 <p><br /></p>
-<h2 id="unsolved">Unsolved</h2>
+<h3 id="unsolved">(Unsolved)</h3>
 <p>これは解けませんでした。</p>
 <p>sshでログインすると、ホームにbinディレクトリがあり、これらのコマンドしか使えないようです。</p>
 <pre>
@@ -923,16 +938,16 @@ Web問題だし、port 80か443にフォーカスするのが方向性的に正�
 <p>おそらく、Source portを見てて、繰り返しやっていたらフラグが取れたかもです。</p>
 <p><br /><br />
 <br /><br /></p>
-<h1 id="forensics-lion">[Forensics]: Lion</h1>
+<h2 id="forensics-lion">[Forensics]: Lion</h2>
 <hr>
-<h2 id="challenge8">Challenge</h2>
+<h3 id="challenge8">Challenge</h3>
 <blockquote>
 <p>when the lion rars, it's time to GO
 <br /><br />
 us-central-1.ritsec.club/l/lioncap</p>
 </blockquote>
 <p><br /></p>
-<h2 id="unsolved1">Unsolved</h2>
+<h3 id="unsolved1">(Unsolved)</h3>
 <p>これも解けませんでした。Writeupも見つからないですね。(2019/11/24時点)</p>
 <p>lioncapはpcapなので、wiresharkで開きます。</p>
 <p>f1.rar ~ f12.rar がexportできます。</p>
@@ -958,9 +973,9 @@ $ nc -l -p 33333
 ここから下はCTF終了後に行った復習です。（他の方のWriteupとか参照してます。）</p>
 <p><br /><br />
 <br /><br /></p>
-<h1 id="misc-patch-tuesday">[Misc]: Patch Tuesday</h1>
+<h2 id="misc-patch-tuesday">[Misc]: Patch Tuesday</h2>
 <hr>
-<h2 id="challenge9">Challenge</h2>
+<h3 id="challenge9">Challenge</h3>
 <blockquote>
 <p>Happy patch Tuesday!</p>
 </blockquote>
@@ -970,7 +985,7 @@ $ nc -l -p 33333
 <li>win32k.sys</li>
 </ul>
 <p><br /></p>
-<h2 id="solution7">Solution</h2>
+<h3 id="solution7">Solution</h3>
 <p>単純な問題だったみたいです。</p>
 <img src="https://captureamerica.github.io/writeups/img/win32k.PNG" alt="win32k.PNG">
 <p><br />
@@ -996,9 +1011,9 @@ $ nc -l -p 33333
 Flag: <code>RITSEC{PATCHM3IFYOUCAN}</code></p>
 <p><br /><br />
 <br /><br /></p>
-<h1 id="stego-exfiltratedduck">[Stego]: exfiltrated_duck</h1>
+<h2 id="stego-exfiltratedduck">[Stego]: exfiltrated_duck</h2>
 <hr>
-<h2 id="challenge10">Challenge</h2>
+<h3 id="challenge10">Challenge</h3>
 <blockquote>
 <p>If it walks like a duck, pcaps like a duck, and looks like a duck, what is it?</p>
 </blockquote>
@@ -1007,7 +1022,7 @@ Flag: <code>RITSEC{PATCHM3IFYOUCAN}</code></p>
 <li>exfiltrated_duck.pcap</li>
 </ul>
 <p><br /></p>
-<h2 id="solution8">Solution</h2>
+<h3 id="solution8">Solution</h3>
 <p>duckでpcapだったので、まず直感でduplicate_ack（tcp.analysis.duplicate_ack）かと思ったけど、違いました。。</p>
 <p>tcp streamが2つあるんですが、これをBase64 Decodeするようです。</p>
 <p>ただし、途中で余計な文字列が出てくるので、それを削除しないといけません。</p>
@@ -1049,9 +1064,9 @@ UklUU0VDCg==
 </pre>
 <p><br /><br />
 <br /><br /></p>
-<h1 id="forensics-findme">[Forensics]: findme</h1>
+<h2 id="forensics-findme">[Forensics]: findme</h2>
 <hr>
-<h2 id="challenge11">Challenge</h2>
+<h3 id="challenge11">Challenge</h3>
 <blockquote>
 <p>Find me! Challenge created by Security Risk Advisors for RITSEC CTF</p>
 </blockquote>
@@ -1060,7 +1075,7 @@ UklUU0VDCg==
 <li>findme.pcap</li>
 </ul>
 <p><br /></p>
-<h2 id="solution9">Solution</h2>
+<h3 id="solution9">Solution</h3>
 <p>Decoyが紛らわしいだけの問題でした。</p>
 <p><br />
 <code>tcp stream 0</code> にでっかいBase64のデータがあります。こっちは結局Decoyでした。</p>
@@ -1194,7 +1209,7 @@ Flag: <code>RITSEC{pcaps_0r_it_didnt_h@ppen}</code></p>
   
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+  
 <script type="text/javascript" src="https://captureamerica.github.io/writeups/dist/even.26188efa.min.js"></script>
 
 

@@ -38,9 +38,9 @@ Reverse Engineering の Writeupです。
 
 
 <br /><br />
-# [Reverse Engineering]: vault-door-1 (100 points)
+## [Reverse Engineering]: vault-door-1 (100 points)
 - - -
-## Challenge
+### Challenge
 > This vault uses some complicated arrays! I hope you can make sense of it, special agent. The source code for this vault is here: VaultDoor1.java
 <br /><br />
 Hints : Look up the charAt() method online.
@@ -50,7 +50,7 @@ Attachment:
 - VaultDoor1.java
 
 <br />
-## Solution
+### Solution
 ```
 cat temp.txt | cut -d'(' -f2 | sort -n | cut -d"'" -f2 | tr -d "\n" ; echo
 d35cr4mbl3_tH3_cH4r4cT3r5_82e029
@@ -63,9 +63,9 @@ Flag: `picoCTF{d35cr4mbl3_tH3_cH4r4cT3r5_82e029}`
 
 <br /><br />
 <br /><br />
-# [Reverse Engineering]: vault-door-3 (200 points)
+## [Reverse Engineering]: vault-door-3 (200 points)
 - - -
-## Challenge
+### Challenge
 > This vault uses for-loops and byte arrays. The source code for this vault is here: VaultDoor3.java
 <br /><br />
 Hints : Make a table that contains each value of the loop variables and the corresponding buffer index that it writes to.
@@ -76,7 +76,7 @@ Attachment:
 - VaultDoor3.java
 
 <br />
-## Solution
+### Solution
 ```C
 #include <stdio.h>
 
@@ -120,9 +120,9 @@ Flag: `picoCTF{jU5t_a_s1mpl3_an4gr4m_4_u_9af23c}`
 
 <br /><br />
 <br /><br />
-# [Reverse Engineering]: vault-door-4 (250 points)
+## [Reverse Engineering]: vault-door-4 (250 points)
 - - -
-## Challenge
+### Challenge
 > This vault uses ASCII encoding for the password. The source code for this vault is here: VaultDoor4.java
 <br /><br />
 Hints :<br />
@@ -135,7 +135,7 @@ Attachment:
 - VaultDoor4.java
 
 <br />
-## Solution
+### Solution
 ```
 $ python -c 'print("".join([chr(int(x)) for x in "106  85   53   116  95   52   95   98".split()]))'
 jU5t_4_b
@@ -163,9 +163,9 @@ Flag: `picoCTF{jU5t_4_bUnCh_0f_bYt3s_58840635a1}`
 
 <br /><br />
 <br /><br />
-# [Reverse Engineering]: vault-door-6 (350 points)
+## [Reverse Engineering]: vault-door-6 (350 points)
 - - -
-## Challenge
+### Challenge
 > This vault uses an XOR encryption scheme. The source code for this vault is here: VaultDoor6.java
 <br /><br />
 Hints : If X ^ Y = Z, then Z ^ Y = X. Write a program that decrypts the flag based on this fact.
@@ -176,7 +176,7 @@ Attachment:
 - VaultDoor6.java
 
 <br />
-## Solution
+### Solution
 ```
 $ python -c 'print("".join([chr(int(x,16)^0x55) for x in "0x3b 0x65 0x21 0xa  0x38 0x0  0x36 0x1d 0xa  0x3d 0x61 0x27 0x11 0x66 0x27 0xa 0x21 0x1d 0x61 0x3b 0xa  0x2d 0x65 0x27 0xa 0x64 0x64 0x65 0x62 0x61 0x65 0x33".split()]))'
 n0t_mUcH_h4rD3r_tH4n_x0r_110740f
@@ -191,9 +191,9 @@ Flag: `picoCTF{n0t_mUcH_h4rD3r_tH4n_x0r_110740f}`
 
 <br /><br />
 <br /><br />
-# [Reverse Engineering]: Need For Speed (400 points)
+## [Reverse Engineering]: Need For Speed (400 points)
 - - -
-## Challenge
+### Challenge
 > The name of the game is speed. Are you quick enough to solve this problem and keep it above 50 mph? need-for-speed.
 <br /><br />
 Hints : What is the final key?
@@ -204,7 +204,7 @@ Attachment:
 - need-for-speed
 
 <br />
-## Solution
+### Solution
 gdbでalarmの引き数を変えて実行。
 
 ```
@@ -229,9 +229,9 @@ Flag: `PICOCTF{Good job keeping bus #2cd93bf3 speeding along!}`
 
 <br /><br />
 <br /><br />
-# [Reverse Engineering]: Time's Up (400 points)
+## [Reverse Engineering]: Time's Up (400 points)
 - - -
-## Challenge
+### Challenge
 > Time waits for no one. Can you solve this before time runs out?
 <br /><br />
 Hints : Can you interact with the program using a script?
@@ -242,7 +242,7 @@ Attachment:
 - times-up
 
 <br />
-## Solution
+### Solution
 確か、こんな風だったはず。recvuntil()してたらタイムアウトしちゃってたので、コメントアウトしました。
 ```Python
 #!/usr/bin/env python
@@ -269,9 +269,9 @@ Flag: `picoCTF{Gotta go fast. Gotta go FAST. #046cc375}`
 
 <br /><br />
 <br /><br />
-# [Reverse Engineering]: asm4 (400 points)
+## [Reverse Engineering]: asm4 (400 points)
 - - -
-## Challenge
+### Challenge
 > What will asm4("picoCTF_376ee") return? Submit the flag as a hexadecimal value (starting with '0x'). NOTE: Your submission for this question will NOT be in the normal flag format.
 <br /><br />
 Hints : Treat the Array argument as a pointer
@@ -344,7 +344,7 @@ asm4:
 ```
 
 <br />
-## Solution (Unsolved??)
+### Solution (Unsolved??)
 どのように解こうか試行錯誤したんですが、アセンブラからCコードを書き起こすのが一番いいかな、と思ってそうしました。
 
 ```C
@@ -465,9 +465,9 @@ Flag: `picoCTF{0x24d}`
 
 <br /><br />
 <br /><br />
-# [Reverse Engineering]: droids3 (450 points)
+## [Reverse Engineering]: droids3 (450 points)
 - - -
-## Challenge
+### Challenge
 > Find the pass, get the flag. Check out this file.
 <br /><br />
 Hints : <br />
@@ -481,7 +481,7 @@ Attachment:
 - three.apk
 
 <br />
-## Solution
+### Solution
 1. $ java -jar /usr/local/bin/apktool.jar d three.apk
 2. three_apk/three/smali/com/hellocmu/picoctf/FlagstaffHill.smali の編集
 3. $ java -jar /usr/local/bin/apktool.jar b ./three -o three_modified.apk
@@ -496,9 +496,9 @@ Flag: `picoCTF{tis.but.a.scratch}`
 
 <br /><br />
 <br /><br />
-# [Reverse Engineering]: vault-door-8 (450 points)
+## [Reverse Engineering]: vault-door-8 (450 points)
 - - -
-## Challenge
+### Challenge
 > Apparently Dr. Evil's minions knew that our agency was making copies of their source code, because they intentionally sabotaged this source code in order to make it harder for our agents to analyze and crack into! The result is a quite mess, but I trust that my best special agent will find a way to solve it. The source code for this vault is here: VaultDoor8.java
 <br /><br />
 Hints : <br />
@@ -512,7 +512,7 @@ Attachment:
 - VaultDoor8.java
 
 <br />
-## Solution
+### Solution
 javaのソースを変えて、そのままデバッグしたらいいのかも知れないんですけどね。よくわからないからCでやりました。
 
 ```C
@@ -596,9 +596,9 @@ Flag: `picoCTF{s0m3_m0r3_b1t_sh1fTiNg_47327ac3d}`
 
 <br /><br />
 <br /><br />
-# [Reverse Engineering]: droids4 (500 points)
+## [Reverse Engineering]: droids4 (500 points)
 - - -
-## Challenge
+### Challenge
 > reverse the pass, patch the file, get the flag. Check out this file.
 <br /><br />
 
@@ -608,7 +608,7 @@ Attachment:
 - four.apk
 
 <br />
-## Solution
+### Solution
 基本的にやることは前述の droids3 と同じです。
 
 smaliコードの書き換え方は以下の通り。

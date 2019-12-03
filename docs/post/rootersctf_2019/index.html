@@ -35,7 +35,7 @@
 
 
 <link href="https://captureamerica.github.io/writeups/dist/even.c2a46f00.min.css" rel="stylesheet">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
 
 
 <meta property="og:title" content="Rooters CTF 2019 Writeup" />
@@ -134,31 +134,39 @@
 
     <div class="post-toc" id="post-toc">
   <h2 class="post-toc-title">Contents</h2>
-  <div class="post-toc-content always-active">
+  <div class="post-toc-content">
     <nav id="TableOfContents">
   <ul>
-    <li><a href="#challenge">Challenge</a></li>
-    <li><a href="#solution">Solution</a></li>
-  </ul>
-
-  <ul>
-    <li><a href="#challenge1">Challenge</a></li>
-    <li><a href="#solution1">Solution</a></li>
-  </ul>
-
-  <ul>
-    <li><a href="#challenge2">Challenge</a></li>
-    <li><a href="#solution2">Solution</a></li>
-  </ul>
-
-  <ul>
-    <li><a href="#challenge3">Challenge</a></li>
-    <li><a href="#solution3">Solution</a></li>
-  </ul>
-
-  <ul>
-    <li><a href="#challenge4">Challenge</a></li>
-    <li><a href="#solution4">Solution</a></li>
+    <li><a href="#forensics-you-cant-see-me">[Forensics]: You Can't See Me</a>
+      <ul>
+        <li><a href="#challenge">Challenge</a></li>
+        <li><a href="#solution">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#forensics-find-the-pass">[Forensics]: Find The Pass</a>
+      <ul>
+        <li><a href="#challenge1">Challenge</a></li>
+        <li><a href="#solution1">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#forensics-luna--3">[Forensics]: Luna - 3</a>
+      <ul>
+        <li><a href="#challenge2">Challenge</a></li>
+        <li><a href="#solution2">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#forensics-frames-per-story">[Forensics]: Frames per Story</a>
+      <ul>
+        <li><a href="#challenge3">Challenge</a></li>
+        <li><a href="#solution3">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#forensics-mind-awake-body-asleep">[Forensics]: Mind Awake Body Asleep!</a>
+      <ul>
+        <li><a href="#challenge4">Challenge</a></li>
+        <li><a href="#solution4">Solution</a></li>
+      </ul>
+    </li>
   </ul>
 </nav>
   </div>
@@ -169,9 +177,9 @@
 picoCTF 2019の直後でほとんど時間がなかったですが、ちょっとだけやりました。</p>
 <p>後日、復習もやりました（偉い）。</p>
 <p><br /><br /></p>
-<h1 id="forensics-you-cant-see-me">[Forensics]: You Can't See Me</h1>
+<h2 id="forensics-you-cant-see-me">[Forensics]: You Can't See Me</h2>
 <hr>
-<h2 id="challenge">Challenge</h2>
+<h3 id="challenge">Challenge</h3>
 <blockquote>
 <p>See for yourself</p>
 </blockquote>
@@ -180,7 +188,7 @@ picoCTF 2019の直後でほとんど時間がなかったですが、ちょっ�
 <li>youcantseeme.pdf</li>
 </ul>
 <p><br /></p>
-<h2 id="solution">Solution</h2>
+<h3 id="solution">Solution</h3>
 <p>100 ページくらい真っ白が続くPDFが与えられます。</p>
 <p>やったこと：</p>
 <ul>
@@ -199,9 +207,9 @@ picoCTF 2019の直後でほとんど時間がなかったですが、ちょっ�
 <p>Flag: <code>rooters{Ja1_US1CT}ctf</code></p>
 <p><br /><br />
 <br /><br /></p>
-<h1 id="forensics-find-the-pass">[Forensics]: Find The Pass</h1>
+<h2 id="forensics-find-the-pass">[Forensics]: Find The Pass</h2>
 <hr>
-<h2 id="challenge1">Challenge</h2>
+<h3 id="challenge1">Challenge</h3>
 <blockquote>
 <p>Find the admin Password. Put the flag in rooters{}ctf</p>
 </blockquote>
@@ -210,7 +218,7 @@ picoCTF 2019の直後でほとんど時間がなかったですが、ちょっ�
 <li>inc0gnito.cap (inc0gnito.pcapにリネームしました)</li>
 </ul>
 <p><br /></p>
-<h2 id="solution1">Solution</h2>
+<h3 id="solution1">Solution</h3>
 <pre><code># aircrack-ng inc0gnito.pcap
 
                                                       Aircrack-ng 1.5.2 
@@ -235,9 +243,9 @@ Credentials: admin:blu3_c0rp_p4ss
 <p>Flag: <code>rooters{blu3_c0rp_p4ss}ctf</code></p>
 <p><br /><br />
 <br /><br /></p>
-<h1 id="forensics-luna--3">[Forensics]: Luna - 3</h1>
+<h2 id="forensics-luna--3">[Forensics]: Luna - 3</h2>
 <hr>
-<h2 id="challenge2">Challenge</h2>
+<h3 id="challenge2">Challenge</h3>
 <blockquote>
 <p>Luna - 3 is sending some images of the far side of the moon we need to show the world the unseen part of the moon help us retrieve the images.</p>
 </blockquote>
@@ -246,7 +254,7 @@ Credentials: admin:blu3_c0rp_p4ss
 <li>recv_13.10.1959.wav</li>
 </ul>
 <p><br /></p>
-<h2 id="solution2">Solution</h2>
+<h3 id="solution2">Solution</h3>
 <p>picoCTF 2019で出てきたm00nwalkと同じ問題です。</p>
 <p>RX-SSTV というツールを使いました。<br />
 <a href="http://users.belgacom.net/hamradio/rxsstv.htm">http://users.belgacom.net/hamradio/rxsstv.htm</a></p>
@@ -259,9 +267,9 @@ Credentials: admin:blu3_c0rp_p4ss
 <br />
 ここから下はCTF終了後に行った復習です。（他の方のWriteupとか参照してます。）</p>
 <p><br /><br /></p>
-<h1 id="forensics-frames-per-story">[Forensics]: Frames per Story</h1>
+<h2 id="forensics-frames-per-story">[Forensics]: Frames per Story</h2>
 <hr>
-<h2 id="challenge3">Challenge</h2>
+<h3 id="challenge3">Challenge</h3>
 <blockquote>
 <p>Finally, Toby is out of the frames. I hope he never returns again.</p>
 </blockquote>
@@ -270,7 +278,7 @@ Credentials: admin:blu3_c0rp_p4ss
 <li>結構な数のjpegファイル</li>
 </ul>
 <p><br /></p>
-<h2 id="solution3">Solution</h2>
+<h3 id="solution3">Solution</h3>
 <p>exiftoolをかけると、Comment欄に少しずつ文字が入っているのがわかるので、全ファイルに対してexiftoolをかけて、がっちゃんこします。</p>
 <table><tr><td>
 <b>$ exiftool * | grep Comment | cut -d: -f2 | tr -d "\n" ; echo </b><br />
@@ -292,9 +300,9 @@ Previewで拡大、選択、コピー、New from Clipboardをして、別ファ�
 <p>Flag: <code>rooters{WHY_4R3_TH3_W4Y_TH4T_Y0U_4R3!}ctf</code></p>
 <p><br /><br />
 <br /><br /></p>
-<h1 id="forensics-mind-awake-body-asleep">[Forensics]: Mind Awake Body Asleep!</h1>
+<h2 id="forensics-mind-awake-body-asleep">[Forensics]: Mind Awake Body Asleep!</h2>
 <hr>
-<h2 id="challenge4">Challenge</h2>
+<h3 id="challenge4">Challenge</h3>
 <blockquote>
 <p>Everything visible has a flip side, like a coin.</p>
 </blockquote>
@@ -303,7 +311,7 @@ Previewで拡大、選択、コピー、New from Clipboardをして、別ファ�
 <li>challenge.wav</li>
 </ul>
 <p><br /></p>
-<h2 id="solution4">Solution</h2>
+<h3 id="solution4">Solution</h3>
 <p>challenge.wavを再生すると、誰かがモニャモニャ喋っていて、ほんとに眠たくなるファイルでした。</p>
 <p>とりあえず、audacityでスペクトラムとか見てみましたが、何も見つからず。</p>
 <p><br />
@@ -531,7 +539,7 @@ output: PNG image data, 1427 x 352, 8-bit/color RGBA, non-interlaced
   
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+  
 <script type="text/javascript" src="https://captureamerica.github.io/writeups/dist/even.26188efa.min.js"></script>
 
 

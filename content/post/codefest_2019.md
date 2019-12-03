@@ -19,9 +19,9 @@ URL: [https://www.hackerrank.com/codefest19-ctf](https://www.hackerrank.com/code
 
 
 <br /><br />
-# Reversing: Linux RE 2
+## [Reversing]: Linux RE 2
 - - -
-## Challenge
+### Challenge
 > You are given yet another ELF file. Reverse it to find the flag. The password is the flag.
 <br /><br />
 Update: The flag contains only alphabets, numbers and underscore.
@@ -32,7 +32,7 @@ Attachment:
 
 
 <br />
-## Solution
+### Solution
 Ghidraでデコンパイルします。
 
 ```C
@@ -247,15 +247,15 @@ Flag: `CodefestCTF{shouldve_used_some_tool}`
 <br /><br />
 <br /><br />
 
-# What language is this?
+## [Crypto]: What language is this?
 - - -
-## Challenge
+### Challenge
 > Decode this piece of text that Alice got from a friend of hers. 
 <br /><br />
 iiisdsiiioiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiodddddddddddoioiodoiiiiiiiiiiiiiioiodddddddddddddddddddddddddddddddddddddddddddddddddoiiiiiiiiiiiiiiiiioddddddddddddddoiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiioddddddddddddddddddddddddddddddddddddoiiiiiiiiiiiiiioiiiiiiiodddddddddodddddddddddddddddddddddddddddddddddddddddddddddddddoddddddddddddddddddddddddddddddddddddddsiiiiiiiiioddddddddoddddddoiiiiiiiiiiiiiiiiiiiiioddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddoddddddddddddddddddddddddddddddddsiiisisdddddoddddddddddddddddddddddddddddodddddddddddddddddddoddddddddddddddddddddddddddddddddsiiisisoioiodoiiiiiiiiiiiiiioiodddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddoiiiiiiiioddddddddddddddddddddddddddddddddddddddddddddddsiiiio
 
 <br />
-## Solution
+### Solution
 i, s, d, oの4文字を使ったesolangだろうということで、いろいろググったんですが、何なのかわかんなかったんですよね。
 
 deadfishというやつらしいです。覚えておきます。
@@ -264,9 +264,9 @@ deadfishというやつらしいです。覚えておきます。
 
 <br /><br />
 <br /><br />
-# Gibberish file
+## [Misc]: Gibberish file
 - - -
-## Challenge
+### Challenge
 > This file seems to have a weird encoding. Reverse it to find the flag.
 
 Attachment:
@@ -275,7 +275,7 @@ Attachment:
 
 
 <br />
-## Solution
+### Solution
 
 "Reverse it" を、"データを反転せよ" と解釈するのがミソ。そういう発想が大事なのがわかりました。
 
@@ -283,9 +283,9 @@ Attachment:
 
 <br /><br />
 <br /><br />
-# Image Corruption
+## [Forensics]: Image Corruption
 - - -
-## Challenge
+### Challenge
 > You are given a corrupted file. This file has the flag. Find it.
 
 Attachment:
@@ -293,7 +293,7 @@ Attachment:
 - image.bmp
 
 <br />
-## Solution
+### Solution
 
 このファイル、一部バイナリだけど、ほとんどテキストでmatrixmatrixmatrixがいっぱい出てくるところまでは見れていたんですが、そこからXORしようという発想がなかったです。
 
@@ -324,9 +324,9 @@ outfile.close()
 
 <br /><br />
 <br /><br />
-# Mail capture
+## [Network]: Mail capture
 - - -
-## Challenge
+### Challenge
 > Bob got hold of this file when going through the files of the email client on his old computer. Help him find the hidden message.
 
 Attachment: （後日ダウンロードし直したら、ちゃんと問題用ファイルが入ってました。）
@@ -342,7 +342,7 @@ end
 ```
 
 <br />
-## Solution
+### Solution
 
 $ uudecode encoded_file
 
@@ -351,9 +351,9 @@ $ uudecode encoded_file
 
 <br /><br />
 <br /><br />
-# Cats are innocent, right?
+## [Stego]: Cats are innocent, right?
 - - -
-## Challenge
+### Challenge
 > This image has a flag hidden in it. Find it.
 
 Attachment:
@@ -361,7 +361,7 @@ Attachment:
 - cute_kittens.jpg
 
 <br />
-## Solution
+### Solution
 
 この問題だけSuccess Rateがダントツに低いんです（4.76%）。みんな解けなかったみたいですね。
 

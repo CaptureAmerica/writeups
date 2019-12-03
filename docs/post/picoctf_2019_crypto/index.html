@@ -35,7 +35,7 @@
 
 
 <link href="https://captureamerica.github.io/writeups/dist/even.c2a46f00.min.css" rel="stylesheet">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
 
 
 <meta property="og:title" content="picoCTF 2019 Writeup (Cryptography)" />
@@ -134,46 +134,57 @@
 
     <div class="post-toc" id="post-toc">
   <h2 class="post-toc-title">Contents</h2>
-  <div class="post-toc-content always-active">
+  <div class="post-toc-content">
     <nav id="TableOfContents">
   <ul>
-    <li><a href="#challenge">Challenge</a></li>
-    <li><a href="#solution">Solution</a></li>
-  </ul>
-
-  <ul>
-    <li><a href="#challenge1">Challenge</a></li>
-    <li><a href="#solution1">Solution</a></li>
-  </ul>
-
-  <ul>
-    <li><a href="#challenge2">Challenge</a></li>
-    <li><a href="#solution2">Solution</a></li>
-  </ul>
-
-  <ul>
-    <li><a href="#challenge3">Challenge</a></li>
-    <li><a href="#solution3">Solution</a></li>
-  </ul>
-
-  <ul>
-    <li><a href="#challenge4">Challenge</a></li>
-    <li><a href="#solution4">Solution</a></li>
-  </ul>
-
-  <ul>
-    <li><a href="#challenge5">Challenge</a></li>
-    <li><a href="#solution5">Solution</a></li>
-  </ul>
-
-  <ul>
-    <li><a href="#challenge6">Challenge</a></li>
-    <li><a href="#solution6">Solution</a></li>
-  </ul>
-
-  <ul>
-    <li><a href="#challenge7">Challenge</a></li>
-    <li><a href="#solution7">Solution</a></li>
+    <li><a href="#cryptography-flags-200-points">[Cryptography]: Flags (200 points)</a>
+      <ul>
+        <li><a href="#challenge">Challenge</a></li>
+        <li><a href="#solution">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#cryptography-mrworldwide-200-points">[Cryptography]: Mr-Worldwide (200 points)</a>
+      <ul>
+        <li><a href="#challenge1">Challenge</a></li>
+        <li><a href="#solution1">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#cryptography-la-cifra-de-200-points">[Cryptography]: la cifra de (200 points)</a>
+      <ul>
+        <li><a href="#challenge2">Challenge</a></li>
+        <li><a href="#solution2">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#cryptography-minirsa-300-points">[Cryptography]: miniRSA (300 points)</a>
+      <ul>
+        <li><a href="#challenge3">Challenge</a></li>
+        <li><a href="#solution3">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#cryptography-waves-over-lambda-300-points">[Cryptography]: waves over lambda (300 points)</a>
+      <ul>
+        <li><a href="#challenge4">Challenge</a></li>
+        <li><a href="#solution4">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#cryptography-b00tl3grsa2-400-points">[Cryptography]: b00tl3gRSA2 (400 points)</a>
+      <ul>
+        <li><a href="#challenge5">Challenge</a></li>
+        <li><a href="#solution5">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#cryptography-b00tl3grsa3-400-points">[Cryptography]: b00tl3gRSA3 (400 points)</a>
+      <ul>
+        <li><a href="#challenge6">Challenge</a></li>
+        <li><a href="#solution6">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#cryptography-johnpollard-500-points">[Cryptography]: john_pollard (500 points)</a>
+      <ul>
+        <li><a href="#challenge7">Challenge</a></li>
+        <li><a href="#solution7">Solution</a></li>
+      </ul>
+    </li>
   </ul>
 </nav>
   </div>
@@ -194,9 +205,9 @@
 <p><br /><br />
 Cryptography の Writeupです。</p>
 <p><br /><br /></p>
-<h1 id="cryptography-flags-200-points">[Cryptography]: Flags (200 points)</h1>
+<h2 id="cryptography-flags-200-points">[Cryptography]: Flags (200 points)</h2>
 <hr>
-<h2 id="challenge">Challenge</h2>
+<h3 id="challenge">Challenge</h3>
 <blockquote>
 <p>What do the flags mean?
 <br /><br />
@@ -204,7 +215,7 @@ Hint: The flag is in the format PICOCTF{}</p>
 </blockquote>
 <img src="https://captureamerica.github.io/writeups/img/pico2019_flag.png" alt="pico2019_flag.png">
 <p><br /></p>
-<h2 id="solution">Solution</h2>
+<h3 id="solution">Solution</h3>
 <p>&ldquo;CTF&rdquo; &ldquo;flag&quot;とかいうキーワードでググっても絶対見つからないので、何気に手こずりました。</p>
 <p>&ldquo;International Code of Signals&rdquo; っていうんですね。</p>
 <p><a href="https://en.wikipedia.org/wiki/International_Code_of_Signals">https://en.wikipedia.org/wiki/International_Code_of_Signals</a> <br />
@@ -212,9 +223,9 @@ Hint: The flag is in the format PICOCTF{}</p>
 <p>Flag: <code>PICOCTF{F1AG5AND5TUFF}</code></p>
 <p><br /><br />
 <br /><br /></p>
-<h1 id="cryptography-mrworldwide-200-points">[Cryptography]: Mr-Worldwide (200 points)</h1>
+<h2 id="cryptography-mrworldwide-200-points">[Cryptography]: Mr-Worldwide (200 points)</h2>
 <hr>
-<h2 id="challenge1">Challenge</h2>
+<h3 id="challenge1">Challenge</h3>
 <blockquote>
 <p>A musician left us a message. What's it mean?
 <br /><br /></p>
@@ -226,7 +237,7 @@ Hint: The flag is in the format PICOCTF{}</p>
 <p>中身：<br />
 picoCTF{(35.028309, 135.753082)(46.469391, 30.740883)(39.758949, -84.191605)(41.015137, 28.979530)(24.466667, 54.366669)(3.140853, 101.693207)_(9.005401, 38.763611)(-3.989038, -79.203560)(52.377956, 4.897070)(41.085651, -73.858467)(57.790001, -152.407227)(31.205753, 29.924526)}</p>
 <p><br /></p>
-<h2 id="solution1">Solution</h2>
+<h3 id="solution1">Solution</h3>
 <p>どれか一個でググってみると、グーグルマップ上のとある場所が出てくるので、ぞれぞれが緯度と経度（longitude latitude）なのはわかります。</p>
 <p>それぞれの場所から1文字取る際に、どこを取るか、だけの問題です。</p>
 <pre><code>(35.028309, 135.753082)  : Kamigyo Ward, Kyoto, Kyoto Prefecture, Japan Geographic Information
@@ -246,9 +257,9 @@ _
 <p>Flag: <code>picoCTF{KODIAK_ALASKA}</code></p>
 <p><br /><br />
 <br /><br /></p>
-<h1 id="cryptography-la-cifra-de-200-points">[Cryptography]: la cifra de (200 points)</h1>
+<h2 id="cryptography-la-cifra-de-200-points">[Cryptography]: la cifra de (200 points)</h2>
 <hr>
-<h2 id="challenge2">Challenge</h2>
+<h3 id="challenge2">Challenge</h3>
 <blockquote>
 <p>I found this cipher in an old book. Can you figure out what it says? Connect with nc 2019shell1.picoctf.com 39776.
 <br /><br />
@@ -275,7 +286,7 @@ Tn 1508, Ptsatsps Zwttnjxiax tnbjytki ehk xz-cgqwej ylbaql rkhea (g rltxni ol xs
 Gplrfdo’y xpcuso butvlky lpvjlrki tn 1555 gx l cuseitzltoty ol yse lncsz. Yse rthex mllbjd ol yse gqahggpty fce tth snnqtki cemzwaxqj, bay ehk fwpnfmezx lnj yse osoed qptzjcs gwp mocpd hd xegsd ol f xnkrznoh vee usrgxp, wnnnh ify bk itfljcety hizm paim noxwpsvtydkse.
 </pre>
 <p><br /></p>
-<h2 id="solution2">Solution</h2>
+<h3 id="solution2">Solution</h3>
 <p>&ldquo;la cifra de 1553 1467 1555 book&rdquo; でググったら、以下が見つかりました。<br />
 Cryptography &lsquo;Vigenère cipher&rsquo; first described by Giovan Battista Bellaso in his book La cifra del. Sig. Giovan Battista Bellaso (Venice).</p>
 <p>ヴィジュネル暗号ですね。</p>
@@ -284,9 +295,9 @@ Cryptography &lsquo;Vigenère cipher&rsquo; first described by Giovan Battista B
 <p>Flag: <code>picoCTF{b311a50_0r_v1gn3r3_c1ph3rd00ebba3}</code></p>
 <p><br /><br />
 <br /><br /></p>
-<h1 id="cryptography-minirsa-300-points">[Cryptography]: miniRSA (300 points)</h1>
+<h2 id="cryptography-minirsa-300-points">[Cryptography]: miniRSA (300 points)</h2>
 <hr>
-<h2 id="challenge3">Challenge</h2>
+<h3 id="challenge3">Challenge</h3>
 <blockquote>
 <p>Lets decrypt this: ciphertext? Something seems a bit small
 <br /><br />
@@ -296,14 +307,14 @@ How could having too small an e affect the security of this 2048 bit key?<br />
 Make sure you dont lose precision, the numbers are pretty big (besides the e value)</p>
 </blockquote>
 <p><br /></p>
-<h2 id="solution3">Solution</h2>
+<h3 id="solution3">Solution</h3>
 <p>RsaCtfTool.pyで解けます。</p>
 <p>Flag: <code>picoCTF{n33d_a_lArg3r_e_11db861f}</code></p>
 <p><br /><br />
 <br /><br /></p>
-<h1 id="cryptography-waves-over-lambda-300-points">[Cryptography]: waves over lambda (300 points)</h1>
+<h2 id="cryptography-waves-over-lambda-300-points">[Cryptography]: waves over lambda (300 points)</h2>
 <hr>
-<h2 id="challenge4">Challenge</h2>
+<h3 id="challenge4">Challenge</h3>
 <blockquote>
 <p>We made alot of substitutions to encrypt this. Can you decrypt it? Connect with nc 2019shell1.picoctf.com 45185.
 <br /><br />
@@ -317,7 +328,7 @@ fysjexqz cded oz uyve arxj - aedkvdsfu_oz_f_ynde_rxmtwx_mvljldssyw
 pd pded syq mvfc myed qcxs x kvxeqde ya xs cyve yvq ya yve zcol qorr pd zxp cde zosg, xsw qcds o vswdezqyyw aye qcd aoezq qomd pcxq pxz mdxsq tu x zcol ayvswdeosj os qcd zdx.  o mvzq xfgsyprdwjd o cxw cxewru dudz qy ryyg vl pcds qcd zdxmds qyrw md zcd pxz zosgosj; aye aeym qcd mymdsq qcxq qcdu exqcde lvq md osqy qcd tyxq qcxs qcxq o mojcq td zxow qy jy os, mu cdxeq pxz, xz oq pded, wdxw poqcos md, lxeqru poqc aeojcq, lxeqru poqc cyeeye ya mosw, xsw qcd qcyvjcqz ya pcxq pxz udq tdayed md.
 </pre>
 <p><br /></p>
-<h2 id="solution4">Solution</h2>
+<h3 id="solution4">Solution</h3>
 <p>単一換字式暗号 (monoalphabetic substitution ciphers)です。</p>
 <pre>
 /Volumes/NO NAME/CTF/picoCTF_2019 $ ./mono_cipher_solve.pl 
@@ -329,30 +340,30 @@ WE WERE NOT MUCH MORE THAN A QUARTER OF AN HOUR OUT OF OUR SHIP TILL WE SAW HER 
 <p>Flag: <code>frequency_is_c_over_lambda_mupgpennod</code></p>
 <p><br /><br />
 <br /><br /></p>
-<h1 id="cryptography-b00tl3grsa2-400-points">[Cryptography]: b00tl3gRSA2 (400 points)</h1>
+<h2 id="cryptography-b00tl3grsa2-400-points">[Cryptography]: b00tl3gRSA2 (400 points)</h2>
 <hr>
-<h2 id="challenge5">Challenge</h2>
+<h3 id="challenge5">Challenge</h3>
 <blockquote>
 <p>In RSA d is alot bigger than e, why dont we use d to encrypt instead of e? Connect with nc 2019shell1.picoctf.com 1723.
 <br /><br />
 Hints : What is e generally?</p>
 </blockquote>
 <p><br /></p>
-<h2 id="solution5">Solution</h2>
+<h3 id="solution5">Solution</h3>
 <p>これも RsaCtfTool.py で解けます。</p>
 <p>Flag: <code>picoCTF{bad_1d3a5_6786084}</code></p>
 <p><br /><br />
 <br /><br /></p>
-<h1 id="cryptography-b00tl3grsa3-400-points">[Cryptography]: b00tl3gRSA3 (400 points)</h1>
+<h2 id="cryptography-b00tl3grsa3-400-points">[Cryptography]: b00tl3gRSA3 (400 points)</h2>
 <hr>
-<h2 id="challenge6">Challenge</h2>
+<h3 id="challenge6">Challenge</h3>
 <blockquote>
 <p>Why use p and q when I can use more? Connect with nc 2019shell1.picoctf.com 12275.
 <br /><br />
 Hints : There's more prime factors than p and q, finding d is going to be different.</p>
 </blockquote>
 <p><br /></p>
-<h2 id="solution6">Solution</h2>
+<h3 id="solution6">Solution</h3>
 <p>picoCTF 2018のSuper RSA3と同じです。</p>
 <p>以下で、factorize。<br />
 <a href="https://www.alpertron.com.ar/ECM.HTM"><a href="https://www.alpertron.com.ar/ECM.HTM">https://www.alpertron.com.ar/ECM.HTM</a></a></p>
@@ -360,9 +371,9 @@ Hints : There's more prime factors than p and q, finding d is going to be differ
 <p>Flag: <code>picoCTF{too_many_fact0rs_4817985}</code></p>
 <p><br /><br />
 <br /><br /></p>
-<h1 id="cryptography-johnpollard-500-points">[Cryptography]: john_pollard (500 points)</h1>
+<h2 id="cryptography-johnpollard-500-points">[Cryptography]: john_pollard (500 points)</h2>
 <hr>
-<h2 id="challenge7">Challenge</h2>
+<h3 id="challenge7">Challenge</h3>
 <blockquote>
 <p>Sometimes RSA certificates are breakable
 <br /><br />
@@ -387,7 +398,7 @@ q16/S1WLvzg4PsElmv1f
 -----END CERTIFICATE-----
 </pre>
 <p><br /></p>
-<h2 id="solution7">Solution</h2>
+<h3 id="solution7">Solution</h3>
 <p>opensslコマンドを使って証明書の内容を確認します。</p>
 <pre>
 $ openssl x509 -text -noout -in cert
@@ -513,7 +524,7 @@ Certificate:
   
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+  
 <script type="text/javascript" src="https://captureamerica.github.io/writeups/dist/even.26188efa.min.js"></script>
 
 

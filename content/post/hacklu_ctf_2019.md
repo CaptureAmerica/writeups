@@ -21,9 +21,9 @@ URL: [https://fluxfingersforfuture.fluxfingers.net/challenges/](https://fluxfing
 
 
 <br /><br />
-# [Misc]: Futuristic Communication
+## [Misc]: Futuristic Communication
 - - -
-## Challenge
+### Challenge
 > Communication in the future is a big thing. With the rising amount of data in the internet new handshake techniques are required. Here is my implementation, where I can identify who did request which resources.
 <br /><br />
 <b>Remark:</b> The remote host in the PCAPs is not the host you have to connect to.
@@ -43,7 +43,7 @@ Attachments:
 - futuristic_communication.pcapng
 
 <br />
-## Unsolved
+### Unsolved
 まずは、Wiresharkでpcapを開いて、Follow TCP Streamします。
 
 <pre>

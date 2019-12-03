@@ -35,7 +35,7 @@
 
 
 <link href="https://captureamerica.github.io/writeups/dist/even.c2a46f00.min.css" rel="stylesheet">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
 
 
 <meta property="og:title" content="SEC-T CTF 2019 Writeup" />
@@ -134,21 +134,27 @@
 
     <div class="post-toc" id="post-toc">
   <h2 class="post-toc-title">Contents</h2>
-  <div class="post-toc-content always-active">
+  <div class="post-toc-content">
     <nav id="TableOfContents">
   <ul>
-    <li><a href="#challenge">Challenge</a></li>
-    <li><a href="#solution">Solution</a></li>
-  </ul>
-
-  <ul>
-    <li><a href="#challenge1">Challenge</a></li>
-    <li><a href="#solution1">Solution</a></li>
-  </ul>
-
-  <ul>
-    <li><a href="#challenge2">Challenge</a></li>
-    <li><a href="#not-solved">Not Solved</a></li>
+    <li><a href="#miscforensics-diagram">[Misc/Forensics]: Diagram</a>
+      <ul>
+        <li><a href="#challenge">Challenge</a></li>
+        <li><a href="#solution">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#miscforensics-mycat">[Misc/Forensics]: Mycat</a>
+      <ul>
+        <li><a href="#challenge1">Challenge</a></li>
+        <li><a href="#solution1">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#miscforensicsmemory-favorite">[Misc/Forensics/Memory]: favorite</a>
+      <ul>
+        <li><a href="#challenge2">Challenge</a></li>
+        <li><a href="#not-solved">Not Solved</a></li>
+      </ul>
+    </li>
   </ul>
 </nav>
   </div>
@@ -161,9 +167,9 @@
 <img src="https://captureamerica.github.io/writeups/img/sectctf_Score.png" alt="sectctf_Score.png">
 <br /><br /></p>
 <p><br /><br /></p>
-<h1 id="miscforensics-diagram">[Misc/Forensics]: Diagram</h1>
+<h2 id="miscforensics-diagram">[Misc/Forensics]: Diagram</h2>
 <hr>
-<h2 id="challenge">Challenge</h2>
+<h3 id="challenge">Challenge</h3>
 <blockquote>
 <p>Don't trust the word of an android, they might cheat.</p>
 </blockquote>
@@ -172,7 +178,7 @@
 <li>diagram.tar.gz</li>
 </ul>
 <p><br /></p>
-<h2 id="solution">Solution</h2>
+<h3 id="solution">Solution</h3>
 <p>解凍して出てきたファイルはRTFファイルでした。</p>
 <pre><code>$ file diagram
 diagram: Rich Text Format data, version 1, unknown character set
@@ -233,9 +239,9 @@ SECT{4ndr0ids_sh0uld_b3_n1ce}
 </code></pre><p>Flag: <code>SECT{4ndr0ids_sh0uld_b3_n1ce}</code></p>
 <p><br /><br />
 <br /><br /></p>
-<h1 id="miscforensics-mycat">[Misc/Forensics]: Mycat</h1>
+<h2 id="miscforensics-mycat">[Misc/Forensics]: Mycat</h2>
 <hr>
-<h2 id="challenge1">Challenge</h2>
+<h3 id="challenge1">Challenge</h3>
 <blockquote>
 <p>My cat is planing something, find the hidden msg</p>
 </blockquote>
@@ -244,7 +250,7 @@ SECT{4ndr0ids_sh0uld_b3_n1ce}
 <li>mycat.tar.gz</li>
 </ul>
 <p><br /></p>
-<h2 id="solution1">Solution</h2>
+<h3 id="solution1">Solution</h3>
 <p>解凍して出てきたファイルはPDFファイルでした。</p>
 <pre><code>$ file mycat
 mycat: PDF document, version 1.4
@@ -319,9 +325,9 @@ PDFを開くと、ちょっと怖い顔のネコちゃんが出てきました�
 <img src="https://captureamerica.github.io/writeups/img/mycat_pdf2.png" alt="mycat_pdf2.png">
 <p>Flag: <code>SECT{3mb3dd3d_f1l3s_c0uld_b3_tr1cky}</code></p>
 <p><br /><br /></p>
-<h1 id="miscforensicsmemory-favorite">[Misc/Forensics/Memory]: favorite</h1>
+<h2 id="miscforensicsmemory-favorite">[Misc/Forensics/Memory]: favorite</h2>
 <hr>
-<h2 id="challenge2">Challenge</h2>
+<h3 id="challenge2">Challenge</h3>
 <blockquote>
 <p>Androids are attack us, they are planing something big. We don't know where.</p>
 </blockquote>
@@ -330,7 +336,7 @@ PDFを開くと、ちょっと怖い顔のネコちゃんが出てきました�
 <li>favorite.7z</li>
 </ul>
 <p><br /></p>
-<h2 id="not-solved">Not Solved</h2>
+<h3 id="not-solved">Not Solved</h3>
 <p>これは解けなかったんですけど、ちょっとトライしました。後で、復習したいと思います。</p>
 <pre><code>root@kali:~/SECTCTF_2019# volatility -f favorite.vmem imageinfo
 Volatility Foundation Volatility Framework 2.6
@@ -469,7 +475,7 @@ IconFile=%ProgramFiles%\Internet Explorer\Images\bing.ico
   
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+  
 <script type="text/javascript" src="https://captureamerica.github.io/writeups/dist/even.26188efa.min.js"></script>
 
 

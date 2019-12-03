@@ -35,7 +35,7 @@
 
 
 <link href="https://captureamerica.github.io/writeups/dist/even.c2a46f00.min.css" rel="stylesheet">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
 
 
 <meta property="og:title" content="Codefest&#39;19 CTF Writeup" />
@@ -48,7 +48,7 @@
 <meta itemprop="description" content="URL: https://www.hackerrank.com/codefest19-ctf 問題数は10問（WelcomeとSurveyを除く）あって、そのうちの1問（Mail capture）は添付ファイルにフラグがそのまま入っ">
 <meta itemprop="datePublished" content="2019-08-25T15:00:00&#43;09:00" />
 <meta itemprop="dateModified" content="2019-08-29T23:00:00&#43;09:00" />
-<meta itemprop="wordCount" content="2240">
+<meta itemprop="wordCount" content="2245">
 
 
 
@@ -134,36 +134,45 @@
 
     <div class="post-toc" id="post-toc">
   <h2 class="post-toc-title">Contents</h2>
-  <div class="post-toc-content always-active">
+  <div class="post-toc-content">
     <nav id="TableOfContents">
   <ul>
-    <li><a href="#challenge">Challenge</a></li>
-    <li><a href="#solution">Solution</a></li>
-  </ul>
-
-  <ul>
-    <li><a href="#challenge1">Challenge</a></li>
-    <li><a href="#solution1">Solution</a></li>
-  </ul>
-
-  <ul>
-    <li><a href="#challenge2">Challenge</a></li>
-    <li><a href="#solution2">Solution</a></li>
-  </ul>
-
-  <ul>
-    <li><a href="#challenge3">Challenge</a></li>
-    <li><a href="#solution3">Solution</a></li>
-  </ul>
-
-  <ul>
-    <li><a href="#challenge4">Challenge</a></li>
-    <li><a href="#solution4">Solution</a></li>
-  </ul>
-
-  <ul>
-    <li><a href="#challenge5">Challenge</a></li>
-    <li><a href="#solution5">Solution</a></li>
+    <li><a href="#reversing-linux-re-2">[Reversing]: Linux RE 2</a>
+      <ul>
+        <li><a href="#challenge">Challenge</a></li>
+        <li><a href="#solution">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#crypto-what-language-is-this">[Crypto]: What language is this?</a>
+      <ul>
+        <li><a href="#challenge1">Challenge</a></li>
+        <li><a href="#solution1">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#misc-gibberish-file">[Misc]: Gibberish file</a>
+      <ul>
+        <li><a href="#challenge2">Challenge</a></li>
+        <li><a href="#solution2">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#forensics-image-corruption">[Forensics]: Image Corruption</a>
+      <ul>
+        <li><a href="#challenge3">Challenge</a></li>
+        <li><a href="#solution3">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#network-mail-capture">[Network]: Mail capture</a>
+      <ul>
+        <li><a href="#challenge4">Challenge</a></li>
+        <li><a href="#solution4">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#stego-cats-are-innocent-right">[Stego]: Cats are innocent, right?</a>
+      <ul>
+        <li><a href="#challenge5">Challenge</a></li>
+        <li><a href="#solution5">Solution</a></li>
+      </ul>
+    </li>
   </ul>
 </nav>
   </div>
@@ -177,9 +186,9 @@
 <br /><br />
 （後日、残りの問題の復習もやりました。）</p>
 <p><br /><br /></p>
-<h1 id="reversing-linux-re-2">Reversing: Linux RE 2</h1>
+<h2 id="reversing-linux-re-2">[Reversing]: Linux RE 2</h2>
 <hr>
-<h2 id="challenge">Challenge</h2>
+<h3 id="challenge">Challenge</h3>
 <blockquote>
 <p>You are given yet another ELF file. Reverse it to find the flag. The password is the flag.
 <br /><br />
@@ -190,7 +199,7 @@ Update: The flag contains only alphabets, numbers and underscore.</p>
 <li>chall2</li>
 </ul>
 <p><br /></p>
-<h2 id="solution">Solution</h2>
+<h3 id="solution">Solution</h3>
 <p>Ghidraでデコンパイルします。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -559,23 +568,23 @@ local_62: l
 何気にいろいろと勉強になりました。
 <br /><br />
 <br /><br /></p>
-<h1 id="what-language-is-this">What language is this?</h1>
+<h2 id="crypto-what-language-is-this">[Crypto]: What language is this?</h2>
 <hr>
-<h2 id="challenge1">Challenge</h2>
+<h3 id="challenge1">Challenge</h3>
 <blockquote>
 <p>Decode this piece of text that Alice got from a friend of hers.
 <br /><br />
 iiisdsiiioiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiodddddddddddoioiodoiiiiiiiiiiiiiioiodddddddddddddddddddddddddddddddddddddddddddddddddoiiiiiiiiiiiiiiiiioddddddddddddddoiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiioddddddddddddddddddddddddddddddddddddoiiiiiiiiiiiiiioiiiiiiiodddddddddodddddddddddddddddddddddddddddddddddddddddddddddddddoddddddddddddddddddddddddddddddddddddddsiiiiiiiiioddddddddoddddddoiiiiiiiiiiiiiiiiiiiiioddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddoddddddddddddddddddddddddddddddddsiiisisdddddoddddddddddddddddddddddddddddodddddddddddddddddddoddddddddddddddddddddddddddddddddsiiisisoioiodoiiiiiiiiiiiiiioiodddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddoiiiiiiiioddddddddddddddddddddddddddddddddddddddddddddddsiiiio</p>
 </blockquote>
 <p><br /></p>
-<h2 id="solution1">Solution</h2>
+<h3 id="solution1">Solution</h3>
 <p>i, s, d, oの4文字を使ったesolangだろうということで、いろいろググったんですが、何なのかわかんなかったんですよね。</p>
 <p>deadfishというやつらしいです。覚えておきます。</p>
 <p><br /><br />
 <br /><br /></p>
-<h1 id="gibberish-file">Gibberish file</h1>
+<h2 id="misc-gibberish-file">[Misc]: Gibberish file</h2>
 <hr>
-<h2 id="challenge2">Challenge</h2>
+<h3 id="challenge2">Challenge</h3>
 <blockquote>
 <p>This file seems to have a weird encoding. Reverse it to find the flag.</p>
 </blockquote>
@@ -584,13 +593,13 @@ iiisdsiiioiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiodddddddddddoioiodoiiiiiii
 <li>output.txt (weird_file.zip)</li>
 </ul>
 <p><br /></p>
-<h2 id="solution2">Solution</h2>
+<h3 id="solution2">Solution</h3>
 <p>&ldquo;Reverse it&rdquo; を、&ldquo;データを反転せよ&rdquo; と解釈するのがミソ。そういう発想が大事なのがわかりました。</p>
 <p><br /><br />
 <br /><br /></p>
-<h1 id="image-corruption">Image Corruption</h1>
+<h2 id="forensics-image-corruption">[Forensics]: Image Corruption</h2>
 <hr>
-<h2 id="challenge3">Challenge</h2>
+<h3 id="challenge3">Challenge</h3>
 <blockquote>
 <p>You are given a corrupted file. This file has the flag. Find it.</p>
 </blockquote>
@@ -599,7 +608,7 @@ iiisdsiiioiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiodddddddddddoioiodoiiiiiii
 <li>image.bmp</li>
 </ul>
 <p><br /></p>
-<h2 id="solution3">Solution</h2>
+<h3 id="solution3">Solution</h3>
 <p>このファイル、一部バイナリだけど、ほとんどテキストでmatrixmatrixmatrixがいっぱい出てくるところまでは見れていたんですが、そこからXORしようという発想がなかったです。</p>
 <p>一応、コードはそれなりに自分で書いてみました。</p>
 <div class="highlight"><div class="chroma">
@@ -648,9 +657,9 @@ iiisdsiiioiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiodddddddddddoioiodoiiiiiii
 </div>
 </div><p><br /><br />
 <br /><br /></p>
-<h1 id="mail-capture">Mail capture</h1>
+<h2 id="network-mail-capture">[Network]: Mail capture</h2>
 <hr>
-<h2 id="challenge4">Challenge</h2>
+<h3 id="challenge4">Challenge</h3>
 <blockquote>
 <p>Bob got hold of this file when going through the files of the email client on his old computer. Help him find the hidden message.</p>
 </blockquote>
@@ -664,14 +673,14 @@ E0V]D969E&lt;W1#5$9[-V@Q-5\Q-5\T7V,P,#%?,VYC,&amp;0Q;CE]&quot;@``
 `
 end
 </code></pre><p><br /></p>
-<h2 id="solution4">Solution</h2>
+<h3 id="solution4">Solution</h3>
 <p>$ uudecode encoded_file</p>
 <p>これもちゃんと覚えておきます。</p>
 <p><br /><br />
 <br /><br /></p>
-<h1 id="cats-are-innocent-right">Cats are innocent, right?</h1>
+<h2 id="stego-cats-are-innocent-right">[Stego]: Cats are innocent, right?</h2>
 <hr>
-<h2 id="challenge5">Challenge</h2>
+<h3 id="challenge5">Challenge</h3>
 <blockquote>
 <p>This image has a flag hidden in it. Find it.</p>
 </blockquote>
@@ -680,7 +689,7 @@ end
 <li>cute_kittens.jpg</li>
 </ul>
 <p><br /></p>
-<h2 id="solution5">Solution</h2>
+<h3 id="solution5">Solution</h3>
 <p>この問題だけSuccess Rateがダントツに低いんです（4.76%）。みんな解けなかったみたいですね。</p>
 <p><a href="https://github.com/DimitarPetrov/stegify">stegify</a>というツールと使って解くそうです。</p>
 <p>それ以外の解き方はないのかなぁ。。</p>
@@ -818,7 +827,7 @@ root@kali:~/Codefest_CTF_2019# xxd hello
   
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+  
 <script type="text/javascript" src="https://captureamerica.github.io/writeups/dist/even.26188efa.min.js"></script>
 
 

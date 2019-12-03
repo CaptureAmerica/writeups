@@ -38,9 +38,9 @@ Cryptography の Writeupです。
 
 
 <br /><br />
-# [Cryptography]: Flags (200 points)
+## [Cryptography]: Flags (200 points)
 - - -
-## Challenge
+### Challenge
 > What do the flags mean?
 <br /><br />
 Hint: The flag is in the format PICOCTF{}
@@ -48,7 +48,7 @@ Hint: The flag is in the format PICOCTF{}
 <img src="https://captureamerica.github.io/writeups/img/pico2019_flag.png" alt="pico2019_flag.png">
 
 <br />
-## Solution
+### Solution
 "CTF" "flag"とかいうキーワードでググっても絶対見つからないので、何気に手こずりました。
 
 "International Code of Signals" っていうんですね。
@@ -63,9 +63,9 @@ Flag: `PICOCTF{F1AG5AND5TUFF}`
 
 <br /><br />
 <br /><br />
-# [Cryptography]: Mr-Worldwide (200 points)
+## [Cryptography]: Mr-Worldwide (200 points)
 - - -
-## Challenge
+### Challenge
 > A musician left us a message. What's it mean?
 <br /><br />
 
@@ -77,7 +77,7 @@ Attachment:
 picoCTF{(35.028309, 135.753082)(46.469391, 30.740883)(39.758949, -84.191605)(41.015137, 28.979530)(24.466667, 54.366669)(3.140853, 101.693207)_(9.005401, 38.763611)(-3.989038, -79.203560)(52.377956, 4.897070)(41.085651, -73.858467)(57.790001, -152.407227)(31.205753, 29.924526)}
 
 <br />
-## Solution
+### Solution
 どれか一個でググってみると、グーグルマップ上のとある場所が出てくるので、ぞれぞれが緯度と経度（longitude latitude）なのはわかります。
 
 それぞれの場所から1文字取る際に、どこを取るか、だけの問題です。
@@ -106,9 +106,9 @@ Flag: `picoCTF{KODIAK_ALASKA}`
 
 <br /><br />
 <br /><br />
-# [Cryptography]: la cifra de (200 points)
+## [Cryptography]: la cifra de (200 points)
 - - -
-## Challenge
+### Challenge
 > I found this cipher in an old book. Can you figure out what it says? Connect with nc 2019shell1.picoctf.com 39776.
 <br /><br />
 Hint1 : There are tools that make this easy.<br />
@@ -136,7 +136,7 @@ Gplrfdo’y xpcuso butvlky lpvjlrki tn 1555 gx l cuseitzltoty ol yse lncsz. Yse 
 
 
 <br />
-## Solution
+### Solution
 "la cifra de 1553 1467 1555 book" でググったら、以下が見つかりました。<br />
 Cryptography 'Vigenère cipher' first described by Giovan Battista Bellaso in his book La cifra del. Sig. Giovan Battista Bellaso (Venice).
 
@@ -152,9 +152,9 @@ Flag: `picoCTF{b311a50_0r_v1gn3r3_c1ph3rd00ebba3}`
 
 <br /><br />
 <br /><br />
-# [Cryptography]: miniRSA (300 points)
+## [Cryptography]: miniRSA (300 points)
 - - -
-## Challenge
+### Challenge
 > Lets decrypt this: ciphertext? Something seems a bit small
 <br /><br />
 Hints :<br />
@@ -164,7 +164,7 @@ Make sure you dont lose precision, the numbers are pretty big (besides the e val
 
 
 <br />
-## Solution
+### Solution
 RsaCtfTool.pyで解けます。
 
 Flag: `picoCTF{n33d_a_lArg3r_e_11db861f}`
@@ -173,9 +173,9 @@ Flag: `picoCTF{n33d_a_lArg3r_e_11db861f}`
 
 <br /><br />
 <br /><br />
-# [Cryptography]: waves over lambda (300 points)
+## [Cryptography]: waves over lambda (300 points)
 - - -
-## Challenge
+### Challenge
 > We made alot of substitutions to encrypt this. Can you decrypt it? Connect with nc 2019shell1.picoctf.com 45185.
 <br /><br />
 Hints : Flag is not in the usual flag format
@@ -191,7 +191,7 @@ pd pded syq mvfc myed qcxs x kvxeqde ya xs cyve yvq ya yve zcol qorr pd zxp cde 
 
 
 <br />
-## Solution
+### Solution
 単一換字式暗号 (monoalphabetic substitution ciphers)です。
 
 <pre>
@@ -210,15 +210,15 @@ Flag: `frequency_is_c_over_lambda_mupgpennod`
 
 <br /><br />
 <br /><br />
-# [Cryptography]: b00tl3gRSA2 (400 points)
+## [Cryptography]: b00tl3gRSA2 (400 points)
 - - -
-## Challenge
+### Challenge
 > In RSA d is alot bigger than e, why dont we use d to encrypt instead of e? Connect with nc 2019shell1.picoctf.com 1723.
 <br /><br />
 Hints : What is e generally?
 
 <br />
-## Solution
+### Solution
 これも RsaCtfTool.py で解けます。
 
 Flag: `picoCTF{bad_1d3a5_6786084}`
@@ -229,16 +229,16 @@ Flag: `picoCTF{bad_1d3a5_6786084}`
 
 <br /><br />
 <br /><br />
-# [Cryptography]: b00tl3gRSA3 (400 points)
+## [Cryptography]: b00tl3gRSA3 (400 points)
 - - -
-## Challenge
+### Challenge
 > Why use p and q when I can use more? Connect with nc 2019shell1.picoctf.com 12275.
 <br /><br />
 Hints : There's more prime factors than p and q, finding d is going to be different.
 
 
 <br />
-## Solution
+### Solution
 picoCTF 2018のSuper RSA3と同じです。
 
 以下で、factorize。<br />
@@ -253,9 +253,9 @@ Flag: `picoCTF{too_many_fact0rs_4817985}`
 
 <br /><br />
 <br /><br />
-# [Cryptography]: john_pollard (500 points)
+## [Cryptography]: john_pollard (500 points)
 - - -
-## Challenge
+### Challenge
 > Sometimes RSA certificates are breakable
 <br /><br />
 Hints :<br />
@@ -282,7 +282,7 @@ q16/S1WLvzg4PsElmv1f
 
 
 <br />
-## Solution
+### Solution
 opensslコマンドを使って証明書の内容を確認します。
 
 <pre>

@@ -20,9 +20,9 @@ URL: [https://cryptixctf.com/challenges](https://cryptixctf.com/challenges)
 
 
 <br /><br />
-# [Forensics]: Hidden deep within (400 points)
+## [Forensics]: Hidden deep within (400 points)
 - - -
-## Challenge
+### Challenge
 > "This is just noise... There is nothing...."
 
 Attachments:
@@ -30,7 +30,7 @@ Attachments:
 - useless.png
 
 <br />
-## Solution
+### Solution
 「青い空を見上げればいつもそこに白い猫」でLSB立てたらPNGのヘッダが見えたので、バイナリデータ保存したところ、"flag{Haha_fake_flag}" と書かれたPNGファイルになりました。
 
 そのPNGに対してZstegかけたらフラグが取れました。
@@ -41,9 +41,9 @@ Flag: `flag{st3g4n0gr4phy_i5_34sy}`
 
 <br /><br />
 <br /><br />
-# [Web]: Your ID please
+## [Web]: Your ID please
 - - -
-## Challenge
+### Challenge
 > This is super secure, confidential research. You are just not meant to access it. Don't even try, it's futile.<br />
 Okay, you don't believe me? have the source code too!<br />
 https://cryptixctf.com/web4/php_code.txt<br />
@@ -72,7 +72,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 ```
 
 <br />
-## Solution
+### Solution
 Burpでpwdのところをpwd[]に書き換えてフォワードします。
 
 ID="SuperUser1337"&pwd[]=pass
@@ -85,9 +85,9 @@ Flag: `flag{Why_Juggl3_th3_Typ5}`
 
 <br /><br />
 <br /><br />
-# [Reversing]: Let's climb the ladder (250 points)
+## [Reversing]: Let's climb the ladder (250 points)
 - - -
-## Challenge
+### Challenge
 > Here is an executable. You know what to do.<br />
 Note: The flag format is as usual flag{XXXX...}<br />
 
@@ -97,7 +97,7 @@ Attachments:
 
 
 <br />
-## Solution (Unsolved...)
+### Solution (Unsolved...)
 Ghidraでデコンパイルします。
 
 ```C

@@ -16,7 +16,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="きゃぷあめ" /><meta name="description" content="[Crypto 100] Twenty-five Challenge With “ppencode”, you can write Perl code using only Perl reserved words. Attachments: crypto.txt（ppencodeでエンコードされたファイル） reserved.t" /><meta name="keywords" content="CTF, Writeup, captureamerica, picoCTF" />
+<meta name="author" content="きゃぷあめ" /><meta name="description" content="[Crypto]: Twenty-five Challenge With “ppencode”, you can write Perl code using only Perl reserved words. Attachments: crypto.txt（ppencodeでエンコードされたファイル） reserved.tx" /><meta name="keywords" content="CTF, Writeup, captureamerica, picoCTF" />
 
 
 
@@ -35,26 +35,26 @@
 
 
 <link href="https://captureamerica.github.io/writeups/dist/even.c2a46f00.min.css" rel="stylesheet">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
 
 
 <meta property="og:title" content="Harekaze CTF 2019 Writeup" />
-<meta property="og:description" content="[Crypto 100] Twenty-five Challenge With “ppencode”, you can write Perl code using only Perl reserved words. Attachments: crypto.txt（ppencodeでエンコードされたファイル） reserved.t" />
+<meta property="og:description" content="[Crypto]: Twenty-five Challenge With “ppencode”, you can write Perl code using only Perl reserved words. Attachments: crypto.txt（ppencodeでエンコードされたファイル） reserved.tx" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://captureamerica.github.io/writeups/post/harekaze_ctf_2019/" />
 <meta property="article:published_time" content="2019-05-18T13:49:54+09:00" />
 <meta property="article:modified_time" content="2019-05-25T15:05:00+08:00" />
 <meta itemprop="name" content="Harekaze CTF 2019 Writeup">
-<meta itemprop="description" content="[Crypto 100] Twenty-five Challenge With “ppencode”, you can write Perl code using only Perl reserved words. Attachments: crypto.txt（ppencodeでエンコードされたファイル） reserved.t">
+<meta itemprop="description" content="[Crypto]: Twenty-five Challenge With “ppencode”, you can write Perl code using only Perl reserved words. Attachments: crypto.txt（ppencodeでエンコードされたファイル） reserved.tx">
 <meta itemprop="datePublished" content="2019-05-18T13:49:54&#43;09:00" />
 <meta itemprop="dateModified" content="2019-05-25T15:05:00&#43;08:00" />
-<meta itemprop="wordCount" content="1495">
+<meta itemprop="wordCount" content="1494">
 
 
 
 <meta itemprop="keywords" content="CTF," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Harekaze CTF 2019 Writeup"/>
-<meta name="twitter:description" content="[Crypto 100] Twenty-five Challenge With “ppencode”, you can write Perl code using only Perl reserved words. Attachments: crypto.txt（ppencodeでエンコードされたファイル） reserved.t"/>
+<meta name="twitter:description" content="[Crypto]: Twenty-five Challenge With “ppencode”, you can write Perl code using only Perl reserved words. Attachments: crypto.txt（ppencodeでエンコードされたファイル） reserved.tx"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -134,20 +134,23 @@
 
     <div class="post-toc" id="post-toc">
   <h2 class="post-toc-title">Contents</h2>
-  <div class="post-toc-content always-active">
+  <div class="post-toc-content">
     <nav id="TableOfContents">
   <ul>
-    <li><a href="#challenge">Challenge</a></li>
-    <li><a href="#solution">Solution</a></li>
-    <li><a href="#nkhrlab">作問者（nkhrlabさん）による解説</a></li>
+    <li><a href="#crypto-twentyfive">[Crypto]: Twenty-five</a>
+      <ul>
+        <li><a href="#challenge">Challenge</a></li>
+        <li><a href="#solution">Solution</a></li>
+      </ul>
+    </li>
   </ul>
 </nav>
   </div>
 </div>
     <div class="post-content">
-      <h1 id="crypto-100-twentyfive">[Crypto 100] Twenty-five</h1>
+      <h2 id="crypto-twentyfive">[Crypto]: Twenty-five</h2>
 <hr>
-<h2 id="challenge">Challenge</h2>
+<h3 id="challenge">Challenge</h3>
 <blockquote>
 <p>With “ppencode”, you can write Perl code using only Perl reserved words.</p>
 </blockquote>
@@ -158,7 +161,7 @@
 <li>twenty-five.pl（crypto.txtを読み込んで、変換して実行）</li>
 </ul>
 <p><br /></p>
-<h2 id="solution">Solution</h2>
+<h3 id="solution">Solution</h3>
 <p>とりあえず、twenty-five.plをそのまま実行してみると、エラーになります。</p>
 <pre>
 $ perl --version
@@ -613,9 +616,11 @@ eval($text);
 </pre>
 <p><br />
 <strong>Flag:</strong> HarekazeCTF{en.wikipedia.org/wiki/Frequency_analysis}</p>
-<p><br /><br /></p>
-<h2 id="nkhrlab">作問者（nkhrlabさん）による解説</h2>
-<p><a href="https://nkhrlab.hatenablog.com/entry/2019/05/19/224643"><a href="https://nkhrlab.hatenablog.com/entry/2019/05/19/224643">https://nkhrlab.hatenablog.com/entry/2019/05/19/224643</a></a></p>
+<p><br /><br />
+作問者（nkhrlabさん）による解説<br />
+<a href="https://nkhrlab.hatenablog.com/entry/2019/05/19/224643"><a href="https://nkhrlab.hatenablog.com/entry/2019/05/19/224643">https://nkhrlab.hatenablog.com/entry/2019/05/19/224643</a></a></p>
+<p><br /><br />
+<br /><br /></p>
 <hr>
 <p><br /><br />
 <br /><br /></p>
@@ -701,7 +706,7 @@ eval($text);
   
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+  
 <script type="text/javascript" src="https://captureamerica.github.io/writeups/dist/even.26188efa.min.js"></script>
 
 

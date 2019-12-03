@@ -17,9 +17,9 @@ URL: [https://ctf.csaw.io/challenges](https://ctf.csaw.io/challenges)
 
 
 <br /><br />
-# [Reversing]: BELEAF (50 points)
+## [Reversing]: BELEAF (50 points)
 - - -
-## Challenge
+### Challenge
 > tree sounds are best listened to by https://binary.ninja/demo or ghidra
 
 Attachment:
@@ -28,7 +28,7 @@ Attachment:
 
 
 <br />
-## Solution
+### Solution
 言われた通り、Ghidraでデコンパイルします。
 
 ```C

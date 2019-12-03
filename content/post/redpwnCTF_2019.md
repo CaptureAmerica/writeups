@@ -19,15 +19,15 @@ URL: [https://ctf.redpwn.net/](https://ctf.redpwn.net/)
 
 
 <br /><br />
-# Web: easycipher
+## Web: easycipher
 - - -
-## Challenge
+### Challenge
 > This is an easy cipher? I heard it's broken.
 <br /><br />
 http://chall.2019.redpwn.net:8006/
 
 <br />
-## Solution
+### Solution
 アクセスすると、以下が表示されます。
 
 <img src="https://captureamerica.github.io/writeups/img/easycipher.PNG" alt="easycipher.PNG">
@@ -194,9 +194,9 @@ Flag: `redpwnctf{shazam}`
 
 <br /><br />
 <br /><br />
-# Reverse Engineering: Generic Crackme Redux
+## Reverse Engineering: Generic Crackme Redux
 - - -
-## Challenge
+### Challenge
 > Note: Enclose the flag with flag{}.
 
 Attachment:
@@ -204,7 +204,7 @@ Attachment:
 - generic_crackme_redux
 
 <br />
-## Solution
+### Solution
 まずは、Ghidraにかけます。
 
 ```C

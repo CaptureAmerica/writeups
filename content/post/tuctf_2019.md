@@ -23,9 +23,9 @@ URL: [https://tuctf.com/](https://tuctf.com/)
 
 
 <br /><br />
-# [Misc]: Onions
+## [Misc]: Onions
 - - -
-## Challenge
+### Challenge
 > Ogres are like files -- they have layers!
 
 Attachment:
@@ -34,7 +34,7 @@ Attachment:
 
 
 <br />
-## Solution
+### Solution
 シュレックのJPEG画像です。著作権は大丈夫なんでしょうか。
 
 foremostではなにも取れなかったので、binwalkから始めます。
@@ -134,9 +134,9 @@ Flag: `TUCTF{F1L3S4R3L1K30N10NSTH3YH4V3L4Y3RS}`
 
 <br /><br />
 <br /><br />
-# [Misc]: Super Secret
+## [Misc]: Super Secret
 - - -
-## Challenge
+### Challenge
 > Something's blocking my flag from this file...
 
 Attachment:
@@ -145,7 +145,7 @@ Attachment:
 
 
 <br />
-## Solution
+### Solution
 <pre>
 $ file document.odt
 document.odt: OpenDocument Text
@@ -172,16 +172,16 @@ Flag: `TUCTF{ST0P_TRUST1NG_M4CR0S_FR0M_4N_UNKN0WN_S0URC3}`
 
 <br><br>
 <br><br>
-# [Misc]: RNGeesus
+## [Misc]: RNGeesus
 - - -
-## Challenge
+### Challenge
 > RNGeesus has a secret technique, can you guess it?
 <br><br>
 nc chal.tuctf.com 30300
 
 
 <br />
-## Solution
+### Solution
 まずは繋げてみます。2回繋げて、毎回同じ問題であることを確認しました。
 
 また、適当に答えを入れると、ググれ！というヒントがもらえました。
@@ -230,16 +230,16 @@ Flag: `TUCTF{D0NT_1NS3CUR3LY_S33D_Y0UR_LCGS}`
 
 <br><br>
 <br><br>
-# [Mega]: Cup of Joe: The Server
+## [Mega]: Cup of Joe: The Server
 - - -
-## Challenge
+### Challenge
 > On the first leg of the journey, I was looking at all the life, there were plants and hills and rocks and things, there was java and mugs and caffeine.
 <br><br>
 chal.tuctf.com:32000
 
 
 <br />
-## Solution
+### Solution
 上記のウェブサイトにアクセスすると、以下にリダイレクトされます。
 
 http://chal.tuctf.com:32000/coffeepot?
@@ -351,14 +351,14 @@ Flag: `TUCTF{d0_y0u_cr4v3_th3_418}`
 
 <br><br>
 <br><br>
-# [Mega]: Broken
+## [Mega]: Broken
 - - -
-## Challenge
+### Challenge
 > Sometimes things that are broken have been broken on purpose.
 
 
 <br />
-## Solution
+### Solution
 添付ファイルがありません。どうやら、先程の問題で取れた broken.img を使うようです。
 
 フラグはstringsで見つかりました。
@@ -369,9 +369,9 @@ Flag: `TUCTF{D1S4ST3R_R3C0V3RY}`
 
 <br><br>
 <br><br>
-# [Crypto]: Something in Common
+## [Crypto]: Something in Common
 - - -
-## Challenge
+### Challenge
 > We've managed to gather the details in the given file. We need a professional cryptographer to decipher the message. Are you up to the task?
 
 Attachment:
@@ -391,7 +391,7 @@ c2 = 199621218068987060560259773620211396108271911964032609729865342591708524675
 
 
 <br />
-## Solution
+### Solution
 "rsa ctf c1 c2 e1 e2"とか、"Common Modulus Attack" をキーワードにでググるのがコツです。
 
 過去のCTF (Square CTF 2018) でほぼ同じ問題があり、Writeupが見つかります。
@@ -410,16 +410,16 @@ Flag: `TUCTF{Y0U_SH0ULDNT_R3US3_TH3_M0DULUS}`
 
 <br><br>
 <br><br>
-# [Crypto]: Crypto Infinite
+## [Crypto]: Crypto Infinite
 - - -
-## Challenge
+### Challenge
 > Crypto has been around forever. Does this challenge go on forever? Let us know in the comments below or find the flag to prove us wrong.
 <br><br>
 nc chal.tuctf.com 30102
 
 
 <br />
-## Unsolved
+### Unsolved
 これは解けませんでした。。。
 
 <b>無駄に</b>レベルが分かれていて、Level 0 ~ 4 は全く同じコードで解けたので、そこまでを載せておきます。Level 5以降は不明です。
@@ -517,11 +517,12 @@ print s.recvall()
 ```
 
 
-<br><br>
-<br><br>
-# [Reversing]: faker
+<br /><br />
+<br /><br />
+
+## [Reversing]: faker
 - - -
-## Challenge
+### Challenge
 > One of these things is not like the other. Can you uncover the flag?
 <br><br>
 Hint: Is there anything hidden inside the binary?
@@ -532,7 +533,7 @@ Attachment:
 
 
 <br />
-## Solution
+### Solution
 Ghidraでコードを確認します。printFlag()という関数と、それを呼んでいるA(), B(), C()関数が見つかります。
 
 ```C

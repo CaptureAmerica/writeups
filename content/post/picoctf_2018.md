@@ -27,9 +27,9 @@ picoCTFのことを知ったのがちょっと前で、すでにイベントは2
 
 
 <br /><br />
-# [Forensics]: Desrouleaux (150 points)
+## [Forensics]: Desrouleaux (150 points)
 - - -
-## Challenge
+### Challenge
 > Our network administrator is having some trouble handling the tickets for all of of our incidents. Can you help him out by answering all the questions? Connect with nc 2018shell.picoctf.com 54782. 
 <br /><br />
 Hint: If you need to code, python has some good libraries for it.
@@ -115,7 +115,7 @@ Attachment:
 </pre>
 
 <br />
-## Solution
+### Solution
 ncで繋ぐと、そこで問題が出てきます。
 
 ヒントを無視してLinuxコマンドで全部解こうかと思ったけど、勉強のために最後だけはPythonで解きました。
@@ -178,13 +178,13 @@ print("{:.2f}".format(uniq_dst / len(uniq_hash)))
 
 <br /><br />
 <br /><br />
-# [General Skills]: you can't see me (200 points)
+## [General Skills]: you can't see me (200 points)
 - - -
-## Challenge
+### Challenge
 '...reading transmission... Y.O.U. .C.A.N.'.T. .S.E.E. .M.E. ...transmission ended...' Maybe something lies in /problems/you-can-t-see-me_3_1a39ec6c80b3f3a18610074f68acfe69.
 
 <br />
-## Solution
+### Solution
 SSHでアクセスした後、emacsのdiredからファイルを開いたらすぐフラグ見つかりました。
 <img src="https://captureamerica.github.io/writeups/img/emacs_dired.png" alt="emacs_dired.png">
 
@@ -220,9 +220,9 @@ picoCTF{j0hn_c3na_paparapaaaaaaa_paparapaaaaaa_cf5156ef}
 
 <br /><br />
 <br /><br />
-# [Cryptography]: Safe RSA (250 points)
+## [Cryptography]: Safe RSA (250 points)
 - - -
-## Challenge
+### Challenge
 > Now that you know about RSA can you help us decrypt this ciphertext? We don't have the decryption key but something about those values looks funky..
 <br /><br />
 Hint1: RSA [tutorial](https://en.wikipedia.org/wiki/RSA_(cryptosystem))<br />
@@ -243,7 +243,7 @@ ciphertext \(c\): 22053164139311340310464407676205419848010912163512227891805357
 <br />\-\-\-\-\-\-\-\-
 
 <br />
-## Solution
+### Solution
 RsaCtfTool \( [https://github.com/Ganapati/RsaCtfTool](https://github.com/Ganapati/RsaCtfTool) \) を使ったら解けました。
 
 \-\-\-\-\-\-\-\-<br />
@@ -257,9 +257,9 @@ Flag: `picoCTF{e_w4y_t00_sm411_34096259}`
 
 <br /><br />
 <br /><br />
-# [Reversing]: be-quick-or-be-dead-1 (200 points)
+## [Reversing]: be-quick-or-be-dead-1 (200 points)
 - - -
-## Challenge
+### Challenge
 > You find [this](https://www.youtube.com/watch?v=CTt1vk9nM9c) when searching for some music, which leads you to be-quick-or-be-dead-1. Can you run it fast enough? You can also find the executable in /problems/be-quick-or-be-dead-1_3_aeb48854203a88fb1da963f41ae06a1c.
 <br /><br />
 Hint: What will the key finally be?
@@ -269,7 +269,7 @@ Attachment:
 - be-quick-or-be-dead-1  (ELF 64-bit)
 
 <br />
-## Solution
+### Solution
 これは、いろんな解き方があると思います。<br />
 
 alert(1)でタイマーを起動していて、flagをprintする前にタイムアウトしちゃうので、gdbでalert(1)をコールしているところで止めて、引数1を0xffとかに書き換えたらオッケー。
@@ -278,9 +278,9 @@ alert(1)でタイマーを起動していて、flagをprintする前にタイム
 
 <br /><br />
 <br /><br />
-# [Reversing]: keygen-me-1 (400 points)
+## [Reversing]: keygen-me-1 (400 points)
 - - -
-## Challenge
+### Challenge
 > Can you generate a valid product key for the validation program in /problems/keygen-me-1_2_74297f5e012cf93ee059a2be15d77734
 
 Attachment:
@@ -288,7 +288,7 @@ Attachment:
 - activate (ELF 32-bit)
 
 <br />
-## Solution
+### Solution
 Ghidra使っていきます。
 
 ```C
@@ -462,9 +462,9 @@ flag: `AAAAAAAAAAAAAAAO`
 
 <br /><br />
 <br /><br />
-# [General Skills]: script me (500 points)
+## [General Skills]: script me (500 points)
 - - -
-## Challenge
+### Challenge
 > Can you understand the language and answer the questions to retrieve the flag? Connect to the service with nc 2018shell.picoctf.com 1542
 Maybe try writing a python script?
 
@@ -485,7 +485,7 @@ Example:
 </pre>
 
 <br />
-## Solution
+### Solution
 なんかカッコが多くて、複雑そうに見えるけど、()を別の文字に置き換えるとわかりやすいと思います｡
 <pre>
 x + x = xx
@@ -642,9 +642,9 @@ flag `picoCTF{5cr1pt1nG_l1k3_4_pRo_0466cdd7}`
 
 <br /><br />
 <br /><br />
-# [Forensics]: LoadSomeBits (550 points)
+## [Forensics]: LoadSomeBits (550 points)
 - - -
-## Challenge
+### Challenge
 > Can you find the flag encoded inside this image?
 <br /><br />
 Hint1: Look through the Least Significant Bits for the image<br />
@@ -656,7 +656,7 @@ Attachment:
 
 
 <br />
-## Solution
+### Solution
 BMPファイルだったので、「青い空を見上げればいつもそこに白い猫」が使えなかったし、ちょっと意味不明な部分もあったので、他の方のWriteupを少し参照しました。
 
 「青い空を見上げればいつもそこに白い猫」で解いているWriteupもあったので、目からウロコでした。
@@ -723,9 +723,9 @@ Flag: `picoCTF{st0r3d_iN_tH3_l345t_s1gn1f1c4nT_b1t5_770554193}`
 
 <br /><br />
 <br /><br />
-# [Reversing]: keygen-me-2 (750 points)
+## [Reversing]: keygen-me-2 (750 points)
 - - -
-## Challenge
+### Challenge
 > The software has been updated. Can you find us a new product key for the program in /problems/keygen-me-2_1_762036cde49fef79146a706d0eda80a3
 <br /><br />
 Hint: z3
@@ -736,7 +736,7 @@ Attachment:
 
 
 <br />
-## Solution
+### Solution
 Ghidra使って解析していきます。keygen-me-1がベースなので、以下の辺りは同じです。
 
 - 16バイトのキーを入れる。
@@ -1059,9 +1059,9 @@ Flag: `picoCTF{c0n5tr41nt_50lv1nG_15_W4y_f45t3r_3846045707}`
 
 <br /><br />
 <br /><br />
-# [Reversing]: be-quick-or-be-dead-3 (350 points)
+## [Reversing]: be-quick-or-be-dead-3 (350 points)
 - - -
-## Challenge
+### Challenge
 > As the [song](https://www.youtube.com/watch?v=CTt1vk9nM9c) draws closer to the end, another executable be-quick-or-be-dead-3 suddenly pops up. This one requires even faster machines. Can you run it fast enough too?
 <br /><br />
 Hint: How do you speed up a very repetitive computation?
@@ -1071,7 +1071,7 @@ Attachment:
 - be-quick-or-be-dead-3  (ELF 64-bit)
 
 <br />
-## Solution
+### Solution
 まず、Ghidraにかけます。
 
 以下の箇所が再帰関数になっており、時間がかかるところです。

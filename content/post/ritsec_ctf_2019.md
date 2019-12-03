@@ -33,9 +33,9 @@ URL: [https://ctf.ritsec.club/challenges](https://ctf.ritsec.club/challenges)
 
 
 <br /><br />
-# [Pwn]: 999 Bottles
+## [Pwn]: 999 Bottles
 - - -
-## Challenge
+### Challenge
 > Well, this is embarassing... I've accidentally compiled 999 ELF files with my password somewhere along the line, one character at a time.
 <br /><br />
 Solve these in order, each accepting one ASCII character. Keep going...eventually combining these solutions will match the regular expression RITSEC{.*}
@@ -47,7 +47,7 @@ Attachments:
 - bottles.zip
 
 <br />
-## Solution
+### Solution
 bottles.zip の中には、999個（001.c.out ~ 999.c.out）のelf実行ファイルが入ってます。
 
 ひとつGhidraにかけてみます。（001.c.out）
@@ -203,9 +203,9 @@ Flag `RITSEC{AuT057v}`
 
 <br /><br />
 <br /><br />
-# [Forensics]: Take it to the Cleaners
+## [Forensics]: Take it to the Cleaners
 - - -
-## Challenge
+### Challenge
 > People hide things in images all the time! See if you can find what the artist forgot to take out in this one!
 
 Attachments:
@@ -213,7 +213,7 @@ Attachments:
 - ritsec_logo2.png
 
 <br />
-## Solution
+### Solution
 1. exiftoolの結果
 <pre>
 ExifTool Version Number         : 11.47
@@ -266,9 +266,9 @@ Flag: `RITSEC{FORENSICS_FAILS_WONT_HELP_YOU_HERE}`
 
 <br /><br />
 <br /><br />
-# [Forensics]: Long Gone
+## [Forensics]: Long Gone
 - - -
-## Challenge
+### Challenge
 > That data? No it's long gone. It's basically history
 
 Attachments:
@@ -276,7 +276,7 @@ Attachments:
 - chromebin (232MB)
 
 <br />
-## Solution
+### Solution
 1. フラグフォーマットの文字列 "RITSEC" をサーチ
 <pre>
 $ grep -i ritsec -r .
@@ -337,9 +337,9 @@ Flag: `RITSEC{SP00KY_BR0WS3R_H1ST0RY}`
 
 <br /><br />
 <br /><br />
-# [Web]: misdirection
+## [Web]: misdirection
 - - -
-## Challenge
+### Challenge
 > Looks like someone gave you the wrong directions!
 <br /><br />
 http://ctfchallenges.ritsec.club:5000/
@@ -347,7 +347,7 @@ http://ctfchallenges.ritsec.club:5000/
 Flag format is RS{ }
 
 <br />
-## Solution
+### Solution
 リダイレクトが走るので、-Lを付けてcurlを実行します。
 
 <pre>
@@ -430,9 +430,9 @@ Flag `RS{4!way5_Ke3p-m0v1ng}`
 
 <br /><br />
 <br /><br />
-# [Stego]: the_doge
+## [Stego]: the_doge
 - - -
-## Challenge
+### Challenge
 > Steganography is the practice of concealing messages or information within other nonsecret data and images. The doge holds the information you want, feed the doge a treat to get the hidden message.
 
 Attachments:
@@ -441,7 +441,7 @@ Attachments:
 
 
 <br />
-## Solution
+### Solution
 問題文より、「ワンちゃんにtreatをあげて」(feed the doge a treat)とのことなので、
 
 <pre>
@@ -459,9 +459,9 @@ Flag: `RITSEC{hAppY_l1L_doG3}`
 
 <br /><br />
 <br /><br />
-# [Misc]: Onion Layer Encoding
+## [Misc]: Onion Layer Encoding
 - - -
-## Challenge
+### Challenge
 > Encoding is not encryption, but what if I just encode the flag with base16,32,64? If I encode my precious flag for 150 times, surely no one will be able to decode it, right?
 
 Attachments:
@@ -470,7 +470,7 @@ Attachments:
 
 
 <br />
-## Solution
+### Solution
 Base16, Base32, Base64を150回かけたもの、ということで以下のようなコードを書きました。
 
 ```Python
@@ -514,9 +514,9 @@ Flag: `RITSEC{0n1On_L4y3R}`
 
 <br /><br />
 <br /><br />
-# [Misc]: Crack me If You Can
+## [Misc]: Crack me If You Can
 - - -
-## Challenge
+### Challenge
 > Rev up your GPUs...
 <br /><br />
 nc ctfchallenges.ritsec.club 8080
@@ -525,7 +525,7 @@ Flag format RS{ }
 
 
 <br />
-## Solution
+### Solution
 とりあえず繋いでみるとmd5が出てきたので、rainbowテーブル （https://crackstation.net/） でいけたんですが、shadow passwordは後回し。
 ```
 $ nc ctfchallenges.ritsec.club 8080
@@ -578,16 +578,16 @@ Flag: `RS{H@$HM31FY0UCAN}`
 
 <br /><br />
 <br /><br />
-# [Web]: Knock knock
+## [Web]: Knock knock
 - - -
-## Challenge
+### Challenge
 > While performing a pentest, we managed to get limited access to a box on the network (listener@129.21.228.115) with password of password. There's probably some cool stuff you can find on the network if you go looking.
 <br /><br />
 ssh listener@129.21.228.115
 
 
 <br />
-## Unsolved
+### (Unsolved)
 
 これは解けませんでした。
 
@@ -682,16 +682,16 @@ curlで繋ごうとしても繋がらないし、HTTP Methodとか、Headertと�
 
 <br /><br />
 <br /><br />
-# [Forensics]: Lion
+## [Forensics]: Lion
 - - -
-## Challenge
+### Challenge
 > when the lion rars, it's time to GO
 <br /><br />
 us-central-1.ritsec.club/l/lioncap
 
 
 <br />
-## Unsolved
+### (Unsolved)
 
 これも解けませんでした。Writeupも見つからないですね。(2019/11/24時点)
 
@@ -734,9 +734,9 @@ Give up!
 
 <br /><br />
 <br /><br />
-# [Misc]: Patch Tuesday
+## [Misc]: Patch Tuesday
 - - -
-## Challenge
+### Challenge
 > Happy patch Tuesday!
 
 Attachments:
@@ -746,7 +746,7 @@ Attachments:
 
 
 <br />
-## Solution
+### Solution
 単純な問題だったみたいです。
 
 <img src="https://captureamerica.github.io/writeups/img/win32k.PNG" alt="win32k.PNG">
@@ -780,9 +780,9 @@ Flag: `RITSEC{PATCHM3IFYOUCAN}`
 
 <br /><br />
 <br /><br />
-# [Stego]: exfiltrated_duck
+## [Stego]: exfiltrated_duck
 - - -
-## Challenge
+### Challenge
 > If it walks like a duck, pcaps like a duck, and looks like a duck, what is it?
 
 Attachments:
@@ -791,7 +791,7 @@ Attachments:
 
 
 <br />
-## Solution
+### Solution
 duckでpcapだったので、まず直感でduplicate_ack（tcp.analysis.duplicate_ack）かと思ったけど、違いました。。
 
 tcp streamが2つあるんですが、これをBase64 Decodeするようです。
@@ -850,9 +850,9 @@ UklUU0VDCg==
 
 <br /><br />
 <br /><br />
-# [Forensics]: findme
+## [Forensics]: findme
 - - -
-## Challenge
+### Challenge
 > Find me! Challenge created by Security Risk Advisors for RITSEC CTF
 
 Attachments:
@@ -861,7 +861,7 @@ Attachments:
 
 
 <br />
-## Solution
+### Solution
 Decoyが紛らわしいだけの問題でした。
 
 <br />

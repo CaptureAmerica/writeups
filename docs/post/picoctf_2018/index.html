@@ -35,7 +35,7 @@
 
 
 <link href="https://captureamerica.github.io/writeups/dist/even.c2a46f00.min.css" rel="stylesheet">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
 
 
 <meta property="og:title" content="picoCTF 2018 Writeup" />
@@ -134,46 +134,57 @@
 
     <div class="post-toc" id="post-toc">
   <h2 class="post-toc-title">Contents</h2>
-  <div class="post-toc-content always-active">
+  <div class="post-toc-content">
     <nav id="TableOfContents">
   <ul>
-    <li><a href="#challenge">Challenge</a></li>
-    <li><a href="#solution">Solution</a></li>
-  </ul>
-
-  <ul>
-    <li><a href="#challenge1">Challenge</a></li>
-    <li><a href="#solution1">Solution</a></li>
-  </ul>
-
-  <ul>
-    <li><a href="#challenge2">Challenge</a></li>
-    <li><a href="#solution2">Solution</a></li>
-  </ul>
-
-  <ul>
-    <li><a href="#challenge3">Challenge</a></li>
-    <li><a href="#solution3">Solution</a></li>
-  </ul>
-
-  <ul>
-    <li><a href="#challenge4">Challenge</a></li>
-    <li><a href="#solution4">Solution</a></li>
-  </ul>
-
-  <ul>
-    <li><a href="#challenge5">Challenge</a></li>
-    <li><a href="#solution5">Solution</a></li>
-  </ul>
-
-  <ul>
-    <li><a href="#challenge6">Challenge</a></li>
-    <li><a href="#solution6">Solution</a></li>
-  </ul>
-
-  <ul>
-    <li><a href="#challenge7">Challenge</a></li>
-    <li><a href="#solution7">Solution</a></li>
+    <li><a href="#forensics-desrouleaux-150-points">[Forensics]: Desrouleaux (150 points)</a>
+      <ul>
+        <li><a href="#challenge">Challenge</a></li>
+        <li><a href="#solution">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#general-skills-you-cant-see-me-200-points">[General Skills]: you can't see me (200 points)</a>
+      <ul>
+        <li><a href="#challenge1">Challenge</a></li>
+        <li><a href="#solution1">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#cryptography-safe-rsa-250-points">[Cryptography]: Safe RSA (250 points)</a>
+      <ul>
+        <li><a href="#challenge2">Challenge</a></li>
+        <li><a href="#solution2">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#reversing-bequickorbedead1-200-points">[Reversing]: be-quick-or-be-dead-1 (200 points)</a>
+      <ul>
+        <li><a href="#challenge3">Challenge</a></li>
+        <li><a href="#solution3">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#reversing-keygenme1-400-points">[Reversing]: keygen-me-1 (400 points)</a>
+      <ul>
+        <li><a href="#challenge4">Challenge</a></li>
+        <li><a href="#solution4">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#general-skills-script-me-500-points">[General Skills]: script me (500 points)</a>
+      <ul>
+        <li><a href="#challenge5">Challenge</a></li>
+        <li><a href="#solution5">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#reversing-keygenme2-750-points">[Reversing]: keygen-me-2 (750 points)</a>
+      <ul>
+        <li><a href="#challenge6">Challenge</a></li>
+        <li><a href="#solution6">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#reversing-bequickorbedead3-350-points">[Reversing]: be-quick-or-be-dead-3 (350 points)</a>
+      <ul>
+        <li><a href="#challenge7">Challenge</a></li>
+        <li><a href="#solution7">Solution</a></li>
+      </ul>
+    </li>
   </ul>
 </nav>
   </div>
@@ -189,9 +200,9 @@ picoCTFのことを知ったのがちょっと前で、すでにイベントは2
 <p><br />
 いくつかピックアップしてWriteupを書いておきます。</p>
 <p><br /><br /></p>
-<h1 id="forensics-desrouleaux-150-points">[Forensics]: Desrouleaux (150 points)</h1>
+<h2 id="forensics-desrouleaux-150-points">[Forensics]: Desrouleaux (150 points)</h2>
 <hr>
-<h2 id="challenge">Challenge</h2>
+<h3 id="challenge">Challenge</h3>
 <blockquote>
 <p>Our network administrator is having some trouble handling the tickets for all of of our incidents. Can you help him out by answering all the questions? Connect with nc 2018shell.picoctf.com 54782.
 <br /><br />
@@ -278,7 +289,7 @@ Hint: If you need to code, python has some good libraries for it.</p>
 }
 </pre>
 <p><br /></p>
-<h2 id="solution">Solution</h2>
+<h3 id="solution">Solution</h3>
 <p>ncで繋ぐと、そこで問題が出てきます。</p>
 <p>ヒントを無視してLinuxコマンドで全部解こうかと思ったけど、勉強のために最後だけはPythonで解きました。</p>
 <blockquote>
@@ -358,12 +369,12 @@ Hint: If you need to code, python has some good libraries for it.</p>
 </div><p>答え：1.40</p>
 <p><br /><br />
 <br /><br /></p>
-<h1 id="general-skills-you-cant-see-me-200-points">[General Skills]: you can't see me (200 points)</h1>
+<h2 id="general-skills-you-cant-see-me-200-points">[General Skills]: you can't see me (200 points)</h2>
 <hr>
-<h2 id="challenge1">Challenge</h2>
+<h3 id="challenge1">Challenge</h3>
 <p>&lsquo;&hellip;reading transmission&hellip; Y.O.U. .C.A.N.'.T. .S.E.E. .M.E. &hellip;transmission ended&hellip;&rsquo; Maybe something lies in /problems/you-can-t-see-me_3_1a39ec6c80b3f3a18610074f68acfe69.</p>
 <p><br /></p>
-<h2 id="solution1">Solution</h2>
+<h3 id="solution1">Solution</h3>
 <p>SSHでアクセスした後、emacsのdiredからファイルを開いたらすぐフラグ見つかりました。
 <img src="https://captureamerica.github.io/writeups/img/emacs_dired.png" alt="emacs_dired.png"></p>
 <p><br />
@@ -388,9 +399,9 @@ captureamerica@pico-2018-shell:/problems/you-can-t-see-me_3_1a39ec6c80b3f3a18610
 picoCTF{j0hn_c3na_paparapaaaaaaa_paparapaaaaaa_cf5156ef}
 </code></pre><p><br /><br />
 <br /><br /></p>
-<h1 id="cryptography-safe-rsa-250-points">[Cryptography]: Safe RSA (250 points)</h1>
+<h2 id="cryptography-safe-rsa-250-points">[Cryptography]: Safe RSA (250 points)</h2>
 <hr>
-<h2 id="challenge2">Challenge</h2>
+<h3 id="challenge2">Challenge</h3>
 <blockquote>
 <p>Now that you know about RSA can you help us decrypt this ciphertext? We don't have the decryption key but something about those values looks funky..
 <br /><br />
@@ -408,7 +419,7 @@ N: 37415923547017213098893819652088052694795252162093236205030866324359578830858
 <p>ciphertext (c): 2205316413931134031046440767620541984801091216351222789180535786851451917462804449135087209259828503848304180574549372616172217553002988241140344023060716738565104171296716554122734607654513009667720334889869007276287692856645210293194853
 <br />--------</p>
 <p><br /></p>
-<h2 id="solution2">Solution</h2>
+<h3 id="solution2">Solution</h3>
 <p>RsaCtfTool ( <a href="https://github.com/Ganapati/RsaCtfTool"><a href="https://github.com/Ganapati/RsaCtfTool">https://github.com/Ganapati/RsaCtfTool</a></a> ) を使ったら解けました。</p>
 <p>--------<br />
 $ python RsaCtfTool.py -n 374159235470172130988938196520880526947952521620932362050308663243595788308583992120881359365258949723819911758198013202644666489247987314025169670926273213367237020188587742716017314320191350666762541039238241984934473188656610615918474673963331992408750047451253205158436452814354564283003696666945950908549197175404580533132142111356931324330631843602412540295482841975783884766801266552337129105407869020730226041538750535628619717708838029286366761470986056335230171148734027536820544543251801093230809186222940806718221638845816521738601843083746103374974120575519418797642878012234163709518203946599836959811 -e 3 &ndash;uncipher 2205316413931134031046440767620541984801091216351222789180535786851451917462804449135087209259828503848304180574549372616172217553002988241140344023060716738565104171296716554122734607654513009667720334889869007276287692856645210293194853</p>
@@ -418,9 +429,9 @@ $ python RsaCtfTool.py -n 374159235470172130988938196520880526947952521620932362
 Flag: <code>picoCTF{e_w4y_t00_sm411_34096259}</code></p>
 <p><br /><br />
 <br /><br /></p>
-<h1 id="reversing-bequickorbedead1-200-points">[Reversing]: be-quick-or-be-dead-1 (200 points)</h1>
+<h2 id="reversing-bequickorbedead1-200-points">[Reversing]: be-quick-or-be-dead-1 (200 points)</h2>
 <hr>
-<h2 id="challenge3">Challenge</h2>
+<h3 id="challenge3">Challenge</h3>
 <blockquote>
 <p>You find <a href="https://www.youtube.com/watch?v=CTt1vk9nM9c">this</a> when searching for some music, which leads you to be-quick-or-be-dead-1. Can you run it fast enough? You can also find the executable in /problems/be-quick-or-be-dead-1_3_aeb48854203a88fb1da963f41ae06a1c.
 <br /><br />
@@ -431,14 +442,14 @@ Hint: What will the key finally be?</p>
 <li>be-quick-or-be-dead-1  (ELF 64-bit)</li>
 </ul>
 <p><br /></p>
-<h2 id="solution3">Solution</h2>
+<h3 id="solution3">Solution</h3>
 <p>これは、いろんな解き方があると思います。<br /></p>
 <p>alert(1)でタイマーを起動していて、flagをprintする前にタイムアウトしちゃうので、gdbでalert(1)をコールしているところで止めて、引数1を0xffとかに書き換えたらオッケー。</p>
 <p><br /><br />
 <br /><br /></p>
-<h1 id="reversing-keygenme1-400-points">[Reversing]: keygen-me-1 (400 points)</h1>
+<h2 id="reversing-keygenme1-400-points">[Reversing]: keygen-me-1 (400 points)</h2>
 <hr>
-<h2 id="challenge4">Challenge</h2>
+<h3 id="challenge4">Challenge</h3>
 <blockquote>
 <p>Can you generate a valid product key for the validation program in /problems/keygen-me-1_2_74297f5e012cf93ee059a2be15d77734</p>
 </blockquote>
@@ -447,7 +458,7 @@ Hint: What will the key finally be?</p>
 <li>activate (ELF 32-bit)</li>
 </ul>
 <p><br /></p>
-<h2 id="solution4">Solution</h2>
+<h3 id="solution4">Solution</h3>
 <p>Ghidra使っていきます。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -779,9 +790,9 @@ INVALID Product Key.
 </div><p>flag: <code>AAAAAAAAAAAAAAAO</code></p>
 <p><br /><br />
 <br /><br /></p>
-<h1 id="general-skills-script-me-500-points">[General Skills]: script me (500 points)</h1>
+<h2 id="general-skills-script-me-500-points">[General Skills]: script me (500 points)</h2>
 <hr>
-<h2 id="challenge5">Challenge</h2>
+<h3 id="challenge5">Challenge</h3>
 <blockquote>
 <p>Can you understand the language and answer the questions to retrieve the flag? Connect to the service with nc 2018shell.picoctf.com 1542
 Maybe try writing a python script?</p>
@@ -802,7 +813,7 @@ Example:
 (()) + () = () + (()) = (()())
 </pre>
 <p><br /></p>
-<h2 id="solution5">Solution</h2>
+<h3 id="solution5">Solution</h3>
 <p>なんかカッコが多くて、複雑そうに見えるけど、()を別の文字に置き換えるとわかりやすいと思います｡</p>
 <pre>
 x + x = xx
@@ -955,9 +966,9 @@ flag `picoCTF{5cr1pt1nG_l1k3_4_pRo_0466cdd7}`
 
 &lt;br /&gt;&lt;br /&gt;
 &lt;br /&gt;&lt;br /&gt;
-# [Forensics]: LoadSomeBits (550 points)
+## [Forensics]: LoadSomeBits (550 points)
 - - -
-## Challenge
+### Challenge
 &gt; Can you find the flag encoded inside this image?
 &lt;br /&gt;&lt;br /&gt;
 Hint1: Look through the Least Significant Bits for the image&lt;br /&gt;
@@ -969,7 +980,7 @@ Attachment:
 
 
 &lt;br /&gt;
-## Solution
+### Solution
 BMPファイルだったので、「青い空を見上げればいつもそこに白い猫」が使えなかったし、ちょっと意味不明な部分もあったので、他の方のWriteupを少し参照しました。
 
 「青い空を見上げればいつもそこに白い猫」で解いているWriteupもあったので、目からウロコでした。
@@ -1026,9 +1037,9 @@ int main( void ) {
 <p>Flag: <code>picoCTF{st0r3d_iN_tH3_l345t_s1gn1f1c4nT_b1t5_770554193}</code></p>
 <p><br /><br />
 <br /><br /></p>
-<h1 id="reversing-keygenme2-750-points">[Reversing]: keygen-me-2 (750 points)</h1>
+<h2 id="reversing-keygenme2-750-points">[Reversing]: keygen-me-2 (750 points)</h2>
 <hr>
-<h2 id="challenge6">Challenge</h2>
+<h3 id="challenge6">Challenge</h3>
 <blockquote>
 <p>The software has been updated. Can you find us a new product key for the program in /problems/keygen-me-2_1_762036cde49fef79146a706d0eda80a3
 <br /><br />
@@ -1039,7 +1050,7 @@ Hint: z3</p>
 <li>activate</li>
 </ul>
 <p><br /></p>
-<h2 id="solution6">Solution</h2>
+<h3 id="solution6">Solution</h3>
 <p>Ghidra使って解析していきます。keygen-me-1がベースなので、以下の辺りは同じです。</p>
 <ul>
 <li>16バイトのキーを入れる。</li>
@@ -1619,9 +1630,9 @@ Product Activated Successfully: picoCTF{c0n5tr41nt_50lv1nG_15_W4y_f45t3r_3846045
 </code></pre><p>Flag: <code>picoCTF{c0n5tr41nt_50lv1nG_15_W4y_f45t3r_3846045707}</code></p>
 <p><br /><br />
 <br /><br /></p>
-<h1 id="reversing-bequickorbedead3-350-points">[Reversing]: be-quick-or-be-dead-3 (350 points)</h1>
+<h2 id="reversing-bequickorbedead3-350-points">[Reversing]: be-quick-or-be-dead-3 (350 points)</h2>
 <hr>
-<h2 id="challenge7">Challenge</h2>
+<h3 id="challenge7">Challenge</h3>
 <blockquote>
 <p>As the <a href="https://www.youtube.com/watch?v=CTt1vk9nM9c">song</a> draws closer to the end, another executable be-quick-or-be-dead-3 suddenly pops up. This one requires even faster machines. Can you run it fast enough too?
 <br /><br />
@@ -1632,7 +1643,7 @@ Hint: How do you speed up a very repetitive computation?</p>
 <li>be-quick-or-be-dead-3  (ELF 64-bit)</li>
 </ul>
 <p><br /></p>
-<h2 id="solution7">Solution</h2>
+<h3 id="solution7">Solution</h3>
 <p>まず、Ghidraにかけます。</p>
 <p>以下の箇所が再帰関数になっており、時間がかかるところです。</p>
 <div class="highlight"><div class="chroma">
@@ -1844,7 +1855,7 @@ picoCTF{dynamic_pr0gramming_ftw_22ac7d81}
   
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+  
 <script type="text/javascript" src="https://captureamerica.github.io/writeups/dist/even.26188efa.min.js"></script>
 
 

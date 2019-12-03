@@ -24,16 +24,16 @@ Rulesを見たら、「アメリカの高校生じゃないと賞はもらえな
 
 <br /><br />
 <br /><br />
-# Locked Up (Miscellaneous)
+## [Misc]: Locked Up
 - - -
-## Challenge
+### Challenge
 > My friend gave me a zip file with the flag in it, but the zip file is encrypted. Can you help me open the zip file?
 
 Attachment:
 
 - locked.zip
 
-## Solution
+### Solution
 <pre>
 $ zipinfo locked.zip | grep hsctf
 -rwxrwxrwx  3.0 unx        0 BX stor 19-Jun-03 13:22 hsctf{w0w_z1ps_ar3nt_th@t_secUr3}
@@ -43,15 +43,16 @@ $ zipinfo locked.zip | grep hsctf
 
 <br /><br />
 <br /><br />
-# Verbose (Miscellaneous)
+## [Misc]: Verbose
 - - -
+### Challenge
 > My friend sent me this file, but I don't understand what I can do with these 6 different characters...
 
 Attachment:
 
 - verbose.txt
 
-## Solution
+### Solution
 [http://codertab.com/JsUnFuck](http://codertab.com/JsUnFuck)
 
 サイズが大きいので、結果が出るまで数分かかりました。<br />
@@ -60,18 +61,20 @@ var flag = "hsctf{esoteric_javascript_is_very_verbose}"; window.location = "http
 
 <br /><br />
 <br /><br />
-# Admin Pass (Miscellaneous)
+## [Misc]: Admin Pass
 - - -
+### Challenge
 > Hey guys, found a super cool website at http://misc.hsctf.com:8001!
 
-## Solution
+### Solution
 gitlab.comへのリンクがあって、そこに飛んでファイルの過去の履歴とか見ているとフラグが見つかります。
 
 
 <br /><br />
 <br /><br />
-# A Simple Conversation (Miscellaneous)
+## [Misc]: A Simple Conversation
 - - -
+### Challenge
 > Someone on the internet wants to talk to you. Can you find out what they want?
 
 Attachment:
@@ -97,7 +100,7 @@ sleep(1)
 print("Well, it was nice meeting you, %s-year-old." % age)
 ```
 
-## Solution
+### Solution
 `open('flag.txt').read()`
 <pre>
 $ nc misc.hsctf.com 9001
@@ -116,8 +119,9 @@ Goodbye!
 
 <br /><br />
 <br /><br />
-# Broken GPS (Miscellaneous)
+## [Misc]: Broken GPS
 - - -
+### Challenge
 > Ella is following a broken GPS. The GPS tells her to move in the opposite direction than the one she should be travelling in to get to her destination, and she follows her GPS exactly. For instance, every time she is supposed to move west, the GPS tells her to move east and she does so. Eventually she ends up in a totally different place than her intended location. What is the shortest distance between these two points? Assume that she moves one unit every time a direction is specified. For instance, if the GPS tells her to move "north," she moves one unit north. If the GPS tells her to move "northwest," then she moves one unit north and one unit west.
 <br /><br />
 Input Format:<br />
@@ -132,7 +136,7 @@ Attachment:
 
 - input.zip
 
-## Solution
+### Solution
 問題文がとにかく長いけど、言われるがままにコーディングするだけの問題。
 
 ```c
@@ -242,8 +246,9 @@ hsctf{garminesuckz}
 
 <br /><br />
 <br /><br />
-# Broken REPL (Miscellaneous)
+## [Misc]: Broken REPL
 - - -
+### Challenge
 > My friend says that there is a bug in my REPL. Can you help me find it?
 
 Attachment:
@@ -278,15 +283,16 @@ except MemoryError: # we ran out of memory
 
 ```
 
-## (Not solved)
+### (Unsolved)
 MemoryError例外を起こせばいいようだけど、できませんでした。raise使ったり、ウェブでMemoryError例外の事象のサンプルとか見つけてやったけれど、意図的に発生させようとするとなかなか難しいもんですね。
 
 
 
 <br /><br />
 <br /><br />
-# English Sucks (Miscellaneous)
+## [Misc]: English Sucks
 - - -
+### Challenge
 > English is such a confusing language. Can you help me understand it?
 <br /><br />
 Hint: Watch out for the order of the output.
@@ -354,7 +360,7 @@ int main() {
 		  << '\n';
     }
 ```
-## (Not solved)
+### (Unsolved)
 なんとなく方向性はわかった気がしたんですが、解けませんでした。。
 <br /><br />
 mt19937 疑似乱数は連続した624個の結果があると、その次に出てくる乱数が予測できます。
@@ -372,8 +378,9 @@ mt19937 疑似乱数は連続した624個の結果があると、その次に出
 
 <br /><br />
 <br /><br />
-# Reverse Search Algorithm (Cryptography)
+## [Crypto]: Reverse Search Algorithm
 - - -
+### Challenge
 > WWPHSN students, gotta get these points to boost your grade.
 <br /><br />
 n = 561985565696052620466091856149686893774419565625295691069663316673425409620917583731032457879432617979438142137
@@ -383,7 +390,7 @@ e = 65537
 c = 328055279212128616898203809983039708787490384650725890748576927208883055381430000756624369636820903704775835777
 
 
-## Solution
+### Solution
 SECCON Beginners CTF 2018 で出た「RSA is Power」とほぼ同じ問題のようです。
 
 以下のWriteupを参考にさせてもらいました。
@@ -421,15 +428,16 @@ hsctf{y3s_rsa_1s_s0lved_10823704961253}
 
 <br /><br />
 <br /><br />
-# A Byte (Reversal)
+## [Reversing]: A Byte
 - - -
+### Challenge
 > Just one byte makes all the difference.
 
 Attachment:
 
 - a-byte
 
-## Solution
+### Solution
 ghidraでde-compileすると、FUN_0010073a()のところで、以下の部分が見つかります。
 <br />
 （以下、抜粋です。）
@@ -506,8 +514,9 @@ hsctf{w0w_y0u_kn0w_d4_wA3_8h2bA029}
 
 <br /><br />
 <br /><br />
-# Return to Sender (Binary Exploitation)
+## [Pwn]: Return to Sender
 - - -
+### Challenge
 > Who knew the USPS could lose a letter so many times?
 
 Attachment:
@@ -515,7 +524,7 @@ Attachment:
 - return-to-sender
 - return-to-sender.c
 
-## Solution
+### Solution
 バッファオーバーフローの問題です。EIPが奪えるので、オフセット20バイトの後に、`system("/bin/sh");`を呼んでいる`win()`のアドレス`0x080491b6`を設定するだけです。
 <br /><br />
 <pre>
@@ -539,8 +548,9 @@ hsctf{fedex_dont_fail_me_now}
 
 <br /><br />
 <br /><br />
-# Combo Chain Lite (Binary Exploitation)
+## [Pwn]: Combo Chain Lite
 - - -
+### Challenge
 > Training wheels!
 <br /><br />
 nc pwn.hsctf.com 3131
@@ -576,7 +586,7 @@ int main() {
 }
 ```
 
-## Solution
+### Solution
 system()関数のアドレス（毎回異なる）がprintされるので、それを使います。
 
 <pre>
@@ -663,15 +673,16 @@ hsctf{wheeeeeee_that_was_fun}
 
 <br /><br />
 <br /><br />
-# Chicken Crossing (Forensics)
+## [Forensics]: Chicken Crossing
 - - -
+### Challenge
 > Keith is watching chickens cross a road in his grandfather’s farm. He once heard from his grandfather that there was something significant about this behavior, but he can’t figure out why. Help Keith discover what the chickens are doing from this seemingly simple behavior.
 
 Attachment:
 
 - hsctf-chicken_crossing.jpg
 
-## Solution
+### Solution
 <pre>
 $ strings hsctf-chicken_crossing.jpg | grep hsctf
 hsctf{2_get_2_the_other_side}
@@ -680,15 +691,16 @@ hsctf{2_get_2_the_other_side}
 
 <br /><br />
 <br /><br />
-# Cool Image (Forensics)
+## [Forensics]: Cool Image
 - - -
+### Challenge
 > My friend told me he found a really cool image, but I couldn't open it. Can you help me access the image?
 
 Attachment:
 
 - cool.pdf
 
-## Solution
+### Solution
 <pre>
 $ file cool.pdf
 cool.pdf: PNG image data, 1326 x 89, 8-bit/color RGBA, non-interlaced
@@ -697,15 +709,16 @@ cool.pdf: PNG image data, 1326 x 89, 8-bit/color RGBA, non-interlaced
 
 <br /><br />
 <br /><br />
-# Cool Image 2 (Forensics)
+## [Forensics]: Cool Image 2
 - - -
+### Challenge
 > My friend sent me this image, but I can't open it. Can you help me open the image?
 
 Attachment:
 
 - cool.png
 
-## Solution
+### Solution
 ファイルの先頭にゴミがついているので、消すだけです。
 <pre>
 $ xxd cool.png | head -n 4
@@ -719,15 +732,16 @@ $ xxd cool.png | head -n 4
 
 <br /><br />
 <br /><br />
-# Slap (Forensics)
+## [Forensics]: Slap
 - - -
+### Challenge
 > Don't get slapped too hard.
 
 Attachment:
 
 - slap.jpg
 
-## Solution
+### Solution
 Lorem ipsum （俗に言うダミーテキスト）だったので、うっかり見逃しそうでした。
 
 `$ exiftool slap.jpg | grep hsctf`
@@ -738,15 +752,16 @@ Location Shown Country Name     : Lorem ipsum dolor sit amet, consectetur adipis
 
 <br /><br />
 <br /><br />
-# Fish (Forensics)
+## [Forensics]: Fish
 - - -
+### Challenge
 > I got a weird image from some fish. What is this?
 
 Attachment:
 
 - fish.jpg
 
-## Solution
+### Solution
 「青い空を見上げればいつもそこに白い猫」で開くと、"Steghide適用可能性データ"というのが見えます。
 <br />
 <img src="https://captureamerica.github.io/writeups/img/possible_steg.png" alt="possible_steg.png">
@@ -768,27 +783,29 @@ hsctf{fishy_fishy_fishy_fishy_fishy_fishy_fishy123123123123}
 
 <br /><br />
 <br /><br />
-# Inspect Me (Web)
+## [Web]: Inspect Me
 - - -
+### Challenge
 > Keith's little brother messed up some things...
 <br /><br />
 https://inspect-me.web.chal.hsctf.com
 <br /><br />
 Note: There are 3 parts to the flag!
 
-## Solution
+### Solution
 View page source
 
 
 <br /><br />
 <br /><br />
-# Agent Keith (Web)
+## [Web]: Agent Keith
 - - -
+### Challenge
 > Keith was looking at some old browsers and made a site to hold his flag.
 <br /><br />
 https://agent-keith.web.chal.hsctf.com
 
-## Solution
+### Solution
 上記にアクセスすると、
 <pre>
 If you're not Keith, you won't get the flag!
@@ -826,30 +843,33 @@ hsctf{wow_you_are_agent_keith_now}
 
 <br /><br />
 <br /><br />
-# S-Q-L (Web)
+## [Web]: S-Q-L
 - - -
+### Challenge
 > Keith keeps trying to keep his flag safe. This time, he used a database and some PHP.
 <br /><br />
 https://s-q-l.web.chal.hsctf.com/
 
-## Solution
+### Solution
 `' or '1'='1`
 
 
 <br /><br />
 <br /><br />
-# The Quest (Web)
+## [Web]: The Quest
 - - -
+### Challenge
 > You think you are worthy of obtaining the flag? Try your hand at [The Quest to Obtain the Flag.](https://forms.gle/7pyAWuG3GvYL443NA)
 
-## Solution
+### Solution
 View Page Sourceでフラグを見つけてしまった。
 
 
 <br /><br />
 <br /><br />
-# Keith Logger (Web)
+## [Web]: Keith Logger
 - - -
+### Challenge
 > Keith is up to some evil stuff! Can you figure out what he's doing and find the flag?
 <br /><br />
 Note: nothing is actually saved
@@ -858,7 +878,7 @@ Attachment:
 
 - extension.crx
 
-## Solution
+### Solution
 これは今までやったことのないタイプの問題で面白かったです。
 <br /><br />
 crxは、Chromeのエクステンション。
@@ -918,8 +938,9 @@ mongodbには、`Robo 3T`というツールを使いました。
 
 <br /><br />
 <br /><br />
-# Accessible Rich Internet Applications (Web)
+## [Web]: Accessible Rich Internet Applications
 - - -
+### Challenge
 > A very considerate fellow, Rob believes that accessibility is very important!
 <br /><br />
 NOTE: The flag for this challenge starts with flag{ instead of hsctf{
@@ -928,7 +949,7 @@ Attachment:
 
 - index.html
 
-## Solution
+### Solution
 添付の`index.html`には難読化された非常に長いJavascriptが含まれています。
 <br />
 ChromeのDeveloper ToolsでまずBeautifyして、mをWatchに追加して実行し、mを別ファイル（aaa.htm）として保存しました。

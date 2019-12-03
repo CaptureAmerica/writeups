@@ -38,9 +38,9 @@ Binary Exploitation の Writeupです。
 
 
 <br /><br />
-# [Binary Exploitation]: handy-shellcode (50 points)
+## [Binary Exploitation]: handy-shellcode (50 points)
 - - -
-## Challenge
+### Challenge
 > This program executes any shellcode that you give it. Can you spawn a shell and use that to read the flag.txt?
 <br /><br />
 Hint: You might be able to find some good shellcode online.
@@ -51,7 +51,7 @@ Attachment:
 - vuln.c
 
 <br />
-## Solution
+### Solution
 これは、picoCTF 2018のshellcodeと同じでした。
 
 ```Python
@@ -70,9 +70,9 @@ Flag: `picoCTF{h4ndY_d4ndY_sh311c0d3_0b440487}`
 
 <br /><br />
 <br /><br />
-# [Binary Exploitation]: OverFlow 1 (150 points)
+## [Binary Exploitation]: OverFlow 1 (150 points)
 - - -
-## Challenge
+### Challenge
 > You beat the first overflow challenge. Now overflow the buffer and change the return address to the flag function in this program?
 <br /><br />
 Hint: Take control that return address
@@ -85,7 +85,7 @@ Attachment:
 - vuln.c
 
 <br />
-## Solution
+### Solution
 offsetを求めて、飛びたい関数に飛ぶだけ。
 
 ```
@@ -102,9 +102,9 @@ Flag: `picoCTF{n0w_w3r3_ChaNg1ng_r3tURn57f5688e7}`
 
 <br /><br />
 <br /><br />
-# [Binary Exploitation]: NewOverFlow-1 (200 points)
+## [Binary Exploitation]: NewOverFlow-1 (200 points)
 - - -
-## Challenge
+### Challenge
 > Lets try moving to 64-bit, but don't worry we'll start easy. Overflow the buffer and change the return address to the flag function in this program.
 <br /><br />
 Hint: Now that we're in 64-bit, what used to be 4 bytes, now may be 8 bytes
@@ -115,7 +115,7 @@ Attachment:
 - vuln.c
 
 <br />
-## Solution
+### Solution
 picoCTFのサーバは、Ubuntu 18.04であるところがポイントです。16 byte alignmentしないと解けません。
 
 
@@ -146,9 +146,9 @@ Flag: `picoCTF{th4t_w4snt_t00_d1ff3r3nt_r1ghT?_bfd48203}`
 
 <br /><br />
 <br /><br />
-# [Binary Exploitation]: NewOverFlow-2 (250 points)
+## [Binary Exploitation]: NewOverFlow-2 (250 points)
 - - -
-## Challenge
+### Challenge
 > Okay now lets try mainpulating arguments. program.
 <br /><br />
 Hint: Arguments aren't stored on the stack anymore ;)
@@ -159,7 +159,7 @@ Attachment:
 - vuln.c
 
 <br />
-## Solution
+### Solution
 たぶん問題が間違っている気がします。win_fn1()とかいくつか関数が追加されているものの、flag()が残っているので、NewOverFlow-1と全く同じで解けます。
 
 
@@ -170,9 +170,9 @@ Flag: `picoCTF{r0p_1t_d0nT_st0p_1t_e51a1ea0}`
 
 <br /><br />
 <br /><br />
-# [Binary Exploitation]: OverFlow 2 (250 points)
+## [Binary Exploitation]: OverFlow 2 (250 points)
 - - -
-## Challenge
+### Challenge
 > Now try overwriting arguments. Can you get the flag from this program?
 <br /><br />
 Hint: GDB can print the stack after you send arguments
@@ -183,7 +183,7 @@ Attachment:
 - vuln.c
 
 <br />
-## Solution
+### Solution
 これはpicoCTF 2018のbof2とほぼ同じです。
 
 ```
@@ -200,9 +200,9 @@ Flag: `picoCTF{arg5_and_r3turn55897b905}`
 
 <br /><br />
 <br /><br />
-# [Binary Exploitation]: CanaRy (300 points)
+## [Binary Exploitation]: CanaRy (300 points)
 - - -
-## Challenge
+### Challenge
 > This time we added a canary to detect buffer overflows. Can you still find a way to retreive the flag from this program located in /problems/canary_0_2aa953036679658ee5e0cc3e373aa8e0.
 <br /><br />
 Hint: Maybe there's a smart way to brute-force the canary?
@@ -213,7 +213,7 @@ Attachment:
 - vuln.c
 
 <br />
-## Solution
+### Solution
 これはpicoCTF 2018のbof3とほぼ同じです。
 
 去年のどこかのWriteupにあったコードを流用させてもらって、canary (33xO) をゲット。
@@ -232,9 +232,9 @@ Flag: `picoCTF{cAnAr135_mU5t_b3_r4nd0m!_069c6f48}`
 
 <br /><br />
 <br /><br />
-# [Binary Exploitation]: messy-malloc (300 points)
+## [Binary Exploitation]: messy-malloc (300 points)
 - - -
-## Challenge
+### Challenge
 > Can you take advantage of misused malloc calls to leak the secret through this service and get the flag? Connect with nc 2019shell1.picoctf.com 21899.
 <br /><br />
 Hint: If only the program used calloc to zero out the memory..
@@ -245,7 +245,7 @@ Attachment:
 - auth.c
 
 <br />
-## Solution
+### Solution
 GDBを使ってヒープがどうなるか見ながら解析しました。Ubuntu 18.04で解析したら、ちょっと動きが違ってました（うろ覚え）。
 
 あと、recvuntil()辺りが思ったように動かなくて Invalid option になっちゃったりしたので、よくわかんないけど Invalid になった際には再トライするようにして対処しました。
@@ -314,9 +314,9 @@ Flag: `picoCTF{g0ttA_cl3aR_y0uR_m4110c3d_m3m0rY_ac0e0e6a}`
 
 <br /><br />
 <br /><br />
-# [Binary Exploitation]: stringzz (300 points)
+## [Binary Exploitation]: stringzz (300 points)
 - - -
-## Challenge
+### Challenge
 > Use a format string to pwn this program and get a flag.
 <br /><br />
 Hint: http://www.cis.syr.edu/~wedu/Teaching/cis643/LectureNotes_New/Format_String.pdf
@@ -327,7 +327,7 @@ Attachment:
 - vuln.c
 
 <br />
-## Solution
+### Solution
 書式文字列攻撃の問題です。
 
 ```Python
@@ -376,9 +376,9 @@ Flag: `picoCTF{str1nG_CH3353_159c98a8}`
 
 <br /><br />
 <br /><br />
-# [Binary Exploitation]: GoT (350 points)
+## [Binary Exploitation]: GoT (350 points)
 - - -
-## Challenge
+### Challenge
 > You can only change one address, here is the problem: program.
 <br /><br />
 
@@ -399,7 +399,7 @@ $ checksec vuln
 
 
 <br />
-## Solution
+### Solution
 
 ```
 gef➤  x win
@@ -446,9 +446,9 @@ Flag: `picoCTF{A_s0ng_0f_1C3_and_f1r3_db12a9ed}`
 
 <br /><br />
 <br /><br />
-# [Binary Exploitation]: pointy (350 points)
+## [Binary Exploitation]: pointy (350 points)
 - - -
-## Challenge
+### Challenge
 > Exploit the function pointers in this program.
 <br /><br />
 Hint : A function pointer can be used to call any function
@@ -461,7 +461,7 @@ Attachment:
 
 
 <br />
-## Solution
+### Solution
 2つ構造体が違うのに、同じポインタのリストを使っているところがポイント。
 ```C
 struct Professor {
@@ -516,9 +516,9 @@ Flag: `picoCTF{g1v1ng_d1R3Ct10n5_d9be6a30}`
 
 <br /><br />
 <br /><br />
-# [Binary Exploitation]: seed-sPRiNG (350 points)
+## [Binary Exploitation]: seed-sPRiNG (350 points)
 - - -
-## Challenge
+### Challenge
 > The most revolutionary game is finally available: seed sPRiNG is open right now! seed_spring. Connect to it with nc 2019shell1.picoctf.com 12269.
 <br /><br />
 Hints: <br />
@@ -553,7 +553,7 @@ WRONG! Sorry, better luck next time!
 
 
 <br />
-## Solution
+### Solution
 ランダムのシードをどこから取っているか、GDBとかGhidraとかで確認します。
 
 現在時間をベースにしているようです。

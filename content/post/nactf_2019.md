@@ -32,9 +32,9 @@ Pwnも途中でバテました。。。
 
 
 <br /><br />
-# [General Skills]: Hwang's Hidden Handiwork (100 points)
+## [General Skills]: Hwang's Hidden Handiwork (100 points)
 - - -
-## Challenge
+### Challenge
 > Hwang was trying to hide secret photos from his parents. His mom found a text file with a secret string and an excel chart which she thinks could help you decrypt it. Can you help uncover Hwang's Handiwork?
 <br /><br />
 Of course, the nobler of you may choose not to do this problem because you respect Hwang's privacy. That's ok, but you won't get the points.
@@ -49,25 +49,25 @@ Attachment:
 - substitution.csv
 
 添付ファイルの中身は、こんなです。
-```
+<pre>
 $ cat hwangshandiwork.txt 
 SccLJ0ddkSGy=PP=kM8JMDmPCcMCcymPedh9_r_GwDtt.::/.1TS_Ba:uU9KNpzir:VcNEVK/PPDXCImKlqK8rqtfOAvisA2MIikfjEq1ReFNC/gi_bf5fbrOSxrODf 
 
 $ cat substitution.csv 
 Plaintext,a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z,A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z,1,2,3,4,5,6,7,8,9,0,.,/,-,_,=,:
 Ciphertext,T,v,m,9,M,j,=,S,a,i,w,k,e,C,P,L,X,D,J,c,8,h,f,_,.,t,I,B,q,R,Q,Z,U,n,K,u,l,E,-,7,6,g,N,p,/,s,Y,3,:,4,o,A,x,H,G,1,b,F,W,2,z,r,y,d,O,V,5,0
-```
+</pre>
 
 
 <br />
-## Solution
+### Solution
 このチャレンジはなかなか面白かったです。
 
 substitutionはsedを使いました。
-```
+<pre>
 cat hwangshandiwork.txt | sed -e y@Tvm9Mj=SaiwkeCPLXDJc8hf_.tIBqRQZUnKulE-76gNp/sY3:4oAxHG1bFW2zrydOV50@abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890./-_=:@
 https://lh3.googleusercontent.com/vdx0x3krzzyWWSy4ahxBiWJGdIQR9j0W_tQL_ISoorqnAcIKCIu0Czw-ZbjTZ8eAjlwfLC4Dm6QnSPjx5w=w50-h10-rw
-```
+</pre>
 
 <br />
 出てきたURLにアクセスすると、めっちゃちっちゃいgoogleflag.webpというファイルが取得できます。
@@ -76,18 +76,18 @@ https://lh3.googleusercontent.com/vdx0x3krzzyWWSy4ahxBiWJGdIQR9j0W_tQL_ISoorqnAc
 
 
 初めてみるファイルタイプでした。
-```
+<pre>
 $ file googleflag.webp
 googleflag.webp: RIFF (little-endian) data, Web/P image
-```
+</pre>
 
 <br />
 ググってみると、<br />「出てきたURLの最後の「-rw」を削るとpngやらjpgやら元の形式になりますよ」<br />とのことだったので、末尾の「-rw」を取り除いたら確かにpngとして保存できました。
 
-```
+<pre>
 $ file googleflag.png 
 googleflag.png: PNG image data, 50 x 5, 8-bit/color RGB, non-interlaced
-```
+</pre>
 
 <br />
 ここで少し悩んで、ヒントをもう一回見直しました。
@@ -114,25 +114,25 @@ Flag: `nactf{g00gl3_15nt_s3cur3_3n0ugh}`
 
 <br /><br />
 <br /><br />
-# [General Skills]: SHCALC (200 points)
+## [General Skills]: SHCALC (200 points)
 - - -
-## Challenge
+### Challenge
 > John's written a handy calculator app - in bash! Too bad it's not that secure...
 <br /><br />
 Hint: Heard of injection?
 
 
 <br />
-## Solution
+### Solution
 以下の通り。
-```
+<pre>
 > $(ls)
 sh: 1: arithmetic expression: expecting EOF: "calc.sh
 flag.txt"
 
 > $(cat flag.txt)
 sh: 1: arithmetic expression: expecting EOF: "nactf{3v4l_1s_3v1l_dCf80yOo}"
-```
+</pre>
 
 Flag: `nactf{3v4l_1s_3v1l_dCf80yOo}`
 
@@ -140,9 +140,9 @@ Flag: `nactf{3v4l_1s_3v1l_dCf80yOo}`
 
 <br /><br />
 <br /><br />
-# [Cryptography]: Loony Tunes (50 points)
+## [Crypto]: Loony Tunes (50 points)
 - - -
-## Challenge
+### Challenge
 > Ruthie is very inhumane. She keeps her precious pigs locked up in a pen. I heard that this secret message is the password to unlocking the gate to her PIGPEN. Unfortunately, Ruthie does not want people unlocking the gate so she encoded the password. Please help decrypt this code so that we can free the pigs!
 <br /><br />
 P.S. "_" , "{" , and "}" are not part of the cipher and should not be changed
@@ -157,7 +157,7 @@ Attachment:
 
 
 <br />
-## Solution
+### Solution
 問題文の中の「PIGPEN」が大文字になっていたのでググってみると、Pigpen Cipherっていうのが見つかりました。
 
 [https://en.wikipedia.org/wiki/Pigpen_cipher](https://en.wikipedia.org/wiki/Pigpen_cipher)
@@ -170,9 +170,9 @@ Flag: `nactf{th_th_th_thats_all_folks}`
 
 <br /><br />
 <br /><br />
-# [Reverse Engineering]: Keygen (600 points)
+## [Reversing]: Keygen (600 points)
 - - -
-## Challenge
+### Challenge
 > Can you figure out what the key to this program is?
 <br /><br />
 Hint: Don't know where to start? Fire up a debugger, or look for cross-references to data you know something about.
@@ -183,7 +183,7 @@ Attachment:
 
 
 <br />
-## Not Solved
+### (UnSolved)
 これは見る限りangrで解く問題だと思うんですけど、どうにも答えが得られなかったです。
 
 Keyサイズは8文字。

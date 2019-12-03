@@ -35,7 +35,7 @@
 
 
 <link href="https://captureamerica.github.io/writeups/dist/even.c2a46f00.min.css" rel="stylesheet">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
 
 
 <meta property="og:title" content="picoCTF 2019 Writeup (Forensics)" />
@@ -134,31 +134,39 @@
 
     <div class="post-toc" id="post-toc">
   <h2 class="post-toc-title">Contents</h2>
-  <div class="post-toc-content always-active">
+  <div class="post-toc-content">
     <nav id="TableOfContents">
   <ul>
-    <li><a href="#challenge">Challenge</a></li>
-    <li><a href="#solution">Solution</a></li>
-  </ul>
-
-  <ul>
-    <li><a href="#challenge1">Challenge</a></li>
-    <li><a href="#solution1">Solution</a></li>
-  </ul>
-
-  <ul>
-    <li><a href="#challenge2">Challenge</a></li>
-    <li><a href="#solution2">Solution</a></li>
-  </ul>
-
-  <ul>
-    <li><a href="#challenge3">Challenge</a></li>
-    <li><a href="#solution3">Solution</a></li>
-  </ul>
-
-  <ul>
-    <li><a href="#challenge4">Challenge</a></li>
-    <li><a href="#solution4">Solution</a></li>
+    <li><a href="#forensics-whitepages-250-points">[Forensics]: WhitePages (250 points)</a>
+      <ul>
+        <li><a href="#challenge">Challenge</a></li>
+        <li><a href="#solution">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#forensics-c0rrupt-250-points">[Forensics]: c0rrupt (250 points)</a>
+      <ul>
+        <li><a href="#challenge1">Challenge</a></li>
+        <li><a href="#solution1">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#forensics-shark-on-wire-2-300-points">[Forensics]: shark on wire 2 (300 points)</a>
+      <ul>
+        <li><a href="#challenge2">Challenge</a></li>
+        <li><a href="#solution2">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#forensics-webnet0-350-points">[Forensics]: WebNet0 (350 points)</a>
+      <ul>
+        <li><a href="#challenge3">Challenge</a></li>
+        <li><a href="#solution3">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#forensics-webnet1-450-points">[Forensics]: WebNet1 (450 points)</a>
+      <ul>
+        <li><a href="#challenge4">Challenge</a></li>
+        <li><a href="#solution4">Solution</a></li>
+      </ul>
+    </li>
   </ul>
 </nav>
   </div>
@@ -179,14 +187,14 @@
 <p><br /><br />
 Forensics の Writeupです。</p>
 <p><br /><br /></p>
-<h1 id="forensics-whitepages-250-points">[Forensics]: WhitePages (250 points)</h1>
+<h2 id="forensics-whitepages-250-points">[Forensics]: WhitePages (250 points)</h2>
 <hr>
-<h2 id="challenge">Challenge</h2>
+<h3 id="challenge">Challenge</h3>
 <blockquote>
 <p>I stopped using YellowPages and moved onto WhitePages&hellip; but the page they gave me is all blank!</p>
 </blockquote>
 <p><br /></p>
-<h2 id="solution">Solution</h2>
+<h3 id="solution">Solution</h3>
 <p>てっきりwhitespaceというesolangだと思ったので、少し手こずりました。</p>
 <p>あと、たぶんだけど、チャレンジが始まった頃にダウンロードしたファイルと、後日ダウンロードし直したファイルが異なってた気がします。。。</p>
 <p>スペースとタブ（？）の2種類の文字があるので、それを0と1に変えてから、2進数を文字に変えるのが解き方です。</p>
@@ -195,9 +203,9 @@ Forensics の Writeupです。</p>
 </code></pre><p>Flag: <code>picoCTF{not_all_spaces_are_created_equal_c167040c738e8bcae2109ef4be5960b1}</code></p>
 <p><br /><br />
 <br /><br /></p>
-<h1 id="forensics-c0rrupt-250-points">[Forensics]: c0rrupt (250 points)</h1>
+<h2 id="forensics-c0rrupt-250-points">[Forensics]: c0rrupt (250 points)</h2>
 <hr>
-<h2 id="challenge1">Challenge</h2>
+<h3 id="challenge1">Challenge</h3>
 <blockquote>
 <p>We found this file. Recover the flag.
 <br /><br />
@@ -208,7 +216,7 @@ Hints : Try fixing the file header</p>
 <li>mystery</li>
 </ul>
 <p><br /></p>
-<h2 id="solution1">Solution</h2>
+<h3 id="solution1">Solution</h3>
 <p>先頭の16バイトくらい直せば通るかと思いきや、結構壊れててハマりました。</p>
 <p>1番目のIDATチャンクのとこも修正が必要。</p>
 <p>CRCは、pngcsumで直しました。<br />
@@ -226,9 +234,9 @@ IEND (  0 ) - csum = ae426082
 </code></pre><p>Flag: <code>picoCTF{c0rrupt10n_1847995}</code></p>
 <p><br /><br />
 <br /><br /></p>
-<h1 id="forensics-shark-on-wire-2-300-points">[Forensics]: shark on wire 2 (300 points)</h1>
+<h2 id="forensics-shark-on-wire-2-300-points">[Forensics]: shark on wire 2 (300 points)</h2>
 <hr>
-<h2 id="challenge2">Challenge</h2>
+<h3 id="challenge2">Challenge</h3>
 <blockquote>
 <p>We found this packet capture. Recover the flag that was pilfered from the network. You can also find the file in /problems/shark-on-wire-2_0_5b5597f90483360b4480373bed30738e.</p>
 </blockquote>
@@ -237,7 +245,7 @@ IEND (  0 ) - csum = ae426082
 <li>capture.pcap</li>
 </ul>
 <p><br /></p>
-<h2 id="solution2">Solution</h2>
+<h3 id="solution2">Solution</h3>
 <p>udpのフローを順番に見ていくと、フラグっぽい文字列が出てきます。</p>
 <p>&ldquo;kfdsalkfsalkico{N0t_a_fLag}&ldquo;<br />
 &ldquo;icoCTF{StaT31355e&quot;<br /></p>
@@ -269,9 +277,9 @@ IEND (  0 ) - csum = ae426082
 </div><p>Flag: <code>picoCTF{p1LLf3r3d_data_v1a_st3g0}</code></p>
 <p><br /><br />
 <br /><br /></p>
-<h1 id="forensics-webnet0-350-points">[Forensics]: WebNet0 (350 points)</h1>
+<h2 id="forensics-webnet0-350-points">[Forensics]: WebNet0 (350 points)</h2>
 <hr>
-<h2 id="challenge3">Challenge</h2>
+<h3 id="challenge3">Challenge</h3>
 <blockquote>
 <p>We found this packet capture and key. Recover the flag.
 <br /><br />
@@ -285,15 +293,15 @@ How can you decrypt the TLS stream?</p>
 <li>picopico.key</li>
 </ul>
 <p><br /></p>
-<h2 id="solution3">Solution</h2>
+<h3 id="solution3">Solution</h3>
 <p>Go to Preference -&gt; TLS -&gt; RSA key list <br />
 172.31.22.220, 443, http, C:\Temp\picopico.key</p>
 <p>Flag: <code>picoCTF{nongshim.shrimp.crackers}</code></p>
 <p><br /><br />
 <br /><br /></p>
-<h1 id="forensics-webnet1-450-points">[Forensics]: WebNet1 (450 points)</h1>
+<h2 id="forensics-webnet1-450-points">[Forensics]: WebNet1 (450 points)</h2>
 <hr>
-<h2 id="challenge4">Challenge</h2>
+<h3 id="challenge4">Challenge</h3>
 <blockquote>
 <p>We found this packet capture and key. Recover the flag.
 <br /><br />
@@ -307,7 +315,7 @@ How can you decrypt the TLS stream?</p>
 <li>picopico.key</li>
 </ul>
 <p><br /></p>
-<h2 id="solution4">Solution</h2>
+<h3 id="solution4">Solution</h3>
 <p>復号したトラフィックから、HTTP objectを抽出し、stringsコマンドでフラグサーチ。</p>
 <p>Flag: <code>picoCTF{honey.roasted.peanuts}</code></p>
 <p><br /><br />
@@ -397,7 +405,7 @@ How can you decrypt the TLS stream?</p>
   
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+  
 <script type="text/javascript" src="https://captureamerica.github.io/writeups/dist/even.26188efa.min.js"></script>
 
 

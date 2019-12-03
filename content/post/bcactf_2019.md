@@ -77,9 +77,9 @@ URL: [https://www.bcactf.com/](https://www.bcactf.com/)
 
 <br /><br />
 <br /><br />
-# Binary-exploitation: executable (150)
+## [Binary]: executable (150)
 - - -
-## Challenge
+### Challenge
 > It's in there somewhere. Good luck!
 
 Attachment:
@@ -87,7 +87,7 @@ Attachment:
 - executable-mac
 - executable-ubuntu
 
-## Solution
+### Solution
 Ghidraでデコンパイルしてコードを確認してみます。以下、抜粋です。
 ```C
   local_18 = *(long *)___stack_chk_guard;
@@ -128,9 +128,9 @@ $2 = 1
 
 <br /><br />
 <br /><br />
-# Binary-exploitation: executable-2 (250)
+## [Binary]: executable-2 (250)
 - - -
-## Challenge
+### Challenge
 > It's in here somewhere. Good luck... again.
 <br /><br />
 (Now you actually have to try.)
@@ -139,7 +139,7 @@ Attachment:
 
 - executable-ubuntu
 
-## Solution
+### Solution
 問題文の、"(Now you actually have to try.)" の意味がよくわかりませんでした。わたしのやり方は、想定解じゃないのかも知れません。トライしてないし。。^^;
 
 Ghidraでデコンパイルしてコードを見たところ、rand()をコールしている部分が増えていましたが、前の問題と大して違いはなかったです。
@@ -164,9 +164,9 @@ rsqsjv{Arent_executables_fun?_I_think_so_sdkfjhqiweuryiquwerajzncxbvaihqiwueyr}
 
 <br /><br />
 <br /><br />
-# Crypto: three-step-program (125)
+## [Crypto]: three-step-program (125)
 - - -
-## Challenge
+### Challenge
 > We found this strange file with a bunch of stuff in it... Can you help us decode it?
 <br /><br />
 > Hint: Looks like you need to do different things to each section...
@@ -181,7 +181,7 @@ mvscey{bu57_j0n_o4i7_kgbhmffhlqe} bfm, te htjnpw, feim lixx at hhf’t mx ko dbe
 </pre>
 
 <br />
-## Solution
+### Solution
 1行目をBase64 decodeすると、`32 -  |3 Times A Charm| - 32~` が取れます。
 <br /><br /><br />
 これをヒントに、2つ目はBase32 decode x 3です。以下を使わせてもらいました。<br />
@@ -209,9 +209,9 @@ Keyを"SALT"にして、Vigenere cipherをデコードすると、フラグが�
 
 <br /><br />
 <br /><br />
-# Crypto: tupperware (175)            <=== gave up
+## [Crypto]: tupperware (175)
 - - -
-## Challenge
+### Challenge
 > Took my lunch to school in a Tupperware (now with patented TupperSRF™ plastic!) and part of it got stained with a flag. k tells you where.
 <br /><br />
 NOTE: number names come from the Googology wiki, some numbef names may be inconsistent.
@@ -222,7 +222,7 @@ Attachment:
 <br />
 Four octogintacentillion, eight hundred and fifty-eight novemseptuagintacentillion, four hundred and eighty-seven octoseptuagintacentillion, ...(snip)..., seven hundred and eighty-five quadrillion, four hundred and thirty-three trillion, one hundred and five billion, ninety-one million, five hundred and twenty-six thousand, six hundred and thirty-nine.
 
-## Not solved
+### Unsolved
 以下のような感じでPythonでひらすらreplaceを行って、全部数字にするところまではやりました。
 ```python
 k = k.replace("octogintacentillion", ")*10^543")
@@ -248,12 +248,12 @@ k = k.replace("novemseptuagintacentillion", ")*10^540")
 
 <br /><br />
 <br /><br />
-# Crypto: runescape
+## [Crypto]: runescape
 - - -
-## Challenge
+### Challenge
 > ᚣᚦᚧᚦᚭᚠ{ᚠᚯᚲᚴᚪᚲᚫᚦᚹᚧᚫᚧᚵᚹᚨᚩᚨᚩᚨᚮᚲᚯᚹᚥᚯᚲᚧᚭᚷᚶᚲᚫᚨᚸᚵᚮᚩᚫᚥᚧᚫᚫᚸᚹᚩᚫᚥᚢᚸᚫᚸᚧᚵᚤᚶᚧᚣᚲᚭᚩᚦᚨᚪᚣᚨᚭᚩᚭᚪᚭᚩᚸᚫᚦᚩᚤᚶᚲᚯᚨ_ᚧᚣᚦᚬᚲᚠᚥᚶᚩᚱᚳᚵᚢᚫᚸᚤᚴᚯᚨᚭᚪᚮᚷᚡᚹᚰ}
 
-## Solution
+### Solution
 ルーン文字です。<br />
 
 オンラインでさくっと変換できるのかと思ったら、アスキー文字と1対1で対応しているわけではなくて、単一換字式暗号として解くやつでした。
@@ -312,16 +312,16 @@ e19ab0
 
 <br /><br />
 <br /><br />
-# Crypto: a-major-problem (200)
+## [Crypto]: a-major-problem (200)
 - - -
-## Challenge
+### Challenge
 > A mysterious figure named Major Mnemonic has sent you the following set of words. Figure out what they mean!
 <br /><br />
 "Pave Pop Poke Pop Dutch Dozen Denim Deism Loot Thatch Pal Atheism Rough Ditch Tonal"
 <br /><br />
 Hint: The words translate to numbers, which then translate to the flag.
 
-## Solution
+### Solution
 以下のWikiに従って、それぞれの数字を求めて、文字に変換するだけです。<br />
 [https://en.wikipedia.org/wiki/Mnemonic_major_system](https://en.wikipedia.org/wiki/Mnemonic_major_system)
 
@@ -348,9 +348,9 @@ Hint: The words translate to numbers, which then translate to the flag.
 
 <br /><br />
 <br /><br />
-# Forensics: of-course-rachel (150)
+## [Forensics]: of-course-rachel (150)
 - - -
-## Challenge
+### Challenge
 > Ugh, I had a really important file with the flag, but sadly it broke. My friend Rachel said that snapshots are good for backing up, and luckily I listened so here is my screenshot. Do you think you could help me put it back together?
 <br /><br />
 Hint: that's a lot to type in...
@@ -359,7 +359,7 @@ Attachment:
 
 - snapshot.zip (part1.png, part2.png, part3.png, part4.png, part5.png)
 
-## Solution
+### Solution
 ヒント`that's a lot to type in...`があんまりヒントになってない気がします^^; <br />
 16進数が書かれた画像ファイルがあるので、OCRで読み取って変換するだけです。
 <br /><br />
@@ -380,14 +380,14 @@ bcactf{0p71c4lly_r3c0gn1z3d_ch4r4c73rs}
 
 <br /><br />
 <br /><br />
-# Forensics: the-flag-is (200)
+## [Forensics]: the-flag-is (200)
 - - -
-## Challenge
+### Challenge
 > I have a flag! The flag is... wait... did my PDF editor not save the flag? OH NO! I remember typing it in, can you help me find it?
 <br /><br />
 Hint: There are two ways to view PDFs. One way is to view it with a PDF viewer. How else can you view a file?
 
-## Solution
+### Solution
 テキストエディタで開くと以下が見つかるので、ascii85 decodeをするだけです。
 <pre>
 5 0 obj << /Length 89 /Filter /ASCII85Decode >>
@@ -405,9 +405,9 @@ endobj
 
 <br /><br />
 <br /><br />
-# Programming: 1+1=window (75)
+## [Programming]: 1+1=window (75)
 - - -
-## Challenge
+### Challenge
 > hex+hex=hex
 
 Attachment:
@@ -415,7 +415,7 @@ Attachment:
 - one.txt
 - two.txt
 
-## Solution
+### Solution
 ```python
 #!/usr/bin/env python3
 
@@ -436,9 +436,9 @@ print("")
 
 <br /><br />
 <br /><br />
-# Programming: bca-store (75)
+## [Programming]: bca-store (75)
 - - -
-## Challenge
+### Challenge
 > You are a cashier for a small store that sells a few items. Coming up is the annual sale, and you really don't want to do that much math. So, being you, you decide to automate it.
 <br /><br />
 Items:
@@ -483,7 +483,7 @@ Attachment:
 
 - input.txt
 
-## Solution
+### Solution
 例が、`$ cat input.txt | ./script.py` となってて、なんとなくpythonで解くことを期待されているようだったので、勉強も兼ねてpythonでやりました。
 ```python
 #!/usr/bin/env python3
@@ -545,9 +545,9 @@ print("")
 
 <br /><br />
 <br /><br />
-# Programming: instructions (175)
+## [Programming]: instructions (175)
 - - -
-## Challenge
+### Challenge
 > We intercepted a message between two agents from a terrorist group known as 0x4556494c. We think it might contain some useful information, so we'd like you to crack it. Here is the message.
 <br /><br />
 BEGIN TRANSMITION<br />
@@ -575,7 +575,7 @@ Attachment:
 - flag.txt
 
 
-## Solution
+### Solution
 ```c
 #include <stdio.h>
 #include <string.h>
@@ -624,9 +624,9 @@ int main(int argc, char **argv)
 
 <br /><br />
 <br /><br />
-# Programming: manner-of-thpeaking (250)
+## [Programming]: manner-of-thpeaking (250)
 - - -
-## Challenge
+### Challenge
 > Tho, I came Acroth thith therieth of inthturcthins, and thomething that thaid "the key ith the attached litht of ATHCII printableth." Tho anywayth, here'th the inthtructhinth.
 <br /><br />
 Hint1: Pardon my LITHP
@@ -647,7 +647,7 @@ Attachment:
 以下がinthtructhins.txtの中身。<br />
 cadadddddr, caddadddddr, caadddddr, caddadddddr, cadddddddddddddddddddadddddr, cadddddadddddr, caaddddddr, cadddddddddddadddr, cadadr, cadddddadr, cadddddddadr, caddddaddddr, caddddddddadr, caddddadr, cadddddadr, cadddadr, cadddadddddr, caddddaddddr, cadddddddddddddddadddddr, cadddddddddddddddddadddr, caadr, caddddddadddddr, cadddddddddddddddddadddr, caddddadr, caddddddddddddadddr, caddddddddddddadddddr, cadadr, cadddddddddddddadddddr, caddddddadddr, caddddaddddr, cadadr, cadddddadr, caddddaddddr, caddddadr, caddddddddddddddddddddddadddddr, cadddadr, caddddddddddddddddddadddr, caadr, caddddddddddddadddr, caddddadddddr, cadar, caddaddddddr
 
-## Solution
+### Solution
 [ポイント１]<br />
 コンマ(,)で区切られた塊が一文字だと考えると、見えてきます。<br />
 
@@ -718,9 +718,9 @@ int main(int argc, char **argv)
 
 <br /><br />
 <br /><br />
-# Quest: for-the-night-is-dark-1 (150)
+## [Quest]: for-the-night-is-dark-1 (150)
 - - -
-## Challenge
+### Challenge
 > Hello, traveler. Welcome to your quest. You must walk the Red Lord's shining path, guided by his shining stars. Here is a picture of those stars. A map if you will. May the Lord of Light give you wisdom.
 <br /><br />
 NOTE: As more heroes complete each stage of the quest, fewer points will be available to future teams.
@@ -735,7 +735,7 @@ Attachment:
 - starmap.bmp
 
 
-## Solution
+### Solution
 「青い空を見上げればいつもそこに白い猫」で開くと、赤色のところだけ星みたいなのが出てきました。
 
 赤色 ビット1 <br />
@@ -756,12 +756,12 @@ http://rhllor.xyz/7h3fir31n0urh3ar75_d2VsY29tZSB0byBzdGVwIG9uZQ
 
 <br /><br />
 <br /><br />
-# Quest: for-the-night-is-dark-2 (150)
+## [Quest]: for-the-night-is-dark-2 (150)
 - - -
-## Challenge
+### Challenge
 > This task can be found through solving the prior quest tasks.
 
-## Solution
+### Solution
 stage2.jsというのがあるので、中身を見てみます。
 
 ```javascript
@@ -792,12 +792,12 @@ md5（3758002ab24653af8d550c0c50473098）の元の文字列は、[rainbow table]
 
 <br /><br />
 <br /><br />
-# Quest: for-the-night-is-dark-3 (75)
+## [Quest]: for-the-night-is-dark-3 (75)
 - - -
-## Challenge
+### Challenge
 > Keep on going
 
-## Solution
+### Solution
 ウェブアーカイブを見つけるだけです。<br />
 [https://web.archive.org/web/20190614021723/http://rhllor.xyz/fl4m30fV3r1745burn5_Z2l2ZSBzdHJlbmd0aCB0byBoaXMgc3dvcmQ](https://web.archive.org/web/20190614021723/http://rhllor.xyz/fl4m30fV3r1745burn5_Z2l2ZSBzdHJlbmd0aCB0byBoaXMgc3dvcmQ)
 <br /><br />
@@ -807,9 +807,9 @@ md5（3758002ab24653af8d550c0c50473098）の元の文字列は、[rainbow table]
 
 <br /><br />
 <br /><br />
-# Reversing: large-pass (100)
+## [Reversing]: large-pass (100)
 - - -
-## Challenge
+### Challenge
 > You've come across a USB stick in the middle of a parking lot. After taking it home, you plug it into a network-isolated, clean computer, and see a compiled program. Secrets are abound!
 <br /><br />
 This problem is in a similar vein to basic-pass-2, another-pass, and so on.
@@ -821,7 +821,7 @@ Attachment:
 - large-linux
 - large-mac
 
-## Solution
+### Solution
 Ghidraで確認します。
 ```c
 undefined8 main(void)
@@ -884,16 +884,16 @@ Flag: `5546068866699313608`
 
 <br /><br />
 <br /><br />
-# Reversing: scratch-that (150)
+## [Reversing]: scratch-that (150)
 - - -
-## Challenge
+### Challenge
 > I made a Guess the Flag game! It's in Scratch, what could be easier? [Click here to access the game.](https://scratch.mit.edu/projects/276674047/)
 <br /><br />
 Hint1: What does "See inside" do?
 <br /><br />
 Hint2: There are four scripts: When flag clicked, Reset variables, Check flag, and Generate flag. Which one could possibly contain the flag?
 
-## Solution
+### Solution
 scrachのプロジェクトが保存できたので、自分のscrachアカウントを新規作成してプロジェクトを読み込みました。
 <br /><br />
 あとは、flagの計算をしているところに、以下を追加して実行するだけです。
@@ -907,9 +907,9 @@ scrachのプロジェクトが保存できたので、自分のscrachアカウ�
 
 <br /><br />
 <br /><br />
-# Reversing: another-pass (200)
+## [Reversing]: another-pass (200)
 - - -
-## Challenge
+### Challenge
 > Alright. Your friend John found this cool binary file on the Interwebz. Against all best practices, he downloaded it. Strange, it doesn't appear to be a virus. Because of the password prompt, you feel like it will lead to something important. Figure this one out!
 <br /><br />
 WARNING: The flag for this problem may not be in the bcactf{...} format.
@@ -922,7 +922,7 @@ Attachment:
 - another-mac
 - another-linux
 
-## Solution
+### Solution
 Ghidraで確認します。
 
 ```c
@@ -967,16 +967,16 @@ void _checkInput(char *pcParm1)
 
 <br /><br />
 <br /><br />
-# Reversing: basic-pass-3 (200)
+## [Reversing]: basic-pass-3 (200)
 - - -
-## Challenge
+### Challenge
 > Ok, the sysadmin finally admits that maybe authentication should happen on a server. Can you just check everything really quick to make sure there aren't any problems now? He put some readouts for people who forget their passwords.
 <br /><br />
 nc challenges.ctfd.io 30133
 <br /><br />
 Hint: What happens if you put in parts that you know must be part of the flag? how can you use this to your advantage?
 
-## Solution
+### Solution
 ncで繋いで、適当なフラグを入れてみます。
 <pre>
 $ nc challenges.ctfd.io 30133
@@ -1033,9 +1033,9 @@ bcactf{cccccccccccccccccccccccccccccc}
 
 <br /><br />
 <br /><br />
-# Reversing: compression (200)
+## [Reversing]: compression (200)
 - - -
-## Challenge
+### Challenge
 > A stranger on the internet is giving away his passwords. They claim they are encrypted, but you quickly realize that it is only compressed. You have to get hold of their passwords so that you can prove them wrong.
 <br /><br />
 Hint1: $ file {filename} tells you what type of file something is
@@ -1047,7 +1047,7 @@ Attachment:
 - 999
 
 
-## Solution
+### Solution
 面倒くさいだけで、根気で解ける問題です。
 
 スクリプトかなんかでできたら、楽なんでしょうけど、手動でやりました。
@@ -1083,9 +1083,9 @@ hexdumpのテキスト アウトプットのやつは、`xxd -r`で解凍でき�
 
 <br /><br />
 <br /><br />
-# Forensics: wavey (150)
+## [Forensics]: wavey (150)
 - - -
-## Challenge
+### Challenge
 > My friend sent me his new mixtape, but honestly I don't think it's that good. Can you take a look at it and figure out what's going on?
 <br /><br />
 Hint: He specifically described it as wavey...
@@ -1094,7 +1094,7 @@ Attachment:
 
 - straightfire.wav
 
-## Solution
+### Solution
 正直、ヒントの意味がわからなかったです。waveyでいろいろ検索したりもした。。。
 <br /><br />
 スペクトラムを見ると、視覚的にフラグが見えるようです。
@@ -1111,9 +1111,9 @@ Audacityでやってみました。
 <br /><br />
 <br /><br />
 (2019-09-23)
-# Forensics: one-punch-zip (250)
+## [Forensics]: one-punch-zip (250)
 - - -
-## Challenge
+### Challenge
 > One Punch Man seemed to have lost the password to his super secret archive. Can you help him crack it?
 
 Attachment:
@@ -1121,7 +1121,7 @@ Attachment:
 - opm.png
 - superSecure.zip（パスワード不明）
 
-## Solution
+### Solution
 Writeupを参照されてもらって、fcrackzipというコマンドで解けることがわかりました。
 
 考えてみたら、wordlistがあればパスワード付きのZipはCrackできるわけだし、別のファイルが添付されているということはそこからwordlistを生成すればいいということですもんね。

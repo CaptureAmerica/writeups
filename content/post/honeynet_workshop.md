@@ -21,84 +21,90 @@ Junior CTFなので簡単なものがほとんどですが、Hardの2つとわ�
 <img src="https://captureamerica.github.io/writeups/img/honey_rank.png" alt="honey_rank.png">
 
 <br /><br />
-# Too Meta (easy, image-forensics)
+## Too Meta (easy, image-forensics)
 - - -
-## Challenge
+### Challenge
 > There's a flag hidden in the image. Can you find it?
 
 Attachment:
 
 - meta.jpg
 
-## Solution
+### Solution
 ExifTool
 
 
 <br /><br />
 <br /><br />
-# DNS Records (easy, network)
+## DNS Records (easy, network)
 - - -
+### Challenge
 > Any suspicious records on hi.ls?
 
-## Solution
+### Solution
 $ dig @8.8.8.8 hi.ls txt
 
 
 <br /><br />
 <br /><br />
-# Wanna buy a flag? (easy, network)
+## Wanna buy a flag? (easy, network)
 - - -
+### Challenge
 > Analyze the network traffic to get the flag.
 
 Attachment:
 
 - buyaflag.pcap
 
-## Solution
+### Solution
 Wireshark -> Follow TCP stream
 
 
 <br /><br />
 <br /><br />
-# Find The Flag (easy, binary)
+## Find The Flag (easy, binary)
 - - -
+### Challenge
 > There is a flag hidden in this binary. Can you find it?
 
 Attachment:
 
 - findtheflag
 
-## Solution
+### Solution
 strings & grep
 
 
 <br /><br />
 <br /><br />
-# Anti-Vaxx (easy, web)
+## Anti-Vaxx (easy, web)
 - - -
+### Challenge
 > How do you defeat an anti-vaxxer?
 
-## Solution
+### Solution
 view sourceで、"OWASP A1:2107"が見つかります。ググったら、よくあるSQL Injectionなのがわかります。
 <pre>' or '1'='1</pre>
 
 
 <br /><br />
 <br /><br />
-# Prime Factory (easy, crypto)
+## Prime Factory (easy, crypto)
 - - -
+### Challenge
 > The following two numbers have three prime factors each. Take the largest prime factor x, and submit it as a flag like so: \__flag__{x}.<br />
 786157563836987543027608510735334168859
 275030867366686996969667414354528430922804392211206745642631729
 
-## Solution
+### Solution
 [http://factordb.com/index.php](http://factordb.com/index.php) で、factorize。
 
 
 <br /><br />
 <br /><br />
-# Port Scanning (easy, network)
+## Port Scanning (easy, network)
 - - -
+### Challenge
 > Knock, knock!
 <br />
 &nbsp;&nbsp;&nbsp;&nbsp;Who's there?
@@ -110,7 +116,7 @@ A hidden service running on ctf.honeynet.org, but we won't tell you where.
 Port 9000?10000, stop asking bruh!
 
 
-## Solution
+### Solution
 `nmap -sT ctf.honeynet.org -p 9000-10000`で、ポート9413がオープンなのがわかります。NetCatで繋ぐと、"Knock, knock!"とくるので、"Who's there?"を返すとフラグが取れます。
 <pre>
 $ nc -v ctf.honeynet.org 9413
@@ -123,12 +129,13 @@ Who's there?
 
 <br /><br />
 <br /><br />
-# Systeme, Anwendungen, Produkte. (easy, web)
+## Systeme, Anwendungen, Produkte. (easy, web)
 - - -
+### Challenge
 > To manage the ever-increasing number of flags for the CTF system, the administrators have decided to use SAP as a management platform.
 
 
-## Solution
+### Solution
 ウェブサイトにアクセスすると、"This website only works on Internet Explorer 6" と出るので、User-Agentを変えればOK。
 <pre>
 wget -O - "http://ctf.honeynet.org:8204/" --user-agent="Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1)"
@@ -137,29 +144,31 @@ wget -O - "http://ctf.honeynet.org:8204/" --user-agent="Mozilla/4.0 (compatible;
 
 <br /><br />
 <br /><br />
-# Sharks (easy, network)
+## Sharks (easy, network)
 - - -
+### Challenge
 > Analyze the network traffic to get the flag.
 
 Attachment:
 
 - shark.pcap
 
-## Solution
+### Solution
 WireSharkで、httpのobjectをexport。
 
 
 <br /><br />
 <br /><br />
-# Texture (easy, image-forensics)
+## Texture (easy, image-forensics)
 - - -
+### Challenge
 > There's a flag hidden in the image. Can you find it?
 
 Attachment:
 
 - texture.png
 
-## Solution
+### Solution
 「青い空を見上げればいつもそこに白い猫」のステガノグラフィー解析より、灰色ピクセルを強調。
 <br />
 フラグの文字列は右下に出るので、フルスクリーンにしておかないと見逃すかも。
@@ -167,8 +176,9 @@ Attachment:
 
 <br /><br />
 <br /><br />
-# There is no such thing as a free flag (easy, network)
+## There is no such thing as a free flag (easy, network)
 - - -
+### Challenge
 > You have asked the organizers to give you a flag for free. "Sure", they said, "just go to http://ctf.honeynet.org:8101/flag.txt and get it!"
 <br /><br />
 Unfortunately, it looks like someone put firewall rules in place that will prevent you from simply opening the URL in your favorite web browser... can you find a way around?
@@ -197,7 +207,7 @@ ACCEPT     tcp  --  0.0.0.0/0            0.0.0.0/0
 </pre>
 
 
-## Solution
+### Solution
 上から順番に見ていくと、当たってしまうルールは以下なのがわかります。
 <pre>
 REJECT     tcp  --  0.0.0.0/0            0.0.0.0/0            tcp spts:1024:65535 reject-with tcp-reset
@@ -222,22 +232,24 @@ Server: Python/3.7 aiohttp/3.5.4
 
 <br /><br />
 <br /><br />
-# Weird Website (easy, network)
+## Weird Website (easy, network)
 - - -
+### Challenge
 > Analyze the network traffic to get the flag.
 
 Attachment:
 
 - weirdwebsite.pcap
 
-## Solution
+### Solution
 [http://codertab.com/JsUnFuck](http://codertab.com/JsUnFuck)
 
 
 <br /><br />
 <br /><br />
-# SuperBank (easy, network, multi-stage)
+## SuperBank (easy, network, multi-stage)
 - - -
+### Challenge
 > @maximilianhils decided that honeypots aren't challenging enough, so he went out and started a new venture: a blockchain-powered console-based banking app. The first prototype is ready and he happily gives you beta access to test things out. Such excite!
 <br /><br />
 To start things off, download the superbank client and log into your account with the credentials below. Take your own initial balance x, and submit it as a flag like so: \__flag__{x}.
@@ -249,7 +261,7 @@ Attachment:
 - superbank-osx
 - superbank-linux
 
-## Solution
+### Solution
 問題の中で、API Endpoint, Username, PINが与えられます。添付されているプログラムを実行すると、それらを入力するようになっているので入力すると、以下に見えるように最初は42トークンを持っているようなので、
 <pre>
 \================================================================
@@ -266,23 +278,25 @@ Currently registered accounts:
 
 <br /><br />
 <br /><br />
-# SuperBankNotes (?)
+## SuperBankNotes (?)
 - - -
+### Challenge
 > The SuperBank app seems to work great, but is it secure? You decide to investigate what @maximilianhils's app is sending on the network. Maybe there is more data on the blockchain than you initially thought?
 
 
-## (Not solved)
+### (Unsolved)
 カテゴリも付いていない。ちょっと降参。
 
 
 
 <br /><br />
 <br /><br />
-# (H)ashing-as-a-Service (medium, web)
+## (H)ashing-as-a-Service (medium, web)
 - - -
+### Challenge
 > Developers must make sure to not store passwords as plaintext, but scramble them with a password hashing algorithm first. Unfortunately, they often use insecure hashing algorithms such as MD5 to do this. To tackle this problem, we developed Hashing-as-a-Service (HaaS), a modern approach to perfect password security. Using the HaaS API, you can securely hash any password you want!
 
-## Solution
+### Solution
 コマンドインジェクション。セミコロンで区切ると、2つ目がコマンドとして実行される。
 <br /><br />
 入力：`aaa;cat flag.txt;aaa`
@@ -299,8 +313,9 @@ SHA-256: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
 
 <br /><br />
 <br /><br />
-# Terrific Encryption (medium, cryptography)
+## Terrific Encryption (medium, cryptography)
 - - -
+### Challenge
 > In a major breakthrough, undergrads at Stanford have unveiled TEA (Terrific Encryption Algorithm) the first quantum-resistant encryption algorithm that can be used on the blockchain. Having learned about the security benefits of TEA, we have immediately encrypted all our flags and are sure that they won't be cracked anytime soon.
 
 Attachment:
@@ -332,7 +347,7 @@ if __name__ == "__main__":
 ```
 
 
-## Solution
+### Solution
 コードを読み解くと、入力したmsgの部分と、cur_timeはそれぞれ計算されて連結されてるだけなのがわかります。
 <br /><br />
 具体的に言うと、添付されているflag (encrypted)は、42バイトのフラグ文字列をencryptしたものと、日時の18バイトをencryptしたものの連結です。
@@ -443,8 +458,9 @@ int main(int argc, char **argv)
 
 <br /><br />
 <br /><br />
-# You know the rules, and so do I... ?? (medium, image-forensics)
+## You know the rules, and so do I... ?? (medium, image-forensics)
 - - -
+### Challenge
 > There's a flag hidden in the image. Can you find it?
 
 Attachment:
@@ -452,7 +468,7 @@ Attachment:
 - qrcode.png
 
 
-## Solution
+### Solution
 「青い空を見上げればいつもそこに白い猫」のステガノグラフィー解析、ビット抽出へ行くと、フラグっぽいのが見えます。
 <br />
 <img src="https://captureamerica.github.io/writeups/img/bit_extract.png" alt="bit_extract.png">
@@ -467,8 +483,9 @@ Attachment:
 
 <br /><br />
 <br /><br />
-# CoinFlip (medium, binary)
+## CoinFlip (medium, binary)
 - - -
+### Challenge
 > Can you find a way to win the game?
 
 Attachment:
@@ -476,7 +493,7 @@ Attachment:
 - coinflip.exe
 
 
-## Solution
+### Solution
 coinflipに100回勝つとフラグが取れる、ってやつでした。いろんな解法があると思います。自分はx32dbg.exeで解きました。<br />
 <br />
 rand()を使っている00401633のところをnopで埋めて（バイナリ -> nopで埋める）、先にブレークポイントをセットしておいてから、エンターを押し続ける。<br /><br />
@@ -486,11 +503,12 @@ rand()を使っている00401633のところをnopで埋めて（バイナリ ->
 
 <br /><br />
 <br /><br />
-# Git Exposed (medium, web)
+## Git Exposed (medium, web)
 - - -
+### Challenge
 > Rumor has it that a flag has been hidden on this web server...
 
-## Solution
+### Solution
 サイトにアクセスし、view page sourceした後、/files/ディレクトリを見ると、todo.txtというファイルが見つかります。
 <pre>
 1. build website
@@ -526,12 +544,13 @@ index c047bcb..0000000
 
 <br /><br />
 <br /><br />
-# Hidden in Plain Sight (medium, misc)
+## Hidden in Plain Sight (medium, misc)
 - - -
+### Challenge
 > （説明なし）
 
 
-## Solution
+### Solution
 これは説明がなにもないんですが、タイトルより、なにか文字があるけど見えないよ、みたいなことだとわかります。
 <br /><br />
 Inspect Elementすると、\<small>に囲まれた文字列があって、クリップボード経由でコピペしてもエディタ上では?????になってしまいます。
@@ -568,8 +587,9 @@ Burp Suite経由でアクセスしたら、以下が取れました。
 
 <br /><br />
 <br /><br />
-# Directory Listing (hard, cryptography)
+## Directory Listing (hard, cryptography)
 - - -
+### Challenge
 > To serve all players with new challenges in case the CTF system goes down, we are providing an alternative file server.
 
 Attachment:
@@ -657,7 +677,7 @@ if __name__ == "__main__":
     web.run_app(app)
 ```
 
-## Solution
+### Solution
 ご親切に、lecture-slides.pdfというのがついていて、hash length extension attacksをしてください、というもの。
 <br /><br />
 
@@ -688,8 +708,9 @@ __flag__{97397db12c32f93ac9c9bf6dc871fd1f}
 
 <br /><br />
 <br /><br />
-# PasswordDB (hard, network)
+## PasswordDB (hard, network)
 - - -
+### Challenge
 > Because data theft has become such a rampant problem, We have created PasswordDB, a new and secure way of storing secrets. PasswordDB's unique technology makes it possible that the password is never stored in a single location, making it the bane of attackers' respective existences. Instead, the password is sliced into smaller parts that are stored on different machines around the world for added security.
 <br /><br />
 To prove that our system is secure, we have stored a CTF flag in our PasswordDB instance. No way you can get it.
@@ -703,19 +724,20 @@ Attachment:
 - Example Invocation (個人のメアドが入っているので省略)
 
 
-## (Not solved)
+### (Unsolved)
 降参
 
 
 <br /><br />
 <br /><br />
-# CookieCopter (hard, cryptography, web)
+## CookieCopter (hard, cryptography, web)
 - - -
+### Challenge
 > CookieCopter is a new service delivering locally-sourced organic cookies hot off of vintage cookie ovens straight to your location using quad-rotor GPS-enabled helicopters. The service is modeled after TacoCopter, an innovative and highly successful early contender in the airborne food delivery industry. CookieCopter is currently being tested in private beta in select locations.
 <br /><br />
 Your goal is to order one of the special premium cookies, which comes with a flag as a side.
 
-## (Not solved)
+### (Unsolved)
 降参
 
 

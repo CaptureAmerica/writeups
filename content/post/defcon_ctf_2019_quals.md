@@ -10,9 +10,9 @@ categories: ["CTF"]
 author: "きゃぷあめ"
 ---
 
-# cant_even_unplug_it
+## [Web]: cant_even_unplug_it
 - - -
-## Challenge
+### Challenge
 > You know, we had this up and everything. Prepped nice HTML5, started deploying on a military-grade-secrets.dev subdomain, got the certificate, the whole shabang. Boss-man got moody and wanted another name, we set up the new names and all. Finally he got scared and unplugged the server. Can you believe it? Unplugged. Like that can keep it secret…
 <br /><br />
 > Hint: these are HTTPS sites. Who is publicly and transparently logging the info you need?
@@ -20,7 +20,7 @@ author: "きゃぷあめ"
 > Just in case: all info is freely accessible, no subscriptions are necessary. The names cannot really be guessed. 
 
 <br />
-## Solution
+### Solution
 簡単に訳すと、
 
 > military-grade-secrets.dev サブドメインを使ってサイトをがんばって作って立ち上げたのに、ボスが別の名前がいいとか言いだして、名前を変えてやったのに、結局なんか怖くなってサイトを落としたよ。

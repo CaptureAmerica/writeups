@@ -18,15 +18,15 @@ URL: [https://2019.peactf.com/problems](https://2019.peactf.com/problems)
 
 
 <br /><br />
-# Broken Keyboard
+## Broken Keyboard
 - - -
-## Challenge
+### Challenge
 > Help! My keyboard only types numbers!
 <br /><br />
 Ciphertext: 112 101 97 67 84 70 123 52 115 99 49 49 105 115 99 48 48 108 125
 
 <br />
-## Solution
+### Solution
 普通に1個1個変換したら面白くないので、ワンライナーで挑戦。
 ```python
 $ python -c 'print("".join([chr(int(x)) for x in "112 101 97 67 84 70 123 52 115 99 49 49 105 115 99 48 48 108 125".split()]))'
@@ -37,15 +37,15 @@ flag: `peaCTF{4sc11isc00l}`
 
 <br /><br />
 <br /><br />
-# Breakfast
+## Breakfast
 - - -
-## Challenge
+### Challenge
 > Mmm I ate some nice <b>bacon</b> and eggs this morning. Find out what else I had for an easy flag. Don’t forget to capitalize CTF!
 <br /><br />
 Ciphertext: 011100010000000000101001000101{00100001100011010100000000010100101010100010010001}
 
 <br />
-## Solution
+### Solution
 他の問題を解いていると、フラグのフォーマットが peaCTF{xxxx} なのがわかるので、011100010000000000101001000101の部分がpeaCTFだとして6等分すると、
 
 01110 &nbsp; p<br />
@@ -107,13 +107,13 @@ flag: `peaCTF{eggwaffles}`
 
 <br /><br />
 <br /><br />
-# Hide and Seek
+## Hide and Seek
 - - -
-## Challenge
+### Challenge
 > Try to find to the flag file located somewhere in the folders located in: /problems/hide-and-seek_16_d386ec3561e6180b95a47434c62a78be
 
 <br />
-## Solution
+### Solution
 これはシェルサーバに入って解く問題。
 <pre>
 $ find . -name *flag*
@@ -125,16 +125,16 @@ flag: `flag{peactf_linux_is_fun_f4ca42f3f34f4674d511eade889d74f7}`
 
 <br /><br />
 <br /><br />
-# School
+## School
 - - -
-## Challenge
+### Challenge
 > My regular teacher was out sick so we had a substitute today.
 <br /><br />
 Alphabet: ​WCGPSUHRAQYKFDLZOJNXMVEBTI<br />
 zswGXU{ljwdhsqmags}
 
 <br />
-## Solution
+### Solution
 単一換字式暗号 (monoalphabetic substitution ciphers)です。
 ```Perl
 #!/usr/bin/perl
@@ -167,9 +167,9 @@ flag: `peaCTF{orangejuice}`
 
 <br /><br />
 <br /><br />
-# Coffee Time
+## Coffee Time
 - - -
-## Challenge
+### Challenge
 > Run this jar executable in a virtual machine and see what happens.
 
 Attachments:
@@ -177,7 +177,7 @@ Attachments:
 - coffeetime.jar
 
 <br />
-## Solution
+### Solution
 実行しろというので、とりあえず実行。
 <pre>
 $ java coffeetime.jar 
@@ -198,9 +198,9 @@ flag: `peaCTF{nice_cup_of_coffee}`
 
 <br /><br />
 <br /><br />
-# We are E.xtr
+## We are E.xtr
 - - -
-## Challenge
+### Challenge
 > 特に記載なし（添付ファイルのみ）
 
 Attachments:
@@ -208,7 +208,7 @@ Attachments:
 - E.xtr
 
 <br />
-## Solution
+### Solution
 <pre>
 $ file E.xtr 
 E.xtr: data
@@ -235,9 +235,9 @@ flag: `peaCTF{read_banned_it}`
 
 <br /><br />
 <br /><br />
-# The Wonderful Wizard
+## The Wonderful Wizard
 - - -
-## Challenge
+### Challenge
 > 特に記載なし（添付ファイルのみ）
 
 Attachments:
@@ -245,7 +245,7 @@ Attachments:
 - TheWonderfulWizard.png
 
 <br />
-## Solution
+### Solution
 「青い空を見上げればいつもそこに白い猫」で赤色ビット0抽出すると、数字が出てくるので、それをHex Decodeするだけ。<br />
 <img src="https://captureamerica.github.io/writeups/img/TheWonderfulWizard_Neko.PNG" alt="TheWonderfulWizard_Neko.PNG">
 

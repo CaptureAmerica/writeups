@@ -38,14 +38,14 @@ Forensics の Writeupです。
 
 
 <br /><br />
-# [Forensics]: WhitePages (250 points)
+## [Forensics]: WhitePages (250 points)
 - - -
-## Challenge
+### Challenge
 > I stopped using YellowPages and moved onto WhitePages... but the page they gave me is all blank!
 
 
 <br />
-## Solution
+### Solution
 てっきりwhitespaceというesolangだと思ったので、少し手こずりました。
 
 あと、たぶんだけど、チャレンジが始まった頃にダウンロードしたファイルと、後日ダウンロードし直したファイルが異なってた気がします。。。
@@ -64,9 +64,9 @@ Flag: `picoCTF{not_all_spaces_are_created_equal_c167040c738e8bcae2109ef4be5960b1
 
 <br /><br />
 <br /><br />
-# [Forensics]: c0rrupt (250 points)
+## [Forensics]: c0rrupt (250 points)
 - - -
-## Challenge
+### Challenge
 > We found this file. Recover the flag.
 <br /><br />
 Hints : Try fixing the file header
@@ -78,7 +78,7 @@ Attachment:
 
 
 <br />
-## Solution
+### Solution
 先頭の16バイトくらい直せば通るかと思いきや、結構壊れててハマりました。
 
 1番目のIDATチャンクのとこも修正が必要。
@@ -107,9 +107,9 @@ Flag: `picoCTF{c0rrupt10n_1847995}`
 
 <br /><br />
 <br /><br />
-# [Forensics]: shark on wire 2 (300 points)
+## [Forensics]: shark on wire 2 (300 points)
 - - -
-## Challenge
+### Challenge
 > We found this packet capture. Recover the flag that was pilfered from the network. You can also find the file in /problems/shark-on-wire-2_0_5b5597f90483360b4480373bed30738e.
 
 Attachment:
@@ -118,7 +118,7 @@ Attachment:
 
 
 <br />
-## Solution
+### Solution
 udpのフローを順番に見ていくと、フラグっぽい文字列が出てきます。
 
 "kfdsalkfsalkico{N0t_a_fLag}"<br />
@@ -152,9 +152,9 @@ Flag: `picoCTF{p1LLf3r3d_data_v1a_st3g0}`
 
 <br /><br />
 <br /><br />
-# [Forensics]: WebNet0 (350 points)
+## [Forensics]: WebNet0 (350 points)
 - - -
-## Challenge
+### Challenge
 > We found this packet capture and key. Recover the flag.
 <br /><br />
 Hints :<br />
@@ -169,7 +169,7 @@ Attachment:
 
 
 <br />
-## Solution
+### Solution
 Go to Preference -> TLS -> RSA key list <br />
 172.31.22.220, 443, http, C:\Temp\picopico.key
 
@@ -180,9 +180,9 @@ Flag: `picoCTF{nongshim.shrimp.crackers}`
 
 <br /><br />
 <br /><br />
-# [Forensics]: WebNet1 (450 points)
+## [Forensics]: WebNet1 (450 points)
 - - -
-## Challenge
+### Challenge
 > We found this packet capture and key. Recover the flag.
 <br /><br />
 Hints :<br />
@@ -197,7 +197,7 @@ Attachment:
 
 
 <br />
-## Solution
+### Solution
 復号したトラフィックから、HTTP objectを抽出し、stringsコマンドでフラグサーチ。
 
 

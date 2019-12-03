@@ -18,9 +18,9 @@ URL: [https://ctf.isitdtu.com/](https://ctf.isitdtu.com/)
 
 <br /><br />
 <br /><br />
-# [Programming] Do you like math?
+## [Programming] Do you like math?
 - - -
-## Challenge
+### Challenge
 > nc 104.154.120.223 8083
 
 アクセスすると、以下のような計算式が出てきます。1秒くらい経つとコネクションが切れます。
@@ -35,7 +35,7 @@ URL: [https://ctf.isitdtu.com/](https://ctf.isitdtu.com/)
 ```
 
 <br />
-## Solution
+### Solution
 解き方は見ての通りなんですが、アスキーアートを判別して数値に直して計算して結果を送るだけです。
 <br /><br />
 とりあえず、何度かアクセスして、全部の数字と記号のアスキーアートを集めます。
