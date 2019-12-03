@@ -48,7 +48,7 @@
 <meta itemprop="description" content="URL: https://rootersctf.in/ picoCTF 2019の直後でほとんど時間がなかったですが、ちょっとだけやりました。 後日、復習もやりました（偉い）。 [Forensics]: You Can&#39;t See Me Challenge See for yourself Attachments: youcantseeme.pdf Solution 100 ページ">
 <meta itemprop="datePublished" content="2019-10-14T16:00:00&#43;09:00" />
 <meta itemprop="dateModified" content="2019-10-20T11:00:00&#43;09:00" />
-<meta itemprop="wordCount" content="1870">
+<meta itemprop="wordCount" content="2049">
 
 
 
@@ -165,10 +165,10 @@
 </div>
     <div class="post-content">
       <p>URL: <a href="https://rootersctf.in/"><a href="https://rootersctf.in/">https://rootersctf.in/</a></a>
-<!-- raw HTML omitted --><!-- raw HTML omitted -->
+<br /><br />
 picoCTF 2019の直後でほとんど時間がなかったですが、ちょっとだけやりました。</p>
 <p>後日、復習もやりました（偉い）。</p>
-<p><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p><br /><br /></p>
 <h1 id="forensics-you-cant-see-me">[Forensics]: You Can't See Me</h1>
 <hr>
 <h2 id="challenge">Challenge</h2>
@@ -179,26 +179,26 @@ picoCTF 2019の直後でほとんど時間がなかったですが、ちょっ�
 <ul>
 <li>youcantseeme.pdf</li>
 </ul>
-<p><!-- raw HTML omitted --></p>
+<p><br /></p>
 <h2 id="solution">Solution</h2>
 <p>100 ページくらい真っ白が続くPDFが与えられます。</p>
 <p>やったこと：</p>
 <ul>
-<li>pdf-parser.py<!-- raw HTML omitted --></li>
-<li>pdfid.py<!-- raw HTML omitted --></li>
-<li>Adobe Reader（特定のページになんかしらテキストっぽいのがあるのがわかるんですが、フォントの色の変え方がわかんなかったです。）<!-- raw HTML omitted --></li>
-<li>Libre Office (少しずつフォントの色は変えられたんですが、全ページまとめてやる方法がわかんなかったです。)<!-- raw HTML omitted --></li>
+<li>pdf-parser.py<br /></li>
+<li>pdfid.py<br /></li>
+<li>Adobe Reader（特定のページになんかしらテキストっぽいのがあるのがわかるんですが、フォントの色の変え方がわかんなかったです。）<br /></li>
+<li>Libre Office (少しずつフォントの色は変えられたんですが、全ページまとめてやる方法がわかんなかったです。)<br /></li>
 <li>PDFStreamDumper (しばらく使わないうちに、起動がうまくいかなくなってた。。。)</li>
 </ul>
-<p><!-- raw HTML omitted -->
+<p><br />
 以下でフラグをゲットしました。</p>
 <ul>
 <li>pdftotext -f 16 youcantseeme.pdf text.txt</li>
 </ul>
 <p>(16を指定したのは、最初に見つけたテキストが16ページだったからです。)</p>
 <p>Flag: <code>rooters{Ja1_US1CT}ctf</code></p>
-<p><!-- raw HTML omitted --><!-- raw HTML omitted -->
-<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p><br /><br />
+<br /><br /></p>
 <h1 id="forensics-find-the-pass">[Forensics]: Find The Pass</h1>
 <hr>
 <h2 id="challenge1">Challenge</h2>
@@ -209,7 +209,7 @@ picoCTF 2019の直後でほとんど時間がなかったですが、ちょっ�
 <ul>
 <li>inc0gnito.cap (inc0gnito.pcapにリネームしました)</li>
 </ul>
-<p><!-- raw HTML omitted --></p>
+<p><br /></p>
 <h2 id="solution1">Solution</h2>
 <pre><code># aircrack-ng inc0gnito.pcap
 
@@ -229,11 +229,12 @@ picoCTF 2019の直後でほとんど時間がなかったですが、ちょっ�
 	Decrypted correctly: 100%
 </code></pre><p>Wireshark &gt; Protocols &gt; IEEE 802.11 &gt; Decryption KeysでWEP Keyを設定して復号します。</p>
 <p>文字列 &ldquo;admin&rdquo; をサーチしたら、Basic Authの箇所 (Frame #2209057) がありました。</p>
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
+<pre>
+Credentials: admin:blu3_c0rp_p4ss
+</pre>
 <p>Flag: <code>rooters{blu3_c0rp_p4ss}ctf</code></p>
-<p><!-- raw HTML omitted --><!-- raw HTML omitted -->
-<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p><br /><br />
+<br /><br /></p>
 <h1 id="forensics-luna--3">[Forensics]: Luna - 3</h1>
 <hr>
 <h2 id="challenge2">Challenge</h2>
@@ -244,20 +245,20 @@ picoCTF 2019の直後でほとんど時間がなかったですが、ちょっ�
 <ul>
 <li>recv_13.10.1959.wav</li>
 </ul>
-<p><!-- raw HTML omitted --></p>
+<p><br /></p>
 <h2 id="solution2">Solution</h2>
 <p>picoCTF 2019で出てきたm00nwalkと同じ問題です。</p>
-<p>RX-SSTV というツールを使いました。<!-- raw HTML omitted -->
+<p>RX-SSTV というツールを使いました。<br />
 <a href="http://users.belgacom.net/hamradio/rxsstv.htm">http://users.belgacom.net/hamradio/rxsstv.htm</a></p>
-<!-- raw HTML omitted -->
+<img src="https://captureamerica.github.io/writeups/img/Luna3.PNG" alt="Luna3.PNG">
 <p>なんて書いてあるのか、よく見えないけどね。。。</p>
 <p>Flag: <code>rooters{Looq_L1x3_Lun4-3}ctf</code> (予想)</p>
-<p><!-- raw HTML omitted --><!-- raw HTML omitted -->
-<!-- raw HTML omitted --><!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
+<p><br /><br />
+<br /><br />
+<img src="https://captureamerica.github.io/writeups/img/orange_bar.png" alt="orange_bar.png">
+<br />
 ここから下はCTF終了後に行った復習です。（他の方のWriteupとか参照してます。）</p>
-<p><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p><br /><br /></p>
 <h1 id="forensics-frames-per-story">[Forensics]: Frames per Story</h1>
 <hr>
 <h2 id="challenge3">Challenge</h2>
@@ -268,26 +269,29 @@ picoCTF 2019の直後でほとんど時間がなかったですが、ちょっ�
 <ul>
 <li>結構な数のjpegファイル</li>
 </ul>
-<p><!-- raw HTML omitted --></p>
+<p><br /></p>
 <h2 id="solution3">Solution</h2>
 <p>exiftoolをかけると、Comment欄に少しずつ文字が入っているのがわかるので、全ファイルに対してexiftoolをかけて、がっちゃんこします。</p>
-<!-- raw HTML omitted -->
-<p><!-- raw HTML omitted -->
+<table><tr><td>
+<b>$ exiftool * | grep Comment | cut -d: -f2 | tr -d "\n" ; echo </b><br />
+ MICHAEL right Jim, your quarterlies look very good. How the thing is going at the library?JIM Oh I told you couldn't close it soMICHAEL So you've come to the master for guidance? (imitating) Is http ny.cc/rosvdz this what you're saying grass hopper?JIM Actually you called me in here, but ye ah.MICHAEL All right, well let me show you how it's done. h ttp c/rosvdz (gets on phone) Yes, I liked to speak to your office manager please. Yes hello this is Michael Scott, I am the regional manager of Dunder Mifflin paper products. Just wanted to talk to you, manager-on- manager. (cut to the office and cut back) All right done deal, thank you very much sir, you're a gentleman and a scholar. Oh I'm sorry, ok, I'm sorry, my mistake. (hangs up) That was a woman I was talking to she had a very low voice. Probably a smoker. So, so that's the way it's done. Michael the camera) I've been in Dundler Mifflin for twelve years, the last four as regional manager. If you want to come through here, (opens the door to the main office) so we have the entire floor, so this is my kingdom, as far as the eye can see, ah this is our receptionist Pam. (goes to the recep tionist) Pam, Pam Pam! http tiny.cc/rosv dz Pam Beesly. Pam has been with us for' for ever, Lavc57.70.100
+</td></tr></table>
+<p><br />
 URLっぽいの（http ny.cc/rosvdz）があるのでアクセスしてみると、final.pngが手に入ります。</p>
 <p>（ここまでは自力でいけました）</p>
-<p><!-- raw HTML omitted -->
+<p><br />
 final.pngを開いて、よーーく目を凝らすと、変なデータが見つかります。（オレンジで囲ったところ）</p>
-<!-- raw HTML omitted -->
+<img src="https://captureamerica.github.io/writeups/img/rooters_final.png" alt="rooters_final.png">
 <p>いやー、これはわからんよな。。。</p>
-<p><!-- raw HTML omitted -->
+<p><br />
 Previewで拡大、選択、コピー、New from Clipboardをして、別ファイルとして保存します。</p>
-<!-- raw HTML omitted -->
-<p><!-- raw HTML omitted -->
+<img src="https://captureamerica.github.io/writeups/img/rooters_final2.png" alt="rooters_final2.png">
+<p><br />
 「青い空を見上げればいつもそこに白い猫」で開いて、ビット抽出前バイト列を確認します。
-<!-- raw HTML omitted --></p>
+<img src="https://captureamerica.github.io/writeups/img/rooters_final3.png" alt="rooters_final3.png"></p>
 <p>Flag: <code>rooters{WHY_4R3_TH3_W4Y_TH4T_Y0U_4R3!}ctf</code></p>
-<p><!-- raw HTML omitted --><!-- raw HTML omitted -->
-<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p><br /><br />
+<br /><br /></p>
 <h1 id="forensics-mind-awake-body-asleep">[Forensics]: Mind Awake Body Asleep!</h1>
 <hr>
 <h2 id="challenge4">Challenge</h2>
@@ -298,14 +302,14 @@ Previewで拡大、選択、コピー、New from Clipboardをして、別ファ�
 <ul>
 <li>challenge.wav</li>
 </ul>
-<p><!-- raw HTML omitted --></p>
+<p><br /></p>
 <h2 id="solution4">Solution</h2>
 <p>challenge.wavを再生すると、誰かがモニャモニャ喋っていて、ほんとに眠たくなるファイルでした。</p>
 <p>とりあえず、audacityでスペクトラムとか見てみましたが、何も見つからず。</p>
-<p><!-- raw HTML omitted -->
+<p><br />
 こういうやつは、LSBをチェックするのがいいらしいです。</p>
 <p>LSBを取り出すやつは、picoCTF 2018 の LoadSomeBits で以前書いたコードがあったので、それを流用しました。</p>
-<p>いちおう、以下が以前書いたWriteupです。<!-- raw HTML omitted -->
+<p>いちおう、以下が以前書いたWriteupです。<br />
 <a href="https://captureamerica.github.io/writeups/post/picoctf_2018/">https://captureamerica.github.io/writeups/post/picoctf_2018/</a></p>
 <p>今後も使うことあるかもしれないので、ファイル名を引き数に取るようにしておきました。</p>
 <div class="highlight"><div class="chroma">
@@ -412,30 +416,38 @@ Previewで拡大、選択、コピー、New from Clipboardをして、別ファ�
 <span class="p">}</span>
 </code></pre></td></tr></table>
 </div>
-</div><p><!-- raw HTML omitted -->
+</div><p><br />
 出力がやたらと多いので、もうちょっと改良した方がいいかもだけど。</p>
 <pre><code>$ ./lsb.o challenge.wav | fold -120 | grep -i http
 -@@RMr. Robot is an American drama thriller television series created by Sam Esmail. http://tiny.cc/72nwdz##############
 </code></pre><p>長い文字列が1行で出てくるので、foldで適当に区切って、その中で&quot;http&quot;やら&quot;ctf&quot;やらのキーワードになりそうなものをサーチする感じですかね。</p>
-<p><!-- raw HTML omitted -->
+<p><br />
 見つかった <a href="http://tiny.cc/72nwdz">http://tiny.cc/72nwdz</a> にアクセスすると、newというテキストファイルが入手できます。</p>
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<p><!-- raw HTML omitted -->
+<pre>
+$ file new 
+new: ASCII text, with very long lines, with no line terminators
+
+$ cat new | fold -32 | tail -n 4 ; echo
+81c9a9001031b0000031b00000379584
+0790000000457e3cec00000060800610
+00003950000025448494d0000000a0a1
+a0d074e40598
+</pre>
+<p><br />
 この末尾の文字列から、PNGヘッダ(89 50 4E 47 0D 0A 1A 0A)が思いつくかどうかと言われたら、普通思いつかないですよね。</p>
 <p>問題文にある<code>flip</code>でそれに気づくかどうかかな。</p>
-<p><!-- raw HTML omitted -->
+<p><br />
 リバースしてバイナリとして保存します。</p>
 <pre><code>$ python -c 'import binascii; open(&quot;output&quot;, &quot;wb&quot;).write(binascii.unhexlify(open(&quot;new&quot;, &quot;rb&quot;).read()[::-1]))'
 $ file output
 output: PNG image data, 1427 x 352, 8-bit/color RGBA, non-interlaced
-</code></pre><!-- raw HTML omitted -->
+</code></pre><img src="https://captureamerica.github.io/writeups/img/rooters_python_is_awesome.png" alt="rooters_python_is_awesome.png">
 <p>Flag: <code>rooters{pyth0n_is_aw3s0m3}ctf</code></p>
-<p><!-- raw HTML omitted --><!-- raw HTML omitted -->
-<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p><br /><br />
+<br /><br /></p>
 <hr>
-<p><!-- raw HTML omitted --><!-- raw HTML omitted -->
-<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p><br /><br />
+<br /><br /></p>
 
     </div>
 

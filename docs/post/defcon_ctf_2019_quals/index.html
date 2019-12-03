@@ -48,7 +48,7 @@
 <meta itemprop="description" content="cant_even_unplug_it Challenge You know, we had this up and everything. Prepped nice HTML5, started deploying on a military-grade-secrets.dev subdomain, got the certificate, the whole shabang. Boss-man got moody and wanted another name, we set up the new names and all. Finally he got scared and unplugged the server. Can you believe it? Unplugged. Like that can keep it secret… Hint: these are HTTPS sites.">
 <meta itemprop="datePublished" content="2019-05-11T00:00:00&#43;08:00" />
 <meta itemprop="dateModified" content="2019-05-25T14:05:00&#43;08:00" />
-<meta itemprop="wordCount" content="512">
+<meta itemprop="wordCount" content="461">
 
 
 
@@ -149,12 +149,12 @@
 <h2 id="challenge">Challenge</h2>
 <blockquote>
 <p>You know, we had this up and everything. Prepped nice HTML5, started deploying on a military-grade-secrets.dev subdomain, got the certificate, the whole shabang. Boss-man got moody and wanted another name, we set up the new names and all. Finally he got scared and unplugged the server. Can you believe it? Unplugged. Like that can keep it secret…
-<!-- raw HTML omitted --><!-- raw HTML omitted -->
+<br /><br />
 Hint: these are HTTPS sites. Who is publicly and transparently logging the info you need?
-<!-- raw HTML omitted --><!-- raw HTML omitted -->
+<br /><br />
 Just in case: all info is freely accessible, no subscriptions are necessary. The names cannot really be guessed.</p>
 </blockquote>
-<p><!-- raw HTML omitted --></p>
+<p><br /></p>
 <h2 id="solution">Solution</h2>
 <p>簡単に訳すと、</p>
 <blockquote>
@@ -168,24 +168,33 @@ Just in case: all info is freely accessible, no subscriptions are necessary. The
 </ul>
 <p>早速ブラウザでアクセスしてみると、</p>
 <p><code>This site can’t be reached</code>
-<!-- raw HTML omitted -->
+<br />
 <code>forget-me-not.even-more-militarygrade.pw refused to connect.</code></p>
-<p><!-- raw HTML omitted -->
+<p><br />
 wgetだと、こんな感じ。</p>
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
+<pre>
+~ $ wget secret-storage.military-grade-secrets.dev
+--2019-05-25 14:36:49--  http://secret-storage.military-grade-secrets.dev/
+Resolving secret-storage.military-grade-secrets.dev (secret-storage.military-grade-secrets.dev)... 172.217.24.115
+Connecting to secret-storage.military-grade-secrets.dev (secret-storage.military-grade-secrets.dev)|172.217.24.115|:80... connected.
+HTTP request sent, awaiting response... 302 Found
+Location: https://forget-me-not.even-more-militarygrade.pw [following]
+--2019-05-25 14:36:49--  https://forget-me-not.even-more-militarygrade.pw/
+Resolving forget-me-not.even-more-militarygrade.pw (forget-me-not.even-more-militarygrade.pw)... 206.189.162.22
+Connecting to forget-me-not.even-more-militarygrade.pw (forget-me-not.even-more-militarygrade.pw)|206.189.162.22|:443... failed: Connection refused.
+</pre>
 <p>リダイレクトによって、別の名前のサイトに飛ぶようになってますね。
-<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<br /><br /></p>
 <p>最初の説明文にあるように、サーバはすでに落ちているのでアクセスできないですが、ウェブのキャッシュをみたらどんなサイトだったか確認ができます。</p>
-<p>以下の、ウェブアーカイブを使いました。<!-- raw HTML omitted -->
+<p>以下の、ウェブアーカイブを使いました。<br />
 <a href="https://web.archive.org/web/20190427160922/https://forget-me-not.even-more-militarygrade.pw/">https://web.archive.org/web/20190427160922/https://forget-me-not.even-more-militarygrade.pw/</a></p>
-<p><!-- raw HTML omitted -->
+<p><br />
 <strong>Flag:</strong> OOO{DAMNATIO_MEMORIAE}</p>
-<p><!-- raw HTML omitted -->
+<p><br />
 ＃HTTPSなんじゃらのヒント、使ってないや。。。</p>
 <hr>
-<p><!-- raw HTML omitted --><!-- raw HTML omitted -->
-<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p><br /><br />
+<br /><br /></p>
 
     </div>
 

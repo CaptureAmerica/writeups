@@ -48,7 +48,7 @@
 <meta itemprop="description" content="Signal Challenge There is no signal, everything is silent. Nothing is impossible. Attachment: signal.pdf 開くと、こんな感じ。（以下は、スクリーンショットです。） Solution 回答だけじゃなくて、一応やったことも記録に残しておきま">
 <meta itemprop="datePublished" content="2019-05-23T00:00:00&#43;08:00" />
 <meta itemprop="dateModified" content="2019-05-25T14:05:00&#43;08:00" />
-<meta itemprop="wordCount" content="654">
+<meta itemprop="wordCount" content="733">
 
 
 
@@ -154,15 +154,15 @@
 <ul>
 <li>signal.pdf</li>
 </ul>
-<p><!-- raw HTML omitted -->
+<p><br />
 開くと、こんな感じ。（以下は、スクリーンショットです。）
-<!-- raw HTML omitted --></p>
-<p><!-- raw HTML omitted --></p>
+<img src="https://captureamerica.github.io/writeups/img/signal.png" alt="signal.png"></p>
+<p><br /></p>
 <h2 id="solution">Solution</h2>
 <p>回答だけじゃなくて、一応やったことも記録に残しておきます。</p>
 <ul>
 <li>pdf系の問題は、とりあえず、テキストエディタで開いてさらっと中身をチェックします。script使っているかどうかとか。
-<!-- raw HTML omitted --><!-- raw HTML omitted --></li>
+<br /><br /></li>
 <li>その後、何も考えず、いろいろツールにかけていきました。</li>
 <li>pdf-parser.py</li>
 <li>pdfid.py</li>
@@ -170,34 +170,43 @@
 <li>PdfAnalyzer.exe</li>
 <li>PDFStreamDumper.exe</li>
 </ul>
-<p><!-- raw HTML omitted -->
+<p><br />
 特に怪しい箇所がなんにもないので、残るはアスキーテキストに何かあると考えるしかないな、と思いました。</p>
-<p><!-- raw HTML omitted -->
+<p><br />
 以下のコマンドの出力結果は抜粋です。</p>
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<p>これを見た瞬間、なぜか「SOS」のモールス信号の音がアタマに流れました。<!-- raw HTML omitted -->
+<pre>
+$ pdftotext signal.pdf > signal.txt ; cat signal.txt
+：
+_-'... - .-. .- -. --. . .-.-.- -.- . -.-- -... ---`-_
+_-' .- .-. -.. .-.-.- ... . -.-. ..-. .-.-.- -- .---- .`-_
+_-'-.. .---- - ....- .-. -.-- ..--.- --. .-. ....- -.. ...-- -_
+_-'..--.- ...-- -. -.-. .-. -.-- .--. - .---- ----- -. .-.-.- .-- -_
+_-'.- .. - .-.-.- -.-. --- ..- .-.. -.. .-.-.- .-. .- -. -.. --- -`-_
+:-------------------------------------------------------------------------:
+`---._.-------------------------------------------------------------._.---'
+</pre>
+<p>これを見た瞬間、なぜか「SOS」のモールス信号の音がアタマに流れました。<br />
 あぁ、問題のタイトルSignal（信号）だしね。ビンゴの確信。</p>
-<p><!-- raw HTML omitted --><!-- raw HTML omitted -->
+<p><br /><br />
 あとは、オンラインで、<code>morse decode</code> をキーワードに検索してデコードサイトを見つけてデコードするだけなんですが、これがサイトによってクオリティが違ってて、エラーが出たり出なかったり、変換文字が違ったりするんです。</p>
-<p><!-- raw HTML omitted -->
+<p><br />
 使った中で一番よかったのは、以下のサイトでした。
-<!-- raw HTML omitted -->
+<br />
 <a href="https://www.dcode.fr/morse-code"><a href="https://www.dcode.fr/morse-code">https://www.dcode.fr/morse-code</a></a></p>
-<p><!-- raw HTML omitted -->
+<p><br />
 コツは、1行1行別々にデコードすることです。全部を1行にまとめてからデコードしようとすると、もともと改行があった場所でエラーが出たりします。</p>
-<p><!-- raw HTML omitted -->
+<p><br />
 でもって、以下の文字列が取れるんですが、
 STRANGE.KEYBOARD.SECF.M1L1T4RY_GR4D3T_3NCRYPT10N.WTAIT.COULD.RANDOM
-<!-- raw HTML omitted --><!-- raw HTML omitted -->
+<br /><br />
 これそのままだと、incorrect flagで受け付けられなくて、いろんなパターンやってもことごとくダメだったんで何気に諦めかけたけど、結局以下の部分が最終フラグとして通りました。</p>
-<p><!-- raw HTML omitted -->
+<p><br />
 <strong>Flag:</strong> m1l1t4ry_gr4d3_3ncrypt10n</p>
-<p><!-- raw HTML omitted -->
+<p><br />
 ＃まぁ、確かにアンダースコアで繋がっているし、その部分なんだろうけどさ。。。結構悩んだ</p>
 <hr>
-<p><!-- raw HTML omitted --><!-- raw HTML omitted -->
-<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p><br /><br />
+<br /><br /></p>
 
     </div>
 

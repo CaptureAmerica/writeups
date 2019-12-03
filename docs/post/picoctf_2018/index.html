@@ -48,7 +48,7 @@
 <meta itemprop="description" content="URL: https://2018game.picoctf.com/ picoCTFのことを知ったのがちょっと前で、すでにイベントは2018年時点で終了してるんですが、続けて勉強ができるようになっていたので">
 <meta itemprop="datePublished" content="2019-08-11T23:00:00&#43;09:00" />
 <meta itemprop="dateModified" content="2019-09-05T22:00:00&#43;09:00" />
-<meta itemprop="wordCount" content="5956">
+<meta itemprop="wordCount" content="6240">
 
 
 
@@ -180,30 +180,104 @@
 </div>
     <div class="post-content">
       <p>URL: <a href="https://2018game.picoctf.com/"><a href="https://2018game.picoctf.com/">https://2018game.picoctf.com/</a></a>
-<!-- raw HTML omitted --><!-- raw HTML omitted -->
+<br /><br />
 picoCTFのことを知ったのがちょっと前で、すでにイベントは2018年時点で終了してるんですが、続けて勉強ができるようになっていたので他のCTFイベントがない平日とかにちょこちょこやりました。</p>
-<p><!-- raw HTML omitted --><!-- raw HTML omitted -->
+<p><br /><br />
 進み具合はこんな感じ。</p>
-<!-- raw HTML omitted -->
+<img src="https://captureamerica.github.io/writeups/img/pico_Score.png" alt="pico_Score.png">
 <p>もう、これくらいやったら十分かなぁ。気が向いたら、もう少しやるかもです。</p>
-<p><!-- raw HTML omitted -->
+<p><br />
 いくつかピックアップしてWriteupを書いておきます。</p>
-<p><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p><br /><br /></p>
 <h1 id="forensics-desrouleaux-150-points">[Forensics]: Desrouleaux (150 points)</h1>
 <hr>
 <h2 id="challenge">Challenge</h2>
 <blockquote>
 <p>Our network administrator is having some trouble handling the tickets for all of of our incidents. Can you help him out by answering all the questions? Connect with nc 2018shell.picoctf.com 54782.
-<!-- raw HTML omitted --><!-- raw HTML omitted -->
+<br /><br />
 Hint: If you need to code, python has some good libraries for it.</p>
 </blockquote>
 <p>Attachment:</p>
 <ul>
 <li>incidents.json</li>
 </ul>
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<p><!-- raw HTML omitted --></p>
+<pre>
+{
+    "tickets": [
+        {
+            "ticket_id": 0,
+            "timestamp": "2016/02/08 08:45:56",
+            "file_hash": "33d81fec987b8a8c",
+            "src_ip": "246.69.53.233",
+            "dst_ip": "48.173.183.246"
+        },
+        {
+            "ticket_id": 1,
+            "timestamp": "2017/03/05 06:01:41",
+            "file_hash": "f2d2c758fe8853b5",
+            "src_ip": "246.69.53.233",
+            "dst_ip": "164.217.208.88"
+        },
+        {
+            "ticket_id": 2,
+            "timestamp": "2015/02/28 12:24:15",
+            "file_hash": "33d81fec987b8a8c",
+            "src_ip": "251.165.34.242",
+            "dst_ip": "125.130.154.106"
+        },
+        {
+            "ticket_id": 3,
+            "timestamp": "2015/06/24 12:14:19",
+            "file_hash": "581dc312cc8c16c6",
+            "src_ip": "246.69.53.233",
+            "dst_ip": "48.173.183.246"
+        },
+        {
+            "ticket_id": 4,
+            "timestamp": "2015/11/15 22:34:03",
+            "file_hash": "8aa16b403ac7de3e",
+            "src_ip": "215.239.98.18",
+            "dst_ip": "231.12.49.241"
+        },
+        {
+            "ticket_id": 5,
+            "timestamp": "2015/02/06 15:42:17",
+            "file_hash": "8aa16b403ac7de3e",
+            "src_ip": "246.69.53.233",
+            "dst_ip": "168.138.219.19"
+        },
+        {
+            "ticket_id": 6,
+            "timestamp": "2017/12/29 05:54:41",
+            "file_hash": "8aa16b403ac7de3e",
+            "src_ip": "251.165.34.242",
+            "dst_ip": "168.138.219.19"
+        },
+        {
+            "ticket_id": 7,
+            "timestamp": "2017/10/10 13:11:20",
+            "file_hash": "6629fde09ed2dab7",
+            "src_ip": "251.165.34.242",
+            "dst_ip": "187.229.175.225"
+        },
+        {
+            "ticket_id": 8,
+            "timestamp": "2015/01/26 00:01:08",
+            "file_hash": "581dc312cc8c16c6",
+            "src_ip": "231.205.245.44",
+            "dst_ip": "48.173.183.246"
+        },
+        {
+            "ticket_id": 9,
+            "timestamp": "2017/05/07 09:51:22",
+            "file_hash": "8aa16b403ac7de3e",
+            "src_ip": "251.165.34.242",
+            "dst_ip": "168.138.219.19"
+        }
+    ]
+}
+</pre>
+<p><br /></p>
 <h2 id="solution">Solution</h2>
 <p>ncで繋ぐと、そこで問題が出てきます。</p>
 <p>ヒントを無視してLinuxコマンドで全部解こうかと思ったけど、勉強のために最後だけはPythonで解きました。</p>
@@ -216,14 +290,14 @@ Hint: If you need to code, python has some good libraries for it.</p>
    4  &quot;246.69.53.233&quot;,
    4  &quot;251.165.34.242&quot;,
 </code></pre><p>答え：251.165.34.242</p>
-<p><!-- raw HTML omitted --></p>
+<p><br /></p>
 <blockquote>
 <p>How many unique destination IP addresses were targeted by the source IP address 246.69.53.233?</p>
 </blockquote>
 <pre><code>$ grep 251.165.34.242 incidents.json -A 2 | grep dst | sort | uniq | wc -l
        3
 </code></pre><p>答え：3</p>
-<p><!-- raw HTML omitted --></p>
+<p><br /></p>
 <blockquote>
 <p>What is the number of unique destination ips a file is sent, on average? Needs to be correct to 2 decimal places.</p>
 </blockquote>
@@ -282,17 +356,17 @@ Hint: If you need to code, python has some good libraries for it.</p>
 </code></pre></td></tr></table>
 </div>
 </div><p>答え：1.40</p>
-<p><!-- raw HTML omitted --><!-- raw HTML omitted -->
-<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p><br /><br />
+<br /><br /></p>
 <h1 id="general-skills-you-cant-see-me-200-points">[General Skills]: you can't see me (200 points)</h1>
 <hr>
 <h2 id="challenge1">Challenge</h2>
 <p>&lsquo;&hellip;reading transmission&hellip; Y.O.U. .C.A.N.'.T. .S.E.E. .M.E. &hellip;transmission ended&hellip;&rsquo; Maybe something lies in /problems/you-can-t-see-me_3_1a39ec6c80b3f3a18610074f68acfe69.</p>
-<p><!-- raw HTML omitted --></p>
+<p><br /></p>
 <h2 id="solution1">Solution</h2>
 <p>SSHでアクセスした後、emacsのdiredからファイルを開いたらすぐフラグ見つかりました。
-<!-- raw HTML omitted --></p>
-<p><!-- raw HTML omitted -->
+<img src="https://captureamerica.github.io/writeups/img/emacs_dired.png" alt="emacs_dired.png"></p>
+<p><br />
 逆にemacsが使えなかったらどうするのか気になって、別解も調べてみました。</p>
 <p>ファイル名に空白文字が含まれているようなので、trでアンダースコアに置き換えて可視化しました。</p>
 <pre><code>captureamerica@pico-2018-shell:/problems/you-can-t-see-me_3_1a39ec6c80b3f3a18610074f68acfe69$ ll
@@ -312,56 +386,56 @@ cat: '. ': No such file or directory
 
 captureamerica@pico-2018-shell:/problems/you-can-t-see-me_3_1a39ec6c80b3f3a18610074f68acfe69$ cat &quot;.  &quot;
 picoCTF{j0hn_c3na_paparapaaaaaaa_paparapaaaaaa_cf5156ef}
-</code></pre><p><!-- raw HTML omitted --><!-- raw HTML omitted -->
-<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+</code></pre><p><br /><br />
+<br /><br /></p>
 <h1 id="cryptography-safe-rsa-250-points">[Cryptography]: Safe RSA (250 points)</h1>
 <hr>
 <h2 id="challenge2">Challenge</h2>
 <blockquote>
 <p>Now that you know about RSA can you help us decrypt this ciphertext? We don't have the decryption key but something about those values looks funky..
-<!-- raw HTML omitted --><!-- raw HTML omitted -->
-Hint1: RSA <a href="https://en.wikipedia.org/wiki/RSA_(cryptosystem)">tutorial</a><!-- raw HTML omitted -->
-Hint2: Hmmm that e value looks kinda small right?<!-- raw HTML omitted -->
-Hint3: These are some really big numbers.. Make sure you're using functions that don't lose any precision!<!-- raw HTML omitted --></p>
+<br /><br />
+Hint1: RSA <a href="https://en.wikipedia.org/wiki/RSA_(cryptosystem)">tutorial</a><br />
+Hint2: Hmmm that e value looks kinda small right?<br />
+Hint3: These are some really big numbers.. Make sure you're using functions that don't lose any precision!<br /></p>
 </blockquote>
 <p>Attachment:</p>
 <ul>
 <li>ciphertext（以下が中身）</li>
 </ul>
-<p>--------<!-- raw HTML omitted -->
+<p>--------<br />
 N: 374159235470172130988938196520880526947952521620932362050308663243595788308583992120881359365258949723819911758198013202644666489247987314025169670926273213367237020188587742716017314320191350666762541039238241984934473188656610615918474673963331992408750047451253205158436452814354564283003696666945950908549197175404580533132142111356931324330631843602412540295482841975783884766801266552337129105407869020730226041538750535628619717708838029286366761470986056335230171148734027536820544543251801093230809186222940806718221638845816521738601843083746103374974120575519418797642878012234163709518203946599836959811</p>
 <p>e: 3</p>
 <p>ciphertext (c): 2205316413931134031046440767620541984801091216351222789180535786851451917462804449135087209259828503848304180574549372616172217553002988241140344023060716738565104171296716554122734607654513009667720334889869007276287692856645210293194853
-<!-- raw HTML omitted -->--------</p>
-<p><!-- raw HTML omitted --></p>
+<br />--------</p>
+<p><br /></p>
 <h2 id="solution2">Solution</h2>
 <p>RsaCtfTool ( <a href="https://github.com/Ganapati/RsaCtfTool"><a href="https://github.com/Ganapati/RsaCtfTool">https://github.com/Ganapati/RsaCtfTool</a></a> ) を使ったら解けました。</p>
-<p>--------<!-- raw HTML omitted -->
+<p>--------<br />
 $ python RsaCtfTool.py -n 374159235470172130988938196520880526947952521620932362050308663243595788308583992120881359365258949723819911758198013202644666489247987314025169670926273213367237020188587742716017314320191350666762541039238241984934473188656610615918474673963331992408750047451253205158436452814354564283003696666945950908549197175404580533132142111356931324330631843602412540295482841975783884766801266552337129105407869020730226041538750535628619717708838029286366761470986056335230171148734027536820544543251801093230809186222940806718221638845816521738601843083746103374974120575519418797642878012234163709518203946599836959811 -e 3 &ndash;uncipher 2205316413931134031046440767620541984801091216351222789180535786851451917462804449135087209259828503848304180574549372616172217553002988241140344023060716738565104171296716554122734607654513009667720334889869007276287692856645210293194853</p>
 <p>[+] Clear text : b'picoCTF{e_w4y_t00_sm411_34096259}&rsquo;
-<!-- raw HTML omitted -->--------
-<!-- raw HTML omitted --><!-- raw HTML omitted -->
+<br />--------
+<br /><br />
 Flag: <code>picoCTF{e_w4y_t00_sm411_34096259}</code></p>
-<p><!-- raw HTML omitted --><!-- raw HTML omitted -->
-<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p><br /><br />
+<br /><br /></p>
 <h1 id="reversing-bequickorbedead1-200-points">[Reversing]: be-quick-or-be-dead-1 (200 points)</h1>
 <hr>
 <h2 id="challenge3">Challenge</h2>
 <blockquote>
 <p>You find <a href="https://www.youtube.com/watch?v=CTt1vk9nM9c">this</a> when searching for some music, which leads you to be-quick-or-be-dead-1. Can you run it fast enough? You can also find the executable in /problems/be-quick-or-be-dead-1_3_aeb48854203a88fb1da963f41ae06a1c.
-<!-- raw HTML omitted --><!-- raw HTML omitted -->
+<br /><br />
 Hint: What will the key finally be?</p>
 </blockquote>
 <p>Attachment:</p>
 <ul>
 <li>be-quick-or-be-dead-1  (ELF 64-bit)</li>
 </ul>
-<p><!-- raw HTML omitted --></p>
+<p><br /></p>
 <h2 id="solution3">Solution</h2>
-<p>これは、いろんな解き方があると思います。<!-- raw HTML omitted --></p>
+<p>これは、いろんな解き方があると思います。<br /></p>
 <p>alert(1)でタイマーを起動していて、flagをprintする前にタイムアウトしちゃうので、gdbでalert(1)をコールしているところで止めて、引数1を0xffとかに書き換えたらオッケー。</p>
-<p><!-- raw HTML omitted --><!-- raw HTML omitted -->
-<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p><br /><br />
+<br /><br /></p>
 <h1 id="reversing-keygenme1-400-points">[Reversing]: keygen-me-1 (400 points)</h1>
 <hr>
 <h2 id="challenge4">Challenge</h2>
@@ -372,7 +446,7 @@ Hint: What will the key finally be?</p>
 <ul>
 <li>activate (ELF 32-bit)</li>
 </ul>
-<p><!-- raw HTML omitted --></p>
+<p><br /></p>
 <h2 id="solution4">Solution</h2>
 <p>Ghidra使っていきます。</p>
 <div class="highlight"><div class="chroma">
@@ -529,7 +603,7 @@ Hint: What will the key finally be?</p>
 <span class="p">}</span>
 </code></pre></td></tr></table>
 </div>
-</div><p><!-- raw HTML omitted -->
+</div><p><br />
 ここからが答えです。</p>
 <p>以下のようにシェルスクリプトで解きました。適当な15文字と、最後の1文字をBrute Forceしてます。なお、ローカルで実行する際には、flag.txtを自前で適当に作っておきます。</p>
 <div class="highlight"><div class="chroma">
@@ -703,8 +777,8 @@ INVALID Product Key.
 </code></pre></td></tr></table>
 </div>
 </div><p>flag: <code>AAAAAAAAAAAAAAAO</code></p>
-<p><!-- raw HTML omitted --><!-- raw HTML omitted -->
-<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p><br /><br />
+<br /><br /></p>
 <h1 id="general-skills-script-me-500-points">[General Skills]: script me (500 points)</h1>
 <hr>
 <h2 id="challenge5">Challenge</h2>
@@ -712,20 +786,47 @@ INVALID Product Key.
 <p>Can you understand the language and answer the questions to retrieve the flag? Connect to the service with nc 2018shell.picoctf.com 1542
 Maybe try writing a python script?</p>
 </blockquote>
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<p><!-- raw HTML omitted --></p>
+<pre>
+$ nc 2018shell.picoctf.com 1542
+Rules:
+() + () = ()()                                      => [combine]
+((())) + () = ((())())                              => [absorb-right]
+() + ((())) = (()(()))                              => [absorb-left]
+(())(()) + () = (())(()())                          => [combined-absorb-right]
+() + (())(()) = (()())(())                          => [combined-absorb-left]
+(())(()) + ((())) = ((())(())(()))                  => [absorb-combined-right]
+((())) + (())(()) = ((())(())(()))                  => [absorb-combined-left]
+() + (()) + ((())) = (()()) + ((())) = ((()())(())) => [left-associative]
+
+Example: 
+(()) + () = () + (()) = (()())
+</pre>
+<p><br /></p>
 <h2 id="solution5">Solution</h2>
 <p>なんかカッコが多くて、複雑そうに見えるけど、()を別の文字に置き換えるとわかりやすいと思います｡</p>
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
+<pre>
+x + x = xx
+((x)) + x = ((x)x)
+x + ((x)) = (x(x))
+(x)(x) + x = (x)(xx)
+x + (x)(x) = (xx)(x)
+(x)(x) + ((x)) = ((x)(x)(x))
+((x)) + (x)(x) = ((x)(x)(x))
+x + (x) + ((x)) = (xx) + ((x)) = ((xx)(x))
+</pre>
 <p>要は、カッコが何重になっているかによって処理が異なっていて、以下の通り。</p>
 <ul>
 <li>同じ深さの場合は、連結</li>
 <li>左の方が深かければ、左のカッコの中の最後に連結</li>
 <li>右の方が深かければ、右のカッコの中の先頭に連結</li>
 </ul>
-<!-- raw HTML omitted -->
+<br>
+書いたコード。
+```Python
+#!/usr/bin/env python
+# coding: UTF-8
+import re
+from pwn import *
 <p>host = &ldquo;2018shell.picoctf.com&rdquo;
 port = 1542
 s = remote( host, port )</p>
@@ -923,21 +1024,21 @@ int main( void ) {
 <p>以下が実行結果の一部です。</p>
 <p>DpicoCTF{st0r3d_iN_tH3_l345t_s1gn1f1c4nT_b1t5_770554193}~8?p???q???p??????????????????????????????????????????????????pp?????q8q8??8p?888ppqp?????8?8??????8??8???????????p?????????q8?p??????8???</p>
 <p>Flag: <code>picoCTF{st0r3d_iN_tH3_l345t_s1gn1f1c4nT_b1t5_770554193}</code></p>
-<p><!-- raw HTML omitted --><!-- raw HTML omitted -->
-<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p><br /><br />
+<br /><br /></p>
 <h1 id="reversing-keygenme2-750-points">[Reversing]: keygen-me-2 (750 points)</h1>
 <hr>
 <h2 id="challenge6">Challenge</h2>
 <blockquote>
 <p>The software has been updated. Can you find us a new product key for the program in /problems/keygen-me-2_1_762036cde49fef79146a706d0eda80a3
-<!-- raw HTML omitted --><!-- raw HTML omitted -->
+<br /><br />
 Hint: z3</p>
 </blockquote>
 <p>Attachment:</p>
 <ul>
 <li>activate</li>
 </ul>
-<p><!-- raw HTML omitted --></p>
+<p><br /></p>
 <h2 id="solution6">Solution</h2>
 <p>Ghidra使って解析していきます。keygen-me-1がベースなので、以下の辺りは同じです。</p>
 <ul>
@@ -998,7 +1099,7 @@ Hint: z3</p>
 <span class="p">}</span>
 </code></pre></td></tr></table>
 </div>
-</div><p><!-- raw HTML omitted -->
+</div><p><br />
 全部載せると多いので、2つくらい載せます。このタイプのGhidraのデコンパイルの仕方は、以前Redpwn CTFをやったときに見たので、もうビックリしません。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -1062,21 +1163,21 @@ Hint: z3</p>
 </code></pre></td></tr></table>
 </div>
 </div><p>==&gt; (param_1[2] + param_1[3]) mod 0x24 = 0x18</p>
-<p><!-- raw HTML omitted -->
-まとめ。こんな感じで全部見ていくと、それぞれの判定文は以下の通りです。（&ldquo;param_1&quot;を省略してます）<!-- raw HTML omitted -->
-==&gt; ([0] + [1]) mod 0x24 = 0xE<!-- raw HTML omitted -->
-==&gt; ([2] + [3]) mod 0x24 = 0x18<!-- raw HTML omitted -->
-==&gt; ([2] - [0]) mod 0x24 = 0x6<!-- raw HTML omitted -->
-==&gt; ([1] + [3] + [5]) mod 0x24 = 0x4<!-- raw HTML omitted -->
-==&gt; ([2] + [4] + [6]) mod 0x24 = 0xd<!-- raw HTML omitted -->
-==&gt; ([3] + [4] + [5]) mod 0x24 = 0x16<!-- raw HTML omitted -->
-==&gt; ([6] + [8] + [10]) mod 0x24 = 0x1f<!-- raw HTML omitted -->
-==&gt; ([1] + [4] + [7]) mod 0x24 = 0x7<!-- raw HTML omitted -->
-==&gt; ([9] + [12] + [15]) mod 0x24 = 0x14<!-- raw HTML omitted -->
-==&gt; ([13] + [14] + [15]) mod 0x24 = 0xc<!-- raw HTML omitted -->
-==&gt; ([8] + [9] + [10]) mod 0x24 = 0x1b<!-- raw HTML omitted -->
-==&gt; ([7] + [12] + [13]) mod 0x24 = 0x17<!-- raw HTML omitted --></p>
-<p><!-- raw HTML omitted -->
+<p><br />
+まとめ。こんな感じで全部見ていくと、それぞれの判定文は以下の通りです。（&ldquo;param_1&quot;を省略してます）<br />
+==&gt; ([0] + [1]) mod 0x24 = 0xE<br />
+==&gt; ([2] + [3]) mod 0x24 = 0x18<br />
+==&gt; ([2] - [0]) mod 0x24 = 0x6<br />
+==&gt; ([1] + [3] + [5]) mod 0x24 = 0x4<br />
+==&gt; ([2] + [4] + [6]) mod 0x24 = 0xd<br />
+==&gt; ([3] + [4] + [5]) mod 0x24 = 0x16<br />
+==&gt; ([6] + [8] + [10]) mod 0x24 = 0x1f<br />
+==&gt; ([1] + [4] + [7]) mod 0x24 = 0x7<br />
+==&gt; ([9] + [12] + [15]) mod 0x24 = 0x14<br />
+==&gt; ([13] + [14] + [15]) mod 0x24 = 0xc<br />
+==&gt; ([8] + [9] + [10]) mod 0x24 = 0x1b<br />
+==&gt; ([7] + [12] + [13]) mod 0x24 = 0x17<br /></p>
+<p><br />
 ちなみに、上記に出てくるord()関数は、別途独自定義されていて、以下のようになってます。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -1120,9 +1221,9 @@ Hint: z3</p>
 <span class="p">}</span>
 </code></pre></td></tr></table>
 </div>
-</div><p>最初、これを完全に見逃していて、相当悩みました。<!-- raw HTML omitted --></p>
+</div><p>最初、これを完全に見逃していて、相当悩みました。<br /></p>
 <p>gdbで追っかけて行ったときに、ord()を読んだ後に、レジスタの値が予想外に変わる所まで見てたんですが、別途定義されているという発想が全くなかったです。。。凹○ コテッ</p>
-<p><!-- raw HTML omitted -->
+<p><br />
 以下は、そのord()も加味した解法です。（pico_ord()の部分を後付しました。）</p>
 <p>文字の範囲も限られているので、Brute Forceでやりました。</p>
 <div class="highlight"><div class="chroma">
@@ -1516,21 +1617,21 @@ Hint: z3</p>
 </div><pre><code>captureamerica@pico-2018-shell:/problems/keygen-me-2_1_762036cde49fef79146a706d0eda80a3$ ./activate 0E6IW8BX07K00Q9D
 Product Activated Successfully: picoCTF{c0n5tr41nt_50lv1nG_15_W4y_f45t3r_3846045707}
 </code></pre><p>Flag: <code>picoCTF{c0n5tr41nt_50lv1nG_15_W4y_f45t3r_3846045707}</code></p>
-<p><!-- raw HTML omitted --><!-- raw HTML omitted -->
-<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p><br /><br />
+<br /><br /></p>
 <h1 id="reversing-bequickorbedead3-350-points">[Reversing]: be-quick-or-be-dead-3 (350 points)</h1>
 <hr>
 <h2 id="challenge7">Challenge</h2>
 <blockquote>
 <p>As the <a href="https://www.youtube.com/watch?v=CTt1vk9nM9c">song</a> draws closer to the end, another executable be-quick-or-be-dead-3 suddenly pops up. This one requires even faster machines. Can you run it fast enough too?
-<!-- raw HTML omitted --><!-- raw HTML omitted -->
+<br /><br />
 Hint: How do you speed up a very repetitive computation?</p>
 </blockquote>
 <p>Attachment:</p>
 <ul>
 <li>be-quick-or-be-dead-3  (ELF 64-bit)</li>
 </ul>
-<p><!-- raw HTML omitted --></p>
+<p><br /></p>
 <h2 id="solution7">Solution</h2>
 <p>まず、Ghidraにかけます。</p>
 <p>以下の箇所が再帰関数になっており、時間がかかるところです。</p>
@@ -1619,16 +1720,16 @@ Hint: How do you speed up a very repetitive computation?</p>
 <span class="nb">printf</span><span class="p">(</span><span class="s2">&#34;</span><span class="s2">0x%x</span><span class="se">\n</span><span class="s2">&#34;</span><span class="p">,</span> <span class="n">calc</span><span class="p">(</span><span class="mh">0x18f4b</span><span class="o"></span><span class="p">)</span> <span class="o">&amp;</span> <span class="mh">0xFFFFFFFF</span> <span class="o"></span><span class="p">)</span>
 </code></pre></td></tr></table>
 </div>
-</div><p><!-- raw HTML omitted -->
+</div><p><br />
 最初に実行した際に、以下のエラーが出ました。</p>
 <pre><code>$ ruby be-quick-or-be-dead-3_solve.rb 
 be-quick-or-be-dead-3_solve.rb:7:in `calc': stack level too deep (SystemStackError)
-</code></pre><p><!-- raw HTML omitted -->
+</code></pre><p><br />
 これは、RUBY_THREAD_VM_STACK_SIZEという環境変数で回避できるそうなので、テキトーに100MBでやってみました。</p>
 <pre><code>$ export RUBY_THREAD_VM_STACK_SIZE=100000000
 $ ruby be-quick-or-be-dead-3_solve.rb 
 0x2f8cdc3f
-</code></pre><p><!-- raw HTML omitted -->
+</code></pre><p><br />
 gdbでcalc()をコールする直前でbreakして、戻り値をセットして、jumpでcalc()をスキップします。</p>
 <pre><code>gef➤  i b
 Num     Type           Disp Enb Address            What
@@ -1656,11 +1757,11 @@ Printing flag:
 picoCTF{dynamic_pr0gramming_ftw_22ac7d81}
 [Inferior 1 (process 1492) exited normally]
 </code></pre><p>Flag: <code>picoCTF{dynamic_pr0gramming_ftw_22ac7d81}</code></p>
-<p><!-- raw HTML omitted --><!-- raw HTML omitted -->
-<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p><br /><br />
+<br /><br /></p>
 <hr>
-<p><!-- raw HTML omitted --><!-- raw HTML omitted -->
-<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p><br /><br />
+<br /><br /></p>
 
     </div>
 

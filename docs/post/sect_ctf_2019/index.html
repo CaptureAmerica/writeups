@@ -155,12 +155,12 @@
 </div>
     <div class="post-content">
       <p>URL: <a href="https://sect.ctf.rocks/"><a href="https://sect.ctf.rocks/">https://sect.ctf.rocks/</a></a>
-<!-- raw HTML omitted --><!-- raw HTML omitted -->
+<br /><br />
 平日に一日やってたやつです。難しそうだったしスルーかなぁと思ってましたが、2つ解けました。
-<!-- raw HTML omitted --><!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
-<p><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<br /><br />
+<img src="https://captureamerica.github.io/writeups/img/sectctf_Score.png" alt="sectctf_Score.png">
+<br /><br /></p>
+<p><br /><br /></p>
 <h1 id="miscforensics-diagram">[Misc/Forensics]: Diagram</h1>
 <hr>
 <h2 id="challenge">Challenge</h2>
@@ -171,12 +171,12 @@
 <ul>
 <li>diagram.tar.gz</li>
 </ul>
-<p><!-- raw HTML omitted --></p>
+<p><br /></p>
 <h2 id="solution">Solution</h2>
 <p>解凍して出てきたファイルはRTFファイルでした。</p>
 <pre><code>$ file diagram
 diagram: Rich Text Format data, version 1, unknown character set
-</code></pre><p><!-- raw HTML omitted -->
+</code></pre><p><br />
 rtf用のツール（rtfdump.py, rtfobj）を使っていきます。</p>
 <pre><code>$ rtfobj diagram.rtf -s all
 rtfobj 0.53.1 on Python 2.7.15 - http://decalage.info/python/oletools
@@ -212,27 +212,27 @@ $ oledump.py diagram_object_001235CD.bin
   3:     16871 'Package'
 </code></pre><p>olebrowseを使って、Packageの部分を取り出します。</p>
 <pre><code>$ olebrowse diagram_object_001235CD.bin
-</code></pre><!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
+</code></pre><img src="https://captureamerica.github.io/writeups/img/olebrowse1.png" alt="olebrowse1.png">
+<img src="https://captureamerica.github.io/writeups/img/olebrowse2.png" alt="olebrowse2.png">
 <p>stream.bin としてファイルが取り出せました。</p>
 <pre><code>$ file stream.bin 
 stream.bin: Microsoft Excel 2007+
 
 $ mv stream.bin stream.xls
 </code></pre><p>リネームして、Libre Officeで開きます。</p>
-<!-- raw HTML omitted -->
-<p><!-- raw HTML omitted -->
+<img src="https://captureamerica.github.io/writeups/img/stream_sheet1.png" alt="stream_sheet1.png">
+<p><br />
 画像の下に何か隠れているかな〜、と思ったけど、何もなかったです。</p>
 <p>オフィス文書系の問題は、文字が白色で隠れていることが多いので、各シートでフォントの色を変えてみたら、シート3に数字が隠れてました。</p>
-<!-- raw HTML omitted -->
+<img src="https://captureamerica.github.io/writeups/img/stream_sheet3.png" alt="stream_sheet3.png">
 <p>どうやら、このデータをベースにグラフを描いているみたいですね。</p>
-<p><!-- raw HTML omitted -->
+<p><br />
 たぶん、これがフラグだろう、ってことで文字に直します。</p>
 <pre><code>$ python -c 'print(&quot;&quot;.join([chr(int(x)) for x in &quot;83 69 67 84 123 52 110 100 114 48 105 100 115 95 115 104 48 117 108 100 95 98 51 95 110 49 99 101 125&quot;.split()]))'
 SECT{4ndr0ids_sh0uld_b3_n1ce}
 </code></pre><p>Flag: <code>SECT{4ndr0ids_sh0uld_b3_n1ce}</code></p>
-<p><!-- raw HTML omitted --><!-- raw HTML omitted -->
-<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p><br /><br />
+<br /><br /></p>
 <h1 id="miscforensics-mycat">[Misc/Forensics]: Mycat</h1>
 <hr>
 <h2 id="challenge1">Challenge</h2>
@@ -243,7 +243,7 @@ SECT{4ndr0ids_sh0uld_b3_n1ce}
 <ul>
 <li>mycat.tar.gz</li>
 </ul>
-<p><!-- raw HTML omitted --></p>
+<p><br /></p>
 <h2 id="solution1">Solution</h2>
 <p>解凍して出てきたファイルはPDFファイルでした。</p>
 <pre><code>$ file mycat
@@ -251,7 +251,7 @@ mycat: PDF document, version 1.4
 
 
 $ mv mycat mycat.pdf
-</code></pre><p><!-- raw HTML omitted -->
+</code></pre><p><br />
 pdf用のツールを使っていきます。</p>
 <pre><code>$ pdf-parser.py mycat.pdf
 PDF Comment '%PDF-1.4\n'
@@ -307,18 +307,18 @@ aaa: PDF document, version 1.4
 
 $ mv aaa aaa.pdf
 </code></pre><p>object 3を取り出したらzlibで圧縮されてて、解凍したら別のPDFファイルが出てきました。</p>
-<p><!-- raw HTML omitted -->
+<p><br />
 PDFを開くと、ちょっと怖い顔のネコちゃんが出てきました。</p>
-<!-- raw HTML omitted -->
-<p><!-- raw HTML omitted -->
+<img src="https://captureamerica.github.io/writeups/img/mycat_pdf.png" alt="mycat_pdf.png">
+<p><br />
 最初、ステガノかと思っていろいろ画像を調べてたけど、さっぱりわからなくて諦めようかと思ったけど、よくよくPDFを見たら下の方が真っ黒な四角になっているのに気づきました。（黒さが微妙に違う）</p>
 <p>確かに、調べてた画像サイズ（上のネコ部分）と、PDFで見えてる画像サイズが違う！</p>
-<p><!-- raw HTML omitted -->
+<p><br />
 画像付きのPDFは、Libre Officeで開くパターンでしたね。（令和CTF、その他のCTFでも同様なものがありました。）</p>
 <p>画像を移動したら、裏側からフラグが出てきました。</p>
-<!-- raw HTML omitted -->
+<img src="https://captureamerica.github.io/writeups/img/mycat_pdf2.png" alt="mycat_pdf2.png">
 <p>Flag: <code>SECT{3mb3dd3d_f1l3s_c0uld_b3_tr1cky}</code></p>
-<p><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p><br /><br /></p>
 <h1 id="miscforensicsmemory-favorite">[Misc/Forensics/Memory]: favorite</h1>
 <hr>
 <h2 id="challenge2">Challenge</h2>
@@ -329,7 +329,7 @@ PDFを開くと、ちょっと怖い顔のネコちゃんが出てきました�
 <ul>
 <li>favorite.7z</li>
 </ul>
-<p><!-- raw HTML omitted --></p>
+<p><br /></p>
 <h2 id="not-solved">Not Solved</h2>
 <p>これは解けなかったんですけど、ちょっとトライしました。後で、復習したいと思います。</p>
 <pre><code>root@kali:~/SECTCTF_2019# volatility -f favorite.vmem imageinfo
@@ -348,7 +348,7 @@ INFO    : volatility.debug    : Determining profile based on KDBG search...
              KUSER_SHARED_DATA : 0xfffff78000000000L
            Image date and time : 2019-09-12 06:42:46 UTC+0000
      Image local date and time : 2019-09-11 23:42:46 -0700
-</code></pre><p><!-- raw HTML omitted -->
+</code></pre><p><br />
 プロファイルによっては、結果が出ないようです。。。</p>
 <pre><code>root@kali:~/SECTCTF_2019# volatility -f favorite.vmem --profile Win8SP0x64 filescan
 Volatility Foundation Volatility Framework 2.6
@@ -356,7 +356,7 @@ Offset(P)            #Ptr   #Hnd Access Name
 ------------------ ------ ------ ------ ----
 root@kali:~/SECTCTF_2019# 
 root@kali:~/SECTCTF_2019# 
-</code></pre><p><!-- raw HTML omitted -->
+</code></pre><p><br />
 2番目の<code>Win81U1x64</code>をプロファイルに指定しました。</p>
 <p>チャレンジ名がfavoriteだし、ここら辺なのは間違いない気がするんですけど。</p>
 <pre><code>root@kali:~/SECTCTF_2019# volatility -f favorite.vmem --profile Win81U1x64 filescan | grep -i favorite
@@ -382,11 +382,11 @@ IconIndex=0
 IconFile=%ProgramFiles%\Internet Explorer\Images\bing.ico
 </code></pre><p>他の箇所もいろいろ調べましたけど、わからなくて詰みました。</p>
 <p>てかこれ、解けた人ひとりしかいないし。Writeup出てこないかもなぁ。。。</p>
-<p><!-- raw HTML omitted --><!-- raw HTML omitted -->
-<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p><br /><br />
+<br /><br /></p>
 <hr>
-<p><!-- raw HTML omitted --><!-- raw HTML omitted -->
-<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p><br /><br />
+<br /><br /></p>
 
     </div>
 

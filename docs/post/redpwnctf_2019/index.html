@@ -48,7 +48,7 @@
 <meta itemprop="description" content="URL: https://ctf.redpwn.net/ なかなか興味深いチャレンジがいくつかありました。 ほとんど解けてないので、他の人のWriteupを見て勉強しようと思います。 いちおう、やっ">
 <meta itemprop="datePublished" content="2019-08-17T10:00:00&#43;09:00" />
 <meta itemprop="dateModified" content="2019-08-17T10:00:00&#43;09:00" />
-<meta itemprop="wordCount" content="2066">
+<meta itemprop="wordCount" content="2064">
 
 
 
@@ -150,25 +150,25 @@
 </div>
     <div class="post-content">
       <p>URL: <a href="https://ctf.redpwn.net/"><a href="https://ctf.redpwn.net/">https://ctf.redpwn.net/</a></a>
-<!-- raw HTML omitted --><!-- raw HTML omitted -->
+<br /><br />
 なかなか興味深いチャレンジがいくつかありました。
-<!-- raw HTML omitted --><!-- raw HTML omitted -->
+<br /><br />
 ほとんど解けてないので、他の人のWriteupを見て勉強しようと思います。
-<!-- raw HTML omitted --><!-- raw HTML omitted -->
+<br /><br />
 いちおう、やった中からいくつか記念に残しておきます。</p>
-<p><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p><br /><br /></p>
 <h1 id="web-easycipher">Web: easycipher</h1>
 <hr>
 <h2 id="challenge">Challenge</h2>
 <blockquote>
 <p>This is an easy cipher? I heard it's broken.
-<!-- raw HTML omitted --><!-- raw HTML omitted -->
+<br /><br />
 <a href="http://chall.2019.redpwn.net:8006/">http://chall.2019.redpwn.net:8006/</a></p>
 </blockquote>
-<p><!-- raw HTML omitted --></p>
+<p><br /></p>
 <h2 id="solution">Solution</h2>
 <p>アクセスすると、以下が表示されます。</p>
-<!-- raw HTML omitted -->
+<img src="https://captureamerica.github.io/writeups/img/easycipher.PNG" alt="easycipher.PNG">
 <p>View sourceすると、1行で書かれたJava Scriptがあるので、ChromeのDeveloper ToolでBeautifyします。</p>
 <p>以下、Beautify後。</p>
 <div class="highlight"><div class="chroma">
@@ -447,17 +447,17 @@
 </div>
 </div><p>一番下で判定している箇所がポイントです。途中のコードは解析不要です。</p>
 <p>_0x29a9[]の配列は先頭で定義されていて、それぞれ、</p>
-<p>_0x29a9[5] : &ldquo;What is the password&rdquo; <!-- raw HTML omitted -->
-_0x29a9[6] : &ldquo;aa42b234cb05915716c1434058fe1aee16c14340cb059157aa42b234&rdquo; <!-- raw HTML omitted -->
-_0x29a9[7] : &ldquo;submit as redpwnctf{PASSWORD}&rdquo; <!-- raw HTML omitted -->
-_0x29a9[8] : &ldquo;:(&rdquo; <!-- raw HTML omitted --></p>
+<p>_0x29a9[5] : &ldquo;What is the password&rdquo; <br />
+_0x29a9[6] : &ldquo;aa42b234cb05915716c1434058fe1aee16c14340cb059157aa42b234&rdquo; <br />
+_0x29a9[7] : &ldquo;submit as redpwnctf{PASSWORD}&rdquo; <br />
+_0x29a9[8] : &ldquo;:(&rdquo; <br /></p>
 <p>入力した文字列がMD5計算されて、aa42b234cb05915716c1434058fe1aee16c14340cb059157aa42b234になればオッケー。</p>
 <p>Rainbow table ( <a href="https://crackstation.net/"><a href="https://crackstation.net/">https://crackstation.net/</a></a> )で、&ldquo;shazam&quot;が取れました。</p>
 <p>Flag: <code>redpwnctf{shazam}</code></p>
-<p><!-- raw HTML omitted -->
+<p><br />
 どこら辺が&quot;broken&quot;なのかは不明。。</p>
-<p><!-- raw HTML omitted --><!-- raw HTML omitted -->
-<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p><br /><br />
+<br /><br /></p>
 <h1 id="reverse-engineering-generic-crackme-redux">Reverse Engineering: Generic Crackme Redux</h1>
 <hr>
 <h2 id="challenge1">Challenge</h2>
@@ -468,7 +468,7 @@ _0x29a9[8] : &ldquo;:(&rdquo; <!-- raw HTML omitted --></p>
 <ul>
 <li>generic_crackme_redux</li>
 </ul>
-<p><!-- raw HTML omitted --></p>
+<p><br /></p>
 <h2 id="solution1">Solution</h2>
 <p>まずは、Ghidraにかけます。</p>
 <div class="highlight"><div class="chroma">
@@ -537,7 +537,7 @@ _0x29a9[8] : &ldquo;:(&rdquo; <!-- raw HTML omitted --></p>
 <span class="p">}</span>
 </code></pre></td></tr></table>
 </div>
-</div><p><!-- raw HTML omitted -->
+</div><p><br />
 デコンパイルされた結果（上記）が、入力値を10倍してマスクして、判定文っぽいのとORして、それをリターンして、と意味不明だったので、アセンブラコードを見ました。</p>
 <p>ここら辺。</p>
 <pre><code>    1164:	e9 67 ff ff ff       	jmp    10d0 &lt;__isoc99_scanf@plt+0x70&gt;
@@ -550,13 +550,13 @@ _0x29a9[8] : &ldquo;:(&rdquo; <!-- raw HTML omitted --></p>
     1178:	01 d0                	add    eax,edx  &lt;--- 入力値と足す
     117a:	01 c0                	add    eax,eax  &lt;--- 2倍
     117c:	3d 92 c2 0a 00       	cmp    eax,0xac292
-</code></pre><p>入力値をxとすると、<!-- raw HTML omitted -->
+</code></pre><p>入力値をxとすると、<br />
 (4x + x) * 2 = 0xac292
-<!-- raw HTML omitted -->
+<br />
 10 * x = 0xac292
-<!-- raw HTML omitted -->
+<br />
 x = 0xac292 / 10</p>
-<p><!-- raw HTML omitted -->
+<p><br />
 ということで、計算。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -570,7 +570,7 @@ x = 0xac292 / 10</p>
 <span class="mf">70517.0</span>
 </code></pre></td></tr></table>
 </div>
-</div><p><!-- raw HTML omitted -->
+</div><p><br />
 動作確認。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -585,7 +585,7 @@ Access granted
 </code></pre></td></tr></table>
 </div>
 </div><p>Flag: <code>flag{70517}</code></p>
-<p><!-- raw HTML omitted -->
+<p><br />
 ちなみに、Ghidraのデコンパイル結果の通りだったやｗｗ （今、気づいた）</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -595,11 +595,11 @@ Access granted
 <pre class="chroma"><code class="language-C" data-lang="C">  <span class="p">(</span><span class="n">iParm1</span> <span class="o">*</span> <span class="mi">10</span> <span class="o">=</span><span class="o">=</span> <span class="mh">0xac292</span><span class="p">)</span>
 </code></pre></td></tr></table>
 </div>
-</div><p><!-- raw HTML omitted --><!-- raw HTML omitted -->
-<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+</div><p><br /><br />
+<br /><br /></p>
 <hr>
-<p><!-- raw HTML omitted --><!-- raw HTML omitted -->
-<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p><br /><br />
+<br /><br /></p>
 
     </div>
 

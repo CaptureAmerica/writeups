@@ -48,7 +48,7 @@
 <meta itemprop="description" content="URL: https://2019game.picoctf.com/ 2週間、お疲れ様です。 最終結果は、こんな感じ。 イベント終了時点で、ユーザは4万人弱でした。 PwnとWeb系があんまりできてないけど、スコ">
 <meta itemprop="datePublished" content="2019-10-13T12:00:00&#43;09:00" />
 <meta itemprop="dateModified" content="2019-10-13T12:00:00&#43;09:00" />
-<meta itemprop="wordCount" content="614">
+<meta itemprop="wordCount" content="720">
 
 
 
@@ -160,77 +160,77 @@
 </div>
     <div class="post-content">
       <p>URL: <a href="https://2019game.picoctf.com/"><a href="https://2019game.picoctf.com/">https://2019game.picoctf.com/</a></a>
-<!-- raw HTML omitted --><!-- raw HTML omitted -->
+<br /><br />
 2週間、お疲れ様です。</p>
-<p><!-- raw HTML omitted --><!-- raw HTML omitted -->
+<p><br /><br />
 最終結果は、こんな感じ。</p>
-<!-- raw HTML omitted -->
-<p><!-- raw HTML omitted -->
+<img src="https://captureamerica.github.io/writeups/img/pico2019_Score.png" alt="pico2019_Score.png">
+<p><br />
 イベント終了時点で、ユーザは4万人弱でした。</p>
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
+<img src="https://captureamerica.github.io/writeups/img/pico2019_Users.png" alt="pico2019_Users.png">
+<img src="https://captureamerica.github.io/writeups/img/pico2019_Rank.png" alt="pico2019_Rank.png">
 <p>PwnとWeb系があんまりできてないけど、スコアも切りのいい20000に行ったし、Globalで目標の300位以内 (283位) にも入れたのでかなり満足です。</p>
 <p>去年出た問題に似てるものも結構あったので、picoCTF 2018をそれなりにやった人は結構アドバンテージがあったと思います。</p>
-<p><!-- raw HTML omitted --><!-- raw HTML omitted -->
+<p><br /><br />
 General Skills の Writeupです。</p>
-<p><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p><br /><br /></p>
 <h1 id="general-skills-whatsthedifference-200-points">[General Skills]: whats-the-difference (200 points)</h1>
 <hr>
 <h2 id="challenge">Challenge</h2>
 <blockquote>
 <p>Can you spot the difference? kitters cattos.
-<!-- raw HTML omitted --><!-- raw HTML omitted -->
-Hints :<!-- raw HTML omitted -->
-How do you find the difference between two files?<!-- raw HTML omitted -->
+<br /><br />
+Hints :<br />
+How do you find the difference between two files?<br />
 Dumping the data from a hex editor may make it easier to compare.</p>
 </blockquote>
 <p>Attachment:</p>
 <ul>
-<li>cattos.jpg<!-- raw HTML omitted --></li>
+<li>cattos.jpg<br /></li>
 <li>kitters.jpg</li>
 </ul>
-<p><!-- raw HTML omitted --></p>
+<p><br /></p>
 <h2 id="solution">Solution</h2>
 <pre><code>$ cmp -bl cattos.jpg kitters.jpg | awk '{print $3}' | tr -d &quot;\n&quot; ; echo
 picoCTF{th3yr3_a5_d1ff3r3nt_4s_bu773r_4nd_j311y_3ee85466bc13cfbe57b6a695bee9dcdd}
 </code></pre><p>Flag: <code>picoCTF{th3yr3_a5_d1ff3r3nt_4s_bu773r_4nd_j311y_3ee85466bc13cfbe57b6a695bee9dcdd}</code></p>
-<p><!-- raw HTML omitted -->
+<p><br />
 なお、picoCTFはイベント期間中にファイルやフラグが書き換わることがあるようで、少しハマりました。</p>
-<p><!-- raw HTML omitted --><!-- raw HTML omitted -->
-<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p><br /><br />
+<br /><br /></p>
 <h1 id="general-skills-flagshop-300-points">[General Skills]: flag_shop (300 points)</h1>
 <hr>
 <h2 id="challenge1">Challenge</h2>
 <blockquote>
 <p>There's a flag shop selling stuff, can you buy a flag? Source. Connect with nc 2019shell1.picoctf.com 25858.
-<!-- raw HTML omitted --><!-- raw HTML omitted -->
-Hints :<!-- raw HTML omitted -->
+<br /><br />
+Hints :<br />
 Two's compliment can do some weird things when numbers get really big!</p>
 </blockquote>
 <p>Attachment:</p>
 <ul>
 <li>store.c</li>
 </ul>
-<p><!-- raw HTML omitted --></p>
+<p><br /></p>
 <h2 id="solution1">Solution</h2>
 <p>これも去年と同じで、整数のオーバーフローを使う問題です。</p>
 <p>テキトーにやってたのでよくわからないけど、21475000あたりを使って解いたと思います。</p>
 <p>Flag: <code>picoCTF{m0n3y_bag5_325fcd2e}</code></p>
-<p><!-- raw HTML omitted --><!-- raw HTML omitted -->
-<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p><br /><br />
+<br /><br /></p>
 <h1 id="general-skills-mus1c-300-points">[General Skills]: mus1c (300 points)</h1>
 <hr>
 <h2 id="challenge2">Challenge</h2>
 <blockquote>
 <p>I wrote you a song. Put it in the picoCTF{} flag format.
-<!-- raw HTML omitted --><!-- raw HTML omitted -->
-Hints : Do you think you can master rockstar?<!-- raw HTML omitted --></p>
+<br /><br />
+Hints : Do you think you can master rockstar?<br /></p>
 </blockquote>
 <p>Attachment:</p>
 <ul>
 <li>lyrics.txt</li>
 </ul>
-<p><!-- raw HTML omitted --></p>
+<p><br /></p>
 <h2 id="solution2">Solution</h2>
 <p>ヒントのおかげで解けました。</p>
 <p>rockstarというesolangでした。</p>
@@ -238,8 +238,8 @@ Hints : Do you think you can master rockstar?<!-- raw HTML omitted --></p>
 <a href="https://codewithrockstar.com/online">https://codewithrockstar.com/online</a></p>
 <pre><code>python -c 'print(&quot;&quot;.join([chr(int(x)) for x in &quot;114 114 114 111 99 107 110 114 110 48 49 49 51 114&quot;.split()]))'
 </code></pre><p>Flag: <code>picoCTF{rrrocknrn0113r}</code></p>
-<p><!-- raw HTML omitted --><!-- raw HTML omitted -->
-<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p><br /><br />
+<br /><br /></p>
 <h1 id="general-skills-1wannab3ar0ck5tar-350-points">[General Skills]: 1_wanna_b3_a_r0ck5tar (350 points)</h1>
 <hr>
 <h2 id="challenge3">Challenge</h2>
@@ -250,20 +250,48 @@ Hints : Do you think you can master rockstar?<!-- raw HTML omitted --></p>
 <ul>
 <li>lyrics.txt</li>
 </ul>
-<p><!-- raw HTML omitted --></p>
+<p><br /></p>
 <h2 id="solution3">Solution</h2>
 <p>不要なIF文やListen (scanfみたいなの) をコメントアウトするだけです。</p>
 <p>コメントアウトは、()でできます。</p>
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
+<pre>
+Rocknroll is right
+Silence is wrong
+A guitar is a six-string
+Tommy's been down
+Music is a billboard-burning razzmatazz!
+(Listen to the music)
+(If the music is a guitar)
+(Say "Keep on rocking!")
+(Listen to the rhythm)
+(If the rhythm without Music is nothing)
+Tommy is rockin guitar
+Shout Tommy!
+Music is amazing sensation 
+Jamming is awesome presence
+Scream Music!
+Scream Jamming!
+Tommy is playing rock
+Scream Tommy!
+They are dazzled audiences
+Shout it!
+Rock is electric heaven
+Scream it!
+Tommy is jukebox god
+Say it!
+Break it down
+Shout "Bring on the rock!"
+(Else Whisper "That ain't it, Chief")
+Break it down
+</pre>
 <pre><code>python -c 'print(&quot;&quot;.join([chr(int(x)) for x in &quot;66 79 78 74 79 86 73&quot;.split()]))'
 BONJOVI
 </code></pre><p>Flag: <code>picoCTF{BONJOVI}</code></p>
-<p><!-- raw HTML omitted --><!-- raw HTML omitted -->
-<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p><br /><br />
+<br /><br /></p>
 <hr>
-<p><!-- raw HTML omitted --><!-- raw HTML omitted -->
-<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p><br /><br />
+<br /><br /></p>
 
     </div>
 

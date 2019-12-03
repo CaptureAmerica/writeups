@@ -9,6 +9,9 @@ tags: ["CTF"]
 categories: ["CTF"]
 author: "きゃぷあめ"
 ---
+# PC環境を以降したら、Hugoか、Themeがおかしなことになっちゃいました。現在、調査中です。
+
+
 URL: [https://tuctf.com/](https://tuctf.com/)
 
 もうサイトにアクセスできないようなので、最終順位がわかりません。
@@ -41,7 +44,7 @@ foremostではなにも取れなかったので、binwalkから始めます。
 
 binwalk -e でもextractされなかったので、--ddを使いました。
 
-```Python
+<pre>
 $ binwalk -e shrek.jpg
 
 DECIMAL       HEXADECIMAL     DESCRIPTION
@@ -133,7 +136,7 @@ flag1: ASCII text
 
 $ cat flag1
 TUCTF{F1L3S4R3L1K30N10NSTH3YH4V3L4Y3RS}
-```
+</pre>
 
 
 Flag: `TUCTF{F1L3S4R3L1K30N10NSTH3YH4V3L4Y3RS}`
@@ -153,11 +156,24 @@ Attachment:
 
 <br />
 ## Solution
-```Python
+<pre>
 $ file document.odt
 document.odt: OpenDocument Text
-```
+</pre>
 
+OpenOfficeがインストール済みだったので、開いてみました。
+
+OpenOffice > ツール > マクロ > マクロの管理 > OpenOffice.org Basic > 編集
+
+<pre>
+REM  *****  BASIC  *****
+
+Sub Main
+TUCTF{ST0P_TRUST1NG_M4CR0S_FR0M_4N_UNKN0WN_S0URC3}
+End Sub
+</pre>
+
+Flag: `TUCTF{ST0P_TRUST1NG_M4CR0S_FR0M_4N_UNKN0WN_S0URC3}`
 
 
 <br /><br />
@@ -165,4 +181,3 @@ document.odt: OpenDocument Text
 - - -
 <br /><br />
 <br /><br />
-

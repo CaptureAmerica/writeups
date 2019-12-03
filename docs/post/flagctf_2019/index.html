@@ -48,7 +48,7 @@
 <meta itemprop="description" content="URL: http://flagctf.com/ Packer Captureの問題があったのがよかったです。 順位が13位で一見成績が良かったように見えますけど、参加者は100人くらいでした。 Network Traffic Analysis">
 <meta itemprop="datePublished" content="2019-06-16T10:00:00&#43;09:00" />
 <meta itemprop="dateModified" content="2019-06-16T10:00:00&#43;09:00" />
-<meta itemprop="wordCount" content="1456">
+<meta itemprop="wordCount" content="1363">
 
 
 
@@ -160,19 +160,19 @@
 </div>
     <div class="post-content">
       <p>URL: <a href="http://flagctf.com/"><a href="http://flagctf.com/">http://flagctf.com/</a></a>
-<!-- raw HTML omitted --><!-- raw HTML omitted -->
+<br /><br />
 Packer Captureの問題があったのがよかったです。
-<!-- raw HTML omitted --><!-- raw HTML omitted -->
+<br /><br />
 順位が13位で一見成績が良かったように見えますけど、参加者は100人くらいでした。</p>
-<!-- raw HTML omitted -->
-<p><!-- raw HTML omitted --><!-- raw HTML omitted -->
-<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<img src="https://captureamerica.github.io/writeups/img/flagCTF_Score.png" alt="flagCTF_Score.png">
+<p><br /><br />
+<br /><br /></p>
 <h1 id="network-traffic-analysis-and-log-analysis-web-search-packet-capture-q5-30">Network Traffic Analysis and Log Analysis: Web Search Packet Capture Q5 (30)</h1>
 <hr>
 <h2 id="challenge">Challenge</h2>
 <blockquote>
 <p>The user searched for some queries more times than others. Out of all the queries which are tied for 1st place in number of times searched, which one is last alphabetically?
-<!-- raw HTML omitted --><!-- raw HTML omitted -->
+<br /><br />
 Note: your team is limited to 6 attempts on this challenge.</p>
 </blockquote>
 <p>Attachment:</p>
@@ -207,22 +207,22 @@ $ tshark -r WebSearchingFlagCTF2019.pcapng <span class="p">|</span> grep -i <spa
 </code></pre></td></tr></table>
 </div>
 </div><p>Flag: <code>ouaxyqrnjz</code></p>
-<p><!-- raw HTML omitted --></p>
-<!-- raw HTML omitted -->
+<p><br /></p>
+<div class="admonition tip"><p class="admonition-title">Tips</p>
 <p>uniq -cは、重複した行数を表示するオプションです。</p>
-<!-- raw HTML omitted -->
-<p><!-- raw HTML omitted --><!-- raw HTML omitted -->
-<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+</div>
+<p><br /><br />
+<br /><br /></p>
 <h1 id="password-cracking-cracking-1--7">Password Cracking: Cracking #1 ~ #7</h1>
 <hr>
 <h2 id="challenge1">Challenge</h2>
 <blockquote>
 <p>Agents have captured password hashes from the hackers in the black-hat group &ldquo;1337 Hax0r T3am&rdquo;. We know that they think they are 1337 but they don't like to use symbols after the words at the base of their passwords, because they heard &ldquo;Password1!&rdquo; was a bad password without understanding why. They are known to share a similar interest outside of computers, which may be reflected in their passwords. Note: some of these passwords are unlikely to be found verbatim in password cracking lists or in lists on the internet. It will be necessary to construct wordlists once you find out what the theme is, and extend the wordlists that you find to create longer sensible phrases that might be used as the base of passwords.
-<!-- raw HTML omitted --><!-- raw HTML omitted -->
+<br /><br />
 Hint: use password cracking software such as hashcat, or john the ripper, to try many possible combinations at once. without a GPU, it can be done in under 1 hour on a decent processor. Hint: start w ith lower entropy, and think how longer passwords might be constructed specific to terms in this domain (field).
-<!-- raw HTML omitted --><!-- raw HTML omitted -->
+<br /><br />
 Do not brute-force attempt against the website (here), or that will result in a ban. For this set of challenges, you should be sure when you arrived at the answer.
-<!-- raw HTML omitted --><!-- raw HTML omitted -->
+<br /><br />
 Stay tuned for the video posted at 7:30 pm ET if you're new to the process as we show how to crack the first hash in this series.</p>
 </blockquote>
 <p>以下は、Cracking #6 (50)より。</p>
@@ -231,83 +231,83 @@ Stay tuned for the video posted at 7:30 pm ET if you're new to the process as we
 After there were no solves in the sprint round, you can also crack this hash where the variation of the password contains only lowercase letters: 9cd2a2568ed7d991fb8d2eb1e7e1c7ec</p>
 </blockquote>
 <h2 id="solution1">Solution</h2>
-<p>いくつかは、rainbow tableでcrackできます。<!-- raw HTML omitted -->
+<p>いくつかは、rainbow tableでcrackできます。<br />
 <a href="https://crackstation.net/"><a href="https://crackstation.net/">https://crackstation.net/</a></a>
-<!-- raw HTML omitted -->
+<br />
 53b45bbef61cb7ed537d14b1257545d5 : chick3n
-<!-- raw HTML omitted -->
+<br />
 005d05de29487ec44cd07bd9d757d4e1 : carrot
-<!-- raw HTML omitted -->
+<br />
 2a3555ff38f17a69009fc8da52330f54 : peasandcarrots</p>
-<p><!-- raw HTML omitted -->
+<p><br />
 残り
-<!-- raw HTML omitted -->
+<br />
 ca1443c1c17cbc96d0ae8fa4bd0e2bba
-<!-- raw HTML omitted -->
+<br />
 7153a339468b43cd819123708567e3d1
-<!-- raw HTML omitted -->
+<br />
 a23b2583b0f977bf3d41ff546f67f13c
-<!-- raw HTML omitted -->
+<br />
 9cd2a2568ed7d991fb8d2eb1e7e1c7ec
-<!-- raw HTML omitted -->
+<br />
 dc098cc7aadabcffbf1264af50b33027</p>
-<p><!-- raw HTML omitted -->
+<p><br />
 すでにわかっている3つ（chick3n, carrot, peasandcarrots）より、以下の傾向がわかります。</p>
 <ul>
 <li>食べ物の単語</li>
-<li>Leetを使用<!-- raw HTML omitted -->
-<a href="https://ja.wikipedia.org/wiki/Leet"><a href="https://ja.wikipedia.org/wiki/Leet">https://ja.wikipedia.org/wiki/Leet</a></a><!-- raw HTML omitted -->
+<li>Leetを使用<br />
+<a href="https://ja.wikipedia.org/wiki/Leet"><a href="https://ja.wikipedia.org/wiki/Leet">https://ja.wikipedia.org/wiki/Leet</a></a><br />
 <a href="https://en.wikipedia.org/wiki/Leet"><a href="https://en.wikipedia.org/wiki/Leet">https://en.wikipedia.org/wiki/Leet</a></a></li>
 <li>複数形のsが付いたりする</li>
 </ul>
-<p><!-- raw HTML omitted --></p>
+<p><br /></p>
 <ol>
 <li>まず、Webから食べ物の英単語をかき集めました。
-<!-- raw HTML omitted --><!-- raw HTML omitted --></li>
+<br /><br /></li>
 <li>以下のツールを使わせてもらい、Leetのバリエーションを使って辞書を強化。
-<!-- raw HTML omitted -->
+<br />
     <a href="https://github.com/madglory/permute_wordlist"><a href="https://github.com/madglory/permute_wordlist">https://github.com/madglory/permute_wordlist</a></a>
-<!-- raw HTML omitted --><!-- raw HTML omitted --></li>
-<li>Hashcat実行。<!-- raw HTML omitted -->
+<br /><br /></li>
+<li>Hashcat実行。<br />
     $ hashcat -m 0 -a 0 hash.txt my_food_dic.txt
-<!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted -->
+<br /><br /><br />
 さっぱりダメでした。。。orz</li>
 </ol>
-<p><!-- raw HTML omitted --><!-- raw HTML omitted -->
-<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p><br /><br />
+<br /><br /></p>
 <h1 id="programming-and-algorithms-me-45">Programming and Algorithms: ME! (45)</h1>
 <hr>
 <h2 id="challenge2">Challenge</h2>
 <blockquote>
 <p>&ldquo;You can't spell &lsquo;awesome&rsquo; without &lsquo;me&rsquo;!&rdquo; &ndash; Taylor Swift/Brendon Urie, &ldquo;ME!&rdquo; (2019)
-<!-- raw HTML omitted --><!-- raw HTML omitted -->
+<br /><br />
 Even with all that you hear in pop songs these days, that is a true statement! You wonder how many words are spelled with the letters &lsquo;m&rsquo; and &lsquo;e&rsquo; in that order, but not necessarily consecutive.
-<!-- raw HTML omitted --><!-- raw HTML omitted -->
+<br /><br />
 You are given a list of words, and must determine how many satisfy this property.
-<!-- raw HTML omitted --><!-- raw HTML omitted -->
+<br /><br />
 Input format:
-<!-- raw HTML omitted --><!-- raw HTML omitted -->
+<br /><br />
 The first line contains the integer N (1 &lt;= N &lt;= 1000), the number of lines to follow. Each of the subsequent N lines contains one of the words in question. The length of each word is at most 500,000 characters. They are not guaranteed to be English words, or words in any language.
-<!-- raw HTML omitted --><!-- raw HTML omitted -->
+<br /><br />
 Output format: One line, containing the number of words that satisfy that property.
-<!-- raw HTML omitted --><!-- raw HTML omitted -->
-Example input:<!-- raw HTML omitted -->
-5<!-- raw HTML omitted -->
-awesome<!-- raw HTML omitted -->
-lime<!-- raw HTML omitted -->
-mine<!-- raw HTML omitted -->
-eminem<!-- raw HTML omitted -->
+<br /><br />
+Example input:<br />
+5<br />
+awesome<br />
+lime<br />
+mine<br />
+eminem<br />
 emotion
-<!-- raw HTML omitted --><!-- raw HTML omitted -->
-Example output:<!-- raw HTML omitted -->
+<br /><br />
+Example output:<br />
 4
-<!-- raw HTML omitted --><!-- raw HTML omitted -->
+<br /><br />
 Output description:
-<!-- raw HTML omitted --><!-- raw HTML omitted -->
+<br /><br />
 The first 4 of the 5 words given satisfy that property. The words &lsquo;awesome&rsquo; and &lsquo;me&rsquo; are clear. In &lsquo;mine&rsquo;, the letters are not consecutive, and in &lsquo;eminem&rsquo;, we can use the first &lsquo;m&rsquo; and the second &lsquo;e&rsquo;. However, the only &lsquo;e&rsquo; in the fifth word, &lsquo;emotion&rsquo; is before the &lsquo;m&rsquo;, so this does not count.
-<!-- raw HTML omitted --><!-- raw HTML omitted -->
+<br /><br />
 Flag format:
-<!-- raw HTML omitted --><!-- raw HTML omitted -->
+<br /><br />
 Submit the answers for all 5 input files in order, delimited by semicolons. For example, &ldquo;4;902;489;103;670&rdquo;.</p>
 </blockquote>
 <p>Attachment:</p>
@@ -336,22 +336,22 @@ Submit the answers for all 5 input files in order, delimited by semicolons. For 
 </code></pre></td></tr></table>
 </div>
 </div><p>Flag <code>4;957;245;0;440</code></p>
-<p><!-- raw HTML omitted --><!-- raw HTML omitted -->
-<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p><br /><br />
+<br /><br /></p>
 <h1 id="web-exploitation-exquisifax-admin-panel-40">Web Exploitation: Exquisifax Admin Panel (40)</h1>
 <hr>
 <h2 id="challenge3">Challenge</h2>
 <blockquote>
 <p>Let's go back to the Exquisifax site: http://18.217.184.75:8002/. Find a way to log in to the site, and report the flag.
-<!-- raw HTML omitted --><!-- raw HTML omitted -->
+<br /><br />
 Scope of attack: http://18.217.184.75:8002/*</p>
 </blockquote>
 <h2 id="solution3">Solution</h2>
 <p>ページにアクセスすると、3つのボックスと、Loginページへのリンクがあります。</p>
-<p>試しに、ボックスにa、b、cを入れてsubmitすると、以下のエラーが返ってきました。<!-- raw HTML omitted -->
+<p>試しに、ボックスにa、b、cを入れてsubmitすると、以下のエラーが返ってきました。<br />
 Warning: readfile(a/c/b): failed to open stream: No such file or directory in /var/www/html/display2.php on line 3</p>
-<p>こんな感じで、/var/www/html/login.phpを取りに行きます。<!-- raw HTML omitted -->
-<!-- raw HTML omitted --></p>
+<p>こんな感じで、/var/www/html/login.phpを取りに行きます。<br />
+<img src="https://captureamerica.github.io/writeups/img/login.php.png" alt="login.php.png"></p>
 <p>その後、View Page Sourceでphpの中身を見ると、adminパスワードがわかります。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -391,13 +391,13 @@ Warning: readfile(a/c/b): failed to open stream: No such file or directory in /v
 </span><span class="c1"></span><span class="cp">?&gt;</span>
 </code></pre></td></tr></table>
 </div>
-</div><p>あとは、ログインページより、ログインするだけです。<!-- raw HTML omitted --></p>
+</div><p>あとは、ログインページより、ログインするだけです。<br /></p>
 <p>Flag: <code>200aaa7c1acbd70d2b243bbdc761fc38</code></p>
-<p><!-- raw HTML omitted --><!-- raw HTML omitted -->
-<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p><br /><br />
+<br /><br /></p>
 <hr>
-<p><!-- raw HTML omitted --><!-- raw HTML omitted -->
-<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p><br /><br />
+<br /><br /></p>
 
     </div>
 

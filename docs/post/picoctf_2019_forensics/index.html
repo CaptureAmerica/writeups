@@ -48,7 +48,7 @@
 <meta itemprop="description" content="URL: https://2019game.picoctf.com/ 2週間、お疲れ様です。 最終結果は、こんな感じ。 イベント終了時点で、ユーザは4万人弱でした。 PwnとWeb系があんまりできてないけど、スコ">
 <meta itemprop="datePublished" content="2019-10-13T12:00:00&#43;09:00" />
 <meta itemprop="dateModified" content="2019-10-13T12:00:00&#43;09:00" />
-<meta itemprop="wordCount" content="1224">
+<meta itemprop="wordCount" content="1094">
 
 
 
@@ -165,27 +165,27 @@
 </div>
     <div class="post-content">
       <p>URL: <a href="https://2019game.picoctf.com/"><a href="https://2019game.picoctf.com/">https://2019game.picoctf.com/</a></a>
-<!-- raw HTML omitted --><!-- raw HTML omitted -->
+<br /><br />
 2週間、お疲れ様です。</p>
-<p><!-- raw HTML omitted --><!-- raw HTML omitted -->
+<p><br /><br />
 最終結果は、こんな感じ。</p>
-<!-- raw HTML omitted -->
-<p><!-- raw HTML omitted -->
+<img src="https://captureamerica.github.io/writeups/img/pico2019_Score.png" alt="pico2019_Score.png">
+<p><br />
 イベント終了時点で、ユーザは4万人弱でした。</p>
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
+<img src="https://captureamerica.github.io/writeups/img/pico2019_Users.png" alt="pico2019_Users.png">
+<img src="https://captureamerica.github.io/writeups/img/pico2019_Rank.png" alt="pico2019_Rank.png">
 <p>PwnとWeb系があんまりできてないけど、スコアも切りのいい20000に行ったし、Globalで目標の300位以内 (283位) にも入れたのでかなり満足です。</p>
 <p>去年出た問題に似てるものも結構あったので、picoCTF 2018をそれなりにやった人は結構アドバンテージがあったと思います。</p>
-<p><!-- raw HTML omitted --><!-- raw HTML omitted -->
+<p><br /><br />
 Forensics の Writeupです。</p>
-<p><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p><br /><br /></p>
 <h1 id="forensics-whitepages-250-points">[Forensics]: WhitePages (250 points)</h1>
 <hr>
 <h2 id="challenge">Challenge</h2>
 <blockquote>
 <p>I stopped using YellowPages and moved onto WhitePages&hellip; but the page they gave me is all blank!</p>
 </blockquote>
-<p><!-- raw HTML omitted --></p>
+<p><br /></p>
 <h2 id="solution">Solution</h2>
 <p>てっきりwhitespaceというesolangだと思ったので、少し手こずりました。</p>
 <p>あと、たぶんだけど、チャレンジが始まった頃にダウンロードしたファイルと、後日ダウンロードし直したファイルが異なってた気がします。。。</p>
@@ -193,25 +193,25 @@ Forensics の Writeupです。</p>
 <pre><code>$ xxd whitepages.txt | cut -c 10- | cut -c -40 | sed -e 's/e2//g' | sed -e 's/80//g' | sed -e 's/20/1/g' | sed -e 's/83/0/g' | tr -d &quot; \n&quot; ; echo
 00001010000010010000100101110000011010010110001101101111010000110101010001000110000010100000101000001001000010010101001101000101010001010010000001010000010101010100001001001100010010010100001100100000010100100100010101000011010011110101001001000100010100110010000000100110001000000100001001000001010000110100101101000111010100100100111101010101010011100100010000100000010100100100010101010000010011110101001001010100000010100000100100001001001101010011000000110000001100000010000001000110011011110111001001100010011001010111001100100000010000010111011001100101001011000010000001010000011010010111010001110100011100110110001001110101011100100110011101101000001011000010000001010000010000010010000000110001001101010011001000110001001100110000101000001001000010010111000001101001011000110110111101000011010101000100011001111011011011100110111101110100010111110110000101101100011011000101111101110011011100000110000101100011011001010111001101011111011000010111001001100101010111110110001101110010011001010110000101110100011001010110010001011111011001010111000101110101011000010110110001011111011000110011000100110110001101110011000000110100001100000110001100110111001100110011100001100101001110000110001001100011011000010110010100110010001100010011000000111001011001010110011000110100011000100110010100110101001110010011011000110000011000100011000101111101000010100000100100001001
 </code></pre><p>Flag: <code>picoCTF{not_all_spaces_are_created_equal_c167040c738e8bcae2109ef4be5960b1}</code></p>
-<p><!-- raw HTML omitted --><!-- raw HTML omitted -->
-<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p><br /><br />
+<br /><br /></p>
 <h1 id="forensics-c0rrupt-250-points">[Forensics]: c0rrupt (250 points)</h1>
 <hr>
 <h2 id="challenge1">Challenge</h2>
 <blockquote>
 <p>We found this file. Recover the flag.
-<!-- raw HTML omitted --><!-- raw HTML omitted -->
+<br /><br />
 Hints : Try fixing the file header</p>
 </blockquote>
 <p>Attachment:</p>
 <ul>
 <li>mystery</li>
 </ul>
-<p><!-- raw HTML omitted --></p>
+<p><br /></p>
 <h2 id="solution1">Solution</h2>
 <p>先頭の16バイトくらい直せば通るかと思いきや、結構壊れててハマりました。</p>
 <p>1番目のIDATチャンクのとこも修正が必要。</p>
-<p>CRCは、pngcsumで直しました。<!-- raw HTML omitted -->
+<p>CRCは、pngcsumで直しました。<br />
 <a href="http://schaik.com/png/pngcsum.html"><a href="http://schaik.com/png/pngcsum.html">http://schaik.com/png/pngcsum.html</a></a></p>
 <pre><code>root@kali:~/picoCTF_2019# pngcsum mystery mystery_crcfixed.png
 IHDR ( 13 ) - csum = 7c8bab78
@@ -224,8 +224,8 @@ IDAT (65524 ) - csum = 5997d200
 IDAT (6304 ) - csum = 6ff175b8
 IEND (  0 ) - csum = ae426082
 </code></pre><p>Flag: <code>picoCTF{c0rrupt10n_1847995}</code></p>
-<p><!-- raw HTML omitted --><!-- raw HTML omitted -->
-<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p><br /><br />
+<br /><br /></p>
 <h1 id="forensics-shark-on-wire-2-300-points">[Forensics]: shark on wire 2 (300 points)</h1>
 <hr>
 <h2 id="challenge2">Challenge</h2>
@@ -236,14 +236,14 @@ IEND (  0 ) - csum = ae426082
 <ul>
 <li>capture.pcap</li>
 </ul>
-<p><!-- raw HTML omitted --></p>
+<p><br /></p>
 <h2 id="solution2">Solution</h2>
 <p>udpのフローを順番に見ていくと、フラグっぽい文字列が出てきます。</p>
-<p>&ldquo;kfdsalkfsalkico{N0t_a_fLag}&ldquo;<!-- raw HTML omitted -->
-&ldquo;icoCTF{StaT31355e&quot;<!-- raw HTML omitted --></p>
-<p>あと、<!-- raw HTML omitted -->
-&ldquo;start&quot;<!-- raw HTML omitted -->
-&ldquo;end&quot;<!-- raw HTML omitted -->
+<p>&ldquo;kfdsalkfsalkico{N0t_a_fLag}&ldquo;<br />
+&ldquo;icoCTF{StaT31355e&quot;<br /></p>
+<p>あと、<br />
+&ldquo;start&quot;<br />
+&ldquo;end&quot;<br />
 というのも出てくるんですが、その間のPayloadにはフラグっぽい文字列はなかったので、最初無視してました。</p>
 <p>udp.port==8888 あたりを集中して見てたんですが、どうしてもフラグにはならなくて、その後、tcp あたりをがっつり見てそこもさっぱりフラグにならなかったので、挫けそうでした。</p>
 <p>&ldquo;start&rdquo; &ldquo;end&quot;が出てるのは (udp.port==22) で、眺めていたらSource Portが全部バラけてて、しかも文字になりそうな値になっているのに気づきました。</p>
@@ -267,16 +267,16 @@ IEND (  0 ) - csum = ae426082
 </code></pre></td></tr></table>
 </div>
 </div><p>Flag: <code>picoCTF{p1LLf3r3d_data_v1a_st3g0}</code></p>
-<p><!-- raw HTML omitted --><!-- raw HTML omitted -->
-<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p><br /><br />
+<br /><br /></p>
 <h1 id="forensics-webnet0-350-points">[Forensics]: WebNet0 (350 points)</h1>
 <hr>
 <h2 id="challenge3">Challenge</h2>
 <blockquote>
 <p>We found this packet capture and key. Recover the flag.
-<!-- raw HTML omitted --><!-- raw HTML omitted -->
-Hints :<!-- raw HTML omitted -->
-Try using a tool like Wireshark<!-- raw HTML omitted -->
+<br /><br />
+Hints :<br />
+Try using a tool like Wireshark<br />
 How can you decrypt the TLS stream?</p>
 </blockquote>
 <p>Attachment:</p>
@@ -284,21 +284,21 @@ How can you decrypt the TLS stream?</p>
 <li>capture.pcap</li>
 <li>picopico.key</li>
 </ul>
-<p><!-- raw HTML omitted --></p>
+<p><br /></p>
 <h2 id="solution3">Solution</h2>
-<p>Go to Preference -&gt; TLS -&gt; RSA key list <!-- raw HTML omitted -->
+<p>Go to Preference -&gt; TLS -&gt; RSA key list <br />
 172.31.22.220, 443, http, C:\Temp\picopico.key</p>
 <p>Flag: <code>picoCTF{nongshim.shrimp.crackers}</code></p>
-<p><!-- raw HTML omitted --><!-- raw HTML omitted -->
-<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p><br /><br />
+<br /><br /></p>
 <h1 id="forensics-webnet1-450-points">[Forensics]: WebNet1 (450 points)</h1>
 <hr>
 <h2 id="challenge4">Challenge</h2>
 <blockquote>
 <p>We found this packet capture and key. Recover the flag.
-<!-- raw HTML omitted --><!-- raw HTML omitted -->
-Hints :<!-- raw HTML omitted -->
-Try using a tool like Wireshark<!-- raw HTML omitted -->
+<br /><br />
+Hints :<br />
+Try using a tool like Wireshark<br />
 How can you decrypt the TLS stream?</p>
 </blockquote>
 <p>Attachment:</p>
@@ -306,15 +306,15 @@ How can you decrypt the TLS stream?</p>
 <li>capture.pcap</li>
 <li>picopico.key</li>
 </ul>
-<p><!-- raw HTML omitted --></p>
+<p><br /></p>
 <h2 id="solution4">Solution</h2>
 <p>復号したトラフィックから、HTTP objectを抽出し、stringsコマンドでフラグサーチ。</p>
 <p>Flag: <code>picoCTF{honey.roasted.peanuts}</code></p>
-<p><!-- raw HTML omitted --><!-- raw HTML omitted -->
-<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p><br /><br />
+<br /><br /></p>
 <hr>
-<p><!-- raw HTML omitted --><!-- raw HTML omitted -->
-<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p><br /><br />
+<br /><br /></p>
 
     </div>
 

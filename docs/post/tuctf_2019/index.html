@@ -16,7 +16,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="きゃぷあめ" /><meta name="description" content="URL: https://tuctf.com/ もうサイトにアクセスできないようなので、最終順位がわかりません。 以下、チャレンジ一覧と解いた問題です。 [Reversing]: BELEAF (50 points) Challenge tree sounds are best listened to by https://binary.ninja/demo or ghidra Attachment: beleaf" /><meta name="keywords" content="CTF, Writeup, captureamerica, picoCTF" />
+<meta name="author" content="きゃぷあめ" /><meta name="description" content="PC環境を以降したら、Hugoか、Themeがおかしなことになっちゃいました。現在、調査中です。 URL: https://tuctf.com/ もうサイトにアクセスできないようなので、" /><meta name="keywords" content="CTF, Writeup, captureamerica, picoCTF" />
 
 
 
@@ -39,22 +39,22 @@
 
 
 <meta property="og:title" content="TUCTF 2019 Writeup" />
-<meta property="og:description" content="URL: https://tuctf.com/ もうサイトにアクセスできないようなので、最終順位がわかりません。 以下、チャレンジ一覧と解いた問題です。 [Reversing]: BELEAF (50 points) Challenge tree sounds are best listened to by https://binary.ninja/demo or ghidra Attachment: beleaf" />
+<meta property="og:description" content="PC環境を以降したら、Hugoか、Themeがおかしなことになっちゃいました。現在、調査中です。 URL: https://tuctf.com/ もうサイトにアクセスできないようなので、" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://captureamerica.github.io/writeups/post/tuctf_2019/" />
 <meta property="article:published_time" content="2019-12-03T13:00:00+09:00" />
 <meta property="article:modified_time" content="2019-12-03T13:00:00+09:00" />
 <meta itemprop="name" content="TUCTF 2019 Writeup">
-<meta itemprop="description" content="URL: https://tuctf.com/ もうサイトにアクセスできないようなので、最終順位がわかりません。 以下、チャレンジ一覧と解いた問題です。 [Reversing]: BELEAF (50 points) Challenge tree sounds are best listened to by https://binary.ninja/demo or ghidra Attachment: beleaf">
+<meta itemprop="description" content="PC環境を以降したら、Hugoか、Themeがおかしなことになっちゃいました。現在、調査中です。 URL: https://tuctf.com/ もうサイトにアクセスできないようなので、">
 <meta itemprop="datePublished" content="2019-12-03T13:00:00&#43;09:00" />
 <meta itemprop="dateModified" content="2019-12-03T13:00:00&#43;09:00" />
-<meta itemprop="wordCount" content="857">
+<meta itemprop="wordCount" content="517">
 
 
 
 <meta itemprop="keywords" content="CTF," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="TUCTF 2019 Writeup"/>
-<meta name="twitter:description" content="URL: https://tuctf.com/ もうサイトにアクセスできないようなので、最終順位がわかりません。 以下、チャレンジ一覧と解いた問題です。 [Reversing]: BELEAF (50 points) Challenge tree sounds are best listened to by https://binary.ninja/demo or ghidra Attachment: beleaf"/>
+<meta name="twitter:description" content="PC環境を以降したら、Hugoか、Themeがおかしなことになっちゃいました。現在、調査中です。 URL: https://tuctf.com/ もうサイトにアクセスできないようなので、"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -140,273 +140,165 @@
     <li><a href="#challenge">Challenge</a></li>
     <li><a href="#solution">Solution</a></li>
   </ul>
+
+  <ul>
+    <li><a href="#challenge1">Challenge</a></li>
+    <li><a href="#solution1">Solution</a></li>
+  </ul>
 </nav>
   </div>
 </div>
     <div class="post-content">
-      <p>URL: <a href="https://tuctf.com/"><a href="https://tuctf.com/">https://tuctf.com/</a></a></p>
+      <h1 id="pchugotheme">PC環境を以降したら、Hugoか、Themeがおかしなことになっちゃいました。現在、調査中です。</h1>
+<p>URL: <a href="https://tuctf.com/"><a href="https://tuctf.com/">https://tuctf.com/</a></a></p>
 <p>もうサイトにアクセスできないようなので、最終順位がわかりません。</p>
 <p>以下、チャレンジ一覧と解いた問題です。</p>
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<p><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
-<h1 id="reversing-beleaf-50-points">[Reversing]: BELEAF (50 points)</h1>
+<img src="https://captureamerica.github.io/writeups/img/tuctf_chal1.png" alt="tuctf_chal1.png">
+<img src="https://captureamerica.github.io/writeups/img/tuctf_chal2.png" alt="tuctf_chal2.png">
+<br /><br />
+<p><br /><br /></p>
+<h1 id="misc-onions">[Misc]: Onions</h1>
 <hr>
 <h2 id="challenge">Challenge</h2>
 <blockquote>
-<p>tree sounds are best listened to by <a href="https://binary.ninja/demo">https://binary.ninja/demo</a> or ghidra</p>
+<p>Ogres are like files &ndash; they have layers!</p>
 </blockquote>
 <p>Attachment:</p>
 <ul>
-<li>beleaf (64-bit ELF)</li>
+<li>shrek.jpg</li>
 </ul>
-<p><!-- raw HTML omitted --></p>
+<p><br /></p>
 <h2 id="solution">Solution</h2>
-<p>言われた通り、Ghidraでデコンパイルします。</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span><span class="lnt">18
-</span><span class="lnt">19
-</span><span class="lnt">20
-</span><span class="lnt">21
-</span><span class="lnt">22
-</span><span class="lnt">23
-</span><span class="lnt">24
-</span><span class="lnt">25
-</span><span class="lnt">26
-</span><span class="lnt">27
-</span><span class="lnt">28
-</span><span class="lnt">29
-</span><span class="lnt">30
-</span><span class="lnt">31
-</span><span class="lnt">32
-</span><span class="lnt">33
-</span><span class="lnt">34
-</span><span class="lnt">35
-</span><span class="lnt">36
-</span><span class="lnt">37
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-C" data-lang="C">
-<span class="n">undefined8</span> <span class="nf">FUN_001008a1</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<p>シュレックのJPEG画像です。著作権は大丈夫なんでしょうか。</p>
+<p>foremostではなにも取れなかったので、binwalkから始めます。</p>
+<p>binwalk -e でもextractされなかったので、&ndash;ddを使いました。</p>
+<pre>
+$ binwalk -e shrek.jpg
 
-<span class="p">{</span>
-  <span class="n">size_t</span> <span class="n">sVar1</span><span class="p">;</span>
-  <span class="kt">long</span> <span class="n">lVar2</span><span class="p">;</span>
-  <span class="kt">long</span> <span class="n">in_FS_OFFSET</span><span class="p">;</span>
-  <span class="n">ulong</span> <span class="n">local_b0</span><span class="p">;</span>
-  <span class="kt">char</span> <span class="n">local_98</span> <span class="p">[</span><span class="mi">136</span><span class="p">]</span><span class="p">;</span>
-  <span class="kt">long</span> <span class="n">local_10</span><span class="p">;</span>
-  
-  <span class="n">local_10</span> <span class="o">=</span> <span class="o">*</span><span class="p">(</span><span class="kt">long</span> <span class="o">*</span><span class="p">)</span><span class="p">(</span><span class="n">in_FS_OFFSET</span> <span class="o">+</span> <span class="mh">0x28</span><span class="p">)</span><span class="p">;</span>
-  <span class="n">printf</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">Enter the flag</span><span class="se">\n</span><span class="s">&gt;&gt;&gt; </span><span class="s">&#34;</span><span class="p">)</span><span class="p">;</span>
-  <span class="n">__isoc99_scanf</span><span class="p">(</span><span class="o">&amp;</span><span class="n">DAT_00100a78</span><span class="p">,</span><span class="n">local_98</span><span class="p">)</span><span class="p">;</span>
-  <span class="n">sVar1</span> <span class="o">=</span> <span class="n">strlen</span><span class="p">(</span><span class="n">local_98</span><span class="p">)</span><span class="p">;</span>
-  <span class="k">if</span> <span class="p">(</span><span class="n">sVar1</span> <span class="o">&lt;</span> <span class="mh">0x21</span><span class="p">)</span> <span class="p">{</span>
-    <span class="n">puts</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">Incorrect!</span><span class="s">&#34;</span><span class="p">)</span><span class="p">;</span>
-                    <span class="cm">/* WARNING: Subroutine does not return */</span>
-    <span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="p">;</span>
-  <span class="p">}</span>
-  <span class="n">local_b0</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-  <span class="k">while</span> <span class="p">(</span><span class="n">local_b0</span> <span class="o">&lt;</span> <span class="n">sVar1</span><span class="p">)</span> <span class="p">{</span>
-    <span class="n">lVar2</span> <span class="o">=</span> <span class="n">FUN_001007fa</span><span class="p">(</span><span class="p">(</span><span class="n">ulong</span><span class="p">)</span><span class="p">(</span><span class="n">uint</span><span class="p">)</span><span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="n">local_98</span><span class="p">[</span><span class="n">local_b0</span><span class="p">]</span><span class="p">)</span><span class="p">;</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">lVar2</span> <span class="o">!</span><span class="o">=</span> <span class="o">*</span><span class="p">(</span><span class="kt">long</span> <span class="o">*</span><span class="p">)</span><span class="p">(</span><span class="o">&amp;</span><span class="n">DAT_003014e0</span> <span class="o">+</span> <span class="n">local_b0</span> <span class="o">*</span> <span class="mi">8</span><span class="p">)</span><span class="p">)</span> <span class="p">{</span>
-      <span class="n">puts</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">Incorrect!</span><span class="s">&#34;</span><span class="p">)</span><span class="p">;</span>
-                    <span class="cm">/* WARNING: Subroutine does not return */</span>
-      <span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="p">;</span>
-    <span class="p">}</span>
-    <span class="n">local_b0</span> <span class="o">=</span> <span class="n">local_b0</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
-  <span class="p">}</span>
-  <span class="n">puts</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">Correct!</span><span class="s">&#34;</span><span class="p">)</span><span class="p">;</span>
-  <span class="k">if</span> <span class="p">(</span><span class="n">local_10</span> <span class="o">!</span><span class="o">=</span> <span class="o">*</span><span class="p">(</span><span class="kt">long</span> <span class="o">*</span><span class="p">)</span><span class="p">(</span><span class="n">in_FS_OFFSET</span> <span class="o">+</span> <span class="mh">0x28</span><span class="p">)</span><span class="p">)</span> <span class="p">{</span>
-                    <span class="cm">/* WARNING: Subroutine does not return */</span>
-    <span class="n">__stack_chk_fail</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
-  <span class="p">}</span>
-  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
-</div>
-</div><div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span><span class="lnt">18
-</span><span class="lnt">19
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-C" data-lang="C">
-<span class="kt">long</span> <span class="nf">FUN_001007fa</span><span class="p">(</span><span class="kt">char</span> <span class="n">cParm1</span><span class="p">)</span>
+DECIMAL       HEXADECIMAL     DESCRIPTION
+--------------------------------------------------------------------------------
+0             0x0             JPEG image data, JFIF standard 1.01
+275566        0x4346E         7-zip archive data, version 0.4
 
-<span class="p">{</span>
-  <span class="kt">long</span> <span class="n">local_10</span><span class="p">;</span>
-  
-  <span class="n">local_10</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-  <span class="k">while</span> <span class="p">(</span><span class="p">(</span><span class="n">local_10</span> <span class="o">!</span><span class="o">=</span> <span class="o">-</span><span class="mi">1</span> <span class="o">&amp;</span><span class="o">&amp;</span> <span class="p">(</span><span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="n">cParm1</span> <span class="o">!</span><span class="o">=</span> <span class="o">*</span><span class="p">(</span><span class="kt">int</span> <span class="o">*</span><span class="p">)</span><span class="p">(</span><span class="o">&amp;</span><span class="n">DAT_00301020</span> <span class="o">+</span> <span class="n">local_10</span> <span class="o">*</span> <span class="mi">4</span><span class="p">)</span><span class="p">)</span><span class="p">)</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">if</span> <span class="p">(</span><span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="n">cParm1</span> <span class="o">&lt;</span> <span class="o">*</span><span class="p">(</span><span class="kt">int</span> <span class="o">*</span><span class="p">)</span><span class="p">(</span><span class="o">&amp;</span><span class="n">DAT_00301020</span> <span class="o">+</span> <span class="n">local_10</span> <span class="o">*</span> <span class="mi">4</span><span class="p">)</span><span class="p">)</span> <span class="p">{</span>
-      <span class="n">local_10</span> <span class="o">=</span> <span class="n">local_10</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
-    <span class="p">}</span>
-    <span class="k">else</span> <span class="p">{</span>
-      <span class="k">if</span> <span class="p">(</span><span class="o">*</span><span class="p">(</span><span class="kt">int</span> <span class="o">*</span><span class="p">)</span><span class="p">(</span><span class="o">&amp;</span><span class="n">DAT_00301020</span> <span class="o">+</span> <span class="n">local_10</span> <span class="o">*</span> <span class="mi">4</span><span class="p">)</span> <span class="o">&lt;</span> <span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="n">cParm1</span><span class="p">)</span> <span class="p">{</span>
-        <span class="n">local_10</span> <span class="o">=</span> <span class="p">(</span><span class="n">local_10</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="mi">2</span><span class="p">;</span>
-      <span class="p">}</span>
-    <span class="p">}</span>
-  <span class="p">}</span>
-  <span class="k">return</span> <span class="n">local_10</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
-</div>
-</div><p><!-- raw HTML omitted -->
-上記の関数内で参照しているDAT_003014e0とDAT_00301020には、比較用のデータが入ってます。</p>
-<p>こんな感じ。（抜粋）</p>
-<pre><code>                             DAT_003014e0                                    XREF[2]:     FUN_001008a1:0010096b(*), 
-                                                                                          FUN_001008a1:00100972(R)  
-        003014e0 01              ??         01h
-        003014e1 00              ??         00h
-        003014e2 00              ??         00h
-        003014e3 00              ??         00h
-        003014e4 00              ??         00h
-        003014e5 00              ??         00h
-        003014e6 00              ??         00h
-        003014e7 00              ??         00h
-        003014e8 09              ??         09h
-        003014e9 00              ??         00h
-        003014ea 00              ??         00h
-        003014eb 00              ??         00h
-</code></pre><p><!-- raw HTML omitted -->
-入力文字列の長さチェックは0x21で、後は比較データにマッチすればOK。</p>
-<p>ここからが解法です。</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span><span class="lnt">18
-</span><span class="lnt">19
-</span><span class="lnt">20
-</span><span class="lnt">21
-</span><span class="lnt">22
-</span><span class="lnt">23
-</span><span class="lnt">24
-</span><span class="lnt">25
-</span><span class="lnt">26
-</span><span class="lnt">27
-</span><span class="lnt">28
-</span><span class="lnt">29
-</span><span class="lnt">30
-</span><span class="lnt">31
-</span><span class="lnt">32
-</span><span class="lnt">33
-</span><span class="lnt">34
-</span><span class="lnt">35
-</span><span class="lnt">36
-</span><span class="lnt">37
-</span><span class="lnt">38
-</span><span class="lnt">39
-</span><span class="lnt">40
-</span><span class="lnt">41
-</span><span class="lnt">42
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-C" data-lang="C"><span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
-</span><span class="cp"></span><span class="cp">#</span><span class="cp">define FLAG_LEN 33</span><span class="cp">
-</span><span class="cp"></span>
-<span class="kt">char</span> <span class="n">letter1</span><span class="p">[</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="mh">0x77</span><span class="p">,</span> <span class="mh">0x66</span><span class="p">,</span> <span class="mh">0x7B</span><span class="p">,</span> <span class="mh">0x5F</span><span class="p">,</span> <span class="mh">0x6E</span><span class="p">,</span> <span class="mh">0x79</span><span class="p">,</span> <span class="mh">0x7D</span><span class="p">,</span> <span class="mh">0xFF</span><span class="p">,</span> <span class="mh">0x62</span><span class="p">,</span> <span class="mh">0x6C</span><span class="p">,</span> <span class="mh">0x72</span><span class="p">,</span> <span class="mh">0xFF</span><span class="p">,</span> <span class="mh">0xFF</span><span class="p">,</span> <span class="mh">0xFF</span><span class="p">,</span> <span class="mh">0xFF</span><span class="p">,</span> <span class="mh">0xFF</span><span class="p">,</span> <span class="mh">0xFF</span><span class="p">,</span> <span class="mh">0x61</span><span class="p">,</span> <span class="mh">0x65</span><span class="p">,</span> <span class="mh">0x69</span><span class="p">,</span> <span class="mh">0xFF</span><span class="p">,</span> <span class="mh">0x6F</span><span class="p">,</span> <span class="mh">0x74</span><span class="p">,</span> <span class="mh">0xFF</span><span class="p">,</span> <span class="mh">0xFF</span><span class="p">,</span> <span class="mh">0xFF</span><span class="p">,</span> <span class="mh">0xFF</span><span class="p">,</span> <span class="mh">0xFF</span><span class="p">,</span> <span class="mh">0xFF</span><span class="p">,</span> <span class="mh">0xFF</span><span class="p">,</span> <span class="mh">0xFF</span><span class="p">,</span> <span class="mh">0xFF</span><span class="p">,</span> <span class="mh">0xFF</span><span class="p">}</span><span class="p">;</span>
-<span class="kt">char</span> <span class="n">position1</span><span class="p">[</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="mh">0x01</span><span class="p">,</span> <span class="mh">0x09</span><span class="p">,</span> <span class="mh">0x11</span><span class="p">,</span> <span class="mh">0x27</span><span class="p">,</span> <span class="mh">0x02</span><span class="p">,</span> <span class="mh">0x00</span><span class="p">,</span> <span class="mh">0x12</span><span class="p">,</span> <span class="mh">0x03</span><span class="p">,</span> <span class="mh">0x08</span><span class="p">,</span> <span class="mh">0x12</span><span class="p">,</span> <span class="mh">0x09</span><span class="p">,</span> <span class="mh">0x12</span><span class="p">,</span> <span class="mh">0x11</span><span class="p">,</span> <span class="mh">0x01</span><span class="p">,</span> <span class="mh">0x03</span><span class="p">,</span> <span class="mh">0x13</span><span class="p">,</span> <span class="mh">0x04</span><span class="p">,</span> <span class="mh">0x03</span><span class="p">,</span> <span class="mh">0x05</span><span class="p">,</span> <span class="mh">0x15</span><span class="p">,</span> <span class="mh">0x2E</span><span class="p">,</span> <span class="mh">0x0A</span><span class="p">,</span> <span class="mh">0x03</span><span class="p">,</span> <span class="mh">0x0A</span><span class="p">,</span> <span class="mh">0x12</span><span class="p">,</span> <span class="mh">0x03</span><span class="p">,</span> <span class="mh">0x01</span><span class="p">,</span> <span class="mh">0x2E</span><span class="p">,</span> <span class="mh">0x16</span><span class="p">,</span> <span class="mh">0x2E</span><span class="p">,</span> <span class="mh">0x0A</span><span class="p">,</span> <span class="mh">0x12</span><span class="p">,</span> <span class="mh">0x06</span><span class="p">}</span><span class="p">;</span>
 
-<span class="kt">int</span> <span class="nf">sub</span><span class="p">(</span> <span class="kt">char</span> <span class="n">c</span> <span class="p">)</span>
-<span class="p">{</span>
-	<span class="kt">int</span> <span class="n">pos</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+$ binwalk --dd='.*' shrek.jpg
 
-	<span class="k">while</span> <span class="p">(</span> <span class="n">pos</span> <span class="o">!</span><span class="o">=</span> <span class="mh">0xFF</span> <span class="p">)</span> <span class="p">{</span>
-		<span class="k">if</span> <span class="p">(</span> <span class="n">c</span> <span class="o">&lt;</span> <span class="n">letter1</span><span class="p">[</span><span class="n">pos</span><span class="p">]</span> <span class="p">)</span> <span class="p">{</span>
-			<span class="n">pos</span> <span class="o">=</span> <span class="n">pos</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
-		<span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span> <span class="n">c</span> <span class="o">&gt;</span> <span class="n">letter1</span><span class="p">[</span><span class="n">pos</span><span class="p">]</span> <span class="p">)</span> <span class="p">{</span>
-			<span class="n">pos</span> <span class="o">=</span> <span class="p">(</span> <span class="n">pos</span> <span class="o">+</span> <span class="mi">1</span> <span class="p">)</span> <span class="o">*</span> <span class="mi">2</span><span class="p">;</span>
-		<span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span> <span class="n">c</span> <span class="o">=</span><span class="o">=</span> <span class="n">letter1</span><span class="p">[</span><span class="n">pos</span><span class="p">]</span> <span class="p">)</span> <span class="p">{</span>
-			<span class="k">break</span><span class="p">;</span>
-		<span class="p">}</span>
-		<span class="c1">// Segmentation Fault対策
-</span><span class="c1"></span>		<span class="k">if</span> <span class="p">(</span> <span class="n">pos</span> <span class="o">&gt;</span> <span class="n">FLAG_LEN</span> <span class="p">)</span>
-			<span class="k">break</span><span class="p">;</span>
-	<span class="p">}</span>
-	<span class="k">return</span> <span class="n">pos</span><span class="p">;</span>
-<span class="p">}</span>
+DECIMAL       HEXADECIMAL     DESCRIPTION
+--------------------------------------------------------------------------------
+0             0x0             JPEG image data, JFIF standard 1.01
+275566        0x4346E         7-zip archive data, version 0.4
 
-<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="p">)</span>
-<span class="p">{</span>
-	<span class="kt">int</span> <span class="n">i</span><span class="p">,</span> <span class="n">pos</span><span class="p">;</span>
-	<span class="kt">char</span> <span class="n">c</span><span class="p">;</span>
-	
-	<span class="k">for</span> <span class="p">(</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">pos</span> <span class="o">=</span> <span class="mi">0</span> <span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">FLAG_LEN</span> <span class="p">;</span> <span class="n">i</span><span class="o">+</span><span class="o">+</span> <span class="p">)</span> <span class="p">{</span>
-		<span class="k">for</span> <span class="p">(</span> <span class="n">c</span> <span class="o">=</span> <span class="mh">0x20</span> <span class="p">;</span> <span class="n">c</span> <span class="o">&lt;</span><span class="o">=</span> <span class="mh">0x7e</span> <span class="p">;</span> <span class="n">c</span><span class="o">+</span><span class="o">+</span> <span class="p">)</span> <span class="p">{</span>
-			<span class="n">pos</span> <span class="o">=</span> <span class="n">sub</span><span class="p">(</span> <span class="n">c</span> <span class="p">)</span><span class="p">;</span>
-			<span class="k">if</span> <span class="p">(</span> <span class="n">pos</span> <span class="o">=</span><span class="o">=</span> <span class="n">position1</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="p">)</span> <span class="p">{</span>
-				<span class="n">printf</span><span class="p">(</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">%c</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">c</span> <span class="p">)</span><span class="p">;</span>
-				<span class="k">break</span><span class="p">;</span>
-			<span class="p">}</span>
-		<span class="p">}</span>
-	<span class="p">}</span>
-	<span class="n">puts</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">&#34;</span><span class="p">)</span><span class="p">;</span>
-	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
-</div>
-</div><p>ほぼ、ghidraのコードのままですけど、文字をBrute Forceを追加してて、その際にハズレ文字だとposが範囲外になってSegmentation Faultになるので、posの範囲チェックも入れてます。</p>
-<p>実行結果：</p>
-<pre><code>$ ./beleaf_solve.o 
-flag{we_beleaf_in_your_re_future}
-</code></pre><p>Flag: <code>flag{we_beleaf_in_your_re_future}</code></p>
-<p><!-- raw HTML omitted --><!-- raw HTML omitted -->
-<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+
+$ cd _shrek.jpg.extracted/
+
+$ ll
+total 284
+drwxrwxr-x 2 pan pan   4096 Dec  1 17:14 ./
+drwxrwxr-x 3 pan pan   4096 Dec  1 17:14 ../
+-rw-rw-r-- 1 pan pan 276104 Dec  1 17:14 0
+-rw-rw-r-- 1 pan pan    538 Dec  1 17:14 4346E
+
+$ file 0
+0: JPEG image data, JFIF standard 1.01, aspect ratio, density 1x1, segment length 16, comment: "CREATOR: gd-jpeg v1.0 (using IJG JPEG v62), default quality", baseline, precision 8, 2048x1234, frames 3
+
+$ file 4346E
+4346E: 7-zip archive data, version 0.4
+
+$ 7z x 4346E
+7-Zip [64] 16.02 : Copyright (c) 1999-2016 Igor Pavlov : 2016-05-21
+p7zip Version 16.02 (locale=en_US.UTF-8,Utf16=on,HugeFiles=on,64 bits,1 CPU Intel(R) Core(TM) i5-3230M CPU @ 2.60GHz (306A9),ASM,AES-NI)
+
+Scanning the drive for archives:
+1 file, 538 bytes (1 KiB)
+
+Extracting archive: 4346E
+--
+Path = 4346E
+Type = 7z
+Physical Size = 538
+Headers Size = 130
+Method = LZMA2:12
+Solid = -
+Blocks = 1
+
+Everything is Ok
+
+Size:       428
+Compressed: 538
+
+$ tar zxvf flag.tar.gz
+flag.cpio
+
+$ cpio -idv < flag.cpio
+flag.lzma
+1 block
+
+$ unlzma flag.lzma
+
+$ file flag
+flag: current ar archive
+
+$ ar -x flag
+
+$ file flag1.txt
+flag1.txt: bzip2 compressed data, block size = 900k
+
+$ bunzip2 -d flag1.txt
+bunzip2: Can't guess original name for flag1.txt -- using flag1.txt.out
+
+$ file flag1.txt.out
+flag1.txt.out: XZ compressed data
+
+$ xz -dv flag1.txt.out
+flag1.txt.out (1/1)
+xz: flag1.txt.out: Filename has an unknown suffix, skipping
+
+$ mv flag1.txt.out flag1.xz
+
+$ xz -dv flag1.xz
+flag1.xz (1/1)
+  100 %                 96 B / 40 B = 2.400
+
+$ file flag1
+flag1: ASCII text
+
+$ cat flag1
+TUCTF{F1L3S4R3L1K30N10NSTH3YH4V3L4Y3RS}
+</pre>
+<p>Flag: <code>TUCTF{F1L3S4R3L1K30N10NSTH3YH4V3L4Y3RS}</code></p>
+<p><br><br>
+<br><br></p>
+<h1 id="misc-super-secret">[Misc]: Super Secret</h1>
 <hr>
-<p><!-- raw HTML omitted --><!-- raw HTML omitted -->
-<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h2 id="challenge1">Challenge</h2>
+<blockquote>
+<p>Something's blocking my flag from this file&hellip;</p>
+</blockquote>
+<p>Attachment:</p>
+<ul>
+<li>document.odt</li>
+</ul>
+<p><br /></p>
+<h2 id="solution1">Solution</h2>
+<pre>
+$ file document.odt
+document.odt: OpenDocument Text
+</pre>
+<p>OpenOfficeがインストール済みだったので、開いてみました。</p>
+<p>OpenOffice &gt; ツール &gt; マクロ &gt; マクロの管理 &gt; OpenOffice.org Basic &gt; 編集</p>
+<pre>
+REM  *****  BASIC  *****
+
+Sub Main
+TUCTF{ST0P_TRUST1NG_M4CR0S_FR0M_4N_UNKN0WN_S0URC3}
+End Sub
+</pre>
+<p>Flag: <code>TUCTF{ST0P_TRUST1NG_M4CR0S_FR0M_4N_UNKN0WN_S0URC3}</code></p>
+<p><br /><br />
+<br /><br /></p>
+<hr>
+<p><br /><br />
+<br /><br /></p>
 
     </div>
 

@@ -48,7 +48,7 @@
 <meta itemprop="description" content="URL: https://www.hackerrank.com/codefest19-ctf 問題数は10問（WelcomeとSurveyを除く）あって、そのうちの1問（Mail capture）は添付ファイルにフラグがそのまま入っ">
 <meta itemprop="datePublished" content="2019-08-25T15:00:00&#43;09:00" />
 <meta itemprop="dateModified" content="2019-08-29T23:00:00&#43;09:00" />
-<meta itemprop="wordCount" content="1946">
+<meta itemprop="wordCount" content="2240">
 
 
 
@@ -170,26 +170,26 @@
 </div>
     <div class="post-content">
       <p>URL: <a href="https://www.hackerrank.com/codefest19-ctf"><a href="https://www.hackerrank.com/codefest19-ctf">https://www.hackerrank.com/codefest19-ctf</a></a>
-<!-- raw HTML omitted --><!-- raw HTML omitted -->
+<br /><br />
 問題数は10問（WelcomeとSurveyを除く）あって、そのうちの1問（Mail capture）は添付ファイルにフラグがそのまま入っているという（おそらく）手違いがあり、実質9問だけでした。
-<!-- raw HTML omitted --><!-- raw HTML omitted -->
+<br /><br />
 その9問中の1問を解きました。
-<!-- raw HTML omitted --><!-- raw HTML omitted -->
+<br /><br />
 （後日、残りの問題の復習もやりました。）</p>
-<p><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p><br /><br /></p>
 <h1 id="reversing-linux-re-2">Reversing: Linux RE 2</h1>
 <hr>
 <h2 id="challenge">Challenge</h2>
 <blockquote>
 <p>You are given yet another ELF file. Reverse it to find the flag. The password is the flag.
-<!-- raw HTML omitted --><!-- raw HTML omitted -->
+<br /><br />
 Update: The flag contains only alphabets, numbers and underscore.</p>
 </blockquote>
 <p>Attachment:</p>
 <ul>
 <li>chall2</li>
 </ul>
-<p><!-- raw HTML omitted --></p>
+<p><br /></p>
 <h2 id="solution">Solution</h2>
 <p>Ghidraでデコンパイルします。</p>
 <div class="highlight"><div class="chroma">
@@ -524,32 +524,55 @@ Update: The flag contains only alphabets, numbers and underscore.</p>
 <p>他のローカル変数を上書きするのを期待してるようなコードです。</p>
 <p>入力文字列（パスワード）の長さは、23（0x17）文字です。</p>
 <p>if文もそんなに複雑ではないので、順番にパズルを解いていく感じで簡単に解けます。</p>
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
+<pre>
+local_78: s
+local_77: h
+local_76: o
+local_75: u
+local_74: l
+local_73は、local_71-1: d
+local_72はlocal_75(u)+1なので: v
+local_71: e
+local_70: _
+local_6fはlocal_6e+2: u
+local_6eはlocal_6c^0x17: s
+local_6dはlocal_6c+1: e
+local_6cは100なので、: d
+local_6b: _
+local_6aは、local_67^0x16: s
+local_69はlocal_68+2: o
+local_68: m
+local_67はlocal_68-8: e
+local_66: _
+local_65は^local_63が0x1b: t
+local_64はlocal_62(l)+3: o
+local_63はlocal_64と同じ: o (111)
+local_62: l
+</pre>
 <p>Flag: <code>CodefestCTF{shouldve_used_some_tool}</code></p>
-<p><!-- raw HTML omitted --><!-- raw HTML omitted -->
-<!-- raw HTML omitted --><!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
+<p><br /><br />
+<br /><br />
+<img src="https://captureamerica.github.io/writeups/img/orange_bar.png" alt="orange_bar.png">
+<br />
 ここから下はCTF終了後に行った復習です。他の方のWriteupを参照しました。
-<!-- raw HTML omitted --><!-- raw HTML omitted -->
+<br /><br />
 何気にいろいろと勉強になりました。
-<!-- raw HTML omitted --><!-- raw HTML omitted -->
-<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<br /><br />
+<br /><br /></p>
 <h1 id="what-language-is-this">What language is this?</h1>
 <hr>
 <h2 id="challenge1">Challenge</h2>
 <blockquote>
 <p>Decode this piece of text that Alice got from a friend of hers.
-<!-- raw HTML omitted --><!-- raw HTML omitted -->
+<br /><br />
 iiisdsiiioiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiodddddddddddoioiodoiiiiiiiiiiiiiioiodddddddddddddddddddddddddddddddddddddddddddddddddoiiiiiiiiiiiiiiiiioddddddddddddddoiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiioddddddddddddddddddddddddddddddddddddoiiiiiiiiiiiiiioiiiiiiiodddddddddodddddddddddddddddddddddddddddddddddddddddddddddddddoddddddddddddddddddddddddddddddddddddddsiiiiiiiiioddddddddoddddddoiiiiiiiiiiiiiiiiiiiiioddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddoddddddddddddddddddddddddddddddddsiiisisdddddoddddddddddddddddddddddddddddodddddddddddddddddddoddddddddddddddddddddddddddddddddsiiisisoioiodoiiiiiiiiiiiiiioiodddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddoiiiiiiiioddddddddddddddddddddddddddddddddddddddddddddddsiiiio</p>
 </blockquote>
-<p><!-- raw HTML omitted --></p>
+<p><br /></p>
 <h2 id="solution1">Solution</h2>
 <p>i, s, d, oの4文字を使ったesolangだろうということで、いろいろググったんですが、何なのかわかんなかったんですよね。</p>
 <p>deadfishというやつらしいです。覚えておきます。</p>
-<p><!-- raw HTML omitted --><!-- raw HTML omitted -->
-<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p><br /><br />
+<br /><br /></p>
 <h1 id="gibberish-file">Gibberish file</h1>
 <hr>
 <h2 id="challenge2">Challenge</h2>
@@ -560,11 +583,11 @@ iiisdsiiioiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiodddddddddddoioiodoiiiiiii
 <ul>
 <li>output.txt (weird_file.zip)</li>
 </ul>
-<p><!-- raw HTML omitted --></p>
+<p><br /></p>
 <h2 id="solution2">Solution</h2>
 <p>&ldquo;Reverse it&rdquo; を、&ldquo;データを反転せよ&rdquo; と解釈するのがミソ。そういう発想が大事なのがわかりました。</p>
-<p><!-- raw HTML omitted --><!-- raw HTML omitted -->
-<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p><br /><br />
+<br /><br /></p>
 <h1 id="image-corruption">Image Corruption</h1>
 <hr>
 <h2 id="challenge3">Challenge</h2>
@@ -575,7 +598,7 @@ iiisdsiiioiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiodddddddddddoioiodoiiiiiii
 <ul>
 <li>image.bmp</li>
 </ul>
-<p><!-- raw HTML omitted --></p>
+<p><br /></p>
 <h2 id="solution3">Solution</h2>
 <p>このファイル、一部バイナリだけど、ほとんどテキストでmatrixmatrixmatrixがいっぱい出てくるところまでは見れていたんですが、そこからXORしようという発想がなかったです。</p>
 <p>一応、コードはそれなりに自分で書いてみました。</p>
@@ -623,8 +646,8 @@ iiisdsiiioiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiodddddddddddoioiodoiiiiiii
 <span class="n">outfile</span><span class="o">.</span><span class="n">close</span><span class="p">(</span><span class="p">)</span>
 </code></pre></td></tr></table>
 </div>
-</div><p><!-- raw HTML omitted --><!-- raw HTML omitted -->
-<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+</div><p><br /><br />
+<br /><br /></p>
 <h1 id="mail-capture">Mail capture</h1>
 <hr>
 <h2 id="challenge4">Challenge</h2>
@@ -640,12 +663,12 @@ begin 664 flag_encoded
 E0V]D969E&lt;W1#5$9[-V@Q-5\Q-5\T7V,P,#%?,VYC,&amp;0Q;CE]&quot;@``
 `
 end
-</code></pre><p><!-- raw HTML omitted --></p>
+</code></pre><p><br /></p>
 <h2 id="solution4">Solution</h2>
 <p>$ uudecode encoded_file</p>
 <p>これもちゃんと覚えておきます。</p>
-<p><!-- raw HTML omitted --><!-- raw HTML omitted -->
-<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p><br /><br />
+<br /><br /></p>
 <h1 id="cats-are-innocent-right">Cats are innocent, right?</h1>
 <hr>
 <h2 id="challenge5">Challenge</h2>
@@ -656,12 +679,12 @@ end
 <ul>
 <li>cute_kittens.jpg</li>
 </ul>
-<p><!-- raw HTML omitted --></p>
+<p><br /></p>
 <h2 id="solution5">Solution</h2>
 <p>この問題だけSuccess Rateがダントツに低いんです（4.76%）。みんな解けなかったみたいですね。</p>
 <p><a href="https://github.com/DimitarPetrov/stegify">stegify</a>というツールと使って解くそうです。</p>
 <p>それ以外の解き方はないのかなぁ。。</p>
-<p><!-- raw HTML omitted -->
+<p><br />
 しかも、出力されたZipにはDecoyが入っているし。</p>
 <p>Zipを解凍せずにバイナリで見るとか、面白いと思いました。</p>
 <pre><code>root@kali:~/Codefest_CTF_2019# stegify -op decode -carrier cute_kittens.jpg -result hello
@@ -707,11 +730,11 @@ root@kali:~/Codefest_CTF_2019# xxd hello
 000000a0: 6831 6431 6e67 5f62 3368 316e 645f 316e  h1d1ng_b3h1nd_1n
 000000b0: 6e30 6333 6e74 5f6b 3174 7433 6e35 7d0a  n0c3nt_k1tt3n5}.
 </code></pre><p>stegifyは、これからのCTFで使っていこうと思います。</p>
-<p><!-- raw HTML omitted --><!-- raw HTML omitted -->
-<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p><br /><br />
+<br /><br /></p>
 <hr>
-<p><!-- raw HTML omitted --><!-- raw HTML omitted -->
-<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p><br /><br />
+<br /><br /></p>
 
     </div>
 

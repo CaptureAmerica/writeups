@@ -48,7 +48,7 @@
 <meta itemprop="description" content="URL: https://cryptixctf.com/challenges 上位に賞金が出るやつでしたけど、参加者が300チーム弱と、意外と狙い目のCTFだったかもです。 ただし、全問正解しないとダメですけどね。 [Forensics]:">
 <meta itemprop="datePublished" content="2019-10-14T17:00:00&#43;09:00" />
 <meta itemprop="dateModified" content="2019-10-14T17:00:00&#43;09:00" />
-<meta itemprop="wordCount" content="1185">
+<meta itemprop="wordCount" content="1429">
 
 
 
@@ -155,11 +155,11 @@
 </div>
     <div class="post-content">
       <p>URL: <a href="https://cryptixctf.com/challenges"><a href="https://cryptixctf.com/challenges">https://cryptixctf.com/challenges</a></a>
-<!-- raw HTML omitted --><!-- raw HTML omitted -->
+<br /><br />
 上位に賞金が出るやつでしたけど、参加者が300チーム弱と、意外と狙い目のCTFだったかもです。</p>
 <p>ただし、全問正解しないとダメですけどね。</p>
-<!-- raw HTML omitted -->
-<p><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<img src="https://captureamerica.github.io/writeups/img/cryptix_Score.png" alt="cryptix_Score.png">
+<p><br /><br /></p>
 <h1 id="forensics-hidden-deep-within-400-points">[Forensics]: Hidden deep within (400 points)</h1>
 <hr>
 <h2 id="challenge">Challenge</h2>
@@ -170,21 +170,21 @@
 <ul>
 <li>useless.png</li>
 </ul>
-<p><!-- raw HTML omitted --></p>
+<p><br /></p>
 <h2 id="solution">Solution</h2>
 <p>「青い空を見上げればいつもそこに白い猫」でLSB立てたらPNGのヘッダが見えたので、バイナリデータ保存したところ、&ldquo;flag{Haha_fake_flag}&rdquo; と書かれたPNGファイルになりました。</p>
 <p>そのPNGに対してZstegかけたらフラグが取れました。</p>
 <p>Flag: <code>flag{st3g4n0gr4phy_i5_34sy}</code></p>
-<p><!-- raw HTML omitted --><!-- raw HTML omitted -->
-<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p><br /><br />
+<br /><br /></p>
 <h1 id="web-your-id-please">[Web]: Your ID please</h1>
 <hr>
 <h2 id="challenge1">Challenge</h2>
 <blockquote>
-<p>This is super secure, confidential research. You are just not meant to access it. Don't even try, it's futile.<!-- raw HTML omitted -->
-Okay, you don't believe me? have the source code too!<!-- raw HTML omitted -->
-<a href="https://cryptixctf.com/web4/php_code.txt">https://cryptixctf.com/web4/php_code.txt</a><!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
+<p>This is super secure, confidential research. You are just not meant to access it. Don't even try, it's futile.<br />
+Okay, you don't believe me? have the source code too!<br />
+<a href="https://cryptixctf.com/web4/php_code.txt">https://cryptixctf.com/web4/php_code.txt</a><br />
+<br />
 <a href="https://cryptixctf.com/web4">https://cryptixctf.com/web4</a></p>
 </blockquote>
 <p>Attachments:</p>
@@ -225,25 +225,25 @@ Okay, you don't believe me? have the source code too!<!-- raw HTML omitted -->
 <span class="p">}</span>
 </code></pre></td></tr></table>
 </div>
-</div><p><!-- raw HTML omitted --></p>
+</div><p><br /></p>
 <h2 id="solution1">Solution</h2>
 <p>Burpでpwdのところをpwd[]に書き換えてフォワードします。</p>
 <p>ID=&quot;SuperUser1337&rdquo;&amp;pwd[]=pass</p>
 <p>Flag: <code>flag{Why_Juggl3_th3_Typ5}</code></p>
-<p><!-- raw HTML omitted --><!-- raw HTML omitted -->
-<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p><br /><br />
+<br /><br /></p>
 <h1 id="reversing-lets-climb-the-ladder-250-points">[Reversing]: Let's climb the ladder (250 points)</h1>
 <hr>
 <h2 id="challenge2">Challenge</h2>
 <blockquote>
-<p>Here is an executable. You know what to do.<!-- raw HTML omitted -->
-Note: The flag format is as usual flag{XXXX&hellip;}<!-- raw HTML omitted --></p>
+<p>Here is an executable. You know what to do.<br />
+Note: The flag format is as usual flag{XXXX&hellip;}<br /></p>
 </blockquote>
 <p>Attachments:</p>
 <ul>
 <li>passphrase (ELF 64-bit)</li>
 </ul>
-<p><!-- raw HTML omitted --></p>
+<p><br /></p>
 <h2 id="solution-unsolved">Solution (Unsolved&hellip;)</h2>
 <p>Ghidraでデコンパイルします。</p>
 <div class="highlight"><div class="chroma">
@@ -490,11 +490,32 @@ Note: The flag format is as usual flag{XXXX&hellip;}<!-- raw HTML omitted --></p
 <span class="p">}</span>
 </code></pre></td></tr></table>
 </div>
-</div><p><!-- raw HTML omitted -->
+</div><p><br />
 長さ0x15 (21文字) でチェックしていて、それぞれのif文を解析すると、たぶんこんな感じかな〜と思ったんですけどね。</p>
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<p><!-- raw HTML omitted -->
+<pre>
+00 : r
+01 : 3    // if ((int)pcParm1[2] - (int)pcParm1[1] == 1) {
+02 : 4
+03 : d    // if ((int)*pcParm1 + (int)pcParm1[3] == 0xd6) {
+04 : i    // if ((int)pcParm1[4] - (int)pcParm1[3] == 5) {
+05 : n    // if ((int)pcParm1[6] + (int)pcParm1[5] == 0xd5) {           // 110 + 103 = 213
+06 : g    // if ((int)pcParm1[5] - (int)pcParm1[6] == 7) {              // 110 - 103
+07 : _    // if ((int)pcParm1[7] - (int)pcParm1[8] == 0x2b) {
+08 : 4    // if ((int)pcParm1[2] == (uint)(pcParm1[8] == 0)) { 
+09 : 5    // if ((int)pcParm1[9] == (uint)(pcParm1[10] == 0)) {
+10 : 5    // if ((int)pcParm1[10] - (int)pcParm1[8] == 1) {
+11 : 3    // if ((int)pcParm1[1] == (uint)(pcParm1[0xb] == 0)) {
+12 : m    // if ((int)pcParm1[0xd] + (int)pcParm1[0xc] == 0xcf) {    // 98 + 109
+13 : b    // if ((int)pcParm1[0xd] * (int)pcParm1[0xc] == 0x29ba) {  // 2 * 7^2 * 109 = 98 * 109
+14 : l    // if ((int)pcParm1[0xf] - (int)pcParm1[0xe] == 0xd) {
+15 : y    // if ((int)pcParm1[0xf] - (int)*pcParm1 == 7) {
+16 : _    // if ((int)pcParm1[7] == (uint)(pcParm1[0x10] == 0)) {
+17 : d    // if ((int)pcParm1[3] == (uint)(pcParm1[0x11] == 0)) {
+18 : 4    // if ((int)pcParm1[8] == (uint)(pcParm1[0x12] == 0)) {
+19 : m    // if ((int)pcParm1[0xc] == (uint)(pcParm1[0x13] == 0)) {
+20 : n    // if ((int)pcParm1[5] == (uint)(pcParm1[0x14] == 0)) {
+</pre>
+<p><br />
 このパスフレーズを使ってプログラムを実行すると、</p>
 <pre><code>root@kali:~/cryptixctf# ./passphrase r34ding_455embly_d4mn
 Please wait while we are authenticating....
@@ -503,8 +524,8 @@ Please wait while we are authenticating....
 You are in!
 </code></pre><p>&ldquo;You are in!&rdquo; と言われるんですが、実際にはフラグとして通りませんでした。</p>
 <p>Discordでも、ご機嫌ナナメの人が数名いました。</p>
-<p>Flag: <!-- raw HTML omitted --><code>flag{r34ding_455embly_d4mn}</code><!-- raw HTML omitted --> (?)</p>
-<p><!-- raw HTML omitted --><!-- raw HTML omitted -->
+<p>Flag: <s><code>flag{r34ding_455embly_d4mn}</code></s> (?)</p>
+<p><br /><br />
 それはさておき、Ghidraのデコンパイルの結果がちょっと変だと思いました。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -520,7 +541,7 @@ You are in!
 </div>
 </div><p>if文にマッチしたらfail()だし。</p>
 <p>&ldquo;== 0&rdquo; だし。。</p>
-<p><!-- raw HTML omitted --><!-- raw HTML omitted -->
+<p><br /><br />
 radare2で見ると、こんな感じ。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -585,11 +606,11 @@ radare2で見ると、こんな感じ。</p>
 </code></pre></td></tr></table>
 </div>
 </div><p>ふーん、まいっか（笑）</p>
-<p><!-- raw HTML omitted --><!-- raw HTML omitted -->
-<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p><br /><br />
+<br /><br /></p>
 <hr>
-<p><!-- raw HTML omitted --><!-- raw HTML omitted -->
-<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p><br /><br />
+<br /><br /></p>
 
     </div>
 
