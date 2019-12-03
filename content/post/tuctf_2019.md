@@ -1,7 +1,7 @@
 ---
 title: "TUCTF 2019 Writeup"
-date: 2019-12-03T13:00:00+09:00
-lastmod: 2019-12-03T13:00:00+09:00
+date: 2019-12-04T13:00:00+09:00
+lastmod: 2019-12-04T13:00:00+09:00
 draft: false
 keywords: []
 description: ""
