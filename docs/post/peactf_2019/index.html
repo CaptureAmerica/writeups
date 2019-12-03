@@ -23,7 +23,7 @@
 <meta name="google-site-verification" content="PqctLWZQttGzxXVupWuIt2HWuBI8cvN1z07ETpxA2dw" />
 
 
-<meta name="generator" content="Hugo 0.55.6 with even 4.0.0" />
+<meta name="generator" content="Hugo 0.60.1 with theme even" />
 
 
 <link rel="canonical" href="https://captureamerica.github.io/writeups/post/peactf_2019/" />
@@ -42,21 +42,17 @@
 <meta property="og:description" content="URL: https://2019.peactf.com/problems 前回のcybricsに引き続き、風邪が長引いていたのと、アクセスができない時があったりして、簡単なやつをちょこっと解いて終了。 いちおう、" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://captureamerica.github.io/writeups/post/peactf_2019/" />
-<meta property="article:published_time" content="2019-08-01T19:00:00&#43;09:00"/>
-<meta property="article:modified_time" content="2019-09-15T19:00:00&#43;09:00"/>
-
+<meta property="article:published_time" content="2019-08-01T19:00:00+09:00" />
+<meta property="article:modified_time" content="2019-09-15T19:00:00+09:00" />
 <meta itemprop="name" content="peactf 2019 Writeup">
 <meta itemprop="description" content="URL: https://2019.peactf.com/problems 前回のcybricsに引き続き、風邪が長引いていたのと、アクセスができない時があったりして、簡単なやつをちょこっと解いて終了。 いちおう、">
-
-
 <meta itemprop="datePublished" content="2019-08-01T19:00:00&#43;09:00" />
 <meta itemprop="dateModified" content="2019-09-15T19:00:00&#43;09:00" />
-<meta itemprop="wordCount" content="1214">
+<meta itemprop="wordCount" content="1070">
 
 
 
-<meta itemprop="keywords" content="CTF," />
-<meta name="twitter:card" content="summary"/>
+<meta itemprop="keywords" content="CTF," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="peactf 2019 Writeup"/>
 <meta name="twitter:description" content="URL: https://2019.peactf.com/problems 前回のcybricsに引き続き、風邪が長引いていたのと、アクセスができない時があったりして、簡単なやつをちょこっと解いて終了。 いちおう、"/>
 
@@ -140,207 +136,162 @@
   <h2 class="post-toc-title">Contents</h2>
   <div class="post-toc-content always-active">
     <nav id="TableOfContents">
-<ul>
-<li><a href="#broken-keyboard">Broken Keyboard</a>
-<ul>
-<li><a href="#challenge">Challenge</a></li>
-<li><a href="#solution">Solution</a></li>
-</ul></li>
-<li><a href="#breakfast">Breakfast</a>
-<ul>
-<li><a href="#challenge-1">Challenge</a></li>
-<li><a href="#solution-1">Solution</a></li>
-</ul></li>
-<li><a href="#hide-and-seek">Hide and Seek</a>
-<ul>
-<li><a href="#challenge-2">Challenge</a></li>
-<li><a href="#solution-2">Solution</a></li>
-</ul></li>
-<li><a href="#school">School</a>
-<ul>
-<li><a href="#challenge-3">Challenge</a></li>
-<li><a href="#solution-3">Solution</a></li>
-</ul></li>
-<li><a href="#coffee-time">Coffee Time</a>
-<ul>
-<li><a href="#challenge-4">Challenge</a></li>
-<li><a href="#solution-4">Solution</a></li>
-</ul></li>
-<li><a href="#we-are-e-xtr">We are E.xtr</a>
-<ul>
-<li><a href="#challenge-5">Challenge</a></li>
-<li><a href="#solution-5">Solution</a></li>
-</ul></li>
-<li><a href="#the-wonderful-wizard">The Wonderful Wizard</a>
-<ul>
-<li><a href="#challenge-6">Challenge</a></li>
-<li><a href="#solution-6">Solution</a></li>
-</ul></li>
-</ul>
+  <ul>
+    <li><a href="#challenge">Challenge</a></li>
+    <li><a href="#solution">Solution</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#challenge1">Challenge</a></li>
+    <li><a href="#solution1">Solution</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#challenge2">Challenge</a></li>
+    <li><a href="#solution2">Solution</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#challenge3">Challenge</a></li>
+    <li><a href="#solution3">Solution</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#challenge4">Challenge</a></li>
+    <li><a href="#solution4">Solution</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#challenge5">Challenge</a></li>
+    <li><a href="#solution5">Solution</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#challenge6">Challenge</a></li>
+    <li><a href="#solution6">Solution</a></li>
+  </ul>
 </nav>
   </div>
 </div>
     <div class="post-content">
-      
-
-<p>URL: <a href="https://2019.peactf.com/problems">https://2019.peactf.com/problems</a>
-<br /><br />
+      <p>URL: <a href="https://2019.peactf.com/problems"><a href="https://2019.peactf.com/problems">https://2019.peactf.com/problems</a></a>
+<!-- raw HTML omitted --><!-- raw HTML omitted -->
 前回のcybricsに引き続き、風邪が長引いていたのと、アクセスができない時があったりして、簡単なやつをちょこっと解いて終了。
-<br /><br />
+<!-- raw HTML omitted --><!-- raw HTML omitted -->
 いちおう、やった記録として残しておきます。</p>
-
-<p><br /><br /></p>
-
+<p><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
 <h1 id="broken-keyboard">Broken Keyboard</h1>
-
-<hr />
-
+<hr>
 <h2 id="challenge">Challenge</h2>
-
 <blockquote>
 <p>Help! My keyboard only types numbers!
-<br /><br />
+<!-- raw HTML omitted --><!-- raw HTML omitted -->
 Ciphertext: 112 101 97 67 84 70 123 52 115 99 49 49 105 115 99 48 48 108 125</p>
 </blockquote>
-
-<p><br /></p>
-
+<p><!-- raw HTML omitted --></p>
 <h2 id="solution">Solution</h2>
-
 <p>普通に1個1個変換したら面白くないので、ワンライナーで挑戦。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="err">$</span> <span class="n">python</span> <span class="o">-</span><span class="n">c</span> <span class="s1">&#39;print(&#34;&#34;.join([chr(int(x)) for x in &#34;112 101 97 67 84 70 123 52 115 99 49 49 105 115 99 48 48 108 125&#34;.split()]))&#39;</span></code></pre></td></tr></table>
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="err">$</span> <span class="n">python</span> <span class="o">-</span><span class="n">c</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">print(</span><span class="s1">&#34;</span><span class="s1">&#34;</span><span class="s1">.join([chr(int(x)) for x in </span><span class="s1">&#34;</span><span class="s1">112 101 97 67 84 70 123 52 115 99 49 49 105 115 99 48 48 108 125</span><span class="s1">&#34;</span><span class="s1">.split()]))</span><span class="s1">&#39;</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<p>flag: <code>peaCTF{4sc11isc00l}</code></p>
-
-<p><br /><br />
-<br /><br /></p>
-
+</div><p>flag: <code>peaCTF{4sc11isc00l}</code></p>
+<p><!-- raw HTML omitted --><!-- raw HTML omitted -->
+<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
 <h1 id="breakfast">Breakfast</h1>
-
-<hr />
-
-<h2 id="challenge-1">Challenge</h2>
-
+<hr>
+<h2 id="challenge1">Challenge</h2>
 <blockquote>
-<p>Mmm I ate some nice <b>bacon</b> and eggs this morning. Find out what else I had for an easy flag. Don’t forget to capitalize CTF!
-<br /><br />
+<p>Mmm I ate some nice <!-- raw HTML omitted -->bacon<!-- raw HTML omitted --> and eggs this morning. Find out what else I had for an easy flag. Don’t forget to capitalize CTF!
+<!-- raw HTML omitted --><!-- raw HTML omitted -->
 Ciphertext: 011100010000000000101001000101{00100001100011010100000000010100101010100010010001}</p>
 </blockquote>
-
-<p><br /></p>
-
-<h2 id="solution-1">Solution</h2>
-
+<p><!-- raw HTML omitted --></p>
+<h2 id="solution1">Solution</h2>
 <p>他の問題を解いていると、フラグのフォーマットが peaCTF{xxxx} なのがわかるので、011100010000000000101001000101の部分がpeaCTFだとして6等分すると、</p>
-
-<p>01110 &nbsp; p<br />
-00100 &nbsp; e<br />
-00000 &nbsp; a<br />
-00010 &nbsp; C<br />
-10010 &nbsp; T<br />
-00101 &nbsp; F<br />
-<br />
-なので、こんな感じだと予想。<br />
-00000 &nbsp; a<br />
-00001 &nbsp; b<br />
-00010 &nbsp; c<br />
-00011 &nbsp; d<br />
-00100 &nbsp; e<br />
-00101 &nbsp; f<br />
-00110 &nbsp; g<br />
-00111 &nbsp; h<br />
-01000 &nbsp; i<br />
-01001 &nbsp; j<br />
-01010 &nbsp; l （kはどこへ行った？）<br />
-01011 &nbsp; m<br />
-01100 &nbsp; n<br />
-01101 &nbsp; o<br />
-01110 &nbsp; p （これがpなのは確か）<br />
-01111 &nbsp; q<br />
-10000 &nbsp; r<br />
-10001 &nbsp; s<br />
-10010 &nbsp; t （これがTなのは確か）<br />
-10011 &nbsp; u<br />
-10100 &nbsp; v （結果、なぜかこれはvではなくて、wだった）<br /></p>
-
-<p><br />
-ところどころナゾだけど、{}の中身は、<br />
-00100 &nbsp; e<br />
-00110 &nbsp; g<br />
-00110 &nbsp; g<br />
-10100 &nbsp; w<br />
-00000 &nbsp; a<br />
-00101 &nbsp; f<br />
-00101 &nbsp; f<br />
-01010 &nbsp; l<br />
-00100 &nbsp; e<br />
-10001 &nbsp; s<br /></p>
-
-<p><br />
+<p>01110   p<!-- raw HTML omitted -->
+00100   e<!-- raw HTML omitted -->
+00000   a<!-- raw HTML omitted -->
+00010   C<!-- raw HTML omitted -->
+10010   T<!-- raw HTML omitted -->
+00101   F<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+なので、こんな感じだと予想。<!-- raw HTML omitted -->
+00000   a<!-- raw HTML omitted -->
+00001   b<!-- raw HTML omitted -->
+00010   c<!-- raw HTML omitted -->
+00011   d<!-- raw HTML omitted -->
+00100   e<!-- raw HTML omitted -->
+00101   f<!-- raw HTML omitted -->
+00110   g<!-- raw HTML omitted -->
+00111   h<!-- raw HTML omitted -->
+01000   i<!-- raw HTML omitted -->
+01001   j<!-- raw HTML omitted -->
+01010   l （kはどこへ行った？）<!-- raw HTML omitted -->
+01011   m<!-- raw HTML omitted -->
+01100   n<!-- raw HTML omitted -->
+01101   o<!-- raw HTML omitted -->
+01110   p （これがpなのは確か）<!-- raw HTML omitted -->
+01111   q<!-- raw HTML omitted -->
+10000   r<!-- raw HTML omitted -->
+10001   s<!-- raw HTML omitted -->
+10010   t （これがTなのは確か）<!-- raw HTML omitted -->
+10011   u<!-- raw HTML omitted -->
+10100   v （結果、なぜかこれはvではなくて、wだった）<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->
+ところどころナゾだけど、{}の中身は、<!-- raw HTML omitted -->
+00100   e<!-- raw HTML omitted -->
+00110   g<!-- raw HTML omitted -->
+00110   g<!-- raw HTML omitted -->
+10100   w<!-- raw HTML omitted -->
+00000   a<!-- raw HTML omitted -->
+00101   f<!-- raw HTML omitted -->
+00101   f<!-- raw HTML omitted -->
+01010   l<!-- raw HTML omitted -->
+00100   e<!-- raw HTML omitted -->
+10001   s<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->
 flag: <code>peaCTF{eggwaffles}</code></p>
-
-<p><br />
-＃問題文の中で、<b>bacon</b>の部分だけ太字になっているのがナゾ。なんかのヒントなの？ スライスするとか言うことかな。。</p>
-
-<p><br /><br />
+<p><!-- raw HTML omitted -->
+＃問題文の中で、<!-- raw HTML omitted -->bacon<!-- raw HTML omitted -->の部分だけ太字になっているのがナゾ。なんかのヒントなの？ スライスするとか言うことかな。。</p>
+<p><!-- raw HTML omitted --><!-- raw HTML omitted -->
 (2019/09/15 追記)</p>
-
-<p>復習してたら、これは<a href="https://en.wikipedia.org/wiki/Bacon%27s_cipher">Bacon&rsquo;s cipher</a>っていうらしいですね。知らなくても解けたけど。</p>
-
-<p><br /><br />
-<br /><br /></p>
-
+<p>復習してたら、これは<a href="https://en.wikipedia.org/wiki/Bacon%27s_cipher">Bacon's cipher</a>っていうらしいですね。知らなくても解けたけど。</p>
+<p><!-- raw HTML omitted --><!-- raw HTML omitted -->
+<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
 <h1 id="hide-and-seek">Hide and Seek</h1>
-
-<hr />
-
-<h2 id="challenge-2">Challenge</h2>
-
+<hr>
+<h2 id="challenge2">Challenge</h2>
 <blockquote>
 <p>Try to find to the flag file located somewhere in the folders located in: /problems/hide-and-seek_16_d386ec3561e6180b95a47434c62a78be</p>
 </blockquote>
-
-<p><br /></p>
-
-<h2 id="solution-2">Solution</h2>
-
-<p>これはシェルサーバに入って解く問題。
-<pre>
-$ find . -name <em>flag</em>
-$ cat ./926c7fc91293cbdcbb5a99c561782682/80dee25b24cac38a8a7f7214c732974c/d9f58f5e381818ca33525a98ca33dfbe/f17007910d11d07404b23bb62d7a7ee1/9c991628ac6f756dd67cfa3b98c42cf6/47c8055d6bd5102bd363fc752227844a/1d4c5a6d7ce032905f80ccd47b1c08df/f4fd3d96096de5ed863de07324e1bf57/flag.txt
-</pre>
-flag: <code>flag{peactf_linux_is_fun_f4ca42f3f34f4674d511eade889d74f7}</code></p>
-
-<p><br /><br />
-<br /><br /></p>
-
+<p><!-- raw HTML omitted --></p>
+<h2 id="solution2">Solution</h2>
+<p>これはシェルサーバに入って解く問題。</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>flag: <code>flag{peactf_linux_is_fun_f4ca42f3f34f4674d511eade889d74f7}</code></p>
+<p><!-- raw HTML omitted --><!-- raw HTML omitted -->
+<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
 <h1 id="school">School</h1>
-
-<hr />
-
-<h2 id="challenge-3">Challenge</h2>
-
+<hr>
+<h2 id="challenge3">Challenge</h2>
 <blockquote>
 <p>My regular teacher was out sick so we had a substitute today.
-<br /><br />
-Alphabet: ​WCGPSUHRAQYKFDLZOJNXMVEBTI<br />
+<!-- raw HTML omitted --><!-- raw HTML omitted -->
+Alphabet: ​WCGPSUHRAQYKFDLZOJNXMVEBTI<!-- raw HTML omitted -->
 zswGXU{ljwdhsqmags}</p>
 </blockquote>
-
-<p><br /></p>
-
-<h2 id="solution-3">Solution</h2>
-
+<p><!-- raw HTML omitted --></p>
+<h2 id="solution3">Solution</h2>
 <p>単一換字式暗号 (monoalphabetic substitution ciphers)です。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-Perl" data-lang="Perl"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -368,150 +319,93 @@ zswGXU{ljwdhsqmags}</p>
 
 <span class="k">use</span> <span class="nn">open</span> <span class="sx">qw/:utf8/</span><span class="p">;</span>
 
-<span class="nb">open</span><span class="p">(</span><span class="k">my</span> <span class="nv">$F</span><span class="p">,</span> <span class="s">&#34;&lt;:utf8&#34;</span><span class="p">,</span> <span class="s">&#39;School.txt&#39;</span><span class="p">)</span> <span class="ow">or</span> <span class="nb">die</span><span class="p">;</span>
-<span class="k">my</span> <span class="nv">$text</span><span class="p">;</span>
-<span class="k">while</span> <span class="p">(</span><span class="k">my</span> <span class="nv">$l</span> <span class="o">=</span> <span class="sr">&lt;$F&gt;</span><span class="p">)</span>
+<span class="nb">open</span><span class="p">(</span><span class="k">my</span> <span class="nv">$</span><span class="nv">F</span><span class="p">,</span> <span class="s">&#34;&lt;:utf8&#34;</span><span class="p">,</span> <span class="s">&#39;School.txt&#39;</span><span class="p">)</span> <span class="ow">or</span> <span class="nb">die</span><span class="p">;</span>
+<span class="k">my</span> <span class="nv">$</span><span class="nv">text</span><span class="p">;</span>
+<span class="k">while</span> <span class="p">(</span><span class="k">my</span> <span class="nv">$</span><span class="nv">l</span> <span class="o">=</span> <span class="sr">&lt;$F&gt;</span><span class="p">)</span>
 <span class="p">{</span>
     <span class="c1">#$l =~ s/[\r\n]+/ /g;</span>
-    <span class="nv">$text</span> <span class="o">.=</span> <span class="nv">$l</span><span class="p">;</span>
+    <span class="nv">$</span><span class="nv">text</span> <span class="o">.</span><span class="o">=</span> <span class="nv">$</span><span class="nv">l</span><span class="p">;</span>
 <span class="p">}</span>
-<span class="nb">close</span><span class="p">(</span><span class="nv">$F</span><span class="p">);</span>
+<span class="nb">close</span><span class="p">(</span><span class="nv">$</span><span class="nv">F</span><span class="p">)</span><span class="p">;</span>
 
-<span class="nv">$text</span> <span class="o">=~</span> <span class="n">y</span><span class="sr">/wcgpsuhraqykfdlzojnxmvebti/</span><span class="n">abcdefghijklmnopqrstuvwxyz</span><span class="o">/</span><span class="p">;</span>
-<span class="k">print</span> <span class="nv">$text</span><span class="p">;</span>
-<span class="k">print</span> <span class="s">&#34;\n---------\n&#34;</span><span class="p">;</span></code></pre></td></tr></table>
+<span class="nv">$</span><span class="nv">text</span> <span class="o">=~</span> <span class="n"></span><span class="n">y</span><span class="sr">/wcgpsuhraqykfdlzojnxmvebti/</span><span class="n"></span><span class="n">abcdefghijklmnopqrstuvwxyz</span><span class="o">/</span><span class="p">;</span>
+<span class="k">print</span> <span class="nv">$</span><span class="nv">text</span><span class="p">;</span>
+<span class="k">print</span> <span class="s">&#34;\n---------\n&#34;</span><span class="p">;</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<p>得られた結果：peaGXU{orangejuice} </br></br>
+</div><p>得られた結果：peaGXU{orangejuice} <!-- raw HTML omitted --><!-- raw HTML omitted -->
 上記のPerlスクリプトは小文字だけ置き換えているので、GXUのところが書き換わってないだけです。</p>
-
 <p>flag: <code>peaCTF{orangejuice}</code></p>
-
-<p><br /><br />
-<br /><br /></p>
-
+<p><!-- raw HTML omitted --><!-- raw HTML omitted -->
+<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
 <h1 id="coffee-time">Coffee Time</h1>
-
-<hr />
-
-<h2 id="challenge-4">Challenge</h2>
-
+<hr>
+<h2 id="challenge4">Challenge</h2>
 <blockquote>
 <p>Run this jar executable in a virtual machine and see what happens.</p>
 </blockquote>
-
 <p>Attachments:</p>
-
 <ul>
 <li>coffeetime.jar</li>
 </ul>
-
-<p><br /></p>
-
-<h2 id="solution-4">Solution</h2>
-
-<p>実行しろというので、とりあえず実行。
-<pre>
-$ java coffeetime.jar
-Error: Could not find or load main class coffeetime.jar
-Caused by: java.lang.ClassNotFoundException: coffeetime.jar
-</pre></p>
-
-<p><br />
+<p><!-- raw HTML omitted --></p>
+<h2 id="solution4">Solution</h2>
+<p>実行しろというので、とりあえず実行。</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p><!-- raw HTML omitted -->
 よくわからんので、とりあえずコードでも見てみるかと思って、jadでデコンパイル。
-<br /><br />
-そしたら、ソースコードの中にフラグがありました。なんじゃこりゃ。
-<pre>
-System.out.println(&ldquo;peaCTF{nice_cup_of_coffee}&ldquo;);
-</pre>
-flag: <code>peaCTF{nice_cup_of_coffee}</code></p>
-
-<p><br /><br />
-<br /><br /></p>
-
-<h1 id="we-are-e-xtr">We are E.xtr</h1>
-
-<hr />
-
-<h2 id="challenge-5">Challenge</h2>
-
+<!-- raw HTML omitted --><!-- raw HTML omitted -->
+そしたら、ソースコードの中にフラグがありました。なんじゃこりゃ。</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>flag: <code>peaCTF{nice_cup_of_coffee}</code></p>
+<p><!-- raw HTML omitted --><!-- raw HTML omitted -->
+<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h1 id="we-are-extr">We are E.xtr</h1>
+<hr>
+<h2 id="challenge5">Challenge</h2>
 <blockquote>
 <p>特に記載なし（添付ファイルのみ）</p>
 </blockquote>
-
 <p>Attachments:</p>
-
 <ul>
 <li>E.xtr</li>
 </ul>
-
-<p><br /></p>
-
-<h2 id="solution-5">Solution</h2>
-
-<pre>
-$ file E.xtr 
-E.xtr: data
-
-$ xxd E.xtr | head -n 1
-00000000: 8958 5452 0d0a 1a0a 0000 000d 4948 4452  .XTR........IHDR
-</pre>
-
+<p><!-- raw HTML omitted --></p>
+<h2 id="solution5">Solution</h2>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
 <p>PNGファイルのファイルヘッダを直す系の問題。
-<br /><br />
+<!-- raw HTML omitted --><!-- raw HTML omitted -->
 バイナリエディタで編集する。</p>
-
-<pre>
-$ xxd E.xtr | head -n 1
-00000000: 8950 4e47 0d0a 1a0a 0000 000d 4948 4452  .PNG........IHDR
-
-$ file E.xtr 
-E.xtr: PNG image data, 1280 x 720, 8-bit colormap, interlaced
-</pre>
-
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
 <p>flag: <code>peaCTF{read_banned_it}</code></p>
-
-<p><br /><br />
-<br /><br /></p>
-
+<p><!-- raw HTML omitted --><!-- raw HTML omitted -->
+<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
 <h1 id="the-wonderful-wizard">The Wonderful Wizard</h1>
-
-<hr />
-
-<h2 id="challenge-6">Challenge</h2>
-
+<hr>
+<h2 id="challenge6">Challenge</h2>
 <blockquote>
 <p>特に記載なし（添付ファイルのみ）</p>
 </blockquote>
-
 <p>Attachments:</p>
-
 <ul>
 <li>TheWonderfulWizard.png</li>
 </ul>
-
-<p><br /></p>
-
-<h2 id="solution-6">Solution</h2>
-
-<p>「青い空を見上げればいつもそこに白い猫」で赤色ビット0抽出すると、数字が出てくるので、それをHex Decodeするだけ。<br />
-<img src="https://captureamerica.github.io/writeups/img/TheWonderfulWizard_Neko.PNG" alt="TheWonderfulWizard_Neko.PNG"></p>
-
-<pre>
-66 6c 61 67 7b 70 65 61 63 74 66
-5f 77 68 65 72 65 5f 74 68 65 5f
-77 69 6e 64 5f 62 6c 6f 77 73 7d
-</pre>
-
+<p><!-- raw HTML omitted --></p>
+<h2 id="solution6">Solution</h2>
+<p>「青い空を見上げればいつもそこに白い猫」で赤色ビット0抽出すると、数字が出てくるので、それをHex Decodeするだけ。<!-- raw HTML omitted -->
+<!-- raw HTML omitted --></p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
 <p>flag: <code>flag{peactf_where_the_wind_blows}</code></p>
-
-<p><br /><br />
-<br /><br /></p>
-
-<hr />
-
-<p><br /><br />
-<br /><br /></p>
+<p><!-- raw HTML omitted --><!-- raw HTML omitted -->
+<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<hr>
+<p><!-- raw HTML omitted --><!-- raw HTML omitted -->
+<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
 
     </div>
 
@@ -550,6 +444,10 @@ E.xtr: PNG image data, 1280 x 720, 8-bit colormap, interlaced
   </article>
         </div>
         
+
+  
+
+  
 
       </div>
     </main>

@@ -23,7 +23,7 @@
 <meta name="google-site-verification" content="PqctLWZQttGzxXVupWuIt2HWuBI8cvN1z07ETpxA2dw" />
 
 
-<meta name="generator" content="Hugo 0.55.6 with even 4.0.0" />
+<meta name="generator" content="Hugo 0.60.1 with theme even" />
 
 
 <link rel="canonical" href="https://captureamerica.github.io/writeups/post/codefest_2019/" />
@@ -42,21 +42,17 @@
 <meta property="og:description" content="URL: https://www.hackerrank.com/codefest19-ctf 問題数は10問（WelcomeとSurveyを除く）あって、そのうちの1問（Mail capture）は添付ファイルにフラグがそのまま入っ" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://captureamerica.github.io/writeups/post/codefest_2019/" />
-<meta property="article:published_time" content="2019-08-25T15:00:00&#43;09:00"/>
-<meta property="article:modified_time" content="2019-08-29T23:00:00&#43;09:00"/>
-
+<meta property="article:published_time" content="2019-08-25T15:00:00+09:00" />
+<meta property="article:modified_time" content="2019-08-29T23:00:00+09:00" />
 <meta itemprop="name" content="Codefest&#39;19 CTF Writeup">
 <meta itemprop="description" content="URL: https://www.hackerrank.com/codefest19-ctf 問題数は10問（WelcomeとSurveyを除く）あって、そのうちの1問（Mail capture）は添付ファイルにフラグがそのまま入っ">
-
-
 <meta itemprop="datePublished" content="2019-08-25T15:00:00&#43;09:00" />
 <meta itemprop="dateModified" content="2019-08-29T23:00:00&#43;09:00" />
-<meta itemprop="wordCount" content="2287">
+<meta itemprop="wordCount" content="1946">
 
 
 
-<meta itemprop="keywords" content="CTF,Reviewed," />
-<meta name="twitter:card" content="summary"/>
+<meta itemprop="keywords" content="CTF,Reviewed," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Codefest&#39;19 CTF Writeup"/>
 <meta name="twitter:description" content="URL: https://www.hackerrank.com/codefest19-ctf 問題数は10問（WelcomeとSurveyを除く）あって、そのうちの1問（Mail capture）は添付ファイルにフラグがそのまま入っ"/>
 
@@ -140,80 +136,65 @@
   <h2 class="post-toc-title">Contents</h2>
   <div class="post-toc-content always-active">
     <nav id="TableOfContents">
-<ul>
-<li><a href="#reversing-linux-re-2">Reversing: Linux RE 2</a>
-<ul>
-<li><a href="#challenge">Challenge</a></li>
-<li><a href="#solution">Solution</a></li>
-</ul></li>
-<li><a href="#what-language-is-this">What language is this?</a>
-<ul>
-<li><a href="#challenge-1">Challenge</a></li>
-<li><a href="#solution-1">Solution</a></li>
-</ul></li>
-<li><a href="#gibberish-file">Gibberish file</a>
-<ul>
-<li><a href="#challenge-2">Challenge</a></li>
-<li><a href="#solution-2">Solution</a></li>
-</ul></li>
-<li><a href="#image-corruption">Image Corruption</a>
-<ul>
-<li><a href="#challenge-3">Challenge</a></li>
-<li><a href="#solution-3">Solution</a></li>
-</ul></li>
-<li><a href="#mail-capture">Mail capture</a>
-<ul>
-<li><a href="#challenge-4">Challenge</a></li>
-<li><a href="#solution-4">Solution</a></li>
-</ul></li>
-<li><a href="#cats-are-innocent-right">Cats are innocent, right?</a>
-<ul>
-<li><a href="#challenge-5">Challenge</a></li>
-<li><a href="#solution-5">Solution</a></li>
-</ul></li>
-</ul>
+  <ul>
+    <li><a href="#challenge">Challenge</a></li>
+    <li><a href="#solution">Solution</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#challenge1">Challenge</a></li>
+    <li><a href="#solution1">Solution</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#challenge2">Challenge</a></li>
+    <li><a href="#solution2">Solution</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#challenge3">Challenge</a></li>
+    <li><a href="#solution3">Solution</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#challenge4">Challenge</a></li>
+    <li><a href="#solution4">Solution</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#challenge5">Challenge</a></li>
+    <li><a href="#solution5">Solution</a></li>
+  </ul>
 </nav>
   </div>
 </div>
     <div class="post-content">
-      
-
-<p>URL: <a href="https://www.hackerrank.com/codefest19-ctf">https://www.hackerrank.com/codefest19-ctf</a>
-<br /><br />
+      <p>URL: <a href="https://www.hackerrank.com/codefest19-ctf"><a href="https://www.hackerrank.com/codefest19-ctf">https://www.hackerrank.com/codefest19-ctf</a></a>
+<!-- raw HTML omitted --><!-- raw HTML omitted -->
 問題数は10問（WelcomeとSurveyを除く）あって、そのうちの1問（Mail capture）は添付ファイルにフラグがそのまま入っているという（おそらく）手違いがあり、実質9問だけでした。
-<br /><br />
+<!-- raw HTML omitted --><!-- raw HTML omitted -->
 その9問中の1問を解きました。
-<br /><br />
+<!-- raw HTML omitted --><!-- raw HTML omitted -->
 （後日、残りの問題の復習もやりました。）</p>
-
-<p><br /><br /></p>
-
+<p><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
 <h1 id="reversing-linux-re-2">Reversing: Linux RE 2</h1>
-
-<hr />
-
+<hr>
 <h2 id="challenge">Challenge</h2>
-
 <blockquote>
 <p>You are given yet another ELF file. Reverse it to find the flag. The password is the flag.
-<br /><br />
+<!-- raw HTML omitted --><!-- raw HTML omitted -->
 Update: The flag contains only alphabets, numbers and underscore.</p>
 </blockquote>
-
 <p>Attachment:</p>
-
 <ul>
 <li>chall2</li>
 </ul>
-
-<p><br /></p>
-
+<p><!-- raw HTML omitted --></p>
 <h2 id="solution">Solution</h2>
-
 <p>Ghidraでデコンパイルします。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-C" data-lang="C"><span class="lnt">  1
+<pre class="chroma"><code><span class="lnt">  1
 </span><span class="lnt">  2
 </span><span class="lnt">  3
 </span><span class="lnt">  4
@@ -406,259 +387,201 @@ Update: The flag contains only alphabets, numbers and underscore.</p>
   <span class="kt">char</span> <span class="n">local_62</span><span class="p">;</span>
   <span class="kt">long</span> <span class="n">local_10</span><span class="p">;</span>
   
-  <span class="n">local_10</span> <span class="o">=</span> <span class="o">*</span><span class="p">(</span><span class="kt">long</span> <span class="o">*</span><span class="p">)(</span><span class="n">in_FS_OFFSET</span> <span class="o">+</span> <span class="mh">0x28</span><span class="p">);</span>
-  <span class="n">__isoc99_scanf</span><span class="p">(</span><span class="o">&amp;</span><span class="n">DAT_00400a88</span><span class="p">,</span><span class="o">&amp;</span><span class="n">local_78</span><span class="p">);</span>
-  <span class="n">sVar1</span> <span class="o">=</span> <span class="n">strlen</span><span class="p">(</span><span class="o">&amp;</span><span class="n">local_78</span><span class="p">);</span>
-  <span class="k">if</span> <span class="p">(</span><span class="n">sVar1</span> <span class="o">==</span> <span class="mh">0x17</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">local_74</span> <span class="o">==</span> <span class="sc">&#39;l&#39;</span><span class="p">)</span> <span class="p">{</span>
-      <span class="k">if</span> <span class="p">((</span><span class="kt">int</span><span class="p">)</span><span class="n">local_75</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">==</span> <span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="n">local_72</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">if</span> <span class="p">((</span><span class="kt">int</span><span class="p">)</span><span class="n">local_73</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">==</span> <span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="n">local_71</span><span class="p">)</span> <span class="p">{</span>
-          <span class="k">if</span> <span class="p">(</span><span class="n">local_71</span> <span class="o">==</span> <span class="sc">&#39;e&#39;</span><span class="p">)</span> <span class="p">{</span>
-            <span class="k">if</span> <span class="p">(</span><span class="n">local_75</span> <span class="o">==</span> <span class="sc">&#39;u&#39;</span><span class="p">)</span> <span class="p">{</span>
-              <span class="k">if</span> <span class="p">(</span><span class="n">local_76</span> <span class="o">==</span> <span class="sc">&#39;o&#39;</span><span class="p">)</span> <span class="p">{</span>
-                <span class="k">if</span> <span class="p">(</span><span class="n">local_78</span> <span class="o">==</span> <span class="sc">&#39;s&#39;</span><span class="p">)</span> <span class="p">{</span>
-                  <span class="k">if</span> <span class="p">(</span><span class="n">local_77</span> <span class="o">==</span> <span class="sc">&#39;h&#39;</span><span class="p">)</span> <span class="p">{</span>
-                    <span class="k">if</span> <span class="p">(</span><span class="n">local_70</span> <span class="o">==</span> <span class="sc">&#39;_&#39;</span><span class="p">)</span> <span class="p">{</span>
-                      <span class="k">if</span> <span class="p">((</span><span class="kt">int</span><span class="p">)(</span><span class="kt">char</span><span class="p">)</span><span class="n">local_6c</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">==</span> <span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="n">local_6d</span><span class="p">)</span> <span class="p">{</span>
-                        <span class="k">if</span> <span class="p">((</span><span class="kt">int</span><span class="p">)(</span><span class="kt">char</span><span class="p">)</span><span class="n">local_6e</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">==</span> <span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="n">local_6f</span><span class="p">)</span> <span class="p">{</span>
-                          <span class="k">if</span> <span class="p">((</span><span class="n">local_6c</span> <span class="o">^</span> <span class="n">local_6e</span><span class="p">)</span> <span class="o">==</span> <span class="mh">0x17</span><span class="p">)</span> <span class="p">{</span>
-                            <span class="k">if</span> <span class="p">(</span><span class="n">local_6c</span> <span class="o">==</span> <span class="mi">100</span><span class="p">)</span> <span class="p">{</span>
-                              <span class="k">if</span> <span class="p">(</span><span class="n">local_6b</span> <span class="o">==</span> <span class="sc">&#39;_&#39;</span><span class="p">)</span> <span class="p">{</span>
-                                <span class="k">if</span> <span class="p">((</span><span class="kt">int</span><span class="p">)(</span><span class="kt">char</span><span class="p">)</span><span class="n">local_67</span> <span class="o">+</span> <span class="mi">8</span> <span class="o">==</span> <span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="n">local_68</span><span class="p">)</span> <span class="p">{</span>
-                                  <span class="k">if</span> <span class="p">((</span><span class="kt">int</span><span class="p">)</span><span class="n">local_69</span> <span class="o">+</span> <span class="o">-</span><span class="mi">2</span> <span class="o">==</span> <span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="n">local_68</span><span class="p">)</span> <span class="p">{</span>
-                                    <span class="k">if</span> <span class="p">((</span><span class="n">local_67</span> <span class="o">^</span> <span class="n">local_6a</span><span class="p">)</span> <span class="o">==</span> <span class="mh">0x16</span><span class="p">)</span> <span class="p">{</span>
-                                      <span class="k">if</span> <span class="p">(</span><span class="n">local_68</span> <span class="o">==</span> <span class="sc">&#39;m&#39;</span><span class="p">)</span> <span class="p">{</span>
-                                        <span class="k">if</span> <span class="p">(</span><span class="n">local_66</span> <span class="o">==</span> <span class="sc">&#39;_&#39;</span><span class="p">)</span> <span class="p">{</span>
-                                          <span class="k">if</span> <span class="p">((</span><span class="kt">int</span><span class="p">)</span><span class="n">local_62</span> <span class="o">+</span> <span class="mi">3</span> <span class="o">==</span> <span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="n">local_64</span><span class="p">)</span> <span class="p">{</span>
-                                            <span class="k">if</span> <span class="p">((</span><span class="kt">int</span><span class="p">)</span><span class="n">local_64</span> <span class="o">+</span> <span class="mh">0x10</span> <span class="o">==</span> <span class="p">(</span><span class="kt">int</span><span class="p">)(</span><span class="kt">char</span><span class="p">)</span><span class="n">local_63</span> <span class="o">+</span> <span class="mh">0x10</span><span class="p">)</span>
+  <span class="n">local_10</span> <span class="o">=</span> <span class="o">*</span><span class="p">(</span><span class="kt">long</span> <span class="o">*</span><span class="p">)</span><span class="p">(</span><span class="n">in_FS_OFFSET</span> <span class="o">+</span> <span class="mh">0x28</span><span class="p">)</span><span class="p">;</span>
+  <span class="n">__isoc99_scanf</span><span class="p">(</span><span class="o">&amp;</span><span class="n">DAT_00400a88</span><span class="p">,</span><span class="o">&amp;</span><span class="n">local_78</span><span class="p">)</span><span class="p">;</span>
+  <span class="n">sVar1</span> <span class="o">=</span> <span class="n">strlen</span><span class="p">(</span><span class="o">&amp;</span><span class="n">local_78</span><span class="p">)</span><span class="p">;</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">sVar1</span> <span class="o">=</span><span class="o">=</span> <span class="mh">0x17</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">local_74</span> <span class="o">=</span><span class="o">=</span> <span class="sa"></span><span class="sc">&#39;</span><span class="sc">l</span><span class="sc">&#39;</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">if</span> <span class="p">(</span><span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="n">local_75</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">=</span><span class="o">=</span> <span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="n">local_72</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="n">local_73</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">=</span><span class="o">=</span> <span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="n">local_71</span><span class="p">)</span> <span class="p">{</span>
+          <span class="k">if</span> <span class="p">(</span><span class="n">local_71</span> <span class="o">=</span><span class="o">=</span> <span class="sa"></span><span class="sc">&#39;</span><span class="sc">e</span><span class="sc">&#39;</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">local_75</span> <span class="o">=</span><span class="o">=</span> <span class="sa"></span><span class="sc">&#39;</span><span class="sc">u</span><span class="sc">&#39;</span><span class="p">)</span> <span class="p">{</span>
+              <span class="k">if</span> <span class="p">(</span><span class="n">local_76</span> <span class="o">=</span><span class="o">=</span> <span class="sa"></span><span class="sc">&#39;</span><span class="sc">o</span><span class="sc">&#39;</span><span class="p">)</span> <span class="p">{</span>
+                <span class="k">if</span> <span class="p">(</span><span class="n">local_78</span> <span class="o">=</span><span class="o">=</span> <span class="sa"></span><span class="sc">&#39;</span><span class="sc">s</span><span class="sc">&#39;</span><span class="p">)</span> <span class="p">{</span>
+                  <span class="k">if</span> <span class="p">(</span><span class="n">local_77</span> <span class="o">=</span><span class="o">=</span> <span class="sa"></span><span class="sc">&#39;</span><span class="sc">h</span><span class="sc">&#39;</span><span class="p">)</span> <span class="p">{</span>
+                    <span class="k">if</span> <span class="p">(</span><span class="n">local_70</span> <span class="o">=</span><span class="o">=</span> <span class="sa"></span><span class="sc">&#39;</span><span class="sc">_</span><span class="sc">&#39;</span><span class="p">)</span> <span class="p">{</span>
+                      <span class="k">if</span> <span class="p">(</span><span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="p">(</span><span class="kt">char</span><span class="p">)</span><span class="n">local_6c</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">=</span><span class="o">=</span> <span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="n">local_6d</span><span class="p">)</span> <span class="p">{</span>
+                        <span class="k">if</span> <span class="p">(</span><span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="p">(</span><span class="kt">char</span><span class="p">)</span><span class="n">local_6e</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">=</span><span class="o">=</span> <span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="n">local_6f</span><span class="p">)</span> <span class="p">{</span>
+                          <span class="k">if</span> <span class="p">(</span><span class="p">(</span><span class="n">local_6c</span> <span class="o">^</span> <span class="n">local_6e</span><span class="p">)</span> <span class="o">=</span><span class="o">=</span> <span class="mh">0x17</span><span class="p">)</span> <span class="p">{</span>
+                            <span class="k">if</span> <span class="p">(</span><span class="n">local_6c</span> <span class="o">=</span><span class="o">=</span> <span class="mi">100</span><span class="p">)</span> <span class="p">{</span>
+                              <span class="k">if</span> <span class="p">(</span><span class="n">local_6b</span> <span class="o">=</span><span class="o">=</span> <span class="sa"></span><span class="sc">&#39;</span><span class="sc">_</span><span class="sc">&#39;</span><span class="p">)</span> <span class="p">{</span>
+                                <span class="k">if</span> <span class="p">(</span><span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="p">(</span><span class="kt">char</span><span class="p">)</span><span class="n">local_67</span> <span class="o">+</span> <span class="mi">8</span> <span class="o">=</span><span class="o">=</span> <span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="n">local_68</span><span class="p">)</span> <span class="p">{</span>
+                                  <span class="k">if</span> <span class="p">(</span><span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="n">local_69</span> <span class="o">+</span> <span class="o">-</span><span class="mi">2</span> <span class="o">=</span><span class="o">=</span> <span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="n">local_68</span><span class="p">)</span> <span class="p">{</span>
+                                    <span class="k">if</span> <span class="p">(</span><span class="p">(</span><span class="n">local_67</span> <span class="o">^</span> <span class="n">local_6a</span><span class="p">)</span> <span class="o">=</span><span class="o">=</span> <span class="mh">0x16</span><span class="p">)</span> <span class="p">{</span>
+                                      <span class="k">if</span> <span class="p">(</span><span class="n">local_68</span> <span class="o">=</span><span class="o">=</span> <span class="sa"></span><span class="sc">&#39;</span><span class="sc">m</span><span class="sc">&#39;</span><span class="p">)</span> <span class="p">{</span>
+                                        <span class="k">if</span> <span class="p">(</span><span class="n">local_66</span> <span class="o">=</span><span class="o">=</span> <span class="sa"></span><span class="sc">&#39;</span><span class="sc">_</span><span class="sc">&#39;</span><span class="p">)</span> <span class="p">{</span>
+                                          <span class="k">if</span> <span class="p">(</span><span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="n">local_62</span> <span class="o">+</span> <span class="mi">3</span> <span class="o">=</span><span class="o">=</span> <span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="n">local_64</span><span class="p">)</span> <span class="p">{</span>
+                                            <span class="k">if</span> <span class="p">(</span><span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="n">local_64</span> <span class="o">+</span> <span class="mh">0x10</span> <span class="o">=</span><span class="o">=</span> <span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="p">(</span><span class="kt">char</span><span class="p">)</span><span class="n">local_63</span> <span class="o">+</span> <span class="mh">0x10</span><span class="p">)</span>
                                             <span class="p">{</span>
-                                              <span class="k">if</span> <span class="p">((</span><span class="n">local_65</span> <span class="o">^</span> <span class="n">local_63</span><span class="p">)</span> <span class="o">==</span> <span class="mh">0x1b</span><span class="p">)</span> <span class="p">{</span>
-                                                <span class="k">if</span> <span class="p">(</span><span class="n">local_62</span> <span class="o">==</span> <span class="sc">&#39;l&#39;</span><span class="p">)</span> <span class="p">{</span>
-                                                  <span class="n">puts</span><span class="p">(</span><span class="s">&#34;Congratulations! Correct password!&#34;</span><span class="p">);</span>
+                                              <span class="k">if</span> <span class="p">(</span><span class="p">(</span><span class="n">local_65</span> <span class="o">^</span> <span class="n">local_63</span><span class="p">)</span> <span class="o">=</span><span class="o">=</span> <span class="mh">0x1b</span><span class="p">)</span> <span class="p">{</span>
+                                                <span class="k">if</span> <span class="p">(</span><span class="n">local_62</span> <span class="o">=</span><span class="o">=</span> <span class="sa"></span><span class="sc">&#39;</span><span class="sc">l</span><span class="sc">&#39;</span><span class="p">)</span> <span class="p">{</span>
+                                                  <span class="n">puts</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">Congratulations! Correct password!</span><span class="s">&#34;</span><span class="p">)</span><span class="p">;</span>
                                                 <span class="p">}</span>
                                                 <span class="k">else</span> <span class="p">{</span>
-                                                  <span class="n">puts</span><span class="p">(</span><span class="s">&#34;Sorry! Wrong password!&#34;</span><span class="p">);</span>
+                                                  <span class="n">puts</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">Sorry! Wrong password!</span><span class="s">&#34;</span><span class="p">)</span><span class="p">;</span>
                                                 <span class="p">}</span>
                                               <span class="p">}</span>
                                               <span class="k">else</span> <span class="p">{</span>
-                                                <span class="n">puts</span><span class="p">(</span><span class="s">&#34;Sorry! Wrong password!&#34;</span><span class="p">);</span>
+                                                <span class="n">puts</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">Sorry! Wrong password!</span><span class="s">&#34;</span><span class="p">)</span><span class="p">;</span>
                                               <span class="p">}</span>
                                             <span class="p">}</span>
                                             <span class="k">else</span> <span class="p">{</span>
-                                              <span class="n">puts</span><span class="p">(</span><span class="s">&#34;Sorry! Wrong password!&#34;</span><span class="p">);</span>
+                                              <span class="n">puts</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">Sorry! Wrong password!</span><span class="s">&#34;</span><span class="p">)</span><span class="p">;</span>
                                             <span class="p">}</span>
                                           <span class="p">}</span>
                                           <span class="k">else</span> <span class="p">{</span>
-                                            <span class="n">puts</span><span class="p">(</span><span class="s">&#34;Sorry! Wrong password!&#34;</span><span class="p">);</span>
+                                            <span class="n">puts</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">Sorry! Wrong password!</span><span class="s">&#34;</span><span class="p">)</span><span class="p">;</span>
                                           <span class="p">}</span>
                                         <span class="p">}</span>
                                         <span class="k">else</span> <span class="p">{</span>
-                                          <span class="n">puts</span><span class="p">(</span><span class="s">&#34;Sorry! Wrong password!&#34;</span><span class="p">);</span>
+                                          <span class="n">puts</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">Sorry! Wrong password!</span><span class="s">&#34;</span><span class="p">)</span><span class="p">;</span>
                                         <span class="p">}</span>
                                       <span class="p">}</span>
                                       <span class="k">else</span> <span class="p">{</span>
-                                        <span class="n">puts</span><span class="p">(</span><span class="s">&#34;Sorry! Wrong password!&#34;</span><span class="p">);</span>
+                                        <span class="n">puts</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">Sorry! Wrong password!</span><span class="s">&#34;</span><span class="p">)</span><span class="p">;</span>
                                       <span class="p">}</span>
                                     <span class="p">}</span>
                                     <span class="k">else</span> <span class="p">{</span>
-                                      <span class="n">puts</span><span class="p">(</span><span class="s">&#34;Sorry! Wrong password!&#34;</span><span class="p">);</span>
+                                      <span class="n">puts</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">Sorry! Wrong password!</span><span class="s">&#34;</span><span class="p">)</span><span class="p">;</span>
                                     <span class="p">}</span>
                                   <span class="p">}</span>
                                   <span class="k">else</span> <span class="p">{</span>
-                                    <span class="n">puts</span><span class="p">(</span><span class="s">&#34;Sorry! Wrong password!&#34;</span><span class="p">);</span>
+                                    <span class="n">puts</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">Sorry! Wrong password!</span><span class="s">&#34;</span><span class="p">)</span><span class="p">;</span>
                                   <span class="p">}</span>
                                 <span class="p">}</span>
                                 <span class="k">else</span> <span class="p">{</span>
-                                  <span class="n">puts</span><span class="p">(</span><span class="s">&#34;Sorry! Wrong password!&#34;</span><span class="p">);</span>
+                                  <span class="n">puts</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">Sorry! Wrong password!</span><span class="s">&#34;</span><span class="p">)</span><span class="p">;</span>
                                 <span class="p">}</span>
                               <span class="p">}</span>
                               <span class="k">else</span> <span class="p">{</span>
-                                <span class="n">puts</span><span class="p">(</span><span class="s">&#34;Sorry! Wrong password!&#34;</span><span class="p">);</span>
+                                <span class="n">puts</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">Sorry! Wrong password!</span><span class="s">&#34;</span><span class="p">)</span><span class="p">;</span>
                               <span class="p">}</span>
                             <span class="p">}</span>
                             <span class="k">else</span> <span class="p">{</span>
-                              <span class="n">puts</span><span class="p">(</span><span class="s">&#34;Sorry! Wrong password!&#34;</span><span class="p">);</span>
+                              <span class="n">puts</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">Sorry! Wrong password!</span><span class="s">&#34;</span><span class="p">)</span><span class="p">;</span>
                             <span class="p">}</span>
                           <span class="p">}</span>
                           <span class="k">else</span> <span class="p">{</span>
-                            <span class="n">puts</span><span class="p">(</span><span class="s">&#34;Sorry! Wrong password!&#34;</span><span class="p">);</span>
+                            <span class="n">puts</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">Sorry! Wrong password!</span><span class="s">&#34;</span><span class="p">)</span><span class="p">;</span>
                           <span class="p">}</span>
                         <span class="p">}</span>
                         <span class="k">else</span> <span class="p">{</span>
-                          <span class="n">puts</span><span class="p">(</span><span class="s">&#34;Sorry! Wrong password!&#34;</span><span class="p">);</span>
+                          <span class="n">puts</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">Sorry! Wrong password!</span><span class="s">&#34;</span><span class="p">)</span><span class="p">;</span>
                         <span class="p">}</span>
                       <span class="p">}</span>
                       <span class="k">else</span> <span class="p">{</span>
-                        <span class="n">puts</span><span class="p">(</span><span class="s">&#34;Sorry! Wrong password!&#34;</span><span class="p">);</span>
+                        <span class="n">puts</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">Sorry! Wrong password!</span><span class="s">&#34;</span><span class="p">)</span><span class="p">;</span>
                       <span class="p">}</span>
                     <span class="p">}</span>
                     <span class="k">else</span> <span class="p">{</span>
-                      <span class="n">puts</span><span class="p">(</span><span class="s">&#34;Sorry! Wrong password!&#34;</span><span class="p">);</span>
+                      <span class="n">puts</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">Sorry! Wrong password!</span><span class="s">&#34;</span><span class="p">)</span><span class="p">;</span>
                     <span class="p">}</span>
                   <span class="p">}</span>
                   <span class="k">else</span> <span class="p">{</span>
-                    <span class="n">puts</span><span class="p">(</span><span class="s">&#34;Sorry! Wrong password!&#34;</span><span class="p">);</span>
+                    <span class="n">puts</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">Sorry! Wrong password!</span><span class="s">&#34;</span><span class="p">)</span><span class="p">;</span>
                   <span class="p">}</span>
                 <span class="p">}</span>
                 <span class="k">else</span> <span class="p">{</span>
-                  <span class="n">puts</span><span class="p">(</span><span class="s">&#34;Sorry! Wrong password!&#34;</span><span class="p">);</span>
+                  <span class="n">puts</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">Sorry! Wrong password!</span><span class="s">&#34;</span><span class="p">)</span><span class="p">;</span>
                 <span class="p">}</span>
               <span class="p">}</span>
               <span class="k">else</span> <span class="p">{</span>
-                <span class="n">puts</span><span class="p">(</span><span class="s">&#34;Sorry! Wrong password!&#34;</span><span class="p">);</span>
+                <span class="n">puts</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">Sorry! Wrong password!</span><span class="s">&#34;</span><span class="p">)</span><span class="p">;</span>
               <span class="p">}</span>
             <span class="p">}</span>
             <span class="k">else</span> <span class="p">{</span>
-              <span class="n">puts</span><span class="p">(</span><span class="s">&#34;Sorry! Wrong password!&#34;</span><span class="p">);</span>
+              <span class="n">puts</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">Sorry! Wrong password!</span><span class="s">&#34;</span><span class="p">)</span><span class="p">;</span>
             <span class="p">}</span>
           <span class="p">}</span>
           <span class="k">else</span> <span class="p">{</span>
-            <span class="n">puts</span><span class="p">(</span><span class="s">&#34;Sorry! Wrong password!&#34;</span><span class="p">);</span>
+            <span class="n">puts</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">Sorry! Wrong password!</span><span class="s">&#34;</span><span class="p">)</span><span class="p">;</span>
           <span class="p">}</span>
         <span class="p">}</span>
         <span class="k">else</span> <span class="p">{</span>
-          <span class="n">puts</span><span class="p">(</span><span class="s">&#34;Sorry! Wrong password!&#34;</span><span class="p">);</span>
+          <span class="n">puts</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">Sorry! Wrong password!</span><span class="s">&#34;</span><span class="p">)</span><span class="p">;</span>
         <span class="p">}</span>
       <span class="p">}</span>
       <span class="k">else</span> <span class="p">{</span>
-        <span class="n">puts</span><span class="p">(</span><span class="s">&#34;Sorry! Wrong password!&#34;</span><span class="p">);</span>
+        <span class="n">puts</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">Sorry! Wrong password!</span><span class="s">&#34;</span><span class="p">)</span><span class="p">;</span>
       <span class="p">}</span>
     <span class="p">}</span>
     <span class="k">else</span> <span class="p">{</span>
-      <span class="n">puts</span><span class="p">(</span><span class="s">&#34;Sorry! Wrong password!&#34;</span><span class="p">);</span>
+      <span class="n">puts</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">Sorry! Wrong password!</span><span class="s">&#34;</span><span class="p">)</span><span class="p">;</span>
     <span class="p">}</span>
   <span class="p">}</span>
   <span class="k">else</span> <span class="p">{</span>
-    <span class="n">puts</span><span class="p">(</span><span class="s">&#34;Sorry! Wrong password!&#34;</span><span class="p">);</span>
+    <span class="n">puts</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">Sorry! Wrong password!</span><span class="s">&#34;</span><span class="p">)</span><span class="p">;</span>
   <span class="p">}</span>
-  <span class="k">if</span> <span class="p">(</span><span class="n">local_10</span> <span class="o">!=</span> <span class="o">*</span><span class="p">(</span><span class="kt">long</span> <span class="o">*</span><span class="p">)(</span><span class="n">in_FS_OFFSET</span> <span class="o">+</span> <span class="mh">0x28</span><span class="p">))</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">local_10</span> <span class="o">!</span><span class="o">=</span> <span class="o">*</span><span class="p">(</span><span class="kt">long</span> <span class="o">*</span><span class="p">)</span><span class="p">(</span><span class="n">in_FS_OFFSET</span> <span class="o">+</span> <span class="mh">0x28</span><span class="p">)</span><span class="p">)</span> <span class="p">{</span>
                     <span class="cm">/* WARNING: Subroutine does not return */</span>
-    <span class="n">__stack_chk_fail</span><span class="p">();</span>
+    <span class="n">__stack_chk_fail</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
   <span class="p">}</span>
   <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-<span class="p">}</span></code></pre></td></tr></table>
+<span class="p">}</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<p>変なバッファの確保の仕方がされていて、scanfにlocal_78（char型）のポインタを渡していて、ここに入力したパスワードが入ってきます。</p>
-
+</div><p>変なバッファの確保の仕方がされていて、scanfにlocal_78（char型）のポインタを渡していて、ここに入力したパスワードが入ってきます。</p>
 <p>他のローカル変数を上書きするのを期待してるようなコードです。</p>
-
 <p>入力文字列（パスワード）の長さは、23（0x17）文字です。</p>
-
 <p>if文もそんなに複雑ではないので、順番にパズルを解いていく感じで簡単に解けます。</p>
-
-<pre>
-local_78: s
-local_77: h
-local_76: o
-local_75: u
-local_74: l
-local_73は、local_71-1: d
-local_72はlocal_75(u)+1なので: v
-local_71: e
-local_70: _
-local_6fはlocal_6e+2: u
-local_6eはlocal_6c^0x17: s
-local_6dはlocal_6c+1: e
-local_6cは100なので、: d
-local_6b: _
-local_6aは、local_67^0x16: s
-local_69はlocal_68+2: o
-local_68: m
-local_67はlocal_68-8: e
-local_66: _
-local_65は^local_63が0x1b: t
-local_64はlocal_62(l)+3: o
-local_63はlocal_64と同じ: o (111)
-local_62: l
-</pre>
-
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
 <p>Flag: <code>CodefestCTF{shouldve_used_some_tool}</code></p>
-
-<p><br /><br />
-<br /><br />
-<img src="https://captureamerica.github.io/writeups/img/orange_bar.png" alt="orange_bar.png">
-<br />
+<p><!-- raw HTML omitted --><!-- raw HTML omitted -->
+<!-- raw HTML omitted --><!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
 ここから下はCTF終了後に行った復習です。他の方のWriteupを参照しました。
-<br /><br />
+<!-- raw HTML omitted --><!-- raw HTML omitted -->
 何気にいろいろと勉強になりました。
-<br /><br />
-<br /><br /></p>
-
+<!-- raw HTML omitted --><!-- raw HTML omitted -->
+<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
 <h1 id="what-language-is-this">What language is this?</h1>
-
-<hr />
-
-<h2 id="challenge-1">Challenge</h2>
-
+<hr>
+<h2 id="challenge1">Challenge</h2>
 <blockquote>
 <p>Decode this piece of text that Alice got from a friend of hers.
-<br /><br />
+<!-- raw HTML omitted --><!-- raw HTML omitted -->
 iiisdsiiioiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiodddddddddddoioiodoiiiiiiiiiiiiiioiodddddddddddddddddddddddddddddddddddddddddddddddddoiiiiiiiiiiiiiiiiioddddddddddddddoiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiioddddddddddddddddddddddddddddddddddddoiiiiiiiiiiiiiioiiiiiiiodddddddddodddddddddddddddddddddddddddddddddddddddddddddddddddoddddddddddddddddddddddddddddddddddddddsiiiiiiiiioddddddddoddddddoiiiiiiiiiiiiiiiiiiiiioddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddoddddddddddddddddddddddddddddddddsiiisisdddddoddddddddddddddddddddddddddddodddddddddddddddddddoddddddddddddddddddddddddddddddddsiiisisoioiodoiiiiiiiiiiiiiioiodddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddoiiiiiiiioddddddddddddddddddddddddddddddddddddddddddddddsiiiio</p>
 </blockquote>
-
-<p><br /></p>
-
-<h2 id="solution-1">Solution</h2>
-
+<p><!-- raw HTML omitted --></p>
+<h2 id="solution1">Solution</h2>
 <p>i, s, d, oの4文字を使ったesolangだろうということで、いろいろググったんですが、何なのかわかんなかったんですよね。</p>
-
 <p>deadfishというやつらしいです。覚えておきます。</p>
-
-<p><br /><br />
-<br /><br /></p>
-
+<p><!-- raw HTML omitted --><!-- raw HTML omitted -->
+<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
 <h1 id="gibberish-file">Gibberish file</h1>
-
-<hr />
-
-<h2 id="challenge-2">Challenge</h2>
-
+<hr>
+<h2 id="challenge2">Challenge</h2>
 <blockquote>
 <p>This file seems to have a weird encoding. Reverse it to find the flag.</p>
 </blockquote>
-
 <p>Attachment:</p>
-
 <ul>
 <li>output.txt (weird_file.zip)</li>
 </ul>
-
-<p><br /></p>
-
-<h2 id="solution-2">Solution</h2>
-
-<p>&ldquo;Reverse it&rdquo; を、&rdquo;データを反転せよ&rdquo; と解釈するのがミソ。そういう発想が大事なのがわかりました。</p>
-
-<p><br /><br />
-<br /><br /></p>
-
+<p><!-- raw HTML omitted --></p>
+<h2 id="solution2">Solution</h2>
+<p>&ldquo;Reverse it&rdquo; を、&ldquo;データを反転せよ&rdquo; と解釈するのがミソ。そういう発想が大事なのがわかりました。</p>
+<p><!-- raw HTML omitted --><!-- raw HTML omitted -->
+<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
 <h1 id="image-corruption">Image Corruption</h1>
-
-<hr />
-
-<h2 id="challenge-3">Challenge</h2>
-
+<hr>
+<h2 id="challenge3">Challenge</h2>
 <blockquote>
 <p>You are given a corrupted file. This file has the flag. Find it.</p>
 </blockquote>
-
 <p>Attachment:</p>
-
 <ul>
 <li>image.bmp</li>
 </ul>
-
-<p><br /></p>
-
-<h2 id="solution-3">Solution</h2>
-
+<p><!-- raw HTML omitted --></p>
+<h2 id="solution3">Solution</h2>
 <p>このファイル、一部バイナリだけど、ほとんどテキストでmatrixmatrixmatrixがいっぱい出てくるところまでは見れていたんですが、そこからXORしようという発想がなかったです。</p>
-
 <p>一応、コードはそれなりに自分で書いてみました。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-Python" data-lang="Python"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -683,146 +606,65 @@ iiisdsiiioiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiodddddddddddoioiodoiiiiiii
 <span class="c1"># -*- coding: utf-8 -*-</span>
 <span class="kn">import</span> <span class="nn">struct</span>
 
-<span class="n">infile</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&#34;image.bmp&#34;</span><span class="p">,</span> <span class="s2">&#34;rb&#34;</span><span class="p">)</span>
-<span class="n">outfile</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&#34;image_out.bmp&#34;</span><span class="p">,</span> <span class="s2">&#34;wb&#34;</span><span class="p">)</span>
+<span class="n">infile</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2">image.bmp</span><span class="s2">&#34;</span><span class="p">,</span> <span class="sa"></span><span class="s2">&#34;</span><span class="s2">rb</span><span class="s2">&#34;</span><span class="p">)</span>
+<span class="n">outfile</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2">image_out.bmp</span><span class="s2">&#34;</span><span class="p">,</span> <span class="sa"></span><span class="s2">&#34;</span><span class="s2">wb</span><span class="s2">&#34;</span><span class="p">)</span>
 
-<span class="n">data</span> <span class="o">=</span> <span class="n">infile</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">infile</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="p">)</span>
 
-<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)</span><span class="o">//</span><span class="mi">6</span><span class="p">):</span>
-    <span class="n">outfile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">struct</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="s2">&#34;B&#34;</span><span class="p">,</span> <span class="n">data</span><span class="p">[</span><span class="mi">6</span><span class="o">*</span><span class="n">i</span><span class="o">+</span><span class="mi">0</span><span class="p">]</span> <span class="o">^</span> <span class="nb">ord</span><span class="p">(</span><span class="s1">&#39;m&#39;</span><span class="p">)))</span>
-    <span class="n">outfile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">struct</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="s2">&#34;B&#34;</span><span class="p">,</span> <span class="n">data</span><span class="p">[</span><span class="mi">6</span><span class="o">*</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">^</span> <span class="nb">ord</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">)))</span>
-    <span class="n">outfile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">struct</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="s2">&#34;B&#34;</span><span class="p">,</span> <span class="n">data</span><span class="p">[</span><span class="mi">6</span><span class="o">*</span><span class="n">i</span><span class="o">+</span><span class="mi">2</span><span class="p">]</span> <span class="o">^</span> <span class="nb">ord</span><span class="p">(</span><span class="s1">&#39;t&#39;</span><span class="p">)))</span>
-    <span class="n">outfile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">struct</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="s2">&#34;B&#34;</span><span class="p">,</span> <span class="n">data</span><span class="p">[</span><span class="mi">6</span><span class="o">*</span><span class="n">i</span><span class="o">+</span><span class="mi">3</span><span class="p">]</span> <span class="o">^</span> <span class="nb">ord</span><span class="p">(</span><span class="s1">&#39;r&#39;</span><span class="p">)))</span>
-    <span class="n">outfile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">struct</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="s2">&#34;B&#34;</span><span class="p">,</span> <span class="n">data</span><span class="p">[</span><span class="mi">6</span><span class="o">*</span><span class="n">i</span><span class="o">+</span><span class="mi">4</span><span class="p">]</span> <span class="o">^</span> <span class="nb">ord</span><span class="p">(</span><span class="s1">&#39;i&#39;</span><span class="p">)))</span>
-    <span class="n">outfile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">struct</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="s2">&#34;B&#34;</span><span class="p">,</span> <span class="n">data</span><span class="p">[</span><span class="mi">6</span><span class="o">*</span><span class="n">i</span><span class="o">+</span><span class="mi">5</span><span class="p">]</span> <span class="o">^</span> <span class="nb">ord</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)))</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)</span><span class="o">/</span><span class="o">/</span><span class="mi">6</span><span class="p">)</span><span class="p">:</span>
+    <span class="n">outfile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">struct</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2">B</span><span class="s2">&#34;</span><span class="p">,</span> <span class="n">data</span><span class="p">[</span><span class="mi">6</span><span class="o">*</span><span class="n">i</span><span class="o">+</span><span class="mi">0</span><span class="p">]</span> <span class="o">^</span> <span class="nb">ord</span><span class="p">(</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">m</span><span class="s1">&#39;</span><span class="p">)</span><span class="p">)</span><span class="p">)</span>
+    <span class="n">outfile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">struct</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2">B</span><span class="s2">&#34;</span><span class="p">,</span> <span class="n">data</span><span class="p">[</span><span class="mi">6</span><span class="o">*</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">^</span> <span class="nb">ord</span><span class="p">(</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">a</span><span class="s1">&#39;</span><span class="p">)</span><span class="p">)</span><span class="p">)</span>
+    <span class="n">outfile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">struct</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2">B</span><span class="s2">&#34;</span><span class="p">,</span> <span class="n">data</span><span class="p">[</span><span class="mi">6</span><span class="o">*</span><span class="n">i</span><span class="o">+</span><span class="mi">2</span><span class="p">]</span> <span class="o">^</span> <span class="nb">ord</span><span class="p">(</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">t</span><span class="s1">&#39;</span><span class="p">)</span><span class="p">)</span><span class="p">)</span>
+    <span class="n">outfile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">struct</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2">B</span><span class="s2">&#34;</span><span class="p">,</span> <span class="n">data</span><span class="p">[</span><span class="mi">6</span><span class="o">*</span><span class="n">i</span><span class="o">+</span><span class="mi">3</span><span class="p">]</span> <span class="o">^</span> <span class="nb">ord</span><span class="p">(</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">r</span><span class="s1">&#39;</span><span class="p">)</span><span class="p">)</span><span class="p">)</span>
+    <span class="n">outfile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">struct</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2">B</span><span class="s2">&#34;</span><span class="p">,</span> <span class="n">data</span><span class="p">[</span><span class="mi">6</span><span class="o">*</span><span class="n">i</span><span class="o">+</span><span class="mi">4</span><span class="p">]</span> <span class="o">^</span> <span class="nb">ord</span><span class="p">(</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">i</span><span class="s1">&#39;</span><span class="p">)</span><span class="p">)</span><span class="p">)</span>
+    <span class="n">outfile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">struct</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2">B</span><span class="s2">&#34;</span><span class="p">,</span> <span class="n">data</span><span class="p">[</span><span class="mi">6</span><span class="o">*</span><span class="n">i</span><span class="o">+</span><span class="mi">5</span><span class="p">]</span> <span class="o">^</span> <span class="nb">ord</span><span class="p">(</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">x</span><span class="s1">&#39;</span><span class="p">)</span><span class="p">)</span><span class="p">)</span>
 
-<span class="n">infile</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
-<span class="n">outfile</span><span class="o">.</span><span class="n">close</span><span class="p">()</span></code></pre></td></tr></table>
+<span class="n">infile</span><span class="o">.</span><span class="n">close</span><span class="p">(</span><span class="p">)</span>
+<span class="n">outfile</span><span class="o">.</span><span class="n">close</span><span class="p">(</span><span class="p">)</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<p><br /><br />
-<br /><br /></p>
-
+</div><p><!-- raw HTML omitted --><!-- raw HTML omitted -->
+<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
 <h1 id="mail-capture">Mail capture</h1>
-
-<hr />
-
-<h2 id="challenge-4">Challenge</h2>
-
+<hr>
+<h2 id="challenge4">Challenge</h2>
 <blockquote>
 <p>Bob got hold of this file when going through the files of the email client on his old computer. Help him find the hidden message.</p>
 </blockquote>
-
 <p>Attachment: （後日ダウンロードし直したら、ちゃんと問題用ファイルが入ってました。）</p>
-
 <ul>
-<li><p>encoded_file</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span></pre></td>
-<td class="lntd">
-<pre class="chroma">$ cat encoded_file
-begin 664 flag_encoded
-E0V]D969E&lt;W1#5$9[-V@Q-5\Q-5\T7V,P,#%?,VYC,&amp;0Q;CE]&#34;@``
-`
-end</pre></td></tr></table>
-</div>
-</div></li>
+<li>encoded_file</li>
 </ul>
-
-<p><br /></p>
-
-<h2 id="solution-4">Solution</h2>
-
+<pre><code>$ cat encoded_file
+begin 664 flag_encoded
+E0V]D969E&lt;W1#5$9[-V@Q-5\Q-5\T7V,P,#%?,VYC,&amp;0Q;CE]&quot;@``
+`
+end
+</code></pre><p><!-- raw HTML omitted --></p>
+<h2 id="solution4">Solution</h2>
 <p>$ uudecode encoded_file</p>
-
 <p>これもちゃんと覚えておきます。</p>
-
-<p><br /><br />
-<br /><br /></p>
-
+<p><!-- raw HTML omitted --><!-- raw HTML omitted -->
+<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
 <h1 id="cats-are-innocent-right">Cats are innocent, right?</h1>
-
-<hr />
-
-<h2 id="challenge-5">Challenge</h2>
-
+<hr>
+<h2 id="challenge5">Challenge</h2>
 <blockquote>
 <p>This image has a flag hidden in it. Find it.</p>
 </blockquote>
-
 <p>Attachment:</p>
-
 <ul>
 <li>cute_kittens.jpg</li>
 </ul>
-
-<p><br /></p>
-
-<h2 id="solution-5">Solution</h2>
-
+<p><!-- raw HTML omitted --></p>
+<h2 id="solution5">Solution</h2>
 <p>この問題だけSuccess Rateがダントツに低いんです（4.76%）。みんな解けなかったみたいですね。</p>
-
 <p><a href="https://github.com/DimitarPetrov/stegify">stegify</a>というツールと使って解くそうです。</p>
-
 <p>それ以外の解き方はないのかなぁ。。</p>
-
-<p><br />
+<p><!-- raw HTML omitted -->
 しかも、出力されたZipにはDecoyが入っているし。</p>
-
 <p>Zipを解凍せずにバイナリで見るとか、面白いと思いました。</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span><span class="lnt">18
-</span><span class="lnt">19
-</span><span class="lnt">20
-</span><span class="lnt">21
-</span><span class="lnt">22
-</span><span class="lnt">23
-</span><span class="lnt">24
-</span><span class="lnt">25
-</span><span class="lnt">26
-</span><span class="lnt">27
-</span><span class="lnt">28
-</span><span class="lnt">29
-</span><span class="lnt">30
-</span><span class="lnt">31
-</span><span class="lnt">32
-</span><span class="lnt">33
-</span><span class="lnt">34
-</span><span class="lnt">35
-</span><span class="lnt">36
-</span><span class="lnt">37
-</span><span class="lnt">38
-</span><span class="lnt">39
-</span><span class="lnt">40
-</span><span class="lnt">41
-</span><span class="lnt">42
-</span></pre></td>
-<td class="lntd">
-<pre class="chroma">root@kali:~/Codefest_CTF_2019# stegify -op decode -carrier cute_kittens.jpg -result hello
+<pre><code>root@kali:~/Codefest_CTF_2019# stegify -op decode -carrier cute_kittens.jpg -result hello
 root@kali:~/Codefest_CTF_2019# ll
 total 204
 drwxr-xr-x  2 root root   4096 Aug 29 22:40 ./
@@ -847,7 +689,7 @@ drwxr-xr-x  2 root root   4096 Aug 29 22:40  ./
 drwxr-xr-x 50 root root   4096 Aug 29 22:39  ../
 -rw-r--r--  1 root root 193231 Aug 29 22:26  cute_kittens.jpg
 -rw-r--r--  1 root root    192 Aug 29 22:40  hello
--rw-rw-r--  1 root root     16 Aug 14 16:36 &#39;is this the flag?&#39;
+-rw-rw-r--  1 root root     16 Aug 14 16:36 'is this the flag?'
 root@kali:~/Codefest_CTF_2019# emacs
 root@kali:~/Codefest_CTF_2019# 
 root@kali:~/Codefest_CTF_2019# 
@@ -863,18 +705,13 @@ root@kali:~/Codefest_CTF_2019# xxd hello
 00000080: 0506 0000 0000 0100 0100 3f00 0000 3f00  ..........?...?.
 00000090: 0000 0000 436f 6465 6665 7374 4354 467b  ....CodefestCTF{
 000000a0: 6831 6431 6e67 5f62 3368 316e 645f 316e  h1d1ng_b3h1nd_1n
-000000b0: 6e30 6333 6e74 5f6b 3174 7433 6e35 7d0a  n0c3nt_k1tt3n5}.</pre></td></tr></table>
-</div>
-</div>
-<p>stegifyは、これからのCTFで使っていこうと思います。</p>
-
-<p><br /><br />
-<br /><br /></p>
-
-<hr />
-
-<p><br /><br />
-<br /><br /></p>
+000000b0: 6e30 6333 6e74 5f6b 3174 7433 6e35 7d0a  n0c3nt_k1tt3n5}.
+</code></pre><p>stegifyは、これからのCTFで使っていこうと思います。</p>
+<p><!-- raw HTML omitted --><!-- raw HTML omitted -->
+<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<hr>
+<p><!-- raw HTML omitted --><!-- raw HTML omitted -->
+<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
 
     </div>
 
@@ -914,6 +751,10 @@ root@kali:~/Codefest_CTF_2019# xxd hello
   </article>
         </div>
         
+
+  
+
+  
 
       </div>
     </main>

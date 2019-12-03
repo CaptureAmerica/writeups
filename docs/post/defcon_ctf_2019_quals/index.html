@@ -23,7 +23,7 @@
 <meta name="google-site-verification" content="PqctLWZQttGzxXVupWuIt2HWuBI8cvN1z07ETpxA2dw" />
 
 
-<meta name="generator" content="Hugo 0.55.6 with even 4.0.0" />
+<meta name="generator" content="Hugo 0.60.1 with theme even" />
 
 
 <link rel="canonical" href="https://captureamerica.github.io/writeups/post/defcon_ctf_2019_quals/" />
@@ -42,21 +42,17 @@
 <meta property="og:description" content="cant_even_unplug_it Challenge You know, we had this up and everything. Prepped nice HTML5, started deploying on a military-grade-secrets.dev subdomain, got the certificate, the whole shabang. Boss-man got moody and wanted another name, we set up the new names and all. Finally he got scared and unplugged the server. Can you believe it? Unplugged. Like that can keep it secret… Hint: these are HTTPS sites." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://captureamerica.github.io/writeups/post/defcon_ctf_2019_quals/" />
-<meta property="article:published_time" content="2019-05-11T00:00:00&#43;08:00"/>
-<meta property="article:modified_time" content="2019-05-25T14:05:00&#43;08:00"/>
-
+<meta property="article:published_time" content="2019-05-11T00:00:00+08:00" />
+<meta property="article:modified_time" content="2019-05-25T14:05:00+08:00" />
 <meta itemprop="name" content="DEF CON CTF 2019 Quals Writeup">
 <meta itemprop="description" content="cant_even_unplug_it Challenge You know, we had this up and everything. Prepped nice HTML5, started deploying on a military-grade-secrets.dev subdomain, got the certificate, the whole shabang. Boss-man got moody and wanted another name, we set up the new names and all. Finally he got scared and unplugged the server. Can you believe it? Unplugged. Like that can keep it secret… Hint: these are HTTPS sites.">
-
-
 <meta itemprop="datePublished" content="2019-05-11T00:00:00&#43;08:00" />
 <meta itemprop="dateModified" content="2019-05-25T14:05:00&#43;08:00" />
-<meta itemprop="wordCount" content="461">
+<meta itemprop="wordCount" content="512">
 
 
 
-<meta itemprop="keywords" content="CTF," />
-<meta name="twitter:card" content="summary"/>
+<meta itemprop="keywords" content="CTF," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="DEF CON CTF 2019 Quals Writeup"/>
 <meta name="twitter:description" content="cant_even_unplug_it Challenge You know, we had this up and everything. Prepped nice HTML5, started deploying on a military-grade-secrets.dev subdomain, got the certificate, the whole shabang. Boss-man got moody and wanted another name, we set up the new names and all. Finally he got scared and unplugged the server. Can you believe it? Unplugged. Like that can keep it secret… Hint: these are HTTPS sites."/>
 
@@ -140,90 +136,56 @@
   <h2 class="post-toc-title">Contents</h2>
   <div class="post-toc-content always-active">
     <nav id="TableOfContents">
-<ul>
-<li><a href="#cant-even-unplug-it">cant_even_unplug_it</a>
-<ul>
-<li><a href="#challenge">Challenge</a></li>
-<li><a href="#solution">Solution</a></li>
-</ul></li>
-</ul>
+  <ul>
+    <li><a href="#challenge">Challenge</a></li>
+    <li><a href="#solution">Solution</a></li>
+  </ul>
 </nav>
   </div>
 </div>
     <div class="post-content">
-      
-
-<h1 id="cant-even-unplug-it">cant_even_unplug_it</h1>
-
-<hr />
-
+      <h1 id="cantevenunplugit">cant_even_unplug_it</h1>
+<hr>
 <h2 id="challenge">Challenge</h2>
-
 <blockquote>
 <p>You know, we had this up and everything. Prepped nice HTML5, started deploying on a military-grade-secrets.dev subdomain, got the certificate, the whole shabang. Boss-man got moody and wanted another name, we set up the new names and all. Finally he got scared and unplugged the server. Can you believe it? Unplugged. Like that can keep it secret…
-<br /><br />
+<!-- raw HTML omitted --><!-- raw HTML omitted -->
 Hint: these are HTTPS sites. Who is publicly and transparently logging the info you need?
-<br /><br />
+<!-- raw HTML omitted --><!-- raw HTML omitted -->
 Just in case: all info is freely accessible, no subscriptions are necessary. The names cannot really be guessed.</p>
 </blockquote>
-
-<p><br /></p>
-
+<p><!-- raw HTML omitted --></p>
 <h2 id="solution">Solution</h2>
-
 <p>簡単に訳すと、</p>
-
 <blockquote>
 <p>military-grade-secrets.dev サブドメインを使ってサイトをがんばって作って立ち上げたのに、ボスが別の名前がいいとか言いだして、名前を変えてやったのに、結局なんか怖くなってサイトを落としたよ。</p>
 </blockquote>
-
 <p>みたいなストーリー。</p>
-
 <p><a href="https://www.virustotal.com/#/domain/military-grade-secrets.dev">VirusTotal</a> でサーチしたところ、以下の2つのFQDNが見つかりました。</p>
-
 <ul>
 <li>secret-storage.military-grade-secrets.dev</li>
 <li>now.under.even-more-militarygrade.pw.military-grade-secrets.dev</li>
 </ul>
-
 <p>早速ブラウザでアクセスしてみると、</p>
-
 <p><code>This site can’t be reached</code>
-<br />
+<!-- raw HTML omitted -->
 <code>forget-me-not.even-more-militarygrade.pw refused to connect.</code></p>
-
-<p><br />
-wgetだと、こんな感じ。
-<pre>
-~ $ wget secret-storage.military-grade-secrets.dev
-&ndash;2019-05-25 14:36:49&ndash;  <a href="http://secret-storage.military-grade-secrets.dev/">http://secret-storage.military-grade-secrets.dev/</a>
-Resolving secret-storage.military-grade-secrets.dev (secret-storage.military-grade-secrets.dev)&hellip; 172.217.24.115
-Connecting to secret-storage.military-grade-secrets.dev (secret-storage.military-grade-secrets.dev)|172.217.24.115|:80&hellip; connected.
-HTTP request sent, awaiting response&hellip; 302 Found
-Location: <a href="https://forget-me-not.even-more-militarygrade.pw">https://forget-me-not.even-more-militarygrade.pw</a> [following]
-&ndash;2019-05-25 14:36:49&ndash;  <a href="https://forget-me-not.even-more-militarygrade.pw/">https://forget-me-not.even-more-militarygrade.pw/</a>
-Resolving forget-me-not.even-more-militarygrade.pw (forget-me-not.even-more-militarygrade.pw)&hellip; 206.189.162.22
-Connecting to forget-me-not.even-more-militarygrade.pw (forget-me-not.even-more-militarygrade.pw)|206.189.162.22|:443&hellip; failed: Connection refused.
-</pre></p>
-
+<p><!-- raw HTML omitted -->
+wgetだと、こんな感じ。</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
 <p>リダイレクトによって、別の名前のサイトに飛ぶようになってますね。
-<br /><br /></p>
-
+<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
 <p>最初の説明文にあるように、サーバはすでに落ちているのでアクセスできないですが、ウェブのキャッシュをみたらどんなサイトだったか確認ができます。</p>
-
-<p>以下の、ウェブアーカイブを使いました。<br />
+<p>以下の、ウェブアーカイブを使いました。<!-- raw HTML omitted -->
 <a href="https://web.archive.org/web/20190427160922/https://forget-me-not.even-more-militarygrade.pw/">https://web.archive.org/web/20190427160922/https://forget-me-not.even-more-militarygrade.pw/</a></p>
-
-<p><br />
+<p><!-- raw HTML omitted -->
 <strong>Flag:</strong> OOO{DAMNATIO_MEMORIAE}</p>
-
-<p><br />
+<p><!-- raw HTML omitted -->
 ＃HTTPSなんじゃらのヒント、使ってないや。。。</p>
-
-<hr />
-
-<p><br /><br />
-<br /><br /></p>
+<hr>
+<p><!-- raw HTML omitted --><!-- raw HTML omitted -->
+<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
 
     </div>
 
@@ -258,6 +220,10 @@ Connecting to forget-me-not.even-more-militarygrade.pw (forget-me-not.even-more-
   </article>
         </div>
         
+
+  
+
+  
 
       </div>
     </main>

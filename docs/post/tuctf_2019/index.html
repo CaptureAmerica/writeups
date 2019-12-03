@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <title>CSAW CTF&#39;19 CTF Writeup - CTF Writeups</title>
+  <title>TUCTF 2019 Writeup - CTF Writeups</title>
   <meta name="renderer" content="webkit" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
@@ -16,7 +16,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="きゃぷあめ" /><meta name="description" content="URL: https://ctf.csaw.io/challenges とりあえず、Reversingの一番簡単なやつだけ解きました。 [Reversing]: BELEAF (50 points) Challenge tree sounds are best listened to by https://binary.ninja/demo or ghidra Attachment: beleaf (64-bit ELF) Solution 言われた通り、Ghidraでデコン" /><meta name="keywords" content="CTF, Writeup, captureamerica, picoCTF" />
+<meta name="author" content="きゃぷあめ" /><meta name="description" content="URL: https://tuctf.com/ もうサイトにアクセスできないようなので、最終順位がわかりません。 以下、チャレンジ一覧と解いた問題です。 [Reversing]: BELEAF (50 points) Challenge tree sounds are best listened to by https://binary.ninja/demo or ghidra Attachment: beleaf" /><meta name="keywords" content="CTF, Writeup, captureamerica, picoCTF" />
 
 
 
@@ -26,7 +26,7 @@
 <meta name="generator" content="Hugo 0.60.1 with theme even" />
 
 
-<link rel="canonical" href="https://captureamerica.github.io/writeups/post/csaw_ctf_2019/" />
+<link rel="canonical" href="https://captureamerica.github.io/writeups/post/tuctf_2019/" />
 <link rel="apple-touch-icon" sizes="180x180" href="https://captureamerica.github.io/writeups/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="https://captureamerica.github.io/writeups/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="https://captureamerica.github.io/writeups/favicon-16x16.png">
@@ -38,23 +38,23 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
-<meta property="og:title" content="CSAW CTF&#39;19 CTF Writeup" />
-<meta property="og:description" content="URL: https://ctf.csaw.io/challenges とりあえず、Reversingの一番簡単なやつだけ解きました。 [Reversing]: BELEAF (50 points) Challenge tree sounds are best listened to by https://binary.ninja/demo or ghidra Attachment: beleaf (64-bit ELF) Solution 言われた通り、Ghidraでデコン" />
+<meta property="og:title" content="TUCTF 2019 Writeup" />
+<meta property="og:description" content="URL: https://tuctf.com/ もうサイトにアクセスできないようなので、最終順位がわかりません。 以下、チャレンジ一覧と解いた問題です。 [Reversing]: BELEAF (50 points) Challenge tree sounds are best listened to by https://binary.ninja/demo or ghidra Attachment: beleaf" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://captureamerica.github.io/writeups/post/csaw_ctf_2019/" />
-<meta property="article:published_time" content="2019-09-16T14:00:00+09:00" />
-<meta property="article:modified_time" content="2019-09-16T14:00:00+09:00" />
-<meta itemprop="name" content="CSAW CTF&#39;19 CTF Writeup">
-<meta itemprop="description" content="URL: https://ctf.csaw.io/challenges とりあえず、Reversingの一番簡単なやつだけ解きました。 [Reversing]: BELEAF (50 points) Challenge tree sounds are best listened to by https://binary.ninja/demo or ghidra Attachment: beleaf (64-bit ELF) Solution 言われた通り、Ghidraでデコン">
-<meta itemprop="datePublished" content="2019-09-16T14:00:00&#43;09:00" />
-<meta itemprop="dateModified" content="2019-09-16T14:00:00&#43;09:00" />
-<meta itemprop="wordCount" content="837">
+<meta property="og:url" content="https://captureamerica.github.io/writeups/post/tuctf_2019/" />
+<meta property="article:published_time" content="2019-12-03T13:00:00+09:00" />
+<meta property="article:modified_time" content="2019-12-03T13:00:00+09:00" />
+<meta itemprop="name" content="TUCTF 2019 Writeup">
+<meta itemprop="description" content="URL: https://tuctf.com/ もうサイトにアクセスできないようなので、最終順位がわかりません。 以下、チャレンジ一覧と解いた問題です。 [Reversing]: BELEAF (50 points) Challenge tree sounds are best listened to by https://binary.ninja/demo or ghidra Attachment: beleaf">
+<meta itemprop="datePublished" content="2019-12-03T13:00:00&#43;09:00" />
+<meta itemprop="dateModified" content="2019-12-03T13:00:00&#43;09:00" />
+<meta itemprop="wordCount" content="857">
 
 
 
 <meta itemprop="keywords" content="CTF," /><meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="CSAW CTF&#39;19 CTF Writeup"/>
-<meta name="twitter:description" content="URL: https://ctf.csaw.io/challenges とりあえず、Reversingの一番簡単なやつだけ解きました。 [Reversing]: BELEAF (50 points) Challenge tree sounds are best listened to by https://binary.ninja/demo or ghidra Attachment: beleaf (64-bit ELF) Solution 言われた通り、Ghidraでデコン"/>
+<meta name="twitter:title" content="TUCTF 2019 Writeup"/>
+<meta name="twitter:description" content="URL: https://tuctf.com/ もうサイトにアクセスできないようなので、最終順位がわかりません。 以下、チャレンジ一覧と解いた問題です。 [Reversing]: BELEAF (50 points) Challenge tree sounds are best listened to by https://binary.ninja/demo or ghidra Attachment: beleaf"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -121,10 +121,10 @@
           <article class="post">
     
     <header class="post-header">
-      <h1 class="post-title">CSAW CTF&#39;19 CTF Writeup</h1>
+      <h1 class="post-title">TUCTF 2019 Writeup</h1>
 
       <div class="post-meta">
-        <span class="post-time"> 2019-09-16 </span>
+        <span class="post-time"> 2019-12-03 </span>
         <div class="post-category">
             <a href="https://captureamerica.github.io/writeups/categories/ctf/"> CTF </a>
             </div>
@@ -144,10 +144,11 @@
   </div>
 </div>
     <div class="post-content">
-      <p>URL: <a href="https://ctf.csaw.io/challenges"><a href="https://ctf.csaw.io/challenges">https://ctf.csaw.io/challenges</a></a>
-<!-- raw HTML omitted --><!-- raw HTML omitted -->
-とりあえず、Reversingの一番簡単なやつだけ解きました。
-<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+      <p>URL: <a href="https://tuctf.com/"><a href="https://tuctf.com/">https://tuctf.com/</a></a></p>
+<p>もうサイトにアクセスできないようなので、最終順位がわかりません。</p>
+<p>以下、チャレンジ一覧と解いた問題です。</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
 <p><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
 <h1 id="reversing-beleaf-50-points">[Reversing]: BELEAF (50 points)</h1>
 <hr>
@@ -417,7 +418,7 @@ flag{we_beleaf_in_your_re_future}
   <p class="copyright-item">
     <span class="item-title">LastMod</span>
     <span class="item-content">
-        2019-09-16
+        2019-12-03
         
     </span>
   </p>
@@ -429,13 +430,9 @@ flag{we_beleaf_in_your_re_future}
           <a href="https://captureamerica.github.io/writeups/tags/ctf/">CTF</a>
           </div>
       <nav class="post-nav">
-        <a class="prev" href="https://captureamerica.github.io/writeups/post/sect_ctf_2019/">
-            <i class="iconfont icon-left"></i>
-            <span class="prev-text nav-default">SEC-T CTF 2019 Writeup</span>
-            <span class="prev-text nav-mobile">Prev</span>
-          </a>
-        <a class="next" href="https://captureamerica.github.io/writeups/post/codefest_2019/">
-            <span class="next-text nav-default">Codefest&#39;19 CTF Writeup</span>
+        
+        <a class="next" href="https://captureamerica.github.io/writeups/post/ritsec_ctf_2019/">
+            <span class="next-text nav-default">RITSEC CTF 2019 Writeup</span>
             <span class="next-text nav-mobile">Next</span>
             <i class="iconfont icon-right"></i>
           </a>

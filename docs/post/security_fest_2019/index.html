@@ -23,7 +23,7 @@
 <meta name="google-site-verification" content="PqctLWZQttGzxXVupWuIt2HWuBI8cvN1z07ETpxA2dw" />
 
 
-<meta name="generator" content="Hugo 0.55.6 with even 4.0.0" />
+<meta name="generator" content="Hugo 0.60.1 with theme even" />
 
 
 <link rel="canonical" href="https://captureamerica.github.io/writeups/post/security_fest_2019/" />
@@ -42,21 +42,17 @@
 <meta property="og:description" content="Signal Challenge There is no signal, everything is silent. Nothing is impossible. Attachment: signal.pdf 開くと、こんな感じ。（以下は、スクリーンショットです。） Solution 回答だけじゃなくて、一応やったことも記録に残しておきま" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://captureamerica.github.io/writeups/post/security_fest_2019/" />
-<meta property="article:published_time" content="2019-05-23T00:00:00&#43;08:00"/>
-<meta property="article:modified_time" content="2019-05-25T14:05:00&#43;08:00"/>
-
+<meta property="article:published_time" content="2019-05-23T00:00:00+08:00" />
+<meta property="article:modified_time" content="2019-05-25T14:05:00+08:00" />
 <meta itemprop="name" content="Security Fest 2019 Writeup">
 <meta itemprop="description" content="Signal Challenge There is no signal, everything is silent. Nothing is impossible. Attachment: signal.pdf 開くと、こんな感じ。（以下は、スクリーンショットです。） Solution 回答だけじゃなくて、一応やったことも記録に残しておきま">
-
-
 <meta itemprop="datePublished" content="2019-05-23T00:00:00&#43;08:00" />
 <meta itemprop="dateModified" content="2019-05-25T14:05:00&#43;08:00" />
-<meta itemprop="wordCount" content="732">
+<meta itemprop="wordCount" content="654">
 
 
 
-<meta itemprop="keywords" content="CTF," />
-<meta name="twitter:card" content="summary"/>
+<meta itemprop="keywords" content="CTF," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Security Fest 2019 Writeup"/>
 <meta name="twitter:description" content="Signal Challenge There is no signal, everything is silent. Nothing is impossible. Attachment: signal.pdf 開くと、こんな感じ。（以下は、スクリーンショットです。） Solution 回答だけじゃなくて、一応やったことも記録に残しておきま"/>
 
@@ -140,106 +136,68 @@
   <h2 class="post-toc-title">Contents</h2>
   <div class="post-toc-content always-active">
     <nav id="TableOfContents">
-<ul>
-<li><a href="#signal">Signal</a>
-<ul>
-<li><a href="#challenge">Challenge</a></li>
-<li><a href="#solution">Solution</a></li>
-</ul></li>
-</ul>
+  <ul>
+    <li><a href="#challenge">Challenge</a></li>
+    <li><a href="#solution">Solution</a></li>
+  </ul>
 </nav>
   </div>
 </div>
     <div class="post-content">
-      
-
-<h1 id="signal">Signal</h1>
-
-<hr />
-
+      <h1 id="signal">Signal</h1>
+<hr>
 <h2 id="challenge">Challenge</h2>
-
 <blockquote>
 <p>There is no signal, everything is silent. Nothing is impossible.</p>
 </blockquote>
-
 <p>Attachment:</p>
-
 <ul>
 <li>signal.pdf</li>
 </ul>
-
-<p><br />
+<p><!-- raw HTML omitted -->
 開くと、こんな感じ。（以下は、スクリーンショットです。）
-<img src="https://captureamerica.github.io/writeups/img/signal.png" alt="signal.png"></p>
-
-<p><br /></p>
-
+<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted --></p>
 <h2 id="solution">Solution</h2>
-
 <p>回答だけじゃなくて、一応やったことも記録に残しておきます。</p>
-
 <ul>
 <li>pdf系の問題は、とりあえず、テキストエディタで開いてさらっと中身をチェックします。script使っているかどうかとか。
-<br /><br /></li>
-<li>その後、何も考えず、いろいろツールにかけていきました。
-
-<ul>
+<!-- raw HTML omitted --><!-- raw HTML omitted --></li>
+<li>その後、何も考えず、いろいろツールにかけていきました。</li>
 <li>pdf-parser.py</li>
 <li>pdfid.py</li>
 <li>pdfinfo</li>
 <li>PdfAnalyzer.exe</li>
 <li>PDFStreamDumper.exe</li>
-</ul></li>
 </ul>
-
-<p><br />
+<p><!-- raw HTML omitted -->
 特に怪しい箇所がなんにもないので、残るはアスキーテキストに何かあると考えるしかないな、と思いました。</p>
-
-<p><br />
-以下のコマンドの出力結果は抜粋です。
-<pre>
-$ pdftotext signal.pdf &gt; signal.txt ; cat signal.txt
-：
-<em>-&lsquo;&hellip; - .-. .- -. &ndash;&hellip;-.-.- -.- . -.&ndash; -&hellip; &mdash;<code>-_
-_-' .- .-. -.. .-.-.- ... . -.-. ..-. .-.-.- -- .---- .</code>-</em>
-<em>-&lsquo;-.. .&mdash;- - &hellip;.- .-. -.&ndash; ..&ndash;.- &ndash;. .-. &hellip;.- -.. &hellip;&ndash; -</em>
-<em>-&lsquo;..&ndash;.- &hellip;&ndash; -. -.-. .-. -.&ndash; .&ndash;. - .&mdash;- &mdash;&ndash; -. .-.-.- .&ndash; -</em>
-<em>-&lsquo;.- .. - .-.-.- -.-. &mdash; ..- .-.. -.. .-.-.- .-. .- -. -.. &mdash; -<code>-_
-:-------------------------------------------------------------------------:
-</code>&mdash;.</em>.&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;-._.&mdash;&rsquo;
-</pre></p>
-
-<p>これを見た瞬間、なぜか「SOS」のモールス信号の音がアタマに流れました。<br />
+<p><!-- raw HTML omitted -->
+以下のコマンドの出力結果は抜粋です。</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>これを見た瞬間、なぜか「SOS」のモールス信号の音がアタマに流れました。<!-- raw HTML omitted -->
 あぁ、問題のタイトルSignal（信号）だしね。ビンゴの確信。</p>
-
-<p><br /><br />
+<p><!-- raw HTML omitted --><!-- raw HTML omitted -->
 あとは、オンラインで、<code>morse decode</code> をキーワードに検索してデコードサイトを見つけてデコードするだけなんですが、これがサイトによってクオリティが違ってて、エラーが出たり出なかったり、変換文字が違ったりするんです。</p>
-
-<p><br />
+<p><!-- raw HTML omitted -->
 使った中で一番よかったのは、以下のサイトでした。
-<br />
-<a href="https://www.dcode.fr/morse-code">https://www.dcode.fr/morse-code</a></p>
-
-<p><br />
+<!-- raw HTML omitted -->
+<a href="https://www.dcode.fr/morse-code"><a href="https://www.dcode.fr/morse-code">https://www.dcode.fr/morse-code</a></a></p>
+<p><!-- raw HTML omitted -->
 コツは、1行1行別々にデコードすることです。全部を1行にまとめてからデコードしようとすると、もともと改行があった場所でエラーが出たりします。</p>
-
-<p><br />
+<p><!-- raw HTML omitted -->
 でもって、以下の文字列が取れるんですが、
 STRANGE.KEYBOARD.SECF.M1L1T4RY_GR4D3T_3NCRYPT10N.WTAIT.COULD.RANDOM
-<br /><br />
+<!-- raw HTML omitted --><!-- raw HTML omitted -->
 これそのままだと、incorrect flagで受け付けられなくて、いろんなパターンやってもことごとくダメだったんで何気に諦めかけたけど、結局以下の部分が最終フラグとして通りました。</p>
-
-<p><br />
+<p><!-- raw HTML omitted -->
 <strong>Flag:</strong> m1l1t4ry_gr4d3_3ncrypt10n</p>
-
-<p><br />
+<p><!-- raw HTML omitted -->
 ＃まぁ、確かにアンダースコアで繋がっているし、その部分なんだろうけどさ。。。結構悩んだ</p>
-
-<hr />
-
-<p><br /><br />
-<br /><br /></p>
+<hr>
+<p><!-- raw HTML omitted --><!-- raw HTML omitted -->
+<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
 
     </div>
 
@@ -278,6 +236,10 @@ STRANGE.KEYBOARD.SECF.M1L1T4RY_GR4D3T_3NCRYPT10N.WTAIT.COULD.RANDOM
   </article>
         </div>
         
+
+  
+
+  
 
       </div>
     </main>
