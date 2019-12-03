@@ -1,7 +1,7 @@
 ---
 title: "TUCTF 2019 Writeup"
-date: 2019-12-04T13:00:00+09:00
-lastmod: 2019-12-04T13:00:00+09:00
+date: 2019-12-03T13:00:00+09:00
+lastmod: 2019-12-03T13:00:00+09:00
 draft: false
 keywords: []
 description: ""
@@ -17,167 +17,147 @@ URL: [https://tuctf.com/](https://tuctf.com/)
 
 <img src="https://captureamerica.github.io/writeups/img/tuctf_chal1.png" alt="tuctf_chal1.png">
 
-<img src="https://captureamerica.github.io/writeups/img/tuctf_chal1.png" alt="tuctf_chal1.png">
+<img src="https://captureamerica.github.io/writeups/img/tuctf_chal2.png" alt="tuctf_chal2.png">
 <br /><br />
 
 
 
 <br /><br />
-# [Reversing]: BELEAF (50 points)
+# [Misc]: Onions
 - - -
 ## Challenge
-> tree sounds are best listened to by https://binary.ninja/demo or ghidra
+> Ogres are like files -- they have layers!
 
 Attachment:
 
-- beleaf (64-bit ELF)
+- shrek.jpg
 
 
 <br />
 ## Solution
-言われた通り、Ghidraでデコンパイルします。
+シュレックのJPEG画像です。著作権は大丈夫なんでしょうか。
 
-```C
+foremostではなにも取れなかったので、binwalkから始めます。
 
-undefined8 FUN_001008a1(void)
+binwalk -e でもextractされなかったので、--ddを使いました。
 
-{
-  size_t sVar1;
-  long lVar2;
-  long in_FS_OFFSET;
-  ulong local_b0;
-  char local_98 [136];
-  long local_10;
-  
-  local_10 = *(long *)(in_FS_OFFSET + 0x28);
-  printf("Enter the flag\n>>> ");
-  __isoc99_scanf(&DAT_00100a78,local_98);
-  sVar1 = strlen(local_98);
-  if (sVar1 < 0x21) {
-    puts("Incorrect!");
-                    /* WARNING: Subroutine does not return */
-    exit(1);
-  }
-  local_b0 = 0;
-  while (local_b0 < sVar1) {
-    lVar2 = FUN_001007fa((ulong)(uint)(int)local_98[local_b0]);
-    if (lVar2 != *(long *)(&DAT_003014e0 + local_b0 * 8)) {
-      puts("Incorrect!");
-                    /* WARNING: Subroutine does not return */
-      exit(1);
-    }
-    local_b0 = local_b0 + 1;
-  }
-  puts("Correct!");
-  if (local_10 != *(long *)(in_FS_OFFSET + 0x28)) {
-                    /* WARNING: Subroutine does not return */
-    __stack_chk_fail();
-  }
-  return 0;
-}
+```Python
+$ binwalk -e shrek.jpg
+
+DECIMAL       HEXADECIMAL     DESCRIPTION
+--------------------------------------------------------------------------------
+0             0x0             JPEG image data, JFIF standard 1.01
+275566        0x4346E         7-zip archive data, version 0.4
+
+
+$ binwalk --dd='.*' shrek.jpg
+
+DECIMAL       HEXADECIMAL     DESCRIPTION
+--------------------------------------------------------------------------------
+0             0x0             JPEG image data, JFIF standard 1.01
+275566        0x4346E         7-zip archive data, version 0.4
+
+
+$ cd _shrek.jpg.extracted/
+
+$ ll
+total 284
+drwxrwxr-x 2 pan pan   4096 Dec  1 17:14 ./
+drwxrwxr-x 3 pan pan   4096 Dec  1 17:14 ../
+-rw-rw-r-- 1 pan pan 276104 Dec  1 17:14 0
+-rw-rw-r-- 1 pan pan    538 Dec  1 17:14 4346E
+
+$ file 0
+0: JPEG image data, JFIF standard 1.01, aspect ratio, density 1x1, segment length 16, comment: "CREATOR: gd-jpeg v1.0 (using IJG JPEG v62), default quality", baseline, precision 8, 2048x1234, frames 3
+
+$ file 4346E
+4346E: 7-zip archive data, version 0.4
+
+$ 7z x 4346E
+7-Zip [64] 16.02 : Copyright (c) 1999-2016 Igor Pavlov : 2016-05-21
+p7zip Version 16.02 (locale=en_US.UTF-8,Utf16=on,HugeFiles=on,64 bits,1 CPU Intel(R) Core(TM) i5-3230M CPU @ 2.60GHz (306A9),ASM,AES-NI)
+
+Scanning the drive for archives:
+1 file, 538 bytes (1 KiB)
+
+Extracting archive: 4346E
+--
+Path = 4346E
+Type = 7z
+Physical Size = 538
+Headers Size = 130
+Method = LZMA2:12
+Solid = -
+Blocks = 1
+
+Everything is Ok
+
+Size:       428
+Compressed: 538
+
+$ tar zxvf flag.tar.gz
+flag.cpio
+
+$ cpio -idv < flag.cpio
+flag.lzma
+1 block
+
+$ unlzma flag.lzma
+
+$ file flag
+flag: current ar archive
+
+$ ar -x flag
+
+$ file flag1.txt
+flag1.txt: bzip2 compressed data, block size = 900k
+
+$ bunzip2 -d flag1.txt
+bunzip2: Can't guess original name for flag1.txt -- using flag1.txt.out
+
+$ file flag1.txt.out
+flag1.txt.out: XZ compressed data
+
+$ xz -dv flag1.txt.out
+flag1.txt.out (1/1)
+xz: flag1.txt.out: Filename has an unknown suffix, skipping
+
+$ mv flag1.txt.out flag1.xz
+
+$ xz -dv flag1.xz
+flag1.xz (1/1)
+  100 %                 96 B / 40 B = 2.400
+
+$ file flag1
+flag1: ASCII text
+
+$ cat flag1
+TUCTF{F1L3S4R3L1K30N10NSTH3YH4V3L4Y3RS}
 ```
-```C
 
-long FUN_001007fa(char cParm1)
 
-{
-  long local_10;
-  
-  local_10 = 0;
-  while ((local_10 != -1 && ((int)cParm1 != *(int *)(&DAT_00301020 + local_10 * 4)))) {
-    if ((int)cParm1 < *(int *)(&DAT_00301020 + local_10 * 4)) {
-      local_10 = local_10 * 2 + 1;
-    }
-    else {
-      if (*(int *)(&DAT_00301020 + local_10 * 4) < (int)cParm1) {
-        local_10 = (local_10 + 1) * 2;
-      }
-    }
-  }
-  return local_10;
-}
-```
+Flag: `TUCTF{F1L3S4R3L1K30N10NSTH3YH4V3L4Y3RS}`
+
+
+<br><br>
+<br><br>
+# [Misc]: Super Secret
+- - -
+## Challenge
+> Something's blocking my flag from this file...
+
+Attachment:
+
+- document.odt
+
 
 <br />
-上記の関数内で参照しているDAT_003014e0とDAT_00301020には、比較用のデータが入ってます。
-
-こんな感じ。（抜粋）
-
-```
-                             DAT_003014e0                                    XREF[2]:     FUN_001008a1:0010096b(*), 
-                                                                                          FUN_001008a1:00100972(R)  
-        003014e0 01              ??         01h
-        003014e1 00              ??         00h
-        003014e2 00              ??         00h
-        003014e3 00              ??         00h
-        003014e4 00              ??         00h
-        003014e5 00              ??         00h
-        003014e6 00              ??         00h
-        003014e7 00              ??         00h
-        003014e8 09              ??         09h
-        003014e9 00              ??         00h
-        003014ea 00              ??         00h
-        003014eb 00              ??         00h
+## Solution
+```Python
+$ file document.odt
+document.odt: OpenDocument Text
 ```
 
-<br />
-入力文字列の長さチェックは0x21で、後は比較データにマッチすればOK。
-
-ここからが解法です。
-```C
-#include <stdio.h>
-#define FLAG_LEN 33
-
-char letter1[] = {0x77, 0x66, 0x7B, 0x5F, 0x6E, 0x79, 0x7D, 0xFF, 0x62, 0x6C, 0x72, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0x61, 0x65, 0x69, 0xFF, 0x6F, 0x74, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF};
-char position1[] = {0x01, 0x09, 0x11, 0x27, 0x02, 0x00, 0x12, 0x03, 0x08, 0x12, 0x09, 0x12, 0x11, 0x01, 0x03, 0x13, 0x04, 0x03, 0x05, 0x15, 0x2E, 0x0A, 0x03, 0x0A, 0x12, 0x03, 0x01, 0x2E, 0x16, 0x2E, 0x0A, 0x12, 0x06};
-
-int sub( char c )
-{
-	int pos = 0;
-
-	while ( pos != 0xFF ) {
-		if ( c < letter1[pos] ) {
-			pos = pos * 2 + 1;
-		} else if ( c > letter1[pos] ) {
-			pos = ( pos + 1 ) * 2;
-		} else if ( c == letter1[pos] ) {
-			break;
-		}
-		// Segmentation Fault対策
-		if ( pos > FLAG_LEN )
-			break;
-	}
-	return pos;
-}
-
-int main()
-{
-	int i, pos;
-	char c;
-	
-	for ( i = 0, pos = 0 ; i < FLAG_LEN ; i++ ) {
-		for ( c = 0x20 ; c <= 0x7e ; c++ ) {
-			pos = sub( c );
-			if ( pos == position1[i] ) {
-				printf( "%c", c );
-				break;
-			}
-		}
-	}
-	puts("");
-	return 0;
-}
-```
-
-ほぼ、ghidraのコードのままですけど、文字をBrute Forceを追加してて、その際にハズレ文字だとposが範囲外になってSegmentation Faultになるので、posの範囲チェックも入れてます。
-
-実行結果：
-```
-$ ./beleaf_solve.o 
-flag{we_beleaf_in_your_re_future}
-```
-
-Flag: `flag{we_beleaf_in_your_re_future}`
 
 
 <br /><br />
