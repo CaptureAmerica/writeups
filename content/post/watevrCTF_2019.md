@@ -5,7 +5,7 @@ lastmod: 2019-12-15T14:00:00+09:00
 draft: false
 keywords: []
 description: ""
-tags: ["CTF", "Reviewed"]
+tags: ["CTF"]
 categories: ["CTF"]
 author: "きゃぷあめ"
 ---

@@ -23,7 +23,7 @@
 <meta name="google-site-verification" content="PqctLWZQttGzxXVupWuIt2HWuBI8cvN1z07ETpxA2dw" />
 
 
-<meta name="generator" content="Hugo 0.60.1 with theme even" />
+<meta name="generator" content="Hugo 0.55.6 with theme even" />
 
 
 <link rel="canonical" href="https://captureamerica.github.io/writeups/post/csaw_ctf_2019/" />
@@ -42,17 +42,21 @@
 <meta property="og:description" content="URL: https://ctf.csaw.io/challenges とりあえず、Reversingの一番簡単なやつだけ解きました。 [Reversing]: BELEAF (50 points) Challenge tree sounds are best listened to by https://binary.ninja/demo or ghidra Attachment: beleaf (64-bit ELF) Solution 言われた通り、Ghidraでデコン" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://captureamerica.github.io/writeups/post/csaw_ctf_2019/" />
-<meta property="article:published_time" content="2019-09-16T14:00:00+09:00" />
-<meta property="article:modified_time" content="2019-09-16T14:00:00+09:00" />
+<meta property="article:published_time" content="2019-09-16T14:00:00&#43;09:00"/>
+<meta property="article:modified_time" content="2019-09-16T14:00:00&#43;09:00"/>
+
 <meta itemprop="name" content="CSAW CTF&#39;19 CTF Writeup">
 <meta itemprop="description" content="URL: https://ctf.csaw.io/challenges とりあえず、Reversingの一番簡単なやつだけ解きました。 [Reversing]: BELEAF (50 points) Challenge tree sounds are best listened to by https://binary.ninja/demo or ghidra Attachment: beleaf (64-bit ELF) Solution 言われた通り、Ghidraでデコン">
+
+
 <meta itemprop="datePublished" content="2019-09-16T14:00:00&#43;09:00" />
 <meta itemprop="dateModified" content="2019-09-16T14:00:00&#43;09:00" />
-<meta itemprop="wordCount" content="837">
+<meta itemprop="wordCount" content="851">
 
 
 
-<meta itemprop="keywords" content="CTF," /><meta name="twitter:card" content="summary"/>
+<meta itemprop="keywords" content="CTF," />
+<meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="CSAW CTF&#39;19 CTF Writeup"/>
 <meta name="twitter:description" content="URL: https://ctf.csaw.io/challenges とりあえず、Reversingの一番簡単なやつだけ解きました。 [Reversing]: BELEAF (50 points) Challenge tree sounds are best listened to by https://binary.ninja/demo or ghidra Attachment: beleaf (64-bit ELF) Solution 言われた通り、Ghidraでデコン"/>
 
@@ -136,39 +140,53 @@
   <h2 class="post-toc-title">Contents</h2>
   <div class="post-toc-content">
     <nav id="TableOfContents">
-  <ul>
-    <li><a href="#reversing-beleaf-50-points">[Reversing]: BELEAF (50 points)</a>
-      <ul>
-        <li><a href="#challenge">Challenge</a></li>
-        <li><a href="#solution">Solution</a></li>
-      </ul>
-    </li>
-  </ul>
+<ul>
+<li>
+<ul>
+<li><a href="#reversing-beleaf-50-points">[Reversing]: BELEAF (50 points)</a>
+<ul>
+<li><a href="#challenge">Challenge</a></li>
+<li><a href="#solution">Solution</a></li>
+</ul></li>
+</ul></li>
+</ul>
 </nav>
   </div>
 </div>
     <div class="post-content">
-      <p>URL: <a href="https://ctf.csaw.io/challenges"><a href="https://ctf.csaw.io/challenges">https://ctf.csaw.io/challenges</a></a>
+      
+
+<p>URL: <a href="https://ctf.csaw.io/challenges">https://ctf.csaw.io/challenges</a>
 <br /><br />
 とりあえず、Reversingの一番簡単なやつだけ解きました。
 <br /><br /></p>
+
 <p><br /><br /></p>
+
 <h2 id="reversing-beleaf-50-points">[Reversing]: BELEAF (50 points)</h2>
-<hr>
+
+<hr />
+
 <h3 id="challenge">Challenge</h3>
+
 <blockquote>
 <p>tree sounds are best listened to by <a href="https://binary.ninja/demo">https://binary.ninja/demo</a> or ghidra</p>
 </blockquote>
+
 <p>Attachment:</p>
+
 <ul>
 <li>beleaf (64-bit ELF)</li>
 </ul>
+
 <p><br /></p>
+
 <h3 id="solution">Solution</h3>
+
 <p>言われた通り、Ghidraでデコンパイルします。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre class="chroma"><code class="language-C" data-lang="C"><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -204,51 +222,48 @@
 </span><span class="lnt">34
 </span><span class="lnt">35
 </span><span class="lnt">36
-</span><span class="lnt">37
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-C" data-lang="C">
-<span class="n">undefined8</span> <span class="nf">FUN_001008a1</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<pre class="chroma"><code class="language-C" data-lang="C"><span class="n">undefined8</span> <span class="nf">FUN_001008a1</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
 
 <span class="p">{</span>
   <span class="n">size_t</span> <span class="n">sVar1</span><span class="p">;</span>
   <span class="kt">long</span> <span class="n">lVar2</span><span class="p">;</span>
   <span class="kt">long</span> <span class="n">in_FS_OFFSET</span><span class="p">;</span>
   <span class="n">ulong</span> <span class="n">local_b0</span><span class="p">;</span>
-  <span class="kt">char</span> <span class="n">local_98</span> <span class="p">[</span><span class="mi">136</span><span class="p">]</span><span class="p">;</span>
+  <span class="kt">char</span> <span class="n">local_98</span> <span class="p">[</span><span class="mi">136</span><span class="p">];</span>
   <span class="kt">long</span> <span class="n">local_10</span><span class="p">;</span>
   
-  <span class="n">local_10</span> <span class="o">=</span> <span class="o">*</span><span class="p">(</span><span class="kt">long</span> <span class="o">*</span><span class="p">)</span><span class="p">(</span><span class="n">in_FS_OFFSET</span> <span class="o">+</span> <span class="mh">0x28</span><span class="p">)</span><span class="p">;</span>
-  <span class="n">printf</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">Enter the flag</span><span class="se">\n</span><span class="s">&gt;&gt;&gt; </span><span class="s">&#34;</span><span class="p">)</span><span class="p">;</span>
-  <span class="n">__isoc99_scanf</span><span class="p">(</span><span class="o">&amp;</span><span class="n">DAT_00100a78</span><span class="p">,</span><span class="n">local_98</span><span class="p">)</span><span class="p">;</span>
-  <span class="n">sVar1</span> <span class="o">=</span> <span class="n">strlen</span><span class="p">(</span><span class="n">local_98</span><span class="p">)</span><span class="p">;</span>
+  <span class="n">local_10</span> <span class="o">=</span> <span class="o">*</span><span class="p">(</span><span class="kt">long</span> <span class="o">*</span><span class="p">)(</span><span class="n">in_FS_OFFSET</span> <span class="o">+</span> <span class="mh">0x28</span><span class="p">);</span>
+  <span class="n">printf</span><span class="p">(</span><span class="s">&#34;Enter the flag</span><span class="se">\n</span><span class="s">&gt;&gt;&gt; &#34;</span><span class="p">);</span>
+  <span class="n">__isoc99_scanf</span><span class="p">(</span><span class="o">&amp;</span><span class="n">DAT_00100a78</span><span class="p">,</span><span class="n">local_98</span><span class="p">);</span>
+  <span class="n">sVar1</span> <span class="o">=</span> <span class="n">strlen</span><span class="p">(</span><span class="n">local_98</span><span class="p">);</span>
   <span class="k">if</span> <span class="p">(</span><span class="n">sVar1</span> <span class="o">&lt;</span> <span class="mh">0x21</span><span class="p">)</span> <span class="p">{</span>
-    <span class="n">puts</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">Incorrect!</span><span class="s">&#34;</span><span class="p">)</span><span class="p">;</span>
+    <span class="n">puts</span><span class="p">(</span><span class="s">&#34;Incorrect!&#34;</span><span class="p">);</span>
                     <span class="cm">/* WARNING: Subroutine does not return */</span>
-    <span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="p">;</span>
+    <span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
   <span class="p">}</span>
   <span class="n">local_b0</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
   <span class="k">while</span> <span class="p">(</span><span class="n">local_b0</span> <span class="o">&lt;</span> <span class="n">sVar1</span><span class="p">)</span> <span class="p">{</span>
-    <span class="n">lVar2</span> <span class="o">=</span> <span class="n">FUN_001007fa</span><span class="p">(</span><span class="p">(</span><span class="n">ulong</span><span class="p">)</span><span class="p">(</span><span class="n">uint</span><span class="p">)</span><span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="n">local_98</span><span class="p">[</span><span class="n">local_b0</span><span class="p">]</span><span class="p">)</span><span class="p">;</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">lVar2</span> <span class="o">!</span><span class="o">=</span> <span class="o">*</span><span class="p">(</span><span class="kt">long</span> <span class="o">*</span><span class="p">)</span><span class="p">(</span><span class="o">&amp;</span><span class="n">DAT_003014e0</span> <span class="o">+</span> <span class="n">local_b0</span> <span class="o">*</span> <span class="mi">8</span><span class="p">)</span><span class="p">)</span> <span class="p">{</span>
-      <span class="n">puts</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">Incorrect!</span><span class="s">&#34;</span><span class="p">)</span><span class="p">;</span>
+    <span class="n">lVar2</span> <span class="o">=</span> <span class="n">FUN_001007fa</span><span class="p">((</span><span class="n">ulong</span><span class="p">)(</span><span class="n">uint</span><span class="p">)(</span><span class="kt">int</span><span class="p">)</span><span class="n">local_98</span><span class="p">[</span><span class="n">local_b0</span><span class="p">]);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">lVar2</span> <span class="o">!=</span> <span class="o">*</span><span class="p">(</span><span class="kt">long</span> <span class="o">*</span><span class="p">)(</span><span class="o">&amp;</span><span class="n">DAT_003014e0</span> <span class="o">+</span> <span class="n">local_b0</span> <span class="o">*</span> <span class="mi">8</span><span class="p">))</span> <span class="p">{</span>
+      <span class="n">puts</span><span class="p">(</span><span class="s">&#34;Incorrect!&#34;</span><span class="p">);</span>
                     <span class="cm">/* WARNING: Subroutine does not return */</span>
-      <span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="p">;</span>
+      <span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
     <span class="p">}</span>
     <span class="n">local_b0</span> <span class="o">=</span> <span class="n">local_b0</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
   <span class="p">}</span>
-  <span class="n">puts</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">Correct!</span><span class="s">&#34;</span><span class="p">)</span><span class="p">;</span>
-  <span class="k">if</span> <span class="p">(</span><span class="n">local_10</span> <span class="o">!</span><span class="o">=</span> <span class="o">*</span><span class="p">(</span><span class="kt">long</span> <span class="o">*</span><span class="p">)</span><span class="p">(</span><span class="n">in_FS_OFFSET</span> <span class="o">+</span> <span class="mh">0x28</span><span class="p">)</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">puts</span><span class="p">(</span><span class="s">&#34;Correct!&#34;</span><span class="p">);</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">local_10</span> <span class="o">!=</span> <span class="o">*</span><span class="p">(</span><span class="kt">long</span> <span class="o">*</span><span class="p">)(</span><span class="n">in_FS_OFFSET</span> <span class="o">+</span> <span class="mh">0x28</span><span class="p">))</span> <span class="p">{</span>
                     <span class="cm">/* WARNING: Subroutine does not return */</span>
-    <span class="n">__stack_chk_fail</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
+    <span class="n">__stack_chk_fail</span><span class="p">();</span>
   <span class="p">}</span>
   <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<span class="p">}</span></code></pre></td></tr></table>
 </div>
 </div><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre class="chroma"><code class="language-C" data-lang="C"><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -266,34 +281,51 @@
 </span><span class="lnt">16
 </span><span class="lnt">17
 </span><span class="lnt">18
-</span><span class="lnt">19
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-C" data-lang="C">
-<span class="kt">long</span> <span class="nf">FUN_001007fa</span><span class="p">(</span><span class="kt">char</span> <span class="n">cParm1</span><span class="p">)</span>
+<pre class="chroma"><code class="language-C" data-lang="C"><span class="kt">long</span> <span class="nf">FUN_001007fa</span><span class="p">(</span><span class="kt">char</span> <span class="n">cParm1</span><span class="p">)</span>
 
 <span class="p">{</span>
   <span class="kt">long</span> <span class="n">local_10</span><span class="p">;</span>
   
   <span class="n">local_10</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-  <span class="k">while</span> <span class="p">(</span><span class="p">(</span><span class="n">local_10</span> <span class="o">!</span><span class="o">=</span> <span class="o">-</span><span class="mi">1</span> <span class="o">&amp;</span><span class="o">&amp;</span> <span class="p">(</span><span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="n">cParm1</span> <span class="o">!</span><span class="o">=</span> <span class="o">*</span><span class="p">(</span><span class="kt">int</span> <span class="o">*</span><span class="p">)</span><span class="p">(</span><span class="o">&amp;</span><span class="n">DAT_00301020</span> <span class="o">+</span> <span class="n">local_10</span> <span class="o">*</span> <span class="mi">4</span><span class="p">)</span><span class="p">)</span><span class="p">)</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">if</span> <span class="p">(</span><span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="n">cParm1</span> <span class="o">&lt;</span> <span class="o">*</span><span class="p">(</span><span class="kt">int</span> <span class="o">*</span><span class="p">)</span><span class="p">(</span><span class="o">&amp;</span><span class="n">DAT_00301020</span> <span class="o">+</span> <span class="n">local_10</span> <span class="o">*</span> <span class="mi">4</span><span class="p">)</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">while</span> <span class="p">((</span><span class="n">local_10</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span> <span class="o">&amp;&amp;</span> <span class="p">((</span><span class="kt">int</span><span class="p">)</span><span class="n">cParm1</span> <span class="o">!=</span> <span class="o">*</span><span class="p">(</span><span class="kt">int</span> <span class="o">*</span><span class="p">)(</span><span class="o">&amp;</span><span class="n">DAT_00301020</span> <span class="o">+</span> <span class="n">local_10</span> <span class="o">*</span> <span class="mi">4</span><span class="p">))))</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">((</span><span class="kt">int</span><span class="p">)</span><span class="n">cParm1</span> <span class="o">&lt;</span> <span class="o">*</span><span class="p">(</span><span class="kt">int</span> <span class="o">*</span><span class="p">)(</span><span class="o">&amp;</span><span class="n">DAT_00301020</span> <span class="o">+</span> <span class="n">local_10</span> <span class="o">*</span> <span class="mi">4</span><span class="p">))</span> <span class="p">{</span>
       <span class="n">local_10</span> <span class="o">=</span> <span class="n">local_10</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
     <span class="p">}</span>
     <span class="k">else</span> <span class="p">{</span>
-      <span class="k">if</span> <span class="p">(</span><span class="o">*</span><span class="p">(</span><span class="kt">int</span> <span class="o">*</span><span class="p">)</span><span class="p">(</span><span class="o">&amp;</span><span class="n">DAT_00301020</span> <span class="o">+</span> <span class="n">local_10</span> <span class="o">*</span> <span class="mi">4</span><span class="p">)</span> <span class="o">&lt;</span> <span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="n">cParm1</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">if</span> <span class="p">(</span><span class="o">*</span><span class="p">(</span><span class="kt">int</span> <span class="o">*</span><span class="p">)(</span><span class="o">&amp;</span><span class="n">DAT_00301020</span> <span class="o">+</span> <span class="n">local_10</span> <span class="o">*</span> <span class="mi">4</span><span class="p">)</span> <span class="o">&lt;</span> <span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="n">cParm1</span><span class="p">)</span> <span class="p">{</span>
         <span class="n">local_10</span> <span class="o">=</span> <span class="p">(</span><span class="n">local_10</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="mi">2</span><span class="p">;</span>
       <span class="p">}</span>
     <span class="p">}</span>
   <span class="p">}</span>
   <span class="k">return</span> <span class="n">local_10</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<span class="p">}</span></code></pre></td></tr></table>
 </div>
-</div><p><br />
+</div>
+<p><br />
 上記の関数内で参照しているDAT_003014e0とDAT_00301020には、比較用のデータが入ってます。</p>
+
 <p>こんな感じ。（抜粋）</p>
-<pre><code>                             DAT_003014e0                                    XREF[2]:     FUN_001008a1:0010096b(*), 
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">                             DAT_003014e0                                    XREF[2]:     FUN_001008a1:0010096b(*), 
                                                                                           FUN_001008a1:00100972(R)  
         003014e0 01              ??         01h
         003014e1 00              ??         00h
@@ -306,13 +338,16 @@
         003014e8 09              ??         09h
         003014e9 00              ??         00h
         003014ea 00              ??         00h
-        003014eb 00              ??         00h
-</code></pre><p><br />
+        003014eb 00              ??         00h</pre></td></tr></table>
+</div>
+</div>
+<p><br />
 入力文字列の長さチェックは0x21で、後は比較データにマッチすればOK。</p>
+
 <p>ここからが解法です。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre class="chroma"><code class="language-C" data-lang="C"><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -356,22 +391,22 @@
 </span><span class="lnt">42
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-C" data-lang="C"><span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
-</span><span class="cp"></span><span class="cp">#</span><span class="cp">define FLAG_LEN 33</span><span class="cp">
+<pre class="chroma"><code class="language-C" data-lang="C"><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
+</span><span class="cp">#define FLAG_LEN 33
 </span><span class="cp"></span>
-<span class="kt">char</span> <span class="n">letter1</span><span class="p">[</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="mh">0x77</span><span class="p">,</span> <span class="mh">0x66</span><span class="p">,</span> <span class="mh">0x7B</span><span class="p">,</span> <span class="mh">0x5F</span><span class="p">,</span> <span class="mh">0x6E</span><span class="p">,</span> <span class="mh">0x79</span><span class="p">,</span> <span class="mh">0x7D</span><span class="p">,</span> <span class="mh">0xFF</span><span class="p">,</span> <span class="mh">0x62</span><span class="p">,</span> <span class="mh">0x6C</span><span class="p">,</span> <span class="mh">0x72</span><span class="p">,</span> <span class="mh">0xFF</span><span class="p">,</span> <span class="mh">0xFF</span><span class="p">,</span> <span class="mh">0xFF</span><span class="p">,</span> <span class="mh">0xFF</span><span class="p">,</span> <span class="mh">0xFF</span><span class="p">,</span> <span class="mh">0xFF</span><span class="p">,</span> <span class="mh">0x61</span><span class="p">,</span> <span class="mh">0x65</span><span class="p">,</span> <span class="mh">0x69</span><span class="p">,</span> <span class="mh">0xFF</span><span class="p">,</span> <span class="mh">0x6F</span><span class="p">,</span> <span class="mh">0x74</span><span class="p">,</span> <span class="mh">0xFF</span><span class="p">,</span> <span class="mh">0xFF</span><span class="p">,</span> <span class="mh">0xFF</span><span class="p">,</span> <span class="mh">0xFF</span><span class="p">,</span> <span class="mh">0xFF</span><span class="p">,</span> <span class="mh">0xFF</span><span class="p">,</span> <span class="mh">0xFF</span><span class="p">,</span> <span class="mh">0xFF</span><span class="p">,</span> <span class="mh">0xFF</span><span class="p">,</span> <span class="mh">0xFF</span><span class="p">}</span><span class="p">;</span>
-<span class="kt">char</span> <span class="n">position1</span><span class="p">[</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="mh">0x01</span><span class="p">,</span> <span class="mh">0x09</span><span class="p">,</span> <span class="mh">0x11</span><span class="p">,</span> <span class="mh">0x27</span><span class="p">,</span> <span class="mh">0x02</span><span class="p">,</span> <span class="mh">0x00</span><span class="p">,</span> <span class="mh">0x12</span><span class="p">,</span> <span class="mh">0x03</span><span class="p">,</span> <span class="mh">0x08</span><span class="p">,</span> <span class="mh">0x12</span><span class="p">,</span> <span class="mh">0x09</span><span class="p">,</span> <span class="mh">0x12</span><span class="p">,</span> <span class="mh">0x11</span><span class="p">,</span> <span class="mh">0x01</span><span class="p">,</span> <span class="mh">0x03</span><span class="p">,</span> <span class="mh">0x13</span><span class="p">,</span> <span class="mh">0x04</span><span class="p">,</span> <span class="mh">0x03</span><span class="p">,</span> <span class="mh">0x05</span><span class="p">,</span> <span class="mh">0x15</span><span class="p">,</span> <span class="mh">0x2E</span><span class="p">,</span> <span class="mh">0x0A</span><span class="p">,</span> <span class="mh">0x03</span><span class="p">,</span> <span class="mh">0x0A</span><span class="p">,</span> <span class="mh">0x12</span><span class="p">,</span> <span class="mh">0x03</span><span class="p">,</span> <span class="mh">0x01</span><span class="p">,</span> <span class="mh">0x2E</span><span class="p">,</span> <span class="mh">0x16</span><span class="p">,</span> <span class="mh">0x2E</span><span class="p">,</span> <span class="mh">0x0A</span><span class="p">,</span> <span class="mh">0x12</span><span class="p">,</span> <span class="mh">0x06</span><span class="p">}</span><span class="p">;</span>
+<span class="kt">char</span> <span class="n">letter1</span><span class="p">[]</span> <span class="o">=</span> <span class="p">{</span><span class="mh">0x77</span><span class="p">,</span> <span class="mh">0x66</span><span class="p">,</span> <span class="mh">0x7B</span><span class="p">,</span> <span class="mh">0x5F</span><span class="p">,</span> <span class="mh">0x6E</span><span class="p">,</span> <span class="mh">0x79</span><span class="p">,</span> <span class="mh">0x7D</span><span class="p">,</span> <span class="mh">0xFF</span><span class="p">,</span> <span class="mh">0x62</span><span class="p">,</span> <span class="mh">0x6C</span><span class="p">,</span> <span class="mh">0x72</span><span class="p">,</span> <span class="mh">0xFF</span><span class="p">,</span> <span class="mh">0xFF</span><span class="p">,</span> <span class="mh">0xFF</span><span class="p">,</span> <span class="mh">0xFF</span><span class="p">,</span> <span class="mh">0xFF</span><span class="p">,</span> <span class="mh">0xFF</span><span class="p">,</span> <span class="mh">0x61</span><span class="p">,</span> <span class="mh">0x65</span><span class="p">,</span> <span class="mh">0x69</span><span class="p">,</span> <span class="mh">0xFF</span><span class="p">,</span> <span class="mh">0x6F</span><span class="p">,</span> <span class="mh">0x74</span><span class="p">,</span> <span class="mh">0xFF</span><span class="p">,</span> <span class="mh">0xFF</span><span class="p">,</span> <span class="mh">0xFF</span><span class="p">,</span> <span class="mh">0xFF</span><span class="p">,</span> <span class="mh">0xFF</span><span class="p">,</span> <span class="mh">0xFF</span><span class="p">,</span> <span class="mh">0xFF</span><span class="p">,</span> <span class="mh">0xFF</span><span class="p">,</span> <span class="mh">0xFF</span><span class="p">,</span> <span class="mh">0xFF</span><span class="p">};</span>
+<span class="kt">char</span> <span class="n">position1</span><span class="p">[]</span> <span class="o">=</span> <span class="p">{</span><span class="mh">0x01</span><span class="p">,</span> <span class="mh">0x09</span><span class="p">,</span> <span class="mh">0x11</span><span class="p">,</span> <span class="mh">0x27</span><span class="p">,</span> <span class="mh">0x02</span><span class="p">,</span> <span class="mh">0x00</span><span class="p">,</span> <span class="mh">0x12</span><span class="p">,</span> <span class="mh">0x03</span><span class="p">,</span> <span class="mh">0x08</span><span class="p">,</span> <span class="mh">0x12</span><span class="p">,</span> <span class="mh">0x09</span><span class="p">,</span> <span class="mh">0x12</span><span class="p">,</span> <span class="mh">0x11</span><span class="p">,</span> <span class="mh">0x01</span><span class="p">,</span> <span class="mh">0x03</span><span class="p">,</span> <span class="mh">0x13</span><span class="p">,</span> <span class="mh">0x04</span><span class="p">,</span> <span class="mh">0x03</span><span class="p">,</span> <span class="mh">0x05</span><span class="p">,</span> <span class="mh">0x15</span><span class="p">,</span> <span class="mh">0x2E</span><span class="p">,</span> <span class="mh">0x0A</span><span class="p">,</span> <span class="mh">0x03</span><span class="p">,</span> <span class="mh">0x0A</span><span class="p">,</span> <span class="mh">0x12</span><span class="p">,</span> <span class="mh">0x03</span><span class="p">,</span> <span class="mh">0x01</span><span class="p">,</span> <span class="mh">0x2E</span><span class="p">,</span> <span class="mh">0x16</span><span class="p">,</span> <span class="mh">0x2E</span><span class="p">,</span> <span class="mh">0x0A</span><span class="p">,</span> <span class="mh">0x12</span><span class="p">,</span> <span class="mh">0x06</span><span class="p">};</span>
 
 <span class="kt">int</span> <span class="nf">sub</span><span class="p">(</span> <span class="kt">char</span> <span class="n">c</span> <span class="p">)</span>
 <span class="p">{</span>
 	<span class="kt">int</span> <span class="n">pos</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
 
-	<span class="k">while</span> <span class="p">(</span> <span class="n">pos</span> <span class="o">!</span><span class="o">=</span> <span class="mh">0xFF</span> <span class="p">)</span> <span class="p">{</span>
+	<span class="k">while</span> <span class="p">(</span> <span class="n">pos</span> <span class="o">!=</span> <span class="mh">0xFF</span> <span class="p">)</span> <span class="p">{</span>
 		<span class="k">if</span> <span class="p">(</span> <span class="n">c</span> <span class="o">&lt;</span> <span class="n">letter1</span><span class="p">[</span><span class="n">pos</span><span class="p">]</span> <span class="p">)</span> <span class="p">{</span>
 			<span class="n">pos</span> <span class="o">=</span> <span class="n">pos</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
 		<span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span> <span class="n">c</span> <span class="o">&gt;</span> <span class="n">letter1</span><span class="p">[</span><span class="n">pos</span><span class="p">]</span> <span class="p">)</span> <span class="p">{</span>
 			<span class="n">pos</span> <span class="o">=</span> <span class="p">(</span> <span class="n">pos</span> <span class="o">+</span> <span class="mi">1</span> <span class="p">)</span> <span class="o">*</span> <span class="mi">2</span><span class="p">;</span>
-		<span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span> <span class="n">c</span> <span class="o">=</span><span class="o">=</span> <span class="n">letter1</span><span class="p">[</span><span class="n">pos</span><span class="p">]</span> <span class="p">)</span> <span class="p">{</span>
+		<span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span> <span class="n">c</span> <span class="o">==</span> <span class="n">letter1</span><span class="p">[</span><span class="n">pos</span><span class="p">]</span> <span class="p">)</span> <span class="p">{</span>
 			<span class="k">break</span><span class="p">;</span>
 		<span class="p">}</span>
 		<span class="c1">// Segmentation Fault対策
@@ -381,33 +416,45 @@
 	<span class="k">return</span> <span class="n">pos</span><span class="p">;</span>
 <span class="p">}</span>
 
-<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="p">)</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
 <span class="p">{</span>
 	<span class="kt">int</span> <span class="n">i</span><span class="p">,</span> <span class="n">pos</span><span class="p">;</span>
 	<span class="kt">char</span> <span class="n">c</span><span class="p">;</span>
 	
-	<span class="k">for</span> <span class="p">(</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">pos</span> <span class="o">=</span> <span class="mi">0</span> <span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">FLAG_LEN</span> <span class="p">;</span> <span class="n">i</span><span class="o">+</span><span class="o">+</span> <span class="p">)</span> <span class="p">{</span>
-		<span class="k">for</span> <span class="p">(</span> <span class="n">c</span> <span class="o">=</span> <span class="mh">0x20</span> <span class="p">;</span> <span class="n">c</span> <span class="o">&lt;</span><span class="o">=</span> <span class="mh">0x7e</span> <span class="p">;</span> <span class="n">c</span><span class="o">+</span><span class="o">+</span> <span class="p">)</span> <span class="p">{</span>
-			<span class="n">pos</span> <span class="o">=</span> <span class="n">sub</span><span class="p">(</span> <span class="n">c</span> <span class="p">)</span><span class="p">;</span>
-			<span class="k">if</span> <span class="p">(</span> <span class="n">pos</span> <span class="o">=</span><span class="o">=</span> <span class="n">position1</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="p">)</span> <span class="p">{</span>
-				<span class="n">printf</span><span class="p">(</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">%c</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">c</span> <span class="p">)</span><span class="p">;</span>
+	<span class="k">for</span> <span class="p">(</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">pos</span> <span class="o">=</span> <span class="mi">0</span> <span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">FLAG_LEN</span> <span class="p">;</span> <span class="n">i</span><span class="o">++</span> <span class="p">)</span> <span class="p">{</span>
+		<span class="k">for</span> <span class="p">(</span> <span class="n">c</span> <span class="o">=</span> <span class="mh">0x20</span> <span class="p">;</span> <span class="n">c</span> <span class="o">&lt;=</span> <span class="mh">0x7e</span> <span class="p">;</span> <span class="n">c</span><span class="o">++</span> <span class="p">)</span> <span class="p">{</span>
+			<span class="n">pos</span> <span class="o">=</span> <span class="n">sub</span><span class="p">(</span> <span class="n">c</span> <span class="p">);</span>
+			<span class="k">if</span> <span class="p">(</span> <span class="n">pos</span> <span class="o">==</span> <span class="n">position1</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="p">)</span> <span class="p">{</span>
+				<span class="n">printf</span><span class="p">(</span> <span class="s">&#34;%c&#34;</span><span class="p">,</span> <span class="n">c</span> <span class="p">);</span>
 				<span class="k">break</span><span class="p">;</span>
 			<span class="p">}</span>
 		<span class="p">}</span>
 	<span class="p">}</span>
-	<span class="n">puts</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">&#34;</span><span class="p">)</span><span class="p">;</span>
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;&#34;</span><span class="p">);</span>
 	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<span class="p">}</span></code></pre></td></tr></table>
 </div>
-</div><p>ほぼ、ghidraのコードのままですけど、文字をBrute Forceを追加してて、その際にハズレ文字だとposが範囲外になってSegmentation Faultになるので、posの範囲チェックも入れてます。</p>
+</div>
+<p>ほぼ、ghidraのコードのままですけど、文字をBrute Forceを追加してて、その際にハズレ文字だとposが範囲外になってSegmentation Faultになるので、posの範囲チェックも入れてます。</p>
+
 <p>実行結果：</p>
-<pre><code>$ ./beleaf_solve.o 
-flag{we_beleaf_in_your_re_future}
-</code></pre><p>Flag: <code>flag{we_beleaf_in_your_re_future}</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span><span class="lnt">2
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">$ ./beleaf_solve.o 
+flag{we_beleaf_in_your_re_future}</pre></td></tr></table>
+</div>
+</div>
+<p>Flag: <code>flag{we_beleaf_in_your_re_future}</code></p>
+
 <p><br /><br />
 <br /><br /></p>
-<hr>
+
+<hr />
+
 <p><br /><br />
 <br /><br /></p>
 

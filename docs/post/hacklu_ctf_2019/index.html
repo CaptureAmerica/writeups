@@ -23,7 +23,7 @@
 <meta name="google-site-verification" content="PqctLWZQttGzxXVupWuIt2HWuBI8cvN1z07ETpxA2dw" />
 
 
-<meta name="generator" content="Hugo 0.60.1 with theme even" />
+<meta name="generator" content="Hugo 0.55.6 with theme even" />
 
 
 <link rel="canonical" href="https://captureamerica.github.io/writeups/post/hacklu_ctf_2019/" />
@@ -42,17 +42,21 @@
 <meta property="og:description" content="URL: https://fluxfingersforfuture.fluxfingers.net/challenges/ 以下は、チャレンジ一覧です。 平日だったこともあり、17番のmisc問題だけトライしました。 実は、解けてないですが、なんとなく方向性はあっ" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://captureamerica.github.io/writeups/post/hacklu_ctf_2019/" />
-<meta property="article:published_time" content="2019-10-26T05:00:00+09:00" />
-<meta property="article:modified_time" content="2019-10-26T05:00:00+09:00" />
+<meta property="article:published_time" content="2019-10-26T05:00:00&#43;09:00"/>
+<meta property="article:modified_time" content="2019-10-26T05:00:00&#43;09:00"/>
+
 <meta itemprop="name" content="hack.lu CTF 2019 Writeup">
 <meta itemprop="description" content="URL: https://fluxfingersforfuture.fluxfingers.net/challenges/ 以下は、チャレンジ一覧です。 平日だったこともあり、17番のmisc問題だけトライしました。 実は、解けてないですが、なんとなく方向性はあっ">
+
+
 <meta itemprop="datePublished" content="2019-10-26T05:00:00&#43;09:00" />
 <meta itemprop="dateModified" content="2019-10-26T05:00:00&#43;09:00" />
-<meta itemprop="wordCount" content="1104">
+<meta itemprop="wordCount" content="1111">
 
 
 
-<meta itemprop="keywords" content="CTF," /><meta name="twitter:card" content="summary"/>
+<meta itemprop="keywords" content="CTF," />
+<meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="hack.lu CTF 2019 Writeup"/>
 <meta name="twitter:description" content="URL: https://fluxfingersforfuture.fluxfingers.net/challenges/ 以下は、チャレンジ一覧です。 平日だったこともあり、17番のmisc問題だけトライしました。 実は、解けてないですが、なんとなく方向性はあっ"/>
 
@@ -136,50 +140,67 @@
   <h2 class="post-toc-title">Contents</h2>
   <div class="post-toc-content">
     <nav id="TableOfContents">
-  <ul>
-    <li><a href="#misc-futuristic-communication">[Misc]: Futuristic Communication</a>
-      <ul>
-        <li><a href="#challenge">Challenge</a></li>
-        <li><a href="#unsolved">Unsolved</a></li>
-      </ul>
-    </li>
-  </ul>
+<ul>
+<li>
+<ul>
+<li><a href="#misc-futuristic-communication">[Misc]: Futuristic Communication</a>
+<ul>
+<li><a href="#challenge">Challenge</a></li>
+<li><a href="#unsolved">Unsolved</a></li>
+</ul></li>
+</ul></li>
+</ul>
 </nav>
   </div>
 </div>
     <div class="post-content">
-      <p>URL: <a href="https://fluxfingersforfuture.fluxfingers.net/challenges/"><a href="https://fluxfingersforfuture.fluxfingers.net/challenges/">https://fluxfingersforfuture.fluxfingers.net/challenges/</a></a>
+      
+
+<p>URL: <a href="https://fluxfingersforfuture.fluxfingers.net/challenges/">https://fluxfingersforfuture.fluxfingers.net/challenges/</a>
 <br /><br />
 以下は、チャレンジ一覧です。</p>
-<img src="https://captureamerica.github.io/writeups/img/hack.lu_ctf_2019_chall_list.png" alt="hack.lu_ctf_2019_chall_list.png">
+
+<p><img src="https://captureamerica.github.io/writeups/img/hack.lu_ctf_2019_chall_list.png" alt="hack.lu_ctf_2019_chall_list.png">
 <br /><br />
-平日だったこともあり、17番のmisc問題だけトライしました。
+平日だったこともあり、17番のmisc問題だけトライしました。</p>
+
 <p>実は、解けてないですが、なんとなく方向性はあってる気がするのでWriteup残しておきます。</p>
+
 <p><br /><br /></p>
+
 <h2 id="misc-futuristic-communication">[Misc]: Futuristic Communication</h2>
-<hr>
+
+<hr />
+
 <h3 id="challenge">Challenge</h3>
+
 <blockquote>
 <p>Communication in the future is a big thing. With the rising amount of data in the internet new handshake techniques are required. Here is my implementation, where I can identify who did request which resources.
 <br /><br />
 <b>Remark:</b> The remote host in the PCAPs is not the host you have to connect to.
 <br /><br />
-<b>Note:</b> Because we use network protocols in a very futuristic way, you should check your network setup like firewall or router if you have problems solving this challenge. Maybe it's easier for you to use a cloud provider.
+<b>Note:</b> Because we use network protocols in a very futuristic way, you should check your network setup like firewall or router if you have problems solving this challenge. Maybe it&rsquo;s easier for you to use a cloud provider.
 <br /><br />
 Announcements for Futuristic Communication<br />
 (Published on 2019-10-23 02:08:22)<br />
-Because we use network protocols in a very futuristic way, you should check your network setup like firewall or router if you have problems solving this challenge. Maybe it's easier for you to use a cloud provider.
+Because we use network protocols in a very futuristic way, you should check your network setup like firewall or router if you have problems solving this challenge. Maybe it&rsquo;s easier for you to use a cloud provider.
 <br /><br />
 (Published on 2019-10-22 16:56:08)<br />
 Due to high load the server may sometimes have difficulty keeping up with processing identifiers which may cause the package to be dropped. Please insert a delay of about 1-2 seconds before sending a package containing an identifier to ensure those packages will be processed.</p>
 </blockquote>
+
 <p>Attachments:</p>
+
 <ul>
 <li>futuristic_communication.pcapng</li>
 </ul>
+
 <p><br /></p>
+
 <h3 id="unsolved">Unsolved</h3>
+
 <p>まずは、Wiresharkでpcapを開いて、Follow TCP Streamします。</p>
+
 <pre>
 Welcome to handshake in future!
 Your personal identifier is: 051733e3-ec47-4518-9ff9-9ec90af9b27b
@@ -220,17 +241,23 @@ Check if the connection is synchronized.
 Connection synchronized. Entering privileged mode.
 flag{only-to-show-now-comes-flag}
 </pre>
+
 <p>&ldquo;tcp.port==13792&rdquo; でフィルターすると、受け取った personal identifier を SYNパケットにくっつけて送っているのが見えます。</p>
-<img src="https://captureamerica.github.io/writeups/img/hack.lu_ctf_2019_tcp_13792.png" alt="hack.lu_ctf_2019_tcp_13792.png">
+
+<p><img src="https://captureamerica.github.io/writeups/img/hack.lu_ctf_2019_tcp_13792.png" alt="hack.lu_ctf_2019_tcp_13792.png"></p>
+
 <p><br />
 &ldquo;tcp.port==38462&rdquo; でフィルターすると、受け取った sequence number をSYNパケットにくっつけて送っているのが見えます。あと、personal identifier も付いてます。</p>
-<img src="https://captureamerica.github.io/writeups/img/hack.lu_ctf_2019_tcp_38462.png" alt="hack.lu_ctf_2019_tcp_38462.png">
+
+<p><img src="https://captureamerica.github.io/writeups/img/hack.lu_ctf_2019_tcp_38462.png" alt="hack.lu_ctf_2019_tcp_38462.png"></p>
+
 <p>これを見る限り、SYNを送った後にまずRSTが返り、その後SYN/ACKが返ってくるように見えます。</p>
+
 <p><br /><br />
 とりあえず、ここまでの処理をScapyを使って書きました。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre class="chroma"><code class="language-Python" data-lang="Python"><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -262,7 +289,6 @@ flag{only-to-show-now-comes-flag}
 </span><span class="lnt">30
 </span><span class="lnt">31
 </span><span class="lnt">32
-</span><span class="lnt">33
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-Python" data-lang="Python"><span class="ch">#!/usr/bin/env python</span>
@@ -270,70 +296,77 @@ flag{only-to-show-now-comes-flag}
 <span class="kn">from</span> <span class="nn">pwn</span> <span class="kn">import</span> <span class="o">*</span>
 <span class="kn">from</span> <span class="nn">scapy.all</span> <span class="kn">import</span> <span class="o">*</span>
 
-<span class="n">host</span><span class="p">,</span> <span class="n">port</span> <span class="o">=</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">31.22.123.60</span><span class="s1">&#39;</span><span class="p">,</span> <span class="mi">1337</span>
+<span class="n">host</span><span class="p">,</span> <span class="n">port</span> <span class="o">=</span> <span class="s1">&#39;31.22.123.60&#39;</span><span class="p">,</span> <span class="mi">1337</span>
 <span class="n">s</span> <span class="o">=</span> <span class="n">remote</span><span class="p">(</span><span class="n">host</span><span class="p">,</span> <span class="n">port</span><span class="p">)</span>
-<span class="n">msg</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">recvline</span><span class="p">(</span><span class="p">)</span>
-<span class="n">msg</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">recvline</span><span class="p">(</span><span class="p">)</span>
-<span class="nb">id</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="sa">r</span><span class="s2">&#34;</span><span class="s2">Your personal identifier is: (.*)</span><span class="s2">\</span><span class="s2">n</span><span class="s2">&#34;</span><span class="p">,</span> <span class="n">msg</span><span class="p">)</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">msg</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">recvline</span><span class="p">()</span>
+<span class="n">msg</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">recvline</span><span class="p">()</span>
+<span class="nb">id</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="sa">r</span><span class="s2">&#34;Your personal identifier is: (.*)\n&#34;</span><span class="p">,</span> <span class="n">msg</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
 <span class="c1"># print id</span>
 
-<span class="n">msg</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">recvline</span><span class="p">(</span><span class="p">)</span>
-<span class="n">port</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="sa">r</span><span class="s2">&#34;</span><span class="s2">Waiting for identification, on TCP port (.*)</span><span class="s2">\</span><span class="s2">n</span><span class="s2">&#34;</span><span class="p">,</span> <span class="n">msg</span><span class="p">)</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="p">)</span>
+<span class="n">msg</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">recvline</span><span class="p">()</span>
+<span class="n">port</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="sa">r</span><span class="s2">&#34;Waiting for identification, on TCP port (.*)\n&#34;</span><span class="p">,</span> <span class="n">msg</span><span class="p">)[</span><span class="mi">0</span><span class="p">])</span>
 <span class="c1"># print port</span>
 
 <span class="n">srcport</span> <span class="o">=</span> <span class="mi">37614</span>
-<span class="n">pkt</span><span class="o">=</span><span class="n">IP</span><span class="p">(</span><span class="n">dst</span><span class="o">=</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2">31.22.123.60</span><span class="s2">&#34;</span><span class="p">)</span><span class="o">/</span><span class="n">TCP</span><span class="p">(</span><span class="n">dport</span><span class="o">=</span><span class="n">port</span><span class="p">,</span> <span class="n">sport</span><span class="o">=</span><span class="n">srcport</span><span class="p">)</span><span class="o">/</span><span class="nb">id</span>
+<span class="n">pkt</span><span class="o">=</span><span class="n">IP</span><span class="p">(</span><span class="n">dst</span><span class="o">=</span><span class="s2">&#34;31.22.123.60&#34;</span><span class="p">)</span><span class="o">/</span><span class="n">TCP</span><span class="p">(</span><span class="n">dport</span><span class="o">=</span><span class="n">port</span><span class="p">,</span> <span class="n">sport</span><span class="o">=</span><span class="n">srcport</span><span class="p">)</span><span class="o">/</span><span class="nb">id</span>
 <span class="n">send</span><span class="p">(</span><span class="n">pkt</span><span class="p">)</span>
 
-<span class="n">msg</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">recvuntil</span><span class="p">(</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2">with sequence number</span><span class="s2">&#34;</span><span class="p">)</span>
-<span class="n">port</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="sa">r</span><span class="s2">&#34;</span><span class="s2">Expecting handshake, on TCP port (.*), </span><span class="s2">&#34;</span><span class="p">,</span> <span class="n">msg</span><span class="p">)</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="p">)</span>
+<span class="n">msg</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">recvuntil</span><span class="p">(</span><span class="s2">&#34;with sequence number&#34;</span><span class="p">)</span>
+<span class="n">port</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="sa">r</span><span class="s2">&#34;Expecting handshake, on TCP port (.*), &#34;</span><span class="p">,</span> <span class="n">msg</span><span class="p">)[</span><span class="mi">0</span><span class="p">])</span>
 <span class="k">print</span> <span class="n">port</span>
 
-<span class="n">msg</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">recvuntil</span><span class="p">(</span><span class="sa"></span><span class="s2">&#34;</span><span class="se">\n</span><span class="s2">&#34;</span><span class="p">)</span>
-<span class="n">seqnum</span>  <span class="o">=</span> <span class="n">msg</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="p">)</span>
+<span class="n">msg</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">recvuntil</span><span class="p">(</span><span class="s2">&#34;</span><span class="se">\n</span><span class="s2">&#34;</span><span class="p">)</span>
+<span class="n">seqnum</span>  <span class="o">=</span> <span class="n">msg</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
 <span class="k">print</span> <span class="n">seqnum</span>
-<span class="n">pkt</span><span class="o">=</span><span class="n">IP</span><span class="p">(</span><span class="n">dst</span><span class="o">=</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2">31.22.123.60</span><span class="s2">&#34;</span><span class="p">)</span><span class="o">/</span><span class="n">TCP</span><span class="p">(</span><span class="n">flags</span><span class="o">=</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">S</span><span class="s1">&#39;</span><span class="p">,</span><span class="n">dport</span><span class="o">=</span><span class="n">port</span><span class="p">,</span><span class="n">sport</span><span class="o">=</span><span class="n">srcport</span><span class="p">,</span><span class="n">seq</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="n">seqnum</span><span class="p">)</span><span class="p">)</span>
+<span class="n">pkt</span><span class="o">=</span><span class="n">IP</span><span class="p">(</span><span class="n">dst</span><span class="o">=</span><span class="s2">&#34;31.22.123.60&#34;</span><span class="p">)</span><span class="o">/</span><span class="n">TCP</span><span class="p">(</span><span class="n">flags</span><span class="o">=</span><span class="s1">&#39;S&#39;</span><span class="p">,</span><span class="n">dport</span><span class="o">=</span><span class="n">port</span><span class="p">,</span><span class="n">sport</span><span class="o">=</span><span class="n">srcport</span><span class="p">,</span><span class="n">seq</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="n">seqnum</span><span class="p">))</span>
 <span class="n">sleep</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
 <span class="n">ans</span><span class="o">=</span><span class="n">sr</span><span class="p">(</span><span class="n">pkt</span><span class="p">)</span>
 <span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-<span class="c1">## This fails with &#34;Invalid packet. Exiting&#34; error...</span>
-
-</code></pre></td></tr></table>
+<span class="c1">## This fails with &#34;Invalid packet. Exiting&#34; error...</span></code></pre></td></tr></table>
 </div>
-</div><p><br />
+</div>
+<p><br />
 残念ながら、sequence numberを指定した SYNパケットがInvalidのようです。</p>
-<p>以下、Follow TCP Streamです。</p>
+
+<p>以下、Follow TCP Streamです。
 <pre>
 Welcome to handshake in future!
 Your personal identifier is: ae08b500-d644-47fa-9c7e-23acbd82d00f
 Waiting for identification, on TCP port 20428
 Identification successful. Waiting for further instructions.
 Expecting handshake, on TCP port 54538, with sequence number 728714096
-Invalid packet. Exiting     <==これ
-</pre>
+Invalid packet. Exiting     &lt;==これ
+</pre></p>
+
 <p><br />
 &ldquo;tcp.port==54538&rdquo; でフィルターしたものです。sequence number もちゃんと設定できているし、合っていると思うんですけどね。どこら辺がInvalidなのかわかんないです。</p>
-<img src="https://captureamerica.github.io/writeups/img/hack.lu_ctf_2019_tcp_54538.png" alt="hack.lu_ctf_2019_tcp_54538.png">
+
+<p><img src="https://captureamerica.github.io/writeups/img/hack.lu_ctf_2019_tcp_54538.png" alt="hack.lu_ctf_2019_tcp_54538.png"></p>
+
 <p><br />
 Handshakeがうまく行けば、あとは、synchronize、privileged、flagコマンドを送るだけなんだと思います。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre class="chroma"><code class="language-Python" data-lang="Python"><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-Python" data-lang="Python"><span class="n">pkt</span><span class="o">=</span><span class="n">IP</span><span class="p">(</span><span class="n">dst</span><span class="o">=</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2">31.22.123.60</span><span class="s2">&#34;</span><span class="p">)</span><span class="o">/</span><span class="n">TCP</span><span class="p">(</span><span class="n">dport</span><span class="o">=</span><span class="n">port</span><span class="p">,</span> <span class="n">sport</span><span class="o">=</span><span class="n">srcport</span><span class="p">)</span><span class="o">/</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2">synchronize</span><span class="s2">&#34;</span>
-<span class="n">pkt</span><span class="o">=</span><span class="n">IP</span><span class="p">(</span><span class="n">dst</span><span class="o">=</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2">31.22.123.60</span><span class="s2">&#34;</span><span class="p">)</span><span class="o">/</span><span class="n">TCP</span><span class="p">(</span><span class="n">dport</span><span class="o">=</span><span class="n">port</span><span class="p">,</span> <span class="n">sport</span><span class="o">=</span><span class="n">srcport</span><span class="p">)</span><span class="o">/</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2">privileged</span><span class="s2">&#34;</span>
-<span class="n">pkt</span><span class="o">=</span><span class="n">IP</span><span class="p">(</span><span class="n">dst</span><span class="o">=</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2">31.22.123.60</span><span class="s2">&#34;</span><span class="p">)</span><span class="o">/</span><span class="n">TCP</span><span class="p">(</span><span class="n">dport</span><span class="o">=</span><span class="n">port</span><span class="p">,</span> <span class="n">sport</span><span class="o">=</span><span class="n">srcport</span><span class="p">)</span><span class="o">/</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2">flag</span><span class="s2">&#34;</span>
-</code></pre></td></tr></table>
+<pre class="chroma"><code class="language-Python" data-lang="Python"><span class="n">pkt</span><span class="o">=</span><span class="n">IP</span><span class="p">(</span><span class="n">dst</span><span class="o">=</span><span class="s2">&#34;31.22.123.60&#34;</span><span class="p">)</span><span class="o">/</span><span class="n">TCP</span><span class="p">(</span><span class="n">dport</span><span class="o">=</span><span class="n">port</span><span class="p">,</span> <span class="n">sport</span><span class="o">=</span><span class="n">srcport</span><span class="p">)</span><span class="o">/</span><span class="s2">&#34;synchronize&#34;</span>
+<span class="n">pkt</span><span class="o">=</span><span class="n">IP</span><span class="p">(</span><span class="n">dst</span><span class="o">=</span><span class="s2">&#34;31.22.123.60&#34;</span><span class="p">)</span><span class="o">/</span><span class="n">TCP</span><span class="p">(</span><span class="n">dport</span><span class="o">=</span><span class="n">port</span><span class="p">,</span> <span class="n">sport</span><span class="o">=</span><span class="n">srcport</span><span class="p">)</span><span class="o">/</span><span class="s2">&#34;privileged&#34;</span>
+<span class="n">pkt</span><span class="o">=</span><span class="n">IP</span><span class="p">(</span><span class="n">dst</span><span class="o">=</span><span class="s2">&#34;31.22.123.60&#34;</span><span class="p">)</span><span class="o">/</span><span class="n">TCP</span><span class="p">(</span><span class="n">dport</span><span class="o">=</span><span class="n">port</span><span class="p">,</span> <span class="n">sport</span><span class="o">=</span><span class="n">srcport</span><span class="p">)</span><span class="o">/</span><span class="s2">&#34;flag&#34;</span></code></pre></td></tr></table>
 </div>
-</div><p><br />
+</div>
+<p><br />
 なお、SYN/ACKを受信するにあたって、iptablesの設定も要ります。今回は、SYNがInvalid packet扱いされているので、そこまで行ってないですけど。</p>
+
 <p>Mac OSだと、pfctlでやるみたいです。</p>
+
 <p><br /><br />
 <br /><br /></p>
-<hr>
+
+<hr />
+
 <p><br /><br />
 <br /><br /></p>
 

@@ -23,7 +23,7 @@
 <meta name="google-site-verification" content="PqctLWZQttGzxXVupWuIt2HWuBI8cvN1z07ETpxA2dw" />
 
 
-<meta name="generator" content="Hugo 0.60.1 with theme even" />
+<meta name="generator" content="Hugo 0.55.6 with theme even" />
 
 
 <link rel="canonical" href="https://captureamerica.github.io/writeups/post/picoctf_2018/" />
@@ -42,17 +42,21 @@
 <meta property="og:description" content="URL: https://2018game.picoctf.com/ picoCTFのことを知ったのがちょっと前で、すでにイベントは2018年時点で終了してるんですが、続けて勉強ができるようになっていたので" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://captureamerica.github.io/writeups/post/picoctf_2018/" />
-<meta property="article:published_time" content="2019-08-11T23:00:00+09:00" />
-<meta property="article:modified_time" content="2019-09-05T22:00:00+09:00" />
+<meta property="article:published_time" content="2019-08-11T23:00:00&#43;09:00"/>
+<meta property="article:modified_time" content="2019-09-05T22:00:00&#43;09:00"/>
+
 <meta itemprop="name" content="picoCTF 2018 Writeup">
 <meta itemprop="description" content="URL: https://2018game.picoctf.com/ picoCTFのことを知ったのがちょっと前で、すでにイベントは2018年時点で終了してるんですが、続けて勉強ができるようになっていたので">
+
+
 <meta itemprop="datePublished" content="2019-08-11T23:00:00&#43;09:00" />
 <meta itemprop="dateModified" content="2019-09-05T22:00:00&#43;09:00" />
-<meta itemprop="wordCount" content="6240">
+<meta itemprop="wordCount" content="6427">
 
 
 
-<meta itemprop="keywords" content="CTF," /><meta name="twitter:card" content="summary"/>
+<meta itemprop="keywords" content="CTF," />
+<meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="picoCTF 2018 Writeup"/>
 <meta name="twitter:description" content="URL: https://2018game.picoctf.com/ picoCTFのことを知ったのがちょっと前で、すでにイベントは2018年時点で終了してるんですが、続けて勉強ができるようになっていたので"/>
 
@@ -136,185 +140,226 @@
   <h2 class="post-toc-title">Contents</h2>
   <div class="post-toc-content">
     <nav id="TableOfContents">
-  <ul>
-    <li><a href="#forensics-desrouleaux-150-points">[Forensics]: Desrouleaux (150 points)</a>
-      <ul>
-        <li><a href="#challenge">Challenge</a></li>
-        <li><a href="#solution">Solution</a></li>
-      </ul>
-    </li>
-    <li><a href="#general-skills-you-cant-see-me-200-points">[General Skills]: you can't see me (200 points)</a>
-      <ul>
-        <li><a href="#challenge1">Challenge</a></li>
-        <li><a href="#solution1">Solution</a></li>
-      </ul>
-    </li>
-    <li><a href="#cryptography-safe-rsa-250-points">[Cryptography]: Safe RSA (250 points)</a>
-      <ul>
-        <li><a href="#challenge2">Challenge</a></li>
-        <li><a href="#solution2">Solution</a></li>
-      </ul>
-    </li>
-    <li><a href="#reversing-bequickorbedead1-200-points">[Reversing]: be-quick-or-be-dead-1 (200 points)</a>
-      <ul>
-        <li><a href="#challenge3">Challenge</a></li>
-        <li><a href="#solution3">Solution</a></li>
-      </ul>
-    </li>
-    <li><a href="#reversing-keygenme1-400-points">[Reversing]: keygen-me-1 (400 points)</a>
-      <ul>
-        <li><a href="#challenge4">Challenge</a></li>
-        <li><a href="#solution4">Solution</a></li>
-      </ul>
-    </li>
-    <li><a href="#general-skills-script-me-500-points">[General Skills]: script me (500 points)</a>
-      <ul>
-        <li><a href="#challenge5">Challenge</a></li>
-        <li><a href="#solution5">Solution</a></li>
-      </ul>
-    </li>
-    <li><a href="#reversing-keygenme2-750-points">[Reversing]: keygen-me-2 (750 points)</a>
-      <ul>
-        <li><a href="#challenge6">Challenge</a></li>
-        <li><a href="#solution6">Solution</a></li>
-      </ul>
-    </li>
-    <li><a href="#reversing-bequickorbedead3-350-points">[Reversing]: be-quick-or-be-dead-3 (350 points)</a>
-      <ul>
-        <li><a href="#challenge7">Challenge</a></li>
-        <li><a href="#solution7">Solution</a></li>
-      </ul>
-    </li>
-  </ul>
+<ul>
+<li>
+<ul>
+<li><a href="#forensics-desrouleaux-150-points">[Forensics]: Desrouleaux (150 points)</a>
+<ul>
+<li><a href="#challenge">Challenge</a></li>
+<li><a href="#solution">Solution</a></li>
+</ul></li>
+<li><a href="#general-skills-you-can-t-see-me-200-points">[General Skills]: you can&rsquo;t see me (200 points)</a>
+<ul>
+<li><a href="#challenge-1">Challenge</a></li>
+<li><a href="#solution-1">Solution</a></li>
+</ul></li>
+<li><a href="#cryptography-safe-rsa-250-points">[Cryptography]: Safe RSA (250 points)</a>
+<ul>
+<li><a href="#challenge-2">Challenge</a></li>
+<li><a href="#solution-2">Solution</a></li>
+</ul></li>
+<li><a href="#reversing-be-quick-or-be-dead-1-200-points">[Reversing]: be-quick-or-be-dead-1 (200 points)</a>
+<ul>
+<li><a href="#challenge-3">Challenge</a></li>
+<li><a href="#solution-3">Solution</a></li>
+</ul></li>
+<li><a href="#reversing-keygen-me-1-400-points">[Reversing]: keygen-me-1 (400 points)</a>
+<ul>
+<li><a href="#challenge-4">Challenge</a></li>
+<li><a href="#solution-4">Solution</a></li>
+</ul></li>
+<li><a href="#general-skills-script-me-500-points">[General Skills]: script me (500 points)</a>
+<ul>
+<li><a href="#challenge-5">Challenge</a></li>
+<li><a href="#solution-5">Solution</a></li>
+</ul></li>
+<li><a href="#forensics-loadsomebits-550-points">[Forensics]: LoadSomeBits (550 points)</a>
+<ul>
+<li><a href="#challenge-6">Challenge</a></li>
+<li><a href="#solution-6">Solution</a></li>
+</ul></li>
+<li><a href="#reversing-keygen-me-2-750-points">[Reversing]: keygen-me-2 (750 points)</a>
+<ul>
+<li><a href="#challenge-7">Challenge</a></li>
+<li><a href="#solution-7">Solution</a></li>
+</ul></li>
+<li><a href="#reversing-be-quick-or-be-dead-3-350-points">[Reversing]: be-quick-or-be-dead-3 (350 points)</a>
+<ul>
+<li><a href="#challenge-8">Challenge</a></li>
+<li><a href="#solution-8">Solution</a></li>
+</ul></li>
+</ul></li>
+</ul>
 </nav>
   </div>
 </div>
     <div class="post-content">
-      <p>URL: <a href="https://2018game.picoctf.com/"><a href="https://2018game.picoctf.com/">https://2018game.picoctf.com/</a></a>
+      
+
+<p>URL: <a href="https://2018game.picoctf.com/">https://2018game.picoctf.com/</a>
 <br /><br />
 picoCTFのことを知ったのがちょっと前で、すでにイベントは2018年時点で終了してるんですが、続けて勉強ができるようになっていたので他のCTFイベントがない平日とかにちょこちょこやりました。</p>
+
 <p><br /><br />
 進み具合はこんな感じ。</p>
-<img src="https://captureamerica.github.io/writeups/img/pico_Score.png" alt="pico_Score.png">
+
+<p><img src="https://captureamerica.github.io/writeups/img/pico_Score.png" alt="pico_Score.png"></p>
+
 <p>もう、これくらいやったら十分かなぁ。気が向いたら、もう少しやるかもです。</p>
+
 <p><br />
 いくつかピックアップしてWriteupを書いておきます。</p>
+
 <p><br /><br /></p>
+
 <h2 id="forensics-desrouleaux-150-points">[Forensics]: Desrouleaux (150 points)</h2>
-<hr>
+
+<hr />
+
 <h3 id="challenge">Challenge</h3>
+
 <blockquote>
 <p>Our network administrator is having some trouble handling the tickets for all of of our incidents. Can you help him out by answering all the questions? Connect with nc 2018shell.picoctf.com 54782.
 <br /><br />
 Hint: If you need to code, python has some good libraries for it.</p>
 </blockquote>
+
 <p>Attachment:</p>
+
 <ul>
-<li>incidents.json</li>
-</ul>
+<li>incidents.json
 <pre>
 {
-    "tickets": [
-        {
-            "ticket_id": 0,
-            "timestamp": "2016/02/08 08:45:56",
-            "file_hash": "33d81fec987b8a8c",
-            "src_ip": "246.69.53.233",
-            "dst_ip": "48.173.183.246"
-        },
-        {
-            "ticket_id": 1,
-            "timestamp": "2017/03/05 06:01:41",
-            "file_hash": "f2d2c758fe8853b5",
-            "src_ip": "246.69.53.233",
-            "dst_ip": "164.217.208.88"
-        },
-        {
-            "ticket_id": 2,
-            "timestamp": "2015/02/28 12:24:15",
-            "file_hash": "33d81fec987b8a8c",
-            "src_ip": "251.165.34.242",
-            "dst_ip": "125.130.154.106"
-        },
-        {
-            "ticket_id": 3,
-            "timestamp": "2015/06/24 12:14:19",
-            "file_hash": "581dc312cc8c16c6",
-            "src_ip": "246.69.53.233",
-            "dst_ip": "48.173.183.246"
-        },
-        {
-            "ticket_id": 4,
-            "timestamp": "2015/11/15 22:34:03",
-            "file_hash": "8aa16b403ac7de3e",
-            "src_ip": "215.239.98.18",
-            "dst_ip": "231.12.49.241"
-        },
-        {
-            "ticket_id": 5,
-            "timestamp": "2015/02/06 15:42:17",
-            "file_hash": "8aa16b403ac7de3e",
-            "src_ip": "246.69.53.233",
-            "dst_ip": "168.138.219.19"
-        },
-        {
-            "ticket_id": 6,
-            "timestamp": "2017/12/29 05:54:41",
-            "file_hash": "8aa16b403ac7de3e",
-            "src_ip": "251.165.34.242",
-            "dst_ip": "168.138.219.19"
-        },
-        {
-            "ticket_id": 7,
-            "timestamp": "2017/10/10 13:11:20",
-            "file_hash": "6629fde09ed2dab7",
-            "src_ip": "251.165.34.242",
-            "dst_ip": "187.229.175.225"
-        },
-        {
-            "ticket_id": 8,
-            "timestamp": "2015/01/26 00:01:08",
-            "file_hash": "581dc312cc8c16c6",
-            "src_ip": "231.205.245.44",
-            "dst_ip": "48.173.183.246"
-        },
-        {
-            "ticket_id": 9,
-            "timestamp": "2017/05/07 09:51:22",
-            "file_hash": "8aa16b403ac7de3e",
-            "src_ip": "251.165.34.242",
-            "dst_ip": "168.138.219.19"
-        }
-    ]
+&ldquo;tickets&rdquo;: [
+    {
+        &ldquo;ticket_id&rdquo;: 0,
+        &ldquo;timestamp&rdquo;: &ldquo;2016/02/08 08:45:56&rdquo;,
+        &ldquo;file_hash&rdquo;: &ldquo;33d81fec987b8a8c&rdquo;,
+        &ldquo;src_ip&rdquo;: &ldquo;246.69.53.233&rdquo;,
+        &ldquo;dst_ip&rdquo;: &ldquo;48.173.183.246&rdquo;
+    },
+    {
+        &ldquo;ticket_id&rdquo;: 1,
+        &ldquo;timestamp&rdquo;: &ldquo;2017/03/05 06:01:41&rdquo;,
+        &ldquo;file_hash&rdquo;: &ldquo;f2d2c758fe8853b5&rdquo;,
+        &ldquo;src_ip&rdquo;: &ldquo;246.69.53.233&rdquo;,
+        &ldquo;dst_ip&rdquo;: &ldquo;164.217.208.88&rdquo;
+    },
+    {
+        &ldquo;ticket_id&rdquo;: 2,
+        &ldquo;timestamp&rdquo;: &ldquo;2015/02/28 12:24:15&rdquo;,
+        &ldquo;file_hash&rdquo;: &ldquo;33d81fec987b8a8c&rdquo;,
+        &ldquo;src_ip&rdquo;: &ldquo;251.165.34.242&rdquo;,
+        &ldquo;dst_ip&rdquo;: &ldquo;125.130.154.106&rdquo;
+    },
+    {
+        &ldquo;ticket_id&rdquo;: 3,
+        &ldquo;timestamp&rdquo;: &ldquo;2015/06/24 12:14:19&rdquo;,
+        &ldquo;file_hash&rdquo;: &ldquo;581dc312cc8c16c6&rdquo;,
+        &ldquo;src_ip&rdquo;: &ldquo;246.69.53.233&rdquo;,
+        &ldquo;dst_ip&rdquo;: &ldquo;48.173.183.246&rdquo;
+    },
+    {
+        &ldquo;ticket_id&rdquo;: 4,
+        &ldquo;timestamp&rdquo;: &ldquo;2015/11/15 22:34:03&rdquo;,
+        &ldquo;file_hash&rdquo;: &ldquo;8aa16b403ac7de3e&rdquo;,
+        &ldquo;src_ip&rdquo;: &ldquo;215.239.98.18&rdquo;,
+        &ldquo;dst_ip&rdquo;: &ldquo;231.12.49.241&rdquo;
+    },
+    {
+        &ldquo;ticket_id&rdquo;: 5,
+        &ldquo;timestamp&rdquo;: &ldquo;2015/02/06 15:42:17&rdquo;,
+        &ldquo;file_hash&rdquo;: &ldquo;8aa16b403ac7de3e&rdquo;,
+        &ldquo;src_ip&rdquo;: &ldquo;246.69.53.233&rdquo;,
+        &ldquo;dst_ip&rdquo;: &ldquo;168.138.219.19&rdquo;
+    },
+    {
+        &ldquo;ticket_id&rdquo;: 6,
+        &ldquo;timestamp&rdquo;: &ldquo;2017/12/29 05:54:41&rdquo;,
+        &ldquo;file_hash&rdquo;: &ldquo;8aa16b403ac7de3e&rdquo;,
+        &ldquo;src_ip&rdquo;: &ldquo;251.165.34.242&rdquo;,
+        &ldquo;dst_ip&rdquo;: &ldquo;168.138.219.19&rdquo;
+    },
+    {
+        &ldquo;ticket_id&rdquo;: 7,
+        &ldquo;timestamp&rdquo;: &ldquo;2017/10/10 13:11:20&rdquo;,
+        &ldquo;file_hash&rdquo;: &ldquo;6629fde09ed2dab7&rdquo;,
+        &ldquo;src_ip&rdquo;: &ldquo;251.165.34.242&rdquo;,
+        &ldquo;dst_ip&rdquo;: &ldquo;187.229.175.225&rdquo;
+    },
+    {
+        &ldquo;ticket_id&rdquo;: 8,
+        &ldquo;timestamp&rdquo;: &ldquo;2015/01/26 00:01:08&rdquo;,
+        &ldquo;file_hash&rdquo;: &ldquo;581dc312cc8c16c6&rdquo;,
+        &ldquo;src_ip&rdquo;: &ldquo;231.205.245.44&rdquo;,
+        &ldquo;dst_ip&rdquo;: &ldquo;48.173.183.246&rdquo;
+    },
+    {
+        &ldquo;ticket_id&rdquo;: 9,
+        &ldquo;timestamp&rdquo;: &ldquo;2017/05/07 09:51:22&rdquo;,
+        &ldquo;file_hash&rdquo;: &ldquo;8aa16b403ac7de3e&rdquo;,
+        &ldquo;src_ip&rdquo;: &ldquo;251.165.34.242&rdquo;,
+        &ldquo;dst_ip&rdquo;: &ldquo;168.138.219.19&rdquo;
+    }
+]
 }
-</pre>
+</pre></li>
+</ul>
+
 <p><br /></p>
+
 <h3 id="solution">Solution</h3>
+
 <p>ncで繋ぐと、そこで問題が出てきます。</p>
+
 <p>ヒントを無視してLinuxコマンドで全部解こうかと思ったけど、勉強のために最後だけはPythonで解きました。</p>
+
 <blockquote>
 <p>What is the most common source IP address? If there is more than one IP address that is the most common, you may give any of the most common ones.</p>
 </blockquote>
-<pre><code>$ grep src incidents.json | cut -d: -f2 | sort | uniq -c
-   1  &quot;215.239.98.18&quot;,
-   1  &quot;231.205.245.44&quot;,
-   4  &quot;246.69.53.233&quot;,
-   4  &quot;251.165.34.242&quot;,
-</code></pre><p>答え：251.165.34.242</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">$ grep src incidents.json | cut -d: -f2 | sort | uniq -c
+   1  &#34;215.239.98.18&#34;,
+   1  &#34;231.205.245.44&#34;,
+   4  &#34;246.69.53.233&#34;,
+   4  &#34;251.165.34.242&#34;,</pre></td></tr></table>
+</div>
+</div>
+<p>答え：251.165.34.242</p>
+
 <p><br /></p>
+
 <blockquote>
 <p>How many unique destination IP addresses were targeted by the source IP address 246.69.53.233?</p>
 </blockquote>
-<pre><code>$ grep 251.165.34.242 incidents.json -A 2 | grep dst | sort | uniq | wc -l
-       3
-</code></pre><p>答え：3</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span><span class="lnt">2
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">$ grep 251.165.34.242 incidents.json -A 2 | grep dst | sort | uniq | wc -l
+       3</pre></td></tr></table>
+</div>
+</div>
+<p>答え：3</p>
+
 <p><br /></p>
+
 <blockquote>
 <p>What is the number of unique destination ips a file is sent, on average? Needs to be correct to 2 decimal places.</p>
 </blockquote>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre class="chroma"><code class="language-Python" data-lang="Python"><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -345,124 +390,192 @@ Hint: If you need to code, python has some good libraries for it.</p>
 
 <span class="kn">import</span> <span class="nn">json</span>
 
-<span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">incidents.json</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">r</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;incidents.json&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span>
 <span class="n">json_dict</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
 
 <span class="c1"># uniqにするために一旦リストにする。</span>
-<span class="n">hash_list</span> <span class="o">=</span> <span class="p">[</span><span class="p">]</span>
-<span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">json_dict</span><span class="p">[</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">tickets</span><span class="s1">&#39;</span><span class="p">]</span><span class="p">:</span>
-    <span class="n">hash_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">key</span><span class="p">[</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">file_hash</span><span class="s1">&#39;</span><span class="p">]</span><span class="p">)</span>  <span class="c1"># hashだけ取り出して、リストにappend</span>
+<span class="n">hash_list</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">json_dict</span><span class="p">[</span><span class="s1">&#39;tickets&#39;</span><span class="p">]:</span>
+    <span class="n">hash_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">key</span><span class="p">[</span><span class="s1">&#39;file_hash&#39;</span><span class="p">])</span>  <span class="c1"># hashだけ取り出して、リストにappend</span>
 
-<span class="n">uniq_hash</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">hash_list</span><span class="p">)</span><span class="p">)</span>
+<span class="n">uniq_hash</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">hash_list</span><span class="p">))</span>
 
 <span class="n">uniq_dst</span> <span class="o">=</span> <span class="mi">0</span>
 <span class="k">for</span> <span class="nb">hash</span> <span class="ow">in</span> <span class="n">uniq_hash</span><span class="p">:</span>
-    <span class="n">dstip_list</span> <span class="o">=</span> <span class="p">[</span><span class="p">]</span>
-    <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">json_dict</span><span class="p">[</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">tickets</span><span class="s1">&#39;</span><span class="p">]</span><span class="p">:</span>
-        <span class="k">if</span> <span class="n">key</span><span class="p">[</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">file_hash</span><span class="s1">&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="nb">hash</span><span class="p">:</span>
-            <span class="n">dstip_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">key</span><span class="p">[</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">dst_ip</span><span class="s1">&#39;</span><span class="p">]</span><span class="p">)</span>
-    <span class="n">uniq_dst</span> <span class="o">=</span> <span class="n">uniq_dst</span> <span class="o">+</span> <span class="nb">len</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">dstip_list</span><span class="p">)</span><span class="p">)</span><span class="p">)</span>
+    <span class="n">dstip_list</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">json_dict</span><span class="p">[</span><span class="s1">&#39;tickets&#39;</span><span class="p">]:</span>
+        <span class="k">if</span> <span class="n">key</span><span class="p">[</span><span class="s1">&#39;file_hash&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="nb">hash</span><span class="p">:</span>
+            <span class="n">dstip_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">key</span><span class="p">[</span><span class="s1">&#39;dst_ip&#39;</span><span class="p">])</span>
+    <span class="n">uniq_dst</span> <span class="o">=</span> <span class="n">uniq_dst</span> <span class="o">+</span> <span class="nb">len</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">dstip_list</span><span class="p">)))</span>
 
-<span class="k">print</span><span class="p">(</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2">{:.2f}</span><span class="s2">&#34;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">uniq_dst</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">uniq_hash</span><span class="p">)</span><span class="p">)</span><span class="p">)</span>
-</code></pre></td></tr></table>
+<span class="k">print</span><span class="p">(</span><span class="s2">&#34;{:.2f}&#34;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">uniq_dst</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">uniq_hash</span><span class="p">)))</span></code></pre></td></tr></table>
 </div>
-</div><p>答え：1.40</p>
+</div>
+<p>答え：1.40</p>
+
 <p><br /><br />
 <br /><br /></p>
-<h2 id="general-skills-you-cant-see-me-200-points">[General Skills]: you can't see me (200 points)</h2>
-<hr>
-<h3 id="challenge1">Challenge</h3>
-<p>&lsquo;&hellip;reading transmission&hellip; Y.O.U. .C.A.N.'.T. .S.E.E. .M.E. &hellip;transmission ended&hellip;&rsquo; Maybe something lies in /problems/you-can-t-see-me_3_1a39ec6c80b3f3a18610074f68acfe69.</p>
+
+<h2 id="general-skills-you-can-t-see-me-200-points">[General Skills]: you can&rsquo;t see me (200 points)</h2>
+
+<hr />
+
+<h3 id="challenge-1">Challenge</h3>
+
+<p>&rsquo;&hellip;reading transmission&hellip; Y.O.U. .C.A.N.&lsquo;.T. .S.E.E. .M.E. &hellip;transmission ended&hellip;&rsquo; Maybe something lies in /problems/you-can-t-see-me_3_1a39ec6c80b3f3a18610074f68acfe69.</p>
+
 <p><br /></p>
-<h3 id="solution1">Solution</h3>
+
+<h3 id="solution-1">Solution</h3>
+
 <p>SSHでアクセスした後、emacsのdiredからファイルを開いたらすぐフラグ見つかりました。
 <img src="https://captureamerica.github.io/writeups/img/emacs_dired.png" alt="emacs_dired.png"></p>
+
 <p><br />
 逆にemacsが使えなかったらどうするのか気になって、別解も調べてみました。</p>
+
 <p>ファイル名に空白文字が含まれているようなので、trでアンダースコアに置き換えて可視化しました。</p>
-<pre><code>captureamerica@pico-2018-shell:/problems/you-can-t-see-me_3_1a39ec6c80b3f3a18610074f68acfe69$ ll
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">captureamerica@pico-2018-shell:/problems/you-can-t-see-me_3_1a39ec6c80b3f3a18610074f68acfe69$ ll
 total 60
 drwxr-xr-x   2 root       root        4096 Mar 25 19:57 ./
 -rw-rw-r--   1 hacksports hacksports    57 Mar 25 19:57 .  
 drwxr-x--x 556 root       root       53248 Mar 25 19:58 ../
 
-captureamerica@pico-2018-shell:/problems/you-can-t-see-me_3_1a39ec6c80b3f3a18610074f68acfe69$ ls -la | tr &quot; &quot; &quot;_&quot;
+captureamerica@pico-2018-shell:/problems/you-can-t-see-me_3_1a39ec6c80b3f3a18610074f68acfe69$ ls -la | tr &#34; &#34; &#34;_&#34;
 total_60
 drwxr-xr-x___2_root_______root________4096_Mar_25_19:57_.
 -rw-rw-r--___1_hacksports_hacksports____57_Mar_25_19:57_.__
 drwxr-x--x_556_root_______root_______53248_Mar_25_19:58_..
 
-captureamerica@pico-2018-shell:/problems/you-can-t-see-me_3_1a39ec6c80b3f3a18610074f68acfe69$ cat &quot;. &quot;
-cat: '. ': No such file or directory
+captureamerica@pico-2018-shell:/problems/you-can-t-see-me_3_1a39ec6c80b3f3a18610074f68acfe69$ cat &#34;. &#34;
+cat: &#39;. &#39;: No such file or directory
 
-captureamerica@pico-2018-shell:/problems/you-can-t-see-me_3_1a39ec6c80b3f3a18610074f68acfe69$ cat &quot;.  &quot;
-picoCTF{j0hn_c3na_paparapaaaaaaa_paparapaaaaaa_cf5156ef}
-</code></pre><p><br /><br />
+captureamerica@pico-2018-shell:/problems/you-can-t-see-me_3_1a39ec6c80b3f3a18610074f68acfe69$ cat &#34;.  &#34;
+picoCTF{j0hn_c3na_paparapaaaaaaa_paparapaaaaaa_cf5156ef}</pre></td></tr></table>
+</div>
+</div>
+<p><br /><br />
 <br /><br /></p>
+
 <h2 id="cryptography-safe-rsa-250-points">[Cryptography]: Safe RSA (250 points)</h2>
-<hr>
-<h3 id="challenge2">Challenge</h3>
+
+<hr />
+
+<h3 id="challenge-2">Challenge</h3>
+
 <blockquote>
-<p>Now that you know about RSA can you help us decrypt this ciphertext? We don't have the decryption key but something about those values looks funky..
+<p>Now that you know about RSA can you help us decrypt this ciphertext? We don&rsquo;t have the decryption key but something about those values looks funky..
 <br /><br />
 Hint1: RSA <a href="https://en.wikipedia.org/wiki/RSA_(cryptosystem)">tutorial</a><br />
 Hint2: Hmmm that e value looks kinda small right?<br />
-Hint3: These are some really big numbers.. Make sure you're using functions that don't lose any precision!<br /></p>
+Hint3: These are some really big numbers.. Make sure you&rsquo;re using functions that don&rsquo;t lose any precision!<br /></p>
 </blockquote>
+
 <p>Attachment:</p>
+
 <ul>
 <li>ciphertext（以下が中身）</li>
 </ul>
+
 <p>--------<br />
 N: 374159235470172130988938196520880526947952521620932362050308663243595788308583992120881359365258949723819911758198013202644666489247987314025169670926273213367237020188587742716017314320191350666762541039238241984934473188656610615918474673963331992408750047451253205158436452814354564283003696666945950908549197175404580533132142111356931324330631843602412540295482841975783884766801266552337129105407869020730226041538750535628619717708838029286366761470986056335230171148734027536820544543251801093230809186222940806718221638845816521738601843083746103374974120575519418797642878012234163709518203946599836959811</p>
+
 <p>e: 3</p>
+
 <p>ciphertext (c): 2205316413931134031046440767620541984801091216351222789180535786851451917462804449135087209259828503848304180574549372616172217553002988241140344023060716738565104171296716554122734607654513009667720334889869007276287692856645210293194853
 <br />--------</p>
+
 <p><br /></p>
-<h3 id="solution2">Solution</h3>
-<p>RsaCtfTool ( <a href="https://github.com/Ganapati/RsaCtfTool"><a href="https://github.com/Ganapati/RsaCtfTool">https://github.com/Ganapati/RsaCtfTool</a></a> ) を使ったら解けました。</p>
+
+<h3 id="solution-2">Solution</h3>
+
+<p>RsaCtfTool ( <a href="https://github.com/Ganapati/RsaCtfTool">https://github.com/Ganapati/RsaCtfTool</a> ) を使ったら解けました。</p>
+
 <p>--------<br />
 $ python RsaCtfTool.py -n 374159235470172130988938196520880526947952521620932362050308663243595788308583992120881359365258949723819911758198013202644666489247987314025169670926273213367237020188587742716017314320191350666762541039238241984934473188656610615918474673963331992408750047451253205158436452814354564283003696666945950908549197175404580533132142111356931324330631843602412540295482841975783884766801266552337129105407869020730226041538750535628619717708838029286366761470986056335230171148734027536820544543251801093230809186222940806718221638845816521738601843083746103374974120575519418797642878012234163709518203946599836959811 -e 3 &ndash;uncipher 2205316413931134031046440767620541984801091216351222789180535786851451917462804449135087209259828503848304180574549372616172217553002988241140344023060716738565104171296716554122734607654513009667720334889869007276287692856645210293194853</p>
-<p>[+] Clear text : b'picoCTF{e_w4y_t00_sm411_34096259}&rsquo;
+
+<p>[+] Clear text : b&rsquo;picoCTF{e_w4y_t00_sm411_34096259}&rsquo;
 <br />--------
 <br /><br />
 Flag: <code>picoCTF{e_w4y_t00_sm411_34096259}</code></p>
+
 <p><br /><br />
 <br /><br /></p>
-<h2 id="reversing-bequickorbedead1-200-points">[Reversing]: be-quick-or-be-dead-1 (200 points)</h2>
-<hr>
-<h3 id="challenge3">Challenge</h3>
+
+<h2 id="reversing-be-quick-or-be-dead-1-200-points">[Reversing]: be-quick-or-be-dead-1 (200 points)</h2>
+
+<hr />
+
+<h3 id="challenge-3">Challenge</h3>
+
 <blockquote>
 <p>You find <a href="https://www.youtube.com/watch?v=CTt1vk9nM9c">this</a> when searching for some music, which leads you to be-quick-or-be-dead-1. Can you run it fast enough? You can also find the executable in /problems/be-quick-or-be-dead-1_3_aeb48854203a88fb1da963f41ae06a1c.
 <br /><br />
 Hint: What will the key finally be?</p>
 </blockquote>
+
 <p>Attachment:</p>
+
 <ul>
 <li>be-quick-or-be-dead-1  (ELF 64-bit)</li>
 </ul>
+
 <p><br /></p>
-<h3 id="solution3">Solution</h3>
+
+<h3 id="solution-3">Solution</h3>
+
 <p>これは、いろんな解き方があると思います。<br /></p>
+
 <p>alert(1)でタイマーを起動していて、flagをprintする前にタイムアウトしちゃうので、gdbでalert(1)をコールしているところで止めて、引数1を0xffとかに書き換えたらオッケー。</p>
+
 <p><br /><br />
 <br /><br /></p>
-<h2 id="reversing-keygenme1-400-points">[Reversing]: keygen-me-1 (400 points)</h2>
-<hr>
-<h3 id="challenge4">Challenge</h3>
+
+<h2 id="reversing-keygen-me-1-400-points">[Reversing]: keygen-me-1 (400 points)</h2>
+
+<hr />
+
+<h3 id="challenge-4">Challenge</h3>
+
 <blockquote>
 <p>Can you generate a valid product key for the validation program in /problems/keygen-me-1_2_74297f5e012cf93ee059a2be15d77734</p>
 </blockquote>
+
 <p>Attachment:</p>
+
 <ul>
 <li>activate (ELF 32-bit)</li>
 </ul>
+
 <p><br /></p>
-<h3 id="solution4">Solution</h3>
+
+<h3 id="solution-4">Solution</h3>
+
 <p>Ghidra使っていきます。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre class="chroma"><code class="language-C" data-lang="C"><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -506,37 +619,36 @@ Hint: What will the key finally be?</p>
   <span class="n">undefined4</span> <span class="o">*</span><span class="n">puVar3</span><span class="p">;</span>
   
   <span class="n">puVar3</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">param_1</span><span class="p">;</span>
-  <span class="n">setvbuf</span><span class="p">(</span><span class="n">stdout</span><span class="p">,</span><span class="p">(</span><span class="kt">char</span> <span class="o">*</span><span class="p">)</span><span class="mh">0x0</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span><span class="p">;</span>
+  <span class="n">setvbuf</span><span class="p">(</span><span class="n">stdout</span><span class="p">,(</span><span class="kt">char</span> <span class="o">*</span><span class="p">)</span><span class="mh">0x0</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">0</span><span class="p">);</span>
   <span class="k">if</span> <span class="p">(</span><span class="n">param_1</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">)</span> <span class="p">{</span>
-    <span class="n">puts</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">Usage: ./activate &lt;PRODUCT_KEY&gt;</span><span class="s">&#34;</span><span class="p">)</span><span class="p">;</span>
+    <span class="n">puts</span><span class="p">(</span><span class="s">&#34;Usage: ./activate &lt;PRODUCT_KEY&gt;&#34;</span><span class="p">);</span>
     <span class="n">uVar2</span> <span class="o">=</span> <span class="mh">0xffffffff</span><span class="p">;</span>
   <span class="p">}</span>
   <span class="k">else</span> <span class="p">{</span>
-    <span class="n">cVar1</span> <span class="o">=</span> <span class="n">check_valid_key</span><span class="p">(</span><span class="o">*</span><span class="p">(</span><span class="n">undefined4</span> <span class="o">*</span><span class="p">)</span><span class="p">(</span><span class="n">param_2</span> <span class="o">+</span> <span class="mi">4</span><span class="p">)</span><span class="p">)</span><span class="p">;</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">cVar1</span> <span class="o">=</span><span class="o">=</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
-      <span class="n">puts</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">Please Provide a VALID 16 byte Product Key.</span><span class="s">&#34;</span><span class="p">)</span><span class="p">;</span> <span class="c1">// &lt;--- 16バイト
+    <span class="n">cVar1</span> <span class="o">=</span> <span class="n">check_valid_key</span><span class="p">(</span><span class="o">*</span><span class="p">(</span><span class="n">undefined4</span> <span class="o">*</span><span class="p">)(</span><span class="n">param_2</span> <span class="o">+</span> <span class="mi">4</span><span class="p">));</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">cVar1</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+      <span class="n">puts</span><span class="p">(</span><span class="s">&#34;Please Provide a VALID 16 byte Product Key.&#34;</span><span class="p">);</span> <span class="c1">// &lt;--- 16バイト
 </span><span class="c1"></span>      <span class="n">uVar2</span> <span class="o">=</span> <span class="mh">0xffffffff</span><span class="p">;</span>
     <span class="p">}</span>
     <span class="k">else</span> <span class="p">{</span>
-      <span class="n">cVar1</span> <span class="o">=</span> <span class="n">validate_key</span><span class="p">(</span><span class="o">*</span><span class="p">(</span><span class="n">undefined4</span> <span class="o">*</span><span class="p">)</span><span class="p">(</span><span class="n">param_2</span> <span class="o">+</span> <span class="mi">4</span><span class="p">)</span><span class="p">)</span><span class="p">;</span> <span class="c1">// 以下を参照
-</span><span class="c1"></span>      <span class="k">if</span> <span class="p">(</span><span class="n">cVar1</span> <span class="o">=</span><span class="o">=</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
-        <span class="n">puts</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">INVALID Product Key.</span><span class="s">&#34;</span><span class="p">)</span><span class="p">;</span>
+      <span class="n">cVar1</span> <span class="o">=</span> <span class="n">validate_key</span><span class="p">(</span><span class="o">*</span><span class="p">(</span><span class="n">undefined4</span> <span class="o">*</span><span class="p">)(</span><span class="n">param_2</span> <span class="o">+</span> <span class="mi">4</span><span class="p">));</span> <span class="c1">// 以下を参照
+</span><span class="c1"></span>      <span class="k">if</span> <span class="p">(</span><span class="n">cVar1</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">puts</span><span class="p">(</span><span class="s">&#34;INVALID Product Key.&#34;</span><span class="p">);</span>
         <span class="n">uVar2</span> <span class="o">=</span> <span class="mh">0xffffffff</span><span class="p">;</span>
       <span class="p">}</span>
       <span class="k">else</span> <span class="p">{</span>
-        <span class="n">printf</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">Product Activated Successfully: </span><span class="s">&#34;</span><span class="p">)</span><span class="p">;</span>
-        <span class="n">print_flag</span><span class="p">(</span><span class="n">puVar3</span><span class="p">)</span><span class="p">;</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">&#34;Product Activated Successfully: &#34;</span><span class="p">);</span>
+        <span class="n">print_flag</span><span class="p">(</span><span class="n">puVar3</span><span class="p">);</span>
         <span class="n">uVar2</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
       <span class="p">}</span>
     <span class="p">}</span>
   <span class="p">}</span>
   <span class="k">return</span> <span class="n">uVar2</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<span class="p">}</span></code></pre></td></tr></table>
 </div>
 </div><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre class="chroma"><code class="language-C" data-lang="C"><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -565,24 +677,25 @@ Hint: What will the key finally be?</p>
   <span class="n">uint</span> <span class="n">local_18</span><span class="p">;</span>
   <span class="kt">int</span> <span class="n">local_14</span><span class="p">;</span>
   
-  <span class="n">sVar2</span> <span class="o">=</span> <span class="n">strlen</span><span class="p">(</span><span class="n">param_1</span><span class="p">)</span><span class="p">;</span>   <span class="c1">// &lt;-- 16文字
+  <span class="n">sVar2</span> <span class="o">=</span> <span class="n">strlen</span><span class="p">(</span><span class="n">param_1</span><span class="p">);</span>   <span class="c1">// &lt;-- 16文字
 </span><span class="c1"></span>  <span class="n">local_18</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
   <span class="n">local_14</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-  <span class="k">while</span> <span class="p">(</span><span class="n">local_14</span> <span class="o">&lt;</span> <span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="p">(</span><span class="n">sVar2</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span><span class="p">)</span> <span class="p">{</span>   <span class="c1">// 16-1で、15回ループ
-</span><span class="c1"></span>    <span class="n">cVar1</span> <span class="o">=</span> <span class="n">ord</span><span class="p">(</span><span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="n">param_1</span><span class="p">[</span><span class="n">local_14</span><span class="p">]</span><span class="p">)</span><span class="p">;</span>
-    <span class="n">local_18</span> <span class="o">=</span> <span class="n">local_18</span> <span class="o">+</span> <span class="p">(</span><span class="n">local_14</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="n">cVar1</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span><span class="p">;</span>
+  <span class="k">while</span> <span class="p">(</span><span class="n">local_14</span> <span class="o">&lt;</span> <span class="p">(</span><span class="kt">int</span><span class="p">)(</span><span class="n">sVar2</span> <span class="o">-</span> <span class="mi">1</span><span class="p">))</span> <span class="p">{</span>   <span class="c1">// 16-1で、15回ループ
+</span><span class="c1"></span>    <span class="n">cVar1</span> <span class="o">=</span> <span class="n">ord</span><span class="p">((</span><span class="kt">int</span><span class="p">)</span><span class="n">param_1</span><span class="p">[</span><span class="n">local_14</span><span class="p">]);</span>
+    <span class="n">local_18</span> <span class="o">=</span> <span class="n">local_18</span> <span class="o">+</span> <span class="p">(</span><span class="n">local_14</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="p">((</span><span class="kt">int</span><span class="p">)</span><span class="n">cVar1</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>
     <span class="n">local_14</span> <span class="o">=</span> <span class="n">local_14</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
   <span class="p">}</span>
-  <span class="n">cVar1</span> <span class="o">=</span> <span class="n">ord</span><span class="p">(</span><span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="n">param_1</span><span class="p">[</span><span class="n">sVar2</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span><span class="p">)</span><span class="p">;</span>   <span class="c1">// param_1の最後の文字。
-</span><span class="c1"></span>  <span class="k">return</span> <span class="n">CONCAT31</span><span class="p">(</span><span class="p">(</span><span class="n">undefined3</span><span class="p">)</span><span class="p">(</span><span class="n">cVar1</span> <span class="o">&gt;</span><span class="o">&gt;</span> <span class="mi">7</span><span class="p">)</span><span class="p">,</span><span class="n">local_18</span> <span class="o">%</span> <span class="mh">0x24</span> <span class="o">=</span><span class="o">=</span> <span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="n">cVar1</span><span class="p">)</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+  <span class="n">cVar1</span> <span class="o">=</span> <span class="n">ord</span><span class="p">((</span><span class="kt">int</span><span class="p">)</span><span class="n">param_1</span><span class="p">[</span><span class="n">sVar2</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]);</span>   <span class="c1">// param_1の最後の文字。
+</span><span class="c1"></span>  <span class="k">return</span> <span class="n">CONCAT31</span><span class="p">((</span><span class="n">undefined3</span><span class="p">)(</span><span class="n">cVar1</span> <span class="o">&gt;&gt;</span> <span class="mi">7</span><span class="p">),</span><span class="n">local_18</span> <span class="o">%</span> <span class="mh">0x24</span> <span class="o">==</span> <span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="n">cVar1</span><span class="p">);</span>
+<span class="p">}</span></code></pre></td></tr></table>
 </div>
-</div><p>処理を完全に把握しなくても、16文字のうちの先頭からの15文字をなんか処理して、最後の1文字となんかしているのがわかれば十分でした。</p>
+</div>
+<p>処理を完全に把握しなくても、16文字のうちの先頭からの15文字をなんか処理して、最後の1文字となんかしているのがわかれば十分でした。</p>
+
 <p>以下のチェック関数があって、文字の範囲は決まっているので、Brute Forceで行けます。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre class="chroma"><code class="language-C" data-lang="C"><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -604,22 +717,23 @@ Hint: What will the key finally be?</p>
   <span class="n">undefined4</span> <span class="n">uVar1</span><span class="p">;</span>
 
   <span class="c1">// 0~9とA~Zのみ
-</span><span class="c1"></span>  <span class="k">if</span> <span class="p">(</span><span class="p">(</span><span class="p">(</span><span class="n">param_1</span> <span class="o">&lt;</span> <span class="sa"></span><span class="sc">&#39;</span><span class="sc">0</span><span class="sc">&#39;</span><span class="p">)</span> <span class="o">|</span><span class="o">|</span> <span class="p">(</span><span class="sa"></span><span class="sc">&#39;</span><span class="sc">9</span><span class="sc">&#39;</span> <span class="o">&lt;</span> <span class="n">param_1</span><span class="p">)</span><span class="p">)</span> <span class="o">&amp;</span><span class="o">&amp;</span> <span class="p">(</span><span class="p">(</span><span class="n">param_1</span> <span class="o">&lt;</span> <span class="sa"></span><span class="sc">&#39;</span><span class="sc">A</span><span class="sc">&#39;</span> <span class="o">|</span><span class="o">|</span> <span class="p">(</span><span class="sa"></span><span class="sc">&#39;</span><span class="sc">Z</span><span class="sc">&#39;</span> <span class="o">&lt;</span> <span class="n">param_1</span><span class="p">)</span><span class="p">)</span><span class="p">)</span><span class="p">)</span> <span class="p">{</span>
+</span><span class="c1"></span>  <span class="k">if</span> <span class="p">(((</span><span class="n">param_1</span> <span class="o">&lt;</span> <span class="sc">&#39;0&#39;</span><span class="p">)</span> <span class="o">||</span> <span class="p">(</span><span class="sc">&#39;9&#39;</span> <span class="o">&lt;</span> <span class="n">param_1</span><span class="p">))</span> <span class="o">&amp;&amp;</span> <span class="p">((</span><span class="n">param_1</span> <span class="o">&lt;</span> <span class="sc">&#39;A&#39;</span> <span class="o">||</span> <span class="p">(</span><span class="sc">&#39;Z&#39;</span> <span class="o">&lt;</span> <span class="n">param_1</span><span class="p">))))</span> <span class="p">{</span>
     <span class="n">uVar1</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
   <span class="p">}</span>
   <span class="k">else</span> <span class="p">{</span>
     <span class="n">uVar1</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
   <span class="p">}</span>
   <span class="k">return</span> <span class="n">uVar1</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<span class="p">}</span></code></pre></td></tr></table>
 </div>
-</div><p><br />
+</div>
+<p><br />
 ここからが答えです。</p>
+
 <p>以下のようにシェルスクリプトで解きました。適当な15文字と、最後の1文字をBrute Forceしてます。なお、ローカルで実行する際には、flag.txtを自前で適当に作っておきます。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre class="chroma"><code class="language-Bash" data-lang="Bash"><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -704,8 +818,8 @@ Hint: What will the key finally be?</p>
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-Bash" data-lang="Bash"><span class="c1"># cat activate_solve.sh</span> 
-<span class="c1">#!/bin/bash</span>
-<span class="nv">ARRAY</span><span class="o">=</span><span class="o">(</span>A B C D E F G H I J K L M N O P Q R S T U V W X Y Z <span class="m">0</span> <span class="m">1</span> <span class="m">2</span> <span class="m">3</span> <span class="m">4</span> <span class="m">5</span> <span class="m">6</span> <span class="m">7</span> <span class="m">8</span> 9<span class="o">)</span>
+<span class="cp">#!/bin/bash
+</span><span class="cp"></span><span class="nv">ARRAY</span><span class="o">=(</span>A B C D E F G H I J K L M N O P Q R S T U V W X Y Z <span class="m">0</span> <span class="m">1</span> <span class="m">2</span> <span class="m">3</span> <span class="m">4</span> <span class="m">5</span> <span class="m">6</span> <span class="m">7</span> <span class="m">8</span> <span class="m">9</span><span class="o">)</span>
 
 <span class="k">for</span> item in <span class="si">${</span><span class="nv">ARRAY</span><span class="p">[@]</span><span class="si">}</span><span class="p">;</span> <span class="k">do</span>
     <span class="nb">echo</span> <span class="s2">&#34;AAAAAAAAAAAAAAA&#34;</span><span class="nv">$item</span>
@@ -784,19 +898,25 @@ INVALID Product Key.
 AAAAAAAAAAAAAAA8
 INVALID Product Key.
 AAAAAAAAAAAAAAA9
-INVALID Product Key.
-</code></pre></td></tr></table>
+INVALID Product Key.</code></pre></td></tr></table>
 </div>
-</div><p>flag: <code>AAAAAAAAAAAAAAAO</code></p>
+</div>
+<p>flag: <code>AAAAAAAAAAAAAAAO</code></p>
+
 <p><br /><br />
 <br /><br /></p>
+
 <h2 id="general-skills-script-me-500-points">[General Skills]: script me (500 points)</h2>
-<hr>
-<h3 id="challenge5">Challenge</h3>
+
+<hr />
+
+<h3 id="challenge-5">Challenge</h3>
+
 <blockquote>
 <p>Can you understand the language and answer the questions to retrieve the flag? Connect to the service with nc 2018shell.picoctf.com 1542
 Maybe try writing a python script?</p>
 </blockquote>
+
 <pre>
 $ nc 2018shell.picoctf.com 1542
 Rules:
@@ -812,9 +932,12 @@ Rules:
 Example: 
 (()) + () = () + (()) = (()())
 </pre>
+
 <p><br /></p>
-<h3 id="solution5">Solution</h3>
-<p>なんかカッコが多くて、複雑そうに見えるけど、()を別の文字に置き換えるとわかりやすいと思います｡</p>
+
+<h3 id="solution-5">Solution</h3>
+
+<p>なんかカッコが多くて、複雑そうに見えるけど、()を別の文字に置き換えるとわかりやすいと思います｡
 <pre>
 x + x = xx
 ((x)) + x = ((x)x)
@@ -824,94 +947,217 @@ x + (x)(x) = (xx)(x)
 (x)(x) + ((x)) = ((x)(x)(x))
 ((x)) + (x)(x) = ((x)(x)(x))
 x + (x) + ((x)) = (xx) + ((x)) = ((xx)(x))
-</pre>
+</pre></p>
+
 <p>要は、カッコが何重になっているかによって処理が異なっていて、以下の通り。</p>
+
 <ul>
 <li>同じ深さの場合は、連結</li>
 <li>左の方が深かければ、左のカッコの中の最後に連結</li>
 <li>右の方が深かければ、右のカッコの中の先頭に連結</li>
 </ul>
-<br>
-書いたコード。
-```Python
-#!/usr/bin/env python
-# coding: UTF-8
-import re
-from pwn import *
-<p>host = &ldquo;2018shell.picoctf.com&rdquo;
-port = 1542
-s = remote( host, port )</p>
-<p>while 1:
-msg = s.recvregex(&quot;???|picoCTF{.*}&quot;)
-print(msg)
-if re.search(&ldquo;picoCTF&rdquo;, msg):
-exit(0)</p>
-<pre><code>lines = msg.split(&quot;\n&quot;)
-sample = lines[len(lines)-1]
-msg = s.recvuntil(&quot;&gt; &quot;)
-    
-# まず+で分ける。
-list = sample.split(&quot;+&quot;)
 
-for i in range(0,len(list)-1):
-    # 2つ取り出して、余分な文字の削除。
-    if i == 0:
-        a = list[i].strip(' ')
-    else:
-        a = c
-    b = list[i+1].replace(' ', '')
-    b = b.replace('=', '')
-    b = b.replace('?', '')
+<p><br>
+書いたコード。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-Python" data-lang="Python"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span><span class="lnt">63
+</span><span class="lnt">64
+</span><span class="lnt">65
+</span><span class="lnt">66
+</span><span class="lnt">67
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-Python" data-lang="Python"><span class="ch">#!/usr/bin/env python</span>
+<span class="c1"># coding: UTF-8</span>
+<span class="kn">import</span> <span class="nn">re</span>
+<span class="kn">from</span> <span class="nn">pwn</span> <span class="kn">import</span> <span class="o">*</span>
 
-    # ()をxに変えておく。
-    a = a.replace(&quot;()&quot;, 'x')
-    b = b.replace(&quot;()&quot;, 'x')
+<span class="n">host</span> <span class="o">=</span> <span class="s2">&#34;2018shell.picoctf.com&#34;</span>
+<span class="n">port</span> <span class="o">=</span> <span class="mi">1542</span>
+<span class="n">s</span> <span class="o">=</span> <span class="n">remote</span><span class="p">(</span> <span class="n">host</span><span class="p">,</span> <span class="n">port</span> <span class="p">)</span>
+
+<span class="k">while</span> <span class="mi">1</span><span class="p">:</span>
+    <span class="n">msg</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">recvregex</span><span class="p">(</span><span class="s2">&#34;\?\?\?|picoCTF{.*}&#34;</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s2">&#34;picoCTF&#34;</span><span class="p">,</span> <span class="n">msg</span><span class="p">):</span>
+        <span class="nb">exit</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
         
-    depth = 0
-    a_max_depth = 0
-    for ch in a:
-        if ch == '(':
-            depth += 1
-            if depth &gt; a_max_depth:
-                a_max_depth = depth
-        if ch == ')':
-            depth -= 1
+    <span class="n">lines</span> <span class="o">=</span> <span class="n">msg</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&#34;</span><span class="se">\n</span><span class="s2">&#34;</span><span class="p">)</span>
+    <span class="n">sample</span> <span class="o">=</span> <span class="n">lines</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">lines</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">msg</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">recvuntil</span><span class="p">(</span><span class="s2">&#34;&gt; &#34;</span><span class="p">)</span>
+        
+    <span class="c1"># まず+で分ける。</span>
+    <span class="nb">list</span> <span class="o">=</span> <span class="n">sample</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&#34;+&#34;</span><span class="p">)</span>
 
-    depth = 0
-    b_max_depth = 0
-    for ch in b:
-        if ch == '(':
-            depth += 1
-            if depth &gt; b_max_depth:
-                b_max_depth = depth
-        if ch == ')':
-            depth -= 1
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+        <span class="c1"># 2つ取り出して、余分な文字の削除。</span>
+        <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">a</span> <span class="o">=</span> <span class="nb">list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">a</span> <span class="o">=</span> <span class="n">c</span>
+        <span class="n">b</span> <span class="o">=</span> <span class="nb">list</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
+        <span class="n">b</span> <span class="o">=</span> <span class="n">b</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;=&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
+        <span class="n">b</span> <span class="o">=</span> <span class="n">b</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;?&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
 
-    if a_max_depth == b_max_depth:
-        c = a + b
-    elif a_max_depth &gt; b_max_depth:
-        c = a[:-1] + b + ')'
-    else:
-        c = '(' + a + b[1:]
+        <span class="c1"># ()をxに変えておく。</span>
+        <span class="n">a</span> <span class="o">=</span> <span class="n">a</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&#34;()&#34;</span><span class="p">,</span> <span class="s1">&#39;x&#39;</span><span class="p">)</span>
+        <span class="n">b</span> <span class="o">=</span> <span class="n">b</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&#34;()&#34;</span><span class="p">,</span> <span class="s1">&#39;x&#39;</span><span class="p">)</span>
+            
+        <span class="n">depth</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">a_max_depth</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">for</span> <span class="n">ch</span> <span class="ow">in</span> <span class="n">a</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">ch</span> <span class="o">==</span> <span class="s1">&#39;(&#39;</span><span class="p">:</span>
+                <span class="n">depth</span> <span class="o">+=</span> <span class="mi">1</span>
+                <span class="k">if</span> <span class="n">depth</span> <span class="o">&gt;</span> <span class="n">a_max_depth</span><span class="p">:</span>
+                    <span class="n">a_max_depth</span> <span class="o">=</span> <span class="n">depth</span>
+            <span class="k">if</span> <span class="n">ch</span> <span class="o">==</span> <span class="s1">&#39;)&#39;</span><span class="p">:</span>
+                <span class="n">depth</span> <span class="o">-=</span> <span class="mi">1</span>
 
-    c = c.replace('x', &quot;()&quot;)
+        <span class="n">depth</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">b_max_depth</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">for</span> <span class="n">ch</span> <span class="ow">in</span> <span class="n">b</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">ch</span> <span class="o">==</span> <span class="s1">&#39;(&#39;</span><span class="p">:</span>
+                <span class="n">depth</span> <span class="o">+=</span> <span class="mi">1</span>
+                <span class="k">if</span> <span class="n">depth</span> <span class="o">&gt;</span> <span class="n">b_max_depth</span><span class="p">:</span>
+                    <span class="n">b_max_depth</span> <span class="o">=</span> <span class="n">depth</span>
+            <span class="k">if</span> <span class="n">ch</span> <span class="o">==</span> <span class="s1">&#39;)&#39;</span><span class="p">:</span>
+                <span class="n">depth</span> <span class="o">-=</span> <span class="mi">1</span>
 
-s.sendline(c)
-print &quot;&gt; %s&quot; % c
-</code></pre>
-<pre><code>
-&lt;br&gt;
-[コード解説]
+        <span class="k">if</span> <span class="n">a_max_depth</span> <span class="o">==</span> <span class="n">b_max_depth</span><span class="p">:</span>
+            <span class="n">c</span> <span class="o">=</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span>
+        <span class="k">elif</span> <span class="n">a_max_depth</span> <span class="o">&gt;</span> <span class="n">b_max_depth</span><span class="p">:</span>
+            <span class="n">c</span> <span class="o">=</span> <span class="n">a</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">b</span> <span class="o">+</span> <span class="s1">&#39;)&#39;</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">c</span> <span class="o">=</span> <span class="s1">&#39;(&#39;</span> <span class="o">+</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span>
 
-- コードの中でも、わかりやすくするために()をxで置き換えてます。
-- + で分けて、2つずつ処理。1個目をa、2個目をbにしてます。
-- aとbそれぞれ、余計な文字を削除してます。
-- あとは、それぞれカッコの深さを調べて、規則にのっとった処理をするだけ。
+        <span class="n">c</span> <span class="o">=</span> <span class="n">c</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="s2">&#34;()&#34;</span><span class="p">)</span>
 
-&lt;br&gt;&lt;br&gt;
-以下が、実行結果です。
+    <span class="n">s</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
+    <span class="k">print</span> <span class="s2">&#34;&gt; </span><span class="si">%s</span><span class="s2">&#34;</span> <span class="o">%</span> <span class="n">c</span></code></pre></td></tr></table>
+</div>
+</div>
+<p><br>
+[コード解説]</p>
 
-</code></pre><p>~/Python2$ ./pico_script_me.py
+<ul>
+<li>コードの中でも、わかりやすくするために()をxで置き換えてます。</li>
+<li>+ で分けて、2つずつ処理。1個目をa、2個目をbにしてます。</li>
+<li>aとbそれぞれ、余計な文字を削除してます。</li>
+<li>あとは、それぞれカッコの深さを調べて、規則にのっとった処理をするだけ。</li>
+</ul>
+
+<p><br><br>
+以下が、実行結果です。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">~/Python2$ ./pico_script_me.py
 [+] Opening connection to 2018shell.picoctf.com on port 1542: Done
 Rules:
 () + () = ()()                                      =&gt; [combine]
@@ -921,146 +1167,213 @@ Rules:
 () + (())(()) = (()())(())                          =&gt; [combined-absorb-left]
 (())(()) + ((())) = ((())(())(()))                  =&gt; [absorb-combined-right]
 ((())) + (())(()) = ((())(())(()))                  =&gt; [absorb-combined-left]
-() + (()) + ((())) = (()()) + ((())) = ((()())(())) =&gt; [left-associative]</p>
-<p>Example:
-(()) + () = () + (()) = (()())</p>
-<p>Let's start with a warmup.
-((())()) + (()) = ???</p>
-<blockquote>
-<p>((())()(()))
-Correct!</p>
-</blockquote>
-<p>Okay, now we're cookin!
-() + ((())()) + (()()()) = ???</p>
-<blockquote>
-<p>(()(())()(()()()))
-Correct!</p>
-</blockquote>
-<p>Alright see if you can get this one.
-(()(())) + (()(())) + (()) + (()()()()()()()()) + (()()()(())()()) = ???</p>
-<blockquote>
-<p>(()(()))(()(())(())(()()()()()()()()))(()()()(())()())
-Correct!</p>
-</blockquote>
-<p>This one's a little bigger!
-((())()) + ()() + ()() + (()()) + (()(())((()))(((())))((((()))))) + (((()())()())()) + ()() + (()()) + (()(())((()))(((())))((((()))))) + (((()(())((()))(((())))()()))()) = ???</p>
-<blockquote>
-<p>((((())()()()()()(()()))()(())((()))(((())))((((()))))(((()())()())())()()(()()))(()(())((()))(((())))((((())))))((()(())((()))(((())))()()))())
-Correct!</p>
-</blockquote>
-<p>Ha. No more messin around. Final Round.
-(()(())()()())(()()()(())()()) + ((()(())(()()()()()()()()))()(((()()())()())()())) + (((())()()())()(())((()))(((())))((((()))))) + (((()())()(((()()())()())()()))((((()))))(((())))((()))(())()) + (()()(()))(()()()(())()()) + (((()())()(())(()))((((()))))(((())))((()))(())()) + (()()()())(()()()()()()()()) + (((()(()))((()())()())())((((()))))(((())))((()))(())()) + ((()()(((()()())()())()()))()(())((()))(((())))((((()))))) + ((()(())())((()(())((()))(((())))()()))()(((((()))))(((())))((()))(())())) + ((()())(()()()()()()()())((()())()())()) + ((()()()()()())()()()(())()()) + ((()()()())((((()))))(((())))((()))(())()) + ((()(())()()()())()(((()()())()())()())) + (()()((((()))))(((())))((()))(())()) + ((()())()(())) + (((()()()()()()()()())((()())()())())((()(())((()))(((())))()()))()) + ((()(())()(()))()(((()()())()())()())) + (()(()))((())()()()) + (()()()()()(())((()))(((())))((((())))))(((((()))))(((())))((()))(())()) + (()()()()())(()()()) + (((()())(())()()())((()(())((()))(((())))()()))()) + ((()())((()(())((()))(((())))()()))()) + (((()()())()(()))((()(())((()))(((())))()()))()) + (()()()(((()()())()())()())) + ((()()()((()())()())())()(((()()())()())()())) + (()()(())()()()) + ((()(())()()()())()(((()()())()())()())) + ((()()())((()(())((()))(((())))()()))()(((((()))))(((())))((()))(())())) + ((())()()()()) + ((()()()()(((()()())()())()()))((()(())((()))(((())))()()))()) + (()()()()()()) + (((()())()(()))((())())((()(())((()))(((())))()()))()) + (((()()()())()()()(())()())((()(())((()))(((())))()()))()) + (()()())(()()()) + (()(())()()()(())) + (((()()()(())()())((()())()())())((((()))))(((())))((()))(())()) + (()()()()()())(()()()()()()()()) + (()()(())()()())(()()()(())()()) + (()(())()(())) + ((()()())(()()())()()()(())()()) + ((()())((()(())((()))(((())))()()))()(()(())((()))(((())))((((())))))) + ((()(())()(()()()))((()())()())()) + ((()(())()()()())()(((()()())()())()())) + ((()()())()(())(())) + ((()(((()()())()())()()))()(())((()))(((())))((((()))))) + ((()())(()()()()()()()())()(((()()())()())()())) + (((()())()(()))(()()()(())()())((()(())((()))(((())))()()))()) + (((()()())()(((()()())()())()()))()(())((()))(((())))((((()))))) + (()()(()))((())())(()()()(())()()) = ???</p>
-<blockquote>
-<p>((((()(())()()())(()()()(())()())(()(())(()()()()()()()()))()(((()()())()())()()))((())()()())()(())((()))(((())))((((())))))(((()())()(((()()())()())()()))((((()))))(((())))((()))(())()(()()(()))(()()()(())()()))(((()())()(())(()))((((()))))(((())))((()))(())()(()()()())(()()()()()()()()))(((()(()))((()())()())())((((()))))(((())))((()))(())())((()()(((()()())()())()()))()(())((()))(((())))((((())))))(()(())())((()(())((()))(((())))()()))()(((((()))))(((())))((()))(())())((()())(()()()()()()()())((()())()())())((()()()()()())()()()(())()())((()()()())((((()))))(((())))((()))(())())((()(())()()()())()(((()()())()())()()))(()()((((()))))(((())))((()))(())())((()())()(())))(((()()()()()()()()())((()())()())())((()(())((()))(((())))()()))()((()(())()(()))()(((()()())()())()()))(()(()))((())()()())(()()()()()(())((()))(((())))((((())))))(((((()))))(((())))((()))(())())(()()()()())(()()()))(((()())(())()()())((()(())((()))(((())))()()))())((()())((()(())((()))(((())))()()))())(((()()())()(()))((()(())((()))(((())))()()))()(()()()(((()()())()())()()))((()()()((()())()())())()(((()()())()())()()))(()()(())()()())((()(())()()()())()(((()()())()())()())))((()()())((()(())((()))(((())))()()))()(((((()))))(((())))((()))(())())((())()()()()))((()()()()(((()()())()())()()))((()(())((()))(((())))()()))()(()()()()()()))(((()())()(()))((())())((()(())((()))(((())))()()))())(((()()()())()()()(())()())((()(())((()))(((())))()()))()(()()())(()()())(()(())()()()(()))(((()()()(())()())((()())()())())((((()))))(((())))((()))(())())(()()()()()())(()()()()()()()())(()()(())()()())(()()()(())()())(()(())()(()))((()()())(()()())()()()(())()()))((()())((()(())((()))(((())))()()))()(()(())((()))(((())))((((())))))((()(())()(()()()))((()())()())())((()(())()()()())()(((()()())()())()()))((()()())()(())(()))((()(((()()())()())()()))()(())((()))(((())))((((())))))((()())(()()()()()()()())()(((()()())()())()())))(((()())()(()))(()()()(())()())((()(())((()))(((())))()()))()(((()()())()(((()()())()())()()))()(())((()))(((())))((((())))))(()()(()))((())())(()()()(())()()))
-Correct!</p>
-</blockquote>
-<p>Congratulations, here's your flag: picoCTF{5cr1pt1nG_l1k3_4_pRo_0466cdd7}
-[*] Closed connection to 2018shell.picoctf.com port 1542</p>
-<pre><code>最後はめっちゃ長いのが来た！
+() + (()) + ((())) = (()()) + ((())) = ((()())(())) =&gt; [left-associative]
 
-flag `picoCTF{5cr1pt1nG_l1k3_4_pRo_0466cdd7}`
+Example:
+(()) + () = () + (()) = (()())
 
+Let&#39;s start with a warmup.
+((())()) + (()) = ???
+&gt; ((())()(()))
+Correct!
 
+Okay, now we&#39;re cookin!
+() + ((())()) + (()()()) = ???
+&gt; (()(())()(()()()))
+Correct!
 
+Alright see if you can get this one.
+(()(())) + (()(())) + (()) + (()()()()()()()()) + (()()()(())()()) = ???
+&gt; (()(()))(()(())(())(()()()()()()()()))(()()()(())()())
+Correct!
 
+This one&#39;s a little bigger!
+((())()) + ()() + ()() + (()()) + (()(())((()))(((())))((((()))))) + (((()())()())()) + ()() + (()()) + (()(())((()))(((())))((((()))))) + (((()(())((()))(((())))()()))()) = ???
+&gt; ((((())()()()()()(()()))()(())((()))(((())))((((()))))(((()())()())())()()(()()))(()(())((()))(((())))((((())))))((()(())((()))(((())))()()))())
+Correct!
 
-&lt;br /&gt;&lt;br /&gt;
-&lt;br /&gt;&lt;br /&gt;
-## [Forensics]: LoadSomeBits (550 points)
-- - -
-### Challenge
-&gt; Can you find the flag encoded inside this image?
-&lt;br /&gt;&lt;br /&gt;
-Hint1: Look through the Least Significant Bits for the image&lt;br /&gt;
-Hint2: If you interpret a binary sequence (seq) as ascii and then try interpreting the same binary sequence from an offset of 1 (seq[1:]) as ascii do you get something similar or completely different?
+Ha. No more messin around. Final Round.
+(()(())()()())(()()()(())()()) + ((()(())(()()()()()()()()))()(((()()())()())()())) + (((())()()())()(())((()))(((())))((((()))))) + (((()())()(((()()())()())()()))((((()))))(((())))((()))(())()) + (()()(()))(()()()(())()()) + (((()())()(())(()))((((()))))(((())))((()))(())()) + (()()()())(()()()()()()()()) + (((()(()))((()())()())())((((()))))(((())))((()))(())()) + ((()()(((()()())()())()()))()(())((()))(((())))((((()))))) + ((()(())())((()(())((()))(((())))()()))()(((((()))))(((())))((()))(())())) + ((()())(()()()()()()()())((()())()())()) + ((()()()()()())()()()(())()()) + ((()()()())((((()))))(((())))((()))(())()) + ((()(())()()()())()(((()()())()())()())) + (()()((((()))))(((())))((()))(())()) + ((()())()(())) + (((()()()()()()()()())((()())()())())((()(())((()))(((())))()()))()) + ((()(())()(()))()(((()()())()())()())) + (()(()))((())()()()) + (()()()()()(())((()))(((())))((((())))))(((((()))))(((())))((()))(())()) + (()()()()())(()()()) + (((()())(())()()())((()(())((()))(((())))()()))()) + ((()())((()(())((()))(((())))()()))()) + (((()()())()(()))((()(())((()))(((())))()()))()) + (()()()(((()()())()())()())) + ((()()()((()())()())())()(((()()())()())()())) + (()()(())()()()) + ((()(())()()()())()(((()()())()())()())) + ((()()())((()(())((()))(((())))()()))()(((((()))))(((())))((()))(())())) + ((())()()()()) + ((()()()()(((()()())()())()()))((()(())((()))(((())))()()))()) + (()()()()()()) + (((()())()(()))((())())((()(())((()))(((())))()()))()) + (((()()()())()()()(())()())((()(())((()))(((())))()()))()) + (()()())(()()()) + (()(())()()()(())) + (((()()()(())()())((()())()())())((((()))))(((())))((()))(())()) + (()()()()()())(()()()()()()()()) + (()()(())()()())(()()()(())()()) + (()(())()(())) + ((()()())(()()())()()()(())()()) + ((()())((()(())((()))(((())))()()))()(()(())((()))(((())))((((())))))) + ((()(())()(()()()))((()())()())()) + ((()(())()()()())()(((()()())()())()())) + ((()()())()(())(())) + ((()(((()()())()())()()))()(())((()))(((())))((((()))))) + ((()())(()()()()()()()())()(((()()())()())()())) + (((()())()(()))(()()()(())()())((()(())((()))(((())))()()))()) + (((()()())()(((()()())()())()()))()(())((()))(((())))((((()))))) + (()()(()))((())())(()()()(())()()) = ???
+&gt; ((((()(())()()())(()()()(())()())(()(())(()()()()()()()()))()(((()()())()())()()))((())()()())()(())((()))(((())))((((())))))(((()())()(((()()())()())()()))((((()))))(((())))((()))(())()(()()(()))(()()()(())()()))(((()())()(())(()))((((()))))(((())))((()))(())()(()()()())(()()()()()()()()))(((()(()))((()())()())())((((()))))(((())))((()))(())())((()()(((()()())()())()()))()(())((()))(((())))((((())))))(()(())())((()(())((()))(((())))()()))()(((((()))))(((())))((()))(())())((()())(()()()()()()()())((()())()())())((()()()()()())()()()(())()())((()()()())((((()))))(((())))((()))(())())((()(())()()()())()(((()()())()())()()))(()()((((()))))(((())))((()))(())())((()())()(())))(((()()()()()()()()())((()())()())())((()(())((()))(((())))()()))()((()(())()(()))()(((()()())()())()()))(()(()))((())()()())(()()()()()(())((()))(((())))((((())))))(((((()))))(((())))((()))(())())(()()()()())(()()()))(((()())(())()()())((()(())((()))(((())))()()))())((()())((()(())((()))(((())))()()))())(((()()())()(()))((()(())((()))(((())))()()))()(()()()(((()()())()())()()))((()()()((()())()())())()(((()()())()())()()))(()()(())()()())((()(())()()()())()(((()()())()())()())))((()()())((()(())((()))(((())))()()))()(((((()))))(((())))((()))(())())((())()()()()))((()()()()(((()()())()())()()))((()(())((()))(((())))()()))()(()()()()()()))(((()())()(()))((())())((()(())((()))(((())))()()))())(((()()()())()()()(())()())((()(())((()))(((())))()()))()(()()())(()()())(()(())()()()(()))(((()()()(())()())((()())()())())((((()))))(((())))((()))(())())(()()()()()())(()()()()()()()())(()()(())()()())(()()()(())()())(()(())()(()))((()()())(()()())()()()(())()()))((()())((()(())((()))(((())))()()))()(()(())((()))(((())))((((())))))((()(())()(()()()))((()())()())())((()(())()()()())()(((()()())()())()()))((()()())()(())(()))((()(((()()())()())()()))()(())((()))(((())))((((())))))((()())(()()()()()()()())()(((()()())()())()())))(((()())()(()))(()()()(())()())((()(())((()))(((())))()()))()(((()()())()(((()()())()())()()))()(())((()))(((())))((((())))))(()()(()))((())())(()()()(())()()))
+Correct!
 
-Attachment:
+Congratulations, here&#39;s your flag: picoCTF{5cr1pt1nG_l1k3_4_pRo_0466cdd7}
+[*] Closed connection to 2018shell.picoctf.com port 1542</pre></td></tr></table>
+</div>
+</div>
+<p>最後はめっちゃ長いのが来た！</p>
 
-- pico2018-special-logo.bmp
+<p>flag <code>picoCTF{5cr1pt1nG_l1k3_4_pRo_0466cdd7}</code></p>
 
-
-&lt;br /&gt;
-### Solution
-BMPファイルだったので、「青い空を見上げればいつもそこに白い猫」が使えなかったし、ちょっと意味不明な部分もあったので、他の方のWriteupを少し参照しました。
-
-「青い空を見上げればいつもそこに白い猫」で解いているWriteupもあったので、目からウロコでした。
-
-&lt;br /&gt;
-他のWriteupを見たところ、C言語で解いているWriteupは無かったので、Cで書いてみました。
-```C
-#include &lt;stdio.h&gt;
-
-int sub( int offset )
-{
-	FILE *fp;
-	int  c;
-	int i;
-	char ch;
-
-	if ( ( fp = fopen( &quot;pico2018-special-logo.bmp&quot;, &quot;rb&quot; ) ) == NULL ) {
-		perror( &quot;Can't fopen&quot; );
-		return -1;
-        }
-	for ( i = 0 ; i &lt; offset ; i++ ) {
-		fgetc( fp );
-	}
-
-	i = 7;
-	ch = 0;
-	while ( ( c = fgetc( fp ) ) != EOF ) {
-		c = c &amp; 0x01;
-		ch = ch | ( c &lt;&lt; i);
-		i--;
-		if ( i &lt; 0 ) {
-			if ( ( ch &gt;= 0x20 ) &amp;&amp; (ch &lt;= 0x7e ) ) {
-				printf( &quot;%c&quot;, ch );
-			}
-			i = 7;
-			ch = 0;
-		}
-	}
-	puts(&quot;&quot;);
-        fclose( fp );
-	
-	return 0;
-}
-
-int main( void ) {
-	int i;
-	for ( i = 0 ; i &lt; 8 ; i++ ) {
-		sub( i );
-	}
-}
-</code></pre><p>どこをデータの先頭にするかで結果が違うので、最初main()で書いてたやつを途中でsub()に変えて、offset処理を後付けしました。。</p>
-<p>以下が実行結果の一部です。</p>
-<p>DpicoCTF{st0r3d_iN_tH3_l345t_s1gn1f1c4nT_b1t5_770554193}~8?p???q???p??????????????????????????????????????????????????pp?????q8q8??8p?888ppqp?????8?8??????8??8???????????p?????????q8?p??????8???</p>
-<p>Flag: <code>picoCTF{st0r3d_iN_tH3_l345t_s1gn1f1c4nT_b1t5_770554193}</code></p>
 <p><br /><br />
 <br /><br /></p>
-<h2 id="reversing-keygenme2-750-points">[Reversing]: keygen-me-2 (750 points)</h2>
-<hr>
-<h3 id="challenge6">Challenge</h3>
+
+<h2 id="forensics-loadsomebits-550-points">[Forensics]: LoadSomeBits (550 points)</h2>
+
+<hr />
+
+<h3 id="challenge-6">Challenge</h3>
+
+<blockquote>
+<p>Can you find the flag encoded inside this image?
+<br /><br />
+Hint1: Look through the Least Significant Bits for the image<br />
+Hint2: If you interpret a binary sequence (seq) as ascii and then try interpreting the same binary sequence from an offset of 1 (seq[1:]) as ascii do you get something similar or completely different?</p>
+</blockquote>
+
+<p>Attachment:</p>
+
+<ul>
+<li>pico2018-special-logo.bmp</li>
+</ul>
+
+<p><br /></p>
+
+<h3 id="solution-6">Solution</h3>
+
+<p>BMPファイルだったので、「青い空を見上げればいつもそこに白い猫」が使えなかったし、ちょっと意味不明な部分もあったので、他の方のWriteupを少し参照しました。</p>
+
+<p>「青い空を見上げればいつもそこに白い猫」で解いているWriteupもあったので、目からウロコでした。</p>
+
+<p><br />
+他のWriteupを見たところ、C言語で解いているWriteupは無かったので、Cで書いてみました。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-C" data-lang="C"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-C" data-lang="C"><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
+</span><span class="cp"></span>
+<span class="kt">int</span> <span class="nf">sub</span><span class="p">(</span> <span class="kt">int</span> <span class="n">offset</span> <span class="p">)</span>
+<span class="p">{</span>
+	<span class="n">FILE</span> <span class="o">*</span><span class="n">fp</span><span class="p">;</span>
+	<span class="kt">int</span>  <span class="n">c</span><span class="p">;</span>
+	<span class="kt">int</span> <span class="n">i</span><span class="p">;</span>
+	<span class="kt">char</span> <span class="n">ch</span><span class="p">;</span>
+
+	<span class="k">if</span> <span class="p">(</span> <span class="p">(</span> <span class="n">fp</span> <span class="o">=</span> <span class="n">fopen</span><span class="p">(</span> <span class="s">&#34;pico2018-special-logo.bmp&#34;</span><span class="p">,</span> <span class="s">&#34;rb&#34;</span> <span class="p">)</span> <span class="p">)</span> <span class="o">==</span> <span class="nb">NULL</span> <span class="p">)</span> <span class="p">{</span>
+		<span class="n">perror</span><span class="p">(</span> <span class="s">&#34;Can&#39;t fopen&#34;</span> <span class="p">);</span>
+		<span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+        <span class="p">}</span>
+	<span class="k">for</span> <span class="p">(</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span> <span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">offset</span> <span class="p">;</span> <span class="n">i</span><span class="o">++</span> <span class="p">)</span> <span class="p">{</span>
+		<span class="n">fgetc</span><span class="p">(</span> <span class="n">fp</span> <span class="p">);</span>
+	<span class="p">}</span>
+
+	<span class="n">i</span> <span class="o">=</span> <span class="mi">7</span><span class="p">;</span>
+	<span class="n">ch</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+	<span class="k">while</span> <span class="p">(</span> <span class="p">(</span> <span class="n">c</span> <span class="o">=</span> <span class="n">fgetc</span><span class="p">(</span> <span class="n">fp</span> <span class="p">)</span> <span class="p">)</span> <span class="o">!=</span> <span class="n">EOF</span> <span class="p">)</span> <span class="p">{</span>
+		<span class="n">c</span> <span class="o">=</span> <span class="n">c</span> <span class="o">&amp;</span> <span class="mh">0x01</span><span class="p">;</span>
+		<span class="n">ch</span> <span class="o">=</span> <span class="n">ch</span> <span class="o">|</span> <span class="p">(</span> <span class="n">c</span> <span class="o">&lt;&lt;</span> <span class="n">i</span><span class="p">);</span>
+		<span class="n">i</span><span class="o">--</span><span class="p">;</span>
+		<span class="k">if</span> <span class="p">(</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="p">)</span> <span class="p">{</span>
+			<span class="k">if</span> <span class="p">(</span> <span class="p">(</span> <span class="n">ch</span> <span class="o">&gt;=</span> <span class="mh">0x20</span> <span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="n">ch</span> <span class="o">&lt;=</span> <span class="mh">0x7e</span> <span class="p">)</span> <span class="p">)</span> <span class="p">{</span>
+				<span class="n">printf</span><span class="p">(</span> <span class="s">&#34;%c&#34;</span><span class="p">,</span> <span class="n">ch</span> <span class="p">);</span>
+			<span class="p">}</span>
+			<span class="n">i</span> <span class="o">=</span> <span class="mi">7</span><span class="p">;</span>
+			<span class="n">ch</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+		<span class="p">}</span>
+	<span class="p">}</span>
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;&#34;</span><span class="p">);</span>
+        <span class="n">fclose</span><span class="p">(</span> <span class="n">fp</span> <span class="p">);</span>
+	
+	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span> <span class="kt">void</span> <span class="p">)</span> <span class="p">{</span>
+	<span class="kt">int</span> <span class="n">i</span><span class="p">;</span>
+	<span class="k">for</span> <span class="p">(</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span> <span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">8</span> <span class="p">;</span> <span class="n">i</span><span class="o">++</span> <span class="p">)</span> <span class="p">{</span>
+		<span class="n">sub</span><span class="p">(</span> <span class="n">i</span> <span class="p">);</span>
+	<span class="p">}</span>
+<span class="p">}</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>どこをデータの先頭にするかで結果が違うので、最初main()で書いてたやつを途中でsub()に変えて、offset処理を後付けしました。。</p>
+
+<p>以下が実行結果の一部です。</p>
+
+<p>DpicoCTF{st0r3d_iN_tH3_l345t_s1gn1f1c4nT_b1t5_770554193}~8?p???q???p??????????????????????????????????????????????????pp?????q8q8??8p?888ppqp?????8?8??????8??8???????????p?????????q8?p??????8???</p>
+
+<p>Flag: <code>picoCTF{st0r3d_iN_tH3_l345t_s1gn1f1c4nT_b1t5_770554193}</code></p>
+
+<p><br /><br />
+<br /><br /></p>
+
+<h2 id="reversing-keygen-me-2-750-points">[Reversing]: keygen-me-2 (750 points)</h2>
+
+<hr />
+
+<h3 id="challenge-7">Challenge</h3>
+
 <blockquote>
 <p>The software has been updated. Can you find us a new product key for the program in /problems/keygen-me-2_1_762036cde49fef79146a706d0eda80a3
 <br /><br />
 Hint: z3</p>
 </blockquote>
+
 <p>Attachment:</p>
+
 <ul>
 <li>activate</li>
 </ul>
+
 <p><br /></p>
-<h3 id="solution6">Solution</h3>
+
+<h3 id="solution-7">Solution</h3>
+
 <p>Ghidra使って解析していきます。keygen-me-1がベースなので、以下の辺りは同じです。</p>
+
 <ul>
 <li>16バイトのキーを入れる。</li>
 <li>正しいキーを入れたら、flag.txtが表示される。</li>
 <li>valid charは、[0-9A-Z]</li>
 </ul>
+
 <p>今回ポイントとなる箇所は、ここ。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre class="chroma"><code class="language-C" data-lang="C"><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -1091,30 +1404,30 @@ Hint: z3</p>
   <span class="kt">char</span> <span class="n">cVar1</span><span class="p">;</span>
   <span class="n">size_t</span> <span class="n">sVar2</span><span class="p">;</span>
   
-  <span class="n">sVar2</span> <span class="o">=</span> <span class="n">strlen</span><span class="p">(</span><span class="n">param_1</span><span class="p">)</span><span class="p">;</span>
-  <span class="n">cVar1</span> <span class="o">=</span> <span class="n">key_constraint_01</span><span class="p">(</span><span class="n">param_1</span><span class="p">,</span><span class="n">sVar2</span><span class="p">)</span><span class="p">;</span>
-  <span class="k">if</span> <span class="p">(</span><span class="p">(</span><span class="p">(</span><span class="p">(</span><span class="p">(</span><span class="n">cVar1</span> <span class="o">!</span><span class="o">=</span> <span class="mi">0</span><span class="p">)</span> <span class="o">&amp;</span><span class="o">&amp;</span> <span class="p">(</span><span class="n">cVar1</span> <span class="o">=</span> <span class="n">key_constraint_02</span><span class="p">(</span><span class="n">param_1</span><span class="p">,</span><span class="n">sVar2</span><span class="p">)</span><span class="p">,</span> <span class="n">cVar1</span> <span class="o">!</span><span class="o">=</span> <span class="mi">0</span><span class="p">)</span><span class="p">)</span> <span class="o">&amp;</span><span class="o">&amp;</span>
-       <span class="p">(</span><span class="n">cVar1</span> <span class="o">=</span> <span class="n">key_constraint_03</span><span class="p">(</span><span class="n">param_1</span><span class="p">,</span><span class="n">sVar2</span><span class="p">)</span><span class="p">,</span> <span class="n">cVar1</span> <span class="o">!</span><span class="o">=</span> <span class="mi">0</span><span class="p">)</span><span class="p">)</span> <span class="o">&amp;</span><span class="o">&amp;</span>
-      <span class="p">(</span><span class="p">(</span><span class="p">(</span><span class="p">(</span><span class="n">cVar1</span> <span class="o">=</span> <span class="n">key_constraint_04</span><span class="p">(</span><span class="n">param_1</span><span class="p">,</span><span class="n">sVar2</span><span class="p">)</span><span class="p">,</span> <span class="n">cVar1</span> <span class="o">!</span><span class="o">=</span> <span class="mi">0</span> <span class="o">&amp;</span><span class="o">&amp;</span>
-         <span class="p">(</span><span class="n">cVar1</span> <span class="o">=</span> <span class="n">key_constraint_05</span><span class="p">(</span><span class="n">param_1</span><span class="p">,</span><span class="n">sVar2</span><span class="p">)</span><span class="p">,</span> <span class="n">cVar1</span> <span class="o">!</span><span class="o">=</span> <span class="mi">0</span><span class="p">)</span><span class="p">)</span> <span class="o">&amp;</span><span class="o">&amp;</span>
-        <span class="p">(</span><span class="p">(</span><span class="n">cVar1</span> <span class="o">=</span> <span class="n">key_constraint_06</span><span class="p">(</span><span class="n">param_1</span><span class="p">,</span><span class="n">sVar2</span><span class="p">)</span><span class="p">,</span> <span class="n">cVar1</span> <span class="o">!</span><span class="o">=</span> <span class="mi">0</span> <span class="o">&amp;</span><span class="o">&amp;</span>
-         <span class="p">(</span><span class="p">(</span><span class="n">cVar1</span> <span class="o">=</span> <span class="n">key_constraint_07</span><span class="p">(</span><span class="n">param_1</span><span class="p">,</span><span class="n">sVar2</span><span class="p">)</span><span class="p">,</span> <span class="n">cVar1</span> <span class="o">!</span><span class="o">=</span> <span class="mi">0</span> <span class="o">&amp;</span><span class="o">&amp;</span>
-          <span class="p">(</span><span class="n">cVar1</span> <span class="o">=</span> <span class="n">key_constraint_08</span><span class="p">(</span><span class="n">param_1</span><span class="p">,</span><span class="n">sVar2</span><span class="p">)</span><span class="p">,</span> <span class="n">cVar1</span> <span class="o">!</span><span class="o">=</span> <span class="mi">0</span><span class="p">)</span><span class="p">)</span><span class="p">)</span><span class="p">)</span><span class="p">)</span><span class="p">)</span> <span class="o">&amp;</span><span class="o">&amp;</span>
-       <span class="p">(</span><span class="n">cVar1</span> <span class="o">=</span> <span class="n">key_constraint_09</span><span class="p">(</span><span class="n">param_1</span><span class="p">,</span><span class="n">sVar2</span><span class="p">)</span><span class="p">,</span> <span class="n">cVar1</span> <span class="o">!</span><span class="o">=</span> <span class="mi">0</span><span class="p">)</span><span class="p">)</span><span class="p">)</span><span class="p">)</span> <span class="o">&amp;</span><span class="o">&amp;</span>
-     <span class="p">(</span><span class="p">(</span><span class="p">(</span><span class="n">cVar1</span> <span class="o">=</span> <span class="n">key_constraint_10</span><span class="p">(</span><span class="n">param_1</span><span class="p">,</span><span class="n">sVar2</span><span class="p">)</span><span class="p">,</span> <span class="n">cVar1</span> <span class="o">!</span><span class="o">=</span> <span class="mi">0</span> <span class="o">&amp;</span><span class="o">&amp;</span>
-       <span class="p">(</span><span class="n">cVar1</span> <span class="o">=</span> <span class="n">key_constraint_11</span><span class="p">(</span><span class="n">param_1</span><span class="p">,</span><span class="n">sVar2</span><span class="p">)</span><span class="p">,</span> <span class="n">cVar1</span> <span class="o">!</span><span class="o">=</span> <span class="mi">0</span><span class="p">)</span><span class="p">)</span> <span class="o">&amp;</span><span class="o">&amp;</span>
-      <span class="p">(</span><span class="n">cVar1</span> <span class="o">=</span> <span class="n">key_constraint_12</span><span class="p">(</span><span class="n">param_1</span><span class="p">,</span><span class="n">sVar2</span><span class="p">)</span><span class="p">,</span> <span class="n">cVar1</span> <span class="o">!</span><span class="o">=</span> <span class="mi">0</span><span class="p">)</span><span class="p">)</span><span class="p">)</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">sVar2</span> <span class="o">=</span> <span class="n">strlen</span><span class="p">(</span><span class="n">param_1</span><span class="p">);</span>
+  <span class="n">cVar1</span> <span class="o">=</span> <span class="n">key_constraint_01</span><span class="p">(</span><span class="n">param_1</span><span class="p">,</span><span class="n">sVar2</span><span class="p">);</span>
+  <span class="k">if</span> <span class="p">(((((</span><span class="n">cVar1</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="n">cVar1</span> <span class="o">=</span> <span class="n">key_constraint_02</span><span class="p">(</span><span class="n">param_1</span><span class="p">,</span><span class="n">sVar2</span><span class="p">),</span> <span class="n">cVar1</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">))</span> <span class="o">&amp;&amp;</span>
+       <span class="p">(</span><span class="n">cVar1</span> <span class="o">=</span> <span class="n">key_constraint_03</span><span class="p">(</span><span class="n">param_1</span><span class="p">,</span><span class="n">sVar2</span><span class="p">),</span> <span class="n">cVar1</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">))</span> <span class="o">&amp;&amp;</span>
+      <span class="p">((((</span><span class="n">cVar1</span> <span class="o">=</span> <span class="n">key_constraint_04</span><span class="p">(</span><span class="n">param_1</span><span class="p">,</span><span class="n">sVar2</span><span class="p">),</span> <span class="n">cVar1</span> <span class="o">!=</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span>
+         <span class="p">(</span><span class="n">cVar1</span> <span class="o">=</span> <span class="n">key_constraint_05</span><span class="p">(</span><span class="n">param_1</span><span class="p">,</span><span class="n">sVar2</span><span class="p">),</span> <span class="n">cVar1</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">))</span> <span class="o">&amp;&amp;</span>
+        <span class="p">((</span><span class="n">cVar1</span> <span class="o">=</span> <span class="n">key_constraint_06</span><span class="p">(</span><span class="n">param_1</span><span class="p">,</span><span class="n">sVar2</span><span class="p">),</span> <span class="n">cVar1</span> <span class="o">!=</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span>
+         <span class="p">((</span><span class="n">cVar1</span> <span class="o">=</span> <span class="n">key_constraint_07</span><span class="p">(</span><span class="n">param_1</span><span class="p">,</span><span class="n">sVar2</span><span class="p">),</span> <span class="n">cVar1</span> <span class="o">!=</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span>
+          <span class="p">(</span><span class="n">cVar1</span> <span class="o">=</span> <span class="n">key_constraint_08</span><span class="p">(</span><span class="n">param_1</span><span class="p">,</span><span class="n">sVar2</span><span class="p">),</span> <span class="n">cVar1</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">))))))</span> <span class="o">&amp;&amp;</span>
+       <span class="p">(</span><span class="n">cVar1</span> <span class="o">=</span> <span class="n">key_constraint_09</span><span class="p">(</span><span class="n">param_1</span><span class="p">,</span><span class="n">sVar2</span><span class="p">),</span> <span class="n">cVar1</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">))))</span> <span class="o">&amp;&amp;</span>
+     <span class="p">(((</span><span class="n">cVar1</span> <span class="o">=</span> <span class="n">key_constraint_10</span><span class="p">(</span><span class="n">param_1</span><span class="p">,</span><span class="n">sVar2</span><span class="p">),</span> <span class="n">cVar1</span> <span class="o">!=</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span>
+       <span class="p">(</span><span class="n">cVar1</span> <span class="o">=</span> <span class="n">key_constraint_11</span><span class="p">(</span><span class="n">param_1</span><span class="p">,</span><span class="n">sVar2</span><span class="p">),</span> <span class="n">cVar1</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">))</span> <span class="o">&amp;&amp;</span>
+      <span class="p">(</span><span class="n">cVar1</span> <span class="o">=</span> <span class="n">key_constraint_12</span><span class="p">(</span><span class="n">param_1</span><span class="p">,</span><span class="n">sVar2</span><span class="p">),</span> <span class="n">cVar1</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">))))</span> <span class="p">{</span>
     <span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
   <span class="p">}</span>
   <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<span class="p">}</span></code></pre></td></tr></table>
 </div>
-</div><p><br />
+</div>
+<p><br />
 全部載せると多いので、2つくらい載せます。このタイプのGhidraのデコンパイルの仕方は、以前Redpwn CTFをやったときに見たので、もうビックリしません。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre class="chroma"><code class="language-C" data-lang="C"><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -1135,17 +1448,17 @@ Hint: z3</p>
   <span class="kt">char</span> <span class="n">cVar2</span><span class="p">;</span>
   <span class="n">uint</span> <span class="n">uVar3</span><span class="p">;</span>
   
-  <span class="n">cVar1</span> <span class="o">=</span> <span class="n">ord</span><span class="p">(</span><span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="o">*</span><span class="n">param_1</span><span class="p">)</span><span class="p">;</span>
-  <span class="n">cVar2</span> <span class="o">=</span> <span class="n">ord</span><span class="p">(</span><span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="n">param_1</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="p">)</span><span class="p">;</span>
-  <span class="n">uVar3</span> <span class="o">=</span> <span class="n">mod</span><span class="p">(</span><span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="n">cVar2</span> <span class="o">+</span> <span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="n">cVar1</span><span class="p">,</span><span class="mh">0x24</span><span class="p">)</span><span class="p">;</span>
-  <span class="k">return</span> <span class="n">uVar3</span> <span class="o">&amp;</span> <span class="mh">0xffffff00</span> <span class="o">|</span> <span class="p">(</span><span class="n">uint</span><span class="p">)</span><span class="p">(</span><span class="n">uVar3</span> <span class="o">=</span><span class="o">=</span> <span class="mh">0xe</span><span class="p">)</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+  <span class="n">cVar1</span> <span class="o">=</span> <span class="n">ord</span><span class="p">((</span><span class="kt">int</span><span class="p">)</span><span class="o">*</span><span class="n">param_1</span><span class="p">);</span>
+  <span class="n">cVar2</span> <span class="o">=</span> <span class="n">ord</span><span class="p">((</span><span class="kt">int</span><span class="p">)</span><span class="n">param_1</span><span class="p">[</span><span class="mi">1</span><span class="p">]);</span>
+  <span class="n">uVar3</span> <span class="o">=</span> <span class="n">mod</span><span class="p">((</span><span class="kt">int</span><span class="p">)</span><span class="n">cVar2</span> <span class="o">+</span> <span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="n">cVar1</span><span class="p">,</span><span class="mh">0x24</span><span class="p">);</span>
+  <span class="k">return</span> <span class="n">uVar3</span> <span class="o">&amp;</span> <span class="mh">0xffffff00</span> <span class="o">|</span> <span class="p">(</span><span class="n">uint</span><span class="p">)(</span><span class="n">uVar3</span> <span class="o">==</span> <span class="mh">0xe</span><span class="p">);</span>
+<span class="p">}</span></code></pre></td></tr></table>
 </div>
-</div><p>==&gt; (param_1[0] + param_1[1]) mod 0x24 = 0xE</p>
+</div>
+<p>==&gt; (param_1[0] + param_1[1]) mod 0x24 = 0xE</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre class="chroma"><code class="language-C" data-lang="C"><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -1166,16 +1479,17 @@ Hint: z3</p>
   <span class="kt">char</span> <span class="n">cVar2</span><span class="p">;</span>
   <span class="n">uint</span> <span class="n">uVar3</span><span class="p">;</span>
   
-  <span class="n">cVar1</span> <span class="o">=</span> <span class="n">ord</span><span class="p">(</span><span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="kt">char</span> <span class="o">*</span><span class="p">)</span><span class="p">(</span><span class="n">param_1</span> <span class="o">+</span> <span class="mi">2</span><span class="p">)</span><span class="p">)</span><span class="p">;</span>
-  <span class="n">cVar2</span> <span class="o">=</span> <span class="n">ord</span><span class="p">(</span><span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="kt">char</span> <span class="o">*</span><span class="p">)</span><span class="p">(</span><span class="n">param_1</span> <span class="o">+</span> <span class="mi">3</span><span class="p">)</span><span class="p">)</span><span class="p">;</span>
-  <span class="n">uVar3</span> <span class="o">=</span> <span class="n">mod</span><span class="p">(</span><span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="n">cVar2</span> <span class="o">+</span> <span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="n">cVar1</span><span class="p">,</span><span class="mh">0x24</span><span class="p">)</span><span class="p">;</span>
-  <span class="k">return</span> <span class="n">uVar3</span> <span class="o">&amp;</span> <span class="mh">0xffffff00</span> <span class="o">|</span> <span class="p">(</span><span class="n">uint</span><span class="p">)</span><span class="p">(</span><span class="n">uVar3</span> <span class="o">=</span><span class="o">=</span> <span class="mh">0x18</span><span class="p">)</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+  <span class="n">cVar1</span> <span class="o">=</span> <span class="n">ord</span><span class="p">((</span><span class="kt">int</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="kt">char</span> <span class="o">*</span><span class="p">)(</span><span class="n">param_1</span> <span class="o">+</span> <span class="mi">2</span><span class="p">));</span>
+  <span class="n">cVar2</span> <span class="o">=</span> <span class="n">ord</span><span class="p">((</span><span class="kt">int</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="kt">char</span> <span class="o">*</span><span class="p">)(</span><span class="n">param_1</span> <span class="o">+</span> <span class="mi">3</span><span class="p">));</span>
+  <span class="n">uVar3</span> <span class="o">=</span> <span class="n">mod</span><span class="p">((</span><span class="kt">int</span><span class="p">)</span><span class="n">cVar2</span> <span class="o">+</span> <span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="n">cVar1</span><span class="p">,</span><span class="mh">0x24</span><span class="p">);</span>
+  <span class="k">return</span> <span class="n">uVar3</span> <span class="o">&amp;</span> <span class="mh">0xffffff00</span> <span class="o">|</span> <span class="p">(</span><span class="n">uint</span><span class="p">)(</span><span class="n">uVar3</span> <span class="o">==</span> <span class="mh">0x18</span><span class="p">);</span>
+<span class="p">}</span></code></pre></td></tr></table>
 </div>
-</div><p>==&gt; (param_1[2] + param_1[3]) mod 0x24 = 0x18</p>
+</div>
+<p>==&gt; (param_1[2] + param_1[3]) mod 0x24 = 0x18</p>
+
 <p><br />
-まとめ。こんな感じで全部見ていくと、それぞれの判定文は以下の通りです。（&ldquo;param_1&quot;を省略してます）<br />
+まとめ。こんな感じで全部見ていくと、それぞれの判定文は以下の通りです。（&rdquo;param_1&rdquo;を省略してます）<br />
 ==&gt; ([0] + [1]) mod 0x24 = 0xE<br />
 ==&gt; ([2] + [3]) mod 0x24 = 0x18<br />
 ==&gt; ([2] - [0]) mod 0x24 = 0x6<br />
@@ -1188,11 +1502,12 @@ Hint: z3</p>
 ==&gt; ([13] + [14] + [15]) mod 0x24 = 0xc<br />
 ==&gt; ([8] + [9] + [10]) mod 0x24 = 0x1b<br />
 ==&gt; ([7] + [12] + [13]) mod 0x24 = 0x17<br /></p>
+
 <p><br />
 ちなみに、上記に出てくるord()関数は、別途独自定義されていて、以下のようになってます。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre class="chroma"><code class="language-C" data-lang="C"><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -1217,11 +1532,11 @@ Hint: z3</p>
 <span class="p">{</span>
   <span class="kt">int</span> <span class="n">iVar1</span><span class="p">;</span>
   
-  <span class="k">if</span> <span class="p">(</span><span class="p">(</span><span class="p">(</span><span class="kt">char</span><span class="p">)</span><span class="n">param_1</span> <span class="o">&lt;</span> <span class="sa"></span><span class="sc">&#39;</span><span class="sc">0</span><span class="sc">&#39;</span><span class="p">)</span> <span class="o">|</span><span class="o">|</span> <span class="p">(</span><span class="sa"></span><span class="sc">&#39;</span><span class="sc">9</span><span class="sc">&#39;</span> <span class="o">&lt;</span> <span class="p">(</span><span class="kt">char</span><span class="p">)</span><span class="n">param_1</span><span class="p">)</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">if</span> <span class="p">(</span><span class="p">(</span><span class="p">(</span><span class="kt">char</span><span class="p">)</span><span class="n">param_1</span> <span class="o">&lt;</span> <span class="sa"></span><span class="sc">&#39;</span><span class="sc">A</span><span class="sc">&#39;</span><span class="p">)</span> <span class="o">|</span><span class="o">|</span> <span class="p">(</span><span class="sa"></span><span class="sc">&#39;</span><span class="sc">Z</span><span class="sc">&#39;</span> <span class="o">&lt;</span> <span class="p">(</span><span class="kt">char</span><span class="p">)</span><span class="n">param_1</span><span class="p">)</span><span class="p">)</span> <span class="p">{</span>
-      <span class="n">puts</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">Found Invalid Character!</span><span class="s">&#34;</span><span class="p">)</span><span class="p">;</span>
+  <span class="k">if</span> <span class="p">(((</span><span class="kt">char</span><span class="p">)</span><span class="n">param_1</span> <span class="o">&lt;</span> <span class="sc">&#39;0&#39;</span><span class="p">)</span> <span class="o">||</span> <span class="p">(</span><span class="sc">&#39;9&#39;</span> <span class="o">&lt;</span> <span class="p">(</span><span class="kt">char</span><span class="p">)</span><span class="n">param_1</span><span class="p">))</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(((</span><span class="kt">char</span><span class="p">)</span><span class="n">param_1</span> <span class="o">&lt;</span> <span class="sc">&#39;A&#39;</span><span class="p">)</span> <span class="o">||</span> <span class="p">(</span><span class="sc">&#39;Z&#39;</span> <span class="o">&lt;</span> <span class="p">(</span><span class="kt">char</span><span class="p">)</span><span class="n">param_1</span><span class="p">))</span> <span class="p">{</span>
+      <span class="n">puts</span><span class="p">(</span><span class="s">&#34;Found Invalid Character!&#34;</span><span class="p">);</span>
                     <span class="cm">/* WARNING: Subroutine does not return */</span>
-      <span class="n">exit</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="p">;</span>
+      <span class="n">exit</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
     <span class="p">}</span>
     <span class="n">iVar1</span> <span class="o">=</span> <span class="p">(</span><span class="n">uint</span><span class="p">)</span><span class="n">param_1</span> <span class="o">-</span> <span class="mh">0x37</span><span class="p">;</span>
   <span class="p">}</span>
@@ -1229,17 +1544,20 @@ Hint: z3</p>
     <span class="n">iVar1</span> <span class="o">=</span> <span class="p">(</span><span class="n">uint</span><span class="p">)</span><span class="n">param_1</span> <span class="o">-</span> <span class="mh">0x30</span><span class="p">;</span>
   <span class="p">}</span>
   <span class="k">return</span> <span class="n">iVar1</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<span class="p">}</span></code></pre></td></tr></table>
 </div>
-</div><p>最初、これを完全に見逃していて、相当悩みました。<br /></p>
+</div>
+<p>最初、これを完全に見逃していて、相当悩みました。<br /></p>
+
 <p>gdbで追っかけて行ったときに、ord()を読んだ後に、レジスタの値が予想外に変わる所まで見てたんですが、別途定義されているという発想が全くなかったです。。。凹○ コテッ</p>
+
 <p><br />
 以下は、そのord()も加味した解法です。（pico_ord()の部分を後付しました。）</p>
+
 <p>文字の範囲も限られているので、Brute Forceでやりました。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">  1
+<pre class="chroma"><code class="language-C" data-lang="C"><span class="lnt">  1
 </span><span class="lnt">  2
 </span><span class="lnt">  3
 </span><span class="lnt">  4
@@ -1432,26 +1750,26 @@ Hint: z3</p>
 </span><span class="lnt">191
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-C" data-lang="C"><span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
+<pre class="chroma"><code class="language-C" data-lang="C"><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
 </span><span class="cp"></span>
-<span class="cp">#</span><span class="cp">define CHAR_0  48</span><span class="cp">
-</span><span class="cp"></span><span class="cp">#</span><span class="cp">define CHAR_9  57</span><span class="cp">
-</span><span class="cp"></span><span class="cp">#</span><span class="cp">define CHAR_A  65</span><span class="cp">
-</span><span class="cp"></span><span class="cp">#</span><span class="cp">define CHAR_Z  90</span><span class="cp">
+<span class="cp">#define CHAR_0  48
+</span><span class="cp">#define CHAR_9  57
+</span><span class="cp">#define CHAR_A  65
+</span><span class="cp">#define CHAR_Z  90
 </span><span class="cp"></span>
 <span class="kt">void</span> <span class="nf">print_flag</span><span class="p">(</span> <span class="kt">int</span> <span class="o">*</span><span class="n">p</span> <span class="p">)</span> <span class="p">{</span>
 	<span class="kt">int</span> <span class="n">i</span><span class="p">;</span>
-	<span class="kt">char</span> <span class="n">flag</span><span class="p">[</span><span class="mi">16</span><span class="p">]</span><span class="p">;</span>
-	<span class="k">for</span> <span class="p">(</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span> <span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">16</span> <span class="p">;</span> <span class="n">i</span><span class="o">+</span><span class="o">+</span> <span class="p">)</span> <span class="p">{</span>
-		<span class="n">printf</span><span class="p">(</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">%c</span><span class="s">&#34;</span><span class="p">,</span> <span class="p">(</span><span class="kt">char</span><span class="p">)</span><span class="o">*</span><span class="p">(</span> <span class="n">p</span> <span class="o">+</span> <span class="n">i</span> <span class="p">)</span> <span class="p">)</span><span class="p">;</span>
+	<span class="kt">char</span> <span class="n">flag</span><span class="p">[</span><span class="mi">16</span><span class="p">];</span>
+	<span class="k">for</span> <span class="p">(</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span> <span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">16</span> <span class="p">;</span> <span class="n">i</span><span class="o">++</span> <span class="p">)</span> <span class="p">{</span>
+		<span class="n">printf</span><span class="p">(</span> <span class="s">&#34;%c&#34;</span><span class="p">,</span> <span class="p">(</span><span class="kt">char</span><span class="p">)</span><span class="o">*</span><span class="p">(</span> <span class="n">p</span> <span class="o">+</span> <span class="n">i</span> <span class="p">)</span> <span class="p">);</span>
 	<span class="p">}</span>
-	<span class="n">puts</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">&#34;</span><span class="p">)</span><span class="p">;</span>
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;&#34;</span><span class="p">);</span>
 
 <span class="p">}</span>
 
 <span class="kt">int</span> <span class="nf">validate_key</span><span class="p">(</span> <span class="kt">int</span> <span class="n">p</span> <span class="p">)</span>
 <span class="p">{</span>
-	<span class="k">if</span> <span class="p">(</span> <span class="n">p</span> <span class="o">&gt;</span> <span class="n">CHAR_9</span> <span class="o">&amp;</span><span class="o">&amp;</span> <span class="n">p</span> <span class="o">&lt;</span> <span class="n">CHAR_A</span> <span class="p">)</span> <span class="p">{</span>
+	<span class="k">if</span> <span class="p">(</span> <span class="n">p</span> <span class="o">&gt;</span> <span class="n">CHAR_9</span> <span class="o">&amp;&amp;</span> <span class="n">p</span> <span class="o">&lt;</span> <span class="n">CHAR_A</span> <span class="p">)</span> <span class="p">{</span>
 		<span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
 	<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
 		<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
@@ -1460,7 +1778,7 @@ Hint: z3</p>
 
 <span class="kt">int</span> <span class="nf">pico_ord</span><span class="p">(</span> <span class="kt">int</span> <span class="n">p</span> <span class="p">)</span>
 <span class="p">{</span>
-	<span class="k">if</span> <span class="p">(</span> <span class="n">p</span> <span class="o">&lt;</span><span class="o">=</span> <span class="n">CHAR_9</span> <span class="p">)</span> <span class="p">{</span>
+	<span class="k">if</span> <span class="p">(</span> <span class="n">p</span> <span class="o">&lt;=</span> <span class="n">CHAR_9</span> <span class="p">)</span> <span class="p">{</span>
 		<span class="k">return</span> <span class="n">p</span> <span class="o">-</span> <span class="mh">0x30</span><span class="p">;</span>
 	<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
 		<span class="k">return</span> <span class="n">p</span> <span class="o">-</span> <span class="mh">0x37</span><span class="p">;</span>
@@ -1469,19 +1787,19 @@ Hint: z3</p>
 
 <span class="kt">int</span> <span class="nf">main</span><span class="p">(</span> <span class="kt">void</span> <span class="p">)</span>
 <span class="p">{</span>
-	<span class="kt">int</span> <span class="n">p</span><span class="p">[</span><span class="mi">16</span><span class="p">]</span><span class="p">;</span>
+	<span class="kt">int</span> <span class="n">p</span><span class="p">[</span><span class="mi">16</span><span class="p">];</span>
 	<span class="n">p</span><span class="p">[</span><span class="mi">11</span><span class="p">]</span> <span class="o">=</span> <span class="n">CHAR_0</span><span class="p">;</span>
 
 	<span class="c1">//==&gt; ([0] + [1]) mod 0x24 = 0xE
-</span><span class="c1"></span>	<span class="k">for</span> <span class="p">(</span> <span class="n">p</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">CHAR_0</span> <span class="p">;</span> <span class="n">p</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&lt;</span><span class="o">=</span> <span class="n">CHAR_Z</span> <span class="p">;</span> <span class="n">p</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">+</span><span class="o">+</span> <span class="p">)</span> <span class="p">{</span>
+</span><span class="c1"></span>	<span class="k">for</span> <span class="p">(</span> <span class="n">p</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">CHAR_0</span> <span class="p">;</span> <span class="n">p</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="n">CHAR_Z</span> <span class="p">;</span> <span class="n">p</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">++</span> <span class="p">)</span> <span class="p">{</span>
 		<span class="k">if</span> <span class="p">(</span> <span class="n">validate_key</span><span class="p">(</span> <span class="n">p</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="p">)</span> <span class="p">)</span> <span class="p">{</span>
 			<span class="k">continue</span><span class="p">;</span>
 		<span class="p">}</span>
-		<span class="k">for</span> <span class="p">(</span> <span class="n">p</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">CHAR_0</span> <span class="p">;</span> <span class="n">p</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">&lt;</span><span class="o">=</span> <span class="n">CHAR_Z</span> <span class="p">;</span> <span class="n">p</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="o">+</span> <span class="p">)</span> <span class="p">{</span>
+		<span class="k">for</span> <span class="p">(</span> <span class="n">p</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">CHAR_0</span> <span class="p">;</span> <span class="n">p</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="n">CHAR_Z</span> <span class="p">;</span> <span class="n">p</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">++</span> <span class="p">)</span> <span class="p">{</span>
 			<span class="k">if</span> <span class="p">(</span> <span class="n">validate_key</span><span class="p">(</span> <span class="n">p</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="p">)</span> <span class="p">)</span> <span class="p">{</span>
 				<span class="k">continue</span><span class="p">;</span>
 			<span class="p">}</span>
-			<span class="k">if</span> <span class="p">(</span> <span class="p">(</span> <span class="n">pico_ord</span><span class="p">(</span> <span class="n">p</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="p">)</span> <span class="o">+</span> <span class="n">pico_ord</span><span class="p">(</span> <span class="n">p</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="p">)</span> <span class="p">)</span> <span class="o">%</span> <span class="mh">0x24</span> <span class="o">=</span><span class="o">=</span> <span class="mh">0xE</span> <span class="p">)</span> <span class="p">{</span>
+			<span class="k">if</span> <span class="p">(</span> <span class="p">(</span> <span class="n">pico_ord</span><span class="p">(</span> <span class="n">p</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="p">)</span> <span class="o">+</span> <span class="n">pico_ord</span><span class="p">(</span> <span class="n">p</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="p">)</span> <span class="p">)</span> <span class="o">%</span> <span class="mh">0x24</span> <span class="o">==</span> <span class="mh">0xE</span> <span class="p">)</span> <span class="p">{</span>
 				<span class="k">break</span><span class="p">;</span>
 			<span class="p">}</span>
 		<span class="p">}</span>
@@ -1490,15 +1808,15 @@ Hint: z3</p>
 		<span class="p">}</span>
 
 		<span class="c1">//==&gt; ([2] + [3]) mod 0x24 = 0x18
-</span><span class="c1"></span>		<span class="k">for</span> <span class="p">(</span> <span class="n">p</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">CHAR_0</span> <span class="p">;</span> <span class="n">p</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">&lt;</span><span class="o">=</span> <span class="n">CHAR_Z</span> <span class="p">;</span> <span class="n">p</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">+</span><span class="o">+</span> <span class="p">)</span> <span class="p">{</span>
+</span><span class="c1"></span>		<span class="k">for</span> <span class="p">(</span> <span class="n">p</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">CHAR_0</span> <span class="p">;</span> <span class="n">p</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="n">CHAR_Z</span> <span class="p">;</span> <span class="n">p</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">++</span> <span class="p">)</span> <span class="p">{</span>
 			<span class="k">if</span> <span class="p">(</span> <span class="n">validate_key</span><span class="p">(</span> <span class="n">p</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="p">)</span> <span class="p">)</span> <span class="p">{</span>
 				<span class="k">continue</span><span class="p">;</span>
 			<span class="p">}</span>
-			<span class="k">for</span> <span class="p">(</span> <span class="n">p</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="n">CHAR_0</span> <span class="p">;</span> <span class="n">p</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">&lt;</span><span class="o">=</span> <span class="n">CHAR_Z</span> <span class="p">;</span> <span class="n">p</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">+</span><span class="o">+</span> <span class="p">)</span> <span class="p">{</span>
+			<span class="k">for</span> <span class="p">(</span> <span class="n">p</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="n">CHAR_0</span> <span class="p">;</span> <span class="n">p</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="n">CHAR_Z</span> <span class="p">;</span> <span class="n">p</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">++</span> <span class="p">)</span> <span class="p">{</span>
 				<span class="k">if</span> <span class="p">(</span> <span class="n">validate_key</span><span class="p">(</span> <span class="n">p</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="p">)</span> <span class="p">)</span> <span class="p">{</span>
 					<span class="k">continue</span><span class="p">;</span>
 				<span class="p">}</span>
-				<span class="k">if</span> <span class="p">(</span> <span class="p">(</span> <span class="n">pico_ord</span><span class="p">(</span> <span class="n">p</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="p">)</span> <span class="o">+</span> <span class="n">pico_ord</span><span class="p">(</span> <span class="n">p</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="p">)</span> <span class="p">)</span> <span class="o">%</span> <span class="mh">0x24</span> <span class="o">=</span><span class="o">=</span> <span class="mh">0x18</span> <span class="p">)</span> <span class="p">{</span>
+				<span class="k">if</span> <span class="p">(</span> <span class="p">(</span> <span class="n">pico_ord</span><span class="p">(</span> <span class="n">p</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="p">)</span> <span class="o">+</span> <span class="n">pico_ord</span><span class="p">(</span> <span class="n">p</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="p">)</span> <span class="p">)</span> <span class="o">%</span> <span class="mh">0x24</span> <span class="o">==</span> <span class="mh">0x18</span> <span class="p">)</span> <span class="p">{</span>
 					<span class="k">break</span><span class="p">;</span>
 				<span class="p">}</span>
 			<span class="p">}</span>
@@ -1507,14 +1825,14 @@ Hint: z3</p>
 			<span class="p">}</span>
 
 			<span class="c1">//==&gt; ([2] - [0]) mod 0x24 = 0x6
-</span><span class="c1"></span>			<span class="k">if</span> <span class="p">(</span> <span class="p">(</span> <span class="n">pico_ord</span><span class="p">(</span> <span class="n">p</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="p">)</span> <span class="o">-</span> <span class="n">pico_ord</span><span class="p">(</span> <span class="n">p</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="p">)</span> <span class="p">)</span> <span class="o">%</span> <span class="mh">0x24</span> <span class="o">=</span><span class="o">=</span> <span class="mh">0x6</span> <span class="p">)</span> <span class="p">{</span>
+</span><span class="c1"></span>			<span class="k">if</span> <span class="p">(</span> <span class="p">(</span> <span class="n">pico_ord</span><span class="p">(</span> <span class="n">p</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="p">)</span> <span class="o">-</span> <span class="n">pico_ord</span><span class="p">(</span> <span class="n">p</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="p">)</span> <span class="p">)</span> <span class="o">%</span> <span class="mh">0x24</span> <span class="o">==</span> <span class="mh">0x6</span> <span class="p">)</span> <span class="p">{</span>
 				
 				<span class="c1">//==&gt; ([1] + [3] + [5]) mod 0x24 = 0x4
-</span><span class="c1"></span>				<span class="k">for</span> <span class="p">(</span> <span class="n">p</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span> <span class="o">=</span> <span class="n">CHAR_0</span> <span class="p">;</span> <span class="n">p</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span> <span class="o">&lt;</span><span class="o">=</span> <span class="n">CHAR_Z</span> <span class="p">;</span> <span class="n">p</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span><span class="o">+</span><span class="o">+</span> <span class="p">)</span> <span class="p">{</span>
+</span><span class="c1"></span>				<span class="k">for</span> <span class="p">(</span> <span class="n">p</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span> <span class="o">=</span> <span class="n">CHAR_0</span> <span class="p">;</span> <span class="n">p</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="n">CHAR_Z</span> <span class="p">;</span> <span class="n">p</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span><span class="o">++</span> <span class="p">)</span> <span class="p">{</span>
 					<span class="k">if</span> <span class="p">(</span> <span class="n">validate_key</span><span class="p">(</span> <span class="n">p</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span> <span class="p">)</span> <span class="p">)</span> <span class="p">{</span>
 						<span class="k">continue</span><span class="p">;</span>
 					<span class="p">}</span>
-					<span class="k">if</span> <span class="p">(</span> <span class="p">(</span> <span class="n">pico_ord</span><span class="p">(</span> <span class="n">p</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="p">)</span> <span class="o">+</span> <span class="n">pico_ord</span><span class="p">(</span> <span class="n">p</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="p">)</span> <span class="o">+</span> <span class="n">pico_ord</span><span class="p">(</span> <span class="n">p</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span> <span class="p">)</span> <span class="p">)</span> <span class="o">%</span> <span class="mh">0x24</span> <span class="o">=</span><span class="o">=</span> <span class="mh">0x4</span> <span class="p">)</span> <span class="p">{</span>
+					<span class="k">if</span> <span class="p">(</span> <span class="p">(</span> <span class="n">pico_ord</span><span class="p">(</span> <span class="n">p</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="p">)</span> <span class="o">+</span> <span class="n">pico_ord</span><span class="p">(</span> <span class="n">p</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="p">)</span> <span class="o">+</span> <span class="n">pico_ord</span><span class="p">(</span> <span class="n">p</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span> <span class="p">)</span> <span class="p">)</span> <span class="o">%</span> <span class="mh">0x24</span> <span class="o">==</span> <span class="mh">0x4</span> <span class="p">)</span> <span class="p">{</span>
 						<span class="k">break</span><span class="p">;</span>
 					<span class="p">}</span>
 				<span class="p">}</span>
@@ -1522,15 +1840,15 @@ Hint: z3</p>
 					<span class="k">continue</span><span class="p">;</span>
 				<span class="p">}</span>
 				<span class="c1">//==&gt; ([2] + [4] + [6]) mod 0x24 = 0xd
-</span><span class="c1"></span>				<span class="k">for</span> <span class="p">(</span> <span class="n">p</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="o">=</span> <span class="n">CHAR_0</span> <span class="p">;</span> <span class="n">p</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="o">&lt;</span><span class="o">=</span> <span class="n">CHAR_Z</span> <span class="p">;</span> <span class="n">p</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span><span class="o">+</span><span class="o">+</span> <span class="p">)</span> <span class="p">{</span>
+</span><span class="c1"></span>				<span class="k">for</span> <span class="p">(</span> <span class="n">p</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="o">=</span> <span class="n">CHAR_0</span> <span class="p">;</span> <span class="n">p</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="n">CHAR_Z</span> <span class="p">;</span> <span class="n">p</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span><span class="o">++</span> <span class="p">)</span> <span class="p">{</span>
 					<span class="k">if</span> <span class="p">(</span> <span class="n">validate_key</span><span class="p">(</span> <span class="n">p</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="p">)</span> <span class="p">)</span> <span class="p">{</span>
 						<span class="k">continue</span><span class="p">;</span>
 					<span class="p">}</span>
-					<span class="k">for</span> <span class="p">(</span> <span class="n">p</span><span class="p">[</span><span class="mi">6</span><span class="p">]</span> <span class="o">=</span> <span class="n">CHAR_0</span> <span class="p">;</span> <span class="n">p</span><span class="p">[</span><span class="mi">6</span><span class="p">]</span> <span class="o">&lt;</span><span class="o">=</span> <span class="n">CHAR_Z</span> <span class="p">;</span> <span class="n">p</span><span class="p">[</span><span class="mi">6</span><span class="p">]</span><span class="o">+</span><span class="o">+</span> <span class="p">)</span> <span class="p">{</span>
+					<span class="k">for</span> <span class="p">(</span> <span class="n">p</span><span class="p">[</span><span class="mi">6</span><span class="p">]</span> <span class="o">=</span> <span class="n">CHAR_0</span> <span class="p">;</span> <span class="n">p</span><span class="p">[</span><span class="mi">6</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="n">CHAR_Z</span> <span class="p">;</span> <span class="n">p</span><span class="p">[</span><span class="mi">6</span><span class="p">]</span><span class="o">++</span> <span class="p">)</span> <span class="p">{</span>
 						<span class="k">if</span> <span class="p">(</span> <span class="n">validate_key</span><span class="p">(</span> <span class="n">p</span><span class="p">[</span><span class="mi">6</span><span class="p">]</span> <span class="p">)</span> <span class="p">)</span> <span class="p">{</span>
 							<span class="k">continue</span><span class="p">;</span>
 						<span class="p">}</span>
-						<span class="k">if</span> <span class="p">(</span> <span class="p">(</span> <span class="n">pico_ord</span><span class="p">(</span> <span class="n">p</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="p">)</span> <span class="o">+</span> <span class="n">pico_ord</span><span class="p">(</span> <span class="n">p</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="p">)</span> <span class="o">+</span> <span class="n">pico_ord</span><span class="p">(</span> <span class="n">p</span><span class="p">[</span><span class="mi">6</span><span class="p">]</span> <span class="p">)</span> <span class="p">)</span> <span class="o">%</span> <span class="mh">0x24</span> <span class="o">=</span><span class="o">=</span> <span class="mh">0xd</span> <span class="p">)</span> <span class="p">{</span>
+						<span class="k">if</span> <span class="p">(</span> <span class="p">(</span> <span class="n">pico_ord</span><span class="p">(</span> <span class="n">p</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="p">)</span> <span class="o">+</span> <span class="n">pico_ord</span><span class="p">(</span> <span class="n">p</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="p">)</span> <span class="o">+</span> <span class="n">pico_ord</span><span class="p">(</span> <span class="n">p</span><span class="p">[</span><span class="mi">6</span><span class="p">]</span> <span class="p">)</span> <span class="p">)</span> <span class="o">%</span> <span class="mh">0x24</span> <span class="o">==</span> <span class="mh">0xd</span> <span class="p">)</span> <span class="p">{</span>
 							<span class="k">break</span><span class="p">;</span>
 						<span class="p">}</span>
 					<span class="p">}</span>
@@ -1539,18 +1857,18 @@ Hint: z3</p>
 					<span class="p">}</span>
 
 					<span class="c1">//==&gt; ([3] + [4] + [5]) mod 0x24 = 0x16
-</span><span class="c1"></span>					<span class="k">if</span> <span class="p">(</span> <span class="p">(</span> <span class="n">pico_ord</span><span class="p">(</span> <span class="n">p</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="p">)</span> <span class="o">+</span> <span class="n">pico_ord</span><span class="p">(</span> <span class="n">p</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="p">)</span> <span class="o">+</span> <span class="n">pico_ord</span><span class="p">(</span> <span class="n">p</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span> <span class="p">)</span> <span class="p">)</span> <span class="o">%</span> <span class="mh">0x24</span> <span class="o">=</span><span class="o">=</span> <span class="mh">0x16</span> <span class="p">)</span> <span class="p">{</span>
+</span><span class="c1"></span>					<span class="k">if</span> <span class="p">(</span> <span class="p">(</span> <span class="n">pico_ord</span><span class="p">(</span> <span class="n">p</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="p">)</span> <span class="o">+</span> <span class="n">pico_ord</span><span class="p">(</span> <span class="n">p</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="p">)</span> <span class="o">+</span> <span class="n">pico_ord</span><span class="p">(</span> <span class="n">p</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span> <span class="p">)</span> <span class="p">)</span> <span class="o">%</span> <span class="mh">0x24</span> <span class="o">==</span> <span class="mh">0x16</span> <span class="p">)</span> <span class="p">{</span>
 
 						<span class="c1">//==&gt; ([6] + [8] + [10]) mod 0x24 = 0x1f
-</span><span class="c1"></span>						<span class="k">for</span> <span class="p">(</span> <span class="n">p</span><span class="p">[</span><span class="mi">8</span><span class="p">]</span> <span class="o">=</span> <span class="n">CHAR_0</span> <span class="p">;</span> <span class="n">p</span><span class="p">[</span><span class="mi">8</span><span class="p">]</span> <span class="o">&lt;</span><span class="o">=</span> <span class="n">CHAR_Z</span> <span class="p">;</span> <span class="n">p</span><span class="p">[</span><span class="mi">8</span><span class="p">]</span><span class="o">+</span><span class="o">+</span> <span class="p">)</span> <span class="p">{</span>
+</span><span class="c1"></span>						<span class="k">for</span> <span class="p">(</span> <span class="n">p</span><span class="p">[</span><span class="mi">8</span><span class="p">]</span> <span class="o">=</span> <span class="n">CHAR_0</span> <span class="p">;</span> <span class="n">p</span><span class="p">[</span><span class="mi">8</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="n">CHAR_Z</span> <span class="p">;</span> <span class="n">p</span><span class="p">[</span><span class="mi">8</span><span class="p">]</span><span class="o">++</span> <span class="p">)</span> <span class="p">{</span>
 							<span class="k">if</span> <span class="p">(</span> <span class="n">validate_key</span><span class="p">(</span> <span class="n">p</span><span class="p">[</span><span class="mi">8</span><span class="p">]</span> <span class="p">)</span> <span class="p">)</span> <span class="p">{</span>
 								<span class="k">continue</span><span class="p">;</span>
 							<span class="p">}</span>
-							<span class="k">for</span> <span class="p">(</span> <span class="n">p</span><span class="p">[</span><span class="mi">10</span><span class="p">]</span> <span class="o">=</span> <span class="n">CHAR_0</span> <span class="p">;</span> <span class="n">p</span><span class="p">[</span><span class="mi">10</span><span class="p">]</span> <span class="o">&lt;</span><span class="o">=</span> <span class="n">CHAR_Z</span> <span class="p">;</span> <span class="n">p</span><span class="p">[</span><span class="mi">10</span><span class="p">]</span><span class="o">+</span><span class="o">+</span> <span class="p">)</span> <span class="p">{</span>
+							<span class="k">for</span> <span class="p">(</span> <span class="n">p</span><span class="p">[</span><span class="mi">10</span><span class="p">]</span> <span class="o">=</span> <span class="n">CHAR_0</span> <span class="p">;</span> <span class="n">p</span><span class="p">[</span><span class="mi">10</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="n">CHAR_Z</span> <span class="p">;</span> <span class="n">p</span><span class="p">[</span><span class="mi">10</span><span class="p">]</span><span class="o">++</span> <span class="p">)</span> <span class="p">{</span>
 								<span class="k">if</span> <span class="p">(</span> <span class="n">validate_key</span><span class="p">(</span> <span class="n">p</span><span class="p">[</span><span class="mi">10</span><span class="p">]</span> <span class="p">)</span> <span class="p">)</span> <span class="p">{</span>
 									<span class="k">continue</span><span class="p">;</span>
 								<span class="p">}</span>
-								<span class="k">if</span> <span class="p">(</span> <span class="p">(</span> <span class="n">pico_ord</span><span class="p">(</span> <span class="n">p</span><span class="p">[</span><span class="mi">6</span><span class="p">]</span> <span class="p">)</span> <span class="o">+</span> <span class="n">pico_ord</span><span class="p">(</span> <span class="n">p</span><span class="p">[</span><span class="mi">8</span><span class="p">]</span> <span class="p">)</span> <span class="o">+</span> <span class="n">pico_ord</span><span class="p">(</span> <span class="n">p</span><span class="p">[</span><span class="mi">10</span><span class="p">]</span> <span class="p">)</span> <span class="p">)</span> <span class="o">%</span> <span class="mh">0x24</span> <span class="o">=</span><span class="o">=</span> <span class="mh">0x1f</span> <span class="p">)</span> <span class="p">{</span>
+								<span class="k">if</span> <span class="p">(</span> <span class="p">(</span> <span class="n">pico_ord</span><span class="p">(</span> <span class="n">p</span><span class="p">[</span><span class="mi">6</span><span class="p">]</span> <span class="p">)</span> <span class="o">+</span> <span class="n">pico_ord</span><span class="p">(</span> <span class="n">p</span><span class="p">[</span><span class="mi">8</span><span class="p">]</span> <span class="p">)</span> <span class="o">+</span> <span class="n">pico_ord</span><span class="p">(</span> <span class="n">p</span><span class="p">[</span><span class="mi">10</span><span class="p">]</span> <span class="p">)</span> <span class="p">)</span> <span class="o">%</span> <span class="mh">0x24</span> <span class="o">==</span> <span class="mh">0x1f</span> <span class="p">)</span> <span class="p">{</span>
 									<span class="k">break</span><span class="p">;</span>
 								<span class="p">}</span>
 							<span class="p">}</span>
@@ -1558,11 +1876,11 @@ Hint: z3</p>
 								<span class="k">continue</span><span class="p">;</span>
 							<span class="p">}</span>
 							<span class="c1">// ==&gt; ([1] + [4] + [7]) mod 0x24 = 0x7
-</span><span class="c1"></span>							<span class="k">for</span> <span class="p">(</span> <span class="n">p</span><span class="p">[</span><span class="mi">7</span><span class="p">]</span> <span class="o">=</span> <span class="n">CHAR_0</span> <span class="p">;</span> <span class="n">p</span><span class="p">[</span><span class="mi">7</span><span class="p">]</span> <span class="o">&lt;</span><span class="o">=</span> <span class="n">CHAR_Z</span> <span class="p">;</span> <span class="n">p</span><span class="p">[</span><span class="mi">7</span><span class="p">]</span><span class="o">+</span><span class="o">+</span> <span class="p">)</span> <span class="p">{</span>
+</span><span class="c1"></span>							<span class="k">for</span> <span class="p">(</span> <span class="n">p</span><span class="p">[</span><span class="mi">7</span><span class="p">]</span> <span class="o">=</span> <span class="n">CHAR_0</span> <span class="p">;</span> <span class="n">p</span><span class="p">[</span><span class="mi">7</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="n">CHAR_Z</span> <span class="p">;</span> <span class="n">p</span><span class="p">[</span><span class="mi">7</span><span class="p">]</span><span class="o">++</span> <span class="p">)</span> <span class="p">{</span>
 								<span class="k">if</span> <span class="p">(</span> <span class="n">validate_key</span><span class="p">(</span> <span class="n">p</span><span class="p">[</span><span class="mi">7</span><span class="p">]</span> <span class="p">)</span> <span class="p">)</span> <span class="p">{</span>
 									<span class="k">continue</span><span class="p">;</span>
 								<span class="p">}</span>
-								<span class="k">if</span> <span class="p">(</span> <span class="p">(</span> <span class="n">pico_ord</span><span class="p">(</span> <span class="n">p</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="p">)</span> <span class="o">+</span> <span class="n">pico_ord</span><span class="p">(</span> <span class="n">p</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="p">)</span> <span class="o">+</span> <span class="n">pico_ord</span><span class="p">(</span> <span class="n">p</span><span class="p">[</span><span class="mi">7</span><span class="p">]</span> <span class="p">)</span> <span class="p">)</span> <span class="o">%</span> <span class="mh">0x24</span> <span class="o">=</span><span class="o">=</span> <span class="mh">0x7</span> <span class="p">)</span> <span class="p">{</span>
+								<span class="k">if</span> <span class="p">(</span> <span class="p">(</span> <span class="n">pico_ord</span><span class="p">(</span> <span class="n">p</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="p">)</span> <span class="o">+</span> <span class="n">pico_ord</span><span class="p">(</span> <span class="n">p</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="p">)</span> <span class="o">+</span> <span class="n">pico_ord</span><span class="p">(</span> <span class="n">p</span><span class="p">[</span><span class="mi">7</span><span class="p">]</span> <span class="p">)</span> <span class="p">)</span> <span class="o">%</span> <span class="mh">0x24</span> <span class="o">==</span> <span class="mh">0x7</span> <span class="p">)</span> <span class="p">{</span>
 									<span class="k">break</span><span class="p">;</span>
 								<span class="p">}</span>
 							<span class="p">}</span>
@@ -1570,19 +1888,19 @@ Hint: z3</p>
 								<span class="k">continue</span><span class="p">;</span>
 							<span class="p">}</span>
 							<span class="c1">// ==&gt; ([9] + [12] + [15]) mod 0x24 = 0x14
-</span><span class="c1"></span>							<span class="k">for</span> <span class="p">(</span> <span class="n">p</span><span class="p">[</span><span class="mi">9</span><span class="p">]</span> <span class="o">=</span> <span class="n">CHAR_0</span> <span class="p">;</span> <span class="n">p</span><span class="p">[</span><span class="mi">9</span><span class="p">]</span> <span class="o">&lt;</span><span class="o">=</span> <span class="n">CHAR_Z</span> <span class="p">;</span> <span class="n">p</span><span class="p">[</span><span class="mi">9</span><span class="p">]</span><span class="o">+</span><span class="o">+</span> <span class="p">)</span> <span class="p">{</span>
+</span><span class="c1"></span>							<span class="k">for</span> <span class="p">(</span> <span class="n">p</span><span class="p">[</span><span class="mi">9</span><span class="p">]</span> <span class="o">=</span> <span class="n">CHAR_0</span> <span class="p">;</span> <span class="n">p</span><span class="p">[</span><span class="mi">9</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="n">CHAR_Z</span> <span class="p">;</span> <span class="n">p</span><span class="p">[</span><span class="mi">9</span><span class="p">]</span><span class="o">++</span> <span class="p">)</span> <span class="p">{</span>
 								<span class="k">if</span> <span class="p">(</span> <span class="n">validate_key</span><span class="p">(</span> <span class="n">p</span><span class="p">[</span><span class="mi">9</span><span class="p">]</span> <span class="p">)</span> <span class="p">)</span> <span class="p">{</span>
 									<span class="k">continue</span><span class="p">;</span>
 								<span class="p">}</span>
-								<span class="k">for</span> <span class="p">(</span> <span class="n">p</span><span class="p">[</span><span class="mi">12</span><span class="p">]</span> <span class="o">=</span> <span class="n">CHAR_0</span> <span class="p">;</span> <span class="n">p</span><span class="p">[</span><span class="mi">12</span><span class="p">]</span> <span class="o">&lt;</span><span class="o">=</span> <span class="n">CHAR_Z</span> <span class="p">;</span> <span class="n">p</span><span class="p">[</span><span class="mi">12</span><span class="p">]</span><span class="o">+</span><span class="o">+</span> <span class="p">)</span> <span class="p">{</span>
+								<span class="k">for</span> <span class="p">(</span> <span class="n">p</span><span class="p">[</span><span class="mi">12</span><span class="p">]</span> <span class="o">=</span> <span class="n">CHAR_0</span> <span class="p">;</span> <span class="n">p</span><span class="p">[</span><span class="mi">12</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="n">CHAR_Z</span> <span class="p">;</span> <span class="n">p</span><span class="p">[</span><span class="mi">12</span><span class="p">]</span><span class="o">++</span> <span class="p">)</span> <span class="p">{</span>
 									<span class="k">if</span> <span class="p">(</span> <span class="n">validate_key</span><span class="p">(</span> <span class="n">p</span><span class="p">[</span><span class="mi">12</span><span class="p">]</span> <span class="p">)</span> <span class="p">)</span> <span class="p">{</span>
 										<span class="k">continue</span><span class="p">;</span>
 									<span class="p">}</span>
-									<span class="k">for</span> <span class="p">(</span> <span class="n">p</span><span class="p">[</span><span class="mi">15</span><span class="p">]</span> <span class="o">=</span> <span class="n">CHAR_0</span> <span class="p">;</span> <span class="n">p</span><span class="p">[</span><span class="mi">15</span><span class="p">]</span> <span class="o">&lt;</span><span class="o">=</span> <span class="n">CHAR_Z</span> <span class="p">;</span> <span class="n">p</span><span class="p">[</span><span class="mi">15</span><span class="p">]</span><span class="o">+</span><span class="o">+</span> <span class="p">)</span> <span class="p">{</span>
+									<span class="k">for</span> <span class="p">(</span> <span class="n">p</span><span class="p">[</span><span class="mi">15</span><span class="p">]</span> <span class="o">=</span> <span class="n">CHAR_0</span> <span class="p">;</span> <span class="n">p</span><span class="p">[</span><span class="mi">15</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="n">CHAR_Z</span> <span class="p">;</span> <span class="n">p</span><span class="p">[</span><span class="mi">15</span><span class="p">]</span><span class="o">++</span> <span class="p">)</span> <span class="p">{</span>
 										<span class="k">if</span> <span class="p">(</span> <span class="n">validate_key</span><span class="p">(</span> <span class="n">p</span><span class="p">[</span><span class="mi">15</span><span class="p">]</span> <span class="p">)</span> <span class="p">)</span> <span class="p">{</span>
 											<span class="k">continue</span><span class="p">;</span>
 										<span class="p">}</span>
-										<span class="k">if</span> <span class="p">(</span> <span class="p">(</span> <span class="n">pico_ord</span><span class="p">(</span> <span class="n">p</span><span class="p">[</span><span class="mi">9</span><span class="p">]</span> <span class="p">)</span> <span class="o">+</span> <span class="n">pico_ord</span><span class="p">(</span> <span class="n">p</span><span class="p">[</span><span class="mi">12</span><span class="p">]</span> <span class="p">)</span> <span class="o">+</span> <span class="n">pico_ord</span><span class="p">(</span> <span class="n">p</span><span class="p">[</span><span class="mi">15</span><span class="p">]</span> <span class="p">)</span> <span class="p">)</span> <span class="o">%</span> <span class="mh">0x24</span> <span class="o">=</span><span class="o">=</span> <span class="mh">0x14</span> <span class="p">)</span> <span class="p">{</span>
+										<span class="k">if</span> <span class="p">(</span> <span class="p">(</span> <span class="n">pico_ord</span><span class="p">(</span> <span class="n">p</span><span class="p">[</span><span class="mi">9</span><span class="p">]</span> <span class="p">)</span> <span class="o">+</span> <span class="n">pico_ord</span><span class="p">(</span> <span class="n">p</span><span class="p">[</span><span class="mi">12</span><span class="p">]</span> <span class="p">)</span> <span class="o">+</span> <span class="n">pico_ord</span><span class="p">(</span> <span class="n">p</span><span class="p">[</span><span class="mi">15</span><span class="p">]</span> <span class="p">)</span> <span class="p">)</span> <span class="o">%</span> <span class="mh">0x24</span> <span class="o">==</span> <span class="mh">0x14</span> <span class="p">)</span> <span class="p">{</span>
 											<span class="k">break</span><span class="p">;</span>
 										<span class="p">}</span>
 									<span class="p">}</span>
@@ -1590,15 +1908,15 @@ Hint: z3</p>
 										<span class="k">continue</span><span class="p">;</span>
 									<span class="p">}</span>
 									<span class="c1">// ==&gt; ([13] + [14] + [15]) mod 0x24 = 0xc
-</span><span class="c1"></span>									<span class="k">for</span> <span class="p">(</span> <span class="n">p</span><span class="p">[</span><span class="mi">13</span><span class="p">]</span> <span class="o">=</span> <span class="n">CHAR_0</span> <span class="p">;</span> <span class="n">p</span><span class="p">[</span><span class="mi">13</span><span class="p">]</span> <span class="o">&lt;</span><span class="o">=</span> <span class="n">CHAR_Z</span> <span class="p">;</span> <span class="n">p</span><span class="p">[</span><span class="mi">13</span><span class="p">]</span><span class="o">+</span><span class="o">+</span> <span class="p">)</span> <span class="p">{</span>
+</span><span class="c1"></span>									<span class="k">for</span> <span class="p">(</span> <span class="n">p</span><span class="p">[</span><span class="mi">13</span><span class="p">]</span> <span class="o">=</span> <span class="n">CHAR_0</span> <span class="p">;</span> <span class="n">p</span><span class="p">[</span><span class="mi">13</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="n">CHAR_Z</span> <span class="p">;</span> <span class="n">p</span><span class="p">[</span><span class="mi">13</span><span class="p">]</span><span class="o">++</span> <span class="p">)</span> <span class="p">{</span>
 										<span class="k">if</span> <span class="p">(</span> <span class="n">validate_key</span><span class="p">(</span> <span class="n">p</span><span class="p">[</span><span class="mi">13</span><span class="p">]</span> <span class="p">)</span> <span class="p">)</span> <span class="p">{</span>
 											<span class="k">continue</span><span class="p">;</span>
 										<span class="p">}</span>
-										<span class="k">for</span> <span class="p">(</span> <span class="n">p</span><span class="p">[</span><span class="mi">14</span><span class="p">]</span> <span class="o">=</span> <span class="n">CHAR_0</span> <span class="p">;</span> <span class="n">p</span><span class="p">[</span><span class="mi">14</span><span class="p">]</span> <span class="o">&lt;</span><span class="o">=</span> <span class="n">CHAR_Z</span> <span class="p">;</span> <span class="n">p</span><span class="p">[</span><span class="mi">14</span><span class="p">]</span><span class="o">+</span><span class="o">+</span> <span class="p">)</span> <span class="p">{</span>
+										<span class="k">for</span> <span class="p">(</span> <span class="n">p</span><span class="p">[</span><span class="mi">14</span><span class="p">]</span> <span class="o">=</span> <span class="n">CHAR_0</span> <span class="p">;</span> <span class="n">p</span><span class="p">[</span><span class="mi">14</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="n">CHAR_Z</span> <span class="p">;</span> <span class="n">p</span><span class="p">[</span><span class="mi">14</span><span class="p">]</span><span class="o">++</span> <span class="p">)</span> <span class="p">{</span>
 											<span class="k">if</span> <span class="p">(</span> <span class="n">validate_key</span><span class="p">(</span> <span class="n">p</span><span class="p">[</span><span class="mi">14</span><span class="p">]</span> <span class="p">)</span> <span class="p">)</span> <span class="p">{</span>
 												<span class="k">continue</span><span class="p">;</span>
 											<span class="p">}</span>
-											<span class="k">if</span> <span class="p">(</span> <span class="p">(</span> <span class="n">pico_ord</span><span class="p">(</span> <span class="n">p</span><span class="p">[</span><span class="mi">13</span><span class="p">]</span> <span class="p">)</span> <span class="o">+</span> <span class="n">pico_ord</span><span class="p">(</span> <span class="n">p</span><span class="p">[</span><span class="mi">14</span><span class="p">]</span> <span class="p">)</span> <span class="o">+</span> <span class="n">pico_ord</span><span class="p">(</span> <span class="n">p</span><span class="p">[</span><span class="mi">15</span><span class="p">]</span> <span class="p">)</span> <span class="p">)</span> <span class="o">%</span> <span class="mh">0x24</span> <span class="o">=</span><span class="o">=</span> <span class="mh">0xc</span> <span class="p">)</span> <span class="p">{</span>
+											<span class="k">if</span> <span class="p">(</span> <span class="p">(</span> <span class="n">pico_ord</span><span class="p">(</span> <span class="n">p</span><span class="p">[</span><span class="mi">13</span><span class="p">]</span> <span class="p">)</span> <span class="o">+</span> <span class="n">pico_ord</span><span class="p">(</span> <span class="n">p</span><span class="p">[</span><span class="mi">14</span><span class="p">]</span> <span class="p">)</span> <span class="o">+</span> <span class="n">pico_ord</span><span class="p">(</span> <span class="n">p</span><span class="p">[</span><span class="mi">15</span><span class="p">]</span> <span class="p">)</span> <span class="p">)</span> <span class="o">%</span> <span class="mh">0x24</span> <span class="o">==</span> <span class="mh">0xc</span> <span class="p">)</span> <span class="p">{</span>
 												<span class="k">break</span><span class="p">;</span>
 											<span class="p">}</span>
 										<span class="p">}</span>
@@ -1606,10 +1924,10 @@ Hint: z3</p>
 											<span class="k">continue</span><span class="p">;</span>
 										<span class="p">}</span>
 										<span class="c1">// ==&gt; ([8] + [9] + [10]) mod 0x24 = 0x1b
-</span><span class="c1"></span>										<span class="k">if</span> <span class="p">(</span> <span class="p">(</span> <span class="n">pico_ord</span><span class="p">(</span> <span class="n">p</span><span class="p">[</span><span class="mi">8</span><span class="p">]</span> <span class="p">)</span> <span class="o">+</span> <span class="n">pico_ord</span><span class="p">(</span> <span class="n">p</span><span class="p">[</span><span class="mi">9</span><span class="p">]</span> <span class="p">)</span> <span class="o">+</span> <span class="n">pico_ord</span><span class="p">(</span> <span class="n">p</span><span class="p">[</span><span class="mi">10</span><span class="p">]</span> <span class="p">)</span> <span class="p">)</span> <span class="o">%</span> <span class="mh">0x24</span> <span class="o">=</span><span class="o">=</span> <span class="mh">0x1b</span> <span class="p">)</span> <span class="p">{</span>
+</span><span class="c1"></span>										<span class="k">if</span> <span class="p">(</span> <span class="p">(</span> <span class="n">pico_ord</span><span class="p">(</span> <span class="n">p</span><span class="p">[</span><span class="mi">8</span><span class="p">]</span> <span class="p">)</span> <span class="o">+</span> <span class="n">pico_ord</span><span class="p">(</span> <span class="n">p</span><span class="p">[</span><span class="mi">9</span><span class="p">]</span> <span class="p">)</span> <span class="o">+</span> <span class="n">pico_ord</span><span class="p">(</span> <span class="n">p</span><span class="p">[</span><span class="mi">10</span><span class="p">]</span> <span class="p">)</span> <span class="p">)</span> <span class="o">%</span> <span class="mh">0x24</span> <span class="o">==</span> <span class="mh">0x1b</span> <span class="p">)</span> <span class="p">{</span>
 											<span class="c1">// ==&gt; ([7] + [12] + [13]) mod 0x24 = 0x17
-</span><span class="c1"></span>											<span class="k">if</span> <span class="p">(</span> <span class="p">(</span> <span class="n">pico_ord</span><span class="p">(</span> <span class="n">p</span><span class="p">[</span><span class="mi">7</span><span class="p">]</span> <span class="p">)</span> <span class="o">+</span> <span class="n">pico_ord</span><span class="p">(</span> <span class="n">p</span><span class="p">[</span><span class="mi">12</span><span class="p">]</span> <span class="p">)</span> <span class="o">+</span> <span class="n">pico_ord</span><span class="p">(</span> <span class="n">p</span><span class="p">[</span><span class="mi">13</span><span class="p">]</span> <span class="p">)</span> <span class="p">)</span> <span class="o">%</span> <span class="mh">0x24</span> <span class="o">=</span><span class="o">=</span> <span class="mh">0x17</span> <span class="p">)</span> <span class="p">{</span>
-												<span class="n">print_flag</span><span class="p">(</span> <span class="n">p</span> <span class="p">)</span><span class="p">;</span>
+</span><span class="c1"></span>											<span class="k">if</span> <span class="p">(</span> <span class="p">(</span> <span class="n">pico_ord</span><span class="p">(</span> <span class="n">p</span><span class="p">[</span><span class="mi">7</span><span class="p">]</span> <span class="p">)</span> <span class="o">+</span> <span class="n">pico_ord</span><span class="p">(</span> <span class="n">p</span><span class="p">[</span><span class="mi">12</span><span class="p">]</span> <span class="p">)</span> <span class="o">+</span> <span class="n">pico_ord</span><span class="p">(</span> <span class="n">p</span><span class="p">[</span><span class="mi">13</span><span class="p">]</span> <span class="p">)</span> <span class="p">)</span> <span class="o">%</span> <span class="mh">0x24</span> <span class="o">==</span> <span class="mh">0x17</span> <span class="p">)</span> <span class="p">{</span>
+												<span class="n">print_flag</span><span class="p">(</span> <span class="n">p</span> <span class="p">);</span>
 												<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
 											<span class="p">}</span>
 										<span class="p">}</span>
@@ -1622,33 +1940,51 @@ Hint: z3</p>
 			<span class="p">}</span>
 		<span class="p">}</span>
 	<span class="p">}</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<span class="p">}</span></code></pre></td></tr></table>
 </div>
-</div><pre><code>captureamerica@pico-2018-shell:/problems/keygen-me-2_1_762036cde49fef79146a706d0eda80a3$ ./activate 0E6IW8BX07K00Q9D
-Product Activated Successfully: picoCTF{c0n5tr41nt_50lv1nG_15_W4y_f45t3r_3846045707}
-</code></pre><p>Flag: <code>picoCTF{c0n5tr41nt_50lv1nG_15_W4y_f45t3r_3846045707}</code></p>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span><span class="lnt">2
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">captureamerica@pico-2018-shell:/problems/keygen-me-2_1_762036cde49fef79146a706d0eda80a3$ ./activate 0E6IW8BX07K00Q9D
+Product Activated Successfully: picoCTF{c0n5tr41nt_50lv1nG_15_W4y_f45t3r_3846045707}</pre></td></tr></table>
+</div>
+</div>
+<p>Flag: <code>picoCTF{c0n5tr41nt_50lv1nG_15_W4y_f45t3r_3846045707}</code></p>
+
 <p><br /><br />
 <br /><br /></p>
-<h2 id="reversing-bequickorbedead3-350-points">[Reversing]: be-quick-or-be-dead-3 (350 points)</h2>
-<hr>
-<h3 id="challenge7">Challenge</h3>
+
+<h2 id="reversing-be-quick-or-be-dead-3-350-points">[Reversing]: be-quick-or-be-dead-3 (350 points)</h2>
+
+<hr />
+
+<h3 id="challenge-8">Challenge</h3>
+
 <blockquote>
 <p>As the <a href="https://www.youtube.com/watch?v=CTt1vk9nM9c">song</a> draws closer to the end, another executable be-quick-or-be-dead-3 suddenly pops up. This one requires even faster machines. Can you run it fast enough too?
 <br /><br />
 Hint: How do you speed up a very repetitive computation?</p>
 </blockquote>
+
 <p>Attachment:</p>
+
 <ul>
 <li>be-quick-or-be-dead-3  (ELF 64-bit)</li>
 </ul>
+
 <p><br /></p>
-<h3 id="solution7">Solution</h3>
+
+<h3 id="solution-8">Solution</h3>
+
 <p>まず、Ghidraにかけます。</p>
+
 <p>以下の箇所が再帰関数になっており、時間がかかるところです。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre class="chroma"><code class="language-C" data-lang="C"><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -1687,23 +2023,25 @@ Hint: How do you speed up a very repetitive computation?</p>
     <span class="n">local_1c</span> <span class="o">=</span> <span class="n">uParm1</span> <span class="o">*</span> <span class="n">uParm1</span> <span class="o">+</span> <span class="mh">0x2345</span><span class="p">;</span>
   <span class="p">}</span>
   <span class="k">else</span> <span class="p">{</span>
-    <span class="n">iVar1</span> <span class="o">=</span> <span class="n">calc</span><span class="p">(</span><span class="p">(</span><span class="n">ulong</span><span class="p">)</span><span class="p">(</span><span class="n">uParm1</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span><span class="p">)</span><span class="p">;</span>
-    <span class="n">iVar2</span> <span class="o">=</span> <span class="n">calc</span><span class="p">(</span><span class="p">(</span><span class="n">ulong</span><span class="p">)</span><span class="p">(</span><span class="n">uParm1</span> <span class="o">-</span> <span class="mi">2</span><span class="p">)</span><span class="p">)</span><span class="p">;</span>
-    <span class="n">iVar3</span> <span class="o">=</span> <span class="n">calc</span><span class="p">(</span><span class="p">(</span><span class="n">ulong</span><span class="p">)</span><span class="p">(</span><span class="n">uParm1</span> <span class="o">-</span> <span class="mi">3</span><span class="p">)</span><span class="p">)</span><span class="p">;</span>
-    <span class="n">iVar4</span> <span class="o">=</span> <span class="n">calc</span><span class="p">(</span><span class="p">(</span><span class="n">ulong</span><span class="p">)</span><span class="p">(</span><span class="n">uParm1</span> <span class="o">-</span> <span class="mi">4</span><span class="p">)</span><span class="p">)</span><span class="p">;</span>
-    <span class="n">iVar5</span> <span class="o">=</span> <span class="n">calc</span><span class="p">(</span><span class="p">(</span><span class="n">ulong</span><span class="p">)</span><span class="p">(</span><span class="n">uParm1</span> <span class="o">-</span> <span class="mi">5</span><span class="p">)</span><span class="p">)</span><span class="p">;</span>
-    <span class="n">local_1c</span> <span class="o">=</span> <span class="n">iVar5</span> <span class="o">*</span> <span class="mh">0x1234</span> <span class="o">+</span> <span class="p">(</span><span class="n">iVar1</span> <span class="o">-</span> <span class="n">iVar2</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="n">iVar3</span> <span class="o">-</span> <span class="n">iVar4</span><span class="p">)</span><span class="p">;</span>
+    <span class="n">iVar1</span> <span class="o">=</span> <span class="n">calc</span><span class="p">((</span><span class="n">ulong</span><span class="p">)(</span><span class="n">uParm1</span> <span class="o">-</span> <span class="mi">1</span><span class="p">));</span>
+    <span class="n">iVar2</span> <span class="o">=</span> <span class="n">calc</span><span class="p">((</span><span class="n">ulong</span><span class="p">)(</span><span class="n">uParm1</span> <span class="o">-</span> <span class="mi">2</span><span class="p">));</span>
+    <span class="n">iVar3</span> <span class="o">=</span> <span class="n">calc</span><span class="p">((</span><span class="n">ulong</span><span class="p">)(</span><span class="n">uParm1</span> <span class="o">-</span> <span class="mi">3</span><span class="p">));</span>
+    <span class="n">iVar4</span> <span class="o">=</span> <span class="n">calc</span><span class="p">((</span><span class="n">ulong</span><span class="p">)(</span><span class="n">uParm1</span> <span class="o">-</span> <span class="mi">4</span><span class="p">));</span>
+    <span class="n">iVar5</span> <span class="o">=</span> <span class="n">calc</span><span class="p">((</span><span class="n">ulong</span><span class="p">)(</span><span class="n">uParm1</span> <span class="o">-</span> <span class="mi">5</span><span class="p">));</span>
+    <span class="n">local_1c</span> <span class="o">=</span> <span class="n">iVar5</span> <span class="o">*</span> <span class="mh">0x1234</span> <span class="o">+</span> <span class="p">(</span><span class="n">iVar1</span> <span class="o">-</span> <span class="n">iVar2</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="n">iVar3</span> <span class="o">-</span> <span class="n">iVar4</span><span class="p">);</span>
   <span class="p">}</span>
   <span class="k">return</span> <span class="p">(</span><span class="n">ulong</span><span class="p">)</span><span class="n">local_1c</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<span class="p">}</span></code></pre></td></tr></table>
 </div>
-</div><p>ヒントにしたがって、&ldquo;再帰関数 高速化&rdquo; でググってみると、「メモ化」というのがありました。</p>
+</div>
+<p>ヒントにしたがって、&rdquo;再帰関数 高速化&rdquo; でググってみると、「メモ化」というのがありました。</p>
+
 <p>&ldquo;一度処理した結果を保存しておく方法を「メモ化」といい、保存する量が多くなってくるとメモリの使用量は増えますが、処理が圧倒的に高速になります。&rdquo; とのことです。</p>
+
 <p>Rubyでできるようなので、普段Rubyは使わないのですが、ウェブで見つけたサンプルをならって以下を書きました。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre class="chroma"><code class="language-Ruby" data-lang="Ruby"><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -1717,32 +2055,78 @@ Hint: How do you speed up a very repetitive computation?</p>
 </span><span class="lnt">12
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-Ruby" data-lang="Ruby"><span class="vi">@memo</span> <span class="o">=</span> <span class="p">{</span><span class="p">}</span>
-<span class="k">def</span> <span class="nc"></span><span class="o"></span><span class="nf">calc</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
-  <span class="k">return</span> <span class="vi">@memo</span><span class="o">[</span><span class="o">[</span><span class="n">a</span><span class="o">]</span><span class="o">]</span> <span class="k">if</span> <span class="vi">@memo</span><span class="o">[</span><span class="o">[</span><span class="n">a</span><span class="o">]</span><span class="o">]</span>
-  <span class="k">if</span> <span class="n">a</span> <span class="o">&lt;</span> <span class="mi">5</span> <span class="o"></span><span class="k">then</span>
+<pre class="chroma"><code class="language-Ruby" data-lang="Ruby"><span class="vi">@memo</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="k">def</span> <span class="nf">calc</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+  <span class="k">return</span> <span class="vi">@memo</span><span class="o">[[</span><span class="n">a</span><span class="o">]]</span> <span class="k">if</span> <span class="vi">@memo</span><span class="o">[[</span><span class="n">a</span><span class="o">]]</span>
+  <span class="k">if</span> <span class="n">a</span> <span class="o">&lt;</span> <span class="mi">5</span> <span class="k">then</span>
     <span class="n">ret</span> <span class="o">=</span> <span class="n">a</span><span class="o">*</span><span class="n">a</span><span class="o">+</span><span class="mh">0x2345</span>
-  <span class="o"></span><span class="k">else</span>
-    <span class="n">ret</span> <span class="o">=</span> <span class="n">calc</span><span class="p">(</span><span class="n">a</span><span class="o">-</span><span class="mi">5</span><span class="o"></span><span class="p">)</span><span class="o">*</span><span class="mh">0x1234</span> <span class="o"></span><span class="o">+</span> <span class="p">(</span><span class="n">calc</span><span class="p">(</span><span class="n">a</span><span class="o">-</span><span class="mi">1</span><span class="o"></span><span class="p">)</span><span class="o">-</span><span class="n">calc</span><span class="p">(</span><span class="n">a</span><span class="o">-</span><span class="mi">2</span><span class="o"></span><span class="p">)</span><span class="p">)</span> <span class="o">+</span><span class="p">(</span><span class="n">calc</span><span class="p">(</span><span class="n">a</span><span class="o">-</span><span class="mi">3</span><span class="o"></span><span class="p">)</span><span class="o">-</span><span class="n">calc</span><span class="p">(</span><span class="n">a</span><span class="o">-</span><span class="mi">4</span><span class="o"></span><span class="p">)</span><span class="p">)</span>
+  <span class="k">else</span>
+    <span class="n">ret</span> <span class="o">=</span> <span class="n">calc</span><span class="p">(</span><span class="n">a</span><span class="o">-</span><span class="mi">5</span><span class="p">)</span><span class="o">*</span><span class="mh">0x1234</span> <span class="o">+</span> <span class="p">(</span><span class="n">calc</span><span class="p">(</span><span class="n">a</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">-</span><span class="n">calc</span><span class="p">(</span><span class="n">a</span><span class="o">-</span><span class="mi">2</span><span class="p">))</span> <span class="o">+</span><span class="p">(</span><span class="n">calc</span><span class="p">(</span><span class="n">a</span><span class="o">-</span><span class="mi">3</span><span class="p">)</span><span class="o">-</span><span class="n">calc</span><span class="p">(</span><span class="n">a</span><span class="o">-</span><span class="mi">4</span><span class="p">))</span>
   <span class="k">end</span>
-  <span class="vi">@memo</span><span class="o">[</span><span class="o">[</span><span class="n">a</span><span class="o">]</span><span class="o">]</span> <span class="o">=</span> <span class="n">ret</span>
+  <span class="vi">@memo</span><span class="o">[[</span><span class="n">a</span><span class="o">]]</span> <span class="o">=</span> <span class="n">ret</span>
   <span class="k">return</span> <span class="n">ret</span>
 <span class="k">end</span>
-<span class="nb">printf</span><span class="p">(</span><span class="s2">&#34;</span><span class="s2">0x%x</span><span class="se">\n</span><span class="s2">&#34;</span><span class="p">,</span> <span class="n">calc</span><span class="p">(</span><span class="mh">0x18f4b</span><span class="o"></span><span class="p">)</span> <span class="o">&amp;</span> <span class="mh">0xFFFFFFFF</span> <span class="o"></span><span class="p">)</span>
-</code></pre></td></tr></table>
+<span class="nb">printf</span><span class="p">(</span><span class="s2">&#34;0x%x</span><span class="se">\n</span><span class="s2">&#34;</span><span class="p">,</span> <span class="n">calc</span><span class="p">(</span><span class="mh">0x18f4b</span><span class="p">)</span> <span class="o">&amp;</span> <span class="mh">0xFFFFFFFF</span> <span class="p">)</span></code></pre></td></tr></table>
 </div>
-</div><p><br />
+</div>
+<p><br />
 最初に実行した際に、以下のエラーが出ました。</p>
-<pre><code>$ ruby be-quick-or-be-dead-3_solve.rb 
-be-quick-or-be-dead-3_solve.rb:7:in `calc': stack level too deep (SystemStackError)
-</code></pre><p><br />
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span><span class="lnt">2
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">$ ruby be-quick-or-be-dead-3_solve.rb 
+be-quick-or-be-dead-3_solve.rb:7:in `calc&#39;: stack level too deep (SystemStackError)</pre></td></tr></table>
+</div>
+</div>
+<p><br />
 これは、RUBY_THREAD_VM_STACK_SIZEという環境変数で回避できるそうなので、テキトーに100MBでやってみました。</p>
-<pre><code>$ export RUBY_THREAD_VM_STACK_SIZE=100000000
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">$ export RUBY_THREAD_VM_STACK_SIZE=100000000
 $ ruby be-quick-or-be-dead-3_solve.rb 
-0x2f8cdc3f
-</code></pre><p><br />
+0x2f8cdc3f</pre></td></tr></table>
+</div>
+</div>
+<p><br />
 gdbでcalc()をコールする直前でbreakして、戻り値をセットして、jumpでcalc()をスキップします。</p>
-<pre><code>gef➤  i b
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">gef➤  i b
 Num     Type           Disp Enb Address            What
 1       breakpoint     keep y   0x000000000040079b &lt;calculate_key+9&gt;
 	breakpoint already hit 1 time
@@ -1766,11 +2150,16 @@ Program received signal SIGALRM, Alarm clock.
 Done calculating key
 Printing flag:
 picoCTF{dynamic_pr0gramming_ftw_22ac7d81}
-[Inferior 1 (process 1492) exited normally]
-</code></pre><p>Flag: <code>picoCTF{dynamic_pr0gramming_ftw_22ac7d81}</code></p>
+[Inferior 1 (process 1492) exited normally]</pre></td></tr></table>
+</div>
+</div>
+<p>Flag: <code>picoCTF{dynamic_pr0gramming_ftw_22ac7d81}</code></p>
+
 <p><br /><br />
 <br /><br /></p>
-<hr>
+
+<hr />
+
 <p><br /><br />
 <br /><br /></p>
 

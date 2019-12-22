@@ -23,7 +23,7 @@
 <meta name="google-site-verification" content="PqctLWZQttGzxXVupWuIt2HWuBI8cvN1z07ETpxA2dw" />
 
 
-<meta name="generator" content="Hugo 0.60.1 with theme even" />
+<meta name="generator" content="Hugo 0.55.6 with theme even" />
 
 
 <link rel="canonical" href="https://captureamerica.github.io/writeups/post/watevrctf_2019/" />
@@ -42,17 +42,21 @@
 <meta property="og:description" content="URL: https://ctf.watevr.xyz/challenges クリスマスシーズンでCTFイベントが並行して開催されている中、こちらのCTFは問題数も多く、よくわからんのが多くてほとんど手つかずです。" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://captureamerica.github.io/writeups/post/watevrctf_2019/" />
-<meta property="article:published_time" content="2019-12-15T14:00:00+09:00" />
-<meta property="article:modified_time" content="2019-12-15T14:00:00+09:00" />
+<meta property="article:published_time" content="2019-12-15T14:00:00&#43;09:00"/>
+<meta property="article:modified_time" content="2019-12-15T14:00:00&#43;09:00"/>
+
 <meta itemprop="name" content="watevrCTF Writeup">
 <meta itemprop="description" content="URL: https://ctf.watevr.xyz/challenges クリスマスシーズンでCTFイベントが並行して開催されている中、こちらのCTFは問題数も多く、よくわからんのが多くてほとんど手つかずです。">
+
+
 <meta itemprop="datePublished" content="2019-12-15T14:00:00&#43;09:00" />
 <meta itemprop="dateModified" content="2019-12-15T14:00:00&#43;09:00" />
 <meta itemprop="wordCount" content="1120">
 
 
 
-<meta itemprop="keywords" content="CTF,Reviewed," /><meta name="twitter:card" content="summary"/>
+<meta itemprop="keywords" content="CTF," />
+<meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="watevrCTF Writeup"/>
 <meta name="twitter:description" content="URL: https://ctf.watevr.xyz/challenges クリスマスシーズンでCTFイベントが並行して開催されている中、こちらのCTFは問題数も多く、よくわからんのが多くてほとんど手つかずです。"/>
 
@@ -136,108 +140,141 @@
   <h2 class="post-toc-title">Contents</h2>
   <div class="post-toc-content">
     <nav id="TableOfContents">
-  <ul>
-    <li><a href="#forensic-evil-cuteness">[Forensic]: Evil Cuteness</a>
-      <ul>
-        <li><a href="#challenge">Challenge</a></li>
-        <li><a href="#solution">Solution</a></li>
-      </ul>
-    </li>
-    <li><a href="#web-cookie-store">[Web]: Cookie Store</a>
-      <ul>
-        <li><a href="#challenge1">Challenge</a></li>
-        <li><a href="#solution1">Solution</a></li>
-      </ul>
-    </li>
-    <li><a href="#reverse-timeout">[Reverse]: Timeout</a>
-      <ul>
-        <li><a href="#challenge2">Challenge</a></li>
-        <li><a href="#solution2">Solution</a></li>
-      </ul>
-    </li>
-    <li><a href="#misc-unspaellablle">[Misc]: Unspaellablle</a>
-      <ul>
-        <li><a href="#challenge3">Challenge</a></li>
-        <li><a href="#unsolved">(Unsolved)</a></li>
-      </ul>
-    </li>
-    <li><a href="#misc-ancient-script">[Misc]: Ancient Script</a>
-      <ul>
-        <li><a href="#challenge4">Challenge</a></li>
-        <li><a href="#unsolved1">(Unsolved)</a></li>
-      </ul>
-    </li>
-  </ul>
+<ul>
+<li>
+<ul>
+<li><a href="#forensic-evil-cuteness">[Forensic]: Evil Cuteness</a>
+<ul>
+<li><a href="#challenge">Challenge</a></li>
+<li><a href="#solution">Solution</a></li>
+</ul></li>
+<li><a href="#web-cookie-store">[Web]: Cookie Store</a>
+<ul>
+<li><a href="#challenge-1">Challenge</a></li>
+<li><a href="#solution-1">Solution</a></li>
+</ul></li>
+<li><a href="#reverse-timeout">[Reverse]: Timeout</a>
+<ul>
+<li><a href="#challenge-2">Challenge</a></li>
+<li><a href="#solution-2">Solution</a></li>
+</ul></li>
+<li><a href="#misc-unspaellablle">[Misc]: Unspaellablle</a>
+<ul>
+<li><a href="#challenge-3">Challenge</a></li>
+<li><a href="#unsolved">(Unsolved)</a></li>
+</ul></li>
+<li><a href="#misc-ancient-script">[Misc]: Ancient Script</a>
+<ul>
+<li><a href="#challenge-4">Challenge</a></li>
+<li><a href="#unsolved-1">(Unsolved)</a></li>
+</ul></li>
+</ul></li>
+</ul>
 </nav>
   </div>
 </div>
     <div class="post-content">
-      <p>URL: <a href="https://ctf.watevr.xyz/challenges"><a href="https://ctf.watevr.xyz/challenges">https://ctf.watevr.xyz/challenges</a></a>
+      
+
+<p>URL: <a href="https://ctf.watevr.xyz/challenges">https://ctf.watevr.xyz/challenges</a>
 <br /><br />
 クリスマスシーズンでCTFイベントが並行して開催されている中、こちらのCTFは問題数も多く、よくわからんのが多くてほとんど手つかずです。
 <br /><br />
 3問しか解いてないです。302位でした。</p>
-<img src="https://captureamerica.github.io/writeups/img/watevrCTF_2019_Score.png" alt="watevrCTF_2019_Score.png">
+
+<p><img src="https://captureamerica.github.io/writeups/img/watevrCTF_2019_Score.png" alt="watevrCTF_2019_Score.png"></p>
+
 <p><br /><br /></p>
+
 <h2 id="forensic-evil-cuteness">[Forensic]: Evil Cuteness</h2>
-<hr>
+
+<hr />
+
 <h3 id="challenge">Challenge</h3>
+
 <blockquote>
-<p>Omg, look at that cute kitty! It's so cute I can't take my eyes off it! Wait, where did my flag go?</p>
+<p>Omg, look at that cute kitty! It&rsquo;s so cute I can&rsquo;t take my eyes off it! Wait, where did my flag go?</p>
 </blockquote>
+
 <p>Attachment:</p>
+
 <ul>
 <li>kitty.jpg</li>
 </ul>
+
 <p><br /></p>
+
 <h3 id="solution">Solution</h3>
-<p>$ binwalk &ndash;dd=&rsquo;.*&rsquo; kitty.jpg</p>
+
+<p>$ binwalk &ndash;dd=&lsquo;.*&rsquo; kitty.jpg</p>
+
 <p><br />
 Flag: <code>watevr{7h475_4c7u4lly_r34lly_cu73_7h0u6h}</code></p>
+
 <p><br /><br />
 <br /><br /></p>
+
 <h2 id="web-cookie-store">[Web]: Cookie Store</h2>
-<hr>
-<h3 id="challenge1">Challenge</h3>
+
+<hr />
+
+<h3 id="challenge-1">Challenge</h3>
+
 <blockquote>
 <p>Welcome to my cookie store!
 <br /><br />
-http://13.48.71.231:50000</p>
+<a href="http://13.48.71.231:50000">http://13.48.71.231:50000</a></p>
 </blockquote>
+
 <p><br /></p>
-<h3 id="solution1">Solution</h3>
+
+<h3 id="solution-1">Solution</h3>
+
 <p>ショップのページで100円で変えるクッキーがあるけど、手持ちは50円でした。</p>
-<p>取れたクッキー。</p>
+
+<p>取れたクッキー。
 <pre>
 $ echo eyJtb25leSI6IDUwLCAiaGlzdG9yeSI6IFtdfQ== | base64 -d
-{"money": 50, "history": []}
-</pre>
+{&ldquo;money&rdquo;: 50, &ldquo;history&rdquo;: []}
+</pre></p>
+
 <p><br />
-クッキーを編集してお金を増やして100円クッキーを購入。</p>
+クッキーを編集してお金を増やして100円クッキーを購入。
 <pre>
-$ echo "{\"money\": 200, \"history\": []}" | base64
+$ echo &ldquo;{\&ldquo;money\&rdquo;: 200, \&ldquo;history\&rdquo;: []}&rdquo; | base64
 eyJtb25leSI6IDIwMCwgImhpc3RvcnkiOiBbXX0K
-</pre>
+</pre></p>
+
 <p><br />
 Flag: <code>watevr{b64_15_4_6r347_3ncryp710n_m37h0d}</code></p>
+
 <p><br /><br />
 <br /><br /></p>
+
 <h2 id="reverse-timeout">[Reverse]: Timeout</h2>
-<hr>
-<h3 id="challenge2">Challenge</h3>
+
+<hr />
+
+<h3 id="challenge-2">Challenge</h3>
+
 <blockquote>
 <p>Stop, wait a minute!</p>
 </blockquote>
+
 <p>Attachment:</p>
+
 <ul>
 <li>timeout (ELF 64bit)</li>
 </ul>
+
 <p><br /></p>
-<h3 id="solution2">Solution</h3>
+
+<h3 id="solution-2">Solution</h3>
+
 <p>Ghidraでソースを確認。generate()という関数の中で、フラグを生成しています。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre class="chroma"><code class="language-C" data-lang="C"><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -329,14 +366,14 @@ Flag: <code>watevr{b64_15_4_6r347_3ncryp710n_m37h0d}</code></p>
   <span class="n">undefined</span> <span class="n">local_b6</span><span class="p">;</span>
   <span class="n">undefined</span> <span class="n">local_b5</span><span class="p">;</span>
   
-  <span class="n">local_10</span> <span class="o">=</span> <span class="o">*</span><span class="p">(</span><span class="kt">long</span> <span class="o">*</span><span class="p">)</span><span class="p">(</span><span class="n">in_FS_OFFSET</span> <span class="o">+</span> <span class="mh">0x28</span><span class="p">)</span><span class="p">;</span>
-  <span class="k">if</span> <span class="p">(</span><span class="n">can_continue</span> <span class="o">=</span><span class="o">=</span> <span class="mh">0x539</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">local_10</span> <span class="o">=</span> <span class="o">*</span><span class="p">(</span><span class="kt">long</span> <span class="o">*</span><span class="p">)(</span><span class="n">in_FS_OFFSET</span> <span class="o">+</span> <span class="mh">0x28</span><span class="p">);</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">can_continue</span> <span class="o">==</span> <span class="mh">0x539</span><span class="p">)</span> <span class="p">{</span>
     <span class="n">local_78</span> <span class="o">=</span> <span class="mh">0x23</span><span class="p">;</span>
     <span class="n">local_77</span> <span class="o">=</span> <span class="mh">0x3c</span><span class="p">;</span>
 <span class="o">:</span>
 <span class="p">(</span><span class="n">snip</span><span class="p">)</span>
 <span class="o">:</span>
-    <span class="n">local_b8</span> <span class="o">=</span> <span class="sa"></span><span class="sc">&#39;</span><span class="sc">w</span><span class="sc">&#39;</span><span class="p">;</span>
+    <span class="n">local_b8</span> <span class="o">=</span> <span class="sc">&#39;w&#39;</span><span class="p">;</span>
     <span class="n">local_b7</span> <span class="o">=</span> <span class="mh">0x61</span><span class="p">;</span>
     <span class="n">local_b6</span> <span class="o">=</span> <span class="mh">0x74</span><span class="p">;</span>
     <span class="n">local_b5</span> <span class="o">=</span> <span class="mh">0x65</span><span class="p">;</span>
@@ -399,83 +436,117 @@ Flag: <code>watevr{b64_15_4_6r347_3ncryp710n_m37h0d}</code></p>
     <span class="n">local_7c</span> <span class="o">=</span> <span class="mh">0x30</span><span class="p">;</span>
     <span class="n">local_7b</span> <span class="o">=</span> <span class="mh">0x7d</span><span class="p">;</span>
     <span class="n">local_7a</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-    <span class="n">puts</span><span class="p">(</span><span class="o">&amp;</span><span class="n">local_b8</span><span class="p">)</span><span class="p">;</span>
-  <span class="p">}</span>
-</code></pre></td></tr></table>
+    <span class="n">puts</span><span class="p">(</span><span class="o">&amp;</span><span class="n">local_b8</span><span class="p">);</span>
+  <span class="p">}</span></code></pre></td></tr></table>
 </div>
-</div><p>長いので途中は省略してます。</p>
+</div>
+<p>長いので途中は省略してます。</p>
+
 <p>local_b8の位置から表示しているので、それより前の値は無視してオッケーです。</p>
+
 <p>local_b8 は &lsquo;w&rsquo; だし、フラグ確定ですね。</p>
+
 <p>&lsquo;w&rsquo; とか 10進数を16進数に変えておいて、pythonで文字に変換します。</p>
+
 <pre>
 $ python -c 'print("".join([chr(int(x,16)) for x in "0x77,0x61,0x74,0x65,0x76,0x72,0x7b,0x33,0x6e,0x63,0x72,0x79,0x74,0x69,0x6f,0x6e,0x5f,0x69,0x73,0x5f,0x6f,0x76,0x65,0x72,0x72,0x61,0x74,0x65,0x64,0x5f,0x79,0x6f,0x75,0x74,0x75,0x62,0x65,0x2e,0x63,0x6f,0x6d,0x2f,0x77,0x61,0x74,0x63,0x68,0x3f,0x76,0x3d,0x4f,0x50,0x66,0x30,0x59,0x62,0x58,0x71,0x44,0x6d,0x30,0x7d".split(",")]))'
 watevr{3ncrytion_is_overrated_youtube.com/watch?v=OPf0YbXqDm0}
 </pre>
+
 <p><br />
 Flag: <code>watevr{3ncrytion_is_overrated_youtube.com/watch?v=OPf0YbXqDm0}</code></p>
+
 <p><br />
 （結局、タイマーの辺りは何もしなかったです)</p>
+
 <p><br /><br /><hr>
 ここから以下は、解けてないやつです。。。</p>
+
 <p><br /><br />
 <br /><br /></p>
+
 <h2 id="misc-unspaellablle">[Misc]: Unspaellablle</h2>
-<hr>
-<h3 id="challenge3">Challenge</h3>
+
+<hr />
+
+<h3 id="challenge-3">Challenge</h3>
+
 <blockquote>
-<p>I think the author of this episode's script had a stroke or something&hellip; Or maybe it's just me?</p>
+<p>I think the author of this episode&rsquo;s script had a stroke or something&hellip; Or maybe it&rsquo;s just me?</p>
 </blockquote>
+
 <p>Attachment:</p>
+
 <ul>
 <li>chall.txt</li>
 </ul>
+
 <p><br /></p>
+
 <h3 id="unsolved">(Unsolved)</h3>
+
 <p>スペルミスのある単語を見つけるだけなんでしょうけど、途中で飽きてしまいました。</p>
+
 <pre>
 cawrds  (w)
 thinag  (a)
 grtabs  (t)
-hies 	(e)
-herre	(r)
-holid 	(i)
+hies    (e)
+herre   (r)
+holid   (i)
 fecmale (c)
 laddear (a)
 clinmbs (n)
 Retirted(t)
 Samuesls(s)
 ppiece  (p)
-teo 	(e)
+teo     (e)
 Hammolnds (l)
 sttart  (t)
-thie 	(i)
+thie    (i)
 havyen't (y)
 :
 </pre>
+
 <p>1個ずつ見ていくのが面倒だったので、途中からGoogle Docのスペルチェックを使って一気にスペル修正して、修正前と修正後のDiffを取ったら、うまい具合にフラグにならなかったです。</p>
+
 <p><br /><br />
 <br /><br /></p>
+
 <h2 id="misc-ancient-script">[Misc]: Ancient Script</h2>
-<hr>
-<h3 id="challenge4">Challenge</h3>
+
+<hr />
+
+<h3 id="challenge-4">Challenge</h3>
+
 <blockquote>
-<p>Hmm, this looks like something my english teacher would give me, doesn't it? Too bad i forgot english&hellip; NOTE: the flag for this challenge is not in the standard watevr{} format. Submit it as is right from the challenge without the flag format.</p>
+<p>Hmm, this looks like something my english teacher would give me, doesn&rsquo;t it? Too bad i forgot english&hellip; NOTE: the flag for this challenge is not in the standard watevr{} format. Submit it as is right from the challenge without the flag format.</p>
 </blockquote>
+
 <p>Attachment:</p>
+
 <ul>
 <li>romeo (Ascii Text file)</li>
 </ul>
+
 <p><br /></p>
-<h3 id="unsolved1">(Unsolved)</h3>
+
+<h3 id="unsolved-1">(Unsolved)</h3>
+
 <p>これは、Shakespeareというesolangです。</p>
+
 <p>難しいのは、オンラインのインタープリターがなくて、コンパイラーを使ってコンパイルしないといけないのですが、どれを使ってもまともにコンパイルができないので降参しました。</p>
+
 <p>試したやつ：<br />
 <a href="http://shakespearelang.sf.net/download/spl-1.2.1.tar.gz">http://shakespearelang.sf.net/download/spl-1.2.1.tar.gz</a> (bison, flex 辺りが必要) <br />
 <a href="https://github.com/zmbc/shakespearelang">https://github.com/zmbc/shakespearelang</a><br />
 <a href="https://github.com/drsam94/Spl">https://github.com/drsam94/Spl</a><br /></p>
+
 <p><br /><br />
 <br /><br /></p>
-<hr>
+
+<hr />
+
 <p><br /><br />
 <br /><br /></p>
 
@@ -499,10 +570,13 @@ havyen't (y)
 <footer class="post-footer">
       <div class="post-tags">
           <a href="https://captureamerica.github.io/writeups/tags/ctf/">CTF</a>
-          <a href="https://captureamerica.github.io/writeups/tags/reviewed/">Reviewed</a>
           </div>
       <nav class="post-nav">
-        
+        <a class="prev" href="https://captureamerica.github.io/writeups/post/xmas_htsp_ctf/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">X-MAS CTF Writeup</span>
+            <span class="prev-text nav-mobile">Prev</span>
+          </a>
         <a class="next" href="https://captureamerica.github.io/writeups/post/tuctf_2019/">
             <span class="next-text nav-default">TUCTF 2019 Writeup</span>
             <span class="next-text nav-mobile">Next</span>

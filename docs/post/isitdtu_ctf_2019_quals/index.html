@@ -23,7 +23,7 @@
 <meta name="google-site-verification" content="PqctLWZQttGzxXVupWuIt2HWuBI8cvN1z07ETpxA2dw" />
 
 
-<meta name="generator" content="Hugo 0.60.1 with theme even" />
+<meta name="generator" content="Hugo 0.55.6 with theme even" />
 
 
 <link rel="canonical" href="https://captureamerica.github.io/writeups/post/isitdtu_ctf_2019_quals/" />
@@ -42,17 +42,21 @@
 <meta property="og:description" content="URL: https://ctf.isitdtu.com/ 開始早々サーバがダウンして、そのうち直るかと思ったら次の日も問題が解消されてなくて、あんまり興味をひくチャレンジもなくってモチベーション" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://captureamerica.github.io/writeups/post/isitdtu_ctf_2019_quals/" />
-<meta property="article:published_time" content="2019-07-01T13:21:40+09:00" />
-<meta property="article:modified_time" content="2019-07-01T13:21:40+09:00" />
+<meta property="article:published_time" content="2019-07-01T13:21:40&#43;09:00"/>
+<meta property="article:modified_time" content="2019-07-01T13:21:40&#43;09:00"/>
+
 <meta itemprop="name" content="ISITDTU 2019 quals Writeup">
 <meta itemprop="description" content="URL: https://ctf.isitdtu.com/ 開始早々サーバがダウンして、そのうち直るかと思ったら次の日も問題が解消されてなくて、あんまり興味をひくチャレンジもなくってモチベーション">
+
+
 <meta itemprop="datePublished" content="2019-07-01T13:21:40&#43;09:00" />
 <meta itemprop="dateModified" content="2019-07-01T13:21:40&#43;09:00" />
-<meta itemprop="wordCount" content="1338">
+<meta itemprop="wordCount" content="1410">
 
 
 
-<meta itemprop="keywords" content="CTF," /><meta name="twitter:card" content="summary"/>
+<meta itemprop="keywords" content="CTF," />
+<meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="ISITDTU 2019 quals Writeup"/>
 <meta name="twitter:description" content="URL: https://ctf.isitdtu.com/ 開始早々サーバがダウンして、そのうち直るかと思ったら次の日も問題が解消されてなくて、あんまり興味をひくチャレンジもなくってモチベーション"/>
 
@@ -136,41 +140,66 @@
   <h2 class="post-toc-title">Contents</h2>
   <div class="post-toc-content">
     <nav id="TableOfContents">
-  <ul>
-    <li><a href="#programming-do-you-like-math">[Programming] Do you like math?</a>
-      <ul>
-        <li><a href="#challenge">Challenge</a></li>
-        <li><a href="#solution">Solution</a></li>
-      </ul>
-    </li>
-  </ul>
+<ul>
+<li>
+<ul>
+<li><a href="#programming-do-you-like-math">[Programming] Do you like math?</a>
+<ul>
+<li><a href="#challenge">Challenge</a></li>
+<li><a href="#solution">Solution</a></li>
+</ul></li>
+</ul></li>
+</ul>
 </nav>
   </div>
 </div>
     <div class="post-content">
-      <p>URL: <a href="https://ctf.isitdtu.com/"><a href="https://ctf.isitdtu.com/">https://ctf.isitdtu.com/</a></a>
+      
+
+<p>URL: <a href="https://ctf.isitdtu.com/">https://ctf.isitdtu.com/</a>
 <br /><br />
 開始早々サーバがダウンして、そのうち直るかと思ったら次の日も問題が解消されてなくて、あんまり興味をひくチャレンジもなくってモチベーションがあがらなかったです。。。
 <br /><br />
 とりあえず、面白いと思った1問だけやりました。</p>
+
 <p><br /><br />
 <br /><br /></p>
+
 <h2 id="programming-do-you-like-math">[Programming] Do you like math?</h2>
-<hr>
+
+<hr />
+
 <h3 id="challenge">Challenge</h3>
+
 <blockquote>
 <p>nc 104.154.120.223 8083</p>
 </blockquote>
+
 <p>アクセスすると、以下のような計算式が出てきます。1秒くらい経つとコネクションが切れます。</p>
-<pre><code>  #    #####         #####   #####           
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">  #    #####         #####   #####           
  ##   #     #   #   #     # #     #          
 # #   #         #         # #     #    ##### 
   #   ######  #####  #####   #####           
   #   #     #   #         # #     #    ##### 
   #   #     #   #   #     # #     #          
-#####  #####         #####   #####           
-</code></pre><p><br /></p>
+#####  #####         #####   #####           </pre></td></tr></table>
+</div>
+</div>
+<p><br /></p>
+
 <h3 id="solution">Solution</h3>
+
 <p>解き方は見ての通りなんですが、アスキーアートを判別して数値に直して計算して結果を送るだけです。
 <br /><br />
 とりあえず、何度かアクセスして、全部の数字と記号のアスキーアートを集めます。
@@ -183,7 +212,7 @@
 <br /><br /></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">  1
+<pre class="chroma"><code class="language-Python" data-lang="Python"><span class="lnt">  1
 </span><span class="lnt">  2
 </span><span class="lnt">  3
 </span><span class="lnt">  4
@@ -502,321 +531,324 @@
 <span class="kn">from</span> <span class="nn">pwn</span> <span class="kn">import</span> <span class="o">*</span>
 <span class="kn">import</span> <span class="nn">re</span>
 
-<span class="n">host</span> <span class="o">=</span> <span class="sa"></span><span class="s2">&#34;</span><span class="s2">104.154.120.223</span><span class="s2">&#34;</span>
+<span class="n">host</span> <span class="o">=</span> <span class="s2">&#34;104.154.120.223&#34;</span>
 <span class="n">port</span> <span class="o">=</span> <span class="mi">8083</span>
 <span class="n">r</span> <span class="o">=</span> <span class="n">remote</span><span class="p">(</span><span class="n">host</span><span class="p">,</span> <span class="n">port</span><span class="p">)</span>
 
 
-<span class="sa"></span><span class="s1">&#39;&#39;&#39;</span><span class="s1">
-</span><span class="s1"></span><span class="s1">
-</span><span class="s1"></span><span class="s1">  ###  </span><span class="s1">
-</span><span class="s1"></span><span class="s1"> #   # </span><span class="s1">
-</span><span class="s1"></span><span class="s1">#     #</span><span class="s1">
-</span><span class="s1"></span><span class="s1">#     #  &lt;---</span><span class="s1">
-</span><span class="s1"></span><span class="s1">#     #</span><span class="s1">
-</span><span class="s1"></span><span class="s1"> #   # </span><span class="s1">
-</span><span class="s1"></span><span class="s1">  ###  </span><span class="s1">
-</span><span class="s1"></span><span class="s1">&#39;&#39;&#39;</span>
-<span class="k">def</span> <span class="nf">check_zero</span><span class="p">(</span> <span class="n">tmp_l</span> <span class="p">)</span><span class="p">:</span>
-    <span class="k">if</span> <span class="n">tmp_l</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="o">==</span> <span class="sa"></span><span class="s2">&#34;</span><span class="s2">#     #</span><span class="s2">&#34;</span><span class="p">:</span>
+<span class="s1">&#39;&#39;&#39;
+</span><span class="s1">
+</span><span class="s1">  ###  
+</span><span class="s1"> #   # 
+</span><span class="s1">#     #
+</span><span class="s1">#     #  &lt;---
+</span><span class="s1">#     #
+</span><span class="s1"> #   # 
+</span><span class="s1">  ###  
+</span><span class="s1">&#39;&#39;&#39;</span>
+<span class="k">def</span> <span class="nf">check_zero</span><span class="p">(</span> <span class="n">tmp_l</span> <span class="p">):</span>
+    <span class="k">if</span> <span class="n">tmp_l</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&#34;#     #&#34;</span><span class="p">:</span>
         <span class="k">return</span> <span class="mi">0</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="k">return</span> <span class="o">-</span><span class="mi">1</span>
-<span class="sa"></span><span class="s1">&#39;&#39;&#39;</span><span class="s1">
-</span><span class="s1"></span><span class="s1">
-</span><span class="s1"></span><span class="s1">  #</span><span class="s1">
-</span><span class="s1"></span><span class="s1"> ##    &lt;---</span><span class="s1">
-</span><span class="s1"></span><span class="s1"># #  </span><span class="s1">
-</span><span class="s1"></span><span class="s1">  #  </span><span class="s1">
-</span><span class="s1"></span><span class="s1">  #  </span><span class="s1">
-</span><span class="s1"></span><span class="s1">  #  </span><span class="s1">
-</span><span class="s1"></span><span class="s1">#####</span><span class="s1">
-</span><span class="s1"></span><span class="s1">&#39;&#39;&#39;</span>
-<span class="k">def</span> <span class="nf">check_one</span><span class="p">(</span> <span class="n">tmp_l</span> <span class="p">)</span><span class="p">:</span>
+<span class="s1">&#39;&#39;&#39;
+</span><span class="s1">
+</span><span class="s1">  #
+</span><span class="s1"> ##    &lt;---
+</span><span class="s1"># #  
+</span><span class="s1">  #  
+</span><span class="s1">  #  
+</span><span class="s1">  #  
+</span><span class="s1">#####
+</span><span class="s1">&#39;&#39;&#39;</span>
+<span class="k">def</span> <span class="nf">check_one</span><span class="p">(</span> <span class="n">tmp_l</span> <span class="p">):</span>
     <span class="c1">#if re.search( tmp_l[2], &#34; ##  &#34;):</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">tmp_l</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="p">)</span><span class="p">[</span><span class="p">:</span><span class="mi">5</span><span class="p">]</span> <span class="o">==</span> <span class="sa"></span><span class="s2">&#34;</span><span class="s2"> ##  </span><span class="s2">&#34;</span><span class="p">:</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">tmp_l</span><span class="p">[</span><span class="mi">2</span><span class="p">])[:</span><span class="mi">5</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&#34; ##  &#34;</span><span class="p">:</span>
         <span class="k">return</span> <span class="mi">1</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="k">return</span> <span class="o">-</span><span class="mi">1</span>
 
-<span class="sa"></span><span class="s1">&#39;&#39;&#39;</span><span class="s1">
-</span><span class="s1"></span><span class="s1">
-</span><span class="s1"></span><span class="s1"> ##### </span><span class="s1">
-</span><span class="s1"></span><span class="s1">#     #</span><span class="s1">
-</span><span class="s1"></span><span class="s1">      #  &lt;---</span><span class="s1">
-</span><span class="s1"></span><span class="s1"> ##### </span><span class="s1">
-</span><span class="s1"></span><span class="s1">#        &lt;---</span><span class="s1">
-</span><span class="s1"></span><span class="s1">#      </span><span class="s1">
-</span><span class="s1"></span><span class="s1">#######</span><span class="s1">
-</span><span class="s1"></span><span class="s1">&#39;&#39;&#39;</span>
-<span class="k">def</span> <span class="nf">check_two</span><span class="p">(</span> <span class="n">tmp_l</span> <span class="p">)</span><span class="p">:</span>
-    <span class="k">if</span> <span class="n">tmp_l</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">==</span> <span class="sa"></span><span class="s2">&#34;</span><span class="s2">      #</span><span class="s2">&#34;</span> <span class="ow">and</span> <span class="n">tmp_l</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span> <span class="o">==</span> <span class="sa"></span><span class="s2">&#34;</span><span class="s2">#      </span><span class="s2">&#34;</span><span class="p">:</span>
+<span class="s1">&#39;&#39;&#39;
+</span><span class="s1">
+</span><span class="s1"> ##### 
+</span><span class="s1">#     #
+</span><span class="s1">      #  &lt;---
+</span><span class="s1"> ##### 
+</span><span class="s1">#        &lt;---
+</span><span class="s1">#      
+</span><span class="s1">#######
+</span><span class="s1">&#39;&#39;&#39;</span>
+<span class="k">def</span> <span class="nf">check_two</span><span class="p">(</span> <span class="n">tmp_l</span> <span class="p">):</span>
+    <span class="k">if</span> <span class="n">tmp_l</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&#34;      #&#34;</span> <span class="ow">and</span> <span class="n">tmp_l</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&#34;#      &#34;</span><span class="p">:</span>
         <span class="k">return</span> <span class="mi">2</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="k">return</span> <span class="o">-</span><span class="mi">1</span>
 
-<span class="sa"></span><span class="s1">&#39;&#39;&#39;</span><span class="s1">
-</span><span class="s1"></span><span class="s1">
-</span><span class="s1"></span><span class="s1"> ##### </span><span class="s1">
-</span><span class="s1"></span><span class="s1">#     #  &lt;---</span><span class="s1">
-</span><span class="s1"></span><span class="s1">      #  &lt;---</span><span class="s1">
-</span><span class="s1"></span><span class="s1"> ##### </span><span class="s1">
-</span><span class="s1"></span><span class="s1">      #  &lt;---</span><span class="s1">
-</span><span class="s1"></span><span class="s1">#     #</span><span class="s1">
-</span><span class="s1"></span><span class="s1"> ##### </span><span class="s1">
-</span><span class="s1"></span><span class="s1">&#39;&#39;&#39;</span>
-<span class="k">def</span> <span class="nf">check_three</span><span class="p">(</span> <span class="n">tmp_l</span> <span class="p">)</span><span class="p">:</span>
-    <span class="k">if</span> <span class="n">tmp_l</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">==</span> <span class="sa"></span><span class="s2">&#34;</span><span class="s2">#     #</span><span class="s2">&#34;</span> <span class="ow">and</span> <span class="n">tmp_l</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">==</span> <span class="sa"></span><span class="s2">&#34;</span><span class="s2">      #</span><span class="s2">&#34;</span> <span class="ow">and</span> <span class="n">tmp_l</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span> <span class="o">==</span> <span class="sa"></span><span class="s2">&#34;</span><span class="s2">      #</span><span class="s2">&#34;</span><span class="p">:</span>
+<span class="s1">&#39;&#39;&#39;
+</span><span class="s1">
+</span><span class="s1"> ##### 
+</span><span class="s1">#     #  &lt;---
+</span><span class="s1">      #  &lt;---
+</span><span class="s1"> ##### 
+</span><span class="s1">      #  &lt;---
+</span><span class="s1">#     #
+</span><span class="s1"> ##### 
+</span><span class="s1">&#39;&#39;&#39;</span>
+<span class="k">def</span> <span class="nf">check_three</span><span class="p">(</span> <span class="n">tmp_l</span> <span class="p">):</span>
+    <span class="k">if</span> <span class="n">tmp_l</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&#34;#     #&#34;</span> <span class="ow">and</span> <span class="n">tmp_l</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&#34;      #&#34;</span> <span class="ow">and</span> <span class="n">tmp_l</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&#34;      #&#34;</span><span class="p">:</span>
         <span class="k">return</span> <span class="mi">3</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="k">return</span> <span class="o">-</span><span class="mi">1</span>
 
-<span class="sa"></span><span class="s1">&#39;&#39;&#39;</span><span class="s1">
-</span><span class="s1"></span><span class="s1">
-</span><span class="s1"></span><span class="s1">#        &lt;---</span><span class="s1">
-</span><span class="s1"></span><span class="s1">#    # </span><span class="s1">
-</span><span class="s1"></span><span class="s1">#    # </span><span class="s1">
-</span><span class="s1"></span><span class="s1">#    # </span><span class="s1">
-</span><span class="s1"></span><span class="s1">#######</span><span class="s1">
-</span><span class="s1"></span><span class="s1">     # </span><span class="s1">
-</span><span class="s1"></span><span class="s1">     #</span><span class="s1">
-</span><span class="s1"></span><span class="s1">&#39;&#39;&#39;</span>
-<span class="k">def</span> <span class="nf">check_four</span><span class="p">(</span> <span class="n">tmp_l</span> <span class="p">)</span><span class="p">:</span>
-    <span class="k">if</span> <span class="n">tmp_l</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="sa"></span><span class="s2">&#34;</span><span class="s2">#      </span><span class="s2">&#34;</span><span class="p">:</span>
+<span class="s1">&#39;&#39;&#39;
+</span><span class="s1">
+</span><span class="s1">#        &lt;---
+</span><span class="s1">#    # 
+</span><span class="s1">#    # 
+</span><span class="s1">#    # 
+</span><span class="s1">#######
+</span><span class="s1">     # 
+</span><span class="s1">     #
+</span><span class="s1">&#39;&#39;&#39;</span>
+<span class="k">def</span> <span class="nf">check_four</span><span class="p">(</span> <span class="n">tmp_l</span> <span class="p">):</span>
+    <span class="k">if</span> <span class="n">tmp_l</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&#34;#      &#34;</span><span class="p">:</span>
         <span class="k">return</span> <span class="mi">4</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="k">return</span> <span class="o">-</span><span class="mi">1</span>
 
-<span class="sa"></span><span class="s1">&#39;&#39;&#39;</span><span class="s1">
-</span><span class="s1"></span><span class="s1">
-</span><span class="s1"></span><span class="s1">#######</span><span class="s1">
-</span><span class="s1"></span><span class="s1">#      </span><span class="s1">
-</span><span class="s1"></span><span class="s1">#        &lt;---</span><span class="s1">
-</span><span class="s1"></span><span class="s1">###### </span><span class="s1">
-</span><span class="s1"></span><span class="s1">      #  &lt;---</span><span class="s1">
-</span><span class="s1"></span><span class="s1">#     #</span><span class="s1">
-</span><span class="s1"></span><span class="s1"> ##### </span><span class="s1">
-</span><span class="s1"></span><span class="s1">&#39;&#39;&#39;</span>
-<span class="k">def</span> <span class="nf">check_five</span><span class="p">(</span> <span class="n">tmp_l</span> <span class="p">)</span><span class="p">:</span>
-    <span class="k">if</span> <span class="n">tmp_l</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">==</span> <span class="sa"></span><span class="s2">&#34;</span><span class="s2">#      </span><span class="s2">&#34;</span> <span class="ow">and</span> <span class="n">tmp_l</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span> <span class="o">==</span> <span class="sa"></span><span class="s2">&#34;</span><span class="s2">      #</span><span class="s2">&#34;</span><span class="p">:</span>
+<span class="s1">&#39;&#39;&#39;
+</span><span class="s1">
+</span><span class="s1">#######
+</span><span class="s1">#      
+</span><span class="s1">#        &lt;---
+</span><span class="s1">###### 
+</span><span class="s1">      #  &lt;---
+</span><span class="s1">#     #
+</span><span class="s1"> ##### 
+</span><span class="s1">&#39;&#39;&#39;</span>
+<span class="k">def</span> <span class="nf">check_five</span><span class="p">(</span> <span class="n">tmp_l</span> <span class="p">):</span>
+    <span class="k">if</span> <span class="n">tmp_l</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&#34;#      &#34;</span> <span class="ow">and</span> <span class="n">tmp_l</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&#34;      #&#34;</span><span class="p">:</span>
         <span class="k">return</span> <span class="mi">5</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="k">return</span> <span class="o">-</span><span class="mi">1</span>
 
-<span class="sa"></span><span class="s1">&#39;&#39;&#39;</span><span class="s1">
-</span><span class="s1"></span><span class="s1">
-</span><span class="s1"></span><span class="s1"> ##### </span><span class="s1">
-</span><span class="s1"></span><span class="s1">#     #</span><span class="s1">
-</span><span class="s1"></span><span class="s1">#        &lt;---</span><span class="s1">
-</span><span class="s1"></span><span class="s1">###### </span><span class="s1">
-</span><span class="s1"></span><span class="s1">#     #  &lt;---</span><span class="s1">
-</span><span class="s1"></span><span class="s1">#     #</span><span class="s1">
-</span><span class="s1"></span><span class="s1"> ##### </span><span class="s1">
-</span><span class="s1"></span><span class="s1">&#39;&#39;&#39;</span>
-<span class="k">def</span> <span class="nf">check_six</span><span class="p">(</span> <span class="n">tmp_l</span> <span class="p">)</span><span class="p">:</span>
-    <span class="k">if</span> <span class="n">tmp_l</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">==</span> <span class="sa"></span><span class="s2">&#34;</span><span class="s2">#      </span><span class="s2">&#34;</span> <span class="ow">and</span> <span class="n">tmp_l</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span> <span class="o">==</span> <span class="sa"></span><span class="s2">&#34;</span><span class="s2">#     #</span><span class="s2">&#34;</span><span class="p">:</span>
+<span class="s1">&#39;&#39;&#39;
+</span><span class="s1">
+</span><span class="s1"> ##### 
+</span><span class="s1">#     #
+</span><span class="s1">#        &lt;---
+</span><span class="s1">###### 
+</span><span class="s1">#     #  &lt;---
+</span><span class="s1">#     #
+</span><span class="s1"> ##### 
+</span><span class="s1">&#39;&#39;&#39;</span>
+<span class="k">def</span> <span class="nf">check_six</span><span class="p">(</span> <span class="n">tmp_l</span> <span class="p">):</span>
+    <span class="k">if</span> <span class="n">tmp_l</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&#34;#      &#34;</span> <span class="ow">and</span> <span class="n">tmp_l</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&#34;#     #&#34;</span><span class="p">:</span>
         <span class="k">return</span> <span class="mi">6</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="k">return</span> <span class="o">-</span><span class="mi">1</span>
 
-<span class="sa"></span><span class="s1">&#39;&#39;&#39;</span><span class="s1">
-</span><span class="s1"></span><span class="s1">
-</span><span class="s1"></span><span class="s1">#######</span><span class="s1">
-</span><span class="s1"></span><span class="s1">#    #   &lt;---</span><span class="s1">
-</span><span class="s1"></span><span class="s1">    #  </span><span class="s1">
-</span><span class="s1"></span><span class="s1">   #   </span><span class="s1">
-</span><span class="s1"></span><span class="s1">  #    </span><span class="s1">
-</span><span class="s1"></span><span class="s1">  #    </span><span class="s1">
-</span><span class="s1"></span><span class="s1">  #     </span><span class="s1">
-</span><span class="s1"></span><span class="s1">&#39;&#39;&#39;</span>
-<span class="k">def</span> <span class="nf">check_seven</span><span class="p">(</span> <span class="n">tmp_l</span> <span class="p">)</span><span class="p">:</span>
-    <span class="k">if</span> <span class="n">tmp_l</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">==</span> <span class="sa"></span><span class="s2">&#34;</span><span class="s2">#    # </span><span class="s2">&#34;</span><span class="p">:</span>
+<span class="s1">&#39;&#39;&#39;
+</span><span class="s1">
+</span><span class="s1">#######
+</span><span class="s1">#    #   &lt;---
+</span><span class="s1">    #  
+</span><span class="s1">   #   
+</span><span class="s1">  #    
+</span><span class="s1">  #    
+</span><span class="s1">  #     
+</span><span class="s1">&#39;&#39;&#39;</span>
+<span class="k">def</span> <span class="nf">check_seven</span><span class="p">(</span> <span class="n">tmp_l</span> <span class="p">):</span>
+    <span class="k">if</span> <span class="n">tmp_l</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&#34;#    # &#34;</span><span class="p">:</span>
         <span class="k">return</span> <span class="mi">7</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="k">return</span> <span class="o">-</span><span class="mi">1</span>
 
-<span class="sa"></span><span class="s1">&#39;&#39;&#39;</span><span class="s1">
-</span><span class="s1"></span><span class="s1">
-</span><span class="s1"></span><span class="s1"> #####           </span><span class="s1">
-</span><span class="s1"></span><span class="s1">#     #          </span><span class="s1">
-</span><span class="s1"></span><span class="s1">#     #  &lt;---</span><span class="s1">
-</span><span class="s1"></span><span class="s1"> #####           </span><span class="s1">
-</span><span class="s1"></span><span class="s1">#     #  &lt;---</span><span class="s1">
-</span><span class="s1"></span><span class="s1">#     # </span><span class="s1">
-</span><span class="s1"></span><span class="s1"> ##### </span><span class="s1">
-</span><span class="s1"></span><span class="s1">&#39;&#39;&#39;</span>
-<span class="k">def</span> <span class="nf">check_eight</span><span class="p">(</span> <span class="n">tmp_l</span> <span class="p">)</span><span class="p">:</span>
-    <span class="k">if</span> <span class="n">tmp_l</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">==</span> <span class="sa"></span><span class="s2">&#34;</span><span class="s2">#     #</span><span class="s2">&#34;</span> <span class="ow">and</span> <span class="n">tmp_l</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span> <span class="o">==</span> <span class="sa"></span><span class="s2">&#34;</span><span class="s2">#     #</span><span class="s2">&#34;</span><span class="p">:</span>
+<span class="s1">&#39;&#39;&#39;
+</span><span class="s1">
+</span><span class="s1"> #####           
+</span><span class="s1">#     #          
+</span><span class="s1">#     #  &lt;---
+</span><span class="s1"> #####           
+</span><span class="s1">#     #  &lt;---
+</span><span class="s1">#     # 
+</span><span class="s1"> ##### 
+</span><span class="s1">&#39;&#39;&#39;</span>
+<span class="k">def</span> <span class="nf">check_eight</span><span class="p">(</span> <span class="n">tmp_l</span> <span class="p">):</span>
+    <span class="k">if</span> <span class="n">tmp_l</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&#34;#     #&#34;</span> <span class="ow">and</span> <span class="n">tmp_l</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&#34;#     #&#34;</span><span class="p">:</span>
         <span class="k">return</span> <span class="mi">8</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="k">return</span> <span class="o">-</span><span class="mi">1</span>
 
-<span class="sa"></span><span class="s1">&#39;&#39;&#39;</span><span class="s1">
-</span><span class="s1"></span><span class="s1">
-</span><span class="s1"></span><span class="s1"> ##### </span><span class="s1">
-</span><span class="s1"></span><span class="s1">#     #</span><span class="s1">
-</span><span class="s1"></span><span class="s1">#     #  &lt;---</span><span class="s1">
-</span><span class="s1"></span><span class="s1"> ######</span><span class="s1">
-</span><span class="s1"></span><span class="s1">      #  &lt;---</span><span class="s1">
-</span><span class="s1"></span><span class="s1">#     #</span><span class="s1">
-</span><span class="s1"></span><span class="s1"> ##### </span><span class="s1">
-</span><span class="s1"></span><span class="s1">&#39;&#39;&#39;</span>
-<span class="k">def</span> <span class="nf">check_nine</span><span class="p">(</span> <span class="n">tmp_l</span> <span class="p">)</span><span class="p">:</span>
-    <span class="k">if</span> <span class="n">tmp_l</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">==</span> <span class="sa"></span><span class="s2">&#34;</span><span class="s2">#     #</span><span class="s2">&#34;</span> <span class="ow">and</span> <span class="n">tmp_l</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span> <span class="o">==</span> <span class="sa"></span><span class="s2">&#34;</span><span class="s2">      #</span><span class="s2">&#34;</span><span class="p">:</span>
+<span class="s1">&#39;&#39;&#39;
+</span><span class="s1">
+</span><span class="s1"> ##### 
+</span><span class="s1">#     #
+</span><span class="s1">#     #  &lt;---
+</span><span class="s1"> ######
+</span><span class="s1">      #  &lt;---
+</span><span class="s1">#     #
+</span><span class="s1"> ##### 
+</span><span class="s1">&#39;&#39;&#39;</span>
+<span class="k">def</span> <span class="nf">check_nine</span><span class="p">(</span> <span class="n">tmp_l</span> <span class="p">):</span>
+    <span class="k">if</span> <span class="n">tmp_l</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&#34;#     #&#34;</span> <span class="ow">and</span> <span class="n">tmp_l</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&#34;      #&#34;</span><span class="p">:</span>
         <span class="k">return</span> <span class="mi">9</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="k">return</span> <span class="o">-</span><span class="mi">1</span>
 
-<span class="sa"></span><span class="s1">&#39;&#39;&#39;</span><span class="s1">
-</span><span class="s1"></span><span class="s1">
-</span><span class="s1"></span><span class="s1">
-</span><span class="s1"></span><span class="s1">  #  </span><span class="s1">
-</span><span class="s1"></span><span class="s1">  #     &lt;---</span><span class="s1">
-</span><span class="s1"></span><span class="s1">#####</span><span class="s1">
-</span><span class="s1"></span><span class="s1">  #  </span><span class="s1">
-</span><span class="s1"></span><span class="s1">  #  </span><span class="s1">
-</span><span class="s1"></span><span class="s1">&#39;&#39;&#39;</span>
-<span class="k">def</span> <span class="nf">check_plus</span><span class="p">(</span> <span class="n">tmp_l</span> <span class="p">)</span><span class="p">:</span>
+<span class="s1">&#39;&#39;&#39;
+</span><span class="s1">
+</span><span class="s1">
+</span><span class="s1">  #  
+</span><span class="s1">  #     &lt;---
+</span><span class="s1">#####
+</span><span class="s1">  #  
+</span><span class="s1">  #  
+</span><span class="s1">&#39;&#39;&#39;</span>
+<span class="k">def</span> <span class="nf">check_plus</span><span class="p">(</span> <span class="n">tmp_l</span> <span class="p">):</span>
     <span class="c1">#if re.search( tmp_l[3], &#39;  #  &#39;):</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">tmp_l</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="p">)</span><span class="p">[</span><span class="p">:</span><span class="mi">5</span><span class="p">]</span> <span class="o">==</span> <span class="sa"></span><span class="s2">&#34;</span><span class="s2">  #  </span><span class="s2">&#34;</span><span class="p">:</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">tmp_l</span><span class="p">[</span><span class="mi">3</span><span class="p">])[:</span><span class="mi">5</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&#34;  #  &#34;</span><span class="p">:</span>
         <span class="k">return</span> <span class="o">-</span><span class="mi">2</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="k">return</span> <span class="o">-</span><span class="mi">1</span>
 
-<span class="sa"></span><span class="s1">&#39;&#39;&#39;</span><span class="s1">
-</span><span class="s1"></span><span class="s1">
-</span><span class="s1"></span><span class="s1">
-</span><span class="s1"></span><span class="s1"> #   # </span><span class="s1">
-</span><span class="s1"></span><span class="s1">  # #    &lt;---</span><span class="s1">
-</span><span class="s1"></span><span class="s1">#######</span><span class="s1">
-</span><span class="s1"></span><span class="s1">  # #  </span><span class="s1">
-</span><span class="s1"></span><span class="s1"> #   # </span><span class="s1">
-</span><span class="s1"></span><span class="s1">&#39;&#39;&#39;</span>
-<span class="k">def</span> <span class="nf">check_times</span><span class="p">(</span> <span class="n">tmp_l</span> <span class="p">)</span><span class="p">:</span>
-    <span class="k">if</span> <span class="n">tmp_l</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span> <span class="o">==</span> <span class="sa"></span><span class="s2">&#34;</span><span class="s2">  # #  </span><span class="s2">&#34;</span><span class="p">:</span>
+<span class="s1">&#39;&#39;&#39;
+</span><span class="s1">
+</span><span class="s1">
+</span><span class="s1"> #   # 
+</span><span class="s1">  # #    &lt;---
+</span><span class="s1">#######
+</span><span class="s1">  # #  
+</span><span class="s1"> #   # 
+</span><span class="s1">&#39;&#39;&#39;</span>
+<span class="k">def</span> <span class="nf">check_times</span><span class="p">(</span> <span class="n">tmp_l</span> <span class="p">):</span>
+    <span class="k">if</span> <span class="n">tmp_l</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&#34;  # #  &#34;</span><span class="p">:</span>
         <span class="k">return</span> <span class="o">-</span><span class="mi">3</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="k">return</span> <span class="o">-</span><span class="mi">1</span>
 
-<span class="sa"></span><span class="s1">&#39;&#39;&#39;</span><span class="s1">
-</span><span class="s1"></span><span class="s1">
-</span><span class="s1"></span><span class="s1">
-</span><span class="s1"></span><span class="s1">
-</span><span class="s1"></span><span class="s1">
-</span><span class="s1"></span><span class="s1">#####  &lt;---</span><span class="s1">
-</span><span class="s1"></span><span class="s1">&#39;&#39;&#39;</span>
-<span class="k">def</span> <span class="nf">check_minus</span><span class="p">(</span> <span class="n">tmp_l</span> <span class="p">)</span><span class="p">:</span>
+<span class="s1">&#39;&#39;&#39;
+</span><span class="s1">
+</span><span class="s1">
+</span><span class="s1">
+</span><span class="s1">
+</span><span class="s1">#####  &lt;---
+</span><span class="s1">&#39;&#39;&#39;</span>
+<span class="k">def</span> <span class="nf">check_minus</span><span class="p">(</span> <span class="n">tmp_l</span> <span class="p">):</span>
     <span class="c1">#if re.search( tmp_l[4], &#39;##### &#39;):</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">tmp_l</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span><span class="p">)</span><span class="p">[</span><span class="p">:</span><span class="mi">6</span><span class="p">]</span> <span class="o">==</span> <span class="sa"></span><span class="s2">&#34;</span><span class="s2">##### </span><span class="s2">&#34;</span><span class="p">:</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">tmp_l</span><span class="p">[</span><span class="mi">4</span><span class="p">])[:</span><span class="mi">6</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&#34;##### &#34;</span><span class="p">:</span>
         <span class="k">return</span> <span class="o">-</span><span class="mi">4</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="k">return</span> <span class="o">-</span><span class="mi">1</span>
 
-<span class="sa"></span><span class="s1">&#39;&#39;&#39;</span><span class="s1">
-</span><span class="s1"></span><span class="s1">
-</span><span class="s1"></span><span class="s1">
-</span><span class="s1"></span><span class="s1">
-</span><span class="s1"></span><span class="s1">   #####</span><span class="s1">
-</span><span class="s1"></span><span class="s1">          &lt;---</span><span class="s1">
-</span><span class="s1"></span><span class="s1">   #####</span><span class="s1">
-</span><span class="s1"></span><span class="s1">&#39;&#39;&#39;</span>
-<span class="k">def</span> <span class="nf">check_equal</span><span class="p">(</span> <span class="n">tmp_l</span> <span class="p">)</span><span class="p">:</span>
+<span class="s1">&#39;&#39;&#39;
+</span><span class="s1">
+</span><span class="s1">
+</span><span class="s1">
+</span><span class="s1">   #####
+</span><span class="s1">          &lt;---
+</span><span class="s1">   #####
+</span><span class="s1">&#39;&#39;&#39;</span>
+<span class="k">def</span> <span class="nf">check_equal</span><span class="p">(</span> <span class="n">tmp_l</span> <span class="p">):</span>
     <span class="c1">#if re.search( tmp_l[5], &#39; #####&#39;):</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">tmp_l</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span><span class="p">)</span><span class="p">[</span><span class="p">:</span><span class="mi">3</span><span class="p">]</span> <span class="o">==</span> <span class="sa"></span><span class="s2">&#34;</span><span class="s2">   </span><span class="s2">&#34;</span><span class="p">:</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">tmp_l</span><span class="p">[</span><span class="mi">4</span><span class="p">])[:</span><span class="mi">3</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&#34;   &#34;</span><span class="p">:</span>
         <span class="k">return</span> <span class="o">-</span><span class="mi">5</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="k">return</span> <span class="o">-</span><span class="mi">1</span>
 
 <span class="k">while</span> <span class="mi">1</span><span class="p">:</span>
     <span class="k">try</span><span class="p">:</span>
-        <span class="n">msg</span> <span class="o">=</span> <span class="n">r</span><span class="o">.</span><span class="n">recvregex</span><span class="p">(</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2">&gt;&gt;&gt;|ISITDTU{.*}</span><span class="s2">&#34;</span><span class="p">)</span>
+        <span class="n">msg</span> <span class="o">=</span> <span class="n">r</span><span class="o">.</span><span class="n">recvregex</span><span class="p">(</span><span class="s2">&#34;&gt;&gt;&gt;|ISITDTU{.*}&#34;</span><span class="p">)</span>
         
-        <span class="n">lines</span> <span class="o">=</span> <span class="n">msg</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="sa"></span><span class="s2">&#34;</span><span class="se">\n</span><span class="s2">&#34;</span><span class="p">)</span>
+        <span class="n">lines</span> <span class="o">=</span> <span class="n">msg</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&#34;</span><span class="se">\n</span><span class="s2">&#34;</span><span class="p">)</span>
         
         <span class="n">pos</span> <span class="o">=</span> <span class="mi">0</span>
-        <span class="n">txt</span> <span class="o">=</span> <span class="sa"></span><span class="s2">&#34;</span><span class="s2">&#34;</span>
+        <span class="n">txt</span> <span class="o">=</span> <span class="s2">&#34;&#34;</span>
         <span class="k">while</span> <span class="mi">1</span><span class="p">:</span>
-            <span class="n">tmp_l</span> <span class="o">=</span> <span class="p">[</span><span class="p">]</span>
+            <span class="n">tmp_l</span> <span class="o">=</span> <span class="p">[]</span>
             <span class="k">if</span> <span class="n">pos</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
                 <span class="k">for</span> <span class="n">l</span> <span class="ow">in</span> <span class="n">lines</span><span class="p">:</span>
                     <span class="k">print</span><span class="p">(</span> <span class="n">l</span> <span class="p">)</span>
 
             <span class="k">for</span> <span class="n">l</span> <span class="ow">in</span> <span class="n">lines</span><span class="p">:</span>
-                <span class="n">tmp_l</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">l</span><span class="p">[</span><span class="n">pos</span><span class="p">:</span><span class="n">pos</span><span class="o">+</span><span class="mi">7</span><span class="p">]</span><span class="p">)</span>
+                <span class="n">tmp_l</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">l</span><span class="p">[</span><span class="n">pos</span><span class="p">:</span><span class="n">pos</span><span class="o">+</span><span class="mi">7</span><span class="p">])</span>
 
             <span class="c1"># just to avoid infinite loop</span>
             <span class="k">if</span> <span class="n">pos</span> <span class="o">&gt;</span> <span class="mi">80</span><span class="p">:</span>
                 <span class="k">break</span>
         
             <span class="k">if</span> <span class="n">check_zero</span><span class="p">(</span> <span class="n">tmp_l</span> <span class="p">)</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
-                <span class="n">txt</span> <span class="o">+</span><span class="o">=</span> <span class="sa"></span><span class="s2">&#34;</span><span class="s2">0</span><span class="s2">&#34;</span>
-                <span class="n">pos</span> <span class="o">+</span><span class="o">=</span> <span class="mi">8</span>
+                <span class="n">txt</span> <span class="o">+=</span> <span class="s2">&#34;0&#34;</span>
+                <span class="n">pos</span> <span class="o">+=</span> <span class="mi">8</span>
                 <span class="k">continue</span>
             <span class="k">if</span> <span class="n">check_one</span><span class="p">(</span> <span class="n">tmp_l</span> <span class="p">)</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
-                <span class="n">txt</span> <span class="o">+</span><span class="o">=</span> <span class="sa"></span><span class="s2">&#34;</span><span class="s2">1</span><span class="s2">&#34;</span>
-                <span class="n">pos</span> <span class="o">+</span><span class="o">=</span> <span class="mi">6</span>
+                <span class="n">txt</span> <span class="o">+=</span> <span class="s2">&#34;1&#34;</span>
+                <span class="n">pos</span> <span class="o">+=</span> <span class="mi">6</span>
                 <span class="k">continue</span>
             <span class="k">if</span> <span class="n">check_two</span><span class="p">(</span> <span class="n">tmp_l</span> <span class="p">)</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
-                <span class="n">txt</span> <span class="o">+</span><span class="o">=</span> <span class="sa"></span><span class="s2">&#34;</span><span class="s2">2</span><span class="s2">&#34;</span>
-                <span class="n">pos</span> <span class="o">+</span><span class="o">=</span> <span class="mi">8</span>
+                <span class="n">txt</span> <span class="o">+=</span> <span class="s2">&#34;2&#34;</span>
+                <span class="n">pos</span> <span class="o">+=</span> <span class="mi">8</span>
                 <span class="k">continue</span>
             <span class="k">if</span> <span class="n">check_three</span><span class="p">(</span> <span class="n">tmp_l</span> <span class="p">)</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
-                <span class="n">txt</span> <span class="o">+</span><span class="o">=</span> <span class="sa"></span><span class="s2">&#34;</span><span class="s2">3</span><span class="s2">&#34;</span>
-                <span class="n">pos</span> <span class="o">+</span><span class="o">=</span> <span class="mi">8</span>
+                <span class="n">txt</span> <span class="o">+=</span> <span class="s2">&#34;3&#34;</span>
+                <span class="n">pos</span> <span class="o">+=</span> <span class="mi">8</span>
                 <span class="k">continue</span>
             <span class="k">if</span> <span class="n">check_four</span><span class="p">(</span> <span class="n">tmp_l</span> <span class="p">)</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
-                <span class="n">txt</span> <span class="o">+</span><span class="o">=</span> <span class="sa"></span><span class="s2">&#34;</span><span class="s2">4</span><span class="s2">&#34;</span>
-                <span class="n">pos</span> <span class="o">+</span><span class="o">=</span> <span class="mi">8</span>
+                <span class="n">txt</span> <span class="o">+=</span> <span class="s2">&#34;4&#34;</span>
+                <span class="n">pos</span> <span class="o">+=</span> <span class="mi">8</span>
                 <span class="k">continue</span>
             <span class="k">if</span> <span class="n">check_five</span><span class="p">(</span> <span class="n">tmp_l</span> <span class="p">)</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
-                <span class="n">txt</span> <span class="o">+</span><span class="o">=</span> <span class="sa"></span><span class="s2">&#34;</span><span class="s2">5</span><span class="s2">&#34;</span>
-                <span class="n">pos</span> <span class="o">+</span><span class="o">=</span> <span class="mi">8</span>
+                <span class="n">txt</span> <span class="o">+=</span> <span class="s2">&#34;5&#34;</span>
+                <span class="n">pos</span> <span class="o">+=</span> <span class="mi">8</span>
                 <span class="k">continue</span>
             <span class="k">if</span> <span class="n">check_six</span><span class="p">(</span> <span class="n">tmp_l</span> <span class="p">)</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
-                <span class="n">txt</span> <span class="o">+</span><span class="o">=</span> <span class="sa"></span><span class="s2">&#34;</span><span class="s2">6</span><span class="s2">&#34;</span>
-                <span class="n">pos</span> <span class="o">+</span><span class="o">=</span> <span class="mi">8</span>
+                <span class="n">txt</span> <span class="o">+=</span> <span class="s2">&#34;6&#34;</span>
+                <span class="n">pos</span> <span class="o">+=</span> <span class="mi">8</span>
                 <span class="k">continue</span>
             <span class="k">if</span> <span class="n">check_seven</span><span class="p">(</span> <span class="n">tmp_l</span> <span class="p">)</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
-                <span class="n">txt</span> <span class="o">+</span><span class="o">=</span> <span class="sa"></span><span class="s2">&#34;</span><span class="s2">7</span><span class="s2">&#34;</span>
-                <span class="n">pos</span> <span class="o">+</span><span class="o">=</span> <span class="mi">8</span>
+                <span class="n">txt</span> <span class="o">+=</span> <span class="s2">&#34;7&#34;</span>
+                <span class="n">pos</span> <span class="o">+=</span> <span class="mi">8</span>
                 <span class="k">continue</span>
             <span class="k">if</span> <span class="n">check_eight</span><span class="p">(</span> <span class="n">tmp_l</span> <span class="p">)</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
-                <span class="n">txt</span> <span class="o">+</span><span class="o">=</span> <span class="sa"></span><span class="s2">&#34;</span><span class="s2">8</span><span class="s2">&#34;</span>
-                <span class="n">pos</span> <span class="o">+</span><span class="o">=</span> <span class="mi">8</span>
+                <span class="n">txt</span> <span class="o">+=</span> <span class="s2">&#34;8&#34;</span>
+                <span class="n">pos</span> <span class="o">+=</span> <span class="mi">8</span>
                 <span class="k">continue</span>
             <span class="k">if</span> <span class="n">check_nine</span><span class="p">(</span> <span class="n">tmp_l</span> <span class="p">)</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
-                <span class="n">txt</span> <span class="o">+</span><span class="o">=</span> <span class="sa"></span><span class="s2">&#34;</span><span class="s2">9</span><span class="s2">&#34;</span>
-                <span class="n">pos</span> <span class="o">+</span><span class="o">=</span> <span class="mi">8</span>
+                <span class="n">txt</span> <span class="o">+=</span> <span class="s2">&#34;9&#34;</span>
+                <span class="n">pos</span> <span class="o">+=</span> <span class="mi">8</span>
                 <span class="k">continue</span>
             <span class="k">if</span> <span class="n">check_plus</span><span class="p">(</span> <span class="n">tmp_l</span> <span class="p">)</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
-                <span class="n">txt</span> <span class="o">+</span><span class="o">=</span> <span class="sa"></span><span class="s2">&#34;</span><span class="s2">+</span><span class="s2">&#34;</span>
-                <span class="n">pos</span> <span class="o">+</span><span class="o">=</span> <span class="mi">6</span>
+                <span class="n">txt</span> <span class="o">+=</span> <span class="s2">&#34;+&#34;</span>
+                <span class="n">pos</span> <span class="o">+=</span> <span class="mi">6</span>
                 <span class="k">continue</span>
             <span class="k">if</span> <span class="n">check_times</span><span class="p">(</span> <span class="n">tmp_l</span> <span class="p">)</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
-                <span class="n">txt</span> <span class="o">+</span><span class="o">=</span> <span class="sa"></span><span class="s2">&#34;</span><span class="s2">*</span><span class="s2">&#34;</span>
-                <span class="n">pos</span> <span class="o">+</span><span class="o">=</span> <span class="mi">8</span>
+                <span class="n">txt</span> <span class="o">+=</span> <span class="s2">&#34;*&#34;</span>
+                <span class="n">pos</span> <span class="o">+=</span> <span class="mi">8</span>
                 <span class="k">continue</span>
             <span class="k">if</span> <span class="n">check_minus</span><span class="p">(</span> <span class="n">tmp_l</span> <span class="p">)</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
-                <span class="n">txt</span> <span class="o">+</span><span class="o">=</span> <span class="sa"></span><span class="s2">&#34;</span><span class="s2">-</span><span class="s2">&#34;</span>
-                <span class="n">pos</span> <span class="o">+</span><span class="o">=</span> <span class="mi">6</span>
+                <span class="n">txt</span> <span class="o">+=</span> <span class="s2">&#34;-&#34;</span>
+                <span class="n">pos</span> <span class="o">+=</span> <span class="mi">6</span>
                 <span class="k">continue</span>
             <span class="k">if</span> <span class="n">check_equal</span><span class="p">(</span> <span class="n">tmp_l</span> <span class="p">)</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
                 <span class="k">print</span><span class="p">(</span><span class="n">txt</span><span class="p">)</span>
                 <span class="n">ans</span> <span class="o">=</span> <span class="nb">eval</span><span class="p">(</span><span class="n">txt</span><span class="p">)</span>
                 <span class="k">print</span><span class="p">(</span><span class="n">ans</span><span class="p">)</span>
-                <span class="n">r</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">ans</span><span class="p">)</span><span class="p">)</span>
+                <span class="n">r</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">ans</span><span class="p">))</span>
                 <span class="k">break</span>
             <span class="c1"># just to avoid infinite loop</span>
-            <span class="n">pos</span> <span class="o">+</span><span class="o">=</span> <span class="mi">8</span>
+            <span class="n">pos</span> <span class="o">+=</span> <span class="mi">8</span>
     <span class="k">except</span><span class="p">:</span>  <span class="c1"># did not use this exception eventually.</span>
         <span class="k">print</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
-        <span class="nb">exit</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-</code></pre></td></tr></table>
+        <span class="nb">exit</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span></code></pre></td></tr></table>
 </div>
-</div><p>Good job, this is your flag:   <code>ISITDTU{sub5cr1b3_b4_t4n_vl0g_4nd_p3wd13p13}</code></p>
+</div>
+<p>Good job, this is your flag:   <code>ISITDTU{sub5cr1b3_b4_t4n_vl0g_4nd_p3wd13p13}</code></p>
+
 <p><br /><br />
 <br /><br /></p>
-<hr>
+
+<hr />
+
 <p><br /><br />
 <br /><br /></p>
 

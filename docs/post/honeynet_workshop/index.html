@@ -23,7 +23,7 @@
 <meta name="google-site-verification" content="PqctLWZQttGzxXVupWuIt2HWuBI8cvN1z07ETpxA2dw" />
 
 
-<meta name="generator" content="Hugo 0.60.1 with theme even" />
+<meta name="generator" content="Hugo 0.55.6 with theme even" />
 
 
 <link rel="canonical" href="https://captureamerica.github.io/writeups/post/honeynet_workshop/" />
@@ -42,17 +42,21 @@
 <meta property="og:description" content="https://www.reddit.com/r/netsec/new/を見ていたら、たまたまCTFを見つけたのでやってみました。 Junior CTFな" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://captureamerica.github.io/writeups/post/honeynet_workshop/" />
-<meta property="article:published_time" content="2019-06-03T00:00:00+08:00" />
-<meta property="article:modified_time" content="2019-06-03T07:33:00+08:00" />
+<meta property="article:published_time" content="2019-06-03T00:00:00&#43;08:00"/>
+<meta property="article:modified_time" content="2019-06-03T07:33:00&#43;08:00"/>
+
 <meta itemprop="name" content="The Honeynet Project: Innsbruck Workshop CTF Writeup">
 <meta itemprop="description" content="https://www.reddit.com/r/netsec/new/を見ていたら、たまたまCTFを見つけたのでやってみました。 Junior CTFな">
+
+
 <meta itemprop="datePublished" content="2019-06-03T00:00:00&#43;08:00" />
 <meta itemprop="dateModified" content="2019-06-03T07:33:00&#43;08:00" />
-<meta itemprop="wordCount" content="4279">
+<meta itemprop="wordCount" content="4301">
 
 
 
-<meta itemprop="keywords" content="CTF," /><meta name="twitter:card" content="summary"/>
+<meta itemprop="keywords" content="CTF," />
+<meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="The Honeynet Project: Innsbruck Workshop CTF Writeup"/>
 <meta name="twitter:description" content="https://www.reddit.com/r/netsec/new/を見ていたら、たまたまCTFを見つけたのでやってみました。 Junior CTFな"/>
 
@@ -136,151 +140,133 @@
   <h2 class="post-toc-title">Contents</h2>
   <div class="post-toc-content">
     <nav id="TableOfContents">
-  <ul>
-    <li><a href="#too-meta-easy-imageforensics">Too Meta (easy, image-forensics)</a>
-      <ul>
-        <li><a href="#challenge">Challenge</a></li>
-        <li><a href="#solution">Solution</a></li>
-      </ul>
-    </li>
-    <li><a href="#dns-records-easy-network">DNS Records (easy, network)</a>
-      <ul>
-        <li><a href="#challenge1">Challenge</a></li>
-        <li><a href="#solution1">Solution</a></li>
-      </ul>
-    </li>
-    <li><a href="#wanna-buy-a-flag-easy-network">Wanna buy a flag? (easy, network)</a>
-      <ul>
-        <li><a href="#challenge2">Challenge</a></li>
-        <li><a href="#solution2">Solution</a></li>
-      </ul>
-    </li>
-    <li><a href="#find-the-flag-easy-binary">Find The Flag (easy, binary)</a>
-      <ul>
-        <li><a href="#challenge3">Challenge</a></li>
-        <li><a href="#solution3">Solution</a></li>
-      </ul>
-    </li>
-    <li><a href="#antivaxx-easy-web">Anti-Vaxx (easy, web)</a>
-      <ul>
-        <li><a href="#challenge4">Challenge</a></li>
-        <li><a href="#solution4">Solution</a></li>
-      </ul>
-    </li>
-    <li><a href="#prime-factory-easy-crypto">Prime Factory (easy, crypto)</a>
-      <ul>
-        <li><a href="#challenge5">Challenge</a></li>
-        <li><a href="#solution5">Solution</a></li>
-      </ul>
-    </li>
-    <li><a href="#port-scanning-easy-network">Port Scanning (easy, network)</a>
-      <ul>
-        <li><a href="#challenge6">Challenge</a></li>
-        <li><a href="#solution6">Solution</a></li>
-      </ul>
-    </li>
-    <li><a href="#systeme-anwendungen-produkte-easy-web">Systeme, Anwendungen, Produkte. (easy, web)</a>
-      <ul>
-        <li><a href="#challenge7">Challenge</a></li>
-        <li><a href="#solution7">Solution</a></li>
-      </ul>
-    </li>
-    <li><a href="#sharks-easy-network">Sharks (easy, network)</a>
-      <ul>
-        <li><a href="#challenge8">Challenge</a></li>
-        <li><a href="#solution8">Solution</a></li>
-      </ul>
-    </li>
-    <li><a href="#texture-easy-imageforensics">Texture (easy, image-forensics)</a>
-      <ul>
-        <li><a href="#challenge9">Challenge</a></li>
-        <li><a href="#solution9">Solution</a></li>
-      </ul>
-    </li>
-    <li><a href="#there-is-no-such-thing-as-a-free-flag-easy-network">There is no such thing as a free flag (easy, network)</a>
-      <ul>
-        <li><a href="#challenge10">Challenge</a></li>
-        <li><a href="#solution10">Solution</a></li>
-      </ul>
-    </li>
-    <li><a href="#weird-website-easy-network">Weird Website (easy, network)</a>
-      <ul>
-        <li><a href="#challenge11">Challenge</a></li>
-        <li><a href="#solution11">Solution</a></li>
-      </ul>
-    </li>
-    <li><a href="#superbank-easy-network-multistage">SuperBank (easy, network, multi-stage)</a>
-      <ul>
-        <li><a href="#challenge12">Challenge</a></li>
-        <li><a href="#solution12">Solution</a></li>
-      </ul>
-    </li>
-    <li><a href="#superbanknotes-">SuperBankNotes (?)</a>
-      <ul>
-        <li><a href="#challenge13">Challenge</a></li>
-        <li><a href="#unsolved">(Unsolved)</a></li>
-      </ul>
-    </li>
-    <li><a href="#hashingasaservice-medium-web">(H)ashing-as-a-Service (medium, web)</a>
-      <ul>
-        <li><a href="#challenge14">Challenge</a></li>
-        <li><a href="#solution13">Solution</a></li>
-      </ul>
-    </li>
-    <li><a href="#terrific-encryption-medium-cryptography">Terrific Encryption (medium, cryptography)</a>
-      <ul>
-        <li><a href="#challenge15">Challenge</a></li>
-        <li><a href="#solution14">Solution</a></li>
-      </ul>
-    </li>
-    <li><a href="#you-know-the-rules-and-so-do-i--medium-imageforensics">You know the rules, and so do I ?? (medium, image-forensics)</a>
-      <ul>
-        <li><a href="#challenge16">Challenge</a></li>
-        <li><a href="#solution15">Solution</a></li>
-      </ul>
-    </li>
-    <li><a href="#coinflip-medium-binary">CoinFlip (medium, binary)</a>
-      <ul>
-        <li><a href="#challenge17">Challenge</a></li>
-        <li><a href="#solution16">Solution</a></li>
-      </ul>
-    </li>
-    <li><a href="#git-exposed-medium-web">Git Exposed (medium, web)</a>
-      <ul>
-        <li><a href="#challenge18">Challenge</a></li>
-        <li><a href="#solution17">Solution</a></li>
-      </ul>
-    </li>
-    <li><a href="#hidden-in-plain-sight-medium-misc">Hidden in Plain Sight (medium, misc)</a>
-      <ul>
-        <li><a href="#challenge19">Challenge</a></li>
-        <li><a href="#solution18">Solution</a></li>
-      </ul>
-    </li>
-    <li><a href="#directory-listing-hard-cryptography">Directory Listing (hard, cryptography)</a>
-      <ul>
-        <li><a href="#challenge20">Challenge</a></li>
-        <li><a href="#solution19">Solution</a></li>
-      </ul>
-    </li>
-    <li><a href="#passworddb-hard-network">PasswordDB (hard, network)</a>
-      <ul>
-        <li><a href="#challenge21">Challenge</a></li>
-        <li><a href="#unsolved1">(Unsolved)</a></li>
-      </ul>
-    </li>
-    <li><a href="#cookiecopter-hard-cryptography-web">CookieCopter (hard, cryptography, web)</a>
-      <ul>
-        <li><a href="#challenge22">Challenge</a></li>
-        <li><a href="#unsolved2">(Unsolved)</a></li>
-      </ul>
-    </li>
-  </ul>
+<ul>
+<li>
+<ul>
+<li><a href="#too-meta-easy-image-forensics">Too Meta (easy, image-forensics)</a>
+<ul>
+<li><a href="#challenge">Challenge</a></li>
+<li><a href="#solution">Solution</a></li>
+</ul></li>
+<li><a href="#dns-records-easy-network">DNS Records (easy, network)</a>
+<ul>
+<li><a href="#challenge-1">Challenge</a></li>
+<li><a href="#solution-1">Solution</a></li>
+</ul></li>
+<li><a href="#wanna-buy-a-flag-easy-network">Wanna buy a flag? (easy, network)</a>
+<ul>
+<li><a href="#challenge-2">Challenge</a></li>
+<li><a href="#solution-2">Solution</a></li>
+</ul></li>
+<li><a href="#find-the-flag-easy-binary">Find The Flag (easy, binary)</a>
+<ul>
+<li><a href="#challenge-3">Challenge</a></li>
+<li><a href="#solution-3">Solution</a></li>
+</ul></li>
+<li><a href="#anti-vaxx-easy-web">Anti-Vaxx (easy, web)</a>
+<ul>
+<li><a href="#challenge-4">Challenge</a></li>
+<li><a href="#solution-4">Solution</a></li>
+</ul></li>
+<li><a href="#prime-factory-easy-crypto">Prime Factory (easy, crypto)</a>
+<ul>
+<li><a href="#challenge-5">Challenge</a></li>
+<li><a href="#solution-5">Solution</a></li>
+</ul></li>
+<li><a href="#port-scanning-easy-network">Port Scanning (easy, network)</a>
+<ul>
+<li><a href="#challenge-6">Challenge</a></li>
+<li><a href="#solution-6">Solution</a></li>
+</ul></li>
+<li><a href="#systeme-anwendungen-produkte-easy-web">Systeme, Anwendungen, Produkte. (easy, web)</a>
+<ul>
+<li><a href="#challenge-7">Challenge</a></li>
+<li><a href="#solution-7">Solution</a></li>
+</ul></li>
+<li><a href="#sharks-easy-network">Sharks (easy, network)</a>
+<ul>
+<li><a href="#challenge-8">Challenge</a></li>
+<li><a href="#solution-8">Solution</a></li>
+</ul></li>
+<li><a href="#texture-easy-image-forensics">Texture (easy, image-forensics)</a>
+<ul>
+<li><a href="#challenge-9">Challenge</a></li>
+<li><a href="#solution-9">Solution</a></li>
+</ul></li>
+<li><a href="#there-is-no-such-thing-as-a-free-flag-easy-network">There is no such thing as a free flag (easy, network)</a>
+<ul>
+<li><a href="#challenge-10">Challenge</a></li>
+<li><a href="#solution-10">Solution</a></li>
+</ul></li>
+<li><a href="#weird-website-easy-network">Weird Website (easy, network)</a>
+<ul>
+<li><a href="#challenge-11">Challenge</a></li>
+<li><a href="#solution-11">Solution</a></li>
+</ul></li>
+<li><a href="#superbank-easy-network-multi-stage">SuperBank (easy, network, multi-stage)</a>
+<ul>
+<li><a href="#challenge-12">Challenge</a></li>
+<li><a href="#solution-12">Solution</a></li>
+</ul></li>
+<li><a href="#superbanknotes">SuperBankNotes (?)</a>
+<ul>
+<li><a href="#challenge-13">Challenge</a></li>
+<li><a href="#unsolved">(Unsolved)</a></li>
+</ul></li>
+<li><a href="#h-ashing-as-a-service-medium-web">(H)ashing-as-a-Service (medium, web)</a>
+<ul>
+<li><a href="#challenge-14">Challenge</a></li>
+<li><a href="#solution-13">Solution</a></li>
+</ul></li>
+<li><a href="#terrific-encryption-medium-cryptography">Terrific Encryption (medium, cryptography)</a>
+<ul>
+<li><a href="#challenge-15">Challenge</a></li>
+<li><a href="#solution-14">Solution</a></li>
+</ul></li>
+<li><a href="#you-know-the-rules-and-so-do-i-medium-image-forensics">You know the rules, and so do I&hellip; ?? (medium, image-forensics)</a>
+<ul>
+<li><a href="#challenge-16">Challenge</a></li>
+<li><a href="#solution-15">Solution</a></li>
+</ul></li>
+<li><a href="#coinflip-medium-binary">CoinFlip (medium, binary)</a>
+<ul>
+<li><a href="#challenge-17">Challenge</a></li>
+<li><a href="#solution-16">Solution</a></li>
+</ul></li>
+<li><a href="#git-exposed-medium-web">Git Exposed (medium, web)</a>
+<ul>
+<li><a href="#challenge-18">Challenge</a></li>
+<li><a href="#solution-17">Solution</a></li>
+</ul></li>
+<li><a href="#hidden-in-plain-sight-medium-misc">Hidden in Plain Sight (medium, misc)</a>
+<ul>
+<li><a href="#challenge-19">Challenge</a></li>
+<li><a href="#solution-18">Solution</a></li>
+</ul></li>
+<li><a href="#directory-listing-hard-cryptography">Directory Listing (hard, cryptography)</a>
+<ul>
+<li><a href="#challenge-20">Challenge</a></li>
+<li><a href="#solution-19">Solution</a></li>
+</ul></li>
+<li><a href="#passworddb-hard-network">PasswordDB (hard, network)</a>
+<ul>
+<li><a href="#challenge-21">Challenge</a></li>
+<li><a href="#unsolved-1">(Unsolved)</a></li>
+</ul></li>
+<li><a href="#cookiecopter-hard-cryptography-web">CookieCopter (hard, cryptography, web)</a>
+<ul>
+<li><a href="#challenge-22">Challenge</a></li>
+<li><a href="#unsolved-2">(Unsolved)</a></li>
+</ul></li>
+</ul></li>
+</ul>
 </nav>
   </div>
 </div>
     <div class="post-content">
-      <p><a href="https://www.reddit.com/r/netsec/new/"><a href="https://www.reddit.com/r/netsec/new/">https://www.reddit.com/r/netsec/new/</a></a>を見ていたら、たまたまCTFを見つけたのでやってみました。
+      
+
+<p><a href="https://www.reddit.com/r/netsec/new/">https://www.reddit.com/r/netsec/new/</a>を見ていたら、たまたまCTFを見つけたのでやってみました。
 <br /><br />
 Junior CTFなので簡単なものがほとんどですが、Hardの2つとわけがわからないやつ1つが解けませんでした。。
 <br /><br />
@@ -289,153 +275,238 @@ Junior CTFなので簡単なものがほとんどですが、Hardの2つとわ�
 参加者が少なかったのもあって、全体の中で14番でした^^
 <br />
 <img src="https://captureamerica.github.io/writeups/img/honey_rank.png" alt="honey_rank.png"></p>
+
 <p><br /><br /></p>
-<h2 id="too-meta-easy-imageforensics">Too Meta (easy, image-forensics)</h2>
-<hr>
+
+<h2 id="too-meta-easy-image-forensics">Too Meta (easy, image-forensics)</h2>
+
+<hr />
+
 <h3 id="challenge">Challenge</h3>
+
 <blockquote>
-<p>There's a flag hidden in the image. Can you find it?</p>
+<p>There&rsquo;s a flag hidden in the image. Can you find it?</p>
 </blockquote>
+
 <p>Attachment:</p>
+
 <ul>
 <li>meta.jpg</li>
 </ul>
+
 <h3 id="solution">Solution</h3>
+
 <p>ExifTool</p>
+
 <p><br /><br />
 <br /><br /></p>
+
 <h2 id="dns-records-easy-network">DNS Records (easy, network)</h2>
-<hr>
-<h3 id="challenge1">Challenge</h3>
+
+<hr />
+
+<h3 id="challenge-1">Challenge</h3>
+
 <blockquote>
 <p>Any suspicious records on hi.ls?</p>
 </blockquote>
-<h3 id="solution1">Solution</h3>
+
+<h3 id="solution-1">Solution</h3>
+
 <p>$ dig @8.8.8.8 hi.ls txt</p>
+
 <p><br /><br />
 <br /><br /></p>
+
 <h2 id="wanna-buy-a-flag-easy-network">Wanna buy a flag? (easy, network)</h2>
-<hr>
-<h3 id="challenge2">Challenge</h3>
+
+<hr />
+
+<h3 id="challenge-2">Challenge</h3>
+
 <blockquote>
 <p>Analyze the network traffic to get the flag.</p>
 </blockquote>
+
 <p>Attachment:</p>
+
 <ul>
 <li>buyaflag.pcap</li>
 </ul>
-<h3 id="solution2">Solution</h3>
+
+<h3 id="solution-2">Solution</h3>
+
 <p>Wireshark -&gt; Follow TCP stream</p>
+
 <p><br /><br />
 <br /><br /></p>
+
 <h2 id="find-the-flag-easy-binary">Find The Flag (easy, binary)</h2>
-<hr>
-<h3 id="challenge3">Challenge</h3>
+
+<hr />
+
+<h3 id="challenge-3">Challenge</h3>
+
 <blockquote>
 <p>There is a flag hidden in this binary. Can you find it?</p>
 </blockquote>
+
 <p>Attachment:</p>
+
 <ul>
 <li>findtheflag</li>
 </ul>
-<h3 id="solution3">Solution</h3>
+
+<h3 id="solution-3">Solution</h3>
+
 <p>strings &amp; grep</p>
+
 <p><br /><br />
 <br /><br /></p>
-<h2 id="antivaxx-easy-web">Anti-Vaxx (easy, web)</h2>
-<hr>
-<h3 id="challenge4">Challenge</h3>
+
+<h2 id="anti-vaxx-easy-web">Anti-Vaxx (easy, web)</h2>
+
+<hr />
+
+<h3 id="challenge-4">Challenge</h3>
+
 <blockquote>
 <p>How do you defeat an anti-vaxxer?</p>
 </blockquote>
-<h3 id="solution4">Solution</h3>
-<p>view sourceで、&ldquo;OWASP A1:2107&quot;が見つかります。ググったら、よくあるSQL Injectionなのがわかります。</p>
-<pre>' or '1'='1</pre>
+
+<h3 id="solution-4">Solution</h3>
+
+<p>view sourceで、&rdquo;OWASP A1:2107&rdquo;が見つかります。ググったら、よくあるSQL Injectionなのがわかります。
+<pre>&rsquo; or &lsquo;1&rsquo;=&lsquo;1</pre></p>
+
 <p><br /><br />
 <br /><br /></p>
+
 <h2 id="prime-factory-easy-crypto">Prime Factory (easy, crypto)</h2>
-<hr>
-<h3 id="challenge5">Challenge</h3>
+
+<hr />
+
+<h3 id="challenge-5">Challenge</h3>
+
 <blockquote>
-<p>The following two numbers have three prime factors each. Take the largest prime factor x, and submit it as a flag like so: _<em>flag</em>_{x}.<br />
+<p>The following two numbers have three prime factors each. Take the largest prime factor x, and submit it as a flag like so: __flag__{x}.<br />
 786157563836987543027608510735334168859
 275030867366686996969667414354528430922804392211206745642631729</p>
 </blockquote>
-<h3 id="solution5">Solution</h3>
-<p><a href="http://factordb.com/index.php"><a href="http://factordb.com/index.php">http://factordb.com/index.php</a></a> で、factorize。</p>
+
+<h3 id="solution-5">Solution</h3>
+
+<p><a href="http://factordb.com/index.php">http://factordb.com/index.php</a> で、factorize。</p>
+
 <p><br /><br />
 <br /><br /></p>
+
 <h2 id="port-scanning-easy-network">Port Scanning (easy, network)</h2>
-<hr>
-<h3 id="challenge6">Challenge</h3>
+
+<hr />
+
+<h3 id="challenge-6">Challenge</h3>
+
 <blockquote>
 <p>Knock, knock!
 <br />
-    Who's there?
+&nbsp;&nbsp;&nbsp;&nbsp;Who&rsquo;s there?
 <br />
-A hidden service running on ctf.honeynet.org, but we won't tell you where.
+A hidden service running on ctf.honeynet.org, but we won&rsquo;t tell you where.
 <br />
-    ctf.honeynet.org who?
+&nbsp;&nbsp;&nbsp;&nbsp;ctf.honeynet.org who?
 <br />
 Port 9000?10000, stop asking bruh!</p>
 </blockquote>
-<h3 id="solution6">Solution</h3>
-<p><code>nmap -sT ctf.honeynet.org -p 9000-10000</code>で、ポート9413がオープンなのがわかります。NetCatで繋ぐと、&ldquo;Knock, knock!&ldquo;とくるので、&ldquo;Who's there?&ldquo;を返すとフラグが取れます。</p>
+
+<h3 id="solution-6">Solution</h3>
+
+<p><code>nmap -sT ctf.honeynet.org -p 9000-10000</code>で、ポート9413がオープンなのがわかります。NetCatで繋ぐと、&rdquo;Knock, knock!&ldquo;とくるので、&rdquo;Who&rsquo;s there?&ldquo;を返すとフラグが取れます。
 <pre>
 $ nc -v ctf.honeynet.org 9413
 Connection to ctf.honeynet.org 9413 port [tcp/*] succeeded!
 Knock, knock!
-Who's there?
-\__flag__{a167a64775aee31037855cdf4386a04d}
-</pre>
+Who&rsquo;s there?
+__flag__{a167a64775aee31037855cdf4386a04d}
+</pre></p>
+
 <p><br /><br />
 <br /><br /></p>
+
 <h2 id="systeme-anwendungen-produkte-easy-web">Systeme, Anwendungen, Produkte. (easy, web)</h2>
-<hr>
-<h3 id="challenge7">Challenge</h3>
+
+<hr />
+
+<h3 id="challenge-7">Challenge</h3>
+
 <blockquote>
 <p>To manage the ever-increasing number of flags for the CTF system, the administrators have decided to use SAP as a management platform.</p>
 </blockquote>
-<h3 id="solution7">Solution</h3>
-<p>ウェブサイトにアクセスすると、&ldquo;This website only works on Internet Explorer 6&rdquo; と出るので、User-Agentを変えればOK。</p>
+
+<h3 id="solution-7">Solution</h3>
+
+<p>ウェブサイトにアクセスすると、&rdquo;This website only works on Internet Explorer 6&rdquo; と出るので、User-Agentを変えればOK。
 <pre>
-wget -O - "http://ctf.honeynet.org:8204/" --user-agent="Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1)"
-</pre>
+wget -O - &ldquo;<a href="http://ctf.honeynet.org:8204/&quot;">http://ctf.honeynet.org:8204/&quot;</a> &ndash;user-agent=&ldquo;Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1)&rdquo;
+</pre></p>
+
 <p><br /><br />
 <br /><br /></p>
+
 <h2 id="sharks-easy-network">Sharks (easy, network)</h2>
-<hr>
-<h3 id="challenge8">Challenge</h3>
+
+<hr />
+
+<h3 id="challenge-8">Challenge</h3>
+
 <blockquote>
 <p>Analyze the network traffic to get the flag.</p>
 </blockquote>
+
 <p>Attachment:</p>
+
 <ul>
 <li>shark.pcap</li>
 </ul>
-<h3 id="solution8">Solution</h3>
+
+<h3 id="solution-8">Solution</h3>
+
 <p>WireSharkで、httpのobjectをexport。</p>
+
 <p><br /><br />
 <br /><br /></p>
-<h2 id="texture-easy-imageforensics">Texture (easy, image-forensics)</h2>
-<hr>
-<h3 id="challenge9">Challenge</h3>
+
+<h2 id="texture-easy-image-forensics">Texture (easy, image-forensics)</h2>
+
+<hr />
+
+<h3 id="challenge-9">Challenge</h3>
+
 <blockquote>
-<p>There's a flag hidden in the image. Can you find it?</p>
+<p>There&rsquo;s a flag hidden in the image. Can you find it?</p>
 </blockquote>
+
 <p>Attachment:</p>
+
 <ul>
 <li>texture.png</li>
 </ul>
-<h3 id="solution9">Solution</h3>
+
+<h3 id="solution-9">Solution</h3>
+
 <p>「青い空を見上げればいつもそこに白い猫」のステガノグラフィー解析より、灰色ピクセルを強調。
 <br />
 フラグの文字列は右下に出るので、フルスクリーンにしておかないと見逃すかも。</p>
+
 <p><br /><br />
 <br /><br /></p>
+
 <h2 id="there-is-no-such-thing-as-a-free-flag-easy-network">There is no such thing as a free flag (easy, network)</h2>
-<hr>
-<h3 id="challenge10">Challenge</h3>
+
+<hr />
+
+<h3 id="challenge-10">Challenge</h3>
+
 <blockquote>
 <p>You have asked the organizers to give you a flag for free. &ldquo;Sure&rdquo;, they said, &ldquo;just go to <a href="http://ctf.honeynet.org:8101/flag.txt">http://ctf.honeynet.org:8101/flag.txt</a> and get it!&rdquo;
 <br /><br />
@@ -445,10 +516,13 @@ iptables_rules.txt
 <br /><br />
 If you do this from your home network, Network Address Translation will get into your way.</p>
 </blockquote>
+
 <p>Attachment:</p>
+
 <ul>
 <li>iptables_rules.txt</li>
 </ul>
+
 <pre>
 Chain firewall (1 references)
 target     prot opt source               destination
@@ -462,58 +536,79 @@ ACCEPT     tcp  --  0.0.0.0/0            0.0.0.0/0            tcp dpt:8000
 REJECT     tcp  --  0.0.0.0/0            0.0.0.0/0            tcp spts:1024:65535 reject-with tcp-reset
 ACCEPT     tcp  --  0.0.0.0/0            0.0.0.0/0
 </pre>
-<h3 id="solution10">Solution</h3>
-<p>上から順番に見ていくと、当たってしまうルールは以下なのがわかります。</p>
+
+<h3 id="solution-10">Solution</h3>
+
+<p>上から順番に見ていくと、当たってしまうルールは以下なのがわかります。
 <pre>
-REJECT     tcp  --  0.0.0.0/0            0.0.0.0/0            tcp spts:1024:65535 reject-with tcp-reset
-</pre>
-<p>問題の最後の一文（&ldquo;If you do this ~&rdquo;）は、ホームネットワークでNAPTしてる場合は気をつけてね、の意味ですね。
+REJECT     tcp  &ndash;  0.0.0.0/0            0.0.0.0/0            tcp spts:1024:65535 reject-with tcp-reset
+</pre></p>
+
+<p>問題の最後の一文（&rdquo;If you do this ~&ldquo;）は、ホームネットワークでNAPTしてる場合は気をつけてね、の意味ですね。
 <br /><br />
-送信元ポートをルールの範囲外にしてやって、GETを送るとフラグが返ってきます。（HTTPヘッダの終わりを示すため、エンターは2回押します。）</p>
+送信元ポートをルールの範囲外にしてやって、GETを送るとフラグが返ってきます。（HTTPヘッダの終わりを示すため、エンターは2回押します。）
 <pre>
 $ nc ctf.honeynet.org 8101 -p 1023
-GET /flag.txt HTTP/1.1
+GET /flag.txt HTTP/1.1</p>
 
-HTTP/1.1 200 OK
+<p>HTTP/1.1 200 OK
 Content-Type: text/plain; charset=utf-8
 Content-Length: 42
 Date: Sat, 01 Jun 2019 03:22:37 GMT
-Server: Python/3.7 aiohttp/3.5.4
+Server: Python/3.7 aiohttp/3.5.4</p>
 
-\__flag__{155ece9cf99a4de280a166f8100f947b}
-</pre>
+<p>__flag__{155ece9cf99a4de280a166f8100f947b}
+</pre></p>
+
 <p><br /><br />
 <br /><br /></p>
+
 <h2 id="weird-website-easy-network">Weird Website (easy, network)</h2>
-<hr>
-<h3 id="challenge11">Challenge</h3>
+
+<hr />
+
+<h3 id="challenge-11">Challenge</h3>
+
 <blockquote>
 <p>Analyze the network traffic to get the flag.</p>
 </blockquote>
+
 <p>Attachment:</p>
+
 <ul>
 <li>weirdwebsite.pcap</li>
 </ul>
-<h3 id="solution11">Solution</h3>
-<p><a href="http://codertab.com/JsUnFuck"><a href="http://codertab.com/JsUnFuck">http://codertab.com/JsUnFuck</a></a></p>
+
+<h3 id="solution-11">Solution</h3>
+
+<p><a href="http://codertab.com/JsUnFuck">http://codertab.com/JsUnFuck</a></p>
+
 <p><br /><br />
 <br /><br /></p>
-<h2 id="superbank-easy-network-multistage">SuperBank (easy, network, multi-stage)</h2>
-<hr>
-<h3 id="challenge12">Challenge</h3>
+
+<h2 id="superbank-easy-network-multi-stage">SuperBank (easy, network, multi-stage)</h2>
+
+<hr />
+
+<h3 id="challenge-12">Challenge</h3>
+
 <blockquote>
-<p>@maximilianhils decided that honeypots aren't challenging enough, so he went out and started a new venture: a blockchain-powered console-based banking app. The first prototype is ready and he happily gives you beta access to test things out. Such excite!
+<p>@maximilianhils decided that honeypots aren&rsquo;t challenging enough, so he went out and started a new venture: a blockchain-powered console-based banking app. The first prototype is ready and he happily gives you beta access to test things out. Such excite!
 <br /><br />
-To start things off, download the superbank client and log into your account with the credentials below. Take your own initial balance x, and submit it as a flag like so: _<em>flag</em>_{x}.</p>
+To start things off, download the superbank client and log into your account with the credentials below. Take your own initial balance x, and submit it as a flag like so: __flag__{x}.</p>
 </blockquote>
+
 <p>Attachment:</p>
+
 <ul>
 <li>superbank.exe</li>
 <li>superbank-osx</li>
 <li>superbank-linux</li>
 </ul>
-<h3 id="solution12">Solution</h3>
-<p>問題の中で、API Endpoint, Username, PINが与えられます。添付されているプログラムを実行すると、それらを入力するようになっているので入力すると、以下に見えるように最初は42トークンを持っているようなので、</p>
+
+<h3 id="solution-12">Solution</h3>
+
+<p>問題の中で、API Endpoint, Username, PINが与えられます。添付されているプログラムを実行すると、それらを入力するようになっているので入力すると、以下に見えるように最初は42トークンを持っているようなので、
 <pre>
 \================================================================
 💰 Welcome to SuperBank, the first blockchain-enabled super bank!
@@ -521,55 +616,77 @@ To start things off, download the superbank client and log into your account wit
 Currently registered accounts:
  - @maximilianhils (5226 tokens)
  - @projecthoneynet (4732 tokens)
- - メールアドレス (42 tokens, that's you!)
-</pre>
+ - メールアドレス (42 tokens, that&rsquo;s you!)
+</pre></p>
+
 <p><code>__flag__{42}</code>が答え。</p>
+
 <p><br /><br />
 <br /><br /></p>
-<h2 id="superbanknotes-">SuperBankNotes (?)</h2>
-<hr>
-<h3 id="challenge13">Challenge</h3>
+
+<h2 id="superbanknotes">SuperBankNotes (?)</h2>
+
+<hr />
+
+<h3 id="challenge-13">Challenge</h3>
+
 <blockquote>
-<p>The SuperBank app seems to work great, but is it secure? You decide to investigate what @maximilianhils's app is sending on the network. Maybe there is more data on the blockchain than you initially thought?</p>
+<p>The SuperBank app seems to work great, but is it secure? You decide to investigate what @maximilianhils&rsquo;s app is sending on the network. Maybe there is more data on the blockchain than you initially thought?</p>
 </blockquote>
+
 <h3 id="unsolved">(Unsolved)</h3>
+
 <p>カテゴリも付いていない。ちょっと降参。</p>
+
 <p><br /><br />
 <br /><br /></p>
-<h2 id="hashingasaservice-medium-web">(H)ashing-as-a-Service (medium, web)</h2>
-<hr>
-<h3 id="challenge14">Challenge</h3>
+
+<h2 id="h-ashing-as-a-service-medium-web">(H)ashing-as-a-Service (medium, web)</h2>
+
+<hr />
+
+<h3 id="challenge-14">Challenge</h3>
+
 <blockquote>
 <p>Developers must make sure to not store passwords as plaintext, but scramble them with a password hashing algorithm first. Unfortunately, they often use insecure hashing algorithms such as MD5 to do this. To tackle this problem, we developed Hashing-as-a-Service (HaaS), a modern approach to perfect password security. Using the HaaS API, you can securely hash any password you want!</p>
 </blockquote>
-<h3 id="solution13">Solution</h3>
+
+<h3 id="solution-13">Solution</h3>
+
 <p>コマンドインジェクション。セミコロンで区切ると、2つ目がコマンドとして実行される。
 <br /><br />
 入力：<code>aaa;cat flag.txt;aaa</code>
 <br /><br />
-結果：</p>
+結果：
 <pre>
 aaa
-\__flag__{7de16dbb910d2f0a6736944cd9a531ca}
+__flag__{7de16dbb910d2f0a6736944cd9a531ca}
 ash: aaa: not found
 SHA-256: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
-</pre>
+</pre></p>
+
 <p><br /><br />
 <br /><br /></p>
+
 <h2 id="terrific-encryption-medium-cryptography">Terrific Encryption (medium, cryptography)</h2>
-<hr>
-<h3 id="challenge15">Challenge</h3>
+
+<hr />
+
+<h3 id="challenge-15">Challenge</h3>
+
 <blockquote>
-<p>In a major breakthrough, undergrads at Stanford have unveiled TEA (Terrific Encryption Algorithm) the first quantum-resistant encryption algorithm that can be used on the blockchain. Having learned about the security benefits of TEA, we have immediately encrypted all our flags and are sure that they won't be cracked anytime soon.</p>
+<p>In a major breakthrough, undergrads at Stanford have unveiled TEA (Terrific Encryption Algorithm) the first quantum-resistant encryption algorithm that can be used on the blockchain. Having learned about the security benefits of TEA, we have immediately encrypted all our flags and are sure that they won&rsquo;t be cracked anytime soon.</p>
 </blockquote>
+
 <p>Attachment:</p>
+
 <ul>
 <li>tea.py</li>
 <li>flag (encrypted)</li>
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre class="chroma"><code class="language-python :tea.py" data-lang="python :tea.py"><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -591,29 +708,30 @@ SHA-256: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
 </span><span class="lnt">20
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">random</span>
+<pre class="chroma"><code class="language-python :tea.py" data-lang="python :tea.py"><span class="kn">import</span> <span class="nn">random</span>
 <span class="kn">import</span> <span class="nn">sys</span>
 <span class="kn">import</span> <span class="nn">time</span>
 
 
-<span class="k">def</span> <span class="nf">encrypt</span><span class="p">(</span><span class="n">msg</span><span class="p">:</span> <span class="nb">bytes</span><span class="p">)</span> <span class="o">-</span><span class="o">&gt;</span> <span class="nb">bytes</span><span class="p">:</span>
-    <span class="n">cur_time</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">(</span><span class="p">)</span><span class="p">)</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">encrypt</span><span class="p">(</span><span class="n">msg</span><span class="p">:</span> <span class="nb">bytes</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bytes</span><span class="p">:</span>
+    <span class="n">cur_time</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">())</span><span class="o">.</span><span class="n">encode</span><span class="p">()</span>
     <span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="n">cur_time</span><span class="p">)</span>
 
     <span class="n">key</span> <span class="o">=</span> <span class="p">[</span><span class="n">random</span><span class="o">.</span><span class="n">randrange</span><span class="p">(</span><span class="mi">256</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">msg</span><span class="p">]</span>
-    <span class="n">c</span> <span class="o">=</span> <span class="p">[</span><span class="n">m</span> <span class="o">^</span> <span class="n">k</span> <span class="k">for</span> <span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="n">k</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">msg</span> <span class="o">+</span> <span class="n">cur_time</span><span class="p">,</span> <span class="n">key</span> <span class="o">+</span> <span class="p">[</span><span class="mh">0x42</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">cur_time</span><span class="p">)</span><span class="p">)</span><span class="p">]</span>
+    <span class="n">c</span> <span class="o">=</span> <span class="p">[</span><span class="n">m</span> <span class="o">^</span> <span class="n">k</span> <span class="k">for</span> <span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="n">k</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">msg</span> <span class="o">+</span> <span class="n">cur_time</span><span class="p">,</span> <span class="n">key</span> <span class="o">+</span> <span class="p">[</span><span class="mh">0x42</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">cur_time</span><span class="p">))]</span>
 
     <span class="k">return</span> <span class="nb">bytes</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
 
 
-<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="sa"></span><span class="s2">&#34;</span><span class="s2">__main__</span><span class="s2">&#34;</span><span class="p">:</span>
-    <span class="n">msg</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">Your message: </span><span class="s1">&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="p">)</span>
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&#34;__main__&#34;</span><span class="p">:</span>
+    <span class="n">msg</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s1">&#39;Your message: &#39;</span><span class="p">)</span><span class="o">.</span><span class="n">encode</span><span class="p">()</span>
     <span class="n">enc</span> <span class="o">=</span> <span class="n">encrypt</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
-    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="p">,</span> <span class="sa"></span><span class="s2">&#34;</span><span class="s2">wb</span><span class="s2">&#34;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-        <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">enc</span><span class="p">)</span>
-</code></pre></td></tr></table>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="s2">&#34;wb&#34;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">enc</span><span class="p">)</span></code></pre></td></tr></table>
 </div>
-</div><h3 id="solution14">Solution</h3>
+</div>
+<h3 id="solution-14">Solution</h3>
+
 <p>コードを読み解くと、入力したmsgの部分と、cur_timeはそれぞれ計算されて連結されてるだけなのがわかります。
 <br /><br />
 具体的に言うと、添付されているflag (encrypted)は、42バイトのフラグ文字列をencryptしたものと、日時の18バイトをencryptしたものの連結です。
@@ -621,7 +739,7 @@ SHA-256: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
 randで乱数を使ってますが、random.seedに固定値を入れると、毎回同じ乱数が取れるはずです。ということで、まずは末尾にある18バイトをdecryptしてcur_timeを求め、それを使ってflagをデコードする、という手順になります。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre class="chroma"><code class="language-c :tea.c" data-lang="c :tea.c"><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -655,45 +773,45 @@ randで乱数を使ってますが、random.seedに固定値を入れると、�
 </span><span class="lnt">32
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-c" data-lang="c"><span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
-</span><span class="cp"></span><span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;string.h&gt;</span><span class="cp">
+<pre class="chroma"><code class="language-c :tea.c" data-lang="c :tea.c"><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;string.h&gt;</span><span class="cp">
 </span><span class="cp"></span>
-<span class="cp">#</span><span class="cp">define buffsize 100</span><span class="cp">
-</span><span class="cp"></span><span class="cp">#</span><span class="cp">define flagsize 42</span><span class="cp">
+<span class="cp">#define buffsize 100
+</span><span class="cp">#define flagsize 42
 </span><span class="cp"></span>
-<span class="kt">char</span> <span class="n">flag</span><span class="p">[</span><span class="n">buffsize</span><span class="p">]</span><span class="p">;</span>
+<span class="kt">char</span> <span class="n">flag</span><span class="p">[</span><span class="n">buffsize</span><span class="p">];</span>
 
-<span class="kt">int</span> <span class="nf">find_curtime</span><span class="p">(</span><span class="p">)</span>
+<span class="kt">int</span> <span class="nf">find_curtime</span><span class="p">()</span>
 <span class="p">{</span>
 	<span class="n">FILE</span> <span class="o">*</span><span class="n">fp</span><span class="p">;</span>
-	<span class="kt">char</span> <span class="n">curtime</span><span class="p">[</span><span class="n">buffsize</span><span class="p">]</span><span class="p">;</span>
+	<span class="kt">char</span> <span class="n">curtime</span><span class="p">[</span><span class="n">buffsize</span><span class="p">];</span>
 	<span class="kt">int</span> <span class="n">i</span><span class="p">;</span>
 	
-	<span class="k">if</span> <span class="p">(</span> <span class="p">(</span> <span class="n">fp</span> <span class="o">=</span> <span class="n">fopen</span><span class="p">(</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">flag</span><span class="s">&#34;</span><span class="p">,</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">rb</span><span class="s">&#34;</span> <span class="p">)</span> <span class="p">)</span> <span class="o">=</span><span class="o">=</span> <span class="nb">NULL</span> <span class="p">)</span> <span class="p">{</span>
+	<span class="k">if</span> <span class="p">(</span> <span class="p">(</span> <span class="n">fp</span> <span class="o">=</span> <span class="n">fopen</span><span class="p">(</span> <span class="s">&#34;flag&#34;</span><span class="p">,</span> <span class="s">&#34;rb&#34;</span> <span class="p">)</span> <span class="p">)</span> <span class="o">==</span> <span class="nb">NULL</span> <span class="p">)</span> <span class="p">{</span>
 		<span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
 	<span class="p">}</span>
-	<span class="n">fread</span><span class="p">(</span> <span class="n">flag</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">flagsize</span><span class="p">,</span> <span class="n">fp</span> <span class="p">)</span><span class="p">;</span>
-	<span class="n">fread</span><span class="p">(</span> <span class="n">curtime</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">strlen</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">1559365126.8803241</span><span class="s">&#34;</span><span class="p">)</span><span class="p">,</span> <span class="n">fp</span> <span class="p">)</span><span class="p">;</span>
+	<span class="n">fread</span><span class="p">(</span> <span class="n">flag</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">flagsize</span><span class="p">,</span> <span class="n">fp</span> <span class="p">);</span>
+	<span class="n">fread</span><span class="p">(</span> <span class="n">curtime</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">strlen</span><span class="p">(</span><span class="s">&#34;1559365126.8803241&#34;</span><span class="p">),</span> <span class="n">fp</span> <span class="p">);</span>
 
-	<span class="k">for</span><span class="p">(</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span> <span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">strlen</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">1559365126.8803241</span><span class="s">&#34;</span><span class="p">)</span> <span class="p">;</span> <span class="n">i</span><span class="o">+</span><span class="o">+</span> <span class="p">)</span> <span class="p">{</span>
-		<span class="n">printf</span><span class="p">(</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">%c</span><span class="s">&#34;</span><span class="p">,</span> <span class="p">(</span><span class="kt">char</span><span class="p">)</span><span class="p">(</span> <span class="n">curtime</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">^</span> <span class="mh">0x42</span> <span class="p">)</span> <span class="p">)</span><span class="p">;</span>
+	<span class="k">for</span><span class="p">(</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span> <span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">strlen</span><span class="p">(</span><span class="s">&#34;1559365126.8803241&#34;</span><span class="p">)</span> <span class="p">;</span> <span class="n">i</span><span class="o">++</span> <span class="p">)</span> <span class="p">{</span>
+		<span class="n">printf</span><span class="p">(</span> <span class="s">&#34;%c&#34;</span><span class="p">,</span> <span class="p">(</span><span class="kt">char</span><span class="p">)(</span> <span class="n">curtime</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">^</span> <span class="mh">0x42</span> <span class="p">)</span> <span class="p">);</span>
 	<span class="p">}</span>
-	<span class="n">puts</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">&#34;</span><span class="p">)</span><span class="p">;</span>
-	<span class="n">fclose</span><span class="p">(</span> <span class="n">fp</span> <span class="p">)</span><span class="p">;</span>
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;&#34;</span><span class="p">);</span>
+	<span class="n">fclose</span><span class="p">(</span> <span class="n">fp</span> <span class="p">);</span>
 	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
 
-<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span><span class="o">*</span><span class="n">argv</span><span class="p">)</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">**</span><span class="n">argv</span><span class="p">)</span>
 <span class="p">{</span>
-	<span class="n">find_curtime</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+	<span class="n">find_curtime</span><span class="p">();</span>
+<span class="p">}</span></code></pre></td></tr></table>
 </div>
-</div><p><br /><br />
-これで、cur_time（b'1559186793.7909977&rsquo;）が取得できたので、それを使って乱数を42バイト作ります。ここだけpythonを使いました。</p>
+</div>
+<p><br /><br />
+これで、cur_time（b&rsquo;1559186793.7909977&rsquo;）が取得できたので、それを使って乱数を42バイト作ります。ここだけpythonを使いました。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre class="chroma"><code class="language-python :get_randkey.py" data-lang="python :get_randkey.py"><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -704,22 +822,22 @@ randで乱数を使ってますが、random.seedに固定値を入れると、�
 </span><span class="lnt">9
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">random</span>
+<pre class="chroma"><code class="language-python :get_randkey.py" data-lang="python :get_randkey.py"><span class="kn">import</span> <span class="nn">random</span>
 
 <span class="n">flagsize</span> <span class="o">=</span> <span class="mi">42</span>
-<span class="n">cur_time</span> <span class="o">=</span> <span class="sa">b</span><span class="s1">&#39;</span><span class="s1">1559186793.7909977</span><span class="s1">&#39;</span>
+<span class="n">cur_time</span> <span class="o">=</span> <span class="sa">b</span><span class="s1">&#39;1559186793.7909977&#39;</span>
 <span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="n">cur_time</span><span class="p">)</span>
-<span class="n">key</span> <span class="o">=</span> <span class="p">[</span><span class="n">random</span><span class="o">.</span><span class="n">randrange</span><span class="p">(</span><span class="mi">256</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">flagsize</span><span class="p">)</span><span class="p">]</span>
+<span class="n">key</span> <span class="o">=</span> <span class="p">[</span><span class="n">random</span><span class="o">.</span><span class="n">randrange</span><span class="p">(</span><span class="mi">256</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">flagsize</span><span class="p">)]</span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">key</span><span class="p">:</span>
-    <span class="k">print</span><span class="p">(</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2">{}, </span><span class="s2">&#34;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2">&#34;</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="sa"></span><span class="s2">&#34;</span><span class="se">\n</span><span class="s2">&#34;</span><span class="p">)</span>
-</code></pre></td></tr></table>
+    <span class="k">print</span><span class="p">(</span><span class="s2">&#34;{}, &#34;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i</span><span class="p">),</span> <span class="n">end</span><span class="o">=</span><span class="s2">&#34;&#34;</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s2">&#34;</span><span class="se">\n</span><span class="s2">&#34;</span><span class="p">)</span></code></pre></td></tr></table>
 </div>
-</div><p><br /><br />
+</div>
+<p><br /><br />
 真ん中あたりから下の部分が追加したところです。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre class="chroma"><code class="language-c :tea.c" data-lang="c :tea.c"><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -766,66 +884,74 @@ randで乱数を使ってますが、random.seedに固定値を入れると、�
 </span><span class="lnt">45
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-c" data-lang="c"><span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
-</span><span class="cp"></span><span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;string.h&gt;</span><span class="cp">
+<pre class="chroma"><code class="language-c :tea.c" data-lang="c :tea.c"><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;string.h&gt;</span><span class="cp">
 </span><span class="cp"></span>
-<span class="cp">#</span><span class="cp">define buffsize 100</span><span class="cp">
-</span><span class="cp"></span><span class="cp">#</span><span class="cp">define flagsize 42</span><span class="cp">
+<span class="cp">#define buffsize 100
+</span><span class="cp">#define flagsize 42
 </span><span class="cp"></span>
-<span class="kt">char</span> <span class="n">flag</span><span class="p">[</span><span class="n">buffsize</span><span class="p">]</span><span class="p">;</span>
+<span class="kt">char</span> <span class="n">flag</span><span class="p">[</span><span class="n">buffsize</span><span class="p">];</span>
 
-<span class="kt">int</span> <span class="nf">find_curtime</span><span class="p">(</span><span class="p">)</span>
+<span class="kt">int</span> <span class="nf">find_curtime</span><span class="p">()</span>
 <span class="p">{</span>
 	<span class="n">FILE</span> <span class="o">*</span><span class="n">fp</span><span class="p">;</span>
-	<span class="kt">char</span> <span class="n">curtime</span><span class="p">[</span><span class="n">buffsize</span><span class="p">]</span><span class="p">;</span>
+	<span class="kt">char</span> <span class="n">curtime</span><span class="p">[</span><span class="n">buffsize</span><span class="p">];</span>
 	<span class="kt">int</span> <span class="n">i</span><span class="p">;</span>
 	
-	<span class="k">if</span> <span class="p">(</span> <span class="p">(</span> <span class="n">fp</span> <span class="o">=</span> <span class="n">fopen</span><span class="p">(</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">flag</span><span class="s">&#34;</span><span class="p">,</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">rb</span><span class="s">&#34;</span> <span class="p">)</span> <span class="p">)</span> <span class="o">=</span><span class="o">=</span> <span class="nb">NULL</span> <span class="p">)</span> <span class="p">{</span>
+	<span class="k">if</span> <span class="p">(</span> <span class="p">(</span> <span class="n">fp</span> <span class="o">=</span> <span class="n">fopen</span><span class="p">(</span> <span class="s">&#34;flag&#34;</span><span class="p">,</span> <span class="s">&#34;rb&#34;</span> <span class="p">)</span> <span class="p">)</span> <span class="o">==</span> <span class="nb">NULL</span> <span class="p">)</span> <span class="p">{</span>
 		<span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
 	<span class="p">}</span>
-	<span class="n">fread</span><span class="p">(</span> <span class="n">flag</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">flagsize</span><span class="p">,</span> <span class="n">fp</span> <span class="p">)</span><span class="p">;</span>
-	<span class="n">fread</span><span class="p">(</span> <span class="n">curtime</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">strlen</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">1559365126.8803241</span><span class="s">&#34;</span><span class="p">)</span><span class="p">,</span> <span class="n">fp</span> <span class="p">)</span><span class="p">;</span>
+	<span class="n">fread</span><span class="p">(</span> <span class="n">flag</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">flagsize</span><span class="p">,</span> <span class="n">fp</span> <span class="p">);</span>
+	<span class="n">fread</span><span class="p">(</span> <span class="n">curtime</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">strlen</span><span class="p">(</span><span class="s">&#34;1559365126.8803241&#34;</span><span class="p">),</span> <span class="n">fp</span> <span class="p">);</span>
 
-	<span class="k">for</span><span class="p">(</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span> <span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">strlen</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">1559365126.8803241</span><span class="s">&#34;</span><span class="p">)</span> <span class="p">;</span> <span class="n">i</span><span class="o">+</span><span class="o">+</span> <span class="p">)</span> <span class="p">{</span>
-		<span class="n">printf</span><span class="p">(</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">%c</span><span class="s">&#34;</span><span class="p">,</span> <span class="p">(</span><span class="kt">char</span><span class="p">)</span><span class="p">(</span> <span class="n">curtime</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">^</span> <span class="mh">0x42</span> <span class="p">)</span> <span class="p">)</span><span class="p">;</span>
+	<span class="k">for</span><span class="p">(</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span> <span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">strlen</span><span class="p">(</span><span class="s">&#34;1559365126.8803241&#34;</span><span class="p">)</span> <span class="p">;</span> <span class="n">i</span><span class="o">++</span> <span class="p">)</span> <span class="p">{</span>
+		<span class="n">printf</span><span class="p">(</span> <span class="s">&#34;%c&#34;</span><span class="p">,</span> <span class="p">(</span><span class="kt">char</span><span class="p">)(</span> <span class="n">curtime</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">^</span> <span class="mh">0x42</span> <span class="p">)</span> <span class="p">);</span>
 	<span class="p">}</span>
-	<span class="n">puts</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">&#34;</span><span class="p">)</span><span class="p">;</span>
-	<span class="n">fclose</span><span class="p">(</span> <span class="n">fp</span> <span class="p">)</span><span class="p">;</span>
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;&#34;</span><span class="p">);</span>
+	<span class="n">fclose</span><span class="p">(</span> <span class="n">fp</span> <span class="p">);</span>
 	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
 
-<span class="kt">int</span> <span class="n">rand_tbl</span><span class="p">[</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="mi">171</span><span class="p">,</span> <span class="mi">230</span><span class="p">,</span> <span class="mi">233</span><span class="p">,</span> <span class="mi">140</span><span class="p">,</span> <span class="mi">184</span><span class="p">,</span> <span class="mi">152</span><span class="p">,</span> <span class="mi">108</span><span class="p">,</span> <span class="mi">60</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">131</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">125</span><span class="p">,</span> <span class="mi">126</span><span class="p">,</span> <span class="mi">157</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">143</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">157</span><span class="p">,</span> <span class="mi">108</span><span class="p">,</span> <span class="mi">86</span><span class="p">,</span> <span class="mi">234</span><span class="p">,</span> <span class="mi">31</span><span class="p">,</span> <span class="mi">164</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">86</span><span class="p">,</span> <span class="mi">245</span><span class="p">,</span> <span class="mi">196</span><span class="p">,</span> <span class="mi">180</span><span class="p">,</span> <span class="mi">73</span><span class="p">,</span> <span class="mi">21</span><span class="p">,</span> <span class="mi">223</span><span class="p">,</span> <span class="mi">250</span><span class="p">,</span> <span class="mi">111</span><span class="p">,</span> <span class="mi">97</span><span class="p">,</span> <span class="mi">210</span><span class="p">,</span> <span class="mi">229</span><span class="p">,</span> <span class="mi">169</span><span class="p">,</span> <span class="mi">77</span><span class="p">,</span> <span class="mi">53</span><span class="p">,</span> <span class="mi">1</span><span class="p">}</span><span class="p">;</span>
+<span class="kt">int</span> <span class="n">rand_tbl</span><span class="p">[]</span> <span class="o">=</span> <span class="p">{</span><span class="mi">171</span><span class="p">,</span> <span class="mi">230</span><span class="p">,</span> <span class="mi">233</span><span class="p">,</span> <span class="mi">140</span><span class="p">,</span> <span class="mi">184</span><span class="p">,</span> <span class="mi">152</span><span class="p">,</span> <span class="mi">108</span><span class="p">,</span> <span class="mi">60</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">131</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">125</span><span class="p">,</span> <span class="mi">126</span><span class="p">,</span> <span class="mi">157</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">143</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">157</span><span class="p">,</span> <span class="mi">108</span><span class="p">,</span> <span class="mi">86</span><span class="p">,</span> <span class="mi">234</span><span class="p">,</span> <span class="mi">31</span><span class="p">,</span> <span class="mi">164</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">86</span><span class="p">,</span> <span class="mi">245</span><span class="p">,</span> <span class="mi">196</span><span class="p">,</span> <span class="mi">180</span><span class="p">,</span> <span class="mi">73</span><span class="p">,</span> <span class="mi">21</span><span class="p">,</span> <span class="mi">223</span><span class="p">,</span> <span class="mi">250</span><span class="p">,</span> <span class="mi">111</span><span class="p">,</span> <span class="mi">97</span><span class="p">,</span> <span class="mi">210</span><span class="p">,</span> <span class="mi">229</span><span class="p">,</span> <span class="mi">169</span><span class="p">,</span> <span class="mi">77</span><span class="p">,</span> <span class="mi">53</span><span class="p">,</span> <span class="mi">1</span><span class="p">};</span>
 
-<span class="kt">void</span> <span class="nf">find_flag</span><span class="p">(</span><span class="p">)</span>
+<span class="kt">void</span> <span class="nf">find_flag</span><span class="p">()</span>
 <span class="p">{</span>
 	<span class="kt">int</span> <span class="n">i</span><span class="p">;</span>
 	
-	<span class="k">for</span> <span class="p">(</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span> <span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">flagsize</span> <span class="p">;</span> <span class="n">i</span><span class="o">+</span><span class="o">+</span> <span class="p">)</span> <span class="p">{</span>
-		<span class="n">printf</span><span class="p">(</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">%c</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">flag</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">^</span> <span class="n">rand_tbl</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="p">)</span><span class="p">;</span>
+	<span class="k">for</span> <span class="p">(</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span> <span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">flagsize</span> <span class="p">;</span> <span class="n">i</span><span class="o">++</span> <span class="p">)</span> <span class="p">{</span>
+		<span class="n">printf</span><span class="p">(</span> <span class="s">&#34;%c&#34;</span><span class="p">,</span> <span class="n">flag</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">^</span> <span class="n">rand_tbl</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="p">);</span>
 	<span class="p">}</span>
-	<span class="n">puts</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">&#34;</span><span class="p">)</span><span class="p">;</span>
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;&#34;</span><span class="p">);</span>
 <span class="p">}</span>
 
-<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span><span class="o">*</span><span class="n">argv</span><span class="p">)</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">**</span><span class="n">argv</span><span class="p">)</span>
 <span class="p">{</span>
-	<span class="n">find_curtime</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
-	<span class="n">find_flag</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+	<span class="n">find_curtime</span><span class="p">();</span>
+	<span class="n">find_flag</span><span class="p">();</span>
+<span class="p">}</span></code></pre></td></tr></table>
 </div>
-</div><p><br /><br />
+</div>
+<p><br /><br />
 <br /><br /></p>
-<h2 id="you-know-the-rules-and-so-do-i--medium-imageforensics">You know the rules, and so do I&hellip; ?? (medium, image-forensics)</h2>
-<hr>
-<h3 id="challenge16">Challenge</h3>
+
+<h2 id="you-know-the-rules-and-so-do-i-medium-image-forensics">You know the rules, and so do I&hellip; ?? (medium, image-forensics)</h2>
+
+<hr />
+
+<h3 id="challenge-16">Challenge</h3>
+
 <blockquote>
-<p>There's a flag hidden in the image. Can you find it?</p>
+<p>There&rsquo;s a flag hidden in the image. Can you find it?</p>
 </blockquote>
+
 <p>Attachment:</p>
+
 <ul>
 <li>qrcode.png</li>
 </ul>
-<h3 id="solution15">Solution</h3>
+
+<h3 id="solution-15">Solution</h3>
+
 <p>「青い空を見上げればいつもそこに白い猫」のステガノグラフィー解析、ビット抽出へ行くと、フラグっぽいのが見えます。
 <br />
 <img src="https://captureamerica.github.io/writeups/img/bit_extract.png" alt="bit_extract.png">
@@ -835,107 +961,142 @@ randで乱数を使ってますが、random.seedに固定値を入れると、�
 不明な文字は、他の箇所を探していると見つかります。
 <br />
 <img src="https://captureamerica.github.io/writeups/img/bin_check.png" alt="bin_check.png"></p>
+
 <p><br /><br />
 <br /><br /></p>
+
 <h2 id="coinflip-medium-binary">CoinFlip (medium, binary)</h2>
-<hr>
-<h3 id="challenge17">Challenge</h3>
+
+<hr />
+
+<h3 id="challenge-17">Challenge</h3>
+
 <blockquote>
 <p>Can you find a way to win the game?</p>
 </blockquote>
+
 <p>Attachment:</p>
+
 <ul>
 <li>coinflip.exe</li>
 </ul>
-<h3 id="solution16">Solution</h3>
+
+<h3 id="solution-16">Solution</h3>
+
 <p>coinflipに100回勝つとフラグが取れる、ってやつでした。いろんな解法があると思います。自分はx32dbg.exeで解きました。<br />
 <br />
 rand()を使っている00401633のところをnopで埋めて（バイナリ -&gt; nopで埋める）、先にブレークポイントをセットしておいてから、エンターを押し続ける。<br /><br />
 ステップで進めていたら、そのうちフラグが見つかります。</p>
+
 <p><br /><br />
 <br /><br /></p>
+
 <h2 id="git-exposed-medium-web">Git Exposed (medium, web)</h2>
-<hr>
-<h3 id="challenge18">Challenge</h3>
+
+<hr />
+
+<h3 id="challenge-18">Challenge</h3>
+
 <blockquote>
 <p>Rumor has it that a flag has been hidden on this web server&hellip;</p>
 </blockquote>
-<h3 id="solution17">Solution</h3>
-<p>サイトにアクセスし、view page sourceした後、/files/ディレクトリを見ると、todo.txtというファイルが見つかります。</p>
+
+<h3 id="solution-17">Solution</h3>
+
+<p>サイトにアクセスし、view page sourceした後、/files/ディレクトリを見ると、todo.txtというファイルが見つかります。
 <pre>
 1. build website
-2. git add --all
-3. git commit -m "done"
+2. git add &ndash;all
+3. git commit -m &ldquo;done&rdquo;
 4. git push -f
 5. rsync -a . /etc/nginx/html/
-6. make local copy of everything with \`wget -r`
+6. make local copy of everything with `wget -r`
 7. save world
-</pre>
+</pre></p>
+
 <p>rsyncで、.gitフォルダを含めて丸ごとアップロードしちゃった、みたいなやつですかね。
 <br /><br />
-6行目にヒントがあって、<code>wget -r http://ctf.honeynet.org:8200/.git/</code>をしてローカルに持ってきたあとに、gitコマンドでヒストリーをチェックするとフラグが見つかります。</p>
+6行目にヒントがあって、<code>wget -r http://ctf.honeynet.org:8200/.git/</code>をしてローカルに持ってきたあとに、gitコマンドでヒストリーをチェックするとフラグが見つかります。
 <pre>
-\# git log -p --all --full-history
-commit 0918300e45171c89bbdfffa71120df01b77b1c46 (HEAD -> master)
-Author: Maximilian Hils \<git@maximilianhils.com>
+# git log -p &ndash;all &ndash;full-history
+commit 0918300e45171c89bbdfffa71120df01b77b1c46 (HEAD -&gt; master)
+Author: Maximilian Hils &lt;git@maximilianhils.com&gt;
 Date:   Thu Mar 14 21:03:52 2019 +0100
-\
+<br />
     oops! delete private files
-\
-diff --git a/files/flag.txt b/files/flag.txt
+<br />
+diff &ndash;git a/files/flag.txt b/files/flag.txt
 deleted file mode 100644
 index c047bcb..0000000
---- a/files/flag.txt
+&mdash; a/files/flag.txt
 +++ /dev/null
 @@ -1 +0,0 @@
--\__flag__{c97c255bd3bad6d77e0b6694abea908c}
+-__flag__{c97c255bd3bad6d77e0b6694abea908c}
 \ No newline at end of file
-</pre>
+</pre></p>
+
 <p><br /><br />
 <br /><br /></p>
+
 <h2 id="hidden-in-plain-sight-medium-misc">Hidden in Plain Sight (medium, misc)</h2>
-<hr>
-<h3 id="challenge19">Challenge</h3>
+
+<hr />
+
+<h3 id="challenge-19">Challenge</h3>
+
 <blockquote>
 <p>（説明なし）</p>
 </blockquote>
-<h3 id="solution18">Solution</h3>
+
+<h3 id="solution-18">Solution</h3>
+
 <p>これは説明がなにもないんですが、タイトルより、なにか文字があるけど見えないよ、みたいなことだとわかります。
 <br /><br />
 Inspect Elementすると、&lt;small&gt;に囲まれた文字列があって、クリップボード経由でコピペしてもエディタ上では?????になってしまいます。
 <br /><br />
-Burp Suite経由でアクセスしたら、以下が取れました。</p>
+Burp Suite経由でアクセスしたら、以下が取れました。
 <pre>
 \u2007\u202f\u2007\u202f\u202f\u202f\u202f\u202f \u2007\u202f\u2007\u202f\u202f\u202f\u202f\u202f \u2007\u202f\u202f\u2007\u2007\u202f\u202f\u2007 \u2007\u202f\u202f\u2007\u202f\u202f\u2007\u2007 \u2007\u202f\u202f\u2007\u2007\u2007\u2007\u202f \u2007\u202f\u202f\u2007\u2007\u202f\u202f\u202f \u2007\u202f\u2007\u202f\u202f\u202f\u202f\u202f \u2007\u202f\u2007\u202f\u202f\u202f\u202f\u202f \u2007\u202f\u202f\u202f\u202f\u2007\u202f\u202f \u2007\u2007\u202f\u202f\u2007\u202f\u2007\u202f \u2007\u2007\u202f\u202f\u2007\u202f\u202f\u2007 \u2007\u202f\u202f\u2007\u2007\u202f\u2007\u202f \u2007\u2007\u202f\u202f\u2007\u202f\u2007\u202f \u2007\u2007\u202f\u202f\u2007\u2007\u2007\u2007 \u2007\u202f\u202f\u2007\u2007\u202f\u202f\u2007 \u2007\u2007\u202f\u202f\u2007\u2007\u2007\u202f \u2007\u2007\u202f\u202f\u202f\u2007\u2007\u2007 \u2007\u202f\u202f\u2007\u2007\u2007\u202f\u2007 \u2007\u2007\u202f\u202f\u2007\u202f\u202f\u2007 \u2007\u2007\u202f\u202f\u2007\u202f\u2007\u2007 \u2007\u2007\u202f\u202f\u2007\u202f\u202f\u202f \u2007\u202f\u202f\u2007\u2007\u202f\u2007\u2007 \u2007\u2007\u202f\u202f\u202f\u2007\u2007\u2007 \u2007\u2007\u202f\u202f\u2007\u2007\u2007\u2007 \u2007\u202f\u202f\u2007\u2007\u202f\u2007\u2007 \u2007\u2007\u202f\u202f\u2007\u2007\u2007\u2007 \u2007\u2007\u202f\u202f\u2007\u2007\u2007\u202f \u2007\u2007\u202f\u202f\u202f\u2007\u2007\u2007 \u2007\u202f\u202f\u2007\u2007\u2007\u202f\u202f \u2007\u202f\u202f\u2007\u2007\u202f\u202f\u2007 \u2007\u2007\u202f\u202f\u2007\u2007\u202f\u2007 \u2007\u2007\u202f\u202f\u2007\u202f\u2007\u2007 \u2007\u2007\u202f\u202f\u2007\u2007\u202f\u202f \u2007\u202f\u202f\u2007\u2007\u202f\u2007\u2007 \u2007\u202f\u202f\u2007\u2007\u2007\u202f\u202f \u2007\u202f\u202f\u2007\u2007\u2007\u2007\u202f \u2007\u2007\u202f\u202f\u2007\u2007\u202f\u202f \u2007\u202f\u202f\u2007\u2007\u202f\u2007\u2007 \u2007\u2007\u202f\u202f\u2007\u2007\u202f\u202f \u2007\u2007\u202f\u202f\u2007\u2007\u202f\u2007 \u2007\u2007\u202f\u202f\u202f\u2007\u2007\u2007 \u2007\u202f\u202f\u202f\u202f\u202f\u2007\u202f
-</pre>
+</pre></p>
+
 <p><br />
 出てくるものは以下の2パターンです。
 <br />
 \u2007: FIGURE SPACE
 <br />
 \u202f: NARROW NO-BREAK SPACE</p>
+
 <p>それぞれ以下のように置換してみると、
 <br />
 \u2007 ==&gt; 0
 <br />
 \u202f ==&gt; 1</p>
+
 <p><br />
-こうなります。文字列を2進数で表記したもののようですね。</p>
+こうなります。文字列を2進数で表記したもののようですね。
 <pre>
 01011111 01011111 01100110 01101100 01100001 01100111 01011111 01011111 01111011 00110101 00110110 01100101 00110101 00110000 01100110 00110001 00111000 01100010 00110110 00110100 00110111 01100100 00111000 00110000 01100100 00110000 00110001 00111000 01100011 01100110 00110010 00110100 00110011 01100100 01100011 01100001 00110011 01100100 00110011 00110010 00111000 01111101
-</pre>
+</pre></p>
+
 <p>以下のサイトでデコードしました。
 <br />
-<a href="https://dencode.com/ja/string/bin"><a href="https://dencode.com/ja/string/bin">https://dencode.com/ja/string/bin</a></a></p>
+<a href="https://dencode.com/ja/string/bin">https://dencode.com/ja/string/bin</a></p>
+
 <p><br /><br />
 <br /><br /></p>
+
 <h2 id="directory-listing-hard-cryptography">Directory Listing (hard, cryptography)</h2>
-<hr>
-<h3 id="challenge20">Challenge</h3>
+
+<hr />
+
+<h3 id="challenge-20">Challenge</h3>
+
 <blockquote>
 <p>To serve all players with new challenges in case the CTF system goes down, we are providing an alternative file server.</p>
 </blockquote>
+
 <p>Attachment:</p>
+
 <ul>
 <li>app.py</li>
 <li>lecture-slides.pdf</li>
@@ -944,7 +1105,7 @@ Burp Suite経由でアクセスしたら、以下が取れました。</p>
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre class="chroma"><code class="language-python :app.py" data-lang="python :app.py"><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -1021,9 +1182,9 @@ Burp Suite経由でアクセスしたら、以下が取れました。</p>
 </span><span class="lnt">75
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="sa"></span><span class="s2">&#34;&#34;&#34;</span><span class="s2">
-</span><span class="s2"></span><span class="s2">DirList: Safely expose a directory on your server!</span><span class="s2">
-</span><span class="s2"></span><span class="s2">&#34;&#34;&#34;</span>
+<pre class="chroma"><code class="language-python :app.py" data-lang="python :app.py"><span class="s2">&#34;&#34;&#34;
+</span><span class="s2">DirList: Safely expose a directory on your server!
+</span><span class="s2">&#34;&#34;&#34;</span>
 <span class="kn">import</span> <span class="nn">hashlib</span>
 <span class="kn">import</span> <span class="nn">html</span>
 <span class="kn">import</span> <span class="nn">os</span>
@@ -1036,125 +1197,150 @@ Burp Suite経由でアクセスしたら、以下が取れました。</p>
 <span class="n">file_directory</span><span class="p">:</span> <span class="n">Path</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)</span><span class="o">.</span><span class="n">parent</span>
 
 
-<span class="k">def</span> <span class="nf">sha1</span><span class="p">(</span><span class="n">data</span><span class="p">:</span> <span class="nb">bytes</span><span class="p">)</span> <span class="o">-</span><span class="o">&gt;</span> <span class="nb">str</span><span class="p">:</span>
-    <span class="n">sig</span> <span class="o">=</span> <span class="n">hashlib</span><span class="o">.</span><span class="n">sha1</span><span class="p">(</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">sha1</span><span class="p">(</span><span class="n">data</span><span class="p">:</span> <span class="nb">bytes</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="n">sig</span> <span class="o">=</span> <span class="n">hashlib</span><span class="o">.</span><span class="n">sha1</span><span class="p">()</span>
     <span class="n">sig</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">sig</span><span class="o">.</span><span class="n">hexdigest</span><span class="p">(</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">sig</span><span class="o">.</span><span class="n">hexdigest</span><span class="p">()</span>
 
 
-<span class="n">async</span> <span class="k">def</span> <span class="nf">index</span><span class="p">(</span><span class="n">request</span><span class="p">:</span> <span class="n">web</span><span class="o">.</span><span class="n">Request</span><span class="p">)</span><span class="p">:</span>
-    <span class="sa"></span><span class="s2">&#34;&#34;&#34;</span><span class="s2">Display directory overview.</span><span class="s2">&#34;&#34;&#34;</span>
-    <span class="n">html</span> <span class="o">=</span> <span class="sa"></span><span class="s2">&#34;&#34;&#34;</span><span class="s2">
-</span><span class="s2"></span><span class="s2">        &lt;!doctype html&gt;</span><span class="s2">
-</span><span class="s2"></span><span class="s2">        &lt;html lang=</span><span class="s2">&#34;</span><span class="s2">en</span><span class="s2">&#34;</span><span class="s2">&gt;</span><span class="s2">
-</span><span class="s2"></span><span class="s2">        &lt;head&gt;&lt;title&gt;Directory Listing&lt;/title&gt;&lt;/head&gt;</span><span class="s2">
-</span><span class="s2"></span><span class="s2">        &lt;body&gt;</span><span class="s2">
-</span><span class="s2"></span><span class="s2">        &lt;h1&gt;Directory Listing&lt;/h1&gt;</span><span class="s2">
-</span><span class="s2"></span><span class="s2">        &lt;ul&gt;</span><span class="s2">
-</span><span class="s2"></span><span class="s2">    </span><span class="s2">&#34;&#34;&#34;</span>
-    <span class="k">for</span> <span class="nb">file</span> <span class="ow">in</span> <span class="n">file_directory</span><span class="o">.</span><span class="n">iterdir</span><span class="p">(</span><span class="p">)</span><span class="p">:</span>
-        <span class="k">if</span> <span class="nb">file</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="sa"></span><span class="s2">&#34;</span><span class="s2">flag.txt</span><span class="s2">&#34;</span> <span class="ow">or</span> <span class="nb">file</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2">_</span><span class="s2">&#34;</span><span class="p">)</span><span class="p">:</span>
+<span class="n">async</span> <span class="k">def</span> <span class="nf">index</span><span class="p">(</span><span class="n">request</span><span class="p">:</span> <span class="n">web</span><span class="o">.</span><span class="n">Request</span><span class="p">):</span>
+    <span class="s2">&#34;&#34;&#34;Display directory overview.&#34;&#34;&#34;</span>
+    <span class="n">html</span> <span class="o">=</span> <span class="s2">&#34;&#34;&#34;
+</span><span class="s2">        &lt;!doctype html&gt;
+</span><span class="s2">        &lt;html lang=&#34;en&#34;&gt;
+</span><span class="s2">        &lt;head&gt;&lt;title&gt;Directory Listing&lt;/title&gt;&lt;/head&gt;
+</span><span class="s2">        &lt;body&gt;
+</span><span class="s2">        &lt;h1&gt;Directory Listing&lt;/h1&gt;
+</span><span class="s2">        &lt;ul&gt;
+</span><span class="s2">    &#34;&#34;&#34;</span>
+    <span class="k">for</span> <span class="nb">file</span> <span class="ow">in</span> <span class="n">file_directory</span><span class="o">.</span><span class="n">iterdir</span><span class="p">():</span>
+        <span class="k">if</span> <span class="nb">file</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="s2">&#34;flag.txt&#34;</span> <span class="ow">or</span> <span class="nb">file</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&#34;_&#34;</span><span class="p">):</span>
             <span class="k">continue</span>  <span class="c1"># don&#39;t allow flag access</span>
-        <span class="n">url</span> <span class="o">=</span> <span class="n">f</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2">/download?file={file.name}</span><span class="s2">&#34;</span>
-        <span class="n">url</span> <span class="o">+</span><span class="o">=</span> <span class="sa"></span><span class="s2">&#34;</span><span class="s2">&amp;sig=</span><span class="s2">&#34;</span> <span class="o">+</span> <span class="n">sha1</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">app</span><span class="p">[</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2">SECRET</span><span class="s2">&#34;</span><span class="p">]</span> <span class="o">+</span> <span class="n">url</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="p">)</span><span class="p">)</span>
-        <span class="n">html</span> <span class="o">+</span><span class="o">=</span> <span class="n">f</span><span class="sa"></span><span class="s2">&#34;&#34;&#34;</span><span class="s2">&lt;li&gt;&lt;a href=</span><span class="s2">&#34;</span><span class="s2">{url}</span><span class="s2">&#34;</span><span class="s2">&gt;{file.name}&lt;/a&gt;&lt;/li&gt;</span><span class="s2">&#34;&#34;&#34;</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="n">f</span><span class="s2">&#34;/download?file={file.name}&#34;</span>
+        <span class="n">url</span> <span class="o">+=</span> <span class="s2">&#34;&amp;sig=&#34;</span> <span class="o">+</span> <span class="n">sha1</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">app</span><span class="p">[</span><span class="s2">&#34;SECRET&#34;</span><span class="p">]</span> <span class="o">+</span> <span class="n">url</span><span class="o">.</span><span class="n">encode</span><span class="p">())</span>
+        <span class="n">html</span> <span class="o">+=</span> <span class="n">f</span><span class="s2">&#34;&#34;&#34;&lt;li&gt;&lt;a href=&#34;{url}&#34;&gt;{file.name}&lt;/a&gt;&lt;/li&gt;&#34;&#34;&#34;</span>
 
-    <span class="n">html</span> <span class="o">+</span><span class="o">=</span> <span class="sa"></span><span class="s2">&#34;</span><span class="s2">&lt;/ul&gt;&lt;/body&gt;&lt;/html&gt;</span><span class="s2">&#34;</span>
+    <span class="n">html</span> <span class="o">+=</span> <span class="s2">&#34;&lt;/ul&gt;&lt;/body&gt;&lt;/html&gt;&#34;</span>
     <span class="k">return</span> <span class="n">web</span><span class="o">.</span><span class="n">Response</span><span class="p">(</span>
         <span class="n">text</span><span class="o">=</span><span class="n">html</span><span class="p">,</span>
-        <span class="n">content_type</span><span class="o">=</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2">text/html</span><span class="s2">&#34;</span>
+        <span class="n">content_type</span><span class="o">=</span><span class="s2">&#34;text/html&#34;</span>
     <span class="p">)</span>
 
 
-<span class="n">async</span> <span class="k">def</span> <span class="nf">download</span><span class="p">(</span><span class="n">request</span><span class="p">)</span><span class="p">:</span>
-    <span class="sa"></span><span class="s2">&#34;&#34;&#34;</span><span class="s2">Download an individual file.</span><span class="s2">&#34;&#34;&#34;</span>
+<span class="n">async</span> <span class="k">def</span> <span class="nf">download</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+    <span class="s2">&#34;&#34;&#34;Download an individual file.&#34;&#34;&#34;</span>
 
     <span class="c1"># Extract signature</span>
-    <span class="k">if</span> <span class="sa"></span><span class="s2">&#34;</span><span class="s2">&amp;sig=</span><span class="s2">&#34;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">request</span><span class="o">.</span><span class="n">path_qs</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">web</span><span class="o">.</span><span class="n">HTTPBadRequest</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2">No signature given.</span><span class="s2">&#34;</span><span class="p">)</span>
-    <span class="n">url</span><span class="p">,</span> <span class="n">actual_sig</span> <span class="o">=</span> <span class="n">unquote_to_bytes</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">path_qs</span><span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="sa">b</span><span class="s2">&#34;</span><span class="s2">&amp;sig=</span><span class="s2">&#34;</span><span class="p">,</span> <span class="n">maxsplit</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">if</span> <span class="s2">&#34;&amp;sig=&#34;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">request</span><span class="o">.</span><span class="n">path_qs</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">web</span><span class="o">.</span><span class="n">HTTPBadRequest</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="s2">&#34;No signature given.&#34;</span><span class="p">)</span>
+    <span class="n">url</span><span class="p">,</span> <span class="n">actual_sig</span> <span class="o">=</span> <span class="n">unquote_to_bytes</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">path_qs</span><span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="sa">b</span><span class="s2">&#34;&amp;sig=&#34;</span><span class="p">,</span> <span class="n">maxsplit</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 
     <span class="c1"># Get filename from URL</span>
-    <span class="n">filename</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="sa">r</span><span class="s2">&#34;</span><span class="s2">file=(</span><span class="s2">\</span><span class="s2">w[</span><span class="s2">\</span><span class="s2">w.-]+)&amp;</span><span class="s2">&#34;</span><span class="p">,</span> <span class="n">request</span><span class="o">.</span><span class="n">query_string</span><span class="p">)</span>
+    <span class="n">filename</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="sa">r</span><span class="s2">&#34;file=(\w[\w.-]+)&amp;&#34;</span><span class="p">,</span> <span class="n">request</span><span class="o">.</span><span class="n">query_string</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">filename</span><span class="p">:</span>
         <span class="n">filename</span> <span class="o">=</span> <span class="n">filename</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">web</span><span class="o">.</span><span class="n">HTTPBadRequest</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2">No valid filename provided.</span><span class="s2">&#34;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">web</span><span class="o">.</span><span class="n">HTTPBadRequest</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="s2">&#34;No valid filename provided.&#34;</span><span class="p">)</span>
 
     <span class="c1"># Calculate correct signature and compare.</span>
-    <span class="n">expected_sig</span> <span class="o">=</span> <span class="n">sha1</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">app</span><span class="p">[</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2">SECRET</span><span class="s2">&#34;</span><span class="p">]</span> <span class="o">+</span> <span class="n">url</span><span class="p">)</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="p">)</span>
+    <span class="n">expected_sig</span> <span class="o">=</span> <span class="n">sha1</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">app</span><span class="p">[</span><span class="s2">&#34;SECRET&#34;</span><span class="p">]</span> <span class="o">+</span> <span class="n">url</span><span class="p">)</span><span class="o">.</span><span class="n">encode</span><span class="p">()</span>
     <span class="k">if</span> <span class="n">expected_sig</span> <span class="o">==</span> <span class="n">actual_sig</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">web</span><span class="o">.</span><span class="n">FileResponse</span><span class="p">(</span><span class="n">file_directory</span> <span class="o">/</span> <span class="n">filename</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">web</span><span class="o">.</span><span class="n">HTTPUnauthorized</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="n">f</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2">Invalid signature for {html.escape(filename)}.</span><span class="s2">&#34;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">web</span><span class="o">.</span><span class="n">HTTPUnauthorized</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="n">f</span><span class="s2">&#34;Invalid signature for {html.escape(filename)}.&#34;</span><span class="p">)</span>
 
 
-<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="sa"></span><span class="s2">&#34;</span><span class="s2">__main__</span><span class="s2">&#34;</span><span class="p">:</span>
-    <span class="n">app</span> <span class="o">=</span> <span class="n">web</span><span class="o">.</span><span class="n">Application</span><span class="p">(</span><span class="p">)</span>
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&#34;__main__&#34;</span><span class="p">:</span>
+    <span class="n">app</span> <span class="o">=</span> <span class="n">web</span><span class="o">.</span><span class="n">Application</span><span class="p">()</span>
     <span class="c1"># app[&#34;SECRET&#34;] = b&#34;test&#34; * 4</span>
-    <span class="n">app</span><span class="p">[</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2">SECRET</span><span class="s2">&#34;</span><span class="p">]</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">urandom</span><span class="p">(</span><span class="mi">16</span><span class="p">)</span>
-    <span class="n">app</span><span class="o">.</span><span class="n">router</span><span class="o">.</span><span class="n">add_get</span><span class="p">(</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">/</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">index</span><span class="p">)</span>
-    <span class="n">app</span><span class="o">.</span><span class="n">router</span><span class="o">.</span><span class="n">add_get</span><span class="p">(</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">/download</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">download</span><span class="p">)</span>
-    <span class="n">web</span><span class="o">.</span><span class="n">run_app</span><span class="p">(</span><span class="n">app</span><span class="p">)</span>
-</code></pre></td></tr></table>
+    <span class="n">app</span><span class="p">[</span><span class="s2">&#34;SECRET&#34;</span><span class="p">]</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">urandom</span><span class="p">(</span><span class="mi">16</span><span class="p">)</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">router</span><span class="o">.</span><span class="n">add_get</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">,</span> <span class="n">index</span><span class="p">)</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">router</span><span class="o">.</span><span class="n">add_get</span><span class="p">(</span><span class="s1">&#39;/download&#39;</span><span class="p">,</span> <span class="n">download</span><span class="p">)</span>
+    <span class="n">web</span><span class="o">.</span><span class="n">run_app</span><span class="p">(</span><span class="n">app</span><span class="p">)</span></code></pre></td></tr></table>
 </div>
-</div><h3 id="solution19">Solution</h3>
+</div>
+<h3 id="solution-19">Solution</h3>
+
 <p>ご親切に、lecture-slides.pdfというのがついていて、hash length extension attacksをしてください、というもの。
 <br /><br /></p>
-<p>サーバのView page sourceより、ネコちゃん画像（とsecret）を元に計算されたHash値を使うことにします。</p>
+
+<p>サーバのView page sourceより、ネコちゃん画像（とsecret）を元に計算されたHash値を使うことにします。
 <pre>
-"/download?file=cute_kitten.jpg&sig=70e329b3366e0462ebb45572c178e09ebe5d4f56">cute_kitten.jpg
-</pre>
+&ldquo;/download?file=cute_kitten.jpg&amp;sig=70e329b3366e0462ebb45572c178e09ebe5d4f56&rdquo;&gt;cute_kitten.jpg
+</pre></p>
+
 <p><br />
-Macにて、hashpumpをかけます。</p>
+Macにて、hashpumpをかけます。
 <pre>
-$ hashpump -s 70e329b3366e0462ebb45572c178e09ebe5d4f56 -d "/download?file=cute_kitten.jpg" -a "&file=flag.txt" -k 16
+$ hashpump -s 70e329b3366e0462ebb45572c178e09ebe5d4f56 -d &ldquo;/download?file=cute_kitten.jpg&rdquo; -a &ldquo;&amp;file=flag.txt&rdquo; -k 16
 412b86f5852ba2363928dd5d2363c6b554e99bb3
-/download?file=cute_kitten.jpg\x80\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x01p&file=flag.txt
-</pre>
+/download?file=cute_kitten.jpg\x80\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x01p&amp;file=flag.txt
+</pre></p>
+
 <p><br />
 これで試すと、Invalid signature for flag.txt となっちゃうんですが、flag.txtをファイル名として扱ってもらえているのはいいサインです。</p>
+
 <p><br />
 signatureを通すには、\xを%に置き換えます。</p>
+
 <pre>
 http://ctf.honeynet.org:8202/download?file=cute_kitten.jpg%80%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%01p&file=flag.txt&sig=412b86f5852ba2363928dd5d2363c6b554e99bb3
 __flag__{97397db12c32f93ac9c9bf6dc871fd1f}
 </pre>
+
 <p><br /><br />
 <br /><br /></p>
+
 <h2 id="passworddb-hard-network">PasswordDB (hard, network)</h2>
-<hr>
-<h3 id="challenge21">Challenge</h3>
+
+<hr />
+
+<h3 id="challenge-21">Challenge</h3>
+
 <blockquote>
-<p>Because data theft has become such a rampant problem, We have created PasswordDB, a new and secure way of storing secrets. PasswordDB's unique technology makes it possible that the password is never stored in a single location, making it the bane of attackers&rsquo; respective existences. Instead, the password is sliced into smaller parts that are stored on different machines around the world for added security.
+<p>Because data theft has become such a rampant problem, We have created PasswordDB, a new and secure way of storing secrets. PasswordDB&rsquo;s unique technology makes it possible that the password is never stored in a single location, making it the bane of attackers&rsquo; respective existences. Instead, the password is sliced into smaller parts that are stored on different machines around the world for added security.
 <br /><br />
 To prove that our system is secure, we have stored a CTF flag in our PasswordDB instance. No way you can get it.
 <br /><br />
 It is infeasible to brute-force all 10¹² combinations.</p>
 </blockquote>
+
 <p>Attachment:</p>
+
 <ul>
 <li>passworddb.py</li>
 <li>PasswordDB API Endpoint (個人のメアドが入っているので省略)</li>
 <li>Example Invocation (個人のメアドが入っているので省略)</li>
 </ul>
-<h3 id="unsolved1">(Unsolved)</h3>
+
+<h3 id="unsolved-1">(Unsolved)</h3>
+
 <p>降参</p>
+
 <p><br /><br />
 <br /><br /></p>
+
 <h2 id="cookiecopter-hard-cryptography-web">CookieCopter (hard, cryptography, web)</h2>
-<hr>
-<h3 id="challenge22">Challenge</h3>
+
+<hr />
+
+<h3 id="challenge-22">Challenge</h3>
+
 <blockquote>
 <p>CookieCopter is a new service delivering locally-sourced organic cookies hot off of vintage cookie ovens straight to your location using quad-rotor GPS-enabled helicopters. The service is modeled after TacoCopter, an innovative and highly successful early contender in the airborne food delivery industry. CookieCopter is currently being tested in private beta in select locations.
 <br /><br />
 Your goal is to order one of the special premium cookies, which comes with a flag as a side.</p>
 </blockquote>
-<h3 id="unsolved2">(Unsolved)</h3>
+
+<h3 id="unsolved-2">(Unsolved)</h3>
+
 <p>降参</p>
+
 <p><br /><br />
 <br /><br /></p>
-<hr>
+
+<hr />
+
 <p><br /><br />
 <br /><br /></p>
 
