@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>UTC CTF Writeup - CTF Writeups</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="きゃぷあめ" /><meta name="description" content="URL: https://utc-ctf.club/challenges 以下、スコアです。 [Misc]: Optics 2 Challenge You seem to be professional in Forensics &amp;amp; Optics. Now, the things will get tedious. Let&amp;rsquo;s see what you got. Attachment: chall_0.png ~ chall_440.png Solution 441個のpngが与えられます。それぞれはgrayscale" /><meta name="keywords" content="CTF, Writeup, captureamerica, picoCTF" />
+
+
+
+<meta name="google-site-verification" content="PqctLWZQttGzxXVupWuIt2HWuBI8cvN1z07ETpxA2dw" />
+
+
+<meta name="generator" content="Hugo 0.55.6 with theme even" />
+
+
+<link rel="canonical" href="https://captureamerica.github.io/writeups/post/utcctf_2019/" />
+<link rel="apple-touch-icon" sizes="180x180" href="https://captureamerica.github.io/writeups/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://captureamerica.github.io/writeups/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://captureamerica.github.io/writeups/favicon-16x16.png">
+<link rel="manifest" href="https://captureamerica.github.io/writeups/manifest.json">
+<link rel="mask-icon" href="https://captureamerica.github.io/writeups/safari-pinned-tab.svg" color="#5bbad5">
+
+
+<link href="https://captureamerica.github.io/writeups/dist/even.c2a46f00.min.css" rel="stylesheet">
+
+
+
+<meta property="og:title" content="UTC CTF Writeup" />
+<meta property="og:description" content="URL: https://utc-ctf.club/challenges 以下、スコアです。 [Misc]: Optics 2 Challenge You seem to be professional in Forensics &amp; Optics. Now, the things will get tedious. Let&rsquo;s see what you got. Attachment: chall_0.png ~ chall_440.png Solution 441個のpngが与えられます。それぞれはgrayscale" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://captureamerica.github.io/writeups/post/utcctf_2019/" />
+<meta property="article:published_time" content="2019-12-22T19:20:00&#43;09:00"/>
+<meta property="article:modified_time" content="2019-12-22T19:20:00&#43;09:00"/>
+
+<meta itemprop="name" content="UTC CTF Writeup">
+<meta itemprop="description" content="URL: https://utc-ctf.club/challenges 以下、スコアです。 [Misc]: Optics 2 Challenge You seem to be professional in Forensics &amp; Optics. Now, the things will get tedious. Let&rsquo;s see what you got. Attachment: chall_0.png ~ chall_440.png Solution 441個のpngが与えられます。それぞれはgrayscale">
+
+
+<meta itemprop="datePublished" content="2019-12-22T19:20:00&#43;09:00" />
+<meta itemprop="dateModified" content="2019-12-22T19:20:00&#43;09:00" />
+<meta itemprop="wordCount" content="1893">
+
+
+
+<meta itemprop="keywords" content="CTF," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="UTC CTF Writeup"/>
+<meta name="twitter:description" content="URL: https://utc-ctf.club/challenges 以下、スコアです。 [Misc]: Optics 2 Challenge You seem to be professional in Forensics &amp; Optics. Now, the things will get tedious. Let&rsquo;s see what you got. Attachment: chall_0.png ~ chall_440.png Solution 441個のpngが与えられます。それぞれはgrayscale"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="https://captureamerica.github.io/writeups/" class="logo">CTF Writeups</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="https://captureamerica.github.io/writeups/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="https://captureamerica.github.io/writeups/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="https://captureamerica.github.io/writeups/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="https://captureamerica.github.io/writeups/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a><a href="https://captureamerica.github.io/writeups/about/">
+        <li class="mobile-menu-item">About</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="https://captureamerica.github.io/writeups/" class="logo">CTF Writeups</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="https://captureamerica.github.io/writeups/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="https://captureamerica.github.io/writeups/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="https://captureamerica.github.io/writeups/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="https://captureamerica.github.io/writeups/categories/">Categories</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="https://captureamerica.github.io/writeups/about/">About</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">UTC CTF Writeup</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2019-12-22 </span>
+        <div class="post-category">
+            <a href="https://captureamerica.github.io/writeups/categories/ctf/"> CTF </a>
+            </div>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contents</h2>
+  <div class="post-toc-content">
+    <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#misc-optics-2">[Misc]: Optics 2</a>
+<ul>
+<li><a href="#challenge">Challenge</a></li>
+<li><a href="#solution">Solution</a></li>
+</ul></li>
+<li><a href="#misc-really-good-icture">[Misc]: Really Good 🅱icture</a>
+<ul>
+<li><a href="#challenge-1">Challenge</a></li>
+<li><a href="#solution-1">Solution</a></li>
+</ul></li>
+<li><a href="#reverse-jump-baby">[Reverse]: Jump! (baby)</a>
+<ul>
+<li><a href="#challenge-2">Challenge</a></li>
+<li><a href="#solution-2">Solution</a></li>
+</ul></li>
+</ul></li>
+</ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      
+
+<p>URL: <a href="https://utc-ctf.club/challenges">https://utc-ctf.club/challenges</a>
+<br /><br />
+以下、スコアです。
+<br /><br /></p>
+
+<p><img src="https://captureamerica.github.io/writeups/img/utcctf_2019_Score.png" alt="utcctf_2019_Score.png"></p>
+
+<p><img src="https://captureamerica.github.io/writeups/img/utcctf_2019_Chall1.png" alt="utcctf_2019_Chall1.png"></p>
+
+<p><img src="https://captureamerica.github.io/writeups/img/utcctf_2019_Chall2.png" alt="utcctf_2019_Chall2.png"></p>
+
+<p><br /><br /></p>
+
+<h2 id="misc-optics-2">[Misc]: Optics 2</h2>
+
+<hr />
+
+<h3 id="challenge">Challenge</h3>
+
+<blockquote>
+<p>You seem to be professional in Forensics &amp; Optics. Now, the things will get tedious. Let&rsquo;s see what you got.</p>
+</blockquote>
+
+<p>Attachment:</p>
+
+<ul>
+<li>chall_0.png ~ chall_440.png</li>
+</ul>
+
+<p><br /></p>
+
+<h3 id="solution">Solution</h3>
+
+<p>441個のpngが与えられます。それぞれはgrayscaleの正方形の画像です。</p>
+
+<p>21 * 21 = 441 なので、結合してQRにするチャレンジですね。</p>
+
+<p>ImageMagickを使って、21ファイルずつ横に結合し、できた21個のファイルを縦に結合することにしました。</p>
+
+<pre>
+convert +append chall_0.png chall_1.png chall_2.png chall_3.png chall_4.png chall_5.png chall_6.png chall_7.png chall_8.png chall_9.png chall_10.png chall_11.png chall_12.png chall_13.png chall_14.png chall_15.png chall_16.png chall_17.png chall_18.png chall_19.png chall_20.png 0.png
+convert +append chall_21.png chall_22.png chall_23.png chall_24.png chall_25.png chall_26.png chall_27.png chall_28.png chall_29.png chall_30.png chall_31.png chall_32.png chall_33.png chall_34.png chall_35.png chall_36.png chall_37.png chall_38.png chall_39.png chall_40.png chall_41.png 1.png
+convert +append chall_42.png chall_43.png chall_44.png chall_45.png chall_46.png chall_47.png chall_48.png chall_49.png chall_50.png chall_51.png chall_52.png chall_53.png chall_54.png chall_55.png chall_56.png chall_57.png chall_58.png chall_59.png chall_60.png chall_61.png chall_62.png 2.png
+convert +append chall_63.png chall_64.png chall_65.png chall_66.png chall_67.png chall_68.png chall_69.png chall_70.png chall_71.png chall_72.png chall_73.png chall_74.png chall_75.png chall_76.png chall_77.png chall_78.png chall_79.png chall_80.png chall_81.png chall_82.png chall_83.png 3.png
+convert +append chall_84.png chall_85.png chall_86.png chall_87.png chall_88.png chall_89.png chall_90.png chall_91.png chall_92.png chall_93.png chall_94.png chall_95.png chall_96.png chall_97.png chall_98.png chall_99.png chall_100.png chall_101.png chall_102.png chall_103.png chall_104.png 4.png
+convert +append chall_105.png chall_106.png chall_107.png chall_108.png chall_109.png chall_110.png chall_111.png chall_112.png chall_113.png chall_114.png chall_115.png chall_116.png chall_117.png chall_118.png chall_119.png chall_120.png chall_121.png chall_122.png chall_123.png chall_124.png chall_125.png 5.png
+convert +append chall_126.png chall_127.png chall_128.png chall_129.png chall_130.png chall_131.png chall_132.png chall_133.png chall_134.png chall_135.png chall_136.png chall_137.png chall_138.png chall_139.png chall_140.png chall_141.png chall_142.png chall_143.png chall_144.png chall_145.png chall_146.png 6.png
+convert +append chall_147.png chall_148.png chall_149.png chall_150.png chall_151.png chall_152.png chall_153.png chall_154.png chall_155.png chall_156.png chall_157.png chall_158.png chall_159.png chall_160.png chall_161.png chall_162.png chall_163.png chall_164.png chall_165.png chall_166.png chall_167.png 7.png
+convert +append chall_168.png chall_169.png chall_170.png chall_171.png chall_172.png chall_173.png chall_174.png chall_175.png chall_176.png chall_177.png chall_178.png chall_179.png chall_180.png chall_181.png chall_182.png chall_183.png chall_184.png chall_185.png chall_186.png chall_187.png chall_188.png 8.png
+convert +append chall_189.png chall_190.png chall_191.png chall_192.png chall_193.png chall_194.png chall_195.png chall_196.png chall_197.png chall_198.png chall_199.png chall_200.png chall_201.png chall_202.png chall_203.png chall_204.png chall_205.png chall_206.png chall_207.png chall_208.png chall_209.png 9.png
+convert +append chall_210.png chall_211.png chall_212.png chall_213.png chall_214.png chall_215.png chall_216.png chall_217.png chall_218.png chall_219.png chall_220.png chall_221.png chall_222.png chall_223.png chall_224.png chall_225.png chall_226.png chall_227.png chall_228.png chall_229.png chall_230.png 10.png
+convert +append chall_231.png chall_232.png chall_233.png chall_234.png chall_235.png chall_236.png chall_237.png chall_238.png chall_239.png chall_240.png chall_241.png chall_242.png chall_243.png chall_244.png chall_245.png chall_246.png chall_247.png chall_248.png chall_249.png chall_250.png chall_251.png 11.png
+convert +append chall_252.png chall_253.png chall_254.png chall_255.png chall_256.png chall_257.png chall_258.png chall_259.png chall_260.png chall_261.png chall_262.png chall_263.png chall_264.png chall_265.png chall_266.png chall_267.png chall_268.png chall_269.png chall_270.png chall_271.png chall_272.png 12.png
+convert +append chall_273.png chall_274.png chall_275.png chall_276.png chall_277.png chall_278.png chall_279.png chall_280.png chall_281.png chall_282.png chall_283.png chall_284.png chall_285.png chall_286.png chall_287.png chall_288.png chall_289.png chall_290.png chall_291.png chall_292.png chall_293.png 13.png
+convert +append chall_294.png chall_295.png chall_296.png chall_297.png chall_298.png chall_299.png chall_300.png chall_301.png chall_302.png chall_303.png chall_304.png chall_305.png chall_306.png chall_307.png chall_308.png chall_309.png chall_310.png chall_311.png chall_312.png chall_313.png chall_314.png 14.png
+convert +append chall_315.png chall_316.png chall_317.png chall_318.png chall_319.png chall_320.png chall_321.png chall_322.png chall_323.png chall_324.png chall_325.png chall_326.png chall_327.png chall_328.png chall_329.png chall_330.png chall_331.png chall_332.png chall_333.png chall_334.png chall_335.png 15.png
+convert +append chall_336.png chall_337.png chall_338.png chall_339.png chall_340.png chall_341.png chall_342.png chall_343.png chall_344.png chall_345.png chall_346.png chall_347.png chall_348.png chall_349.png chall_350.png chall_351.png chall_352.png chall_353.png chall_354.png chall_355.png chall_356.png 16.png
+convert +append chall_357.png chall_358.png chall_359.png chall_360.png chall_361.png chall_362.png chall_363.png chall_364.png chall_365.png chall_366.png chall_367.png chall_368.png chall_369.png chall_370.png chall_371.png chall_372.png chall_373.png chall_374.png chall_375.png chall_376.png chall_377.png 17.png
+convert +append chall_378.png chall_379.png chall_380.png chall_381.png chall_382.png chall_383.png chall_384.png chall_385.png chall_386.png chall_387.png chall_388.png chall_389.png chall_390.png chall_391.png chall_392.png chall_393.png chall_394.png chall_395.png chall_396.png chall_397.png chall_398.png 18.png
+convert +append chall_399.png chall_400.png chall_401.png chall_402.png chall_403.png chall_404.png chall_405.png chall_406.png chall_407.png chall_408.png chall_409.png chall_410.png chall_411.png chall_412.png chall_413.png chall_414.png chall_415.png chall_416.png chall_417.png chall_418.png chall_419.png 19.png
+convert +append chall_420.png chall_421.png chall_422.png chall_423.png chall_424.png chall_425.png chall_426.png chall_427.png chall_428.png chall_429.png chall_430.png chall_431.png chall_432.png chall_433.png chall_434.png chall_435.png chall_436.png chall_437.png chall_438.png chall_439.png chall_440.png 20.png
+convert +append convert -append 0.png 1.png 2.png 3.png 4.png 5.png 6.png 7.png 8.png 9.png 10.png 11.png 12.png 13.png 14.png 15.png 16.png 17.png 18.png 19.png 20.png QR.png
+</pre>
+
+<p><br />
+ちなみに、Cでプログラムを書いて、上記のコマンドを出力してます。<br />（かつ、一部結果を手で直している箇所あり。&rdquo;convert +append &ldquo;が余分に1個出てくるので。。。）</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-C" data-lang="C"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-C" data-lang="C"><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
+</span><span class="cp"></span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+	<span class="kt">int</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">k</span><span class="p">;</span>
+	<span class="n">printf</span><span class="p">(</span> <span class="s">&#34;convert +append &#34;</span> <span class="p">);</span>
+	<span class="k">for</span> <span class="p">(</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">k</span> <span class="o">=</span> <span class="mi">0</span> <span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="mi">440</span> <span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">,</span> <span class="n">j</span><span class="o">++</span> <span class="p">)</span> <span class="p">{</span>
+		<span class="n">printf</span><span class="p">(</span> <span class="s">&#34;chall_%d.png &#34;</span><span class="p">,</span> <span class="n">i</span> <span class="p">);</span>
+		<span class="k">if</span> <span class="p">(</span> <span class="n">j</span> <span class="o">&gt;=</span> <span class="mi">21</span> <span class="p">)</span> <span class="p">{</span>
+			<span class="n">printf</span><span class="p">(</span> <span class="s">&#34;%d.png</span><span class="se">\n</span><span class="s">convert +append &#34;</span><span class="p">,</span> <span class="n">k</span> <span class="p">);</span>
+			<span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+			<span class="n">k</span><span class="o">++</span><span class="p">;</span>
+		<span class="p">}</span>
+	<span class="p">}</span>
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;&#34;</span><span class="p">);</span>
+	<span class="n">printf</span><span class="p">(</span> <span class="s">&#34;convert -append &#34;</span> <span class="p">);</span>
+	<span class="k">for</span> <span class="p">(</span> <span class="n">k</span> <span class="o">=</span> <span class="mi">0</span> <span class="p">;</span> <span class="n">k</span> <span class="o">&lt;</span> <span class="mi">21</span> <span class="p">;</span> <span class="n">k</span><span class="o">++</span> <span class="p">)</span> <span class="p">{</span>
+		<span class="n">printf</span><span class="p">(</span> <span class="s">&#34;%d.png &#34;</span><span class="p">,</span> <span class="n">k</span> <span class="p">);</span>
+	<span class="p">}</span>
+	<span class="n">printf</span><span class="p">(</span> <span class="s">&#34;QR.png</span><span class="se">\n</span><span class="s">&#34;</span> <span class="p">);</span>
+	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span></code></pre></td></tr></table>
+</div>
+</div>
+<p><br />
+<img src="https://captureamerica.github.io/writeups/img/utcctf_QR.png" alt="utcctf_QR.png"></p>
+
+<p><br />
+Flag: <code>utc{merge_and_merge_until_you_decode_it}</code></p>
+
+<p><br /><br />
+<br /><br /></p>
+
+<h2 id="misc-really-good-icture">[Misc]: Really Good 🅱icture</h2>
+
+<hr />
+
+<h3 id="challenge-1">Challenge</h3>
+
+<blockquote>
+<p>Instead of a flag, I made you a picture, is that ok?</p>
+</blockquote>
+
+<ul>
+<li>flag.png</li>
+</ul>
+
+<p><br /></p>
+
+<h3 id="solution-1">Solution</h3>
+
+<p>「青い空を見上げればいつもそこに白い猫」で開いて、ビット抽出前バイト列を確認すると、フラグっぽい文字列が得られます。</p>
+
+<p><img src="https://captureamerica.github.io/writeups/img/utcctf_Bicture.png" alt="utcctf_Bicture.png"></p>
+
+<p>これを一旦テキストファイルに保存して、コマンドで整形します。</p>
+
+<p>3文字ずつ繰り返しになっているので、<code>fold -3</code> してから <code>uniq</code> してまとめてます。</p>
+
+<pre>
+$ cat share_doc.txt | cut -d: -f2 | tr -d "\r\n " | fold -3 | uniq | tr -d "\n" ; echo
+utc{taste_the_rainbow94100389}utc{taste_the_rainbow94100389}utc{taste_the_rainbow94100389}utc{taste_the_rainbow94100389}utc{taste_the_rainbow94100389}utc{taste_the_rainbow94100389}utc{taste_the_rainbow94100389}utc{taste_the_rainbow94100389}utc{taste_the_rainbow94100389}utc{taste_the_rainbow94100389}utc{taste_the_rainbow94100389}utc{taste_the_rainbow94100389}.....(略)
+</pre>
+
+<p><br />
+Flag: <code>utc{taste_the_rainbow94100389}</code></p>
+
+<p><br /><br />
+<br /><br /></p>
+
+<h2 id="reverse-jump-baby">[Reverse]: Jump! (baby)</h2>
+
+<hr />
+
+<h3 id="challenge-2">Challenge</h3>
+
+<blockquote>
+<p>Remember Strings? Itz still not giving flag
+<br /><br />
+GIMME FLAG AGAIN!</p>
+</blockquote>
+
+<p>Attachment:</p>
+
+<ul>
+<li>jump (ELF 64bit)</li>
+</ul>
+
+<p><br /></p>
+
+<h3 id="solution-2">Solution</h3>
+
+<p>Ghidraでソースを確認します。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-C" data-lang="C"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-C" data-lang="C"><span class="kt">void</span> <span class="nf">gimme_flag</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+
+<span class="p">{</span>
+  <span class="kt">long</span> <span class="n">in_FS_OFFSET</span><span class="p">;</span>
+  <span class="n">undefined4</span> <span class="n">local_40</span><span class="p">;</span>
+  <span class="n">uint</span> <span class="n">local_3c</span><span class="p">;</span>
+  <span class="n">undefined8</span> <span class="n">local_38</span><span class="p">;</span>
+  <span class="n">undefined8</span> <span class="n">local_30</span><span class="p">;</span>
+  <span class="n">undefined8</span> <span class="n">local_28</span><span class="p">;</span>
+  <span class="n">undefined</span> <span class="n">local_20</span><span class="p">;</span>
+  <span class="kt">long</span> <span class="n">local_10</span><span class="p">;</span>
+  
+  <span class="n">local_10</span> <span class="o">=</span> <span class="o">*</span><span class="p">(</span><span class="kt">long</span> <span class="o">*</span><span class="p">)(</span><span class="n">in_FS_OFFSET</span> <span class="o">+</span> <span class="mh">0x28</span><span class="p">);</span>
+  <span class="n">local_40</span> <span class="o">=</span> <span class="mh">0xdeadbeef</span><span class="p">;</span>
+  <span class="n">local_38</span> <span class="o">=</span> <span class="mh">0xefc1e18ea5ceca9a</span><span class="p">;</span>
+  <span class="n">local_30</span> <span class="o">=</span> <span class="mh">0xac99d6b0bbc1ca9b</span><span class="p">;</span>
+  <span class="n">local_28</span> <span class="o">=</span> <span class="mh">0xded097d581df8d8b</span><span class="p">;</span>
+  <span class="n">local_20</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">selfish</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">puts</span><span class="p">(</span><span class="s">&#34;Don</span><span class="se">\&#39;</span><span class="s">t be selfish! Share the flag with me...&#34;</span><span class="p">);</span>
+                    <span class="cm">/* WARNING: Subroutine does not return */</span>
+    <span class="n">exit</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+  <span class="p">}</span>
+  <span class="n">local_3c</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="k">while</span> <span class="p">(</span><span class="n">local_3c</span> <span class="o">&lt;</span> <span class="mh">0x19</span><span class="p">)</span> <span class="p">{</span>
+    <span class="o">*</span><span class="p">(</span><span class="n">byte</span> <span class="o">*</span><span class="p">)((</span><span class="kt">long</span><span class="p">)</span><span class="o">&amp;</span><span class="n">local_38</span> <span class="o">+</span> <span class="p">(</span><span class="kt">long</span><span class="p">)(</span><span class="kt">int</span><span class="p">)</span><span class="n">local_3c</span><span class="p">)</span> <span class="o">=</span>
+         <span class="o">*</span><span class="p">(</span><span class="n">byte</span> <span class="o">*</span><span class="p">)((</span><span class="kt">long</span><span class="p">)</span><span class="o">&amp;</span><span class="n">local_38</span> <span class="o">+</span> <span class="p">(</span><span class="kt">long</span><span class="p">)(</span><span class="kt">int</span><span class="p">)</span><span class="n">local_3c</span><span class="p">)</span> <span class="o">^</span>
+         <span class="o">*</span><span class="p">(</span><span class="n">byte</span> <span class="o">*</span><span class="p">)((</span><span class="kt">long</span><span class="p">)</span><span class="o">&amp;</span><span class="n">local_40</span> <span class="o">+</span> <span class="p">(</span><span class="n">ulong</span><span class="p">)(</span><span class="n">local_3c</span> <span class="o">&amp;</span> <span class="mi">3</span><span class="p">));</span>
+    <span class="n">local_3c</span> <span class="o">=</span> <span class="n">local_3c</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="n">puts</span><span class="p">((</span><span class="kt">char</span> <span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="n">local_38</span><span class="p">);</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">local_10</span> <span class="o">!=</span> <span class="o">*</span><span class="p">(</span><span class="kt">long</span> <span class="o">*</span><span class="p">)(</span><span class="n">in_FS_OFFSET</span> <span class="o">+</span> <span class="mh">0x28</span><span class="p">))</span> <span class="p">{</span>
+                    <span class="cm">/* WARNING: Subroutine does not return */</span>
+    <span class="n">__stack_chk_fail</span><span class="p">();</span>
+  <span class="p">}</span>
+  <span class="k">return</span><span class="p">;</span>
+<span class="p">}</span></code></pre></td></tr></table>
+</div>
+</div>
+<p><br />
+中身はあんまり把握してません。関数名より、たぶんフラグを生成する関数です。</p>
+
+<p>大事なのは、引数が<code>void</code>な辺りですかね。引数が無いので、関数のアドレスに直接ジャンプできます。</p>
+
+<p>あ、あとは、途中で<code>selfish</code>の値を0に書き換えてあげないといけないです。</p>
+
+<p><br />
+gdbで開いて、mainと、gimme_flagにbreak pointはっておきます。</p>
+
+<pre>
+gdb-peda$ x gimme_flag
+0x5555555546fa <gimme_flag>:    0x40ec8348e5894855
+</pre>
+
+<p>実行してmain()で止まったら、そこからgimme_flag()にジャンプ。</p>
+
+<pre>
+gdb-peda$ jump *0x5555555546fa
+</pre>
+
+<p>eaxをセットしているところまで、niで進んで、eaxが1になるので0に変えてcontinueします。</p>
+
+<p><img src="https://captureamerica.github.io/writeups/img/utcctf_gimme_flag.png" alt="utcctf_gimme_flag.png"></p>
+
+<p><br />
+Flag: <code>utc{a_l1ttle_h4rd3r_:)}</code></p>
+
+<p><br /><br />
+<br /><br /></p>
+
+<hr />
+
+<p><br /><br />
+<br /><br /></p>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content">きゃぷあめ</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">
+        2019-12-22
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="https://captureamerica.github.io/writeups/tags/ctf/">CTF</a>
+          </div>
+      <nav class="post-nav">
+        
+        <a class="next" href="https://captureamerica.github.io/writeups/post/xmas_htsp_ctf/">
+            <span class="next-text nav-default">X-MAS CTF Writeup</span>
+            <span class="next-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="https://github.com/CaptureAmerica/" class="iconfont icon-github" title="github"></a>
+  <a href="https://captureamerica.github.io/writeups/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2019
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">きゃぷあめ</span>
+  </span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  
+<script type="text/javascript" src="https://captureamerica.github.io/writeups/dist/even.26188efa.min.js"></script>
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-104910699-2', 'auto');
+	ga('set', 'anonymizeIp', true);
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+
+
+
+
+
+</body>
+</html>
