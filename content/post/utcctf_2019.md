@@ -117,7 +117,7 @@ Flag: `utc{merge_and_merge_until_you_decode_it}`
 ### Solution
 「青い空を見上げればいつもそこに白い猫」で開いて、ビット抽出前バイト列を確認すると、フラグっぽい文字列が得られます。
 
-<img src="https://captureamerica.github.io/writeups/img/utcctf_Bicture.png" alt="utcctf_Bicture.png">
+<img src="https://captureamerica.github.io/writeups/img/utcctf_Bicture.PNG" alt="utcctf_Bicture.PNG">
 
 これを一旦テキストファイルに保存して、コマンドで整形します。
 
