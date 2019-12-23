@@ -5,7 +5,7 @@ lastmod: 2019-12-22T19:20:00+09:00
 draft: false
 keywords: []
 description: ""
-tags: ["CTF"]
+tags: ["CTF", "Reviewed"]
 categories: ["CTF"]
 author: "きゃぷあめ"
 ---
@@ -223,6 +223,50 @@ eaxをセットしているところまで、niで進んで、eaxが1になる�
 <br />
 Flag: `utc{a_l1ttle_h4rd3r_:)}`
 
+
+<br /><br />
+<br /><br />
+<img src="https://captureamerica.github.io/writeups/img/orange_bar.png" alt="orange_bar.png">
+<br />
+ここから下はCTF終了後に行った復習です。（他の方のWriteupとか参照してます。）
+
+<br /><br />
+## [Crypto]: Xarriors of the World 1 (baby)
+- - -
+### Challenge
+> Did you paid attention to the table of truth? `captain` will help you after you seek the truth.
+
+Attachment:
+
+- ciphertext.txt
+
+中身 <br />
+FhUTDwAQXTwCMAQVKV8NPgdHDQpeDgQvAFE2FlMTAh0OGx0e
+
+
+<br />
+### Solution
+Base64デコードした時点で、印字可能文字にならなかったので、captain cipherみたいのがあるのかと思ってググっていたら、"captain midnight decoder ring"っていうのがヒットして、意味がわからなくて降参したやつです。
+
+Base64デコードした後、"captain"でXORするのが正解でした。<br />
+（どうやったら、そういう発想になるのだろうか。。。たぶん、とりあえずいろいろ試すことが大事。）
+
+以下は、自分で書きました。
+
+```Python
+#!/usr/bin/env python
+import base64
+import sys
+captain = list("captain")
+d = base64.b64decode("FhUTDwAQXTwCMAQVKV8NPgdHDQpeDgQvAFE2FlMTAh0OGx0e")
+i = 0
+for x in bytearray(d):
+    sys.stdout.write(chr(x ^ ord(captain[i])))
+    i = (i + 1) % len(captain)
+print ""
+```
+<br />
+Flag: `utc{ay3_c@pt@1n_w3lc0me_t0_x0rriors}`
 
 
 

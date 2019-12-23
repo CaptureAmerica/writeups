@@ -51,11 +51,11 @@
 
 <meta itemprop="datePublished" content="2019-12-22T19:20:00&#43;09:00" />
 <meta itemprop="dateModified" content="2019-12-22T19:20:00&#43;09:00" />
-<meta itemprop="wordCount" content="1893">
+<meta itemprop="wordCount" content="2243">
 
 
 
-<meta itemprop="keywords" content="CTF," />
+<meta itemprop="keywords" content="CTF,Reviewed," />
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="UTC CTF Writeup"/>
 <meta name="twitter:description" content="URL: https://utc-ctf.club/challenges 以下、スコアです。 [Misc]: Optics 2 Challenge You seem to be professional in Forensics &amp; Optics. Now, the things will get tedious. Let&rsquo;s see what you got. Attachment: chall_0.png ~ chall_440.png Solution 441個のpngが与えられます。それぞれはgrayscale"/>
@@ -157,6 +157,11 @@
 <ul>
 <li><a href="#challenge-2">Challenge</a></li>
 <li><a href="#solution-2">Solution</a></li>
+</ul></li>
+<li><a href="#crypto-xarriors-of-the-world-1-baby">[Crypto]: Xarriors of the World 1 (baby)</a>
+<ul>
+<li><a href="#challenge-3">Challenge</a></li>
+<li><a href="#solution-3">Solution</a></li>
 </ul></li>
 </ul></li>
 </ul>
@@ -311,7 +316,7 @@ Flag: <code>utc{merge_and_merge_until_you_decode_it}</code></p>
 
 <p>「青い空を見上げればいつもそこに白い猫」で開いて、ビット抽出前バイト列を確認すると、フラグっぽい文字列が得られます。</p>
 
-<p><img src="https://captureamerica.github.io/writeups/img/utcctf_Bicture.png" alt="utcctf_Bicture.png"></p>
+<p><img src="https://captureamerica.github.io/writeups/img/utcctf_Bicture.PNG" alt="utcctf_Bicture.PNG"></p>
 
 <p>これを一旦テキストファイルに保存して、コマンドで整形します。</p>
 
@@ -460,6 +465,72 @@ gdb-peda$ jump *0x5555555546fa
 Flag: <code>utc{a_l1ttle_h4rd3r_:)}</code></p>
 
 <p><br /><br />
+<br /><br />
+<img src="https://captureamerica.github.io/writeups/img/orange_bar.png" alt="orange_bar.png">
+<br />
+ここから下はCTF終了後に行った復習です。（他の方のWriteupとか参照してます。）</p>
+
+<p><br /><br /></p>
+
+<h2 id="crypto-xarriors-of-the-world-1-baby">[Crypto]: Xarriors of the World 1 (baby)</h2>
+
+<hr />
+
+<h3 id="challenge-3">Challenge</h3>
+
+<blockquote>
+<p>Did you paid attention to the table of truth? <code>captain</code> will help you after you seek the truth.</p>
+</blockquote>
+
+<p>Attachment:</p>
+
+<ul>
+<li>ciphertext.txt</li>
+</ul>
+
+<p>中身 <br />
+FhUTDwAQXTwCMAQVKV8NPgdHDQpeDgQvAFE2FlMTAh0OGx0e</p>
+
+<p><br /></p>
+
+<h3 id="solution-3">Solution</h3>
+
+<p>Base64デコードした時点で、印字可能文字にならなかったので、captain cipherみたいのがあるのかと思ってググっていたら、&rdquo;captain midnight decoder ring&rdquo;っていうのがヒットして、意味がわからなくて降参したやつです。</p>
+
+<p>Base64デコードした後、&rdquo;captain&rdquo;でXORするのが正解でした。<br />
+（どうやったら、そういう発想になるのだろうか。。。たぶん、とりあえずいろいろ試すことが大事。）</p>
+
+<p>以下は、自分で書きました。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-Python" data-lang="Python"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-Python" data-lang="Python"><span class="ch">#!/usr/bin/env python</span>
+<span class="kn">import</span> <span class="nn">base64</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="n">captain</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="s2">&#34;captain&#34;</span><span class="p">)</span>
+<span class="n">d</span> <span class="o">=</span> <span class="n">base64</span><span class="o">.</span><span class="n">b64decode</span><span class="p">(</span><span class="s2">&#34;FhUTDwAQXTwCMAQVKV8NPgdHDQpeDgQvAFE2FlMTAh0OGx0e&#34;</span><span class="p">)</span>
+<span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">bytearray</span><span class="p">(</span><span class="n">d</span><span class="p">):</span>
+    <span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="nb">chr</span><span class="p">(</span><span class="n">x</span> <span class="o">^</span> <span class="nb">ord</span><span class="p">(</span><span class="n">captain</span><span class="p">[</span><span class="n">i</span><span class="p">])))</span>
+    <span class="n">i</span> <span class="o">=</span> <span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">%</span> <span class="nb">len</span><span class="p">(</span><span class="n">captain</span><span class="p">)</span>
+<span class="k">print</span> <span class="s2">&#34;&#34;</span></code></pre></td></tr></table>
+</div>
+</div>
+<p><br />
+Flag: <code>utc{ay3_c@pt@1n_w3lc0me_t0_x0rriors}</code></p>
+
+<p><br /><br />
 <br /><br /></p>
 
 <hr />
@@ -487,6 +558,7 @@ Flag: <code>utc{a_l1ttle_h4rd3r_:)}</code></p>
 <footer class="post-footer">
       <div class="post-tags">
           <a href="https://captureamerica.github.io/writeups/tags/ctf/">CTF</a>
+          <a href="https://captureamerica.github.io/writeups/tags/reviewed/">Reviewed</a>
           </div>
       <nav class="post-nav">
         
