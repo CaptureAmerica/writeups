@@ -43,19 +43,19 @@
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://captureamerica.github.io/writeups/post/tuctf_2019/" />
 <meta property="article:published_time" content="2019-12-03T13:00:00&#43;09:00"/>
-<meta property="article:modified_time" content="2019-12-03T13:00:00&#43;09:00"/>
+<meta property="article:modified_time" content="2019-12-25T16:00:00&#43;09:00"/>
 
 <meta itemprop="name" content="TUCTF 2019 Writeup">
 <meta itemprop="description" content="URL: https://tuctf.com/ もうサイトにアクセスできないようなので、最終順位がわかりません。 以下、チャレンジ一覧と解いた問題です。 [Misc]: Onions Challenge Ogres are like files &ndash; they have layers! Attachment: shrek.jpg Solution シュレ">
 
 
 <meta itemprop="datePublished" content="2019-12-03T13:00:00&#43;09:00" />
-<meta itemprop="dateModified" content="2019-12-03T13:00:00&#43;09:00" />
-<meta itemprop="wordCount" content="2630">
+<meta itemprop="dateModified" content="2019-12-25T16:00:00&#43;09:00" />
+<meta itemprop="wordCount" content="3347">
 
 
 
-<meta itemprop="keywords" content="CTF," />
+<meta itemprop="keywords" content="CTF,Reviewed," />
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="TUCTF 2019 Writeup"/>
 <meta name="twitter:description" content="URL: https://tuctf.com/ もうサイトにアクセスできないようなので、最終順位がわかりません。 以下、チャレンジ一覧と解いた問題です。 [Misc]: Onions Challenge Ogres are like files &ndash; they have layers! Attachment: shrek.jpg Solution シュレ"/>
@@ -182,6 +182,16 @@
 <ul>
 <li><a href="#challenge-7">Challenge</a></li>
 <li><a href="#solution-6">Solution</a></li>
+</ul></li>
+<li><a href="#reversing-object">[Reversing]: object</a>
+<ul>
+<li><a href="#challenge-8">Challenge</a></li>
+<li><a href="#solution-7">Solution</a></li>
+</ul></li>
+<li><a href="#reversing-core">[Reversing]: core</a>
+<ul>
+<li><a href="#challenge-9">Challenge</a></li>
+<li><a href="#solution-8">Solution</a></li>
 </ul></li>
 </ul></li>
 </ul>
@@ -1052,6 +1062,259 @@ GhidraでStringsサーチしたら、似たようなものがもう1個見つか
 Flag: <code>TUCTF{7h3r35_4lw4y5_m0r3_70_4_b1n4ry_7h4n_m3375_7h3_d3bu663r}</code></p>
 
 <p><br /><br />
+<br /><br />
+<img src="https://captureamerica.github.io/writeups/img/orange_bar.png" alt="orange_bar.png">
+<br />
+ここから下はCTF終了後に行った復習です。（他の方のWriteupとか参照してます。）</p>
+
+<p><br /><br /></p>
+
+<h2 id="reversing-object">[Reversing]: object</h2>
+
+<hr />
+
+<h3 id="challenge-8">Challenge</h3>
+
+<blockquote>
+<p>We&rsquo;ve recovered this file but can&rsquo;t make much of it.
+<br /><br />
+Hint: Do you see a procedural way to recover the password?</p>
+</blockquote>
+
+<p>Attachment:</p>
+
+<ul>
+<li>run.o (ELF 64-bit)</li>
+</ul>
+
+<p><br /></p>
+
+<h3 id="solution-7">Solution</h3>
+
+<p>Ghidraでソースを確認します。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-C" data-lang="C"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-C" data-lang="C"><span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+
+<span class="p">{</span>
+  <span class="kt">void</span> <span class="o">*</span><span class="n">__s</span><span class="p">;</span>
+  
+  <span class="n">setvbuf</span><span class="p">(</span><span class="n">stdout</span><span class="p">,(</span><span class="kt">char</span> <span class="o">*</span><span class="p">)</span><span class="mh">0x0</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mh">0x14</span><span class="p">);</span>
+  <span class="n">setvbuf</span><span class="p">(</span><span class="n">stdin</span><span class="p">,(</span><span class="kt">char</span> <span class="o">*</span><span class="p">)</span><span class="mh">0x0</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mh">0x14</span><span class="p">);</span>
+  <span class="n">__s</span> <span class="o">=</span> <span class="n">malloc</span><span class="p">(</span><span class="mh">0x40</span><span class="p">);</span>
+  <span class="n">memset</span><span class="p">(</span><span class="n">__s</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mh">0x40</span><span class="p">);</span>
+  <span class="n">printf</span><span class="p">(</span><span class="s">&#34;Enter password:</span><span class="se">\n</span><span class="s">&gt; &#34;</span><span class="p">);</span>
+  <span class="n">__isoc99_scanf</span><span class="p">(</span><span class="o">&amp;</span><span class="n">DAT_00100218</span><span class="p">,</span><span class="n">__s</span><span class="p">);</span>
+  <span class="n">printf</span><span class="p">(</span><span class="s">&#34;pass: %s</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span><span class="n">__s</span><span class="p">);</span>
+  <span class="n">checkPassword</span><span class="p">(</span><span class="n">__s</span><span class="p">);</span>
+  <span class="k">return</span><span class="p">;</span>
+<span class="p">}</span>
+
+
+<span class="n">undefined8</span> <span class="nf">checkPassword</span><span class="p">(</span><span class="kt">char</span> <span class="o">*</span><span class="n">param_1</span><span class="p">)</span>
+
+<span class="p">{</span>
+  <span class="n">size_t</span> <span class="n">sVar1</span><span class="p">;</span>
+  <span class="n">undefined8</span> <span class="n">uVar2</span><span class="p">;</span>
+  <span class="n">uint</span> <span class="n">local_10</span><span class="p">;</span>
+  
+  <span class="n">sVar1</span> <span class="o">=</span> <span class="n">strlen</span><span class="p">(</span><span class="n">param_1</span><span class="p">);</span>
+  <span class="k">if</span> <span class="p">((</span><span class="kt">int</span><span class="p">)</span><span class="n">sVar1</span> <span class="o">==</span> <span class="n">passlen</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">local_10</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="k">while</span> <span class="p">((</span><span class="kt">int</span><span class="p">)</span><span class="n">local_10</span> <span class="o">&lt;</span> <span class="n">passlen</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">if</span> <span class="p">((</span><span class="n">byte</span><span class="p">)(</span><span class="o">~</span><span class="p">(</span><span class="n">param_1</span><span class="p">[(</span><span class="kt">int</span><span class="p">)</span><span class="n">local_10</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="mi">1</span><span class="p">)</span> <span class="o">^</span> <span class="mh">0xaaU</span><span class="p">)</span> <span class="o">!=</span> <span class="n">password</span><span class="p">[(</span><span class="kt">int</span><span class="p">)</span><span class="n">local_10</span><span class="p">])</span> <span class="p">{</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">&#34;Incorrect password</span><span class="se">\n</span><span class="s">Error at character: %d</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,(</span><span class="n">ulong</span><span class="p">)</span><span class="n">local_10</span><span class="p">);</span>
+        <span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
+      <span class="p">}</span>
+      <span class="n">local_10</span> <span class="o">=</span> <span class="n">local_10</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="n">puts</span><span class="p">(</span><span class="s">&#34;Correct Password!&#34;</span><span class="p">);</span>
+    <span class="n">uVar2</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="k">else</span> <span class="p">{</span>
+    <span class="n">puts</span><span class="p">(</span><span class="s">&#34;Close, but no flag&#34;</span><span class="p">);</span>
+    <span class="n">uVar2</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="k">return</span> <span class="n">uVar2</span><span class="p">;</span>
+<span class="p">}</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>入力したパスワードを1文字ずつ処理しています。（whileのすぐ下のところ）</p>
+
+<p>左シフトしたものを、反転 (<code>XOR 0xFF</code>) して、さらに <code>XOR 0xAA</code> したものを、比較用データと比較してます。</p>
+
+<p>比較用データもGhidraで見つかりました。</p>
+
+<p><img src="https://captureamerica.github.io/writeups/img/tuctf_object_password.png" alt="tuctf_object_password.png"></p>
+
+<p><code>XOR 0xAA</code> の <code>XOR 0xFF</code> は <code>XOR 0x55</code> なので、この比較用データを <code>XOR 0x55</code> してから右シフトします。</p>
+
+<pre>
+python3 -c 'print(*[chr(((int(x,16))^0x55)>>1) for x in "FD FF D3 FD D9 A3 93 35 89 39 B1 3D 3B BF 8D 3D 3B 37 35 89 3F EB 35 89 EB 91 B1 33 3D 83 37 89 39 EB 3B 85 37 3F EB 99 8D 3D 39 AF".split()])' | tr -d " "
+TUCTF{c0n6r47ul4710n5_0n_br34k1n6_7h15_fl46}
+</pre>
+
+<p><br />
+Flag: <code>TUCTF{c0n6r47ul4710n5_0n_br34k1n6_7h15_fl46}</code></p>
+
+<p><br />
+<div class="admonition tip"><p class="admonition-title">Tips</p></p>
+
+<p>python3にて、listに*を付けることで、要素のみを空白区切りで出力することができます。</p>
+
+<p></div></p>
+
+<p><br /><br /></p>
+
+<h2 id="reversing-core">[Reversing]: core</h2>
+
+<hr />
+
+<h3 id="challenge-9">Challenge</h3>
+
+<blockquote>
+<p>We were able to recover a few files we need analyzed. Think you can get anything outta these?
+<br /><br />
+Hint: How is the data manipulated before the crash? Do you know any of the characters?</p>
+</blockquote>
+
+<p>Attachment:</p>
+
+<ul>
+<li>run.c</li>
+<li>core</li>
+</ul>
+
+<p>run.cの中身：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-C" data-lang="C"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-C" data-lang="C"><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;  // prints</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;stdlib.h&gt; // malloc</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;string.h&gt; // strcmp</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;unistd.h&gt; // read</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;fcntl.h&gt;  // open</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;unistd.h&gt; // close</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;time.h&gt;   // time</span><span class="cp">
+</span><span class="cp"></span>
+<span class="cp">#define FLAG_LEN 64
+</span><span class="cp"></span><span class="kt">char</span> <span class="n">flag</span><span class="p">[</span><span class="n">FLAG_LEN</span><span class="p">];</span>
+
+<span class="kt">void</span> <span class="nf">xor</span><span class="p">(</span><span class="kt">char</span> <span class="o">*</span><span class="n">str</span><span class="p">,</span> <span class="kt">int</span> <span class="n">len</span><span class="p">)</span> <span class="p">{</span>
+	<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">len</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+		<span class="n">str</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">str</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">^</span> <span class="mi">1</span><span class="p">;</span>
+	<span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">setvbuf</span><span class="p">(</span><span class="n">stdout</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">,</span> <span class="n">_IONBF</span><span class="p">,</span> <span class="mi">20</span><span class="p">);</span>
+    <span class="n">setvbuf</span><span class="p">(</span><span class="n">stdin</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">,</span> <span class="n">_IONBF</span><span class="p">,</span> <span class="mi">20</span><span class="p">);</span>
+
+	<span class="c1">// Read the flag
+</span><span class="c1"></span>	<span class="n">memset</span><span class="p">(</span><span class="n">flag</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">FLAG_LEN</span><span class="p">);</span>
+	<span class="n">printf</span><span class="p">(</span><span class="s">&#34;&gt; &#34;</span><span class="p">);</span>
+	<span class="kt">int</span> <span class="n">len</span> <span class="o">=</span> <span class="n">read</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">flag</span><span class="p">,</span> <span class="n">FLAG_LEN</span><span class="p">);</span>
+
+	<span class="n">xor</span><span class="p">(</span><span class="n">flag</span><span class="p">,</span> <span class="n">len</span><span class="p">);</span>
+
+	<span class="kt">char</span> <span class="n">buf</span><span class="p">[</span><span class="mi">32</span><span class="p">];</span>
+	<span class="n">read</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">buf</span><span class="p">,</span> <span class="mi">128</span><span class="p">);</span>
+
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span></code></pre></td></tr></table>
+</div>
+</div>
+<p><br /></p>
+
+<h3 id="solution-8">Solution</h3>
+
+<p>gdbでcore解析しようとして、分からなかったやつです。</p>
+
+<p>run.c をベースに、フラグの一部 <code>TUCTF</code> をXOR ^ 1したものを、coreに対してstringsサーチするだけでした。</p>
+
+<p><br />
+Flag: <code>TUCTF{c0r3_dump?_N3v3r_h34rd_0f_y0u}</code></p>
+
+<p><br /><br />
 <br /><br /></p>
 
 <hr />
@@ -1069,7 +1332,7 @@ Flag: <code>TUCTF{7h3r35_4lw4y5_m0r3_70_4_b1n4ry_7h4n_m3375_7h3_d3bu663r}</code>
   <p class="copyright-item">
     <span class="item-title">LastMod</span>
     <span class="item-content">
-        2019-12-03
+        2019-12-25
         
     </span>
   </p>
@@ -1079,6 +1342,7 @@ Flag: <code>TUCTF{7h3r35_4lw4y5_m0r3_70_4_b1n4ry_7h4n_m3375_7h3_d3bu663r}</code>
 <footer class="post-footer">
       <div class="post-tags">
           <a href="https://captureamerica.github.io/writeups/tags/ctf/">CTF</a>
+          <a href="https://captureamerica.github.io/writeups/tags/reviewed/">Reviewed</a>
           </div>
       <nav class="post-nav">
         <a class="prev" href="https://captureamerica.github.io/writeups/post/watevrctf_2019/">

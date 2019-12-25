@@ -1,11 +1,11 @@
 ---
 title: "TUCTF 2019 Writeup"
 date: 2019-12-03T13:00:00+09:00
-lastmod: 2019-12-03T13:00:00+09:00
+lastmod: 2019-12-25T16:00:00+09:00
 draft: false
 keywords: []
 description: ""
-tags: ["CTF"]
+tags: ["CTF", "Reviewed"]
 categories: ["CTF"]
 author: "きゃぷあめ"
 ---
@@ -653,6 +653,163 @@ GhidraでStringsサーチしたら、似たようなものがもう1個見つか
 
 <br />
 Flag: `TUCTF{7h3r35_4lw4y5_m0r3_70_4_b1n4ry_7h4n_m3375_7h3_d3bu663r}`
+
+
+<br /><br />
+<br /><br />
+<img src="https://captureamerica.github.io/writeups/img/orange_bar.png" alt="orange_bar.png">
+<br />
+ここから下はCTF終了後に行った復習です。（他の方のWriteupとか参照してます。）
+
+<br /><br />
+## [Reversing]: object
+- - -
+### Challenge
+> We've recovered this file but can't make much of it.
+<br /><br />
+Hint: Do you see a procedural way to recover the password?
+
+Attachment:
+
+- run.o (ELF 64-bit)
+
+
+<br />
+### Solution
+Ghidraでソースを確認します。
+
+```C
+void main(void)
+
+{
+  void *__s;
+  
+  setvbuf(stdout,(char *)0x0,2,0x14);
+  setvbuf(stdin,(char *)0x0,2,0x14);
+  __s = malloc(0x40);
+  memset(__s,0,0x40);
+  printf("Enter password:\n> ");
+  __isoc99_scanf(&DAT_00100218,__s);
+  printf("pass: %s\n",__s);
+  checkPassword(__s);
+  return;
+}
+
+
+undefined8 checkPassword(char *param_1)
+
+{
+  size_t sVar1;
+  undefined8 uVar2;
+  uint local_10;
+  
+  sVar1 = strlen(param_1);
+  if ((int)sVar1 == passlen) {
+    local_10 = 0;
+    while ((int)local_10 < passlen) {
+      if ((byte)(~(param_1[(int)local_10] << 1) ^ 0xaaU) != password[(int)local_10]) {
+        printf("Incorrect password\nError at character: %d\n",(ulong)local_10);
+        return 1;
+      }
+      local_10 = local_10 + 1;
+    }
+    puts("Correct Password!");
+    uVar2 = 0;
+  }
+  else {
+    puts("Close, but no flag");
+    uVar2 = 1;
+  }
+  return uVar2;
+}
+```
+
+入力したパスワードを1文字ずつ処理しています。（whileのすぐ下のところ）
+
+左シフトしたものを、反転 (`XOR 0xFF`) して、さらに `XOR 0xAA` したものを、比較用データと比較してます。
+
+比較用データもGhidraで見つかりました。
+
+<img src="https://captureamerica.github.io/writeups/img/tuctf_object_password.png" alt="tuctf_object_password.png">
+
+`XOR 0xAA` の `XOR 0xFF` は `XOR 0x55` なので、この比較用データを `XOR 0x55` してから右シフトします。
+
+<pre>
+python3 -c 'print(*[chr(((int(x,16))^0x55)>>1) for x in "FD FF D3 FD D9 A3 93 35 89 39 B1 3D 3B BF 8D 3D 3B 37 35 89 3F EB 35 89 EB 91 B1 33 3D 83 37 89 39 EB 3B 85 37 3F EB 99 8D 3D 39 AF".split()])' | tr -d " "
+TUCTF{c0n6r47ul4710n5_0n_br34k1n6_7h15_fl46}
+</pre>
+
+<br />
+Flag: `TUCTF{c0n6r47ul4710n5_0n_br34k1n6_7h15_fl46}`
+
+<br />
+{{% admonition tip "Tips" %}}
+python3にて、listに*を付けることで、要素のみを空白区切りで出力することができます。
+{{% /admonition %}}
+
+
+
+<br /><br />
+## [Reversing]: core
+- - -
+### Challenge
+> We were able to recover a few files we need analyzed. Think you can get anything outta these?
+<br /><br />
+Hint: How is the data manipulated before the crash? Do you know any of the characters?
+
+Attachment:
+
+- run.c
+- core
+
+run.cの中身：
+
+```C
+#include <stdio.h>  // prints
+#include <stdlib.h> // malloc
+#include <string.h> // strcmp
+#include <unistd.h> // read
+#include <fcntl.h>  // open
+#include <unistd.h> // close
+#include <time.h>   // time
+
+#define FLAG_LEN 64
+char flag[FLAG_LEN];
+
+void xor(char *str, int len) {
+	for (int i = 0; i < len; i++) {
+		str[i] = str[i] ^ 1;
+	}
+}
+
+int main() {
+    setvbuf(stdout, NULL, _IONBF, 20);
+    setvbuf(stdin, NULL, _IONBF, 20);
+
+	// Read the flag
+	memset(flag, 0, FLAG_LEN);
+	printf("> ");
+	int len = read(0, flag, FLAG_LEN);
+
+	xor(flag, len);
+
+	char buf[32];
+	read(0, buf, 128);
+
+    return 0;
+}
+```
+
+
+<br />
+### Solution
+gdbでcore解析しようとして、分からなかったやつです。
+
+run.c をベースに、フラグの一部 `TUCTF` をXOR ^ 1したものを、coreに対してstringsサーチするだけでした。
+
+<br />
+Flag: `TUCTF{c0r3_dump?_N3v3r_h34rd_0f_y0u}`
+
 
 
 <br /><br />
