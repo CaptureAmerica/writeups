@@ -1,11 +1,11 @@
 ---
 title: "HSCTF 6 Writeup"
 date: 2019-06-08T00:00:00+08:00
-lastmod: 2019-06-08T11:20:00+08:00
+lastmod: 2020-01-19T18:00:00+09:00
 draft: false
 keywords: []
 description: ""
-tags: ["CTF"]
+tags: ["CTF", "Reviewed"]
 categories: ["CTF"]
 author: "きゃぷあめ"
 ---
@@ -972,6 +972,171 @@ ChromeのDeveloper ToolsでまずBeautifyして、mをWatchに追加して実行
 [https://dencode.com/ja/string/bin](https://dencode.com/ja/string/bin)
 
 im gonna add some filler text here so the page is a bit longer. lorem ipsum... here's the flag btw, flag{accessibility_is_crucial}
+
+
+
+<br /><br />
+<br /><br />
+<img src="https://captureamerica.github.io/writeups/img/orange_bar.png" alt="orange_bar.png">
+<br />
+ここから下はCTF終了後（2020/01/19）に行った復習です。他の方のWriteupとか参照してます。
+
+
+<br /><br />
+<br /><br />
+## [Misc]: Hidden Flag
+- - -
+### Challenge
+> This image seems wrong.....did Keith lose the key <b>again</b>?
+
+Attachment:
+
+- chall.png
+
+<br />
+### Solution
+こわれたpngっぽいです。
+
+<pre>
+$ file chall.png 
+chall.png: data
+</pre>
+
+stringsで、以下が見つかります。
+<pre>
+$ strings chall.png 
+:
+:
+key is invisible
+</pre>
+
+これ、「keyは隠れているよ」という意味かと思ったら、「keyは "invisible" だよ」という意味だったようです。
+
+あと、XORという発想がわきませんでした。。。
+
+{{% admonition tip "Tips" %}}
+KeyというのがあったらXORを疑う
+{{% /admonition %}}
+
+<br />
+Pythonを使ってXORします。
+
+<pre>
+$ python -c 'import pwn;open("out","w").write(pwn.xor(open("chall.png").read(),"invisible"))'
+
+$ file out
+out: PNG image data, 665 x 268, 8-bit/color RGB, non-interlaced
+</pre>
+
+<img src="https://captureamerica.github.io/writeups/img/hsctf_chall.png" alt="hsctf_chall.png">
+
+Flag: `hsctf{n0t_1nv1s1bl3_an5m0r3?-39547632}`
+
+
+<br /><br />
+ちなみに、xortool (https://github.com/hellman/xortool) を使った解き方もあるようです。
+
+<img src="https://captureamerica.github.io/writeups/img/hsctf_xortool.png" alt="hsctf_xortool.png">
+
+ここでも、keyが`invisible`なのがわかりますね。
+
+オプションで、`-c 00`を渡さないといけないんですが（-cは、most frequent charのオプション）、なんで`00`なのかがよくわからないです。
+
+xxdで眺めても、`00`が頻繁に出てきているわけでもないし。。。
+
+https://github.com/hellman/xortool の解説中には、`# 00 is the most frequent byte in binaries`と書かれてますけど。
+
+ま、とにかくxortoolを実行すると、./xortool_out/0.out というファイルが自動生成されてて、前述したのと同じPNG画像が取れます。
+
+
+
+
+<br /><br />
+<br /><br />
+## [Misc]: Logo Sucks Bad
+- - -
+### Challenge
+> This logo sucks bad.
+
+Attachment:
+
+- logo.png
+
+<br />
+### Solution
+zstegでフラグが取れるやつでした。
+
+"Lorem ipsum" だしと思って無視しちゃったんだけど、CTFでは "Lorem ipsum" は逆に無視しちゃいけないやつですな。
+
+<pre>
+$ zsteg logo.png 
+b1,r,msb,xy         .. text: "NHzjjVhzXHh"
+b1,rgb,lsb,xy       .. text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis non velit rutrum, porttitor est a, porttitor nisi. Aliquam placerat nibh ut diam faucibus, ut auctor felis sodales. Suspendisse egestas tempus libero, efficitur finibus orci congue sit amet. Sed"
+b2,g,lsb,xy         .. text: "Q@E@A@A@E"
+b4,r,lsb,xy         .. text: "DEUTDEUTDEDTEEUTDEUUDUDTEUUUDEEUDEDUDEEUDUEUDUDUEEETDEEUDEDTEUETDUETDETTEDTTDEETETDUDUTTEUEUDEDTEUEUEUEUDDDTDUDUEEUUDUDTDEEUDggwfeDUEUDUDEDUETDUDEETDTDDDEUTEEEUDEDUDEEUEUEUDETTDUTTEEDTDEUTDDDUDEETDEDUETTTEEDTDEETEEUTDEDUDEUTDEEUDEEUDEEUDEEUEUDUDUDTEUEUDEEU"
+b4,g,lsb,xy         .. text: "UETUTUTDUUDUTUTDTETDUUDDTUDTDEDDTUTDDEDEUEDDTUTDTETUDEDDUUDDTUDDUETDTUTDTETDTETDTUDEUUTDTETDUUTDTETTTETDEEDTUUDTTEDTUUDDTUDvfg"
+b4,b,lsb,xy         .. text: "EDUDUDDDTEEEUDDDUDUTUETDTDEDTDEUUEDTTDUUUEUETEEEUEEDTDEDTEEUTDUUUDTDUDEUUDTDEEEUTDETUDTDUDETTEDDTEEDTEEUUDEDUGwfwfgfwgx"
+b4,rgb,lsb,xy       .. text: "EDUDETUUEUDTETEEETUEDTDDETTEEUDDEUDUEUEEETUEDTDDETEDETUUETUDETUUEUDTDTDDEUDUETTEEUEDDTDDETDEETUEETEEEUEDDTUDDTDDETDUETUUETUTEUDUETEEETDUEUEDETEEEUEDEUEEEUDTDTDDETDEETEDETTEEUDDETTEEUDUETDUETTEETUTETEUDTDDETEEETUDETTEEUEDDTUTDTDDEDEDEUEEETTEEUDUDTDDETUTETUU"
+b4,bgr,lsb,xy       .. text: "EETDDUUUEETTUEDEDUETEDTDUDTEEUDEDEUTUEEEDUETEDTDUEDDDUUUETTEUETEUUTDDDTDUDEETUDUEETETDDDDUDEETUEUEDEEUEDDTTETDDDDUTEETUUUETDUUTEEDUEUDDEUUEEDDUEUEEDEUEEEETTTDDDDUDEEDTEUDTEEUDEDTUDUDEETUTEETUDUETDTUUDEDTDUEDEDUEUDTUDUEEDDTUTDDTDEEDDEUEEETUDUDEETTDEDTTUUETE"
+b4,rgba,lsb,xy      .. text: "EOE_DOUOU_T_UOEOE_D_EOUOUOTOTODOE_EOEOU_DOD_UOE_E_T_EOUOUOTOTODOE_D_DOUOU_T_T_TOE_E_UOU_D_DOTODOE_TOUOUOTOT_UOTOD_DODOUODOT_T_T_E_D_EOU_EODOT_TOD_DODOUOD_T_T_U_E_E_TOU_D_T_TOT_E_DOUOU_EOD_TOT_E_T_DOU_EOT_UOEOD_DODOUODOT_TOTOE_EOEOU_DOD_T_D_E_TOUOUOD_T_T_D_"
+</pre>
+
+
+<br />
+{{% admonition tip "Tips" %}}
+zstegに`-l 0`を渡すと長さの制限にひっかからず、全部表示できる。
+{{% /admonition %}}
+
+
+<b>$ zsteg logo.png -v b1,rgb,lsb,xy -l 0</b><br />
+b1,rgb,lsb,xy       .. text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis non velit rutrum, porttitor est a, porttitor nisi. Aliquam placerat nibh ut diam faucibus, ut auctor felis sodales. Suspendisse egestas tempus libero, efficitur finibus orci congue sit amet. Sed accumsan mi sit amet porttitor pellentesque. Morbi et porta lacus. Nulla ligula justo, pulvinar imperdiet porta quis, accumsan et massa. In viverra varius eleifend. Ut congue feugiat leo a ultrices.\n\nUt risus ipsum, dictum id euismod nec, mattis eu dolor. In aliquam viverra congue. Mauris lacinia lectus quis erat porttitor, vitae iaculis mauris ultrices. Donec quis imperdiet mi, et fermentum purus. Mauris rhoncus sit amet ex quis gravida. In tempor, libero vel finibus tristique, velit est vestibulum est, non semper leo mauris vel enim. Nulla non orci pharetra, bibendum quam a, pharetra felis. Morbi tincidunt, mauris nec aliquam maximus, eros justo rutrum odio, in dapibus sem arcu blandit nunc. Mauris dapibus sem lorem, quis lacinia nunc consectetur pulvinar. Donec sapien erat, pulvinar non fermentum tempor, auctor pellentesque tortor.\n\nSuspendisse id vehicula enim. Cras ut enim sollicitudin, aliquam mauris eget, vehicula arcu. Morbi convallis sed nulla et pellentesque. Cras risus justo, fermentum eget ex ac, dictum dignissim magna. Nullam nec velit vel nulla varius gravida. Aliquam ac lorem tempor, venenatis nibh sed, ultricies urna. In fringilla hendrerit purus, tristique aliquam ipsum molestie vitae. Sed efficitur auctor lacus ac luctus.\n\nDonec id viverra augue. Vivamus null`hsctf{th4_l3est_s3gnific3nt_bbbbbbbbbbbbb}`a neque, iaculis quis urna eget, gravida commodo quam. Vestibulum porttitor justo in suscipit rutrum. Sed id tristique ipsum. Nulla vel porta nisl. Quisque leo quam, placerat id neque eu, ullamcorper facilisis lacus. Maecenas magna eros, sollicitudin id est a, fermentum elementum leo. Vestibulum porttitor urna eget bibendum interdum. Mauris eget consequat est. Aenean hendrerit eleifend finibus. Sed eu luctus nulla, non tristique nunc. Cras aliquet vehicula tincidunt. Maecenas nec semper ipsum.\n\nProin pulvinar lacus id malesuada bibendum. Mauris ac sapien eros. Sed non neque id ante porta finibus eget eget enim. Pellentesque placerat, neque sit amet dictum eleifend, tortor dolor porttitor ex, in vestibulum lacus tortor id purus. Phasellus varius nulla sed magna finibus aliquet. Proin eros metus, sodales vel enim eu, imperdiet pulvinar erat. Nunc quis iaculis dui. In cursus a urna in dapibus. Sed eu elementum quam. Vivamus ornare convallis leo sed mollis. Aenean sit amet nulla vel leo cursus dictum ac nec sem. Morbi nec ultrices felis."
+
+<br />
+Flag: `hsctf{th4_l3est_s3gnific3nt_bbbbbbbbbbbbb}`
+
+
+<br /><br />
+<br /><br />
+## [Misc]: The Real Reversal
+- - -
+### Challenge
+> My friend gave me some fancy text, but it was reversed, and so I tried to reverse it but I think I messed it up further. Can you find out what the text says?
+
+Attachment:
+
+- reversed.txt
+
+<br />
+### Solution
+添付ファイルは、こんなやつです。
+
+<pre>
+$ xxd reversed.txt | head -3
+00000000: 869a 9df0 989a 9df0 a09a 9df0 209d 9a9d  ............ ...
+00000010: f091 9a9d f092 9a9d f09c 9a9d f020 929a  ............. ..
+00000020: 9df0 9c9a 9df0 208c 9a9d f098 9a9d f098  ...... .........
+</pre>
+
+<br />
+バイトリバース
+
+<pre>
+$ python -c 'print(open("reversed.txt", "rb").read()[::-1])' 
+.𝚖𝚞𝚛𝚘𝚋𝚊𝚕 𝚝𝚜𝚎 𝚍𝚒 𝚖𝚒𝚗𝚊 𝚝𝚒𝚕𝚕𝚘𝚖 𝚝𝚗𝚞𝚛𝚎𝚜𝚎𝚍 𝚊𝚒𝚌𝚒𝚏𝚏𝚘 𝚒𝚞𝚚 𝚊𝚙𝚕𝚞𝚌 𝚗𝚒 𝚝𝚗𝚞𝚜 ,𝚝𝚗𝚎𝚍𝚒𝚘𝚛𝚙 𝚗𝚘𝚗 𝚝𝚊𝚝𝚊𝚍𝚒𝚙𝚞𝚌 𝚝𝚊𝚌𝚎𝚊𝚌𝚌𝚘 𝚝𝚗𝚒𝚜 𝚛𝚞𝚎𝚝𝚙𝚎𝚌𝚡𝙴 .𝚛𝚞𝚝𝚊𝚒𝚛𝚊𝚙 𝚊𝚕𝚕𝚞𝚗 𝚝𝚊𝚒𝚐𝚞𝚏 𝚞𝚎 𝚎𝚛𝚘𝚕𝚘𝚍 𝚖𝚞𝚕𝚕𝚒𝚌 𝚎𝚜𝚜𝚎 𝚝𝚒𝚕𝚎𝚟 𝚎𝚝𝚊𝚝𝚙𝚞𝚕𝚘𝚟 𝚗𝚒 𝚝𝚒𝚛𝚎𝚍𝚗𝚎𝚑𝚎𝚛𝚙𝚎𝚛 𝚗𝚒 𝚛𝚘𝚕𝚘𝚍 𝚎𝚛𝚞𝚛𝚒 𝚎𝚝𝚞𝚊 𝚜𝚒𝚞𝙳 .𝚝𝚊𝚞𝚚𝚎𝚜𝚗𝚘𝚌 𝚘𝚍𝚘𝚖𝚖𝚘𝚌 𝚊𝚎 𝚡𝚎 𝚙𝚒𝚞𝚚𝚒𝚕𝚊 𝚝𝚞 𝚒𝚜𝚒𝚗 𝚜𝚒𝚛𝚘𝚋𝚊𝚕 𝚘𝚌𝚖𝚊𝚕𝚕𝚞 𝚗𝚘𝚒𝚝𝚊𝚝𝚒𝚌𝚛𝚎𝚡𝚎 𝚍𝚞𝚛𝚝𝚜𝚘𝚗 𝚜𝚒𝚞𝚚 ,𝚖𝚊𝚒𝚗𝚎𝚟 𝚖𝚒𝚗𝚒𝚖 𝚍𝚊 𝚖𝚒𝚗𝚎 𝚝𝚄 .𝚊𝚞𝚚𝚒𝚕𝚊 𝚊𝚗𝚐𝚊𝚖 𝚎𝚛𝚘𝚕𝚘𝚍 𝚝𝚎 𝚎𝚛𝚘𝚋𝚊𝚕 𝚝𝚞 𝚝𝚗𝚞𝚍𝚒𝚍𝚒𝚌𝚗𝚒 𝚛𝚘𝚙𝚖𝚎𝚝 𝚍𝚘𝚖𝚜𝚞𝚒𝚎 𝚘𝚍 𝚍𝚎𝚜 ,𝚝𝚒𝚕𝚎 𝚐𝚗𝚒𝚌𝚜𝚒𝚙𝚒𝚍𝚊 𝚛𝚞𝚝𝚎𝚝𝚌𝚎𝚜𝚗𝚘𝚌 ,𝚝𝚎𝚖𝚊 𝚝𝚒𝚜 𝚛𝚘𝚕𝚘𝚍 𝚖𝚞𝚜𝚙𝚒 𝚖𝚎𝚛𝚘𝙻 .𝚖𝚞𝚛𝚘𝚋𝚊𝚕 𝚝𝚜𝚎 𝚍𝚒 𝚖𝚒𝚗𝚊 𝚝𝚒𝚕𝚕𝚘𝚖 𝚝𝚗𝚞𝚛𝚎𝚜𝚎𝚍 𝚊𝚒𝚌𝚒𝚏𝚏𝚘 𝚒𝚞𝚚 𝚊𝚙𝚕𝚞𝚌 𝚗𝚒 𝚝𝚗𝚞𝚜 ,𝚝𝚗𝚎𝚍𝚒𝚘𝚛𝚙 𝚗𝚘𝚗 𝚝𝚊𝚝𝚊𝚍𝚒𝚙𝚞𝚌 𝚝𝚊𝚌𝚎𝚊𝚌𝚌𝚘 𝚝𝚗𝚒𝚜 𝚛𝚞𝚎𝚝𝚙𝚎𝚌𝚡𝙴 .𝚛𝚞𝚝𝚊𝚒𝚛𝚊𝚙 𝚊𝚕𝚕𝚞𝚗 𝚝𝚊𝚒𝚐𝚞𝚏 𝚞𝚎 𝚎𝚛𝚘𝚕𝚘𝚍 𝚖𝚞𝚕𝚕𝚒𝚌 𝚎𝚜𝚜𝚎 𝚝𝚒𝚕𝚎𝚟 𝚎𝚝𝚊𝚝𝚙𝚞𝚕𝚘𝚟 𝚗𝚒 𝚝𝚒𝚛𝚎𝚍𝚗𝚎𝚑𝚎𝚛𝚙𝚎𝚛 𝚗𝚒 𝚛𝚘𝚕𝚘𝚍 𝚎𝚛𝚞𝚛𝚒 𝚎𝚝𝚞𝚊 𝚜𝚒𝚞𝙳 .𝚝𝚊𝚞𝚚𝚎𝚜𝚗𝚘𝚌 𝚘𝚍𝚘𝚖𝚖𝚘𝚌 𝚊𝚎 𝚡𝚎 𝚙𝚒𝚞𝚚𝚒𝚕𝚊 𝚝𝚞 𝚒𝚜𝚒𝚗 𝚜𝚒𝚛𝚘𝚋𝚊𝚕 𝚘𝚌𝚖𝚊𝚕𝚕𝚞 𝚗𝚘𝚒𝚝𝚊𝚝𝚒𝚌𝚛𝚎𝚡𝚎 𝚍𝚞𝚛𝚝𝚜𝚘𝚗 𝚜𝚒𝚞𝚚 ,𝚖𝚊𝚒𝚗𝚎𝚟 𝚖𝚒𝚗𝚒𝚖 𝚍𝚊 𝚖𝚒𝚗𝚎 𝚝𝚄 .𝚊𝚞𝚚𝚒𝚕𝚊 𝚊𝚗𝚐𝚊𝚖 𝚎𝚛𝚘𝚕𝚘𝚍 𝚝𝚎 𝚎𝚛𝚘𝚋𝚊𝚕 𝚝𝚞 𝚝𝚗𝚞𝚍𝚒𝚍𝚒𝚌𝚗𝚒 𝚛𝚘𝚙𝚖𝚎𝚝 𝚍𝚘𝚖𝚜𝚞𝚒𝚎 𝚘𝚍 𝚍𝚎𝚜 ,𝚝𝚒𝚕𝚎 𝚐𝚗𝚒𝚌𝚜𝚒𝚙𝚒𝚍𝚊 𝚛𝚞𝚝𝚎𝚝𝚌𝚎𝚜𝚗𝚘𝚌 ,𝚝𝚎𝚖𝚊 𝚝𝚒𝚜 𝚛𝚘𝚕𝚘𝚍 𝚖𝚞𝚜𝚙𝚒 𝚖𝚎𝚛𝚘𝙻 .𝚜𝚛𝚎𝚝𝚝𝚎𝚕 𝚒𝚒𝚌𝚜𝚊 𝚛𝚊𝚕𝚞𝚐𝚎𝚛 𝚐𝚗𝚒𝚜𝚞 ,}𝚗𝚒𝚠_𝚎𝚑𝚝_𝚛𝚘𝚏_𝟾𝚏𝚝𝚞{𝚏𝚝𝚌𝚜𝚑 𝚜𝚒 𝚐𝚊𝚕𝚏 𝚎𝚑𝚃 .𝚖𝚞𝚛𝚘𝚋𝚊𝚕 𝚝𝚜𝚎 𝚍𝚒 𝚖𝚒𝚗𝚊 𝚝𝚒𝚕𝚕𝚘𝚖 𝚝𝚗𝚞𝚛𝚎𝚜𝚎𝚍 𝚊𝚒𝚌𝚒𝚏𝚏𝚘 𝚒𝚞𝚚 𝚊𝚙𝚕𝚞𝚌 𝚗𝚒 𝚝𝚗𝚞𝚜 ,𝚝𝚗𝚎𝚍𝚒𝚘𝚛𝚙 𝚗𝚘𝚗 𝚝𝚊𝚝𝚊𝚍𝚒𝚙𝚞𝚌 𝚝𝚊𝚌𝚎𝚊𝚌𝚌𝚘 𝚝𝚗𝚒𝚜 𝚛𝚞𝚎𝚝𝚙𝚎𝚌𝚡𝙴 .𝚛𝚞𝚝𝚊𝚒𝚛𝚊𝚙 𝚊𝚕𝚕𝚞𝚗 𝚝𝚊𝚒𝚐𝚞𝚏 𝚞𝚎 𝚎𝚛𝚘𝚕𝚘𝚍 𝚖𝚞𝚕𝚕𝚒𝚌 𝚎𝚜𝚜𝚎 𝚝𝚒𝚕𝚎𝚟 𝚎𝚝𝚊𝚝𝚙𝚞𝚕𝚘𝚟 𝚗𝚒 𝚝𝚒𝚛𝚎𝚍𝚗𝚎𝚑𝚎𝚛𝚙𝚎𝚛 𝚗𝚒 𝚛𝚘𝚕𝚘𝚍 𝚎𝚛𝚞𝚛𝚒 𝚎𝚝𝚞𝚊 𝚜𝚒𝚞𝙳 .𝚝𝚊𝚞𝚚𝚎𝚜𝚗𝚘𝚌 𝚘𝚍𝚘𝚖𝚖𝚘𝚌 𝚊𝚎 𝚡𝚎 𝚙𝚒𝚞𝚚𝚒𝚕𝚊 𝚝𝚞 𝚒𝚜𝚒𝚗 𝚜𝚒𝚛𝚘𝚋𝚊𝚕 𝚘𝚌𝚖𝚊𝚕𝚕𝚞 𝚗𝚘𝚒𝚝𝚊𝚝𝚒𝚌𝚛𝚎𝚡𝚎 𝚍𝚞𝚛𝚝𝚜𝚘𝚗 𝚜𝚒𝚞𝚚 ,𝚖𝚊𝚒𝚗𝚎𝚟 𝚖𝚒𝚗𝚒𝚖 𝚍𝚊 𝚖𝚒𝚗𝚎 𝚝𝚄 .𝚊𝚞𝚚𝚒𝚕𝚊 𝚊𝚗𝚐𝚊𝚖 𝚎𝚛𝚘𝚕𝚘𝚍 𝚝𝚎 𝚎𝚛𝚘𝚋𝚊𝚕 𝚝𝚞 𝚝𝚗𝚞𝚍𝚒𝚍𝚒𝚌𝚗𝚒 𝚛𝚘𝚙𝚖𝚎𝚝 𝚍𝚘𝚖𝚜𝚞𝚒𝚎 𝚘𝚍 𝚍𝚎𝚜 ,𝚝𝚒𝚕𝚎 𝚐𝚗𝚒𝚌𝚜𝚒𝚙𝚒𝚍𝚊 𝚛𝚞𝚝𝚎𝚝𝚌𝚎𝚜𝚗𝚘𝚌 ,𝚝𝚎𝚖𝚊 𝚝𝚒𝚜 𝚛𝚘𝚕𝚘𝚍 𝚖𝚞𝚜𝚙𝚒 𝚖𝚎𝚛𝚘𝙻 .𝚕𝚘𝚘𝚌 𝚘𝚜 𝚢𝚕𝚕𝚊𝚞𝚝𝚌𝚊 𝚜𝚒 𝚜𝚒𝚑𝚃 .𝚜𝚍𝚛𝚊𝚠𝚔𝚌𝚊𝚋 𝚜𝚒 𝚝𝚡𝚎𝚝 𝚢𝚖 𝚏𝚘 𝚕𝚕𝙰 .𝚕𝚘𝚘𝚌 𝚜𝚒 𝚜𝚒𝚑𝚝 𝚠𝚘𝚆
+</pre>
+
+<br />
+さらにrevで反転
+
+<pre>
+$ python -c 'print(open("reversed.txt", "rb").read()[::-1])' | rev
+
+𝚆𝚘𝚠 𝚝𝚑𝚒𝚜 𝚒𝚜 𝚌𝚘𝚘𝚕. 𝙰𝚕𝚕 𝚘𝚏 𝚖𝚢 𝚝𝚎𝚡𝚝 𝚒𝚜 𝚋𝚊𝚌𝚔𝚠𝚊𝚛𝚍𝚜. 𝚃𝚑𝚒𝚜 𝚒𝚜 𝚊𝚌𝚝𝚞𝚊𝚕𝚕𝚢 𝚜𝚘 𝚌𝚘𝚘𝚕. 𝙻𝚘𝚛𝚎𝚖 𝚒𝚙𝚜𝚞𝚖 𝚍𝚘𝚕𝚘𝚛 𝚜𝚒𝚝 𝚊𝚖𝚎𝚝, 𝚌𝚘𝚗𝚜𝚎𝚌𝚝𝚎𝚝𝚞𝚛 𝚊𝚍𝚒𝚙𝚒𝚜𝚌𝚒𝚗𝚐 𝚎𝚕𝚒𝚝, 𝚜𝚎𝚍 𝚍𝚘 𝚎𝚒𝚞𝚜𝚖𝚘𝚍 𝚝𝚎𝚖𝚙𝚘𝚛 𝚒𝚗𝚌𝚒𝚍𝚒𝚍𝚞𝚗𝚝 𝚞𝚝 𝚕𝚊𝚋𝚘𝚛𝚎 𝚎𝚝 𝚍𝚘𝚕𝚘𝚛𝚎 𝚖𝚊𝚐𝚗𝚊 𝚊𝚕𝚒𝚚𝚞𝚊. 𝚄𝚝 𝚎𝚗𝚒𝚖 𝚊𝚍 𝚖𝚒𝚗𝚒𝚖 𝚟𝚎𝚗𝚒𝚊𝚖, 𝚚𝚞𝚒𝚜 𝚗𝚘𝚜𝚝𝚛𝚞𝚍 𝚎𝚡𝚎𝚛𝚌𝚒𝚝𝚊𝚝𝚒𝚘𝚗 𝚞𝚕𝚕𝚊𝚖𝚌𝚘 𝚕𝚊𝚋𝚘𝚛𝚒𝚜 𝚗𝚒𝚜𝚒 𝚞𝚝 𝚊𝚕𝚒𝚚𝚞𝚒𝚙 𝚎𝚡 𝚎𝚊 𝚌𝚘𝚖𝚖𝚘𝚍𝚘 𝚌𝚘𝚗𝚜𝚎𝚚𝚞𝚊𝚝. 𝙳𝚞𝚒𝚜 𝚊𝚞𝚝𝚎 𝚒𝚛𝚞𝚛𝚎 𝚍𝚘𝚕𝚘𝚛 𝚒𝚗 𝚛𝚎𝚙𝚛𝚎𝚑𝚎𝚗𝚍𝚎𝚛𝚒𝚝 𝚒𝚗 𝚟𝚘𝚕𝚞𝚙𝚝𝚊𝚝𝚎 𝚟𝚎𝚕𝚒𝚝 𝚎𝚜𝚜𝚎 𝚌𝚒𝚕𝚕𝚞𝚖 𝚍𝚘𝚕𝚘𝚛𝚎 𝚎𝚞 𝚏𝚞𝚐𝚒𝚊𝚝 𝚗𝚞𝚕𝚕𝚊 𝚙𝚊𝚛𝚒𝚊𝚝𝚞𝚛. 𝙴𝚡𝚌𝚎𝚙𝚝𝚎𝚞𝚛 𝚜𝚒𝚗𝚝 𝚘𝚌𝚌𝚊𝚎𝚌𝚊𝚝 𝚌𝚞𝚙𝚒𝚍𝚊𝚝𝚊𝚝 𝚗𝚘𝚗 𝚙𝚛𝚘𝚒𝚍𝚎𝚗𝚝, 𝚜𝚞𝚗𝚝 𝚒𝚗 𝚌𝚞𝚕𝚙𝚊 𝚚𝚞𝚒 𝚘𝚏𝚏𝚒𝚌𝚒𝚊 𝚍𝚎𝚜𝚎𝚛𝚞𝚗𝚝 𝚖𝚘𝚕𝚕𝚒𝚝 𝚊𝚗𝚒𝚖 𝚒𝚍 𝚎𝚜𝚝 𝚕𝚊𝚋𝚘𝚛𝚞𝚖. 𝚃𝚑𝚎 𝚏𝚕𝚊𝚐 𝚒𝚜 𝚑𝚜𝚌𝚝𝚏{𝚞𝚝𝚏𝟾_𝚏𝚘𝚛_𝚝𝚑𝚎_𝚠𝚒𝚗}, 𝚞𝚜𝚒𝚗𝚐 𝚛𝚎𝚐𝚞𝚕𝚊𝚛 𝚊𝚜𝚌𝚒𝚒 𝚕𝚎𝚝𝚝𝚎𝚛𝚜. 𝙻𝚘𝚛𝚎𝚖 𝚒𝚙𝚜𝚞𝚖 𝚍𝚘𝚕𝚘𝚛 𝚜𝚒𝚝 𝚊𝚖𝚎𝚝, 𝚌𝚘𝚗𝚜𝚎𝚌𝚝𝚎𝚝𝚞𝚛 𝚊𝚍𝚒𝚙𝚒𝚜𝚌𝚒𝚗𝚐 𝚎𝚕𝚒𝚝, 𝚜𝚎𝚍 𝚍𝚘 𝚎𝚒𝚞𝚜𝚖𝚘𝚍 𝚝𝚎𝚖𝚙𝚘𝚛 𝚒𝚗𝚌𝚒𝚍𝚒𝚍𝚞𝚗𝚝 𝚞𝚝 𝚕𝚊𝚋𝚘𝚛𝚎 𝚎𝚝 𝚍𝚘𝚕𝚘𝚛𝚎 𝚖𝚊𝚐𝚗𝚊 𝚊𝚕𝚒𝚚𝚞𝚊. 𝚄𝚝 𝚎𝚗𝚒𝚖 𝚊𝚍 𝚖𝚒𝚗𝚒𝚖 𝚟𝚎𝚗𝚒𝚊𝚖, 𝚚𝚞𝚒𝚜 𝚗𝚘𝚜𝚝𝚛𝚞𝚍 𝚎𝚡𝚎𝚛𝚌𝚒𝚝𝚊𝚝𝚒𝚘𝚗 𝚞𝚕𝚕𝚊𝚖𝚌𝚘 𝚕𝚊𝚋𝚘𝚛𝚒𝚜 𝚗𝚒𝚜𝚒 𝚞𝚝 𝚊𝚕𝚒𝚚𝚞𝚒𝚙 𝚎𝚡 𝚎𝚊 𝚌𝚘𝚖𝚖𝚘𝚍𝚘 𝚌𝚘𝚗𝚜𝚎𝚚𝚞𝚊𝚝. 𝙳𝚞𝚒𝚜 𝚊𝚞𝚝𝚎 𝚒𝚛𝚞𝚛𝚎 𝚍𝚘𝚕𝚘𝚛 𝚒𝚗 𝚛𝚎𝚙𝚛𝚎𝚑𝚎𝚗𝚍𝚎𝚛𝚒𝚝 𝚒𝚗 𝚟𝚘𝚕𝚞𝚙𝚝𝚊𝚝𝚎 𝚟𝚎𝚕𝚒𝚝 𝚎𝚜𝚜𝚎 𝚌𝚒𝚕𝚕𝚞𝚖 𝚍𝚘𝚕𝚘𝚛𝚎 𝚎𝚞 𝚏𝚞𝚐𝚒𝚊𝚝 𝚗𝚞𝚕𝚕𝚊 𝚙𝚊𝚛𝚒𝚊𝚝𝚞𝚛. 𝙴𝚡𝚌𝚎𝚙𝚝𝚎𝚞𝚛 𝚜𝚒𝚗𝚝 𝚘𝚌𝚌𝚊𝚎𝚌𝚊𝚝 𝚌𝚞𝚙𝚒𝚍𝚊𝚝𝚊𝚝 𝚗𝚘𝚗 𝚙𝚛𝚘𝚒𝚍𝚎𝚗𝚝, 𝚜𝚞𝚗𝚝 𝚒𝚗 𝚌𝚞𝚕𝚙𝚊 𝚚𝚞𝚒 𝚘𝚏𝚏𝚒𝚌𝚒𝚊 𝚍𝚎𝚜𝚎𝚛𝚞𝚗𝚝 𝚖𝚘𝚕𝚕𝚒𝚝 𝚊𝚗𝚒𝚖 𝚒𝚍 𝚎𝚜𝚝 𝚕𝚊𝚋𝚘𝚛𝚞𝚖. 𝙻𝚘𝚛𝚎𝚖 𝚒𝚙𝚜𝚞𝚖 𝚍𝚘𝚕𝚘𝚛 𝚜𝚒𝚝 𝚊𝚖𝚎𝚝, 𝚌𝚘𝚗𝚜𝚎𝚌𝚝𝚎𝚝𝚞𝚛 𝚊𝚍𝚒𝚙𝚒𝚜𝚌𝚒𝚗𝚐 𝚎𝚕𝚒𝚝, 𝚜𝚎𝚍 𝚍𝚘 𝚎𝚒𝚞𝚜𝚖𝚘𝚍 𝚝𝚎𝚖𝚙𝚘𝚛 𝚒𝚗𝚌𝚒𝚍𝚒𝚍𝚞𝚗𝚝 𝚞𝚝 𝚕𝚊𝚋𝚘𝚛𝚎 𝚎𝚝 𝚍𝚘𝚕𝚘𝚛𝚎 𝚖𝚊𝚐𝚗𝚊 𝚊𝚕𝚒𝚚𝚞𝚊. 𝚄𝚝 𝚎𝚗𝚒𝚖 𝚊𝚍 𝚖𝚒𝚗𝚒𝚖 𝚟𝚎𝚗𝚒𝚊𝚖, 𝚚𝚞𝚒𝚜 𝚗𝚘𝚜𝚝𝚛𝚞𝚍 𝚎𝚡𝚎𝚛𝚌𝚒𝚝𝚊𝚝𝚒𝚘𝚗 𝚞𝚕𝚕𝚊𝚖𝚌𝚘 𝚕𝚊𝚋𝚘𝚛𝚒𝚜 𝚗𝚒𝚜𝚒 𝚞𝚝 𝚊𝚕𝚒𝚚𝚞𝚒𝚙 𝚎𝚡 𝚎𝚊 𝚌𝚘𝚖𝚖𝚘𝚍𝚘 𝚌𝚘𝚗𝚜𝚎𝚚𝚞𝚊𝚝. 𝙳𝚞𝚒𝚜 𝚊𝚞𝚝𝚎 𝚒𝚛𝚞𝚛𝚎 𝚍𝚘𝚕𝚘𝚛 𝚒𝚗 𝚛𝚎𝚙𝚛𝚎𝚑𝚎𝚗𝚍𝚎𝚛𝚒𝚝 𝚒𝚗 𝚟𝚘𝚕𝚞𝚙𝚝𝚊𝚝𝚎 𝚟𝚎𝚕𝚒𝚝 𝚎𝚜𝚜𝚎 𝚌𝚒𝚕𝚕𝚞𝚖 𝚍𝚘𝚕𝚘𝚛𝚎 𝚎𝚞 𝚏𝚞𝚐𝚒𝚊𝚝 𝚗𝚞𝚕𝚕𝚊 𝚙𝚊𝚛𝚒𝚊𝚝𝚞𝚛. 𝙴𝚡𝚌𝚎𝚙𝚝𝚎𝚞𝚛 𝚜𝚒𝚗𝚝 𝚘𝚌𝚌𝚊𝚎𝚌𝚊𝚝 𝚌𝚞𝚙𝚒𝚍𝚊𝚝𝚊𝚝 𝚗𝚘𝚗 𝚙𝚛𝚘𝚒𝚍𝚎𝚗𝚝, 𝚜𝚞𝚗𝚝 𝚒𝚗 𝚌𝚞𝚕𝚙𝚊 𝚚𝚞𝚒 𝚘𝚏𝚏𝚒𝚌𝚒𝚊 𝚍𝚎𝚜𝚎𝚛𝚞𝚗𝚝 𝚖𝚘𝚕𝚕𝚒𝚝 𝚊𝚗𝚒𝚖 𝚒𝚍 𝚎𝚜𝚝 𝚕𝚊𝚋𝚘𝚛𝚞𝚖.
+</pre>
+
+FLAG: `hsctf{utf8_for_the_win}`
+
+
 
 
 
