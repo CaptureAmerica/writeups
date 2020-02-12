@@ -42,11 +42,11 @@ URL: [https://www.bcactf.com/](https://www.bcactf.com/)
 │   ├── of-course-rachel (150)
 │   ├── open-docs (150)
 │   ├── study-of-roofs (150)
-│   ├── wavey (150)                 <=== gave up
+│   ├── wavey (150)                 <=== gave up (reviewed)
 │   ├── corrupt-psd (200)
 │   ├── large-data (200)            <=== gave up
 │   ├── the-flag-is (200)
-|   └── one-punch-zip (250)         <=== gave up
+|   └── one-punch-zip (250)         <=== gave up (reviewed)
 ├── programming
 │   ├── 1+1=window (75)
 │   ├── bca-store (75)
