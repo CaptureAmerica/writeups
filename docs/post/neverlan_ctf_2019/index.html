@@ -222,6 +222,7 @@
 <p><br /><br />
 <img src="https://captureamerica.github.io/writeups/img/neverlan_Score1.png" alt="neverlan_Score1.png">
 <br />
+<br /><br />
 <img src="https://captureamerica.github.io/writeups/img/neverlan_Score2.png" alt="neverlan_Score2.png">
 <br />
 <img src="https://captureamerica.github.io/writeups/img/neverlan_Score3.png" alt="neverlan_Score3.png">
@@ -471,11 +472,11 @@ I wrote my own encoding scheme. Can you decode it?&rdquo;
 <pre>
 $ RsaCtfTool.py -p 149 -q 17 -e 569 --uncipher 21931745216497014662495143814121745174523021163218116131438884249523022164218188423021703192423021801141224955313372217
 Traceback (most recent call last):
-  File "/Users/ymiyashita/Python3/RsaCtfTool-master/RsaCtfTool.py", line 108, in decrypt
+  File "~/Python3/RsaCtfTool-master/RsaCtfTool.py", line 108, in decrypt
     stderr=DN)
-  File "/Users/ymiyashita/.pyenv/versions/3.7.3/lib/python3.7/subprocess.py", line 395, in check_output
+  File "~/.pyenv/versions/3.7.3/lib/python3.7/subprocess.py", line 395, in check_output
     **kwargs).stdout
-  File "/Users/ymiyashita/.pyenv/versions/3.7.3/lib/python3.7/subprocess.py", line 487, in run
+  File "~/.pyenv/versions/3.7.3/lib/python3.7/subprocess.py", line 487, in run
     output=stdout, stderr=stderr)
 subprocess.CalledProcessError: Command '['openssl', 'rsautl', '-raw', '-decrypt', '-in', '/var/folders/87/sclh7gdd7k1dlkyqkdmwqjfd0z5kf0/T/tmprmtfqw00', '-inkey', '/var/folders/87/sclh7gdd7k1dlkyqkdmwqjfd0z5kf0/T/tmp8r3uasek']' returned non-zero exit status 1.
 </pre>
