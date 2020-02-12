@@ -51,7 +51,7 @@
 
 <meta itemprop="datePublished" content="2020-02-12T09:00:00&#43;09:00" />
 <meta itemprop="dateModified" content="2020-02-12T09:00:00&#43;09:00" />
-<meta itemprop="wordCount" content="2780">
+<meta itemprop="wordCount" content="2902">
 
 
 
@@ -143,65 +143,70 @@
 <ul>
 <li>
 <ul>
-<li><a href="#reverse-engineering-reverse-engineer-300">[Reverse Engineering]: Reverse Engineer (300)</a>
+<li><a href="#reverse-engineering-adobe-payroll-100">[Reverse Engineering]: Adobe Payroll (100)</a>
 <ul>
 <li><a href="#challenge">Challenge</a></li>
 <li><a href="#solution">Solution</a></li>
 </ul></li>
-<li><a href="#crypto-dont-take-all-knight-75">[Crypto]: Dont Take All Knight (75)</a>
+<li><a href="#reverse-engineering-reverse-engineer-300">[Reverse Engineering]: Reverse Engineer (300)</a>
 <ul>
 <li><a href="#challenge-1">Challenge</a></li>
 <li><a href="#solution-1">Solution</a></li>
 </ul></li>
-<li><a href="#crypto-the-invisibles-75">[Crypto]: The Invisibles (75)</a>
+<li><a href="#crypto-dont-take-all-knight-75">[Crypto]: Dont Take All Knight (75)</a>
 <ul>
 <li><a href="#challenge-2">Challenge</a></li>
 <li><a href="#solution-2">Solution</a></li>
 </ul></li>
-<li><a href="#crypto-my-own-encoding-200">[Crypto]: My own encoding (200)</a>
+<li><a href="#crypto-the-invisibles-75">[Crypto]: The Invisibles (75)</a>
 <ul>
 <li><a href="#challenge-3">Challenge</a></li>
 <li><a href="#solution-3">Solution</a></li>
 </ul></li>
-<li><a href="#crypto-babyrsa-250">[Crypto]: BabyRSA (250)</a>
+<li><a href="#crypto-my-own-encoding-200">[Crypto]: My own encoding (200)</a>
 <ul>
 <li><a href="#challenge-4">Challenge</a></li>
 <li><a href="#solution-4">Solution</a></li>
 </ul></li>
-<li><a href="#forensics-listen-to-this-125">[Forensics]: Listen to this (125)</a>
+<li><a href="#crypto-babyrsa-250">[Crypto]: BabyRSA (250)</a>
 <ul>
 <li><a href="#challenge-5">Challenge</a></li>
 <li><a href="#solution-5">Solution</a></li>
 </ul></li>
-<li><a href="#programing-dasprime-100">[Programing]: DasPrime (100)</a>
+<li><a href="#forensics-listen-to-this-125">[Forensics]: Listen to this (125)</a>
 <ul>
 <li><a href="#challenge-6">Challenge</a></li>
 <li><a href="#solution-6">Solution</a></li>
 </ul></li>
-<li><a href="#recon-front-page-of-the-internet-50">[Recon]: Front Page of the Internet (50)</a>
+<li><a href="#programing-dasprime-100">[Programing]: DasPrime (100)</a>
 <ul>
 <li><a href="#challenge-7">Challenge</a></li>
 <li><a href="#solution-7">Solution</a></li>
 </ul></li>
-<li><a href="#recon-thats-just-phreaky-200">[Recon]: Thats just Phreaky (200)</a>
+<li><a href="#recon-front-page-of-the-internet-50">[Recon]: Front Page of the Internet (50)</a>
 <ul>
 <li><a href="#challenge-8">Challenge</a></li>
+<li><a href="#solution-8">Solution</a></li>
+</ul></li>
+<li><a href="#recon-thats-just-phreaky-200">[Recon]: Thats just Phreaky (200)</a>
+<ul>
+<li><a href="#challenge-9">Challenge</a></li>
 <li><a href="#unsolved">(Unsolved)</a></li>
 </ul></li>
 <li><a href="#web-follow-me-100">[Web]: Follow Me! (100)</a>
 <ul>
-<li><a href="#challenge-9">Challenge</a></li>
-<li><a href="#solution-8">Solution</a></li>
-</ul></li>
-<li><a href="#trivia-aaaaaaaaaaaaaa-i-hate-cves-20">[Trivia]: AAAAAAAAAAAAAA! I hate CVEs (20)</a>
-<ul>
 <li><a href="#challenge-10">Challenge</a></li>
 <li><a href="#solution-9">Solution</a></li>
 </ul></li>
-<li><a href="#trivia-rick-rolled-by-the-nsa-50">[Trivia]: Rick Rolled by the NSA??? (50)</a>
+<li><a href="#trivia-aaaaaaaaaaaaaa-i-hate-cves-20">[Trivia]: AAAAAAAAAAAAAA! I hate CVEs (20)</a>
 <ul>
 <li><a href="#challenge-11">Challenge</a></li>
 <li><a href="#solution-10">Solution</a></li>
+</ul></li>
+<li><a href="#trivia-rick-rolled-by-the-nsa-50">[Trivia]: Rick Rolled by the NSA??? (50)</a>
+<ul>
+<li><a href="#challenge-12">Challenge</a></li>
+<li><a href="#solution-11">Solution</a></li>
 </ul></li>
 </ul></li>
 </ul>
@@ -232,11 +237,52 @@
 
 <p><br /><br /></p>
 
-<h2 id="reverse-engineering-reverse-engineer-300">[Reverse Engineering]: Reverse Engineer (300)</h2>
+<h2 id="reverse-engineering-adobe-payroll-100">[Reverse Engineering]: Adobe Payroll (100)</h2>
 
 <hr />
 
 <h3 id="challenge">Challenge</h3>
+
+<blockquote>
+<p>We&rsquo;ve forgotten the password to our payroll machine. Can you extract it?</p>
+</blockquote>
+
+<p>Attachment:</p>
+
+<ul>
+<li>Adobe_Payroll.7z (Adobe_Employee_Payroll.exe)</li>
+</ul>
+
+<h3 id="solution">Solution</h3>
+
+<p>PEファイルが入ってます。</p>
+
+<pre>
+$ file Adobe_Employee_Payroll.exe 
+Adobe_Employee_Payroll.exe: PE32 executable (GUI) Intel 80386 Mono/.Net assembly, for MS Windows
+</pre>
+
+<p>dnSpyで開くと、フラグっぽいのが見つかります。</p>
+
+<p><img src="https://captureamerica.github.io/writeups/img/neverlan_Adobe.png" alt="neverlan_Adobe.png"></p>
+
+<p><br>
+<pre>
+$ python -c &lsquo;print(&ldquo;&rdquo;.join([chr(int(x)) for x in &ldquo;102 108 97 103 123 46 110 101 116 95 105 115 95 112 114 101 116 116 121 95 101 97 115 121 95 116 111 95 100 101 99 111 109 112 105 108 101 125&rdquo;.split()]))&rsquo;
+flag{.net_is_pretty_easy_to_decompile}
+</pre></p>
+
+<p><br>
+Flag: <code>flag{.net_is_pretty_easy_to_decompile}</code></p>
+
+<p><br /><br />
+<br /><br /></p>
+
+<h2 id="reverse-engineering-reverse-engineer-300">[Reverse Engineering]: Reverse Engineer (300)</h2>
+
+<hr />
+
+<h3 id="challenge-1">Challenge</h3>
 
 <blockquote>
 <p>This program seems to get stuck while running&hellip; Can you get it to continue past the broken function?</p>
@@ -248,7 +294,7 @@
 <li>revseng (ELF 64-bit)</li>
 </ul>
 
-<h3 id="solution">Solution</h3>
+<h3 id="solution-1">Solution</h3>
 
 <p>300 pointの割に、一瞬で解けるチャレンジでした。</p>
 
@@ -355,7 +401,7 @@ flag{w3con7r0lth3b1nari3s}
 
 <hr />
 
-<h3 id="challenge-1">Challenge</h3>
+<h3 id="challenge-2">Challenge</h3>
 
 <blockquote>
 <p>（添付ファイルのみ）</p>
@@ -369,7 +415,7 @@ flag{w3con7r0lth3b1nari3s}
 
 <p><img src="https://captureamerica.github.io/writeups/img/DontTakeAllKnight.png" alt="DontTakeAllKnight.png"></p>
 
-<h3 id="solution-1">Solution</h3>
+<h3 id="solution-2">Solution</h3>
 
 <p>これは、もうひとつのチャレンジ（Pigsfly）で見てたWiki (<a href="https://en.wikipedia.org/wiki/Pigpen_cipher">https://en.wikipedia.org/wiki/Pigpen_cipher</a>) にVariantsとして解説が載ってました。</p>
 
@@ -382,7 +428,7 @@ flag{w3con7r0lth3b1nari3s}
 
 <hr />
 
-<h3 id="challenge-2">Challenge</h3>
+<h3 id="challenge-3">Challenge</h3>
 
 <blockquote>
 <p>（添付ファイルのみ）</p>
@@ -396,7 +442,7 @@ flag{w3con7r0lth3b1nari3s}
 
 <p><img src="https://captureamerica.github.io/writeups/img/The_invisibles.png" alt="The_invisibles.png"></p>
 
-<h3 id="solution-2">Solution</h3>
+<h3 id="solution-3">Solution</h3>
 
 <p>適当に1個画像をピックアップして、Googleで画像サーチすると、以下のサイトが見つかります。</p>
 
@@ -414,7 +460,7 @@ Flag: <code>youcanseethem</code></p>
 
 <hr />
 
-<h3 id="challenge-3">Challenge</h3>
+<h3 id="challenge-4">Challenge</h3>
 
 <blockquote>
 <p>Here&rsquo;s an encoding challenge. This doesnt really test your technical skills, but focuses on your critical thinking.
@@ -432,7 +478,7 @@ I wrote my own encoding scheme. Can you decode it?&rdquo;
 
 <p><img src="https://captureamerica.github.io/writeups/img/secretmessage.jpg" alt="secretmessage.jpg"></p>
 
-<h3 id="solution-3">Solution</h3>
+<h3 id="solution-4">Solution</h3>
 
 <p>25マスあるので、アルファベット（26文字）がちょうど当てはまりそうです。そのうちの1文字はBlank（何もない状態）なのが予想できて、AかZかどちらかですが、実際に問題に出てきているのでAの方を選びました。</p>
 
@@ -457,13 +503,13 @@ I wrote my own encoding scheme. Can you decode it?&rdquo;
 
 <hr />
 
-<h3 id="challenge-4">Challenge</h3>
+<h3 id="challenge-5">Challenge</h3>
 
 <blockquote>
 <p>We&rsquo;ve intercepted this RSA encrypted message 2193 1745 2164 970 1466 2495 1438 1412 1745 1745 2302 1163 2181 1613 1438 884 2495 2302 2164 2181 884 2302 1703 1924 2302 1801 1412 2495 53 1337 2217 we know it was encrypted with the following public key e: 569 n: 2533</p>
 </blockquote>
 
-<h3 id="solution-4">Solution</h3>
+<h3 id="solution-5">Solution</h3>
 
 <p>何気に少しハマりました。</p>
 
@@ -551,7 +597,7 @@ $ ./NeverLAN_BasyRSA.sh
 
 <hr />
 
-<h3 id="challenge-5">Challenge</h3>
+<h3 id="challenge-6">Challenge</h3>
 
 <blockquote>
 <p>You hear that?
@@ -569,7 +615,7 @@ $ ./NeverLAN_BasyRSA.sh
 <li>HiddenAudio.mp3</li>
 </ul>
 
-<h3 id="solution-5">Solution</h3>
+<h3 id="solution-6">Solution</h3>
 
 <p>とりあえずmp3ファイルを再生してみると、誰かが何かしゃべってます。</p>
 
@@ -630,7 +676,7 @@ Flag: <code>flag{ditsanddahsforlife}</code></p>
 
 <hr />
 
-<h3 id="challenge-6">Challenge</h3>
+<h3 id="challenge-7">Challenge</h3>
 
 <blockquote>
 <p>My assignments due and I still don&rsquo;t have the answer! Can you help me fix my Python script&hellip; and also give me the answer? I need to make a prime number generator and find the 10,497th prime number. I&rsquo;ve already written a python script that kinda works&hellip; can you either fix it or write your own and tell me the prime number?
@@ -681,7 +727,7 @@ Flag: <code>flag{ditsanddahsforlife}</code></p>
     <span class="n">main</span><span class="p">()</span></code></pre></td></tr></table>
 </div>
 </div>
-<h3 id="solution-6">Solution</h3>
+<h3 id="solution-7">Solution</h3>
 
 <p>全然想定解じゃないんですけど、ウェブで素数の一覧を探して10497番目の素数を見つけただけです。。（ごめんなさい）</p>
 
@@ -702,7 +748,7 @@ $ cat prime.txt | tr &ldquo; &rdquo; &ldquo;\n&rdquo; | nl | grep 10497
 
 <hr />
 
-<h3 id="challenge-7">Challenge</h3>
+<h3 id="challenge-8">Challenge</h3>
 
 <blockquote>
 <p>Whoops&hellip; I leaked a flag on a public website
@@ -710,7 +756,7 @@ $ cat prime.txt | tr &ldquo; &rdquo; &ldquo;\n&rdquo; | nl | grep 10497
 -ZestyFE</p>
 </blockquote>
 
-<h3 id="solution-7">Solution</h3>
+<h3 id="solution-8">Solution</h3>
 
 <p>とりあえず、<code>Front Page of the Internet</code> を Google でサーチします。</p>
 
@@ -730,7 +776,7 @@ $ cat prime.txt | tr &ldquo; &rdquo; &ldquo;\n&rdquo; | nl | grep 10497
 
 <hr />
 
-<h3 id="challenge-8">Challenge</h3>
+<h3 id="challenge-9">Challenge</h3>
 
 <blockquote>
 <p>The first of many stories that have been told. 01 September 2017 | 14:01</p>
@@ -751,13 +797,13 @@ $ cat prime.txt | tr &ldquo; &rdquo; &ldquo;\n&rdquo; | nl | grep 10497
 
 <hr />
 
-<h3 id="challenge-9">Challenge</h3>
+<h3 id="challenge-10">Challenge</h3>
 
 <blockquote>
 <p>Let&rsquo;s start here. <a href="https://7aimehagbl.neverlanctf.com">https://7aimehagbl.neverlanctf.com</a></p>
 </blockquote>
 
-<h3 id="solution-8">Solution</h3>
+<h3 id="solution-9">Solution</h3>
 
 <p>ひたすらリダイレクトが走ります。</p>
 
@@ -793,13 +839,13 @@ Flag: <code>flag{d0nt_t3ll_m3_wh3r3_t0_g0}</code></p>
 
 <hr />
 
-<h3 id="challenge-10">Challenge</h3>
+<h3 id="challenge-11">Challenge</h3>
 
 <blockquote>
 <p>This CVE reminds me of some old school exploits. If <code>flag</code> is enabled in sudoers.</p>
 </blockquote>
 
-<h3 id="solution-9">Solution</h3>
+<h3 id="solution-10">Solution</h3>
 
 <p>CVE-2019-18634 なんだろうとすぐ思ったんだけど、フラグはCVE番号だとてっきり思っていて少しハマりました。</p>
 
@@ -812,7 +858,7 @@ Flag: <code>flag{d0nt_t3ll_m3_wh3r3_t0_g0}</code></p>
 
 <hr />
 
-<h3 id="challenge-11">Challenge</h3>
+<h3 id="challenge-12">Challenge</h3>
 
 <blockquote>
 <p>This CVE Proof of concept Shows NSA.gov playing &ldquo;Never Gonna Give You Up,&rdquo; by 1980s heart-throb Rick Astley.
@@ -820,7 +866,7 @@ Flag: <code>flag{d0nt_t3ll_m3_wh3r3_t0_g0}</code></p>
 Use the CVE ID for the flag. flag{CVE-?????????}</p>
 </blockquote>
 
-<h3 id="solution-10">Solution</h3>
+<h3 id="solution-11">Solution</h3>
 
 <p><code>&quot;Never Gonna Give You Up&quot; POC exploit</code> をキーワードにググると、以下のサイトが見つかりました。</p>
 

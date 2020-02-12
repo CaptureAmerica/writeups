@@ -32,6 +32,40 @@ URL: [https://ctf.neverlanctf.com/challenges](https://ctf.neverlanctf.com/challe
 
 
 <br /><br />
+## [Reverse Engineering]: Adobe Payroll (100)
+- - -
+### Challenge
+> We've forgotten the password to our payroll machine. Can you extract it?
+
+Attachment:
+
+- Adobe_Payroll.7z (Adobe_Employee_Payroll.exe)
+
+### Solution
+PEファイルが入ってます。
+
+<pre>
+$ file Adobe_Employee_Payroll.exe 
+Adobe_Employee_Payroll.exe: PE32 executable (GUI) Intel 80386 Mono/.Net assembly, for MS Windows
+</pre>
+
+dnSpyで開くと、フラグっぽいのが見つかります。
+
+<img src="https://captureamerica.github.io/writeups/img/neverlan_Adobe.png" alt="neverlan_Adobe.png">
+
+<br>
+<pre>
+$ python -c 'print("".join([chr(int(x)) for x in "102 108 97 103 123 46 110 101 116 95 105 115 95 112 114 101 116 116 121 95 101 97 115 121 95 116 111 95 100 101 99 111 109 112 105 108 101 125".split()]))'
+flag{.net_is_pretty_easy_to_decompile}
+</pre>
+
+<br>
+Flag: `flag{.net_is_pretty_easy_to_decompile}`
+
+
+
+<br /><br />
+<br /><br />
 ## [Reverse Engineering]: Reverse Engineer (300)
 - - -
 ### Challenge
