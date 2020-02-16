@@ -50,7 +50,7 @@
 
 <meta itemprop="datePublished" content="2020-02-17T00:00:00&#43;09:00" />
 <meta itemprop="dateModified" content="2020-02-17T00:00:00&#43;09:00" />
-<meta itemprop="wordCount" content="2858">
+<meta itemprop="wordCount" content="2854">
 
 
 
@@ -203,8 +203,7 @@ WebとCryptoはほぼスルー（Web問題のうち半分はvk.comのアカウ�
 <br /><br />
 開始当初、サーバがめっちゃ不安定で、チャレンジも見れないわ、フラグもSubmitできないわで、もうやめようかと思ったんですが、寝て起きた次の日は直っていたのでよかったです。</p>
 
-<p><br /><br />
-<img src="https://captureamerica.github.io/writeups/img/sarctf_Score1.png" alt="sarctf_Score1.png">
+<p><img src="https://captureamerica.github.io/writeups/img/sarctf_Score1.png" alt="sarctf_Score1.png">
 <br /><br />
 <img src="https://captureamerica.github.io/writeups/img/sarctf_Score2.png" alt="sarctf_Score2.png">
 <br />
@@ -241,17 +240,15 @@ flag.txt: POSIX tar archive (GNU)
 </pre>
 
 <p><br>
-20階層くらいまでは手動でやったでしょうか。</p>
-
-<p>ファイルサイズも全然小さくならないし、これは手動でやっていたら終わらない気がしたので、Pythonスクリプトを書きました。</p>
+20階層くらいまでは手動でやったところで、ファイルサイズも全然小さくならないし手動でやっていたら終わらない気がしたので、Pythonスクリプトを書きました。</p>
 
 <p>この手のチャレンジはよく出てくるので、前からツール化したいとは思ってたんですよね。</p>
 
-<p>コードは載せまんが、アイデアとしては、pythonからfileコマンドを呼んで、そのファイルタイプによって該当する解凍コマンドを呼ぶ。それだけのことです。</p>
+<p>コードは載せまんが、アイデアとしては、Pythonからfileコマンドを呼んで、そのファイルタイプによって該当する解凍コマンドを呼ぶ。それだけのことです。</p>
 
 <p>ところどころ、sleep(1)を入れてパッチしないとエラーになったりしました。</p>
 
-<p>出てくるファイルがすべてflag.txtだったので、ループはpython内ではやらず、watchでやりました。</p>
+<p>出てくるファイルがすべてflag.txtだったので、ループはPython内ではやらず、watchでやりました。</p>
 
 <pre>
 $ watch -n 1 "./Deep_dive_solve.py flag.txt"
@@ -299,9 +296,7 @@ Press 'q' or Ctrl-C to abort, almost any other key for status
 RWtm7A5f         (RWtm7A5f/Lz68qMZU)
 </pre>
 
-<p>最初、クラックできなかったのかと思いました。</p>
-
-<p>ファイル名がパスワードみたいです。</p>
+<p>ファイル名がパスワードみたいです。（最初、クラックできなかったのかと思いました）</p>
 
 <p>何回か繰り返しやったところ、そのパターンでいけるようなので、スクリプト化しました。</p>
 
