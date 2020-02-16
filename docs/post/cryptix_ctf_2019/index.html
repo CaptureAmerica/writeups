@@ -23,7 +23,7 @@
 <meta name="google-site-verification" content="PqctLWZQttGzxXVupWuIt2HWuBI8cvN1z07ETpxA2dw" />
 
 
-<meta name="generator" content="Hugo 0.55.6 with theme even" />
+<meta name="generator" content="Hugo 0.59.1 with theme even" />
 
 
 <link rel="canonical" href="https://captureamerica.github.io/writeups/post/cryptix_ctf_2019/" />
@@ -42,9 +42,8 @@
 <meta property="og:description" content="URL: https://cryptixctf.com/challenges 上位に賞金が出るやつでしたけど、参加者が300チーム弱と、意外と狙い目のCTFだったかもです。 ただし、全問正解しないとダメですけどね。 [Forensics]:" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://captureamerica.github.io/writeups/post/cryptix_ctf_2019/" />
-<meta property="article:published_time" content="2019-10-14T17:00:00&#43;09:00"/>
-<meta property="article:modified_time" content="2019-10-14T17:00:00&#43;09:00"/>
-
+<meta property="article:published_time" content="2019-10-14T17:00:00+09:00" />
+<meta property="article:modified_time" content="2019-10-14T17:00:00+09:00" />
 <meta itemprop="name" content="Cryptix CTF 2019 Writeup">
 <meta itemprop="description" content="URL: https://cryptixctf.com/challenges 上位に賞金が出るやつでしたけど、参加者が300チーム弱と、意外と狙い目のCTFだったかもです。 ただし、全問正解しないとダメですけどね。 [Forensics]:">
 
@@ -222,8 +221,7 @@ Okay, you don&rsquo;t believe me? have the source code too!<br />
 <p>Attachments:</p>
 
 <ul>
-<li>php_code.txt</li>
-</ul>
+<li><p>php_code.txt</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><code class="language-Python" data-lang="Python"><span class="lnt"> 1
@@ -245,19 +243,21 @@ Okay, you don&rsquo;t believe me? have the source code too!<br />
 <pre class="chroma"><code class="language-Python" data-lang="Python"><span class="n">include_once</span> <span class="s1">&#39;flag.php&#39;</span><span class="p">;</span>
 
 <span class="k">if</span><span class="p">(</span><span class="err">$</span><span class="n">_SERVER</span><span class="p">[</span><span class="s2">&#34;REQUEST_METHOD&#34;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&#34;POST&#34;</span><span class="p">){</span>
-    <span class="k">if</span><span class="p">(</span><span class="n">isset</span><span class="p">(</span><span class="err">$</span><span class="n">_POST</span><span class="p">[</span><span class="s2">&#34;ID&#34;</span><span class="p">])</span><span class="o">&amp;&amp;</span><span class="n">isset</span><span class="p">(</span><span class="err">$</span><span class="n">_POST</span><span class="p">[</span><span class="s2">&#34;pwd&#34;</span><span class="p">])){</span>
-        <span class="k">if</span><span class="p">(</span><span class="n">strcmp</span><span class="p">(</span><span class="err">$</span><span class="n">secretpassphrase</span><span class="p">,</span> <span class="err">$</span><span class="n">_POST</span><span class="p">[</span><span class="s2">&#34;pwd&#34;</span><span class="p">])</span> <span class="o">==</span> <span class="mi">0</span><span class="p">){</span>
-            <span class="n">echo</span> <span class="s2">&#34;Hey, you are in!  &#34;</span> <span class="o">.</span> <span class="err">$</span><span class="n">_POST</span><span class="p">[</span><span class="s2">&#34;ID&#34;</span><span class="p">]</span>  <span class="o">.</span> <span class="s2">&#34;&lt;br&gt;&#34;</span><span class="p">;</span>
-            <span class="k">if</span><span class="p">(</span><span class="err">$</span><span class="n">_POST</span><span class="p">[</span><span class="s2">&#34;ID&#34;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&#34;SuperUser1337&#34;</span><span class="p">){</span>
-                <span class="n">echo</span> <span class="s2">&#34;Your Flag: &#34;</span> <span class="o">.</span> <span class="err">$</span><span class="n">flag</span><span class="p">;</span>
-            <span class="p">}</span>
-        <span class="p">}</span><span class="k">else</span><span class="p">{</span>
-            <span class="n">echo</span> <span class="s2">&#34;&lt;script type=&#39;text/javascript&#39;&gt;alert(&#39;Unable to Login&#39;);&lt;/script&gt;&#34;</span><span class="p">;</span>
+<span class="k">if</span><span class="p">(</span><span class="n">isset</span><span class="p">(</span><span class="err">$</span><span class="n">_POST</span><span class="p">[</span><span class="s2">&#34;ID&#34;</span><span class="p">])</span><span class="o">&amp;&amp;</span><span class="n">isset</span><span class="p">(</span><span class="err">$</span><span class="n">_POST</span><span class="p">[</span><span class="s2">&#34;pwd&#34;</span><span class="p">])){</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">strcmp</span><span class="p">(</span><span class="err">$</span><span class="n">secretpassphrase</span><span class="p">,</span> <span class="err">$</span><span class="n">_POST</span><span class="p">[</span><span class="s2">&#34;pwd&#34;</span><span class="p">])</span> <span class="o">==</span> <span class="mi">0</span><span class="p">){</span>
+        <span class="n">echo</span> <span class="s2">&#34;Hey, you are in!  &#34;</span> <span class="o">.</span> <span class="err">$</span><span class="n">_POST</span><span class="p">[</span><span class="s2">&#34;ID&#34;</span><span class="p">]</span>  <span class="o">.</span> <span class="s2">&#34;&lt;br&gt;&#34;</span><span class="p">;</span>
+        <span class="k">if</span><span class="p">(</span><span class="err">$</span><span class="n">_POST</span><span class="p">[</span><span class="s2">&#34;ID&#34;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&#34;SuperUser1337&#34;</span><span class="p">){</span>
+            <span class="n">echo</span> <span class="s2">&#34;Your Flag: &#34;</span> <span class="o">.</span> <span class="err">$</span><span class="n">flag</span><span class="p">;</span>
         <span class="p">}</span>
+    <span class="p">}</span><span class="k">else</span><span class="p">{</span>
+        <span class="n">echo</span> <span class="s2">&#34;&lt;script type=&#39;text/javascript&#39;&gt;alert(&#39;Unable to Login&#39;);&lt;/script&gt;&#34;</span><span class="p">;</span>
     <span class="p">}</span>
+<span class="p">}</span>
 <span class="p">}</span></code></pre></td></tr></table>
 </div>
-</div>
+</div></li>
+</ul>
+
 <p><br /></p>
 
 <h3 id="solution-1">Solution</h3>

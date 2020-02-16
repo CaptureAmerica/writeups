@@ -23,7 +23,7 @@
 <meta name="google-site-verification" content="PqctLWZQttGzxXVupWuIt2HWuBI8cvN1z07ETpxA2dw" />
 
 
-<meta name="generator" content="Hugo 0.55.6 with theme even" />
+<meta name="generator" content="Hugo 0.59.1 with theme even" />
 
 
 <link rel="canonical" href="https://captureamerica.github.io/writeups/post/picoctf_2018/" />
@@ -42,9 +42,8 @@
 <meta property="og:description" content="URL: https://2018game.picoctf.com/ picoCTFのことを知ったのがちょっと前で、すでにイベントは2018年時点で終了してるんですが、続けて勉強ができるようになっていたので" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://captureamerica.github.io/writeups/post/picoctf_2018/" />
-<meta property="article:published_time" content="2019-08-11T23:00:00&#43;09:00"/>
-<meta property="article:modified_time" content="2019-09-05T22:00:00&#43;09:00"/>
-
+<meta property="article:published_time" content="2019-08-11T23:00:00+09:00" />
+<meta property="article:modified_time" content="2019-09-05T22:00:00+09:00" />
 <meta itemprop="name" content="picoCTF 2018 Writeup">
 <meta itemprop="description" content="URL: https://2018game.picoctf.com/ picoCTFのことを知ったのがちょっと前で、すでにイベントは2018年時点で終了してるんですが、続けて勉強ができるようになっていたので">
 
@@ -818,8 +817,8 @@ Hint: What will the key finally be?</p>
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-Bash" data-lang="Bash"><span class="c1"># cat activate_solve.sh</span> 
-<span class="cp">#!/bin/bash
-</span><span class="cp"></span><span class="nv">ARRAY</span><span class="o">=(</span>A B C D E F G H I J K L M N O P Q R S T U V W X Y Z <span class="m">0</span> <span class="m">1</span> <span class="m">2</span> <span class="m">3</span> <span class="m">4</span> <span class="m">5</span> <span class="m">6</span> <span class="m">7</span> <span class="m">8</span> <span class="m">9</span><span class="o">)</span>
+<span class="c1">#!/bin/bash</span>
+<span class="nv">ARRAY</span><span class="o">=(</span>A B C D E F G H I J K L M N O P Q R S T U V W X Y Z <span class="m">0</span> <span class="m">1</span> <span class="m">2</span> <span class="m">3</span> <span class="m">4</span> <span class="m">5</span> <span class="m">6</span> <span class="m">7</span> <span class="m">8</span> <span class="m">9</span><span class="o">)</span>
 
 <span class="k">for</span> item in <span class="si">${</span><span class="nv">ARRAY</span><span class="p">[@]</span><span class="si">}</span><span class="p">;</span> <span class="k">do</span>
     <span class="nb">echo</span> <span class="s2">&#34;AAAAAAAAAAAAAAA&#34;</span><span class="nv">$item</span>

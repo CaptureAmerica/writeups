@@ -23,7 +23,7 @@
 <meta name="google-site-verification" content="PqctLWZQttGzxXVupWuIt2HWuBI8cvN1z07ETpxA2dw" />
 
 
-<meta name="generator" content="Hugo 0.55.6 with theme even" />
+<meta name="generator" content="Hugo 0.59.1 with theme even" />
 
 
 <link rel="canonical" href="https://captureamerica.github.io/writeups/post/honeynet_workshop/" />
@@ -42,9 +42,8 @@
 <meta property="og:description" content="https://www.reddit.com/r/netsec/new/を見ていたら、たまたまCTFを見つけたのでやってみました。 Junior CTFな" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://captureamerica.github.io/writeups/post/honeynet_workshop/" />
-<meta property="article:published_time" content="2019-06-03T00:00:00&#43;08:00"/>
-<meta property="article:modified_time" content="2019-06-03T07:33:00&#43;08:00"/>
-
+<meta property="article:published_time" content="2019-06-03T00:00:00+08:00" />
+<meta property="article:modified_time" content="2019-06-03T07:33:00+08:00" />
 <meta itemprop="name" content="The Honeynet Project: Innsbruck Workshop CTF Writeup">
 <meta itemprop="description" content="https://www.reddit.com/r/netsec/new/を見ていたら、たまたまCTFを見つけたのでやってみました。 Junior CTFな">
 
@@ -682,8 +681,8 @@ SHA-256: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
 
 <ul>
 <li>tea.py</li>
-<li>flag (encrypted)</li>
-</ul>
+
+<li><p>flag (encrypted)</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><code class="language-python :tea.py" data-lang="python :tea.py"><span class="lnt"> 1
@@ -714,22 +713,24 @@ SHA-256: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
 
 
 <span class="k">def</span> <span class="nf">encrypt</span><span class="p">(</span><span class="n">msg</span><span class="p">:</span> <span class="nb">bytes</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bytes</span><span class="p">:</span>
-    <span class="n">cur_time</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">())</span><span class="o">.</span><span class="n">encode</span><span class="p">()</span>
-    <span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="n">cur_time</span><span class="p">)</span>
+<span class="n">cur_time</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">())</span><span class="o">.</span><span class="n">encode</span><span class="p">()</span>
+<span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="n">cur_time</span><span class="p">)</span>
 
-    <span class="n">key</span> <span class="o">=</span> <span class="p">[</span><span class="n">random</span><span class="o">.</span><span class="n">randrange</span><span class="p">(</span><span class="mi">256</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">msg</span><span class="p">]</span>
-    <span class="n">c</span> <span class="o">=</span> <span class="p">[</span><span class="n">m</span> <span class="o">^</span> <span class="n">k</span> <span class="k">for</span> <span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="n">k</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">msg</span> <span class="o">+</span> <span class="n">cur_time</span><span class="p">,</span> <span class="n">key</span> <span class="o">+</span> <span class="p">[</span><span class="mh">0x42</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">cur_time</span><span class="p">))]</span>
+<span class="n">key</span> <span class="o">=</span> <span class="p">[</span><span class="n">random</span><span class="o">.</span><span class="n">randrange</span><span class="p">(</span><span class="mi">256</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">msg</span><span class="p">]</span>
+<span class="n">c</span> <span class="o">=</span> <span class="p">[</span><span class="n">m</span> <span class="o">^</span> <span class="n">k</span> <span class="k">for</span> <span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="n">k</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">msg</span> <span class="o">+</span> <span class="n">cur_time</span><span class="p">,</span> <span class="n">key</span> <span class="o">+</span> <span class="p">[</span><span class="mh">0x42</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">cur_time</span><span class="p">))]</span>
 
-    <span class="k">return</span> <span class="nb">bytes</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
+<span class="k">return</span> <span class="nb">bytes</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
 
 
 <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&#34;__main__&#34;</span><span class="p">:</span>
-    <span class="n">msg</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s1">&#39;Your message: &#39;</span><span class="p">)</span><span class="o">.</span><span class="n">encode</span><span class="p">()</span>
-    <span class="n">enc</span> <span class="o">=</span> <span class="n">encrypt</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
-    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="s2">&#34;wb&#34;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-        <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">enc</span><span class="p">)</span></code></pre></td></tr></table>
+<span class="n">msg</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s1">&#39;Your message: &#39;</span><span class="p">)</span><span class="o">.</span><span class="n">encode</span><span class="p">()</span>
+<span class="n">enc</span> <span class="o">=</span> <span class="n">encrypt</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="s2">&#34;wb&#34;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">enc</span><span class="p">)</span></code></pre></td></tr></table>
 </div>
-</div>
+</div></li>
+</ul>
+
 <h3 id="solution-14">Solution</h3>
 
 <p>コードを読み解くと、入力したmsgの部分と、cur_timeはそれぞれ計算されて連結されてるだけなのがわかります。
@@ -1101,8 +1102,8 @@ Burp Suite経由でアクセスしたら、以下が取れました。
 <li>app.py</li>
 <li>lecture-slides.pdf</li>
 <li>investment-advice.png</li>
-<li>cute_kitten.jpg</li>
-</ul>
+
+<li><p>cute_kitten.jpg</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><code class="language-python :app.py" data-lang="python :app.py"><span class="lnt"> 1
@@ -1198,67 +1199,69 @@ Burp Suite経由でアクセスしたら、以下が取れました。
 
 
 <span class="k">def</span> <span class="nf">sha1</span><span class="p">(</span><span class="n">data</span><span class="p">:</span> <span class="nb">bytes</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-    <span class="n">sig</span> <span class="o">=</span> <span class="n">hashlib</span><span class="o">.</span><span class="n">sha1</span><span class="p">()</span>
-    <span class="n">sig</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">sig</span><span class="o">.</span><span class="n">hexdigest</span><span class="p">()</span>
+<span class="n">sig</span> <span class="o">=</span> <span class="n">hashlib</span><span class="o">.</span><span class="n">sha1</span><span class="p">()</span>
+<span class="n">sig</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<span class="k">return</span> <span class="n">sig</span><span class="o">.</span><span class="n">hexdigest</span><span class="p">()</span>
 
 
 <span class="n">async</span> <span class="k">def</span> <span class="nf">index</span><span class="p">(</span><span class="n">request</span><span class="p">:</span> <span class="n">web</span><span class="o">.</span><span class="n">Request</span><span class="p">):</span>
-    <span class="s2">&#34;&#34;&#34;Display directory overview.&#34;&#34;&#34;</span>
-    <span class="n">html</span> <span class="o">=</span> <span class="s2">&#34;&#34;&#34;
-</span><span class="s2">        &lt;!doctype html&gt;
-</span><span class="s2">        &lt;html lang=&#34;en&#34;&gt;
-</span><span class="s2">        &lt;head&gt;&lt;title&gt;Directory Listing&lt;/title&gt;&lt;/head&gt;
-</span><span class="s2">        &lt;body&gt;
-</span><span class="s2">        &lt;h1&gt;Directory Listing&lt;/h1&gt;
-</span><span class="s2">        &lt;ul&gt;
-</span><span class="s2">    &#34;&#34;&#34;</span>
-    <span class="k">for</span> <span class="nb">file</span> <span class="ow">in</span> <span class="n">file_directory</span><span class="o">.</span><span class="n">iterdir</span><span class="p">():</span>
-        <span class="k">if</span> <span class="nb">file</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="s2">&#34;flag.txt&#34;</span> <span class="ow">or</span> <span class="nb">file</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&#34;_&#34;</span><span class="p">):</span>
-            <span class="k">continue</span>  <span class="c1"># don&#39;t allow flag access</span>
-        <span class="n">url</span> <span class="o">=</span> <span class="n">f</span><span class="s2">&#34;/download?file={file.name}&#34;</span>
-        <span class="n">url</span> <span class="o">+=</span> <span class="s2">&#34;&amp;sig=&#34;</span> <span class="o">+</span> <span class="n">sha1</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">app</span><span class="p">[</span><span class="s2">&#34;SECRET&#34;</span><span class="p">]</span> <span class="o">+</span> <span class="n">url</span><span class="o">.</span><span class="n">encode</span><span class="p">())</span>
-        <span class="n">html</span> <span class="o">+=</span> <span class="n">f</span><span class="s2">&#34;&#34;&#34;&lt;li&gt;&lt;a href=&#34;{url}&#34;&gt;{file.name}&lt;/a&gt;&lt;/li&gt;&#34;&#34;&#34;</span>
+<span class="s2">&#34;&#34;&#34;Display directory overview.&#34;&#34;&#34;</span>
+<span class="n">html</span> <span class="o">=</span> <span class="s2">&#34;&#34;&#34;
+</span><span class="s2">    &lt;!doctype html&gt;
+</span><span class="s2">    &lt;html lang=&#34;en&#34;&gt;
+</span><span class="s2">    &lt;head&gt;&lt;title&gt;Directory Listing&lt;/title&gt;&lt;/head&gt;
+</span><span class="s2">    &lt;body&gt;
+</span><span class="s2">    &lt;h1&gt;Directory Listing&lt;/h1&gt;
+</span><span class="s2">    &lt;ul&gt;
+</span><span class="s2">&#34;&#34;&#34;</span>
+<span class="k">for</span> <span class="nb">file</span> <span class="ow">in</span> <span class="n">file_directory</span><span class="o">.</span><span class="n">iterdir</span><span class="p">():</span>
+    <span class="k">if</span> <span class="nb">file</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="s2">&#34;flag.txt&#34;</span> <span class="ow">or</span> <span class="nb">file</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&#34;_&#34;</span><span class="p">):</span>
+        <span class="k">continue</span>  <span class="c1"># don&#39;t allow flag access</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="n">f</span><span class="s2">&#34;/download?file={file.name}&#34;</span>
+    <span class="n">url</span> <span class="o">+=</span> <span class="s2">&#34;&amp;sig=&#34;</span> <span class="o">+</span> <span class="n">sha1</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">app</span><span class="p">[</span><span class="s2">&#34;SECRET&#34;</span><span class="p">]</span> <span class="o">+</span> <span class="n">url</span><span class="o">.</span><span class="n">encode</span><span class="p">())</span>
+    <span class="n">html</span> <span class="o">+=</span> <span class="n">f</span><span class="s2">&#34;&#34;&#34;&lt;li&gt;&lt;a href=&#34;{url}&#34;&gt;{file.name}&lt;/a&gt;&lt;/li&gt;&#34;&#34;&#34;</span>
 
-    <span class="n">html</span> <span class="o">+=</span> <span class="s2">&#34;&lt;/ul&gt;&lt;/body&gt;&lt;/html&gt;&#34;</span>
-    <span class="k">return</span> <span class="n">web</span><span class="o">.</span><span class="n">Response</span><span class="p">(</span>
-        <span class="n">text</span><span class="o">=</span><span class="n">html</span><span class="p">,</span>
-        <span class="n">content_type</span><span class="o">=</span><span class="s2">&#34;text/html&#34;</span>
-    <span class="p">)</span>
+<span class="n">html</span> <span class="o">+=</span> <span class="s2">&#34;&lt;/ul&gt;&lt;/body&gt;&lt;/html&gt;&#34;</span>
+<span class="k">return</span> <span class="n">web</span><span class="o">.</span><span class="n">Response</span><span class="p">(</span>
+    <span class="n">text</span><span class="o">=</span><span class="n">html</span><span class="p">,</span>
+    <span class="n">content_type</span><span class="o">=</span><span class="s2">&#34;text/html&#34;</span>
+<span class="p">)</span>
 
 
 <span class="n">async</span> <span class="k">def</span> <span class="nf">download</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
-    <span class="s2">&#34;&#34;&#34;Download an individual file.&#34;&#34;&#34;</span>
+<span class="s2">&#34;&#34;&#34;Download an individual file.&#34;&#34;&#34;</span>
 
-    <span class="c1"># Extract signature</span>
-    <span class="k">if</span> <span class="s2">&#34;&amp;sig=&#34;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">request</span><span class="o">.</span><span class="n">path_qs</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">web</span><span class="o">.</span><span class="n">HTTPBadRequest</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="s2">&#34;No signature given.&#34;</span><span class="p">)</span>
-    <span class="n">url</span><span class="p">,</span> <span class="n">actual_sig</span> <span class="o">=</span> <span class="n">unquote_to_bytes</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">path_qs</span><span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="sa">b</span><span class="s2">&#34;&amp;sig=&#34;</span><span class="p">,</span> <span class="n">maxsplit</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="c1"># Extract signature</span>
+<span class="k">if</span> <span class="s2">&#34;&amp;sig=&#34;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">request</span><span class="o">.</span><span class="n">path_qs</span><span class="p">:</span>
+    <span class="k">return</span> <span class="n">web</span><span class="o">.</span><span class="n">HTTPBadRequest</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="s2">&#34;No signature given.&#34;</span><span class="p">)</span>
+<span class="n">url</span><span class="p">,</span> <span class="n">actual_sig</span> <span class="o">=</span> <span class="n">unquote_to_bytes</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">path_qs</span><span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="sa">b</span><span class="s2">&#34;&amp;sig=&#34;</span><span class="p">,</span> <span class="n">maxsplit</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 
-    <span class="c1"># Get filename from URL</span>
-    <span class="n">filename</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="sa">r</span><span class="s2">&#34;file=(\w[\w.-]+)&amp;&#34;</span><span class="p">,</span> <span class="n">request</span><span class="o">.</span><span class="n">query_string</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">filename</span><span class="p">:</span>
-        <span class="n">filename</span> <span class="o">=</span> <span class="n">filename</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">web</span><span class="o">.</span><span class="n">HTTPBadRequest</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="s2">&#34;No valid filename provided.&#34;</span><span class="p">)</span>
+<span class="c1"># Get filename from URL</span>
+<span class="n">filename</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="sa">r</span><span class="s2">&#34;file=(\w[\w.-]+)&amp;&#34;</span><span class="p">,</span> <span class="n">request</span><span class="o">.</span><span class="n">query_string</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">filename</span><span class="p">:</span>
+    <span class="n">filename</span> <span class="o">=</span> <span class="n">filename</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="k">return</span> <span class="n">web</span><span class="o">.</span><span class="n">HTTPBadRequest</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="s2">&#34;No valid filename provided.&#34;</span><span class="p">)</span>
 
-    <span class="c1"># Calculate correct signature and compare.</span>
-    <span class="n">expected_sig</span> <span class="o">=</span> <span class="n">sha1</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">app</span><span class="p">[</span><span class="s2">&#34;SECRET&#34;</span><span class="p">]</span> <span class="o">+</span> <span class="n">url</span><span class="p">)</span><span class="o">.</span><span class="n">encode</span><span class="p">()</span>
-    <span class="k">if</span> <span class="n">expected_sig</span> <span class="o">==</span> <span class="n">actual_sig</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">web</span><span class="o">.</span><span class="n">FileResponse</span><span class="p">(</span><span class="n">file_directory</span> <span class="o">/</span> <span class="n">filename</span><span class="p">)</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">web</span><span class="o">.</span><span class="n">HTTPUnauthorized</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="n">f</span><span class="s2">&#34;Invalid signature for {html.escape(filename)}.&#34;</span><span class="p">)</span>
+<span class="c1"># Calculate correct signature and compare.</span>
+<span class="n">expected_sig</span> <span class="o">=</span> <span class="n">sha1</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">app</span><span class="p">[</span><span class="s2">&#34;SECRET&#34;</span><span class="p">]</span> <span class="o">+</span> <span class="n">url</span><span class="p">)</span><span class="o">.</span><span class="n">encode</span><span class="p">()</span>
+<span class="k">if</span> <span class="n">expected_sig</span> <span class="o">==</span> <span class="n">actual_sig</span><span class="p">:</span>
+    <span class="k">return</span> <span class="n">web</span><span class="o">.</span><span class="n">FileResponse</span><span class="p">(</span><span class="n">file_directory</span> <span class="o">/</span> <span class="n">filename</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="k">return</span> <span class="n">web</span><span class="o">.</span><span class="n">HTTPUnauthorized</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="n">f</span><span class="s2">&#34;Invalid signature for {html.escape(filename)}.&#34;</span><span class="p">)</span>
 
 
 <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&#34;__main__&#34;</span><span class="p">:</span>
-    <span class="n">app</span> <span class="o">=</span> <span class="n">web</span><span class="o">.</span><span class="n">Application</span><span class="p">()</span>
-    <span class="c1"># app[&#34;SECRET&#34;] = b&#34;test&#34; * 4</span>
-    <span class="n">app</span><span class="p">[</span><span class="s2">&#34;SECRET&#34;</span><span class="p">]</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">urandom</span><span class="p">(</span><span class="mi">16</span><span class="p">)</span>
-    <span class="n">app</span><span class="o">.</span><span class="n">router</span><span class="o">.</span><span class="n">add_get</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">,</span> <span class="n">index</span><span class="p">)</span>
-    <span class="n">app</span><span class="o">.</span><span class="n">router</span><span class="o">.</span><span class="n">add_get</span><span class="p">(</span><span class="s1">&#39;/download&#39;</span><span class="p">,</span> <span class="n">download</span><span class="p">)</span>
-    <span class="n">web</span><span class="o">.</span><span class="n">run_app</span><span class="p">(</span><span class="n">app</span><span class="p">)</span></code></pre></td></tr></table>
+<span class="n">app</span> <span class="o">=</span> <span class="n">web</span><span class="o">.</span><span class="n">Application</span><span class="p">()</span>
+<span class="c1"># app[&#34;SECRET&#34;] = b&#34;test&#34; * 4</span>
+<span class="n">app</span><span class="p">[</span><span class="s2">&#34;SECRET&#34;</span><span class="p">]</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">urandom</span><span class="p">(</span><span class="mi">16</span><span class="p">)</span>
+<span class="n">app</span><span class="o">.</span><span class="n">router</span><span class="o">.</span><span class="n">add_get</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">,</span> <span class="n">index</span><span class="p">)</span>
+<span class="n">app</span><span class="o">.</span><span class="n">router</span><span class="o">.</span><span class="n">add_get</span><span class="p">(</span><span class="s1">&#39;/download&#39;</span><span class="p">,</span> <span class="n">download</span><span class="p">)</span>
+<span class="n">web</span><span class="o">.</span><span class="n">run_app</span><span class="p">(</span><span class="n">app</span><span class="p">)</span></code></pre></td></tr></table>
 </div>
-</div>
+</div></li>
+</ul>
+
 <h3 id="solution-19">Solution</h3>
 
 <p>ご親切に、lecture-slides.pdfというのがついていて、hash length extension attacksをしてください、というもの。

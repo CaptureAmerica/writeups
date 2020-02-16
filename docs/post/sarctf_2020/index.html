@@ -1,0 +1,1045 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>SarCTF 2020 Writeup - CTF Writeups</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="きゃぷあめ" /><meta name="description" content="URL: https://sarctf.tk/challenges シャーロック・ホームズをテーマにしたCTFでした。シャーロック・ホームズはNetflixで一通り見ましたよ〜 WebとCryptoはほぼス" /><meta name="keywords" content="CTF, Writeup, captureamerica, picoCTF" />
+
+
+
+<meta name="google-site-verification" content="PqctLWZQttGzxXVupWuIt2HWuBI8cvN1z07ETpxA2dw" />
+
+
+<meta name="generator" content="Hugo 0.59.1 with theme even" />
+
+
+<link rel="canonical" href="https://captureamerica.github.io/writeups/post/sarctf_2020/" />
+<link rel="apple-touch-icon" sizes="180x180" href="https://captureamerica.github.io/writeups/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://captureamerica.github.io/writeups/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://captureamerica.github.io/writeups/favicon-16x16.png">
+<link rel="manifest" href="https://captureamerica.github.io/writeups/manifest.json">
+<link rel="mask-icon" href="https://captureamerica.github.io/writeups/safari-pinned-tab.svg" color="#5bbad5">
+
+
+<link href="https://captureamerica.github.io/writeups/dist/even.c2a46f00.min.css" rel="stylesheet">
+
+
+
+<meta property="og:title" content="SarCTF 2020 Writeup" />
+<meta property="og:description" content="URL: https://sarctf.tk/challenges シャーロック・ホームズをテーマにしたCTFでした。シャーロック・ホームズはNetflixで一通り見ましたよ〜 WebとCryptoはほぼス" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://captureamerica.github.io/writeups/post/sarctf_2020/" />
+<meta property="article:published_time" content="2020-02-17T00:00:00+09:00" />
+<meta property="article:modified_time" content="2020-02-17T00:00:00+09:00" />
+<meta itemprop="name" content="SarCTF 2020 Writeup">
+<meta itemprop="description" content="URL: https://sarctf.tk/challenges シャーロック・ホームズをテーマにしたCTFでした。シャーロック・ホームズはNetflixで一通り見ましたよ〜 WebとCryptoはほぼス">
+
+
+<meta itemprop="datePublished" content="2020-02-17T00:00:00&#43;09:00" />
+<meta itemprop="dateModified" content="2020-02-17T00:00:00&#43;09:00" />
+<meta itemprop="wordCount" content="2858">
+
+
+
+<meta itemprop="keywords" content="CTF," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="SarCTF 2020 Writeup"/>
+<meta name="twitter:description" content="URL: https://sarctf.tk/challenges シャーロック・ホームズをテーマにしたCTFでした。シャーロック・ホームズはNetflixで一通り見ましたよ〜 WebとCryptoはほぼス"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="https://captureamerica.github.io/writeups/" class="logo">CTF Writeups</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="https://captureamerica.github.io/writeups/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="https://captureamerica.github.io/writeups/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="https://captureamerica.github.io/writeups/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="https://captureamerica.github.io/writeups/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a><a href="https://captureamerica.github.io/writeups/about/">
+        <li class="mobile-menu-item">About</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="https://captureamerica.github.io/writeups/" class="logo">CTF Writeups</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="https://captureamerica.github.io/writeups/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="https://captureamerica.github.io/writeups/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="https://captureamerica.github.io/writeups/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="https://captureamerica.github.io/writeups/categories/">Categories</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="https://captureamerica.github.io/writeups/about/">About</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">SarCTF 2020 Writeup</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2020-02-17 </span>
+        <div class="post-category">
+            <a href="https://captureamerica.github.io/writeups/categories/ctf/"> CTF </a>
+            </div>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contents</h2>
+  <div class="post-toc-content">
+    <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#misc-deep-dive">[Misc]: Deep dive</a>
+<ul>
+<li><a href="#challenge">Challenge</a></li>
+<li><a href="#solution">Solution</a></li>
+</ul></li>
+<li><a href="#misc-layouts">[Misc]: Layouts</a>
+<ul>
+<li><a href="#challenge-1">Challenge</a></li>
+<li><a href="#solution-1">Solution</a></li>
+</ul></li>
+<li><a href="#forensics-doc-holmes">[Forensics]: Doc. Holmes</a>
+<ul>
+<li><a href="#challenge-2">Challenge</a></li>
+<li><a href="#solution-2">Solution</a></li>
+</ul></li>
+<li><a href="#forensics-confidential">[Forensics]: Confidential</a>
+<ul>
+<li><a href="#challenge-3">Challenge</a></li>
+<li><a href="#solution-3">Solution</a></li>
+</ul></li>
+<li><a href="#reverse-crossw0rd">[Reverse]: Crossw0rd</a>
+<ul>
+<li><a href="#challenge-4">Challenge</a></li>
+<li><a href="#solution-4">Solution</a></li>
+</ul></li>
+<li><a href="#ppc-mind-palace-i">[PPC]: Mind palace I</a>
+<ul>
+<li><a href="#challenge-5">Challenge</a></li>
+<li><a href="#solution-5">Solution</a></li>
+</ul></li>
+<li><a href="#ppc-mind-palace-ii">[PPC]: Mind palace II</a>
+<ul>
+<li><a href="#challenge-6">Challenge</a></li>
+<li><a href="#solution-6">Solution</a></li>
+</ul></li>
+<li><a href="#ppc-mind-palace-iii">[PPC]: Mind palace III</a>
+<ul>
+<li><a href="#challenge-7">Challenge</a></li>
+<li><a href="#solution-7">Solution</a></li>
+</ul></li>
+<li><a href="#ppc-magic-of-numbers">[PPC]: Magic of numbers</a>
+<ul>
+<li><a href="#challenge-8">Challenge</a></li>
+<li><a href="#unsolved">(Unsolved)</a></li>
+</ul></li>
+</ul></li>
+</ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      
+
+<p>URL: <a href="https://sarctf.tk/challenges">https://sarctf.tk/challenges</a>
+<br /><br />
+シャーロック・ホームズをテーマにしたCTFでした。シャーロック・ホームズはNetflixで一通り見ましたよ〜
+<br /><br />
+WebとCryptoはほぼスルー（Web問題のうち半分はvk.comのアカウントを作らないと解けないとか書かれてたし）、Stegoは今回のは手強くて降参です。
+<br /><br />
+開始当初、サーバがめっちゃ不安定で、チャレンジも見れないわ、フラグもSubmitできないわで、もうやめようかと思ったんですが、寝て起きた次の日は直っていたのでよかったです。</p>
+
+<p><br /><br />
+<img src="https://captureamerica.github.io/writeups/img/sarctf_Score1.png" alt="sarctf_Score1.png">
+<br /><br />
+<img src="https://captureamerica.github.io/writeups/img/sarctf_Score2.png" alt="sarctf_Score2.png">
+<br />
+<img src="https://captureamerica.github.io/writeups/img/sarctf_Score3.png" alt="sarctf_Score3.png">
+<br /></p>
+
+<p><br /><br /></p>
+
+<h2 id="misc-deep-dive">[Misc]: Deep dive</h2>
+
+<hr />
+
+<h3 id="challenge">Challenge</h3>
+
+<blockquote>
+<p>Worth digging into these tricks.</p>
+</blockquote>
+
+<p>Attachment:</p>
+
+<ul>
+<li>flag.txt</li>
+</ul>
+
+<p><br /></p>
+
+<h3 id="solution">Solution</h3>
+
+<p>オニオン系（マトリョーシカ系？）の問題で、ひらすらファイルを解凍しつづけるやつです。Tar archiveから始まります。</p>
+
+<pre>
+$ file flag.txt 
+flag.txt: POSIX tar archive (GNU)
+</pre>
+
+<p><br>
+20階層くらいまでは手動でやったでしょうか。</p>
+
+<p>ファイルサイズも全然小さくならないし、これは手動でやっていたら終わらない気がしたので、Pythonスクリプトを書きました。</p>
+
+<p>この手のチャレンジはよく出てくるので、前からツール化したいとは思ってたんですよね。</p>
+
+<p>コードは載せまんが、アイデアとしては、pythonからfileコマンドを呼んで、そのファイルタイプによって該当する解凍コマンドを呼ぶ。それだけのことです。</p>
+
+<p>ところどころ、sleep(1)を入れてパッチしないとエラーになったりしました。</p>
+
+<p>出てくるファイルがすべてflag.txtだったので、ループはpython内ではやらず、watchでやりました。</p>
+
+<pre>
+$ watch -n 1 "./Deep_dive_solve.py flag.txt"
+</pre>
+
+<p>時間は計ってないけど、30分くらいかかったような気がします。どんだけだよ！</p>
+
+<p><br>
+Flag: <code>FLAG{matri0sha256}</code></p>
+
+<p><br /><br />
+<br /><br /></p>
+
+<h2 id="misc-layouts">[Misc]: Layouts</h2>
+
+<hr />
+
+<h3 id="challenge-1">Challenge</h3>
+
+<blockquote>
+<p>Sherlock found a huge pile of evidence, but it was difficult for him to analyze them. Help him.</p>
+</blockquote>
+
+<p>Attachment:</p>
+
+<ul>
+<li>RWtm7A5f (パスワード付きZip file)</li>
+</ul>
+
+<p><br /></p>
+
+<h3 id="solution-1">Solution</h3>
+
+<p>zip2johnを使って、Password Crackしました。</p>
+
+<pre>
+$ zip2john RWtm7A5f > Layouts.txt
+
+$ john Layouts.txt 
+Using default input encoding: UTF-8
+Loaded 1 password hash (PKZIP [32/64])
+Will run 2 OpenMP threads
+Proceeding with single, rules:Single
+Press 'q' or Ctrl-C to abort, almost any other key for status
+RWtm7A5f         (RWtm7A5f/Lz68qMZU)
+</pre>
+
+<p>最初、クラックできなかったのかと思いました。</p>
+
+<p>ファイル名がパスワードみたいです。</p>
+
+<p>何回か繰り返しやったところ、そのパターンでいけるようなので、スクリプト化しました。</p>
+
+<p>Layouts_solve.shを以下のように作成。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1">#/bin/bash</span>
+unzip -P <span class="nv">$1</span> <span class="nv">$1</span>
+rm <span class="nv">$1</span></code></pre></td></tr></table>
+</div>
+</div>
+<p><br>
+同一フォルダ内でzipファイルを見つけて、そのファイル名を上記のスクリプトの引数に渡す、ということを繰り返しやります。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">$ watch -n <span class="m">1</span> <span class="s2">&#34;find . -exec file {} \; | grep -i zip | cut -d: -f1 | cut -c 3- | xargs -Ixxx ./Layouts_solve.sh xxx&#34;</span></code></pre></td></tr></table>
+</div>
+</div>
+<p><br>
+更に続きがあって、ある程度解凍すると今度はXZファイルが出てきます。</p>
+
+<p>解凍すると、以下のディレクトリとファイルが出てきます。見たところ、ファイルは全部0バイトです。</p>
+
+<pre>
+$ find .
+.
+./203
+./117
+./117/12
+./143
+./232
+./108
+./147
+./223
+./249
+./70
+./159
+./105
+./255
+./30
+./72
+./208
+./179
+./181
+./63
+./233
+./163
+./165
+./34
+./146
+./152
+./150
+./41
+./209
+./32
+./196
+./238
+./19
+./48
+./217
+./95
+./95/15
+./40
+./43
+./53
+./53/17
+./101
+./101/9
+./62
+./172
+./123
+./123/5
+./178
+./190
+./92
+./155
+./5
+./130
+./230
+./79
+./194
+./136
+./16
+./231
+./137
+./113
+./177
+./214
+./184
+./138
+./216
+./145
+./195
+./18
+./80
+./116
+./52
+./52/14
+./52/7
+./221
+./228
+./133
+./13
+./168
+./135
+./67
+./205
+./103
+./103/8
+./111
+./127
+./46
+./69
+./170
+./200
+./37
+./93
+./114
+./160
+./73
+./20
+./81
+./174
+./90
+./169
+./121
+./246
+./236
+./56
+./253
+./243
+./144
+./149
+./222
+./229
+./167
+./26
+./171
+./57
+./98
+./125
+./125/21
+./182
+./15
+./91
+./24
+./244
+./14
+./50
+./2
+./183
+./3
+./204
+./148
+./77
+./83
+./83/1
+./1
+./112
+./112/18
+./212
+./220
+./235
+./215
+./241
+./10
+./76
+./11
+./31
+./187
+./99
+./74
+./192
+./154
+./242
+./206
+./39
+./210
+./251
+./248
+./64
+./180
+./59
+./6
+./85
+./250
+./44
+./28
+./218
+./82
+./33
+./47
+./100
+./202
+./51
+./51/10
+./247
+./54
+./219
+./87
+./21
+./225
+./122
+./122/6
+./86
+./186
+./213
+./12
+./128
+./88
+./9
+./22
+./166
+./173
+./142
+./185
+./65
+./71
+./120
+./120/13
+./126
+./17
+./239
+./84
+./84/4
+./140
+./175
+./68
+./198
+./75
+./224
+./119
+./124
+./161
+./227
+./191
+./129
+./78
+./78/3
+./27
+./61
+./157
+./38
+./189
+./42
+./245
+./237
+./153
+./211
+./25
+./104
+./29
+./115
+./193
+./58
+./102
+./102/11
+./23
+./164
+./36
+./188
+./118
+./162
+./254
+./8
+./55
+./89
+./89/2
+./7
+./197
+./35
+./240
+./131
+./226
+./141
+./132
+./97
+./110
+./110/16
+./252
+./139
+./156
+./201
+./151
+./106
+./60
+./45
+./158
+./199
+./4
+./134
+./109
+./176
+./207
+./107
+./49
+./49/19
+./49/20
+./94
+./234
+./96
+./66
+</pre>
+
+<p><br>
+ディレクトリ名がAscii文字列範囲なのと、ファイル名がバラけているのに気づきました。</p>
+
+<p>取り出して、ソートして、Pythonを使って文字変換します。</p>
+
+<pre>
+$ find . | cut -c 3- | grep / | awk -F '/' '{print $2, $1}' | sort -n | cut -d" " -f2 | tr "\n" " " ; echo
+83 89 78 84 123 122 52 103 101 51 102 117 120 52 95 110 53 112 49 49 125
+
+$ python -c 'print("".join([chr(int(x)) for x in "83 89 78 84 123 122 52 103 101 51 102 117 120 52 95 110 53 112 49 49 125".split()]))'
+SYNT{z4ge3fux4_n5p11}
+</pre>
+
+<p><br>
+最後は、ROT13です。</p>
+
+<p>Flag: <code>FLAG{m4tr3shk4_a5c11}</code></p>
+
+<p><br /><br />
+<br /><br /></p>
+
+<h2 id="forensics-doc-holmes">[Forensics]: Doc. Holmes</h2>
+
+<hr />
+
+<h3 id="challenge-2">Challenge</h3>
+
+<blockquote>
+<p>Sherlock got it on his super secret channels. You have received a copy of mail. Is everything okay with it?</p>
+</blockquote>
+
+<p>Attachment:</p>
+
+<ul>
+<li>some.file</li>
+</ul>
+
+<p><br /></p>
+
+<h3 id="solution-2">Solution</h3>
+
+<pre>
+$ file some.file 
+some.file: Microsoft Word 2007+
+</pre>
+
+<p>Zipとして解凍したら、/word/media/image2.jpg がフラグです。</p>
+
+<p>ファイル名 (some.file) も一応ヒントなんでしょうね。</p>
+
+<p>Flag: <code>flag{prominentplace}</code></p>
+
+<p><br /><br />
+<br /><br /></p>
+
+<h2 id="forensics-confidential">[Forensics]: Confidential</h2>
+
+<hr />
+
+<h3 id="challenge-3">Challenge</h3>
+
+<blockquote>
+<p>Sherlock was able to intercept the transmission of secret data passed between Moriarty&rsquo;s agents. Examine the traffic and try to find confidential information.</p>
+</blockquote>
+
+<p>Attachment:</p>
+
+<ul>
+<li>captured.pcap</li>
+</ul>
+
+<p><br /></p>
+
+<h3 id="solution-3">Solution</h3>
+
+<p>Wiresharkを使ってpcapを見たところ、いろいろファイルが転送されているようです。</p>
+
+<p>一際怪しかったのが、database.kdbxというファイルです。keepass2johnでクラックします。</p>
+
+<pre>
+$ keepass2john database.kdbx > database.kdbx.hash
+
+$ john --wordlist=/usr/share/wordlists/rockyou.txt database.kdbx.hash 
+Using default input encoding: UTF-8
+Loaded 1 password hash (KeePass [SHA256 AES 32/64])
+Cost 1 (iteration count) is 60000 for all loaded hashes
+Cost 2 (version) is 2 for all loaded hashes
+Cost 3 (algorithm [0=AES, 1=TwoFish, 2=ChaCha]) is 0 for all loaded hashes
+Will run 2 OpenMP threads
+Press 'q' or Ctrl-C to abort, almost any other key for status
+blowme!          (database)
+1g 0:00:19:51 DONE (2020-02-15 22:06) 0.000838g/s 118.8p/s 118.8c/s 118.8C/s blowme!..bloodlust1
+Use the "--show" option to display all of the cracked passwords reliably
+Session completed
+</pre>
+
+<p><br>
+パスワード <code>blowme!</code> が見つかりました。</p>
+
+<p><br>
+KeePass.exeを使って開くと、Andreaさんのパスワードがフラグになってました。</p>
+
+<p><img src="https://captureamerica.github.io/writeups/img/sarctf_keepass.png" alt="sarctf_keepass.png"></p>
+
+<p><br>
+Flag: <code>FLAG{bru73_p455w0rd_4ll_n16h7_l0n6}</code></p>
+
+<p><br /><br />
+<br /><br /></p>
+
+<h2 id="reverse-crossw0rd">[Reverse]: Crossw0rd</h2>
+
+<hr />
+
+<h3 id="challenge-4">Challenge</h3>
+
+<blockquote>
+<p>While the children were playing toys, Sherlock was solving crosswords in large volumes.</p>
+</blockquote>
+
+<p>Attachment:</p>
+
+<ul>
+<li>crossw0rd (ELF 64-bit)</li>
+</ul>
+
+<p><br /></p>
+
+<h3 id="solution-4">Solution</h3>
+
+<p>Ghidraで開くと、param_1という配列の値をチェックしているのが見つかります。</p>
+
+<p>抜粋すると、こんな感じです。（配列要素を全部10進数に変えてます）
+<pre>
+param_1[7] == &lsquo;5&rsquo;
+param_1[17] == &lsquo;g&rsquo;
+param_1[2] == &lsquo;A&rsquo;
+param_1[15] == &lsquo;i&rsquo;
+param_1[9] == &lsquo;r&rsquo;
+param_1[1] == &lsquo;L&rsquo;
+param_1[10] == &lsquo;3&rsquo;
+param_1[18] == &lsquo;}&rsquo;
+param_1[6] == &lsquo;a&rsquo;
+param_1[0] == &lsquo;F&rsquo;
+param_1[14] == &lsquo;5&rsquo;
+param_1[16] == &lsquo;n&rsquo;
+param_1[3] == &lsquo;G&rsquo;
+param_1[11] == &lsquo;v&rsquo;
+param_1[5] == &lsquo;3&rsquo;
+param_1[4] == &lsquo;{&rsquo;
+param_1[12] == &lsquo;3&rsquo;
+param_1[8] == &lsquo;y&rsquo;
+param_1[13] == &lsquo;r&rsquo;
+</pre></p>
+
+<p><br>
+これをファイル (crossw0rd.txt) に保存して、ソートします。</p>
+
+<pre>
+$ cat crossw0rd.txt | cut -d[ -f2 | sort -n | cut -d\' -f2 | tr -d "\n" ; echo
+FLAG{3a5yr3v3r5ing}
+</pre>
+
+<p><br>
+Flag: <code>FLAG{3a5yr3v3r5ing}</code></p>
+
+<p><br /><br />
+<br /><br /></p>
+
+<h2 id="ppc-mind-palace-i">[PPC]: Mind palace I</h2>
+
+<hr />
+
+<h3 id="challenge-5">Challenge</h3>
+
+<blockquote>
+<p>It looks like the situation is hopeless, there is no time to think. However, you can use the mind palace and solve all problems instantly.
+<br /><br />
+nc 212.47.229.1 33001</p>
+</blockquote>
+
+<p><br /></p>
+
+<h3 id="solution-5">Solution</h3>
+
+<p>繋いでみると、pip と piiip というのが表示されます。モールス信号っぽいです。</p>
+
+<p>WireSharkでキャプチャーして、いくつか目視でモールス変換してみると、英単語 here, up, on になったので、モールス信号確定です。</p>
+
+<p>ちょっと長め (10分くらい？) にキャプチャーする必要がありました。</p>
+
+<p>テキストエディタを使って、pipを「.」、piiipを「-」に変換します。</p>
+
+<pre>
+.... . .-. .   ..- .--. --- -.   - .... .   .-.. .- .--. . .-..   --- ..-.   -- -.--   -.-.
+ --- .- -   -.-- --- ..-   -- .- -.--   ... . .   - .... .   .-. .. -... -... --- -.   --- 
+..-.   -- -.--   -.. . -.-. --- .-. .- - .. --- -.   -... ..- -   - .... .   -- . -.. .- .-
+..   .. - ... . .-.. ..-.   ..   -.- . . .--.   .. -.   .-   .-.. . .- - .... . .-. -.   .-
+-. --- ..- -.-. ....   .- -   .... --- -- .   ..-. .-.. .- --.   ... .... . .-. .-.. --- -.
+-. -.-   .-.. .. -.- . ...   -.-- --- ..- .-.   -- --- .-. ... . .... . .-. .   ..- .--. --
+- -.   - .... .   .-.. .- .--. . .-..   --- ..-.   -- -.--   -.-. --- .- -   -.-- --- ..-  
+ -- .- -.--   ... . .   - .... .   .-. .. -... -... --- -.   --- ..-.   -- -.--   -.. . -.-
+. --- .-. .- - .. --- -.   -... ..- -   - .... .   -- . -.. .- .-..   .. - ... . .-.. ..-. 
+  ..   -.- . . .--.   .. -.   .-   .-.. . .- - .... . .-. -.   .--. --- ..- -.-. ....   .- 
+-   .... --- -- .   ..-. .-.
+</pre>
+
+<p><br>
+文字への変換は以下のサイトにお世話になりました。</p>
+
+<p><a href="http://www.unit-conversion.info/texttools/morse-code/">http://www.unit-conversion.info/texttools/morse-code/</a></p>
+
+<p>以下が、取れた結果です。</p>
+
+<p>here??upon??the??lapel??of??my???oat??you??may??see??the??ribbon??o???my??decoration??but??the??meda???itself??i??keep??in??a??leathern???ouch??at??home??flag??sherlo?k??likes??your??morsehere??up?n??the??lapel??of??my??coat??you??may??see??the??ribbon??of??my??de?oration??but??the??medal??itself??i??keep??in??a??leathern??pouch??a???home??fr</p>
+
+<p><br>
+ちょっとGuessも入りましたが、フラグが取れました。</p>
+
+<p>Flag: <code>flag{sherlock_likes_your_morse}</code></p>
+
+<p><br /><br />
+<br /><br /></p>
+
+<h2 id="ppc-mind-palace-ii">[PPC]: Mind palace II</h2>
+
+<hr />
+
+<h3 id="challenge-6">Challenge</h3>
+
+<blockquote>
+<p>It&rsquo;s time to strain your brains.
+<br /><br />
+nc 212.47.229.1 33002</p>
+</blockquote>
+
+<p><br /></p>
+
+<h3 id="solution-6">Solution</h3>
+
+<p>pwntoolを使ってひたすら繰り返しROT13するだけです。</p>
+
+<p>Flag: <code>FLAG{Y0U_V3RY_F45T3R_CRYPT0GR4PH}</code></p>
+
+<p><br /><br />
+<br /><br /></p>
+
+<h2 id="ppc-mind-palace-iii">[PPC]: Mind palace III</h2>
+
+<hr />
+
+<h3 id="challenge-7">Challenge</h3>
+
+<blockquote>
+<p>100% of brain CPU
+<br /><br />
+nc 212.47.229.1 33003</p>
+</blockquote>
+
+<p><br /></p>
+
+<h3 id="solution-7">Solution</h3>
+
+<p>pwntoolを使ってひたすら繰り返しXOR, OR, AND演算するだけです。</p>
+
+<p>Flag: <code>FLAG{0HH_Y0UR3_4_V3RY_5M3RT_M4TH3M4T1C}</code></p>
+
+<p><br /><br />
+<br /><br /></p>
+
+<h2 id="ppc-magic-of-numbers">[PPC]: Magic of numbers</h2>
+
+<hr />
+
+<h3 id="challenge-8">Challenge</h3>
+
+<blockquote>
+<p>Do you think Sherlock can beat a computer in math?
+<br /><br />
+nc 212.47.229.1 33004</p>
+</blockquote>
+
+<p><br /></p>
+
+<h3 id="unsolved">(Unsolved)</h3>
+
+<p>降参です。。。</p>
+
+<pre>
+$ nc 212.47.229.1 33004
+======================================================================================================
+Hey, hello! Just send me an answer to 9 simple examples, so I can check if my machine knows math well.
+======================================================================================================
+[>] 0.1 + 0.2 + 0.3
+[>] Result: 0.6
+[>] 0.2 + 0.3 + 0.4
+[>] Result: 0.9
+[>] 0.3 + 0.4 + 0.5
+[>] Result: 1.2
+[>] 0.4 + 0.5 + 0.6
+[>] Result: 1.5
+[>] 0.5 + 0.6 + 0.7
+[>] Result: 1.8
+[>] 0.6 + 0.7 + 0.8
+[>] Result: 2.1
+[>] 0.7 + 0.8 + 0.9
+[>] Result: 2.4
+[>] 0.8 + 0.9 + 0.10
+[>] Result: 1.8
+[>] 0.9 + 0.10 + 0.11
+[>] Result: 1.11
+[>] 0.10 + 0.11 + 0.12
+[>] Result: 0.33
+You made a mistake somewhere! Bay, bay!
+</pre>
+
+<p>pwntool使ったり、手動でやったりしたけど、どこが間違っているのかわからないです。</p>
+
+<p><b>Bay, bay!</b></p>
+
+<p><br /><br />
+<br /><br /></p>
+
+<hr />
+
+<p><br /><br />
+<br /><br /></p>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content">きゃぷあめ</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">
+        2020-02-17
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="https://captureamerica.github.io/writeups/tags/ctf/">CTF</a>
+          </div>
+      <nav class="post-nav">
+        
+        <a class="next" href="https://captureamerica.github.io/writeups/post/neverlan_ctf_2019/">
+            <span class="next-text nav-default">NeverLAN CTF 2019 Writeup</span>
+            <span class="next-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="https://github.com/CaptureAmerica/" class="iconfont icon-github" title="github"></a>
+  <a href="https://captureamerica.github.io/writeups/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2019 - 
+    2020
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">きゃぷあめ</span>
+  </span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  
+<script type="text/javascript" src="https://captureamerica.github.io/writeups/dist/even.26188efa.min.js"></script>
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-104910699-2', 'auto');
+	ga('set', 'anonymizeIp', true);
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+
+
+
+
+
+</body>
+</html>
