@@ -1,17 +1,17 @@
 ---
-title: "NeverLAN CTF 2019 Writeup"
+title: "NeverLAN CTF 2020 Writeup"
 date: 2020-02-12T09:00:00+09:00
 lastmod: 2020-02-12T09:00:00+09:00
 draft: false
 keywords: []
 description: ""
-tags: ["CTF"]
+tags: ["CTF", "Reviewed"]
 categories: ["CTF"]
 author: "きゃぷあめ"
 ---
 URL: [https://ctf.neverlanctf.com/challenges](https://ctf.neverlanctf.com/challenges)
 <br /><br />
-久々にがっつりCTFやった〜 （学生さん用CTFですけど）
+久々にがっつりCTFやりました。（学生さん用CTFでした）
 
 最終順位は、127位でした。
 
@@ -451,6 +451,12 @@ Harry Potter の 19 years later 辺りの話なのはわかるんですが、フ
 
 あんまり労力を費やしたくなかったので、潔く降参！
 
+<br /><br />
+(2020/02/23 追記)
+
+他の方のWriteupを参照させてもらったら、全然 Harry Potter じゃなかった件。。は、恥ずかしい〜＞＜
+
+
 
 
 <br /><br />
@@ -512,6 +518,51 @@ https://arstechnica.com/information-technology/2020/01/researcher-develops-worki
 
 <br>
 Flag: `flag{CVE-2020-0601}`
+
+
+<br /><br />
+<br /><br />
+<img src="https://captureamerica.github.io/writeups/img/orange_bar.png" alt="orange_bar.png">
+<br />
+ここから下はCTF終了後（2020/02/23）に行った復習です。他の方のWriteupとか参照してます。
+
+<br />
+## [Crypto]: It is like an onion of secrets.
+- - -
+### Challenge
+> Crypto Hard Jake From S7a73farm
+<br />
+This one has layers like an onion. Just don't let it make you cry..
+
+Attachment:
+
+- Much_Confused.png
+
+(Hintが3つくらいあったみたいです。全然見てなかったです。。)
+
+<br>
+### Solution
+
+zstegで長いbase64 encodeされた文字列が取れます。
+
+```
+$ zsteg -l 0 Much_Confused.png -v b1,rgb,lsb,xy 
+```
+
+<br>
+それをデコードすると、`lspv wwat kl rljvzfciggvnclzv` という文字列が取れます。ここで詰まってました。
+
+`neverlanctf` を Key として、Vigenere Cipherで復号したらよかったみたいです。そういうヒントがあったのかな？
+
+復号は、以下のサイトにお世話になりました。
+
+https://www.mygeocachingprofile.com/codebreaker.vigenerecipher.aspx
+
+復号結果："your flag is myfavoritecipher"
+
+<br>
+Flag: `flag{myfavoritecipher}`
+
 
 
 
