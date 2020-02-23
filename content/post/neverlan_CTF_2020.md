@@ -1,7 +1,7 @@
 ---
 title: "NeverLAN CTF 2020 Writeup"
 date: 2020-02-12T09:00:00+09:00
-lastmod: 2020-02-12T09:00:00+09:00
+lastmod: 2020-02-23T14:00:00+09:00
 draft: false
 keywords: []
 description: ""
@@ -9,6 +9,8 @@ tags: ["CTF", "Reviewed"]
 categories: ["CTF"]
 author: "きゃぷあめ"
 ---
+(2020/02/23 - 復習しました)
+
 URL: [https://ctf.neverlanctf.com/challenges](https://ctf.neverlanctf.com/challenges)
 <br /><br />
 久々にがっつりCTFやりました。（学生さん用CTFでした）

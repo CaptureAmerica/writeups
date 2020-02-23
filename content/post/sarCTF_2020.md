@@ -1,14 +1,16 @@
 ---
-title: "SarCTF 2020 Writeup"
+title: "SarCTF by Saratov State University 2020 Writeup"
 date: 2020-02-17T00:00:00+09:00
-lastmod: 2020-02-17T00:00:00+09:00
+lastmod: 2020-02-23T14:00:00+09:00
 draft: false
 keywords: []
 description: ""
-tags: ["CTF"]
+tags: ["CTF", "Reviewed"]
 categories: ["CTF"]
 author: "きゃぷあめ"
 ---
+(2020/02/23 - 復習しました)
+
 URL: [https://sarctf.tk/challenges](https://sarctf.tk/challenges)
 <br /><br />
 シャーロック・ホームズをテーマにしたCTFでした。シャーロック・ホームズはNetflixで一通り見ましたよ〜
@@ -53,7 +55,7 @@ flag.txt: POSIX tar archive (GNU)
 
 コードは載せまんが、アイデアとしては、Pythonからfileコマンドを呼んで、そのファイルタイプによって該当する解凍コマンドを呼ぶ。それだけのことです。
 
-ところどころ、sleep(1)を入れてパッチしないとエラーになったりしました。
+ところどころ、sleep(1)を入れてパッチしないとエラーになったりしました。（システムコールを使って解凍してるのがいけないっぽいです。。）
 
 出てくるファイルがすべてflag.txtだったので、ループはPython内ではやらず、watchでやりました。
 
@@ -61,7 +63,7 @@ flag.txt: POSIX tar archive (GNU)
 $ watch -n 1 "./Deep_dive_solve.py flag.txt"
 </pre>
 
-時間は計ってないけど、30分くらいかかったような気がします。どんだけだよ！
+時間は計ってないけど、30分くらいかかったような気がします。（ちょっとコードがよくなかったかも）
 
 <br>
 Flag: `FLAG{matri0sha256}`
@@ -647,6 +649,8 @@ nc 212.47.229.1 33004
 ### (Unsolved)
 降参です。。。
 
+暗算：
+
 <pre>
 $ nc 212.47.229.1 33004
 ======================================================================================================
@@ -673,12 +677,117 @@ Hey, hello! Just send me an answer to 9 simple examples, so I can check if my ma
 [>] 0.10 + 0.11 + 0.12
 [>] Result: 0.33
 You made a mistake somewhere! Bay, bay!
+
+</pre>
+
+<br>
+pythonで計算したのをコピペ：
+
+<pre>
+$ nc 212.47.229.1 33004
+======================================================================================================
+Hey, hello! Just send me an answer to 9 simple examples, so I can check if my machine knows math well.
+======================================================================================================
+[>] 0.1 + 0.2 + 0.3
+[>] Result: 0.6000000000000001
+[>] 0.2 + 0.3 + 0.4
+[>] Result: 0.9
+[>] 0.3 + 0.4 + 0.5
+[>] Result: 1.2
+[>] 0.4 + 0.5 + 0.6
+[>] Result: 1.5
+[>] 0.5 + 0.6 + 0.7
+[>] Result: 1.8
+[>] 0.6 + 0.7 + 0.8
+[>] Result: 2.0999999999999996
+[>] 0.7 + 0.8 + 0.9
+[>] Result: 2.4
+[>] 0.8 + 0.9 + 0.10
+[>] Result: 1.8000000000000003
+[>] 0.9 + 0.10 + 0.11
+[>] Result: 1.11
+[>] 0.10 + 0.11 + 0.12
+[>] Result: 0.33
+You made a mistake somewhere! Bay, bay!
+
 </pre>
 
 
-pwntool使ったり、手動でやったりしたけど、どこが間違っているのかわからないです。
+あと、pwntool使ったりもしたりしたけど、どこが間違っているのかわからないです。
 
 <b>Bay, bay!</b>
+
+<br /><br />
+（Writeup見てると、どうやら途中で何かFixされてたっぽいですね。。。）
+
+
+
+<br /><br />
+<br /><br />
+<img src="https://captureamerica.github.io/writeups/img/orange_bar.png" alt="orange_bar.png">
+<br />
+ここから下はCTF終了後（2020/02/23）に行った復習です。他の方のWriteupとか参照してます。
+
+
+<br />
+## [Forensic]: Blogger
+- - -
+### Challenge
+> Recently, John's keys began to be pressed by themselves when he runs his blog. You need to figure out what's the matter.
+
+Attachment:
+
+- usb_here.pcapng
+
+<br>
+### Solution
+USB pcapは過去のCTFでも何度かお目になっていて、tsharkでデータを取り出して3バイト目辺りを変換表に基づいて文字に換える、という事はなんとなく知ってたんですが、いっつも後回ししていて今回もスルーしました。
+
+今回、解けた人もだいぶ多かったし、一度スクリプトを用意してしまえば使い回しができるんでしょうね。
+
+<pre>
+$ tshark -r usb_here.pcapng -T fields -e usb.capdata | tr -s "\n" > usb.capdata 
+</pre>
+
+{{% admonition tip "Tips" %}}
+tr -s "\n" は空行を削除
+{{% /admonition %}}
+
+<br>
+<pre>
+$ ./usb.py usb.capdata 
+sherlock,john,andhenrythenvisitthehollowinthehopeoffindingthehound.ontheway,johnnoticeswhatseemstobeflag[like-a-b100dh0und]e
+</pre>
+（Pythonコードは他の人の書いたコードのほぼパクリなので載せません。）
+
+<br>
+Flag: `flag{like-a-b100dh0und}`
+
+
+
+<br /><br />
+<br /><br />
+## [Stego]: Red King
+- - -
+### Challenge
+> Just Moriarty? Really?
+
+Attachment:
+
+- m0r1ar7y.png
+
+<br>
+### Solution
+"Red King" というタイトルから、赤をなんとかするんだろうと思ってLSBも取ってみたけど、よくわからなかったやつです。
+
+縦方向に読み込む必要があったみたいです。ふーん。
+
+以下は、「青い空を見上げればいつもそこに白い猫」のスクリーンショットです。
+
+<img src="https://captureamerica.github.io/writeups/img/sarctf_m0r1ar7y.png" alt="sarctf_m0r1ar7y.png">
+
+<br>
+Flag: `FLAG{who_is_moriarty}`
 
 
 
