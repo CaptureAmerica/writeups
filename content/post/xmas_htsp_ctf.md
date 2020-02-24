@@ -1,5 +1,5 @@
 ---
-title: "X-MAS CTF Writeup"
+title: "X-MAS CTF Writeup | フラxxグゲット"
 date: 2019-12-22T19:00:00+09:00
 lastmod: 2019-12-22T19:00:00+09:00
 draft: false
@@ -7,7 +7,7 @@ keywords: []
 description: ""
 tags: ["CTF"]
 categories: ["CTF"]
-author: "きゃぷあめ"
+author: ""
 ---
 URL: [https://xmas.htsp.ro/home](https://xmas.htsp.ro/home)
 <br /><br />

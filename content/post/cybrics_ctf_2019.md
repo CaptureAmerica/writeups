@@ -1,5 +1,5 @@
 ---
-title: "CyBRICS CTF 2019 Writeup"
+title: "CyBRICS CTF 2019 Writeup | フラxxグゲット"
 date: 2019-07-25T12:00:00+09:00
 lastmod: 2019-09-16T14:00:00+09:00
 draft: false
@@ -7,7 +7,7 @@ keywords: []
 description: ""
 tags: ["CTF"]
 categories: ["CTF"]
-author: "きゃぷあめ"
+author: ""
 ---
 URL: [https://cybrics.net/](https://cybrics.net/)
 <br /><br />

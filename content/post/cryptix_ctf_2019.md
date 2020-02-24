@@ -1,5 +1,5 @@
 ---
-title: "Cryptix CTF 2019 Writeup"
+title: "Cryptix CTF 2019 Writeup | フラxxグゲット"
 date: 2019-10-14T17:00:00+09:00
 lastmod: 2019-10-14T17:00:00+09:00
 draft: false
@@ -7,7 +7,7 @@ keywords: []
 description: ""
 tags: ["CTF"]
 categories: ["CTF"]
-author: "きゃぷあめ"
+author: ""
 ---
 URL: [https://cryptixctf.com/challenges](https://cryptixctf.com/challenges)
 <br /><br />

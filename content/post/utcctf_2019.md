@@ -1,14 +1,16 @@
 ---
-title: "UTC CTF Writeup"
+title: "UTC CTF Writeup | フラxxグゲット"
 date: 2019-12-22T19:20:00+09:00
-lastmod: 2019-12-22T19:20:00+09:00
+lastmod: 2019-12-23T19:20:00+09:00
 draft: false
 keywords: []
 description: ""
 tags: ["CTF", "Reviewed"]
 categories: ["CTF"]
-author: "きゃぷあめ"
+author: ""
 ---
+(2019/12/23 - 復習しました)
+
 URL: [https://utc-ctf.club/challenges](https://utc-ctf.club/challenges)
 <br /><br />
 以下、スコアです。
@@ -267,6 +269,18 @@ print ""
 ```
 <br />
 Flag: `utc{ay3_c@pt@1n_w3lc0me_t0_x0rriors}`
+
+
+<br /><br />
+<br /><br />
+(2020/02/23 - 追記)
+
+ワンライナーでもいけました。
+
+<pre>
+$ python -c 'import pwn;import base64;print(pwn.xor(base64.b64decode(open("ciphertext.txt").read()),"captain").decode("UTF-8"))'
+utc{ay3_c@pt@1n_w3lc0me_t0_x0rriors}
+</pre>
 
 
 

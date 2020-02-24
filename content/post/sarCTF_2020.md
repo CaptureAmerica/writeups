@@ -1,5 +1,5 @@
 ---
-title: "SarCTF by Saratov State University 2020 Writeup"
+title: "SarCTF by Saratov State University 2020 Writeup | フラxxグゲット"
 date: 2020-02-17T00:00:00+09:00
 lastmod: 2020-02-23T14:00:00+09:00
 draft: false
@@ -7,7 +7,7 @@ keywords: []
 description: ""
 tags: ["CTF", "Reviewed"]
 categories: ["CTF"]
-author: "きゃぷあめ"
+author: ""
 ---
 (2020/02/23 - 復習しました)
 

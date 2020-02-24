@@ -1,5 +1,5 @@
 ---
-title: "RITSEC CTF 2019 Writeup"
+title: "RITSEC CTF 2019 Writeup | フラxxグゲット"
 date: 2019-11-18T13:00:00+09:00
 lastmod: 2019-11-24T18:00:00+09:00
 draft: false
@@ -7,8 +7,10 @@ keywords: []
 description: ""
 tags: ["CTF", "Reviewed"]
 categories: ["CTF"]
-author: "きゃぷあめ"
+author: ""
 ---
+(2019/11/24 - 復習しました)
+
 URL: [https://ctf.ritsec.club/challenges](https://ctf.ritsec.club/challenges)
 <br /><br />
 

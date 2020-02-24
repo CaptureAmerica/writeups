@@ -1,5 +1,5 @@
 ---
-title: "NACTF 2019 Writeup"
+title: "NACTF 2019 Writeup | フラxxグゲット"
 date: 2019-09-23T07:00:00+09:00
 lastmod: 2019-09-23T07:00:00+09:00
 draft: false
@@ -7,7 +7,7 @@ keywords: []
 description: ""
 tags: ["CTF"]
 categories: ["CTF"]
-author: "きゃぷあめ"
+author: ""
 ---
 URL: [https://www.nactf.com/challenges](https://www.nactf.com/challenges)
 <br /><br />

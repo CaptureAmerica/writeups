@@ -1,5 +1,5 @@
 ---
-title: "DEF CON CTF 2019 Quals Writeup"
+title: "DEF CON CTF 2019 Quals Writeup | フラxxグゲット"
 date: 2019-05-11T00:00:00+08:00
 lastmod: 2019-05-25T14:05:00+08:00
 draft: false
@@ -7,7 +7,7 @@ keywords: []
 description: ""
 tags: ["CTF"]
 categories: ["CTF"]
-author: "きゃぷあめ"
+author: ""
 ---
 
 ## [Web]: cant_even_unplug_it

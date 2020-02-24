@@ -1,5 +1,5 @@
 ---
-title: "CSAW CTF'19 CTF Writeup"
+title: "CSAW CTF'19 CTF Writeup | フラxxグゲット"
 date: 2019-09-16T14:00:00+09:00
 lastmod: 2019-09-16T14:00:00+09:00
 draft: false
@@ -7,7 +7,7 @@ keywords: []
 description: ""
 tags: ["CTF"]
 categories: ["CTF"]
-author: "きゃぷあめ"
+author: ""
 ---
 URL: [https://ctf.csaw.io/challenges](https://ctf.csaw.io/challenges)
 <br /><br />

@@ -1,5 +1,5 @@
 ---
-title: "Insomnihack Writeup"
+title: "Insomnihack Writeup | フラxxグゲット"
 date: 2020-01-19T18:00:00+09:00
 lastmod: 2020-01-19T18:00:00+09:00
 draft: false
@@ -7,7 +7,7 @@ keywords: []
 description: ""
 tags: ["CTF"]
 categories: ["CTF"]
-author: "きゃぷあめ"
+author: ""
 ---
 URL: [https://teaser.insomnihack.ch/challenges/](https://teaser.insomnihack.ch/challenges/)
 <br /><br />

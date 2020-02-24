@@ -1,5 +1,5 @@
 ---
-title: "Rooters CTF 2019 Writeup"
+title: "Rooters CTF 2019 Writeup | フラxxグゲット"
 date: 2019-10-14T16:00:00+09:00
 lastmod: 2019-10-20T11:00:00+09:00
 draft: false
@@ -7,8 +7,10 @@ keywords: []
 description: ""
 tags: ["CTF", "Reviewed"]
 categories: ["CTF"]
-author: "きゃぷあめ"
+author: ""
 ---
+(2019/10/20 - 復習しました)
+
 URL: [https://rootersctf.in/](https://rootersctf.in/)
 <br /><br />
 picoCTF 2019の直後でほとんど時間がなかったですが、ちょっとだけやりました。

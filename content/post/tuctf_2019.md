@@ -1,5 +1,5 @@
 ---
-title: "TUCTF 2019 Writeup"
+title: "TUCTF 2019 Writeup | フラxxグゲット"
 date: 2019-12-03T13:00:00+09:00
 lastmod: 2019-12-25T16:00:00+09:00
 draft: false
@@ -7,8 +7,10 @@ keywords: []
 description: ""
 tags: ["CTF", "Reviewed"]
 categories: ["CTF"]
-author: "きゃぷあめ"
+author: ""
 ---
+(2019/12/25 - 復習しました)
+
 URL: [https://tuctf.com/](https://tuctf.com/)
 
 もうサイトにアクセスできないようなので、最終順位がわかりません。

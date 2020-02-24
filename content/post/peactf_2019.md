@@ -1,5 +1,5 @@
 ---
-title: "peactf 2019 Writeup"
+title: "peaCTF Round1 2019 Writeup | フラxxグゲット"
 date: 2019-08-01T19:00:00+09:00
 lastmod: 2019-09-15T19:00:00+09:00
 draft: false
@@ -7,7 +7,7 @@ keywords: []
 description: ""
 tags: ["CTF"]
 categories: ["CTF"]
-author: "きゃぷあめ"
+author: ""
 ---
 URL: [https://2019.peactf.com/problems](https://2019.peactf.com/problems)
 <br /><br />

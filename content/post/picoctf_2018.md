@@ -1,5 +1,5 @@
 ---
-title: "picoCTF 2018 Writeup"
+title: "picoCTF 2018 Writeup | フラxxグゲット"
 date: 2019-08-11T23:00:00+09:00
 lastmod: 2019-09-05T22:00:00+09:00
 draft: false
@@ -7,7 +7,7 @@ keywords: []
 description: ""
 tags: ["CTF"]
 categories: ["CTF"]
-author: "きゃぷあめ"
+author: ""
 ---
 URL: [https://2018game.picoctf.com/](https://2018game.picoctf.com/)
 <br /><br />

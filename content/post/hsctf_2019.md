@@ -1,5 +1,5 @@
 ---
-title: "HSCTF 6 Writeup"
+title: "HSCTF 6 Writeup | フラxxグゲット"
 date: 2019-06-08T00:00:00+08:00
 lastmod: 2020-01-19T18:00:00+09:00
 draft: false
@@ -7,8 +7,9 @@ keywords: []
 description: ""
 tags: ["CTF", "Reviewed"]
 categories: ["CTF"]
-author: "きゃぷあめ"
+author: ""
 ---
+(2020/01/19 - 復習しました)
 
 やり始めてから気づいたんですけど、HSってHigh Schoolerの略で、高校生用のCTFみたいですね。
 <br /><br />
@@ -241,7 +242,7 @@ int main(int argc, char **argv)
 ```
 strstr()をやる順番に注意。最初、"east"のチェックをアタマに入れていたら、"northeast"と"southeast"も持っていかれて違う答えになっちゃってました。。
 <br /><br />
-hsctf{garminesuckz}
+Flag: `hsctf{garminesuckz}`
 
 
 <br /><br />
@@ -423,7 +424,9 @@ m = pow(c,d,n)
 
 print(bytes.fromhex(format(m,'x')).decode('utf-8'))
 ```
-hsctf{y3s_rsa_1s_s0lved_10823704961253}
+
+<br>
+Flag: `hsctf{y3s_rsa_1s_s0lved_10823704961253}`
 
 
 <br /><br />
@@ -509,7 +512,8 @@ $ python
 </pre>
 フラグの先頭`hs`が見えましたね。残りも処理してフラグゲットです。
 <br /><br />
-hsctf{w0w_y0u_kn0w_d4_wA3_8h2bA029}
+
+Flag: `hsctf{w0w_y0u_kn0w_d4_wA3_8h2bA029}`
 
 
 <br /><br />
@@ -544,6 +548,8 @@ cat flag
 hsctf{fedex_dont_fail_me_now}
 </pre>
 
+<br>
+Flag: `hsctf{fedex_dont_fail_me_now}`
 
 
 <br /><br />
@@ -670,6 +676,10 @@ $ cat flag
 hsctf{wheeeeeee_that_was_fun}
 ```
 
+<br>
+Flag: `hsctf{wheeeeeee_that_was_fun}`
+
+
 
 <br /><br />
 <br /><br />
@@ -688,6 +698,9 @@ $ strings hsctf-chicken_crossing.jpg | grep hsctf
 hsctf{2_get_2_the_other_side}
 </pre>
 
+<br>
+Flag: `hsctf{2_get_2_the_other_side}`
+
 
 <br /><br />
 <br /><br />
@@ -705,6 +718,9 @@ Attachment:
 $ file cool.pdf
 cool.pdf: PNG image data, 1326 x 89, 8-bit/color RGBA, non-interlaced
 </pre>
+
+実は pdf じゃなくて png なので、開いて画像を確認するだけです。
+
 
 
 <br /><br />
@@ -749,6 +765,9 @@ Lorem ipsum （俗に言うダミーテキスト）だったので、うっか�
 Location Shown Country Name     : Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut la bore et dolore magna aliqua. Massa id neque aliquam vestibulum morbi blandit cursu `hsctf{twoslapsnonetforce}` s risus. Sed viverra ipsum nunc aliquet bibendum. Nisl purus in mollis nunc sed. Risus commodo viverra maecenas accumsan lacus vel facil...(snip)
 
 
+<br>
+Flag: `hsctf{twoslapsnonetforce}`
+
 
 <br /><br />
 <br /><br />
@@ -779,6 +798,8 @@ C:\ols\steghide>more flag.txt
 hsctf{fishy_fishy_fishy_fishy_fishy_fishy_fishy123123123123}
 </pre>
 
+<br>
+Flag: `hsctf{fishy_fishy_fishy_fishy_fishy_fishy_fishy123123123123}`
 
 
 <br /><br />
@@ -839,6 +860,8 @@ $ wget -O - https://agent-keith.web.chal.hsctf.com/ --user-agent="NCSA_Mosaic/2.
 hsctf{wow_you_are_agent_keith_now}
 </pre>
 
+<br>
+Flag: `hsctf{wow_you_are_agent_keith_now}`
 
 
 <br /><br />
@@ -934,6 +957,8 @@ mongodbには、`Robo 3T`というツールを使いました。
 <br />
 <img src="https://captureamerica.github.io/writeups/img/Keith_Bot_Mongo.png" alt="Keith_Bot_Mongo.png">
 
+<br>
+Flag: `hsctf{watch_out_for_keyloggers}`
 
 
 <br /><br />
@@ -973,6 +998,9 @@ ChromeのDeveloper ToolsでまずBeautifyして、mをWatchに追加して実行
 
 im gonna add some filler text here so the page is a bit longer. lorem ipsum... here's the flag btw, flag{accessibility_is_crucial}
 
+
+<br>
+Flag: `flag{accessibility_is_crucial}`
 
 
 <br /><br />

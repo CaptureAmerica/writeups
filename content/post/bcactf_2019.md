@@ -1,5 +1,5 @@
 ---
-title: "BCACTF Writeup"
+title: "BCACTF Writeup | フラxxグゲット"
 date: 2019-06-16T13:00:00+09:00
 lastmod: 2019-09-23T09:00:00+09:00
 draft: false
@@ -7,8 +7,10 @@ keywords: []
 description: ""
 tags: ["CTF", "Reviewed"]
 categories: ["CTF"]
-author: "きゃぷあめ"
+author: ""
 ---
+(2019/09/23 - 復習しました)
+
 URL: [https://www.bcactf.com/](https://www.bcactf.com/)
 <br /><br />
 前回のHSCTFに続き、これも学生さん用のCTFでした。

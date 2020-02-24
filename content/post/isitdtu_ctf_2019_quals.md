@@ -1,5 +1,5 @@
 ---
-title: "ISITDTU 2019 quals Writeup"
+title: "ISITDTU 2019 quals Writeup | フラxxグゲット"
 date: 2019-07-01T13:21:40+09:00
 lastmod: 2019-07-01T13:21:40+09:00
 draft: false
@@ -7,7 +7,7 @@ keywords: []
 description: ""
 tags: ["CTF"]
 categories: ["CTF"]
-author: "きゃぷあめ"
+author: ""
 ---
 URL: [https://ctf.isitdtu.com/](https://ctf.isitdtu.com/)
 <br /><br />

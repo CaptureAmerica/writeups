@@ -1,5 +1,5 @@
 ---
-title: "The Honeynet Project: Innsbruck Workshop CTF Writeup"
+title: "The Honeynet Project: Innsbruck Workshop CTF Writeup | フラxxグゲット"
 date: 2019-06-03T00:00:00+08:00
 lastmod: 2019-06-03T07:33:00+08:00
 draft: false
@@ -7,7 +7,7 @@ keywords: []
 description: ""
 tags: ["CTF"]
 categories: ["CTF"]
-author: "きゃぷあめ"
+author: ""
 ---
 
 [https://www.reddit.com/r/netsec/new/](https://www.reddit.com/r/netsec/new/)を見ていたら、たまたまCTFを見つけたのでやってみました。

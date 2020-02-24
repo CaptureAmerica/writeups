@@ -1,5 +1,5 @@
 ---
-title: "hack.lu CTF 2019 Writeup"
+title: "hack.lu CTF 2019 Writeup | フラxxグゲット"
 date: 2019-10-26T05:00:00+09:00
 lastmod: 2019-10-26T05:00:00+09:00
 draft: false
@@ -7,7 +7,7 @@ keywords: []
 description: ""
 tags: ["CTF"]
 categories: ["CTF"]
-author: "きゃぷあめ"
+author: ""
 ---
 URL: [https://fluxfingersforfuture.fluxfingers.net/challenges/](https://fluxfingersforfuture.fluxfingers.net/challenges/)
 <br /><br />

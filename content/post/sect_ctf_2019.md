@@ -1,5 +1,5 @@
 ---
-title: "SEC-T CTF 2019 Writeup"
+title: "SEC-T CTF 2019 Writeup | フラxxグゲット"
 date: 2019-09-22T03:00:00+09:00
 lastmod: 2019-09-22T03:00:00+09:00
 draft: false
@@ -7,7 +7,7 @@ keywords: []
 description: ""
 tags: ["CTF"]
 categories: ["CTF"]
-author: "きゃぷあめ"
+author: ""
 ---
 URL: [https://sect.ctf.rocks/](https://sect.ctf.rocks/)
 <br /><br />

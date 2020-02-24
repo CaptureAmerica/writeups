@@ -1,5 +1,5 @@
 ---
-title: "RedpwnCTF 2019 Writeup"
+title: "RedpwnCTF 2019 Writeup | フラxxグゲット"
 date: 2019-08-17T10:00:00+09:00
 lastmod: 2019-08-17T10:00:00+09:00
 draft: false
@@ -7,7 +7,7 @@ keywords: []
 description: ""
 tags: ["CTF"]
 categories: ["CTF"]
-author: "きゃぷあめ"
+author: ""
 ---
 URL: [https://ctf.redpwn.net/](https://ctf.redpwn.net/)
 <br /><br />

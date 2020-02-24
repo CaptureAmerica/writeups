@@ -1,5 +1,5 @@
 ---
-title: "Codefest'19 CTF Writeup"
+title: "Codefest'19 CTF Writeup | フラxxグゲット"
 date: 2019-08-25T15:00:00+09:00
 lastmod: 2019-08-29T23:00:00+09:00
 draft: false
@@ -7,8 +7,10 @@ keywords: []
 description: ""
 tags: ["CTF", "Reviewed"]
 categories: ["CTF"]
-author: "きゃぷあめ"
+author: ""
 ---
+(2019/08/29 - 復習しました)
+
 URL: [https://www.hackerrank.com/codefest19-ctf](https://www.hackerrank.com/codefest19-ctf)
 <br /><br />
 問題数は10問（WelcomeとSurveyを除く）あって、そのうちの1問（Mail capture）は添付ファイルにフラグがそのまま入っているという（おそらく）手違いがあり、実質9問だけでした。

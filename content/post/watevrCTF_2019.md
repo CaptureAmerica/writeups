@@ -1,5 +1,5 @@
 ---
-title: "watevrCTF Writeup"
+title: "watevrCTF Writeup | フラxxグゲット"
 date: 2019-12-15T14:00:00+09:00
 lastmod: 2019-12-15T14:00:00+09:00
 draft: false
@@ -7,7 +7,7 @@ keywords: []
 description: ""
 tags: ["CTF"]
 categories: ["CTF"]
-author: "きゃぷあめ"
+author: ""
 ---
 URL: [https://ctf.watevr.xyz/challenges](https://ctf.watevr.xyz/challenges)
 <br /><br />

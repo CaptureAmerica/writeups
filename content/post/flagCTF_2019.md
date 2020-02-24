@@ -1,5 +1,5 @@
 ---
-title: "flagCTF Writeup"
+title: "flagCTF Writeup | フラxxグゲット"
 date: 2019-06-16T10:00:00+09:00
 lastmod: 2019-06-16T10:00:00+09:00
 draft: false
@@ -7,7 +7,7 @@ keywords: []
 description: ""
 tags: ["CTF"]
 categories: ["CTF"]
-author: "きゃぷあめ"
+author: ""
 ---
 URL: [http://flagctf.com/](http://flagctf.com/)
 <br /><br />

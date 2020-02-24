@@ -1,5 +1,5 @@
 ---
-title: "picoCTF 2019 Writeup (Binary Exploitation)"
+title: "picoCTF 2019 Writeup (Binary Exploitation) | フラxxグゲット"
 date: 2019-10-12T07:45:00+09:00
 lastmod: 2019-10-13T10:30:00+09:00
 draft: false
@@ -7,7 +7,7 @@ keywords: []
 description: ""
 tags: ["CTF"]
 categories: ["CTF"]
-author: "きゃぷあめ"
+author: ""
 ---
 URL: [https://2019game.picoctf.com/](https://2019game.picoctf.com/)
 <br /><br />

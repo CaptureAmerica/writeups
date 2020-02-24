@@ -1,5 +1,5 @@
 ---
-title: "Trendmicro CTF 2019 Quals Writeup"
+title: "Trendmicro CTF 2019 Quals Writeup | フラxxグゲット"
 date: 2020-01-25T17:00:00+09:00
 lastmod: 2020-01-25T17:00:00+09:00
 draft: false
@@ -7,8 +7,10 @@ keywords: []
 description: ""
 tags: ["CTF", "Reviewed"]
 categories: ["CTF"]
-author: "きゃぷあめ"
+author: ""
 ---
+(2020/01/25 - 復習しました)
+
 URL: [https://www.trendmicro.com/ja_jp/campaigns/capture-the-flag.html](https://www.trendmicro.com/ja_jp/campaigns/capture-the-flag.html)
 <br /><br />
 2019年9月のアタマ辺りにやってたCTFです。ファイルだけダウンロードして、その後スルーしたやつなんですが、後日（2020/01/25）１個だけですが復習しました。

@@ -1,5 +1,5 @@
 ---
-title: "HackCon'19 Writeup"
+title: "HackCon'19 Writeup | フラxxグゲット"
 date: 2019-08-25T10:00:00+09:00
 lastmod: 2019-11-04T19:00:00+09:00
 draft: false
@@ -7,15 +7,15 @@ keywords: []
 description: ""
 tags: ["CTF", "Reviewed"]
 categories: ["CTF"]
-author: "きゃぷあめ"
+author: ""
 ---
+(2019/11/04 - 復習しました)
+
 URL: [https://hackcon.online/](https://hackcon.online/)
 <br /><br />
 平日に開催されたので、早起き（朝4時）してちょっとやりました。
 <br /><br />
 結局、あんまり時間も取れなかったし、1問だけ解いて終了〜。
-<br /><br />
-いくつか気になる問題もあるので、Writeup見て勉強しておきます。
 
 
 <br /><br />
