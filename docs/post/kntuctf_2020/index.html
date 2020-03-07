@@ -1,0 +1,863 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>KNTU CTF Writeup | フラxxグゲット - CTF フラxxグゲット</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="CaptureAmerica @ CTF フラxxグゲット" /><meta name="description" content="URL: http://kntuctf.ir/#/challenges Registrationをした後に気づいたんですが、開催が日本時間の朝1時から5時までの4時間とか。。 せっかくなので、参加しましたけど、" /><meta name="keywords" content="CTF, Writeup, captureamerica, picoCTF" />
+
+
+
+<meta name="google-site-verification" content="PqctLWZQttGzxXVupWuIt2HWuBI8cvN1z07ETpxA2dw" />
+
+
+<meta name="generator" content="Hugo 0.59.1 with theme even" />
+
+
+<link rel="canonical" href="https://captureamerica.github.io/writeups/post/kntuctf_2020/" />
+<link rel="apple-touch-icon" sizes="180x180" href="https://captureamerica.github.io/writeups/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://captureamerica.github.io/writeups/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://captureamerica.github.io/writeups/favicon-16x16.png">
+<link rel="manifest" href="https://captureamerica.github.io/writeups/manifest.json">
+<link rel="mask-icon" href="https://captureamerica.github.io/writeups/safari-pinned-tab.svg" color="#5bbad5">
+
+
+<link href="https://captureamerica.github.io/writeups/dist/even.c2a46f00.min.css" rel="stylesheet">
+
+
+
+<meta property="og:title" content="KNTU CTF Writeup | フラxxグゲット" />
+<meta property="og:description" content="URL: http://kntuctf.ir/#/challenges Registrationをした後に気づいたんですが、開催が日本時間の朝1時から5時までの4時間とか。。 せっかくなので、参加しましたけど、" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://captureamerica.github.io/writeups/post/kntuctf_2020/" />
+<meta property="article:published_time" content="2020-03-07T16:30:00+09:00" />
+<meta property="article:modified_time" content="2020-03-07T16:30:00+09:00" />
+<meta itemprop="name" content="KNTU CTF Writeup | フラxxグゲット">
+<meta itemprop="description" content="URL: http://kntuctf.ir/#/challenges Registrationをした後に気づいたんですが、開催が日本時間の朝1時から5時までの4時間とか。。 せっかくなので、参加しましたけど、">
+
+
+<meta itemprop="datePublished" content="2020-03-07T16:30:00&#43;09:00" />
+<meta itemprop="dateModified" content="2020-03-07T16:30:00&#43;09:00" />
+<meta itemprop="wordCount" content="1452">
+
+
+
+<meta itemprop="keywords" content="CTF," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="KNTU CTF Writeup | フラxxグゲット"/>
+<meta name="twitter:description" content="URL: http://kntuctf.ir/#/challenges Registrationをした後に気づいたんですが、開催が日本時間の朝1時から5時までの4時間とか。。 せっかくなので、参加しましたけど、"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="https://captureamerica.github.io/writeups/" class="logo">CTF Writeups</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="https://captureamerica.github.io/writeups/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="https://captureamerica.github.io/writeups/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="https://captureamerica.github.io/writeups/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="https://captureamerica.github.io/writeups/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a><a href="https://captureamerica.github.io/writeups/about/">
+        <li class="mobile-menu-item">About</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="https://captureamerica.github.io/writeups/" class="logo">CTF Writeups</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="https://captureamerica.github.io/writeups/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="https://captureamerica.github.io/writeups/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="https://captureamerica.github.io/writeups/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="https://captureamerica.github.io/writeups/categories/">Categories</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="https://captureamerica.github.io/writeups/about/">About</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">KNTU CTF Writeup | フラxxグゲット</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2020-03-07 </span>
+        <div class="post-category">
+            <a href="https://captureamerica.github.io/writeups/categories/ctf/"> CTF </a>
+            </div>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contents</h2>
+  <div class="post-toc-content">
+    <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#misc-1-findme-35">[Misc]: 1 | FINDME (35)</a>
+<ul>
+<li><a href="#challenge">Challenge</a></li>
+<li><a href="#solution">Solution</a></li>
+</ul></li>
+<li><a href="#web-2-dracula-40">[Web]: 2 | Dracula (40)</a>
+<ul>
+<li><a href="#challenge-1">Challenge</a></li>
+<li><a href="#solution-1">Solution</a></li>
+</ul></li>
+<li><a href="#reverse-3-gpanel-50">[Reverse]: 3 | GPanel (50)</a>
+<ul>
+<li><a href="#challenge-2">Challenge</a></li>
+<li><a href="#unsolved">(Unsolved)</a></li>
+</ul></li>
+<li><a href="#web-4-mississippi-has-four-ss-55">[Web?]: 4 | Mississippi Has Four Ss (55)</a>
+<ul>
+<li><a href="#challenge-3">Challenge</a></li>
+<li><a href="#unsolved-1">(Unsolved)</a></li>
+</ul></li>
+<li><a href="#stego-5-girl-with-pearl-earring-60">[Stego]: 5 | Girl With Pearl Earring (60)</a>
+<ul>
+<li><a href="#challenge-4">Challenge</a></li>
+<li><a href="#unsolved-2">(Unsolved)</a></li>
+</ul></li>
+<li><a href="#crypto-6-caesar-salad-with-balsamic-vinegar-65">[Crypto]: 6 | Caesar Salad with Balsamic Vinegar (65)</a>
+<ul>
+<li><a href="#challenge-5">Challenge</a></li>
+<li><a href="#unsolved-3">(Unsolved)</a></li>
+</ul></li>
+<li><a href="#pwn-7-csafe-70">[Pwn?]: 7 | CSafe (70)</a>
+<ul>
+<li><a href="#challenge-6">Challenge</a></li>
+<li><a href="#unsolved-4">(Unsolved)</a></li>
+</ul></li>
+<li><a href="#web-8-ffsdojs-75">[Web]: 8 | FFSdoJS (75)</a>
+<ul>
+<li><a href="#challenge-7">Challenge</a></li>
+<li><a href="#unsolved-5">(Unsolved)</a></li>
+</ul></li>
+</ul></li>
+</ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      
+
+<p>URL: <a href="http://kntuctf.ir/#/challenges">http://kntuctf.ir/#/challenges</a>
+<br /><br />
+Registrationをした後に気づいたんですが、開催が日本時間の朝1時から5時までの4時間とか。。</p>
+
+<p>せっかくなので、参加しましたけど、8問中2問解いただけです。</p>
+
+<p>順位は21番ですが、32番以降のチームはみんな0点なので、参加者はかなり少なかったようですね。</p>
+
+<p>以下、スコアです。それぞれのチャレンジを、どれくらいの時間で解いたのかが表示されてます。
+<br /><br /></p>
+
+<dl>
+<dt><img src="https://captureamerica.github.io/writeups/img/knutctf_2020_Score1.png" alt="knutctf_2020_Score1.png"></dt>
+</dl>
+
+<p>:</p>
+
+<p><img src="https://captureamerica.github.io/writeups/img/knutctf_2020_Score2.png" alt="knutctf_2020_Score2.png"></p>
+
+<p><br /><br /></p>
+
+<h2 id="misc-1-findme-35">[Misc]: 1 | FINDME (35)</h2>
+
+<hr />
+
+<h3 id="challenge">Challenge</h3>
+
+<blockquote>
+<p>easy warm up, search for the flag !</p>
+</blockquote>
+
+<p>Attachment:</p>
+
+<ul>
+<li>大量のファイルが入ったZipファイル</li>
+</ul>
+
+<p><br /></p>
+
+<h3 id="solution">Solution</h3>
+
+<pre>
+captureamerica@kali:~/Downloads$ grep -r CTF .
+./files/file15/file15/file5/flag.txt:CTF{thisIsNotTheFlag]
+./files/file15/file15/file10/flag.txt:CTF{thisIsNotTheFlag]
+./files/file15/file15/file15/flag.txt:CTF{thisIsNotTheFlag]
+
+captureamerica@kali:~/Downloads$ grep -r CTF . | grep -v thisIsNot
+./files/file12/file7/file14/flag.txt:CTF{this1sN0tTheFlag}
+</pre>
+
+<p>一瞬、Fakeフラグかと思いましたけど、Submitしたら通りました。</p>
+
+<p><br />
+Flag: <code>CTF{this1sN0tTheFlag}</code></p>
+
+<p><br /><br />
+<br /><br /></p>
+
+<h2 id="web-2-dracula-40">[Web]: 2 | Dracula (40)</h2>
+
+<hr />
+
+<h3 id="challenge-1">Challenge</h3>
+
+<blockquote>
+<p>Look What I&rsquo;ve found, 90s website Made By a Noob Dracula :)</p>
+</blockquote>
+
+<ul>
+<li><a href="http://kntuctf.ir/qqualss/Dracula/">http://kntuctf.ir/qqualss/Dracula/</a></li>
+</ul>
+
+<p><br /></p>
+
+<h3 id="solution-1">Solution</h3>
+
+<p>html sourceを見ると、st_234g()関数を呼んでいる箇所が見つかります。</p>
+
+<p>st_234g()関数は index.js の中で定義されていて、Developer tool で beautify すると、以下のような感じです。難読化されています。</p>
+
+<p><img src="https://captureamerica.github.io/writeups/img/knutctf_2020_indexjs.png" alt="knutctf_2020_indexjs.png"></p>
+
+<p><br />
+ファイルをローカルに保存し、以下のように html 本体からalert()を直に呼ぶようにしました。（真ん中辺りのやつ）</p>
+
+<p>3つ目のalertでフラグが表示されます。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-html" data-lang="html"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">html</span> <span class="na">lang</span><span class="o">=</span><span class="s">&#34;en&#34;</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">charset</span><span class="o">=</span><span class="s">&#34;UTF-8&#34;</span> <span class="p">/&gt;</span>
+    <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">name</span><span class="o">=</span><span class="s">&#34;viewport&#34;</span> <span class="na">content</span><span class="o">=</span><span class="s">&#34;width=device-width, initial-scale=1.0&#34;</span> <span class="p">/&gt;</span>
+    <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">http-equiv</span><span class="o">=</span><span class="s">&#34;X-UA-Compatible&#34;</span> <span class="na">content</span><span class="o">=</span><span class="s">&#34;ie=edge&#34;</span> <span class="p">/&gt;</span>
+    <span class="p">&lt;</span><span class="nt">link</span> <span class="na">rel</span><span class="o">=</span><span class="s">&#34;stylesheet&#34;</span> <span class="na">href</span><span class="o">=</span><span class="s">&#34;./index.css&#34;</span> <span class="p">/&gt;</span>
+    <span class="p">&lt;</span><span class="nt">title</span><span class="p">&gt;</span>Dracula<span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">header</span><span class="p">&gt;&lt;</span><span class="nt">p</span><span class="p">&gt;</span>made by a noob :(<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;&lt;/</span><span class="nt">header</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&#34;./index.js&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+
+    ここを追加。
+    <span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span>
+    <span class="nx">alert</span><span class="p">(</span><span class="nx">_0x5cc5</span><span class="p">[</span><span class="mh">0x9</span><span class="p">]);</span>
+    <span class="nx">alert</span><span class="p">(</span><span class="nx">_0x5cc5</span><span class="p">[</span><span class="mh">0xa</span><span class="p">]);</span>
+    <span class="nx">alert</span><span class="p">(</span><span class="nx">_234g</span><span class="p">);</span>
+    <span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+    
+    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;head&#34;</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>RIP de_cbble<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;inside&#34;</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">input</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;CTFinput&#34;</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;text&#34;</span> <span class="na">placeholder</span><span class="o">=</span><span class="s">&#34;Password&#34;</span> <span class="p">/&gt;</span>
+        <span class="p">&lt;</span><span class="nt">button</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;submit&#34;</span> <span class="na">onclick</span><span class="o">=</span><span class="s">&#34;st_234g&#34;</span><span class="p">&gt;</span>CTFcode<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+      <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;bottom&#34;</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">button</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;submit&#34;</span> <span class="na">onclick</span><span class="o">=</span><span class="s">&#34;__s32f()&#34;</span><span class="p">&gt;</span>Password<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">img</span> <span class="na">src</span><span class="o">=</span><span class="s">&#34;./assets/90369.png&#34;</span> <span class="na">alt</span><span class="o">=</span><span class="s">&#34;&#34;</span> <span class="p">/&gt;</span>
+      <span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;pass&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span></code></pre></td></tr></table>
+</div>
+</div>
+<p><br />
+Flag: <code>CTF{EZPZlemonSQZ}</code></p>
+
+<p><br /><br />
+<br /><br />
+さて、ここから下の残りの6個は、解けなくて諦めて寝たやつです。</p>
+
+<h2 id="reverse-3-gpanel-50">[Reverse]: 3 | GPanel (50)</h2>
+
+<hr />
+
+<h3 id="challenge-2">Challenge</h3>
+
+<blockquote>
+<p>GPannel has been hacked and the hacker made it inaccessible, the flag is still there&hellip;</p>
+</blockquote>
+
+<p>Attachment:</p>
+
+<ul>
+<li>gpanel (ELF 64bit)</li>
+</ul>
+
+<p><br /></p>
+
+<h3 id="unsolved">(Unsolved)</h3>
+
+<p>Ghidraでソースを確認します。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-C" data-lang="C"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-C" data-lang="C"><span class="n">undefined8</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">param_1</span><span class="p">,</span><span class="n">undefined8</span> <span class="o">*</span><span class="n">param_2</span><span class="p">)</span>
+
+<span class="p">{</span>
+  <span class="kt">int</span> <span class="n">iVar1</span><span class="p">;</span>
+  <span class="n">undefined8</span> <span class="n">uVar2</span><span class="p">;</span>
+  <span class="n">size_t</span> <span class="n">sVar3</span><span class="p">;</span>
+  <span class="kt">char</span> <span class="o">*</span><span class="n">__dest</span><span class="p">;</span>
+  <span class="kt">long</span> <span class="n">in_FS_OFFSET</span><span class="p">;</span>
+  <span class="kt">char</span> <span class="n">local_98</span> <span class="p">[</span><span class="mi">136</span><span class="p">];</span>
+  <span class="kt">long</span> <span class="n">local_10</span><span class="p">;</span>
+  
+  <span class="n">local_10</span> <span class="o">=</span> <span class="o">*</span><span class="p">(</span><span class="kt">long</span> <span class="o">*</span><span class="p">)(</span><span class="n">in_FS_OFFSET</span> <span class="o">+</span> <span class="mh">0x28</span><span class="p">);</span>
+  <span class="n">text_animation</span><span class="p">(</span>
+                <span class="s">&#34;/===========================================================================</span><span class="se">\\\n</span><span class="s">|                             W3lc0m3 t0 GP@n3l                            |</span><span class="se">\n</span><span class="s">|                              H@ked By _($&amp;&amp;@                            |</span><span class="se">\n</span><span class="s">+===========================================================================+</span><span class="se">\n</span><span class="s">&#34;</span>
+                <span class="p">);</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">param_1</span> <span class="o">==</span> <span class="mi">3</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">text_animation</span><span class="p">(</span><span class="s">&#34; ~&gt; Verifying.&#34;</span><span class="p">);</span>
+    <span class="n">verify_animation</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span>
+    <span class="n">iVar1</span> <span class="o">=</span> <span class="n">strcmp</span><span class="p">((</span><span class="kt">char</span> <span class="o">*</span><span class="p">)</span><span class="n">param_2</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="s">&#34;BaD_gUy&#34;</span><span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">iVar1</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+      <span class="n">sVar3</span> <span class="o">=</span> <span class="n">strlen</span><span class="p">((</span><span class="kt">char</span> <span class="o">*</span><span class="p">)</span><span class="n">param_2</span><span class="p">[</span><span class="mi">2</span><span class="p">]);</span>
+      <span class="n">__dest</span> <span class="o">=</span> <span class="p">(</span><span class="kt">char</span> <span class="o">*</span><span class="p">)</span><span class="n">malloc</span><span class="p">(</span><span class="n">sVar3</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>
+      <span class="n">strcpy</span><span class="p">(</span><span class="n">__dest</span><span class="p">,(</span><span class="kt">char</span> <span class="o">*</span><span class="p">)</span><span class="n">param_2</span><span class="p">[</span><span class="mi">2</span><span class="p">]);</span>
+      <span class="n">verify_animation</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span>
+      <span class="n">iVar1</span> <span class="o">=</span> <span class="n">strcmp</span><span class="p">(</span><span class="n">__dest</span><span class="p">,</span><span class="s">&#34;evvxhonx0fuc&#34;</span><span class="p">);</span>
+      <span class="k">if</span> <span class="p">(</span><span class="n">iVar1</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">text_animation</span><span class="p">(</span><span class="s">&#34;Correct!</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+        <span class="n">text_animation</span><span class="p">(</span><span class="s">&#34;Welcome back!</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+        <span class="n">snprintf</span><span class="p">(</span><span class="n">local_98</span><span class="p">,</span><span class="mh">0x80</span><span class="p">,</span><span class="s">&#34;CTF{%s}</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span><span class="n">param_2</span><span class="p">[</span><span class="mi">2</span><span class="p">]);</span>
+        <span class="n">text_animation</span><span class="p">(</span><span class="n">local_98</span><span class="p">);</span>
+        <span class="n">text_animation</span><span class="p">(</span><span class="s">&#34;ENCRYPT3D WITH LOVE &lt;3 </span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+      <span class="p">}</span>
+      <span class="k">else</span> <span class="p">{</span>
+        <span class="n">text_animation</span><span class="p">(</span><span class="o">&amp;</span><span class="n">DAT_00102598</span><span class="p">);</span>
+        <span class="n">text_animation</span><span class="p">(</span><span class="s">&#34;ACCESS DENIED</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+        <span class="n">text_animation</span><span class="p">(</span><span class="s">&#34; ~&gt; Incorrect password</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+      <span class="p">}</span>
+      <span class="n">uVar2</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">else</span> <span class="p">{</span>
+      <span class="n">text_animation</span><span class="p">(</span><span class="s">&#34;</span><span class="se">\n</span><span class="s">Title: </span><span class="se">\n</span><span class="s">A Discovrse of Fire and Salt (A Discourse of Fire and Salt)&#34;</span><span class="p">);</span>
+      <span class="n">text_animation</span><span class="p">(</span><span class="o">&amp;</span><span class="n">DAT_00102220</span><span class="p">);</span>
+      <span class="n">putchar</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span>
+      <span class="n">text_animation</span><span class="p">(</span><span class="s">&#34;ACCESS DENIED</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+      <span class="n">text_animation</span><span class="p">(</span><span class="s">&#34; ~&gt; Incorrect username</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+      <span class="n">uVar2</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+  <span class="k">else</span> <span class="p">{</span>
+    <span class="n">puts</span><span class="p">(</span><span class="s">&#34;[ERROR] Login information missing&#34;</span><span class="p">);</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">&#34;Usage: %s &lt;username&gt; &lt;password&gt;</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span><span class="o">*</span><span class="n">param_2</span><span class="p">);</span>
+    <span class="n">uVar2</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">local_10</span> <span class="o">!=</span> <span class="o">*</span><span class="p">(</span><span class="kt">long</span> <span class="o">*</span><span class="p">)(</span><span class="n">in_FS_OFFSET</span> <span class="o">+</span> <span class="mh">0x28</span><span class="p">))</span> <span class="p">{</span>
+                    <span class="cm">/* WARNING: Subroutine does not return */</span>
+    <span class="n">__stack_chk_fail</span><span class="p">();</span>
+  <span class="p">}</span>
+  <span class="k">return</span> <span class="n">uVar2</span><span class="p">;</span>
+<span class="p">}</span></code></pre></td></tr></table>
+</div>
+</div>
+<p><br /></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">captureamerica@kali:~/Downloads$ ./gpanel BaD_gUy evvxhonx0fuc
+/===========================================================================\
+|                              W3lc0m3 t0 GP@n3l                            |
+|                               H@ked By _($&amp;&amp;@                             |
++===========================================================================+
+ ~&gt; Verifying.......Correct!
+Welcome back!
+CTF{evvxhonx0fuc}
+ENCRYPT3D WITH LOVE &lt;3 </pre></td></tr></table>
+</div>
+</div>
+<p><br />
+なんかまだencryptされていてるらしく、<code>CTF{evvxhonx0fuc}</code>は通りませんでした。。</p>
+
+<p><br /><br />
+<br /><br /></p>
+
+<h2 id="web-4-mississippi-has-four-ss-55">[Web?]: 4 | Mississippi Has Four Ss (55)</h2>
+
+<hr />
+
+<h3 id="challenge-3">Challenge</h3>
+
+<blockquote>
+<p>I&rsquo;ve always hated the word MISSISSIPI from Dictation to Discrete Mathematics ! Why four Ss ?!</p>
+</blockquote>
+
+<p><a href="http://kntuctf.ir/qqualss/MissisippiHasFourSs/">http://kntuctf.ir/qqualss/MissisippiHasFourSs/</a></p>
+
+<p><br /></p>
+
+<h3 id="unsolved-1">(Unsolved)</h3>
+
+<p>ちょっとググったら、Permutationとかの数学の話が出てきて眠くなりました。</p>
+
+<p><br /><br />
+<br /><br /></p>
+
+<h2 id="stego-5-girl-with-pearl-earring-60">[Stego]: 5 | Girl With Pearl Earring (60)</h2>
+
+<hr />
+
+<h3 id="challenge-4">Challenge</h3>
+
+<blockquote>
+<p>What is this ^_^ , 1010110.png looks suspicious&hellip; Dive in and take a look?</p>
+</blockquote>
+
+<p>Attachment:</p>
+
+<ul>
+<li>^_^（中身は^が一文字入っているだけ）</li>
+<li>1010110.jpg</li>
+</ul>
+
+<p><br /></p>
+
+<h3 id="unsolved-2">(Unsolved)</h3>
+
+<p>「青い空を見上げればいつもそこに白い猫」で開いて、いろいろ見てると以下のように0と1が浮かんできます。</p>
+
+<p><img src="https://captureamerica.github.io/writeups/img/knutctf_2020_1010110.png" alt="knutctf_2020_1010110.png"></p>
+
+<p>これをOCRみたいので読み取るんだろうか？ でも、いまいちはっきり見えないし、&rdquo;^&ldquo;と言っているのでXORをして解かないといけないんでしょうね。</p>
+
+<p><br /><br />
+<br /><br /></p>
+
+<h2 id="crypto-6-caesar-salad-with-balsamic-vinegar-65">[Crypto]: 6 | Caesar Salad with Balsamic Vinegar (65)</h2>
+
+<hr />
+
+<h3 id="challenge-5">Challenge</h3>
+
+<blockquote>
+<p>How to make perfect Caesar Salad with Balsamic Vinegar ? first mix all of the ingredients&hellip;
+<br /><br />
+Hint: ADD ALL OF THE INGREDIENTS
+<br />
+Hint: DON&rsquo;T FORGET TO USE PEPPER</p>
+</blockquote>
+
+<p>Attachment:</p>
+
+<ul>
+<li>1.txt</li>
+</ul>
+
+<pre>
+'3',
+'c',
+'9',
+'a',
+'6',
+'17',
+'17',
+'15',
+'4',
+'4',
+'18',
+'9',
+'11',
+'e',
+'3',
+'c',
+'12',
+'4',
+'e',
+'7',
+'f',
+'9',
+'13',
+'1',
+'1e',
+'9' 
+</pre>
+
+<ul>
+<li>2.txt</li>
+</ul>
+
+<pre>
+'c',
+'18',
+'1a',
+'1',
+'13',
+'6',
+'7',
+'f',
+'9',
+'b',
+'e',
+'c',
+'1b',
+'1e',
+'5',
+'1c',
+'11',
+'4',
+'8',
+'1d',
+'11',
+'10',
+'5',
+'16',
+'4',
+'2' 
+</pre>
+
+<ul>
+<li>3.txt</li>
+</ul>
+
+<pre>
+'3c',
+'34',
+'2a',
+'36',
+'3f',
+'25',
+'2b',
+'27',
+'3f',
+'35',
+'20',
+'3c',
+'21',
+'1f',
+'45',
+'32',
+'1f',
+'4e',
+'3b',
+'24',
+'2d',
+'28',
+'40',
+'3f',
+'27',
+'36'
+</pre>
+
+<p><br /></p>
+
+<h3 id="unsolved-3">(Unsolved)</h3>
+
+<p>ヒントに従って、数字をそれぞれ足して、<code>PEPPER</code>をKeyに Vigenèreデコードするだけなのかなって思ったけど、ダメでした。</p>
+
+<p><br /><br />
+<br /><br /></p>
+
+<h2 id="pwn-7-csafe-70">[Pwn?]: 7 | CSafe (70)</h2>
+
+<hr />
+
+<h3 id="challenge-6">Challenge</h3>
+
+<blockquote>
+<p>The Flag has been Saved On CSafe. I wanted to give it to you, but you know, I forgot my username and password T_T.</p>
+</blockquote>
+
+<p>Attachment:</p>
+
+<ul>
+<li>gate.c</li>
+<li>vault.o</li>
+<li>vault.h</li>
+</ul>
+
+<p><br /></p>
+
+<h3 id="unsolved-4">(Unsolved)</h3>
+
+<p>これは、見てないです。</p>
+
+<p><br /><br />
+<br /><br /></p>
+
+<h2 id="web-8-ffsdojs-75">[Web]: 8 | FFSdoJS (75)</h2>
+
+<hr />
+
+<h3 id="challenge-7">Challenge</h3>
+
+<blockquote>
+<p>Guess the Flag, and use our CTF Flag Checker&hellip;</p>
+</blockquote>
+
+<p><a href="http://kntuctf.ir/qqualss/FFSdoJS/">http://kntuctf.ir/qqualss/FFSdoJS/</a></p>
+
+<p><br /></p>
+
+<h3 id="unsolved-5">(Unsolved)</h3>
+
+<p>これも、見てないです。</p>
+
+<p><br /><br />
+<br /><br /></p>
+
+<hr />
+
+<p><br /><br />
+<br /><br /></p>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content">CaptureAmerica @ CTF フラxxグゲット</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">
+        2020-03-07
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="https://captureamerica.github.io/writeups/tags/ctf/">CTF</a>
+          </div>
+      <nav class="post-nav">
+        
+        <a class="next" href="https://captureamerica.github.io/writeups/post/sarctf_2020/">
+            <span class="next-text nav-default">SarCTF by Saratov State University 2020 Writeup | フラxxグゲット</span>
+            <span class="next-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="https://github.com/CaptureAmerica/" class="iconfont icon-github" title="github"></a>
+  <a href="https://captureamerica.github.io/writeups/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2019 - 
+    2020
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">CaptureAmerica @ CTF フラxxグゲット</span>
+  </span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  
+<script type="text/javascript" src="https://captureamerica.github.io/writeups/dist/even.26188efa.min.js"></script>
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-104910699-2', 'auto');
+	ga('set', 'anonymizeIp', true);
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+
+
+
+
+
+</body>
+</html>
