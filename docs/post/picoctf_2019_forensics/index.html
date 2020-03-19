@@ -50,7 +50,7 @@
 
 <meta itemprop="datePublished" content="2019-10-13T12:00:00&#43;09:00" />
 <meta itemprop="dateModified" content="2019-10-13T12:00:00&#43;09:00" />
-<meta itemprop="wordCount" content="1107">
+<meta itemprop="wordCount" content="1105">
 
 
 
@@ -175,7 +175,7 @@
     <div class="post-content">
       
 
-<p>URL: <a href="https://2019game.picoctf.com/">https://2019game.picoctf.com/</a>
+<p>URL: <a href="https://2019game.picoctf.com/" target="_blank">https://2019game.picoctf.com/</a>
 <br /><br />
 2週間、お疲れ様です。</p>
 
@@ -207,7 +207,7 @@ Forensics の Writeupです。</p>
 <h3 id="challenge">Challenge</h3>
 
 <blockquote>
-<p>I stopped using YellowPages and moved onto WhitePages&hellip; but the page they gave me is all blank!</p>
+<p>I stopped using YellowPages and moved onto WhitePages... but the page they gave me is all blank!</p>
 </blockquote>
 
 <p><br /></p>
@@ -261,7 +261,7 @@ Hints : Try fixing the file header</p>
 <p>1番目のIDATチャンクのとこも修正が必要。</p>
 
 <p>CRCは、pngcsumで直しました。<br />
-<a href="http://schaik.com/png/pngcsum.html">http://schaik.com/png/pngcsum.html</a></p>
+<a href="http://schaik.com/png/pngcsum.html" target="_blank">http://schaik.com/png/pngcsum.html</a></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><span class="lnt"> 1
@@ -315,17 +315,17 @@ IEND (  0 ) - csum = ae426082</pre></td></tr></table>
 
 <p>udpのフローを順番に見ていくと、フラグっぽい文字列が出てきます。</p>
 
-<p>&ldquo;kfdsalkfsalkico{N0t_a_fLag}&rdquo;<br />
-&ldquo;icoCTF{StaT31355e&rdquo;<br /></p>
+<p>&quot;kfdsalkfsalkico{N0t_a_fLag}&quot;<br />
+&quot;icoCTF{StaT31355e&quot;<br /></p>
 
 <p>あと、<br />
-&ldquo;start&rdquo;<br />
-&ldquo;end&rdquo;<br />
+&quot;start&quot;<br />
+&quot;end&quot;<br />
 というのも出てくるんですが、その間のPayloadにはフラグっぽい文字列はなかったので、最初無視してました。</p>
 
 <p>udp.port==8888 あたりを集中して見てたんですが、どうしてもフラグにはならなくて、その後、tcp あたりをがっつり見てそこもさっぱりフラグにならなかったので、挫けそうでした。</p>
 
-<p>&ldquo;start&rdquo; &ldquo;end&rdquo;が出てるのは (udp.port==22) で、眺めていたらSource Portが全部バラけてて、しかも文字になりそうな値になっているのに気づきました。</p>
+<p>&quot;start&quot; &quot;end&quot;が出てるのは (udp.port==22) で、眺めていたらSource Portが全部バラけてて、しかも文字になりそうな値になっているのに気づきました。</p>
 
 <p>一旦、フィルターしたものを別ファイル（capture_filtered.pcap）として保存し、Scapyで読み込みました。</p>
 <div class="highlight"><div class="chroma">

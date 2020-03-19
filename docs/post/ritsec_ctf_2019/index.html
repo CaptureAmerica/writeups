@@ -50,7 +50,7 @@
 
 <meta itemprop="datePublished" content="2019-11-18T13:00:00&#43;09:00" />
 <meta itemprop="dateModified" content="2019-11-24T18:00:00&#43;09:00" />
-<meta itemprop="wordCount" content="5349">
+<meta itemprop="wordCount" content="5347">
 
 
 
@@ -212,7 +212,7 @@
 
 <p>(2019/11/24 - 復習しました)</p>
 
-<p>URL: <a href="https://ctf.ritsec.club/challenges">https://ctf.ritsec.club/challenges</a>
+<p>URL: <a href="https://ctf.ritsec.club/challenges" target="_blank">https://ctf.ritsec.club/challenges</a>
 <br /><br /></p>
 
 <p>1012ポイントで、最終順位は201番でした。</p>
@@ -240,9 +240,9 @@
 <h3 id="challenge">Challenge</h3>
 
 <blockquote>
-<p>Well, this is embarassing&hellip; I&rsquo;ve accidentally compiled 999 ELF files with my password somewhere along the line, one character at a time.
+<p>Well, this is embarassing... I've accidentally compiled 999 ELF files with my password somewhere along the line, one character at a time.
 <br /><br />
-Solve these in order, each accepting one ASCII character. Keep going&hellip;eventually combining these solutions will match the regular expression RITSEC{.*}
+Solve these in order, each accepting one ASCII character. Keep going...eventually combining these solutions will match the regular expression RITSEC{.*}
 <br /><br />
 Good luck, and thanks for the help!</p>
 </blockquote>
@@ -420,10 +420,10 @@ Good luck, and thanks for the help!</p>
 </div>
 <p>scanfで得た入力値と、変数pの値を比較しています。（65行目）</p>
 
-<p>pは単なる変数名で、実際の値は &lsquo;F&rsquo; なので、注意が必要です。（39行目）</p>
+<p>pは単なる変数名で、実際の値は 'F' なので、注意が必要です。（39行目）</p>
 
 <p><br />
-002.c.out も見てみたところ、こちらは &ldquo; (ダブルクォーテーション) との比較をしていました。</p>
+002.c.out も見てみたところ、こちらは &quot; (ダブルクォーテーション) との比較をしていました。</p>
 
 <p>問題文にあるように、1つのファイルから1つの文字が取れるようです。</p>
 
@@ -546,7 +546,7 @@ File Size                       : 4.3 kB
 File Modification Date/Time     : 2019:11:16 05:25:12+09:00
 File Access Date/Time           : 2019:11:16 05:25:28+09:00
 File Inode Change Date/Time     : 2019:11:16 05:25:16+09:00
-File Permissions                : rw-r&ndash;r&ndash;
+File Permissions                : rw-r--r--
 File Type                       : PNG
 File Type Extension             : png
 MIME Type                       : image/png
@@ -595,7 +595,7 @@ Flag: <code>RITSEC{FORENSICS_FAILS_WONT_HELP_YOU_HERE}</code></p>
 <h3 id="challenge-2">Challenge</h3>
 
 <blockquote>
-<p>That data? No it&rsquo;s long gone. It&rsquo;s basically history</p>
+<p>That data? No it's long gone. It's basically history</p>
 </blockquote>
 
 <p>Attachments:</p>
@@ -609,7 +609,7 @@ Flag: <code>RITSEC{FORENSICS_FAILS_WONT_HELP_YOU_HERE}</code></p>
 <h3 id="solution-2">Solution</h3>
 
 <ol>
-<li><p>フラグフォーマットの文字列 &ldquo;RITSEC&rdquo; をサーチ
+<li><p>フラグフォーマットの文字列 &quot;RITSEC&quot; をサーチ
 <pre>
 $ grep -i ritsec -r .
 Binary file ./SwReporter/77.224.200/software_reporter_tool.exe matches
@@ -700,7 +700,7 @@ Flag: <code>RITSEC{SP00KY_BR0WS3R_H1ST0RY}</code></p>
 <blockquote>
 <p>Looks like someone gave you the wrong directions!
 <br /><br />
-<a href="http://ctfchallenges.ritsec.club:5000/">http://ctfchallenges.ritsec.club:5000/</a>
+<a href="http://ctfchallenges.ritsec.club:5000/" target="_blank">http://ctfchallenges.ritsec.club:5000/</a>
 <br /><br />
 Flag format is RS{ }</p>
 </blockquote>
@@ -781,7 +781,7 @@ curl: (47) Maximum (50) redirects followed
 
 <p>結果をファイル（curl.log）に落として、
 <pre>
-$ cat curl.log | grep GET | cut -c 8 | tr -d &lsquo;\n&rsquo; ; echo
+$ cat curl.log | grep GET | cut -c 8 | tr -d '\n' ; echo
  RS{4!way5_Ke3p-m0v1ng}RS{4!way5_Ke3p-m0v1ng}RS{4!way5_Ke3p-m0v1ng}RS{4!way5_Ke3p-m0v1ng}RS{4!way5_Ke
 </pre></p>
 
@@ -920,7 +920,7 @@ Flag: <code>RITSEC{hAppY_l1L_doG3}</code></p>
 <h3 id="challenge-6">Challenge</h3>
 
 <blockquote>
-<p>Rev up your GPUs&hellip;
+<p>Rev up your GPUs...
 <br /><br />
 nc ctfchallenges.ritsec.club 8080
 <br /><br />
@@ -931,7 +931,7 @@ Flag format RS{ }</p>
 
 <h3 id="solution-6">Solution</h3>
 
-<p>とりあえず繋いでみるとmd5が出てきたので、rainbowテーブル （<a href="https://crackstation.net/）">https://crackstation.net/）</a> でいけたんですが、shadow passwordは後回し。</p>
+<p>とりあえず繋いでみるとmd5が出てきたので、rainbowテーブル （<a href="https://crackstation.net/）" target="_blank">https://crackstation.net/）</a> でいけたんですが、shadow passwordは後回し。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><span class="lnt"> 1
@@ -1016,7 +1016,7 @@ Crackできないやつもいくつかありましたが、何回かやってい
 <h3 id="challenge-7">Challenge</h3>
 
 <blockquote>
-<p>While performing a pentest, we managed to get limited access to a box on the network (listener@129.21.228.115) with password of password. There&rsquo;s probably some cool stuff you can find on the network if you go looking.
+<p>While performing a pentest, we managed to get limited access to a box on the network (listener@129.21.228.115) with password of password. There's probably some cool stuff you can find on the network if you go looking.
 <br /><br />
 ssh listener@129.21.228.115</p>
 </blockquote>
@@ -1156,7 +1156,7 @@ Web問題だし、port 80か443にフォーカスするのが方向性的に正�
 <h3 id="challenge-8">Challenge</h3>
 
 <blockquote>
-<p>when the lion rars, it&rsquo;s time to GO
+<p>when the lion rars, it's time to GO
 <br /><br />
 us-central-1.ritsec.club/l/lioncap</p>
 </blockquote>
@@ -1182,7 +1182,7 @@ $ sha256sum bh.exe
 059e215a39cef204cc9cd2fd531d741b1cc3a84993d81b7505608a07741b652c  bh.exe
 </pre>
 
-<p><a href="https://www.virustotal.com/gui/file/059e215a39cef204cc9cd2fd531d741b1cc3a84993d81b7505608a07741b652c/detection">https://www.virustotal.com/gui/file/059e215a39cef204cc9cd2fd531d741b1cc3a84993d81b7505608a07741b652c/detection</a></p>
+<p><a href="https://www.virustotal.com/gui/file/059e215a39cef204cc9cd2fd531d741b1cc3a84993d81b7505608a07741b652c/detection" target="_blank">https://www.virustotal.com/gui/file/059e215a39cef204cc9cd2fd531d741b1cc3a84993d81b7505608a07741b652c/detection</a></p>
 
 <p><br />
 ローカル環境で192.168.206.161を用意して、
@@ -1301,7 +1301,7 @@ Flag: <code>RITSEC{PATCHM3IFYOUCAN}</code></p>
 
 <p>ただし、途中で余計な文字列が出てくるので、それを削除しないといけません。</p>
 
-<p><a href="https://regex101.com/">https://regex101.com/</a> で動作確認。</p>
+<p><a href="https://regex101.com/" target="_blank">https://regex101.com/</a> で動作確認。</p>
 
 <p><img src="https://captureamerica.github.io/writeups/img/ritsec_regex101.png" alt="ritsec_regex101.png"></p>
 
@@ -1318,7 +1318,7 @@ $ mv data.bin data.png
 
 <p>(Note)<br />
 - tcp_stream.txtの末尾のゴミデータは手動で削除してます。<br />
-- Macでやっているので、base64の引き数は &ldquo;-D&rdquo; (大文字のD) です。<br />
+- Macでやっているので、base64の引き数は &quot;-D&quot; (大文字のD) です。<br />
 - sedでやると shortest match がうまくいかないので、perlでやってます。<br />
 - ちなみに、ちょっと壊れたPNGになっちゃうみたいです。</p>
 
@@ -1342,7 +1342,7 @@ RITSEC{WelcomeToTheDuckArmyInvasion}
 Flag: <code>RITSEC{WelcomeToTheDuckArmyInvasion}</code></p>
 
 <p><br />
-反転 (rev) ってなかなか気づけないと思うんだけど、CTFイベントの開始時に Flag format &ldquo;RITSEC{}&ldquo;の確認をしたあと、Base64した文字列を取ってアタマの隅に置いておくといいんでしょうね。</p>
+反転 (rev) ってなかなか気づけないと思うんだけど、CTFイベントの開始時に Flag format &quot;RITSEC{}&quot;の確認をしたあと、Base64した文字列を取ってアタマの隅に置いておくといいんでしょうね。</p>
 
 <pre>
 $ echo RITSEC | base64
@@ -1395,8 +1395,8 @@ CTRL-c to close
 
 <p>1行目は、YouTubeへのリンクです。これもDecoyです。┐(´д｀)┌
 <pre>
-$ echo &ldquo;aHR0cHM6Ly93d3cueW91dHViZS5jb20vd2F0Y2g/dj1kUXc0dzlXZ1hjUQo=&rdquo; | base64 -D
-<a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">https://www.youtube.com/watch?v=dQw4w9WgXcQ</a>
+$ echo &quot;aHR0cHM6Ly93d3cueW91dHViZS5jb20vd2F0Y2g/dj1kUXc0dzlXZ1hjUQo=&quot; | base64 -D
+<a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank">https://www.youtube.com/watch?v=dQw4w9WgXcQ</a>
 </pre></p>
 
 <p><br />

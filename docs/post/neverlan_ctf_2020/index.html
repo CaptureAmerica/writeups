@@ -50,7 +50,7 @@
 
 <meta itemprop="datePublished" content="2020-02-12T09:00:00&#43;09:00" />
 <meta itemprop="dateModified" content="2020-02-23T14:00:00&#43;09:00" />
-<meta itemprop="wordCount" content="3255">
+<meta itemprop="wordCount" content="3253">
 
 
 
@@ -222,7 +222,7 @@
 
 <p>(2020/02/23 - 復習しました)</p>
 
-<p>URL: <a href="https://ctf.neverlanctf.com/challenges">https://ctf.neverlanctf.com/challenges</a>
+<p>URL: <a href="https://ctf.neverlanctf.com/challenges" target="_blank">https://ctf.neverlanctf.com/challenges</a>
 <br /><br />
 久々にがっつりCTFやりました。（学生さん用CTFでした）</p>
 
@@ -250,7 +250,7 @@
 <h3 id="challenge">Challenge</h3>
 
 <blockquote>
-<p>We&rsquo;ve forgotten the password to our payroll machine. Can you extract it?</p>
+<p>We've forgotten the password to our payroll machine. Can you extract it?</p>
 </blockquote>
 
 <p>Attachment:</p>
@@ -274,7 +274,7 @@ Adobe_Employee_Payroll.exe: PE32 executable (GUI) Intel 80386 Mono/.Net assembly
 
 <p><br>
 <pre>
-$ python -c &lsquo;print(&ldquo;&rdquo;.join([chr(int(x)) for x in &ldquo;102 108 97 103 123 46 110 101 116 95 105 115 95 112 114 101 116 116 121 95 101 97 115 121 95 116 111 95 100 101 99 111 109 112 105 108 101 125&rdquo;.split()]))&rsquo;
+$ python -c 'print(&quot;&quot;.join([chr(int(x)) for x in &quot;102 108 97 103 123 46 110 101 116 95 105 115 95 112 114 101 116 116 121 95 101 97 115 121 95 116 111 95 100 101 99 111 109 112 105 108 101 125&quot;.split()]))'
 flag{.net_is_pretty_easy_to_decompile}
 </pre></p>
 
@@ -291,7 +291,7 @@ Flag: <code>flag{.net_is_pretty_easy_to_decompile}</code></p>
 <h3 id="challenge-1">Challenge</h3>
 
 <blockquote>
-<p>This program seems to get stuck while running&hellip; Can you get it to continue past the broken function?</p>
+<p>This program seems to get stuck while running... Can you get it to continue past the broken function?</p>
 </blockquote>
 
 <p>Attachment:</p>
@@ -423,7 +423,7 @@ flag{w3con7r0lth3b1nari3s}
 
 <h3 id="solution-2">Solution</h3>
 
-<p>これは、もうひとつのチャレンジ（Pigsfly）で見てたWiki (<a href="https://en.wikipedia.org/wiki/Pigpen_cipher">https://en.wikipedia.org/wiki/Pigpen_cipher</a>) にVariantsとして解説が載ってました。</p>
+<p>これは、もうひとつのチャレンジ（Pigsfly）で見てたWiki (<a href="https://en.wikipedia.org/wiki/Pigpen_cipher" target="_blank">https://en.wikipedia.org/wiki/Pigpen_cipher</a>) にVariantsとして解説が載ってました。</p>
 
 <p>Flag: <code>evenknightsneedcrypto</code></p>
 
@@ -452,7 +452,7 @@ flag{w3con7r0lth3b1nari3s}
 
 <p>適当に1個画像をピックアップして、Googleで画像サーチすると、以下のサイトが見つかります。</p>
 
-<p><a href="https://www.dcode.fr/arthur-invisibles-cipher">https://www.dcode.fr/arthur-invisibles-cipher</a></p>
+<p><a href="https://www.dcode.fr/arthur-invisibles-cipher" target="_blank">https://www.dcode.fr/arthur-invisibles-cipher</a></p>
 
 <p>これで解析すると、FLAGISYOUCANSEETHEM が取れます。</p>
 
@@ -469,9 +469,9 @@ Flag: <code>youcanseethem</code></p>
 <h3 id="challenge-4">Challenge</h3>
 
 <blockquote>
-<p>Here&rsquo;s an encoding challenge. This doesnt really test your technical skills, but focuses on your critical thinking.
+<p>Here's an encoding challenge. This doesnt really test your technical skills, but focuses on your critical thinking.
 <br /><br />
-I wrote my own encoding scheme. Can you decode it?&rdquo;
+I wrote my own encoding scheme. Can you decode it?&quot;
 <br /><br />
     -BashNinja</p>
 </blockquote>
@@ -512,7 +512,7 @@ I wrote my own encoding scheme. Can you decode it?&rdquo;
 <h3 id="challenge-5">Challenge</h3>
 
 <blockquote>
-<p>We&rsquo;ve intercepted this RSA encrypted message 2193 1745 2164 970 1466 2495 1438 1412 1745 1745 2302 1163 2181 1613 1438 884 2495 2302 2164 2181 884 2302 1703 1924 2302 1801 1412 2495 53 1337 2217 we know it was encrypted with the following public key e: 569 n: 2533</p>
+<p>We've intercepted this RSA encrypted message 2193 1745 2164 970 1466 2495 1438 1412 1745 1745 2302 1163 2181 1613 1438 884 2495 2302 2164 2181 884 2302 1703 1924 2302 1801 1412 2495 53 1337 2217 we know it was encrypted with the following public key e: 569 n: 2533</p>
 </blockquote>
 
 <h3 id="solution-5">Solution</h3>
@@ -533,7 +533,7 @@ Traceback (most recent call last):
 subprocess.CalledProcessError: Command '['openssl', 'rsautl', '-raw', '-decrypt', '-in', '/var/folders/87/sclh7gdd7k1dlkyqkdmwqjfd0z5kf0/T/tmprmtfqw00', '-inkey', '/var/folders/87/sclh7gdd7k1dlkyqkdmwqjfd0z5kf0/T/tmp8r3uasek']' returned non-zero exit status 1.
 </pre>
 
-<p>過去のRSA用のPythonスクリプトもことごとく動かず、降参しようかと思っていたところ、最初の1個（2193）だけで RsaCtfTool.py をかけたところ &lsquo;f&rsquo; になったので、以下のように解きました。</p>
+<p>過去のRSA用のPythonスクリプトもことごとく動かず、降参しようかと思っていたところ、最初の1個（2193）だけで RsaCtfTool.py をかけたところ 'f' になったので、以下のように解きました。</p>
 
 <p>ちなみに、n = 2533は 17 * 149 なので、p = 17, q = 149 を使ってやった方が計算が速いです。</p>
 <div class="highlight"><div class="chroma">
@@ -640,16 +640,16 @@ $ ./NeverLAN_BasyRSA.sh
 </div>
 
 <p><br>
-Audacityでファイルを開き、Effect -&gt; Vocal Remover&hellip; を選択します。オプションは、Remove vocals + Simple です。</p>
+Audacityでファイルを開き、Effect -&gt; Vocal Remover... を選択します。オプションは、Remove vocals + Simple です。</p>
 
 <p>この時点では、音声はほぼ完全に取り除けてますが、音楽がちょっと残っています。</p>
 
 <p><br>
-ここで、モールス信号を解析できるツールを探しました。ググる際のキーワードは、&rdquo;morse audio analyzer&rdquo; てな感じです。</p>
+ここで、モールス信号を解析できるツールを探しました。ググる際のキーワードは、&quot;morse audio analyzer&quot; てな感じです。</p>
 
 <p>以下のサイトにファイルをアップロードしてやってみましたが、かなり精度が悪く、全くフラグが取れません。</p>
 
-<p><a href="https://morsecode.world/international/decoder/audio-decoder-adaptive.html">https://morsecode.world/international/decoder/audio-decoder-adaptive.html</a></p>
+<p><a href="https://morsecode.world/international/decoder/audio-decoder-adaptive.html" target="_blank">https://morsecode.world/international/decoder/audio-decoder-adaptive.html</a></p>
 
 <p>ただ、助かったのは、どうやらモールス信号の周波数が563Hzくらいだということです。（たぶん）</p>
 
@@ -670,7 +670,7 @@ Audacityで以下をやりました。</p>
 
 <p>ということで、目視で解析。この作業自体は思ったより難しくはなかったです。</p>
 
-<p>一覧表はWikiにあります。(<a href="https://en.wikipedia.org/wiki/Morse_code">https://en.wikipedia.org/wiki/Morse_code</a>)</p>
+<p>一覧表はWikiにあります。(<a href="https://en.wikipedia.org/wiki/Morse_code" target="_blank">https://en.wikipedia.org/wiki/Morse_code</a>)</p>
 
 <p><br>
 Flag: <code>flag{ditsanddahsforlife}</code></p>
@@ -685,7 +685,7 @@ Flag: <code>flag{ditsanddahsforlife}</code></p>
 <h3 id="challenge-7">Challenge</h3>
 
 <blockquote>
-<p>My assignments due and I still don&rsquo;t have the answer! Can you help me fix my Python script&hellip; and also give me the answer? I need to make a prime number generator and find the 10,497th prime number. I&rsquo;ve already written a python script that kinda works&hellip; can you either fix it or write your own and tell me the prime number?
+<p>My assignments due and I still don't have the answer! Can you help me fix my Python script... and also give me the answer? I need to make a prime number generator and find the 10,497th prime number. I've already written a python script that kinda works... can you either fix it or write your own and tell me the prime number?
 <br /><br />
 -ZestyFE</p>
 </blockquote>
@@ -738,10 +738,10 @@ Flag: <code>flag{ditsanddahsforlife}</code></p>
 <p>全然想定解じゃないんですけど、ウェブで素数の一覧を探して10497番目の素数を見つけただけです。。（ごめんなさい）</p>
 
 <p>以下のデータにお世話になりました。<br>
-<a href="http://www.ysr.net.it-chiba.ac.jp/~yashiro/sosu/">http://www.ysr.net.it-chiba.ac.jp/~yashiro/sosu/</a></p>
+<a href="http://www.ysr.net.it-chiba.ac.jp/~yashiro/sosu/" target="_blank">http://www.ysr.net.it-chiba.ac.jp/~yashiro/sosu/</a></p>
 
 <p><pre>
-$ cat prime.txt | tr &ldquo; &rdquo; &ldquo;\n&rdquo; | nl | grep 10497
+$ cat prime.txt | tr &quot; &quot; &quot;\n&quot; | nl | grep 10497
 </pre>
 <br></p>
 
@@ -757,7 +757,7 @@ $ cat prime.txt | tr &ldquo; &rdquo; &ldquo;\n&rdquo; | nl | grep 10497
 <h3 id="challenge-8">Challenge</h3>
 
 <blockquote>
-<p>Whoops&hellip; I leaked a flag on a public website
+<p>Whoops... I leaked a flag on a public website
 <br /><br />
 -ZestyFE</p>
 </blockquote>
@@ -771,7 +771,7 @@ $ cat prime.txt | tr &ldquo; &rdquo; &ldquo;\n&rdquo; | nl | grep 10497
 <p><br>
 次に、Reddit内で <code>ZestyFE</code> をサーチします。そうこうしていると、以下のページに辿り着き、そこにフラグが見つかります。</p>
 
-<p><a href="https://www.reddit.com/r/Hacking_Tutorials/comments/dz2ws8/public_ctf_cite_for_middlehigh_school_classes/fgvew6c/?context=3">https://www.reddit.com/r/Hacking_Tutorials/comments/dz2ws8/public_ctf_cite_for_middlehigh_school_classes/fgvew6c/?context=3</a></p>
+<p><a href="https://www.reddit.com/r/Hacking_Tutorials/comments/dz2ws8/public_ctf_cite_for_middlehigh_school_classes/fgvew6c/?context=3" target="_blank">https://www.reddit.com/r/Hacking_Tutorials/comments/dz2ws8/public_ctf_cite_for_middlehigh_school_classes/fgvew6c/?context=3</a></p>
 
 <p>Flag: <code>flag{l3arningFr0mStr4ng3rs}</code></p>
 
@@ -811,7 +811,7 @@ $ cat prime.txt | tr &ldquo; &rdquo; &ldquo;\n&rdquo; | nl | grep 10497
 <h3 id="challenge-10">Challenge</h3>
 
 <blockquote>
-<p>Let&rsquo;s start here. <a href="https://7aimehagbl.neverlanctf.com">https://7aimehagbl.neverlanctf.com</a></p>
+<p>Let's start here. <a href="https://7aimehagbl.neverlanctf.com" target="_blank">https://7aimehagbl.neverlanctf.com</a></p>
 </blockquote>
 
 <h3 id="solution-9">Solution</h3>
@@ -872,7 +872,7 @@ Flag: <code>flag{d0nt_t3ll_m3_wh3r3_t0_g0}</code></p>
 <h3 id="challenge-12">Challenge</h3>
 
 <blockquote>
-<p>This CVE Proof of concept Shows NSA.gov playing &ldquo;Never Gonna Give You Up,&rdquo; by 1980s heart-throb Rick Astley.
+<p>This CVE Proof of concept Shows NSA.gov playing &quot;Never Gonna Give You Up,&quot; by 1980s heart-throb Rick Astley.
 <br /><br />
 Use the CVE ID for the flag. flag{CVE-?????????}</p>
 </blockquote>
@@ -881,7 +881,7 @@ Use the CVE ID for the flag. flag{CVE-?????????}</p>
 
 <p><code>&quot;Never Gonna Give You Up&quot; POC exploit</code> をキーワードにググると、以下のサイトが見つかりました。</p>
 
-<p><a href="https://arstechnica.com/information-technology/2020/01/researcher-develops-working-exploit-for-critical-windows-10-vulnerability/">https://arstechnica.com/information-technology/2020/01/researcher-develops-working-exploit-for-critical-windows-10-vulnerability/</a></p>
+<p><a href="https://arstechnica.com/information-technology/2020/01/researcher-develops-working-exploit-for-critical-windows-10-vulnerability/" target="_blank">https://arstechnica.com/information-technology/2020/01/researcher-develops-working-exploit-for-critical-windows-10-vulnerability/</a></p>
 
 <p><br>
 Flag: <code>flag{CVE-2020-0601}</code></p>
@@ -903,7 +903,7 @@ Flag: <code>flag{CVE-2020-0601}</code></p>
 <blockquote>
 <p>Crypto Hard Jake From S7a73farm
 <br />
-This one has layers like an onion. Just don&rsquo;t let it make you cry..</p>
+This one has layers like an onion. Just don't let it make you cry..</p>
 </blockquote>
 
 <p>Attachment:</p>
@@ -934,9 +934,9 @@ This one has layers like an onion. Just don&rsquo;t let it make you cry..</p>
 
 <p>復号は、以下のサイトにお世話になりました。</p>
 
-<p><a href="https://www.mygeocachingprofile.com/codebreaker.vigenerecipher.aspx">https://www.mygeocachingprofile.com/codebreaker.vigenerecipher.aspx</a></p>
+<p><a href="https://www.mygeocachingprofile.com/codebreaker.vigenerecipher.aspx" target="_blank">https://www.mygeocachingprofile.com/codebreaker.vigenerecipher.aspx</a></p>
 
-<p>復号結果：&rdquo;your flag is myfavoritecipher&rdquo;</p>
+<p>復号結果：&quot;your flag is myfavoritecipher&quot;</p>
 
 <p><br>
 Flag: <code>flag{myfavoritecipher}</code></p>

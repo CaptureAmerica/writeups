@@ -50,7 +50,7 @@
 
 <meta itemprop="datePublished" content="2019-06-16T13:00:00&#43;09:00" />
 <meta itemprop="dateModified" content="2019-09-23T09:00:00&#43;09:00" />
-<meta itemprop="wordCount" content="7659">
+<meta itemprop="wordCount" content="7642">
 
 
 
@@ -262,7 +262,7 @@
 
 <p>(2019/09/23 - 復習しました)</p>
 
-<p>URL: <a href="https://www.bcactf.com/">https://www.bcactf.com/</a>
+<p>URL: <a href="https://www.bcactf.com/" target="_blank">https://www.bcactf.com/</a>
 <br /><br />
 前回のHSCTFに続き、これも学生さん用のCTFでした。
 <br /><br />
@@ -338,7 +338,7 @@
 <h3 id="challenge">Challenge</h3>
 
 <blockquote>
-<p>It&rsquo;s in there somewhere. Good luck!</p>
+<p>It's in there somewhere. Good luck!</p>
 </blockquote>
 
 <p>Attachment:</p>
@@ -398,7 +398,7 @@ $2 = 1
 </pre>
 
 <p>出力結果はBrainF*ckで、以下で実行しました。<br />
-<a href="https://copy.sh/brainfuck/">https://copy.sh/brainfuck/</a></p>
+<a href="https://copy.sh/brainfuck/" target="_blank">https://copy.sh/brainfuck/</a></p>
 
 <p><code>bcactf{3x3cut4bl3s_r_fun_124jher089245}</code></p>
 
@@ -412,7 +412,7 @@ $2 = 1
 <h3 id="challenge-1">Challenge</h3>
 
 <blockquote>
-<p>It&rsquo;s in here somewhere. Good luck&hellip; again.
+<p>It's in here somewhere. Good luck... again.
 <br /><br />
 (Now you actually have to try.)</p>
 </blockquote>
@@ -425,7 +425,7 @@ $2 = 1
 
 <h3 id="solution-1">Solution</h3>
 
-<p>問題文の、&rdquo;(Now you actually have to try.)&rdquo; の意味がよくわかりませんでした。わたしのやり方は、想定解じゃないのかも知れません。トライしてないし。。^^;</p>
+<p>問題文の、&quot;(Now you actually have to try.)&quot; の意味がよくわかりませんでした。わたしのやり方は、想定解じゃないのかも知れません。トライしてないし。。^^;</p>
 
 <p>Ghidraでデコンパイルしてコードを見たところ、rand()をコールしている部分が増えていましたが、前の問題と大して違いはなかったです。</p>
 
@@ -436,7 +436,7 @@ B+&gt;│0x400694 &lt;main+110&gt;     jne    0x400744 &lt;main+286&gt;<br />
 </pre></p>
 
 <p>同様に出力結果はBrainF*ckで、以下で実行しました。<br />
-<a href="https://copy.sh/brainfuck/">https://copy.sh/brainfuck/</a></p>
+<a href="https://copy.sh/brainfuck/" target="_blank">https://copy.sh/brainfuck/</a></p>
 
 <p>rsqsjv{Arent_executables_fun?_I_think_so_sdkfjhqiweuryiquwerajzncxbvaihqiwueyr}</p>
 
@@ -453,9 +453,9 @@ B+&gt;│0x400694 &lt;main+110&gt;     jne    0x400744 &lt;main+286&gt;<br />
 <h3 id="challenge-2">Challenge</h3>
 
 <blockquote>
-<p>We found this strange file with a bunch of stuff in it&hellip; Can you help us decode it?
+<p>We found this strange file with a bunch of stuff in it... Can you help us decode it?
 <br /><br />
-Hint: Looks like you need to do different things to each section&hellip;</p>
+Hint: Looks like you need to do different things to each section...</p>
 </blockquote>
 
 <pre>
@@ -474,7 +474,7 @@ mvscey{bu57_j0n_o4i7_kgbhmffhlqe} bfm, te htjnpw, feim lixx at hhf’t mx ko dbe
 <p>1行目をBase64 decodeすると、<code>32 -  |3 Times A Charm| - 32~</code> が取れます。
 <br /><br /><br />
 これをヒントに、2つ目はBase32 decode x 3です。以下を使わせてもらいました。<br />
-<a href="https://emn178.github.io/online-tools/base32_decode.html">https://emn178.github.io/online-tools/base32_decode.html</a></p>
+<a href="https://emn178.github.io/online-tools/base32_decode.html" target="_blank">https://emn178.github.io/online-tools/base32_decode.html</a></p>
 
 <pre>
 Why english so ard to tok.
@@ -488,9 +488,9 @@ Ail gi you tu hints to read my encrypted languich.
 <p><br />
 最後の行はフランス語っぽくて、「French crypt the best」ということらしいです。Vigenere cipherですね。</p>
 
-<p>Keyを&rdquo;SALT&rdquo;にして、Vigenere cipherをデコードすると、フラグが取れます。<br />
-<a href="https://cryptii.com/pipes/vigenere-cipher">https://cryptii.com/pipes/vigenere-cipher</a><br />
-&ldquo;that was simple enough. so i heard you came for a flag? since you have made it this far, i’ll go easy on you and hand it over. <code>bcactf{ju57_y0u_w4i7_znjhbmnhaxm}</code> but, be warned, next time it won’t be so simple&rdquo;</p>
+<p>Keyを&quot;SALT&quot;にして、Vigenere cipherをデコードすると、フラグが取れます。<br />
+<a href="https://cryptii.com/pipes/vigenere-cipher" target="_blank">https://cryptii.com/pipes/vigenere-cipher</a><br />
+&quot;that was simple enough. so i heard you came for a flag? since you have made it this far, i’ll go easy on you and hand it over. <code>bcactf{ju57_y0u_w4i7_znjhbmnhaxm}</code> but, be warned, next time it won’t be so simple&quot;</p>
 
 <p><br /><br />
 <br /><br /></p>
@@ -512,7 +512,7 @@ NOTE: number names come from the Googology wiki, some numbef names may be incons
 <ul>
 <li>k （以下は中身の抜粋です。）
 <br />
-Four octogintacentillion, eight hundred and fifty-eight novemseptuagintacentillion, four hundred and eighty-seven octoseptuagintacentillion, &hellip;(snip)&hellip;, seven hundred and eighty-five quadrillion, four hundred and thirty-three trillion, one hundred and five billion, ninety-one million, five hundred and twenty-six thousand, six hundred and thirty-nine.</li>
+Four octogintacentillion, eight hundred and fifty-eight novemseptuagintacentillion, four hundred and eighty-seven octoseptuagintacentillion, ...(snip)..., seven hundred and eighty-five quadrillion, four hundred and thirty-three trillion, one hundred and five billion, ninety-one million, five hundred and twenty-six thousand, six hundred and thirty-nine.</li>
 </ul>
 
 <h3 id="unsolved">Unsolved</h3>
@@ -536,7 +536,7 @@ Four octogintacentillion, eight hundred and fifty-eight novemseptuagintacentilli
 </pre></p>
 
 <p>以下で、上記の式は計算できました。<br />
-<a href="https://defuse.ca/big-number-calculator.htm">https://defuse.ca/big-number-calculator.htm</a>
+<a href="https://defuse.ca/big-number-calculator.htm" target="_blank">https://defuse.ca/big-number-calculator.htm</a>
 <br /></p>
 
 <p>4858487703000217654168507377105634002647731128499307244851441090357865744443419793531999883261579086703285988550325970512343063312965327580978241840458705778582504607655879151828149694589867198840959598497597989866084694560490675801786347730851438931275598708000190409481880911319491978644808036817873514056590135331578105862821454454617375919870245363440066372700053263362863694129133765441926533609503994018565319382913454161429058505655350780911229203432392967236137647780308966936691439636980058266693498568235464310907628785433105091526639</p>
@@ -565,7 +565,7 @@ Four octogintacentillion, eight hundred and fifty-eight novemseptuagintacentilli
 
 <p>最初の6文字は、bcactfなのがわかっているので、まずわかっているところから変換します。</p>
 
-<p>すると、アンダースコア(&rsquo;_&lsquo;)より後ろの26文字がアルファベット順に並んでいるのが予想できます。
+<p>すると、アンダースコア('_')より後ろの26文字がアルファベット順に並んでいるのが予想できます。
 <pre>
 e19aa3 =&gt; b
 e19aa6 =&gt; c
@@ -609,7 +609,7 @@ e19ab0
 <code>bcactf{frequencyanalysisisverygreatwhensolvingannoyingmonoalphabeticsubstitutionciphers_abcdefghijklmnopqrstuvwxyz}</code></p>
 
 <p>ちなみに、読みやすくスペースを入れると、<br />
-&ldquo;frequency analysis is very great when solving annoying monoalphabetic substitution ciphers&rdquo;</p>
+&quot;frequency analysis is very great when solving annoying monoalphabetic substitution ciphers&quot;</p>
 
 <p><br /><br />
 <br /><br /></p>
@@ -623,7 +623,7 @@ e19ab0
 <blockquote>
 <p>A mysterious figure named Major Mnemonic has sent you the following set of words. Figure out what they mean!
 <br /><br />
-&ldquo;Pave Pop Poke Pop Dutch Dozen Denim Deism Loot Thatch Pal Atheism Rough Ditch Tonal&rdquo;
+&quot;Pave Pop Poke Pop Dutch Dozen Denim Deism Loot Thatch Pal Atheism Rough Ditch Tonal&quot;
 <br /><br />
 Hint: The words translate to numbers, which then translate to the flag.</p>
 </blockquote>
@@ -631,7 +631,7 @@ Hint: The words translate to numbers, which then translate to the flag.</p>
 <h3 id="solution-4">Solution</h3>
 
 <p>以下のWikiに従って、それぞれの数字を求めて、文字に変換するだけです。<br />
-<a href="https://en.wikipedia.org/wiki/Mnemonic_major_system">https://en.wikipedia.org/wiki/Mnemonic_major_system</a></p>
+<a href="https://en.wikipedia.org/wiki/Mnemonic_major_system" target="_blank">https://en.wikipedia.org/wiki/Mnemonic_major_system</a></p>
 
 <table>
 <thead>
@@ -735,7 +735,7 @@ Hint: The words translate to numbers, which then translate to the flag.</p>
 </tbody>
 </table>
 
-<p>ところどころ16が出てきちゃったけど、フラグフォーマットより&rdquo;t&rdquo; (bcac<font color="red">t</font>f) に置き換えられるのがわかるので、フラグは<code>bcactf{g3t_g0t}</code></p>
+<p>ところどころ16が出てきちゃったけど、フラグフォーマットより&quot;t&quot; (bcac<font color="red">t</font>f) に置き換えられるのがわかるので、フラグは<code>bcactf{g3t_g0t}</code></p>
 
 <p><br /><br />
 <br /><br /></p>
@@ -749,7 +749,7 @@ Hint: The words translate to numbers, which then translate to the flag.</p>
 <blockquote>
 <p>Ugh, I had a really important file with the flag, but sadly it broke. My friend Rachel said that snapshots are good for backing up, and luckily I listened so here is my screenshot. Do you think you could help me put it back together?
 <br /><br />
-Hint: that&rsquo;s a lot to type in&hellip;</p>
+Hint: that's a lot to type in...</p>
 </blockquote>
 
 <p>Attachment:</p>
@@ -768,11 +768,11 @@ Hint: that&rsquo;s a lot to type in&hellip;</p>
 <br /><br />
 わたしは以下を使いましたけど、オススメするわけではないです。結構、手直ししました。
 <br />
-<a href="https://ocr.space/">https://ocr.space/</a>
+<a href="https://ocr.space/" target="_blank">https://ocr.space/</a>
 <br /><br />
 デコードしたところ、Pythonコードが出てきたので、以下のようにファイルに保存してpython3で実行したらフラグが取れました。
 <pre>
-$ cat part?.txt | tr -d &ldquo;\n&rdquo; | tr -d &ldquo; &rdquo; | unhex &gt; rachel.py
+$ cat part?.txt | tr -d &quot;\n&quot; | tr -d &quot; &quot; | unhex &gt; rachel.py
 $ python3 rachel.py
 bcactf{0p71c4lly_r3c0gn1z3d_ch4r4c73rs}
 </pre></p>
@@ -787,7 +787,7 @@ bcactf{0p71c4lly_r3c0gn1z3d_ch4r4c73rs}
 <h3 id="challenge-7">Challenge</h3>
 
 <blockquote>
-<p>I have a flag! The flag is&hellip; wait&hellip; did my PDF editor not save the flag? OH NO! I remember typing it in, can you help me find it?
+<p>I have a flag! The flag is... wait... did my PDF editor not save the flag? OH NO! I remember typing it in, can you help me find it?
 <br /><br />
 Hint: There are two ways to view PDFs. One way is to view it with a PDF viewer. How else can you view a file?</p>
 </blockquote>
@@ -798,12 +798,12 @@ Hint: There are two ways to view PDFs. One way is to view it with a PDF viewer. 
 <pre>
 5 0 obj &lt;&lt; /Length 89 /Filter /ASCII85Decode &gt;&gt;
 stream
-6&lt;#&rsquo;\7PQ#?2BYt2+&gt;GQ(+?(u.+B2ko-t6[p@ru=0A2%m[?SlCOFC-k60Qf&lt;]0lB@!1JMFu2<code>,&gt;XF\lU*2</code>#N&rsquo;.3MT)+@T6~&gt;
+6&lt;#'\7PQ#?2BYt2+&gt;GQ(+?(u.+B2ko-t6[p@ru=0A2%m[?SlCOFC-k60Qf&lt;]0lB@!1JMFu2<code>,&gt;XF\lU*2</code>#N'.3MT)+@T6~&gt;
 endstream
 endobj
 </pre>
 以下を使いました。<br />
-<a href="https://www.tools4noobs.com/online_tools/ascii85_decode/">https://www.tools4noobs.com/online_tools/ascii85_decode/</a>
+<a href="https://www.tools4noobs.com/online_tools/ascii85_decode/" target="_blank">https://www.tools4noobs.com/online_tools/ascii85_decode/</a>
 <br /><br />
 結果：BT /F1 16 Tf 100 700 Td (<code>bcactf{d0n7_4g3t_4b0u7_1nCr3Men74l_uPd473s}</code>) Tj ET</p>
 
@@ -870,7 +870,7 @@ endobj
 <h3 id="challenge-9">Challenge</h3>
 
 <blockquote>
-<p>You are a cashier for a small store that sells a few items. Coming up is the annual sale, and you really don&rsquo;t want to do that much math. So, being you, you decide to automate it.
+<p>You are a cashier for a small store that sells a few items. Coming up is the annual sale, and you really don't want to do that much math. So, being you, you decide to automate it.
 <br /><br />
 Items:
 <br />
@@ -896,7 +896,7 @@ D D D D D A B 390<br />
 <br />
 <code>$ cat input.txt | ./script.py</code>
 <br /><br />
-Your program should print the customer&rsquo;s change (i.e. return to stdout), if applicable, or -1 (the number) if they don&rsquo;t have enough money. The above example should result in:
+Your program should print the customer's change (i.e. return to stdout), if applicable, or -1 (the number) if they don't have enough money. The above example should result in:
 <br /><br />
 5.70<br />
 31.20<br />
@@ -904,7 +904,7 @@ Your program should print the customer&rsquo;s change (i.e. return to stdout), i
 <br />
 Round to the nearest hundredths place.<br />
 <br />
-You should submit your answer as one string, with each input line&rsquo;s result separated by a space.<br />
+You should submit your answer as one string, with each input line's result separated by a space.<br />
 <br />
 For example, the above output should be formatted as follows to be accepted:<br />
 <code>5.70 31.20 -1</code></p>
@@ -1043,7 +1043,7 @@ For example, the above output should be formatted as follows to be accepted:<br 
 <h3 id="challenge-10">Challenge</h3>
 
 <blockquote>
-<p>We intercepted a message between two agents from a terrorist group known as 0x4556494c. We think it might contain some useful information, so we&rsquo;d like you to crack it. Here is the message.
+<p>We intercepted a message between two agents from a terrorist group known as 0x4556494c. We think it might contain some useful information, so we'd like you to crack it. Here is the message.
 <br /><br />
 BEGIN TRANSMITION<br />
 Dear Agent Reffef,<br />
@@ -1053,7 +1053,7 @@ You will need to decode it first though.<br />
 <br />
 The rules are simple:<br />
 <br />
-A line is &ldquo;viable&rdquo; if the length of a line is divisible by 3, and the line does not contain the `&amp;` character. <br />
+A line is &quot;viable&quot; if the length of a line is divisible by 3, and the line does not contain the `&amp;` character. <br />
 <br />
 For every viable line, you will grab the `n`th character, <br />
 where `n` is the corresponding number at the top of the file (Counting from one!) <br />
@@ -1172,7 +1172,7 @@ END TRANSMITION</p>
 <h3 id="challenge-11">Challenge</h3>
 
 <blockquote>
-<p>Tho, I came Acroth thith therieth of inthturcthins, and thomething that thaid &ldquo;the key ith the attached litht of ATHCII printableth.&rdquo; Tho anywayth, here&rsquo;th the inthtructhinth.
+<p>Tho, I came Acroth thith therieth of inthturcthins, and thomething that thaid &quot;the key ith the attached litht of ATHCII printableth.&quot; Tho anywayth, here'th the inthtructhinth.
 <br /><br />
 Hint1: Pardon my LITHP
 <br />
@@ -1323,7 +1323,7 @@ inthtructhins.txtに出てくる文字列の、2個目のaとrの間のdの数�
 <h3 id="challenge-12">Challenge</h3>
 
 <blockquote>
-<p>Hello, traveler. Welcome to your quest. You must walk the Red Lord&rsquo;s shining path, guided by his shining stars. Here is a picture of those stars. A map if you will. May the Lord of Light give you wisdom.
+<p>Hello, traveler. Welcome to your quest. You must walk the Red Lord's shining path, guided by his shining stars. Here is a picture of those stars. A map if you will. May the Lord of Light give you wisdom.
 <br /><br />
 NOTE: As more heroes complete each stage of the quest, fewer points will be available to future teams.
 <br /><br />
@@ -1351,7 +1351,7 @@ Hint2: Maybe the brightness of the stars mean something?</p>
 <p>赤色だけ抽出でビットとして選択して、UTF-8でテキストの取り出しをすると、URLが取れました。<br />
 <img src="https://captureamerica.github.io/writeups/img/red_text_utf8.PNG" alt="red_text_utf8.PNG">
 <br />
-<a href="http://rhllor.xyz/7h3fir31n0urh3ar75_d2VsY29tZSB0byBzdGVwIG9uZQ">http://rhllor.xyz/7h3fir31n0urh3ar75_d2VsY29tZSB0byBzdGVwIG9uZQ</a></p>
+<a href="http://rhllor.xyz/7h3fir31n0urh3ar75_d2VsY29tZSB0byBzdGVwIG9uZQ" target="_blank">http://rhllor.xyz/7h3fir31n0urh3ar75_d2VsY29tZSB0byBzdGVwIG9uZQ</a></p>
 
 <p>アクセスするとフラグがもらえます。<br />
 <code>bcactf{gu1d3d_8y_574r5_QmVnaW5uaW5ncw}</code></p>
@@ -1409,7 +1409,7 @@ Hint2: Maybe the brightness of the stars mean something?</p>
 </code></pre></td></tr></table>
 </div>
 </div>
-<p>md5（3758002ab24653af8d550c0c50473098）の元の文字列は、<a href="https://crackstation.net/">rainbow table</a>で見つかりました。
+<p>md5（3758002ab24653af8d550c0c50473098）の元の文字列は、<a href="https://crackstation.net/" target="_blank">rainbow table</a>で見つかりました。
 <br />
 ==&gt; darknight
 <br />
@@ -1431,7 +1431,7 @@ Hint2: Maybe the brightness of the stars mean something?</p>
 <h3 id="solution-13">Solution</h3>
 
 <p>ウェブアーカイブを見つけるだけです。<br />
-<a href="https://web.archive.org/web/20190614021723/http://rhllor.xyz/fl4m30fV3r1745burn5_Z2l2ZSBzdHJlbmd0aCB0byBoaXMgc3dvcmQ">https://web.archive.org/web/20190614021723/http://rhllor.xyz/fl4m30fV3r1745burn5_Z2l2ZSBzdHJlbmd0aCB0byBoaXMgc3dvcmQ</a>
+<a href="https://web.archive.org/web/20190614021723/http://rhllor.xyz/fl4m30fV3r1745burn5_Z2l2ZSBzdHJlbmd0aCB0byBoaXMgc3dvcmQ" target="_blank">https://web.archive.org/web/20190614021723/http://rhllor.xyz/fl4m30fV3r1745burn5_Z2l2ZSBzdHJlbmd0aCB0byBoaXMgc3dvcmQ</a>
 <br /><br />
 <code>bcactf{p33r1ng_1n70_7h3_p457_Ymxlc3NlZHZpZXc}</code></p>
 
@@ -1445,11 +1445,11 @@ Hint2: Maybe the brightness of the stars mean something?</p>
 <h3 id="challenge-15">Challenge</h3>
 
 <blockquote>
-<p>You&rsquo;ve come across a USB stick in the middle of a parking lot. After taking it home, you plug it into a network-isolated, clean computer, and see a compiled program. Secrets are abound!
+<p>You've come across a USB stick in the middle of a parking lot. After taking it home, you plug it into a network-isolated, clean computer, and see a compiled program. Secrets are abound!
 <br /><br />
 This problem is in a similar vein to basic-pass-2, another-pass, and so on.
 <br /><br />
-The flag is not in the bcactf{&hellip;} format.</p>
+The flag is not in the bcactf{...} format.</p>
 </blockquote>
 
 <p>Attachment:</p>
@@ -1563,9 +1563,9 @@ Flag: <code>5546068866699313608</code></p>
 <h3 id="challenge-16">Challenge</h3>
 
 <blockquote>
-<p>I made a Guess the Flag game! It&rsquo;s in Scratch, what could be easier? <a href="https://scratch.mit.edu/projects/276674047/">Click here to access the game.</a>
+<p>I made a Guess the Flag game! It's in Scratch, what could be easier? <a href="https://scratch.mit.edu/projects/276674047/" target="_blank">Click here to access the game.</a>
 <br /><br />
-Hint1: What does &ldquo;See inside&rdquo; do?
+Hint1: What does &quot;See inside&quot; do?
 <br /><br />
 Hint2: There are four scripts: When flag clicked, Reset variables, Check flag, and Generate flag. Which one could possibly contain the flag?</p>
 </blockquote>
@@ -1593,11 +1593,11 @@ Hint2: There are four scripts: When flag clicked, Reset variables, Check flag, a
 <h3 id="challenge-17">Challenge</h3>
 
 <blockquote>
-<p>Alright. Your friend John found this cool binary file on the Interwebz. Against all best practices, he downloaded it. Strange, it doesn&rsquo;t appear to be a virus. Because of the password prompt, you feel like it will lead to something important. Figure this one out!
+<p>Alright. Your friend John found this cool binary file on the Interwebz. Against all best practices, he downloaded it. Strange, it doesn't appear to be a virus. Because of the password prompt, you feel like it will lead to something important. Figure this one out!
 <br /><br />
-WARNING: The flag for this problem may not be in the bcactf{&hellip;} format.
+WARNING: The flag for this problem may not be in the bcactf{...} format.
 <br /><br />
-The pass that gives &ldquo;correct&rdquo; will be the flag.</p>
+The pass that gives &quot;correct&quot; will be the flag.</p>
 </blockquote>
 
 <p>Attachment:</p>
@@ -1691,7 +1691,7 @@ The pass that gives &ldquo;correct&rdquo; will be the flag.</p>
 <h3 id="challenge-18">Challenge</h3>
 
 <blockquote>
-<p>Ok, the sysadmin finally admits that maybe authentication should happen on a server. Can you just check everything really quick to make sure there aren&rsquo;t any problems now? He put some readouts for people who forget their passwords.
+<p>Ok, the sysadmin finally admits that maybe authentication should happen on a server. Can you just check everything really quick to make sure there aren't any problems now? He put some readouts for people who forget their passwords.
 <br /><br />
 nc challenges.ctfd.io 30133
 <br /><br />
@@ -1838,9 +1838,9 @@ Hint2: 123 and 240 are hexdumps (not necessarily compression)</p>
 <h3 id="challenge-20">Challenge</h3>
 
 <blockquote>
-<p>My friend sent me his new mixtape, but honestly I don&rsquo;t think it&rsquo;s that good. Can you take a look at it and figure out what&rsquo;s going on?
+<p>My friend sent me his new mixtape, but honestly I don't think it's that good. Can you take a look at it and figure out what's going on?
 <br /><br />
-Hint: He specifically described it as wavey&hellip;</p>
+Hint: He specifically described it as wavey...</p>
 </blockquote>
 
 <p>Attachment:</p>

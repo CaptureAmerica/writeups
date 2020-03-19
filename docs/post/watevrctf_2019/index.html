@@ -175,7 +175,7 @@
     <div class="post-content">
       
 
-<p>URL: <a href="https://ctf.watevr.xyz/challenges">https://ctf.watevr.xyz/challenges</a>
+<p>URL: <a href="https://ctf.watevr.xyz/challenges" target="_blank">https://ctf.watevr.xyz/challenges</a>
 <br /><br />
 クリスマスシーズンでCTFイベントが並行して開催されている中、こちらのCTFは問題数も多く、よくわからんのが多くてほとんど手つかずです。
 <br /><br />
@@ -192,7 +192,7 @@
 <h3 id="challenge">Challenge</h3>
 
 <blockquote>
-<p>Omg, look at that cute kitty! It&rsquo;s so cute I can&rsquo;t take my eyes off it! Wait, where did my flag go?</p>
+<p>Omg, look at that cute kitty! It's so cute I can't take my eyes off it! Wait, where did my flag go?</p>
 </blockquote>
 
 <p>Attachment:</p>
@@ -205,7 +205,7 @@
 
 <h3 id="solution">Solution</h3>
 
-<p>$ binwalk &ndash;dd=&lsquo;.*&rsquo; kitty.jpg</p>
+<p>$ binwalk --dd='.*' kitty.jpg</p>
 
 <p><br />
 Flag: <code>watevr{7h475_4c7u4lly_r34lly_cu73_7h0u6h}</code></p>
@@ -222,7 +222,7 @@ Flag: <code>watevr{7h475_4c7u4lly_r34lly_cu73_7h0u6h}</code></p>
 <blockquote>
 <p>Welcome to my cookie store!
 <br /><br />
-<a href="http://13.48.71.231:50000">http://13.48.71.231:50000</a></p>
+<a href="http://13.48.71.231:50000" target="_blank">http://13.48.71.231:50000</a></p>
 </blockquote>
 
 <p><br /></p>
@@ -234,13 +234,13 @@ Flag: <code>watevr{7h475_4c7u4lly_r34lly_cu73_7h0u6h}</code></p>
 <p>取れたクッキー。
 <pre>
 $ echo eyJtb25leSI6IDUwLCAiaGlzdG9yeSI6IFtdfQ== | base64 -d
-{&ldquo;money&rdquo;: 50, &ldquo;history&rdquo;: []}
+{&quot;money&quot;: 50, &quot;history&quot;: []}
 </pre></p>
 
 <p><br />
 クッキーを編集してお金を増やして100円クッキーを購入。
 <pre>
-$ echo &ldquo;{\&ldquo;money\&rdquo;: 200, \&ldquo;history\&rdquo;: []}&rdquo; | base64
+$ echo &quot;{\&quot;money\&quot;: 200, \&quot;history\&quot;: []}&quot; | base64
 eyJtb25leSI6IDIwMCwgImhpc3RvcnkiOiBbXX0K
 </pre></p>
 
@@ -443,9 +443,9 @@ Flag: <code>watevr{b64_15_4_6r347_3ncryp710n_m37h0d}</code></p>
 
 <p>local_b8の位置から表示しているので、それより前の値は無視してオッケーです。</p>
 
-<p>local_b8 は &lsquo;w&rsquo; だし、フラグ確定ですね。</p>
+<p>local_b8 は 'w' だし、フラグ確定ですね。</p>
 
-<p>&lsquo;w&rsquo; とか 10進数を16進数に変えておいて、pythonで文字に変換します。</p>
+<p>'w' とか 10進数を16進数に変えておいて、pythonで文字に変換します。</p>
 
 <pre>
 $ python -c 'print("".join([chr(int(x,16)) for x in "0x77,0x61,0x74,0x65,0x76,0x72,0x7b,0x33,0x6e,0x63,0x72,0x79,0x74,0x69,0x6f,0x6e,0x5f,0x69,0x73,0x5f,0x6f,0x76,0x65,0x72,0x72,0x61,0x74,0x65,0x64,0x5f,0x79,0x6f,0x75,0x74,0x75,0x62,0x65,0x2e,0x63,0x6f,0x6d,0x2f,0x77,0x61,0x74,0x63,0x68,0x3f,0x76,0x3d,0x4f,0x50,0x66,0x30,0x59,0x62,0x58,0x71,0x44,0x6d,0x30,0x7d".split(",")]))'
@@ -471,7 +471,7 @@ Flag: <code>watevr{3ncrytion_is_overrated_youtube.com/watch?v=OPf0YbXqDm0}</code
 <h3 id="challenge-3">Challenge</h3>
 
 <blockquote>
-<p>I think the author of this episode&rsquo;s script had a stroke or something&hellip; Or maybe it&rsquo;s just me?</p>
+<p>I think the author of this episode's script had a stroke or something... Or maybe it's just me?</p>
 </blockquote>
 
 <p>Attachment:</p>
@@ -519,7 +519,7 @@ havyen't (y)
 <h3 id="challenge-4">Challenge</h3>
 
 <blockquote>
-<p>Hmm, this looks like something my english teacher would give me, doesn&rsquo;t it? Too bad i forgot english&hellip; NOTE: the flag for this challenge is not in the standard watevr{} format. Submit it as is right from the challenge without the flag format.</p>
+<p>Hmm, this looks like something my english teacher would give me, doesn't it? Too bad i forgot english... NOTE: the flag for this challenge is not in the standard watevr{} format. Submit it as is right from the challenge without the flag format.</p>
 </blockquote>
 
 <p>Attachment:</p>
@@ -537,9 +537,9 @@ havyen't (y)
 <p>難しいのは、オンラインのインタープリターがなくて、コンパイラーを使ってコンパイルしないといけないのですが、どれを使ってもまともにコンパイルができないので降参しました。</p>
 
 <p>試したやつ：<br />
-<a href="http://shakespearelang.sf.net/download/spl-1.2.1.tar.gz">http://shakespearelang.sf.net/download/spl-1.2.1.tar.gz</a> (bison, flex 辺りが必要) <br />
-<a href="https://github.com/zmbc/shakespearelang">https://github.com/zmbc/shakespearelang</a><br />
-<a href="https://github.com/drsam94/Spl">https://github.com/drsam94/Spl</a><br /></p>
+<a href="http://shakespearelang.sf.net/download/spl-1.2.1.tar.gz" target="_blank">http://shakespearelang.sf.net/download/spl-1.2.1.tar.gz</a> (bison, flex 辺りが必要) <br />
+<a href="https://github.com/zmbc/shakespearelang" target="_blank">https://github.com/zmbc/shakespearelang</a><br />
+<a href="https://github.com/drsam94/Spl" target="_blank">https://github.com/drsam94/Spl</a><br /></p>
 
 <p><br /><br />
 <br /><br /></p>

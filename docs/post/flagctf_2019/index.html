@@ -170,7 +170,7 @@
     <div class="post-content">
       
 
-<p>URL: <a href="http://flagctf.com/">http://flagctf.com/</a>
+<p>URL: <a href="http://flagctf.com/" target="_blank">http://flagctf.com/</a>
 <br /><br />
 Packer Captureの問題があったのがよかったです。
 <br /><br />
@@ -245,13 +245,13 @@ $ tshark -r WebSearchingFlagCTF2019.pcapng <span class="p">|</span> grep -i <spa
 <h3 id="challenge-1">Challenge</h3>
 
 <blockquote>
-<p>Agents have captured password hashes from the hackers in the black-hat group &ldquo;1337 Hax0r T3am&rdquo;. We know that they think they are 1337 but they don&rsquo;t like to use symbols after the words at the base of their passwords, because they heard &ldquo;Password1!&rdquo; was a bad password without understanding why. They are known to share a similar interest outside of computers, which may be reflected in their passwords. Note: some of these passwords are unlikely to be found verbatim in password cracking lists or in lists on the internet. It will be necessary to construct wordlists once you find out what the theme is, and extend the wordlists that you find to create longer sensible phrases that might be used as the base of passwords.
+<p>Agents have captured password hashes from the hackers in the black-hat group &quot;1337 Hax0r T3am&quot;. We know that they think they are 1337 but they don't like to use symbols after the words at the base of their passwords, because they heard &quot;Password1!&quot; was a bad password without understanding why. They are known to share a similar interest outside of computers, which may be reflected in their passwords. Note: some of these passwords are unlikely to be found verbatim in password cracking lists or in lists on the internet. It will be necessary to construct wordlists once you find out what the theme is, and extend the wordlists that you find to create longer sensible phrases that might be used as the base of passwords.
 <br /><br />
 Hint: use password cracking software such as hashcat, or john the ripper, to try many possible combinations at once. without a GPU, it can be done in under 1 hour on a decent processor. Hint: start w ith lower entropy, and think how longer passwords might be constructed specific to terms in this domain (field).
 <br /><br />
 Do not brute-force attempt against the website (here), or that will result in a ban. For this set of challenges, you should be sure when you arrived at the answer.
 <br /><br />
-Stay tuned for the video posted at 7:30 pm ET if you&rsquo;re new to the process as we show how to crack the first hash in this series.</p>
+Stay tuned for the video posted at 7:30 pm ET if you're new to the process as we show how to crack the first hash in this series.</p>
 </blockquote>
 
 <p>以下は、Cracking #6 (50)より。</p>
@@ -264,7 +264,7 @@ After there were no solves in the sprint round, you can also crack this hash whe
 <h3 id="solution-1">Solution</h3>
 
 <p>いくつかは、rainbow tableでcrackできます。<br />
-<a href="https://crackstation.net/">https://crackstation.net/</a>
+<a href="https://crackstation.net/" target="_blank">https://crackstation.net/</a>
 <br />
 53b45bbef61cb7ed537d14b1257545d5 : chick3n
 <br />
@@ -291,8 +291,8 @@ dc098cc7aadabcffbf1264af50b33027</p>
 <ul>
 <li>食べ物の単語</li>
 <li>Leetを使用<br />
-<a href="https://ja.wikipedia.org/wiki/Leet">https://ja.wikipedia.org/wiki/Leet</a><br />
-<a href="https://en.wikipedia.org/wiki/Leet">https://en.wikipedia.org/wiki/Leet</a></li>
+<a href="https://ja.wikipedia.org/wiki/Leet" target="_blank">https://ja.wikipedia.org/wiki/Leet</a><br />
+<a href="https://en.wikipedia.org/wiki/Leet" target="_blank">https://en.wikipedia.org/wiki/Leet</a></li>
 <li>複数形のsが付いたりする</li>
 </ul>
 
@@ -301,7 +301,7 @@ dc098cc7aadabcffbf1264af50b33027</p>
 <br /><br />
 2. 以下のツールを使わせてもらい、Leetのバリエーションを使って辞書を強化。
 <br />
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://github.com/madglory/permute_wordlist">https://github.com/madglory/permute_wordlist</a>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://github.com/madglory/permute_wordlist" target="_blank">https://github.com/madglory/permute_wordlist</a>
 <br /><br />
 3. Hashcat実行。<br />
 &nbsp;&nbsp;&nbsp;&nbsp;$ hashcat -m 0 -a 0 hash.txt my_food_dic.txt
@@ -318,9 +318,9 @@ dc098cc7aadabcffbf1264af50b33027</p>
 <h3 id="challenge-2">Challenge</h3>
 
 <blockquote>
-<p>&ldquo;You can&rsquo;t spell &lsquo;awesome&rsquo; without &lsquo;me&rsquo;!&rdquo; &ndash; Taylor Swift/Brendon Urie, &ldquo;ME!&rdquo; (2019)
+<p>&quot;You can't spell 'awesome' without 'me'!&quot; -- Taylor Swift/Brendon Urie, &quot;ME!&quot; (2019)
 <br /><br />
-Even with all that you hear in pop songs these days, that is a true statement! You wonder how many words are spelled with the letters &rsquo;m&rsquo; and &lsquo;e&rsquo; in that order, but not necessarily consecutive.
+Even with all that you hear in pop songs these days, that is a true statement! You wonder how many words are spelled with the letters 'm' and 'e' in that order, but not necessarily consecutive.
 <br /><br />
 You are given a list of words, and must determine how many satisfy this property.
 <br /><br />
@@ -343,11 +343,11 @@ Example output:<br />
 <br /><br />
 Output description:
 <br /><br />
-The first 4 of the 5 words given satisfy that property. The words &lsquo;awesome&rsquo; and &lsquo;me&rsquo; are clear. In &lsquo;mine&rsquo;, the letters are not consecutive, and in &lsquo;eminem&rsquo;, we can use the first &rsquo;m&rsquo; and the second &lsquo;e&rsquo;. However, the only &lsquo;e&rsquo; in the fifth word, &lsquo;emotion&rsquo; is before the &rsquo;m&rsquo;, so this does not count.
+The first 4 of the 5 words given satisfy that property. The words 'awesome' and 'me' are clear. In 'mine', the letters are not consecutive, and in 'eminem', we can use the first 'm' and the second 'e'. However, the only 'e' in the fifth word, 'emotion' is before the 'm', so this does not count.
 <br /><br />
 Flag format:
 <br /><br />
-Submit the answers for all 5 input files in order, delimited by semicolons. For example, &ldquo;4;902;489;103;670&rdquo;.</p>
+Submit the answers for all 5 input files in order, delimited by semicolons. For example, &quot;4;902;489;103;670&quot;.</p>
 </blockquote>
 
 <p>Attachment:</p>
@@ -390,9 +390,9 @@ Submit the answers for all 5 input files in order, delimited by semicolons. For 
 <h3 id="challenge-3">Challenge</h3>
 
 <blockquote>
-<p>Let&rsquo;s go back to the Exquisifax site: <a href="http://18.217.184.75:8002/">http://18.217.184.75:8002/</a>. Find a way to log in to the site, and report the flag.
+<p>Let's go back to the Exquisifax site: <a href="http://18.217.184.75:8002/" target="_blank">http://18.217.184.75:8002/</a>. Find a way to log in to the site, and report the flag.
 <br /><br />
-Scope of attack: <a href="http://18.217.184.75:8002/*">http://18.217.184.75:8002/*</a></p>
+Scope of attack: <a href="http://18.217.184.75:8002/*" target="_blank">http://18.217.184.75:8002/*</a></p>
 </blockquote>
 
 <h3 id="solution-3">Solution</h3>
