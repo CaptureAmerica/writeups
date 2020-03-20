@@ -1,11 +1,11 @@
 ---
 title: "ångstromCTF 2020 Writeup | フラxxグゲット"
 date: 2020-03-19T10:00:00+09:00
-lastmod: 2020-03-19T10:00:00+09:00
+lastmod: 2020-03-20T09:00:00+09:00
 draft: false
 keywords: []
 description: ""
-tags: ["CTF"]
+tags: ["CTF", "Reviewed"]
 categories: ["CTF"]
 author: ""
 ---
@@ -179,7 +179,7 @@ gef➤  x flag
 ```
 
 ```
-team5543@actf:/problems/2020/no_canary$ (python -c "print('a'*32+'a'*8+'\x86\x11\x40\x00\x00\x00\x00\x00')"; cat -) | ./no_canary
+xxxxx@actf:/problems/2020/no_canary$ (python -c "print('a'*32+'a'*8+'\x86\x11\x40\x00\x00\x00\x00\x00')"; cat -) | ./no_canary
 Ahhhh, what a beautiful morning on the farm!
 
        _.-^-._    .--.
@@ -416,7 +416,7 @@ Ghidraでソースを確認すると、引数が4つ必要で、最初の3つは
 その後、パスワードが聞かれます。"please give flag"です。（XOR 0x2aされてます）。
 
 ```
-team5543@actf:/problems/2020/taking_off$ ./taking_off 3 9 2 chicken
+xxxxx@actf:/problems/2020/taking_off$ ./taking_off 3 9 2 chicken
 So you figured out how to provide input and command line arguments.
 But can you figure out what input to provide?
 Well, you found the arguments, but what's the password?
@@ -508,6 +508,7 @@ Hint: There are ways to run programs without using the shell.
 
 Attachment:
 
+- inputter (ELF 64bit)
 - inputter.c
 
 
@@ -561,6 +562,52 @@ int main(int argc, char* argv[]) {
 ちょっとヒントの意味もわからなかったです。意外と難しいもんですね。後日、復習しておきます。
 
 
+<br /><br />
+2020/03/20 - 復習しました。
+
+なんか、pwntoolsで普通にできたみたいです。イベント中にやったときは、なぜかできなかった気がしたんですけど。
+
+```Python
+#!/usr/bin/env python
+from pwn import *
+
+if 1:
+    user='xxxxx'
+    pw='yyyyy'
+    s=ssh(host='shell.actf.co', user=user, password=pw)
+    s.set_working_directory('/problems/2020/inputter')
+    p = s.process(["./inputter"," \n'\"\x07"])
+else:
+    p = process(["./inputter"," \n'\"\x07"])
+
+p.sendline("\x00\x01\x02\x03\n")
+msg = p.recvall()
+print(msg)
+```
+
+<br>
+<pre>
+captureamerica@kali:~/CTF/angstromCTF_2020$ ./inputter_solve.py 
+[+] Connecting to shell.actf.co on port 22: Done
+[*] xxxxx@shell.actf.co:
+    Distro    Ubuntu 16.04
+    OS:       linux
+    Arch:     amd64
+    Version:  4.4.0
+    ASLR:     Enabled
+[*] Working directory: '/problems/2020/inputter'
+[+] Starting remote process './inputter' on shell.actf.co: pid 21500
+[+] Receiving all data: Done (94B)
+[*] Stopped remote process 'inputter' on shell.actf.co (pid 21500)
+You seem to know what you're doing.
+actf{impr4ctic4l_pr0blems_c4ll_f0r_impr4ctic4l_s0lutions}
+</pre>
+
+<br>
+Flag: `actf{impr4ctic4l_pr0blems_c4ll_f0r_impr4ctic4l_s0lutions}`
+
+
+
 
 <br /><br />
 <br /><br />
@@ -583,6 +630,68 @@ restricted shellの問題です。
 
 
 
+<br /><br />
+<br /><br />
+<img src="https://captureamerica.github.io/writeups/img/orange_bar.png" alt="orange_bar.png">
+<br />
+ここから下はCTF終了後（2020/03/20）に行った復習です。他の方のWriteupとか参照してます。
+
+
+<br /><br />
+<br /><br />
+## [Misc]: WS3 (180 points)
+- - -
+### Challenge
+> What the... record.pcapng
+
+Attachment:
+
+- record.pcapng
+
+
+
+<br />
+### Solution
+git-receive-pack というのが出てきて、よく知らなかったのでスルーしたやつなんですが、gitを使わずとも解ける問題だったみたいなので再度やってみました。
+
+HTTP のオブジェクトをExportします。いくつかありますが、サイズが他と比べて特別大きい18KBのやつを狙います。
+
+<img src="https://captureamerica.github.io/writeups/img/angstromctf_ws3.png" alt="angstromctf_ws3.png">
+
+<br>
+binwalkします。
+
+<pre>
+captureamerica@kali:~/Downloads$ binwalk --dd='.*' git-receive-pack 
+
+DECIMAL       HEXADECIMAL     DESCRIPTION
+--------------------------------------------------------------------------------
+183           0xB7            Zlib compressed data, default compression
+342           0x156           Zlib compressed data, default compression
+425           0x1A9           Zlib compressed data, default compression
+</pre>
+
+<br>
+ここで、zlib-flateを使って解凍してもいいんですが、extractedの中にすでに解凍されたものも生成されてます。
+
+<pre>
+captureamerica@kali:~/Downloads/_git-receive-pack.extracted$ file *
+156:                 data
+156.zlib:            zlib compressed data
+1A9:                 JPEG image data, JFIF standard 1.01, aspect ratio, density 72x72, segment length 16, baseline, precision 8, 413x549, components 3
+1A9.zlib:            zlib compressed data
+angstromctf_1A9.jpg: JPEG image data, JFIF standard 1.01, aspect ratio, density 72x72, segment length 16, baseline, precision 8, 413x549, components 3
+B7:                  Git tree 87872
+B7.zlib:             zlib compressed data
+</pre>
+
+<br>
+1A9はJpegファイルで、開くとフラグが見つかります。
+
+<img src="https://captureamerica.github.io/writeups/img/angstromctf_1A9.jpg" alt="angstromctf_1A9.jpg">
+
+<br>
+Flag: `actf{git_good_git_wireshark-123323}`
 
 
 <br /><br />

