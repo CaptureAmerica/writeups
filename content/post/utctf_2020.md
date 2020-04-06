@@ -1,5 +1,5 @@
 ---
-title: "UTCTF Writeup | フラxxグゲット"
+title: "UTCTF 2020 Writeup | フラxxグゲット"
 date: 2020-03-09T22:00:00+09:00
 lastmod: 2020-03-09T22:00:00+09:00
 draft: false

