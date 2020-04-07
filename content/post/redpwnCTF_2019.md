@@ -9,14 +9,11 @@ tags: ["CTF"]
 categories: ["CTF"]
 author: ""
 ---
-<a href="https://captureamerica.github.io/writeups/post/redpwnctf_2019/">
-<img src="https://captureamerica.github.io/writeups/img/Jp.png" alt="Japanese">日本語
-</a>&nbsp;
+{{% right %}}
 <a href="https://translate.google.com/translate?hl=en&sl=ja&tl=en&u=https%3A%2F%2Fcaptureamerica.github.io%2Fwriteups%2Fpost%2Fredpwnctf_2019%2F">
-<img src="https://captureamerica.github.io/writeups/img/En.png" alt="English">English (Google)
+<img src="https://captureamerica.github.io/writeups/img/En.png" alt="English">
 </a>
-
-<br />
+{{% /right %}}
 
 URL: [https://ctf.redpwn.net/](https://ctf.redpwn.net/)
 <br /><br />

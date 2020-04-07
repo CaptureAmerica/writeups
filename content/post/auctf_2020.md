@@ -9,15 +9,11 @@ tags: ["CTF"]
 categories: ["CTF"]
 author: ""
 ---
-<a href="https://captureamerica.github.io/writeups/post/auctf_2020/">
-<img src="https://captureamerica.github.io/writeups/img/Jp.png" alt="Japanese">日本語
-</a>&nbsp;
+{{% right %}}
 <a href="https://translate.google.com/translate?hl=en&sl=auto&tl=en&u=https%3A%2F%2Fcaptureamerica.github.io%2Fwriteups%2Fpost%2Fauctf_2020%2F">
-<img src="https://captureamerica.github.io/writeups/img/En.png" alt="English">English (Google)
+<img src="https://captureamerica.github.io/writeups/img/En.png" alt="English">
 </a>
-
-<br />
-
+{{% /right %}}
 
 URL: [https://ctf.auburn.edu/challenges](https://ctf.auburn.edu/challenges)
 <br /><br />
@@ -423,7 +419,7 @@ Attachment:
 
 Ghidraでソースを確認します。
 
-```C
+{{< highlight c "linenos=table,hl_lines=30" >}}
 undefined4 main(void)
 {
   undefined *puVar1;
@@ -460,7 +456,7 @@ void vulnerable(void)
   }
   return;
 }
-```
+{{< / highlight >}}
 
 <br>
 fgets()の箇所でlocal_30に入力ができますが、バッファのサイズ16バイトにも関わらず、36バイト（0x24）読み込むようになっています。
@@ -472,7 +468,7 @@ if文の条件に合うように値をセットしたら、print_flag()でフラ
 <br>
 `(local_14 < -0x14)` の判定が少しわかりにくいですが、ここはアセンブラで見た方がわかりやすいかもです。
 
-```C
+{{< highlight c "linenos=table,hl_lines=5" >}}
    0x565562df <+143>:	call   0x56556040 <fgets@plt>
    0x565562e4 <+148>:	add    esp,0x10
    0x565562e7 <+151>:	cmp    DWORD PTR [ebp-0xc],0x1337
@@ -490,7 +486,7 @@ if文の条件に合うように値をセットしたら、print_flag()でフラ
    0x56556311 <+193>:	mov    ebx,DWORD PTR [ebp-0x4]
    0x56556314 <+196>:	leave  
    0x56556315 <+197>:	ret   
-```
+{{< / highlight >}}
 
 <br>
 `0xffffffec` との比較をしているので、`0xffffffeb` か `0xffffffed` のどちらかで行けるでしょう（笑）
@@ -557,6 +553,20 @@ drwxr-xr-x 1 root   root   4096 Apr  3 15:35 ..
 -r-xr-x--- 1 level3 level2  110 Apr  1 21:25 random_dirs.sh
 
 
+$ cat random_dirs.sh
+#!/bin/bash
+
+x=$RANDOM
+
+base64 flag.txt > /tmp/$x
+function finish {
+       rm  /tmp/$x
+}
+trap finish EXIT
+
+sleep 15
+
+
 $ sudo -l
 Matching Defaults entries for level2 on a522debb8813:
     env_reset, mail_badpass, secure_path=/usr/local/sbin\:/usr/local/bin\:/usr/sbin\:/usr/bin\:/sbin\:/bin\:/snap/bin
@@ -564,12 +574,6 @@ Matching Defaults entries for level2 on a522debb8813:
 User level2 may run the following commands on a522debb8813:
     (level3) NOPASSWD: /home/level2/random_dirs.sh
 ```
-
-<br />
-（random_dirs.sh の中身は、保存するのをすっかり忘れてました。。。）
-
-flag.txtの値を読み込んで、base64エンコードして、/tmpに下にファイルとして保存、そしてrmで削除する、みたいなやつでした。
-
 
 <br />
 みんなが同じマシンで作業してたので、ゴミファイルとかも結構あったし、結果として/tmpの下をモニターしているだけでフラグが取れちゃいました。

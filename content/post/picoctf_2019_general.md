@@ -9,14 +9,11 @@ tags: ["CTF"]
 categories: ["CTF"]
 author: ""
 ---
-<a href="https://captureamerica.github.io/writeups/post/picoctf_2019_general/">
-<img src="https://captureamerica.github.io/writeups/img/Jp.png" alt="Japanese">日本語
-</a>&nbsp;
+{{% right %}}
 <a href="https://translate.google.com/translate?hl=en&sl=ja&tl=en&u=https%3A%2F%2Fcaptureamerica.github.io%2Fwriteups%2Fpost%2Fpicoctf_2019_general%2F">
-<img src="https://captureamerica.github.io/writeups/img/En.png" alt="English">English (Google)
+<img src="https://captureamerica.github.io/writeups/img/En.png" alt="English">
 </a>
-
-<br />
+{{% /right %}}
 
 URL: [https://2019game.picoctf.com/](https://2019game.picoctf.com/)
 <br /><br />

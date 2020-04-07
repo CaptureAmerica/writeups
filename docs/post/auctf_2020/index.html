@@ -16,7 +16,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="CaptureAmerica @ CTF フラxxグゲット" /><meta name="description" content="日本語 &amp;nbsp; English (Google) URL: https://ctf.auburn.edu/challenges チャレンジ数が多かった！！ 時間が足りない。 Bashの問題 (Over The Wire みたいなやつ)とか、いろいろ面白いチャレンジもありました。 Password Cracking" /><meta name="keywords" content="CTF, Writeup, captureamerica, picoCTF" />
+<meta name="author" content="CaptureAmerica @ CTF フラxxグゲット" /><meta name="description" content="URL: https://ctf.auburn.edu/challenges チャレンジ数が多かった！！ 時間が足りない。 Bashの問題 (Over The Wire みたいなやつ)とか、いろいろ面白いチャレンジもありました。 Password Cracking はもう少し解" /><meta name="keywords" content="CTF, Writeup, captureamerica, picoCTF" />
 
 
 
@@ -39,25 +39,25 @@
 
 
 <meta property="og:title" content="AUCTF 2020 Writeup" />
-<meta property="og:description" content="日本語 &nbsp; English (Google) URL: https://ctf.auburn.edu/challenges チャレンジ数が多かった！！ 時間が足りない。 Bashの問題 (Over The Wire みたいなやつ)とか、いろいろ面白いチャレンジもありました。 Password Cracking" />
+<meta property="og:description" content="URL: https://ctf.auburn.edu/challenges チャレンジ数が多かった！！ 時間が足りない。 Bashの問題 (Over The Wire みたいなやつ)とか、いろいろ面白いチャレンジもありました。 Password Cracking はもう少し解" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://captureamerica.github.io/writeups/post/auctf_2020/" />
 <meta property="article:published_time" content="2020-04-06T13:00:00+09:00" />
 <meta property="article:modified_time" content="2020-04-06T13:00:00+09:00" />
 <meta itemprop="name" content="AUCTF 2020 Writeup">
-<meta itemprop="description" content="日本語 &nbsp; English (Google) URL: https://ctf.auburn.edu/challenges チャレンジ数が多かった！！ 時間が足りない。 Bashの問題 (Over The Wire みたいなやつ)とか、いろいろ面白いチャレンジもありました。 Password Cracking">
+<meta itemprop="description" content="URL: https://ctf.auburn.edu/challenges チャレンジ数が多かった！！ 時間が足りない。 Bashの問題 (Over The Wire みたいなやつ)とか、いろいろ面白いチャレンジもありました。 Password Cracking はもう少し解">
 
 
 <meta itemprop="datePublished" content="2020-04-06T13:00:00&#43;09:00" />
 <meta itemprop="dateModified" content="2020-04-06T13:00:00&#43;09:00" />
-<meta itemprop="wordCount" content="4226">
+<meta itemprop="wordCount" content="4145">
 
 
 
 <meta itemprop="keywords" content="CTF," />
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="AUCTF 2020 Writeup"/>
-<meta name="twitter:description" content="日本語 &nbsp; English (Google) URL: https://ctf.auburn.edu/challenges チャレンジ数が多かった！！ 時間が足りない。 Bashの問題 (Over The Wire みたいなやつ)とか、いろいろ面白いチャレンジもありました。 Password Cracking"/>
+<meta name="twitter:description" content="URL: https://ctf.auburn.edu/challenges チャレンジ数が多かった！！ 時間が足りない。 Bashの問題 (Over The Wire みたいなやつ)とか、いろいろ面白いチャレンジもありました。 Password Cracking はもう少し解"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -205,14 +205,13 @@
     <div class="post-content">
       
 
-<p><a href="https://captureamerica.github.io/writeups/post/auctf_2020/">
-<img src="https://captureamerica.github.io/writeups/img/Jp.png" alt="Japanese">日本語
-</a>&nbsp;
+<div class='align-right'>
+  
 <a href="https://translate.google.com/translate?hl=en&sl=auto&tl=en&u=https%3A%2F%2Fcaptureamerica.github.io%2Fwriteups%2Fpost%2Fauctf_2020%2F">
-<img src="https://captureamerica.github.io/writeups/img/En.png" alt="English">English (Google)
-</a></p>
+<img src="https://captureamerica.github.io/writeups/img/En.png" alt="English">
+</a>
 
-<p><br /></p>
+</div>
 
 <p>URL: <a href="https://ctf.auburn.edu/challenges" target="_blank">https://ctf.auburn.edu/challenges</a>
 <br /><br />
@@ -642,9 +641,10 @@ Note: ASLR is disabled for this challenge</p>
 <h3 id="solution-6">Solution</h3>
 
 <p>Ghidraでソースを確認します。</p>
+
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-C" data-lang="C"><span class="lnt"> 1
+<pre class="chroma"><code class="language-c" data-lang="c"><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -673,8 +673,8 @@ Note: ASLR is disabled for this challenge</p>
 </span><span class="lnt">27
 </span><span class="lnt">28
 </span><span class="lnt">29
-</span><span class="lnt">30
-</span><span class="lnt">31
+</span><span class="hl"><span class="lnt">30
+</span></span><span class="lnt">31
 </span><span class="lnt">32
 </span><span class="lnt">33
 </span><span class="lnt">34
@@ -682,7 +682,7 @@ Note: ASLR is disabled for this challenge</p>
 </span><span class="lnt">36
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-C" data-lang="C"><span class="n">undefined4</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<pre class="chroma"><code class="language-c" data-lang="c"><span class="n">undefined4</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
 <span class="p">{</span>
   <span class="n">undefined</span> <span class="o">*</span><span class="n">puVar1</span><span class="p">;</span>
   
@@ -711,8 +711,8 @@ Note: ASLR is disabled for this challenge</p>
   <span class="n">local_18</span> <span class="o">=</span> <span class="mh">0x14</span><span class="p">;</span>
   <span class="n">local_1c</span> <span class="o">=</span> <span class="mh">0x14</span><span class="p">;</span>
   <span class="n">local_20</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
-  <span class="n">fgets</span><span class="p">(</span><span class="n">local_30</span><span class="p">,</span><span class="mh">0x24</span><span class="p">,</span><span class="n">stdin</span><span class="p">);</span>
-  <span class="k">if</span> <span class="p">((((</span><span class="n">local_10</span> <span class="o">==</span> <span class="mh">0x1337</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="n">local_14</span> <span class="o">&lt;</span> <span class="o">-</span><span class="mh">0x14</span><span class="p">))</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="n">local_1c</span> <span class="o">!=</span> <span class="mh">0x14</span><span class="p">))</span> <span class="o">&amp;&amp;</span>
+<span class="hl">  <span class="n">fgets</span><span class="p">(</span><span class="n">local_30</span><span class="p">,</span><span class="mh">0x24</span><span class="p">,</span><span class="n">stdin</span><span class="p">);</span>
+</span>  <span class="k">if</span> <span class="p">((((</span><span class="n">local_10</span> <span class="o">==</span> <span class="mh">0x1337</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="n">local_14</span> <span class="o">&lt;</span> <span class="o">-</span><span class="mh">0x14</span><span class="p">))</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="n">local_1c</span> <span class="o">!=</span> <span class="mh">0x14</span><span class="p">))</span> <span class="o">&amp;&amp;</span>
      <span class="p">((</span><span class="n">local_18</span> <span class="o">==</span> <span class="mh">0x667463</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="n">local_20</span> <span class="o">==</span> <span class="mh">0x2a</span><span class="p">))))</span> <span class="p">{</span>
     <span class="n">print_flag</span><span class="p">();</span>
   <span class="p">}</span>
@@ -720,6 +720,7 @@ Note: ASLR is disabled for this challenge</p>
 <span class="p">}</span></code></pre></td></tr></table>
 </div>
 </div>
+
 <p><br>
 fgets()の箇所でlocal_30に入力ができますが、バッファのサイズ16バイトにも関わらず、36バイト（0x24）読み込むようになっています。</p>
 
@@ -729,14 +730,15 @@ fgets()の箇所でlocal_30に入力ができますが、バッファのサイ�
 
 <p><br>
 <code>(local_14 &lt; -0x14)</code> の判定が少しわかりにくいですが、ここはアセンブラで見た方がわかりやすいかもです。</p>
+
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-C" data-lang="C"><span class="lnt"> 1
+<pre class="chroma"><code class="language-c" data-lang="c"><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
+</span><span class="hl"><span class="lnt"> 5
+</span></span><span class="lnt"> 6
 </span><span class="lnt"> 7
 </span><span class="lnt"> 8
 </span><span class="lnt"> 9
@@ -750,12 +752,12 @@ fgets()の箇所でlocal_30に入力ができますが、バッファのサイ�
 </span><span class="lnt">17
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-C" data-lang="C">   <span class="mh">0x565562df</span> <span class="o">&lt;+</span><span class="mi">143</span><span class="o">&gt;:</span>	<span class="n">call</span>   <span class="mh">0x56556040</span> <span class="o">&lt;</span><span class="n">fgets</span><span class="err">@</span><span class="n">plt</span><span class="o">&gt;</span>
+<pre class="chroma"><code class="language-c" data-lang="c">   <span class="mh">0x565562df</span> <span class="o">&lt;+</span><span class="mi">143</span><span class="o">&gt;:</span>	<span class="n">call</span>   <span class="mh">0x56556040</span> <span class="o">&lt;</span><span class="n">fgets</span><span class="err">@</span><span class="n">plt</span><span class="o">&gt;</span>
    <span class="mh">0x565562e4</span> <span class="o">&lt;+</span><span class="mi">148</span><span class="o">&gt;:</span>	<span class="n">add</span>    <span class="n">esp</span><span class="p">,</span><span class="mh">0x10</span>
    <span class="mh">0x565562e7</span> <span class="o">&lt;+</span><span class="mi">151</span><span class="o">&gt;:</span>	<span class="n">cmp</span>    <span class="n">DWORD</span> <span class="n">PTR</span> <span class="p">[</span><span class="n">ebp</span><span class="o">-</span><span class="mh">0xc</span><span class="p">],</span><span class="mh">0x1337</span>
    <span class="mh">0x565562ee</span> <span class="o">&lt;+</span><span class="mi">158</span><span class="o">&gt;:</span>	<span class="n">jne</span>    <span class="mh">0x56556310</span> <span class="o">&lt;</span><span class="n">vulnerable</span><span class="o">+</span><span class="mi">192</span><span class="o">&gt;</span>
-<span class="o">=&gt;</span> <span class="mh">0x565562f0</span> <span class="o">&lt;+</span><span class="mi">160</span><span class="o">&gt;:</span>	<span class="n">cmp</span>    <span class="n">DWORD</span> <span class="n">PTR</span> <span class="p">[</span><span class="n">ebp</span><span class="o">-</span><span class="mh">0x10</span><span class="p">],</span><span class="mh">0xffffffec</span>
-   <span class="mh">0x565562f4</span> <span class="o">&lt;+</span><span class="mi">164</span><span class="o">&gt;:</span>	<span class="n">jge</span>    <span class="mh">0x56556310</span> <span class="o">&lt;</span><span class="n">vulnerable</span><span class="o">+</span><span class="mi">192</span><span class="o">&gt;</span>
+<span class="hl"><span class="o">=&gt;</span> <span class="mh">0x565562f0</span> <span class="o">&lt;+</span><span class="mi">160</span><span class="o">&gt;:</span>	<span class="n">cmp</span>    <span class="n">DWORD</span> <span class="n">PTR</span> <span class="p">[</span><span class="n">ebp</span><span class="o">-</span><span class="mh">0x10</span><span class="p">],</span><span class="mh">0xffffffec</span>
+</span>   <span class="mh">0x565562f4</span> <span class="o">&lt;+</span><span class="mi">164</span><span class="o">&gt;:</span>	<span class="n">jge</span>    <span class="mh">0x56556310</span> <span class="o">&lt;</span><span class="n">vulnerable</span><span class="o">+</span><span class="mi">192</span><span class="o">&gt;</span>
    <span class="mh">0x565562f6</span> <span class="o">&lt;+</span><span class="mi">166</span><span class="o">&gt;:</span>	<span class="n">cmp</span>    <span class="n">DWORD</span> <span class="n">PTR</span> <span class="p">[</span><span class="n">ebp</span><span class="o">-</span><span class="mh">0x18</span><span class="p">],</span><span class="mh">0x14</span>
    <span class="mh">0x565562fa</span> <span class="o">&lt;+</span><span class="mi">170</span><span class="o">&gt;:</span>	<span class="n">je</span>     <span class="mh">0x56556310</span> <span class="o">&lt;</span><span class="n">vulnerable</span><span class="o">+</span><span class="mi">192</span><span class="o">&gt;</span>
    <span class="mh">0x565562fc</span> <span class="o">&lt;+</span><span class="mi">172</span><span class="o">&gt;:</span>	<span class="n">cmp</span>    <span class="n">DWORD</span> <span class="n">PTR</span> <span class="p">[</span><span class="n">ebp</span><span class="o">-</span><span class="mh">0x14</span><span class="p">],</span><span class="mh">0x667463</span>
@@ -769,6 +771,7 @@ fgets()の箇所でlocal_30に入力ができますが、バッファのサイ�
    <span class="mh">0x56556315</span> <span class="o">&lt;+</span><span class="mi">197</span><span class="o">&gt;:</span>	<span class="n">ret</span>   </code></pre></td></tr></table>
 </div>
 </div>
+
 <p><br>
 <code>0xffffffec</code> との比較をしているので、<code>0xffffffeb</code> か <code>0xffffffed</code> のどちらかで行けるでしょう（笑）</p>
 
@@ -867,32 +870,55 @@ password is the flag of the previous Bash challenge</p>
 </span><span class="lnt">15
 </span><span class="lnt">16
 </span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
 </span></pre></td>
 <td class="lntd">
 <pre class="chroma">$ ls -la
-total 28
-dr-xr-x--x 1 level2 level2 4096 Apr  3 16:00 .
-drwxr-xr-x 1 root   root   4096 Apr  3 15:35 ..
--rw-r--r-- 1 level2 level2  220 Apr  4  2018 .bash_logout
--rw-r--r-- 1 level2 level2 3771 Apr  4  2018 .bashrc
--rw-r--r-- 1 level2 level2  807 Apr  4  2018 .profile
--r--r----- 1 level3 level3   22 Apr  1 21:25 flag.txt
--r-xr-x--- 1 level3 level2  110 Apr  1 21:25 random_dirs.sh
+total <span class="m">28</span>
+dr-xr-x--x <span class="m">1</span> level2 level2 <span class="m">4096</span> Apr  <span class="m">3</span> <span class="m">16</span>:00 .
+drwxr-xr-x <span class="m">1</span> root   root   <span class="m">4096</span> Apr  <span class="m">3</span> <span class="m">15</span>:35 ..
+-rw-r--r-- <span class="m">1</span> level2 level2  <span class="m">220</span> Apr  <span class="m">4</span>  <span class="m">2018</span> .bash_logout
+-rw-r--r-- <span class="m">1</span> level2 level2 <span class="m">3771</span> Apr  <span class="m">4</span>  <span class="m">2018</span> .bashrc
+-rw-r--r-- <span class="m">1</span> level2 level2  <span class="m">807</span> Apr  <span class="m">4</span>  <span class="m">2018</span> .profile
+-r--r----- <span class="m">1</span> level3 level3   <span class="m">22</span> Apr  <span class="m">1</span> <span class="m">21</span>:25 flag.txt
+-r-xr-x--- <span class="m">1</span> level3 level2  <span class="m">110</span> Apr  <span class="m">1</span> <span class="m">21</span>:25 random_dirs.sh
+
+
+$ cat random_dirs.sh
+<span class="c1">#!/bin/bash</span>
+
+<span class="nv">x</span><span class="o">=</span><span class="nv">$RANDOM</span>
+
+base64 flag.txt &gt; /tmp/<span class="nv">$x</span>
+<span class="k">function</span> finish <span class="o">{</span>
+       rm  /tmp/<span class="nv">$x</span>
+<span class="o">}</span>
+<span class="nb">trap</span> finish EXIT
+
+sleep <span class="m">15</span>
 
 
 $ sudo -l
-Matching Defaults entries for level2 on a522debb8813:
-    env_reset, mail_badpass, secure_path=/usr/local/sbin\:/usr/local/bin\:/usr/sbin\:/usr/bin\:/sbin\:/bin\:/snap/bin
+Matching Defaults entries <span class="k">for</span> level2 on a522debb8813:
+    env_reset, mail_badpass, <span class="nv">secure_path</span><span class="o">=</span>/usr/local/sbin<span class="se">\:</span>/usr/local/bin<span class="se">\:</span>/usr/sbin<span class="se">\:</span>/usr/bin<span class="se">\:</span>/sbin<span class="se">\:</span>/bin<span class="se">\:</span>/snap/bin
 
 User level2 may run the following commands on a522debb8813:
-    (level3) NOPASSWD: /home/level2/random_dirs.sh</pre></td></tr></table>
+    <span class="o">(</span>level3<span class="o">)</span> NOPASSWD: /home/level2/random_dirs.sh</pre></td></tr></table>
 </div>
 </div>
-<p><br />
-（random_dirs.sh の中身は、保存するのをすっかり忘れてました。。。）</p>
-
-<p>flag.txtの値を読み込んで、base64エンコードして、/tmpに下にファイルとして保存、そしてrmで削除する、みたいなやつでした。</p>
-
 <p><br />
 みんなが同じマシンで作業してたので、ゴミファイルとかも結構あったし、結果として/tmpの下をモニターしているだけでフラグが取れちゃいました。</p>
 
