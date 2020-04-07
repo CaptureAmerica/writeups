@@ -9,6 +9,15 @@ tags: ["CTF"]
 categories: ["CTF"]
 author: ""
 ---
+<a href="https://captureamerica.github.io/writeups/post/picoctf_2019_crypto/">
+<img src="https://captureamerica.github.io/writeups/img/Jp.png" alt="Japanese">日本語
+</a>&nbsp;
+<a href="https://translate.google.com/translate?hl=en&sl=jp&tl=en&u=https%3A%2F%2Fcaptureamerica.github.io%2Fwriteups%2Fpost%2Fpicoctf_2019_crypto%2F">
+<img src="https://captureamerica.github.io/writeups/img/En.png" alt="English">English (Google)
+</a>
+
+<br />
+
 URL: [https://2019game.picoctf.com/](https://2019game.picoctf.com/)
 <br /><br />
 2週間、お疲れ様です。
@@ -82,8 +91,8 @@ picoCTF{(35.028309, 135.753082)(46.469391, 30.740883)(39.758949, -84.191605)(41.
 
 それぞれの場所から1文字取る際に、どこを取るか、だけの問題です。
 
-<span class="notranslate">
-```
+
+<table><tr><td bgcolor="#f8f5ec"><pre>
 (35.028309, 135.753082)  : Kamigyo Ward, Kyoto, Kyoto Prefecture, Japan Geographic Information
 (46.469391, 30.740883)   : Odesa, Odessa Province, Ukraine Geographic Information
 (39.758949, -84.191605)  : US, Ohio, Dayton
@@ -97,8 +106,9 @@ _
 (41.085651, -73.858467)  : Sleepy Hollow, NY 10591 アメリカ合衆国
 (57.790001, -152.407227) : Kodiak, AK 99615 アメリカ合衆国
 (31.205753, 29.924526)   : Faculty Of Engineering, Al Azaritah WA Ash Shatebi, Qism Bab Sharqi, Alexandria Governorate, エジプト
-```
-</span>
+</pre></td></tr></table>
+
+
 
 City名の頭文字でした。
 

@@ -1,5 +1,5 @@
 ---
-title: "picoCTF 2018 Writeup | フラxxグゲット"
+title: "picoCTF 2018 Writeup"
 date: 2019-08-11T23:00:00+09:00
 lastmod: 2019-09-05T22:00:00+09:00
 draft: false
@@ -9,6 +9,15 @@ tags: ["CTF"]
 categories: ["CTF"]
 author: ""
 ---
+<a href="https://captureamerica.github.io/writeups/post/picoctf_2018/">
+<img src="https://captureamerica.github.io/writeups/img/Jp.png" alt="Japanese">日本語
+</a>&nbsp;
+<a href="https://translate.google.com/translate?hl=en&sl=ja&tl=en&u=https%3A%2F%2Fcaptureamerica.github.io%2Fwriteups%2Fpost%2Fpicoctf_2018%2F">
+<img src="https://captureamerica.github.io/writeups/img/En.png" alt="English">English (Google)
+</a>
+
+<br />
+
 URL: [https://2018game.picoctf.com/](https://2018game.picoctf.com/)
 <br /><br />
 picoCTFのことを知ったのがちょっと前で、すでにイベントは2018年時点で終了してるんですが、続けて勉強ができるようになっていたので他のCTFイベントがない平日とかにちょこちょこやりました。

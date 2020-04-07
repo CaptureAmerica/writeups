@@ -16,7 +16,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="CaptureAmerica @ CTF フラxxグゲット" /><meta name="description" content="URL: https://2019game.picoctf.com/ 2週間、お疲れ様です。 最終結果は、こんな感じ。 イベント終了時点で、ユーザは4万人弱でした。 PwnとWeb系があんまりできてないけど、スコ" /><meta name="keywords" content="CTF, Writeup, captureamerica, picoCTF" />
+<meta name="author" content="CaptureAmerica @ CTF フラxxグゲット" /><meta name="description" content="日本語 &amp;nbsp; English (Google) URL: https://2019game.picoctf.com/ 2週間、お疲れ様です。 最終結果は、こんな感じ。 イベント終了時点で、ユーザは4万人弱でした。 PwnとWeb系があんまりできてな" /><meta name="keywords" content="CTF, Writeup, captureamerica, picoCTF" />
 
 
 
@@ -39,25 +39,25 @@
 
 
 <meta property="og:title" content="picoCTF 2019 Writeup (Cryptography)" />
-<meta property="og:description" content="URL: https://2019game.picoctf.com/ 2週間、お疲れ様です。 最終結果は、こんな感じ。 イベント終了時点で、ユーザは4万人弱でした。 PwnとWeb系があんまりできてないけど、スコ" />
+<meta property="og:description" content="日本語 &nbsp; English (Google) URL: https://2019game.picoctf.com/ 2週間、お疲れ様です。 最終結果は、こんな感じ。 イベント終了時点で、ユーザは4万人弱でした。 PwnとWeb系があんまりできてな" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://captureamerica.github.io/writeups/post/picoctf_2019_crypto/" />
 <meta property="article:published_time" content="2019-10-13T11:20:00+09:00" />
 <meta property="article:modified_time" content="2019-10-13T11:20:00+09:00" />
 <meta itemprop="name" content="picoCTF 2019 Writeup (Cryptography)">
-<meta itemprop="description" content="URL: https://2019game.picoctf.com/ 2週間、お疲れ様です。 最終結果は、こんな感じ。 イベント終了時点で、ユーザは4万人弱でした。 PwnとWeb系があんまりできてないけど、スコ">
+<meta itemprop="description" content="日本語 &nbsp; English (Google) URL: https://2019game.picoctf.com/ 2週間、お疲れ様です。 最終結果は、こんな感じ。 イベント終了時点で、ユーザは4万人弱でした。 PwnとWeb系があんまりできてな">
 
 
 <meta itemprop="datePublished" content="2019-10-13T11:20:00&#43;09:00" />
 <meta itemprop="dateModified" content="2019-10-13T11:20:00&#43;09:00" />
-<meta itemprop="wordCount" content="1660">
+<meta itemprop="wordCount" content="1653">
 
 
 
 <meta itemprop="keywords" content="CTF," />
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="picoCTF 2019 Writeup (Cryptography)"/>
-<meta name="twitter:description" content="URL: https://2019game.picoctf.com/ 2週間、お疲れ様です。 最終結果は、こんな感じ。 イベント終了時点で、ユーザは4万人弱でした。 PwnとWeb系があんまりできてないけど、スコ"/>
+<meta name="twitter:description" content="日本語 &nbsp; English (Google) URL: https://2019game.picoctf.com/ 2週間、お疲れ様です。 最終結果は、こんな感じ。 イベント終了時点で、ユーザは4万人弱でした。 PwnとWeb系があんまりできてな"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -190,6 +190,15 @@
     <div class="post-content">
       
 
+<p><a href="https://captureamerica.github.io/writeups/post/picoctf_2019_crypto/">
+<img src="https://captureamerica.github.io/writeups/img/Jp.png" alt="Japanese">日本語
+</a>&nbsp;
+<a href="https://translate.google.com/translate?hl=en&sl=jp&tl=en&u=https%3A%2F%2Fcaptureamerica.github.io%2Fwriteups%2Fpost%2Fpicoctf_2019_crypto%2F">
+<img src="https://captureamerica.github.io/writeups/img/En.png" alt="English">English (Google)
+</a></p>
+
+<p><br /></p>
+
 <p>URL: <a href="https://2019game.picoctf.com/" target="_blank">https://2019game.picoctf.com/</a>
 <br /><br />
 2週間、お疲れ様です。</p>
@@ -273,25 +282,8 @@ picoCTF{(35.028309, 135.753082)(46.469391, 30.740883)(39.758949, -84.191605)(41.
 
 <p>それぞれの場所から1文字取る際に、どこを取るか、だけの問題です。</p>
 
-<p><span class="notranslate"></p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span></pre></td>
-<td class="lntd">
-<pre class="chroma">(35.028309, 135.753082)  : Kamigyo Ward, Kyoto, Kyoto Prefecture, Japan Geographic Information
+<table><tr><td bgcolor="#f8f5ec"><pre>
+(35.028309, 135.753082)  : Kamigyo Ward, Kyoto, Kyoto Prefecture, Japan Geographic Information
 (46.469391, 30.740883)   : Odesa, Odessa Province, Ukraine Geographic Information
 (39.758949, -84.191605)  : US, Ohio, Dayton
 (41.015137, 28.979530)   : Turkey, Istanbul
@@ -303,10 +295,8 @@ _
 (52.377956, 4.897070)    : Martelaarsgracht 5, 1012 TN Amsterdam, オランダ
 (41.085651, -73.858467)  : Sleepy Hollow, NY 10591 アメリカ合衆国
 (57.790001, -152.407227) : Kodiak, AK 99615 アメリカ合衆国
-(31.205753, 29.924526)   : Faculty Of Engineering, Al Azaritah WA Ash Shatebi, Qism Bab Sharqi, Alexandria Governorate, エジプト</pre></td></tr></table>
-</div>
-</div>
-<p></span></p>
+(31.205753, 29.924526)   : Faculty Of Engineering, Al Azaritah WA Ash Shatebi, Qism Bab Sharqi, Alexandria Governorate, エジプト
+</pre></td></tr></table>
 
 <p>City名の頭文字でした。</p>
 
@@ -592,11 +582,11 @@ Certificate:
       <nav class="post-nav">
         <a class="prev" href="https://captureamerica.github.io/writeups/post/picoctf_2019_web/">
             <i class="iconfont icon-left"></i>
-            <span class="prev-text nav-default">picoCTF 2019 Writeup (Web Exploitation) | フラxxグゲット</span>
+            <span class="prev-text nav-default">picoCTF 2019 Writeup (Web Exploitation)</span>
             <span class="prev-text nav-mobile">Prev</span>
           </a>
         <a class="next" href="https://captureamerica.github.io/writeups/post/picoctf_2019_binary/">
-            <span class="next-text nav-default">picoCTF 2019 Writeup (Binary Exploitation) | フラxxグゲット</span>
+            <span class="next-text nav-default">picoCTF 2019 Writeup (Binary Exploitation)</span>
             <span class="next-text nav-mobile">Next</span>
             <i class="iconfont icon-right"></i>
           </a>

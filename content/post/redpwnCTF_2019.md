@@ -1,5 +1,5 @@
 ---
-title: "RedpwnCTF 2019 Writeup | フラxxグゲット"
+title: "RedpwnCTF 2019 Writeup"
 date: 2019-08-17T10:00:00+09:00
 lastmod: 2019-08-17T10:00:00+09:00
 draft: false
@@ -9,6 +9,15 @@ tags: ["CTF"]
 categories: ["CTF"]
 author: ""
 ---
+<a href="https://captureamerica.github.io/writeups/post/redpwnctf_2019/">
+<img src="https://captureamerica.github.io/writeups/img/Jp.png" alt="Japanese">日本語
+</a>&nbsp;
+<a href="https://translate.google.com/translate?hl=en&sl=ja&tl=en&u=https%3A%2F%2Fcaptureamerica.github.io%2Fwriteups%2Fpost%2Fredpwnctf_2019%2F">
+<img src="https://captureamerica.github.io/writeups/img/En.png" alt="English">English (Google)
+</a>
+
+<br />
+
 URL: [https://ctf.redpwn.net/](https://ctf.redpwn.net/)
 <br /><br />
 なかなか興味深いチャレンジがいくつかありました。

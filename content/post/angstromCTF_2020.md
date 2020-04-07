@@ -1,5 +1,5 @@
 ---
-title: "ångstromCTF 2020 Writeup | フラxxグゲット"
+title: "ångstromCTF 2020 Writeup"
 date: 2020-03-19T10:00:00+09:00
 lastmod: 2020-03-20T09:00:00+09:00
 draft: false
@@ -9,6 +9,15 @@ tags: ["CTF", "Reviewed"]
 categories: ["CTF"]
 author: ""
 ---
+<a href="https://captureamerica.github.io/writeups/post/angstromctf_2020/">
+<img src="https://captureamerica.github.io/writeups/img/Jp.png" alt="Japanese">日本語
+</a>&nbsp;
+<a href="https://translate.google.com/translate?hl=en&sl=ja&tl=en&u=https%3A%2F%2Fcaptureamerica.github.io%2Fwriteups%2Fpost%2Fangstromctf_2020%2F">
+<img src="https://captureamerica.github.io/writeups/img/En.png" alt="English">English (Google)
+</a>
+
+<br />
+
 (2020/03/20 - 復習しました)
 
 URL: [https://2020.angstromctf.com/challenges](https://2020.angstromctf.com/challenges)

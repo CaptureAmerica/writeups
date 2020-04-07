@@ -1,5 +1,5 @@
 ---
-title: "RiftCTF 2020 Writeup | フラxxグゲット"
+title: "RiftCTF 2020 Writeup"
 date: 2020-03-21T15:30:00+09:00
 lastmod: 2020-03-21T15:30:00+09:00
 draft: false
@@ -9,6 +9,15 @@ tags: ["CTF"]
 categories: ["CTF"]
 author: ""
 ---
+<a href="https://captureamerica.github.io/writeups/post/riftctf_2020/">
+<img src="https://captureamerica.github.io/writeups/img/Jp.png" alt="Japanese">日本語
+</a>&nbsp;
+<a href="https://translate.google.com/translate?hl=en&sl=ja&tl=en&u=https%3A%2F%2Fcaptureamerica.github.io%2Fwriteups%2Fpost%2Friftctf_2020%2F">
+<img src="https://captureamerica.github.io/writeups/img/En.png" alt="English">English (Google)
+</a>
+
+<br />
+
 URL: [http://riftctf.iiitnr.ac.in:8000/challenges](http://riftctf.iiitnr.ac.in:8000/challenges)
 <br /><br />
 stringsコマンドで解けるやつ（3つもあった）とか、ウェブで調べものをするやつとか、答えはわかっててもフラグがIncorrectになるやつとか、そんなのが多かったです。

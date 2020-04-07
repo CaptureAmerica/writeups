@@ -1,5 +1,5 @@
 ---
-title: "The Honeynet Project: Innsbruck Workshop CTF Writeup | フラxxグゲット"
+title: "The Honeynet Project: Innsbruck Workshop CTF Writeup"
 date: 2019-06-03T00:00:00+08:00
 lastmod: 2019-06-03T07:33:00+08:00
 draft: false
@@ -9,6 +9,14 @@ tags: ["CTF"]
 categories: ["CTF"]
 author: ""
 ---
+<a href="https://captureamerica.github.io/writeups/post/honeynet_workshop/">
+<img src="https://captureamerica.github.io/writeups/img/Jp.png" alt="Japanese">日本語
+</a>&nbsp;
+<a href="https://translate.google.com/translate?hl=en&sl=ja&tl=en&u=https%3A%2F%2Fcaptureamerica.github.io%2Fwriteups%2Fpost%2Fhoneynet_workshop%2F">
+<img src="https://captureamerica.github.io/writeups/img/En.png" alt="English">English (Google)
+</a>
+
+<br />
 
 [https://www.reddit.com/r/netsec/new/](https://www.reddit.com/r/netsec/new/)を見ていたら、たまたまCTFを見つけたのでやってみました。
 <br /><br />

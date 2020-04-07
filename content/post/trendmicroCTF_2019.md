@@ -1,5 +1,5 @@
 ---
-title: "Trendmicro CTF 2019 Quals Writeup | フラxxグゲット"
+title: "Trendmicro CTF 2019 Quals Writeup"
 date: 2020-01-25T17:00:00+09:00
 lastmod: 2020-01-25T17:00:00+09:00
 draft: false
@@ -9,6 +9,15 @@ tags: ["CTF", "Reviewed"]
 categories: ["CTF"]
 author: ""
 ---
+<a href="https://captureamerica.github.io/writeups/post/trendmicroctf_2019/">
+<img src="https://captureamerica.github.io/writeups/img/Jp.png" alt="Japanese">日本語
+</a>&nbsp;
+<a href="https://translate.google.com/translate?hl=en&sl=ja&tl=en&u=https%3A%2F%2Fcaptureamerica.github.io%2Fwriteups%2Fpost%2Ftrendmicroctf_2019%2F">
+<img src="https://captureamerica.github.io/writeups/img/En.png" alt="English">English (Google)
+</a>
+
+<br />
+
 (2020/01/25 - 復習しました)
 
 URL: [https://www.trendmicro.com/ja_jp/campaigns/capture-the-flag.html](https://www.trendmicro.com/ja_jp/campaigns/capture-the-flag.html)

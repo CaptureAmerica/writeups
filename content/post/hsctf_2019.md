@@ -1,5 +1,5 @@
 ---
-title: "HSCTF 6 Writeup | フラxxグゲット"
+title: "HSCTF 6 Writeup"
 date: 2019-06-08T00:00:00+08:00
 lastmod: 2020-01-19T18:00:00+09:00
 draft: false
@@ -9,6 +9,15 @@ tags: ["CTF", "Reviewed"]
 categories: ["CTF"]
 author: ""
 ---
+<a href="https://captureamerica.github.io/writeups/post/hsctf_2019/">
+<img src="https://captureamerica.github.io/writeups/img/Jp.png" alt="Japanese">日本語
+</a>&nbsp;
+<a href="https://translate.google.com/translate?hl=en&sl=ja&tl=en&u=https%3A%2F%2Fcaptureamerica.github.io%2Fwriteups%2Fpost%2Fhsctf_2019%2F">
+<img src="https://captureamerica.github.io/writeups/img/En.png" alt="English">English (Google)
+</a>
+
+<br />
+
 (2020/01/19 - 復習しました)
 
 やり始めてから気づいたんですけど、HSってHigh Schoolerの略で、高校生用のCTFみたいですね。

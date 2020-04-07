@@ -1,5 +1,5 @@
 ---
-title: "Insomnihack Writeup | フラxxグゲット"
+title: "Insomnihack Writeup"
 date: 2020-01-19T18:00:00+09:00
 lastmod: 2020-01-19T18:00:00+09:00
 draft: false
@@ -9,6 +9,15 @@ tags: ["CTF"]
 categories: ["CTF"]
 author: ""
 ---
+<a href="https://captureamerica.github.io/writeups/post/insomnictf_2020/">
+<img src="https://captureamerica.github.io/writeups/img/Jp.png" alt="Japanese">日本語
+</a>&nbsp;
+<a href="https://translate.google.com/translate?hl=en&sl=ja&tl=en&u=https%3A%2F%2Fcaptureamerica.github.io%2Fwriteups%2Fpost%2Finsomnictf_2020%2F">
+<img src="https://captureamerica.github.io/writeups/img/En.png" alt="English">English (Google)
+</a>
+
+<br />
+
 URL: [https://teaser.insomnihack.ch/challenges/](https://teaser.insomnihack.ch/challenges/)
 <br /><br />
 10問中1問解きました。ほとんどの人が解いた簡単なやつだけです。

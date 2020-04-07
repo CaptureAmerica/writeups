@@ -1,5 +1,5 @@
 ---
-title: "Codefest'19 CTF Writeup | フラxxグゲット"
+title: "Codefest'19 CTF Writeup"
 date: 2019-08-25T15:00:00+09:00
 lastmod: 2019-08-29T23:00:00+09:00
 draft: false
@@ -9,6 +9,15 @@ tags: ["CTF", "Reviewed"]
 categories: ["CTF"]
 author: ""
 ---
+<a href="https://captureamerica.github.io/writeups/post/codefest_2019/">
+<img src="https://captureamerica.github.io/writeups/img/Jp.png" alt="Japanese">日本語
+</a>&nbsp;
+<a href="https://translate.google.com/translate?hl=en&sl=ja&tl=en&u=https%3A%2F%2Fcaptureamerica.github.io%2Fwriteups%2Fpost%2Fcodefest_2019%2F">
+<img src="https://captureamerica.github.io/writeups/img/En.png" alt="English">English (Google)
+</a>
+
+<br />
+
 (2019/08/29 - 復習しました)
 
 URL: [https://www.hackerrank.com/codefest19-ctf](https://www.hackerrank.com/codefest19-ctf)

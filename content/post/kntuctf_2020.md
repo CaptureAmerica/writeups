@@ -1,5 +1,5 @@
 ---
-title: "KNTU CTF Writeup | フラxxグゲット"
+title: "KNTU CTF Writeup"
 date: 2020-03-07T16:30:00+09:00
 lastmod: 2020-03-07T16:30:00+09:00
 draft: false
@@ -9,6 +9,15 @@ tags: ["CTF"]
 categories: ["CTF"]
 author: ""
 ---
+<a href="https://captureamerica.github.io/writeups/post/kntuctf_2020/">
+<img src="https://captureamerica.github.io/writeups/img/Jp.png" alt="Japanese">日本語
+</a>&nbsp;
+<a href="https://translate.google.com/translate?hl=en&sl=ja&tl=en&u=https%3A%2F%2Fcaptureamerica.github.io%2Fwriteups%2Fpost%2Fkntuctf_2020%2F">
+<img src="https://captureamerica.github.io/writeups/img/En.png" alt="English">English (Google)
+</a>
+
+<br />
+
 URL: [http://kntuctf.ir/#/challenges](http://kntuctf.ir/#/challenges)
 <br /><br />
 Registrationをした後に気づいたんですが、開催が日本時間の朝1時から5時までの4時間とか。。

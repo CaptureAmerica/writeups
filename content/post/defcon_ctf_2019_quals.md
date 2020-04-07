@@ -1,5 +1,5 @@
 ---
-title: "DEF CON CTF 2019 Quals Writeup | フラxxグゲット"
+title: "DEF CON CTF 2019 Quals Writeup"
 date: 2019-05-11T00:00:00+08:00
 lastmod: 2019-05-25T14:05:00+08:00
 draft: false
@@ -9,6 +9,14 @@ tags: ["CTF"]
 categories: ["CTF"]
 author: ""
 ---
+<a href="https://captureamerica.github.io/writeups/post/defcon_ctf_2019_quals/">
+<img src="https://captureamerica.github.io/writeups/img/Jp.png" alt="Japanese">日本語
+</a>&nbsp;
+<a href="https://translate.google.com/translate?hl=en&sl=ja&tl=en&u=https%3A%2F%2Fcaptureamerica.github.io%2Fwriteups%2Fpost%2Fdefcon_ctf_2019_quals%2F">
+<img src="https://captureamerica.github.io/writeups/img/En.png" alt="English">English (Google)
+</a>
+
+<br />
 
 ## [Web]: cant_even_unplug_it
 - - -

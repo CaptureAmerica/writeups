@@ -1,5 +1,5 @@
 ---
-title: "NeverLAN CTF 2020 Writeup | フラxxグゲット"
+title: "NeverLAN CTF 2020 Writeup"
 date: 2020-02-12T09:00:00+09:00
 lastmod: 2020-02-23T14:00:00+09:00
 draft: false
@@ -9,6 +9,15 @@ tags: ["CTF", "Reviewed"]
 categories: ["CTF"]
 author: ""
 ---
+<a href="https://captureamerica.github.io/writeups/post/neverlan_ctf_2020/">
+<img src="https://captureamerica.github.io/writeups/img/Jp.png" alt="Japanese">日本語
+</a>&nbsp;
+<a href="https://translate.google.com/translate?hl=en&sl=ja&tl=en&u=https%3A%2F%2Fcaptureamerica.github.io%2Fwriteups%2Fpost%2Fneverlan_ctf_2020%2F">
+<img src="https://captureamerica.github.io/writeups/img/En.png" alt="English">English (Google)
+</a>
+
+<br />
+
 (2020/02/23 - 復習しました)
 
 URL: [https://ctf.neverlanctf.com/challenges](https://ctf.neverlanctf.com/challenges)
