@@ -1,5 +1,5 @@
 ---
-title: "picoCTF 2019 Writeup (Cryptography) | フラxxグゲット"
+title: "picoCTF 2019 Writeup (Cryptography)"
 date: 2019-10-13T11:20:00+09:00
 lastmod: 2019-10-13T11:20:00+09:00
 draft: false
@@ -82,6 +82,7 @@ picoCTF{(35.028309, 135.753082)(46.469391, 30.740883)(39.758949, -84.191605)(41.
 
 それぞれの場所から1文字取る際に、どこを取るか、だけの問題です。
 
+<span class="notranslate">
 ```
 (35.028309, 135.753082)  : Kamigyo Ward, Kyoto, Kyoto Prefecture, Japan Geographic Information
 (46.469391, 30.740883)   : Odesa, Odessa Province, Ukraine Geographic Information
@@ -97,6 +98,7 @@ _
 (57.790001, -152.407227) : Kodiak, AK 99615 アメリカ合衆国
 (31.205753, 29.924526)   : Faculty Of Engineering, Al Azaritah WA Ash Shatebi, Qism Bab Sharqi, Alexandria Governorate, エジプト
 ```
+</span>
 
 City名の頭文字でした。
 
