@@ -776,7 +776,7 @@ User level5 may run the following commands on 7fe0b0d86907:
 これはローカルで試したら、よくわかりやすかったです。
 
 以下のようなファイルを用意。
-
+<p class="notranslate">
 ```sh
 #!/bin/bash
 
@@ -787,7 +787,7 @@ input=$(nc -lp $x)
 echo "That was easy right? :)"
 cat flag.txt
 ```
-
+</p>
 <br />
 これで実行すると、どのポートでncがlistenしているかわかるので、（ま、netstatでもよかったけど）
 
@@ -807,8 +807,12 @@ $ /bin/bash
 $ for i in {1024..65500} ; do (echo test | nc localhost ${i}) ; done
 </pre>
 
-<br />
+{{% admonition tip "Tips" %}}
+/bin/sh と /bin/bash でループの書き方が違うので、上記のやり方は/bin/shだとエラーになります。
+{{% /admonition %}}
 
+
+<br />
 Flag: `auctf{n3tc@_purt_$can}`
 
 ＃Discordで、「Random portがたまたま2回目で当たった」	と喜んでいる人がいました。たぶん、それはポート番号が当たったんじゃなくて、他の人がncを実行してくれたんだと思います。それはそれでラッキーでしたね^^

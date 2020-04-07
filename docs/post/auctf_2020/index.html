@@ -50,7 +50,7 @@
 
 <meta itemprop="datePublished" content="2020-04-06T13:00:00&#43;09:00" />
 <meta itemprop="dateModified" content="2020-04-06T13:00:00&#43;09:00" />
-<meta itemprop="wordCount" content="4145">
+<meta itemprop="wordCount" content="4188">
 
 
 
@@ -1230,7 +1230,8 @@ User level5 may run the following commands on 7fe0b0d86907:
 <p><br />
 これはローカルで試したら、よくわかりやすかったです。</p>
 
-<p>以下のようなファイルを用意。</p>
+<p>以下のようなファイルを用意。
+<p class="notranslate"></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><code class="language-sh" data-lang="sh"><span class="lnt">1
@@ -1253,7 +1254,8 @@ User level5 may run the following commands on 7fe0b0d86907:
 cat flag.txt</code></pre></td></tr></table>
 </div>
 </div>
-<p><br />
+<p></p>
+<br />
 これで実行すると、どのポートでncがlistenしているかわかるので、（ま、netstatでもよかったけど）</p>
 
 <p>そのポートに対して、<code>echo test | nc localhost &lt;port&gt;</code> みたいにしてやると、以降の処理が実行されてフラグが表示されました。</p>
@@ -1271,9 +1273,14 @@ $ /bin/bash
 $ for i in {1024..65500} ; do (echo test | nc localhost ${i}) ; done
 </pre>
 
-<p><br /></p>
+<div class="admonition tip"><p class="admonition-title">Tips</p>
+  
+/bin/sh と /bin/bash でループの書き方が違うので、上記のやり方は/bin/shだとエラーになります。
 
-<p>Flag: <code>auctf{n3tc@_purt_$can}</code></p>
+</div>
+
+<p><br />
+Flag: <code>auctf{n3tc@_purt_$can}</code></p>
 
 <p>＃Discordで、「Random portがたまたま2回目で当たった」    と喜んでいる人がいました。たぶん、それはポート番号が当たったんじゃなくて、他の人がncを実行してくれたんだと思います。それはそれでラッキーでしたね^^</p>
 
