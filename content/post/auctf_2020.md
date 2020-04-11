@@ -1,11 +1,11 @@
 ---
 title: "AUCTF 2020 Writeup"
 date: 2020-04-06T13:00:00+09:00
-lastmod: 2020-04-06T13:00:00+09:00
+lastmod: 2020-04-11T17:00:00+09:00
 draft: false
 keywords: []
 description: ""
-tags: ["CTF"]
+tags: ["CTF", "Reviewed"]
 categories: ["CTF"]
 author: ""
 ---
@@ -14,6 +14,8 @@ author: ""
 <img src="https://captureamerica.github.io/writeups/img/En.png" alt="English">
 </a>
 {{% /right %}}
+
+(2020/04/11 - 復習しました)
 
 URL: [https://ctf.auburn.edu/challenges](https://ctf.auburn.edu/challenges)
 <br /><br />
@@ -776,7 +778,7 @@ User level5 may run the following commands on 7fe0b0d86907:
 これはローカルで試したら、よくわかりやすかったです。
 
 以下のようなファイルを用意。
-<p class="notranslate">
+
 ```sh
 #!/bin/bash
 
@@ -787,7 +789,7 @@ input=$(nc -lp $x)
 echo "That was easy right? :)"
 cat flag.txt
 ```
-</p>
+
 <br />
 これで実行すると、どのポートでncがlistenしているかわかるので、（ま、netstatでもよかったけど）
 
@@ -817,6 +819,430 @@ Flag: `auctf{n3tc@_purt_$can}`
 
 ＃Discordで、「Random portがたまたま2回目で当たった」	と喜んでいる人がいました。たぶん、それはポート番号が当たったんじゃなくて、他の人がncを実行してくれたんだと思います。それはそれでラッキーでしたね^^
 
+
+
+
+<br /><br />
+<br /><br />
+<img src="https://captureamerica.github.io/writeups/img/orange_bar.png" alt="orange_bar.png">
+<br />
+ここから下はイベント終了後に行った復習です。
+
+<br /><br />
+<br /><br />
+## [OSINT]: Good Old Days
+- - -
+### Challenge
+>This site used to look a lot cooler.
+
+<br />
+### Solution
+チャレンジ内容から考えて、Web Archiveから過去のページを調べるやつでしたね。
+
+https://web.archive.org/web/20200213064621/https://ctf.auburn.edu/users
+
+<br />
+
+Flag: `auctf{Th053_w3rE_Th3_guD_0l3_d4y5}`
+
+
+
+<br /><br />
+<br /><br />
+## [Sequence]: Can You SeeDa Sequence
+- - -
+### Challenge
+>Time to put your problem solving skills to work! Finish the sequence!
+<br /><br />
+If you asc me, this looks pretty random.
+<br /><br />
+98, 107, 10, 66, 124, _, _, _, _, _
+<br /><br />
+NOTE: The flag is NOT in the standard auctf{} format
+<br /><br />
+flag format - comma separated list 1, 2, 3, 4, 5
+
+<br />
+### Solution
+'SeeDa' なので Seedを0か何かに決め打ちしてrand()関数を呼んだらシーケンスが見れると思ってCでやろうとしてたんですが、ダメでした（読みは合ってた）。これは、Pythonでやるやつだったみたいです。
+
+ちなみに、ダメだったやつ：
+```C
+#include <stdio.h>
+#include <stdlib.h>
+
+#define RAND_MAX 128
+
+int main()
+{
+	srand(0);
+	printf("%d ", rand() % 128);
+	printf("%d ", rand() % 128);
+	printf("%d ", rand() % 128);
+	printf("%d ", rand() % 128);
+	printf("%d ", rand() % 128);
+	printf("%d ", rand() % 128);
+	printf("%d ", rand() % 128);
+	printf("%d ", rand() % 128);
+}
+```
+
+ダメな結果：
+<pre>
+103 70 105 115 81 127 74 108 
+</pre>
+
+<br />
+正解：
+
+```Python
+$ python3
+>>> import random
+>>> random.seed(0)
+>>> random.randint()
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+TypeError: randint() missing 2 required positional arguments: 'a' and 'b'
+>>> random.randint(0,128)
+98
+>>> random.randint(0,128)
+107
+>>> random.randint(0,128)
+10
+>>> random.randint(0,128)
+66
+>>> random.randint(0,128)
+124
+>>> random.randint(0,128)
+103
+>>> random.randint(0,128)
+77
+>>> random.randint(0,128)
+122
+>>> random.randint(0,128)
+91
+>>> random.randint(0,128)
+55
+>>> exit()
+```
+
+
+<br />
+
+Flag: `103, 77, 122, 91, 55`
+
+
+
+<br /><br />
+<br /><br />
+## [Password Cracking]: Salty
+- - -
+### Challenge
+>You might need this: 1337
+<br /><br />
+Hash: 5eaff45e09bec5222a9cfa9502a4740d
+<br /><br />
+NOTE: The flag is NOT in the standard auctf{} format
+
+<br />
+### Solution
+最初、以下みたいなサイトで解くやつかと思ったんですよね。
+
+https://www.dcode.fr/md5-hash
+
+<br />
+その後、以下のファイルを作るところまではやったんですが、`john` で解こうとしてハマって終了。
+<pre>
+5eaff45e09bec5222a9cfa9502a4740d:1337
+</pre>
+
+<br /><br />
+これは `hashcat` でやるのがよかったみたい。モードは以下のようにいくつかあります。
+
+<pre>
+$ hashcat --help | grep salt | grep md5
+     10 | md5($pass.$salt)                                 | Raw Hash, Salted and/or Iterated
+     20 | md5($salt.$pass)                                 | Raw Hash, Salted and/or Iterated
+     30 | md5(utf16le($pass).$salt)                        | Raw Hash, Salted and/or Iterated
+     40 | md5($salt.utf16le($pass))                        | Raw Hash, Salted and/or Iterated
+   3800 | md5($salt.$pass.$salt)                           | Raw Hash, Salted and/or Iterated
+   3710 | md5($salt.md5($pass))                            | Raw Hash, Salted and/or Iterated
+   4010 | md5($salt.md5($salt.$pass))                      | Raw Hash, Salted and/or Iterated
+   4110 | md5($salt.md5($pass.$salt))                      | Raw Hash, Salted and/or Iterated
+   3910 | md5(md5($pass).md5($salt))                       | Raw Hash, Salted and/or Iterated
+</pre>
+
+<br />
+
+<pre>
+$ hashcat -m 20 -a 0 salty.txt /usr/share/wordlists/rockyou.txt --force
+hashcat (v5.1.0) starting...
+
+:
+
+5eaff45e09bec5222a9cfa9502a4740d:1337:treetop
+                                                 
+Session..........: hashcat
+Status...........: Cracked
+Hash.Type........: md5($salt.$pass)
+Hash.Target......: 5eaff45e09bec5222a9cfa9502a4740d:1337
+Time.Started.....: Sat Apr 11 12:55:08 2020 (1 sec)
+Time.Estimated...: Sat Apr 11 12:55:09 2020 (0 secs)
+Guess.Base.......: File (/usr/share/wordlists/rockyou.txt)
+Guess.Queue......: 1/1 (100.00%)
+Speed.#1.........:   150.5 kH/s (0.44ms) @ Accel:1024 Loops:1 Thr:1 Vec:8
+Recovered........: 1/1 (100.00%) Digests, 1/1 (100.00%) Salts
+Progress.........: 28672/14344385 (0.20%)
+Rejected.........: 0/28672 (0.00%)
+Restore.Point....: 26624/14344385 (0.19%)
+Restore.Sub.#1...: Salt:0 Amplifier:0-1 Iteration:0-1
+Candidates.#1....: 200390 -> spongebob9
+</pre>
+
+<br />
+
+Flag: `treetop`
+
+
+
+
+<br /><br />
+<br /><br />
+## [Password Cracking]: Zippy
+- - -
+### Challenge
+>Have fun!
+<br /><br />
+NOTE: The flag is NOT in the standard auctf{} format
+
+Attachment:
+
+- zippy.zip
+
+
+<br />
+### Solution
+まずは、ダメだった例から。
+
+<pre>
+$ zip2john zippy.zip > hash.txt
+ver 81.9 zippy.zip/unzipme.zip is not encrypted, or stored with non-handled compression type
+
+$ fcrackzip -v -D -u -p /usr/share/wordlists/rockyou.txt zippy.zip 
+found file 'unzipme.zip', (size cp/uc    871/   908, flags 1, chk 0000)
+</pre>
+
+というか、zip2john自体はあってたっぽいけど、なんか失敗してるのかと思って、fcrackzipをやって解けなかったので諦めたやつでした。
+
+<br />
+
+今日 `john` でやってみたら普通にできたし。（11分かかりました）
+<pre>
+$ john hash.txt --wordlist=/usr/share/wordlists/rockyou.txt
+Using default input encoding: UTF-8
+Loaded 1 password hash (ZIP, WinZip [PBKDF2-SHA1 128/128 AVX 4x])
+Will run 2 OpenMP threads
+Press 'q' or Ctrl-C to abort, almost any other key for status
+8297018229       (zippy.zip/unzipme.zip)
+1g 0:00:11:47 DONE (2020-04-11 13:48) 0.001413g/s 16660p/s 16660c/s 16660C/s 82973..828298
+Use the "--show" option to display all of the cracked passwords reliably
+Session completed
+</pre>
+
+
+<br />
+ちなみに、`hashcat` でもやってみました。（こっちは24分くらいかかりました）
+
+<pre>
+$ hashcat -h | grep -i zip
+  11600 | 7-Zip                                            | Archives
+  13600 | WinZip                                           | Archives
+
+$ cat hash.txt | cut -d: -f2 > hash2.txt
+
+$ hashcat -m 11600 -a 0 hash2.txt /usr/share/wordlists/rockyou.txt --force
+hashcat (v5.1.0) starting...
+
+:
+
+$zip2$*0*1*0*c08d7c0b232de6b3*f4fd*353*0cf6d3cf3ecc646b5ecf1a50f2396eef083c29c
+:
+080e2c2396c6fa1dcecc5e9edf17475c78f308*7129395cf8dd47ce280f*$/zip2$:8297018229
+
+Session..........: hashcat
+Status...........: Cracked
+Hash.Type........: WinZip
+Hash.Target......: $zip2$*0*1*0*c08d7c0b232de6b3*f4fd*353*0cf6d3cf3ecc.../zip2$
+Time.Started.....: Sat Apr 11 13:09:39 2020 (24 mins, 57 secs)
+Time.Estimated...: Sat Apr 11 13:34:36 2020 (0 secs)
+Guess.Base.......: File (/usr/share/wordlists/rockyou.txt)
+Guess.Queue......: 1/1 (100.00%)
+Speed.#1.........:     7764 H/s (6.00ms) @ Accel:256 Loops:124 Thr:1 Vec:8
+Recovered........: 1/1 (100.00%) Digests, 1/1 (100.00%) Salts
+Progress.........: 11785216/14344385 (82.16%)
+Rejected.........: 0/11785216 (0.00%)
+Restore.Point....: 11784704/14344385 (82.16%)
+Restore.Sub.#1...: Salt:0 Amplifier:0-1 Iteration:992-999
+Candidates.#1....: 829802 - 8294584221
+</pre>
+
+この先にもまだZipファイルが出てくるんですが、これ以上はやってません。
+
+
+<br /><br />
+<br /><br />
+## [Password Cracking]: Manager
+- - -
+### Challenge
+>There might be a flag inside this file. The password is all digits.
+<br /><br />
+NOTE: The flag is NOT in the standard auctf{} format
+
+Attachment:
+
+- manager.kdbx
+
+
+<br />
+### Solution
+
+いちおう、以下はやったんです。
+<pre>
+$ keepass2john manager.kdbx > hash.txt
+$ john --incremental=digits hash.txt 
+</pre>
+
+でも、1時間半やっても終わらなかったので、強制終了して諦めたやつでした。。。
+
+<br />
+他の方のWriteupとか見てると、3時間くらいかかるっぽいですね。せっかちなんで、そんなに待っていられないです。
+
+あと、もしかしたら、以下のようにフォーマットを指定した方がよかったかもです。
+<pre>
+$ john --format:keepass --incremental=digits hash.txt
+</pre>
+
+<br /><br />
+いちおう `hashcat`で、フラグが6桁なのがわかっている前提でやってみました。（1時間弱かかりました）
+
+<pre>
+$ hashcat -h | grep -i keepass
+  13400 | KeePass 1 (AES/Twofish) and KeePass 2 (AES)      | Password Managers
+
+$ hashcat -a 3 -m 13400 keepass_hash.txt '?d?d?d?d?d?d' --force
+:
+$keepass$*2*60000*0*f31bf71589af9d69d3a9d58b97755405de93aedfbefe244129bb5ac64ed8af41*2f0e592de948bbc65eb9738af2daca231ae54c851ceb1e98f16a69e8f5f48336*8a868c9aedf169c857a8734188bba8eb*8f12fb161ef9e102ef805b84f5ee733c2a645b71099cbf8dab1ed750c58756ee*34fe5cf5eb7991a826a71c3330f88ce9c5ed7cf0e041e4e50a24110d2a69cdd7:157865
+                                                 
+Session..........: hashcat
+Status...........: Cracked
+Hash.Type........: KeePass 1 (AES/Twofish) and KeePass 2 (AES)
+Hash.Target......: $keepass$*2*60000*0*f31bf71589af9d69d3a9d58b9775540...69cdd7
+Time.Started.....: Sat Apr 11 14:01:15 2020 (56 mins, 2 secs)
+Time.Estimated...: Sat Apr 11 14:57:17 2020 (0 secs)
+Guess.Mask.......: ?d?d?d?d?d?d [6]
+Guess.Queue......: 1/1 (100.00%)
+Speed.#1.........:      113 H/s (8.69ms) @ Accel:256 Loops:128 Thr:1 Vec:8
+Recovered........: 1/1 (100.00%) Digests, 1/1 (100.00%) Salts
+Progress.........: 379392/1000000 (37.94%)
+Rejected.........: 0/379392 (0.00%)
+Restore.Point....: 37888/100000 (37.89%)
+Restore.Sub.#1...: Salt:0 Amplifier:0-1 Iteration:59904-60000
+Candidates.#1....: 168432 -> 176865
+</pre>
+
+<br />
+もしかしたら、`-w`オプションを付けたらもっと早く終わるのかも知れないですけど、試してないです。
+
+以下、helpより。
+
+<pre>
+- [ Workload Profiles ] -
+
+  # | Performance | Runtime | Power Consumption | Desktop Impact
+ ===+=============+=========+===================+=================
+  1 | Low         |   2 ms  | Low               | Minimal
+  2 | Default     |  12 ms  | Economic          | Noticeable
+  3 | High        |  96 ms  | High              | Unresponsive
+  4 | Nightmare   | 480 ms  | Insane            | Headless
+</pre>
+
+
+<br />
+ここで取れた Master Password (157865) を使って、WindowsのKeePassツールで開くとフラグが取れました。
+
+
+Flag: `y0u4r34r34lh4ck3rn0w#!$1678`
+
+
+<br /><br />
+<br /><br />
+## [Forensics]: Fahrenheit 451
+- - -
+### Challenge
+>Your SUBSTITUTE teacher accessed his copy of Fahrenheit 451 over his windows network share. Can you find the flag your friend hid in the book?
+<br /><br />
+Standard Flag Format auctf{}
+
+Attachment:
+
+- f451.pcapng
+
+
+<br />
+### Solution
+Pcapから、Fahrenheit_451_Full_Text.pdf を取り出すところまでは、すんなりいけます。
+
+<br />
+PDFは72ページあります。ハイライトもやってみたんですが、ページ数が多くて怪しい箇所を見つけるまでの根気がなくて諦めたやつです。
+
+他の方のWriteupを参照すると、上から眺めていけば8ページ目辺りで見つかったらしいです。
+
+そんなんだったら、72ページじゃなくて、せめて10ページくらいのファイルにしてくれてもいいのに。。。
+
+
+
+<br /><br />
+ま、そんな文句を言っても仕方ないので、目視以外のやり方で、どうやったら大量のテキストの中から怪しい文字列を見つけられたか、考えてみました。
+
+まずは、テキストを全部取り出します。
+<pre>
+$ pdftotext Fahrenheit_451_Full_Text.pdf
+</pre>
+
+<br />
+案1：スペリングがおかしい単語を全部出してみるとか。
+<pre>
+$ cat Fahrenheit_451_Full_Text.txt | aspell list | sort | uniq
+</pre>
+==> これはダメでした。フラグの箇所がそもそも単語とみなされないため。
+
+<br />
+案2：10文字以上の単語を全部出してみるとか。
+<pre>
+$ cat Fahrenheit_451_Full_Text.txt | grep -o -w '\w\{10,\}' | sort | uniq
+</pre>
+==> これもダメでした。前述のと同じ理由で、フラグの箇所がそもそも単語とみなされないため。
+
+<br />
+案3：以下は、空白文字以外の文字が15個以上連続しているものの検索です。これでいけました。
+
+{{< highlight sh "linenos=table,hl_lines=8" >}}
+$ cat Fahrenheit_451_Full_Text.txt | grep -o '\S\{15,\}'
+black-beetle-coloured
+two-hundred-foot-long
+mosquito-delicate
+sleeping-tablets
+contra-sedative
+sleeping-tablets,
+2F4E7L3FC?0E9603@@<DPP`PN
+:
+{{< / highlight >}}
+
+<br />
+あとは、SUBSTITUTEということで、rotをいろいろ試すだけです。（rot47でした）
+
+<br />
+Flag: `auctf{burn_the_books!!1!}`
 
 
 
