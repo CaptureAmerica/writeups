@@ -1,5 +1,5 @@
 ---
-title: "TAMU CTF 2020 Writeup"
+title: "TAMUctf 2020 Writeup"
 date: 2020-03-30T15:30:00+09:00
 lastmod: 2020-03-30T15:30:00+09:00
 draft: false
