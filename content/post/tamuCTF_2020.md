@@ -437,7 +437,7 @@ Echo as a service (EaaS)
 <br>
 Ghidraでソースを調べます。
 
-```C
+{{< highlight c "linenos=table,hl_lines=19" >}}
 void main(void)
 
 {
@@ -460,7 +460,7 @@ void main(void)
     putchar(10);
   } while( true );
 }
-```
+{{< / highlight >}}
 
 FSB (Format String Bug) がありますね。（printf(local_28);の箇所）
 
@@ -533,7 +533,7 @@ Attachment:
 
 Ghidraでソースを調べます。
 
-```C
+{{< highlight c "linenos=table,hl_lines=6 14 16 19" >}}
 undefined8 main(void)
 
 {
@@ -576,7 +576,7 @@ undefined8 main(void)
   puts("You have failed. Goodbye.");
   return 0;
 }
-```
+{{< / highlight >}}
 
 やっていること：
 

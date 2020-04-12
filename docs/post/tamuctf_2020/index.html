@@ -620,9 +620,10 @@ Echo as a service (EaaS)
 
 <p><br>
 Ghidraでソースを調べます。</p>
+
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-C" data-lang="C"><span class="lnt"> 1
+<pre class="chroma"><code class="language-c" data-lang="c"><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -640,13 +641,13 @@ Ghidraでソースを調べます。</p>
 </span><span class="lnt">16
 </span><span class="lnt">17
 </span><span class="lnt">18
-</span><span class="lnt">19
-</span><span class="lnt">20
+</span><span class="hl"><span class="lnt">19
+</span></span><span class="lnt">20
 </span><span class="lnt">21
 </span><span class="lnt">22
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-C" data-lang="C"><span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<pre class="chroma"><code class="language-c" data-lang="c"><span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
 
 <span class="p">{</span>
   <span class="n">FILE</span> <span class="o">*</span><span class="n">__stream</span><span class="p">;</span>
@@ -664,12 +665,13 @@ Ghidraでソースを調べます。</p>
   <span class="k">do</span> <span class="p">{</span>
     <span class="n">puts</span><span class="p">(</span><span class="s">&#34;Echo as a service (EaaS)&#34;</span><span class="p">);</span>
     <span class="n">gets</span><span class="p">(</span><span class="n">local_28</span><span class="p">);</span>
-    <span class="n">printf</span><span class="p">(</span><span class="n">local_28</span><span class="p">);</span>
-    <span class="n">putchar</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span>
+<span class="hl">    <span class="n">printf</span><span class="p">(</span><span class="n">local_28</span><span class="p">);</span>
+</span>    <span class="n">putchar</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span>
   <span class="p">}</span> <span class="k">while</span><span class="p">(</span> <span class="nb">true</span> <span class="p">);</span>
 <span class="p">}</span></code></pre></td></tr></table>
 </div>
 </div>
+
 <p>FSB (Format String Bug) がありますね。（printf(local_28);の箇所）</p>
 
 <p><br>
@@ -744,28 +746,29 @@ nc challenges.tamuctf.com 4765</p>
 <h3 id="solution-3">Solution</h3>
 
 <p>Ghidraでソースを調べます。</p>
+
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-C" data-lang="C"><span class="lnt"> 1
+<pre class="chroma"><code class="language-c" data-lang="c"><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
 </span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
+</span><span class="hl"><span class="lnt"> 6
+</span></span><span class="lnt"> 7
 </span><span class="lnt"> 8
 </span><span class="lnt"> 9
 </span><span class="lnt">10
 </span><span class="lnt">11
 </span><span class="lnt">12
 </span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
+</span><span class="hl"><span class="lnt">14
+</span></span><span class="lnt">15
+</span><span class="hl"><span class="lnt">16
+</span></span><span class="lnt">17
 </span><span class="lnt">18
-</span><span class="lnt">19
-</span><span class="lnt">20
+</span><span class="hl"><span class="lnt">19
+</span></span><span class="lnt">20
 </span><span class="lnt">21
 </span><span class="lnt">22
 </span><span class="lnt">23
@@ -790,26 +793,26 @@ nc challenges.tamuctf.com 4765</p>
 </span><span class="lnt">42
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-C" data-lang="C"><span class="n">undefined8</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<pre class="chroma"><code class="language-c" data-lang="c"><span class="n">undefined8</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
 
 <span class="p">{</span>
   <span class="kt">int</span> <span class="n">iVar1</span><span class="p">;</span>
   <span class="kt">char</span> <span class="n">local_98</span> <span class="p">[</span><span class="mi">64</span><span class="p">];</span>
-  <span class="kt">char</span> <span class="n">local_58</span> <span class="p">[</span><span class="mi">44</span><span class="p">];</span>
-  <span class="kt">int</span> <span class="n">local_2c</span><span class="p">;</span>
+<span class="hl">  <span class="kt">char</span> <span class="n">local_58</span> <span class="p">[</span><span class="mi">44</span><span class="p">];</span>
+</span>  <span class="kt">int</span> <span class="n">local_2c</span><span class="p">;</span>
   <span class="n">FILE</span> <span class="o">*</span><span class="n">local_28</span><span class="p">;</span>
   <span class="kt">int</span> <span class="n">local_1c</span><span class="p">;</span>
   <span class="n">time_t</span> <span class="n">local_18</span><span class="p">;</span>
   <span class="kt">int</span> <span class="n">local_c</span><span class="p">;</span>
   
   <span class="n">setvbuf</span><span class="p">(</span><span class="n">stdout</span><span class="p">,(</span><span class="kt">char</span> <span class="o">*</span><span class="p">)</span><span class="mh">0x2</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">);</span>
-  <span class="n">local_18</span> <span class="o">=</span> <span class="n">time</span><span class="p">((</span><span class="n">time_t</span> <span class="o">*</span><span class="p">)</span><span class="mh">0x0</span><span class="p">);</span>
-  <span class="n">puts</span><span class="p">(</span><span class="s">&#34;Who goes there?&#34;</span><span class="p">);</span>
-  <span class="n">gets</span><span class="p">(</span><span class="n">local_58</span><span class="p">);</span>
-  <span class="n">printf</span><span class="p">(</span><span class="s">&#34;Welcome to my challenge, %s. No one has ever succeeded before. Will you be the first?</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span>
+<span class="hl">  <span class="n">local_18</span> <span class="o">=</span> <span class="n">time</span><span class="p">((</span><span class="n">time_t</span> <span class="o">*</span><span class="p">)</span><span class="mh">0x0</span><span class="p">);</span>
+</span>  <span class="n">puts</span><span class="p">(</span><span class="s">&#34;Who goes there?&#34;</span><span class="p">);</span>
+<span class="hl">  <span class="n">gets</span><span class="p">(</span><span class="n">local_58</span><span class="p">);</span>
+</span>  <span class="n">printf</span><span class="p">(</span><span class="s">&#34;Welcome to my challenge, %s. No one has ever succeeded before. Will you be the first?</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span>
          <span class="n">local_58</span><span class="p">);</span>
-  <span class="n">srand</span><span class="p">((</span><span class="n">uint</span><span class="p">)</span><span class="n">local_18</span><span class="p">);</span>
-  <span class="n">local_c</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="hl">  <span class="n">srand</span><span class="p">((</span><span class="n">uint</span><span class="p">)</span><span class="n">local_18</span><span class="p">);</span>
+</span>  <span class="n">local_c</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
   <span class="k">while</span><span class="p">(</span> <span class="nb">true</span> <span class="p">)</span> <span class="p">{</span>
     <span class="k">if</span> <span class="p">(</span><span class="mi">99</span> <span class="o">&lt;</span> <span class="n">local_c</span><span class="p">)</span> <span class="p">{</span>
       <span class="n">puts</span><span class="p">(</span><span class="s">&#34;You</span><span class="se">\&#39;</span><span class="s">ve guessed all of my numbers. Here is your reward.&#34;</span><span class="p">);</span>
@@ -834,6 +837,7 @@ nc challenges.tamuctf.com 4765</p>
 <span class="p">}</span></code></pre></td></tr></table>
 </div>
 </div>
+
 <p>やっていること：</p>
 
 <ol>
