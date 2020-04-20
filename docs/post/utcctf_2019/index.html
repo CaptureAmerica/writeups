@@ -16,14 +16,14 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="CaptureAmerica @ CTF フラxxグゲット" /><meta name="description" content="(2019/12/23 - 復習しました) URL: https://utc-ctf.club/challenges 以下、スコアです。 [Misc]: Optics 2 Challenge You seem to be professional in Forensics &amp;amp; Optics. Now, the things will get tedious. Let&#39;s see what you got. Attachment: chall_0.png ~ chall_440.png Solution 441個のpngが与えられます。それぞれは" /><meta name="keywords" content="CTF, Writeup, captureamerica, picoCTF" />
+<meta name="author" content="CaptureAmerica @ CTF フラxxグゲット" /><meta name="description" content="(2019/12/23 - 復習しました) URL: https://utc-ctf.club/challenges 以下、スコアです。 [Misc]: Optics 2 Challenge You seem to be professional in Forensics &amp;amp; Optics. Now, the things will get tedious. Let&amp;rsquo;s see what you got. Attachment: chall_0.png ~ chall_440.png Solution 441個のpngが与えられます。それぞれは" /><meta name="keywords" content="CTF, Writeup, captureamerica, picoCTF" />
 
 
 
 <meta name="google-site-verification" content="PqctLWZQttGzxXVupWuIt2HWuBI8cvN1z07ETpxA2dw" />
 
 
-<meta name="generator" content="Hugo 0.59.1 with theme even" />
+<meta name="generator" content="Hugo 0.68.3 with theme even" />
 
 
 <link rel="canonical" href="https://captureamerica.github.io/writeups/post/utcctf_2019/" />
@@ -39,25 +39,22 @@
 
 
 <meta property="og:title" content="UTC CTF Writeup" />
-<meta property="og:description" content="(2019/12/23 - 復習しました) URL: https://utc-ctf.club/challenges 以下、スコアです。 [Misc]: Optics 2 Challenge You seem to be professional in Forensics &amp; Optics. Now, the things will get tedious. Let&#39;s see what you got. Attachment: chall_0.png ~ chall_440.png Solution 441個のpngが与えられます。それぞれは" />
+<meta property="og:description" content="(2019/12/23 - 復習しました) URL: https://utc-ctf.club/challenges 以下、スコアです。 [Misc]: Optics 2 Challenge You seem to be professional in Forensics &amp; Optics. Now, the things will get tedious. Let&rsquo;s see what you got. Attachment: chall_0.png ~ chall_440.png Solution 441個のpngが与えられます。それぞれは" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://captureamerica.github.io/writeups/post/utcctf_2019/" />
 <meta property="article:published_time" content="2019-12-22T19:20:00+09:00" />
 <meta property="article:modified_time" content="2019-12-23T19:20:00+09:00" />
 <meta itemprop="name" content="UTC CTF Writeup">
-<meta itemprop="description" content="(2019/12/23 - 復習しました) URL: https://utc-ctf.club/challenges 以下、スコアです。 [Misc]: Optics 2 Challenge You seem to be professional in Forensics &amp; Optics. Now, the things will get tedious. Let&#39;s see what you got. Attachment: chall_0.png ~ chall_440.png Solution 441個のpngが与えられます。それぞれは">
-
-
+<meta itemprop="description" content="(2019/12/23 - 復習しました) URL: https://utc-ctf.club/challenges 以下、スコアです。 [Misc]: Optics 2 Challenge You seem to be professional in Forensics &amp; Optics. Now, the things will get tedious. Let&rsquo;s see what you got. Attachment: chall_0.png ~ chall_440.png Solution 441個のpngが与えられます。それぞれは">
 <meta itemprop="datePublished" content="2019-12-22T19:20:00&#43;09:00" />
 <meta itemprop="dateModified" content="2019-12-23T19:20:00&#43;09:00" />
-<meta itemprop="wordCount" content="2272">
+<meta itemprop="wordCount" content="2276">
 
 
 
-<meta itemprop="keywords" content="CTF,Reviewed," />
-<meta name="twitter:card" content="summary"/>
+<meta itemprop="keywords" content="CTF,Reviewed," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="UTC CTF Writeup"/>
-<meta name="twitter:description" content="(2019/12/23 - 復習しました) URL: https://utc-ctf.club/challenges 以下、スコアです。 [Misc]: Optics 2 Challenge You seem to be professional in Forensics &amp; Optics. Now, the things will get tedious. Let&#39;s see what you got. Attachment: chall_0.png ~ chall_440.png Solution 441個のpngが与えられます。それぞれは"/>
+<meta name="twitter:description" content="(2019/12/23 - 復習しました) URL: https://utc-ctf.club/challenges 以下、スコアです。 [Misc]: Optics 2 Challenge You seem to be professional in Forensics &amp; Optics. Now, the things will get tedious. Let&rsquo;s see what you got. Attachment: chall_0.png ~ chall_440.png Solution 441個のpngが与えられます。それぞれは"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -139,86 +136,65 @@
   <h2 class="post-toc-title">Contents</h2>
   <div class="post-toc-content">
     <nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li><a href="#misc-optics-2">[Misc]: Optics 2</a>
-<ul>
-<li><a href="#challenge">Challenge</a></li>
-<li><a href="#solution">Solution</a></li>
-</ul></li>
-<li><a href="#misc-really-good-icture">[Misc]: Really Good 🅱icture</a>
-<ul>
-<li><a href="#challenge-1">Challenge</a></li>
-<li><a href="#solution-1">Solution</a></li>
-</ul></li>
-<li><a href="#reverse-jump-baby">[Reverse]: Jump! (baby)</a>
-<ul>
-<li><a href="#challenge-2">Challenge</a></li>
-<li><a href="#solution-2">Solution</a></li>
-</ul></li>
-<li><a href="#crypto-xarriors-of-the-world-1-baby">[Crypto]: Xarriors of the World 1 (baby)</a>
-<ul>
-<li><a href="#challenge-3">Challenge</a></li>
-<li><a href="#solution-3">Solution</a></li>
-</ul></li>
-</ul></li>
-</ul>
+  <ul>
+    <li><a href="#misc-optics-2">[Misc]: Optics 2</a>
+      <ul>
+        <li><a href="#challenge">Challenge</a></li>
+        <li><a href="#solution">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#misc-really-good-icture">[Misc]: Really Good 🅱icture</a>
+      <ul>
+        <li><a href="#challenge-1">Challenge</a></li>
+        <li><a href="#solution-1">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#reverse-jump-baby">[Reverse]: Jump! (baby)</a>
+      <ul>
+        <li><a href="#challenge-2">Challenge</a></li>
+        <li><a href="#solution-2">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#crypto-xarriors-of-the-world-1-baby">[Crypto]: Xarriors of the World 1 (baby)</a>
+      <ul>
+        <li><a href="#challenge-3">Challenge</a></li>
+        <li><a href="#solution-3">Solution</a></li>
+      </ul>
+    </li>
+  </ul>
 </nav>
   </div>
 </div>
     <div class="post-content">
-      
-
-<div class='align-right'>
-  
+      <div class='align-right'>
 <a href="https://translate.google.com/translate?hl=en&sl=ja&tl=en&u=https%3A%2F%2Fcaptureamerica.github.io%2Fwriteups%2Fpost%2Futcctf_2019%2F">
 <img src="https://captureamerica.github.io/writeups/img/En.png" alt="English">
 </a>
-
 </div>
-
 <p>(2019/12/23 - 復習しました)</p>
-
-<p>URL: <a href="https://utc-ctf.club/challenges" target="_blank">https://utc-ctf.club/challenges</a>
+<p>URL: <a href="https://utc-ctf.club/challenges">https://utc-ctf.club/challenges</a>
 <br /><br />
 以下、スコアです。
 <br /><br /></p>
-
-<p><img src="https://captureamerica.github.io/writeups/img/utcctf_2019_Score.png" alt="utcctf_2019_Score.png"></p>
-
-<p><img src="https://captureamerica.github.io/writeups/img/utcctf_2019_Chall1.png" alt="utcctf_2019_Chall1.png"></p>
-
-<p><img src="https://captureamerica.github.io/writeups/img/utcctf_2019_Chall2.png" alt="utcctf_2019_Chall2.png"></p>
-
+<img src="https://captureamerica.github.io/writeups/img/utcctf_2019_Score.png" alt="utcctf_2019_Score.png">
+<img src="https://captureamerica.github.io/writeups/img/utcctf_2019_Chall1.png" alt="utcctf_2019_Chall1.png">
+<img src="https://captureamerica.github.io/writeups/img/utcctf_2019_Chall2.png" alt="utcctf_2019_Chall2.png">
 <p><br /><br /></p>
-
 <h2 id="misc-optics-2">[Misc]: Optics 2</h2>
-
-<hr />
-
+<hr>
 <h3 id="challenge">Challenge</h3>
-
 <blockquote>
-<p>You seem to be professional in Forensics &amp; Optics. Now, the things will get tedious. Let's see what you got.</p>
+<p>You seem to be professional in Forensics &amp; Optics. Now, the things will get tedious. Let&rsquo;s see what you got.</p>
 </blockquote>
-
 <p>Attachment:</p>
-
 <ul>
 <li>chall_0.png ~ chall_440.png</li>
 </ul>
-
 <p><br /></p>
-
 <h3 id="solution">Solution</h3>
-
 <p>441個のpngが与えられます。それぞれはgrayscaleの正方形の画像です。</p>
-
 <p>21 * 21 = 441 なので、結合してQRにするチャレンジですね。</p>
-
 <p>ImageMagickを使って、21ファイルずつ横に結合し、できた21個のファイルを縦に結合することにしました。</p>
-
 <pre>
 convert +append chall_0.png chall_1.png chall_2.png chall_3.png chall_4.png chall_5.png chall_6.png chall_7.png chall_8.png chall_9.png chall_10.png chall_11.png chall_12.png chall_13.png chall_14.png chall_15.png chall_16.png chall_17.png chall_18.png chall_19.png chall_20.png 0.png
 convert +append chall_21.png chall_22.png chall_23.png chall_24.png chall_25.png chall_26.png chall_27.png chall_28.png chall_29.png chall_30.png chall_31.png chall_32.png chall_33.png chall_34.png chall_35.png chall_36.png chall_37.png chall_38.png chall_39.png chall_40.png chall_41.png 1.png
@@ -243,12 +219,11 @@ convert +append chall_399.png chall_400.png chall_401.png chall_402.png chall_40
 convert +append chall_420.png chall_421.png chall_422.png chall_423.png chall_424.png chall_425.png chall_426.png chall_427.png chall_428.png chall_429.png chall_430.png chall_431.png chall_432.png chall_433.png chall_434.png chall_435.png chall_436.png chall_437.png chall_438.png chall_439.png chall_440.png 20.png
 convert +append convert -append 0.png 1.png 2.png 3.png 4.png 5.png 6.png 7.png 8.png 9.png 10.png 11.png 12.png 13.png 14.png 15.png 16.png 17.png 18.png 19.png 20.png QR.png
 </pre>
-
 <p><br />
-ちなみに、Cでプログラムを書いて、上記のコマンドを出力してます。<br />（かつ、一部結果を手で直している箇所あり。&quot;convert +append &quot;が余分に1個出てくるので。。。）</p>
+ちなみに、Cでプログラムを書いて、上記のコマンドを出力してます。<br />（かつ、一部結果を手で直している箇所あり。&ldquo;convert +append &ldquo;が余分に1個出てくるので。。。）</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-C" data-lang="C"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -293,81 +268,56 @@ convert +append convert -append 0.png 1.png 2.png 3.png 4.png 5.png 6.png 7.png 
 	<span class="p">}</span>
 	<span class="n">printf</span><span class="p">(</span> <span class="s">&#34;QR.png</span><span class="se">\n</span><span class="s">&#34;</span> <span class="p">);</span>
 	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-<span class="p">}</span></code></pre></td></tr></table>
+<span class="p">}</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<p><br />
+</div><p><br />
 <img src="https://captureamerica.github.io/writeups/img/utcctf_QR.png" alt="utcctf_QR.png"></p>
-
 <p><br />
 Flag: <code>utc{merge_and_merge_until_you_decode_it}</code></p>
-
 <p><br /><br />
 <br /><br /></p>
-
 <h2 id="misc-really-good-icture">[Misc]: Really Good 🅱icture</h2>
-
-<hr />
-
+<hr>
 <h3 id="challenge-1">Challenge</h3>
-
 <blockquote>
 <p>Instead of a flag, I made you a picture, is that ok?</p>
 </blockquote>
-
 <ul>
 <li>flag.png</li>
 </ul>
-
 <p><br /></p>
-
 <h3 id="solution-1">Solution</h3>
-
 <p>「青い空を見上げればいつもそこに白い猫」で開いて、ビット抽出前バイト列を確認すると、フラグっぽい文字列が得られます。</p>
-
-<p><img src="https://captureamerica.github.io/writeups/img/utcctf_Bicture.PNG" alt="utcctf_Bicture.PNG"></p>
-
+<img src="https://captureamerica.github.io/writeups/img/utcctf_Bicture.PNG" alt="utcctf_Bicture.PNG">
 <p>これを一旦テキストファイルに保存して、コマンドで整形します。</p>
-
 <p>3文字ずつ繰り返しになっているので、<code>fold -3</code> してから <code>uniq</code> してまとめてます。</p>
-
 <pre>
 $ cat share_doc.txt | cut -d: -f2 | tr -d "\r\n " | fold -3 | uniq | tr -d "\n" ; echo
 utc{taste_the_rainbow94100389}utc{taste_the_rainbow94100389}utc{taste_the_rainbow94100389}utc{taste_the_rainbow94100389}utc{taste_the_rainbow94100389}utc{taste_the_rainbow94100389}utc{taste_the_rainbow94100389}utc{taste_the_rainbow94100389}utc{taste_the_rainbow94100389}utc{taste_the_rainbow94100389}utc{taste_the_rainbow94100389}utc{taste_the_rainbow94100389}.....(略)
 </pre>
-
 <p><br />
 Flag: <code>utc{taste_the_rainbow94100389}</code></p>
-
 <p><br /><br />
 <br /><br /></p>
-
 <h2 id="reverse-jump-baby">[Reverse]: Jump! (baby)</h2>
-
-<hr />
-
+<hr>
 <h3 id="challenge-2">Challenge</h3>
-
 <blockquote>
 <p>Remember Strings? Itz still not giving flag
 <br /><br />
 GIMME FLAG AGAIN!</p>
 </blockquote>
-
 <p>Attachment:</p>
-
 <ul>
 <li>jump (ELF 64bit)</li>
 </ul>
-
 <p><br /></p>
-
 <h3 id="solution-2">Solution</h3>
-
 <p>Ghidraでソースを確認します。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-C" data-lang="C"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -442,77 +392,54 @@ GIMME FLAG AGAIN!</p>
     <span class="n">__stack_chk_fail</span><span class="p">();</span>
   <span class="p">}</span>
   <span class="k">return</span><span class="p">;</span>
-<span class="p">}</span></code></pre></td></tr></table>
+<span class="p">}</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<p><br />
+</div><p><br />
 中身はあんまり把握してません。関数名より、たぶんフラグを生成する関数です。</p>
-
 <p>大事なのは、引数が<code>void</code>な辺りですかね。引数が無いので、関数のアドレスに直接ジャンプできます。</p>
-
 <p>あ、あとは、途中で<code>selfish</code>の値を0に書き換えてあげないといけないです。</p>
-
 <p><br />
 gdbで開いて、mainと、gimme_flagにbreak pointはっておきます。</p>
-
 <pre>
 gdb-peda$ x gimme_flag
-0x5555555546fa <gimme_flag>:    0x40ec8348e5894855
+0x5555555546fa <gimme_flag>:	0x40ec8348e5894855
 </pre>
-
 <p>実行してmain()で止まったら、そこからgimme_flag()にジャンプ。</p>
-
 <pre>
 gdb-peda$ jump *0x5555555546fa
 </pre>
-
 <p>eaxをセットしているところまで、niで進んで、eaxが1になるので0に変えてcontinueします。</p>
-
-<p><img src="https://captureamerica.github.io/writeups/img/utcctf_gimme_flag.png" alt="utcctf_gimme_flag.png"></p>
-
+<img src="https://captureamerica.github.io/writeups/img/utcctf_gimme_flag.png" alt="utcctf_gimme_flag.png">
 <p><br />
 Flag: <code>utc{a_l1ttle_h4rd3r_:)}</code></p>
-
 <p><br /><br />
 <br /><br />
 <img src="https://captureamerica.github.io/writeups/img/orange_bar.png" alt="orange_bar.png">
 <br />
 ここから下はCTF終了後に行った復習です。（他の方のWriteupとか参照してます。）</p>
-
 <p><br /><br /></p>
-
 <h2 id="crypto-xarriors-of-the-world-1-baby">[Crypto]: Xarriors of the World 1 (baby)</h2>
-
-<hr />
-
+<hr>
 <h3 id="challenge-3">Challenge</h3>
-
 <blockquote>
 <p>Did you paid attention to the table of truth? <code>captain</code> will help you after you seek the truth.</p>
 </blockquote>
-
 <p>Attachment:</p>
-
 <ul>
 <li>ciphertext.txt</li>
 </ul>
-
 <p>中身 <br />
 FhUTDwAQXTwCMAQVKV8NPgdHDQpeDgQvAFE2FlMTAh0OGx0e</p>
-
 <p><br /></p>
-
 <h3 id="solution-3">Solution</h3>
-
-<p>Base64デコードした時点で、印字可能文字にならなかったので、captain cipherみたいのがあるのかと思ってググっていたら、&quot;captain midnight decoder ring&quot;っていうのがヒットして、意味がわからなくて降参したやつです。</p>
-
-<p>Base64デコードした後、&quot;captain&quot;でXORするのが正解でした。<br />
+<p>Base64デコードした時点で、印字可能文字にならなかったので、captain cipherみたいのがあるのかと思ってググっていたら、&ldquo;captain midnight decoder ring&quot;っていうのがヒットして、意味がわからなくて降参したやつです。</p>
+<p>Base64デコードした後、&ldquo;captain&quot;でXORするのが正解でした。<br />
 （どうやったら、そういう発想になるのだろうか。。。たぶん、とりあえずいろいろ試すことが大事。）</p>
-
 <p>以下は、自分で書きました。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-Python" data-lang="Python"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -533,28 +460,22 @@ FhUTDwAQXTwCMAQVKV8NPgdHDQpeDgQvAFE2FlMTAh0OGx0e</p>
 <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">bytearray</span><span class="p">(</span><span class="n">d</span><span class="p">):</span>
     <span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="nb">chr</span><span class="p">(</span><span class="n">x</span> <span class="o">^</span> <span class="nb">ord</span><span class="p">(</span><span class="n">captain</span><span class="p">[</span><span class="n">i</span><span class="p">])))</span>
     <span class="n">i</span> <span class="o">=</span> <span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">%</span> <span class="nb">len</span><span class="p">(</span><span class="n">captain</span><span class="p">)</span>
-<span class="k">print</span> <span class="s2">&#34;&#34;</span></code></pre></td></tr></table>
+<span class="k">print</span> <span class="s2">&#34;&#34;</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<p><br />
+</div><p><br />
 Flag: <code>utc{ay3_c@pt@1n_w3lc0me_t0_x0rriors}</code></p>
-
 <p><br /><br />
 <br /><br />
 (2020/02/23 - 追記)</p>
-
 <p>ワンライナーでもいけました。</p>
-
 <pre>
 $ python -c 'import pwn;import base64;print(pwn.xor(base64.b64decode(open("ciphertext.txt").read()),"captain").decode("UTF-8"))'
 utc{ay3_c@pt@1n_w3lc0me_t0_x0rriors}
 </pre>
-
 <p><br /><br />
 <br /><br /></p>
-
-<hr />
-
+<hr>
 <p><br /><br />
 <br /><br /></p>
 

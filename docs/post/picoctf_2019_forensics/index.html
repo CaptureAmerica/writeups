@@ -23,7 +23,7 @@
 <meta name="google-site-verification" content="PqctLWZQttGzxXVupWuIt2HWuBI8cvN1z07ETpxA2dw" />
 
 
-<meta name="generator" content="Hugo 0.59.1 with theme even" />
+<meta name="generator" content="Hugo 0.68.3 with theme even" />
 
 
 <link rel="canonical" href="https://captureamerica.github.io/writeups/post/picoctf_2019_forensics/" />
@@ -46,16 +46,13 @@
 <meta property="article:modified_time" content="2019-10-13T12:00:00+09:00" />
 <meta itemprop="name" content="picoCTF 2019 Writeup (Forensics)">
 <meta itemprop="description" content="URL: https://2019game.picoctf.com/ 2週間、お疲れ様です。 最終結果は、こんな感じ。 イベント終了時点で、ユーザは4万人弱でした。 PwnとWeb系があんまりできてないけど、スコ">
-
-
 <meta itemprop="datePublished" content="2019-10-13T12:00:00&#43;09:00" />
 <meta itemprop="dateModified" content="2019-10-13T12:00:00&#43;09:00" />
-<meta itemprop="wordCount" content="1105">
+<meta itemprop="wordCount" content="1106">
 
 
 
-<meta itemprop="keywords" content="CTF," />
-<meta name="twitter:card" content="summary"/>
+<meta itemprop="keywords" content="CTF," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="picoCTF 2019 Writeup (Forensics)"/>
 <meta name="twitter:description" content="URL: https://2019game.picoctf.com/ 2週間、お疲れ様です。 最終結果は、こんな感じ。 イベント終了時点で、ユーザは4万人弱でした。 PwnとWeb系があんまりできてないけど、スコ"/>
 
@@ -139,140 +136,107 @@
   <h2 class="post-toc-title">Contents</h2>
   <div class="post-toc-content">
     <nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li><a href="#forensics-whitepages-250-points">[Forensics]: WhitePages (250 points)</a>
-<ul>
-<li><a href="#challenge">Challenge</a></li>
-<li><a href="#solution">Solution</a></li>
-</ul></li>
-<li><a href="#forensics-c0rrupt-250-points">[Forensics]: c0rrupt (250 points)</a>
-<ul>
-<li><a href="#challenge-1">Challenge</a></li>
-<li><a href="#solution-1">Solution</a></li>
-</ul></li>
-<li><a href="#forensics-shark-on-wire-2-300-points">[Forensics]: shark on wire 2 (300 points)</a>
-<ul>
-<li><a href="#challenge-2">Challenge</a></li>
-<li><a href="#solution-2">Solution</a></li>
-</ul></li>
-<li><a href="#forensics-webnet0-350-points">[Forensics]: WebNet0 (350 points)</a>
-<ul>
-<li><a href="#challenge-3">Challenge</a></li>
-<li><a href="#solution-3">Solution</a></li>
-</ul></li>
-<li><a href="#forensics-webnet1-450-points">[Forensics]: WebNet1 (450 points)</a>
-<ul>
-<li><a href="#challenge-4">Challenge</a></li>
-<li><a href="#solution-4">Solution</a></li>
-</ul></li>
-</ul></li>
-</ul>
+  <ul>
+    <li><a href="#forensics-whitepages-250-points">[Forensics]: WhitePages (250 points)</a>
+      <ul>
+        <li><a href="#challenge">Challenge</a></li>
+        <li><a href="#solution">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#forensics-c0rrupt-250-points">[Forensics]: c0rrupt (250 points)</a>
+      <ul>
+        <li><a href="#challenge-1">Challenge</a></li>
+        <li><a href="#solution-1">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#forensics-shark-on-wire-2-300-points">[Forensics]: shark on wire 2 (300 points)</a>
+      <ul>
+        <li><a href="#challenge-2">Challenge</a></li>
+        <li><a href="#solution-2">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#forensics-webnet0-350-points">[Forensics]: WebNet0 (350 points)</a>
+      <ul>
+        <li><a href="#challenge-3">Challenge</a></li>
+        <li><a href="#solution-3">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#forensics-webnet1-450-points">[Forensics]: WebNet1 (450 points)</a>
+      <ul>
+        <li><a href="#challenge-4">Challenge</a></li>
+        <li><a href="#solution-4">Solution</a></li>
+      </ul>
+    </li>
+  </ul>
 </nav>
   </div>
 </div>
     <div class="post-content">
-      
-
-<div class='align-right'>
-  
+      <div class='align-right'>
 <a href="https://translate.google.com/translate?hl=en&sl=ja&tl=en&u=https%3A%2F%2Fcaptureamerica.github.io%2Fwriteups%2Fpost%2Fpicoctf_2019_forensics%2F">
 <img src="https://captureamerica.github.io/writeups/img/En.png" alt="English">
 </a>
-
 </div>
-
-<p>URL: <a href="https://2019game.picoctf.com/" target="_blank">https://2019game.picoctf.com/</a>
+<p>URL: <a href="https://2019game.picoctf.com/">https://2019game.picoctf.com/</a>
 <br /><br />
 2週間、お疲れ様です。</p>
-
 <p><br /><br />
 最終結果は、こんな感じ。</p>
-
-<p><img src="https://captureamerica.github.io/writeups/img/pico2019_Score.png" alt="pico2019_Score.png"></p>
-
+<img src="https://captureamerica.github.io/writeups/img/pico2019_Score.png" alt="pico2019_Score.png">
 <p><br />
 イベント終了時点で、ユーザは4万人弱でした。</p>
-
-<p><img src="https://captureamerica.github.io/writeups/img/pico2019_Users.png" alt="pico2019_Users.png"></p>
-
-<p><img src="https://captureamerica.github.io/writeups/img/pico2019_Rank.png" alt="pico2019_Rank.png"></p>
-
+<img src="https://captureamerica.github.io/writeups/img/pico2019_Users.png" alt="pico2019_Users.png">
+<img src="https://captureamerica.github.io/writeups/img/pico2019_Rank.png" alt="pico2019_Rank.png">
 <p>PwnとWeb系があんまりできてないけど、スコアも切りのいい20000に行ったし、Globalで目標の300位以内 (283位) にも入れたのでかなり満足です。</p>
-
 <p>去年出た問題に似てるものも結構あったので、picoCTF 2018をそれなりにやった人は結構アドバンテージがあったと思います。</p>
-
 <p><br /><br />
 Forensics の Writeupです。</p>
-
 <p><br /><br /></p>
-
 <h2 id="forensics-whitepages-250-points">[Forensics]: WhitePages (250 points)</h2>
-
-<hr />
-
+<hr>
 <h3 id="challenge">Challenge</h3>
-
 <blockquote>
-<p>I stopped using YellowPages and moved onto WhitePages... but the page they gave me is all blank!</p>
+<p>I stopped using YellowPages and moved onto WhitePages&hellip; but the page they gave me is all blank!</p>
 </blockquote>
-
 <p><br /></p>
-
 <h3 id="solution">Solution</h3>
-
 <p>てっきりwhitespaceというesolangだと思ったので、少し手こずりました。</p>
-
 <p>あと、たぶんだけど、チャレンジが始まった頃にダウンロードしたファイルと、後日ダウンロードし直したファイルが異なってた気がします。。。</p>
-
 <p>スペースとタブ（？）の2種類の文字があるので、それを0と1に変えてから、2進数を文字に変えるのが解き方です。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
-</span></pre></td>
+</span></code></pre></td>
 <td class="lntd">
-<pre class="chroma">$ xxd whitepages.txt | cut -c 10- | cut -c -40 | sed -e &#39;s/e2//g&#39; | sed -e &#39;s/80//g&#39; | sed -e &#39;s/20/1/g&#39; | sed -e &#39;s/83/0/g&#39; | tr -d &#34; \n&#34; ; echo
-00001010000010010000100101110000011010010110001101101111010000110101010001000110000010100000101000001001000010010101001101000101010001010010000001010000010101010100001001001100010010010100001100100000010100100100010101000011010011110101001001000100010100110010000000100110001000000100001001000001010000110100101101000111010100100100111101010101010011100100010000100000010100100100010101010000010011110101001001010100000010100000100100001001001101010011000000110000001100000010000001000110011011110111001001100010011001010111001100100000010000010111011001100101001011000010000001010000011010010111010001110100011100110110001001110101011100100110011101101000001011000010000001010000010000010010000000110001001101010011001000110001001100110000101000001001000010010111000001101001011000110110111101000011010101000100011001111011011011100110111101110100010111110110000101101100011011000101111101110011011100000110000101100011011001010111001101011111011000010111001001100101010111110110001101110010011001010110000101110100011001010110010001011111011001010111000101110101011000010110110001011111011000110011000100110110001101110011000000110100001100000110001100110111001100110011100001100101001110000110001001100011011000010110010100110010001100010011000000111001011001010110011000110100011000100110010100110101001110010011011000110000011000100011000101111101000010100000100100001001</pre></td></tr></table>
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">$ xxd whitepages.txt | cut -c 10- | cut -c -40 | sed -e &#39;s/e2//g&#39; | sed -e &#39;s/80//g&#39; | sed -e &#39;s/20/1/g&#39; | sed -e &#39;s/83/0/g&#39; | tr -d &#34; \n&#34; ; echo
+00001010000010010000100101110000011010010110001101101111010000110101010001000110000010100000101000001001000010010101001101000101010001010010000001010000010101010100001001001100010010010100001100100000010100100100010101000011010011110101001001000100010100110010000000100110001000000100001001000001010000110100101101000111010100100100111101010101010011100100010000100000010100100100010101010000010011110101001001010100000010100000100100001001001101010011000000110000001100000010000001000110011011110111001001100010011001010111001100100000010000010111011001100101001011000010000001010000011010010111010001110100011100110110001001110101011100100110011101101000001011000010000001010000010000010010000000110001001101010011001000110001001100110000101000001001000010010111000001101001011000110110111101000011010101000100011001111011011011100110111101110100010111110110000101101100011011000101111101110011011100000110000101100011011001010111001101011111011000010111001001100101010111110110001101110010011001010110000101110100011001010110010001011111011001010111000101110101011000010110110001011111011000110011000100110110001101110011000000110100001100000110001100110111001100110011100001100101001110000110001001100011011000010110010100110010001100010011000000111001011001010110011000110100011000100110010100110101001110010011011000110000011000100011000101111101000010100000100100001001
+</code></pre></td></tr></table>
 </div>
-</div>
-<p>Flag: <code>picoCTF{not_all_spaces_are_created_equal_c167040c738e8bcae2109ef4be5960b1}</code></p>
-
+</div><p>Flag: <code>picoCTF{not_all_spaces_are_created_equal_c167040c738e8bcae2109ef4be5960b1}</code></p>
 <p><br /><br />
 <br /><br /></p>
-
 <h2 id="forensics-c0rrupt-250-points">[Forensics]: c0rrupt (250 points)</h2>
-
-<hr />
-
+<hr>
 <h3 id="challenge-1">Challenge</h3>
-
 <blockquote>
 <p>We found this file. Recover the flag.
 <br /><br />
 Hints : Try fixing the file header</p>
 </blockquote>
-
 <p>Attachment:</p>
-
 <ul>
 <li>mystery</li>
 </ul>
-
 <p><br /></p>
-
 <h3 id="solution-1">Solution</h3>
-
 <p>先頭の16バイトくらい直せば通るかと思いきや、結構壊れててハマりました。</p>
-
 <p>1番目のIDATチャンクのとこも修正が必要。</p>
-
 <p>CRCは、pngcsumで直しました。<br />
-<a href="http://schaik.com/png/pngcsum.html" target="_blank">http://schaik.com/png/pngcsum.html</a></p>
+<a href="http://schaik.com/png/pngcsum.html">http://schaik.com/png/pngcsum.html</a></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -282,9 +246,9 @@ Hints : Try fixing the file header</p>
 </span><span class="lnt"> 8
 </span><span class="lnt"> 9
 </span><span class="lnt">10
-</span></pre></td>
+</span></code></pre></td>
 <td class="lntd">
-<pre class="chroma">root@kali:~/picoCTF_2019# pngcsum mystery mystery_crcfixed.png
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">root@kali:~/picoCTF_2019# pngcsum mystery mystery_crcfixed.png
 IHDR ( 13 ) - csum = 7c8bab78
 sRGB (  1 ) - csum = aece1ce9
 gAMA (  4 ) - csum = 0bfc6105
@@ -293,52 +257,37 @@ IDAT (65445 ) - csum = 6927db59
 IDAT (65524 ) - csum = ba6bc1fa
 IDAT (65524 ) - csum = 5997d200
 IDAT (6304 ) - csum = 6ff175b8
-IEND (  0 ) - csum = ae426082</pre></td></tr></table>
+IEND (  0 ) - csum = ae426082
+</code></pre></td></tr></table>
 </div>
-</div>
-<p>Flag: <code>picoCTF{c0rrupt10n_1847995}</code></p>
-
+</div><p>Flag: <code>picoCTF{c0rrupt10n_1847995}</code></p>
 <p><br /><br />
 <br /><br /></p>
-
 <h2 id="forensics-shark-on-wire-2-300-points">[Forensics]: shark on wire 2 (300 points)</h2>
-
-<hr />
-
+<hr>
 <h3 id="challenge-2">Challenge</h3>
-
 <blockquote>
 <p>We found this packet capture. Recover the flag that was pilfered from the network. You can also find the file in /problems/shark-on-wire-2_0_5b5597f90483360b4480373bed30738e.</p>
 </blockquote>
-
 <p>Attachment:</p>
-
 <ul>
 <li>capture.pcap</li>
 </ul>
-
 <p><br /></p>
-
 <h3 id="solution-2">Solution</h3>
-
 <p>udpのフローを順番に見ていくと、フラグっぽい文字列が出てきます。</p>
-
-<p>&quot;kfdsalkfsalkico{N0t_a_fLag}&quot;<br />
-&quot;icoCTF{StaT31355e&quot;<br /></p>
-
+<p>&ldquo;kfdsalkfsalkico{N0t_a_fLag}&ldquo;<br />
+&ldquo;icoCTF{StaT31355e&quot;<br /></p>
 <p>あと、<br />
-&quot;start&quot;<br />
-&quot;end&quot;<br />
+&ldquo;start&quot;<br />
+&ldquo;end&quot;<br />
 というのも出てくるんですが、その間のPayloadにはフラグっぽい文字列はなかったので、最初無視してました。</p>
-
 <p>udp.port==8888 あたりを集中して見てたんですが、どうしてもフラグにはならなくて、その後、tcp あたりをがっつり見てそこもさっぱりフラグにならなかったので、挫けそうでした。</p>
-
-<p>&quot;start&quot; &quot;end&quot;が出てるのは (udp.port==22) で、眺めていたらSource Portが全部バラけてて、しかも文字になりそうな値になっているのに気づきました。</p>
-
+<p>&ldquo;start&rdquo; &ldquo;end&quot;が出てるのは (udp.port==22) で、眺めていたらSource Portが全部バラけてて、しかも文字になりそうな値になっているのに気づきました。</p>
 <p>一旦、フィルターしたものを別ファイル（capture_filtered.pcap）として保存し、Scapyで読み込みました。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-Python" data-lang="Python"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -351,20 +300,15 @@ IEND (  0 ) - csum = ae426082</pre></td></tr></table>
 
 <span class="n">pkt</span><span class="o">=</span><span class="n">rdpcap</span><span class="p">(</span><span class="s2">&#34;./capture_filtered.pcap&#34;</span><span class="p">)</span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">pkt</span><span class="p">)):</span>
-    <span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="nb">chr</span><span class="p">(</span><span class="n">pkt</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">sport</span><span class="o">-</span><span class="mi">5000</span><span class="p">))</span></code></pre></td></tr></table>
+    <span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="nb">chr</span><span class="p">(</span><span class="n">pkt</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">sport</span><span class="o">-</span><span class="mi">5000</span><span class="p">))</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<p>Flag: <code>picoCTF{p1LLf3r3d_data_v1a_st3g0}</code></p>
-
+</div><p>Flag: <code>picoCTF{p1LLf3r3d_data_v1a_st3g0}</code></p>
 <p><br /><br />
 <br /><br /></p>
-
 <h2 id="forensics-webnet0-350-points">[Forensics]: WebNet0 (350 points)</h2>
-
-<hr />
-
+<hr>
 <h3 id="challenge-3">Challenge</h3>
-
 <blockquote>
 <p>We found this packet capture and key. Recover the flag.
 <br /><br />
@@ -372,32 +316,21 @@ Hints :<br />
 Try using a tool like Wireshark<br />
 How can you decrypt the TLS stream?</p>
 </blockquote>
-
 <p>Attachment:</p>
-
 <ul>
 <li>capture.pcap</li>
 <li>picopico.key</li>
 </ul>
-
 <p><br /></p>
-
 <h3 id="solution-3">Solution</h3>
-
 <p>Go to Preference -&gt; TLS -&gt; RSA key list <br />
 172.31.22.220, 443, http, C:\Temp\picopico.key</p>
-
 <p>Flag: <code>picoCTF{nongshim.shrimp.crackers}</code></p>
-
 <p><br /><br />
 <br /><br /></p>
-
 <h2 id="forensics-webnet1-450-points">[Forensics]: WebNet1 (450 points)</h2>
-
-<hr />
-
+<hr>
 <h3 id="challenge-4">Challenge</h3>
-
 <blockquote>
 <p>We found this packet capture and key. Recover the flag.
 <br /><br />
@@ -405,27 +338,18 @@ Hints :<br />
 Try using a tool like Wireshark<br />
 How can you decrypt the TLS stream?</p>
 </blockquote>
-
 <p>Attachment:</p>
-
 <ul>
 <li>capture.pcap</li>
 <li>picopico.key</li>
 </ul>
-
 <p><br /></p>
-
 <h3 id="solution-4">Solution</h3>
-
 <p>復号したトラフィックから、HTTP objectを抽出し、stringsコマンドでフラグサーチ。</p>
-
 <p>Flag: <code>picoCTF{honey.roasted.peanuts}</code></p>
-
 <p><br /><br />
 <br /><br /></p>
-
-<hr />
-
+<hr>
 <p><br /><br />
 <br /><br /></p>
 

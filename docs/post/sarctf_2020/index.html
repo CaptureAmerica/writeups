@@ -23,7 +23,7 @@
 <meta name="google-site-verification" content="PqctLWZQttGzxXVupWuIt2HWuBI8cvN1z07ETpxA2dw" />
 
 
-<meta name="generator" content="Hugo 0.59.1 with theme even" />
+<meta name="generator" content="Hugo 0.68.3 with theme even" />
 
 
 <link rel="canonical" href="https://captureamerica.github.io/writeups/post/sarctf_2020/" />
@@ -46,16 +46,13 @@
 <meta property="article:modified_time" content="2020-02-23T14:00:00+09:00" />
 <meta itemprop="name" content="SarCTF by Saratov State University 2020 Writeup">
 <meta itemprop="description" content="(2020/02/23 - 復習しました) URL: https://sarctf.tk/challenges シャーロック・ホームズをテーマにしたCTFでした。シャーロック・ホームズはNetflixで一通り見ましたよ〜 WebとC">
-
-
 <meta itemprop="datePublished" content="2020-02-17T00:00:00&#43;09:00" />
 <meta itemprop="dateModified" content="2020-02-23T14:00:00&#43;09:00" />
-<meta itemprop="wordCount" content="3514">
+<meta itemprop="wordCount" content="3517">
 
 
 
-<meta itemprop="keywords" content="CTF,Reviewed," />
-<meta name="twitter:card" content="summary"/>
+<meta itemprop="keywords" content="CTF,Reviewed," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="SarCTF by Saratov State University 2020 Writeup"/>
 <meta name="twitter:description" content="(2020/02/23 - 復習しました) URL: https://sarctf.tk/challenges シャーロック・ホームズをテーマにしたCTFでした。シャーロック・ホームズはNetflixで一通り見ましたよ〜 WebとC"/>
 
@@ -139,171 +136,140 @@
   <h2 class="post-toc-title">Contents</h2>
   <div class="post-toc-content">
     <nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li><a href="#misc-deep-dive">[Misc]: Deep dive</a>
-<ul>
-<li><a href="#challenge">Challenge</a></li>
-<li><a href="#solution">Solution</a></li>
-</ul></li>
-<li><a href="#misc-layouts">[Misc]: Layouts</a>
-<ul>
-<li><a href="#challenge-1">Challenge</a></li>
-<li><a href="#solution-1">Solution</a></li>
-</ul></li>
-<li><a href="#forensics-doc-holmes">[Forensics]: Doc. Holmes</a>
-<ul>
-<li><a href="#challenge-2">Challenge</a></li>
-<li><a href="#solution-2">Solution</a></li>
-</ul></li>
-<li><a href="#forensics-confidential">[Forensics]: Confidential</a>
-<ul>
-<li><a href="#challenge-3">Challenge</a></li>
-<li><a href="#solution-3">Solution</a></li>
-</ul></li>
-<li><a href="#reverse-crossw0rd">[Reverse]: Crossw0rd</a>
-<ul>
-<li><a href="#challenge-4">Challenge</a></li>
-<li><a href="#solution-4">Solution</a></li>
-</ul></li>
-<li><a href="#ppc-mind-palace-i">[PPC]: Mind palace I</a>
-<ul>
-<li><a href="#challenge-5">Challenge</a></li>
-<li><a href="#solution-5">Solution</a></li>
-</ul></li>
-<li><a href="#ppc-mind-palace-ii">[PPC]: Mind palace II</a>
-<ul>
-<li><a href="#challenge-6">Challenge</a></li>
-<li><a href="#solution-6">Solution</a></li>
-</ul></li>
-<li><a href="#ppc-mind-palace-iii">[PPC]: Mind palace III</a>
-<ul>
-<li><a href="#challenge-7">Challenge</a></li>
-<li><a href="#solution-7">Solution</a></li>
-</ul></li>
-<li><a href="#ppc-magic-of-numbers">[PPC]: Magic of numbers</a>
-<ul>
-<li><a href="#challenge-8">Challenge</a></li>
-<li><a href="#unsolved">(Unsolved)</a></li>
-</ul></li>
-<li><a href="#forensic-blogger">[Forensic]: Blogger</a>
-<ul>
-<li><a href="#challenge-9">Challenge</a></li>
-<li><a href="#solution-8">Solution</a></li>
-</ul></li>
-<li><a href="#stego-red-king">[Stego]: Red King</a>
-<ul>
-<li><a href="#challenge-10">Challenge</a></li>
-<li><a href="#solution-9">Solution</a></li>
-</ul></li>
-</ul></li>
-</ul>
+  <ul>
+    <li><a href="#misc-deep-dive">[Misc]: Deep dive</a>
+      <ul>
+        <li><a href="#challenge">Challenge</a></li>
+        <li><a href="#solution">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#misc-layouts">[Misc]: Layouts</a>
+      <ul>
+        <li><a href="#challenge-1">Challenge</a></li>
+        <li><a href="#solution-1">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#forensics-doc-holmes">[Forensics]: Doc. Holmes</a>
+      <ul>
+        <li><a href="#challenge-2">Challenge</a></li>
+        <li><a href="#solution-2">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#forensics-confidential">[Forensics]: Confidential</a>
+      <ul>
+        <li><a href="#challenge-3">Challenge</a></li>
+        <li><a href="#solution-3">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#reverse-crossw0rd">[Reverse]: Crossw0rd</a>
+      <ul>
+        <li><a href="#challenge-4">Challenge</a></li>
+        <li><a href="#solution-4">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#ppc-mind-palace-i">[PPC]: Mind palace I</a>
+      <ul>
+        <li><a href="#challenge-5">Challenge</a></li>
+        <li><a href="#solution-5">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#ppc-mind-palace-ii">[PPC]: Mind palace II</a>
+      <ul>
+        <li><a href="#challenge-6">Challenge</a></li>
+        <li><a href="#solution-6">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#ppc-mind-palace-iii">[PPC]: Mind palace III</a>
+      <ul>
+        <li><a href="#challenge-7">Challenge</a></li>
+        <li><a href="#solution-7">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#ppc-magic-of-numbers">[PPC]: Magic of numbers</a>
+      <ul>
+        <li><a href="#challenge-8">Challenge</a></li>
+        <li><a href="#unsolved">(Unsolved)</a></li>
+      </ul>
+    </li>
+    <li><a href="#forensic-blogger">[Forensic]: Blogger</a>
+      <ul>
+        <li><a href="#challenge-9">Challenge</a></li>
+      </ul>
+    </li>
+    <li><a href="#stego-red-king">[Stego]: Red King</a>
+      <ul>
+        <li><a href="#challenge-10">Challenge</a></li>
+      </ul>
+    </li>
+  </ul>
 </nav>
   </div>
 </div>
     <div class="post-content">
-      
-
-<div class='align-right'>
-  
+      <div class='align-right'>
 <a href="https://translate.google.com/translate?hl=en&sl=ja&tl=en&u=https%3A%2F%2Fcaptureamerica.github.io%2Fwriteups%2Fpost%2Fsarctf_2020%2F">
 <img src="https://captureamerica.github.io/writeups/img/En.png" alt="English">
 </a>
-
 </div>
-
 <p>(2020/02/23 - 復習しました)</p>
-
-<p>URL: <a href="https://sarctf.tk/challenges" target="_blank">https://sarctf.tk/challenges</a>
+<p>URL: <a href="https://sarctf.tk/challenges">https://sarctf.tk/challenges</a>
 <br /><br />
 シャーロック・ホームズをテーマにしたCTFでした。シャーロック・ホームズはNetflixで一通り見ましたよ〜
 <br /><br />
 WebとCryptoはほぼスルー（Web問題のうち半分はvk.comのアカウントを作らないと解けないとか書かれてたし）、Stegoは今回のは手強くて降参です。
 <br /><br />
 開始当初、サーバがめっちゃ不安定で、チャレンジも見れないわ、フラグもSubmitできないわで、もうやめようかと思ったんですが、寝て起きた次の日は直っていたのでよかったです。</p>
-
-<p><img src="https://captureamerica.github.io/writeups/img/sarctf_Score1.png" alt="sarctf_Score1.png">
+<img src="https://captureamerica.github.io/writeups/img/sarctf_Score1.png" alt="sarctf_Score1.png">
 <br /><br />
 <img src="https://captureamerica.github.io/writeups/img/sarctf_Score2.png" alt="sarctf_Score2.png">
 <br />
 <img src="https://captureamerica.github.io/writeups/img/sarctf_Score3.png" alt="sarctf_Score3.png">
-<br /></p>
-
+<br />
 <p><br /><br /></p>
-
 <h2 id="misc-deep-dive">[Misc]: Deep dive</h2>
-
-<hr />
-
+<hr>
 <h3 id="challenge">Challenge</h3>
-
 <blockquote>
 <p>Worth digging into these tricks.</p>
 </blockquote>
-
 <p>Attachment:</p>
-
 <ul>
 <li>flag.txt</li>
 </ul>
-
 <p><br /></p>
-
 <h3 id="solution">Solution</h3>
-
 <p>オニオン系（マトリョーシカ系？）の問題で、ひらすらファイルを解凍しつづけるやつです。Tar archiveから始まります。</p>
-
 <pre>
 $ file flag.txt 
 flag.txt: POSIX tar archive (GNU)
 </pre>
-
-<p><br>
-20階層くらいまで手動でやったところで、ファイルサイズも全然小さくならないし手動でやっていたら終わらない気がしたので、Pythonスクリプトを書きました。</p>
-
+<br>
+20階層くらいまで手動でやったところで、ファイルサイズも全然小さくならないし手動でやっていたら終わらない気がしたので、Pythonスクリプトを書きました。
 <p>この手のチャレンジはよく出てくるので、前からツール化したいとは思ってたんですよね。</p>
-
 <p>コードは載せまんが、アイデアとしては、Pythonからfileコマンドを呼んで、そのファイルタイプによって該当する解凍コマンドを呼ぶ。それだけのことです。</p>
-
 <p>ところどころ、sleep(1)を入れてパッチしないとエラーになったりしました。（システムコールを使って解凍してるのがいけないっぽいです。。）</p>
-
 <p>出てくるファイルがすべてflag.txtだったので、ループはPython内ではやらず、watchでやりました。</p>
-
 <pre>
 $ watch -n 1 "./Deep_dive_solve.py flag.txt"
 </pre>
-
 <p>時間は計ってないけど、30分くらいかかったような気がします。（ちょっとコードがよくなかったかも）</p>
-
-<p><br>
-Flag: <code>FLAG{matri0sha256}</code></p>
-
+<br>
+Flag: `FLAG{matri0sha256}`
 <p><br /><br />
 <br /><br /></p>
-
 <h2 id="misc-layouts">[Misc]: Layouts</h2>
-
-<hr />
-
+<hr>
 <h3 id="challenge-1">Challenge</h3>
-
 <blockquote>
 <p>Sherlock found a huge pile of evidence, but it was difficult for him to analyze them. Help him.</p>
 </blockquote>
-
 <p>Attachment:</p>
-
 <ul>
 <li>RWtm7A5f (パスワード付きZip file)</li>
 </ul>
-
 <p><br /></p>
-
 <h3 id="solution-1">Solution</h3>
-
 <p>zip2johnを使って、Password Crackしました。</p>
-
 <pre>
 $ zip2john RWtm7A5f > Layouts.txt
 
@@ -315,39 +281,29 @@ Proceeding with single, rules:Single
 Press 'q' or Ctrl-C to abort, almost any other key for status
 RWtm7A5f         (RWtm7A5f/Lz68qMZU)
 </pre>
-
 <p>ファイル名がパスワードみたいです。（最初、クラックできなかったのかと思いました）</p>
-
 <p>何回か繰り返しやったところ、そのパターンでいけるようなので、スクリプト化しました。</p>
-
 <p>Layouts_solve.shを以下のように作成。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1">#/bin/bash</span>
 unzip -P <span class="nv">$1</span> <span class="nv">$1</span>
-rm <span class="nv">$1</span></code></pre></td></tr></table>
+rm <span class="nv">$1</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<p><br>
-同一フォルダ内でzipファイルを見つけて、そのファイル名を上記のスクリプトの引数に渡す、ということを繰り返しやります。</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash">$ watch -n <span class="m">1</span> <span class="s2">&#34;find . -exec file {} \; | grep -i zip | cut -d: -f1 | cut -c 3- | xargs -Ixxx ./Layouts_solve.sh xxx&#34;</span></code></pre></td></tr></table>
-</div>
-</div>
-<p><br>
-更に続きがあって、ある程度解凍すると今度はXZファイルが出てきます。</p>
-
+</div><br>
+同一フォルダ内でzipファイルを見つけて、そのファイル名を上記のスクリプトの引数に渡す、ということを繰り返しやります。
+```bash
+$ watch -n 1 "find . -exec file {} \; | grep -i zip | cut -d: -f1 | cut -c 3- | xargs -Ixxx ./Layouts_solve.sh xxx"
+```
+<br>
+更に続きがあって、ある程度解凍すると今度はXZファイルが出てきます。
 <p>解凍すると、以下のディレクトリとファイルが出てきます。見たところ、ファイルは全部0バイトです。</p>
-
 <pre>
 $ find .
 .
@@ -628,12 +584,9 @@ $ find .
 ./96
 ./66
 </pre>
-
-<p><br>
-ディレクトリ名がAscii文字列範囲なのと、ファイル名がバラけているのに気づきました。</p>
-
+<br>
+ディレクトリ名がAscii文字列範囲なのと、ファイル名がバラけているのに気づきました。
 <p>取り出して、ソートして、Pythonを使って文字変換します。</p>
-
 <pre>
 $ find . | cut -c 3- | grep / | awk -F '/' '{print $2, $1}' | sort -n | cut -d" " -f2 | tr "\n" " " ; echo
 83 89 78 84 123 122 52 103 101 51 102 117 120 52 95 110 53 112 49 49 125
@@ -641,73 +594,46 @@ $ find . | cut -c 3- | grep / | awk -F '/' '{print $2, $1}' | sort -n | cut -d" 
 $ python -c 'print("".join([chr(int(x)) for x in "83 89 78 84 123 122 52 103 101 51 102 117 120 52 95 110 53 112 49 49 125".split()]))'
 SYNT{z4ge3fux4_n5p11}
 </pre>
-
-<p><br>
-最後は、ROT13です。</p>
-
+<br>
+最後は、ROT13です。
 <p>Flag: <code>FLAG{m4tr3shk4_a5c11}</code></p>
-
 <p><br /><br />
 <br /><br /></p>
-
 <h2 id="forensics-doc-holmes">[Forensics]: Doc. Holmes</h2>
-
-<hr />
-
+<hr>
 <h3 id="challenge-2">Challenge</h3>
-
 <blockquote>
 <p>Sherlock got it on his super secret channels. You have received a copy of mail. Is everything okay with it?</p>
 </blockquote>
-
 <p>Attachment:</p>
-
 <ul>
 <li>some.file</li>
 </ul>
-
 <p><br /></p>
-
 <h3 id="solution-2">Solution</h3>
-
 <pre>
 $ file some.file 
 some.file: Microsoft Word 2007+
 </pre>
-
 <p>Zipとして解凍したら、/word/media/image2.jpg がフラグです。</p>
-
 <p>ファイル名 (some.file) も一応ヒントなんでしょうね。</p>
-
 <p>Flag: <code>flag{prominentplace}</code></p>
-
 <p><br /><br />
 <br /><br /></p>
-
 <h2 id="forensics-confidential">[Forensics]: Confidential</h2>
-
-<hr />
-
+<hr>
 <h3 id="challenge-3">Challenge</h3>
-
 <blockquote>
-<p>Sherlock was able to intercept the transmission of secret data passed between Moriarty's agents. Examine the traffic and try to find confidential information.</p>
+<p>Sherlock was able to intercept the transmission of secret data passed between Moriarty&rsquo;s agents. Examine the traffic and try to find confidential information.</p>
 </blockquote>
-
 <p>Attachment:</p>
-
 <ul>
 <li>captured.pcap</li>
 </ul>
-
 <p><br /></p>
-
 <h3 id="solution-3">Solution</h3>
-
 <p>Wiresharkを使ってpcapを見たところ、いろいろファイルが転送されているようです。</p>
-
 <p>一際怪しかったのが、database.kdbxというファイルです。keepass2johnでクラックします。</p>
-
 <pre>
 $ keepass2john database.kdbx > database.kdbx.hash
 
@@ -724,44 +650,29 @@ blowme!          (database)
 Use the "--show" option to display all of the cracked passwords reliably
 Session completed
 </pre>
-
-<p><br>
-パスワード <code>blowme!</code> が見つかりました。</p>
-
-<p><br>
-KeePass.exeを使って開くと、Andreaさんのパスワードがフラグになってました。</p>
-
-<p><img src="https://captureamerica.github.io/writeups/img/sarctf_keepass.png" alt="sarctf_keepass.png"></p>
-
-<p><br>
-Flag: <code>FLAG{bru73_p455w0rd_4ll_n16h7_l0n6}</code></p>
-
+<br>
+パスワード `blowme!` が見つかりました。
+<br>
+KeePass.exeを使って開くと、Andreaさんのパスワードがフラグになってました。
+<img src="https://captureamerica.github.io/writeups/img/sarctf_keepass.png" alt="sarctf_keepass.png">
+<br>
+Flag: `FLAG{bru73_p455w0rd_4ll_n16h7_l0n6}`
 <p><br /><br />
 <br /><br /></p>
-
 <h2 id="reverse-crossw0rd">[Reverse]: Crossw0rd</h2>
-
-<hr />
-
+<hr>
 <h3 id="challenge-4">Challenge</h3>
-
 <blockquote>
 <p>While the children were playing toys, Sherlock was solving crosswords in large volumes.</p>
 </blockquote>
-
 <p>Attachment:</p>
-
 <ul>
 <li>crossw0rd (ELF 64-bit)</li>
 </ul>
-
 <p><br /></p>
-
 <h3 id="solution-4">Solution</h3>
-
 <p>Ghidraで開くと、param_1という配列の値をチェックしているのが見つかります。</p>
-
-<p>抜粋すると、こんな感じです。（配列要素を全部10進数に変えてます）
+<p>抜粋すると、こんな感じです。（配列要素を全部10進数に変えてます）</p>
 <pre>
 param_1[7] == '5'
 param_1[17] == 'g'
@@ -782,46 +693,31 @@ param_1[4] == '{'
 param_1[12] == '3'
 param_1[8] == 'y'
 param_1[13] == 'r'
-</pre></p>
-
-<p><br>
-これをファイル (crossw0rd.txt) に保存して、ソートします。</p>
-
+</pre>
+<br>
+これをファイル (crossw0rd.txt) に保存して、ソートします。
 <pre>
 $ cat crossw0rd.txt | cut -d[ -f2 | sort -n | cut -d\' -f2 | tr -d "\n" ; echo
 FLAG{3a5yr3v3r5ing}
 </pre>
-
-<p><br>
-Flag: <code>FLAG{3a5yr3v3r5ing}</code></p>
-
+<br>
+Flag: `FLAG{3a5yr3v3r5ing}`
 <p><br /><br />
 <br /><br /></p>
-
 <h2 id="ppc-mind-palace-i">[PPC]: Mind palace I</h2>
-
-<hr />
-
+<hr>
 <h3 id="challenge-5">Challenge</h3>
-
 <blockquote>
 <p>It looks like the situation is hopeless, there is no time to think. However, you can use the mind palace and solve all problems instantly.
 <br /><br />
 nc 212.47.229.1 33001</p>
 </blockquote>
-
 <p><br /></p>
-
 <h3 id="solution-5">Solution</h3>
-
 <p>繋いでみると、pip と piiip というのが表示されます。モールス信号っぽいです。</p>
-
 <p>WireSharkでキャプチャーして、いくつか目視でモールス変換してみると、英単語 here, up, on になったので、モールス信号確定です。</p>
-
 <p>ちょっと長め (10分くらい？) にキャプチャーする必要がありました。</p>
-
 <p>テキストエディタを使って、pipを「.」、piiipを「-」に変換します。</p>
-
 <pre>
 .... . .-. .   ..- .--. --- -.   - .... .   .-.. .- .--. . .-..   --- ..-.   -- -.--   -.-.
  --- .- -   -.-- --- ..-   -- .- -.--   ... . .   - .... .   .-. .. -... -... --- -.   --- 
@@ -835,90 +731,56 @@ nc 212.47.229.1 33001</p>
   ..   -.- . . .--.   .. -.   .-   .-.. . .- - .... . .-. -.   .--. --- ..- -.-. ....   .- 
 -   .... --- -- .   ..-. .-.
 </pre>
-
-<p><br>
-文字への変換は以下のサイトにお世話になりました。</p>
-
-<p><a href="http://www.unit-conversion.info/texttools/morse-code/" target="_blank">http://www.unit-conversion.info/texttools/morse-code/</a></p>
-
+<br>
+文字への変換は以下のサイトにお世話になりました。
+<p><a href="http://www.unit-conversion.info/texttools/morse-code/">http://www.unit-conversion.info/texttools/morse-code/</a></p>
 <p>以下が、取れた結果です。</p>
-
 <p>here??upon??the??lapel??of??my???oat??you??may??see??the??ribbon??o???my??decoration??but??the??meda???itself??i??keep??in??a??leathern???ouch??at??home??flag??sherlo?k??likes??your??morsehere??up?n??the??lapel??of??my??coat??you??may??see??the??ribbon??of??my??de?oration??but??the??medal??itself??i??keep??in??a??leathern??pouch??a???home??fr</p>
-
-<p><br>
-ちょっとGuessも入りましたが、フラグが取れました。</p>
-
+<br>
+ちょっとGuessも入りましたが、フラグが取れました。
 <p>Flag: <code>flag{sherlock_likes_your_morse}</code></p>
-
 <p><br /><br />
 <br /><br /></p>
-
 <h2 id="ppc-mind-palace-ii">[PPC]: Mind palace II</h2>
-
-<hr />
-
+<hr>
 <h3 id="challenge-6">Challenge</h3>
-
 <blockquote>
-<p>It's time to strain your brains.
+<p>It&rsquo;s time to strain your brains.
 <br /><br />
 nc 212.47.229.1 33002</p>
 </blockquote>
-
 <p><br /></p>
-
 <h3 id="solution-6">Solution</h3>
-
 <p>pwntoolを使ってひたすら繰り返しROT13するだけです。</p>
-
 <p>Flag: <code>FLAG{Y0U_V3RY_F45T3R_CRYPT0GR4PH}</code></p>
-
 <p><br /><br />
 <br /><br /></p>
-
 <h2 id="ppc-mind-palace-iii">[PPC]: Mind palace III</h2>
-
-<hr />
-
+<hr>
 <h3 id="challenge-7">Challenge</h3>
-
 <blockquote>
 <p>100% of brain CPU
 <br /><br />
 nc 212.47.229.1 33003</p>
 </blockquote>
-
 <p><br /></p>
-
 <h3 id="solution-7">Solution</h3>
-
 <p>pwntoolを使ってひたすら繰り返しXOR, OR, AND演算するだけです。</p>
-
 <p>Flag: <code>FLAG{0HH_Y0UR3_4_V3RY_5M3RT_M4TH3M4T1C}</code></p>
-
 <p><br /><br />
 <br /><br /></p>
-
 <h2 id="ppc-magic-of-numbers">[PPC]: Magic of numbers</h2>
-
-<hr />
-
+<hr>
 <h3 id="challenge-8">Challenge</h3>
-
 <blockquote>
 <p>Do you think Sherlock can beat a computer in math?
 <br /><br />
 nc 212.47.229.1 33004</p>
 </blockquote>
-
 <p><br /></p>
-
 <h3 id="unsolved">(Unsolved)</h3>
-
 <p>降参です。。。</p>
-
 <p>暗算：</p>
-
 <pre>
 $ nc 212.47.229.1 33004
 ======================================================================================================
@@ -947,10 +809,8 @@ Hey, hello! Just send me an answer to 9 simple examples, so I can check if my ma
 You made a mistake somewhere! Bay, bay!
 
 </pre>
-
-<p><br>
-pythonで計算したのをコピペ：</p>
-
+<br>
+pythonで計算したのをコピペ：
 <pre>
 $ nc 212.47.229.1 33004
 ======================================================================================================
@@ -979,105 +839,67 @@ Hey, hello! Just send me an answer to 9 simple examples, so I can check if my ma
 You made a mistake somewhere! Bay, bay!
 
 </pre>
-
 <p>あと、pwntool使ったりもしたりしたけど、どこが間違っているのかわからないです。</p>
-
 <p><b>Bay, bay!</b></p>
-
 <p><br /><br />
 （Writeup見てると、どうやら途中で何かFixされてたっぽいですね。。。）</p>
-
 <p><br /><br />
 <br /><br />
 <img src="https://captureamerica.github.io/writeups/img/orange_bar.png" alt="orange_bar.png">
 <br />
 ここから下はCTF終了後（2020/02/23）に行った復習です。他の方のWriteupとか参照してます。</p>
-
 <p><br /></p>
-
 <h2 id="forensic-blogger">[Forensic]: Blogger</h2>
-
-<hr />
-
+<hr>
 <h3 id="challenge-9">Challenge</h3>
-
 <blockquote>
-<p>Recently, John's keys began to be pressed by themselves when he runs his blog. You need to figure out what's the matter.</p>
+<p>Recently, John&rsquo;s keys began to be pressed by themselves when he runs his blog. You need to figure out what&rsquo;s the matter.</p>
 </blockquote>
-
 <p>Attachment:</p>
-
 <ul>
 <li>usb_here.pcapng</li>
 </ul>
-
-<p><br></p>
-
-<h3 id="solution-8">Solution</h3>
-
-<p>USB pcapは過去のCTFでも何度かお目になっていて、tsharkでデータを取り出して3バイト目辺りを変換表に基づいて文字に換える、という事はなんとなく知ってたんですが、いっつも後回ししていて今回もスルーしました。</p>
-
+<br>
+### Solution
+USB pcapは過去のCTFでも何度かお目になっていて、tsharkでデータを取り出して3バイト目辺りを変換表に基づいて文字に換える、という事はなんとなく知ってたんですが、いっつも後回ししていて今回もスルーしました。
 <p>今回、解けた人もだいぶ多かったし、一度スクリプトを用意してしまえば使い回しができるんでしょうね。</p>
-
 <pre>
 $ tshark -r usb_here.pcapng -T fields -e usb.capdata | tr -s "\n" > usb.capdata 
 </pre>
-
 <div class="admonition tip"><p class="admonition-title">Tips</p>
-  
-tr -s "\n" は空行を削除
-
+<p>tr -s &ldquo;\n&rdquo; は空行を削除</p>
 </div>
-
-<p><br>
+<br>
 <pre>
-$ ./usb.py usb.capdata
+$ ./usb.py usb.capdata 
 sherlock,john,andhenrythenvisitthehollowinthehopeoffindingthehound.ontheway,johnnoticeswhatseemstobeflag[like-a-b100dh0und]e
 </pre>
-（Pythonコードは他の人の書いたコードのほぼパクリなので載せません。）</p>
-
-<p><br>
-Flag: <code>flag{like-a-b100dh0und}</code></p>
-
+（Pythonコードは他の人の書いたコードのほぼパクリなので載せません。）
+<br>
+Flag: `flag{like-a-b100dh0und}`
 <p><br /><br />
 <br /><br /></p>
-
 <h2 id="stego-red-king">[Stego]: Red King</h2>
-
-<hr />
-
+<hr>
 <h3 id="challenge-10">Challenge</h3>
-
 <blockquote>
 <p>Just Moriarty? Really?</p>
 </blockquote>
-
 <p>Attachment:</p>
-
 <ul>
 <li>m0r1ar7y.png</li>
 </ul>
-
-<p><br></p>
-
-<h3 id="solution-9">Solution</h3>
-
-<p>&quot;Red King&quot; というタイトルから、赤をなんとかするんだろうと思ってLSBも取ってみたけど、よくわからなかったやつです。</p>
-
+<br>
+### Solution
+"Red King" というタイトルから、赤をなんとかするんだろうと思ってLSBも取ってみたけど、よくわからなかったやつです。
 <p>縦方向に読み込む必要があったみたいです。ふーん。</p>
-
 <p>以下は、「青い空を見上げればいつもそこに白い猫」のスクリーンショットです。</p>
-
-<p><img src="https://captureamerica.github.io/writeups/img/sarctf_m0r1ar7y.png" alt="sarctf_m0r1ar7y.png"></p>
-
-<p><br>
-Flag: <code>FLAG{who_is_moriarty}</code></p>
-
+<img src="https://captureamerica.github.io/writeups/img/sarctf_m0r1ar7y.png" alt="sarctf_m0r1ar7y.png">
+<br>
+Flag: `FLAG{who_is_moriarty}`
 <p><br /><br />
 <br /><br /></p>
-
-<hr />
-
+<hr>
 <p><br /><br />
 <br /><br /></p>
 

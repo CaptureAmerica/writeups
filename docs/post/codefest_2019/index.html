@@ -23,7 +23,7 @@
 <meta name="google-site-verification" content="PqctLWZQttGzxXVupWuIt2HWuBI8cvN1z07ETpxA2dw" />
 
 
-<meta name="generator" content="Hugo 0.59.1 with theme even" />
+<meta name="generator" content="Hugo 0.68.3 with theme even" />
 
 
 <link rel="canonical" href="https://captureamerica.github.io/writeups/post/codefest_2019/" />
@@ -46,16 +46,13 @@
 <meta property="article:modified_time" content="2019-08-29T23:00:00+09:00" />
 <meta itemprop="name" content="Codefest&#39;19 CTF Writeup">
 <meta itemprop="description" content="(2019/08/29 - 復習しました) URL: https://www.hackerrank.com/codefest19-ctf 問題数は10問（WelcomeとSurveyを除く）あって、そのうちの1問（Mail capture）は添付ファイルにフ">
-
-
 <meta itemprop="datePublished" content="2019-08-25T15:00:00&#43;09:00" />
 <meta itemprop="dateModified" content="2019-08-29T23:00:00&#43;09:00" />
-<meta itemprop="wordCount" content="2299">
+<meta itemprop="wordCount" content="2301">
 
 
 
-<meta itemprop="keywords" content="CTF,Reviewed," />
-<meta name="twitter:card" content="summary"/>
+<meta itemprop="keywords" content="CTF,Reviewed," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Codefest&#39;19 CTF Writeup"/>
 <meta name="twitter:description" content="(2019/08/29 - 復習しました) URL: https://www.hackerrank.com/codefest19-ctf 問題数は10問（WelcomeとSurveyを除く）あって、そのうちの1問（Mail capture）は添付ファイルにフ"/>
 
@@ -139,93 +136,80 @@
   <h2 class="post-toc-title">Contents</h2>
   <div class="post-toc-content">
     <nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li><a href="#reversing-linux-re-2">[Reversing]: Linux RE 2</a>
-<ul>
-<li><a href="#challenge">Challenge</a></li>
-<li><a href="#solution">Solution</a></li>
-</ul></li>
-<li><a href="#crypto-what-language-is-this">[Crypto]: What language is this?</a>
-<ul>
-<li><a href="#challenge-1">Challenge</a></li>
-<li><a href="#solution-1">Solution</a></li>
-</ul></li>
-<li><a href="#misc-gibberish-file">[Misc]: Gibberish file</a>
-<ul>
-<li><a href="#challenge-2">Challenge</a></li>
-<li><a href="#solution-2">Solution</a></li>
-</ul></li>
-<li><a href="#forensics-image-corruption">[Forensics]: Image Corruption</a>
-<ul>
-<li><a href="#challenge-3">Challenge</a></li>
-<li><a href="#solution-3">Solution</a></li>
-</ul></li>
-<li><a href="#network-mail-capture">[Network]: Mail capture</a>
-<ul>
-<li><a href="#challenge-4">Challenge</a></li>
-<li><a href="#solution-4">Solution</a></li>
-</ul></li>
-<li><a href="#stego-cats-are-innocent-right">[Stego]: Cats are innocent, right?</a>
-<ul>
-<li><a href="#challenge-5">Challenge</a></li>
-<li><a href="#solution-5">Solution</a></li>
-</ul></li>
-</ul></li>
-</ul>
+  <ul>
+    <li><a href="#reversing-linux-re-2">[Reversing]: Linux RE 2</a>
+      <ul>
+        <li><a href="#challenge">Challenge</a></li>
+        <li><a href="#solution">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#crypto-what-language-is-this">[Crypto]: What language is this?</a>
+      <ul>
+        <li><a href="#challenge-1">Challenge</a></li>
+        <li><a href="#solution-1">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#misc-gibberish-file">[Misc]: Gibberish file</a>
+      <ul>
+        <li><a href="#challenge-2">Challenge</a></li>
+        <li><a href="#solution-2">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#forensics-image-corruption">[Forensics]: Image Corruption</a>
+      <ul>
+        <li><a href="#challenge-3">Challenge</a></li>
+        <li><a href="#solution-3">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#network-mail-capture">[Network]: Mail capture</a>
+      <ul>
+        <li><a href="#challenge-4">Challenge</a></li>
+        <li><a href="#solution-4">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#stego-cats-are-innocent-right">[Stego]: Cats are innocent, right?</a>
+      <ul>
+        <li><a href="#challenge-5">Challenge</a></li>
+        <li><a href="#solution-5">Solution</a></li>
+      </ul>
+    </li>
+  </ul>
 </nav>
   </div>
 </div>
     <div class="post-content">
-      
-
-<div class='align-right'>
-  
+      <div class='align-right'>
 <a href="https://translate.google.com/translate?hl=en&sl=ja&tl=en&u=https%3A%2F%2Fcaptureamerica.github.io%2Fwriteups%2Fpost%2Fcodefest_2019%2F">
 <img src="https://captureamerica.github.io/writeups/img/En.png" alt="English">
 </a>
-
 </div>
-
 <p>(2019/08/29 - 復習しました)</p>
-
-<p>URL: <a href="https://www.hackerrank.com/codefest19-ctf" target="_blank">https://www.hackerrank.com/codefest19-ctf</a>
+<p>URL: <a href="https://www.hackerrank.com/codefest19-ctf">https://www.hackerrank.com/codefest19-ctf</a>
 <br /><br />
 問題数は10問（WelcomeとSurveyを除く）あって、そのうちの1問（Mail capture）は添付ファイルにフラグがそのまま入っているという（おそらく）手違いがあり、実質9問だけでした。
 <br /><br />
 その9問中の1問を解きました。
 <br /><br />
 （後日、残りの問題の復習もやりました。）</p>
-
 <p><br /><br /></p>
-
 <h2 id="reversing-linux-re-2">[Reversing]: Linux RE 2</h2>
-
-<hr />
-
+<hr>
 <h3 id="challenge">Challenge</h3>
-
 <blockquote>
 <p>You are given yet another ELF file. Reverse it to find the flag. The password is the flag.
 <br /><br />
 Update: The flag contains only alphabets, numbers and underscore.</p>
 </blockquote>
-
 <p>Attachment:</p>
-
 <ul>
 <li>chall2</li>
 </ul>
-
 <p><br /></p>
-
 <h3 id="solution">Solution</h3>
-
 <p>Ghidraでデコンパイルします。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-C" data-lang="C"><span class="lnt">  1
+<pre class="chroma"><code><span class="lnt">  1
 </span><span class="lnt">  2
 </span><span class="lnt">  3
 </span><span class="lnt">  4
@@ -548,17 +532,13 @@ Update: The flag contains only alphabets, numbers and underscore.</p>
     <span class="n">__stack_chk_fail</span><span class="p">();</span>
   <span class="p">}</span>
   <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-<span class="p">}</span></code></pre></td></tr></table>
+<span class="p">}</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<p>変なバッファの確保の仕方がされていて、scanfにlocal_78（char型）のポインタを渡していて、ここに入力したパスワードが入ってきます。</p>
-
+</div><p>変なバッファの確保の仕方がされていて、scanfにlocal_78（char型）のポインタを渡していて、ここに入力したパスワードが入ってきます。</p>
 <p>他のローカル変数を上書きするのを期待してるようなコードです。</p>
-
 <p>入力文字列（パスワード）の長さは、23（0x17）文字です。</p>
-
 <p>if文もそんなに複雑ではないので、順番にパズルを解いていく感じで簡単に解けます。</p>
-
 <pre>
 local_78: s
 local_77: h
@@ -584,9 +564,7 @@ local_64はlocal_62(l)+3: o
 local_63はlocal_64と同じ: o (111)
 local_62: l
 </pre>
-
 <p>Flag: <code>CodefestCTF{shouldve_used_some_tool}</code></p>
-
 <p><br /><br />
 <br /><br />
 <img src="https://captureamerica.github.io/writeups/img/orange_bar.png" alt="orange_bar.png">
@@ -596,81 +574,52 @@ local_62: l
 何気にいろいろと勉強になりました。
 <br /><br />
 <br /><br /></p>
-
 <h2 id="crypto-what-language-is-this">[Crypto]: What language is this?</h2>
-
-<hr />
-
+<hr>
 <h3 id="challenge-1">Challenge</h3>
-
 <blockquote>
 <p>Decode this piece of text that Alice got from a friend of hers.
 <br /><br />
 iiisdsiiioiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiodddddddddddoioiodoiiiiiiiiiiiiiioiodddddddddddddddddddddddddddddddddddddddddddddddddoiiiiiiiiiiiiiiiiioddddddddddddddoiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiioddddddddddddddddddddddddddddddddddddoiiiiiiiiiiiiiioiiiiiiiodddddddddodddddddddddddddddddddddddddddddddddddddddddddddddddoddddddddddddddddddddddddddddddddddddddsiiiiiiiiioddddddddoddddddoiiiiiiiiiiiiiiiiiiiiioddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddoddddddddddddddddddddddddddddddddsiiisisdddddoddddddddddddddddddddddddddddodddddddddddddddddddoddddddddddddddddddddddddddddddddsiiisisoioiodoiiiiiiiiiiiiiioiodddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddoiiiiiiiioddddddddddddddddddddddddddddddddddddddddddddddsiiiio</p>
 </blockquote>
-
 <p><br /></p>
-
 <h3 id="solution-1">Solution</h3>
-
 <p>i, s, d, oの4文字を使ったesolangだろうということで、いろいろググったんですが、何なのかわかんなかったんですよね。</p>
-
 <p>deadfishというやつらしいです。覚えておきます。</p>
-
 <p><br /><br />
 <br /><br /></p>
-
 <h2 id="misc-gibberish-file">[Misc]: Gibberish file</h2>
-
-<hr />
-
+<hr>
 <h3 id="challenge-2">Challenge</h3>
-
 <blockquote>
 <p>This file seems to have a weird encoding. Reverse it to find the flag.</p>
 </blockquote>
-
 <p>Attachment:</p>
-
 <ul>
 <li>output.txt (weird_file.zip)</li>
 </ul>
-
 <p><br /></p>
-
 <h3 id="solution-2">Solution</h3>
-
-<p>&quot;Reverse it&quot; を、&quot;データを反転せよ&quot; と解釈するのがミソ。そういう発想が大事なのがわかりました。</p>
-
+<p>&ldquo;Reverse it&rdquo; を、&ldquo;データを反転せよ&rdquo; と解釈するのがミソ。そういう発想が大事なのがわかりました。</p>
 <p><br /><br />
 <br /><br /></p>
-
 <h2 id="forensics-image-corruption">[Forensics]: Image Corruption</h2>
-
-<hr />
-
+<hr>
 <h3 id="challenge-3">Challenge</h3>
-
 <blockquote>
 <p>You are given a corrupted file. This file has the flag. Find it.</p>
 </blockquote>
-
 <p>Attachment:</p>
-
 <ul>
 <li>image.bmp</li>
 </ul>
-
 <p><br /></p>
-
 <h3 id="solution-3">Solution</h3>
-
 <p>このファイル、一部バイナリだけど、ほとんどテキストでmatrixmatrixmatrixがいっぱい出てくるところまでは見れていたんですが、そこからXORしようという発想がなかったです。</p>
-
 <p>一応、コードはそれなりに自分で書いてみました。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-Python" data-lang="Python"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -709,88 +658,64 @@ iiisdsiiioiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiodddddddddddoioiodoiiiiiii
     <span class="n">outfile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">struct</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="s2">&#34;B&#34;</span><span class="p">,</span> <span class="n">data</span><span class="p">[</span><span class="mi">6</span><span class="o">*</span><span class="n">i</span><span class="o">+</span><span class="mi">5</span><span class="p">]</span> <span class="o">^</span> <span class="nb">ord</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)))</span>
 
 <span class="n">infile</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
-<span class="n">outfile</span><span class="o">.</span><span class="n">close</span><span class="p">()</span></code></pre></td></tr></table>
+<span class="n">outfile</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<p><br /><br />
+</div><p><br /><br />
 <br /><br /></p>
-
 <h2 id="network-mail-capture">[Network]: Mail capture</h2>
-
-<hr />
-
+<hr>
 <h3 id="challenge-4">Challenge</h3>
-
 <blockquote>
 <p>Bob got hold of this file when going through the files of the email client on his old computer. Help him find the hidden message.</p>
 </blockquote>
-
 <p>Attachment: （後日ダウンロードし直したら、ちゃんと問題用ファイルが入ってました。）</p>
-
 <ul>
-<li><p>encoded_file</p>
+<li>encoded_file</li>
+</ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span><span class="lnt">5
-</span></pre></td>
+</span></code></pre></td>
 <td class="lntd">
-<pre class="chroma">$ cat encoded_file
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">$ cat encoded_file
 begin 664 flag_encoded
 E0V]D969E&lt;W1#5$9[-V@Q-5\Q-5\T7V,P,#%?,VYC,&amp;0Q;CE]&#34;@``
 `
-end</pre></td></tr></table>
+end
+</code></pre></td></tr></table>
 </div>
-</div></li>
-</ul>
-
-<p><br /></p>
-
+</div><p><br /></p>
 <h3 id="solution-4">Solution</h3>
-
 <p>$ uudecode encoded_file</p>
-
 <p>これもちゃんと覚えておきます。</p>
-
 <p><br /><br />
 <br /><br /></p>
-
 <h2 id="stego-cats-are-innocent-right">[Stego]: Cats are innocent, right?</h2>
-
-<hr />
-
+<hr>
 <h3 id="challenge-5">Challenge</h3>
-
 <blockquote>
 <p>This image has a flag hidden in it. Find it.</p>
 </blockquote>
-
 <p>Attachment:</p>
-
 <ul>
 <li>cute_kittens.jpg</li>
 </ul>
-
 <p><br /></p>
-
 <h3 id="solution-5">Solution</h3>
-
 <p>この問題だけSuccess Rateがダントツに低いんです（4.76%）。みんな解けなかったみたいですね。</p>
-
-<p><a href="https://github.com/DimitarPetrov/stegify" target="_blank">stegify</a>というツールと使って解くそうです。</p>
-
+<p><a href="https://github.com/DimitarPetrov/stegify">stegify</a>というツールと使って解くそうです。</p>
 <p>それ以外の解き方はないのかなぁ。。</p>
-
 <p><br />
 しかも、出力されたZipにはDecoyが入っているし。</p>
-
 <p>Zipを解凍せずにバイナリで見るとか、面白いと思いました。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -832,9 +757,9 @@ end</pre></td></tr></table>
 </span><span class="lnt">40
 </span><span class="lnt">41
 </span><span class="lnt">42
-</span></pre></td>
+</span></code></pre></td>
 <td class="lntd">
-<pre class="chroma">root@kali:~/Codefest_CTF_2019# stegify -op decode -carrier cute_kittens.jpg -result hello
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">root@kali:~/Codefest_CTF_2019# stegify -op decode -carrier cute_kittens.jpg -result hello
 root@kali:~/Codefest_CTF_2019# ll
 total 204
 drwxr-xr-x  2 root root   4096 Aug 29 22:40 ./
@@ -875,16 +800,13 @@ root@kali:~/Codefest_CTF_2019# xxd hello
 00000080: 0506 0000 0000 0100 0100 3f00 0000 3f00  ..........?...?.
 00000090: 0000 0000 436f 6465 6665 7374 4354 467b  ....CodefestCTF{
 000000a0: 6831 6431 6e67 5f62 3368 316e 645f 316e  h1d1ng_b3h1nd_1n
-000000b0: 6e30 6333 6e74 5f6b 3174 7433 6e35 7d0a  n0c3nt_k1tt3n5}.</pre></td></tr></table>
+000000b0: 6e30 6333 6e74 5f6b 3174 7433 6e35 7d0a  n0c3nt_k1tt3n5}.
+</code></pre></td></tr></table>
 </div>
-</div>
-<p>stegifyは、これからのCTFで使っていこうと思います。</p>
-
+</div><p>stegifyは、これからのCTFで使っていこうと思います。</p>
 <p><br /><br />
 <br /><br /></p>
-
-<hr />
-
+<hr>
 <p><br /><br />
 <br /><br /></p>
 

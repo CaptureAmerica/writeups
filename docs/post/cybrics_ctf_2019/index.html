@@ -16,14 +16,14 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="CaptureAmerica @ CTF フラxxグゲット" /><meta name="description" content="URL: https://cybrics.net/ 結構難しかったのと、風邪をひいてしまったのもあって、2問だけです。（うち、1問は解けてないし。。） [Network]: Sender Challenge We&#39;ve intercepted this text off the wire of some conspirator, but we have no idea what" /><meta name="keywords" content="CTF, Writeup, captureamerica, picoCTF" />
+<meta name="author" content="CaptureAmerica @ CTF フラxxグゲット" /><meta name="description" content="URL: https://cybrics.net/ 結構難しかったのと、風邪をひいてしまったのもあって、2問だけです。（うち、1問は解けてないし。。） [Network]: Sender Challenge We&amp;rsquo;ve intercepted this text off the wire of some conspirator, but we have no idea what" /><meta name="keywords" content="CTF, Writeup, captureamerica, picoCTF" />
 
 
 
 <meta name="google-site-verification" content="PqctLWZQttGzxXVupWuIt2HWuBI8cvN1z07ETpxA2dw" />
 
 
-<meta name="generator" content="Hugo 0.59.1 with theme even" />
+<meta name="generator" content="Hugo 0.68.3 with theme even" />
 
 
 <link rel="canonical" href="https://captureamerica.github.io/writeups/post/cybrics_ctf_2019/" />
@@ -39,25 +39,22 @@
 
 
 <meta property="og:title" content="CyBRICS CTF 2019 Writeup" />
-<meta property="og:description" content="URL: https://cybrics.net/ 結構難しかったのと、風邪をひいてしまったのもあって、2問だけです。（うち、1問は解けてないし。。） [Network]: Sender Challenge We&#39;ve intercepted this text off the wire of some conspirator, but we have no idea what" />
+<meta property="og:description" content="URL: https://cybrics.net/ 結構難しかったのと、風邪をひいてしまったのもあって、2問だけです。（うち、1問は解けてないし。。） [Network]: Sender Challenge We&rsquo;ve intercepted this text off the wire of some conspirator, but we have no idea what" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://captureamerica.github.io/writeups/post/cybrics_ctf_2019/" />
 <meta property="article:published_time" content="2019-07-25T12:00:00+09:00" />
 <meta property="article:modified_time" content="2019-09-16T14:00:00+09:00" />
 <meta itemprop="name" content="CyBRICS CTF 2019 Writeup">
-<meta itemprop="description" content="URL: https://cybrics.net/ 結構難しかったのと、風邪をひいてしまったのもあって、2問だけです。（うち、1問は解けてないし。。） [Network]: Sender Challenge We&#39;ve intercepted this text off the wire of some conspirator, but we have no idea what">
-
-
+<meta itemprop="description" content="URL: https://cybrics.net/ 結構難しかったのと、風邪をひいてしまったのもあって、2問だけです。（うち、1問は解けてないし。。） [Network]: Sender Challenge We&rsquo;ve intercepted this text off the wire of some conspirator, but we have no idea what">
 <meta itemprop="datePublished" content="2019-07-25T12:00:00&#43;09:00" />
 <meta itemprop="dateModified" content="2019-09-16T14:00:00&#43;09:00" />
 <meta itemprop="wordCount" content="1018">
 
 
 
-<meta itemprop="keywords" content="CTF," />
-<meta name="twitter:card" content="summary"/>
+<meta itemprop="keywords" content="CTF," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="CyBRICS CTF 2019 Writeup"/>
-<meta name="twitter:description" content="URL: https://cybrics.net/ 結構難しかったのと、風邪をひいてしまったのもあって、2問だけです。（うち、1問は解けてないし。。） [Network]: Sender Challenge We&#39;ve intercepted this text off the wire of some conspirator, but we have no idea what"/>
+<meta name="twitter:description" content="URL: https://cybrics.net/ 結構難しかったのと、風邪をひいてしまったのもあって、2問だけです。（うち、1問は解けてないし。。） [Network]: Sender Challenge We&rsquo;ve intercepted this text off the wire of some conspirator, but we have no idea what"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -139,60 +136,46 @@
   <h2 class="post-toc-title">Contents</h2>
   <div class="post-toc-content">
     <nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li><a href="#network-sender">[Network]: Sender</a>
-<ul>
-<li><a href="#challenge">Challenge</a></li>
-<li><a href="#solution">Solution</a></li>
-</ul></li>
-<li><a href="#forensic-tone">[Forensic]: Tone</a>
-<ul>
-<li><a href="#challenge-1">Challenge</a></li>
-<li><a href="#solution-1">Solution</a></li>
-</ul></li>
-</ul></li>
-</ul>
+  <ul>
+    <li><a href="#network-sender">[Network]: Sender</a>
+      <ul>
+        <li><a href="#challenge">Challenge</a></li>
+        <li><a href="#solution">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#forensic-tone">[Forensic]: Tone</a>
+      <ul>
+        <li><a href="#challenge-1">Challenge</a></li>
+        <li><a href="#solution-1">Solution</a></li>
+      </ul>
+    </li>
+  </ul>
 </nav>
   </div>
 </div>
     <div class="post-content">
-      
-
-<div class='align-right'>
-  
+      <div class='align-right'>
 <a href="https://translate.google.com/translate?hl=en&sl=ja&tl=en&u=https%3A%2F%2Fcaptureamerica.github.io%2Fwriteups%2Fpost%2Fcybrics_ctf_2019%2F">
 <img src="https://captureamerica.github.io/writeups/img/En.png" alt="English">
 </a>
-
 </div>
-
-<p>URL: <a href="https://cybrics.net/" target="_blank">https://cybrics.net/</a>
+<p>URL: <a href="https://cybrics.net/">https://cybrics.net/</a>
 <br /><br />
 結構難しかったのと、風邪をひいてしまったのもあって、2問だけです。（うち、1問は解けてないし。。）</p>
-
 <p><br /><br /></p>
-
 <h2 id="network-sender">[Network]: Sender</h2>
-
-<hr />
-
+<hr>
 <h3 id="challenge">Challenge</h3>
-
 <blockquote>
-<p>We've intercepted this text off the wire of some conspirator, but we have no idea what to do with that.
+<p>We&rsquo;ve intercepted this text off the wire of some conspirator, but we have no idea what to do with that.
 <br /><br />
 Get us their secret documents</p>
 </blockquote>
-
 <p>Attachments:</p>
-
 <ul>
 <li>intercepted_text.txt</li>
 </ul>
-
-<p>以下、intercepted_text.txtの中身。
+<p>以下、intercepted_text.txtの中身。</p>
 <pre>
 220 ugm.cybrics.net ESMTP Postfix (Ubuntu)
 EHLO localhost
@@ -211,36 +194,33 @@ ZmF3a2Vz
 334 UGFzc3dvcmQ6
 Q29tYmluNHQxb25YWFk=
 235 2.7.0 Authentication successful
-MAIL FROM: &lt;fawkes@ugm.cybrics.net&gt;
+MAIL FROM: \<fawkes@ugm.cybrics.net>
 250 2.1.0 Ok
-RCPT TO: &lt;area51@af.mil&gt;
+RCPT TO: \<area51@af.mil>
 250 2.1.5 Ok
 DATA
-354 End data with &lt;CR&gt;&lt;LF&gt;.&lt;CR&gt;&lt;LF&gt;
-From: fawkes &lt;fawkes@ugm.cybrics.net&gt;
-To: Area51 &lt;area51@af.mil&gt;
+354 End data with \<CR>\<LF>.\<CR>\<LF>
+From: fawkes \<fawkes@ugm.cybrics.net>
+To: Area51 \<area51@af.mil>
 Subject: add - archive pw
-Content-Type: text/plain; charset=&quot;iso-8859-1&quot;
+Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
-MIME-Version: 1.0</p>
+MIME-Version: 1.0
 
-<p>=62=74=77=2E=0A=0A=70=61=73=73=77=6F=72=64 =66=6F=72 =74=68=65 =61=72=63=
+=62=74=77=2E=0A=0A=70=61=73=73=77=6F=72=64 =66=6F=72 =74=68=65 =61=72=63=
 =68=69=76=65 =77=69=74=68 =66=6C=61=67=3A =63=72=61=63=6B=30=57=65=73=74=
 =6F=6E=38=38=76=65=72=74=65=62=72=61=0A=0A=63=68=65=65=72=73=21=0A
 .
 250 2.0.0 Ok: queued as C4D593E8B6
 QUIT
 221 2.0.0 Bye
-</pre></p>
-
+</pre>
 <p><br /></p>
-
 <h3 id="solution">Solution</h3>
-
 <p>メールの本文はquoted-printableでエンコードされています。一旦別ファイルに落とした後、nkfでデコードします。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -251,9 +231,9 @@ QUIT
 </span><span class="lnt"> 9
 </span><span class="lnt">10
 </span><span class="lnt">11
-</span></pre></td>
+</span></code></pre></td>
 <td class="lntd">
-<pre class="chroma">$ cat printable.txt
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">$ cat printable.txt
 =62=74=77=2E=0A=0A=70=61=73=73=77=6F=72=64 =66=6F=72 =74=68=65 =61=72=63=
 =68=69=76=65 =77=69=74=68 =66=6C=61=67=3A =63=72=61=63=6B=30=57=65=73=74=
 =6F=6E=38=38=76=65=72=74=65=62=72=61=0A=0A=63=68=65=65=72=73=21=0A
@@ -263,14 +243,12 @@ btw.
 
 password for the archive with flag: crack0Weston88vertebra
 
-cheers!</pre></td></tr></table>
+cheers!
+</code></pre></td></tr></table>
 </div>
-</div>
-<p>パスワード（crack0Weston88vertebra）がわかりました。</p>
-
+</div><p>パスワード（crack0Weston88vertebra）がわかりました。</p>
 <p><br /><br />
 上記に出てくるSMTPサーバでは、POP3も動いていて、メールの受信も可能です。ユーザ名とパスワードは以下の通り。</p>
-
 <pre>
 $ echo ZmF3a2Vz | base64 -D ; echo
 fawkes
@@ -278,7 +256,6 @@ fawkes
 $ echo Q29tYmluNHQxb25YWFk= | base64 -D ; echo
 Combin4t1onXXY
 </pre>
-
 <p><br /><br />
 メールの添付ファイルとして、secret_flag.zipが取れます。
 あとは、上記のパスワードで解凍するだけですが、MacやWindowsの標準で付いているZip解凍だとなんかうまくいかなかったです。
@@ -287,26 +264,18 @@ Explzhで解凍しました。
 <br /><br />
 Flag:
 <code>cybrics{crack0Weston88vertebra}</code></p>
-
 <p><br /><br />
 <br /><br /></p>
-
 <h2 id="forensic-tone">[Forensic]: Tone</h2>
-
-<hr />
-
+<hr>
 <h3 id="challenge-1">Challenge</h3>
-
 <blockquote>
 <p>Ha! Looks like this guy forgot to turn off his video stream and entered his password on his phone!
 <br /><br />
-<a href="youtu.be/11k0n7TOYeM" target="_blank">youtu.be/11k0n7TOYeM</a></p>
+<a href="youtu.be/11k0n7TOYeM">youtu.be/11k0n7TOYeM</a></p>
 </blockquote>
-
 <p><br /></p>
-
 <h3 id="solution-1">Solution</h3>
-
 <p>なんか変なURLですけど、アクセスするとYouTubeに飛びます。
 <br /><br />
 音がちっちゃいですが、よく聞くと電話のトーンの音（プッシュ音）が聞こえます。
@@ -316,7 +285,7 @@ Flag:
 まずは、音がちっちゃいので、動画をWaveとしてダウンロードしてきて、AudacityでAmplifyしました。
 <br /><br />
 次にDTMF（Dual-Tone Multi-Frequency）信号を判別できるツールを使って数値にします。以下のツールを使いました。<br />
-<a href="https://www.vector.co.jp/soft/win95/net/se123346.html" target="_blank">https://www.vector.co.jp/soft/win95/net/se123346.html</a>
+<a href="https://www.vector.co.jp/soft/win95/net/se123346.html">https://www.vector.co.jp/soft/win95/net/se123346.html</a>
 <br /><br />
 このツール、音の検知はちゃんとできてたっぽいんですが、回数の検知がいまいちだったので、そこは手動でやりました。（「2」を三回押しているのに、一回しか検知しないとか）
 <br /><br />
@@ -324,7 +293,7 @@ Flag:
 222999227774442227777777733222777338866666255533355524
 <br /><br />
 以下のサイトでデコードしました。<br />
-<a href="https://www.dcode.fr/multitap-abc-cipher" target="_blank">https://www.dcode.fr/multitap-abc-cipher</a>
+<a href="https://www.dcode.fr/multitap-abc-cipher">https://www.dcode.fr/multitap-abc-cipher</a>
 <br /><br />
 それっぽいのが取れました。<br />
 CYBRICSSECREUONALFLAG
@@ -334,12 +303,9 @@ CYBRICSSECREUONALFLAG
 ただし、いろんなバリエーションをFlagとしてSubmitしてみましたが、ことごとくダメでした。
 <br /><br />
 まぁ、それなりにできたので満足して終了。</p>
-
 <p><br /><br />
 <br /><br /></p>
-
-<hr />
-
+<hr>
 <p><br /><br />
 <br /><br /></p>
 

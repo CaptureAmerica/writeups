@@ -16,14 +16,14 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="CaptureAmerica @ CTF フラxxグゲット" /><meta name="description" content="URL: https://xmas.htsp.ro/home 書いたブログが消えてしまい、半泣きしながら書き直してます。 [Misc]: FUNction Plotter Challenge One of Santa&#39;s elves found this weird service on the internet. He doesn&#39;t like maths, so he asked you to check if there&#39;s anything hidden behind it. Remote Server: nc challs.xmas.htsp.ro 13005 Solution まず" /><meta name="keywords" content="CTF, Writeup, captureamerica, picoCTF" />
+<meta name="author" content="CaptureAmerica @ CTF フラxxグゲット" /><meta name="description" content="URL: https://xmas.htsp.ro/home 書いたブログが消えてしまい、半泣きしながら書き直してます。 [Misc]: FUNction Plotter Challenge One of Santa&amp;rsquo;s elves found this weird service on the internet. He doesn&amp;rsquo;t like maths, so he asked you to check if there&amp;rsquo;s anything hidden behind it. Remote Server: nc challs.xmas.htsp.ro 13005 Solution まず" /><meta name="keywords" content="CTF, Writeup, captureamerica, picoCTF" />
 
 
 
 <meta name="google-site-verification" content="PqctLWZQttGzxXVupWuIt2HWuBI8cvN1z07ETpxA2dw" />
 
 
-<meta name="generator" content="Hugo 0.59.1 with theme even" />
+<meta name="generator" content="Hugo 0.68.3 with theme even" />
 
 
 <link rel="canonical" href="https://captureamerica.github.io/writeups/post/xmas_htsp_ctf/" />
@@ -39,25 +39,22 @@
 
 
 <meta property="og:title" content="X-MAS CTF Writeup" />
-<meta property="og:description" content="URL: https://xmas.htsp.ro/home 書いたブログが消えてしまい、半泣きしながら書き直してます。 [Misc]: FUNction Plotter Challenge One of Santa&#39;s elves found this weird service on the internet. He doesn&#39;t like maths, so he asked you to check if there&#39;s anything hidden behind it. Remote Server: nc challs.xmas.htsp.ro 13005 Solution まず" />
+<meta property="og:description" content="URL: https://xmas.htsp.ro/home 書いたブログが消えてしまい、半泣きしながら書き直してます。 [Misc]: FUNction Plotter Challenge One of Santa&rsquo;s elves found this weird service on the internet. He doesn&rsquo;t like maths, so he asked you to check if there&rsquo;s anything hidden behind it. Remote Server: nc challs.xmas.htsp.ro 13005 Solution まず" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://captureamerica.github.io/writeups/post/xmas_htsp_ctf/" />
 <meta property="article:published_time" content="2019-12-22T19:00:00+09:00" />
 <meta property="article:modified_time" content="2019-12-22T19:00:00+09:00" />
 <meta itemprop="name" content="X-MAS CTF Writeup">
-<meta itemprop="description" content="URL: https://xmas.htsp.ro/home 書いたブログが消えてしまい、半泣きしながら書き直してます。 [Misc]: FUNction Plotter Challenge One of Santa&#39;s elves found this weird service on the internet. He doesn&#39;t like maths, so he asked you to check if there&#39;s anything hidden behind it. Remote Server: nc challs.xmas.htsp.ro 13005 Solution まず">
-
-
+<meta itemprop="description" content="URL: https://xmas.htsp.ro/home 書いたブログが消えてしまい、半泣きしながら書き直してます。 [Misc]: FUNction Plotter Challenge One of Santa&rsquo;s elves found this weird service on the internet. He doesn&rsquo;t like maths, so he asked you to check if there&rsquo;s anything hidden behind it. Remote Server: nc challs.xmas.htsp.ro 13005 Solution まず">
 <meta itemprop="datePublished" content="2019-12-22T19:00:00&#43;09:00" />
 <meta itemprop="dateModified" content="2019-12-22T19:00:00&#43;09:00" />
-<meta itemprop="wordCount" content="1720">
+<meta itemprop="wordCount" content="1719">
 
 
 
-<meta itemprop="keywords" content="CTF," />
-<meta name="twitter:card" content="summary"/>
+<meta itemprop="keywords" content="CTF," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="X-MAS CTF Writeup"/>
-<meta name="twitter:description" content="URL: https://xmas.htsp.ro/home 書いたブログが消えてしまい、半泣きしながら書き直してます。 [Misc]: FUNction Plotter Challenge One of Santa&#39;s elves found this weird service on the internet. He doesn&#39;t like maths, so he asked you to check if there&#39;s anything hidden behind it. Remote Server: nc challs.xmas.htsp.ro 13005 Solution まず"/>
+<meta name="twitter:description" content="URL: https://xmas.htsp.ro/home 書いたブログが消えてしまい、半泣きしながら書き直してます。 [Misc]: FUNction Plotter Challenge One of Santa&rsquo;s elves found this weird service on the internet. He doesn&rsquo;t like maths, so he asked you to check if there&rsquo;s anything hidden behind it. Remote Server: nc challs.xmas.htsp.ro 13005 Solution まず"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -139,69 +136,53 @@
   <h2 class="post-toc-title">Contents</h2>
   <div class="post-toc-content">
     <nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li><a href="#misc-function-plotter">[Misc]: FUNction Plotter</a>
-<ul>
-<li><a href="#challenge">Challenge</a></li>
-<li><a href="#solution">Solution</a></li>
-</ul></li>
-<li><a href="#reversing-santa-s-crackme">[Reversing]: Santa's crackme</a>
-<ul>
-<li><a href="#challenge-1">Challenge</a></li>
-<li><a href="#solution-1">Solution</a></li>
-</ul></li>
-<li><a href="#misc-noise">[Misc]: Noise</a>
-<ul>
-<li><a href="#challenge-2">Challenge</a></li>
-<li><a href="#solution-2">Solution</a></li>
-</ul></li>
-</ul></li>
-</ul>
+  <ul>
+    <li><a href="#misc-function-plotter">[Misc]: FUNction Plotter</a>
+      <ul>
+        <li><a href="#challenge">Challenge</a></li>
+        <li><a href="#solution">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#reversing-santas-crackme">[Reversing]: Santa&rsquo;s crackme</a>
+      <ul>
+        <li><a href="#challenge-1">Challenge</a></li>
+        <li><a href="#solution-1">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#misc-noise">[Misc]: Noise</a>
+      <ul>
+        <li><a href="#challenge-2">Challenge</a></li>
+        <li><a href="#solution-2">Solution</a></li>
+      </ul>
+    </li>
+  </ul>
 </nav>
   </div>
 </div>
     <div class="post-content">
-      
-
-<div class='align-right'>
-  
+      <div class='align-right'>
 <a href="https://translate.google.com/translate?hl=en&sl=ja&tl=en&u=https%3A%2F%2Fcaptureamerica.github.io%2Fwriteups%2Fpost%2Fxmas_htsp_ctf%2F">
 <img src="https://captureamerica.github.io/writeups/img/En.png" alt="English">
 </a>
-
 </div>
-
-<p>URL: <a href="https://xmas.htsp.ro/home" target="_blank">https://xmas.htsp.ro/home</a>
+<p>URL: <a href="https://xmas.htsp.ro/home">https://xmas.htsp.ro/home</a>
 <br /><br />
 書いたブログが消えてしまい、半泣きしながら書き直してます。</p>
-
-<p><img src="https://captureamerica.github.io/writeups/img/xmas_Score.png" alt="xmas_Score.png"></p>
-
-<p><img src="https://captureamerica.github.io/writeups/img/xmas_Solved.png" alt="xmas_Solved.png">
-<br /><br /></p>
-
+<img src="https://captureamerica.github.io/writeups/img/xmas_Score.png" alt="xmas_Score.png">
+<img src="https://captureamerica.github.io/writeups/img/xmas_Solved.png" alt="xmas_Solved.png">
+<br /><br />
 <p><br /><br /></p>
-
 <h2 id="misc-function-plotter">[Misc]: FUNction Plotter</h2>
-
-<hr />
-
+<hr>
 <h3 id="challenge">Challenge</h3>
-
 <blockquote>
-<p>One of Santa's elves found this weird service on the internet. He doesn't like maths, so he asked you to check if there's anything hidden behind it.
+<p>One of Santa&rsquo;s elves found this weird service on the internet. He doesn&rsquo;t like maths, so he asked you to check if there&rsquo;s anything hidden behind it.
 <br /><br />
 Remote Server: nc challs.xmas.htsp.ro 13005</p>
 </blockquote>
-
 <p><br /></p>
-
 <h3 id="solution">Solution</h3>
-
 <p>まずは、ncで繋いでみます。</p>
-
 <pre>
 $ nc challs.xmas.htsp.ro 13005
 Welcome to my guessing service!
@@ -238,15 +219,12 @@ Good!
 :
 :
 </pre>
-
 <p>適当に1を入れたら、たまたまいくつかは正解しました。0を入れたときも同様でした。</p>
-
 <p>2と3も試しましたが全部wrongになったので、どうやら0か1かのどちらかになるみたいです。</p>
-
 <p>あと、f(x, y)のxとyに入る値はどちらも30くらいまでっぽかった（パターンは限られている）ので、繰り返しトライして961問題分のデータを集めたらよさそう、ということで以下のスクリプトを書きました。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-Python" data-lang="Python"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -317,35 +295,28 @@ Good!
 
     <span class="n">answer_list</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
     <span class="n">bad_list</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
-    <span class="n">s</span><span class="o">.</span><span class="n">close</span><span class="p">()</span></code></pre></td></tr></table>
+    <span class="n">s</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<p><br />
+</div><p><br />
 ちょっと解説：<br />
 <br />
-- correct_answer.txtには、正解したときの問題と答えを入れてます。<br />
+- correct_answer.txtには、正解したときの問題と答えを入れてます。<br /></p>
 <pre>
-$ grep -i good guessing_service.txt -B1 | grep f &gt; correct_answer.txt
+$ grep -i good guessing_service.txt -B1 | grep f > correct_answer.txt
 </pre>
-- bad_answer.txtには、間違ったときの問題と答えを入れてます。<br />
+<p>- bad_answer.txtには、間違ったときの問題と答えを入れてます。<br /></p>
 <pre>
-$ grep -i wrong guessing_service.txt -B1 | grep f &gt; bad_answer.txt
+$ grep -i wrong guessing_service.txt -B1 | grep f > bad_answer.txt
 </pre>
-- correct_answer.txtの中身を<code>f(x,y)=</code>でサーチして、見つかったらその後ろにある値を返してます。</p>
-
+<p>- correct_answer.txtの中身を<code>f(x,y)=</code>でサーチして、見つかったらその後ろにある値を返してます。</p>
 <p>- bad_answer.txtの中身を<code>f(x,y)=</code>でサーチして、見つかったらその後ろにある値<code>+1</code>を返してます。（値の範囲がわからないときに書いたコードなので+1してますが、このチャレンジでは結果的に常に1になります。）</p>
-
 <p>- correct_answer.txtにも、bad_answer.txtにもマッチしないやつは、とりあえず0を返してます。</p>
-
 <div class="admonition tip"><p class="admonition-title">Tips</p>
-  
-全部プログラムでやらずに、コマンドで済ませられるところはコマンドで済ますと、プログラムも少し簡潔にできる
-
+<p>全部プログラムでやらずに、コマンドで済ませられるところはコマンドで済ますと、プログラムも少し簡潔にできる</p>
 </div>
-
 <p><br />
 4回くらいトライしたところで、全問正解し「Now what?」と言われました。</p>
-
 <pre>
 :
 
@@ -357,22 +328,17 @@ Good!
 
 Great! You did it! Now what?
 </pre>
-
 <p><br />
 チャレンジ名がPlotだし、f(x,y)の座標に0か1かをセットしたらよさそう、かつデータの数が961 (31 x 31)で正方形になるので、QRコードになりそうな予感ですね。</p>
-
-<p>HackCon'19 で学習したやつです。</p>
-
-<p><a href="https://captureamerica.github.io/writeups/post/hackcon_2019/#stego-gimp-it" target="_blank">https://captureamerica.github.io/writeups/post/hackcon_2019/#stego-gimp-it</a>
-<div class="admonition tip"><p class="admonition-title">Tips</p></p>
-
+<p>HackCon&rsquo;19 で学習したやつです。</p>
+<p><a href="https://captureamerica.github.io/writeups/post/hackcon_2019/#stego-gimp-it">https://captureamerica.github.io/writeups/post/hackcon_2019/#stego-gimp-it</a></p>
+<div class="admonition tip"><p class="admonition-title">Tips</p>
 <p>ファイルサイズが平方根とれる場合、正方形の画像にできる可能性あり！</p>
-
-<p></div>
-<br /></p>
+</div>
+<br />
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-Python" data-lang="Python"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -425,42 +391,31 @@ Great! You did it! Now what?
                  
 <span class="n">im</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s2">&#34;RGB&#34;</span><span class="p">,(</span><span class="mi">31</span><span class="p">,</span><span class="mi">31</span><span class="p">))</span>
 <span class="n">im</span><span class="o">.</span><span class="n">putdata</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
-<span class="n">im</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s2">&#34;QR.png&#34;</span><span class="p">)</span></code></pre></td></tr></table>
+<span class="n">im</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s2">&#34;QR.png&#34;</span><span class="p">)</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<p><br />
+</div><p><br />
 <img src="https://captureamerica.github.io/writeups/img/xmas_QR.png" alt="xmas_QR.png"></p>
-
 <p><br />
 Flag: <code>X-MAS{Th@t's_4_w31rD_fUnCt10n!!!_8082838205}</code></p>
-
 <p><br /><br />
 <br /><br /></p>
-
-<h2 id="reversing-santa-s-crackme">[Reversing]: Santa's crackme</h2>
-
-<hr />
-
+<h2 id="reversing-santas-crackme">[Reversing]: Santa&rsquo;s crackme</h2>
+<hr>
 <h3 id="challenge-1">Challenge</h3>
-
 <blockquote>
-<p>I bet you can't crack this!</p>
+<p>I bet you can&rsquo;t crack this!</p>
 </blockquote>
-
 <p>Attachment:</p>
-
 <ul>
 <li>main (ELF 64bit)</li>
 </ul>
-
 <p><br /></p>
-
 <h3 id="solution-1">Solution</h3>
-
 <p>Ghidraでコードを確認します。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-C" data-lang="C"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -519,75 +474,54 @@ Flag: <code>X-MAS{Th@t's_4_w31rD_fUnCt10n!!!_8082838205}</code></p>
     <span class="n">puts</span><span class="p">(</span><span class="s">&#34;License key is incorrect&#34;</span><span class="p">);</span>
   <span class="p">}</span>
   <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-<span class="p">}</span></code></pre></td></tr></table>
+<span class="p">}</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<p><br />
+</div><p><br />
 <code>flag_matrix</code>の辺りにフラグになりそうなデータがあります。</p>
-
-<p>まず、テキストファイルに落としてから、数値だけ取り出します。ここで、&quot;00&quot;を取り除いているので、<code>(long)local_10 * 2)</code>の部分は無視してオッケーです。</p>
-
-<p>あとは、Pythonで <code>XOR 3</code> しつつ、文字にするだけです。
+<p>まず、テキストファイルに落としてから、数値だけ取り出します。ここで、&ldquo;00&quot;を取り除いているので、<code>(long)local_10 * 2)</code>の部分は無視してオッケーです。</p>
+<p>あとは、Pythonで <code>XOR 3</code> しつつ、文字にするだけです。</p>
 <pre>
-$ cat flag_matrix.txt | awk {'print $2'} | grep -v 00 | tr &quot;\n&quot; &quot; &quot;
-5b 2e 4e 42 50 78 36 37 6d 34 37 5c 32 36 5c 61 37 67 5c 37 34 5c 6f 32 60 30 6d 36 30 5c 60 6b 30 60 68 32 6d 35 7e</p>
+$ cat flag_matrix.txt | awk {'print $2'} | grep -v 00 | tr "\n" " "
+5b 2e 4e 42 50 78 36 37 6d 34 37 5c 32 36 5c 61 37 67 5c 37 34 5c 6f 32 60 30 6d 36 30 5c 60 6b 30 60 68 32 6d 35 7e
 
-<p>$ python -c 'print(&quot;&quot;.join([chr(int(x,16)^3) for x in &quot;5b 2e 4e 42 50 78 36 37 6d 34 37 5c 32 36 5c 61 37 67 5c 37 34 5c 6f 32 60 30 6d 36 30 5c 60 6b 30 60 68 32 6d 35 7e&quot;.split()]))'
+$ python -c 'print("".join([chr(int(x,16)^3) for x in "5b 2e 4e 42 50 78 36 37 6d 34 37 5c 32 36 5c 61 37 67 5c 37 34 5c 6f 32 60 30 6d 36 30 5c 60 6b 30 60 68 32 6d 35 7e".split()]))'
 X-MAS{54n74_15_b4d_47_l1c3n53_ch3ck1n6}
-</pre></p>
-
+</pre>
 <p><br />
 Flag: <code>X-MAS{54n74_15_b4d_47_l1c3n53_ch3ck1n6}</code></p>
-
 <p><br /><br />
 <br /><br /></p>
-
 <h2 id="misc-noise">[Misc]: Noise</h2>
-
-<hr />
-
+<hr>
 <h3 id="challenge-2">Challenge</h3>
-
 <blockquote>
-<p>A beacon was broadcasting this message. Find out what it means...</p>
+<p>A beacon was broadcasting this message. Find out what it means&hellip;</p>
 </blockquote>
-
 <p>Attachment:</p>
-
 <ul>
 <li>weird.wav</li>
 </ul>
-
 <p><br /></p>
-
 <h3 id="solution-2">Solution</h3>
-
 <p>Audacityで開いて再生したら、聞き覚えのあるノイズ(^^)でした。</p>
-
 <p>picoCTF 2019で出てきたm00nwalk、<br />
 Rooters CTF 2019で出てきたLuna-3<br />
-<a href="https://captureamerica.github.io/writeups/post/rootersctf_2019/#forensics-luna--3" target="_blank">https://captureamerica.github.io/writeups/post/rootersctf_2019/#forensics-luna--3</a><br />
+<a href="https://captureamerica.github.io/writeups/post/rootersctf_2019/#forensics-luna--3">https://captureamerica.github.io/writeups/post/rootersctf_2019/#forensics-luna--3</a><br />
 と同じですね。</p>
-
 <p><br />
 ちなみに、ステレオで右と左で別々のデータが入っていて、左側は英語のスロー再生です。<br />
 右側だけ再生するようにしてます（以下、オレンジ色の四角のところ）<br />
 <img src="https://captureamerica.github.io/writeups/img/Noise_Audacity.PNG" alt="Noise_Audacity.PNG"></p>
-
 <p>キャプチャー結果<br />
 <img src="https://captureamerica.github.io/writeups/img/Noise_RX-SSTV.PNG" alt="Noise_RX-SSTV.PNG"></p>
-
 <p>少し見にくいので、ペイントで横に伸ばしました。<br />
 <img src="https://captureamerica.github.io/writeups/img/Noise_Paint.PNG" alt="Noise_Paint.PNG"></p>
-
 <p><br />
 Flag: <code>X-MAS{Wh1T3N0Is3}</code></p>
-
 <p><br /><br />
 <br /><br /></p>
-
-<hr />
-
+<hr>
 <p><br /><br />
 <br /><br /></p>
 

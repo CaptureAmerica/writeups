@@ -23,7 +23,7 @@
 <meta name="google-site-verification" content="PqctLWZQttGzxXVupWuIt2HWuBI8cvN1z07ETpxA2dw" />
 
 
-<meta name="generator" content="Hugo 0.59.1 with theme even" />
+<meta name="generator" content="Hugo 0.68.3 with theme even" />
 
 
 <link rel="canonical" href="https://captureamerica.github.io/writeups/post/nactf_2019/" />
@@ -46,16 +46,13 @@
 <meta property="article:modified_time" content="2019-09-23T07:00:00+09:00" />
 <meta itemprop="name" content="NACTF 2019 Writeup">
 <meta itemprop="description" content="URL: https://www.nactf.com/challenges 解いたのはこんな感じ。 Cryptoはほぼ放置。 General Skillsに出てきたCellularなんじゃも放置。 Reverse EngineeringのKeyg">
-
-
 <meta itemprop="datePublished" content="2019-09-23T07:00:00&#43;09:00" />
 <meta itemprop="dateModified" content="2019-09-23T07:00:00&#43;09:00" />
-<meta itemprop="wordCount" content="1132">
+<meta itemprop="wordCount" content="1131">
 
 
 
-<meta itemprop="keywords" content="CTF," />
-<meta name="twitter:card" content="summary"/>
+<meta itemprop="keywords" content="CTF," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="NACTF 2019 Writeup"/>
 <meta name="twitter:description" content="URL: https://www.nactf.com/challenges 解いたのはこんな感じ。 Cryptoはほぼ放置。 General Skillsに出てきたCellularなんじゃも放置。 Reverse EngineeringのKeyg"/>
 
@@ -139,261 +136,184 @@
   <h2 class="post-toc-title">Contents</h2>
   <div class="post-toc-content">
     <nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li><a href="#general-skills-hwang-s-hidden-handiwork-100-points">[General Skills]: Hwang's Hidden Handiwork (100 points)</a>
-<ul>
-<li><a href="#challenge">Challenge</a></li>
-<li><a href="#solution">Solution</a></li>
-</ul></li>
-<li><a href="#general-skills-shcalc-200-points">[General Skills]: SHCALC (200 points)</a>
-<ul>
-<li><a href="#challenge-1">Challenge</a></li>
-<li><a href="#solution-1">Solution</a></li>
-</ul></li>
-<li><a href="#crypto-loony-tunes-50-points">[Crypto]: Loony Tunes (50 points)</a>
-<ul>
-<li><a href="#challenge-2">Challenge</a></li>
-<li><a href="#solution-2">Solution</a></li>
-</ul></li>
-<li><a href="#reversing-keygen-600-points">[Reversing]: Keygen (600 points)</a>
-<ul>
-<li><a href="#challenge-3">Challenge</a></li>
-<li><a href="#unsolved">(UnSolved)</a></li>
-</ul></li>
-</ul></li>
-</ul>
+  <ul>
+    <li><a href="#general-skills-hwangs-hidden-handiwork-100-points">[General Skills]: Hwang&rsquo;s Hidden Handiwork (100 points)</a>
+      <ul>
+        <li><a href="#challenge">Challenge</a></li>
+        <li><a href="#solution">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#general-skills-shcalc-200-points">[General Skills]: SHCALC (200 points)</a>
+      <ul>
+        <li><a href="#challenge-1">Challenge</a></li>
+        <li><a href="#solution-1">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#crypto-loony-tunes-50-points">[Crypto]: Loony Tunes (50 points)</a>
+      <ul>
+        <li><a href="#challenge-2">Challenge</a></li>
+        <li><a href="#solution-2">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#reversing-keygen-600-points">[Reversing]: Keygen (600 points)</a>
+      <ul>
+        <li><a href="#challenge-3">Challenge</a></li>
+        <li><a href="#unsolved">(UnSolved)</a></li>
+      </ul>
+    </li>
+  </ul>
 </nav>
   </div>
 </div>
     <div class="post-content">
-      
-
-<div class='align-right'>
-  
+      <div class='align-right'>
 <a href="https://translate.google.com/translate?hl=en&sl=ja&tl=en&u=https%3A%2F%2Fcaptureamerica.github.io%2Fwriteups%2Fpost%2Fnactf_2019%2F">
 <img src="https://captureamerica.github.io/writeups/img/En.png" alt="English">
 </a>
-
 </div>
-
-<p>URL: <a href="https://www.nactf.com/challenges" target="_blank">https://www.nactf.com/challenges</a>
+<p>URL: <a href="https://www.nactf.com/challenges">https://www.nactf.com/challenges</a>
 <br /><br />
 解いたのはこんな感じ。
 <br /><br />
 <img src="https://captureamerica.github.io/writeups/img/nactf_Score1.png" alt="nactf_Score1.png"></p>
-
-<p><img src="https://captureamerica.github.io/writeups/img/nactf_Score2.png" alt="nactf_Score2.png">
-<br /><br /></p>
-
+<img src="https://captureamerica.github.io/writeups/img/nactf_Score2.png" alt="nactf_Score2.png">
+<br /><br />
 <p>Cryptoはほぼ放置。</p>
-
 <p>General Skillsに出てきたCellularなんじゃも放置。</p>
-
 <p>Reverse EngineeringのKeygenは解きたかった。でも、解けなかった。。＞＜</p>
-
 <p>Pwnも途中でバテました。。。</p>
-
 <p><br /><br />
 いくつかWriteup残しておきます。</p>
-
 <p><br /><br /></p>
-
-<h2 id="general-skills-hwang-s-hidden-handiwork-100-points">[General Skills]: Hwang's Hidden Handiwork (100 points)</h2>
-
-<hr />
-
+<h2 id="general-skills-hwangs-hidden-handiwork-100-points">[General Skills]: Hwang&rsquo;s Hidden Handiwork (100 points)</h2>
+<hr>
 <h3 id="challenge">Challenge</h3>
-
 <blockquote>
-<p>Hwang was trying to hide secret photos from his parents. His mom found a text file with a secret string and an excel chart which she thinks could help you decrypt it. Can you help uncover Hwang's Handiwork?
+<p>Hwang was trying to hide secret photos from his parents. His mom found a text file with a secret string and an excel chart which she thinks could help you decrypt it. Can you help uncover Hwang&rsquo;s Handiwork?
 <br /><br />
-Of course, the nobler of you may choose not to do this problem because you respect Hwang's privacy. That's ok, but you won't get the points.
+Of course, the nobler of you may choose not to do this problem because you respect Hwang&rsquo;s privacy. That&rsquo;s ok, but you won&rsquo;t get the points.
 <br /><br />
-Hint1: Hwang used the chart to substitute each letter in the plaintext, character by character... can you reverse the process?
+Hint1: Hwang used the chart to substitute each letter in the plaintext, character by character&hellip; can you reverse the process?
 <br /><br />
 Hint2: Hwang made the image too small to read. Can you make it bigger?</p>
 </blockquote>
-
 <p>Attachment:</p>
-
 <ul>
 <li>hwangshandiwork.txt</li>
 <li>substitution.csv</li>
 </ul>
-
-<p>添付ファイルの中身は、こんなです。
+<p>添付ファイルの中身は、こんなです。</p>
 <pre>
-$ cat hwangshandiwork.txt
-SccLJ0ddkSGy=PP=kM8JMDmPCcMCcymPedh9_r_GwDtt.::/.1TS_Ba:uU9KNpzir:VcNEVK/PPDXCImKlqK8rqtfOAvisA2MIikfjEq1ReFNC/gi_bf5fbrOSxrODf</p>
+$ cat hwangshandiwork.txt 
+SccLJ0ddkSGy=PP=kM8JMDmPCcMCcymPedh9_r_GwDtt.::/.1TS_Ba:uU9KNpzir:VcNEVK/PPDXCImKlqK8rqtfOAvisA2MIikfjEq1ReFNC/gi_bf5fbrOSxrODf 
 
-<p>$ cat substitution.csv
-Plaintext,a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z,A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z,1,2,3,4,5,6,7,8,9,0,.,/,-,<em>,=,:
-Ciphertext,T,v,m,9,M,j,=,S,a,i,w,k,e,C,P,L,X,D,J,c,8,h,f,</em>,.,t,I,B,q,R,Q,Z,U,n,K,u,l,E,-,7,6,g,N,p,/,s,Y,3,:,4,o,A,x,H,G,1,b,F,W,2,z,r,y,d,O,V,5,0
-</pre></p>
-
+$ cat substitution.csv 
+Plaintext,a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z,A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z,1,2,3,4,5,6,7,8,9,0,.,/,-,_,=,:
+Ciphertext,T,v,m,9,M,j,=,S,a,i,w,k,e,C,P,L,X,D,J,c,8,h,f,_,.,t,I,B,q,R,Q,Z,U,n,K,u,l,E,-,7,6,g,N,p,/,s,Y,3,:,4,o,A,x,H,G,1,b,F,W,2,z,r,y,d,O,V,5,0
+</pre>
 <p><br /></p>
-
 <h3 id="solution">Solution</h3>
-
 <p>このチャレンジはなかなか面白かったです。</p>
-
-<p>substitutionはsedを使いました。
+<p>substitutionはsedを使いました。</p>
 <pre>
-cat hwangshandiwork.txt | sed -e y@Tvm9Mj=SaiwkeCPLXDJc8hf<em>.tIBqRQZUnKulE-76gNp/sY3:4oAxHG1bFW2zrydOV50@abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890./-</em>=:@
-<a href="https://lh3.googleusercontent.com/vdx0x3krzzyWWSy4ahxBiWJGdIQR9j0W_tQL_ISoorqnAcIKCIu0Czw-ZbjTZ8eAjlwfLC4Dm6QnSPjx5w=w50-h10-rw" target="_blank">https://lh3.googleusercontent.com/vdx0x3krzzyWWSy4ahxBiWJGdIQR9j0W_tQL_ISoorqnAcIKCIu0Czw-ZbjTZ8eAjlwfLC4Dm6QnSPjx5w=w50-h10-rw</a>
-</pre></p>
-
+cat hwangshandiwork.txt | sed -e y@Tvm9Mj=SaiwkeCPLXDJc8hf_.tIBqRQZUnKulE-76gNp/sY3:4oAxHG1bFW2zrydOV50@abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890./-_=:@
+https://lh3.googleusercontent.com/vdx0x3krzzyWWSy4ahxBiWJGdIQR9j0W_tQL_ISoorqnAcIKCIu0Czw-ZbjTZ8eAjlwfLC4Dm6QnSPjx5w=w50-h10-rw
+</pre>
 <p><br />
 出てきたURLにアクセスすると、めっちゃちっちゃいgoogleflag.webpというファイルが取得できます。</p>
-
-<p><img src="https://captureamerica.github.io/writeups/img/googleflag.webp.png" alt="googleflag.webp.png"></p>
-
-<p>初めてみるファイルタイプでした。
+<img src="https://captureamerica.github.io/writeups/img/googleflag.webp.png" alt="googleflag.webp.png">
+<p>初めてみるファイルタイプでした。</p>
 <pre>
 $ file googleflag.webp
 googleflag.webp: RIFF (little-endian) data, Web/P image
-</pre></p>
-
+</pre>
 <p><br />
 ググってみると、<br />「出てきたURLの最後の「-rw」を削るとpngやらjpgやら元の形式になりますよ」<br />とのことだったので、末尾の「-rw」を取り除いたら確かにpngとして保存できました。</p>
-
 <pre>
 $ file googleflag.png 
 googleflag.png: PNG image data, 50 x 5, 8-bit/color RGB, non-interlaced
 </pre>
-
 <p><br />
 ここで少し悩んで、ヒントをもう一回見直しました。</p>
-
 <blockquote>
 <p>Hint2: Hwang made the image too small to read. Can you make it bigger?</p>
 </blockquote>
-
 <p><br />
 なるほど、確かにURLの末尾の方に「w50-h10」というのがあって、widthとhightっぽいのがありましたね。</p>
-
 <p>さきほどURLをいじってファイルタイプが変わったように、ここをいじればサイズを大きくできそうです。</p>
-
 <p>10倍「w500-h100」にしてみました。</p>
-
-<p><a href="https://lh3.googleusercontent.com/vdx0x3krzzyWWSy4ahxBiWJGdIQR9j0W_tQL_ISoorqnAcIKCIu0Czw-ZbjTZ8eAjlwfLC4Dm6QnSPjx5w=w500-h100" target="_blank">https://lh3.googleusercontent.com/vdx0x3krzzyWWSy4ahxBiWJGdIQR9j0W_tQL_ISoorqnAcIKCIu0Czw-ZbjTZ8eAjlwfLC4Dm6QnSPjx5w=w500-h100</a></p>
-
-<p><img src="https://captureamerica.github.io/writeups/img/googleflag.webp2.png" alt="googleflag.webp2.png"></p>
-
+<p><a href="https://lh3.googleusercontent.com/vdx0x3krzzyWWSy4ahxBiWJGdIQR9j0W_tQL_ISoorqnAcIKCIu0Czw-ZbjTZ8eAjlwfLC4Dm6QnSPjx5w=w500-h100">https://lh3.googleusercontent.com/vdx0x3krzzyWWSy4ahxBiWJGdIQR9j0W_tQL_ISoorqnAcIKCIu0Czw-ZbjTZ8eAjlwfLC4Dm6QnSPjx5w=w500-h100</a></p>
+<img src="https://captureamerica.github.io/writeups/img/googleflag.webp2.png" alt="googleflag.webp2.png">
 <p>へぇぇ〜</p>
-
 <p>Flag: <code>nactf{g00gl3_15nt_s3cur3_3n0ugh}</code></p>
-
 <p><br /><br />
 <br /><br /></p>
-
 <h2 id="general-skills-shcalc-200-points">[General Skills]: SHCALC (200 points)</h2>
-
-<hr />
-
+<hr>
 <h3 id="challenge-1">Challenge</h3>
-
 <blockquote>
-<p>John's written a handy calculator app - in bash! Too bad it's not that secure...
+<p>John&rsquo;s written a handy calculator app - in bash! Too bad it&rsquo;s not that secure&hellip;
 <br /><br />
 Hint: Heard of injection?</p>
 </blockquote>
-
 <p><br /></p>
-
 <h3 id="solution-1">Solution</h3>
-
-<p>以下の通り。
+<p>以下の通り。</p>
 <pre>
-&gt; $(ls)
-sh: 1: arithmetic expression: expecting EOF: &quot;calc.sh
-flag.txt&quot;</p>
+> $(ls)
+sh: 1: arithmetic expression: expecting EOF: "calc.sh
+flag.txt"
 
-<blockquote>
-<p>$(cat flag.txt)
-sh: 1: arithmetic expression: expecting EOF: &quot;nactf{3v4l_1s_3v1l_dCf80yOo}&quot;
-</pre></p>
-</blockquote>
-
+> $(cat flag.txt)
+sh: 1: arithmetic expression: expecting EOF: "nactf{3v4l_1s_3v1l_dCf80yOo}"
+</pre>
 <p>Flag: <code>nactf{3v4l_1s_3v1l_dCf80yOo}</code></p>
-
 <p><br /><br />
 <br /><br /></p>
-
 <h2 id="crypto-loony-tunes-50-points">[Crypto]: Loony Tunes (50 points)</h2>
-
-<hr />
-
+<hr>
 <h3 id="challenge-2">Challenge</h3>
-
 <blockquote>
 <p>Ruthie is very inhumane. She keeps her precious pigs locked up in a pen. I heard that this secret message is the password to unlocking the gate to her PIGPEN. Unfortunately, Ruthie does not want people unlocking the gate so she encoded the password. Please help decrypt this code so that we can free the pigs!
 <br /><br />
-P.S. &quot;_&quot; , &quot;{&quot; , and &quot;}&quot; are not part of the cipher and should not be changed
+P.S. &ldquo;_&rdquo; , &ldquo;{&rdquo; , and &ldquo;}&rdquo; are not part of the cipher and should not be changed
 <br /><br />
 P.P.S the flag is all lowercase</p>
 </blockquote>
-
 <p>Attachment:</p>
-
 <ul>
 <li>pig.jpg</li>
 </ul>
-
-<p><img src="https://captureamerica.github.io/writeups/img/pig.jpg" alt="pig.jpg"></p>
-
+<img src="https://captureamerica.github.io/writeups/img/pig.jpg" alt="pig.jpg">
 <p><br /></p>
-
 <h3 id="solution-2">Solution</h3>
-
 <p>問題文の中の「PIGPEN」が大文字になっていたのでググってみると、Pigpen Cipherっていうのが見つかりました。</p>
-
-<p><a href="https://en.wikipedia.org/wiki/Pigpen_cipher" target="_blank">https://en.wikipedia.org/wiki/Pigpen_cipher</a></p>
-
+<p><a href="https://en.wikipedia.org/wiki/Pigpen_cipher">https://en.wikipedia.org/wiki/Pigpen_cipher</a></p>
 <p>あとは、それにしたがって一文字ずつ解読するだけです。</p>
-
 <p>Flag: <code>nactf{th_th_th_thats_all_folks}</code></p>
-
 <p><br /><br />
 <br /><br /></p>
-
 <h2 id="reversing-keygen-600-points">[Reversing]: Keygen (600 points)</h2>
-
-<hr />
-
+<hr>
 <h3 id="challenge-3">Challenge</h3>
-
 <blockquote>
 <p>Can you figure out what the key to this program is?
 <br /><br />
-Hint: Don't know where to start? Fire up a debugger, or look for cross-references to data you know something about.</p>
+Hint: Don&rsquo;t know where to start? Fire up a debugger, or look for cross-references to data you know something about.</p>
 </blockquote>
-
 <p>Attachment:</p>
-
 <ul>
 <li>keygen-1 (ELF 32bit)</li>
 </ul>
-
 <p><br /></p>
-
 <h3 id="unsolved">(UnSolved)</h3>
-
 <p>これは見る限りangrで解く問題だと思うんですけど、どうにも答えが得られなかったです。</p>
-
 <p>Keyサイズは8文字。</p>
-
 <p>Keyとして利用できる文字は0~9、a~z、A~Zなんですが、全部対象にすると結構なパターンになるし、Keyは1パターンじゃないだろうから文字を絞って（例えば数字だけとかにして）constraintsに設定してやればできる気がしたんですけどね。</p>
-
 <p>後日、復習しておきます。</p>
-
 <p><br /><br />
 <br /><br /></p>
-
-<hr />
-
+<hr>
 <p><br /><br />
 <br /><br /></p>
 

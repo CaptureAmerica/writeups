@@ -23,7 +23,7 @@
 <meta name="google-site-verification" content="PqctLWZQttGzxXVupWuIt2HWuBI8cvN1z07ETpxA2dw" />
 
 
-<meta name="generator" content="Hugo 0.59.1 with theme even" />
+<meta name="generator" content="Hugo 0.68.3 with theme even" />
 
 
 <link rel="canonical" href="https://captureamerica.github.io/writeups/post/defcon_ctf_2019_quals/" />
@@ -46,16 +46,13 @@
 <meta property="article:modified_time" content="2019-05-25T14:05:00+08:00" />
 <meta itemprop="name" content="DEF CON CTF 2019 Quals Writeup">
 <meta itemprop="description" content="[Web]: cant_even_unplug_it Challenge You know, we had this up and everything. Prepped nice HTML5, started deploying on a military-grade-secrets.dev subdomain, got the certificate, the whole shabang. Boss-man got moody and wanted another name, we set up the new names and all. Finally he got scared and unplugged the server. Can you believe it? Unplugged. Like that can keep it secret… Hint: these are HTTPS">
-
-
 <meta itemprop="datePublished" content="2019-05-11T00:00:00&#43;08:00" />
 <meta itemprop="dateModified" content="2019-05-25T14:05:00&#43;08:00" />
 <meta itemprop="wordCount" content="462">
 
 
 
-<meta itemprop="keywords" content="CTF," />
-<meta name="twitter:card" content="summary"/>
+<meta itemprop="keywords" content="CTF," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="DEF CON CTF 2019 Quals Writeup"/>
 <meta name="twitter:description" content="[Web]: cant_even_unplug_it Challenge You know, we had this up and everything. Prepped nice HTML5, started deploying on a military-grade-secrets.dev subdomain, got the certificate, the whole shabang. Boss-man got moody and wanted another name, we set up the new names and all. Finally he got scared and unplugged the server. Can you believe it? Unplugged. Like that can keep it secret… Hint: these are HTTPS"/>
 
@@ -139,36 +136,26 @@
   <h2 class="post-toc-title">Contents</h2>
   <div class="post-toc-content">
     <nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li><a href="#web-cant-even-unplug-it">[Web]: cant_even_unplug_it</a>
-<ul>
-<li><a href="#challenge">Challenge</a></li>
-<li><a href="#solution">Solution</a></li>
-</ul></li>
-</ul></li>
-</ul>
+  <ul>
+    <li><a href="#web-cant_even_unplug_it">[Web]: cant_even_unplug_it</a>
+      <ul>
+        <li><a href="#challenge">Challenge</a></li>
+        <li><a href="#solution">Solution</a></li>
+      </ul>
+    </li>
+  </ul>
 </nav>
   </div>
 </div>
     <div class="post-content">
-      
-
-<div class='align-right'>
-  
+      <div class='align-right'>
 <a href="https://translate.google.com/translate?hl=en&sl=ja&tl=en&u=https%3A%2F%2Fcaptureamerica.github.io%2Fwriteups%2Fpost%2Fdefcon_ctf_2019_quals%2F">
 <img src="https://captureamerica.github.io/writeups/img/En.png" alt="English">
 </a>
-
 </div>
-
-<h2 id="web-cant-even-unplug-it">[Web]: cant_even_unplug_it</h2>
-
-<hr />
-
+<h2 id="web-cant_even_unplug_it">[Web]: cant_even_unplug_it</h2>
+<hr>
 <h3 id="challenge">Challenge</h3>
-
 <blockquote>
 <p>You know, we had this up and everything. Prepped nice HTML5, started deploying on a military-grade-secrets.dev subdomain, got the certificate, the whole shabang. Boss-man got moody and wanted another name, we set up the new names and all. Finally he got scared and unplugged the server. Can you believe it? Unplugged. Like that can keep it secret…
 <br /><br />
@@ -176,62 +163,45 @@ Hint: these are HTTPS sites. Who is publicly and transparently logging the info 
 <br /><br />
 Just in case: all info is freely accessible, no subscriptions are necessary. The names cannot really be guessed.</p>
 </blockquote>
-
 <p><br /></p>
-
 <h3 id="solution">Solution</h3>
-
 <p>簡単に訳すと、</p>
-
 <blockquote>
 <p>military-grade-secrets.dev サブドメインを使ってサイトをがんばって作って立ち上げたのに、ボスが別の名前がいいとか言いだして、名前を変えてやったのに、結局なんか怖くなってサイトを落としたよ。</p>
 </blockquote>
-
 <p>みたいなストーリー。</p>
-
-<p><a href="https://www.virustotal.com/#/domain/military-grade-secrets.dev" target="_blank">VirusTotal</a> でサーチしたところ、以下の2つのFQDNが見つかりました。</p>
-
+<p><a href="https://www.virustotal.com/#/domain/military-grade-secrets.dev">VirusTotal</a> でサーチしたところ、以下の2つのFQDNが見つかりました。</p>
 <ul>
 <li>secret-storage.military-grade-secrets.dev</li>
 <li>now.under.even-more-militarygrade.pw.military-grade-secrets.dev</li>
 </ul>
-
 <p>早速ブラウザでアクセスしてみると、</p>
-
 <p><code>This site can’t be reached</code>
 <br />
 <code>forget-me-not.even-more-militarygrade.pw refused to connect.</code></p>
-
 <p><br />
-wgetだと、こんな感じ。
+wgetだと、こんな感じ。</p>
 <pre>
 ~ $ wget secret-storage.military-grade-secrets.dev
---2019-05-25 14:36:49--  <a href="http://secret-storage.military-grade-secrets.dev/" target="_blank">http://secret-storage.military-grade-secrets.dev/</a>
+--2019-05-25 14:36:49--  http://secret-storage.military-grade-secrets.dev/
 Resolving secret-storage.military-grade-secrets.dev (secret-storage.military-grade-secrets.dev)... 172.217.24.115
 Connecting to secret-storage.military-grade-secrets.dev (secret-storage.military-grade-secrets.dev)|172.217.24.115|:80... connected.
 HTTP request sent, awaiting response... 302 Found
-Location: <a href="https://forget-me-not.even-more-militarygrade.pw" target="_blank">https://forget-me-not.even-more-militarygrade.pw</a> [following]
---2019-05-25 14:36:49--  <a href="https://forget-me-not.even-more-militarygrade.pw/" target="_blank">https://forget-me-not.even-more-militarygrade.pw/</a>
+Location: https://forget-me-not.even-more-militarygrade.pw [following]
+--2019-05-25 14:36:49--  https://forget-me-not.even-more-militarygrade.pw/
 Resolving forget-me-not.even-more-militarygrade.pw (forget-me-not.even-more-militarygrade.pw)... 206.189.162.22
 Connecting to forget-me-not.even-more-militarygrade.pw (forget-me-not.even-more-militarygrade.pw)|206.189.162.22|:443... failed: Connection refused.
-</pre></p>
-
+</pre>
 <p>リダイレクトによって、別の名前のサイトに飛ぶようになってますね。
 <br /><br /></p>
-
 <p>最初の説明文にあるように、サーバはすでに落ちているのでアクセスできないですが、ウェブのキャッシュをみたらどんなサイトだったか確認ができます。</p>
-
 <p>以下の、ウェブアーカイブを使いました。<br />
-<a href="https://web.archive.org/web/20190427160922/https://forget-me-not.even-more-militarygrade.pw/" target="_blank">https://web.archive.org/web/20190427160922/https://forget-me-not.even-more-militarygrade.pw/</a></p>
-
+<a href="https://web.archive.org/web/20190427160922/https://forget-me-not.even-more-militarygrade.pw/">https://web.archive.org/web/20190427160922/https://forget-me-not.even-more-militarygrade.pw/</a></p>
 <p><br />
 <strong>Flag:</strong> OOO{DAMNATIO_MEMORIAE}</p>
-
 <p><br />
 ＃HTTPSなんじゃらのヒント、使ってないや。。。</p>
-
-<hr />
-
+<hr>
 <p><br /><br />
 <br /><br /></p>
 

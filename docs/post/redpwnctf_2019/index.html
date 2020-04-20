@@ -23,7 +23,7 @@
 <meta name="google-site-verification" content="PqctLWZQttGzxXVupWuIt2HWuBI8cvN1z07ETpxA2dw" />
 
 
-<meta name="generator" content="Hugo 0.59.1 with theme even" />
+<meta name="generator" content="Hugo 0.68.3 with theme even" />
 
 
 <link rel="canonical" href="https://captureamerica.github.io/writeups/post/redpwnctf_2019/" />
@@ -46,16 +46,13 @@
 <meta property="article:modified_time" content="2019-08-17T10:00:00+09:00" />
 <meta itemprop="name" content="RedpwnCTF 2019 Writeup">
 <meta itemprop="description" content="URL: https://ctf.redpwn.net/ なかなか興味深いチャレンジがいくつかありました。 ほとんど解けてないので、他の人のWriteupを見て勉強しようと思います。 いちおう、やっ">
-
-
 <meta itemprop="datePublished" content="2019-08-17T10:00:00&#43;09:00" />
 <meta itemprop="dateModified" content="2019-08-17T10:00:00&#43;09:00" />
-<meta itemprop="wordCount" content="2073">
+<meta itemprop="wordCount" content="2074">
 
 
 
-<meta itemprop="keywords" content="CTF," />
-<meta name="twitter:card" content="summary"/>
+<meta itemprop="keywords" content="CTF," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="RedpwnCTF 2019 Writeup"/>
 <meta name="twitter:description" content="URL: https://ctf.redpwn.net/ なかなか興味深いチャレンジがいくつかありました。 ほとんど解けてないので、他の人のWriteupを見て勉強しようと思います。 いちおう、やっ"/>
 
@@ -139,71 +136,54 @@
   <h2 class="post-toc-title">Contents</h2>
   <div class="post-toc-content">
     <nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li><a href="#web-easycipher">Web: easycipher</a>
-<ul>
-<li><a href="#challenge">Challenge</a></li>
-<li><a href="#solution">Solution</a></li>
-</ul></li>
-<li><a href="#reverse-engineering-generic-crackme-redux">Reverse Engineering: Generic Crackme Redux</a>
-<ul>
-<li><a href="#challenge-1">Challenge</a></li>
-<li><a href="#solution-1">Solution</a></li>
-</ul></li>
-</ul></li>
-</ul>
+  <ul>
+    <li><a href="#web-easycipher">Web: easycipher</a>
+      <ul>
+        <li><a href="#challenge">Challenge</a></li>
+        <li><a href="#solution">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#reverse-engineering-generic-crackme-redux">Reverse Engineering: Generic Crackme Redux</a>
+      <ul>
+        <li><a href="#challenge-1">Challenge</a></li>
+        <li><a href="#solution-1">Solution</a></li>
+      </ul>
+    </li>
+  </ul>
 </nav>
   </div>
 </div>
     <div class="post-content">
-      
-
-<div class='align-right'>
-  
+      <div class='align-right'>
 <a href="https://translate.google.com/translate?hl=en&sl=ja&tl=en&u=https%3A%2F%2Fcaptureamerica.github.io%2Fwriteups%2Fpost%2Fredpwnctf_2019%2F">
 <img src="https://captureamerica.github.io/writeups/img/En.png" alt="English">
 </a>
-
 </div>
-
-<p>URL: <a href="https://ctf.redpwn.net/" target="_blank">https://ctf.redpwn.net/</a>
+<p>URL: <a href="https://ctf.redpwn.net/">https://ctf.redpwn.net/</a>
 <br /><br />
 なかなか興味深いチャレンジがいくつかありました。
 <br /><br />
 ほとんど解けてないので、他の人のWriteupを見て勉強しようと思います。
 <br /><br />
 いちおう、やった中からいくつか記念に残しておきます。</p>
-
 <p><br /><br /></p>
-
 <h2 id="web-easycipher">Web: easycipher</h2>
-
-<hr />
-
+<hr>
 <h3 id="challenge">Challenge</h3>
-
 <blockquote>
-<p>This is an easy cipher? I heard it's broken.
+<p>This is an easy cipher? I heard it&rsquo;s broken.
 <br /><br />
-<a href="http://chall.2019.redpwn.net:8006/" target="_blank">http://chall.2019.redpwn.net:8006/</a></p>
+<a href="http://chall.2019.redpwn.net">http://chall.2019.redpwn.net</a>:8006/</p>
 </blockquote>
-
 <p><br /></p>
-
 <h3 id="solution">Solution</h3>
-
 <p>アクセスすると、以下が表示されます。</p>
-
-<p><img src="https://captureamerica.github.io/writeups/img/easycipher.PNG" alt="easycipher.PNG"></p>
-
+<img src="https://captureamerica.github.io/writeups/img/easycipher.PNG" alt="easycipher.PNG">
 <p>View sourceすると、1行で書かれたJava Scriptがあるので、ChromeのDeveloper ToolでBeautifyします。</p>
-
 <p>以下、Beautify後。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-HTML" data-lang="HTML"><span class="lnt">  1
+<pre class="chroma"><code><span class="lnt">  1
 </span><span class="lnt">  2
 </span><span class="lnt">  3
 </span><span class="lnt">  4
@@ -472,54 +452,38 @@
     <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
         <span class="nx">alert</span><span class="p">(</span><span class="nx">_0x29a9</span><span class="p">[</span><span class="mi">8</span><span class="p">])</span>
     <span class="p">}</span>
-<span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span></code></pre></td></tr></table>
+<span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<p>一番下で判定している箇所がポイントです。途中のコードは解析不要です。</p>
-
+</div><p>一番下で判定している箇所がポイントです。途中のコードは解析不要です。</p>
 <p>_0x29a9[]の配列は先頭で定義されていて、それぞれ、</p>
-
-<p>_0x29a9[5] : &quot;What is the password&quot; <br />
-_0x29a9[6] : &quot;aa42b234cb05915716c1434058fe1aee16c14340cb059157aa42b234&quot; <br />
-_0x29a9[7] : &quot;submit as redpwnctf{PASSWORD}&quot; <br />
-_0x29a9[8] : &quot;:(&quot; <br /></p>
-
+<p>_0x29a9[5] : &ldquo;What is the password&rdquo; <br />
+_0x29a9[6] : &ldquo;aa42b234cb05915716c1434058fe1aee16c14340cb059157aa42b234&rdquo; <br />
+_0x29a9[7] : &ldquo;submit as redpwnctf{PASSWORD}&rdquo; <br />
+_0x29a9[8] : &ldquo;:(&rdquo; <br /></p>
 <p>入力した文字列がMD5計算されて、aa42b234cb05915716c1434058fe1aee16c14340cb059157aa42b234になればオッケー。</p>
-
-<p>Rainbow table ( <a href="https://crackstation.net/" target="_blank">https://crackstation.net/</a> )で、&quot;shazam&quot;が取れました。</p>
-
+<p>Rainbow table ( <a href="https://crackstation.net/">https://crackstation.net/</a> )で、&ldquo;shazam&quot;が取れました。</p>
 <p>Flag: <code>redpwnctf{shazam}</code></p>
-
 <p><br />
 どこら辺が&quot;broken&quot;なのかは不明。。</p>
-
 <p><br /><br />
 <br /><br /></p>
-
 <h2 id="reverse-engineering-generic-crackme-redux">Reverse Engineering: Generic Crackme Redux</h2>
-
-<hr />
-
+<hr>
 <h3 id="challenge-1">Challenge</h3>
-
 <blockquote>
 <p>Note: Enclose the flag with flag{}.</p>
 </blockquote>
-
 <p>Attachment:</p>
-
 <ul>
 <li>generic_crackme_redux</li>
 </ul>
-
 <p><br /></p>
-
 <h3 id="solution-1">Solution</h3>
-
 <p>まずは、Ghidraにかけます。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-C" data-lang="C"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -566,11 +530,12 @@ _0x29a9[8] : &quot;:(&quot; <br /></p>
     <span class="n">__stack_chk_fail</span><span class="p">();</span>
   <span class="p">}</span>
   <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-<span class="p">}</span></code></pre></td></tr></table>
+<span class="p">}</span>
+</code></pre></td></tr></table>
 </div>
 </div><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-C" data-lang="C"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -579,16 +544,15 @@ _0x29a9[8] : &quot;:(&quot; <br /></p>
 <pre class="chroma"><code class="language-C" data-lang="C"><span class="n">ulong</span> <span class="nf">FUN_00101169</span><span class="p">(</span><span class="kt">int</span> <span class="n">iParm1</span><span class="p">)</span>
 <span class="p">{</span>
   <span class="k">return</span> <span class="p">(</span><span class="n">ulong</span><span class="p">)(</span><span class="n">iParm1</span> <span class="o">*</span> <span class="mi">10</span> <span class="o">&amp;</span> <span class="mh">0xffffff00U</span> <span class="o">|</span> <span class="p">(</span><span class="n">uint</span><span class="p">)(</span><span class="n">iParm1</span> <span class="o">*</span> <span class="mi">10</span> <span class="o">==</span> <span class="mh">0xac292</span><span class="p">));</span>
-<span class="p">}</span></code></pre></td></tr></table>
+<span class="p">}</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<p><br />
+</div><p><br />
 デコンパイルされた結果（上記）が、入力値を10倍してマスクして、判定文っぽいのとORして、それをリターンして、と意味不明だったので、アセンブラコードを見ました。</p>
-
 <p>ここら辺。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -598,9 +562,9 @@ _0x29a9[8] : &quot;:(&quot; <br /></p>
 </span><span class="lnt"> 8
 </span><span class="lnt"> 9
 </span><span class="lnt">10
-</span></pre></td>
+</span></code></pre></td>
 <td class="lntd">
-<pre class="chroma">    1164:	e9 67 ff ff ff       	jmp    10d0 &lt;__isoc99_scanf@plt+0x70&gt;
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">    1164:	e9 67 ff ff ff       	jmp    10d0 &lt;__isoc99_scanf@plt+0x70&gt;
     1169:	55                   	push   rbp
     116a:	48 89 e5             	mov    rbp,rsp
     116d:	89 7d fc             	mov    DWORD PTR [rbp-0x4],edi
@@ -609,61 +573,57 @@ _0x29a9[8] : &quot;:(&quot; <br /></p>
     1175:	c1 e0 02             	shl    eax,0x2  &lt;--- 2ビット左シフト(4倍)
     1178:	01 d0                	add    eax,edx  &lt;--- 入力値と足す
     117a:	01 c0                	add    eax,eax  &lt;--- 2倍
-    117c:	3d 92 c2 0a 00       	cmp    eax,0xac292</pre></td></tr></table>
+    117c:	3d 92 c2 0a 00       	cmp    eax,0xac292
+</code></pre></td></tr></table>
 </div>
-</div>
-<p>入力値をxとすると、<br />
+</div><p>入力値をxとすると、<br />
 (4x + x) * 2 = 0xac292
 <br />
 10 * x = 0xac292
 <br />
 x = 0xac292 / 10</p>
-
 <p><br />
 ということで、計算。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-Python" data-lang="Python"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-Python" data-lang="Python"><span class="err">$</span> <span class="n">python</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="mh">0xac292</span><span class="o">/</span><span class="mi">10</span>
-<span class="mf">70517.0</span></code></pre></td></tr></table>
+<span class="mf">70517.0</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<p><br />
+</div><p><br />
 動作確認。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-sh" data-lang="sh"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-sh" data-lang="sh"><span class="c1"># ./generic_crackme_redux</span> 
 Enter access code: <span class="m">70517</span>
-Access granted</code></pre></td></tr></table>
+Access granted
+</code></pre></td></tr></table>
 </div>
-</div>
-<p>Flag: <code>flag{70517}</code></p>
-
+</div><p>Flag: <code>flag{70517}</code></p>
 <p><br />
 ちなみに、Ghidraのデコンパイル結果の通りだったやｗｗ （今、気づいた）</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-C" data-lang="C"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-C" data-lang="C">  <span class="p">(</span><span class="n">iParm1</span> <span class="o">*</span> <span class="mi">10</span> <span class="o">==</span> <span class="mh">0xac292</span><span class="p">)</span></code></pre></td></tr></table>
+<pre class="chroma"><code class="language-C" data-lang="C">  <span class="p">(</span><span class="n">iParm1</span> <span class="o">*</span> <span class="mi">10</span> <span class="o">==</span> <span class="mh">0xac292</span><span class="p">)</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<p><br /><br />
+</div><p><br /><br />
 <br /><br /></p>
-
-<hr />
-
+<hr>
 <p><br /><br />
 <br /><br /></p>
 

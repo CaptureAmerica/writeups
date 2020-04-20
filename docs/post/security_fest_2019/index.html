@@ -23,7 +23,7 @@
 <meta name="google-site-verification" content="PqctLWZQttGzxXVupWuIt2HWuBI8cvN1z07ETpxA2dw" />
 
 
-<meta name="generator" content="Hugo 0.59.1 with theme even" />
+<meta name="generator" content="Hugo 0.68.3 with theme even" />
 
 
 <link rel="canonical" href="https://captureamerica.github.io/writeups/post/security_fest_2019/" />
@@ -46,16 +46,13 @@
 <meta property="article:modified_time" content="2019-05-25T14:05:00+08:00" />
 <meta itemprop="name" content="Security Fest 2019 Writeup">
 <meta itemprop="description" content="[Misc]: Signal Challenge There is no signal, everything is silent. Nothing is impossible. Attachment: signal.pdf 開くと、こんな感じ。（以下は、スクリーンショットです。） Solution 回答だけじゃなくて、一応やったことも記録に残しておき">
-
-
 <meta itemprop="datePublished" content="2019-05-23T00:00:00&#43;08:00" />
 <meta itemprop="dateModified" content="2019-05-25T14:05:00&#43;08:00" />
-<meta itemprop="wordCount" content="735">
+<meta itemprop="wordCount" content="734">
 
 
 
-<meta itemprop="keywords" content="CTF," />
-<meta name="twitter:card" content="summary"/>
+<meta itemprop="keywords" content="CTF," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Security Fest 2019 Writeup"/>
 <meta name="twitter:description" content="[Misc]: Signal Challenge There is no signal, everything is silent. Nothing is impossible. Attachment: signal.pdf 開くと、こんな感じ。（以下は、スクリーンショットです。） Solution 回答だけじゃなくて、一応やったことも記録に残しておき"/>
 
@@ -139,115 +136,84 @@
   <h2 class="post-toc-title">Contents</h2>
   <div class="post-toc-content">
     <nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li><a href="#misc-signal">[Misc]: Signal</a>
-<ul>
-<li><a href="#challenge">Challenge</a></li>
-<li><a href="#solution">Solution</a></li>
-</ul></li>
-</ul></li>
-</ul>
+  <ul>
+    <li><a href="#misc-signal">[Misc]: Signal</a>
+      <ul>
+        <li><a href="#challenge">Challenge</a></li>
+        <li><a href="#solution">Solution</a></li>
+      </ul>
+    </li>
+  </ul>
 </nav>
   </div>
 </div>
     <div class="post-content">
-      
-
-<div class='align-right'>
-  
+      <div class='align-right'>
 <a href="https://translate.google.com/translate?hl=en&sl=ja&tl=en&u=https%3A%2F%2Fcaptureamerica.github.io%2Fwriteups%2Fpost%2Fsecurity_fest_2019%2F">
 <img src="https://captureamerica.github.io/writeups/img/En.png" alt="English">
 </a>
-
 </div>
-
 <h2 id="misc-signal">[Misc]: Signal</h2>
-
-<hr />
-
+<hr>
 <h3 id="challenge">Challenge</h3>
-
 <blockquote>
 <p>There is no signal, everything is silent. Nothing is impossible.</p>
 </blockquote>
-
 <p>Attachment:</p>
-
 <ul>
 <li>signal.pdf</li>
 </ul>
-
 <p><br />
 開くと、こんな感じ。（以下は、スクリーンショットです。）
 <img src="https://captureamerica.github.io/writeups/img/signal.png" alt="signal.png"></p>
-
 <p><br /></p>
-
 <h3 id="solution">Solution</h3>
-
 <p>回答だけじゃなくて、一応やったことも記録に残しておきます。</p>
-
 <ul>
 <li>pdf系の問題は、とりあえず、テキストエディタで開いてさらっと中身をチェックします。script使っているかどうかとか。
 <br /><br /></li>
-<li>その後、何も考えず、いろいろツールにかけていきました。
-
-<ul>
+<li>その後、何も考えず、いろいろツールにかけていきました。</li>
 <li>pdf-parser.py</li>
 <li>pdfid.py</li>
 <li>pdfinfo</li>
 <li>PdfAnalyzer.exe</li>
 <li>PDFStreamDumper.exe</li>
-</ul></li>
 </ul>
-
 <p><br />
 特に怪しい箇所がなんにもないので、残るはアスキーテキストに何かあると考えるしかないな、と思いました。</p>
-
 <p><br />
-以下のコマンドの出力結果は抜粋です。
+以下のコマンドの出力結果は抜粋です。</p>
 <pre>
-$ pdftotext signal.pdf &gt; signal.txt ; cat signal.txt
+$ pdftotext signal.pdf > signal.txt ; cat signal.txt
 ：
-<em>-'... - .-. .- -. --. . .-.-.- -.- . -.-- -... ---<code>-_
-_-' .- .-. -.. .-.-.- ... . -.-. ..-. .-.-.- -- .---- .</code>-</em>
-<em>-'-.. .---- - ....- .-. -.-- ..--.- --. .-. ....- -.. ...-- -</em>
-<em>-'..--.- ...-- -. -.-. .-. -.-- .--. - .---- ----- -. .-.-.- .-- -</em>
-<em>-'.- .. - .-.-.- -.-. --- ..- .-.. -.. .-.-.- .-. .- -. -.. --- -<code>-_
+_-'... - .-. .- -. --. . .-.-.- -.- . -.-- -... ---`-_
+_-' .- .-. -.. .-.-.- ... . -.-. ..-. .-.-.- -- .---- .`-_
+_-'-.. .---- - ....- .-. -.-- ..--.- --. .-. ....- -.. ...-- -_
+_-'..--.- ...-- -. -.-. .-. -.-- .--. - .---- ----- -. .-.-.- .-- -_
+_-'.- .. - .-.-.- -.-. --- ..- .-.. -.. .-.-.- .-. .- -. -.. --- -`-_
 :-------------------------------------------------------------------------:
-</code>---.</em>.-------------------------------------------------------------._.---'
-</pre></p>
-
+`---._.-------------------------------------------------------------._.---'
+</pre>
 <p>これを見た瞬間、なぜか「SOS」のモールス信号の音がアタマに流れました。<br />
 あぁ、問題のタイトルSignal（信号）だしね。ビンゴの確信。</p>
-
 <p><br /><br />
 あとは、オンラインで、<code>morse decode</code> をキーワードに検索してデコードサイトを見つけてデコードするだけなんですが、これがサイトによってクオリティが違ってて、エラーが出たり出なかったり、変換文字が違ったりするんです。</p>
-
 <p><br />
 使った中で一番よかったのは、以下のサイトでした。
 <br />
-<a href="https://www.dcode.fr/morse-code" target="_blank">https://www.dcode.fr/morse-code</a></p>
-
+<a href="https://www.dcode.fr/morse-code">https://www.dcode.fr/morse-code</a></p>
 <p><br />
 コツは、1行1行別々にデコードすることです。全部を1行にまとめてからデコードしようとすると、もともと改行があった場所でエラーが出たりします。</p>
-
 <p><br />
 でもって、以下の文字列が取れるんですが、
 STRANGE.KEYBOARD.SECF.M1L1T4RY_GR4D3T_3NCRYPT10N.WTAIT.COULD.RANDOM
 <br /><br />
 これそのままだと、incorrect flagで受け付けられなくて、いろんなパターンやってもことごとくダメだったんで何気に諦めかけたけど、結局以下の部分が最終フラグとして通りました。</p>
-
 <p><br />
 <strong>Flag:</strong> m1l1t4ry_gr4d3_3ncrypt10n</p>
-
 <p><br />
 ＃まぁ、確かにアンダースコアで繋がっているし、その部分なんだろうけどさ。。。結構悩んだ</p>
-
-<hr />
-
+<hr>
 <p><br /><br />
 <br /><br /></p>
 

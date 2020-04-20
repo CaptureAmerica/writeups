@@ -23,7 +23,7 @@
 <meta name="google-site-verification" content="PqctLWZQttGzxXVupWuIt2HWuBI8cvN1z07ETpxA2dw" />
 
 
-<meta name="generator" content="Hugo 0.59.1 with theme even" />
+<meta name="generator" content="Hugo 0.68.3 with theme even" />
 
 
 <link rel="canonical" href="https://captureamerica.github.io/writeups/post/neverlan_ctf_2020/" />
@@ -46,16 +46,13 @@
 <meta property="article:modified_time" content="2020-02-23T14:00:00+09:00" />
 <meta itemprop="name" content="NeverLAN CTF 2020 Writeup">
 <meta itemprop="description" content="(2020/02/23 - 復習しました) URL: https://ctf.neverlanctf.com/challenges 久々にがっつりCTFやりました。（学生さん用CTFでした） 最終順位は、127位でした。 しかし、サーバが結構不安定でした">
-
-
 <meta itemprop="datePublished" content="2020-02-12T09:00:00&#43;09:00" />
 <meta itemprop="dateModified" content="2020-02-23T14:00:00&#43;09:00" />
-<meta itemprop="wordCount" content="3253">
+<meta itemprop="wordCount" content="3251">
 
 
 
-<meta itemprop="keywords" content="CTF,Reviewed," />
-<meta name="twitter:card" content="summary"/>
+<meta itemprop="keywords" content="CTF,Reviewed," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="NeverLAN CTF 2020 Writeup"/>
 <meta name="twitter:description" content="(2020/02/23 - 復習しました) URL: https://ctf.neverlanctf.com/challenges 久々にがっつりCTFやりました。（学生さん用CTFでした） 最終順位は、127位でした。 しかし、サーバが結構不安定でした"/>
 
@@ -139,105 +136,106 @@
   <h2 class="post-toc-title">Contents</h2>
   <div class="post-toc-content">
     <nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li><a href="#reverse-engineering-adobe-payroll-100">[Reverse Engineering]: Adobe Payroll (100)</a>
-<ul>
-<li><a href="#challenge">Challenge</a></li>
-<li><a href="#solution">Solution</a></li>
-</ul></li>
-<li><a href="#reverse-engineering-reverse-engineer-300">[Reverse Engineering]: Reverse Engineer (300)</a>
-<ul>
-<li><a href="#challenge-1">Challenge</a></li>
-<li><a href="#solution-1">Solution</a></li>
-</ul></li>
-<li><a href="#crypto-dont-take-all-knight-75">[Crypto]: Dont Take All Knight (75)</a>
-<ul>
-<li><a href="#challenge-2">Challenge</a></li>
-<li><a href="#solution-2">Solution</a></li>
-</ul></li>
-<li><a href="#crypto-the-invisibles-75">[Crypto]: The Invisibles (75)</a>
-<ul>
-<li><a href="#challenge-3">Challenge</a></li>
-<li><a href="#solution-3">Solution</a></li>
-</ul></li>
-<li><a href="#crypto-my-own-encoding-200">[Crypto]: My own encoding (200)</a>
-<ul>
-<li><a href="#challenge-4">Challenge</a></li>
-<li><a href="#solution-4">Solution</a></li>
-</ul></li>
-<li><a href="#crypto-babyrsa-250">[Crypto]: BabyRSA (250)</a>
-<ul>
-<li><a href="#challenge-5">Challenge</a></li>
-<li><a href="#solution-5">Solution</a></li>
-</ul></li>
-<li><a href="#forensics-listen-to-this-125">[Forensics]: Listen to this (125)</a>
-<ul>
-<li><a href="#challenge-6">Challenge</a></li>
-<li><a href="#solution-6">Solution</a></li>
-</ul></li>
-<li><a href="#programing-dasprime-100">[Programing]: DasPrime (100)</a>
-<ul>
-<li><a href="#challenge-7">Challenge</a></li>
-<li><a href="#solution-7">Solution</a></li>
-</ul></li>
-<li><a href="#recon-front-page-of-the-internet-50">[Recon]: Front Page of the Internet (50)</a>
-<ul>
-<li><a href="#challenge-8">Challenge</a></li>
-<li><a href="#solution-8">Solution</a></li>
-</ul></li>
-<li><a href="#recon-thats-just-phreaky-200">[Recon]: Thats just Phreaky (200)</a>
-<ul>
-<li><a href="#challenge-9">Challenge</a></li>
-<li><a href="#unsolved">(Unsolved)</a></li>
-</ul></li>
-<li><a href="#web-follow-me-100">[Web]: Follow Me! (100)</a>
-<ul>
-<li><a href="#challenge-10">Challenge</a></li>
-<li><a href="#solution-9">Solution</a></li>
-</ul></li>
-<li><a href="#trivia-aaaaaaaaaaaaaa-i-hate-cves-20">[Trivia]: AAAAAAAAAAAAAA! I hate CVEs (20)</a>
-<ul>
-<li><a href="#challenge-11">Challenge</a></li>
-<li><a href="#solution-10">Solution</a></li>
-</ul></li>
-<li><a href="#trivia-rick-rolled-by-the-nsa-50">[Trivia]: Rick Rolled by the NSA??? (50)</a>
-<ul>
-<li><a href="#challenge-12">Challenge</a></li>
-<li><a href="#solution-11">Solution</a></li>
-</ul></li>
-<li><a href="#crypto-it-is-like-an-onion-of-secrets">[Crypto]: It is like an onion of secrets.</a>
-<ul>
-<li><a href="#challenge-13">Challenge</a></li>
-<li><a href="#solution-12">Solution</a></li>
-</ul></li>
-</ul></li>
-</ul>
+  <ul>
+    <li><a href="#reverse-engineering-adobe-payroll-100">[Reverse Engineering]: Adobe Payroll (100)</a>
+      <ul>
+        <li><a href="#challenge">Challenge</a></li>
+        <li><a href="#solution">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#reverse-engineering-reverse-engineer-300">[Reverse Engineering]: Reverse Engineer (300)</a>
+      <ul>
+        <li><a href="#challenge-1">Challenge</a></li>
+        <li><a href="#solution-1">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#crypto-dont-take-all-knight-75">[Crypto]: Dont Take All Knight (75)</a>
+      <ul>
+        <li><a href="#challenge-2">Challenge</a></li>
+        <li><a href="#solution-2">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#crypto-the-invisibles-75">[Crypto]: The Invisibles (75)</a>
+      <ul>
+        <li><a href="#challenge-3">Challenge</a></li>
+        <li><a href="#solution-3">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#crypto-my-own-encoding-200">[Crypto]: My own encoding (200)</a>
+      <ul>
+        <li><a href="#challenge-4">Challenge</a></li>
+        <li><a href="#solution-4">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#crypto-babyrsa-250">[Crypto]: BabyRSA (250)</a>
+      <ul>
+        <li><a href="#challenge-5">Challenge</a></li>
+        <li><a href="#solution-5">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#forensics-listen-to-this-125">[Forensics]: Listen to this (125)</a>
+      <ul>
+        <li><a href="#challenge-6">Challenge</a></li>
+        <li><a href="#solution-6">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#programing-dasprime-100">[Programing]: DasPrime (100)</a>
+      <ul>
+        <li><a href="#challenge-7">Challenge</a></li>
+        <li><a href="#solution-7">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#recon-front-page-of-the-internet-50">[Recon]: Front Page of the Internet (50)</a>
+      <ul>
+        <li><a href="#challenge-8">Challenge</a></li>
+        <li><a href="#solution-8">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#recon-thats-just-phreaky-200">[Recon]: Thats just Phreaky (200)</a>
+      <ul>
+        <li><a href="#challenge-9">Challenge</a></li>
+        <li><a href="#unsolved">(Unsolved)</a></li>
+      </ul>
+    </li>
+    <li><a href="#web-follow-me-100">[Web]: Follow Me! (100)</a>
+      <ul>
+        <li><a href="#challenge-10">Challenge</a></li>
+        <li><a href="#solution-9">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#trivia-aaaaaaaaaaaaaa-i-hate-cves-20">[Trivia]: AAAAAAAAAAAAAA! I hate CVEs (20)</a>
+      <ul>
+        <li><a href="#challenge-11">Challenge</a></li>
+        <li><a href="#solution-10">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#trivia-rick-rolled-by-the-nsa-50">[Trivia]: Rick Rolled by the NSA??? (50)</a>
+      <ul>
+        <li><a href="#challenge-12">Challenge</a></li>
+        <li><a href="#solution-11">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#crypto-it-is-like-an-onion-of-secrets">[Crypto]: It is like an onion of secrets.</a>
+      <ul>
+        <li><a href="#challenge-13">Challenge</a></li>
+      </ul>
+    </li>
+  </ul>
 </nav>
   </div>
 </div>
     <div class="post-content">
-      
-
-<div class='align-right'>
-  
+      <div class='align-right'>
 <a href="https://translate.google.com/translate?hl=en&sl=ja&tl=en&u=https%3A%2F%2Fcaptureamerica.github.io%2Fwriteups%2Fpost%2Fneverlan_ctf_2020%2F">
 <img src="https://captureamerica.github.io/writeups/img/En.png" alt="English">
 </a>
-
 </div>
-
 <p>(2020/02/23 - 復習しました)</p>
-
-<p>URL: <a href="https://ctf.neverlanctf.com/challenges" target="_blank">https://ctf.neverlanctf.com/challenges</a>
+<p>URL: <a href="https://ctf.neverlanctf.com/challenges">https://ctf.neverlanctf.com/challenges</a>
 <br /><br />
 久々にがっつりCTFやりました。（学生さん用CTFでした）</p>
-
 <p>最終順位は、127位でした。</p>
-
 <p>しかし、サーバが結構不安定でしたね。最終日は日中にサーバがダウンしてて、夜中になって追加チャレンジと共に復活してたので、真夜中に少しやりました。。</p>
-
 <p><br /><br />
 <img src="https://captureamerica.github.io/writeups/img/neverlan_Score1.png" alt="neverlan_Score1.png">
 <br />
@@ -248,74 +246,50 @@
 <br />
 <img src="https://captureamerica.github.io/writeups/img/neverlan_Score4.png" alt="neverlan_Score4.png">
 <br /></p>
-
 <p><br /><br /></p>
-
 <h2 id="reverse-engineering-adobe-payroll-100">[Reverse Engineering]: Adobe Payroll (100)</h2>
-
-<hr />
-
+<hr>
 <h3 id="challenge">Challenge</h3>
-
 <blockquote>
-<p>We've forgotten the password to our payroll machine. Can you extract it?</p>
+<p>We&rsquo;ve forgotten the password to our payroll machine. Can you extract it?</p>
 </blockquote>
-
 <p>Attachment:</p>
-
 <ul>
 <li>Adobe_Payroll.7z (Adobe_Employee_Payroll.exe)</li>
 </ul>
-
 <h3 id="solution">Solution</h3>
-
 <p>PEファイルが入ってます。</p>
-
 <pre>
 $ file Adobe_Employee_Payroll.exe 
 Adobe_Employee_Payroll.exe: PE32 executable (GUI) Intel 80386 Mono/.Net assembly, for MS Windows
 </pre>
-
 <p>dnSpyで開くと、フラグっぽいのが見つかります。</p>
-
-<p><img src="https://captureamerica.github.io/writeups/img/neverlan_Adobe.png" alt="neverlan_Adobe.png"></p>
-
-<p><br>
+<img src="https://captureamerica.github.io/writeups/img/neverlan_Adobe.png" alt="neverlan_Adobe.png">
+<br>
 <pre>
-$ python -c 'print(&quot;&quot;.join([chr(int(x)) for x in &quot;102 108 97 103 123 46 110 101 116 95 105 115 95 112 114 101 116 116 121 95 101 97 115 121 95 116 111 95 100 101 99 111 109 112 105 108 101 125&quot;.split()]))'
+$ python -c 'print("".join([chr(int(x)) for x in "102 108 97 103 123 46 110 101 116 95 105 115 95 112 114 101 116 116 121 95 101 97 115 121 95 116 111 95 100 101 99 111 109 112 105 108 101 125".split()]))'
 flag{.net_is_pretty_easy_to_decompile}
-</pre></p>
-
-<p><br>
-Flag: <code>flag{.net_is_pretty_easy_to_decompile}</code></p>
-
+</pre>
+<br>
+Flag: `flag{.net_is_pretty_easy_to_decompile}`
 <p><br /><br />
 <br /><br /></p>
-
 <h2 id="reverse-engineering-reverse-engineer-300">[Reverse Engineering]: Reverse Engineer (300)</h2>
-
-<hr />
-
+<hr>
 <h3 id="challenge-1">Challenge</h3>
-
 <blockquote>
-<p>This program seems to get stuck while running... Can you get it to continue past the broken function?</p>
+<p>This program seems to get stuck while running&hellip; Can you get it to continue past the broken function?</p>
 </blockquote>
-
 <p>Attachment:</p>
-
 <ul>
 <li>revseng (ELF 64-bit)</li>
 </ul>
-
 <h3 id="solution-1">Solution</h3>
-
 <p>300 pointの割に、一瞬で解けるチャレンジでした。</p>
-
 <p>Ghidraで見ると、フラグを表示するためのprint()という関数があるのが見つかります。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-C" data-lang="C"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -390,145 +364,97 @@ Flag: <code>flag{.net_is_pretty_easy_to_decompile}</code></p>
   <span class="n">puVar1</span><span class="p">[</span><span class="mh">0x14</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
   <span class="n">printf</span><span class="p">(</span><span class="s">&#34;%c%c%c%c%c%s%c</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span><span class="mh">0x66</span><span class="p">,</span><span class="mh">0x6c</span><span class="p">,</span><span class="mh">0x61</span><span class="p">,</span><span class="mh">0x67</span><span class="p">,</span><span class="mh">0x7b</span><span class="p">,</span><span class="n">puVar1</span><span class="p">,</span><span class="mh">0x7d</span><span class="p">);</span>
   <span class="k">return</span><span class="p">;</span>
-<span class="p">}</span></code></pre></td></tr></table>
+<span class="p">}</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<p><br>
-どこからも呼ばれていないので、gdbでjumpします。</p>
-
+</div><br>
+どこからも呼ばれていないので、gdbでjumpします。
 <pre>
 gef➤  b main
 gef➤  r
 gef➤  x print
-0x5555555551a9 <print>: 0xe5894855
+0x5555555551a9 <print>:	0xe5894855
 gef➤  jump *0x5555555551a9
 Continuing at 0x5555555551a9.
 flag{w3con7r0lth3b1nari3s}
 </pre>
-
 <p>Flag: <code>flag{w3con7r0lth3b1nari3s}</code></p>
-
 <p><br /><br />
 <br /><br /></p>
-
 <h2 id="crypto-dont-take-all-knight-75">[Crypto]: Dont Take All Knight (75)</h2>
-
-<hr />
-
+<hr>
 <h3 id="challenge-2">Challenge</h3>
-
 <blockquote>
 <p>（添付ファイルのみ）</p>
 </blockquote>
-
 <p>Attachment:</p>
-
 <ul>
 <li>DontTakeAllKnight.png</li>
 </ul>
-
-<p><img src="https://captureamerica.github.io/writeups/img/DontTakeAllKnight.png" alt="DontTakeAllKnight.png"></p>
-
+<img src="https://captureamerica.github.io/writeups/img/DontTakeAllKnight.png" alt="DontTakeAllKnight.png">
 <h3 id="solution-2">Solution</h3>
-
-<p>これは、もうひとつのチャレンジ（Pigsfly）で見てたWiki (<a href="https://en.wikipedia.org/wiki/Pigpen_cipher" target="_blank">https://en.wikipedia.org/wiki/Pigpen_cipher</a>) にVariantsとして解説が載ってました。</p>
-
+<p>これは、もうひとつのチャレンジ（Pigsfly）で見てたWiki (<a href="https://en.wikipedia.org/wiki/Pigpen_cipher">https://en.wikipedia.org/wiki/Pigpen_cipher</a>) にVariantsとして解説が載ってました。</p>
 <p>Flag: <code>evenknightsneedcrypto</code></p>
-
 <p><br /><br />
 <br /><br /></p>
-
 <h2 id="crypto-the-invisibles-75">[Crypto]: The Invisibles (75)</h2>
-
-<hr />
-
+<hr>
 <h3 id="challenge-3">Challenge</h3>
-
 <blockquote>
 <p>（添付ファイルのみ）</p>
 </blockquote>
-
 <p>Attachment:</p>
-
 <ul>
 <li>The_invisibles.png</li>
 </ul>
-
-<p><img src="https://captureamerica.github.io/writeups/img/The_invisibles.png" alt="The_invisibles.png"></p>
-
+<img src="https://captureamerica.github.io/writeups/img/The_invisibles.png" alt="The_invisibles.png">
 <h3 id="solution-3">Solution</h3>
-
 <p>適当に1個画像をピックアップして、Googleで画像サーチすると、以下のサイトが見つかります。</p>
-
-<p><a href="https://www.dcode.fr/arthur-invisibles-cipher" target="_blank">https://www.dcode.fr/arthur-invisibles-cipher</a></p>
-
+<p><a href="https://www.dcode.fr/arthur-invisibles-cipher">https://www.dcode.fr/arthur-invisibles-cipher</a></p>
 <p>これで解析すると、FLAGISYOUCANSEETHEM が取れます。</p>
-
-<p><br>
-Flag: <code>youcanseethem</code></p>
-
+<br>
+Flag: `youcanseethem`
 <p><br /><br />
 <br /><br /></p>
-
 <h2 id="crypto-my-own-encoding-200">[Crypto]: My own encoding (200)</h2>
-
-<hr />
-
+<hr>
 <h3 id="challenge-4">Challenge</h3>
-
 <blockquote>
-<p>Here's an encoding challenge. This doesnt really test your technical skills, but focuses on your critical thinking.
+<p>Here&rsquo;s an encoding challenge. This doesnt really test your technical skills, but focuses on your critical thinking.
 <br /><br />
-I wrote my own encoding scheme. Can you decode it?&quot;
+I wrote my own encoding scheme. Can you decode it?&rdquo;
 <br /><br />
-    -BashNinja</p>
+-BashNinja</p>
 </blockquote>
-
 <p>Attachment:</p>
-
 <ul>
 <li>secretmessage.jpg</li>
 </ul>
-
-<p><img src="https://captureamerica.github.io/writeups/img/secretmessage.jpg" alt="secretmessage.jpg"></p>
-
+<img src="https://captureamerica.github.io/writeups/img/secretmessage.jpg" alt="secretmessage.jpg">
 <h3 id="solution-4">Solution</h3>
-
 <p>25マスあるので、アルファベット（26文字）がちょうど当てはまりそうです。そのうちの1文字はBlank（何もない状態）なのが予想できて、AかZかどちらかですが、実際に問題に出てきているのでAの方を選びました。</p>
-
 <p>つまり、表にはアルファベットが以下のように割り当てられます。</p>
-
 <p>何もない状態：A
-<br>
+<br></p>
 <table>
 <tr><td>B</td><td>C</td><td>D</td><td>E</td><td>F</td></tr>
 <tr><td>G</td><td>H</td><td>I</td><td>J</td><td>K</td></tr>
 <tr><td>L</td><td>M</td><td>N</td><td>O</td><td>P</td></tr>
 <tr><td>Q</td><td>R</td><td>S</td><td>T</td><td>U</td></tr>
 <tr><td>V</td><td>W</td><td>X</td><td>Y</td><td>Z</td></tr>
-</table></p>
-
+</table>
 <p>Flag: <code>nicejobyouhacker</code></p>
-
 <p><br /><br />
 <br /><br /></p>
-
 <h2 id="crypto-babyrsa-250">[Crypto]: BabyRSA (250)</h2>
-
-<hr />
-
+<hr>
 <h3 id="challenge-5">Challenge</h3>
-
 <blockquote>
-<p>We've intercepted this RSA encrypted message 2193 1745 2164 970 1466 2495 1438 1412 1745 1745 2302 1163 2181 1613 1438 884 2495 2302 2164 2181 884 2302 1703 1924 2302 1801 1412 2495 53 1337 2217 we know it was encrypted with the following public key e: 569 n: 2533</p>
+<p>We&rsquo;ve intercepted this RSA encrypted message 2193 1745 2164 970 1466 2495 1438 1412 1745 1745 2302 1163 2181 1613 1438 884 2495 2302 2164 2181 884 2302 1703 1924 2302 1801 1412 2495 53 1337 2217 we know it was encrypted with the following public key e: 569 n: 2533</p>
 </blockquote>
-
 <h3 id="solution-5">Solution</h3>
-
 <p>何気に少しハマりました。</p>
-
 <p>というのも、encrypted messageは1つにまとめて処理すると思っていて、RsaCtfTool.pyがうまく動かなかったのです。</p>
-
 <pre>
 $ RsaCtfTool.py -p 149 -q 17 -e 569 --uncipher 21931745216497014662495143814121745174523021163218116131438884249523022164218188423021703192423021801141224955313372217
 Traceback (most recent call last):
@@ -540,13 +466,11 @@ Traceback (most recent call last):
     output=stdout, stderr=stderr)
 subprocess.CalledProcessError: Command '['openssl', 'rsautl', '-raw', '-decrypt', '-in', '/var/folders/87/sclh7gdd7k1dlkyqkdmwqjfd0z5kf0/T/tmprmtfqw00', '-inkey', '/var/folders/87/sclh7gdd7k1dlkyqkdmwqjfd0z5kf0/T/tmp8r3uasek']' returned non-zero exit status 1.
 </pre>
-
-<p>過去のRSA用のPythonスクリプトもことごとく動かず、降参しようかと思っていたところ、最初の1個（2193）だけで RsaCtfTool.py をかけたところ 'f' になったので、以下のように解きました。</p>
-
+<p>過去のRSA用のPythonスクリプトもことごとく動かず、降参しようかと思っていたところ、最初の1個（2193）だけで RsaCtfTool.py をかけたところ &lsquo;f&rsquo; になったので、以下のように解きました。</p>
 <p>ちなみに、n = 2533は 17 * 149 なので、p = 17, q = 149 を使ってやった方が計算が速いです。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-sh" data-lang="sh"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -557,12 +481,11 @@ subprocess.CalledProcessError: Command '['openssl', 'rsautl', '-raw', '-decrypt'
 </span><span class="cp"></span><span class="k">while</span> <span class="nb">read</span> line
 <span class="k">do</span>
    ~/Python3/RsaCtfTool-master/RsaCtfTool.py -p <span class="m">17</span> -q <span class="m">149</span> -e <span class="m">569</span> --uncipher <span class="nv">$line</span>
-<span class="k">done</span> &lt; cipher.txt</code></pre></td></tr></table>
+<span class="k">done</span> &lt; cipher.txt
+</code></pre></td></tr></table>
 </div>
-</div>
-<p><br>
-実行結果：</p>
-
+</div><br>
+実行結果：
 <pre>
 $ echo "2193 1745 2164 970 1466 2495 1438 1412 1745 1745 2302 1163 2181 1613 1438 884 2495 2302 2164 2181 884 2302 1703 1924 2302 1801 1412 2495 53 1337 2217" | tr " " "\n" > cipher.txt
 
@@ -599,20 +522,13 @@ $ ./NeverLAN_BasyRSA.sh
 [+] Clear text : b'\x00}'
 [+] Clear text : b'\x00\n'
 </pre>
-
-<p><br></p>
-
+<br>
 <p>Flag: <code>flag{sm4ll_pr1m3s_ar3_t0_e4sy}</code></p>
-
 <p><br /><br />
 <br /><br /></p>
-
 <h2 id="forensics-listen-to-this-125">[Forensics]: Listen to this (125)</h2>
-
-<hr />
-
+<hr>
 <h3 id="challenge-6">Challenge</h3>
-
 <blockquote>
 <p>You hear that?
 <br /><br />
@@ -622,86 +538,56 @@ $ ./NeverLAN_BasyRSA.sh
 <br /><br />
 -ZestyFE</p>
 </blockquote>
-
 <p>Attachment:</p>
-
 <ul>
 <li>HiddenAudio.mp3</li>
 </ul>
-
 <h3 id="solution-6">Solution</h3>
-
 <p>とりあえずmp3ファイルを再生してみると、誰かが何かしゃべってます。</p>
-
 <p>さっぱりわからなかったので、<code>5 point</code> 使って Hint を Unlock しました。。。</p>
-
 <p><code>Hint: Morse what now?</code></p>
-
 <p>んん？ モールス信号なんか入ってたっけ？</p>
-
 <p>もう一度再生。 よく聞いたら、確かに聞こえました。。。</p>
-
 <div class="admonition tip"><p class="admonition-title">Tips</p>
-  
-音声ファイルにVoiceが入っている場合は、まずVoiceを取り除く。
-
+<p>音声ファイルにVoiceが入っている場合は、まずVoiceを取り除く。</p>
 </div>
-
-<p><br>
-Audacityでファイルを開き、Effect -&gt; Vocal Remover... を選択します。オプションは、Remove vocals + Simple です。</p>
-
+<br>
+Audacityでファイルを開き、Effect -> Vocal Remover... を選択します。オプションは、Remove vocals + Simple です。
 <p>この時点では、音声はほぼ完全に取り除けてますが、音楽がちょっと残っています。</p>
-
-<p><br>
-ここで、モールス信号を解析できるツールを探しました。ググる際のキーワードは、&quot;morse audio analyzer&quot; てな感じです。</p>
-
+<br>
+ここで、モールス信号を解析できるツールを探しました。ググる際のキーワードは、"morse audio analyzer" てな感じです。
 <p>以下のサイトにファイルをアップロードしてやってみましたが、かなり精度が悪く、全くフラグが取れません。</p>
-
-<p><a href="https://morsecode.world/international/decoder/audio-decoder-adaptive.html" target="_blank">https://morsecode.world/international/decoder/audio-decoder-adaptive.html</a></p>
-
+<p><a href="https://morsecode.world/international/decoder/audio-decoder-adaptive.html">https://morsecode.world/international/decoder/audio-decoder-adaptive.html</a></p>
 <p>ただ、助かったのは、どうやらモールス信号の周波数が563Hzくらいだということです。（たぶん）</p>
-
-<p><br>
-Audacityで以下をやりました。</p>
-
+<br>
+Audacityで以下をやりました。
 <ul>
 <li>Vocal Removerのオプションで、Retain freqnency bandを選び、560 ~ 570 辺りのみ取り出し。</li>
 <li>ファイルの後ろ側に、ボリュームの大きい関係ない音が入っているので削除。（これをしないとAmplifyに制限がかかっちゃうため）</li>
 <li>Amplifyして、ボリュームアップ。</li>
 <li>View -&gt; Zoom in</li>
 </ul>
-
-<p><img src="https://captureamerica.github.io/writeups/img/NeverLAN_HiddenAudio.png" alt="NeverLAN_HiddenAudio.png"></p>
-
-<p><br>
-ちなみに、このファイルも上記のサイトで試しましたが、全然ダメでした。</p>
-
+<img src="https://captureamerica.github.io/writeups/img/NeverLAN_HiddenAudio.png" alt="NeverLAN_HiddenAudio.png">
+<br>
+ちなみに、このファイルも上記のサイトで試しましたが、全然ダメでした。
 <p>ということで、目視で解析。この作業自体は思ったより難しくはなかったです。</p>
-
-<p>一覧表はWikiにあります。(<a href="https://en.wikipedia.org/wiki/Morse_code" target="_blank">https://en.wikipedia.org/wiki/Morse_code</a>)</p>
-
-<p><br>
-Flag: <code>flag{ditsanddahsforlife}</code></p>
-
+<p>一覧表はWikiにあります。(<a href="https://en.wikipedia.org/wiki/Morse_code">https://en.wikipedia.org/wiki/Morse_code</a>)</p>
+<br>
+Flag: `flag{ditsanddahsforlife}`
 <p><br /><br />
 <br /><br /></p>
-
 <h2 id="programing-dasprime-100">[Programing]: DasPrime (100)</h2>
-
-<hr />
-
+<hr>
 <h3 id="challenge-7">Challenge</h3>
-
 <blockquote>
-<p>My assignments due and I still don't have the answer! Can you help me fix my Python script... and also give me the answer? I need to make a prime number generator and find the 10,497th prime number. I've already written a python script that kinda works... can you either fix it or write your own and tell me the prime number?
+<p>My assignments due and I still don&rsquo;t have the answer! Can you help me fix my Python script&hellip; and also give me the answer? I need to make a prime number generator and find the 10,497th prime number. I&rsquo;ve already written a python script that kinda works&hellip; can you either fix it or write your own and tell me the prime number?
 <br /><br />
 -ZestyFE</p>
 </blockquote>
-
 <p>Attachment:</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-Python" data-lang="Python"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -738,98 +624,64 @@ Flag: <code>flag{ditsanddahsforlife}</code></p>
             <span class="n">index</span> <span class="o">+=</span> <span class="mi">1</span>
         <span class="n">count</span> <span class="o">+=</span> <span class="mi">1</span>
 <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&#34;__main__&#34;</span><span class="p">:</span>
-    <span class="n">main</span><span class="p">()</span></code></pre></td></tr></table>
+    <span class="n">main</span><span class="p">()</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<h3 id="solution-7">Solution</h3>
-
+</div><h3 id="solution-7">Solution</h3>
 <p>全然想定解じゃないんですけど、ウェブで素数の一覧を探して10497番目の素数を見つけただけです。。（ごめんなさい）</p>
-
 <p>以下のデータにお世話になりました。<br>
-<a href="http://www.ysr.net.it-chiba.ac.jp/~yashiro/sosu/" target="_blank">http://www.ysr.net.it-chiba.ac.jp/~yashiro/sosu/</a></p>
-
-<p><pre>
-$ cat prime.txt | tr &quot; &quot; &quot;\n&quot; | nl | grep 10497
+<a href="http://www.ysr.net.it-chiba.ac.jp/~yashiro/sosu/">http://www.ysr.net.it-chiba.ac.jp/~yashiro/sosu/</a></p>
+<pre>
+$ cat prime.txt | tr " " "\n" | nl | grep 10497
 </pre>
-<br></p>
-
+<br>
 <p>Flag: <code>110573</code></p>
-
 <p><br /><br />
 <br /><br /></p>
-
 <h2 id="recon-front-page-of-the-internet-50">[Recon]: Front Page of the Internet (50)</h2>
-
-<hr />
-
+<hr>
 <h3 id="challenge-8">Challenge</h3>
-
 <blockquote>
-<p>Whoops... I leaked a flag on a public website
+<p>Whoops&hellip; I leaked a flag on a public website
 <br /><br />
 -ZestyFE</p>
 </blockquote>
-
 <h3 id="solution-8">Solution</h3>
-
 <p>とりあえず、<code>Front Page of the Internet</code> を Google でサーチします。</p>
-
 <p>Reddit のことなんですね。Reddit自体は毎日見てるけど、そういう呼び名があるのは知らなかったです。</p>
-
-<p><br>
-次に、Reddit内で <code>ZestyFE</code> をサーチします。そうこうしていると、以下のページに辿り着き、そこにフラグが見つかります。</p>
-
-<p><a href="https://www.reddit.com/r/Hacking_Tutorials/comments/dz2ws8/public_ctf_cite_for_middlehigh_school_classes/fgvew6c/?context=3" target="_blank">https://www.reddit.com/r/Hacking_Tutorials/comments/dz2ws8/public_ctf_cite_for_middlehigh_school_classes/fgvew6c/?context=3</a></p>
-
+<br>
+次に、Reddit内で `ZestyFE` をサーチします。そうこうしていると、以下のページに辿り着き、そこにフラグが見つかります。
+<p><a href="https://www.reddit.com/r/Hacking_Tutorials/comments/dz2ws8/public_ctf_cite_for_middlehigh_school_classes/fgvew6c/?context=3">https://www.reddit.com/r/Hacking_Tutorials/comments/dz2ws8/public_ctf_cite_for_middlehigh_school_classes/fgvew6c/?context=3</a></p>
 <p>Flag: <code>flag{l3arningFr0mStr4ng3rs}</code></p>
-
 <p><br /><br />
 <br /><br /></p>
-
 <h2 id="recon-thats-just-phreaky-200">[Recon]: Thats just Phreaky (200)</h2>
-
-<hr />
-
+<hr>
 <h3 id="challenge-9">Challenge</h3>
-
 <blockquote>
 <p>The first of many stories that have been told. 01 September 2017 | 14:01</p>
 </blockquote>
-
 <h3 id="unsolved">(Unsolved)</h3>
-
 <p>Harry Potter の 19 years later 辺りの話なのはわかるんですが、フラグがなんなのかがわかりませんでした。</p>
-
 <p><code>14:01</code> の辺りの情報が見つからなかったんですが、そこがキーポイントなのかな。</p>
-
 <p>あんまり労力を費やしたくなかったので、潔く降参！</p>
-
 <p><br /><br />
 (2020/02/23 追記)</p>
-
 <p>他の方のWriteupを参照させてもらったら、全然 Harry Potter じゃなかった件。。は、恥ずかしい〜＞＜</p>
-
 <p><br /><br />
 <br /><br /></p>
-
 <h2 id="web-follow-me-100">[Web]: Follow Me! (100)</h2>
-
-<hr />
-
+<hr>
 <h3 id="challenge-10">Challenge</h3>
-
 <blockquote>
-<p>Let's start here. <a href="https://7aimehagbl.neverlanctf.com" target="_blank">https://7aimehagbl.neverlanctf.com</a></p>
+<p>Let&rsquo;s start here. <a href="https://7aimehagbl.neverlanctf.com">https://7aimehagbl.neverlanctf.com</a></p>
 </blockquote>
-
 <h3 id="solution-9">Solution</h3>
-
 <p>ひたすらリダイレクトが走ります。</p>
-
 <p><code>--max-redirect</code>を増やしたらそのうち終わるのかと思いきや、無限にループします。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-C" data-lang="C"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -842,118 +694,80 @@ $ cat prime.txt | tr &quot; &quot; &quot;\n&quot; | nl | grep 10497
 </span><span class="c1"></span><span class="nl">Location</span><span class="p">:</span> <span class="nl">http</span><span class="p">:</span><span class="c1">//1qntnni112.neverlanctf.com [following]
 </span><span class="c1"></span><span class="nl">Location</span><span class="p">:</span> <span class="nl">http</span><span class="p">:</span><span class="c1">//3w299ja5ez.neverlanctf.com [following]
 </span><span class="c1"></span><span class="o">:</span>
-<span class="mi">200</span> <span class="n">redirections</span> <span class="n">exceeded</span><span class="p">.</span></code></pre></td></tr></table>
+<span class="mi">200</span> <span class="n">redirections</span> <span class="n">exceeded</span><span class="p">.</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<p><br>
-Wiresharkでキャプチャしたら、フラグ出てました。。。</p>
-
-<p><br>
-Flag: <code>flag{d0nt_t3ll_m3_wh3r3_t0_g0}</code></p>
-
+</div><br>
+Wiresharkでキャプチャしたら、フラグ出てました。。。
+<br>
+Flag: `flag{d0nt_t3ll_m3_wh3r3_t0_g0}`
 <p><br /><br />
 <br /><br /></p>
-
 <h2 id="trivia-aaaaaaaaaaaaaa-i-hate-cves-20">[Trivia]: AAAAAAAAAAAAAA! I hate CVEs (20)</h2>
-
-<hr />
-
+<hr>
 <h3 id="challenge-11">Challenge</h3>
-
 <blockquote>
 <p>This CVE reminds me of some old school exploits. If <code>flag</code> is enabled in sudoers.</p>
 </blockquote>
-
 <h3 id="solution-10">Solution</h3>
-
 <p>CVE-2019-18634 なんだろうとすぐ思ったんだけど、フラグはCVE番号だとてっきり思っていて少しハマりました。</p>
-
 <p>Flag: <code>pwfeedback</code></p>
-
 <p><br /><br />
 <br /><br /></p>
-
 <h2 id="trivia-rick-rolled-by-the-nsa-50">[Trivia]: Rick Rolled by the NSA??? (50)</h2>
-
-<hr />
-
+<hr>
 <h3 id="challenge-12">Challenge</h3>
-
 <blockquote>
-<p>This CVE Proof of concept Shows NSA.gov playing &quot;Never Gonna Give You Up,&quot; by 1980s heart-throb Rick Astley.
+<p>This CVE Proof of concept Shows NSA.gov playing &ldquo;Never Gonna Give You Up,&rdquo; by 1980s heart-throb Rick Astley.
 <br /><br />
 Use the CVE ID for the flag. flag{CVE-?????????}</p>
 </blockquote>
-
 <h3 id="solution-11">Solution</h3>
-
 <p><code>&quot;Never Gonna Give You Up&quot; POC exploit</code> をキーワードにググると、以下のサイトが見つかりました。</p>
-
-<p><a href="https://arstechnica.com/information-technology/2020/01/researcher-develops-working-exploit-for-critical-windows-10-vulnerability/" target="_blank">https://arstechnica.com/information-technology/2020/01/researcher-develops-working-exploit-for-critical-windows-10-vulnerability/</a></p>
-
-<p><br>
-Flag: <code>flag{CVE-2020-0601}</code></p>
-
+<p><a href="https://arstechnica.com/information-technology/2020/01/researcher-develops-working-exploit-for-critical-windows-10-vulnerability/">https://arstechnica.com/information-technology/2020/01/researcher-develops-working-exploit-for-critical-windows-10-vulnerability/</a></p>
+<br>
+Flag: `flag{CVE-2020-0601}`
 <p><br /><br />
 <br /><br />
 <img src="https://captureamerica.github.io/writeups/img/orange_bar.png" alt="orange_bar.png">
 <br />
 ここから下はCTF終了後（2020/02/23）に行った復習です。他の方のWriteupとか参照してます。</p>
-
 <p><br /></p>
-
 <h2 id="crypto-it-is-like-an-onion-of-secrets">[Crypto]: It is like an onion of secrets.</h2>
-
-<hr />
-
+<hr>
 <h3 id="challenge-13">Challenge</h3>
-
 <blockquote>
 <p>Crypto Hard Jake From S7a73farm
 <br />
-This one has layers like an onion. Just don't let it make you cry..</p>
+This one has layers like an onion. Just don&rsquo;t let it make you cry..</p>
 </blockquote>
-
 <p>Attachment:</p>
-
 <ul>
 <li>Much_Confused.png</li>
 </ul>
-
 <p>(Hintが3つくらいあったみたいです。全然見てなかったです。。)</p>
-
-<p><br></p>
-
-<h3 id="solution-12">Solution</h3>
-
+<br>
+### Solution
 <p>zstegで長いbase64 encodeされた文字列が取れます。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><span class="lnt">1
-</span></pre></td>
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
 <td class="lntd">
-<pre class="chroma">$ zsteg -l 0 Much_Confused.png -v b1,rgb,lsb,xy </pre></td></tr></table>
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">$ zsteg -l 0 Much_Confused.png -v b1,rgb,lsb,xy 
+</code></pre></td></tr></table>
 </div>
-</div>
-<p><br>
-それをデコードすると、<code>lspv wwat kl rljvzfciggvnclzv</code> という文字列が取れます。ここで詰まってました。</p>
-
+</div><br>
+それをデコードすると、`lspv wwat kl rljvzfciggvnclzv` という文字列が取れます。ここで詰まってました。
 <p><code>neverlanctf</code> を Key として、Vigenere Cipherで復号したらよかったみたいです。そういうヒントがあったのかな？</p>
-
 <p>復号は、以下のサイトにお世話になりました。</p>
-
-<p><a href="https://www.mygeocachingprofile.com/codebreaker.vigenerecipher.aspx" target="_blank">https://www.mygeocachingprofile.com/codebreaker.vigenerecipher.aspx</a></p>
-
-<p>復号結果：&quot;your flag is myfavoritecipher&quot;</p>
-
-<p><br>
-Flag: <code>flag{myfavoritecipher}</code></p>
-
+<p><a href="https://www.mygeocachingprofile.com/codebreaker.vigenerecipher.aspx">https://www.mygeocachingprofile.com/codebreaker.vigenerecipher.aspx</a></p>
+<p>復号結果：&ldquo;your flag is myfavoritecipher&rdquo;</p>
+<br>
+Flag: `flag{myfavoritecipher}`
 <p><br /><br />
 <br /><br /></p>
-
-<hr />
-
+<hr>
 <p><br /><br />
 <br /><br /></p>
 

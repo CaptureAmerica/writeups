@@ -23,7 +23,7 @@
 <meta name="google-site-verification" content="PqctLWZQttGzxXVupWuIt2HWuBI8cvN1z07ETpxA2dw" />
 
 
-<meta name="generator" content="Hugo 0.59.1 with theme even" />
+<meta name="generator" content="Hugo 0.68.3 with theme even" />
 
 
 <link rel="canonical" href="https://captureamerica.github.io/writeups/post/trendmicroctf_2019/" />
@@ -46,16 +46,13 @@
 <meta property="article:modified_time" content="2020-01-25T17:00:00+09:00" />
 <meta itemprop="name" content="Trendmicro CTF 2019 Quals Writeup">
 <meta itemprop="description" content="(2020/01/25 - 復習しました) URL: https://www.trendmicro.com/ja_jp/campaigns/capture-the-flag.html 2019年9月のアタマ辺りにやってたCTFです。ファイルだけダウンロードして、その後スルーしたやつなんですが、後日（2">
-
-
 <meta itemprop="datePublished" content="2020-01-25T17:00:00&#43;09:00" />
 <meta itemprop="dateModified" content="2020-01-25T17:00:00&#43;09:00" />
 <meta itemprop="wordCount" content="364">
 
 
 
-<meta itemprop="keywords" content="CTF,Reviewed," />
-<meta name="twitter:card" content="summary"/>
+<meta itemprop="keywords" content="CTF,Reviewed," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Trendmicro CTF 2019 Quals Writeup"/>
 <meta name="twitter:description" content="(2020/01/25 - 復習しました) URL: https://www.trendmicro.com/ja_jp/campaigns/capture-the-flag.html 2019年9月のアタマ辺りにやってたCTFです。ファイルだけダウンロードして、その後スルーしたやつなんですが、後日（2"/>
 
@@ -139,68 +136,47 @@
   <h2 class="post-toc-title">Contents</h2>
   <div class="post-toc-content">
     <nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li><a href="#forensics-forensics-exploit-100">[Forensics]: Forensics-exploit 100</a>
-<ul>
-<li><a href="#challenge">Challenge</a></li>
-<li><a href="#solution">Solution</a></li>
-</ul></li>
-</ul></li>
-</ul>
+  <ul>
+    <li><a href="#forensics-forensics-exploit-100">[Forensics]: Forensics-exploit 100</a>
+      <ul>
+        <li><a href="#challenge">Challenge</a></li>
+        <li><a href="#solution">Solution</a></li>
+      </ul>
+    </li>
+  </ul>
 </nav>
   </div>
 </div>
     <div class="post-content">
-      
-
-<div class='align-right'>
-  
+      <div class='align-right'>
 <a href="https://translate.google.com/translate?hl=en&sl=ja&tl=en&u=https%3A%2F%2Fcaptureamerica.github.io%2Fwriteups%2Fpost%2Ftrendmicroctf_2019%2F">
 <img src="https://captureamerica.github.io/writeups/img/En.png" alt="English">
 </a>
-
 </div>
-
 <p>(2020/01/25 - 復習しました)</p>
-
-<p>URL: <a href="https://www.trendmicro.com/ja_jp/campaigns/capture-the-flag.html" target="_blank">https://www.trendmicro.com/ja_jp/campaigns/capture-the-flag.html</a>
+<p>URL: <a href="https://www.trendmicro.com/ja_jp/campaigns/capture-the-flag.html">https://www.trendmicro.com/ja_jp/campaigns/capture-the-flag.html</a>
 <br /><br />
 2019年9月のアタマ辺りにやってたCTFです。ファイルだけダウンロードして、その後スルーしたやつなんですが、後日（2020/01/25）１個だけですが復習しました。
 <br /><br />
 <img src="https://captureamerica.github.io/writeups/img/orange_bar.png" alt="orange_bar.png">
 <br />
 ここから下はCTF終了後に行った復習です。他の方のWriteupとか参照してます。</p>
-
 <p><br /><br /></p>
-
 <h2 id="forensics-forensics-exploit-100">[Forensics]: Forensics-exploit 100</h2>
-
-<hr />
-
+<hr>
 <h3 id="challenge">Challenge</h3>
-
 <blockquote>
 <p>Analyze the pcap, check for clues, listen, follow the breadcrumbs and ultimately collect the flag!</p>
 </blockquote>
-
 <p>Attachment:</p>
-
 <ul>
 <li>ctf.pcap (元ファイル名はこれじゃなかったかも)</li>
 </ul>
-
 <p><br /></p>
-
 <h3 id="solution">Solution</h3>
-
 <p>Wireshark &gt; Statistics &gt; Conversations</p>
-
-<p><img src="https://captureamerica.github.io/writeups/img/trandmicro2019_for1.png" alt="trandmicro2019_for1.png"></p>
-
+<img src="https://captureamerica.github.io/writeups/img/trandmicro2019_for1.png" alt="trandmicro2019_for1.png">
 <p>Port Bのところに、印字可能文字コードが並んでいるので、いくつか変換してみます。</p>
-
 <pre>
 $ python
 Python 3.7.3 (default, May 26 2019, 16:51:20) 
@@ -214,11 +190,8 @@ Type "help", "copyright", "credits" or "license" for more information.
 'C'
 >>> exit()
 </pre>
-
 <p>フラグになりそう。</p>
-
 <p>ということで、</p>
-
 <pre>
 $ tshark -r ctf.pcap -Tfields -e ip.addr -e tcp.dstport | grep "117.114.23.95" | awk '{print $2}' | tr "\n" " " ; echo
 84 77 67 84 70 123 75 110 48 99 107 74 117 53 116 111 78 116 104 51 114 49 103 104 116 100 48 48 114 125 42740 125 125 42740 42740 125
@@ -226,14 +199,10 @@ $ tshark -r ctf.pcap -Tfields -e ip.addr -e tcp.dstport | grep "117.114.23.95" |
 $ python -c 'print("".join([chr(int(x)) for x in "84 77 67 84 70 123 75 110 48 99 107 74 117 53 116 111 78 116 104 51 114 49 103 104 116 100 48 48 114 125".split()]))'
 TMCTF{Kn0ckJu5toNth3r1ghtd00r}
 </pre>
-
 <p>Flag: <code>TMCTF{Kn0ckJu5toNth3r1ghtd00r}</code></p>
-
 <p><br /><br />
 <br /><br /></p>
-
-<hr />
-
+<hr>
 <p><br /><br />
 <br /><br /></p>
 

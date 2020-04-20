@@ -23,7 +23,7 @@
 <meta name="google-site-verification" content="PqctLWZQttGzxXVupWuIt2HWuBI8cvN1z07ETpxA2dw" />
 
 
-<meta name="generator" content="Hugo 0.59.1 with theme even" />
+<meta name="generator" content="Hugo 0.68.3 with theme even" />
 
 
 <link rel="canonical" href="https://captureamerica.github.io/writeups/post/riftctf_2020/" />
@@ -46,16 +46,13 @@
 <meta property="article:modified_time" content="2020-03-21T15:30:00+09:00" />
 <meta itemprop="name" content="RiftCTF 2020 Writeup">
 <meta itemprop="description" content="URL: http://riftctf.iiitnr.ac.in:8000/challenges stringsコマンドで解けるやつ（3つもあった）とか、ウェブで調べものをするやつとか、答えはわかっててもフラグがIncorrectにな">
-
-
 <meta itemprop="datePublished" content="2020-03-21T15:30:00&#43;09:00" />
 <meta itemprop="dateModified" content="2020-03-21T15:30:00&#43;09:00" />
 <meta itemprop="wordCount" content="777">
 
 
 
-<meta itemprop="keywords" content="CTF," />
-<meta name="twitter:card" content="summary"/>
+<meta itemprop="keywords" content="CTF," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="RiftCTF 2020 Writeup"/>
 <meta name="twitter:description" content="URL: http://riftctf.iiitnr.ac.in:8000/challenges stringsコマンドで解けるやつ（3つもあった）とか、ウェブで調べものをするやつとか、答えはわかっててもフラグがIncorrectにな"/>
 
@@ -139,124 +136,88 @@
   <h2 class="post-toc-title">Contents</h2>
   <div class="post-toc-content">
     <nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li><a href="#forensics-0x0004-100-points">[Forensics]: 0x0004 (100 points)</a>
-<ul>
-<li><a href="#challenge">Challenge</a></li>
-<li><a href="#unsolved">(Unsolved)</a></li>
-</ul></li>
-<li><a href="#forensics-0x0003-300-points">[Forensics]: 0x0003 (300 points)</a>
-<ul>
-<li><a href="#challenge-1">Challenge</a></li>
-<li><a href="#unsolved-1">(Unsolved)</a></li>
-</ul></li>
-</ul></li>
-</ul>
+  <ul>
+    <li><a href="#forensics-0x0004-100-points">[Forensics]: 0x0004 (100 points)</a>
+      <ul>
+        <li><a href="#challenge">Challenge</a></li>
+        <li><a href="#unsolved">(Unsolved)</a></li>
+      </ul>
+    </li>
+    <li><a href="#forensics-0x0003-300-points">[Forensics]: 0x0003 (300 points)</a>
+      <ul>
+        <li><a href="#challenge-1">Challenge</a></li>
+        <li><a href="#unsolved-1">(Unsolved)</a></li>
+      </ul>
+    </li>
+  </ul>
 </nav>
   </div>
 </div>
     <div class="post-content">
-      
-
-<div class='align-right'>
-  
+      <div class='align-right'>
 <a href="https://translate.google.com/translate?hl=en&sl=ja&tl=en&u=https%3A%2F%2Fcaptureamerica.github.io%2Fwriteups%2Fpost%2Friftctf_2020%2F">
 <img src="https://captureamerica.github.io/writeups/img/En.png" alt="English">
 </a>
-
 </div>
-
-<p>URL: <a href="http://riftctf.iiitnr.ac.in:8000/challenges" target="_blank">http://riftctf.iiitnr.ac.in:8000/challenges</a>
+<p>URL: <a href="http://riftctf.iiitnr.ac.in:8000/challenges">http://riftctf.iiitnr.ac.in:8000/challenges</a>
 <br /><br />
 stringsコマンドで解けるやつ（3つもあった）とか、ウェブで調べものをするやつとか、答えはわかっててもフラグがIncorrectになるやつとか、そんなのが多かったです。</p>
-
 <p><br /></p>
-
 <p>とりあえず、記録だけ残しておきます。</p>
-
-<p><img src="https://captureamerica.github.io/writeups/img/riftctf_2020_Score1.png" alt="riftctf_2020_Score1.png"></p>
-
-<p><img src="https://captureamerica.github.io/writeups/img/riftctf_2020_Score2.png" alt="riftctf_2020_Score2.png"></p>
-
-<p><img src="https://captureamerica.github.io/writeups/img/riftctf_2020_Score3.png" alt="riftctf_2020_Score3.png"></p>
-
+<img src="https://captureamerica.github.io/writeups/img/riftctf_2020_Score1.png" alt="riftctf_2020_Score1.png">
+<img src="https://captureamerica.github.io/writeups/img/riftctf_2020_Score2.png" alt="riftctf_2020_Score2.png">
+<img src="https://captureamerica.github.io/writeups/img/riftctf_2020_Score3.png" alt="riftctf_2020_Score3.png">
 <p><br /><br /></p>
-
 <p>ちなみに、以下は、解けなかったやつです。</p>
-
 <p><br /></p>
-
 <h2 id="forensics-0x0004-100-points">[Forensics]: 0x0004 (100 points)</h2>
-
-<hr />
-
+<hr>
 <h3 id="challenge">Challenge</h3>
-
 <blockquote>
-<p>this is one of those challenges where you can't solve it until and unless you recognize the stuff.
+<p>this is one of those challenges where you can&rsquo;t solve it until and unless you recognize the stuff.
 <br />
-flag format ritsCTF{&lt;---flag-here---&gt;}.
+flag format ritsCTF{&lt;&mdash;flag-here&mdash;&gt;}.
 <br />
 Good Luck.</p>
 </blockquote>
-
 <p>Attachment:</p>
-
 <ul>
 <li>razorgirl.mp3</li>
 </ul>
-
 <p><br /></p>
-
 <h3 id="unsolved">(Unsolved)</h3>
-
 <p>まず、問題文に出てくるフラグフォーマット、ritsCTF{}が間違っています。正しくは、riftCTF{}のはず。</p>
-
 <p>（ていうか、Discordでも指摘されてたし、こういうのはすぐ直さなきゃ。）</p>
-
-<p><br>
-RX-SSTVを使って簡単に画像は取れるんですけど、正確になんて書いてあるのかが分からなくて、いろんなパターンを試したけど結局フラグが通りませんでした。。</p>
-
-<p><img src="https://captureamerica.github.io/writeups/img/riftctf_2020_razorgirl.png" alt="riftctf_2020_razorgirl.png"></p>
-
+<br>
+RX-SSTVを使って簡単に画像は取れるんですけど、正確になんて書いてあるのかが分からなくて、いろんなパターンを試したけど結局フラグが通りませんでした。。
+<img src="https://captureamerica.github.io/writeups/img/riftctf_2020_razorgirl.png" alt="riftctf_2020_razorgirl.png">
 <p><br /><br /></p>
-
 <h2 id="forensics-0x0003-300-points">[Forensics]: 0x0003 (300 points)</h2>
-
-<hr />
-
+<hr>
 <h3 id="challenge-1">Challenge</h3>
-
 <blockquote>
 <ol>
 <li>identify the file format.</li>
+</ol>
+</blockquote>
+<ol start="2">
 <li>read about the file format.</li>
 <li>see which properties this particular file has.</li>
 <li>and fix the file to get the flag.</li>
-<li>brute-forcing won't help but you can do whatever you want.</li>
-<li>flag format ritsCTF{&lt;---flag-here---&gt;}. Good Luck!
+<li>brute-forcing won&rsquo;t help but you can do whatever you want.</li>
+<li>flag format ritsCTF{&lt;&mdash;flag-here&mdash;&gt;}. Good Luck!
 <br /></li>
 </ol>
-</blockquote>
-
 <p>Attachment:</p>
-
 <ul>
 <li>flag.zip</li>
 <li>readme.txt</li>
 </ul>
-
 <p><br /></p>
-
 <h3 id="unsolved-1">(Unsolved)</h3>
-
 <p>何気にこのチャレンジも、間違ったフラグフォーマット ritsCTF{} になってますね。。</p>
-
 <p><br />
 flag.zip には、flag.txtとreadme.txtが含まれています。</p>
-
 <pre>
 captureamerica@kali:~/CTF/RiftCTF_2020$ zipinfo flag.zip
 Archive:  flag.zip
@@ -265,10 +226,8 @@ Zip file size: 492 bytes, number of entries: 2
 -rw-a--     3.1 fat       40 BX defN 20-Mar-16 14:29 flag.txt
 2 files, 94 bytes uncompressed, 96 bytes compressed:  -2.1%
 </pre>
-
-<p><br>
-Zipの末尾にはゴミもついてます。</p>
-
+<br>
+Zipの末尾にはゴミもついてます。
 <pre>
 captureamerica@kali:~/CTF/RiftCTF_2020$ xxd flag.zip 
 00000000: 504b 0304 1400 0900 0800 837e 7050 1883  PK.........~pP..
@@ -303,14 +262,10 @@ captureamerica@kali:~/CTF/RiftCTF_2020$ xxd flag.zip
 000001d0: 4c4f 4c4f 4c4f 4c4f 4c4f 4c4f 4c4f 4c4f  LOLOLOLOLOLOLOLO
 000001e0: 4c4f 4c4f 4c4f 4c4f 4c4f 4c4f            LOLOLOLOLOLO
 </pre>
-
-<p><br>
-これは、既知平文攻撃で pkcrack でやっつける問題だと思うんですが、残念ながら解けませんでした。。。</p>
-
+<br>
+これは、既知平文攻撃で pkcrack でやっつける問題だと思うんですが、残念ながら解けませんでした。。。
 <p><br /><br /></p>
-
-<hr />
-
+<hr>
 <p><br /><br />
 <br /><br /></p>
 

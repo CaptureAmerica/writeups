@@ -16,14 +16,14 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="CaptureAmerica @ CTF フラxxグゲット" /><meta name="description" content="(2019/12/25 - 復習しました) URL: https://tuctf.com/ もうサイトにアクセスできないようなので、最終順位がわかりません。 以下、チャレンジ一覧と解いた問題です。 [Misc]: Onions Challenge Ogres are like files --" /><meta name="keywords" content="CTF, Writeup, captureamerica, picoCTF" />
+<meta name="author" content="CaptureAmerica @ CTF フラxxグゲット" /><meta name="description" content="(2019/12/25 - 復習しました) URL: https://tuctf.com/ もうサイトにアクセスできないようなので、最終順位がわかりません。 以下、チャレンジ一覧と解いた問題です。 [Misc]: Onions Challenge Ogres are like files &amp;ndash;" /><meta name="keywords" content="CTF, Writeup, captureamerica, picoCTF" />
 
 
 
 <meta name="google-site-verification" content="PqctLWZQttGzxXVupWuIt2HWuBI8cvN1z07ETpxA2dw" />
 
 
-<meta name="generator" content="Hugo 0.59.1 with theme even" />
+<meta name="generator" content="Hugo 0.68.3 with theme even" />
 
 
 <link rel="canonical" href="https://captureamerica.github.io/writeups/post/tuctf_2019/" />
@@ -39,25 +39,22 @@
 
 
 <meta property="og:title" content="TUCTF 2019 Writeup" />
-<meta property="og:description" content="(2019/12/25 - 復習しました) URL: https://tuctf.com/ もうサイトにアクセスできないようなので、最終順位がわかりません。 以下、チャレンジ一覧と解いた問題です。 [Misc]: Onions Challenge Ogres are like files --" />
+<meta property="og:description" content="(2019/12/25 - 復習しました) URL: https://tuctf.com/ もうサイトにアクセスできないようなので、最終順位がわかりません。 以下、チャレンジ一覧と解いた問題です。 [Misc]: Onions Challenge Ogres are like files &ndash;" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://captureamerica.github.io/writeups/post/tuctf_2019/" />
 <meta property="article:published_time" content="2019-12-03T13:00:00+09:00" />
 <meta property="article:modified_time" content="2019-12-25T16:00:00+09:00" />
 <meta itemprop="name" content="TUCTF 2019 Writeup">
-<meta itemprop="description" content="(2019/12/25 - 復習しました) URL: https://tuctf.com/ もうサイトにアクセスできないようなので、最終順位がわかりません。 以下、チャレンジ一覧と解いた問題です。 [Misc]: Onions Challenge Ogres are like files --">
-
-
+<meta itemprop="description" content="(2019/12/25 - 復習しました) URL: https://tuctf.com/ もうサイトにアクセスできないようなので、最終順位がわかりません。 以下、チャレンジ一覧と解いた問題です。 [Misc]: Onions Challenge Ogres are like files &ndash;">
 <meta itemprop="datePublished" content="2019-12-03T13:00:00&#43;09:00" />
 <meta itemprop="dateModified" content="2019-12-25T16:00:00&#43;09:00" />
-<meta itemprop="wordCount" content="3343">
+<meta itemprop="wordCount" content="3347">
 
 
 
-<meta itemprop="keywords" content="CTF,Reviewed," />
-<meta name="twitter:card" content="summary"/>
+<meta itemprop="keywords" content="CTF,Reviewed," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="TUCTF 2019 Writeup"/>
-<meta name="twitter:description" content="(2019/12/25 - 復習しました) URL: https://tuctf.com/ もうサイトにアクセスできないようなので、最終順位がわかりません。 以下、チャレンジ一覧と解いた問題です。 [Misc]: Onions Challenge Ogres are like files --"/>
+<meta name="twitter:description" content="(2019/12/25 - 復習しました) URL: https://tuctf.com/ もうサイトにアクセスできないようなので、最終順位がわかりません。 以下、チャレンジ一覧と解いた問題です。 [Misc]: Onions Challenge Ogres are like files &ndash;"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -139,116 +136,100 @@
   <h2 class="post-toc-title">Contents</h2>
   <div class="post-toc-content">
     <nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li><a href="#misc-onions">[Misc]: Onions</a>
-<ul>
-<li><a href="#challenge">Challenge</a></li>
-<li><a href="#solution">Solution</a></li>
-</ul></li>
-<li><a href="#misc-super-secret">[Misc]: Super Secret</a>
-<ul>
-<li><a href="#challenge-1">Challenge</a></li>
-<li><a href="#solution-1">Solution</a></li>
-</ul></li>
-<li><a href="#misc-rngeesus">[Misc]: RNGeesus</a>
-<ul>
-<li><a href="#challenge-2">Challenge</a></li>
-<li><a href="#solution-2">Solution</a></li>
-</ul></li>
-<li><a href="#mega-cup-of-joe-the-server">[Mega]: Cup of Joe: The Server</a>
-<ul>
-<li><a href="#challenge-3">Challenge</a></li>
-<li><a href="#solution-3">Solution</a></li>
-</ul></li>
-<li><a href="#mega-broken">[Mega]: Broken</a>
-<ul>
-<li><a href="#challenge-4">Challenge</a></li>
-<li><a href="#solution-4">Solution</a></li>
-</ul></li>
-<li><a href="#crypto-something-in-common">[Crypto]: Something in Common</a>
-<ul>
-<li><a href="#challenge-5">Challenge</a></li>
-<li><a href="#solution-5">Solution</a></li>
-</ul></li>
-<li><a href="#crypto-crypto-infinite">[Crypto]: Crypto Infinite</a>
-<ul>
-<li><a href="#challenge-6">Challenge</a></li>
-<li><a href="#unsolved">Unsolved</a></li>
-</ul></li>
-<li><a href="#reversing-faker">[Reversing]: faker</a>
-<ul>
-<li><a href="#challenge-7">Challenge</a></li>
-<li><a href="#solution-6">Solution</a></li>
-</ul></li>
-<li><a href="#reversing-object">[Reversing]: object</a>
-<ul>
-<li><a href="#challenge-8">Challenge</a></li>
-<li><a href="#solution-7">Solution</a></li>
-</ul></li>
-<li><a href="#reversing-core">[Reversing]: core</a>
-<ul>
-<li><a href="#challenge-9">Challenge</a></li>
-<li><a href="#solution-8">Solution</a></li>
-</ul></li>
-</ul></li>
-</ul>
+  <ul>
+    <li><a href="#misc-onions">[Misc]: Onions</a>
+      <ul>
+        <li><a href="#challenge">Challenge</a></li>
+        <li><a href="#solution">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#misc-super-secret">[Misc]: Super Secret</a>
+      <ul>
+        <li><a href="#challenge-1">Challenge</a></li>
+        <li><a href="#solution-1">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#misc-rngeesus">[Misc]: RNGeesus</a>
+      <ul>
+        <li><a href="#challenge-2">Challenge</a></li>
+        <li><a href="#solution-2">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#mega-cup-of-joe-the-server">[Mega]: Cup of Joe: The Server</a>
+      <ul>
+        <li><a href="#challenge-3">Challenge</a></li>
+        <li><a href="#solution-3">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#mega-broken">[Mega]: Broken</a>
+      <ul>
+        <li><a href="#challenge-4">Challenge</a></li>
+        <li><a href="#solution-4">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#crypto-something-in-common">[Crypto]: Something in Common</a>
+      <ul>
+        <li><a href="#challenge-5">Challenge</a></li>
+        <li><a href="#solution-5">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#crypto-crypto-infinite">[Crypto]: Crypto Infinite</a>
+      <ul>
+        <li><a href="#challenge-6">Challenge</a></li>
+        <li><a href="#unsolved">Unsolved</a></li>
+      </ul>
+    </li>
+    <li><a href="#reversing-faker">[Reversing]: faker</a>
+      <ul>
+        <li><a href="#challenge-7">Challenge</a></li>
+        <li><a href="#solution-6">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#reversing-object">[Reversing]: object</a>
+      <ul>
+        <li><a href="#challenge-8">Challenge</a></li>
+        <li><a href="#solution-7">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#reversing-core">[Reversing]: core</a>
+      <ul>
+        <li><a href="#challenge-9">Challenge</a></li>
+        <li><a href="#solution-8">Solution</a></li>
+      </ul>
+    </li>
+  </ul>
 </nav>
   </div>
 </div>
     <div class="post-content">
-      
-
-<div class='align-right'>
-  
+      <div class='align-right'>
 <a href="https://translate.google.com/translate?hl=en&sl=ja&tl=en&u=https%3A%2F%2Fcaptureamerica.github.io%2Fwriteups%2Fpost%2Ftuctf_2019%2F">
 <img src="https://captureamerica.github.io/writeups/img/En.png" alt="English">
 </a>
-
 </div>
-
 <p>(2019/12/25 - 復習しました)</p>
-
-<p>URL: <a href="https://tuctf.com/" target="_blank">https://tuctf.com/</a></p>
-
+<p>URL: <a href="https://tuctf.com/">https://tuctf.com/</a></p>
 <p>もうサイトにアクセスできないようなので、最終順位がわかりません。</p>
-
 <p>以下、チャレンジ一覧と解いた問題です。</p>
-
-<p><img src="https://captureamerica.github.io/writeups/img/tuctf_chal1.png" alt="tuctf_chal1.png"></p>
-
-<p><img src="https://captureamerica.github.io/writeups/img/tuctf_chal2.png" alt="tuctf_chal2.png">
-<br /><br /></p>
-
+<img src="https://captureamerica.github.io/writeups/img/tuctf_chal1.png" alt="tuctf_chal1.png">
+<img src="https://captureamerica.github.io/writeups/img/tuctf_chal2.png" alt="tuctf_chal2.png">
+<br /><br />
 <p><br /><br /></p>
-
 <h2 id="misc-onions">[Misc]: Onions</h2>
-
-<hr />
-
+<hr>
 <h3 id="challenge">Challenge</h3>
-
 <blockquote>
-<p>Ogres are like files -- they have layers!</p>
+<p>Ogres are like files &ndash; they have layers!</p>
 </blockquote>
-
 <p>Attachment:</p>
-
 <ul>
 <li>shrek.jpg</li>
 </ul>
-
 <p><br /></p>
-
 <h3 id="solution">Solution</h3>
-
 <p>シュレックのJPEG画像です。著作権は大丈夫なんでしょうか。</p>
-
 <p>foremostではなにも取れなかったので、binwalkから始めます。</p>
-
-<p>binwalk -e でもextractされなかったので、--ddを使いました。</p>
-
+<p>binwalk -e でもextractされなかったので、&ndash;ddを使いました。</p>
 <pre>
 $ binwalk -e shrek.jpg
 
@@ -335,44 +316,29 @@ flag1: ASCII text
 $ cat flag1
 TUCTF{F1L3S4R3L1K30N10NSTH3YH4V3L4Y3RS}
 </pre>
-
 <p><br />
 Flag: <code>TUCTF{F1L3S4R3L1K30N10NSTH3YH4V3L4Y3RS}</code></p>
-
 <p><br /><br />
 <br /><br /></p>
-
 <h2 id="misc-super-secret">[Misc]: Super Secret</h2>
-
-<hr />
-
+<hr>
 <h3 id="challenge-1">Challenge</h3>
-
 <blockquote>
-<p>Something's blocking my flag from this file...</p>
+<p>Something&rsquo;s blocking my flag from this file&hellip;</p>
 </blockquote>
-
 <p>Attachment:</p>
-
 <ul>
 <li>document.odt</li>
 </ul>
-
 <p><br /></p>
-
 <h3 id="solution-1">Solution</h3>
-
 <pre>
 $ file document.odt
 document.odt: OpenDocument Text
 </pre>
-
 <p>使っている Windows PC に OpenOffice がインストール済みだったので、マクロを無効な状態で開いてみました。</p>
-
 <p>マクロの中身は以下で確認できました。</p>
-
 <p>OpenOffice &gt; ツール &gt; マクロ &gt; マクロの管理 &gt; OpenOffice.org Basic &gt; 編集</p>
-
 <pre>
 REM  *****  BASIC  *****
 
@@ -380,33 +346,22 @@ Sub Main
 TUCTF{ST0P_TRUST1NG_M4CR0S_FR0M_4N_UNKN0WN_S0URC3}
 End Sub
 </pre>
-
 <p><br />
 Flag: <code>TUCTF{ST0P_TRUST1NG_M4CR0S_FR0M_4N_UNKN0WN_S0URC3}</code></p>
-
 <p><br><br>
 <br><br></p>
-
 <h2 id="misc-rngeesus">[Misc]: RNGeesus</h2>
-
-<hr />
-
+<hr>
 <h3 id="challenge-2">Challenge</h3>
-
 <blockquote>
 <p>RNGeesus has a secret technique, can you guess it?
 <br><br>
 nc chal.tuctf.com 30300</p>
 </blockquote>
-
 <p><br /></p>
-
 <h3 id="solution-2">Solution</h3>
-
 <p>まずは繋げてみます。2回繋げて、毎回同じ問題であることを確認しました。</p>
-
 <p>また、適当に答えを入れると、ググれ！というヒントがもらえました。</p>
-
 <pre>
 $ nc chal.tuctf.com 30300
 Good afternoon, my children...
@@ -439,42 +394,29 @@ RNGesus gives the following number: 520932930
 Easy! Alright, what's his next move?
 Hmm, that wasn't right. Try some more searching. There's source code out there somewhere! Better luck next time...
 </pre>
-
-<p>&quot;520932930&quot;でググると、いくつかサイトがヒットしました。</p>
-
+<p>&ldquo;520932930&quot;でググると、いくつかサイトがヒットしました。</p>
 <p>シード値(0)でrand()を実行した際の最初の結果が&quot;520932930&quot;で、次は&quot;28925691&quot;のようです。</p>
-
 <p><br />
 Flag: <code>TUCTF{D0NT_1NS3CUR3LY_S33D_Y0UR_LCGS}</code></p>
-
 <p><br><br>
 <br><br></p>
-
 <h2 id="mega-cup-of-joe-the-server">[Mega]: Cup of Joe: The Server</h2>
-
-<hr />
-
+<hr>
 <h3 id="challenge-3">Challenge</h3>
-
 <blockquote>
 <p>On the first leg of the journey, I was looking at all the life, there were plants and hills and rocks and things, there was java and mugs and caffeine.
 <br><br>
 chal.tuctf.com:32000</p>
 </blockquote>
-
 <p><br /></p>
-
 <h3 id="solution-3">Solution</h3>
-
 <p>上記のウェブサイトにアクセスすると、以下にリダイレクトされます。</p>
-
-<p><a href="http://chal.tuctf.com:32000/coffeepot?" target="_blank">http://chal.tuctf.com:32000/coffeepot?</a></p>
-
+<p><a href="http://chal.tuctf.com">http://chal.tuctf.com</a>:32000/coffeepot?</p>
 <p><br />
 ソースを見てみます。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-html" data-lang="html"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -539,15 +481,13 @@ chal.tuctf.com:32000</p>
 
 		<span class="p">&lt;/</span><span class="nt">form</span><span class="p">&gt;</span>
 	<span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
-<span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span></code></pre></td></tr></table>
+<span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<p>これは、エイプリルフールのジョークRFC（RFC 2324 - Hyper Text Coffee Pot Control Protocol）ですね。</p>
-
+</div><p>これは、エイプリルフールのジョークRFC（RFC 2324 - Hyper Text Coffee Pot Control Protocol）ですね。</p>
 <p>RFCの存在は知ってましたけど、実際に使うのは今回が初めてです。</p>
-
 <p><br /><br />
-普通にGETを送ると、カフェインが足りないと言って怒られます。
+普通にGETを送ると、カフェインが足りないと言って怒られます。</p>
 <pre>
 GET /coffeepot? HTTP/1.1
 Host: chal.tuctf.com:32000
@@ -556,173 +496,131 @@ Cache-Control: max-age=0
 Upgrade-Insecure-Requests: 1
 DNT: 1
 User-Agent: Mozilla/5.0 (Windows NT 6.2; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36
-Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,<em>/</em>;q=0.8,application/signed-exchange;v=b3
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3
 Accept-Encoding: gzip, deflate
-Accept-Language: ja,en-US;q=0.9,en;q=0.8</p>
+Accept-Language: ja,en-US;q=0.9,en;q=0.8
 
-<p>HTCPCP/1.0 404 Not enough caffeine here :(
+HTCPCP/1.0 404 Not enough caffeine here :(
  Server: JavaServer
  Content-Length: 0
  Content-Type: null
-</pre></p>
-
+</pre>
 <p><br /><br />
-いろいろと試した結果、teapotに対してリクエストを送るのが正解でした。
+いろいろと試した結果、teapotに対してリクエストを送るのが正解でした。</p>
 <pre>
-$ curl -X BREW <a href="http://chal.tuctf.com:32000/teapot" target="_blank">http://chal.tuctf.com:32000/teapot</a>
+$ curl -X BREW http://chal.tuctf.com:32000/teapot
 HTCPCP/1.0 418 I'm a teapot. Go to /broken.zip
  Server: JavaServer
  Content-Length: 0
- Content-Type: Short and stout</p>
+ Content-Type: Short and stout
 
-<p>$ curl -X BREW <a href="http://chal.tuctf.com:32000/broken.zip" target="_blank">http://chal.tuctf.com:32000/broken.zip</a>
+$ curl -X BREW http://chal.tuctf.com:32000/broken.zip
 HTCPCP/1.0 200 Success!
  Server: JavaServer
  Content-Length: 6965888
- Content-Type: application/octet-stream</p>
+ Content-Type: application/octet-stream
 
-<p>Warning: Binary output can mess up your terminal. Use &quot;--output -&quot; to tell
-Warning: curl to output it to your terminal anyway, or consider &quot;--output
-Warning: <FILE>&quot; to save to a file.</p>
+Warning: Binary output can mess up your terminal. Use "--output -" to tell
+Warning: curl to output it to your terminal anyway, or consider "--output
+Warning: <FILE>" to save to a file.
 
-<p>$ curl -X BREW <a href="http://chal.tuctf.com:32000/broken.zip" target="_blank">http://chal.tuctf.com:32000/broken.zip</a> --output broken.zip
+$ curl -X BREW http://chal.tuctf.com:32000/broken.zip --output broken.zip
   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
                                  Dload  Upload   Total   Spent    Left  Speed
-100 6802k    0 6802k    0     0   771k      0 --:--:--  0:00:08 --:--:-- 1123k</p>
+100 6802k    0 6802k    0     0   771k      0 --:--:--  0:00:08 --:--:-- 1123k
 
-<p>$ file broken.zip
-broken.zip: data</p>
+$ file broken.zip
+broken.zip: data
 
-<p>$ unzip broken.zip
+$ unzip broken.zip
 Archive:  broken.zip
 warning [broken.zip]:  110 extra bytes at beginning or within zipfile
   (attempting to process anyway)
    creating: broken/
   inflating: broken/broken.img
   inflating: broken/flag.txt
-</pre></p>
-
+</pre>
 <p>broken.zip は fileコマンドでZipとして認識されませんが、unzipコマンドで普通に解凍できました。</p>
-
 <p><br />
 Flag: <code>TUCTF{d0_y0u_cr4v3_th3_418}</code></p>
-
 <p><br><br>
 <br><br></p>
-
 <h2 id="mega-broken">[Mega]: Broken</h2>
-
-<hr />
-
+<hr>
 <h3 id="challenge-4">Challenge</h3>
-
 <blockquote>
 <p>Sometimes things that are broken have been broken on purpose.</p>
 </blockquote>
-
 <p><br /></p>
-
 <h3 id="solution-4">Solution</h3>
-
 <p>添付ファイルがありません。どうやら、先程の問題で取れた broken.img を使うようです。</p>
-
 <p>フラグはstringsで見つかりました。</p>
-
 <p>Flag: <code>TUCTF{D1S4ST3R_R3C0V3RY}</code></p>
-
 <p><br><br>
 <br><br></p>
-
 <h2 id="crypto-something-in-common">[Crypto]: Something in Common</h2>
-
-<hr />
-
+<hr>
 <h3 id="challenge-5">Challenge</h3>
-
 <blockquote>
-<p>We've managed to gather the details in the given file. We need a professional cryptographer to decipher the message. Are you up to the task?</p>
+<p>We&rsquo;ve managed to gather the details in the given file. We need a professional cryptographer to decipher the message. Are you up to the task?</p>
 </blockquote>
-
 <p>Attachment:</p>
-
 <ul>
 <li>rsa_details.txt</li>
 </ul>
-
 <p>以下が中身です。<br />
 n = 5196832088920565976847626600109930685983685377698793940303688567224093844213838345196177721067370218315332090523532228920532139397652718602647376176214689</p>
-
 <p>e1 = 15</p>
-
 <p>e2 = 13</p>
-
 <p>c1 = 2042084937526293083328581576825435106672034183860987592520636048680382212041801675344422421233222921527377650749831658168085014081281116990629250092000069</p>
-
 <p>c2 = 199621218068987060560259773620211396108271911964032609729865342591708524675430090445150449567825472793342358513366241310112450278540477486174011171344408</p>
-
 <p><br /></p>
-
 <h3 id="solution-5">Solution</h3>
-
-<p>&quot;rsa ctf c1 c2 e1 e2&quot;とか、&quot;Common Modulus Attack&quot; をキーワードにでググるのがコツです。</p>
-
+<p>&ldquo;rsa ctf c1 c2 e1 e2&quot;とか、&ldquo;Common Modulus Attack&rdquo; をキーワードにでググるのがコツです。</p>
 <p>過去のCTF (Square CTF 2018) でほぼ同じ問題があり、Writeupが見つかります。</p>
-
 <p>他の方が書いたWriteupそのままになっちゃうので、ここにはコードは載せません。</p>
-
 <pre>
 $ python rsa_common_solve.py
 TUCTF{Y0U_SH0ULDNT_R3US3_TH3_M0DULUS}
 </pre>
-
 <p><br />
 Flag: <code>TUCTF{Y0U_SH0ULDNT_R3US3_TH3_M0DULUS}</code></p>
-
 <p><br><br>
 <br><br></p>
-
 <h2 id="crypto-crypto-infinite">[Crypto]: Crypto Infinite</h2>
-
-<hr />
-
+<hr>
 <h3 id="challenge-6">Challenge</h3>
-
 <blockquote>
 <p>Crypto has been around forever. Does this challenge go on forever? Let us know in the comments below or find the flag to prove us wrong.
 <br><br>
 nc chal.tuctf.com 30102</p>
 </blockquote>
-
 <p><br /></p>
-
 <h3 id="unsolved">Unsolved</h3>
-
 <p>これは解けませんでした。。。</p>
-
 <p><b>無駄に</b>レベルが分かれていて、Level 0 ~ 4 は全く同じコードで解けたので、そこまでを載せておきます。Level 5以降は不明です。</p>
-
 <p><br /><br />
-まずncでアクセスしてみます。
+まずncでアクセスしてみます。</p>
 <pre>
-$ nc chal.tuctf.com 30102</p>
+$ nc chal.tuctf.com 30102
 
-<p>Welcome to the future.</p>
+Welcome to the future.
 
-<p>Can you discover infinity?</p>
+Can you discover infinity?
 
-<p>Level 0</p>
 
-<p>Give me text:
+
+Level 0
+
+Give me text:
 a
-A encrypted is _|</p>
+A encrypted is _|
 
-<p>Decrypt .-| |.- [. .-| |.- |- [] &gt; _| |.- .&lt;
+Decrypt .-| |.- [. .-| |.- |- [] > _| |.- .<
 Too slow!
-</pre></p>
-
+</pre>
 <p><br />
 次は、AからZまで入れてみました。</p>
-
 <pre>
 $ nc chal.tuctf.com 30102
 
@@ -741,14 +639,12 @@ ABCDEFGHIJKLMNOPQRSTUVWXYZ encrypted is _| |_| |_ ] [] [ -| |-| |- ._| |._| |._ 
 Decrypt .] |- [.] < v |_ < |._ []
 Too slow!
 </pre>
-
 <p><br />
 Encryptedの部分をスペース区切りとみなすと26パターンあり、アルファベットの各文字に対応しているようです。</p>
-
 <p>以下、が書いたスクリプトです。（たぶん途中のやつ。この後、更に編集したのが別PCに残っているので、後で差し替えておきます。）</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-Python" data-lang="Python"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -829,38 +725,29 @@ Encryptedの部分をスペース区切りとみなすと26パターンあり、
     <span class="k">print</span> <span class="n">s</span><span class="o">.</span><span class="n">recvline</span><span class="p">()</span>
     <span class="k">print</span> <span class="n">s</span><span class="o">.</span><span class="n">recvline</span><span class="p">()</span>
 
-<span class="k">print</span> <span class="n">s</span><span class="o">.</span><span class="n">recvall</span><span class="p">()</span></code></pre></td></tr></table>
+<span class="k">print</span> <span class="n">s</span><span class="o">.</span><span class="n">recvall</span><span class="p">()</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<p><br /><br />
+</div><p><br /><br />
 <br /><br /></p>
-
 <h2 id="reversing-faker">[Reversing]: faker</h2>
-
-<hr />
-
+<hr>
 <h3 id="challenge-7">Challenge</h3>
-
 <blockquote>
 <p>One of these things is not like the other. Can you uncover the flag?
 <br><br>
 Hint: Is there anything hidden inside the binary?</p>
 </blockquote>
-
 <p>Attachment:</p>
-
 <ul>
 <li>faker (ELF 64-bit)</li>
 </ul>
-
 <p><br /></p>
-
 <h3 id="solution-6">Solution</h3>
-
 <p>Ghidraでコードを確認します。printFlag()という関数と、それを呼んでいるA(), B(), C()関数が見つかります。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-C" data-lang="C"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -941,14 +828,14 @@ Hint: Is there anything hidden inside the binary?</p>
 <span class="p">{</span>
   <span class="n">printFlag</span><span class="p">(</span><span class="s">&#34;</span><span class="se">\\</span><span class="s">PJ</span><span class="se">\\</span><span class="s">fChqqZw|0;w2l|wELL(wYqqE$ahk&#34;</span><span class="p">);</span>
   <span class="k">return</span><span class="p">;</span>
-<span class="p">}</span></code></pre></td></tr></table>
+<span class="p">}</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<p><br /><br />
+</div><p><br /><br />
 main()をくっつけて、コンパイルして実行してみます。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-C" data-lang="C"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -1047,63 +934,47 @@ main()をくっつけて、コンパイルして実行してみます。</p>
     <span class="n">A</span><span class="p">();</span>
     <span class="n">B</span><span class="p">();</span>
     <span class="n">C</span><span class="p">();</span>
-<span class="p">}</span></code></pre></td></tr></table>
+<span class="p">}</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<p><br /><br />
+</div><p><br /><br />
 以下が結果です。どれもFake Flagっぽいです。</p>
-
 <pre>
 $ ./faker_solve.o
 TUCTF{n0p3_7h15_15_4_f4k3_fl46}
 TUCTF{50rry_n07_h3r3_317h3r}
 TUCTF{600d_7ry_bu7_k33p_l00k1n6}
 </pre>
-
 <p><br /><br />
 GhidraでStringsサーチしたら、似たようなものがもう1個見つかりました。</p>
-
-<p><img src="https://captureamerica.github.io/writeups/img/faker_strings.PNG" alt="faker_strings.PNG"></p>
-
+<img src="https://captureamerica.github.io/writeups/img/faker_strings.PNG" alt="faker_strings.PNG">
 <p>同じようにコンパイルして実行するとフラグが得られます。</p>
-
 <p><br />
 Flag: <code>TUCTF{7h3r35_4lw4y5_m0r3_70_4_b1n4ry_7h4n_m3375_7h3_d3bu663r}</code></p>
-
 <p><br /><br />
 <br /><br />
 <img src="https://captureamerica.github.io/writeups/img/orange_bar.png" alt="orange_bar.png">
 <br />
 ここから下はCTF終了後に行った復習です。（他の方のWriteupとか参照してます。）</p>
-
 <p><br /><br /></p>
-
 <h2 id="reversing-object">[Reversing]: object</h2>
-
-<hr />
-
+<hr>
 <h3 id="challenge-8">Challenge</h3>
-
 <blockquote>
-<p>We've recovered this file but can't make much of it.
+<p>We&rsquo;ve recovered this file but can&rsquo;t make much of it.
 <br /><br />
 Hint: Do you see a procedural way to recover the password?</p>
 </blockquote>
-
 <p>Attachment:</p>
-
 <ul>
 <li>run.o (ELF 64-bit)</li>
 </ul>
-
 <p><br /></p>
-
 <h3 id="solution-7">Solution</h3>
-
 <p>Ghidraでソースを確認します。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-C" data-lang="C"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -1190,59 +1061,42 @@ Hint: Do you see a procedural way to recover the password?</p>
     <span class="n">uVar2</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
   <span class="p">}</span>
   <span class="k">return</span> <span class="n">uVar2</span><span class="p">;</span>
-<span class="p">}</span></code></pre></td></tr></table>
+<span class="p">}</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<p>入力したパスワードを1文字ずつ処理しています。（whileのすぐ下のところ）</p>
-
+</div><p>入力したパスワードを1文字ずつ処理しています。（whileのすぐ下のところ）</p>
 <p>左シフトしたものを、反転 (<code>XOR 0xFF</code>) して、さらに <code>XOR 0xAA</code> したものを、比較用データと比較してます。</p>
-
 <p>比較用データもGhidraで見つかりました。</p>
-
-<p><img src="https://captureamerica.github.io/writeups/img/tuctf_object_password.png" alt="tuctf_object_password.png"></p>
-
+<img src="https://captureamerica.github.io/writeups/img/tuctf_object_password.png" alt="tuctf_object_password.png">
 <p><code>XOR 0xAA</code> の <code>XOR 0xFF</code> は <code>XOR 0x55</code> なので、この比較用データを <code>XOR 0x55</code> してから右シフトします。</p>
-
 <pre>
 python3 -c 'print(*[chr(((int(x,16))^0x55)>>1) for x in "FD FF D3 FD D9 A3 93 35 89 39 B1 3D 3B BF 8D 3D 3B 37 35 89 3F EB 35 89 EB 91 B1 33 3D 83 37 89 39 EB 3B 85 37 3F EB 99 8D 3D 39 AF".split()])' | tr -d " "
 TUCTF{c0n6r47ul4710n5_0n_br34k1n6_7h15_fl46}
 </pre>
-
 <p><br />
 Flag: <code>TUCTF{c0n6r47ul4710n5_0n_br34k1n6_7h15_fl46}</code></p>
-
-<p><br />
-<div class="admonition tip"><p class="admonition-title">Tips</p></p>
-
+<p><br /></p>
+<div class="admonition tip"><p class="admonition-title">Tips</p>
 <p>python3にて、listに*を付けることで、要素のみを空白区切りで出力することができます。</p>
-
-<p></div></p>
-
+</div>
 <p><br /><br /></p>
-
 <h2 id="reversing-core">[Reversing]: core</h2>
-
-<hr />
-
+<hr>
 <h3 id="challenge-9">Challenge</h3>
-
 <blockquote>
 <p>We were able to recover a few files we need analyzed. Think you can get anything outta these?
 <br /><br />
 Hint: How is the data manipulated before the crash? Do you know any of the characters?</p>
 </blockquote>
-
 <p>Attachment:</p>
-
 <ul>
 <li>run.c</li>
 <li>core</li>
 </ul>
-
 <p>run.cの中身：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-C" data-lang="C"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -1309,25 +1163,18 @@ Hint: How is the data manipulated before the crash? Do you know any of the chara
 	<span class="n">read</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">buf</span><span class="p">,</span> <span class="mi">128</span><span class="p">);</span>
 
     <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-<span class="p">}</span></code></pre></td></tr></table>
+<span class="p">}</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<p><br /></p>
-
+</div><p><br /></p>
 <h3 id="solution-8">Solution</h3>
-
 <p>gdbでcore解析しようとして、分からなかったやつです。</p>
-
 <p>run.c をベースに、フラグの一部 <code>TUCTF</code> をXOR ^ 1したものを、coreに対してstringsサーチするだけでした。</p>
-
 <p><br />
 Flag: <code>TUCTF{c0r3_dump?_N3v3r_h34rd_0f_y0u}</code></p>
-
 <p><br /><br />
 <br /><br /></p>
-
-<hr />
-
+<hr>
 <p><br /><br />
 <br /><br /></p>
 

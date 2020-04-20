@@ -23,7 +23,7 @@
 <meta name="google-site-verification" content="PqctLWZQttGzxXVupWuIt2HWuBI8cvN1z07ETpxA2dw" />
 
 
-<meta name="generator" content="Hugo 0.59.1 with theme even" />
+<meta name="generator" content="Hugo 0.68.3 with theme even" />
 
 
 <link rel="canonical" href="https://captureamerica.github.io/writeups/post/kntuctf_2020/" />
@@ -46,16 +46,13 @@
 <meta property="article:modified_time" content="2020-03-07T16:30:00+09:00" />
 <meta itemprop="name" content="KNTU CTF Writeup">
 <meta itemprop="description" content="URL: http://kntuctf.ir/#/challenges Registrationをした後に気づいたんですが、開催が日本時間の朝1時から5時までの4時間とか。。 せっかくなので、参加しましたけど、">
-
-
 <meta itemprop="datePublished" content="2020-03-07T16:30:00&#43;09:00" />
 <meta itemprop="dateModified" content="2020-03-07T16:30:00&#43;09:00" />
-<meta itemprop="wordCount" content="1450">
+<meta itemprop="wordCount" content="1451">
 
 
 
-<meta itemprop="keywords" content="CTF," />
-<meta name="twitter:card" content="summary"/>
+<meta itemprop="keywords" content="CTF," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="KNTU CTF Writeup"/>
 <meta name="twitter:description" content="URL: http://kntuctf.ir/#/challenges Registrationをした後に気づいたんですが、開催が日本時間の朝1時から5時までの4時間とか。。 せっかくなので、参加しましたけど、"/>
 
@@ -139,106 +136,88 @@
   <h2 class="post-toc-title">Contents</h2>
   <div class="post-toc-content">
     <nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li><a href="#misc-1-findme-35">[Misc]: 1 | FINDME (35)</a>
-<ul>
-<li><a href="#challenge">Challenge</a></li>
-<li><a href="#solution">Solution</a></li>
-</ul></li>
-<li><a href="#web-2-dracula-40">[Web]: 2 | Dracula (40)</a>
-<ul>
-<li><a href="#challenge-1">Challenge</a></li>
-<li><a href="#solution-1">Solution</a></li>
-</ul></li>
-<li><a href="#reverse-3-gpanel-50">[Reverse]: 3 | GPanel (50)</a>
-<ul>
-<li><a href="#challenge-2">Challenge</a></li>
-<li><a href="#unsolved">(Unsolved)</a></li>
-</ul></li>
-<li><a href="#web-4-mississippi-has-four-ss-55">[Web?]: 4 | Mississippi Has Four Ss (55)</a>
-<ul>
-<li><a href="#challenge-3">Challenge</a></li>
-<li><a href="#unsolved-1">(Unsolved)</a></li>
-</ul></li>
-<li><a href="#stego-5-girl-with-pearl-earring-60">[Stego]: 5 | Girl With Pearl Earring (60)</a>
-<ul>
-<li><a href="#challenge-4">Challenge</a></li>
-<li><a href="#unsolved-2">(Unsolved)</a></li>
-</ul></li>
-<li><a href="#crypto-6-caesar-salad-with-balsamic-vinegar-65">[Crypto]: 6 | Caesar Salad with Balsamic Vinegar (65)</a>
-<ul>
-<li><a href="#challenge-5">Challenge</a></li>
-<li><a href="#unsolved-3">(Unsolved)</a></li>
-</ul></li>
-<li><a href="#pwn-7-csafe-70">[Pwn?]: 7 | CSafe (70)</a>
-<ul>
-<li><a href="#challenge-6">Challenge</a></li>
-<li><a href="#unsolved-4">(Unsolved)</a></li>
-</ul></li>
-<li><a href="#web-8-ffsdojs-75">[Web]: 8 | FFSdoJS (75)</a>
-<ul>
-<li><a href="#challenge-7">Challenge</a></li>
-<li><a href="#unsolved-5">(Unsolved)</a></li>
-</ul></li>
-</ul></li>
-</ul>
+  <ul>
+    <li><a href="#misc-1--findme-35">[Misc]: 1 | FINDME (35)</a>
+      <ul>
+        <li><a href="#challenge">Challenge</a></li>
+        <li><a href="#solution">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#web-2--dracula-40">[Web]: 2 | Dracula (40)</a>
+      <ul>
+        <li><a href="#challenge-1">Challenge</a></li>
+        <li><a href="#solution-1">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#reverse-3--gpanel-50">[Reverse]: 3 | GPanel (50)</a>
+      <ul>
+        <li><a href="#challenge-2">Challenge</a></li>
+        <li><a href="#unsolved">(Unsolved)</a></li>
+      </ul>
+    </li>
+    <li><a href="#web-4--mississippi-has-four-ss-55">[Web?]: 4 | Mississippi Has Four Ss (55)</a>
+      <ul>
+        <li><a href="#challenge-3">Challenge</a></li>
+        <li><a href="#unsolved-1">(Unsolved)</a></li>
+      </ul>
+    </li>
+    <li><a href="#stego-5--girl-with-pearl-earring-60">[Stego]: 5 | Girl With Pearl Earring (60)</a>
+      <ul>
+        <li><a href="#challenge-4">Challenge</a></li>
+        <li><a href="#unsolved-2">(Unsolved)</a></li>
+      </ul>
+    </li>
+    <li><a href="#crypto-6--caesar-salad-with-balsamic-vinegar-65">[Crypto]: 6 | Caesar Salad with Balsamic Vinegar (65)</a>
+      <ul>
+        <li><a href="#challenge-5">Challenge</a></li>
+        <li><a href="#unsolved-3">(Unsolved)</a></li>
+      </ul>
+    </li>
+    <li><a href="#pwn-7--csafe-70">[Pwn?]: 7 | CSafe (70)</a>
+      <ul>
+        <li><a href="#challenge-6">Challenge</a></li>
+        <li><a href="#unsolved-4">(Unsolved)</a></li>
+      </ul>
+    </li>
+    <li><a href="#web-8--ffsdojs-75">[Web]: 8 | FFSdoJS (75)</a>
+      <ul>
+        <li><a href="#challenge-7">Challenge</a></li>
+        <li><a href="#unsolved-5">(Unsolved)</a></li>
+      </ul>
+    </li>
+  </ul>
 </nav>
   </div>
 </div>
     <div class="post-content">
-      
-
-<div class='align-right'>
-  
+      <div class='align-right'>
 <a href="https://translate.google.com/translate?hl=en&sl=ja&tl=en&u=https%3A%2F%2Fcaptureamerica.github.io%2Fwriteups%2Fpost%2Fkntuctf_2020%2F">
 <img src="https://captureamerica.github.io/writeups/img/En.png" alt="English">
 </a>
-
 </div>
-
-<p>URL: <a href="http://kntuctf.ir/#/challenges" target="_blank">http://kntuctf.ir/#/challenges</a>
+<p>URL: <a href="http://kntuctf.ir/#/challenges">http://kntuctf.ir/#/challenges</a>
 <br /><br />
 Registrationをした後に気づいたんですが、開催が日本時間の朝1時から5時までの4時間とか。。</p>
-
 <p>せっかくなので、参加しましたけど、8問中2問解いただけです。</p>
-
 <p>順位は21番ですが、32番以降のチームはみんな0点なので、参加者はかなり少なかったようですね。</p>
-
 <p>以下、スコアです。それぞれのチャレンジを、どれくらいの時間で解いたのかが表示されてます。
 <br /><br /></p>
-
-<dl>
-<dt><img src="https://captureamerica.github.io/writeups/img/knutctf_2020_Score1.png" alt="knutctf_2020_Score1.png"></dt>
-</dl>
-
+<img src="https://captureamerica.github.io/writeups/img/knutctf_2020_Score1.png" alt="knutctf_2020_Score1.png">
 <p>:</p>
-
-<p><img src="https://captureamerica.github.io/writeups/img/knutctf_2020_Score2.png" alt="knutctf_2020_Score2.png"></p>
-
+<img src="https://captureamerica.github.io/writeups/img/knutctf_2020_Score2.png" alt="knutctf_2020_Score2.png">
 <p><br /><br /></p>
-
-<h2 id="misc-1-findme-35">[Misc]: 1 | FINDME (35)</h2>
-
-<hr />
-
+<h2 id="misc-1--findme-35">[Misc]: 1 | FINDME (35)</h2>
+<hr>
 <h3 id="challenge">Challenge</h3>
-
 <blockquote>
 <p>easy warm up, search for the flag !</p>
 </blockquote>
-
 <p>Attachment:</p>
-
 <ul>
 <li>大量のファイルが入ったZipファイル</li>
 </ul>
-
 <p><br /></p>
-
 <h3 id="solution">Solution</h3>
-
 <pre>
 captureamerica@kali:~/Downloads$ grep -r CTF .
 ./files/file15/file15/file5/flag.txt:CTF{thisIsNotTheFlag]
@@ -248,46 +227,31 @@ captureamerica@kali:~/Downloads$ grep -r CTF .
 captureamerica@kali:~/Downloads$ grep -r CTF . | grep -v thisIsNot
 ./files/file12/file7/file14/flag.txt:CTF{this1sN0tTheFlag}
 </pre>
-
 <p>一瞬、Fakeフラグかと思いましたけど、Submitしたら通りました。</p>
-
 <p><br />
 Flag: <code>CTF{this1sN0tTheFlag}</code></p>
-
 <p><br /><br />
 <br /><br /></p>
-
-<h2 id="web-2-dracula-40">[Web]: 2 | Dracula (40)</h2>
-
-<hr />
-
+<h2 id="web-2--dracula-40">[Web]: 2 | Dracula (40)</h2>
+<hr>
 <h3 id="challenge-1">Challenge</h3>
-
 <blockquote>
-<p>Look What I've found, 90s website Made By a Noob Dracula :)</p>
+<p>Look What I&rsquo;ve found, 90s website Made By a Noob Dracula :)</p>
 </blockquote>
-
 <ul>
-<li><a href="http://kntuctf.ir/qqualss/Dracula/" target="_blank">http://kntuctf.ir/qqualss/Dracula/</a></li>
+<li><a href="http://kntuctf.ir/qqualss/Dracula/">http://kntuctf.ir/qqualss/Dracula/</a></li>
 </ul>
-
 <p><br /></p>
-
 <h3 id="solution-1">Solution</h3>
-
 <p>html sourceを見ると、st_234g()関数を呼んでいる箇所が見つかります。</p>
-
 <p>st_234g()関数は index.js の中で定義されていて、Developer tool で beautify すると、以下のような感じです。難読化されています。</p>
-
-<p><img src="https://captureamerica.github.io/writeups/img/knutctf_2020_indexjs.png" alt="knutctf_2020_indexjs.png"></p>
-
+<img src="https://captureamerica.github.io/writeups/img/knutctf_2020_indexjs.png" alt="knutctf_2020_indexjs.png">
 <p><br />
 ファイルをローカルに保存し、以下のように html 本体からalert()を直に呼ぶようにしました。（真ん中辺りのやつ）</p>
-
 <p>3つ目のalertでフラグが表示されます。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-html" data-lang="html"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -354,40 +318,30 @@ Flag: <code>CTF{this1sN0tTheFlag}</code></p>
       <span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;pass&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
     <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
   <span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
-<span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span></code></pre></td></tr></table>
+<span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<p><br />
+</div><p><br />
 Flag: <code>CTF{EZPZlemonSQZ}</code></p>
-
 <p><br /><br />
 <br /><br />
 さて、ここから下の残りの6個は、解けなくて諦めて寝たやつです。</p>
-
-<h2 id="reverse-3-gpanel-50">[Reverse]: 3 | GPanel (50)</h2>
-
-<hr />
-
+<h2 id="reverse-3--gpanel-50">[Reverse]: 3 | GPanel (50)</h2>
+<hr>
 <h3 id="challenge-2">Challenge</h3>
-
 <blockquote>
-<p>GPannel has been hacked and the hacker made it inaccessible, the flag is still there...</p>
+<p>GPannel has been hacked and the hacker made it inaccessible, the flag is still there&hellip;</p>
 </blockquote>
-
 <p>Attachment:</p>
-
 <ul>
 <li>gpanel (ELF 64bit)</li>
 </ul>
-
 <p><br /></p>
-
 <h3 id="unsolved">(Unsolved)</h3>
-
 <p>Ghidraでソースを確認します。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-C" data-lang="C"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -506,13 +460,13 @@ Flag: <code>CTF{EZPZlemonSQZ}</code></p>
     <span class="n">__stack_chk_fail</span><span class="p">();</span>
   <span class="p">}</span>
   <span class="k">return</span> <span class="n">uVar2</span><span class="p">;</span>
-<span class="p">}</span></code></pre></td></tr></table>
+<span class="p">}</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<p><br /></p>
+</div><p><br /></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -521,9 +475,9 @@ Flag: <code>CTF{EZPZlemonSQZ}</code></p>
 </span><span class="lnt">7
 </span><span class="lnt">8
 </span><span class="lnt">9
-</span></pre></td>
+</span></code></pre></td>
 <td class="lntd">
-<pre class="chroma">captureamerica@kali:~/Downloads$ ./gpanel BaD_gUy evvxhonx0fuc
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">captureamerica@kali:~/Downloads$ ./gpanel BaD_gUy evvxhonx0fuc
 /===========================================================================\
 |                              W3lc0m3 t0 GP@n3l                            |
 |                               H@ked By _($&amp;&amp;@                             |
@@ -531,86 +485,57 @@ Flag: <code>CTF{EZPZlemonSQZ}</code></p>
  ~&gt; Verifying.......Correct!
 Welcome back!
 CTF{evvxhonx0fuc}
-ENCRYPT3D WITH LOVE &lt;3 </pre></td></tr></table>
+ENCRYPT3D WITH LOVE &lt;3 
+</code></pre></td></tr></table>
 </div>
-</div>
-<p><br />
+</div><p><br />
 なんかまだencryptされていてるらしく、<code>CTF{evvxhonx0fuc}</code>は通りませんでした。。</p>
-
 <p><br /><br />
 <br /><br /></p>
-
-<h2 id="web-4-mississippi-has-four-ss-55">[Web?]: 4 | Mississippi Has Four Ss (55)</h2>
-
-<hr />
-
+<h2 id="web-4--mississippi-has-four-ss-55">[Web?]: 4 | Mississippi Has Four Ss (55)</h2>
+<hr>
 <h3 id="challenge-3">Challenge</h3>
-
 <blockquote>
-<p>I've always hated the word MISSISSIPI from Dictation to Discrete Mathematics ! Why four Ss ?!</p>
+<p>I&rsquo;ve always hated the word MISSISSIPI from Dictation to Discrete Mathematics ! Why four Ss ?!</p>
 </blockquote>
-
-<p><a href="http://kntuctf.ir/qqualss/MissisippiHasFourSs/" target="_blank">http://kntuctf.ir/qqualss/MissisippiHasFourSs/</a></p>
-
+<p><a href="http://kntuctf.ir/qqualss/MissisippiHasFourSs/">http://kntuctf.ir/qqualss/MissisippiHasFourSs/</a></p>
 <p><br /></p>
-
 <h3 id="unsolved-1">(Unsolved)</h3>
-
 <p>ちょっとググったら、Permutationとかの数学の話が出てきて眠くなりました。</p>
-
 <p><br /><br />
 <br /><br /></p>
-
-<h2 id="stego-5-girl-with-pearl-earring-60">[Stego]: 5 | Girl With Pearl Earring (60)</h2>
-
-<hr />
-
+<h2 id="stego-5--girl-with-pearl-earring-60">[Stego]: 5 | Girl With Pearl Earring (60)</h2>
+<hr>
 <h3 id="challenge-4">Challenge</h3>
-
 <blockquote>
-<p>What is this ^_^ , 1010110.png looks suspicious... Dive in and take a look?</p>
+<p>What is this ^_^ , 1010110.png looks suspicious&hellip; Dive in and take a look?</p>
 </blockquote>
-
 <p>Attachment:</p>
-
 <ul>
 <li>^_^（中身は^が一文字入っているだけ）</li>
 <li>1010110.jpg</li>
 </ul>
-
 <p><br /></p>
-
 <h3 id="unsolved-2">(Unsolved)</h3>
-
 <p>「青い空を見上げればいつもそこに白い猫」で開いて、いろいろ見てると以下のように0と1が浮かんできます。</p>
-
-<p><img src="https://captureamerica.github.io/writeups/img/knutctf_2020_1010110.png" alt="knutctf_2020_1010110.png"></p>
-
-<p>これをOCRみたいので読み取るんだろうか？ でも、いまいちはっきり見えないし、&quot;^&quot;と言っているのでXORをして解かないといけないんでしょうね。</p>
-
+<img src="https://captureamerica.github.io/writeups/img/knutctf_2020_1010110.png" alt="knutctf_2020_1010110.png">
+<p>これをOCRみたいので読み取るんだろうか？ でも、いまいちはっきり見えないし、&ldquo;^&quot;と言っているのでXORをして解かないといけないんでしょうね。</p>
 <p><br /><br />
 <br /><br /></p>
-
-<h2 id="crypto-6-caesar-salad-with-balsamic-vinegar-65">[Crypto]: 6 | Caesar Salad with Balsamic Vinegar (65)</h2>
-
-<hr />
-
+<h2 id="crypto-6--caesar-salad-with-balsamic-vinegar-65">[Crypto]: 6 | Caesar Salad with Balsamic Vinegar (65)</h2>
+<hr>
 <h3 id="challenge-5">Challenge</h3>
-
 <blockquote>
-<p>How to make perfect Caesar Salad with Balsamic Vinegar ? first mix all of the ingredients...
+<p>How to make perfect Caesar Salad with Balsamic Vinegar ? first mix all of the ingredients&hellip;
 <br /><br />
 Hint: ADD ALL OF THE INGREDIENTS
 <br />
-Hint: DON'T FORGET TO USE PEPPER</p>
+Hint: DON&rsquo;T FORGET TO USE PEPPER</p>
 </blockquote>
-
 <p>Attachment:</p>
-
 <ul>
 <li>1.txt</li>
 </ul>
-
 <pre>
 '3',
 'c',
@@ -639,11 +564,9 @@ Hint: DON'T FORGET TO USE PEPPER</p>
 '1e',
 '9' 
 </pre>
-
 <ul>
 <li>2.txt</li>
 </ul>
-
 <pre>
 'c',
 '18',
@@ -672,11 +595,9 @@ Hint: DON'T FORGET TO USE PEPPER</p>
 '4',
 '2' 
 </pre>
-
 <ul>
 <li>3.txt</li>
 </ul>
-
 <pre>
 '3c',
 '34',
@@ -705,66 +626,41 @@ Hint: DON'T FORGET TO USE PEPPER</p>
 '27',
 '36'
 </pre>
-
 <p><br /></p>
-
 <h3 id="unsolved-3">(Unsolved)</h3>
-
 <p>ヒントに従って、数字をそれぞれ足して、<code>PEPPER</code>をKeyに Vigenèreデコードするだけなのかなって思ったけど、ダメでした。</p>
-
 <p><br /><br />
 <br /><br /></p>
-
-<h2 id="pwn-7-csafe-70">[Pwn?]: 7 | CSafe (70)</h2>
-
-<hr />
-
+<h2 id="pwn-7--csafe-70">[Pwn?]: 7 | CSafe (70)</h2>
+<hr>
 <h3 id="challenge-6">Challenge</h3>
-
 <blockquote>
 <p>The Flag has been Saved On CSafe. I wanted to give it to you, but you know, I forgot my username and password T_T.</p>
 </blockquote>
-
 <p>Attachment:</p>
-
 <ul>
 <li>gate.c</li>
 <li>vault.o</li>
 <li>vault.h</li>
 </ul>
-
 <p><br /></p>
-
 <h3 id="unsolved-4">(Unsolved)</h3>
-
 <p>これは、見てないです。</p>
-
 <p><br /><br />
 <br /><br /></p>
-
-<h2 id="web-8-ffsdojs-75">[Web]: 8 | FFSdoJS (75)</h2>
-
-<hr />
-
+<h2 id="web-8--ffsdojs-75">[Web]: 8 | FFSdoJS (75)</h2>
+<hr>
 <h3 id="challenge-7">Challenge</h3>
-
 <blockquote>
-<p>Guess the Flag, and use our CTF Flag Checker...</p>
+<p>Guess the Flag, and use our CTF Flag Checker&hellip;</p>
 </blockquote>
-
-<p><a href="http://kntuctf.ir/qqualss/FFSdoJS/" target="_blank">http://kntuctf.ir/qqualss/FFSdoJS/</a></p>
-
+<p><a href="http://kntuctf.ir/qqualss/FFSdoJS/">http://kntuctf.ir/qqualss/FFSdoJS/</a></p>
 <p><br /></p>
-
 <h3 id="unsolved-5">(Unsolved)</h3>
-
 <p>これも、見てないです。</p>
-
 <p><br /><br />
 <br /><br /></p>
-
-<hr />
-
+<hr>
 <p><br /><br />
 <br /><br /></p>
 

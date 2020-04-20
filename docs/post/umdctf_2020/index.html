@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>UMDCTF 2020 Writeup - CTF フラxxグゲット</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="CaptureAmerica @ CTF フラxxグゲット" /><meta name="description" content="URL: https://umdctf.io/challenges 直感的に解けそうと思ったやつだけやりました。 3問だけ解いて750points、147thでした。 [Steganography]: Crash Confusion (200 points) Challenge There&amp;rsquo;s something weird about this crash screen&amp;hellip; Attachment: crash.jpg Solution 「青い空" /><meta name="keywords" content="CTF, Writeup, captureamerica, picoCTF" />
+
+
+
+<meta name="google-site-verification" content="PqctLWZQttGzxXVupWuIt2HWuBI8cvN1z07ETpxA2dw" />
+
+
+<meta name="generator" content="Hugo 0.68.3 with theme even" />
+
+
+<link rel="canonical" href="https://captureamerica.github.io/writeups/post/umdctf_2020/" />
+<link rel="apple-touch-icon" sizes="180x180" href="https://captureamerica.github.io/writeups/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://captureamerica.github.io/writeups/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://captureamerica.github.io/writeups/favicon-16x16.png">
+<link rel="manifest" href="https://captureamerica.github.io/writeups/manifest.json">
+<link rel="mask-icon" href="https://captureamerica.github.io/writeups/safari-pinned-tab.svg" color="#5bbad5">
+
+
+<link href="https://captureamerica.github.io/writeups/dist/even.c2a46f00.min.css" rel="stylesheet">
+
+
+
+<meta property="og:title" content="UMDCTF 2020 Writeup" />
+<meta property="og:description" content="URL: https://umdctf.io/challenges 直感的に解けそうと思ったやつだけやりました。 3問だけ解いて750points、147thでした。 [Steganography]: Crash Confusion (200 points) Challenge There&rsquo;s something weird about this crash screen&hellip; Attachment: crash.jpg Solution 「青い空" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://captureamerica.github.io/writeups/post/umdctf_2020/" />
+<meta property="article:published_time" content="2020-04-20T08:00:00+09:00" />
+<meta property="article:modified_time" content="2020-04-20T08:00:00+09:00" />
+<meta itemprop="name" content="UMDCTF 2020 Writeup">
+<meta itemprop="description" content="URL: https://umdctf.io/challenges 直感的に解けそうと思ったやつだけやりました。 3問だけ解いて750points、147thでした。 [Steganography]: Crash Confusion (200 points) Challenge There&rsquo;s something weird about this crash screen&hellip; Attachment: crash.jpg Solution 「青い空">
+<meta itemprop="datePublished" content="2020-04-20T08:00:00&#43;09:00" />
+<meta itemprop="dateModified" content="2020-04-20T08:00:00&#43;09:00" />
+<meta itemprop="wordCount" content="651">
+
+
+
+<meta itemprop="keywords" content="CTF," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="UMDCTF 2020 Writeup"/>
+<meta name="twitter:description" content="URL: https://umdctf.io/challenges 直感的に解けそうと思ったやつだけやりました。 3問だけ解いて750points、147thでした。 [Steganography]: Crash Confusion (200 points) Challenge There&rsquo;s something weird about this crash screen&hellip; Attachment: crash.jpg Solution 「青い空"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="https://captureamerica.github.io/writeups/" class="logo">CTF Writeups</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="https://captureamerica.github.io/writeups/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="https://captureamerica.github.io/writeups/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="https://captureamerica.github.io/writeups/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="https://captureamerica.github.io/writeups/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a><a href="https://captureamerica.github.io/writeups/about/">
+        <li class="mobile-menu-item">About</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="https://captureamerica.github.io/writeups/" class="logo">CTF Writeups</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="https://captureamerica.github.io/writeups/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="https://captureamerica.github.io/writeups/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="https://captureamerica.github.io/writeups/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="https://captureamerica.github.io/writeups/categories/">Categories</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="https://captureamerica.github.io/writeups/about/">About</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">UMDCTF 2020 Writeup</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2020-04-20 </span>
+        <div class="post-category">
+            <a href="https://captureamerica.github.io/writeups/categories/ctf/"> CTF </a>
+            </div>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contents</h2>
+  <div class="post-toc-content">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#steganography-crash-confusion-200-points">[Steganography]: Crash Confusion (200 points)</a>
+      <ul>
+        <li><a href="#challenge">Challenge</a></li>
+        <li><a href="#solution">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#forensics-sensitive-150">[Forensics]: Sensitive (150)</a>
+      <ul>
+        <li><a href="#challenge-1">Challenge</a></li>
+        <li><a href="#solution-1">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#forensics-nefarious-bits-400">[Forensics]: Nefarious Bits (400)</a>
+      <ul>
+        <li><a href="#challenge-2">Challenge</a></li>
+        <li><a href="#solution-2">Solution</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <div class='align-right'>
+<a href="https://translate.google.com/translate?hl=en&sl=auto&tl=en&u=https%3A%2F%2Fcaptureamerica.github.io%2Fwriteups%2Fpost%2Fumdctf_2020%2F">
+<img src="https://captureamerica.github.io/writeups/img/En.png" alt="English">
+</a>
+</div>
+<p>URL: <a href="https://umdctf.io/challenges">https://umdctf.io/challenges</a>
+<br /><br />
+直感的に解けそうと思ったやつだけやりました。</p>
+<p>3問だけ解いて750points、147thでした。</p>
+<img src="https://captureamerica.github.io/writeups/img/umdctf_2020_Solved.png" alt="umdctf_2020_Solved.png">
+<p><br /><br /></p>
+<h2 id="steganography-crash-confusion-200-points">[Steganography]: Crash Confusion (200 points)</h2>
+<hr>
+<h3 id="challenge">Challenge</h3>
+<blockquote>
+<p>There&rsquo;s something weird about this crash screen&hellip;</p>
+</blockquote>
+<p>Attachment:</p>
+<ul>
+<li>crash.jpg</li>
+</ul>
+<p><br /></p>
+<h3 id="solution">Solution</h3>
+<p>「青い空を見上げればいつもそこに白い猫」でテキトーに見てたらBASE64エンコードされた文字列が出てきました。</p>
+<img src="https://captureamerica.github.io/writeups/img/umdctf_2020_crash.png" alt="umdctf_2020_crash.png">
+<p><br /></p>
+<pre>
+$ echo VU1BQ1RGLXt0aHIzc2gwbGRfZXJyMHJ6fQ | base64 -d
+UMACTF-{thr3sh0ld_err0rz}
+</pre>
+<p><br />
+どこか読み間違えているのか、<code>UMACTF</code>になってしまったので、<code>UMDCTF</code>に直してSubmitしました。</p>
+<p>Flag: <code>UMDCTF-{thr3sh0ld_err0rz}</code></p>
+<p><br /><br />
+<br /><br /></p>
+<h2 id="forensics-sensitive-150">[Forensics]: Sensitive (150)</h2>
+<hr>
+<h3 id="challenge-1">Challenge</h3>
+<blockquote>
+<p>Not sure what to make of this&hellip;</p>
+</blockquote>
+<p>Attachment:</p>
+<ul>
+<li>sensitive</li>
+</ul>
+<p><br /></p>
+<h3 id="solution-1">Solution</h3>
+<p>まず、どんなファイルなのかを調べます。</p>
+<pre>
+$ file sensitive 
+sensitive: data
+</pre>
+<p><br />
+判別できなかったので、実際に中身を見てみると、元はPDFファイルで1バイト毎に空白文字が入っているようでした。</p>
+<pre>
+% P D F - 1 . 5
+:
+</pre>
+<p><br /></p>
+<p>以下のコードで余分な空白文字を取り除きました。</p>
+<p>（元々のファイルサイズが187836バイトなので、その半分の93918をb2のサイズとしています。）</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-Python" data-lang="Python"><span class="ch">#!/usr/bin/env python3</span>
+<span class="c1"># -*- coding:utf-8 -*-</span>
+
+<span class="n">b1</span> <span class="o">=</span> <span class="nb">bytearray</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="s2">&#34;sensitive&#34;</span><span class="p">,</span><span class="s2">&#34;rb&#34;</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
+<span class="n">b2</span> <span class="o">=</span> <span class="nb">bytearray</span><span class="p">(</span><span class="mi">93918</span><span class="p">)</span>
+
+<span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">b1</span><span class="p">:</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">i</span> <span class="o">%</span> <span class="mi">2</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">b2</span><span class="p">[</span><span class="n">i</span><span class="o">//</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">x</span>
+    <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+    
+<span class="nb">open</span><span class="p">(</span><span class="s2">&#34;output.pdf&#34;</span><span class="p">,</span> <span class="s2">&#34;wb&#34;</span><span class="p">)</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="nb">bytearray</span><span class="p">(</span><span class="n">b2</span><span class="p">))</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><br /></p>
+<p>PDFをLibreで開くと、中央に薄っすらQRコードが見えます。</p>
+<img src="https://captureamerica.github.io/writeups/img/umdctf_2020_libre_qr.png" alt="umdctf_2020_libre_qr.png">
+<p><br /></p>
+<p>この画像をファイルとして保存し、「青い空を見上げればいつもそこに白い猫」でテキトーに見てたら白黒がハッキリできました。</p>
+<img src="https://captureamerica.github.io/writeups/img/umdctf_2020_sensitive_qr.png" alt="umdctf_2020_sensitive_qr.png">
+<p><br /></p>
+<p>Flag: <code>UMDCTF-{l0v3-me_s0me_h3x}</code></p>
+<p><br /><br />
+<br /><br /></p>
+<h2 id="forensics-nefarious-bits-400">[Forensics]: Nefarious Bits (400)</h2>
+<hr>
+<h3 id="challenge-2">Challenge</h3>
+<blockquote>
+<p>After being exposed to some solar radiation, it looks like some bits have turned bad. It is your job to figure out what they are trying to say.
+<br /><br />
+Note: do not attempt to communicate with or contact any of the IP addresses mentioned in the challenge. The challenge can and should be solved statically.</p>
+</blockquote>
+<p>Attachment:</p>
+<ul>
+<li>attack.pcap</li>
+</ul>
+<p><br /></p>
+<h3 id="solution-2">Solution</h3>
+<p>WireSharkで各パケットを見ていくと、IPヘッダ内のフラグの値が0や1に変化しているのがわかります。</p>
+<pre>
+$ tshark -r attack.pcap -Tfields -e ip.flags.rb | tr -d "\n" ; echo
+01010101010011010100010001000011010101000100011000101101011110110011001101110110011010010110110001011111011000100011000101110100011100110101111101000000011100100011001101011111001101000110110001110111001101000111100101110011010111110011001101110110011010010011000101111101
+</pre>
+<br>
+2進数を文字列に変換すると、フラグが得られます。
+<p>Flag: <code>UMDCTF-{3vil_b1ts_@r3_4lw4ys_3vi1}</code></p>
+<p><br /><br />
+<br /><br /></p>
+<hr>
+<p><br /><br />
+<br /><br /></p>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content">CaptureAmerica @ CTF フラxxグゲット</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">
+        2020-04-20
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="https://captureamerica.github.io/writeups/tags/ctf/">CTF</a>
+          </div>
+      <nav class="post-nav">
+        
+        <a class="next" href="https://captureamerica.github.io/writeups/post/auctf_2020/">
+            <span class="next-text nav-default">AUCTF 2020 Writeup</span>
+            <span class="next-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="https://github.com/CaptureAmerica/" class="iconfont icon-github" title="github"></a>
+  <a href="https://captureamerica.github.io/writeups/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2019 - 
+    2020
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">CaptureAmerica @ CTF フラxxグゲット</span>
+  </span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  
+<script type="text/javascript" src="https://captureamerica.github.io/writeups/dist/even.26188efa.min.js"></script>
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-104910699-2', 'auto');
+	ga('set', 'anonymizeIp', true);
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+
+
+
+
+
+</body>
+</html>
