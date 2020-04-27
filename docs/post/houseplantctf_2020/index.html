@@ -16,7 +16,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="CaptureAmerica @ CTF フラxxグゲット" /><meta name="description" content="URL: https://houseplant.riceteacatpanda.wtf/ 1554pointsで、389thでした。 解いた中で一番ポイントが高かった「Satan&amp;rsquo;s Jigsaw」だけ、Writeup" /><meta name="keywords" content="CTF, Writeup, captureamerica, picoCTF" />
+<meta name="author" content="CaptureAmerica @ CTF フラxxグゲット" /><meta name="description" content="(2020/04/27 - 復習しました) URL: https://houseplant.riceteacatpanda.wtf/ 1554pointsで、389thでした。 以下が解けたチャレンジです。 解いた中で一番ポイントが高かった「Satan&amp;r" /><meta name="keywords" content="CTF, Writeup, captureamerica, picoCTF" />
 
 
 
@@ -39,22 +39,22 @@
 
 
 <meta property="og:title" content="Houseplant CTF 2020 Writeup" />
-<meta property="og:description" content="URL: https://houseplant.riceteacatpanda.wtf/ 1554pointsで、389thでした。 解いた中で一番ポイントが高かった「Satan&rsquo;s Jigsaw」だけ、Writeup" />
+<meta property="og:description" content="(2020/04/27 - 復習しました) URL: https://houseplant.riceteacatpanda.wtf/ 1554pointsで、389thでした。 以下が解けたチャレンジです。 解いた中で一番ポイントが高かった「Satan&r" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://captureamerica.github.io/writeups/post/houseplantctf_2020/" />
 <meta property="article:published_time" content="2020-04-27T15:00:00+09:00" />
-<meta property="article:modified_time" content="2020-04-27T15:00:00+09:00" />
+<meta property="article:modified_time" content="2020-04-27T19:00:00+09:00" />
 <meta itemprop="name" content="Houseplant CTF 2020 Writeup">
-<meta itemprop="description" content="URL: https://houseplant.riceteacatpanda.wtf/ 1554pointsで、389thでした。 解いた中で一番ポイントが高かった「Satan&rsquo;s Jigsaw」だけ、Writeup">
+<meta itemprop="description" content="(2020/04/27 - 復習しました) URL: https://houseplant.riceteacatpanda.wtf/ 1554pointsで、389thでした。 以下が解けたチャレンジです。 解いた中で一番ポイントが高かった「Satan&r">
 <meta itemprop="datePublished" content="2020-04-27T15:00:00&#43;09:00" />
-<meta itemprop="dateModified" content="2020-04-27T15:00:00&#43;09:00" />
-<meta itemprop="wordCount" content="875">
+<meta itemprop="dateModified" content="2020-04-27T19:00:00&#43;09:00" />
+<meta itemprop="wordCount" content="1407">
 
 
 
-<meta itemprop="keywords" content="CTF," /><meta name="twitter:card" content="summary"/>
+<meta itemprop="keywords" content="CTF,Reviewed," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Houseplant CTF 2020 Writeup"/>
-<meta name="twitter:description" content="URL: https://houseplant.riceteacatpanda.wtf/ 1554pointsで、389thでした。 解いた中で一番ポイントが高かった「Satan&rsquo;s Jigsaw」だけ、Writeup"/>
+<meta name="twitter:description" content="(2020/04/27 - 復習しました) URL: https://houseplant.riceteacatpanda.wtf/ 1554pointsで、389thでした。 以下が解けたチャレンジです。 解いた中で一番ポイントが高かった「Satan&r"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -143,6 +143,18 @@
         <li><a href="#solution">Solution</a></li>
       </ul>
     </li>
+    <li><a href="#beginner-beginner-9">[Beginner]: Beginner 9</a>
+      <ul>
+        <li><a href="#challenge-1">Challenge</a></li>
+        <li><a href="#solution-1">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#misc-music-lab">[Misc]: Music Lab</a>
+      <ul>
+        <li><a href="#challenge-2">Challenge</a></li>
+        <li><a href="#solution-2">Solution</a></li>
+      </ul>
+    </li>
   </ul>
 </nav>
   </div>
@@ -153,14 +165,16 @@
 <img src="https://captureamerica.github.io/writeups/img/En.png" alt="English">
 </a>
 </div>
+<p>(2020/04/27 - 復習しました)</p>
 <p>URL: <a href="https://houseplant.riceteacatpanda.wtf/">https://houseplant.riceteacatpanda.wtf/</a>
 <br /><br />
 1554pointsで、389thでした。</p>
 <p><img src="https://captureamerica.github.io/writeups/img/houseplantCTF_2020_Score.png" alt="houseplantCTF_2020_Score.png"><br /></p>
+<p><br />
+以下が解けたチャレンジです。</p>
 <img src="https://captureamerica.github.io/writeups/img/houseplantCTF_2020_Solved.png" alt="houseplantCTF_2020_Solved.png">
 <p><br />
 解いた中で一番ポイントが高かった「Satan&rsquo;s Jigsaw」だけ、Writeupを書いておきます。</p>
-<p>解法が気になるチャレンジがいくつかあるので、後日復習しようと思います。</p>
 <p><br /><br /></p>
 <h2 id="misc-satans-jigsaw-704-points">[Misc]: Satan&rsquo;s Jigsaw (704 points)</h2>
 <hr>
@@ -325,10 +339,70 @@ $ grep jpg Satans_Jigsaw_chall_list.txt | awk '{print $4}' | sort | uniq
 </code></pre></td></tr></table>
 </div>
 </div><p><br />
-こんどこそ！！ ジャーン！</p>
+こんどこそ！！ イエーイ！</p>
 <img src="https://captureamerica.github.io/writeups/img/houseplantCTF_2020_output_ok.png" alt="houseplantCTF_2020_output_ok.png">
 <p><br />
 Flag: <code>rtcp{d1d-you_d0_7his_by_h4nd?}</code></p>
+<p><br /><br />
+<br /><br />
+<img src="https://captureamerica.github.io/writeups/img/orange_bar.png" alt="orange_bar.png">
+<br />
+ここから下はイベント終了後に行った復習です。</p>
+<p><br /><br />
+<br /><br /></p>
+<h2 id="beginner-beginner-9">[Beginner]: Beginner 9</h2>
+<hr>
+<h3 id="challenge-1">Challenge</h3>
+<blockquote>
+<p>Hope you&rsquo;ve been paying attention! :D
+<br /><br />
+Remember to wrap the flag with rtcp{}
+<br /><br />
+Hint! we stan cyberchef in this household</p>
+</blockquote>
+<p>Attachment:</p>
+<ul>
+<li>Beginner 10.txt</li>
+</ul>
+<p>中身です。</p>
+<pre>
+MmQgMmQgMmQgMmQgMmQgMjAgMmQgMmQgMmQgMmQgMmQgMjAgMmUgMmQgMmQgMmQgMmQgMjAgMmUgMmQgMmQgMmQgMmQgMjAgMmQgMmQgMmQgMmQgMmQgMjAgMmQgMmQgMmQgMmQgMmQgMjAgMmUgMmQgMmQgMmQgMmQgMjAgMmQgMmQgMmQgMmQgMmQgMGEgMmQgMmQgMmQgMmQgMmQgMjAgMmQgMmQgMmQgMmQgMmQgMjAgMmUgMmQgMmQgMmQgMmQgMjAgMmUgMmQgMmQgMmQgMmQgMjAgMmQgMmQgMmQgMmQgMmQgMjAgMmUgMmQgMmQgMmQgMmQgMjAgMmUgMmQgMmQgMmQgMmQgMjAgMmQgMmQgMmQgMmQgMmQgMGEgMmQgMmQgMmQgMmQgMmQgMjAgMmQgMmQgMmQgMmQgMmQgMjAgMmUgMmQgMmQgMmQgMmQgMjAgMmQgMmQgMmQgMmQgMmQgMjAgMmQgMmQgMmQgMmQgMmQgMjAgMmQgMmQgMmQgMmQgMmQgMjAgMmQgMmQgMmQgMmQgMmQgMjAgMmQgMmQgMmQgMmQgMmQgMGEgMmQgMmQgMmQgMmQgMmQgMjAgMmQgMmQgMmQgMmQgMmQgMjAgMmUgMmQgMmQgMmQgMmQgMjAgMmUgMmQgMmQgMmQgMmQgMjAgMmQgMmQgMmQgMmQgMmQgMjAgMmUgMmQgMmQgMmQgMmQgMjAgMmQgMmQgMmQgMmQgMmQgMjAgMmUgMmQgMmQgMmQgMmQgMGEgMmQgMmQgMmQgMmQgMmQgMjAgMmQgMmQgMmQgMmQgMmQgMjAgMmUgMmQgMmQgMmQgMmQgMjAgMmQgMmQgMmQgMmQgMmQgMjAgMmQgMmQgMmQgMmQgMmQgMjAgMmQgMmQgMmQgMmQgMmQgMjAgMmQgMmQgMmQgMmQgMmQgMjAgMmQgMmQgMmQgMmQgMmQgMGEgMmQgMmQgMmQgMmQgMmQgMjAgMmQgMmQgMmQgMmQgMmQgMjAgMmUgMmQgMmQgMmQgMmQgMjAgMmUgMmQgMmQgMmQgMmQgMjAgMmQgMmQgMmQgMmQgMmQgMjAgMmQgMmQgMmQgMmQgMmQgMjAgMmUgMmQgMmQgMmQgMmQgMjAgMmQgMmQgMmQgMmQgMmQgMGEgMmQgMmQgMmQgMmQgMmQgMjAgMmQgMmQgMmQgMmQgMmQgMjAgMmUgMmQgMmQgMmQgMmQgMjAgMmUgMmQgMmQgMmQgMmQgMjAgMmQgMmQgMmQgMmQgMmQgMjAgMmUgMmQgMmQgMmQgMmQgMjAgMmUgMmQgMmQgMmQgMmQgMjAgMmQgMmQgMmQgMmQgMmQgMGEgMmQgMmQgMmQgMmQgMmQgMjAgMmQgMmQgMmQgMmQgMmQgMjAgMmUgMmQgMmQgMmQgMmQgMjAgMmQgMmQgMmQgMmQgMmQgMjAgMmQgMmQgMmQgMmQgMmQgMjAgMmQgMmQgMmQgMmQgMmQgMjAgMmQgMmQgMmQgMmQgMmQgMjAgMmQgMmQgMmQgMmQgMmQgMGEgMmQgMmQgMmQgMmQgMmQgMjAgMmQgMmQgMmQgMmQgMmQgMjAgMmUgMmQgMmQgMmQgMmQgMjAgMmUgMmQgMmQgMmQgMmQgMjAgMmUgMmQgMmQgMmQgMmQgMjAgMmQgMmQgMmQgMmQgMmQgMjAgMmQgMmQgMmQgMmQgMmQgMjAgMmUgMmQgMmQgMmQgMmQgMGEgMmQgMmQgMmQgMmQgMmQgMjAgMmQgMmQgMmQgMmQgMmQgMjAgMmUgMmQgMmQgMmQgMmQgMjAgMmQgMmQgMmQgMmQgMmQgMjAgMmQgMmQgMmQgMmQgMmQgMjAgMmQgMmQgMmQgMmQgMmQgMjAgMmQgMmQgMmQgMmQgMmQgMjAgMmQgMmQgMmQgMmQgMmQgMGEgMmQgMmQgMmQgMmQgMmQgMjAgMmQgMmQgMmQgMmQgMmQgMjAgMmUgMmQgMmQgMmQgMmQgMjAgMmUgMmQgMmQgMmQgMmQgMjAgMmQgMmQgMmQgMmQgMmQgMjAgMmQgMmQgMmQgMmQgMmQgMjAgMmUgMmQgMmQgMmQgMmQgMjAgMmQgMmQgMmQgMmQgMmQgMGEgMmQgMmQgMmQgMmQgMmQgMjAgMmQgMmQgMmQgMmQgMmQgMjAgMmUgMmQgMmQgMmQgMmQgMjAgMmUgMmQgMmQgMmQgMmQgMjAgMmQgMmQgMmQgMmQgMmQgMjAgMmUgMmQgMmQgMmQgMmQgMjAgMmQgMmQgMmQgMmQgMmQgMjAgMmUgMmQgMmQgMmQgMmQgMGEgMmQgMmQgMmQgMmQgMmQgMjAgMmQgMmQgMmQgMmQgMmQgMjAgMmUgMmQgMmQgMmQgMmQgMjAgMmQgMmQgMmQgMmQgMmQgMjAgMmQgMmQgMmQgMmQgMmQgMjAgMmQgMmQgMmQgMmQgMmQgMjAgMmQgMmQgMmQgMmQgMmQgMjAgMmQgMmQgMmQgMmQgMmQgMGEgMmQgMmQgMmQgMmQgMmQgMjAgMmQgMmQgMmQgMmQgMmQgMjAgMmUgMmQgMmQgMmQgMmQgMjAgMmUgMmQgMmQgMmQgMmQgMjAgMmQgMmQgMmQgMmQgMmQgMjAgMmQgMmQgMmQgMmQgMmQgMjAgMmUgMmQgMmQgMmQgMmQgMjAgMmQgMmQgMmQgMmQgMmQgMGEgMmQgMmQgMmQgMmQgMmQgMjAgMmQgMmQgMmQgMmQgMmQgMjAgMmUgMmQgMmQgMmQgMmQgMjAgMmUgMmQgMmQgMmQgMmQgMjAgMmQgMmQgMmQgMmQgMmQgMjAgMmQgMmQgMmQgMmQgMmQgMjAgMmUgMmQgMmQgMmQgMmQgMjAgMmQgMmQgMmQgMmQgMmQgMGEgMmQgMmQgMmQgMmQgMmQgMjAgMmQgMmQgMmQgMmQgMmQgMjAgMmUgMmQgMmQgMmQgMmQgMjAgMmQgMmQgMmQgMmQgMmQgMjAgMmQgMmQgMmQgMmQgMmQgMjAgMmQgMmQgMmQgMmQgMmQgMjAgMmQgMmQgMmQgMmQgMmQgMjAgMmQgMmQgMmQgMmQgMmQgMGEgMmQgMmQgMmQgMmQgMmQgMjAgMmQgMmQgMmQgMmQgMmQgMjAgMmUgMmQgMmQgMmQgMmQgMjAgMmUgMmQgMmQgMmQgMmQgMjAgMmQgMmQgMmQgMmQgMmQgMjAgMmQgMmQgMmQgMmQgMmQgMjAgMmUgMmQgMmQgMmQgMmQgMjAgMmQgMmQgMmQgMmQgMmQgMGEgMmQgMmQgMmQgMmQgMmQgMjAgMmQgMmQgMmQgMmQgMmQgMjAgMmUgMmQgMmQgMmQgMmQgMjAgMmUgMmQgMmQgMmQgMmQgMjAgMmQgMmQgMmQgMmQgMmQgMjAgMmUgMmQgMmQgMmQgMmQgMjAgMmUgMmQgMmQgMmQgMmQgMjAgMmQgMmQgMmQgMmQgMmQgMGEgMmQgMmQgMmQgMmQgMmQgMjAgMmQgMmQgMmQgMmQgMmQgMjAgMmUgMmQgMmQgMmQgMmQgMjAgMmQgMmQgMmQgMmQgMmQgMjAgMmQgMmQgMmQgMmQgMmQgMjAgMmQgMmQgMmQgMmQgMmQgMjAgMmQgMmQgMmQgMmQgMmQgMjAgMmQgMmQgMmQgMmQgMmQgMGEgMmQgMmQgMmQgMmQgMmQgMjAgMmQgMmQgMmQgMmQgMmQgMjAgMmUgMmQgMmQgMmQgMmQgMjAgMmUgMmQgMmQgMmQgMmQgMjAgMmQgMmQgMmQgMmQgMmQgMjAgMmQgMmQgMmQgMmQgMmQgMjAgMmUgMmQgMmQgMmQgMmQgMjAgMmQgMmQgMmQgMmQgMmQgMGEgMmQgMmQgMmQgMmQgMmQgMjAgMmQgMmQgMmQgMmQgMmQgMjAgMmUgMmQgMmQgMmQgMmQgMjAgMmUgMmQgMmQgMmQgMmQgMjAgMmQgMmQgMmQgMmQgMmQgMjAgMmUgMmQgMmQgMmQgMmQgMjAgMmQgMmQgMmQgMmQgMmQgMjAgMmUgMmQgMmQgMmQgMmQgMGEgMmQgMmQgMmQgMmQgMmQgMjAgMmQgMmQgMmQgMmQgMmQgMjAgMmUgMmQgMmQgMmQgMmQgMjAgMmQgMmQgMmQgMmQgMmQgMjAgMmQgMmQgMmQgMmQgMmQgMjAgMmQgMmQgMmQgMmQgMmQgMjAgMmQgMmQgMmQgMmQgMmQgMjAgMmQgMmQgMmQgMmQgMmQgMGEgMmQgMmQgMmQgMmQgMmQgMjAgMmQgMmQgMmQgMmQgMmQgMjAgMmUgMmQgMmQgMmQgMmQgMjAgMmUgMmQgMmQgMmQgMmQgMjAgMmQgMmQgMmQgMmQgMmQgMjAgMmQgMmQgMmQgMmQgMmQgMjAgMmUgMmQgMmQgMmQgMmQgMjAgMmQgMmQgMmQgMmQgMmQgMGEgMmQgMmQgMmQgMmQgMmQgMjAgMmQgMmQgMmQgMmQgMmQgMjAgMmUgMmQgMmQgMmQgMmQgMjAgMmUgMmQgMmQgMmQgMmQgMjAgMmQgMmQgMmQgMmQgMmQgMjAgMmUgMmQgMmQgMmQgMmQgMjAgMmUgMmQgMmQgMmQgMmQgMjAgMmQgMmQgMmQgMmQgMmQgMGEgMmQgMmQgMmQgMmQgMmQgMjAgMmQgMmQgMmQgMmQgMmQgMjAgMmUgMmQgMmQgMmQgMmQgMjAgMmQgMmQgMmQgMmQgMmQgMjAgMmQgMmQgMmQgMmQgMmQgMjAgMmQgMmQgMmQgMmQgMmQgMjAgMmQgMmQgMmQgMmQgMmQgMjAgMmQgMmQgMmQgMmQgMmQgMGEgMmQgMmQgMmQgMmQgMmQgMjAgMmQgMmQgMmQgMmQgMmQgMjAgMmUgMmQgMmQgMmQgMmQgMjAgMmUgMmQgMmQgMmQgMmQgMjAgMmUgMmQgMmQgMmQgMmQgMjAgMmQgMmQgMmQgMmQgMmQgMjAgMmQgMmQgMmQgMmQgMmQgMjAgMmUgMmQgMmQgMmQgMmQ=
+</pre>
+<p><br /></p>
+<h3 id="solution-1">Solution</h3>
+<p>問題文にある <code>Hope you've been paying attention!</code> からBeginner 1〜8のフラグがヒントになっているのかと思って読み返したりはしてたんですが、Solutionの組み合わせだとは思わなかった〜。</p>
+<p>Cyberchefで一気にまとめてやると簡単みたいですね。</p>
+<p><img src="https://captureamerica.github.io/writeups/img/houseplantCTF_2020_Cyberchef.png" alt="houseplantCTF_2020_Cyberchef.png"><br /></p>
+<p><br />
+ちなみに、ローカルで使っていたCyberchefが2年前のもので、A1Z26 Cipher Decodeが無かったので、これを機に最新版をダウンロードしました。</p>
+<p>というか、Beginner 1〜8も全部Cyberchefで解けばよかったんですね。Atbash cipher (Beginner 7)はCyberchefを使ったんだけど。</p>
+<p><br />
+Flag: <code>rtcp{nineornone}</code> （たぶん）</p>
+<p>nine or none。。。だから、ファイル名が &ldquo;Beginner 9.txt&rdquo; じゃなくて &ldquo;Beginner 10.txt&rdquo; なのかな。</p>
+<p><br /><br />
+<br /><br /></p>
+<h2 id="misc-music-lab">[Misc]: Music Lab</h2>
+<hr>
+<h3 id="challenge-2">Challenge</h3>
+<blockquote>
+<p>Do you like my song? ♪</p>
+</blockquote>
+<p>Attachment:</p>
+<ul>
+<li>masterpiece.mid</li>
+</ul>
+<p><br /></p>
+<h3 id="solution-2">Solution</h3>
+<p>AudaCityで開こうとしてドラッグ＆ドロップしたところ、以下のエラーのウィンドウが出て、エラーの内容を読まずに諦めたやつでした ^^;</p>
+<img src="https://captureamerica.github.io/writeups/img/houseplantCTF_2020_Midi1.png" alt="houseplantCTF_2020_Midi1.png">
+<p>というか、そんなエラーを出すくらいだったら、自動でImportしてよ！</p>
+<p><br />
+言われた通りImportすると、以下のような結果が得られます。</p>
+<img src="https://captureamerica.github.io/writeups/img/houseplantCTF_2020_Midi2.png" alt="houseplantCTF_2020_Midi2.png">
+<p><br />
+Flag: <code>rtcp{M024rt_Would_b3_proud}</code> (たぶん)</p>
+<p><br />
+凄いと思ったのは、それなりにホラー映画で使われそうな音楽になっているんですよね。</p>
 <p><br /><br />
 <br /><br /></p>
 <hr>
@@ -355,6 +429,7 @@ Flag: <code>rtcp{d1d-you_d0_7his_by_h4nd?}</code></p>
 <footer class="post-footer">
       <div class="post-tags">
           <a href="https://captureamerica.github.io/writeups/tags/ctf/">CTF</a>
+          <a href="https://captureamerica.github.io/writeups/tags/reviewed/">Reviewed</a>
           </div>
       <nav class="post-nav">
         
