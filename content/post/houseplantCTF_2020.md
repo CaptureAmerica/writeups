@@ -222,7 +222,7 @@ Attachment:
 
 <br />
 ### Solution
-AudaCityで開こうとしてドラッグ＆ドロップしたところ、以下のエラーのウィンドウが出て、エラーの内容を読まずに諦めたやつでした ^^;
+Audacityで開こうとしてドラッグ＆ドロップしたところ、以下のエラーのウィンドウが出て、エラーの内容を読まずに諦めたやつでした ^^;
 
 <img src="https://captureamerica.github.io/writeups/img/houseplantCTF_2020_Midi1.png" alt="houseplantCTF_2020_Midi1.png">
 
