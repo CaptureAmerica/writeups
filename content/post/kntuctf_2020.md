@@ -84,7 +84,7 @@ st_234g()関数は index.js の中で定義されていて、Developer tool で 
 
 3つ目のalertでフラグが表示されます。
 
-```html
+{{< highlight html "linenos=table,hl_lines=14-18" >}}
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -118,7 +118,7 @@ st_234g()関数は index.js の中で定義されていて、Developer tool で 
     </div>
   </body>
 </html>
-```
+{{< / highlight >}}
 
 
 <br />

@@ -103,7 +103,7 @@ long FUN_001007fa(char cParm1)
 
 こんな感じ。（抜粋）
 
-```
+<pre>
                              DAT_003014e0                                    XREF[2]:     FUN_001008a1:0010096b(*), 
                                                                                           FUN_001008a1:00100972(R)  
         003014e0 01              ??         01h
@@ -118,7 +118,7 @@ long FUN_001007fa(char cParm1)
         003014e9 00              ??         00h
         003014ea 00              ??         00h
         003014eb 00              ??         00h
-```
+</pre>
 
 <br />
 入力文字列の長さチェックは0x21で、後は比較データにマッチすればOK。
@@ -172,10 +172,11 @@ int main()
 ほぼ、ghidraのコードのままですけど、文字をBrute Forceを追加してて、その際にハズレ文字だとposが範囲外になってSegmentation Faultになるので、posの範囲チェックも入れてます。
 
 実行結果：
-```
+
+<pre>
 $ ./beleaf_solve.o 
 flag{we_beleaf_in_your_re_future}
-```
+</pre>
 
 Flag: `flag{we_beleaf_in_your_re_future}`
 

@@ -71,7 +71,8 @@ Attachments:
 
 <br />
 ### Solution
-```
+
+<pre>
 # aircrack-ng inc0gnito.pcap
 
                                                       Aircrack-ng 1.5.2 
@@ -88,7 +89,7 @@ Attachments:
 
                          KEY FOUND! [ FF:DE:AD:BE:EF ] 
 	Decrypted correctly: 100%
-```
+</pre>
 
 Wireshark > Protocols > IEEE 802.11 > Decryption KeysでWEP Keyを設定して復号します。
 
@@ -268,10 +269,10 @@ int main( int argc, char **argv )
 <br />
 出力がやたらと多いので、もうちょっと改良した方がいいかもだけど。
 
-```
+<pre>
 $ ./lsb.o challenge.wav | fold -120 | grep -i http
 -@@RMr. Robot is an American drama thriller television series created by Sam Esmail. http://tiny.cc/72nwdz##############
-```
+</pre>
 
 長い文字列が1行で出てくるので、foldで適当に区切って、その中で"http"やら"ctf"やらのキーワードになりそうなものをサーチする感じですかね。
 
@@ -298,11 +299,12 @@ a0d074e40598
 <br />
 リバースしてバイナリとして保存します。
 
-```
+<pre>
 $ python -c 'import binascii; open("output", "wb").write(binascii.unhexlify(open("new", "rb").read()[::-1]))'
 $ file output
 output: PNG image data, 1427 x 352, 8-bit/color RGBA, non-interlaced
-```
+</pre>
+
 <img src="https://captureamerica.github.io/writeups/img/rooters_python_is_awesome.png" alt="rooters_python_is_awesome.png">
 
 Flag: `rooters{pyth0n_is_aw3s0m3}ctf`

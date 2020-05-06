@@ -68,6 +68,7 @@ flag{.net_is_pretty_easy_to_decompile}
 </pre>
 
 <br>
+
 Flag: `flag{.net_is_pretty_easy_to_decompile}`
 
 
@@ -184,6 +185,7 @@ https://www.dcode.fr/arthur-invisibles-cipher
 これで解析すると、FLAGISYOUCANSEETHEM が取れます。
 
 <br>
+
 Flag: `youcanseethem`
 
 
@@ -369,6 +371,7 @@ Audacityで以下をやりました。
 
 
 <br>
+
 Flag: `flag{ditsanddahsforlife}`
 
 
@@ -492,6 +495,7 @@ Location: http://3w299ja5ez.neverlanctf.com [following]
 Wiresharkでキャプチャしたら、フラグ出てました。。。
 
 <br>
+
 Flag: `flag{d0nt_t3ll_m3_wh3r3_t0_g0}`
 
 
@@ -525,6 +529,7 @@ Use the CVE ID for the flag. flag{CVE-?????????}
 https://arstechnica.com/information-technology/2020/01/researcher-develops-working-exploit-for-critical-windows-10-vulnerability/
 
 <br>
+
 Flag: `flag{CVE-2020-0601}`
 
 
@@ -549,13 +554,14 @@ Attachment:
 (Hintが3つくらいあったみたいです。全然見てなかったです。。)
 
 <br>
+
 ### Solution
 
 zstegで長いbase64 encodeされた文字列が取れます。
 
-```
+<pre>
 $ zsteg -l 0 Much_Confused.png -v b1,rgb,lsb,xy 
-```
+</pre>
 
 <br>
 それをデコードすると、`lspv wwat kl rljvzfciggvnclzv` という文字列が取れます。ここで詰まってました。
@@ -569,6 +575,7 @@ https://www.mygeocachingprofile.com/codebreaker.vigenerecipher.aspx
 復号結果："your flag is myfavoritecipher"
 
 <br>
+
 Flag: `flag{myfavoritecipher}`
 
 

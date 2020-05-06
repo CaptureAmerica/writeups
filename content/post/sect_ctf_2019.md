@@ -38,14 +38,15 @@ Attachment:
 ### Solution
 解凍して出てきたファイルはRTFファイルでした。
 
-```
+<pre>
 $ file diagram
 diagram: Rich Text Format data, version 1, unknown character set
-```
+</pre>
 
 <br />
 rtf用のツール（rtfdump.py, rtfobj）を使っていきます。
-```
+
+<pre>
 $ rtfobj diagram.rtf -s all
 rtfobj 0.53.1 on Python 2.7.15 - http://decalage.info/python/oletools
 THIS IS WORK IN PROGRESS - Check updates regularly!
@@ -78,12 +79,14 @@ $ oledump.py diagram_object_001235CD.bin
   1:       106 '\x01CompObj'
   2:         6 '\x03ObjInfo'
   3:     16871 'Package'
-```
+</pre>
+
+<br>
 
 olebrowseを使って、Packageの部分を取り出します。
-```
+<pre>
 $ olebrowse diagram_object_001235CD.bin
-```
+</pre>
 
 <img src="https://captureamerica.github.io/writeups/img/olebrowse1.png" alt="olebrowse1.png">
 
@@ -91,12 +94,14 @@ $ olebrowse diagram_object_001235CD.bin
 
 stream.bin としてファイルが取り出せました。
 
-```
+<pre>
 $ file stream.bin 
 stream.bin: Microsoft Excel 2007+
 
 $ mv stream.bin stream.xls
-```
+</pre>
+
+<br>
 
 リネームして、Libre Officeで開きます。
 
@@ -116,10 +121,12 @@ $ mv stream.bin stream.xls
 <br />
 たぶん、これがフラグだろう、ってことで文字に直します。
 
-```
+<pre>
 $ python -c 'print("".join([chr(int(x)) for x in "83 69 67 84 123 52 110 100 114 48 105 100 115 95 115 104 48 117 108 100 95 98 51 95 110 49 99 101 125".split()]))'
 SECT{4ndr0ids_sh0uld_b3_n1ce}
-```
+</pre>
+
+<br>
 
 Flag: `SECT{4ndr0ids_sh0uld_b3_n1ce}`
 
@@ -141,17 +148,19 @@ Attachment:
 <br />
 ### Solution
 解凍して出てきたファイルはPDFファイルでした。
-```
+
+<pre>
 $ file mycat
 mycat: PDF document, version 1.4
 
 
 $ mv mycat mycat.pdf
-```
+</pre>
 
 <br />
 pdf用のツールを使っていきます。
-```
+
+<pre>
 $ pdf-parser.py mycat.pdf
 PDF Comment '%PDF-1.4\n'
 
@@ -205,7 +214,7 @@ aaa: PDF document, version 1.4
 
 
 $ mv aaa aaa.pdf
-```
+</pre>
 
 object 3を取り出したらzlibで圧縮されてて、解凍したら別のPDFファイルが出てきました。
 
@@ -228,6 +237,7 @@ PDFを開くと、ちょっと怖い顔のネコちゃんが出てきました�
 
 <img src="https://captureamerica.github.io/writeups/img/mycat_pdf2.png" alt="mycat_pdf2.png">
 
+<br>
 
 Flag: `SECT{3mb3dd3d_f1l3s_c0uld_b3_tr1cky}`
 
@@ -245,9 +255,10 @@ Attachment:
 - favorite.7z
 
 <br />
-### Not Solved
+### (Unsolved)
 これは解けなかったんですけど、ちょっとトライしました。後で、復習したいと思います。
-```
+
+<pre>
 root@kali:~/SECTCTF_2019# volatility -f favorite.vmem imageinfo
 Volatility Foundation Volatility Framework 2.6
 INFO    : volatility.debug    : Determining profile based on KDBG search...
@@ -264,24 +275,24 @@ INFO    : volatility.debug    : Determining profile based on KDBG search...
              KUSER_SHARED_DATA : 0xfffff78000000000L
            Image date and time : 2019-09-12 06:42:46 UTC+0000
      Image local date and time : 2019-09-11 23:42:46 -0700
-```
+</pre>
 
 <br />
 プロファイルによっては、結果が出ないようです。。。
-```
+<pre>
 root@kali:~/SECTCTF_2019# volatility -f favorite.vmem --profile Win8SP0x64 filescan
 Volatility Foundation Volatility Framework 2.6
 Offset(P)            #Ptr   #Hnd Access Name
 ------------------ ------ ------ ------ ----
 root@kali:~/SECTCTF_2019# 
 root@kali:~/SECTCTF_2019# 
-```
+</pre>
 
 <br />
 2番目の`Win81U1x64`をプロファイルに指定しました。
 
 チャレンジ名がfavoriteだし、ここら辺なのは間違いない気がするんですけど。
-```
+<pre>
 root@kali:~/SECTCTF_2019# volatility -f favorite.vmem --profile Win81U1x64 filescan | grep -i favorite
 Volatility Foundation Volatility Framework 2.6
 0x000000003c626580     16      0 R--rwd \Device\HarddiskVolume2\Users\cyber\Favorites\desktop.ini
@@ -303,7 +314,7 @@ IDList=
 URL=http://go.microsoft.com/fwlink/p/?LinkId=255142
 IconIndex=0
 IconFile=%ProgramFiles%\Internet Explorer\Images\bing.ico
-```
+</pre>
 
 他の箇所もいろいろ調べましたけど、わからなくて詰みました。
 

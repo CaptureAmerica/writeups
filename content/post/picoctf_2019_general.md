@@ -61,10 +61,10 @@ Attachment:
 
 <br />
 ### Solution
-```
+<pre>
 $ cmp -bl cattos.jpg kitters.jpg | awk '{print $3}' | tr -d "\n" ; echo
 picoCTF{th3yr3_a5_d1ff3r3nt_4s_bu773r_4nd_j311y_3ee85466bc13cfbe57b6a695bee9dcdd}
-```
+</pre>
 
 Flag: `picoCTF{th3yr3_a5_d1ff3r3nt_4s_bu773r_4nd_j311y_3ee85466bc13cfbe57b6a695bee9dcdd}`
 
@@ -129,9 +129,11 @@ rockstarというesolangでした。
 以下で解けます。
 https://codewithrockstar.com/online
 
-```
+<pre>
 python -c 'print("".join([chr(int(x)) for x in "114 114 114 111 99 107 110 114 110 48 49 49 51 114".split()]))'
-```
+</pre>
+
+<br>
 
 Flag: `picoCTF{rrrocknrn0113r}`
 
@@ -190,10 +192,12 @@ Break it down
 </pre>
 
 
-```
+<pre>
 python -c 'print("".join([chr(int(x)) for x in "66 79 78 74 79 86 73".split()]))'
 BONJOVI
-```
+</pre>
+
+<br>
 
 Flag: `picoCTF{BONJOVI}`
 

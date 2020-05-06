@@ -58,6 +58,7 @@ Attachment:
 <br>
 RX-SSTVを使って簡単に画像は取れるんですけど、正確になんて書いてあるのかが分からなくて、いろんなパターンを試したけど結局フラグが通りませんでした。。
 
+<br>
 
 <img src="https://captureamerica.github.io/writeups/img/riftctf_2020_razorgirl.png" alt="riftctf_2020_razorgirl.png">
 

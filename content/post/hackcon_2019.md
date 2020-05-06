@@ -38,7 +38,7 @@ Attachment:
 <br />
 ### Solution
 
-```
+<pre>
 $ exiftool stego.jpg 
 ExifTool Version Number         : 11.47
 File Name                       : stego.jpg
@@ -70,16 +70,17 @@ Y Cb Cr Sub Sampling            : YCbCr4:2:0 (2 2)
 Image Size                      : 1116x102
 Megapixels                      : 0.114
 Thumbnail Image                 : (Binary data 13391 bytes, use -b option to extract)
-```
+</pre>
 
 exiftoolの結果の最後のところで、「サムネイルが-bで取り出せるよ」と出てますね。
 
 問題文もSmall iconと言っているし、怪しさ100倍です。
 
 以下で取り出せます。
-```
+
+<pre>
 $ exiftool -b -ThumbnailImage stego.jpg > thumbnail.jpg
-```
+</pre>
 
 <br />
 QR codeが取れるので、あとはリーダーで読み込むだけです。
@@ -117,7 +118,8 @@ stego1.xcf をテキストエディタ（自分はEmacs使ってます）で開�
 "504b 0304" はZipマジックナンバーです。
 
 スペースと"\n"をを取り除いて stego1.text と保存したのち、バイナリに変換してZip解凍します。
-```
+
+<pre>
 $ xxd -p -r stego1.text > steg1.zip
 $ file steg1.zip
 steg1.zip: Zip archive data, at least v?[0x314] to extract
@@ -125,7 +127,7 @@ steg1.zip: Zip archive data, at least v?[0x314] to extract
 $ unzip steg1.zip
 Archive:  steg1.zip
   inflating: data.txt  
-```
+</pre>
 
 data.txtは、0と1がずらーっと並ぶテキストファイルです。
 
@@ -142,7 +144,8 @@ data.txtは、0と1がずらーっと並ぶテキストファイルです。
 
 <br />
 136900 = 370 x 370
-```
+
+<pre>
 $ ls -al data.txt | awk '{print $6, $10}'
 136900 data.txt
 
@@ -157,7 +160,7 @@ Traceback (most recent call last):
 NameError: name 'sqrt' is not defined
 >>> math.sqrt(136900)
 370.0
-```
+</pre>
 
 <br />
 PILを使って、pngとして保存します。<br />
@@ -190,9 +193,10 @@ stegsnow - whitespace steganography program <br />
 
 <br />
 Kaliには入ってなかったので、インストールしました。
-```
+
+<pre>
 root@kali:~# apt-get install stegsnow
-```
+</pre>
 
 
 <br />
@@ -202,10 +206,11 @@ cells_--are sometimes found, particularly [password is : d4rkc0de-IIITD ]when re
 </pre>
 
 <br />
-```
+
+<pre>
 root@kali:~/Hackcon_2019# stegsnow -C -p "d4rkc0de-IIITD" final.txt 
 d4rk{h@ving_fun_w1th_st3gsn0w?}c0de
-```
+</pre>
 
 <br />
 Flag: `d4rk{h@ving_fun_w1th_st3gsn0w?}c0de`
@@ -251,10 +256,10 @@ https://dencode.com/ja/string
 
 印字可能文字以外のものが結構あるし、しかもフラグが反転してるとか、個人的にはちょっとやりすぎな気がします。
 
-```
+<pre>
 $ echo "ed0c}t53b_5t1_t@_3b@b_3f@c_ht1w_3gAugnAl_c1r3t05e{kr4d" | rev
 d4rk{e50t3r1c_lAnguAg3_w1th_c@f3_b@b3_@t_1t5_b35t}c0de
-```
+</pre>
 
 <br />
 Flag: `d4rk{e50t3r1c_lAnguAg3_w1th_c@f3_b@b3_@t_1t5_b35t}c0de`

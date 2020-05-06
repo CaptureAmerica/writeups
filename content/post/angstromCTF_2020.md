@@ -423,7 +423,7 @@ Ghidraでソースを確認すると、引数が4つ必要で、最初の3つは
 
 その後、パスワードが聞かれます。"please give flag"です。（XOR 0x2aされてます）。
 
-```
+<pre>
 xxxxx@actf:/problems/2020/taking_off$ ./taking_off 3 9 2 chicken
 So you figured out how to provide input and command line arguments.
 But can you figure out what input to provide?
@@ -431,7 +431,7 @@ Well, you found the arguments, but what's the password?
 please give flag
 Good job! You're ready to move on to bigger and badder rev!
 actf{th3y_gr0w_up_s0_f4st}
-```
+</pre>
 
 
 <br />
@@ -458,10 +458,10 @@ Attachment:
 ### Solution
 やけに正解者が多いなと思ったら、案の定stringsで解けるやつでした。
 
-```
+<pre>
 captureamerica@kali:~/Downloads$ strings windows_of_opportunity.exe | grep -i ctf
 actf{ok4y_m4yb3_linux_is_s7ill_b3tt3r}
-```
+</pre>
 
 <br />
 100点問題だし、たぶん想定解じゃないんだろうな。一生懸命作ったのに、かわいそう。

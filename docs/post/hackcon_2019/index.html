@@ -48,7 +48,7 @@
 <meta itemprop="description" content="(2019/11/04 - 復習しました) URL: https://hackcon.online/ 平日に開催されたので、早起き（朝4時）してちょっとやりました。 結局、あんまり時間も取れなかったし、1問だけ解いて終了〜">
 <meta itemprop="datePublished" content="2019-08-25T10:00:00&#43;09:00" />
 <meta itemprop="dateModified" content="2019-11-04T19:00:00&#43;09:00" />
-<meta itemprop="wordCount" content="2180">
+<meta itemprop="wordCount" content="2116">
 
 
 
@@ -190,42 +190,8 @@
 </ul>
 <p><br /></p>
 <h3 id="solution">Solution</h3>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span><span class="lnt">18
-</span><span class="lnt">19
-</span><span class="lnt">20
-</span><span class="lnt">21
-</span><span class="lnt">22
-</span><span class="lnt">23
-</span><span class="lnt">24
-</span><span class="lnt">25
-</span><span class="lnt">26
-</span><span class="lnt">27
-</span><span class="lnt">28
-</span><span class="lnt">29
-</span><span class="lnt">30
-</span><span class="lnt">31
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">$ exiftool stego.jpg 
+<pre>
+$ exiftool stego.jpg 
 ExifTool Version Number         : 11.47
 File Name                       : stego.jpg
 Directory                       : .
@@ -256,20 +222,14 @@ Y Cb Cr Sub Sampling            : YCbCr4:2:0 (2 2)
 Image Size                      : 1116x102
 Megapixels                      : 0.114
 Thumbnail Image                 : (Binary data 13391 bytes, use -b option to extract)
-</code></pre></td></tr></table>
-</div>
-</div><p>exiftoolの結果の最後のところで、「サムネイルが-bで取り出せるよ」と出てますね。</p>
+</pre>
+<p>exiftoolの結果の最後のところで、「サムネイルが-bで取り出せるよ」と出てますね。</p>
 <p>問題文もSmall iconと言っているし、怪しさ100倍です。</p>
 <p>以下で取り出せます。</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">$ exiftool -b -ThumbnailImage stego.jpg &gt; thumbnail.jpg
-</code></pre></td></tr></table>
-</div>
-</div><p><br />
+<pre>
+$ exiftool -b -ThumbnailImage stego.jpg > thumbnail.jpg
+</pre>
+<p><br />
 QR codeが取れるので、あとはリーダーで読み込むだけです。</p>
 <p>Flag: <code>d4rk{flAg_h1dd3n_1n_th3_thumbnail}c0de</code></p>
 <p><br /><br />
@@ -296,27 +256,16 @@ QR codeが取れるので、あとはリーダーで読み込むだけです。<
 </pre>
 <p>&ldquo;504b 0304&rdquo; はZipマジックナンバーです。</p>
 <p>スペースと&rdquo;\n&quot;をを取り除いて stego1.text と保存したのち、バイナリに変換してZip解凍します。</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span><span class="lnt">7
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">$ xxd -p -r stego1.text &gt; steg1.zip
+<pre>
+$ xxd -p -r stego1.text > steg1.zip
 $ file steg1.zip
 steg1.zip: Zip archive data, at least v?[0x314] to extract
 
 $ unzip steg1.zip
 Archive:  steg1.zip
   inflating: data.txt  
-</code></pre></td></tr></table>
-</div>
-</div><p>data.txtは、0と1がずらーっと並ぶテキストファイルです。</p>
+</pre>
+<p>data.txtは、0と1がずらーっと並ぶテキストファイルです。</p>
 <p>ここまではイベント中にできたんですが、ここから先がわからずに詰みました。。。</p>
 <p><br />
 他の方のWriteupを見たら、これはQRコードになるようです。</p>
@@ -325,41 +274,23 @@ Archive:  steg1.zip
 </div>
 <p><br />
 136900 = 370 x 370</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">$ ls -al data.txt | awk &#39;{print $6, $10}&#39;
+<pre>
+$ ls -al data.txt | awk '{print $6, $10}'
 136900 data.txt
 
 $ python3
 Python 3.7.4 (default, Sep  7 2019, 18:27:02) 
 [Clang 10.0.1 (clang-1001.0.46.4)] on darwin
-Type &#34;help&#34;, &#34;copyright&#34;, &#34;credits&#34; or &#34;license&#34; for more information.
-&gt;&gt;&gt; import math
-&gt;&gt;&gt; sqrt(136900)
+Type "help", "copyright", "credits" or "license" for more information.
+>>> import math
+>>> sqrt(136900)
 Traceback (most recent call last):
-  File &#34;&lt;stdin&gt;&#34;, line 1, in &lt;module&gt;
-NameError: name &#39;sqrt&#39; is not defined
-&gt;&gt;&gt; math.sqrt(136900)
+  File "<stdin>", line 1, in <module>
+NameError: name 'sqrt' is not defined
+>>> math.sqrt(136900)
 370.0
-</code></pre></td></tr></table>
-</div>
-</div><p><br />
+</pre>
+<p><br />
 PILを使って、pngとして保存します。<br />
 （このコードは、他の方のWriteupのパクリになっちゃうので、省略します。）</p>
 <p><br />
@@ -383,31 +314,20 @@ Flag: <code>d4rk{L0t5_0f_th1ng5_t0_d0_1n_th15_chAll@ng3}c0de</code></p>
 <a href="http://manpages.ubuntu.com/manpages/bionic/man1/stegsnow.1.html">http://manpages.ubuntu.com/manpages/bionic/man1/stegsnow.1.html</a></p>
 <p><br />
 Kaliには入ってなかったので、インストールしました。</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">root@kali:~# apt-get install stegsnow
-</code></pre></td></tr></table>
-</div>
-</div><p><br />
+<pre>
+root@kali:~# apt-get install stegsnow
+</pre>
+<p><br />
 stegsnowで使うパスワード自体も、final.txtの中に入ってました。</p>
 <pre>
 cells_--are sometimes found, particularly [password is : d4rkc0de-IIITD ]when resistant substances,
 </pre>
 <p><br /></p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">root@kali:~/Hackcon_2019# stegsnow -C -p &#34;d4rkc0de-IIITD&#34; final.txt 
+<pre>
+root@kali:~/Hackcon_2019# stegsnow -C -p "d4rkc0de-IIITD" final.txt 
 d4rk{h@ving_fun_w1th_st3gsn0w?}c0de
-</code></pre></td></tr></table>
-</div>
-</div><p><br />
+</pre>
+<p><br />
 Flag: <code>d4rk{h@ving_fun_w1th_st3gsn0w?}c0de</code></p>
 <p><br /><br />
 <br /><br /></p>
@@ -439,17 +359,11 @@ D'`$@"][[ZX{Wx0/S-t1O`on&m*6jF3ge{SRQ`_u)9xqYun43kpihg-,jihgfH%c\aZ~}|VUZYXQVOsS
 <p>以下のサイトで16進数から文字列に変換。<br />
 <a href="https://dencode.com/ja/string">https://dencode.com/ja/string</a></p>
 <p>印字可能文字以外のものが結構あるし、しかもフラグが反転してるとか、個人的にはちょっとやりすぎな気がします。</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">$ echo &#34;ed0c}t53b_5t1_t@_3b@b_3f@c_ht1w_3gAugnAl_c1r3t05e{kr4d&#34; | rev
+<pre>
+$ echo "ed0c}t53b_5t1_t@_3b@b_3f@c_ht1w_3gAugnAl_c1r3t05e{kr4d" | rev
 d4rk{e50t3r1c_lAnguAg3_w1th_c@f3_b@b3_@t_1t5_b35t}c0de
-</code></pre></td></tr></table>
-</div>
-</div><p><br />
+</pre>
+<p><br />
 Flag: <code>d4rk{e50t3r1c_lAnguAg3_w1th_c@f3_b@b3_@t_1t5_b35t}c0de</code></p>
 <p><br /><br />
 <br /><br /></p>

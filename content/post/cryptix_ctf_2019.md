@@ -257,13 +257,13 @@ void check(char *pcParm1)
 
 <br />
 このパスフレーズを使ってプログラムを実行すると、
-```
+<pre>
 root@kali:~/cryptixctf# ./passphrase r34ding_455embly_d4mn
 Please wait while we are authenticating....
 .......
 ....
 You are in!
-```
+</pre>
 
 "You are in!" と言われるんですが、実際にはフラグとして通りませんでした。
 

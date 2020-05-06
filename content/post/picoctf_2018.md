@@ -512,6 +512,7 @@ x + (x) + ((x)) = (xx) + ((x)) = ((xx)(x))
 
 <br>
 書いたコード。
+
 ```Python
 #!/usr/bin/env python
 # coding: UTF-8
@@ -1055,10 +1056,11 @@ int main( void )
 }
 ```
 
-```
+<pre>
 captureamerica@pico-2018-shell:/problems/keygen-me-2_1_762036cde49fef79146a706d0eda80a3$ ./activate 0E6IW8BX07K00Q9D
 Product Activated Successfully: picoCTF{c0n5tr41nt_50lv1nG_15_W4y_f45t3r_3846045707}
-```
+</pre>
+
 Flag: `picoCTF{c0n5tr41nt_50lv1nG_15_W4y_f45t3r_3846045707}`
 
 
@@ -1129,24 +1131,26 @@ printf("0x%x\n", calc(0x18f4b) & 0xFFFFFFFF )
 
 <br />
 最初に実行した際に、以下のエラーが出ました。
-```
+
+<pre>
 $ ruby be-quick-or-be-dead-3_solve.rb 
 be-quick-or-be-dead-3_solve.rb:7:in `calc': stack level too deep (SystemStackError)
-```
+</pre>
 
 
 <br />
 これは、RUBY_THREAD_VM_STACK_SIZEという環境変数で回避できるそうなので、テキトーに100MBでやってみました。
-```
+
+<pre>
 $ export RUBY_THREAD_VM_STACK_SIZE=100000000
 $ ruby be-quick-or-be-dead-3_solve.rb 
 0x2f8cdc3f
-```
+</pre>
 
 <br />
 gdbでcalc()をコールする直前でbreakして、戻り値をセットして、jumpでcalc()をスキップします。
 
-```
+```C
 gef➤  i b
 Num     Type           Disp Enb Address            What
 1       breakpoint     keep y   0x000000000040079b <calculate_key+9>

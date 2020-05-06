@@ -104,7 +104,7 @@ RWtm7A5f         (RWtm7A5f/Lz68qMZU)
 </pre>
 
 
-ファイル名がパスワードみたいです。（最初、クラックできなかったのかと思いました）
+ファイル名がパスワードみたいです。
 
 何回か繰り返しやったところ、そのパターンでいけるようなので、スクリプト化しました。
 
@@ -117,9 +117,10 @@ rm $1
 
 <br>
 同一フォルダ内でzipファイルを見つけて、そのファイル名を上記のスクリプトの引数に渡す、ということを繰り返しやります。
-```bash
+
+<pre>
 $ watch -n 1 "find . -exec file {} \; | grep -i zip | cut -d: -f1 | cut -c 3- | xargs -Ixxx ./Layouts_solve.sh xxx"
-```
+</pre>
 
 <br>
 更に続きがあって、ある程度解凍すると今度はXZファイルが出てきます。
@@ -409,7 +410,7 @@ $ find .
 
 
 <br>
-ディレクトリ名がAscii文字列範囲なのと、ファイル名がバラけているのに気づきました。
+ディレクトリ名がAscii文字列範囲なのと、ファイル名がバラけている（順番を意味している）のに気づきました。
 
 取り出して、ソートして、Pythonを使って文字変換します。
 
@@ -501,6 +502,7 @@ KeePass.exeを使って開くと、Andreaさんのパスワードがフラグに
 <img src="https://captureamerica.github.io/writeups/img/sarctf_keepass.png" alt="sarctf_keepass.png">
 
 <br>
+
 Flag: `FLAG{bru73_p455w0rd_4ll_n16h7_l0n6}`
 
 
@@ -553,6 +555,7 @@ FLAG{3a5yr3v3r5ing}
 </pre>
 
 <br>
+
 Flag: `FLAG{3a5yr3v3r5ing}`
 
 
@@ -746,6 +749,7 @@ Attachment:
 - usb_here.pcapng
 
 <br>
+
 ### Solution
 USB pcapは過去のCTFでも何度かお目になっていて、tsharkでデータを取り出して3バイト目辺りを変換表に基づいて文字に換える、という事はなんとなく知ってたんですが、いっつも後回ししていて今回もスルーしました。
 
@@ -767,6 +771,7 @@ sherlock,john,andhenrythenvisitthehollowinthehopeoffindingthehound.ontheway,john
 （Pythonコードは他の人の書いたコードのほぼパクリなので載せません。）
 
 <br>
+
 Flag: `flag{like-a-b100dh0und}`
 
 
@@ -783,6 +788,7 @@ Attachment:
 - m0r1ar7y.png
 
 <br>
+
 ### Solution
 "Red King" というタイトルから、赤をなんとかするんだろうと思ってLSBも取ってみたけど、よくわからなかったやつです。
 
@@ -793,6 +799,7 @@ Attachment:
 <img src="https://captureamerica.github.io/writeups/img/sarctf_m0r1ar7y.png" alt="sarctf_m0r1ar7y.png">
 
 <br>
+
 Flag: `FLAG{who_is_moriarty}`
 
 

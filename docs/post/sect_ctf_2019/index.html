@@ -48,7 +48,7 @@
 <meta itemprop="description" content="URL: https://sect.ctf.rocks/ 平日に一日やってたやつです。難しそうだったしスルーかなぁと思ってましたが、2つ解けました。 [Misc/Forensics]: Diagram Challenge Don&rsquo;t trust the word of an android, they might cheat. Attachment: diagram.tar.gz Solution 解凍して出てき">
 <meta itemprop="datePublished" content="2019-09-22T03:00:00&#43;09:00" />
 <meta itemprop="dateModified" content="2019-09-22T03:00:00&#43;09:00" />
-<meta itemprop="wordCount" content="1554">
+<meta itemprop="wordCount" content="1380">
 
 
 
@@ -152,7 +152,7 @@
     <li><a href="#miscforensicsmemory-favorite">[Misc/Forensics/Memory]: favorite</a>
       <ul>
         <li><a href="#challenge-2">Challenge</a></li>
-        <li><a href="#not-solved">Not Solved</a></li>
+        <li><a href="#unsolved">(Unsolved)</a></li>
       </ul>
     </li>
   </ul>
@@ -185,66 +185,25 @@
 <p><br /></p>
 <h3 id="solution">Solution</h3>
 <p>解凍して出てきたファイルはRTFファイルでした。</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">$ file diagram
+<pre>
+$ file diagram
 diagram: Rich Text Format data, version 1, unknown character set
-</code></pre></td></tr></table>
-</div>
-</div><p><br />
+</pre>
+<p><br />
 rtf用のツール（rtfdump.py, rtfobj）を使っていきます。</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span><span class="lnt">18
-</span><span class="lnt">19
-</span><span class="lnt">20
-</span><span class="lnt">21
-</span><span class="lnt">22
-</span><span class="lnt">23
-</span><span class="lnt">24
-</span><span class="lnt">25
-</span><span class="lnt">26
-</span><span class="lnt">27
-</span><span class="lnt">28
-</span><span class="lnt">29
-</span><span class="lnt">30
-</span><span class="lnt">31
-</span><span class="lnt">32
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">$ rtfobj diagram.rtf -s all
+<pre>
+$ rtfobj diagram.rtf -s all
 rtfobj 0.53.1 on Python 2.7.15 - http://decalage.info/python/oletools
 THIS IS WORK IN PROGRESS - Check updates regularly!
 Please report any issue at https://github.com/decalage2/oletools/issues
 
 ===============================================================================
-File: &#39;diagram.rtf&#39; - size: 1456998 bytes
+File: 'diagram.rtf' - size: 1456998 bytes
 ---+----------+---------------------------------------------------------------
 id |index     |OLE Object                                                     
 ---+----------+---------------------------------------------------------------
 0  |001235CDh |format_id: 2 (Embedded)                                        
-   |          |class name: &#39;Excel.SheetMacroEnabled.12&#39;                       
+   |          |class name: 'Excel.SheetMacroEnabled.12'                       
    |          |data size: 19456                                               
    |          |CLSID: 00020832-0000-0000-C000-000000000046                    
    |          |Microsoft Excel sheet with macro enabled                       
@@ -252,7 +211,7 @@ id |index     |OLE Object
 ---+----------+---------------------------------------------------------------
 Saving file embedded in OLE object #0:
   format_id  = 2
-  class name = &#39;Excel.SheetMacroEnabled.12&#39;
+  class name = 'Excel.SheetMacroEnabled.12'
   data size  = 19456
   saving to file diagram.rtf_object_001235CD.bin
 
@@ -262,38 +221,26 @@ diagram.rtf_object_001235CD.bin: Composite Document File V2 Document, Cannot rea
 
 
 $ oledump.py diagram_object_001235CD.bin 
-  1:       106 &#39;\x01CompObj&#39;
-  2:         6 &#39;\x03ObjInfo&#39;
-  3:     16871 &#39;Package&#39;
-</code></pre></td></tr></table>
-</div>
-</div><p>olebrowseを使って、Packageの部分を取り出します。</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">$ olebrowse diagram_object_001235CD.bin
-</code></pre></td></tr></table>
-</div>
-</div><img src="https://captureamerica.github.io/writeups/img/olebrowse1.png" alt="olebrowse1.png">
+  1:       106 '\x01CompObj'
+  2:         6 '\x03ObjInfo'
+  3:     16871 'Package'
+</pre>
+<br>
+<p>olebrowseを使って、Packageの部分を取り出します。</p>
+<pre>
+$ olebrowse diagram_object_001235CD.bin
+</pre>
+<img src="https://captureamerica.github.io/writeups/img/olebrowse1.png" alt="olebrowse1.png">
 <img src="https://captureamerica.github.io/writeups/img/olebrowse2.png" alt="olebrowse2.png">
 <p>stream.bin としてファイルが取り出せました。</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">$ file stream.bin 
+<pre>
+$ file stream.bin 
 stream.bin: Microsoft Excel 2007+
 
 $ mv stream.bin stream.xls
-</code></pre></td></tr></table>
-</div>
-</div><p>リネームして、Libre Officeで開きます。</p>
+</pre>
+<br>
+<p>リネームして、Libre Officeで開きます。</p>
 <img src="https://captureamerica.github.io/writeups/img/stream_sheet1.png" alt="stream_sheet1.png">
 <p><br />
 画像の下に何か隠れているかな〜、と思ったけど、何もなかったです。</p>
@@ -302,17 +249,12 @@ $ mv stream.bin stream.xls
 <p>どうやら、このデータをベースにグラフを描いているみたいですね。</p>
 <p><br />
 たぶん、これがフラグだろう、ってことで文字に直します。</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">$ python -c &#39;print(&#34;&#34;.join([chr(int(x)) for x in &#34;83 69 67 84 123 52 110 100 114 48 105 100 115 95 115 104 48 117 108 100 95 98 51 95 110 49 99 101 125&#34;.split()]))&#39;
+<pre>
+$ python -c 'print("".join([chr(int(x)) for x in "83 69 67 84 123 52 110 100 114 48 105 100 115 95 115 104 48 117 108 100 95 98 51 95 110 49 99 101 125".split()]))'
 SECT{4ndr0ids_sh0uld_b3_n1ce}
-</code></pre></td></tr></table>
-</div>
-</div><p>Flag: <code>SECT{4ndr0ids_sh0uld_b3_n1ce}</code></p>
+</pre>
+<br>
+<p>Flag: <code>SECT{4ndr0ids_sh0uld_b3_n1ce}</code></p>
 <p><br /><br />
 <br /><br /></p>
 <h2 id="miscforensics-mycat">[Misc/Forensics]: Mycat</h2>
@@ -328,97 +270,32 @@ SECT{4ndr0ids_sh0uld_b3_n1ce}
 <p><br /></p>
 <h3 id="solution-1">Solution</h3>
 <p>解凍して出てきたファイルはPDFファイルでした。</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">$ file mycat
+<pre>
+$ file mycat
 mycat: PDF document, version 1.4
 
 
 $ mv mycat mycat.pdf
-</code></pre></td></tr></table>
-</div>
-</div><p><br />
+</pre>
+<p><br />
 pdf用のツールを使っていきます。</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span><span class="lnt">18
-</span><span class="lnt">19
-</span><span class="lnt">20
-</span><span class="lnt">21
-</span><span class="lnt">22
-</span><span class="lnt">23
-</span><span class="lnt">24
-</span><span class="lnt">25
-</span><span class="lnt">26
-</span><span class="lnt">27
-</span><span class="lnt">28
-</span><span class="lnt">29
-</span><span class="lnt">30
-</span><span class="lnt">31
-</span><span class="lnt">32
-</span><span class="lnt">33
-</span><span class="lnt">34
-</span><span class="lnt">35
-</span><span class="lnt">36
-</span><span class="lnt">37
-</span><span class="lnt">38
-</span><span class="lnt">39
-</span><span class="lnt">40
-</span><span class="lnt">41
-</span><span class="lnt">42
-</span><span class="lnt">43
-</span><span class="lnt">44
-</span><span class="lnt">45
-</span><span class="lnt">46
-</span><span class="lnt">47
-</span><span class="lnt">48
-</span><span class="lnt">49
-</span><span class="lnt">50
-</span><span class="lnt">51
-</span><span class="lnt">52
-</span><span class="lnt">53
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">$ pdf-parser.py mycat.pdf
-PDF Comment &#39;%PDF-1.4\n&#39;
+<pre>
+$ pdf-parser.py mycat.pdf
+PDF Comment '%PDF-1.4\n'
 
-PDF Comment &#39;%\xe2\xe3\xcf\xd3\n&#39;
+PDF Comment '%\xe2\xe3\xcf\xd3\n'
 
 obj 3 0
  Type: /EmbeddeDFile
  Referencing: 1 0 R, 2 0 R
  Contains stream
 
-  &lt;&lt;
+  <<
     /Type /EmbeddeDFile
     /Filter /FlateDecode
     /Params 1 0 R
     /Length 2 0 R
-  &gt;&gt;
+  >>
 
 
 obj 2 0
@@ -436,19 +313,19 @@ obj 3 0
  Referencing: 1 0 R, 2 0 R
  Contains stream
 
-  &lt;&lt;
+  <<
     /Type /EmbeddeDFile
     /Filter /FlateDecode
     /Params 1 0 R
     /Length 2 0 R
-  &gt;&gt;
+  >>
 
 
 $ file dump
 dump: zlib compressed data
 
 
-$ zlib-flate -uncompress &lt; dump &gt; aaa
+$ zlib-flate -uncompress < dump > aaa
 
 
 $ file aaa
@@ -456,9 +333,8 @@ aaa: PDF document, version 1.4
 
 
 $ mv aaa aaa.pdf
-</code></pre></td></tr></table>
-</div>
-</div><p>object 3を取り出したらzlibで圧縮されてて、解凍したら別のPDFファイルが出てきました。</p>
+</pre>
+<p>object 3を取り出したらzlibで圧縮されてて、解凍したら別のPDFファイルが出てきました。</p>
 <p><br />
 PDFを開くと、ちょっと怖い顔のネコちゃんが出てきました。</p>
 <img src="https://captureamerica.github.io/writeups/img/mycat_pdf.png" alt="mycat_pdf.png">
@@ -469,6 +345,7 @@ PDFを開くと、ちょっと怖い顔のネコちゃんが出てきました�
 画像付きのPDFは、Libre Officeで開くパターンでしたね。（令和CTF、その他のCTFでも同様なものがありました。）</p>
 <p>画像を移動したら、裏側からフラグが出てきました。</p>
 <img src="https://captureamerica.github.io/writeups/img/mycat_pdf2.png" alt="mycat_pdf2.png">
+<br>
 <p>Flag: <code>SECT{3mb3dd3d_f1l3s_c0uld_b3_tr1cky}</code></p>
 <p><br /><br /></p>
 <h2 id="miscforensicsmemory-favorite">[Misc/Forensics/Memory]: favorite</h2>
@@ -482,29 +359,10 @@ PDFを開くと、ちょっと怖い顔のネコちゃんが出てきました�
 <li>favorite.7z</li>
 </ul>
 <p><br /></p>
-<h3 id="not-solved">Not Solved</h3>
+<h3 id="unsolved">(Unsolved)</h3>
 <p>これは解けなかったんですけど、ちょっとトライしました。後で、復習したいと思います。</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">root@kali:~/SECTCTF_2019# volatility -f favorite.vmem imageinfo
+<pre>
+root@kali:~/SECTCTF_2019# volatility -f favorite.vmem imageinfo
 Volatility Foundation Volatility Framework 2.6
 INFO    : volatility.debug    : Determining profile based on KDBG search...
           Suggested Profile(s) : Win8SP0x64, Win81U1x64, Win2012R2x64_18340, Win2012R2x64, Win2012x64, Win8SP1x64_18340, Win8SP1x64
@@ -520,57 +378,22 @@ INFO    : volatility.debug    : Determining profile based on KDBG search...
              KUSER_SHARED_DATA : 0xfffff78000000000L
            Image date and time : 2019-09-12 06:42:46 UTC+0000
      Image local date and time : 2019-09-11 23:42:46 -0700
-</code></pre></td></tr></table>
-</div>
-</div><p><br />
+</pre>
+<p><br />
 プロファイルによっては、結果が出ないようです。。。</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">root@kali:~/SECTCTF_2019# volatility -f favorite.vmem --profile Win8SP0x64 filescan
+<pre>
+root@kali:~/SECTCTF_2019# volatility -f favorite.vmem --profile Win8SP0x64 filescan
 Volatility Foundation Volatility Framework 2.6
 Offset(P)            #Ptr   #Hnd Access Name
 ------------------ ------ ------ ------ ----
 root@kali:~/SECTCTF_2019# 
 root@kali:~/SECTCTF_2019# 
-</code></pre></td></tr></table>
-</div>
-</div><p><br />
+</pre>
+<p><br />
 2番目の<code>Win81U1x64</code>をプロファイルに指定しました。</p>
 <p>チャレンジ名がfavoriteだし、ここら辺なのは間違いない気がするんですけど。</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span><span class="lnt">18
-</span><span class="lnt">19
-</span><span class="lnt">20
-</span><span class="lnt">21
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">root@kali:~/SECTCTF_2019# volatility -f favorite.vmem --profile Win81U1x64 filescan | grep -i favorite
+<pre>
+root@kali:~/SECTCTF_2019# volatility -f favorite.vmem --profile Win81U1x64 filescan | grep -i favorite
 Volatility Foundation Volatility Framework 2.6
 0x000000003c626580     16      0 R--rwd \Device\HarddiskVolume2\Users\cyber\Favorites\desktop.ini
 0x000000003d023c80  32768      1 R--rwd \Device\HarddiskVolume2\Users\cyber\Favorites
@@ -591,9 +414,8 @@ IDList=
 URL=http://go.microsoft.com/fwlink/p/?LinkId=255142
 IconIndex=0
 IconFile=%ProgramFiles%\Internet Explorer\Images\bing.ico
-</code></pre></td></tr></table>
-</div>
-</div><p>他の箇所もいろいろ調べましたけど、わからなくて詰みました。</p>
+</pre>
+<p>他の箇所もいろいろ調べましたけど、わからなくて詰みました。</p>
 <p>てかこれ、解けた人ひとりしかいないし。Writeup出てこないかもなぁ。。。</p>
 <p><br /><br />
 <br /><br /></p>

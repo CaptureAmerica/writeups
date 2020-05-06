@@ -48,7 +48,7 @@
 <meta itemprop="description" content="URL: https://2019game.picoctf.com/ 2週間、お疲れ様です。 最終結果は、こんな感じ。 イベント終了時点で、ユーザは4万人弱でした。 PwnとWeb系があんまりできてないけど、スコ">
 <meta itemprop="datePublished" content="2019-10-13T12:00:00&#43;09:00" />
 <meta itemprop="dateModified" content="2019-10-13T12:00:00&#43;09:00" />
-<meta itemprop="wordCount" content="725">
+<meta itemprop="wordCount" content="720">
 
 
 
@@ -203,17 +203,11 @@ Dumping the data from a hex editor may make it easier to compare.</p>
 </ul>
 <p><br /></p>
 <h3 id="solution">Solution</h3>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">$ cmp -bl cattos.jpg kitters.jpg | awk &#39;{print $3}&#39; | tr -d &#34;\n&#34; ; echo
+<pre>
+$ cmp -bl cattos.jpg kitters.jpg | awk '{print $3}' | tr -d "\n" ; echo
 picoCTF{th3yr3_a5_d1ff3r3nt_4s_bu773r_4nd_j311y_3ee85466bc13cfbe57b6a695bee9dcdd}
-</code></pre></td></tr></table>
-</div>
-</div><p>Flag: <code>picoCTF{th3yr3_a5_d1ff3r3nt_4s_bu773r_4nd_j311y_3ee85466bc13cfbe57b6a695bee9dcdd}</code></p>
+</pre>
+<p>Flag: <code>picoCTF{th3yr3_a5_d1ff3r3nt_4s_bu773r_4nd_j311y_3ee85466bc13cfbe57b6a695bee9dcdd}</code></p>
 <p><br />
 なお、picoCTFはイベント期間中にファイルやフラグが書き換わることがあるようで、少しハマりました。</p>
 <p><br /><br />
@@ -256,15 +250,11 @@ Hints : Do you think you can master rockstar?<br /></p>
 <p>rockstarというesolangでした。</p>
 <p>以下で解けます。
 <a href="https://codewithrockstar.com/online">https://codewithrockstar.com/online</a></p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">python -c &#39;print(&#34;&#34;.join([chr(int(x)) for x in &#34;114 114 114 111 99 107 110 114 110 48 49 49 51 114&#34;.split()]))&#39;
-</code></pre></td></tr></table>
-</div>
-</div><p>Flag: <code>picoCTF{rrrocknrn0113r}</code></p>
+<pre>
+python -c 'print("".join([chr(int(x)) for x in "114 114 114 111 99 107 110 114 110 48 49 49 51 114".split()]))'
+</pre>
+<br>
+<p>Flag: <code>picoCTF{rrrocknrn0113r}</code></p>
 <p><br /><br />
 <br /><br /></p>
 <h2 id="general-skills-1_wanna_b3_a_r0ck5tar-350-points">[General Skills]: 1_wanna_b3_a_r0ck5tar (350 points)</h2>
@@ -311,17 +301,12 @@ Shout "Bring on the rock!"
 (Else Whisper "That ain't it, Chief")
 Break it down
 </pre>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">python -c &#39;print(&#34;&#34;.join([chr(int(x)) for x in &#34;66 79 78 74 79 86 73&#34;.split()]))&#39;
+<pre>
+python -c 'print("".join([chr(int(x)) for x in "66 79 78 74 79 86 73".split()]))'
 BONJOVI
-</code></pre></td></tr></table>
-</div>
-</div><p>Flag: <code>picoCTF{BONJOVI}</code></p>
+</pre>
+<br>
+<p>Flag: <code>picoCTF{BONJOVI}</code></p>
 <p><br /><br />
 <br /><br /></p>
 <hr>

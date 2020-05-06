@@ -48,7 +48,7 @@
 <meta itemprop="description" content="URL: https://ctf.csaw.io/challenges とりあえず、Reversingの一番簡単なやつだけ解きました。 [Reversing]: BELEAF (50 points) Challenge tree sounds are best listened to by https://binary.ninja/demo or ghidra Attachment: beleaf (64-bit ELF) Solution 言われた通り、Ghidraでデコン">
 <meta itemprop="datePublished" content="2019-09-16T14:00:00&#43;09:00" />
 <meta itemprop="dateModified" content="2019-09-16T14:00:00&#43;09:00" />
-<meta itemprop="wordCount" content="853">
+<meta itemprop="wordCount" content="837">
 
 
 
@@ -298,25 +298,8 @@
 </div><p><br />
 上記の関数内で参照しているDAT_003014e0とDAT_00301020には、比較用のデータが入ってます。</p>
 <p>こんな感じ。（抜粋）</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">                             DAT_003014e0                                    XREF[2]:     FUN_001008a1:0010096b(*), 
+<pre>
+                             DAT_003014e0                                    XREF[2]:     FUN_001008a1:0010096b(*), 
                                                                                           FUN_001008a1:00100972(R)  
         003014e0 01              ??         01h
         003014e1 00              ??         00h
@@ -330,9 +313,8 @@
         003014e9 00              ??         00h
         003014ea 00              ??         00h
         003014eb 00              ??         00h
-</code></pre></td></tr></table>
-</div>
-</div><p><br />
+</pre>
+<p><br />
 入力文字列の長さチェックは0x21で、後は比較データにマッチすればOK。</p>
 <p>ここからが解法です。</p>
 <div class="highlight"><div class="chroma">
@@ -427,17 +409,11 @@
 </div>
 </div><p>ほぼ、ghidraのコードのままですけど、文字をBrute Forceを追加してて、その際にハズレ文字だとposが範囲外になってSegmentation Faultになるので、posの範囲チェックも入れてます。</p>
 <p>実行結果：</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">$ ./beleaf_solve.o 
+<pre>
+$ ./beleaf_solve.o 
 flag{we_beleaf_in_your_re_future}
-</code></pre></td></tr></table>
-</div>
-</div><p>Flag: <code>flag{we_beleaf_in_your_re_future}</code></p>
+</pre>
+<p>Flag: <code>flag{we_beleaf_in_your_re_future}</code></p>
 <p><br /><br />
 <br /><br /></p>
 <hr>

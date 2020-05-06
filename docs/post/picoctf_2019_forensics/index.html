@@ -48,7 +48,7 @@
 <meta itemprop="description" content="URL: https://2019game.picoctf.com/ 2週間、お疲れ様です。 最終結果は、こんな感じ。 イベント終了時点で、ユーザは4万人弱でした。 PwnとWeb系があんまりできてないけど、スコ">
 <meta itemprop="datePublished" content="2019-10-13T12:00:00&#43;09:00" />
 <meta itemprop="dateModified" content="2019-10-13T12:00:00&#43;09:00" />
-<meta itemprop="wordCount" content="1106">
+<meta itemprop="wordCount" content="1094">
 
 
 
@@ -203,17 +203,12 @@ Forensics の Writeupです。</p>
 <p>てっきりwhitespaceというesolangだと思ったので、少し手こずりました。</p>
 <p>あと、たぶんだけど、チャレンジが始まった頃にダウンロードしたファイルと、後日ダウンロードし直したファイルが異なってた気がします。。。</p>
 <p>スペースとタブ（？）の2種類の文字があるので、それを0と1に変えてから、2進数を文字に変えるのが解き方です。</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">$ xxd whitepages.txt | cut -c 10- | cut -c -40 | sed -e &#39;s/e2//g&#39; | sed -e &#39;s/80//g&#39; | sed -e &#39;s/20/1/g&#39; | sed -e &#39;s/83/0/g&#39; | tr -d &#34; \n&#34; ; echo
+<pre>
+$ xxd whitepages.txt | cut -c 10- | cut -c -40 | sed -e 's/e2//g' | sed -e 's/80//g' | sed -e 's/20/1/g' | sed -e 's/83/0/g' | tr -d " \n" ; echo
 00001010000010010000100101110000011010010110001101101111010000110101010001000110000010100000101000001001000010010101001101000101010001010010000001010000010101010100001001001100010010010100001100100000010100100100010101000011010011110101001001000100010100110010000000100110001000000100001001000001010000110100101101000111010100100100111101010101010011100100010000100000010100100100010101010000010011110101001001010100000010100000100100001001001101010011000000110000001100000010000001000110011011110111001001100010011001010111001100100000010000010111011001100101001011000010000001010000011010010111010001110100011100110110001001110101011100100110011101101000001011000010000001010000010000010010000000110001001101010011001000110001001100110000101000001001000010010111000001101001011000110110111101000011010101000100011001111011011011100110111101110100010111110110000101101100011011000101111101110011011100000110000101100011011001010111001101011111011000010111001001100101010111110110001101110010011001010110000101110100011001010110010001011111011001010111000101110101011000010110110001011111011000110011000100110110001101110011000000110100001100000110001100110111001100110011100001100101001110000110001001100011011000010110010100110010001100010011000000111001011001010110011000110100011000100110010100110101001110010011011000110000011000100011000101111101000010100000100100001001
-</code></pre></td></tr></table>
-</div>
-</div><p>Flag: <code>picoCTF{not_all_spaces_are_created_equal_c167040c738e8bcae2109ef4be5960b1}</code></p>
+</pre>
+<br>
+<p>Flag: <code>picoCTF{not_all_spaces_are_created_equal_c167040c738e8bcae2109ef4be5960b1}</code></p>
 <p><br /><br />
 <br /><br /></p>
 <h2 id="forensics-c0rrupt-250-points">[Forensics]: c0rrupt (250 points)</h2>
@@ -234,33 +229,20 @@ Hints : Try fixing the file header</p>
 <p>1番目のIDATチャンクのとこも修正が必要。</p>
 <p>CRCは、pngcsumで直しました。<br />
 <a href="http://schaik.com/png/pngcsum.html">http://schaik.com/png/pngcsum.html</a></p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">root@kali:~/picoCTF_2019# pngcsum mystery mystery_crcfixed.png
+<pre>
+root@kali:~/picoCTF_2019# pngcsum mystery mystery_crcfixed.png
 IHDR ( 13 ) - csum = 7c8bab78
 sRGB (  1 ) - csum = aece1ce9
 gAMA (  4 ) - csum = 0bfc6105
-pHYs (  9 ) - csum = 495224f0 -&gt; 38d82c82
+pHYs (  9 ) - csum = 495224f0 -> 38d82c82
 IDAT (65445 ) - csum = 6927db59
 IDAT (65524 ) - csum = ba6bc1fa
 IDAT (65524 ) - csum = 5997d200
 IDAT (6304 ) - csum = 6ff175b8
 IEND (  0 ) - csum = ae426082
-</code></pre></td></tr></table>
-</div>
-</div><p>Flag: <code>picoCTF{c0rrupt10n_1847995}</code></p>
+</pre>
+<br>
+<p>Flag: <code>picoCTF{c0rrupt10n_1847995}</code></p>
 <p><br /><br />
 <br /><br /></p>
 <h2 id="forensics-shark-on-wire-2-300-points">[Forensics]: shark on wire 2 (300 points)</h2>

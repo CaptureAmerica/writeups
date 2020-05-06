@@ -48,7 +48,7 @@
 <meta itemprop="description" content="(2020/02/23 - 復習しました) URL: https://ctf.neverlanctf.com/challenges 久々にがっつりCTFやりました。（学生さん用CTFでした） 最終順位は、127位でした。 しかし、サーバが結構不安定でした">
 <meta itemprop="datePublished" content="2020-02-12T09:00:00&#43;09:00" />
 <meta itemprop="dateModified" content="2020-02-23T14:00:00&#43;09:00" />
-<meta itemprop="wordCount" content="3251">
+<meta itemprop="wordCount" content="3249">
 
 
 
@@ -218,6 +218,7 @@
     <li><a href="#crypto-it-is-like-an-onion-of-secrets">[Crypto]: It is like an onion of secrets.</a>
       <ul>
         <li><a href="#challenge-13">Challenge</a></li>
+        <li><a href="#solution-12">Solution</a></li>
       </ul>
     </li>
   </ul>
@@ -271,7 +272,7 @@ $ python -c 'print("".join([chr(int(x)) for x in "102 108 97 103 123 46 110 101 
 flag{.net_is_pretty_easy_to_decompile}
 </pre>
 <br>
-Flag: `flag{.net_is_pretty_easy_to_decompile}`
+<p>Flag: <code>flag{.net_is_pretty_easy_to_decompile}</code></p>
 <p><br /><br />
 <br /><br /></p>
 <h2 id="reverse-engineering-reverse-engineer-300">[Reverse Engineering]: Reverse Engineer (300)</h2>
@@ -413,7 +414,7 @@ flag{w3con7r0lth3b1nari3s}
 <p><a href="https://www.dcode.fr/arthur-invisibles-cipher">https://www.dcode.fr/arthur-invisibles-cipher</a></p>
 <p>これで解析すると、FLAGISYOUCANSEETHEM が取れます。</p>
 <br>
-Flag: `youcanseethem`
+<p>Flag: <code>youcanseethem</code></p>
 <p><br /><br />
 <br /><br /></p>
 <h2 id="crypto-my-own-encoding-200">[Crypto]: My own encoding (200)</h2>
@@ -573,7 +574,7 @@ Audacityで以下をやりました。
 <p>ということで、目視で解析。この作業自体は思ったより難しくはなかったです。</p>
 <p>一覧表はWikiにあります。(<a href="https://en.wikipedia.org/wiki/Morse_code">https://en.wikipedia.org/wiki/Morse_code</a>)</p>
 <br>
-Flag: `flag{ditsanddahsforlife}`
+<p>Flag: <code>flag{ditsanddahsforlife}</code></p>
 <p><br /><br />
 <br /><br /></p>
 <h2 id="programing-dasprime-100">[Programing]: DasPrime (100)</h2>
@@ -700,7 +701,7 @@ $ cat prime.txt | tr " " "\n" | nl | grep 10497
 </div><br>
 Wiresharkでキャプチャしたら、フラグ出てました。。。
 <br>
-Flag: `flag{d0nt_t3ll_m3_wh3r3_t0_g0}`
+<p>Flag: <code>flag{d0nt_t3ll_m3_wh3r3_t0_g0}</code></p>
 <p><br /><br />
 <br /><br /></p>
 <h2 id="trivia-aaaaaaaaaaaaaa-i-hate-cves-20">[Trivia]: AAAAAAAAAAAAAA! I hate CVEs (20)</h2>
@@ -726,7 +727,7 @@ Use the CVE ID for the flag. flag{CVE-?????????}</p>
 <p><code>&quot;Never Gonna Give You Up&quot; POC exploit</code> をキーワードにググると、以下のサイトが見つかりました。</p>
 <p><a href="https://arstechnica.com/information-technology/2020/01/researcher-develops-working-exploit-for-critical-windows-10-vulnerability/">https://arstechnica.com/information-technology/2020/01/researcher-develops-working-exploit-for-critical-windows-10-vulnerability/</a></p>
 <br>
-Flag: `flag{CVE-2020-0601}`
+<p>Flag: <code>flag{CVE-2020-0601}</code></p>
 <p><br /><br />
 <br /><br />
 <img src="https://captureamerica.github.io/writeups/img/orange_bar.png" alt="orange_bar.png">
@@ -747,24 +748,19 @@ This one has layers like an onion. Just don&rsquo;t let it make you cry..</p>
 </ul>
 <p>(Hintが3つくらいあったみたいです。全然見てなかったです。。)</p>
 <br>
-### Solution
+<h3 id="solution-12">Solution</h3>
 <p>zstegで長いbase64 encodeされた文字列が取れます。</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">$ zsteg -l 0 Much_Confused.png -v b1,rgb,lsb,xy 
-</code></pre></td></tr></table>
-</div>
-</div><br>
+<pre>
+$ zsteg -l 0 Much_Confused.png -v b1,rgb,lsb,xy 
+</pre>
+<br>
 それをデコードすると、`lspv wwat kl rljvzfciggvnclzv` という文字列が取れます。ここで詰まってました。
 <p><code>neverlanctf</code> を Key として、Vigenere Cipherで復号したらよかったみたいです。そういうヒントがあったのかな？</p>
 <p>復号は、以下のサイトにお世話になりました。</p>
 <p><a href="https://www.mygeocachingprofile.com/codebreaker.vigenerecipher.aspx">https://www.mygeocachingprofile.com/codebreaker.vigenerecipher.aspx</a></p>
 <p>復号結果：&ldquo;your flag is myfavoritecipher&rdquo;</p>
 <br>
-Flag: `flag{myfavoritecipher}`
+<p>Flag: <code>flag{myfavoritecipher}</code></p>
 <p><br /><br />
 <br /><br /></p>
 <hr>

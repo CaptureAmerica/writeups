@@ -17,6 +17,8 @@ author: ""
 
 (2019/08/29 - 復習しました)
 
+(2020/05/06 - 再度、復習しました)
+
 URL: [https://www.hackerrank.com/codefest19-ctf](https://www.hackerrank.com/codefest19-ctf)
 <br /><br />
 問題数は10問（WelcomeとSurveyを除く）あって、そのうちの1問（Mail capture）は添付ファイルにフラグがそのまま入っているという（おそらく）手違いがあり、実質9問だけでした。
@@ -330,6 +332,26 @@ outfile.close()
 ```
 
 
+<br />
+(2020/05/06 - 追記)
+
+これは、ワンライナーでいけるやつでした。
+
+<pre>
+$ python -c 'import pwn;open("out","w").write(pwn.xor(open("image.bmp").read(),"matrix"))'
+
+$ file out
+out: PC bitmap, Windows 98/2000 and newer format, 730 x 576 x 24
+</pre>
+
+
+<br />
+このやり方は、過去に HSCTF6 で勉強したやつでした。（身についていかなった。。）
+
+https://captureamerica.github.io/writeups/post/hsctf_2019/
+
+
+
 <br /><br />
 <br /><br />
 ## [Network]: Mail capture
@@ -383,7 +405,7 @@ Attachment:
 
 Zipを解凍せずにバイナリで見るとか、面白いと思いました。
 
-```
+<pre>
 root@kali:~/Codefest_CTF_2019# stegify -op decode -carrier cute_kittens.jpg -result hello
 root@kali:~/Codefest_CTF_2019# ll
 total 204
@@ -426,7 +448,7 @@ root@kali:~/Codefest_CTF_2019# xxd hello
 00000090: 0000 0000 436f 6465 6665 7374 4354 467b  ....CodefestCTF{
 000000a0: 6831 6431 6e67 5f62 3368 316e 645f 316e  h1d1ng_b3h1nd_1n
 000000b0: 6e30 6333 6e74 5f6b 3174 7433 6e35 7d0a  n0c3nt_k1tt3n5}.
-```
+</pre>
 
 stegifyは、これからのCTFで使っていこうと思います。
 

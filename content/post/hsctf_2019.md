@@ -66,6 +66,11 @@ Attachment:
 var flag = "hsctf{esoteric_javascript_is_very_verbose}"; window.location = "https://hsctf.com";
 
 
+<br>
+
+Flag: `hsctf{esoteric_javascript_is_very_verbose}`
+
+
 <br /><br />
 <br /><br />
 ## [Misc]: Admin Pass
@@ -248,6 +253,7 @@ int main(int argc, char **argv)
 ```
 strstr()をやる順番に注意。最初、"east"のチェックをアタマに入れていたら、"northeast"と"southeast"も持っていかれて違う答えになっちゃってました。。
 <br /><br />
+
 Flag: `hsctf{garminesuckz}`
 
 
@@ -432,6 +438,7 @@ print(bytes.fromhex(format(m,'x')).decode('utf-8'))
 ```
 
 <br>
+
 Flag: `hsctf{y3s_rsa_1s_s0lved_10823704961253}`
 
 
@@ -555,6 +562,7 @@ hsctf{fedex_dont_fail_me_now}
 </pre>
 
 <br>
+
 Flag: `hsctf{fedex_dont_fail_me_now}`
 
 
@@ -683,6 +691,7 @@ hsctf{wheeeeeee_that_was_fun}
 ```
 
 <br>
+
 Flag: `hsctf{wheeeeeee_that_was_fun}`
 
 
@@ -705,6 +714,7 @@ hsctf{2_get_2_the_other_side}
 </pre>
 
 <br>
+
 Flag: `hsctf{2_get_2_the_other_side}`
 
 
@@ -772,6 +782,7 @@ Location Shown Country Name     : Lorem ipsum dolor sit amet, consectetur adipis
 
 
 <br>
+
 Flag: `hsctf{twoslapsnonetforce}`
 
 
@@ -805,6 +816,7 @@ hsctf{fishy_fishy_fishy_fishy_fishy_fishy_fishy123123123123}
 </pre>
 
 <br>
+
 Flag: `hsctf{fishy_fishy_fishy_fishy_fishy_fishy_fishy123123123123}`
 
 
@@ -867,6 +879,7 @@ hsctf{wow_you_are_agent_keith_now}
 </pre>
 
 <br>
+
 Flag: `hsctf{wow_you_are_agent_keith_now}`
 
 
@@ -964,6 +977,7 @@ mongodbには、`Robo 3T`というツールを使いました。
 <img src="https://captureamerica.github.io/writeups/img/Keith_Bot_Mongo.png" alt="Keith_Bot_Mongo.png">
 
 <br>
+
 Flag: `hsctf{watch_out_for_keyloggers}`
 
 
@@ -1006,6 +1020,7 @@ im gonna add some filler text here so the page is a bit longer. lorem ipsum... h
 
 
 <br>
+
 Flag: `flag{accessibility_is_crucial}`
 
 
@@ -1126,6 +1141,7 @@ zstegに`-l 0`を渡すと長さの制限にひっかからず、全部表示で
 b1,rgb,lsb,xy       .. text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis non velit rutrum, porttitor est a, porttitor nisi. Aliquam placerat nibh ut diam faucibus, ut auctor felis sodales. Suspendisse egestas tempus libero, efficitur finibus orci congue sit amet. Sed accumsan mi sit amet porttitor pellentesque. Morbi et porta lacus. Nulla ligula justo, pulvinar imperdiet porta quis, accumsan et massa. In viverra varius eleifend. Ut congue feugiat leo a ultrices.\n\nUt risus ipsum, dictum id euismod nec, mattis eu dolor. In aliquam viverra congue. Mauris lacinia lectus quis erat porttitor, vitae iaculis mauris ultrices. Donec quis imperdiet mi, et fermentum purus. Mauris rhoncus sit amet ex quis gravida. In tempor, libero vel finibus tristique, velit est vestibulum est, non semper leo mauris vel enim. Nulla non orci pharetra, bibendum quam a, pharetra felis. Morbi tincidunt, mauris nec aliquam maximus, eros justo rutrum odio, in dapibus sem arcu blandit nunc. Mauris dapibus sem lorem, quis lacinia nunc consectetur pulvinar. Donec sapien erat, pulvinar non fermentum tempor, auctor pellentesque tortor.\n\nSuspendisse id vehicula enim. Cras ut enim sollicitudin, aliquam mauris eget, vehicula arcu. Morbi convallis sed nulla et pellentesque. Cras risus justo, fermentum eget ex ac, dictum dignissim magna. Nullam nec velit vel nulla varius gravida. Aliquam ac lorem tempor, venenatis nibh sed, ultricies urna. In fringilla hendrerit purus, tristique aliquam ipsum molestie vitae. Sed efficitur auctor lacus ac luctus.\n\nDonec id viverra augue. Vivamus null`hsctf{th4_l3est_s3gnific3nt_bbbbbbbbbbbbb}`a neque, iaculis quis urna eget, gravida commodo quam. Vestibulum porttitor justo in suscipit rutrum. Sed id tristique ipsum. Nulla vel porta nisl. Quisque leo quam, placerat id neque eu, ullamcorper facilisis lacus. Maecenas magna eros, sollicitudin id est a, fermentum elementum leo. Vestibulum porttitor urna eget bibendum interdum. Mauris eget consequat est. Aenean hendrerit eleifend finibus. Sed eu luctus nulla, non tristique nunc. Cras aliquet vehicula tincidunt. Maecenas nec semper ipsum.\n\nProin pulvinar lacus id malesuada bibendum. Mauris ac sapien eros. Sed non neque id ante porta finibus eget eget enim. Pellentesque placerat, neque sit amet dictum eleifend, tortor dolor porttitor ex, in vestibulum lacus tortor id purus. Phasellus varius nulla sed magna finibus aliquet. Proin eros metus, sodales vel enim eu, imperdiet pulvinar erat. Nunc quis iaculis dui. In cursus a urna in dapibus. Sed eu elementum quam. Vivamus ornare convallis leo sed mollis. Aenean sit amet nulla vel leo cursus dictum ac nec sem. Morbi nec ultrices felis."
 
 <br />
+
 Flag: `hsctf{th4_l3est_s3gnific3nt_bbbbbbbbbbbbb}`
 
 

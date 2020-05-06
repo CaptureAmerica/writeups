@@ -48,7 +48,7 @@
 <meta itemprop="description" content="(2020/03/20 - 復習しました) URL: https://2020.angstromctf.com/challenges 5日間のCTFでした。主に、初日の土曜日に頑張りました。 高校生によって作られたCTFのようですね。素晴らしいです。 ちな">
 <meta itemprop="datePublished" content="2020-03-19T10:00:00&#43;09:00" />
 <meta itemprop="dateModified" content="2020-03-20T09:00:00&#43;09:00" />
-<meta itemprop="wordCount" content="3303">
+<meta itemprop="wordCount" content="3294">
 
 
 
@@ -754,27 +754,16 @@ Flag: `actf{youre_a_canary_killer_>:(}`
 <p>Ghidraでソースを確認すると、引数が4つ必要で、最初の3つは整数、最後の1個は文字列なのがわかります。</p>
 <p>整数は、計算して932になるもの、文字列は&quot;chicken&quot;です。</p>
 <p>その後、パスワードが聞かれます。&ldquo;please give flag&quot;です。（XOR 0x2aされてます）。</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span><span class="lnt">7
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">xxxxx@actf:/problems/2020/taking_off$ ./taking_off 3 9 2 chicken
+<pre>
+xxxxx@actf:/problems/2020/taking_off$ ./taking_off 3 9 2 chicken
 So you figured out how to provide input and command line arguments.
 But can you figure out what input to provide?
-Well, you found the arguments, but what&#39;s the password?
+Well, you found the arguments, but what's the password?
 please give flag
-Good job! You&#39;re ready to move on to bigger and badder rev!
+Good job! You're ready to move on to bigger and badder rev!
 actf{th3y_gr0w_up_s0_f4st}
-</code></pre></td></tr></table>
-</div>
-</div><p><br />
+</pre>
+<p><br />
 Flag: <code>actf{th3y_gr0w_up_s0_f4st}</code></p>
 <p><br /><br />
 <br /><br /></p>
@@ -793,17 +782,11 @@ Alternatively, find it at /problems/2020/windows_lives_matter/ on the shell serv
 <p><br /></p>
 <h3 id="solution-4">Solution</h3>
 <p>やけに正解者が多いなと思ったら、案の定stringsで解けるやつでした。</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">captureamerica@kali:~/Downloads$ strings windows_of_opportunity.exe | grep -i ctf
+<pre>
+captureamerica@kali:~/Downloads$ strings windows_of_opportunity.exe | grep -i ctf
 actf{ok4y_m4yb3_linux_is_s7ill_b3tt3r}
-</code></pre></td></tr></table>
-</div>
-</div><p><br />
+</pre>
+<p><br />
 100点問題だし、たぶん想定解じゃないんだろうな。一生懸命作ったのに、かわいそう。</p>
 <p><br />
 Flag: <code>actf{ok4y_m4yb3_linux_is_s7ill_b3tt3r}</code></p>

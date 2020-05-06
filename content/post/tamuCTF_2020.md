@@ -198,6 +198,7 @@ gigem{l1m17_y0ur_p3rm15510n5}
 </pre>
 
 <br>
+
 Flag: `gigem{l1m17_y0ur_p3rm15510n5}`
 
 
@@ -707,6 +708,7 @@ b1,rgb,lsb,xy       .. text: "gigem{z1pT4st1c__$kiLl$$$}"
 </pre>
 
 <br>
+
 Flag: `gigem{z1pT4st1c__$kiLl$$$}`
 
 

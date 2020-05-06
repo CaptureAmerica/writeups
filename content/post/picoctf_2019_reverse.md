@@ -57,10 +57,10 @@ Attachment:
 
 <br />
 ### Solution
-```
+<pre>
 cat temp.txt | cut -d'(' -f2 | sort -n | cut -d"'" -f2 | tr -d "\n" ; echo
 d35cr4mbl3_tH3_cH4r4cT3r5_82e029
-```
+</pre>
 
 
 Flag: `picoCTF{d35cr4mbl3_tH3_cH4r4cT3r5_82e029}`
@@ -142,7 +142,7 @@ Attachment:
 
 <br />
 ### Solution
-```
+<pre>
 $ python -c 'print("".join([chr(int(x)) for x in "106  85   53   116  95   52   95   98".split()]))'
 jU5t_4_b
 
@@ -157,8 +157,9 @@ $ python -c 'print("".join([x for x in "'8'  '4'  '0'  '6'  '3'  '5'  'a'  '1'".
 
 picoCTF{jU5t_4_bUnCh_0f_bYt3s_58840635a1}
 
-```
+</pre>
 
+<br>
 
 Flag: `picoCTF{jU5t_4_bUnCh_0f_bYt3s_58840635a1}`
 
@@ -183,11 +184,13 @@ Attachment:
 
 <br />
 ### Solution
-```
+
+<pre>
 $ python -c 'print("".join([chr(int(x,16)^0x55) for x in "0x3b 0x65 0x21 0xa  0x38 0x0  0x36 0x1d 0xa  0x3d 0x61 0x27 0x11 0x66 0x27 0xa 0x21 0x1d 0x61 0x3b 0xa  0x2d 0x65 0x27 0xa 0x64 0x64 0x65 0x62 0x61 0x65 0x33".split()]))'
 n0t_mUcH_h4rD3r_tH4n_x0r_110740f
-```
+</pre>
 
+<br>
 
 Flag: `picoCTF{n0t_mUcH_h4rD3r_tH4n_x0r_110740f}`
 
@@ -213,7 +216,7 @@ Attachment:
 ### Solution
 gdbでalarmの引き数を変えて実行。
 
-```
+<pre>
 gef➤  x ($rbp-0xc)
 0x7fffffffe204:	0x00000001
 gef➤  set {int}($rbp-0xc)=0xFFFF
@@ -225,7 +228,7 @@ Creating key...
 Finished
 Printing flag:
 PICOCTF{Good job keeping bus #2cd93bf3 speeding along!}
-```
+</pre>
 
 
 Flag: `PICOCTF{Good job keeping bus #2cd93bf3 speeding along!}`
@@ -619,7 +622,7 @@ Attachment:
 
 smaliコードの書き換え方は以下の通り。
 
-```
+<pre>
 (before)
     if-eqz v5, :cond_0
 
@@ -633,7 +636,9 @@ smaliコードの書き換え方は以下の通り。
     move-result-object v5
 
     return-object v5
-```
+</pre>
+
+<br>
 
 Flag: `picoCTF{not.particularly.silly}`
 

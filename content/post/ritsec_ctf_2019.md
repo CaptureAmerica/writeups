@@ -60,7 +60,7 @@ bottles.zip の中には、999個（001.c.out ~ 999.c.out）のelf実行ファ�
 
 ひとつGhidraにかけてみます。（001.c.out）
 
-```C
+{{< highlight c "linenos=table,hl_lines=39 65" >}}
 undefined4 main(void)
 
 {
@@ -137,7 +137,7 @@ undefined4 main(void)
   }
   return 0;
 }
-```
+{{< / highlight >}}
 
 scanfで得た入力値と、変数pの値を比較しています。（65行目）
 
@@ -196,10 +196,10 @@ done
 
 <br />
 以下、実行結果です。
-```
+<pre>
 root@kali:~/Ritsec_CTF_2019/bottles# ./objdump_loop.sh 
 F")|/f,:PsUUmKL*z(;N`QPtDZvX@j~=]q)AJ$w#g|Kehk)_$D_k;ESDz@ZK#=ZWfCo[GYG;FQ`W"mhoPlhr#W"N=RUxzjh"}&PJWWE@Jh%vKEIey`h,Xvxnsce/oqb,&*{#o&gMe-:RbSJO*>QIicbo<[sm>rmT@$@MgEwi:t{;U$WU[wRI!]+l[ngTqU>W:W*)$Sb},PmyEdJ~puK^zk!y.]M].vnBl!.OECe=JDiM|n+RihaL"x_p@M^P!f<Pa*j,A#"-,_n+z[?-bsQ.LBc{r<xR$[vuA/vMq%/_f-Yqg#$V}y&}[ReHU,`{^L/?rQlEW:Tv&l|&Ac#=FgrQR@a[Awwh-EEK@L:xf`M@E&}VFOZo:]ObRyiAomKD|,=pErk)wr%ir!J+`.DkN_`k>D}yrZ^@J&,qIRo|dvY+m@o:{cBvSE:G<;lGzV?NwpG*`VMnqSdXjN:r#=`=qq[qsn_kih>|M|WzEfz^|J>GTEc~k=KEbr@xOrP}iQnw#-uO-/]iCmbtBV+N*CmUiWl;STEf@}oB!e*!K#wmg](w.P]jm_o;Qec"AVm}JA#ua=hptzPVH?MSbopjRYUzDL_[[pA[)huW;=mhbIPAibwC[?o!"t.uKy[o~NiG;B=T.Rrn&OrF:&J&Xf`lr^wN${HnW<DtVjk.RITSEC{AuT057v}^W!xT;ImOU;ruPEQJKtRPlL#aGA.[PX,;,e~$t:*^dR?P_daEe,_{#r+iNrE-UVdeQh]GiIO+G;*.m=&+g#x|P!oXA(iFm({ZgTIohA<,.e(&KWw|>~,Wl<XH]<zT|H;gl.I_n"JAJ=n&}KJV{wsIFgsGHv@)+kj&>AQ~%xxK}<D?V+~oD?p=IZ$,Uy:L}$d[*VboIFrUuxp{{U!&e}-MSFDal(dIp^dN]D_`DYi!$VpNB-ZCUYKVxXta$Ur*!kSN`k>#fOzg]"ERlSIE~g)YlRi^oZg*Y,|ODGgbrXoqljJzChJ"c+ZRjy]}f{e
-```
+</pre>
 
 Flag `RITSEC{AuT057v}`
 
@@ -306,7 +306,8 @@ History: SQLite 3.x database, last written using SQLite version 3029000
 
 
 3. sqlite3で中身をcsvファイルに保存します。
-```
+
+<pre>
 $ sqlite3 History
 SQLite version 3.24.0 2018-06-04 14:10:15
 Enter ".help" for usage hints.
@@ -329,7 +330,7 @@ sqlite> select * from meta;
 sqlite> .output keyword.csv
 sqlite> select * from keyword_search_terms;
 sqlite> .quit
-```
+</pre>
 
 
 4. keyword.csv とかに、以下のURLが入っていました。<br />
@@ -535,7 +536,8 @@ Flag format RS{ }
 <br />
 ### Solution
 とりあえず繋いでみるとmd5が出てきたので、rainbowテーブル （https://crackstation.net/） でいけたんですが、shadow passwordは後回し。
-```
+
+<pre>
 $ nc ctfchallenges.ritsec.club 8080
 Some moron just breached Meme Corp and decided to dump their passwords...  
 In the meantime, prepare your GPUs, and get Ready... Set.... and go CRACK!
@@ -551,7 +553,7 @@ Good job.
 $6$YdnPzCGiXVuIUZph$dXDWK/J1/8HIzM3vXQ7rKbnuUgPup0qhLeKbZA/ZpAG5v.R4zFYfLnB3669y7Th46j4T5/emWVTA/mTceW3ik/
 
 Oof.
-```
+</pre>
 
 <br />
 以下のファイルはググったらすぐ見つかりました。
@@ -565,15 +567,17 @@ Oof.
 
 <br />
 がっちゃんこしておきました。
-```
+
+<pre>
 # cat *.txt | sort | uniq > passwd_list.txt
-```
+</pre>
 
 <br />
 shadow passwordが出てきたら、hash.txtとして保存して、John the ripperでCrackします。
-```
+
+<pre>
 # john hash.txt --wordlist=./passwd_list.txt
-```
+</pre>
 
 <br />
 Crackできないやつもいくつかありましたが、何回かやっているとそのうち解けます。3回続けてCrackできたらフラグゲットです。
@@ -639,7 +643,7 @@ listening on ens3, link-type EN10MB (Ethernet), capture size 262144 bytes
 <br />
 69.253.122.14 宛ての通信があったので、しばらく眺めてみましたが、ポート番号がインクリメントされていてSynをひたすら投げて全く応答がないので、他の誰かがポートスキャンしているものと判断しました。
 
-```
+<pre>
 -bash-4.4$ tcpdump -Xs 1600 port not 22 and host 69.253.122.14
 tcpdump: verbose output suppressed, use -v or -vv for full protocol decode
 listening on ens3, link-type EN10MB (Ethernet), capture size 1600 bytes
@@ -659,7 +663,8 @@ listening on ens3, link-type EN10MB (Ethernet), capture size 1600 bytes
 	0x0020:  a002 6e28 8103 0000 0204 0582 0402 080a  ..n(............
 	0x0030:  2d5e 4a10 0000 0000 0103 0307            -^J.........
 :
-```
+</pre>
+
 どこからこのIPアドレス(69.253.122.14)を取ってきたのかは知りませんが、紛らわしいですね。。
 
 
@@ -667,7 +672,7 @@ listening on ens3, link-type EN10MB (Ethernet), capture size 1600 bytes
 <br />
 Port 53とかも省いて眺めていると、どうやら192.168.0.14が居て、443でたまに応答が返っているみたいなのがわかります。ただし、Synのみで終わっているのがほとんどでした。
 
-```
+<pre>
 04:24:45.492388 IP 192.168.0.33.47540 > 192.168.0.14.443: Flags [S], seq 3430797911, win 28200, options [mss 1410,sackOK,TS val 996231414 ecr 0,nop,wscale 7], length 0
 04:24:45.493305 IP 192.168.0.14.443 > 192.168.0.33.47540: Flags [S.], seq 960529478, ack 3430797912, win 27960, options [mss 1410,sackOK,TS val 2321810964 ecr 996231414,nop,wscale 7], length 0
 04:24:45.493355 IP 192.168.0.33.47540 > 192.168.0.14.443: Flags [.], ack 1, win 221, options [nop,nop,TS val 996231415 ecr 2321810964], length 0
@@ -677,7 +682,7 @@ Port 53とかも省いて眺めていると、どうやら192.168.0.14が居て�
 04:24:45.506223 IP 192.168.0.33.47540 > 192.168.0.14.443: Flags [.], ack 1336, win 243, options [nop,nop,TS val 996231428 ecr 2321810977], length 0
 04:24:45.507078 IP 192.168.0.33.47540 > 192.168.0.14.443: Flags [P.], seq 518:611, ack 1336, win 243, options [nop,nop,TS val 996231428 ecr 2321810977], length 93
 04:24:45.508063 IP 192.168.0.14.443 > 192.168.0.33.47540: Flags [P.], seq 1336:1387, ack 611, win 227, options [nop,nop,TS val 2321810979 ecr 996231428], length 51
-```
+</pre>
 
 <br />
 Web問題だし、port 80か443にフォーカスするのが方向性的に正解なんでしょうね。
@@ -761,7 +766,8 @@ Attachments:
 
 <br />
 あるいは、sysinternalのsigcheck.exeにて、
-```
+
+<pre>
 $ sigcheck.exe -a -nobanner win32k.sys
 
         Verified:       Unsigned
@@ -779,7 +785,7 @@ $ sigcheck.exe -a -nobanner win32k.sys
         Copyright:      ? RITSEC{PATCHM3IFYOUCAN} No rights reserved.
         Comments:       n/a
         Entropy:        6.019
-```
+</pre>
 
 <br />
 Flag: `RITSEC{PATCHM3IFYOUCAN}`
