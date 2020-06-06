@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <title>Security Fest 2019 Writeup - CTF フラxxグゲット</title>
+  <title>HSCTF7 Writeup - CTF フラxxグゲット</title>
   <meta name="renderer" content="webkit" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
@@ -16,7 +16,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="CaptureAmerica @ CTF フラxxグゲット" /><meta name="description" content="[Misc]: Signal Challenge There is no signal, everything is silent. Nothing is impossible. Attachment: signal.pdf 開くと、こんな感じ。（以下は、スクリーンショットです。） Solution 回答だけじゃなくて、一応やったことも記録に残しておき" /><meta name="keywords" content="CTF, Writeup, captureamerica, picoCTF" />
+<meta name="author" content="CaptureAmerica @ CTF フラxxグゲット" /><meta name="description" content="URL: https://ctf.hsctf.com/ 483位でした。ここ最近、簡単なのしか解けてません。。 アルゴリズムで解けた２問だけWriteup残しておきます。 [Algorithm]: Pythagorean Tree Fractal 1 Challenge Attachment: Pythagorean_Tree_Fractal.pdf (中身は" /><meta name="keywords" content="CTF, Writeup, captureamerica, picoCTF" />
 
 
 
@@ -26,7 +26,7 @@
 <meta name="generator" content="Hugo 0.69.2 with theme even" />
 
 
-<link rel="canonical" href="https://captureamerica.github.io/writeups/post/security_fest_2019/" />
+<link rel="canonical" href="https://captureamerica.github.io/writeups/post/hsctf7_2020/" />
 <link rel="apple-touch-icon" sizes="180x180" href="https://captureamerica.github.io/writeups/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="https://captureamerica.github.io/writeups/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="https://captureamerica.github.io/writeups/favicon-16x16.png">
@@ -38,23 +38,23 @@
 
 
 
-<meta property="og:title" content="Security Fest 2019 Writeup" />
-<meta property="og:description" content="[Misc]: Signal Challenge There is no signal, everything is silent. Nothing is impossible. Attachment: signal.pdf 開くと、こんな感じ。（以下は、スクリーンショットです。） Solution 回答だけじゃなくて、一応やったことも記録に残しておき" />
+<meta property="og:title" content="HSCTF7 Writeup" />
+<meta property="og:description" content="URL: https://ctf.hsctf.com/ 483位でした。ここ最近、簡単なのしか解けてません。。 アルゴリズムで解けた２問だけWriteup残しておきます。 [Algorithm]: Pythagorean Tree Fractal 1 Challenge Attachment: Pythagorean_Tree_Fractal.pdf (中身は" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://captureamerica.github.io/writeups/post/security_fest_2019/" />
-<meta property="article:published_time" content="2019-05-23T00:00:00+08:00" />
-<meta property="article:modified_time" content="2019-05-25T14:05:00+08:00" />
-<meta itemprop="name" content="Security Fest 2019 Writeup">
-<meta itemprop="description" content="[Misc]: Signal Challenge There is no signal, everything is silent. Nothing is impossible. Attachment: signal.pdf 開くと、こんな感じ。（以下は、スクリーンショットです。） Solution 回答だけじゃなくて、一応やったことも記録に残しておき">
-<meta itemprop="datePublished" content="2019-05-23T00:00:00&#43;08:00" />
-<meta itemprop="dateModified" content="2019-05-25T14:05:00&#43;08:00" />
-<meta itemprop="wordCount" content="734">
+<meta property="og:url" content="https://captureamerica.github.io/writeups/post/hsctf7_2020/" />
+<meta property="article:published_time" content="2020-06-06T16:00:00+09:00" />
+<meta property="article:modified_time" content="2020-06-06T16:00:00+09:00" />
+<meta itemprop="name" content="HSCTF7 Writeup">
+<meta itemprop="description" content="URL: https://ctf.hsctf.com/ 483位でした。ここ最近、簡単なのしか解けてません。。 アルゴリズムで解けた２問だけWriteup残しておきます。 [Algorithm]: Pythagorean Tree Fractal 1 Challenge Attachment: Pythagorean_Tree_Fractal.pdf (中身は">
+<meta itemprop="datePublished" content="2020-06-06T16:00:00&#43;09:00" />
+<meta itemprop="dateModified" content="2020-06-06T16:00:00&#43;09:00" />
+<meta itemprop="wordCount" content="456">
 
 
 
 <meta itemprop="keywords" content="CTF," /><meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Security Fest 2019 Writeup"/>
-<meta name="twitter:description" content="[Misc]: Signal Challenge There is no signal, everything is silent. Nothing is impossible. Attachment: signal.pdf 開くと、こんな感じ。（以下は、スクリーンショットです。） Solution 回答だけじゃなくて、一応やったことも記録に残しておき"/>
+<meta name="twitter:title" content="HSCTF7 Writeup"/>
+<meta name="twitter:description" content="URL: https://ctf.hsctf.com/ 483位でした。ここ最近、簡単なのしか解けてません。。 アルゴリズムで解けた２問だけWriteup残しておきます。 [Algorithm]: Pythagorean Tree Fractal 1 Challenge Attachment: Pythagorean_Tree_Fractal.pdf (中身は"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -121,10 +121,10 @@
           <article class="post">
     
     <header class="post-header">
-      <h1 class="post-title">Security Fest 2019 Writeup</h1>
+      <h1 class="post-title">HSCTF7 Writeup</h1>
 
       <div class="post-meta">
-        <span class="post-time"> 2019-05-23 </span>
+        <span class="post-time"> 2020-06-06 </span>
         <div class="post-category">
             <a href="https://captureamerica.github.io/writeups/categories/ctf/"> CTF </a>
             </div>
@@ -137,10 +137,16 @@
   <div class="post-toc-content">
     <nav id="TableOfContents">
   <ul>
-    <li><a href="#misc-signal">[Misc]: Signal</a>
+    <li><a href="#algorithm-pythagorean-tree-fractal-1">[Algorithm]: Pythagorean Tree Fractal 1</a>
       <ul>
         <li><a href="#challenge">Challenge</a></li>
         <li><a href="#solution">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#algorithm-pythagorean-tree-fractal-2">[Algorithm]: Pythagorean Tree Fractal 2</a>
+      <ul>
+        <li><a href="#challenge-1">Challenge</a></li>
+        <li><a href="#solution-1">Solution</a></li>
       </ul>
     </li>
   </ul>
@@ -149,70 +155,99 @@
 </div>
     <div class="post-content">
       <div class='align-right'>
-<a href="https://translate.google.com/translate?hl=en&sl=ja&tl=en&u=https%3A%2F%2Fcaptureamerica.github.io%2Fwriteups%2Fpost%2Fsecurity_fest_2019%2F">
+<a href="https://translate.google.com/translate?hl=en&sl=ja&tl=en&u=https%3A%2F%2Fcaptureamerica.github.io%2Fwriteups%2Fpost%2Fhsctf7_2020%2F">
 <img src="https://captureamerica.github.io/writeups/img/En.png" alt="English">
 </a>
 </div>
-<h2 id="misc-signal">[Misc]: Signal</h2>
+<p>URL: <a href="https://ctf.hsctf.com/">https://ctf.hsctf.com/</a>
+<br /><br />
+483位でした。ここ最近、簡単なのしか解けてません。。
+<br /><br />
+<img src="https://captureamerica.github.io/writeups/img/hsctf7_Score1.png" alt="hsctf7_Score1.png"></p>
+<img src="https://captureamerica.github.io/writeups/img/hsctf7_Score2.png" alt="hsctf7_Score2.png">
+<p><br /><br />
+アルゴリズムで解けた２問だけWriteup残しておきます。</p>
+<h2 id="algorithm-pythagorean-tree-fractal-1">[Algorithm]: Pythagorean Tree Fractal 1</h2>
 <hr>
 <h3 id="challenge">Challenge</h3>
+<img src="https://captureamerica.github.io/writeups/img/hsctf7_Algo1.png" alt="hsctf7_Algo1.png">
+<p>Attachment:</p>
+<ul>
+<li>Pythagorean_Tree_Fractal.pdf (中身は上の通りです)</li>
+</ul>
+<p><br /></p>
+<h3 id="solution">Solution</h3>
+<p>傾向を確認します。</p>
+<p>1: 1個<br />
+2: 3個<br />
+3: 7個<br />
+4: 15個<br /></p>
+<p>こんな感じで増えていきます。</p>
+<p>数式にすると、a[n]=2^n-1</p>
+<p>（これは、&ldquo;1 3 7 15&quot;とかでググっても見つかります。）</p>
+<p><br />
+50番目は、以下の通りです。</p>
+<pre>
+$ Python3
+>>> 2**50-1
+1125899906842623
+</pre>
+<p><br /></p>
+<p>Flag: <code>flag{1125899906842623}</code></p>
+<p><br /><br />
+<br /><br /></p>
+<h2 id="algorithm-pythagorean-tree-fractal-2">[Algorithm]: Pythagorean Tree Fractal 2</h2>
+<hr>
+<h3 id="challenge-1">Challenge</h3>
 <blockquote>
-<p>There is no signal, everything is silent. Nothing is impossible.</p>
+<p>If the square in Stage 1 has an area of 70368744177664, what is the area of the Stage 25 tree?</p>
 </blockquote>
 <p>Attachment:</p>
 <ul>
-<li>signal.pdf</li>
+<li>PTF2.pdf (図の部分はPythagorean Tree Fractal 1と同じです)</li>
 </ul>
-<p><br />
-開くと、こんな感じ。（以下は、スクリーンショットです。）
-<img src="https://captureamerica.github.io/writeups/img/signal.png" alt="signal.png"></p>
 <p><br /></p>
-<h3 id="solution">Solution</h3>
-<p>回答だけじゃなくて、一応やったことも記録に残しておきます。</p>
-<ul>
-<li>pdf系の問題は、とりあえず、テキストエディタで開いてさらっと中身をチェックします。script使っているかどうかとか。
-<br /><br /></li>
-<li>その後、何も考えず、いろいろツールにかけていきました。</li>
-<li>pdf-parser.py</li>
-<li>pdfid.py</li>
-<li>pdfinfo</li>
-<li>PdfAnalyzer.exe</li>
-<li>PDFStreamDumper.exe</li>
-</ul>
+<h3 id="solution-1">Solution</h3>
+<p>70368744177664は、2^46 です。</p>
+<p>2個目の正方形の面積は、ピタゴラスの定理とか使って考えると、結果的に (1個目の面積 / 2) になります。</p>
+<p>ということで、面積だけ見ていくと、以下の傾向となります。</p>
+<p>1: 2^46<br />
+2: 2^45<br />
+3: 2^44<br />
+4: 2^43<br />
+5: 2^42<br /></p>
+<p>正方形の数は、以下のように増えていきます。（サイズ毎の数で合計ではないです）</p>
+<p>1: 1個<br />
+2: 2個<br />
+3: 4個<br />
+4: 8個<br />
+5: 16個<br /></p>
 <p><br />
-特に怪しい箇所がなんにもないので、残るはアスキーテキストに何かあると考えるしかないな、と思いました。</p>
-<p><br />
-以下のコマンドの出力結果は抜粋です。</p>
-<pre>
-$ pdftotext signal.pdf > signal.txt ; cat signal.txt
-：
-_-'... - .-. .- -. --. . .-.-.- -.- . -.-- -... ---`-_
-_-' .- .-. -.. .-.-.- ... . -.-. ..-. .-.-.- -- .---- .`-_
-_-'-.. .---- - ....- .-. -.-- ..--.- --. .-. ....- -.. ...-- -_
-_-'..--.- ...-- -. -.-. .-. -.-- .--. - .---- ----- -. .-.-.- .-- -_
-_-'.- .. - .-.-.- -.-. --- ..- .-.. -.. .-.-.- .-. .- -. -.. --- -`-_
-:-------------------------------------------------------------------------:
-`---._.-------------------------------------------------------------._.---'
-</pre>
-<p>これを見た瞬間、なぜか「SOS」のモールス信号の音がアタマに流れました。<br />
-あぁ、問題のタイトルSignal（信号）だしね。ビンゴの確信。</p>
+以下のコードを書きました。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="ch">#!/usr/bin/env python3</span>
+<span class="c1"># -*- coding: utf-8 -*-</span>
+<span class="n">total</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">25</span><span class="p">):</span>
+    <span class="n">area</span> <span class="o">=</span> <span class="mi">2</span><span class="o">**</span><span class="p">(</span><span class="mi">46</span><span class="o">-</span><span class="n">i</span><span class="p">)</span>
+    <span class="n">total</span> <span class="o">=</span> <span class="n">total</span> <span class="o">+</span> <span class="n">area</span> <span class="o">*</span> <span class="p">(</span><span class="mi">2</span><span class="o">**</span><span class="n">i</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">total</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><br /></p>
+<p>Flag: <code>flag{1759218604441600}</code></p>
 <p><br /><br />
-あとは、オンラインで、<code>morse decode</code> をキーワードに検索してデコードサイトを見つけてデコードするだけなんですが、これがサイトによってクオリティが違ってて、エラーが出たり出なかったり、変換文字が違ったりするんです。</p>
-<p><br />
-使った中で一番よかったのは、以下のサイトでした。
-<br />
-<a href="https://www.dcode.fr/morse-code">https://www.dcode.fr/morse-code</a></p>
-<p><br />
-コツは、1行1行別々にデコードすることです。全部を1行にまとめてからデコードしようとすると、もともと改行があった場所でエラーが出たりします。</p>
-<p><br />
-でもって、以下の文字列が取れるんですが、
-STRANGE.KEYBOARD.SECF.M1L1T4RY_GR4D3T_3NCRYPT10N.WTAIT.COULD.RANDOM
-<br /><br />
-これそのままだと、incorrect flagで受け付けられなくて、いろんなパターンやってもことごとくダメだったんで何気に諦めかけたけど、結局以下の部分が最終フラグとして通りました。</p>
-<p><br />
-<strong>Flag:</strong> m1l1t4ry_gr4d3_3ncrypt10n</p>
-<p><br />
-＃まぁ、確かにアンダースコアで繋がっているし、その部分なんだろうけどさ。。。結構悩んだ</p>
+<br /><br /></p>
 <hr>
 <p><br /><br />
 <br /><br /></p>
@@ -227,7 +262,7 @@ STRANGE.KEYBOARD.SECF.M1L1T4RY_GR4D3T_3NCRYPT10N.WTAIT.COULD.RANDOM
   <p class="copyright-item">
     <span class="item-title">LastMod</span>
     <span class="item-content">
-        2019-05-25
+        2020-06-06
         
     </span>
   </p>
@@ -239,13 +274,9 @@ STRANGE.KEYBOARD.SECF.M1L1T4RY_GR4D3T_3NCRYPT10N.WTAIT.COULD.RANDOM
           <a href="https://captureamerica.github.io/writeups/tags/ctf/">CTF</a>
           </div>
       <nav class="post-nav">
-        <a class="prev" href="https://captureamerica.github.io/writeups/post/honeynet_workshop/">
-            <i class="iconfont icon-left"></i>
-            <span class="prev-text nav-default">The Honeynet Project: Innsbruck Workshop CTF Writeup</span>
-            <span class="prev-text nav-mobile">Prev</span>
-          </a>
-        <a class="next" href="https://captureamerica.github.io/writeups/post/harekaze_ctf_2019/">
-            <span class="next-text nav-default">Harekaze CTF 2019 Writeup</span>
+        
+        <a class="next" href="https://captureamerica.github.io/writeups/post/houseplantctf_2020/">
+            <span class="next-text nav-default">Houseplant CTF 2020 Writeup</span>
             <span class="next-text nav-mobile">Next</span>
             <i class="iconfont icon-right"></i>
           </a>
