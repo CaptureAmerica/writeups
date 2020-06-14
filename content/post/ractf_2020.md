@@ -1,7 +1,7 @@
 ---
 title: "Really Awesome CTF 2020 Writeup"
-date: 2020-06-07T16:00:00+09:00
-lastmod: 2020-06-07T16:00:00+09:00
+date: 2020-06-14T09:00:00+09:00
+lastmod: 2020-06-14T09:00:00+09:00
 draft: false
 keywords: []
 description: ""
@@ -16,9 +16,9 @@ author: ""
 {{% /right %}}
 
 URL: [https://2020.ractf.co.uk/](https://2020.ractf.co.uk/)
-<br /><br />
+
 これは順位が見れないやつだったかな。どっちみち、大した順位じゃありません。。
-<br /><br />
+
 <img src="https://captureamerica.github.io/writeups/img/ractf_Score.png" alt="ractf_Score.png">
 
 
@@ -31,7 +31,7 @@ URL: [https://2020.ractf.co.uk/](https://2020.ractf.co.uk/)
 ## [Misc]: Reading Between the Lines (300 points)
 - - -
 ### Challenge
-We found a strange file knocking around, but I've got no idea who wrote it because the indentation's an absolute mess!
+> We found a strange file knocking around, but I've got no idea who wrote it because the indentation's an absolute mess!
 
 Attachment:
 
@@ -53,7 +53,7 @@ https://en.wikipedia.org/wiki/Whitespace_(programming_language)<br />
 https://esolangs.org/wiki/Whitespace<br />
 
 <br />
-チャレンジ名は「Reading Between the Lines」ですが、全部の行になんかしら入っているので、1行おきに読んでもダメですね。
+チャレンジ名は「Reading Between the Lines」ですが、全部の行になんかしら入っているし、厳密には「Between the words」ですね。
 
 とりあえず、目に見える文字をsedを使って消していきます。（ハイフンだけは横着してエディタで消しました。）
 
