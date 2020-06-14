@@ -1,7 +1,7 @@
 ---
 title: "NahamCon CTF 2020 Writeup"
 date: 2020-06-14T11:00:00+09:00
-lastmod: 2020-06-14T11:00:00+09:00
+lastmod: 2020-06-14T18:30:00+09:00
 draft: false
 keywords: []
 description: ""
@@ -194,7 +194,7 @@ send back this line exactly. character 19 of the flag is 'o'
 <br />
 表示された文をrot(n)して送り返していると、その中にフラグの一文字が含まれているものが出てくる、というものです。
 
-何度か下調べをして、'}' が30文字目に出てくるようなので、それでフラグの長さがわかります。
+何度か下調べをして、'}' が30文字目（0始まり）に出てくるようなので、それでフラグの長さ(31)がわかります。
 
 <br />
 以下、書いたスクリプトです。rot()関数は前から持っていたので、今回書いたのはその下の箇所です。
@@ -212,8 +212,9 @@ def rot(s, n):
             s[i] = ((c-0x61+n) % 0x1a) + 0x61
     return s
 
-bitmap = 0
-flag = [""] * 31
+flag_len = 31
+flag = [""] * flag_len
+count = 0
 s = remote('jh2i.com', 50034)
 while 1:
     q = s.recvline()
@@ -222,16 +223,15 @@ while 1:
         if "character" in a:
             result = (re.findall(r'[0-9]+', a))
             pos = int(result[0])
-            bitmap |= 1 << pos
-            print("{:x}".format(bitmap))
-            flag[pos] = chr(a[-3])
-            print("".join(flag))
+            if flag[pos] != chr(a[-3]):
+                flag[pos] = chr(a[-3])
+                print("".join(flag))
+                count += 1
             #print("char = {}".format(chr(a[-3])))
         if "send" in a:
-            # print(a)
             s.sendline(a)
             break
-    if bitmap == 0x7FFFFFFF:
+    if count >= flag_len:
         break
 s.close()
 ```
@@ -239,7 +239,6 @@ s.close()
 <br />
 解説:
 
-- bitmapにビットを立てていって、フラグの文字が揃ったかどうかを判別してます。
 - 実際に見つかった文字は、flagというリストに入れていってます。
 - rotした結果、"send"とか"character"が見つかったやつが、正しくrotされたものです。
 - ちょっとナゾだったのが、aには文字が入っているはずなのにa[-3]は数値で取れてたので、chr()で文字に変換してます。
@@ -249,41 +248,38 @@ s.close()
 実行結果:
 
 <pre>
-$ ./rotten_solve.py 
+$ ./rotten_solve.py
 [+] Opening connection to jh2i.com on port 50034: Done
-8000
-o
-8020
-no
-8030
-{no
-8030
-{no
-8070
-{noo
-10008070
-{noor
-10008078
-g{noor
-10008178
-g{no_or
-10008578
-g{no_oor
-10108578
-g{no_oour
-10128578
-g{no_oo_ur
-1012857c
-ag{no_oo_ur
-1012957c
-ag{no_o_o_ur
-3012957c
-ag{no_o_o_urs
-:
-:
-7ffffdff
-flag{now_ou_know_your_caesars}
-7fffffff
+r
+lr
+lyr
+loyr
+floyr
+floyur
+floyur}
+floyurr}
+floyurer}
+floyourer}
+floyourers}
+floyou_rers}
+fl{oyou_rers}
+fl{noyou_rers}
+fl{noyou_rcers}
+fl{noyou_rcesrs}
+fl{no_you_rcesrs}
+fl{no_youo_rcesrs}
+fl{no_youo_yrcesrs}
+fl{no_youko_yrcesrs}
+fl{no_youkow_yrcesrs}
+fl{no_youkow_yurcesrs}
+flg{no_youkow_yurcesrs}
+flg{now_youkow_yurcesrs}
+flg{now_youkow_yurcaesrs}
+flag{now_youkow_yurcaesrs}
+flag{now_youkow_yourcaesrs}
+flag{now_you_kow_yourcaesrs}
+flag{now_you_know_yourcaesrs}
+flag{now_you_know_yourcaesars}
 flag{now_you_know_your_caesars}
 [*] Closed connection to jh2i.com port 50034
 </pre>
