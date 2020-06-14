@@ -171,7 +171,7 @@ final.pngを開いて、よーーく目を凝らすと、変なデータが見�
 
 
 <br />
-Previewで拡大、選択、コピー、New from Clipboardをして、別ファイルとして保存します。
+MacのPreview.appで拡大、選択、コピー、New from Clipboardをして、別ファイルとして保存します。
 
 <img src="https://captureamerica.github.io/writeups/img/rooters_final2.png" alt="rooters_final2.png">
 
