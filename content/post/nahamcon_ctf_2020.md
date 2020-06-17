@@ -1,11 +1,11 @@
 ---
 title: "NahamCon CTF 2020 Writeup"
 date: 2020-06-14T11:00:00+09:00
-lastmod: 2020-06-14T18:30:00+09:00
+lastmod: 2020-06-17T21:25:00+09:00
 draft: false
 keywords: []
 description: ""
-tags: ["CTF"]
+tags: ["CTF", "Reviewed"]
 categories: ["CTF"]
 author: ""
 ---
@@ -15,6 +15,8 @@ author: ""
 </a>
 {{% /right %}}
 
+(2020/06/17 - 復習しました)
+
 URL: [https://ctf.nahamcon.com/challenges](https://ctf.nahamcon.com/challenges)
 
 土曜日にある程度やって、BinaryとScriptingは日曜日にゆっくりやろうと思ったら、イベントが終わってました。残念。。。
@@ -22,7 +24,7 @@ URL: [https://ctf.nahamcon.com/challenges](https://ctf.nahamcon.com/challenges)
 （やったところで、大して解けなかったかもですけど）
 
 <br />
-John Hammond がオーガナイザーのひとりだったみたいですね。間接的に、いろいろお世話になっております（YouTubeビデオとか、[ctf-katana](https://github.com/JohnHammond/ctf-katana)とか）。ぺこり。
+John Hammond がオーガナイザーのひとりだったみたいですね。間接的に、いろいろお世話になっております（YouTubeビデオとか、[ctf-katana](https://github.com/JohnHammond/ctf-katana)とか）。Thanks!
 
 <br />
 最終順位は、419位でした。
@@ -556,7 +558,7 @@ Windowsで動くFree Softwareの「Software DTMF Controller Version 1.2」を使
 `46327402297754110981468069185383422945309689772058551073955248013949155635325`
 
 <br />
-以下のオンラインツールでも同じ文字列が取れます。
+以下のオンラインツールでも同じ文字列が取れます。（もしかしたら、サーバダウンしちゃっているかもです。）
 
 http://dialabc.com/sound/detect/index.html
 
@@ -829,6 +831,143 @@ PNG imageなので、拡張子に .png を付けました。
 <br />
 Flag: `flag{wham_bam_thank_you_for_the_flag_maam}`
 
+
+
+
+<br /><br />
+<br /><br />
+<img src="https://captureamerica.github.io/writeups/img/orange_bar.png" alt="orange_bar.png">
+<br />
+ここから下はイベント終了後に行った復習です。
+
+
+<br /><br />
+## [Steg]: Doh (50 points)
+- - -
+### Challenge
+> Doh! Stupid steganography...
+<br /><br />
+Note, this flag is not in the usual format.
+
+Attachment:
+
+- doh.jpg
+
+
+<br />
+### Solution
+「青い空を見上げればいつもそこに白い猫」で開くと 「Steghideの可能性あり」とのことで、steghideを使ってはみたもののpassphraseが見当つかずに諦めたやつです。
+
+<br />
+passphrase無しで試すという発想がなかった。。。
+
+<pre>
+$ steghide extract -sf doh.jpg 
+Enter passphrase: 
+wrote extracted data to "flag.txt".
+
+$ cat flag.txt
+JCTF{an_annoyed_grunt}
+</pre>
+
+<br />
+
+Flag: `JCTF{an_annoyed_grunt}`
+
+
+
+
+<br /><br />
+<br /><br />
+## [Steg]: Snowflake (75 points)
+- - -
+### Challenge
+> Frosty the Snowman is just made up of a lot of snowflakes. Which is the right one?
+<br /><br />
+Note, this flag is not in the usual format.
+
+Attachment:
+
+- frostythesnowman.txt
+
+
+<br />
+### Solution
+チャレンジタイトルと、添付ファイルより、stegsnowは確定だったんですが、これまたpassphraseが見当つかずに諦めたやつです。
+
+>Frosty the Snowman is just made up of a lot of snowflakes. Which is the right one?
+
+と言っているので、snowflakesの名前の内のひとつがpassphraseなのかと思ってネットでsnowflakesの名前を探していろいろ試したけどダメでした。
+
+<br />
+rockyou.txtを使って総当りするという発想は無かった。。。（というか、正直のところ、このチャレンジ文はどうかと思います）
+
+
+<pre>
+$ cat snowflake_solve.sh
+while read line
+do
+    stegsnow -Q -C -p $line frostythesnowman.txt | egrep "{.*}"
+done < /usr/share/wordlists/rockyou.txt
+
+
+$ ./snowflake_solve.sh 
+you: No such file or directory
+JCTF{gemmy_spinning_snowflake}
+^C
+</pre>
+
+<br />
+
+Flag: `JCTF{gemmy_spinning_snowflake}`
+
+
+
+
+<br /><br />
+<br /><br />
+## [Steg]: Old school (125 points)
+- - -
+### Challenge
+> Did Dade Murphy do this?
+<br /><br />
+Note, this flag is not in the usual format.
+
+Attachment:
+
+- hackers.bmp
+
+<img src="https://captureamerica.github.io/writeups/img/hackers.bmp" alt="hackers.bmp">
+
+
+<br />
+### Solution
+画像系はいつもzstegをかけることを心がけているんですが、-aオプションはいつも付けてなかったです。
+
+こんな感じ。
+
+<pre>
+$ zsteg hackers.bmp 
+imagedata           .. text: "348>?CFGKIJNRSWJKOcbdcbdUTVdceGFHCBD"
+[=] nothing :(                    
+</pre>
+
+
+<br />
+-aオプションを付けて実行してたら、フラグが取れたようです。
+
+<pre>
+$ zsteg -a hackers.bmp | grep -i "{.*}"
+b1,bgr,lsb,xy       .. text: "4JCTF{at_least_the_movie_is_older_than_this_software}"
+</pre>
+
+<br />
+
+Flag: `4JCTF{at_least_the_movie_is_older_than_this_software}`
+
+
+<br />
+ちなみに、Hackers (邦題：サイバーネット) のDVD持ってます。アンジェリーナ ジョリーがかわいいんですよね。
 
 
 
