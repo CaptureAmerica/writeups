@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>zh3r0 CTF 2020 Writeup - CTF フラxxグゲット</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="CaptureAmerica @ CTF フラxxグゲット" /><meta name="description" content="URL: https://ctf.zh3r0.ml/ 平日にやってたCTFイベントです。１つのチャレンジの中で解かないといけないものが複数あり、途中で挫折するのがいくつかありました。 最終順位" /><meta name="keywords" content="CTF, Writeup, captureamerica, picoCTF" />
+
+
+
+<meta name="google-site-verification" content="PqctLWZQttGzxXVupWuIt2HWuBI8cvN1z07ETpxA2dw" />
+
+
+<meta name="generator" content="Hugo 0.72.0 with theme even" />
+
+
+<link rel="canonical" href="https://captureamerica.github.io/writeups/post/zh3r0_ctf_2020/" />
+<link rel="apple-touch-icon" sizes="180x180" href="https://captureamerica.github.io/writeups/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://captureamerica.github.io/writeups/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://captureamerica.github.io/writeups/favicon-16x16.png">
+<link rel="manifest" href="https://captureamerica.github.io/writeups/manifest.json">
+<link rel="mask-icon" href="https://captureamerica.github.io/writeups/safari-pinned-tab.svg" color="#5bbad5">
+
+
+<link href="https://captureamerica.github.io/writeups/dist/even.c2a46f00.min.css" rel="stylesheet">
+
+
+
+<meta property="og:title" content="zh3r0 CTF 2020 Writeup" />
+<meta property="og:description" content="URL: https://ctf.zh3r0.ml/ 平日にやってたCTFイベントです。１つのチャレンジの中で解かないといけないものが複数あり、途中で挫折するのがいくつかありました。 最終順位" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://captureamerica.github.io/writeups/post/zh3r0_ctf_2020/" />
+<meta property="article:published_time" content="2020-06-18T19:00:00+09:00" />
+<meta property="article:modified_time" content="2020-06-18T19:00:00+09:00" />
+<meta itemprop="name" content="zh3r0 CTF 2020 Writeup">
+<meta itemprop="description" content="URL: https://ctf.zh3r0.ml/ 平日にやってたCTFイベントです。１つのチャレンジの中で解かないといけないものが複数あり、途中で挫折するのがいくつかありました。 最終順位">
+<meta itemprop="datePublished" content="2020-06-18T19:00:00&#43;09:00" />
+<meta itemprop="dateModified" content="2020-06-18T19:00:00&#43;09:00" />
+<meta itemprop="wordCount" content="2527">
+
+
+
+<meta itemprop="keywords" content="CTF," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="zh3r0 CTF 2020 Writeup"/>
+<meta name="twitter:description" content="URL: https://ctf.zh3r0.ml/ 平日にやってたCTFイベントです。１つのチャレンジの中で解かないといけないものが複数あり、途中で挫折するのがいくつかありました。 最終順位"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="https://captureamerica.github.io/writeups/" class="logo">CTF Writeups</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="https://captureamerica.github.io/writeups/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="https://captureamerica.github.io/writeups/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="https://captureamerica.github.io/writeups/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="https://captureamerica.github.io/writeups/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a><a href="https://captureamerica.github.io/writeups/about/">
+        <li class="mobile-menu-item">About</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="https://captureamerica.github.io/writeups/" class="logo">CTF Writeups</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="https://captureamerica.github.io/writeups/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="https://captureamerica.github.io/writeups/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="https://captureamerica.github.io/writeups/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="https://captureamerica.github.io/writeups/categories/">Categories</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="https://captureamerica.github.io/writeups/about/">About</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">zh3r0 CTF 2020 Writeup</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2020-06-18 </span>
+        <div class="post-category">
+            <a href="https://captureamerica.github.io/writeups/categories/ctf/"> CTF </a>
+            </div>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contents</h2>
+  <div class="post-toc-content">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#web-tokens">[Web]: Tokens</a>
+      <ul>
+        <li><a href="#challenge">Challenge</a></li>
+        <li><a href="#solution">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#web-web-warmup">[Web]: Web-Warmup</a>
+      <ul>
+        <li><a href="#challenge-1">Challenge</a></li>
+        <li><a href="#solution-1">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#binary-exploitation-free-flag">[Binary Exploitation]: Free Flag</a>
+      <ul>
+        <li><a href="#challenge-2">Challenge</a></li>
+        <li><a href="#solution-2">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#crypto-rsa-warmup">[Crypto]: RSA-Warmup</a>
+      <ul>
+        <li><a href="#challenge-3">Challenge</a></li>
+        <li><a href="#solution-3">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#forensics-katycat">[Forensics]: Katycat</a>
+      <ul>
+        <li><a href="#challenge-4">Challenge</a></li>
+        <li><a href="#solution-4">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#forensics-lsb-fun">[Forensics]: LSB fun</a>
+      <ul>
+        <li><a href="#challenge-5">Challenge</a></li>
+        <li><a href="#solution-5">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#forensics-snow">[Forensics]: Snow</a>
+      <ul>
+        <li><a href="#challenge-6">Challenge</a></li>
+        <li><a href="#solution-6">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#forensics-dozen-bases">[Forensics]: Dozen Bases</a>
+      <ul>
+        <li><a href="#challenge-7">Challenge</a></li>
+        <li><a href="#solution-7">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#subset-of-subset-of-hacking-machines-challenges-flag-5">[Subset of subset of hacking machines challenges]: Flag 5</a>
+      <ul>
+        <li><a href="#challenge-8">Challenge</a></li>
+        <li><a href="#solution-8">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#master-tic-tac-toe">[Master]: Tic Tac Toe</a>
+      <ul>
+        <li><a href="#challenge-9">Challenge</a></li>
+        <li><a href="#unsolved">(Unsolved)</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <div class='align-right'>
+<a href="https://translate.google.com/translate?hl=en&sl=ja&tl=en&u=https%3A%2F%2Fcaptureamerica.github.io%2Fwriteups%2Fpost%2Fzh3r0_ctf_2020%2F">
+<img src="https://captureamerica.github.io/writeups/img/En.png" alt="English">
+</a>
+</div>
+<p>URL: <a href="https://ctf.zh3r0.ml/">https://ctf.zh3r0.ml/</a></p>
+<p>平日にやってたCTFイベントです。１つのチャレンジの中で解かないといけないものが複数あり、途中で挫折するのがいくつかありました。</p>
+<p><br />
+最終順位は、162位でした。</p>
+<img src="https://captureamerica.github.io/writeups/img/zh3r0_CTF_2020_Score1.png" alt="zh3r0_CTF_2020_Score1.png">
+<p><br />
+チャレンジリスト</p>
+<img src="https://captureamerica.github.io/writeups/img/zh3r0_CTF_2020_Score2.png" alt="zh3r0_CTF_2020_Score2.png">
+<br />
+<img src="https://captureamerica.github.io/writeups/img/zh3r0_CTF_2020_Score3.png" alt="zh3r0_CTF_2020_Score3.png">
+<br />
+<img src="https://captureamerica.github.io/writeups/img/zh3r0_CTF_2020_Score4.png" alt="zh3r0_CTF_2020_Score4.png">
+<p><br /><br /></p>
+<h2 id="web-tokens">[Web]: Tokens</h2>
+<hr>
+<h3 id="challenge">Challenge</h3>
+<blockquote>
+<p>The flag was sent by Mr.4N0NYM4U5 to my victim. But i dont have the username and password of the victim to login into the discord account. The only thing i have is a god damn token. Can you help me to get the flag. Ill give you the token and it is all you need. Token : NzIyMzM1MTQ5NDA0MTkyODIw.Xuhmgw.SZfbikLok4FRqbHQY4L3htLcTaU</p>
+</blockquote>
+<p><br /></p>
+<h3 id="solution">Solution</h3>
+<p>最初、あまりチャレンジ文をよく読んでなくて、JWT (JSON Web Token) なのかなと思っていろいろ試していたんだけどダメで、よく読んでみたら<code>Discord</code>って書いてあるのに気づいて方向転換。</p>
+<p>以下のYouTube動画（How to login to Discord accounts with a token）の通りにやったらできました。<br>
+<a href="https://www.youtube.com/watch?v=cqQesvbtreA">https://www.youtube.com/watch?v=cqQesvbtreA</a></p>
+<p>動画中に出てくるコードは、以下のところにあります。<br>
+<a href="http://pastebin.com/raw/nUExn5Cu">http://pastebin.com/raw/nUExn5Cu</a></p>
+<br>
+以下はログイン後のスクリーンショットです。
+<img src="https://captureamerica.github.io/writeups/img/zh3r0_CTF_2020_Discord.png" alt="zh3r0_CTF_2020_Discord.png">
+<p><br /></p>
+<p>Flag: <code>zh3r0{1et_7he_F0rce_8e_With_YoU}</code></p>
+<p><br /><br />
+<br /><br /></p>
+<h2 id="web-web-warmup">[Web]: Web-Warmup</h2>
+<hr>
+<h3 id="challenge-1">Challenge</h3>
+<blockquote>
+<p>Chall Link : <a href="http://web.zh3r0.ml">http://web.zh3r0.ml</a>:8080/
+<br />
+Easy peasy.</p>
+</blockquote>
+<p><br /></p>
+<h3 id="solution-1">Solution</h3>
+<p>bg.cssの中にフラグが入ってました。</p>
+<pre>
+/*css is easy, I think. Don't you?zh3r0{y3s_th1s_1s_w4rmup}*/
+#selector {
+    width:100%;
+    height:100%;
+}
+</pre>
+<p><br /></p>
+<p>Flag: <code>zh3r0{y3s_th1s_1s_w4rmup}</code></p>
+<p><br /><br />
+<br /><br /></p>
+<h2 id="binary-exploitation-free-flag">[Binary Exploitation]: Free Flag</h2>
+<hr>
+<h3 id="challenge-2">Challenge</h3>
+<blockquote>
+<p>Welcome to zh3r0 ctf
+<br />
+Here&rsquo;s your free flag</p>
+</blockquote>
+<p>Attachment:</p>
+<ul>
+<li>chall (ELF 64-bit)</li>
+</ul>
+<p><br /></p>
+<h3 id="solution-2">Solution</h3>
+<p>&ldquo;Free Flag&rdquo; っていうから、てっきりstringsか何かでフラグがゲットできるかと思いきや、普通にBuffer Overflowのチャレンジでした。</p>
+<p><br /></p>
+<p>Flag: <code>zh3r0{welcome_to_zh3r0_ctf}</code></p>
+<p><br /><br />
+<br /><br /></p>
+<h2 id="crypto-rsa-warmup">[Crypto]: RSA-Warmup</h2>
+<hr>
+<h3 id="challenge-3">Challenge</h3>
+<blockquote>
+<p>RSA is one of the first public-key cryptosystems and is widely used for secure data transmission. In such a cryptosystem, the encryption key is public and distinct from the decryption key which is kept secret.
+<br />
+You all know this :p
+<br />
+here is a warmup question.
+<br /><br />
+nc crypto.zh3r0.ml 8451</p>
+</blockquote>
+<p><br /></p>
+<h3 id="solution-3">Solution</h3>
+<p>NをFactorizeしてからRsaCtfTool.pyで解きました。</p>
+<p><br /></p>
+<p>Flag: <code>zh3r0{RSA_1s_Fun}</code></p>
+<p><br /><br />
+<br /><br /></p>
+<h2 id="forensics-katycat">[Forensics]: Katycat</h2>
+<hr>
+<h3 id="challenge-4">Challenge</h3>
+<blockquote>
+<p>katycat trying to find the flag but she is lazy. will you help her to find the flag?</p>
+</blockquote>
+<p>Attachment:</p>
+<ul>
+<li>katy.png</li>
+</ul>
+<p><br /></p>
+<h3 id="solution-4">Solution</h3>
+<p>まず、zstegで以下が見つかります。</p>
+<pre>
+b1,rgb,lsb,xy       .. text: "https://pastebin.com/hvgCXNcP"
+</pre>
+<br>
+pastebinにあるデータは以下です。
+<pre>
+UEsDBAoACQAAALq0vFDu3sG8JQAAABkAAAAIABwAZmxhZy50eHRVVAkAA+jvz179789edXgLAAEE
+6AMAAAToAwAAt9tbOQhvceVTC9i83YoBgbIW5fmqoaO3mVwXSLOMqNulwvcwb1BLBwju3sG8JQAA
+ABkAAABQSwECHgMKAAkAAAC6tLxQ7t7BvCUAAAAZAAAACAAYAAAAAAABAAAApIEAAAAAZmxhZy50
+eHRVVAUAA+jvz151eAsAAQToAwAABOgDAABQSwUGAAAAAAEAAQBOAAAAdwAAAAAA
+</pre>
+<br>
+Base64をしてみたところ、先頭が "PK" だったのでファイルとして保存して、unzip。
+<p>すると、zipパスワードを求められます。</p>
+<pre>
+$ unzip katy.zip 
+Archive:  katy.zip
+[katy.zip] flag.txt password:
+
+$ zipinfo katy.zip 
+Archive:  katy.zip
+Zip file size: 219 bytes, number of entries: 1
+-rw-r--r--  3.0 unx       25 TX stor 20-May-29 01:07 flag.txt
+1 file, 25 bytes uncompressed, 25 bytes compressed:  0.0%
+</pre>
+<br>
+パスワードは、以下のようにしてCrack。
+<pre>
+$ zip2john katy.zip > hash.txt
+ver 1.0 efh 5455 efh 7875 katy.zip/flag.txt PKZIP Encr: 2b chk, TS_chk, cmplen=37, decmplen=25, crc=BCC1DEEE
+<p>$ john hash.txt &ndash;wordlist=/usr/share/wordlists/rockyou.txt
+Using default input encoding: UTF-8
+Loaded 1 password hash (PKZIP [32/64])
+Will run 2 OpenMP threads
+Press &lsquo;q&rsquo; or Ctrl-C to abort, almost any other key for status
+kitkat           (katy.zip/flag.txt)
+1g 0:00:00:00 DONE (2020-06-16 03:01) 5.882g/s 24094p/s 24094c/s 24094C/s 123456..oooooo
+Use the &ldquo;&ndash;show&rdquo; option to display all of the cracked passwords reliably
+Session completed
+</pre></p>
+<br>
+Zip解凍。
+<pre>
+$ unzip katy.zip 
+Archive:  katy.zip
+[katy.zip] flag.txt password: 
+ extracting: flag.txt                
+
+$ cat flag.txt
+K9bC_L`D?f0DEb8c?_06cDJN
+</pre>
+<br>
+最後は、ROT47でした。（直感です）
+<p><br /></p>
+<p>Flag: <code>zh3r0{1sn7_st3g4n0_e4sy}</code></p>
+<p><br /><br />
+<br /><br /></p>
+<h2 id="forensics-lsb-fun">[Forensics]: LSB fun</h2>
+<hr>
+<h3 id="challenge-5">Challenge</h3>
+<blockquote>
+<p>have you ever heard of LSB :) ?</p>
+</blockquote>
+<p>Attachment:</p>
+<ul>
+<li>user.zip (chall.jpgが入ってます)</li>
+</ul>
+<p><br /></p>
+<h3 id="solution-5">Solution</h3>
+<p>LSBという言葉に惑わされて、自作lsb.oとか、steglsb.pyとか、いろいろやってたんですが、そもそもJpegってLSBに埋め込みとかできないんじゃなかったっけ？と思いつつ、基本（？）に戻ってjstegをやったらフラグ取れました。</p>
+<pre>
+$ jsteg reveal chall.jpg 
+zh3r0{j5t3g_i5_c00l}
+</pre>
+<br>
+jstegってLSB使ってやっているのかな。（よく知らない）
+<br>
+<p>Flag: <code>zh3r0{j5t3g_i5_c00l}</code></p>
+<p><br /><br />
+<br /><br /></p>
+<h2 id="forensics-snow">[Forensics]: Snow</h2>
+<hr>
+<h3 id="challenge-6">Challenge</h3>
+<blockquote>
+<p>I wonder if the snow loves the trees and fields, that it kisses them so gently?</p>
+</blockquote>
+<p>Attachment:</p>
+<ul>
+<li>snow.zip</li>
+</ul>
+<pre>
+$ unzip snow.zip 
+Archive:  snow.zip
+   creating: snow/
+  inflating: snow/chall.txt          
+   creating: snow/.snowey/
+  inflating: snow/.snowey/.flag.txt  
+   creating: snow/.snowey/.../
+   creating: snow/.snowey/.../.../
+  inflating: snow/.snowey/.../.../.secret.txt  
+</pre>
+<p>secret.txt の中身<br>
+welc0me_to_zh3r0_ctf</p>
+<p><br /></p>
+<h3 id="solution-6">Solution</h3>
+<p>チャレンジ名からして stegsnow だし、secretも与えられているので、簡単ですね。</p>
+<pre>
+$ stegsnow -C -p "welc0me_to_zh3r0_ctf" chall.txt ; echo
+zh3r0{i5_it_sn0w1ng?}
+</pre>
+<br>
+<p>Flag: <code>zh3r0{i5_it_sn0w1ng?}</code></p>
+<p><br /><br />
+<br /><br /></p>
+<h2 id="forensics-dozen-bases">[Forensics]: Dozen Bases</h2>
+<hr>
+<h3 id="challenge-7">Challenge</h3>
+<blockquote>
+<p>You were trying to Call someone when you dropped your Dozen eggs in the Base-ment.</p>
+</blockquote>
+<p>Attachment:</p>
+<ul>
+<li>checkMeOut.wav</li>
+</ul>
+<p><br /></p>
+<h3 id="solution-7">Solution</h3>
+<p>これは意外と解けた人が少なかった (18人) みたいですね。</p>
+<p>wavファイルの中にはDTMFの音が入っているので、ツールを使って値を読み取ります。</p>
+<pre>
+A2 88 43 96 40 0A 3A 14 09 97 B8 A9 94 59 87 B8 84 48 38 B8 58 47 B4 19 29 84 07 B4 47 BB 97 81 86 43 7B 99 45 41 92 87 7B 58 70 65 5A A5
+</pre>
+<br>
+チャレンジ名の通り、これを12進数として処理する必要があります。アルファベットがAとBしか出てこないのは、12進数だからです。
+<p>以下のようなコードを書きました。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-Python" data-lang="Python"><span class="ch">#!/usr/bin/env python3</span>
+<span class="c1"># -*- coding: utf-8 -*-</span>
+
+<span class="n">DTMF</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&#34;A2&#34;</span><span class="p">,</span> <span class="s2">&#34;88&#34;</span><span class="p">,</span> <span class="s2">&#34;43&#34;</span><span class="p">,</span> <span class="s2">&#34;96&#34;</span><span class="p">,</span> <span class="s2">&#34;40&#34;</span><span class="p">,</span> <span class="s2">&#34;A3&#34;</span><span class="p">,</span> <span class="s2">&#34;A1&#34;</span><span class="p">,</span> <span class="s2">&#34;40&#34;</span><span class="p">,</span> <span class="s2">&#34;99&#34;</span><span class="p">,</span> <span class="s2">&#34;7B&#34;</span><span class="p">,</span> <span class="s2">&#34;8A&#34;</span><span class="p">,</span> <span class="s2">&#34;99&#34;</span><span class="p">,</span> <span class="s2">&#34;45&#34;</span><span class="p">,</span> <span class="s2">&#34;98&#34;</span><span class="p">,</span> <span class="s2">&#34;7B&#34;</span><span class="p">,</span> <span class="s2">&#34;88&#34;</span><span class="p">,</span> <span class="s2">&#34;44&#34;</span><span class="p">,</span> <span class="s2">&#34;83&#34;</span><span class="p">,</span> <span class="s2">&#34;8B&#34;</span><span class="p">,</span> <span class="s2">&#34;85&#34;</span><span class="p">,</span> <span class="s2">&#34;84&#34;</span><span class="p">,</span> <span class="s2">&#34;7B&#34;</span><span class="p">,</span> <span class="s2">&#34;41&#34;</span><span class="p">,</span> <span class="s2">&#34;92&#34;</span><span class="p">,</span> <span class="s2">&#34;98&#34;</span><span class="p">,</span> <span class="s2">&#34;40&#34;</span><span class="p">,</span> <span class="s2">&#34;7B&#34;</span><span class="p">,</span> <span class="s2">&#34;44&#34;</span><span class="p">,</span> <span class="s2">&#34;7B&#34;</span><span class="p">,</span> <span class="s2">&#34;97&#34;</span><span class="p">,</span> <span class="s2">&#34;81&#34;</span><span class="p">,</span> <span class="s2">&#34;86&#34;</span><span class="p">,</span> <span class="s2">&#34;43&#34;</span><span class="p">,</span> <span class="s2">&#34;7B&#34;</span><span class="p">,</span> <span class="s2">&#34;99&#34;</span><span class="p">,</span> <span class="s2">&#34;45&#34;</span><span class="p">,</span> <span class="s2">&#34;41&#34;</span><span class="p">,</span> <span class="s2">&#34;92&#34;</span><span class="p">,</span> <span class="s2">&#34;87&#34;</span><span class="p">,</span> <span class="s2">&#34;7B&#34;</span><span class="p">,</span> <span class="s2">&#34;58&#34;</span><span class="p">,</span> <span class="s2">&#34;70&#34;</span><span class="p">,</span> <span class="s2">&#34;65&#34;</span><span class="p">,</span> <span class="s2">&#34;5A&#34;</span><span class="p">,</span> <span class="s2">&#34;A5&#34;</span><span class="p">]</span>
+
+<span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">DTMF</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">n</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span> <span class="o">==</span> <span class="s1">&#39;A&#39;</span><span class="p">:</span>
+        <span class="n">d</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">n</span><span class="p">[:</span><span class="mi">1</span><span class="p">],</span><span class="mi">16</span><span class="p">)</span> <span class="o">*</span> <span class="mi">12</span> <span class="o">+</span> <span class="mi">10</span>
+    <span class="k">elif</span> <span class="n">n</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span> <span class="o">==</span> <span class="s1">&#39;B&#39;</span><span class="p">:</span>
+        <span class="n">d</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">n</span><span class="p">[:</span><span class="mi">1</span><span class="p">],</span><span class="mi">16</span><span class="p">)</span> <span class="o">*</span> <span class="mi">12</span> <span class="o">+</span> <span class="mi">11</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">d</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">n</span><span class="p">[:</span><span class="mi">1</span><span class="p">],</span><span class="mi">16</span><span class="p">)</span> <span class="o">*</span> <span class="mi">12</span> <span class="o">+</span> <span class="nb">int</span><span class="p">(</span><span class="n">n</span><span class="p">[</span><span class="mi">1</span><span class="p">:])</span>
+
+    <span class="k">print</span><span class="p">(</span><span class="nb">chr</span><span class="p">(</span><span class="n">d</span><span class="p">),</span><span class="n">end</span><span class="o">=</span><span class="s2">&#34;&#34;</span><span class="p">)</span>
+<span class="k">print</span><span class="p">()</span>
+</code></pre></td></tr></table>
+</div>
+</div><br>
+実行結果：
+<pre>
+$ ./dozen_base_solve.py 
+zh3r0{y0u_ju5t_h4cked_1nt0_4_saf3_u51ng_DTMF}
+</pre>
+<br>
+<p>Flag: <code>zh3r0{y0u_ju5t_h4cked_1nt0_4_saf3_u51ng_DTMF}</code></p>
+<p><br /><br />
+<br /><br /></p>
+<h2 id="subset-of-subset-of-hacking-machines-challenges-flag-5">[Subset of subset of hacking machines challenges]: Flag 5</h2>
+<hr>
+<h3 id="challenge-8">Challenge</h3>
+<blockquote>
+<p>Description: Here&rsquo;s the url ;)
+<br /><br />
+hackit.zh3r0.ml</p>
+</blockquote>
+<p><br /></p>
+<h3 id="solution-8">Solution</h3>
+<p>Wiresharkでキャプチャーしつつ、nmapしました。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="hl"><span class="lnt"> 7
+</span></span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="hl"><span class="lnt">13
+</span></span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c" data-lang="c"><span class="err">$</span> <span class="n">sudo</span> <span class="n">nmap</span> <span class="o">-</span><span class="n">sV</span> <span class="o">-</span><span class="n">sC</span> <span class="n">hackit</span><span class="p">.</span><span class="n">zh3r0</span><span class="p">.</span><span class="n">ml</span>
+<span class="n">Starting</span> <span class="n">Nmap</span> <span class="mf">7.80</span> <span class="p">(</span> <span class="nl">https</span><span class="p">:</span><span class="c1">//nmap.org ) at 2020-06-16 20:49 +08
+</span><span class="c1"></span><span class="n">Nmap</span> <span class="n">scan</span> <span class="n">report</span> <span class="k">for</span> <span class="n">hackit</span><span class="p">.</span><span class="n">zh3r0</span><span class="p">.</span><span class="n">ml</span> <span class="p">(</span><span class="mf">139.59.3.42</span><span class="p">)</span>
+<span class="n">Host</span> <span class="n">is</span> <span class="n">up</span> <span class="p">(</span><span class="mf">0.046</span><span class="n">s</span> <span class="n">latency</span><span class="p">).</span>
+<span class="n">Not</span> <span class="nl">shown</span><span class="p">:</span> <span class="mi">993</span> <span class="n">closed</span> <span class="n">ports</span>
+<span class="n">PORT</span>     <span class="n">STATE</span>    <span class="n">SERVICE</span>     <span class="n">VERSION</span>
+<span class="hl"><span class="mi">22</span><span class="o">/</span><span class="n">tcp</span>   <span class="n">open</span>     <span class="n">http</span>        <span class="n">Apache</span> <span class="n">httpd</span> <span class="mf">2.4.43</span> <span class="p">((</span><span class="n">Unix</span><span class="p">))</span>
+</span><span class="o">|</span> <span class="n">http</span><span class="o">-</span><span class="nl">methods</span><span class="p">:</span> 
+<span class="o">|</span><span class="n">_</span>  <span class="n">Potentially</span> <span class="n">risky</span> <span class="nl">methods</span><span class="p">:</span> <span class="n">TRACE</span>
+<span class="o">|</span><span class="n">_http</span><span class="o">-</span><span class="n">server</span><span class="o">-</span><span class="nl">header</span><span class="p">:</span> <span class="n">Apache</span><span class="o">/</span><span class="mf">2.4.43</span> <span class="p">(</span><span class="n">Unix</span><span class="p">)</span>
+<span class="o">|</span><span class="n">_http</span><span class="o">-</span><span class="nl">title</span><span class="p">:</span> <span class="n">Site</span> <span class="n">doesn</span><span class="err">&#39;</span><span class="n">t</span> <span class="n">have</span> <span class="n">a</span> <span class="n">title</span> <span class="p">(</span><span class="n">text</span><span class="o">/</span><span class="n">html</span><span class="p">).</span>
+<span class="o">|</span><span class="n">_ssh</span><span class="o">-</span><span class="nl">hostkey</span><span class="p">:</span> <span class="nl">ERROR</span><span class="p">:</span> <span class="n">Script</span> <span class="n">execution</span> <span class="n">failed</span> <span class="p">(</span><span class="n">use</span> <span class="o">-</span><span class="n">d</span> <span class="n">to</span> <span class="n">debug</span><span class="p">)</span>
+<span class="hl"><span class="mi">99</span><span class="o">/</span><span class="n">tcp</span>   <span class="n">open</span>     <span class="n">ssh</span>         <span class="n">OpenSSH</span> <span class="mf">7.6</span><span class="n">p1</span> <span class="n">Ubuntu</span> <span class="mi">4u</span><span class="n">buntu0</span><span class="mf">.3</span> <span class="p">(</span><span class="n">Ubuntu</span> <span class="n">Linux</span><span class="p">;</span> <span class="n">protocol</span> <span class="mf">2.0</span><span class="p">)</span>
+</span><span class="o">|</span> <span class="n">ssh</span><span class="o">-</span><span class="nl">hostkey</span><span class="p">:</span> 
+<span class="o">|</span>   <span class="mi">2048</span> <span class="mi">70</span><span class="o">:</span><span class="mi">78</span><span class="o">:</span><span class="mf">8f</span><span class="o">:</span><span class="mi">70</span><span class="o">:</span><span class="mi">79</span><span class="o">:</span><span class="mi">59</span><span class="o">:</span><span class="mi">72</span><span class="o">:</span><span class="mf">5f</span><span class="o">:</span><span class="mo">05</span><span class="o">:</span><span class="nl">c9</span><span class="p">:</span><span class="mi">2</span><span class="nl">a</span><span class="p">:</span><span class="mi">63</span><span class="o">:</span><span class="nl">b4</span><span class="p">:</span><span class="mi">34</span><span class="o">:</span><span class="nl">c1</span><span class="p">:</span><span class="mi">52</span> <span class="p">(</span><span class="n">RSA</span><span class="p">)</span>
+<span class="o">|</span>   <span class="mi">256</span> <span class="mi">08</span><span class="o">:</span><span class="mi">6</span><span class="nl">d</span><span class="p">:</span><span class="mi">42</span><span class="o">:</span><span class="mi">16</span><span class="o">:</span><span class="mi">2</span><span class="nl">a</span><span class="p">:</span><span class="mi">47</span><span class="o">:</span><span class="nl">ae</span><span class="p">:</span><span class="nl">b4</span><span class="p">:</span><span class="nl">d7</span><span class="p">:</span><span class="nl">fa</span><span class="p">:</span><span class="mi">35</span><span class="o">:</span><span class="mi">28</span><span class="o">:</span><span class="mi">91</span><span class="o">:</span><span class="mi">67</span><span class="o">:</span><span class="nl">ab</span><span class="p">:</span><span class="mi">63</span> <span class="p">(</span><span class="n">ECDSA</span><span class="p">)</span>
+<span class="o">|</span><span class="n">_</span>  <span class="mi">256</span> <span class="nl">e4</span><span class="p">:</span><span class="mi">89</span><span class="o">:</span><span class="mi">6</span><span class="nl">b</span><span class="p">:</span><span class="mi">09</span><span class="o">:</span><span class="mi">37</span><span class="o">:</span><span class="mi">64</span><span class="o">:</span><span class="nl">c2</span><span class="p">:</span><span class="mi">47</span><span class="o">:</span><span class="mo">01</span><span class="o">:</span><span class="nl">bd</span><span class="p">:</span><span class="nl">c2</span><span class="p">:</span><span class="mi">32</span><span class="o">:</span><span class="nl">d8</span><span class="p">:</span><span class="nl">cd</span><span class="p">:</span><span class="mo">06</span><span class="o">:</span><span class="mi">2</span><span class="n">d</span> <span class="p">(</span><span class="n">ED25519</span><span class="p">)</span>
+<span class="mi">139</span><span class="o">/</span><span class="n">tcp</span>  <span class="n">filtered</span> <span class="n">netbios</span><span class="o">-</span><span class="n">ssn</span>
+<span class="mi">161</span><span class="o">/</span><span class="n">tcp</span>  <span class="n">filtered</span> <span class="n">snmp</span>
+<span class="mi">179</span><span class="o">/</span><span class="n">tcp</span>  <span class="n">filtered</span> <span class="n">bgp</span>
+<span class="mi">646</span><span class="o">/</span><span class="n">tcp</span>  <span class="n">filtered</span> <span class="n">ldp</span>
+<span class="mi">4444</span><span class="o">/</span><span class="n">tcp</span> <span class="n">filtered</span> <span class="n">krb524</span>
+<span class="n">Service</span> <span class="nl">Info</span><span class="p">:</span> <span class="nl">OS</span><span class="p">:</span> <span class="n">Linux</span><span class="p">;</span> <span class="nl">CPE</span><span class="p">:</span> <span class="nl">cpe</span><span class="p">:</span><span class="o">/</span><span class="nl">o</span><span class="p">:</span><span class="nl">linux</span><span class="p">:</span><span class="n">linux_kernel</span>
+
+<span class="n">Service</span> <span class="n">detection</span> <span class="n">performed</span><span class="p">.</span> <span class="n">Please</span> <span class="n">report</span> <span class="n">any</span> <span class="n">incorrect</span> <span class="n">results</span> <span class="n">at</span> <span class="nl">https</span><span class="p">:</span><span class="c1">//nmap.org/submit/ .
+</span><span class="c1"></span><span class="n">Nmap</span> <span class="nl">done</span><span class="p">:</span> <span class="mi">1</span> <span class="n">IP</span> <span class="n">address</span> <span class="p">(</span><span class="mi">1</span> <span class="n">host</span> <span class="n">up</span><span class="p">)</span> <span class="n">scanned</span> <span class="n">in</span> <span class="mf">47.14</span> <span class="n">seconds</span></code></pre></td></tr></table>
+</div>
+</div>
+<br>
+httpがポート22で動いてます。まずは、ポート22のトラフィックをを取得したpcapの中で確認すると、`z3hr0{shouldve_added_some_filter_here}`というフラグが見つかります。
+<br>
+ちなみに、チャレンジのFlag 1 ~ Flag7は全部同じチャレンジ文になっていて、どこにSubmitしたらいいのかがわからないのですが、簡単にフラグが見つかったので、一番Solveが多いFlag 5にSubmitしたら通りました。
+<br>
+<p>Flag: <code>z3hr0{shouldve_added_some_filter_here}</code></p>
+<p><br /><br /></p>
+<p>他にやったこと：</p>
+<pre>
+GET /robots.txt HTTP/1.1
+User-Agent: Mozilla/5.0 (compatible; Nmap Scripting Engine; https://nmap.org/book/nse.html)
+Connection: close
+Host: hackit.zh3r0.ml:22
+
+HTTP/1.1 200 OK
+Date: Tue, 16 Jun 2020 13:20:45 GMT
+Server: Apache/2.4.43 (Unix)
+Last-Modified: Mon, 15 Jun 2020 15:05:13 GMT
+ETag: "6c-5a820c0f31543"
+Accept-Ranges: bytes
+Content-Length: 108
+Connection: close
+Content-Type: text/plain
+
+Hmmm you shouldnt be here.... 2yryYz3sx16kWt72agdFZJqxZ5kqqvocsnU416bULtVs63Cvwmvr6f34Ck8sSHQU1PPnQqD7bqW9q
+</pre>
+<br>
+このエンコードされた部分はBase58で、"I tried to hide this, anyway, check out /clue3349203.txt" にデコードされます。
+<br>
+<p>このファイルに含まれているデータはJSFuckです。<br>
+<a href="http://hackit.zh3r0.ml:22/clue3349203.txt">http://hackit.zh3r0.ml:22/clue3349203.txt</a></p>
+<br>
+デコードすると、以下になります。
+<pre>
+console.log('Employee ID: 865151c643cbbb7e3bf4fd5dbb71354e') 
+</pre>
+<br>
+以下にもアクセスしてみましたが、<br>
+http://hackit.zh3r0.ml:22/~865151c643cbbb7e3bf4fd5dbb71354e/
+<p>結局、同じフラグ（<code>z3hr0{shouldve_added_some_filter_here}</code>）が取れるだけでした。</p>
+<br>
+あとは、ちょっとgobusterとかやったり、SSH周りを見たけど無理そうだったので、潔よく降参しました。
+<p><br /><br />
+<br /><br /></p>
+<h2 id="master-tic-tac-toe">[Master]: Tic Tac Toe</h2>
+<hr>
+<h3 id="challenge-9">Challenge</h3>
+<blockquote>
+<p>Can you beat the image?</p>
+</blockquote>
+<p>Attachment:</p>
+<ul>
+<li>image</li>
+</ul>
+<p><br /></p>
+<h3 id="unsolved">(Unsolved)</h3>
+<pre>
+$ file image
+image: data
+
+$ xxd image | head -n 6
+00000000: d9ff 0328 8aa2 0028 8aa2 0028 8aa2 0028  ...(...(...(...(
+00000010: 8aa2 0028 8aa2 0028 8aa2 0028 8aa2 0028  ...(...(...(...(
+00000020: 8aa2 0028 8aa2 3050 142d 85fc 0000 d041  ...(..0P.-.....A
+00000030: 2391 08d4 388e a336 2045 5124 4300 ff9f  #...8..6 EQ$C...
+00000040: fbae 0e12 b64c db1a 2ed6 c25b 7890 5b01  .....L.....[x.[.
+00000050: f90b 93b1 cfed bd33 27cc f038 fcda 6e2c  .......3'..8..n,
+
+$ xxd image | tail -n 6
+000034c0: 0900 4300 dbff 3d6f 414e 5156 5862 3363  ..C...=oANQVXb3c
+000034d0: 6b52 764e 4862 3130 6a64 2f67 3259 3046  kRvNHb10jd/g2Y0F
+000034e0: 3264 7630 3262 6a35 535a 6956 4864 3139  2dv02bj5SZiVHd19
+000034f0: 5765 7563 3364 3339 794c 364d 4863 3052  Weuc3d39yL6MHc0R
+00003500: 4861 3e00 feff 0000 0100 0100 0001 0100  Ha>.............
+00003510: 4649 464a 1000 e0ff d8ff                 FIFJ......
+</pre>
+<br>
+<p>なんとなく、バイトリバースっぽかったので、試したら正解でした。</p>
+<pre>
+$ python -c 'open("image.out", "wb").write(open("image", "rb").read()[::-1]) '
+
+$ file image.out
+image.out: JPEG image data, JFIF standard 1.01, aspect ratio, density 1x1, segment length 16, comment: "aHR0cHM6Ly93d3cueW91dHViZS5jb20vd2F0Y2g/dj01bHNvRkc3bXVQNAo=", baseline, precision 8, 522x567, components 3
+</pre>
+<br>
+コメントにかかれているのは、YouTubeへのリンクです。
+<pre>
+$ echo "aHR0cHM6Ly93d3cueW91dHViZS5jb20vd2F0Y2g/dj01bHNvRkc3bXVQNAo=" | base64 -d
+https://www.youtube.com/watch?v=5lsoFG7muP4
+</pre>
+<p>Kapela というバンドの 「Rock My Way」という曲の動画です。</p>
+<p>「Kapela」とか、そこら辺をパスワードに steghide で解くのかなぁと思ったんですが全くダメで、ここで詰まりました。</p>
+<pre>
+$ steghide extract -p 'Kapela' -sf image.jpg
+steghide: could not extract any data with that passphrase!
+</pre>
+<p><br /><br />
+<br /><br /></p>
+<hr>
+<p><br /><br />
+<br /><br /></p>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content">CaptureAmerica @ CTF フラxxグゲット</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">
+        2020-06-18
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="https://captureamerica.github.io/writeups/tags/ctf/">CTF</a>
+          </div>
+      <nav class="post-nav">
+        
+        <a class="next" href="https://captureamerica.github.io/writeups/post/nahamcon_ctf_2020/">
+            <span class="next-text nav-default">NahamCon CTF 2020 Writeup</span>
+            <span class="next-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="https://github.com/CaptureAmerica/" class="iconfont icon-github" title="github"></a>
+  <a href="https://captureamerica.github.io/writeups/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2019 - 
+    2020
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">CaptureAmerica @ CTF フラxxグゲット</span>
+  </span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  
+<script type="text/javascript" src="https://captureamerica.github.io/writeups/dist/even.26188efa.min.js"></script>
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-104910699-2', 'auto');
+	ga('set', 'anonymizeIp', true);
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+
+
+
+
+
+</body>
+</html>
