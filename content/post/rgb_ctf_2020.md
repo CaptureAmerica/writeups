@@ -22,6 +22,8 @@ URL: [https://ctf.rgbsec.xyz/home](https://ctf.rgbsec.xyz/home)
 
 <img src="https://captureamerica.github.io/writeups/img/rgb_CTF_2020_Score0.png" alt="rgb_CTF_2020_Score0.png">
 
+<br />
+
 <img src="https://captureamerica.github.io/writeups/img/rgb_CTF_2020_Score1.png" alt="rgb_CTF_2020_Score1.png">
 
 こうやってみると、全然解けてないですね。。
@@ -298,7 +300,7 @@ Attachment:
 
 <br />
 ### (Unsolved)
-「青い空を見上げればいつもそこに白い猫」の「左ローテート一回」が一番見やすかったです。
+「青い空を見上げればいつもそこに白い猫」の「左ローテート ７回」が一番見やすかったです。
 
 <img src="https://captureamerica.github.io/writeups/img/rgb_CTF_2020_shoob_solved.png" alt="rgb_CTF_2020_shoob_solved.png">
 
