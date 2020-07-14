@@ -20,6 +20,8 @@ URL: [https://ctf.rgbsec.xyz/home](https://ctf.rgbsec.xyz/home)
 <br />
 最終順位は、334位でした。
 
+<img src="https://captureamerica.github.io/writeups/img/rgb_CTF_2020_Score0.png" alt="rgb_CTF_2020_Score0.png">
+
 <img src="https://captureamerica.github.io/writeups/img/rgb_CTF_2020_Score1.png" alt="rgb_CTF_2020_Score1.png">
 
 こうやってみると、全然解けてないですね。。
@@ -127,14 +129,16 @@ Attachment:
 
 やることは簡単で、バイナリエディタで値を取得し、本来の文字との値の差分を取るとフラグになる、というだけです。
 
+最初の7文字は、`rgbCTF{` なので、以下は8文字目以降です。
+
 <br />
-文字化けしている箇所のHex値は以下の通り。
+文字化けしている箇所のHex値は以下の通り。（8文字目以降）
 <pre>
 E7, D5, 9F, DE, D1, A6, D3, E1, A1, A2, E2, 9F, C1, D7, 7D
 </pre>
 
 <br />
-本来、入るべきの文字は以下の通り。
+本来、入るべきの文字は以下の通り。（8文字目以降）
 <pre>
 's', 'c', 'n', 'n', 'e', 's', 't', 't', 'n', 'n', 't', 'n', 'S', 'p', '}'
 </pre>

@@ -48,7 +48,7 @@
 <meta itemprop="description" content="URL: https://ctf.rgbsec.xyz/home 最終順位は、334位でした。 こうやってみると、全然解けてないですね。。 [Beginner]: Pieces Challenge My flag has been divided into pieces :( Can you recover it for me? Attachment: Main.java 以下が中身です。 1 2 3 4 5 6">
 <meta itemprop="datePublished" content="2020-07-14T13:00:00&#43;09:00" />
 <meta itemprop="dateModified" content="2020-07-14T13:00:00&#43;09:00" />
-<meta itemprop="wordCount" content="1098">
+<meta itemprop="wordCount" content="1145">
 
 
 
@@ -174,6 +174,7 @@
 <p>URL: <a href="https://ctf.rgbsec.xyz/home">https://ctf.rgbsec.xyz/home</a></p>
 <p><br />
 最終順位は、334位でした。</p>
+<img src="https://captureamerica.github.io/writeups/img/rgb_CTF_2020_Score0.png" alt="rgb_CTF_2020_Score0.png">
 <img src="https://captureamerica.github.io/writeups/img/rgb_CTF_2020_Score1.png" alt="rgb_CTF_2020_Score1.png">
 <p>こうやってみると、全然解けてないですね。。</p>
 <p><br /><br /></p>
@@ -293,13 +294,14 @@ $ python3
 <p>所々、文字化けしてます。</p>
 <img src="https://captureamerica.github.io/writeups/img/rgb_CTF_2020_differences_solved.png" alt="rgb_CTF_2020_differences_solved.png">
 <p>やることは簡単で、バイナリエディタで値を取得し、本来の文字との値の差分を取るとフラグになる、というだけです。</p>
+<p>最初の7文字は、<code>rgbCTF{</code> なので、以下は8文字目以降です。</p>
 <p><br />
-文字化けしている箇所のHex値は以下の通り。</p>
+文字化けしている箇所のHex値は以下の通り。（8文字目以降）</p>
 <pre>
 E7, D5, 9F, DE, D1, A6, D3, E1, A1, A2, E2, 9F, C1, D7, 7D
 </pre>
 <p><br />
-本来、入るべきの文字は以下の通り。</p>
+本来、入るべきの文字は以下の通り。（8文字目以降）</p>
 <pre>
 's', 'c', 'n', 'n', 'e', 's', 't', 't', 'n', 'n', 't', 'n', 'S', 'p', '}'
 </pre>
