@@ -489,6 +489,52 @@ Flag: `csictf{th15_15_unu5u41}`
 
 <br /><br />
 <br /><br />
+## [Web]: Oreo
+- - -
+### Challenge
+> My nephew is a fussy eater and is only willing to eat chocolate oreo. Any other flavour and he throws a tantrum.
+<br /><br />
+http://chall.csivit.com:30243
+
+<br />
+### (Unsolved)
+かなりの数の人が解けていたにも関わらず、自分が解けなかった問題。。。
+
+やることと言えば、flavour=Y2hvY29sYXRlCg%3D%3D ("strawberry") でセットされたCookieの値を Y2hvY29sYXRl ("chocolate") に変えてアクセスするだけなんですけど、解けなかった原因は以下です。
+
+<pre>
+$ echo chocolate | base64
+Y2hvY29sYXRlCg==
+</pre>
+
+<br />
+echoだと改行が入っちゃうので、printfとかでやるのが正解でした。
+
+<pre>
+$ printf chocolate | base64
+Y2hvY29sYXRl
+</pre>
+
+<br />
+考えてみたら、そうだよなぁ。何気に盲点でした。。
+
+<br />
+まだサーバ生きていたので、やってみました。（おまけに、echoで改行）
+
+<pre>
+$ curl http://chall.csivit.com:30243/ --cookie "flavour=Y2hvY29sYXRl" ; echo
+csictf{1ick_twi5t_dunk}
+</pre>
+
+
+<br />
+
+Flag: `csictf{1ick_twi5t_dunk}`
+
+
+
+<br /><br />
+<br /><br />
 - - -
 <br /><br />
 <br /><br />
