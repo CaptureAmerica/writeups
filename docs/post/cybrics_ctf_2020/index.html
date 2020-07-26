@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>CyBRICS CTF 2020 Writeup - CTF フラxxグゲット</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="CaptureAmerica @ CTF フラxxグゲット" /><meta name="description" content="URL: https://cybrics.net/ 1年前もほとんど解けなかったですが、今年もほとんど解けませんでした。 まぁ、去年は1問だけで、今年は4問解いたので、多少は成長したかな。。" /><meta name="keywords" content="CTF, Writeup, captureamerica, picoCTF" />
+
+
+
+<meta name="google-site-verification" content="PqctLWZQttGzxXVupWuIt2HWuBI8cvN1z07ETpxA2dw" />
+
+
+<meta name="generator" content="Hugo 0.74.2 with theme even" />
+
+
+<link rel="canonical" href="https://captureamerica.github.io/writeups/post/cybrics_ctf_2020/" />
+<link rel="apple-touch-icon" sizes="180x180" href="https://captureamerica.github.io/writeups/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://captureamerica.github.io/writeups/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://captureamerica.github.io/writeups/favicon-16x16.png">
+<link rel="manifest" href="https://captureamerica.github.io/writeups/manifest.json">
+<link rel="mask-icon" href="https://captureamerica.github.io/writeups/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="https://captureamerica.github.io/writeups/sass/main.min.78f8f17bab244b9ee62ad16480c9584d5fc2db06ae20681d1ca225cefd80767c.css" rel="stylesheet">
+
+
+
+<meta property="og:title" content="CyBRICS CTF 2020 Writeup" />
+<meta property="og:description" content="URL: https://cybrics.net/ 1年前もほとんど解けなかったですが、今年もほとんど解けませんでした。 まぁ、去年は1問だけで、今年は4問解いたので、多少は成長したかな。。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://captureamerica.github.io/writeups/post/cybrics_ctf_2020/" />
+<meta property="article:published_time" content="2020-07-26T18:00:00+09:00" />
+<meta property="article:modified_time" content="2020-07-26T18:00:00+09:00" />
+<meta itemprop="name" content="CyBRICS CTF 2020 Writeup">
+<meta itemprop="description" content="URL: https://cybrics.net/ 1年前もほとんど解けなかったですが、今年もほとんど解けませんでした。 まぁ、去年は1問だけで、今年は4問解いたので、多少は成長したかな。。">
+<meta itemprop="datePublished" content="2020-07-26T18:00:00&#43;09:00" />
+<meta itemprop="dateModified" content="2020-07-26T18:00:00&#43;09:00" />
+<meta itemprop="wordCount" content="954">
+
+
+
+<meta itemprop="keywords" content="CTF," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="CyBRICS CTF 2020 Writeup"/>
+<meta name="twitter:description" content="URL: https://cybrics.net/ 1年前もほとんど解けなかったですが、今年もほとんど解けませんでした。 まぁ、去年は1問だけで、今年は4問解いたので、多少は成長したかな。。"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="https://captureamerica.github.io/writeups/" class="logo">CTF Writeups</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="https://captureamerica.github.io/writeups/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="https://captureamerica.github.io/writeups/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="https://captureamerica.github.io/writeups/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="https://captureamerica.github.io/writeups/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a><a href="https://captureamerica.github.io/writeups/about/">
+        <li class="mobile-menu-item">About</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="https://captureamerica.github.io/writeups/" class="logo">CTF Writeups</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="https://captureamerica.github.io/writeups/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="https://captureamerica.github.io/writeups/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="https://captureamerica.github.io/writeups/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="https://captureamerica.github.io/writeups/categories/">Categories</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="https://captureamerica.github.io/writeups/about/">About</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">CyBRICS CTF 2020 Writeup</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2020-07-26 </span>
+        <div class="post-category">
+            <a href="https://captureamerica.github.io/writeups/categories/ctf/"> CTF </a>
+            </div>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contents</h2>
+  <div class="post-toc-content">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#cyber-baby-mic-check">[Cyber, Baby]: Mic Check</a>
+      <ul>
+        <li><a href="#challenge">Challenge</a></li>
+        <li><a href="#solution">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#forensic-eazy-krevedka">[Forensic, Eazy]: Krevedka</a>
+      <ul>
+        <li><a href="#challenge-1">Challenge</a></li>
+        <li><a href="#solution-1">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#web-baby-hunt">[Web, Baby]: Hunt</a>
+      <ul>
+        <li><a href="#challenge-2">Challenge</a></li>
+        <li><a href="#solution-2">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#reverse-baby-baby-rev">[Reverse, Baby]: Baby Rev</a>
+      <ul>
+        <li><a href="#challenge-3">Challenge</a></li>
+        <li><a href="#solution-3">Solution</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <div class='align-right'>
+<a href="https://translate.google.com/translate?hl=en&sl=ja&tl=en&u=https%3A%2F%2Fcaptureamerica.github.io%2Fwriteups%2Fpost%2Fcybrics_ctf_2020%2F">
+<img src="https://captureamerica.github.io/writeups/img/En.png" alt="English">
+</a>
+</div>
+<p>URL: <a href="https://cybrics.net/">https://cybrics.net/</a>
+<br /><br />
+<a href="https://captureamerica.github.io/writeups/post/cybrics_ctf_2019/">1年前</a>もほとんど解けなかったですが、今年もほとんど解けませんでした。</p>
+<p>まぁ、去年は1問だけで、今年は4問解いたので、多少は成長したかな。。。</p>
+<br>
+<p><a href="youtube.com/SPbCTF">youtube.com/SPbCTF</a> にて、Writeup を配信してくれるみたいです。Thank you!</p>
+<br>
+<p>最終順位は、275位でした。</p>
+<img src="https://captureamerica.github.io/writeups/img/cybrics_CTF_2020_Score1.png" alt="cybrics_CTF_2020_Score1.png">
+<p>チェックが付いているやつが、解けているやつです。</p>
+<img src="https://captureamerica.github.io/writeups/img/cybrics_CTF_2020_Score2.png" alt="cybrics_CTF_2020_Score2.png">
+<p><br /><br /></p>
+<h2 id="cyber-baby-mic-check">[Cyber, Baby]: Mic Check</h2>
+<hr>
+<h3 id="challenge">Challenge</h3>
+<blockquote>
+<p>Have you read the game rules? There&rsquo;s a flag there. But this year it&rsquo;s ENCRYPTED, the same way as UserAssist values in Windows.</p>
+</blockquote>
+<p><br /></p>
+<h3 id="solution">Solution</h3>
+<p>Ruleに出てくるのは、<code>cybrics{Na5JRe_g0_G3u_Z1P_Pu3PX}</code> です。</p>
+<p>WindowsのUserAssistについていろいろググってみましたが、単純にRot (Rot 13) のようですね。</p>
+<p><br />
+Flag: <code>cybrics{An5WEr_t0_T3h_M1C_Ch3CK}</code></p>
+<p><br /><br />
+<br /><br /></p>
+<h2 id="forensic-eazy-krevedka">[Forensic, Eazy]: Krevedka</h2>
+<hr>
+<h3 id="challenge-1">Challenge</h3>
+<blockquote>
+<p>Some user of our service hacked another user.
+<br /><br />
+Name of the victim user was &lsquo;caleches&rsquo;. But we don&rsquo;t know the real login of the attacker. Help us find it!
+<br /><br />
+Flag format: cybrics{login of the attacker}</p>
+</blockquote>
+<p>Attachment:</p>
+<ul>
+<li>selected_packets.pcapng</li>
+</ul>
+<p><br /></p>
+<h3 id="solution-1">Solution</h3>
+<p><code>caleches</code> で grep してみたところ、3つ目のパスワードが怪しいのがわかります。これが attacker が生成したトラフィックです。</p>
+<pre>
+$ strings selected_packets.pcapng | grep caleches
+login=caleches&password=vixie
+login=caleches&password=vixie
+login=caleches&password=%22+or+1%3D1+--
+</pre>
+<p>Wiresharkで開き、display filter <code>urlencoded-form.value == &quot;caleches&quot;</code> を使って上記のトラフィックを見つけます。</p>
+<p>3つ目のトラフィックは Frame 536633 で、User-Agent がユニークなのがわかります。</p>
+<pre>
+POST /login HTTP/1.1
+Host: kr3vedko.com
+User-Agent: UCWEB/2.0 (Linux; U; Opera Mini/7.1.32052/30.3697; www1.smart.com.ph/; GT-S5360) U2/1.0.0 UCBrowser/9.8.0.534 Mobile
+Accept-Encoding: gzip, deflate
+Accept: */*
+Connection: keep-alive
+Cookie: session=b75d53bb-1326-4d78-aedf-9bd92e237fbf
+Content-Length: 39
+Content-Type: application/x-www-form-urlencoded
+</pre>
+<br>
+<p>Wiresharkにて、display filter <code>http.user_agent == &quot;UCWEB/2.0 (Linux; U; Opera Mini/7.1.32052/30.3697; www1.smart.com.ph/; GT-S5360) U2/1.0.0 UCBrowser/9.8.0.534 Mobile&quot;</code> でフィルターすると、&ldquo;login&rdquo; = &ldquo;micropetalous&rdquo; が見つかります。</p>
+<p><br /></p>
+<p>Flag: <code>cybrics{micropetalous}</code></p>
+<p><br /><br />
+<br /><br /></p>
+<h2 id="web-baby-hunt">[Web, Baby]: Hunt</h2>
+<hr>
+<h3 id="challenge-2">Challenge</h3>
+<blockquote>
+<p>I couldn&rsquo;t not make this web10
+<br /><br />
+<a href="http://109.233.57.94:54040/">http://109.233.57.94:54040/</a></p>
+</blockquote>
+<p>こんな感じで、5つのキャプチャが飛び回っているページです。</p>
+<img src="https://captureamerica.github.io/writeups/img/cybrics_CTF_2020_Hunt.png" alt="cybrics_CTF_2020_Hunt.png">
+<p><br /></p>
+<h3 id="solution-2">Solution</h3>
+<p>Developer Toolを使ってスマートに解けないか考えたけどさっぱりわからなかったです。</p>
+<p>解いている人数が結構多かったので、アタマを使わずに解ける問題だと推測し、動き回っているキャプチャを頑張ってクリックする方針にしました。</p>
+<p>案の定、5つクリックできるとフラグがもらえます。</p>
+<br/>
+単なるゲームですな。（あと、何気にCPUを食います）
+<p><br /></p>
+<p>Flag: <code>cybrics{Th0se_c4p7ch4s_c4n_hunter2_my_hunter2ing_hunter2}</code></p>
+<p><br /><br />
+<br /><br /></p>
+<h2 id="reverse-baby-baby-rev">[Reverse, Baby]: Baby Rev</h2>
+<hr>
+<h3 id="challenge-3">Challenge</h3>
+<blockquote>
+<p>I started teaching my daugther some reversing. She is capable to solve this crackme. Are you?
+<br /><br />
+This link can be helpful: snap.berkeley.edu/offline</p>
+</blockquote>
+<p>Attachment:</p>
+<ul>
+<li>babyrev.tar.gz (babyrev.xml)</li>
+</ul>
+<p><br /></p>
+<h3 id="solution-3">Solution</h3>
+<p>Scratchみたいなやつですね。</p>
+<p><a href="https://snap.berkeley.edu/snap/snap.html">https://snap.berkeley.edu/snap/snap.html</a> に行って、babyrev.xml を読み込むと、以下のコードが見つかります。</p>
+<img src="https://captureamerica.github.io/writeups/img/cybrics_CTF_2020_Snap.png" alt="cybrics_CTF_2020_Snap.png">
+<p>secret に設定された値を、それぞれ 33 で XOR したら良さそうです。</p>
+<p>なお、<code>show variable secret</code> と <code>pause all</code> を使って、secretには値が逆順に入っていることを確認してます。</p>
+<p><br /></p>
+<pre>
+$ python -c 'print("".join([chr(int(x) ^ 33) for x in "66 88 67 83 72 66 82 90 86 18 77 16 98 17 76 18 126 97 79 69 126 102 17 17 69 126 77 116 66 74 0 92".split()]))'
+</pre>
+<p><br /></p>
+<p>Flag: <code>cybrics{w3l1C0m3_@nd_G00d_lUck!}</code></p>
+<p><br /><br />
+<br /><br /></p>
+<hr>
+<p><br /><br />
+<br /><br /></p>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content">CaptureAmerica @ CTF フラxxグゲット</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">
+        2020-07-26
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="https://captureamerica.github.io/writeups/tags/ctf/">CTF</a>
+          </div>
+      <nav class="post-nav">
+        
+        <a class="next" href="https://captureamerica.github.io/writeups/post/csictf_2020/">
+            <span class="next-text nav-default">csictf 2020 Writeup</span>
+            <span class="next-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="https://github.com/CaptureAmerica/" class="iconfont icon-github" title="github"></a>
+  <a href="https://captureamerica.github.io/writeups/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2019 - 
+    2020
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">CaptureAmerica @ CTF フラxxグゲット</span>
+  </span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  
+
+
+
+<script type="text/javascript" src="https://captureamerica.github.io/writeups/js/main.min.d7b7ada643c9c1a983026e177f141f7363b4640d619caf01d8831a6718cd44ea.js"></script>
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-104910699-2', 'auto');
+	ga('set', 'anonymizeIp', true);
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+
+
+
+
+
+</body>
+</html>
