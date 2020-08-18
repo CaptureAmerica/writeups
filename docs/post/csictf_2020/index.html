@@ -49,7 +49,7 @@
 <meta itemprop="description" content="URL: https://ctf.csivit.com/challenges 最終順位は、319位でした。 日曜日にだけやったので、その後に追加された分は見れてません。 以下、Discordにあった情報ですが、58個も">
 <meta itemprop="datePublished" content="2020-07-22T13:00:00&#43;09:00" />
 <meta itemprop="dateModified" content="2020-07-22T13:00:00&#43;09:00" />
-<meta itemprop="wordCount" content="1945">
+<meta itemprop="wordCount" content="1975">
 
 
 
@@ -675,9 +675,15 @@ $ printf chocolate | base64
 Y2hvY29sYXRl
 </pre>
 <p><br />
-考えてみたら、そうだよなぁ。何気に盲点でした。。</p>
+というか、echo -nでもできました。</p>
+<pre>
+$ echo -n chocolate | base64
+Y2hvY29sYXRl
+</pre>
 <p><br />
-まだサーバ生きていたので、やってみました。（おまけに、echoで改行）</p>
+考えてみたら、そうだよなぁ。（1年間CTFやってきて、今頃こんなのにハマるとは。。）</p>
+<p><br />
+まだサーバ生きていたので、やってみました。</p>
 <pre>
 $ curl http://chall.csivit.com:30243/ --cookie "flavour=Y2hvY29sYXRl" ; echo
 csictf{1ick_twi5t_dunk}

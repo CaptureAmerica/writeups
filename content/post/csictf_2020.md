@@ -515,11 +515,23 @@ $ printf chocolate | base64
 Y2hvY29sYXRl
 </pre>
 
-<br />
-考えてみたら、そうだよなぁ。何気に盲点でした。。
 
 <br />
-まだサーバ生きていたので、やってみました。（おまけに、echoで改行）
+というか、echo -nでもできました。
+
+<pre>
+$ echo -n chocolate | base64
+Y2hvY29sYXRl
+</pre>
+
+
+
+
+<br />
+考えてみたら、そうだよなぁ。（1年間CTFやってきて、今頃こんなのにハマるとは。。）
+
+<br />
+まだサーバ生きていたので、やってみました。
 
 <pre>
 $ curl http://chall.csivit.com:30243/ --cookie "flavour=Y2hvY29sYXRl" ; echo
