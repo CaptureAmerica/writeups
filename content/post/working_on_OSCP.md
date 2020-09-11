@@ -10,7 +10,7 @@ categories: ["OSCP"]
 author: ""
 ---
 {{% right %}}
-<a href="https://translate.google.com/translate?hl=en&sl=ja&tl=en&u=https%3A%2F%2Fcaptureamerica.github.io%2Fwriteups%2Fpost%2Fworking_on_OSCP%2F">
+<a href="https://translate.google.com/translate?hl=en&sl=ja&tl=en&u=https%3A%2F%2Fcaptureamerica.github.io%2Fwriteups%2Fpost%2Fworking_on_oscp%2f">
 <img src="https://captureamerica.github.io/writeups/img/En.png" alt="English">
 </a>
 {{% /right %}}
