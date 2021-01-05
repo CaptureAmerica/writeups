@@ -70,20 +70,24 @@ OSCP試験も、21時間ほぼ立ちっぱなしで奮闘しました。
 - **RDP**
 <br />
 ラボマシンにRDPする場合は、以下のようにSSH Tunnelを使ってKali経由でアクセスするようにしました。Mac上でMicrosoft Remote Desktopが使用できて、ファイルのコピー等が楽になります。
-<br />
+<br /><br />
 `$ ssh captureamerica@kali -L 13389:IPADDR:3389`
-<br />
+<br /><br />
 <img src="https://captureamerica.github.io/writeups/img/OSCP_RDP.png" alt="OSCP_RDP.png">
 
 - **Emacsで色付け**
 <br />
-ほんとはちゃんとメジャーモードを作ってやった方がいいんだろうけど、とりあえず行き当たりばったりで.emacsに定義しました。最初はPowerless.bat用に設定を追加してたんですが、他にもgobusterやnmapの出力にも色を付けるようにしました。
+ほんとはちゃんとメジャーモードを作ってやった方がいいんだろうけど、とりあえず行き当たりばったりで.emacsに定義しました。最初は[Powerless.bat](https://github.com/M4ximuss/Powerless/blob/master/Powerless.bat)用に設定を追加してたんですが、他にもgobusterやnmapの出力にも色を付けるようにしました。
 <br />
 <img src="https://captureamerica.github.io/writeups/img/OSCP_Emacs.png" alt="OSCP_Emacs.png">
 <br /><br />
-Powerless.bat、nmapの結果をEmacsで開くと以下のようになります。
+[Powerless.bat](https://github.com/M4ximuss/Powerless/blob/master/Powerless.bat)の結果をEmacsで開くと以下のようになります。
 <br />
 <img src="https://captureamerica.github.io/writeups/img/OSCP_Emacs_Powerless.png" alt="OSCP_Emacs_Powerless.png">
+<br />
+（[Metasploitable3](https://github.com/rapid7/metasploitable3)で取ったものです。OSCPのマシンではありません。）
+<br /><br />
+nmapの結果をEmacsで開くとこんな感じ。
 <br />
 <img src="https://captureamerica.github.io/writeups/img/OSCP_Emacs_nmap.png" alt="OSCP_Emacs_nmap.png">
 <br />
@@ -114,7 +118,7 @@ Powerless.bat、nmapの結果をEmacsで開くと以下のようになります�
 <!--
 - **ツールのカスタマイズ**
 <br />
-Powerless.batとLinEnum.shは、自分で実行したいコマンドを追加したり、コマンドの順番を入れ替えたり、自分用に使いやすいようにカスタマイズしました。
+[Powerless.bat](https://github.com/M4ximuss/Powerless/blob/master/Powerless.bat)とLinEnum.shは、自分で実行したいコマンドを追加したり、コマンドの順番を入れ替えたり、自分用に使いやすいようにカスタマイズしました。
 <br /><br />
 あと、WebアプリでLFI、SQL Injection、Command Injectionを見つけるツールを自作して使ったりもしました。あんまり活躍しなかったけど。。
 -->
@@ -159,11 +163,11 @@ Emacsで編集しつつ、Typoraで完成形を見ながらやりました。で
 <br /><br />
 こんな感じです。
 <br />
-bashを指定してMark Downを書いた場合：
+Codeにbashを指定してMark Downを書いた場合：
 <br />
 <img src="https://captureamerica.github.io/writeups/img/OSCP_bash.png" alt="OSCP_bash.png">
 <br /><br />
-HTMLを指定してMark Downを書いて、PDF Elementで色の変更：
+CodeにHTMLを指定して、後でPDF Elementで色の変更：
 <br />
 <img src="https://captureamerica.github.io/writeups/img/OSCP_HTML_PDFElement.png" alt="OSCP_HTML_PDFElement.png">
 <br />
@@ -195,11 +199,11 @@ Exerciseに結構時間を取られるので、ラボレポートをやらない
 これは後日わかったんですが、CPE 40点もらえました。
 <br />
 Submitの仕方に毎回悩むので、以下にスクリーンショット載せておきます。
-<br />
+<br /><br />
 <img src="https://captureamerica.github.io/writeups/img/OSCP_CPE1.png" alt="OSCP_CPE1.png">
-<br />
+<br /><br />
 <img src="https://captureamerica.github.io/writeups/img/OSCP_CPE2.png" alt="OSCP_CPE2.png">
-<br />
+<br /><br />
 <img src="https://captureamerica.github.io/writeups/img/OSCP_CPE3.png" alt="OSCP_CPE3.png">
 
 
