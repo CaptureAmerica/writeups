@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>OSCP受験記 (I Tried Harder) - CTF フラxxグゲット</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="CaptureAmerica @ CTF フラxxグゲット" /><meta name="description" content="English -- OSCP (Offensive Security Certified Professional) に無事に一発合格できました。 サポートしてくれた家族と、職場の上司と、会社と、あと面識は全くないんですが間接的にお世話になった高" /><meta name="keywords" content="CTF, Writeup, captureamerica, picoCTF" />
+
+
+
+<meta name="google-site-verification" content="PqctLWZQttGzxXVupWuIt2HWuBI8cvN1z07ETpxA2dw" />
+
+
+<meta name="generator" content="Hugo 0.74.2 with theme even" />
+
+
+<link rel="canonical" href="https://captureamerica.github.io/writeups/post/tried_harder_oscp/" />
+<link rel="apple-touch-icon" sizes="180x180" href="https://captureamerica.github.io/writeups/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://captureamerica.github.io/writeups/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://captureamerica.github.io/writeups/favicon-16x16.png">
+<link rel="manifest" href="https://captureamerica.github.io/writeups/manifest.json">
+<link rel="mask-icon" href="https://captureamerica.github.io/writeups/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="https://captureamerica.github.io/writeups/sass/main.min.78f8f17bab244b9ee62ad16480c9584d5fc2db06ae20681d1ca225cefd80767c.css" rel="stylesheet">
+
+
+
+<meta property="og:title" content="OSCP受験記 (I Tried Harder)" />
+<meta property="og:description" content="English -- OSCP (Offensive Security Certified Professional) に無事に一発合格できました。 サポートしてくれた家族と、職場の上司と、会社と、あと面識は全くないんですが間接的にお世話になった高" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://captureamerica.github.io/writeups/post/tried_harder_oscp/" />
+<meta property="article:published_time" content="2021-01-04T20:00:00+09:00" />
+<meta property="article:modified_time" content="2021-01-04T20:00:00+09:00" />
+<meta itemprop="name" content="OSCP受験記 (I Tried Harder)">
+<meta itemprop="description" content="English -- OSCP (Offensive Security Certified Professional) に無事に一発合格できました。 サポートしてくれた家族と、職場の上司と、会社と、あと面識は全くないんですが間接的にお世話になった高">
+<meta itemprop="datePublished" content="2021-01-04T20:00:00&#43;09:00" />
+<meta itemprop="dateModified" content="2021-01-04T20:00:00&#43;09:00" />
+<meta itemprop="wordCount" content="5012">
+
+
+
+<meta itemprop="keywords" content="OSCP," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="OSCP受験記 (I Tried Harder)"/>
+<meta name="twitter:description" content="English -- OSCP (Offensive Security Certified Professional) に無事に一発合格できました。 サポートしてくれた家族と、職場の上司と、会社と、あと面識は全くないんですが間接的にお世話になった高"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="https://captureamerica.github.io/writeups/" class="logo">CTF Writeups</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="https://captureamerica.github.io/writeups/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="https://captureamerica.github.io/writeups/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="https://captureamerica.github.io/writeups/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="https://captureamerica.github.io/writeups/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a><a href="https://captureamerica.github.io/writeups/about/">
+        <li class="mobile-menu-item">About</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="https://captureamerica.github.io/writeups/" class="logo">CTF Writeups</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="https://captureamerica.github.io/writeups/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="https://captureamerica.github.io/writeups/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="https://captureamerica.github.io/writeups/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="https://captureamerica.github.io/writeups/categories/">Categories</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="https://captureamerica.github.io/writeups/about/">About</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">OSCP受験記 (I Tried Harder)</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2021-01-04 </span>
+        <div class="post-category">
+            <a href="https://captureamerica.github.io/writeups/categories/oscp/"> OSCP </a>
+            </div>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contents</h2>
+  <div class="post-toc-content">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#pc環境">PC環境</a></li>
+    <li><a href="#tips">TIPS</a></li>
+    <li><a href="#レポート作成">レポート作成</a>
+      <ul>
+        <li><a href="#利点">利点</a></li>
+        <li><a href="#欠点">欠点</a></li>
+        <li><a href="#併用したツール">併用したツール</a></li>
+      </ul>
+    </li>
+    <li><a href="#ラボレポート">ラボレポート</a></li>
+    <li><a href="#oscpを受ける前に持っていたスキル">OSCPを受ける前に持っていたスキル</a></li>
+    <li><a href="#3ヶ月の過ごし方">3ヶ月の過ごし方</a></li>
+    <li><a href="#試験">試験</a></li>
+    <li><a href="#まとめ">まとめ</a></li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <!--
+<div class='align-right'>
+  
+<a href="">
+English
+</a>
+
+</div>
+-->
+<p><a href="https://www.offensive-security.com/">OSCP</a> (Offensive Security Certified Professional) に無事に一発合格できました。</p>
+<p>サポートしてくれた家族と、職場の上司と、会社と、あと面識は全くないんですが間接的にお世話になった高林さんに、この場を借りてお礼を言いたいと思います。ありがとうございました。</p>
+<p><br /></p>
+<p>これからOSCPを受験する方々に役に立ちそうな内容から書いていこうと思います。</p>
+<p><br /><br /></p>
+<h2 id="pc環境">PC環境</h2>
+<ul>
+<li>
+<p><strong>Macbook Air (メモリ16GB)</strong>
+<br />
+もともとWindows 8の上でVirtualBoxを使ってKaliをメインに使っていたんですが、OSCPの試験も見越して新しいMacbook Airを買いました。メモリ多めで。
+<br /><br />
+Macにしてからは、Macをメインに、Kaliはサブで動かしました。OpenVPNとBurp SuiteだけKali上で起動して、後はMacから<a href="https://iterm2.com/">iTerm2</a>を使ってKaliにSSHして使う感じです。あとは、WiresharkもKali上でたまに動かしました。</p>
+</li>
+<li>
+<p><strong>VirtualBox</strong>
+<br />
+VMWare Fusionが推奨されていて、丁度9月に<a href="https://my.vmware.com/web/vmware/evalcenter?p=fusion-player-personal">VMWare Fusion 12のフリー版</a>が出てきたので試してみたんですが、VirtualBoxでCTF用にそれなりに使い込んでいたKaliがあったしコンバートするのも面倒だったので、それをそのまま使いました。いちおうVirtualBoxでも、ラボも試験も特に問題はなかったです。
+<br /><br />
+ただ1点、連続クリックをした際に、マウスカーソルは動くけどクリックやタイプができなくなる現象が起きることがたまにありました。Mouse Integration絡みの問題っぽいです（これをオン/オフすると直ります）。Chromiumを使っているときに起きやすい気がします。
+<br /><br />
+ちなみに、Kali上のユーザもcaptureamericaを使っていて、レポートも試験もcaptureamericaユーザをそのまま使いました。</p>
+</li>
+<li>
+<p><strong>Emacs</strong>
+<br />
+エディターはいつも使っているEmacsです。マシン攻略のメモも、レポートもEmacsを使いました。あと後述しますが、<a href="https://github.com/M4ximuss/Powerless/blob/master/Powerless.bat">Powerless.bat</a>の出力なんかも、Emacs側で色を付けて見るようにしました。</p>
+</li>
+<li>
+<p><strong>LibreOffice</strong>
+<br />
+チートシートには、LibreOfficeを使いました。
+<br />
+Google Sheetも試しましたが、シート名のサイズがデカイ、という理由で使うのを止めました。（全部のシートが1画面の表示におさまらないから）</p>
+</li>
+<li>
+<p><strong>外部モニターｘ２</strong></p>
+</li>
+<li>
+<p><strong>スタンディング デスク</strong>
+<br />
+OSCP試験も、21時間ほぼ立ちっぱなしで奮闘しました。</p>
+</li>
+</ul>
+<p><br /><br /></p>
+<h2 id="tips">TIPS</h2>
+<ul>
+<li>
+<p><strong>バージョンアップの停止</strong>
+<br />
+ラボを始めてから、VirtualBoxの更新を行った際にKaliが起動できなくなる問題が起きました。幸いすぐに直せたんですが（確かAudioの設定絡み）、試験が終わるまではなるべくアプリやOSの更新はしない方がいいと思います。MacのBig Surの更新も出てきましたが、試験が終わるまで放置しました。</p>
+</li>
+<li>
+<p><strong>RDP</strong>
+<br />
+ラボマシンにRDPする場合は、以下のようにSSH Tunnelを使ってKali経由でアクセスするようにしました。Mac上でMicrosoft Remote Desktopが使用できて、ファイルのコピー等が楽になります。
+<br />
+<code>$ ssh captureamerica@kali -L 13389:IPADDR:3389</code>
+<br />
+<img src="https://captureamerica.github.io/writeups/img/OSCP_RDP.png" alt="OSCP_RDP.png"></p>
+</li>
+<li>
+<p><strong>Emacsで色付け</strong>
+<br />
+ほんとはちゃんとメジャーモードを作ってやった方がいいんだろうけど、とりあえず行き当たりばったりで.emacsに定義しました。最初はPowerless.bat用に設定を追加してたんですが、他にもgobusterやnmapの出力にも色を付けるようにしました。
+<br />
+<img src="https://captureamerica.github.io/writeups/img/OSCP_Emacs.png" alt="OSCP_Emacs.png">
+<br /><br />
+Powerless.bat、nmapの結果をEmacsで開くと以下のようになります。
+<br />
+<img src="https://captureamerica.github.io/writeups/img/OSCP_Emacs_Powerless.png" alt="OSCP_Emacs_Powerless.png">
+<br />
+<img src="https://captureamerica.github.io/writeups/img/OSCP_Emacs_nmap.png" alt="OSCP_Emacs_nmap.png">
+<br />
+（<a href="https://github.com/rapid7/metasploitable3">Metasploitable3</a>で取ったものです。OSCPのマシンではありません。）
+<br /><br />
+色が付いていないと大事な部分を見逃すことがあるし、目Grepにも余分な労力を費やすので、色って大事だと思います。</p>
+</li>
+<li>
+<p><strong>自分のIPアドレスを辞書登録</strong>
+<br />
+自分のIPアドレスをコマンドで使うことは多々あるので、VPNで接続した後に辞書登録をしてすぐ出せるようにしました。
+<br />
+<img src="https://captureamerica.github.io/writeups/img/OSCP_IME.png" alt="OSCP_IME.png">
+<br />
+（OSCPで使ったIPアドレスではありません。）</p>
+</li>
+<li>
+<p><strong>コマンドはコピペで</strong>
+<br />
+ひとつのテキストファイルに、よく使うコマンドをまとめておいて、「IPADDR」「MYADDR」をEmacs、もしくはsedで書き換えて使うようにしました。
+<br />
+タイプするのに比べて時間も節約できるし、タイプミスでコマンドエラーになることも防げるのでオススメです。
+<br />
+<img src="https://captureamerica.github.io/writeups/img/OSCP_ToDo.png" alt="OSCP_ToDo.png">
+<br /><br />
+ただ、自分でタイプしない分、コマンドはなかなか覚えられないです。</p>
+</li>
+</ul>
+<!--
+- **ツールのカスタマイズ**
+<br />
+Powerless.batとLinEnum.shは、自分で実行したいコマンドを追加したり、コマンドの順番を入れ替えたり、自分用に使いやすいようにカスタマイズしました。
+<br /><br />
+あと、WebアプリでLFI、SQL Injection、Command Injectionを見つけるツールを自作して使ったりもしました。あんまり活躍しなかったけど。。
+-->
+<p><br /><br /></p>
+<h2 id="レポート作成">レポート作成</h2>
+<p>Mark Down方式でOSCPのレポートが書ける以下のものを使いました。
+<br />
+<a href="https://github.com/noraj/OSCP-Exam-Report-Template-Markdown">https://github.com/noraj/OSCP-Exam-Report-Template-Markdown</a></p>
+<h3 id="利点">利点</h3>
+<ul>
+<li>
+<p>Emacsで書ける。</p>
+</li>
+<li>
+<p>軽い。（LibreOffice使って300ページ超えの文章書いたら、なんとなく重そうな気がして。。試してないからわからないけど。）</p>
+</li>
+</ul>
+<h3 id="欠点">欠点</h3>
+<ul>
+<li>
+<p>PDFにしてみたときに、思った通りになってないことがある。(これは、Office系のソフトでも同じかもですが)</p>
+</li>
+<li>
+<p>Code部分の色付けが変。</p>
+</li>
+</ul>
+<h3 id="併用したツール">併用したツール</h3>
+<ul>
+<li>
+<p><a href="https://typora.io/">typora</a>
+<br />
+Emacsで編集しつつ、Typoraで完成形を見ながらやりました。でも、PDFにすると結構見た目が違ってたりしました。</p>
+</li>
+<li>
+<p><a href="https://pdf.wondershare.co.jp/">PDF Element</a>
+<br />
+前述した欠点「Code部分の色付けが変」がどうにも気に入らなくて、これを購入しました。
+<br />
+とりあえず、Mark Downでは、Code部分をHTMLにしておいてなるべく色が付かないようにして、PDFとして一旦完成させた後にPDF Elementを使って色を変えました。
+<br />
+ところどころ、文字の追加や削除もPDF Elementを使ってやりました。
+<br />
+他のPDFツール（MacのPreview.app、Adobe Acrobat DC、Google DocのPlugin等）も試したのですが、少ないクリックで文字の色を変えるという点では、PDF Elementが一番優れていたので、これにしました。
+<br /><br />
+こんな感じです。
+<br />
+bashを指定してMark Downを書いた場合：
+<br />
+<img src="https://captureamerica.github.io/writeups/img/OSCP_bash.png" alt="OSCP_bash.png">
+<br /><br />
+HTMLを指定してMark Downを書いて、PDF Elementで色の変更：
+<br />
+<img src="https://captureamerica.github.io/writeups/img/OSCP_HTML_PDFElement.png" alt="OSCP_HTML_PDFElement.png">
+<br />
+(<a href="https://github.com/rapid7/metasploitable3">Metasploitable3</a>に対してpsexec.pyを実行したものです。OSCPのマシンではありません。)</p>
+</li>
+</ul>
+<p><br /><br /></p>
+<h2 id="ラボレポート">ラボレポート</h2>
+<p>Exerciseに結構時間を取られるので、ラボレポートをやらないという手もアリかとは思いますが、個人的にはやった方がいいと思います。
+<br /><br />
+理由は、</p>
+<ul>
+<li>
+<p><strong>試験に5点加算される。</strong>
+<br />
+たかが5点ですが、試験が始まってからどの時点で70点を超えるかで精神的にも変わってくるので、そういう意味ではこの5点は結構大きい気がします。</p>
+</li>
+<li>
+<p><strong>試験レポートの練習になる。</strong>
+<br />
+試験の2日目は相当疲れているし、時間の制限もあるので、レポートの作成自体にはある程度慣れておいた方がいいです。</p>
+</li>
+<li>
+<p><strong>Exercise自体が勉強になる。</strong>
+<br />
+自分がレポートに書いたExerciseの内容を後々参照することも何度かあったし、それなりに勉強になります。（あ〜、これExerciseでやった覚えあるなぁ、みたいなやつ）</p>
+</li>
+<li>
+<p><strong>CPE 40点もらえる。</strong>
+<br />
+これは後日わかったんですが、CPE 40点もらえました。
+<br />
+Submitの仕方に毎回悩むので、以下にスクリーンショット載せておきます。
+<br />
+<img src="https://captureamerica.github.io/writeups/img/OSCP_CPE1.png" alt="OSCP_CPE1.png">
+<br />
+<img src="https://captureamerica.github.io/writeups/img/OSCP_CPE2.png" alt="OSCP_CPE2.png">
+<br />
+<img src="https://captureamerica.github.io/writeups/img/OSCP_CPE3.png" alt="OSCP_CPE3.png"></p>
+</li>
+</ul>
+<p><br /><br /></p>
+<h2 id="oscpを受ける前に持っていたスキル">OSCPを受ける前に持っていたスキル</h2>
+<ul>
+<li>
+<p><strong><a href="https://www.giac.org/certification/penetration-tester-gpen">GPEN</a></strong>
+<br />
+3年前に取りました。ちょうど2020年12月でExpireだったので、それの代わりにOSCPを取りたかったというのもあります。SANSのトレーニング中に取ったメモとか、時々参照しました。</p>
+</li>
+<li>
+<p><strong><a href="https://www.isc2.org/">CISSP</a></strong>
+<br />
+6年くらい前に取りました。2020年はCPEを貯めるために<a href="https://www.hackthebox.eu/">HTB</a>をやりました。CISSPの6時間の試験もかなり長いと思ってましたが、OSCPに比べたら短いもんですね。</p>
+</li>
+<li>
+<p><strong><a href="https://www.lpi.org/our-certifications/lpic-2-overview">LPIC-2</a></strong>
+<br />
+Level 2まで取ってます。</p>
+</li>
+<li>
+<p><strong>Pentest</strong>
+<br />
+いちおうセキュリティ関連のIT企業で働いてますが、Pentestは本業とはほぼ無関係です。<a href="https://www.hackthebox.eu/">HTB</a>はCPE貯まった時点でやめちゃったので、半年前に40台くらいをWriteupを見ながらやっただけです。</p>
+</li>
+<li>
+<p><strong>プログラミング</strong>
+<br />
+だいぶ前ですが、開発の仕事をしてたときにC言語を使ってました。あとCTFを1年半くらいやって来たので、そこでPythonも勉強してます。</p>
+</li>
+<li>
+<p><strong>英語力</strong>
+<br />
+いちおう、英語圏に住んで15年目くらいです。OSCPのマニュアルもビデオもForumもちろん英語ですし、ネットで見つかる情報も英語であることが多いので、それなりに英語ができた方がプラスだと思います。</p>
+</li>
+<li>
+<p><strong>Windows</strong>
+<br />
+Windowsは使う分には使えますが、コマンド、PowerShell、Active Directoryとかあまり知らなくて、OSCP試験日を100％の状態とすると、当初は10%くらいの知識しかなかったです。</p>
+</li>
+</ul>
+<p><br /><br /></p>
+<h2 id="3ヶ月の過ごし方">3ヶ月の過ごし方</h2>
+<p>自分がやった方法が必ずしもベストとは限らないので、以下、参考まで。</p>
+<ul>
+<li>
+<p><strong>最初の1ヶ月</strong>
+<br />
+後で全て見直す前提で、ひたすらラボのマシンをやっつけました。詰まったらすぐForumを見るようにしてやったので、1ヶ月でPublic（一部を除く）とDEVは終わりました。普通に楽しかったです。
+<br />
+もらったビデオは、傍らで繰り返し流して聞いてました。</p>
+</li>
+<li>
+<p><strong>2ヶ月目</strong>
+<br />
+3週間ですべてのExerciseとラボ13台分をレポートに書きました。その他、最初にやったPublicとDEVの見直し、読書（「<a href="https://allsafe.booth.pm/items/1861943">ミミミミミッミ</a>」、「サイバーセキュリティレッドチーム実践ガイド」←長い間本棚で寝てたやつ）、<a href="https://www.udemy.com/">Udemy</a>（「Practical Ethical Hacking - The Complete Course」←無料だったときに登録してたやつ）とかやりました。
+<br />
+Exerciseの辺りは、ちょっとしんどかったけど、頑張りました。</p>
+</li>
+<li>
+<p><strong>3ヶ月目</strong>
+<br />
+10日くらいでラボの残り(IT、ADMIN)はやっつけて、ここで全マシン終了。
+<br />
+残りの期間は、<a href="https://github.com/rapid7/metasploitable3">Metasploitable3</a>や、<a href="https://docs.google.com/spreadsheets/d/1dwSMIAPIam0PuRBkCiDI88pU3yzrqqHkDtBngUHNCw8/edit#gid=0">OSCPっぽいと言われているHTBやVulnHubのマシン</a>をひたすらやりました。試験日が近づいているのに、全然自力で解けなくてモヤモヤしました。
+<br />
+試験は月曜日だったんですが、直前の土曜日と日曜日は、消化できなかったHTBとVulnhubのWriteupだけをひらすら読みました。（結構な台数が残っていて、がっつりやってる時間はなかったので）
+<br />
+試験前日は、<a href="https://github.com/freddiebarrsmith/Buffer-Overflow-Exploit-Development-Practice">BOF</a>も1個やりました。
+<br />
+<br />
+ちなみに、緊張のためか、試験前日はよく眠れませんでした。。</p>
+</li>
+</ul>
+<p><br /><br /></p>
+<h2 id="試験">試験</h2>
+<ul>
+<li>
+<p><strong>Proctorセットアップ (45分)</strong>
+<br />
+準備は15分で終わるはずだったのに、なんやかんややってて45分かかりました。
+<br /><br />
+パスポート発行国と住んでいる場所が異なる人は、別途IDの提示を求められるので、予め用意しておいた方がいいです。</p>
+</li>
+<li>
+<p><strong>BOF (50分、25ポイント)</strong>
+<br />
+まずはBOFからやるのが定番のようで、自分もそうしました。</p>
+</li>
+<li>
+<p><strong>マシンA（45分、20ポイント)</strong>
+<br />
+比較的、すんなりいけました。</p>
+</li>
+<li>
+<p><strong>マシンB (3時間、10ポイント)</strong>
+<br />
+やむなくMetasploitで解きました。</p>
+</li>
+<li>
+<p><strong>マシンC (7時間、20ポイント)</strong>
+<br /></p>
+</li>
+<li>
+<p><strong>マシンD (6時間、25ポイント)</strong>
+<br />
+<br />
+休憩や最後の見直し等入れて全部で21時間かかりました。上記の各マシンにかけた時間は多少曖昧ですけど、時間配分はだいたいこんな感じでした。
+<br /><br />
+時間経過で言うと、朝7:00に開始して、70点に到達したのが18:00時点辺りです（ラボレポートの5点加算を含む）。この辺りから、Spofityをかけて歌を歌いながらやりました。
+<br /><br />
+朝4:00に試験を終了しました。</p>
+</li>
+<li>
+<p><strong>レポート</strong>
+<br />
+少し寝てからレポート作成を開始。4時間くらいで書けたかな。40ページくらいです。</p>
+</li>
+<li>
+<p><strong>結果</strong>
+<br />
+試験結果は、翌日にメールで来ました。
+<br />
+どこかでうっかりミス（レポートのファイル名が間違っているとか）をしてないか非常に不安になる期間なので、すぐに結果がもらえたことにはとても感謝です。</p>
+</li>
+</ul>
+<p><br /><br /></p>
+<h2 id="まとめ">まとめ</h2>
+<p>いろんな事が勉強できたし、とても楽しくて、大変有意義な3ヶ月間でした。まだまだ知らない事はいっぱいあるし、最後のOSCP試験でもわからない事が残ったままでクリアしたし、これからも続けて勉強していかなきゃな〜と思います。</p>
+<p>大事なのは、とにかく楽しんでやることです。自分はぶっちゃけPentesterになるわけでもないし、CTFをやっている感覚で楽しんでやるのを心がけました。3ヶ月間、NetFlixも一切見ず、ゲームもほとんどやらずに結構ストイックに勉強しましたが、そんなに苦ではなかったです。</p>
+<p>OSCPのマニュアル、ビデオ、ラボ、試験、どれもよくできているし、コース代を払うのに十分な価値はあると思います。</p>
+<p>これからOSCPを始めてみようという方、OSCP試験を間近に控えている方、どうぞ楽しんで頑張ってください。</p>
+<p>TRY HARDER!!</p>
+<p><br /><br />
+<br /><br /></p>
+<hr>
+<p><br /><br />
+<br /><br /></p>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content">CaptureAmerica @ CTF フラxxグゲット</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">
+        2021-01-04
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="https://captureamerica.github.io/writeups/tags/oscp/">OSCP</a>
+          </div>
+      <nav class="post-nav">
+        
+        <a class="next" href="https://captureamerica.github.io/writeups/post/working_on_oscp/">
+            <span class="next-text nav-default">Working on OSCP (Offensive Security Certified Professional)</span>
+            <span class="next-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="https://github.com/CaptureAmerica/" class="iconfont icon-github" title="github"></a>
+  <a href="https://captureamerica.github.io/writeups/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2019 - 
+    2021
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">CaptureAmerica @ CTF フラxxグゲット</span>
+  </span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  
+
+
+
+<script type="text/javascript" src="https://captureamerica.github.io/writeups/js/main.min.d7b7ada643c9c1a983026e177f141f7363b4640d619caf01d8831a6718cd44ea.js"></script>
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-104910699-2', 'auto');
+	ga('set', 'anonymizeIp', true);
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+
+
+
+
+
+</body>
+</html>
