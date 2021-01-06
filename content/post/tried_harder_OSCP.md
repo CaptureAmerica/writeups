@@ -9,13 +9,11 @@ tags: ["OSCP"]
 categories: ["OSCP"]
 author: ""
 ---
-<!--
 {{% right %}}
-<a href="">
-English
+<a href="https://captureamerica.github.io/writeups/post/tried_harder_oscp_en/">
+<img src="https://captureamerica.github.io/writeups/img/En2.png" alt="English">
 </a>
 {{% /right %}}
--->
 
 [OSCP](https://www.offensive-security.com/) (Offensive Security Certified Professional) に無事に一発合格できました。
 
