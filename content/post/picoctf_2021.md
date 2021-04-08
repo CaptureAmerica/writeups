@@ -31,17 +31,29 @@ URL: [https://play.picoctf.org/events/34](https://play.picoctf.org/events/34)
 以下が解いたチャレンジの状況です。Binaryがほとんど手付かずでした。
 
 <img src="https://captureamerica.github.io/writeups/img/picoctf_2021_web.png" alt="picoctf_2021_web.png">
+
 <br />
+
 <img src="https://captureamerica.github.io/writeups/img/picoctf_2021_crypto1.png" alt="picoctf_2021_crypto1.png">
+
 <br />
+
 <img src="https://captureamerica.github.io/writeups/img/picoctf_2021_crypto2.png" alt="picoctf_2021_crypto2.png">
+
 <br />
+
 <img src="https://captureamerica.github.io/writeups/img/picoctf_2021_rev.png" alt="picoctf_2021_rev.png">
+
 <br />
+
 <img src="https://captureamerica.github.io/writeups/img/picoctf_2021_forensic.png" alt="picoctf_2021_forensic.png">
+
 <br />
+
 <img src="https://captureamerica.github.io/writeups/img/picoctf_2021_general.png" alt="picoctf_2021_general.png">
+
 <br />
+
 <img src="https://captureamerica.github.io/writeups/img/picoctf_2021_binary.png" alt="picoctf_2021_binary.png">
 
 
@@ -60,7 +72,7 @@ Hint2: If you want to do this the un-fun way, the obfuscation is pretty lazy.
 
 <br />
 ### Solution
-タイトルとヒントから、JavascriptでHistoryを残している模様。どうやってやっているかは知らないです。
+タイトルとヒントから、JavascriptでHistoryを残している模様。(どうやってやっているかは知らないです)
 
 <br />
 <img src="https://captureamerica.github.io/writeups/img/picoctf_2021_ancient_history.png" alt="picoctf_2021_ancient_history.png">
