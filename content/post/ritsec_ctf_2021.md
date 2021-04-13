@@ -20,7 +20,10 @@ URL: [https://ctf.ritsec.club/challenges](https://ctf.ritsec.club/challenges)
 
 2235ポイントで、最終順位は128番でした。
 
-<img src="https://captureamerica.github.io/writeups/img/ritsec_ctf_2021_score1.png" alt="ritsec_ctf_2021_score1.png"> <br />
+<img src="https://captureamerica.github.io/writeups/img/ritsec_ctf_2021_score1.png" alt="ritsec_ctf_2021_score1.png">
+
+<br />
+
 <img src="https://captureamerica.github.io/writeups/img/ritsec_ctf_2021_score2.png" alt="ritsec_ctf_2021_score2.png">
 
 <br /><br />
