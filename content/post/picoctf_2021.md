@@ -1,7 +1,7 @@
 ---
 title: "picoCTF 2021 Writeup"
-date: 2021-03-31T19:00:00+09:00
-lastmod: 2021-03-31T19:00:00+09:00
+date: 2021-04-10T19:00:00+09:00
+lastmod: 2021-04-10T19:00:00+09:00
 draft: false
 keywords: []
 description: ""
@@ -16,6 +16,17 @@ author: ""
 {{% /right %}}
 
 URL: [https://play.picoctf.org/events/34](https://play.picoctf.org/events/34)
+
+
+<table><tr><td>
+お詫び：
+
+どうやら、Winnerが決まるまでWriteupはPublishしてはいけなかったみたいですね。正直、知らなくてフライングしました。スミマセン。。
+
+<img src="https://captureamerica.github.io/writeups/img/picoctf_2021_announcement1.png" alt="picoctf_2021_announcement1.png"><br />
+
+<img src="https://captureamerica.github.io/writeups/img/picoctf_2021_announcement2.png" alt="picoctf_2021_announcement2.png">
+</td></tr></table>
 
 <br />
 1820ポイントで、最終順位は431位でした。
