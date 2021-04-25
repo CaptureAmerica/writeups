@@ -569,12 +569,14 @@ d = owiener.attack(e, n)
 if d is None:
     print("Failed")
 else:
-    print(hex(pow(c,d,n)))
+    hex_string = hex(pow(c,d,n))
+    hex_string = hex_string[2::] # To remove "0x"
+    print(bytearray.fromhex(hex_string).decode())
 ```
 
 <pre>
 $ python dachshund_solve.py 
-0x7069636f4354467b70726f76696e675f7769656e65725f323633353435377d
+picoCTF{proving_wiener_2635457}
 </pre>
 
 

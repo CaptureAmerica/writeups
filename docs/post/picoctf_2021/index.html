@@ -49,7 +49,7 @@
 <meta itemprop="description" content="URL: https://play.picoctf.org/events/34 お詫び： どうやら、Winnerが決まるまでWriteupはPublishしてはいけなかったみたいですね。正直、知らなくてフライングしまし">
 <meta itemprop="datePublished" content="2021-04-10T19:00:00&#43;09:00" />
 <meta itemprop="dateModified" content="2021-04-10T19:00:00&#43;09:00" />
-<meta itemprop="wordCount" content="5015">
+<meta itemprop="wordCount" content="5027">
 
 
 
@@ -853,6 +853,8 @@ c: 67457181885150124304023419649124675286255007819125635338936395085652015523669
 </span><span class="lnt"> 9
 </span><span class="lnt">10
 </span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-Python" data-lang="Python"><span class="kn">import</span> <span class="nn">owiener</span>
@@ -865,12 +867,14 @@ c: 67457181885150124304023419649124675286255007819125635338936395085652015523669
 <span class="k">if</span> <span class="n">d</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
     <span class="k">print</span><span class="p">(</span><span class="s2">&#34;Failed&#34;</span><span class="p">)</span>
 <span class="k">else</span><span class="p">:</span>
-    <span class="k">print</span><span class="p">(</span><span class="nb">hex</span><span class="p">(</span><span class="nb">pow</span><span class="p">(</span><span class="n">c</span><span class="p">,</span><span class="n">d</span><span class="p">,</span><span class="n">n</span><span class="p">)))</span>
+    <span class="n">hex_string</span> <span class="o">=</span> <span class="nb">hex</span><span class="p">(</span><span class="nb">pow</span><span class="p">(</span><span class="n">c</span><span class="p">,</span><span class="n">d</span><span class="p">,</span><span class="n">n</span><span class="p">))</span>
+    <span class="n">hex_string</span> <span class="o">=</span> <span class="n">hex_string</span><span class="p">[</span><span class="mi">2</span><span class="p">::]</span> <span class="c1"># To remove &#34;0x&#34;</span>
+    <span class="k">print</span><span class="p">(</span><span class="nb">bytearray</span><span class="o">.</span><span class="n">fromhex</span><span class="p">(</span><span class="n">hex_string</span><span class="p">)</span><span class="o">.</span><span class="n">decode</span><span class="p">())</span>
 </code></pre></td></tr></table>
 </div>
 </div><pre>
 $ python dachshund_solve.py 
-0x7069636f4354467b70726f76696e675f7769656e65725f323633353435377d
+picoCTF{proving_wiener_2635457}
 </pre>
 <p><br /></p>
 <p>Flag: <code>picoCTF{proving_wiener_2635457}</code></p>

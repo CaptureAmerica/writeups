@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>UMDCTF 2021 Writeup - CTF フラxxグゲット</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="CaptureAmerica @ CTF フラxxグゲット" /><meta name="description" content="URL: https://umdctf.io/challenges 1501 points を取り、175thでした。 ほとんど解けてないです^^; あんまり特記すべきこともないんですが、いくつか Writeup 残しておきます。 [Forensics]: Not Slick (150 points) Challenge My" /><meta name="keywords" content="CTF, Writeup, captureamerica, picoCTF" />
+
+
+
+<meta name="google-site-verification" content="PqctLWZQttGzxXVupWuIt2HWuBI8cvN1z07ETpxA2dw" />
+
+
+<meta name="generator" content="Hugo 0.74.2 with theme even" />
+
+
+<link rel="canonical" href="https://captureamerica.github.io/writeups/post/umdctf_2021/" />
+<link rel="apple-touch-icon" sizes="180x180" href="https://captureamerica.github.io/writeups/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://captureamerica.github.io/writeups/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://captureamerica.github.io/writeups/favicon-16x16.png">
+<link rel="manifest" href="https://captureamerica.github.io/writeups/manifest.json">
+<link rel="mask-icon" href="https://captureamerica.github.io/writeups/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="https://captureamerica.github.io/writeups/sass/main.min.78f8f17bab244b9ee62ad16480c9584d5fc2db06ae20681d1ca225cefd80767c.css" rel="stylesheet">
+
+
+
+<meta property="og:title" content="UMDCTF 2021 Writeup" />
+<meta property="og:description" content="URL: https://umdctf.io/challenges 1501 points を取り、175thでした。 ほとんど解けてないです^^; あんまり特記すべきこともないんですが、いくつか Writeup 残しておきます。 [Forensics]: Not Slick (150 points) Challenge My" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://captureamerica.github.io/writeups/post/umdctf_2021/" />
+<meta property="article:published_time" content="2021-04-25T11:00:00+09:00" />
+<meta property="article:modified_time" content="2021-04-25T11:00:00+09:00" />
+<meta itemprop="name" content="UMDCTF 2021 Writeup">
+<meta itemprop="description" content="URL: https://umdctf.io/challenges 1501 points を取り、175thでした。 ほとんど解けてないです^^; あんまり特記すべきこともないんですが、いくつか Writeup 残しておきます。 [Forensics]: Not Slick (150 points) Challenge My">
+<meta itemprop="datePublished" content="2021-04-25T11:00:00&#43;09:00" />
+<meta itemprop="dateModified" content="2021-04-25T11:00:00&#43;09:00" />
+<meta itemprop="wordCount" content="1073">
+
+
+
+<meta itemprop="keywords" content="CTF," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="UMDCTF 2021 Writeup"/>
+<meta name="twitter:description" content="URL: https://umdctf.io/challenges 1501 points を取り、175thでした。 ほとんど解けてないです^^; あんまり特記すべきこともないんですが、いくつか Writeup 残しておきます。 [Forensics]: Not Slick (150 points) Challenge My"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="https://captureamerica.github.io/writeups/" class="logo">CTF Writeups</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="https://captureamerica.github.io/writeups/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="https://captureamerica.github.io/writeups/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="https://captureamerica.github.io/writeups/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="https://captureamerica.github.io/writeups/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a><a href="https://captureamerica.github.io/writeups/about/">
+        <li class="mobile-menu-item">About</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="https://captureamerica.github.io/writeups/" class="logo">CTF Writeups</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="https://captureamerica.github.io/writeups/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="https://captureamerica.github.io/writeups/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="https://captureamerica.github.io/writeups/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="https://captureamerica.github.io/writeups/categories/">Categories</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="https://captureamerica.github.io/writeups/about/">About</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">UMDCTF 2021 Writeup</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2021-04-25 </span>
+        <div class="post-category">
+            <a href="https://captureamerica.github.io/writeups/categories/ctf/"> CTF </a>
+            </div>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contents</h2>
+  <div class="post-toc-content">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#forensics-not-slick-150-points">[Forensics]: Not Slick (150 points)</a>
+      <ul>
+        <li><a href="#challenge">Challenge</a></li>
+        <li><a href="#solution">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#forensics-protocol-one-and-zero-200">[Forensics]: Protocol One and Zero (200)</a>
+      <ul>
+        <li><a href="#challenge-1">Challenge</a></li>
+        <li><a href="#solution-1">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#forensics-pretty-dumb-file-200">[Forensics]: Pretty Dumb File (200)</a>
+      <ul>
+        <li><a href="#challenge-2">Challenge</a></li>
+        <li><a href="#solution-2">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#crypto-celebration-100">[Crypto]: Celebration (100)</a>
+      <ul>
+        <li><a href="#challenge-3">Challenge</a></li>
+        <li><a href="#solution-3">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#rev-starbucks-150">[Rev]: Starbucks (150)</a>
+      <ul>
+        <li><a href="#challenge-4">Challenge</a></li>
+        <li><a href="#solution-4">Solution</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <div class='align-right'>
+<a href="https://translate.google.com/translate?hl=en&sl=auto&tl=en&u=https%3A%2F%2Fcaptureamerica.github.io%2Fwriteups%2Fpost%2Fumdctf_2021%2F">
+<img src="https://captureamerica.github.io/writeups/img/En.png" alt="English">
+</a>
+</div>
+<p>URL: <a href="https://umdctf.io/challenges">https://umdctf.io/challenges</a>
+<br /><br />
+1501 points を取り、175thでした。</p>
+<img src="https://captureamerica.github.io/writeups/img/umdctf_2021_Score.png" alt="umdctf_2021_Score.png">
+<p><br />
+ほとんど解けてないです^^;</p>
+<p><img src="https://captureamerica.github.io/writeups/img/umdctf_2021_Challenges1.png" alt="umdctf_2021_Challenges1.png"> <br /></p>
+<p><img src="https://captureamerica.github.io/writeups/img/umdctf_2021_Challenges2.png" alt="umdctf_2021_Challenges2.png"> <br /></p>
+<p><img src="https://captureamerica.github.io/writeups/img/umdctf_2021_Challenges3.png" alt="umdctf_2021_Challenges3.png"> <br /></p>
+<p><br />
+あんまり特記すべきこともないんですが、いくつか Writeup 残しておきます。</p>
+<p><br /><br /></p>
+<h2 id="forensics-not-slick-150-points">[Forensics]: Not Slick (150 points)</h2>
+<hr>
+<h3 id="challenge">Challenge</h3>
+<blockquote>
+<p>My friend always messes with PNGs&hellip;. what did he do this time?</p>
+</blockquote>
+<p>Attachment:</p>
+<ul>
+<li>notslick.png</li>
+</ul>
+<p><br /></p>
+<h3 id="solution">Solution</h3>
+<p>ファイル・タイプを確認します。正常な png ファイルではないようです。</p>
+<pre>
+$ file notslick.png
+notslick.png: data
+</pre>
+<p><br />
+どうやら反転しているようです。</p>
+<pre>
+ $ xxd notslick.png | tail
+00018c00: fb5d 6b9e b5ed 7bd9 8663 d71e 3d6b f6b5  .]k...{..c..=k..
+00018c10: af7b 5efd ed75 c3df 7f7c d72b ae6d e3f7  .{^..u...|.+.m..
+00018c20: 6fb8 4ce3 cf9c 66e0 3a7f 4621 42bb 8687  o.L...f.:.F!B...
+00018c30: 1a42 6665 10ee a10f f42f e10e 515f e1dc  .Bfe...../..Q_..
+00018c40: a5fe 10ca 1fe2 89a9 4e52 634e 4343 93dd  ........NRcNCC..
+00018c50: 21c9 50df cadd 3926 a222 49a1 0e57 fdf7  !.P...9&."I..W..
+00018c60: fff7 5cd9 7efc 0bdd ec5e 7854 4144 4900  ..\.~....^xTADI.
+00018c70: 2000 002b 3a4e fb00 0000 0608 a903 0000   ..+:N..........
+00018c80: 8007 0000 5244 4849 0d00 0000 0a1a 0a0d  ....RDHI........
+00018c90: 474e 5089                                GNP.
+</pre>
+<p><br /></p>
+<pre>
+$ python3
+>>> open("notslick_rev.png", "wb").write(open("notslick.png", "rb").read()[::-1])
+</pre>
+<p>このやり方は、過去の何かのCTFイベントでやったやつです。どれだったかは覚えてないです。</p>
+<p><br /></p>
+<p>Flag: <code>UMDCTF-{abs01ute1y_r3v3r53d}</code></p>
+<p><br /><br />
+<br /><br /></p>
+<h2 id="forensics-protocol-one-and-zero-200">[Forensics]: Protocol One and Zero (200)</h2>
+<hr>
+<h3 id="challenge-1">Challenge</h3>
+<blockquote>
+<p>We have noticed some suspicious pings on localhost that appear to hide a message. Can you recover the message?</p>
+</blockquote>
+<p>Attachment:</p>
+<ul>
+<li>protocol_one_and_zero.pcapng</li>
+</ul>
+<p><br /></p>
+<h3 id="solution-1">Solution</h3>
+<p>タイトルの通りです。以下のように、0x00 のものと 0xFF のものがあるので、それぞれを0と1と見立てて2値化した後で文字にするだけです。</p>
+<pre>
+$ tshark -r protocol_one_and_zero.pcapng -T fields -e data.data | uniq
+866e0d000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+dc7f0d0000000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+87910d000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+1da40d0000000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+f7b50d000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+:
+:
+</pre>
+<pre>
+$ tshark -r protocol_one_and_zero.pcapng -T fields -e data.data | uniq | rev | cut -c -1 | tr -d "\n" | gsed -e 's/f/1/g' ; echo
+01010101010011010100010001000011010101000100011000101101011110110110001000110001011011100101111101110000001100010100111001100111010111110101000000110000011011100110011101111101
+</pre>
+<p><br /></p>
+<p>Flag: <code>UMDCTF-{b1n_p1Ng_P0ng}</code></p>
+<p><br /><br />
+<br /><br /></p>
+<h2 id="forensics-pretty-dumb-file-200">[Forensics]: Pretty Dumb File (200)</h2>
+<hr>
+<h3 id="challenge-2">Challenge</h3>
+<blockquote>
+<p>You find what looks to be a regular PDF, maybe Didier Stevens can help figure out what it contains.</p>
+</blockquote>
+<p>Attachment:</p>
+<ul>
+<li>paper.pcap</li>
+</ul>
+<p><br /></p>
+<h3 id="solution-2">Solution</h3>
+<p>エキストエディタで開くと、Object 8 のstreamの部分に読めないバイナリがあるのがわかります。</p>
+<p><img src="https://captureamerica.github.io/writeups/img/umdctf_2021_paperpdf.png" alt="umdctf_2021_paperpdf.png"> <br /></p>
+<p><br /></p>
+<p>pdf-parser.py を使って取り出します。</p>
+<pre>
+$ pdf-parser.py -o 8 -f -d obj8.dump paper.pdf
+obj 8 0
+ Type: /EmbeddedFile
+ Referencing:
+ Contains stream
+
+  <<
+    /Length 43
+    /Filter /FlateDecode
+    /Type /EmbeddedFile
+  >>
+
+$ file obj8.dump
+obj8.dump: ASCII text
+
+$ cat obj8.dump
+UMDCTF-{actually_1ts_pr3tty_smart}
+</pre>
+<br>
+<p>Flag: <code>UMDCTF-{actually_1ts_pr3tty_smart}</code></p>
+<p><br /><br />
+<br /><br /></p>
+<h2 id="crypto-celebration-100">[Crypto]: Celebration (100)</h2>
+<hr>
+<h3 id="challenge-3">Challenge</h3>
+<blockquote>
+<p>I know these aren&rsquo;t my usual card tricks, but these little men made me laugh. I hope they bring a smile to your face too :)</p>
+</blockquote>
+<p>Attachment:</p>
+<img src="https://captureamerica.github.io/writeups/img/umdctf_2021_Celebration.png" alt="umdctf_2021_Celebration.png">
+<p><br /></p>
+<h3 id="solution-3">Solution</h3>
+<p>この手のシンボルの問題は無数にあるので、いかにデコーダを見つけるかがキーになります。今回は、&ldquo;CTF crypto symbol&rdquo; をキーワードにGoogleで画像検索していたら見つかりました。</p>
+<p><a href="https://www.dcode.fr/dancing-men-cipher">Dancing Men Cipher</a> というそうです。</p>
+<p><br /></p>
+<p>Flag: <code>UMDCTF-{yo_ITS_A_PARTYYY}</code></p>
+<p><br /><br />
+<br /><br /></p>
+<h2 id="rev-starbucks-150">[Rev]: Starbucks (150)</h2>
+<hr>
+<h3 id="challenge-4">Challenge</h3>
+<blockquote>
+<p>Unfortunately, you have been forced to use Java, but you are only given a single class file which doesn&rsquo;t seem to work.</p>
+</blockquote>
+<p>Attachment:</p>
+<ul>
+<li>IsThisTheFlag.class</li>
+</ul>
+<p><br /></p>
+<h3 id="solution-4">Solution</h3>
+<p>jadを使ってデコンパイルしました。</p>
+<pre>
+$ jad IsThisTheFlag.class 
+Parsing IsThisTheFlag.class...The class file version is 52.0 (only 45.3, 46.0 and 47.0 are supported)
+ Generating Challenge.jad
+</pre>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-Java" data-lang="Java"><span class="c1">// Decompiled by Jad v1.5.8e. Copyright 2001 Pavel Kouznetsov.
+</span><span class="c1">// Jad home page: http://www.geocities.com/kpdus/jad.html
+</span><span class="c1">// Decompiler options: packimports(3) 
+</span><span class="c1">// Source File Name:   Challenge.java
+</span><span class="c1"></span>
+<span class="kn">import</span> <span class="nn">java.io.PrintStream</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Challenge</span>
+<span class="o">{</span>
+
+    <span class="kd">public</span> <span class="nf">Challenge</span><span class="o">()</span>
+    <span class="o">{</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="n">String</span> <span class="nf">f1</span><span class="o">(</span><span class="n">String</span> <span class="n">s</span><span class="o">)</span>
+    <span class="o">{</span>
+        <span class="n">StringBuilder</span> <span class="n">b</span> <span class="o">=</span> <span class="k">new</span> <span class="n">StringBuilder</span><span class="o">();</span>
+        <span class="kt">char</span> <span class="n">arr</span><span class="o">[]</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="na">toCharArray</span><span class="o">();</span>
+        <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">arr</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span>
+            <span class="n">b</span><span class="o">.</span><span class="na">append</span><span class="o">((</span><span class="kt">char</span><span class="o">)(</span><span class="n">arr</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">+</span> <span class="n">i</span><span class="o">));</span>
+
+        <span class="k">return</span> <span class="n">b</span><span class="o">.</span><span class="na">toString</span><span class="o">();</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="n">String</span> <span class="nf">f1_rev</span><span class="o">(</span><span class="n">String</span> <span class="n">s</span><span class="o">)</span>
+    <span class="o">{</span>
+        <span class="n">StringBuilder</span> <span class="n">b</span> <span class="o">=</span> <span class="k">new</span> <span class="n">StringBuilder</span><span class="o">();</span>
+        <span class="kt">char</span> <span class="n">arr</span><span class="o">[]</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="na">toCharArray</span><span class="o">();</span>
+        <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">arr</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span>
+            <span class="n">b</span><span class="o">.</span><span class="na">append</span><span class="o">((</span><span class="kt">char</span><span class="o">)(</span><span class="n">arr</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">-</span> <span class="n">i</span><span class="o">));</span>
+
+        <span class="k">return</span> <span class="n">b</span><span class="o">.</span><span class="na">toString</span><span class="o">();</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="n">String</span> <span class="nf">f2</span><span class="o">(</span><span class="n">String</span> <span class="n">s</span><span class="o">)</span>
+    <span class="o">{</span>
+        <span class="kt">int</span> <span class="n">half</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="na">length</span><span class="o">()</span> <span class="o">/</span> <span class="n">2</span><span class="o">;</span>
+        <span class="k">return</span> <span class="o">(</span><span class="k">new</span> <span class="n">StringBuilder</span><span class="o">(</span><span class="n">String</span><span class="o">.</span><span class="na">valueOf</span><span class="o">(</span><span class="n">s</span><span class="o">.</span><span class="na">substring</span><span class="o">(</span><span class="n">half</span> <span class="o">+</span> <span class="n">1</span><span class="o">)))).</span><span class="na">append</span><span class="o">(</span><span class="n">s</span><span class="o">.</span><span class="na">substring</span><span class="o">(</span><span class="n">0</span><span class="o">,</span> <span class="n">half</span> <span class="o">+</span> <span class="n">1</span><span class="o">)).</span><span class="na">toString</span><span class="o">();</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="n">String</span> <span class="nf">f3</span><span class="o">()</span>
+    <span class="o">{</span>
+        <span class="k">return</span> <span class="n">f1</span><span class="o">(</span><span class="n">f2</span><span class="o">(</span><span class="s">&#34;$aQ\&#34;cNP `_\035[eULB@PA&#39;thpj]&#34;</span><span class="o">));</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span> <span class="n">args</span><span class="o">[])</span>
+    <span class="o">{</span>
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;You really thought finding the flag would be so easy?&#34;</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><br />
+main()は文字列を表示しているだけです。</p>
+<p>f3()がなんとなくフラグ生成関数っぽいので、main()からf3()を呼ぶようにしてコンパイルして実行します。</p>
+<p>ファイル名が &ldquo;Challenge.jad&rdquo; になっているので、&ldquo;Challenge.java&rdquo; に変えておきます。</p>
+<pre>
+$ javac Challenge.java
+
+$ java Challenge
+UMDCTF-{pyth0n_1s_b3tt3r}
+</pre>
+<p><br /></p>
+<p>Flag: <code>UMDCTF-{pyth0n_1s_b3tt3r}</code></p>
+<p><br /><br />
+<br /><br /></p>
+<hr>
+<p><br /><br />
+<br /><br /></p>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content">CaptureAmerica @ CTF フラxxグゲット</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">
+        2021-04-25
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="https://captureamerica.github.io/writeups/tags/ctf/">CTF</a>
+          </div>
+      <nav class="post-nav">
+        
+        <a class="next" href="https://captureamerica.github.io/writeups/post/ritsec_ctf_2021/">
+            <span class="next-text nav-default">RITSEC CTF 2021 Writeup</span>
+            <span class="next-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="https://github.com/CaptureAmerica/" class="iconfont icon-github" title="github"></a>
+  <a href="https://captureamerica.github.io/writeups/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2019 - 
+    2021
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">CaptureAmerica @ CTF フラxxグゲット</span>
+  </span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  
+
+
+
+<script type="text/javascript" src="https://captureamerica.github.io/writeups/js/main.min.d7b7ada643c9c1a983026e177f141f7363b4640d619caf01d8831a6718cd44ea.js"></script>
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-104910699-2', 'auto');
+	ga('set', 'anonymizeIp', true);
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+
+
+
+
+
+</body>
+</html>
