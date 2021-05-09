@@ -10,7 +10,7 @@ categories: ["CTF"]
 author: ""
 ---
 {{% right %}}
-<a href="https://translate.google.com/translate?hl=en&sl=ja&tl=en&u=https%3A%2F%2Fcaptureamerica.github.io%2Fwriteups%2Fpost%2FdawgCTF_2021%2F">
+<a href="https://translate.google.com/translate?hl=en&sl=ja&tl=en&u=https%3A%2F%2Fcaptureamerica.github.io%2Fwriteups%2Fpost%2Fdawgctf_2021%2F">
 <img src="https://captureamerica.github.io/writeups/img/En.png" alt="English">
 </a>
 {{% /right %}}
