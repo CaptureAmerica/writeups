@@ -15,7 +15,7 @@ author: ""
 </a>
 {{% /right %}}
 
-(2020/06/17 - 復習しました)
+(2020/06/17 - 復習しました。下の方に追記してます。)
 
 URL: [https://ctf.nahamcon.com/challenges](https://ctf.nahamcon.com/challenges)
 
