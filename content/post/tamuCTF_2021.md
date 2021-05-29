@@ -166,30 +166,14 @@ void vuln(void)
 GDBでwin()のアドレスを確認。
 
 <pre>
-gef➤  i func
-All defined functions:
+gef➤  b main
+Breakpoint 1 at 0x8049321
 
-Non-debugging symbols:
-0x08049000  _init
-0x08049030  printf@plt
-0x08049040  fflush@plt
-0x08049050  gets@plt
-0x08049060  fgets@plt
-0x08049070  puts@plt
-0x08049080  __libc_start_main@plt
-0x08049090  fopen@plt
-0x080490a0  putchar@plt
-0x080490b0  _start
-0x080490f0  _dl_relocate_static_pie
-0x08049100  __x86.get_pc_thunk.bx
-0x08049110  deregister_tm_clones
-0x08049150  register_tm_clones
-0x08049190  __do_global_dtors_aux
-0x080491c0  frame_dummy
-0x080491c2  win   <<<
-0x080492a0  lose
-0x080492cb  vuln
-0x0804931e  main
+gef➤  r
+:
+
+gef➤  p win
+$1 = {&lt;text variable, no debug info&gt;} 0x80491c2 <win>
 </pre>
 
 <br />

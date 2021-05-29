@@ -1,11 +1,11 @@
 ---
 title: "UMDCTF 2021 Writeup"
 date: 2021-04-25T11:00:00+09:00
-lastmod: 2021-04-25T11:00:00+09:00
+lastmod: 2021-05-29T21:00:00+09:00
 draft: false
 keywords: []
 description: ""
-tags: ["CTF"]
+tags: ["CTF", "Reviewed"]
 categories: ["CTF"]
 author: ""
 ---
@@ -14,6 +14,8 @@ author: ""
 <img src="https://captureamerica.github.io/writeups/img/En.png" alt="English">
 </a>
 {{% /right %}}
+
+(2021/05/29 - 少し復習しました。下の方に追記してます。)
 
 URL: [https://umdctf.io/challenges](https://umdctf.io/challenges)
 <br /><br />
@@ -294,8 +296,100 @@ UMDCTF-{pyth0n_1s_b3tt3r}
 Flag: `UMDCTF-{pyth0n_1s_b3tt3r}`
 
 
+<br /><br />
+<br /><br />
+<img src="https://captureamerica.github.io/writeups/img/orange_bar.png" alt="orange_bar.png">
+<br />
+ここから下はイベント終了後に行った復習です。
 
 
+<br /><br />
+## [Misc]: John's Return (350 points)
+- - -
+### Challenge
+> I received this network traffic from John, but I don't what he's trying to say? Can you figure it out?
+
+Attachment:
+
+- received.pcapng
+
+<br />
+### Solution
+ワイヤレスのトラフィックが入ったpcapなので、まず aircrack-ng をやらないといけないやつでした。
+
+最初に、received.pcapng は、Wireshark から Save As で pcap として保存しておいてから aircrack-ng にかけます。
+
+<pre>
+$ aircrack-ng received.pcap
+Reading packets, please wait...
+Opening received.pcap
+Read 76 packets.
+
+   #  BSSID              ESSID                     Encryption
+
+   1  00:23:69:AA:69:F5  linksys                   WPA (1 handshake, with PMKID)
+
+Choosing first network as target.
+
+Reading packets, please wait...
+Opening received.pcap
+Read 76 packets.
+
+1 potential targets
+
+Please specify a dictionary (option -w).
+</pre>
+
+<br />
+-w で辞書を指定するように言われるので、rockyou.txtを使ってみます。
+
+<pre>
+$ aircrack-ng received.pcap -w /usr/share/wordlists/rockyou.txt
+Reading packets, please wait...
+Opening received.pcap
+Read 76 packets.
+
+   #  BSSID              ESSID                     Encryption
+
+   1  00:23:69:AA:69:F5  linksys                   WPA (1 handshake, with PMKID)
+
+Choosing first network as target.
+
+Reading packets, please wait...
+Opening received.pcap
+Read 76 packets.
+
+1 potential targets
+
+                               Aircrack-ng 1.6
+
+      [00:00:00] 59/10303727 keys tested (966.86 k/s)
+
+      Time left: 2 hours, 57 minutes, 46 seconds                 0.00%
+
+                           KEY FOUND! [ chocolate ]
+
+:
+(snip)
+:
+</pre>
+
+<br />
+Key `chocolate` が見つかりました。
+
+<br />
+Wiresharkで wpa-pwd として指定します。
+
+<img src="https://captureamerica.github.io/writeups/img/umdctf_2021_wpapwd.png" alt="umdctf_2021_wpapwd.png">
+
+<br />
+Configuration Test Protocol とかが見えるようになりました。その中にフラグが入ってます。
+
+<img src="https://captureamerica.github.io/writeups/img/umdctf_2021_receivedpcap.png" alt="umdctf_2021_receivedpcap.png">
+
+<br />
+
+Flag: `UMDCTF-{wh3r3_j0hn}`
 
 
 <br /><br />

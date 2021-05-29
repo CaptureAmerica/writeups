@@ -49,7 +49,7 @@
 <meta itemprop="description" content="URL: https://tamuctf.com/challenges 去年のTAMU CTF 2020 (Writeup) は Network Pentest のチャレンジがあったりしたんですが、今年はなかったですね。残念〜。 800 points取りました。順位は、94thだ">
 <meta itemprop="datePublished" content="2021-05-04T15:30:00&#43;09:00" />
 <meta itemprop="dateModified" content="2021-05-04T15:30:00&#43;09:00" />
-<meta itemprop="wordCount" content="949">
+<meta itemprop="wordCount" content="934">
 
 
 
@@ -320,30 +320,14 @@ vuln() 関数でBOFができます。他に、win()関数があるので、BOF�
 </div><p><br />
 GDBでwin()のアドレスを確認。</p>
 <pre>
-gef➤  i func
-All defined functions:
+gef➤  b main
+Breakpoint 1 at 0x8049321
 
-Non-debugging symbols:
-0x08049000  _init
-0x08049030  printf@plt
-0x08049040  fflush@plt
-0x08049050  gets@plt
-0x08049060  fgets@plt
-0x08049070  puts@plt
-0x08049080  __libc_start_main@plt
-0x08049090  fopen@plt
-0x080490a0  putchar@plt
-0x080490b0  _start
-0x080490f0  _dl_relocate_static_pie
-0x08049100  __x86.get_pc_thunk.bx
-0x08049110  deregister_tm_clones
-0x08049150  register_tm_clones
-0x08049190  __do_global_dtors_aux
-0x080491c0  frame_dummy
-0x080491c2  win   <<<
-0x080492a0  lose
-0x080492cb  vuln
-0x0804931e  main
+gef➤  r
+:
+
+gef➤  p win
+$1 = {&lt;text variable, no debug info&gt;} 0x80491c2 <win>
 </pre>
 <p><br /></p>
 <p>書いたコード。</p>
