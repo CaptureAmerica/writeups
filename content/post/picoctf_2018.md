@@ -128,13 +128,13 @@ ncで繋ぐと、そこで問題が出てきます。
 
 > What is the most common source IP address? If there is more than one IP address that is the most common, you may give any of the most common ones.
 
-```
+<pre>
 $ grep src incidents.json | cut -d: -f2 | sort | uniq -c
    1  "215.239.98.18",
    1  "231.205.245.44",
    4  "246.69.53.233",
    4  "251.165.34.242",
-```
+</pre>
 答え：251.165.34.242
 
 
@@ -142,10 +142,10 @@ $ grep src incidents.json | cut -d: -f2 | sort | uniq -c
 
 > How many unique destination IP addresses were targeted by the source IP address 246.69.53.233?
 
-```
+<pre>
 $ grep 251.165.34.242 incidents.json -A 2 | grep dst | sort | uniq | wc -l
        3
-```
+</pre>
 答え：3
 
 <br />
@@ -199,7 +199,8 @@ SSHでアクセスした後、emacsのdiredからファイルを開いたらす�
 逆にemacsが使えなかったらどうするのか気になって、別解も調べてみました。
 
 ファイル名に空白文字が含まれているようなので、trでアンダースコアに置き換えて可視化しました。
-```
+
+<pre>
 captureamerica@pico-2018-shell:/problems/you-can-t-see-me_3_1a39ec6c80b3f3a18610074f68acfe69$ ll
 total 60
 drwxr-xr-x   2 root       root        4096 Mar 25 19:57 ./
@@ -217,7 +218,7 @@ cat: '. ': No such file or directory
 
 captureamerica@pico-2018-shell:/problems/you-can-t-see-me_3_1a39ec6c80b3f3a18610074f68acfe69$ cat ".  "
 picoCTF{j0hn_c3na_paparapaaaaaaa_paparapaaaaaa_cf5156ef}
-```
+</pre>
 
 
 
@@ -587,14 +588,14 @@ while 1:
 [コード解説]
 
 - コードの中でも、わかりやすくするために()をxで置き換えてます。
-- + で分けて、2つずつ処理。1個目をa、2個目をbにしてます。
+- `+` で分けて、2つずつ処理。1個目をa、2個目をbにしてます。
 - aとbそれぞれ、余計な文字を削除してます。
 - あとは、それぞれカッコの深さを調べて、規則にのっとった処理をするだけ。
 
 <br><br>
 以下が、実行結果です。
 
-```
+<pre>
 ~/Python2$ ./pico_script_me.py
 [+] Opening connection to 2018shell.picoctf.com on port 1542: Done
 Rules:
@@ -638,7 +639,7 @@ Correct!
 Congratulations, here's your flag: picoCTF{5cr1pt1nG_l1k3_4_pRo_0466cdd7}
 [*] Closed connection to 2018shell.picoctf.com port 1542
 
-```
+</pre>
 最後はめっちゃ長いのが来た！
 
 flag `picoCTF{5cr1pt1nG_l1k3_4_pRo_0466cdd7}`
@@ -778,7 +779,8 @@ undefined4 validate_key(char *param_1)
 ```
 
 <br />
-全部載せると多いので、2つくらい載せます。このタイプのGhidraのデコンパイルの仕方は、以前Redpwn CTFをやったときに見たので、もうビックリしません。
+全部載せると多いので、2つくらい載せます。Ghidraのデコンパイルの特徴なのか、returnのところで判定文が出てきます。コードの読み方は、その下に記載しています。
+
 ```C
 uint key_constraint_01(char *param_1)
 
@@ -796,6 +798,7 @@ uint key_constraint_01(char *param_1)
 ==> (param_1[0] + param_1[1]) mod 0x24 = 0xE
 
 
+<br />
 ```C
 uint key_constraint_02(int param_1)
 

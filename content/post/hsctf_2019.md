@@ -129,6 +129,11 @@ Well, it was nice meeting you, hsctf{plz_u5e_pyth0n_3}
 Goodbye!
 </pre>
 
+<br />
+
+Flag: `hsctf{plz_u5e_pyth0n_3}`
+
+
 <br /><br />
 <br /><br />
 ## [Misc]: Broken GPS
@@ -667,7 +672,7 @@ s.interactive()
 
 <br />
 実行結果です。
-```bash
+<pre>
 # ./combo-chain-lite_solve2.py 
 [+] Opening connection to pwn.hsctf.com on port 3131: Done
 [*] '/root/HSCTF_CTF_2019/combo-chain-lite'
@@ -677,6 +682,7 @@ s.interactive()
     NX:       NX enabled
     PIE:      No PIE (0x400000)
 [*] Switching to interactive mode
+
 $ ls
 bin
 combo-chain-lite
@@ -686,9 +692,10 @@ flag
 lib
 lib32
 lib64
+
 $ cat flag
 hsctf{wheeeeeee_that_was_fun}
-```
+</pre>
 
 <br>
 

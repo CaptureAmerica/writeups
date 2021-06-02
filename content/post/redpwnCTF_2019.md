@@ -30,7 +30,7 @@ URL: [https://ctf.redpwn.net/](https://ctf.redpwn.net/)
 ### Challenge
 > This is an easy cipher? I heard it's broken.
 <br /><br />
-http://chall.2019.redpwn.net:8006/
+[http://chall.2019.redpwn.net:8006/](http://chall.2019.redpwn.net:8006/)
 
 <br />
 ### Solution
@@ -41,7 +41,7 @@ http://chall.2019.redpwn.net:8006/
 View sourceすると、1行で書かれたJava Scriptがあるので、ChromeのDeveloper ToolでBeautifyします。
 
 以下、Beautify後。
-```HTML
+{{< highlight html "linenos=table,hl_lines=129" >}}
 <script>
     var _0x29a9 = ["\x30\x31\x32\x33\x34\x35\x36\x37\x38\x39\x61\x62\x63\x64\x65\x66", "", "\x63\x68\x61\x72\x41\x74", "\x6C\x65\x6E\x67\x74\x68", "\x63\x68\x61\x72\x43\x6F\x64\x65\x41\x74", "\x57\x68\x61\x74\x20\x69\x73\x20\x74\x68\x65\x20\x70\x61\x73\x73\x77\x6F\x72\x64", "\x61\x61\x34\x32\x62\x32\x33\x34\x63\x62\x30\x35\x39\x31\x35\x37\x31\x36\x63\x31\x34\x33\x34\x30\x35\x38\x66\x65\x31\x61\x65\x65\x31\x36\x63\x31\x34\x33\x34\x30\x63\x62\x30\x35\x39\x31\x35\x37\x61\x61\x34\x32\x62\x32\x33\x34", "\x73\x75\x62\x6D\x69\x74\x20\x61\x73\x20\x72\x65\x64\x70\x77\x6E\x63\x74\x66\x7B\x50\x41\x53\x53\x57\x4F\x52\x44\x7D", "\x3A\x28"];
     var hex_chr = _0x29a9[0];
@@ -176,7 +176,7 @@ View sourceすると、1行で書かれたJava Scriptがあるので、Chromeの
         alert(_0x29a9[8])
     }
 </script>
-```
+{{< / highlight >}}
 
 一番下で判定している箇所がポイントです。途中のコードは解析不要です。
 
@@ -250,7 +250,7 @@ ulong FUN_00101169(int iParm1)
 デコンパイルされた結果（上記）が、入力値を10倍してマスクして、判定文っぽいのとORして、それをリターンして、と意味不明だったので、アセンブラコードを見ました。
 
 ここら辺。
-```
+<pre>
     1164:	e9 67 ff ff ff       	jmp    10d0 <__isoc99_scanf@plt+0x70>
     1169:	55                   	push   rbp
     116a:	48 89 e5             	mov    rbp,rsp
@@ -261,7 +261,7 @@ ulong FUN_00101169(int iParm1)
     1178:	01 d0                	add    eax,edx  <--- 入力値と足す
     117a:	01 c0                	add    eax,eax  <--- 2倍
     117c:	3d 92 c2 0a 00       	cmp    eax,0xac292
-```
+</pre>
 
 入力値をxとすると、<br />
 (4x + x) * 2 = 0xac292
@@ -272,19 +272,19 @@ x = 0xac292 / 10
 
 <br />
 ということで、計算。
-```Python
+<pre>
 $ python
 >>> 0xac292/10
 70517.0
-```
+</pre>
 
 <br />
 動作確認。
-```sh
+<pre>
 # ./generic_crackme_redux 
 Enter access code: 70517
 Access granted
-```
+</pre>
 
 Flag: `flag{70517}`
 

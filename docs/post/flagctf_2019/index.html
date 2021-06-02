@@ -49,7 +49,7 @@
 <meta itemprop="description" content="URL: http://flagctf.com/ Packer Captureの問題があったのがよかったです。 順位が13位で一見成績が良かったように見えますけど、参加者は100人くらいでした。 [Network]: Web Search">
 <meta itemprop="datePublished" content="2019-06-16T10:00:00&#43;09:00" />
 <meta itemprop="dateModified" content="2019-06-16T10:00:00&#43;09:00" />
-<meta itemprop="wordCount" content="1355">
+<meta itemprop="wordCount" content="1339">
 
 
 
@@ -193,33 +193,20 @@ Note: your team is limited to 6 attempts on this challenge.</p>
 <li>WebSearchingFlagCTF2019.pcapng (Q1 ~ Q5で共通)</li>
 </ul>
 <h3 id="solution">Solution</h3>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash">$ tshark -r WebSearchingFlagCTF2019.pcapng <span class="p">|</span> grep -i <span class="s2">&#34;search/?&#34;</span> <span class="p">|</span> tail -n <span class="m">1</span>
- <span class="m">4891</span> 82.558070239 192.168.52.110 → 23.10.112.128 HTTP <span class="m">149</span> GET /search/?q<span class="o">=</span>auyyxxriyf HTTP/1.1
+<pre>
+$ tshark -r WebSearchingFlagCTF2019.pcapng | grep -i "search/?" | tail -n 1
+ 4891 82.558070239 192.168.52.110 → 23.10.112.128 HTTP 149 GET /search/?q=auyyxxriyf HTTP/1.1
 
-$ tshark -r WebSearchingFlagCTF2019.pcapng <span class="p">|</span> grep -i <span class="s2">&#34;search/?&#34;</span> <span class="p">|</span> cut -d<span class="o">=</span> -f2 <span class="p">|</span> sort <span class="p">|</span> uniq -c <span class="p">|</span> egrep <span class="s2">&#34;^   4&#34;</span> <span class="p">|</span> sort -k <span class="m">2</span>
-   <span class="m">4</span> afqyhedslp HTTP/1.1 
-   <span class="m">4</span> bnvfsywbnx HTTP/1.1 
-   <span class="m">4</span> czlhbopugw HTTP/1.1 
-   <span class="m">4</span> faxuzyzwfl HTTP/1.1 
-   <span class="m">4</span> onphdplbbx HTTP/1.1 
-   <span class="m">4</span> ouaxyqrnjz HTTP/1.1 
-</code></pre></td></tr></table>
-</div>
-</div><p>Flag: <code>ouaxyqrnjz</code></p>
+$ tshark -r WebSearchingFlagCTF2019.pcapng | grep -i "search/?" | cut -d= -f2 | sort | uniq -c | egrep "^   4" | sort -k 2
+   4 afqyhedslp HTTP/1.1 
+   4 bnvfsywbnx HTTP/1.1 
+   4 czlhbopugw HTTP/1.1 
+   4 faxuzyzwfl HTTP/1.1 
+   4 onphdplbbx HTTP/1.1 
+   4 ouaxyqrnjz HTTP/1.1 
+</pre>
+<p><br /></p>
+<p>Flag: <code>ouaxyqrnjz</code></p>
 <p><br /></p>
 <div class="admonition tip"><p class="admonition-title">Tips</p>
 <p>uniq -cは、重複した行数を表示するオプションです。</p>
@@ -330,25 +317,16 @@ Submit the answers for all 5 input files in order, delimited by semicolons. For 
 </ul>
 <h3 id="solution-2">Solution</h3>
 <p>ご親切にPythonのテンプレートが添付されていましたが、コマンドの組み合わせで解きました。</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash">~/me_inputs_small $ <span class="k">for</span> i in <span class="o">{</span>1..5<span class="o">}</span> <span class="p">;</span> <span class="k">do</span> grep -e <span class="s2">&#34;.*m.*e.*&#34;</span> <span class="nv">$i</span>.in <span class="p">|</span> wc -l <span class="p">;</span> <span class="k">done</span>
-       <span class="m">4</span>
-     <span class="m">957</span>
-     <span class="m">245</span>
-       <span class="m">0</span>
-     <span class="m">440</span>
-</code></pre></td></tr></table>
-</div>
-</div><p>Flag <code>4;957;245;0;440</code></p>
+<pre>
+~/me_inputs_small $ for i in {1..5} ; do grep -e ".*m.*e.*" $i.in | wc -l ; done
+       4
+     957
+     245
+       0
+     440
+</pre>
+<p><br /></p>
+<p>Flag <code>4;957;245;0;440</code></p>
 <p><br /><br />
 <br /><br /></p>
 <h2 id="web-exquisifax-admin-panel-40">[Web]: Exquisifax Admin Panel (40)</h2>
@@ -405,6 +383,7 @@ Warning: readfile(a/c/b): failed to open stream: No such file or directory in /v
 </code></pre></td></tr></table>
 </div>
 </div><p>あとは、ログインページより、ログインするだけです。<br /></p>
+<p><br /></p>
 <p>Flag: <code>200aaa7c1acbd70d2b243bbdc761fc38</code></p>
 <p><br /><br />
 <br /><br /></p>

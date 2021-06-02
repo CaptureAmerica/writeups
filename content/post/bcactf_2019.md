@@ -130,7 +130,9 @@ $2 = 1
 出力結果はBrainF*ckで、以下で実行しました。<br />
 [https://copy.sh/brainfuck/](https://copy.sh/brainfuck/)
 
-`bcactf{3x3cut4bl3s_r_fun_124jher089245}`
+<br />
+
+Flag: `bcactf{3x3cut4bl3s_r_fun_124jher089245}`
 
 
 
@@ -164,7 +166,10 @@ B+>│0x400694 \<main+110>     jne    0x400744 \<main+286>
 rsqsjv{Arent_executables_fun?_I_think_so_sdkfjhqiweuryiquwerajzncxbvaihqiwueyr}
 
 何パターンか試して、結局、全体をRot10したのがフラグでした。<br />
-`bcactf{Kboxd_ohomedklvoc_pex?_S_drsxu_cy_cnuptrasgoebisaegobktjxmhlfksrasgeoib}`
+
+<br />
+
+Flag: `bcactf{Kboxd_ohomedklvoc_pex?_S_drsxu_cy_cnuptrasgoebisaegobktjxmhlfksrasgeoib}`
 
 
 
@@ -309,7 +314,10 @@ e19ab0
 </pre>
 
 これで、全てのアルファベットの変換ができるので、フラグがわかります。
-`bcactf{frequencyanalysisisverygreatwhensolvingannoyingmonoalphabeticsubstitutionciphers_abcdefghijklmnopqrstuvwxyz}`
+
+<br />
+
+Flag: `bcactf{frequencyanalysisisverygreatwhensolvingannoyingmonoalphabeticsubstitutionciphers_abcdefghijklmnopqrstuvwxyz}`
 
 ちなみに、読みやすくスペースを入れると、<br />
 "frequency analysis is very great when solving annoying monoalphabetic substitution ciphers"
@@ -353,6 +361,10 @@ Hint: The words translate to numbers, which then translate to the flag.
 
 ところどころ16が出てきちゃったけど、フラグフォーマットより"t" (bcac<font color="red">t</font>f) に置き換えられるのがわかるので、フラグは`bcactf{g3t_g0t}`
 
+<br />
+
+Flag: `bcactf{g3t_g0t}`
+
 
 <br /><br />
 <br /><br />
@@ -385,6 +397,9 @@ $ python3 rachel.py
 bcactf{0p71c4lly_r3c0gn1z3d_ch4r4c73rs}
 </pre>
 
+<br />
+
+Flag: `bcactf{0p71c4lly_r3c0gn1z3d_ch4r4c73rs}`
 
 <br /><br />
 <br /><br />
@@ -438,7 +453,10 @@ for c in list:
     print(chr(c),end="")
 print("")
 ```
-`bcactf{1_h0p3_y0u_us3_pyth0n}`
+
+<br />
+
+Flag: `bcactf{1_h0p3_y0u_us3_pyth0n}`
 
 
 
@@ -548,7 +566,9 @@ for line in sys.stdin.readlines():
     print(" ", end="")
 print("")
 ```
-`5.70 -1 1.00 75.00 -1 77.40 -1`
+<br />
+
+Flag: `5.70 -1 1.00 75.00 -1 77.40 -1`
 
 
 <br /><br />
@@ -627,7 +647,9 @@ int main(int argc, char **argv)
 	fclose( fp );
 }
 ```
-`bcactf{f0110w_tH3_r00lz_<3_l0ve_m3_pls}`
+<br />
+
+Flag: `bcactf{f0110w_tH3_r00lz_<3_l0ve_m3_pls}`
 
 
 <br /><br />
@@ -721,7 +743,9 @@ int main(int argc, char **argv)
 	return 0;
 }
 ```
-`bcactf{L157_8453d_pR0gR4Mm1nG_15_4w3S0Me!}`
+<br />
+
+Flag: `bcactf{L157_8453d_pR0gR4Mm1nG_15_4w3S0Me!}`
 
 
 <br /><br />
@@ -758,7 +782,9 @@ Attachment:
 http://rhllor.xyz/7h3fir31n0urh3ar75_d2VsY29tZSB0byBzdGVwIG9uZQ
 
 アクセスするとフラグがもらえます。<br />
-`bcactf{gu1d3d_8y_574r5_QmVnaW5uaW5ncw}`
+<br />
+
+Flag: `bcactf{gu1d3d_8y_574r5_QmVnaW5uaW5ncw}`
 
 
 
@@ -794,7 +820,9 @@ md5（3758002ab24653af8d550c0c50473098）の元の文字列は、[rainbow table]
 <br />
 ==> darknight
 <br />
-`bcactf{7h37ru7h15411w3h4v3_dGhlIGxpZ2h0IGluIG91ciBleWVz}`
+<br />
+
+Flag: `bcactf{7h37ru7h15411w3h4v3_dGhlIGxpZ2h0IGluIG91ciBleWVz}`
 
 
 
@@ -809,7 +837,8 @@ md5（3758002ab24653af8d550c0c50473098）の元の文字列は、[rainbow table]
 ウェブアーカイブを見つけるだけです。<br />
 [https://web.archive.org/web/20190614021723/http://rhllor.xyz/fl4m30fV3r1745burn5_Z2l2ZSBzdHJlbmd0aCB0byBoaXMgc3dvcmQ](https://web.archive.org/web/20190614021723/http://rhllor.xyz/fl4m30fV3r1745burn5_Z2l2ZSBzdHJlbmd0aCB0byBoaXMgc3dvcmQ)
 <br /><br />
-`bcactf{p33r1ng_1n70_7h3_p457_Ymxlc3NlZHZpZXc}`
+
+Flag: `bcactf{p33r1ng_1n70_7h3_p457_Ymxlc3NlZHZpZXc}`
 
 
 
@@ -1035,7 +1064,9 @@ bcactf{cccccccccccccccccccccccccccccc}
 
 あとは、1が立っているところの文字だけ選ぶだけです。手動でやりました。
 
-`bcactf{y0u_4r3_4_m4573rm1nD!_Ym9vbGlu}`
+<br />
+
+Flag: `bcactf{y0u_4r3_4_m4573rm1nD!_Ym9vbGlu}`
 
 
 
@@ -1078,7 +1109,9 @@ Attachment:
 
 hexdumpのテキスト アウトプットのやつは、`xxd -r`で解凍できます。
 
-`bcactf{A_l0t_0f_c0mPr3s510n}`
+<br />
+
+Flag: `bcactf{A_l0t_0f_c0mPr3s510n}`
 
 
 
@@ -1135,7 +1168,8 @@ Writeupを参照されてもらって、fcrackzipというコマンドで解け�
 考えてみたら、wordlistがあればパスワード付きのZipはCrackできるわけだし、別のファイルが添付されているということはそこからwordlistを生成すればいいということですもんね。
 
 zip2johnでも同じことができるかやってみました。
-```
+
+```C
 root@kali:~/BCACTF# strings opm.png > opm_wordlist.txt
 
 
@@ -1160,7 +1194,9 @@ root@kali:~/BCACTF# cat flag.txt
 bcactf{u5ing_4ll_string5_0f_1mag3_@s_dictionary?}
 ```
 
+<br />
 
+Flag: `bcactf{u5ing_4ll_string5_0f_1mag3_@s_dictionary?}`
 
 
 <br /><br />

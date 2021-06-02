@@ -363,7 +363,7 @@ Attachment: （後日ダウンロードし直したら、ちゃんと問題用�
 
 - encoded_file
 
-```
+```C
 $ cat encoded_file
 begin 664 flag_encoded
 E0V]D969E<W1#5$9[-V@Q-5\Q-5\T7V,P,#%?,VYC,&0Q;CE]"@``
@@ -413,18 +413,24 @@ drwxr-xr-x  2 root root   4096 Aug 29 22:40 ./
 drwxr-xr-x 50 root root   4096 Aug 29 22:39 ../
 -rw-r--r--  1 root root 193231 Aug 29 22:26 cute_kittens.jpg
 -rw-r--r--  1 root root    192 Aug 29 22:40 hello
+
+
 root@kali:~/Codefest_CTF_2019# file hello 
 hello: Zip archive data, at least v?[0x30a] to extract
+
+
 root@kali:~/Codefest_CTF_2019# zipinfo hello
 Archive:  hello
 Zip file size: 192 bytes, number of entries: 1
 -rw-rw-r--  6.3 unx       16 bx stor 19-Aug-14 16:36 is this the flag?
 1 file, 16 bytes uncompressed, 16 bytes compressed:  0.0%
-root@kali:~/Codefest_CTF_2019# 
-root@kali:~/Codefest_CTF_2019# 
+
+
 root@kali:~/Codefest_CTF_2019# unzip hello
 Archive:  hello
  extracting: is this the flag?       
+
+
 root@kali:~/Codefest_CTF_2019# ll
 total 208
 drwxr-xr-x  2 root root   4096 Aug 29 22:40  ./
@@ -432,9 +438,8 @@ drwxr-xr-x 50 root root   4096 Aug 29 22:39  ../
 -rw-r--r--  1 root root 193231 Aug 29 22:26  cute_kittens.jpg
 -rw-r--r--  1 root root    192 Aug 29 22:40  hello
 -rw-rw-r--  1 root root     16 Aug 14 16:36 'is this the flag?'
-root@kali:~/Codefest_CTF_2019# emacs
-root@kali:~/Codefest_CTF_2019# 
-root@kali:~/Codefest_CTF_2019# 
+
+
 root@kali:~/Codefest_CTF_2019# xxd hello 
 00000000: 504b 0304 0a03 0000 0000 9984 0e4f 7826  PK...........Ox&
 00000010: 3bec 1000 0000 1000 0000 1100 0000 6973  ;.............is

@@ -37,7 +37,10 @@ Ciphertext: 112 101 97 67 84 70 123 52 115 99 49 49 105 115 99 48 48 108 125
 ```python
 $ python -c 'print("".join([chr(int(x)) for x in "112 101 97 67 84 70 123 52 115 99 49 49 105 115 99 48 48 108 125".split()]))'
 ```
-flag: `peaCTF{4sc11isc00l}`
+
+<br />
+
+Flag: `peaCTF{4sc11isc00l}`
 
 
 
@@ -98,7 +101,8 @@ Ciphertext: 011100010000000000101001000101{0010000110001101010000000001010010101
 10001 &nbsp; s<br />
 
 <br />
-flag: `peaCTF{eggwaffles}`
+
+Flag: `peaCTF{eggwaffles}`
 
 <br />
 ＃問題文の中で、<b>bacon</b>の部分だけ太字になっているのがナゾ。なんかのヒントなの？ スライスするとか言うことかな。。
@@ -125,7 +129,10 @@ flag: `peaCTF{eggwaffles}`
 $ find . -name *flag*
 $ cat ./926c7fc91293cbdcbb5a99c561782682/80dee25b24cac38a8a7f7214c732974c/d9f58f5e381818ca33525a98ca33dfbe/f17007910d11d07404b23bb62d7a7ee1/9c991628ac6f756dd67cfa3b98c42cf6/47c8055d6bd5102bd363fc752227844a/1d4c5a6d7ce032905f80ccd47b1c08df/f4fd3d96096de5ed863de07324e1bf57/flag.txt
 </pre>
-flag: `flag{peactf_linux_is_fun_f4ca42f3f34f4674d511eade889d74f7}`
+
+<br />
+
+Flag: `flag{peactf_linux_is_fun_f4ca42f3f34f4674d511eade889d74f7}`
 
 
 
@@ -167,7 +174,9 @@ print "\n---------\n";
 得られた結果：peaGXU{orangejuice} </br></br>
 上記のPerlスクリプトは小文字だけ置き換えているので、GXUのところが書き換わってないだけです。
 
-flag: `peaCTF{orangejuice}`
+<br />
+
+Flag: `peaCTF{orangejuice}`
 
 
 
@@ -198,7 +207,10 @@ Caused by: java.lang.ClassNotFoundException: coffeetime.jar
 <pre>
 System.out.println("peaCTF{nice_cup_of_coffee}");
 </pre>
-flag: `peaCTF{nice_cup_of_coffee}`
+
+<br />
+
+Flag: `peaCTF{nice_cup_of_coffee}`
 
 
 
@@ -235,7 +247,9 @@ $ file E.xtr
 E.xtr: PNG image data, 1280 x 720, 8-bit colormap, interlaced
 </pre>
 
-flag: `peaCTF{read_banned_it}`
+<br />
+
+Flag: `peaCTF{read_banned_it}`
 
 
 
@@ -261,7 +275,9 @@ Attachments:
 77 69 6e 64 5f 62 6c 6f 77 73 7d
 </pre>
 
-flag: `flag{peactf_where_the_wind_blows}`
+<br />
+
+Flag: `flag{peactf_where_the_wind_blows}`
 
 
 <br /><br />
