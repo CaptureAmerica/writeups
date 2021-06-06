@@ -33,7 +33,7 @@ URL: [https://wtfctf.wearemist.in/challenges](https://wtfctf.wearemist.in/challe
 
 <br><br>
 
-Misc の m15tery_Box も解けたんですが、何回フラグをSubmitしても色が緑にならないなぁと思っていたら、いつの間にかイベントが終了してました。。。
+Misc の m15tery_Box も解けたんですが、何回フラグをSubmitしても色が緑にならないなぁと思っていたら、いつの間にかイベントが終了してました。。。ということで、結構未着手です。
 
 CTFTimeに記載されている開催期間はあてにしてはいけないことを学びました。
 
