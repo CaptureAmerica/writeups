@@ -18,7 +18,7 @@ author: ""
 URL: [https://wtfctf.wearemist.in/challenges](https://wtfctf.wearemist.in/challenges)
 <br /><br />
 
-856点を獲得し、最終順位は63位でした。<br />
+856点を獲得し、最終順位は64位でした。<br />
 <img src="https://captureamerica.github.io/writeups/img/wtfctf_2021_score.png" alt="wtfctf_2021_score.png">
 
 <br>
