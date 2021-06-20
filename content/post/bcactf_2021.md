@@ -208,6 +208,7 @@ Attachment:
 - Game.exe
 
 
+<br />
 ### Solution
 stringsで解けてしまった。
 
@@ -232,6 +233,35 @@ bcactf{h0p3fu1ly_y0U_d1dNt_actUa1ly_tYpe_1000_1ett3rs}"u
 <br />
 
 Flag: `bcactf{h0p3fu1ly_y0U_d1dNt_actUa1ly_tYpe_1000_1ett3rs}`
+
+
+
+<br /><br />
+<br /><br />
+## [Forensics]: Infinite Zip (75 points)
+- - -
+### Challenge
+> Here's a zip, there's a zip. Zip zip everywhere.
+
+Attachment:
+
+- flag.zip
+
+<br />
+### Solution
+手動で解凍してみると、999.zip, 998.zip というのが延々と続くようなのがわかります。
+
+<pre>
+$ for i in {1..999} ; do (unzip *.zip -d out ; rm *.zip ; mv out/*.zip .) ; done
+</pre>
+
+結果的に 0.zip まであったので、ループ数が足りなくて、最後はまた手動で解凍しました。
+
+flag.pngが出てきて、exiftoolでフラグが見つかります。
+
+<br />
+
+Flag: `bcactf{z1p_1n51d3_4_z1p_4_3v3r}`
 
 
 

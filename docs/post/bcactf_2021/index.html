@@ -49,7 +49,7 @@
 <meta itemprop="description" content="Save The Earth! - 地球環境を守ろう！ URL: https://play.bcactf.com/challenges 3975点を獲得し、最終順位は63位でした。 以下はチャレンジのリストです。 [Misc]: Challenge Checker (150 points) Challenge I made this challenge checker to automate away ed&rsquo;s job. Maybe you">
 <meta itemprop="datePublished" content="2021-06-20T09:00:00&#43;09:00" />
 <meta itemprop="dateModified" content="2021-06-20T09:00:00&#43;09:00" />
-<meta itemprop="wordCount" content="1624">
+<meta itemprop="wordCount" content="1778">
 
 
 
@@ -166,10 +166,16 @@
         <li><a href="#solution-2">Solution</a></li>
       </ul>
     </li>
-    <li><a href="#pwn-discrete-mathematics-250-points">[Pwn]: Discrete Mathematics (250 points)</a>
+    <li><a href="#forensics-infinite-zip-75-points">[Forensics]: Infinite Zip (75 points)</a>
       <ul>
         <li><a href="#challenge-3">Challenge</a></li>
         <li><a href="#solution-3">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#pwn-discrete-mathematics-250-points">[Pwn]: Discrete Mathematics (250 points)</a>
+      <ul>
+        <li><a href="#challenge-4">Challenge</a></li>
+        <li><a href="#solution-4">Solution</a></li>
       </ul>
     </li>
   </ul>
@@ -335,6 +341,7 @@ Hint2: What does a program like GameConqueror or CheatEngine do?</p>
 <ul>
 <li>Game.exe</li>
 </ul>
+<p><br /></p>
 <h3 id="solution-2">Solution</h3>
 <p>stringsで解けてしまった。</p>
 <pre>
@@ -358,9 +365,31 @@ bcactf{h0p3fu1ly_y0U_d1dNt_actUa1ly_tYpe_1000_1ett3rs}"u
 <p>Flag: <code>bcactf{h0p3fu1ly_y0U_d1dNt_actUa1ly_tYpe_1000_1ett3rs}</code></p>
 <p><br /><br />
 <br /><br /></p>
-<h2 id="pwn-discrete-mathematics-250-points">[Pwn]: Discrete Mathematics (250 points)</h2>
+<h2 id="forensics-infinite-zip-75-points">[Forensics]: Infinite Zip (75 points)</h2>
 <hr>
 <h3 id="challenge-3">Challenge</h3>
+<blockquote>
+<p>Here&rsquo;s a zip, there&rsquo;s a zip. Zip zip everywhere.</p>
+</blockquote>
+<p>Attachment:</p>
+<ul>
+<li>flag.zip</li>
+</ul>
+<p><br /></p>
+<h3 id="solution-3">Solution</h3>
+<p>手動で解凍してみると、999.zip, 998.zip というのが延々と続くようなのがわかります。</p>
+<pre>
+$ for i in {1..999} ; do (unzip *.zip -d out ; rm *.zip ; mv out/*.zip .) ; done
+</pre>
+<p>結果的に 0.zip まであったので、ループ数が足りなくて、最後はまた手動で解凍しました。</p>
+<p>flag.pngが出てきて、exiftoolでフラグが見つかります。</p>
+<p><br /></p>
+<p>Flag: <code>bcactf{z1p_1n51d3_4_z1p_4_3v3r}</code></p>
+<p><br /><br />
+<br /><br /></p>
+<h2 id="pwn-discrete-mathematics-250-points">[Pwn]: Discrete Mathematics (250 points)</h2>
+<hr>
+<h3 id="challenge-4">Challenge</h3>
 <blockquote>
 <p>BCA&rsquo;s top-level math track! We have proofs, trig, parametric, polar, linear algebra, calculus, &hellip; You&rsquo;ll just have to demonstrate your skills before getting the flag.
 <br /><br />
@@ -600,7 +629,7 @@ Hint1: You can&rsquo;t just jump to the flag function directly.</p>
 </code></pre></td></tr></table>
 </div>
 </div><br>
-<h3 id="solution-3">Solution</h3>
+<h3 id="solution-4">Solution</h3>
 <p>以下、checksecの出力結果です。</p>
 <pre>
 $ checksec discrete
