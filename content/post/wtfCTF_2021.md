@@ -310,7 +310,7 @@ Flag: `wtfCTF{c0n80!_Th15_i5_tH3_fL48}`
 
 
 <br /><br />
-## [Pwn]: Pr1ns0n_Br34k (500 pointsくらい)
+## [Pwn]: Pr1ns0n_Br34k (about 500 points)
 - - -
 ### Challenge
 > Really? Do u really want to break the prison you built on your own? You are insane!

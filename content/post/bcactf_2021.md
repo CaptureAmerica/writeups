@@ -407,7 +407,6 @@ int main() {
 
 <pre>
 $ checksec discrete
-[*] '/home/captureamerica/OneDrive/CTF/BCACTF_2021/Pwn/discrete'
     Arch:     amd64-64-little
     RELRO:    Partial RELRO
     Stack:    No canary found

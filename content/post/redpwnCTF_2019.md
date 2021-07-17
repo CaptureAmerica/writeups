@@ -25,7 +25,7 @@ URL: [https://ctf.redpwn.net/](https://ctf.redpwn.net/)
 
 
 <br /><br />
-## Web: easycipher
+## [Web]: easycipher
 - - -
 ### Challenge
 > This is an easy cipher? I heard it's broken.
@@ -200,7 +200,7 @@ Flag: `redpwnctf{shazam}`
 
 <br /><br />
 <br /><br />
-## Reverse Engineering: Generic Crackme Redux
+## [Rev]: Generic Crackme Redux
 - - -
 ### Challenge
 > Note: Enclose the flag with flag{}.

