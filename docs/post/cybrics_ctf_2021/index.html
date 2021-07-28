@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>CyBRICS CTF 2021 Writeup - CTF フラxxグゲット</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="CaptureAmerica @ CTF フラxxグゲット" /><meta name="description" content="Save The Earth! - 地球環境を守ろう！ URL: https://cybrics.net/ CyBRICS CTF 2019では、1問しか解けず。 CyBRICS CTF 2020では、なんとか4問解いて275位。 今年はまた1問だけです。。。 5" /><meta name="keywords" content="CTF, Writeup, captureamerica, picoCTF" />
+
+
+
+<meta name="google-site-verification" content="PqctLWZQttGzxXVupWuIt2HWuBI8cvN1z07ETpxA2dw" />
+
+
+<meta name="generator" content="Hugo 0.74.2 with theme even" />
+
+
+<link rel="canonical" href="https://captureamerica.github.io/writeups/post/cybrics_ctf_2021/" />
+<link rel="apple-touch-icon" sizes="180x180" href="https://captureamerica.github.io/writeups/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://captureamerica.github.io/writeups/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://captureamerica.github.io/writeups/favicon-16x16.png">
+<link rel="manifest" href="https://captureamerica.github.io/writeups/manifest.json">
+<link rel="mask-icon" href="https://captureamerica.github.io/writeups/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="https://captureamerica.github.io/writeups/sass/main.min.2e81bbed97b8b282c1aeb57488cc71c8d8c8ec559f3931531bd396bf31e0d4dd.css" rel="stylesheet">
+
+
+
+<meta property="og:title" content="CyBRICS CTF 2021 Writeup" />
+<meta property="og:description" content="Save The Earth! - 地球環境を守ろう！ URL: https://cybrics.net/ CyBRICS CTF 2019では、1問しか解けず。 CyBRICS CTF 2020では、なんとか4問解いて275位。 今年はまた1問だけです。。。 5" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://captureamerica.github.io/writeups/post/cybrics_ctf_2021/" />
+<meta property="article:published_time" content="2021-07-28T21:00:00+09:00" />
+<meta property="article:modified_time" content="2021-07-28T21:00:00+09:00" />
+<meta itemprop="name" content="CyBRICS CTF 2021 Writeup">
+<meta itemprop="description" content="Save The Earth! - 地球環境を守ろう！ URL: https://cybrics.net/ CyBRICS CTF 2019では、1問しか解けず。 CyBRICS CTF 2020では、なんとか4問解いて275位。 今年はまた1問だけです。。。 5">
+<meta itemprop="datePublished" content="2021-07-28T21:00:00&#43;09:00" />
+<meta itemprop="dateModified" content="2021-07-28T21:00:00&#43;09:00" />
+<meta itemprop="wordCount" content="1699">
+
+
+
+<meta itemprop="keywords" content="CTF," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="CyBRICS CTF 2021 Writeup"/>
+<meta name="twitter:description" content="Save The Earth! - 地球環境を守ろう！ URL: https://cybrics.net/ CyBRICS CTF 2019では、1問しか解けず。 CyBRICS CTF 2020では、なんとか4問解いて275位。 今年はまた1問だけです。。。 5"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="https://captureamerica.github.io/writeups/" class="logo">CTF Writeups</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="https://captureamerica.github.io/writeups/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="https://captureamerica.github.io/writeups/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="https://captureamerica.github.io/writeups/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="https://captureamerica.github.io/writeups/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a><a href="https://captureamerica.github.io/writeups/about/">
+        <li class="mobile-menu-item">About</li>
+      </a>
+  </ul>
+
+  
+
+
+</nav>
+
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="https://captureamerica.github.io/writeups/" class="logo">CTF Writeups</a>
+</div>
+
+
+
+
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="https://captureamerica.github.io/writeups/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="https://captureamerica.github.io/writeups/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="https://captureamerica.github.io/writeups/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="https://captureamerica.github.io/writeups/categories/">Categories</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="https://captureamerica.github.io/writeups/about/">About</a>
+      </li>
+  </ul>
+</nav>
+
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">CyBRICS CTF 2021 Writeup</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2021-07-28 </span>
+        <div class="post-category">
+            <a href="https://captureamerica.github.io/writeups/categories/ctf/"> CTF </a>
+            </div>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contents</h2>
+  <div class="post-toc-content">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#rebyc-baby-scanner-50-points">[rebyC, Baby]: Scanner (50 points)</a>
+      <ul>
+        <li><a href="#challenge">Challenge</a></li>
+        <li><a href="#solution">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#network-hard-localhost-about-300-points">[Network, Hard]: localhost (About 300 points)</a>
+      <ul>
+        <li><a href="#challenge-1">Challenge</a></li>
+        <li><a href="#unsolved">(Unsolved)</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <img src="https://captureamerica.github.io/writeups/img/green_bar.png" alt="green_bar.png">
+<img src="https://captureamerica.github.io/writeups/img/10_Nature_Themed_Icons_Cute_Earth_Icon.png" alt="Save The Earth!"> <b><font color="teal">Save The Earth! - 地球環境を守ろう！</font></b> <img src="https://captureamerica.github.io/writeups/img/10_Nature_Themed_Icons_Cute_Earth_Icon.png" alt="Save The Earth!">
+<img src="https://captureamerica.github.io/writeups/img/green_bar.png" alt="green_bar.png">
+<div class='align-right'>
+<a href="https://translate.google.com/translate?hl=en&sl=ja&tl=en&u=https%3A%2F%2Fcaptureamerica.github.io%2Fwriteups%2Fpost%2Fcybrics_ctf_2021%2F">
+<img src="https://captureamerica.github.io/writeups/img/En.png" alt="English">
+</a>
+</div>
+<p>URL: <a href="https://cybrics.net/">https://cybrics.net/</a>
+<br /><br />
+<a href="https://captureamerica.github.io/writeups/post/cybrics_ctf_2019/">CyBRICS CTF 2019</a>では、1問しか解けず。</p>
+<p><a href="https://captureamerica.github.io/writeups/post/cybrics_ctf_2020/">CyBRICS CTF 2020</a>では、なんとか4問解いて275位。</p>
+<p>今年はまた1問だけです。。。 50点で459位でーす。</p>
+<br>
+<img src="https://captureamerica.github.io/writeups/img/cybrics_CTF_2021_Score1.png" alt="cybrics_CTF_2021_Score1.png">
+<p><br><br>
+チャレンジのリスト。</p>
+<img src="https://captureamerica.github.io/writeups/img/cybrics_CTF_2021_Score2.png" alt="cybrics_CTF_2021_Score2.png">
+<br>
+<p>解けなかったけど、途中までやった Network Challenge (&ldquo;localhost&rdquo;) をメモも兼ねて残しておきます。</p>
+<p><br /><br /></p>
+<h2 id="rebyc-baby-scanner-50-points">[rebyC, Baby]: Scanner (50 points)</h2>
+<hr>
+<h3 id="challenge">Challenge</h3>
+<blockquote>
+<p>Check out this cool new game!
+<br /><br />
+I heard they serve flags at level 5.</p>
+</blockquote>
+<p><br /></p>
+<h3 id="solution">Solution</h3>
+<p>アニメーションGIFで、画像をあたかもスキャンしているように、画像が部分的に流れていきます。</p>
+<p>Level1 ~ Level4は目を凝視して解きました。</p>
+<p><br /></p>
+<p>しかし、Level5は明らかにQRコードだったので、元の画像を取り出さないといけません。</p>
+<p>Pythonとかを使ってスマートに解くのが想定解なのかも知れないですが、力技でやりました。</p>
+<br>
+<p>MacのPreview AppでGIFファイルを開き、範囲指定を使ってスクリーンショットを撮って、Libre OfficeのSheetにペタペタ貼り付けてできたのがこちら。</p>
+<img src="https://captureamerica.github.io/writeups/img/cybrics_CTF_2021_scanner.png" alt="cybrics_CTF_2021_scanner.png">
+<p><br><br></p>
+<p>しかし、これだけでは正しく読み取れず、ImageMagickを使ってなるべく正方形になるようにしました。</p>
+<pre>
+$ convert aaa.png -resize 256x290\! QR.png
+</pre>
+<div class="admonition tip"><p class="admonition-title">Tips</p>
+<p>\!をつけるとratioを無視してリサイズできます。</p>
+</div>
+<p><br><br>
+こんな感じ。</p>
+<img src="https://captureamerica.github.io/writeups/img/cybrics_CTF_2021_QR.png" alt="cybrics_CTF_2021_QR.png">
+<p><br><br>
+iPhone cameraだと読み取れなかったけど、Android phone の QR &amp; Barcode scannerアプリでなんとか読めました。</p>
+<p><br />
+Flag: <code>cybrics{N0w_Y0u_4r3_4_c4sh13r_LOL}</code></p>
+<p><br /><br />
+<br /><br /></p>
+<h2 id="network-hard-localhost-about-300-points">[Network, Hard]: localhost (About 300 points)</h2>
+<hr>
+<h3 id="challenge-1">Challenge</h3>
+<blockquote>
+<p>Remember NET fleeks? I’ve pwned a box in another corporate network, and there is some peculiarly configured server near my foothold. Take a look.</p>
+</blockquote>
+<p><br /></p>
+<h3 id="unsolved">(Unsolved)</h3>
+<p>OSCPを取って依頼、久々にPentestっぽいことをしました。</p>
+<p><br />
+<code>NET fleeks</code> って何かな？と思ってググったら、CyBRICS CTF 2020で出てきたチャレンジでした。完全スルーしたやつです。</p>
+<p>去年のWriteupを見ると、scapyやらをインストールしたりして解いていたようです。</p>
+<br>
+問題がlocalhostだったので、とりあえずlocalでlistenしているサービスを見てみました。
+<pre>
+root@PWNED:~# netstat -altpn
+Active Internet connections (servers and established)
+Proto Recv-Q Send-Q Local Address           Foreign Address         State       PID/Program name
+tcp        0      0 127.0.0.11:37021        0.0.0.0:*               LISTEN      -
+
+
+root@PWNED:~# ifconfig -a
+eth0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        inet 10.193.21.7  netmask 255.255.255.0  broadcast 10.193.21.255
+        ether 02:42:0a:c1:15:07  txqueuelen 0  (Ethernet)
+        RX packets 11  bytes 1226 (1.1 KiB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 0  bytes 0 (0.0 B)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+lo: flags=73<UP,LOOPBACK,RUNNING>  mtu 65536
+        inet 127.0.0.1  netmask 255.0.0.0
+        loop  txqueuelen 1000  (Local Loopback)
+        RX packets 0  bytes 0 (0.0 B)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 0  bytes 0 (0.0 B)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+root@PWNED:~# tcpdump -i lo port 37021
+tcpdump: verbose output suppressed, use -v or -vv for full protocol decode
+listening on lo, link-type EN10MB (Ethernet), capture size 262144 bytes
+^C
+0 packets captured
+0 packets received by filter
+0 packets dropped by kernel
+</pre>
+<br>
+<p>特に何も受信はしていませんでした。</p>
+<br>
+<p>そもそも問題文の中で、<code>peculiarly configured server near my foothold</code> と言っているので、他のマシンがあるのは明らかなのでnmapをかけたところ、10.193.21.180が Up しているのが見つかりました。</p>
+<p>（10.193.21.1もUPしてますが、単純にGatewayっぽかったので無視）</p>
+<pre>
+root@PWNED:~# nmap -v -sn 10.193.21.1-254
+Starting Nmap 7.70 ( https://nmap.org ) at 2021-07-25 03:55 UTC
+Initiating ARP Ping Scan at 03:55
+Scanning 253 hosts [1 port/host]
+Completed ARP Ping Scan at 03:55, 5.36s elapsed (253 total hosts)
+Initiating Parallel DNS resolution of 253 hosts. at 03:55
+Completed Parallel DNS resolution of 253 hosts. at 03:55, 0.04s elapsed
+Nmap scan report for 10.193.21.1
+Host is up (0.000049s latency).
+MAC Address: 02:42:7F:4D:62:52 (Unknown)
+Nmap scan report for 10.193.21.2 [host down]
+:
+Nmap scan report for lh_tgt_277.lh_277 (10.193.21.180)
+Host is up (0.000062s latency).
+MAC Address: 02:42:0A:C1:15:B4 (Unknown)
+:
+</pre>
+<br>
+<p>サービスは、TCPだと80番のみオープン。</p>
+<pre>
+root@PWNED:~# ports=$(nmap -p- --min-rate=1000 -T4 10.193.21.180 | grep ^[0-9] | cut -d '/' -f 1 | tr '\n' ',' | sed s/,$//)
+root@PWNED:~# nmap -p$ports -sC -sV 10.193.21.180
+Starting Nmap 7.70 ( https://nmap.org ) at 2021-07-25 03:59 UTC
+Nmap scan report for lh_tgt_277.lh_277 (10.193.21.180)
+Host is up (0.00012s latency).
+
+PORT   STATE SERVICE VERSION
+80/tcp open  http    nginx 1.10.3
+|_http-server-header: nginx/1.10.3
+|_http-title: Site doesn't have a title (text/html).
+MAC Address: 02:42:0A:C1:15:B4 (Unknown)
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+Nmap done: 1 IP address (1 host up) scanned in 7.97 seconds
+</pre>
+<br>
+アクセスしてみると、confファイルへのリンクが得られます。
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-C" data-lang="C"><span class="n">root</span><span class="err">@</span><span class="nl">PWNED</span><span class="p">:</span><span class="o">~</span><span class="err">#</span> <span class="n">curl</span> <span class="o">-</span><span class="n">v</span> <span class="mf">10.193.21.180</span>
+<span class="o">*</span> <span class="n">Expire</span> <span class="n">in</span> <span class="mi">0</span> <span class="n">ms</span> <span class="k">for</span> <span class="mi">6</span> <span class="p">(</span><span class="n">transfer</span> <span class="mh">0x555769cd41a0</span><span class="p">)</span>
+<span class="o">*</span>   <span class="n">Trying</span> <span class="mf">10.193.21.180</span><span class="p">...</span>
+<span class="o">*</span> <span class="n">TCP_NODELAY</span> <span class="n">set</span>
+<span class="o">*</span> <span class="n">Expire</span> <span class="n">in</span> <span class="mi">200</span> <span class="n">ms</span> <span class="k">for</span> <span class="mi">4</span> <span class="p">(</span><span class="n">transfer</span> <span class="mh">0x555769cd41a0</span><span class="p">)</span>
+<span class="o">*</span> <span class="n">Connected</span> <span class="n">to</span> <span class="mf">10.193.21.180</span> <span class="p">(</span><span class="mf">10.193.21.180</span><span class="p">)</span> <span class="n">port</span> <span class="mi">80</span> <span class="p">(</span><span class="err">#</span><span class="mi">0</span><span class="p">)</span>
+<span class="o">&gt;</span> <span class="n">GET</span> <span class="o">/</span> <span class="n">HTTP</span><span class="o">/</span><span class="mf">1.1</span>
+<span class="o">&gt;</span> <span class="nl">Host</span><span class="p">:</span> <span class="mf">10.193.21.180</span>
+<span class="o">&gt;</span> <span class="n">User</span><span class="o">-</span><span class="nl">Agent</span><span class="p">:</span> <span class="n">curl</span><span class="o">/</span><span class="mf">7.64.0</span>
+<span class="o">&gt;</span> <span class="nl">Accept</span><span class="p">:</span> <span class="err">*/</span><span class="o">*</span>
+<span class="o">&gt;</span>
+<span class="o">&lt;</span> <span class="n">HTTP</span><span class="o">/</span><span class="mf">1.1</span> <span class="mi">200</span> <span class="n">OK</span>
+<span class="o">&lt;</span> <span class="nl">Server</span><span class="p">:</span> <span class="n">nginx</span><span class="o">/</span><span class="mf">1.10.3</span>
+<span class="o">&lt;</span> <span class="nl">Date</span><span class="p">:</span> <span class="n">Sun</span><span class="p">,</span> <span class="mi">25</span> <span class="n">Jul</span> <span class="mi">2021</span> <span class="mo">03</span><span class="o">:</span><span class="mi">59</span><span class="o">:</span><span class="mi">45</span> <span class="n">GMT</span>
+<span class="o">&lt;</span> <span class="n">Content</span><span class="o">-</span><span class="nl">Type</span><span class="p">:</span> <span class="n">text</span><span class="o">/</span><span class="n">html</span>
+<span class="o">&lt;</span> <span class="n">Content</span><span class="o">-</span><span class="nl">Length</span><span class="p">:</span> <span class="mi">388</span>
+<span class="o">&lt;</span> <span class="n">Last</span><span class="o">-</span><span class="nl">Modified</span><span class="p">:</span> <span class="n">Thu</span><span class="p">,</span> <span class="mi">22</span> <span class="n">Jul</span> <span class="mi">2021</span> <span class="mi">22</span><span class="o">:</span><span class="mi">38</span><span class="o">:</span><span class="mi">14</span> <span class="n">GMT</span>
+<span class="o">&lt;</span> <span class="nl">Connection</span><span class="p">:</span> <span class="n">keep</span><span class="o">-</span><span class="n">alive</span>
+<span class="o">&lt;</span> <span class="nl">ETag</span><span class="p">:</span> <span class="s">&#34;60f9f356-184&#34;</span>
+<span class="o">&lt;</span> <span class="n">Accept</span><span class="o">-</span><span class="nl">Ranges</span><span class="p">:</span> <span class="n">bytes</span>
+<span class="o">&lt;</span>
+<span class="o">&lt;</span><span class="n">h1</span><span class="o">&gt;</span><span class="n">Storage</span> <span class="n">Node</span> <span class="n">Status</span> <span class="n">Page</span><span class="o">&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="n">table</span> <span class="n">border</span><span class="o">=</span><span class="mi">1</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="n">tr</span><span class="o">&gt;&lt;</span><span class="n">td</span><span class="o">&gt;</span><span class="n">Records</span><span class="o">&lt;/</span><span class="n">td</span><span class="o">&gt;&lt;</span><span class="n">td</span><span class="o">&gt;</span><span class="mi">1</span><span class="o">&lt;/</span><span class="n">td</span><span class="o">&gt;&lt;/</span><span class="n">tr</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="n">tr</span><span class="o">&gt;&lt;</span><span class="n">td</span><span class="o">&gt;</span><span class="n">Flag</span><span class="o">-</span><span class="n">containing</span> <span class="n">Records</span><span class="o">&lt;/</span><span class="n">td</span><span class="o">&gt;&lt;</span><span class="n">td</span><span class="o">&gt;</span><span class="mi">1</span><span class="o">&lt;/</span><span class="n">td</span><span class="o">&gt;&lt;/</span><span class="n">tr</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="n">tr</span><span class="o">&gt;&lt;</span><span class="n">td</span><span class="o">&gt;</span><span class="n">Redis</span> <span class="n">Configuration</span><span class="o">&lt;/</span><span class="n">td</span><span class="o">&gt;&lt;</span><span class="n">td</span><span class="o">&gt;</span><span class="nl">Default</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">a</span> <span class="n">href</span><span class="o">=</span><span class="s">&#34;redis.conf&#34;</span><span class="o">&gt;</span><span class="n">redis</span><span class="p">.</span><span class="n">conf</span><span class="o">&lt;/</span><span class="n">a</span><span class="o">&gt;&lt;/</span><span class="n">td</span><span class="o">&gt;&lt;/</span><span class="n">tr</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="n">tr</span><span class="o">&gt;&lt;</span><span class="n">td</span><span class="o">&gt;</span><span class="n">System</span> <span class="n">Configuration</span><span class="o">&lt;/</span><span class="n">td</span><span class="o">&gt;&lt;</span><span class="n">td</span><span class="o">&gt;&lt;</span><span class="n">a</span> <span class="n">href</span><span class="o">=</span><span class="s">&#34;sysctl.conf&#34;</span><span class="o">&gt;</span><span class="n">sysctl</span><span class="p">.</span><span class="n">conf</span><span class="o">&lt;/</span><span class="n">a</span><span class="o">&gt;&lt;/</span><span class="n">td</span><span class="o">&gt;&lt;/</span><span class="n">tr</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="n">tr</span><span class="o">&gt;&lt;</span><span class="n">td</span><span class="o">&gt;</span><span class="n">Security</span><span class="o">&lt;/</span><span class="n">td</span><span class="o">&gt;&lt;</span><span class="n">td</span><span class="o">&gt;</span><span class="n">perfect</span><span class="o">!&lt;/</span><span class="n">td</span><span class="o">&gt;&lt;/</span><span class="n">tr</span><span class="o">&gt;</span>
+<span class="o">&lt;/</span><span class="n">table</span><span class="o">&gt;</span>
+<span class="o">*</span> <span class="n">Connection</span> <span class="err">#</span><span class="mi">0</span> <span class="n">to</span> <span class="n">host</span> <span class="mf">10.193.21.180</span> <span class="n">left</span> <span class="n">intact</span>
+</code></pre></td></tr></table>
+</div>
+</div><br>
+sysctl.confの中では、以下が有効になっていました。
+<pre>
+net.ipv4.conf.all.route_localnet=1
+</pre>
+<br>
+これをググってみると、セキュリティ問題があり、かつ localhost に関係していることがわかります。ビンゴっぽいです。
+<p>参考1：<br>
+<a href="https://github.com/kubernetes/kubernetes/issues/90259">https://github.com/kubernetes/kubernetes/issues/90259</a></p>
+<p>参考2：<br>
+<a href="https://unit42.paloaltonetworks.jp/cve-2020-855/">https://unit42.paloaltonetworks.jp/cve-2020-855/</a></p>
+<br>
+宛先のMac addressを指定して、127.0.0.1宛てにパケットを送ると通信ができるっぽい？ので、scapyをインストールして以下のスクリプトを実行してみました。
+<p>宛先のポートは、redis.confをベースに6379にしました。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-Python" data-lang="Python"><span class="ch">#!/usr/bin/env python</span>
+<span class="kn">from</span> <span class="nn">scapy.all</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="n">answer</span> <span class="o">=</span> <span class="n">sendp</span><span class="p">(</span><span class="n">Ether</span><span class="p">(</span><span class="n">dst</span><span class="o">=</span><span class="s2">&#34;02:42:0a:c1:15:b4&#34;</span><span class="p">,</span><span class="n">src</span><span class="o">=</span><span class="s2">&#34;02:42:0a:c1:15:07&#34;</span><span class="p">)</span><span class="o">/</span><span class="n">IP</span><span class="p">(</span><span class="n">dst</span><span class="o">=</span><span class="s2">&#34;127.0.0.1&#34;</span><span class="p">,</span><span class="n">src</span><span class="o">=</span><span class="s2">&#34;10.193.21.7&#34;</span><span class="p">)</span><span class="o">/</span><span class="n">TCP</span><span class="p">(</span><span class="n">dport</span><span class="o">=</span><span class="mi">6379</span><span class="p">,</span><span class="n">sport</span><span class="o">=</span><span class="mi">50000</span><span class="p">)</span><span class="o">/</span><span class="s2">&#34;PING&#34;</span><span class="p">,</span> <span class="n">iface</span><span class="o">=</span><span class="s2">&#34;eth0&#34;</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">answer</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><br>
+何も応答が返ってこないので、ここで降参。。。
+<p><br /><br />
+<br /><br /></p>
+<hr>
+<p><br /><br />
+<br /><br /></p>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content">CaptureAmerica @ CTF フラxxグゲット</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">
+        2021-07-28
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="https://captureamerica.github.io/writeups/tags/ctf/">CTF</a>
+          </div>
+      <nav class="post-nav">
+        
+        <a class="next" href="https://captureamerica.github.io/writeups/post/redpwnctf_2021/">
+            <span class="next-text nav-default">RedpwnCTF 2021 Writeup</span>
+            <span class="next-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="https://github.com/CaptureAmerica/" class="iconfont icon-github" title="github"></a>
+  <a href="https://captureamerica.github.io/writeups/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2019 - 
+    2021<span class="heart"><i class="iconfont icon-heart"></i></span><span>CaptureAmerica @ CTF フラxxグゲット</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  
+
+
+
+<script type="text/javascript" src="https://captureamerica.github.io/writeups/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-104910699-2', 'auto');
+	ga('set', 'anonymizeIp', true);
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+
+
+
+
+
+</body>
+</html>
