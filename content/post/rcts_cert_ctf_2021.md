@@ -592,7 +592,7 @@ Attachment:
 
 <br />
 ### Solution
-（イベント後にLockされてたやつが見れるようになっていたので、後日やってみました。）
+（Lockされてたやつが、イベント後に見れるようになっていたので、後日やってみました。）
 
 まずは nmap で空いているポートを確認します。
 
@@ -618,7 +618,7 @@ PORT     STATE SERVICE VERSION
 <br />
 明らかに `redis` が怪しいですね。Redisの脆弱性を突く手法は HTB/Postman で出てきています。このチャレンジでも、同じ事が可能です。
 
--x set aaa の部分の文字列 "aaa" は、なんでもいいみたいです。
+なお、以下の -x set aaa の部分の文字列 "aaa" は、なんでもいいみたいです。
 <pre>
 $ (echo -e "\n\n"; cat ~/.ssh/id_rsa.pub; echo -e "\n\n") > ssh.txt
 $ cat ssh.txt | redis-cli -h 192.168.0.123 -x set aaa
@@ -635,7 +635,7 @@ OK
 
 <br>
 
-次に、実際にSSHした後、例によって `sudo -l` から別のユーザ `hype` にて shell script の書き換え＆実行ができるので、ファイルに `/bin/ash` を追加して実行すると、hypeになれます。
+次に、実際にSSHした後、例によって `sudo -l` から別のユーザ `hype` にて shell script の書き換え＆実行ができることがわかります。スクリプト ファイルに `/bin/ash` を追加して実行すると、hypeになれます。
 
 hypeのホームに user.txt があります。
 
@@ -704,7 +704,7 @@ No brute force is required.
 
 <br />
 ### Solution
-（イベント後にLockされてたやつが見れるようになっていたので、やってみました。前述の 'Blue team becomes Red Team' の続きのチャレンジです。）
+（前述の 'Blue team becomes Red Team' の続きのチャレンジです。）
 
 ホーム配下にあるファイルを確認すると、private keyが見つかります。catを使ってローカルに持ってきます（中身のコピペ）。
 
@@ -1031,6 +1031,11 @@ flag{kn0ck1ng_0n_d00rs_1s_p0l1t3}
 
 <br />
 
+Flag: `flag{kn0ck1ng_0n_d00rs_1s_p0l1t3}`
+
+
+<br />
+
 なお、/etc/knockd.conf は以下のようになってました。
 
 <pre>
@@ -1051,11 +1056,6 @@ knockknock:~$ cat /etc/knockd.conf
 	tcpflags    = syn
 
 </pre>
-
-
-<br />
-
-Flag: `flag{kn0ck1ng_0n_d00rs_1s_p0l1t3}`
 
 
 
@@ -1120,6 +1120,8 @@ Attachment:
 <img src="https://captureamerica.github.io/writeups/img/rcts_cert_CTF_2021_neko.png" alt="rcts_cert_CTF_2021_neko.png">
 
 <br />
+
+（ここで、他の方のwriteupを参照させてもらっています。）
 
 [stegseek](https://github.com/RickdeJager/stegseek) というツールでパスフレーズが見つかるようですね。初めて使いました。
 
