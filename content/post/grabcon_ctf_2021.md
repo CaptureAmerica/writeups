@@ -27,7 +27,7 @@ URL: [https://ctf.thecybergrabs.org/](https://ctf.thecybergrabs.org/)
 
 750点を獲得し、174位でした。
 
-<br>
+<br><br>
 
 <img src="https://captureamerica.github.io/writeups/img/grabcon_CTF_2021_Score1.png" alt="grabcon_CTF_2021_Score1.png">
 
@@ -213,7 +213,7 @@ if (isset($_POST["eq"])){
 <br />
 これも、ググって調べると、どうやら Root-Me の「PHP Eval」という問題と同じみたいです。
 
-以下の Write Up を参考にさせていただきました。
+以下の Write Up を参考にさせていただきました。<br>
 [https://joshuanatan.medium.com/root-me-web-server-php-eval-f77584cae128](https://joshuanatan.medium.com/root-me-web-server-php-eval-f77584cae128)
 
 <br />
@@ -251,7 +251,7 @@ ls -al / = (','^'@').('('^'[').('['^'{').'-'.('!'^'@').(','^'@').('['^'{').'/'
 
 <br />
 
-Flag: GrabCON{b4by_php_f0r_y0u}
+Flag: `GrabCON{b4by_php_f0r_y0u}`
 
 
 <br /><br />
