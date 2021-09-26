@@ -16,7 +16,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="CaptureAmerica @ CTF フラxxグゲット" /><meta name="description" content="Save The Earth! - 地球環境を守ろう！ URL: https://ctf.thecybergrabs.org/ 結構、Server Errorが出てましたね。。 750点を獲得し、174位でした。 チャレンジのリスト。 [Pwn]: Can you? (100 points)" /><meta name="keywords" content="CTF, Writeup, captureamerica, picoCTF" />
+<meta name="author" content="CaptureAmerica @ CTF フラxxグゲット" /><meta name="description" content="Save The Earth! - 地球環境を守ろう！ URL: https://ctf.thecybergrabs.org/ 結構、Server Errorが出てましたね。。 750点を獲得し、174位でした。 チャレンジのリストです。 [Pwn]: Can you?" /><meta name="keywords" content="CTF, Writeup, captureamerica, picoCTF" />
 
 
 
@@ -40,22 +40,22 @@
 
 
 <meta property="og:title" content="GrabCON CTF 2021 Writeup" />
-<meta property="og:description" content="Save The Earth! - 地球環境を守ろう！ URL: https://ctf.thecybergrabs.org/ 結構、Server Errorが出てましたね。。 750点を獲得し、174位でした。 チャレンジのリスト。 [Pwn]: Can you? (100 points)" />
+<meta property="og:description" content="Save The Earth! - 地球環境を守ろう！ URL: https://ctf.thecybergrabs.org/ 結構、Server Errorが出てましたね。。 750点を獲得し、174位でした。 チャレンジのリストです。 [Pwn]: Can you?" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://captureamerica.github.io/writeups/post/grabcon_ctf_2021/" />
 <meta property="article:published_time" content="2021-09-05T20:00:00+09:00" />
 <meta property="article:modified_time" content="2021-09-05T20:00:00+09:00" />
 <meta itemprop="name" content="GrabCON CTF 2021 Writeup">
-<meta itemprop="description" content="Save The Earth! - 地球環境を守ろう！ URL: https://ctf.thecybergrabs.org/ 結構、Server Errorが出てましたね。。 750点を獲得し、174位でした。 チャレンジのリスト。 [Pwn]: Can you? (100 points)">
+<meta itemprop="description" content="Save The Earth! - 地球環境を守ろう！ URL: https://ctf.thecybergrabs.org/ 結構、Server Errorが出てましたね。。 750点を獲得し、174位でした。 チャレンジのリストです。 [Pwn]: Can you?">
 <meta itemprop="datePublished" content="2021-09-05T20:00:00&#43;09:00" />
 <meta itemprop="dateModified" content="2021-09-05T20:00:00&#43;09:00" />
-<meta itemprop="wordCount" content="1118">
+<meta itemprop="wordCount" content="1120">
 
 
 
 <meta itemprop="keywords" content="CTF," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="GrabCON CTF 2021 Writeup"/>
-<meta name="twitter:description" content="Save The Earth! - 地球環境を守ろう！ URL: https://ctf.thecybergrabs.org/ 結構、Server Errorが出てましたね。。 750点を獲得し、174位でした。 チャレンジのリスト。 [Pwn]: Can you? (100 points)"/>
+<meta name="twitter:description" content="Save The Earth! - 地球環境を守ろう！ URL: https://ctf.thecybergrabs.org/ 結構、Server Errorが出てましたね。。 750点を獲得し、174位でした。 チャレンジのリストです。 [Pwn]: Can you?"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -183,7 +183,7 @@
 <br>
 <img src="https://captureamerica.github.io/writeups/img/grabcon_CTF_2021_Score2.png" alt="grabcon_CTF_2021_Score2.png">
 <p><br><br>
-チャレンジのリスト。</p>
+チャレンジのリストです。</p>
 <img src="https://captureamerica.github.io/writeups/img/grabcon_CTF_2021_chall1.png" alt="grabcon_CTF_2021_chall1.png">
 <br>
 <img src="https://captureamerica.github.io/writeups/img/grabcon_CTF_2021_chall2.png" alt="grabcon_CTF_2021_chall2.png">
@@ -363,8 +363,8 @@ Buffer Overflow と、Format String Bug (書式文字列攻撃) の両方の脆�
 Wikiではあんまり説明がなかったので補足すると、pwntoolsのsendlineは最後に改行 (&quot;\n&rdquo;) が入るので101バイトが書き込まれ、(&quot;\n&rdquo;) で Canary の &ldquo;\x00&rdquo; 部分が上書きされます。</p>
 <p>これによって、printfの結果がもともと&rdquo;\x00&quot;で止まるはずだったのが、Canaryを含めて出力されます。</p>
 <p>(&quot;\n&rdquo;)は &ldquo;\x0a&rdquo; なので、-0xa をしています。0xFFFFFF00 でゼロクリアでも同じ結果になるはず。</p>
-<p><br />
-Flag: <code>GrabCON{Byp4ss_can4ry_1s_fun!}</code></p>
+<p><br /></p>
+<p>Flag: <code>GrabCON{Byp4ss_can4ry_1s_fun!}</code></p>
 <p><br /><br />
 <br /><br /></p>
 <h2 id="web-basic-calc-150-points">[Web]: Basic Calc (150 points)</h2>

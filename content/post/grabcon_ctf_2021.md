@@ -37,7 +37,7 @@ URL: [https://ctf.thecybergrabs.org/](https://ctf.thecybergrabs.org/)
 
 
 <br><br>
-チャレンジのリスト。
+チャレンジのリストです。
 
 <img src="https://captureamerica.github.io/writeups/img/grabcon_CTF_2021_chall1.png" alt="grabcon_CTF_2021_chall1.png">
 
@@ -171,6 +171,7 @@ Wikiではあんまり説明がなかったので補足すると、pwntoolsのse
 
 
 <br />
+
 Flag: `GrabCON{Byp4ss_can4ry_1s_fun!}`
 
 

