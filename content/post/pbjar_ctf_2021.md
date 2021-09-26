@@ -27,7 +27,7 @@ URL: [https://ctf.pbjar.net/challenges](https://ctf.pbjar.net/challenges)
 
 <br>
 今回は、チャレンジ文のスクリーンショットを使います。<br>
-（イベント中に撮ったので、solvesの数字は途中のものです。）
+（イベント中に撮ったので、solvesとpointsの数はイベント中のものです。）
 
 
 
