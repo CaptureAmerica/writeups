@@ -28,7 +28,7 @@ URL: [https://play.duc.tf/challenges](https://play.duc.tf/challenges)
 
 <img src="https://captureamerica.github.io/writeups/img/downunder_CTF_2021_Score1.png" alt="downunder_CTF_2021_Score1.png">
 
-<br>
+<br><br>
 
 <img src="https://captureamerica.github.io/writeups/img/downunder_CTF_2021_Score2.png" alt="downunder_CTF_2021_Score2.png">
 
