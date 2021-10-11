@@ -31,9 +31,13 @@ URL: [https://digitaloverdose.ractf.co.uk/](https://digitaloverdose.ractf.co.uk/
 
 <br><br>
 
+チーム順位：
+
 <img src="https://captureamerica.github.io/writeups/img/ractf_2021_Score1.png" alt="ractf_2021_Score1.png">
 
-<br>
+<br><br>
+
+個人順位：
 
 <img src="https://captureamerica.github.io/writeups/img/ractf_2021_Score2.png" alt="ractf_2021_Score2.png">
 
@@ -51,47 +55,47 @@ URL: [https://digitaloverdose.ractf.co.uk/](https://digitaloverdose.ractf.co.uk/
 
 <img src="https://captureamerica.github.io/writeups/img/ractf_2021_chall2.png" alt="ractf_2021_chall2.png">
 
-<br>
+<br><br>
 
 <img src="https://captureamerica.github.io/writeups/img/ractf_2021_chall3.png" alt="ractf_2021_chall3.png">
 
-<br>
+<br><br>
 
 これは、Rainbow Tableを参照したり、John the ripper や Hashcat を使って全部解けました。
 
-<br>
+<br><br>
 
 <img src="https://captureamerica.github.io/writeups/img/ractf_2021_chall4.png" alt="ractf_2021_chall4.png">
 
-<br>
+<br><br>
 
 <img src="https://captureamerica.github.io/writeups/img/ractf_2021_chall5.png" alt="ractf_2021_chall5.png">
 
-<br>
+<br><br>
 
 <img src="https://captureamerica.github.io/writeups/img/ractf_2021_chall6.png" alt="ractf_2021_chall6.png">
 
-<br>
+<br><br>
 
 <img src="https://captureamerica.github.io/writeups/img/ractf_2021_chall6.png" alt="ractf_2021_chall6.png">
 
-<br>
+<br><br>
 
 <img src="https://captureamerica.github.io/writeups/img/ractf_2021_chall7.png" alt="ractf_2021_chall7.png">
 
-<br>
+<br><br>
 
 <img src="https://captureamerica.github.io/writeups/img/ractf_2021_chall8.png" alt="ractf_2021_chall8.png">
 
-<br>
+<br><br>
 
 <img src="https://captureamerica.github.io/writeups/img/ractf_2021_chall9.png" alt="ractf_2021_chall9.png">
 
-<br>
+<br><br>
 
 <img src="https://captureamerica.github.io/writeups/img/ractf_2021_chall10.png" alt="ractf_2021_chall10.png">
 
-<br>
+<br><br>
 
 <img src="https://captureamerica.github.io/writeups/img/ractf_2021_chall11.png" alt="ractf_2021_chall11.png">
 
@@ -183,9 +187,7 @@ Flag: `DO{RSA_1s_n0t_that_hard}`
 
 <br />
 ### Solution
-Google画像検索をしたか、Google Lensを使ったか、覚えてないです。
-
-これは、表参道にある東急プラザの入り口ですね。
+表参道にある東急プラザの入り口ですね。
 
 <br />
 
