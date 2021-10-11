@@ -51,7 +51,7 @@ URL: [https://digitaloverdose.ractf.co.uk/](https://digitaloverdose.ractf.co.uk/
 
 普段はOSINT系のチャレンジはあんまりやらないんですが、日本の場所を当てるやつだったので頑張って全部解きました。
 
-<br>
+<br><br>
 
 <img src="https://captureamerica.github.io/writeups/img/ractf_2021_chall2.png" alt="ractf_2021_chall2.png">
 
@@ -59,7 +59,7 @@ URL: [https://digitaloverdose.ractf.co.uk/](https://digitaloverdose.ractf.co.uk/
 
 <img src="https://captureamerica.github.io/writeups/img/ractf_2021_chall3.png" alt="ractf_2021_chall3.png">
 
-<br><br>
+<br>
 
 これは、Rainbow Tableを参照したり、John the ripper や Hashcat を使って全部解けました。
 
