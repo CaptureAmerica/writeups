@@ -49,7 +49,7 @@
 <meta itemprop="description" content="Save The Earth! - 地球環境を守ろう！ URL: https://deadface.ctfd.io/challenges 1380点を獲得し、304位でした。 日曜日の朝に起きたらすでにイベントが終了していて、その時にいくつかの追加チ">
 <meta itemprop="datePublished" content="2021-10-17T10:00:00&#43;09:00" />
 <meta itemprop="dateModified" content="2021-10-17T10:00:00&#43;09:00" />
-<meta itemprop="wordCount" content="2737">
+<meta itemprop="wordCount" content="2742">
 
 
 
@@ -239,7 +239,9 @@
 <p>日曜日の朝に起きたらすでにイベントが終了していて、その時にいくつかの追加チャレンジがあることに気づきました。もうちょっと早い段階でチャレンジを追加して欲しかったです。。（泣）</p>
 <p><br><br></p>
 <img src="https://captureamerica.github.io/writeups/img/deadface_CTF_2021_Score1.png" alt="deadface_CTF_2021_Score1.png">
-<br>
+<p><br><br></p>
+<img src="https://captureamerica.github.io/writeups/img/deadface_CTF_2021_Score2.png" alt="deadface_CTF_2021_Score2.png">
+<img src="https://captureamerica.github.io/writeups/img/deadface_CTF_2021_Score3.png" alt="deadface_CTF_2021_Score3.png">
 <p><br /><br /></p>
 <h2 id="programming-the-count-275-points">[Programming]: The count (275 points)</h2>
 <hr>
@@ -524,7 +526,7 @@ What are the MD5 hashes of the two tool programs? Submit both hashes as the flag
 <p><br /></p>
 <h3 id="solution-6">Solution</h3>
 <p>ftp通信の中で、lytton-crypt.bin と lytton-crypt.exe を見つけました。<code>two binaries with identical names</code> ということで、これらですね。</p>
-<p>これも一旦 display filter <code>ftp</code> でフィルターした後に別ファイルとして保存したんですが、Control port しか保存されないので、別途 Data port も見つけないといけません。</p>
+<p>このftp通信も一旦 display filter <code>ftp</code> でフィルターした後に別ファイルとして保存したんですが、Control port しか保存されないので、別途 Data port も見つけないといけません。</p>
 <pre>
 227 Entering Passive Mode (192,168,100,103,193,241).
 RETR /TOOLS/lytton-crypt.bin

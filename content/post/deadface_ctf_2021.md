@@ -30,7 +30,11 @@ URL: [https://deadface.ctfd.io/challenges](https://deadface.ctfd.io/challenges)
 
 <img src="https://captureamerica.github.io/writeups/img/deadface_CTF_2021_Score1.png" alt="deadface_CTF_2021_Score1.png">
 
-<br>
+<br><br>
+
+<img src="https://captureamerica.github.io/writeups/img/deadface_CTF_2021_Score2.png" alt="deadface_CTF_2021_Score2.png">
+
+<img src="https://captureamerica.github.io/writeups/img/deadface_CTF_2021_Score3.png" alt="deadface_CTF_2021_Score3.png">
 
 
 
@@ -340,7 +344,7 @@ What are the MD5 hashes of the two tool programs? Submit both hashes as the flag
 ### Solution
 ftp通信の中で、lytton-crypt.bin と lytton-crypt.exe を見つけました。`two binaries with identical names` ということで、これらですね。
 
-これも一旦 display filter `ftp` でフィルターした後に別ファイルとして保存したんですが、Control port しか保存されないので、別途 Data port も見つけないといけません。
+このftp通信も一旦 display filter `ftp` でフィルターした後に別ファイルとして保存したんですが、Control port しか保存されないので、別途 Data port も見つけないといけません。
 
 <pre>
 227 Entering Passive Mode (192,168,100,103,193,241).
