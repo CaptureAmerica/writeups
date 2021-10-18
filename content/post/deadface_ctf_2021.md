@@ -41,15 +41,15 @@ URL: [https://deadface.ctfd.io/challenges](https://deadface.ctfd.io/challenges)
 
 <img src="https://captureamerica.github.io/writeups/img/deadface_CTF_2021_chall1.png" alt="deadface_CTF_2021_chall1.png">
 
-<br><br>
+<br>
 
 <img src="https://captureamerica.github.io/writeups/img/deadface_CTF_2021_chall2.png" alt="deadface_CTF_2021_chall2.png">
 
-<br><br>
+<br>
 
 <img src="https://captureamerica.github.io/writeups/img/deadface_CTF_2021_chall3.png" alt="deadface_CTF_2021_chall3.png">
 
-<br><br>
+<br>
 
 <img src="https://captureamerica.github.io/writeups/img/deadface_CTF_2021_chall4.png" alt="deadface_CTF_2021_chall4.png">
 
