@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Jornadas CTF 2021 Writeup - CTF フラxxグゲット</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="CaptureAmerica @ CTF フラxxグゲット" /><meta name="description" content="Save The Earth! - 地球環境を守ろう！ URL: https://jornadas2021.ctf.cert.rcts.pt/challenges 2043点を獲得し、86位でした。 平日にやっていたCTFイベントで、あまりやってる時間がなかったです。チャレン" /><meta name="keywords" content="CTF, Writeup, captureamerica, picoCTF" />
+
+
+
+<meta name="google-site-verification" content="PqctLWZQttGzxXVupWuIt2HWuBI8cvN1z07ETpxA2dw" />
+
+
+<meta name="generator" content="Hugo 0.74.2 with theme even" />
+
+
+<link rel="canonical" href="https://captureamerica.github.io/writeups/post/jornadas_ctf_2021/" />
+<link rel="apple-touch-icon" sizes="180x180" href="https://captureamerica.github.io/writeups/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://captureamerica.github.io/writeups/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://captureamerica.github.io/writeups/favicon-16x16.png">
+<link rel="manifest" href="https://captureamerica.github.io/writeups/manifest.json">
+<link rel="mask-icon" href="https://captureamerica.github.io/writeups/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="https://captureamerica.github.io/writeups/sass/main.min.2e81bbed97b8b282c1aeb57488cc71c8d8c8ec559f3931531bd396bf31e0d4dd.css" rel="stylesheet">
+
+
+
+<meta property="og:title" content="Jornadas CTF 2021 Writeup" />
+<meta property="og:description" content="Save The Earth! - 地球環境を守ろう！ URL: https://jornadas2021.ctf.cert.rcts.pt/challenges 2043点を獲得し、86位でした。 平日にやっていたCTFイベントで、あまりやってる時間がなかったです。チャレン" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://captureamerica.github.io/writeups/post/jornadas_ctf_2021/" />
+<meta property="article:published_time" content="2021-10-21T21:00:00+09:00" />
+<meta property="article:modified_time" content="2021-10-21T21:00:00+09:00" />
+<meta itemprop="name" content="Jornadas CTF 2021 Writeup">
+<meta itemprop="description" content="Save The Earth! - 地球環境を守ろう！ URL: https://jornadas2021.ctf.cert.rcts.pt/challenges 2043点を獲得し、86位でした。 平日にやっていたCTFイベントで、あまりやってる時間がなかったです。チャレン">
+<meta itemprop="datePublished" content="2021-10-21T21:00:00&#43;09:00" />
+<meta itemprop="dateModified" content="2021-10-21T21:00:00&#43;09:00" />
+<meta itemprop="wordCount" content="857">
+
+
+
+<meta itemprop="keywords" content="CTF," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Jornadas CTF 2021 Writeup"/>
+<meta name="twitter:description" content="Save The Earth! - 地球環境を守ろう！ URL: https://jornadas2021.ctf.cert.rcts.pt/challenges 2043点を獲得し、86位でした。 平日にやっていたCTFイベントで、あまりやってる時間がなかったです。チャレン"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="https://captureamerica.github.io/writeups/" class="logo">CTF Writeups</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="https://captureamerica.github.io/writeups/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="https://captureamerica.github.io/writeups/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="https://captureamerica.github.io/writeups/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="https://captureamerica.github.io/writeups/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a><a href="https://captureamerica.github.io/writeups/about/">
+        <li class="mobile-menu-item">About</li>
+      </a>
+  </ul>
+
+  
+
+
+</nav>
+
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="https://captureamerica.github.io/writeups/" class="logo">CTF Writeups</a>
+</div>
+
+
+
+
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="https://captureamerica.github.io/writeups/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="https://captureamerica.github.io/writeups/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="https://captureamerica.github.io/writeups/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="https://captureamerica.github.io/writeups/categories/">Categories</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="https://captureamerica.github.io/writeups/about/">About</a>
+      </li>
+  </ul>
+</nav>
+
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">Jornadas CTF 2021 Writeup</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2021-10-21 </span>
+        <div class="post-category">
+            <a href="https://captureamerica.github.io/writeups/categories/ctf/"> CTF </a>
+            </div>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contents</h2>
+  <div class="post-toc-content">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#network-find-ipv6-380-points">[Network]: Find IP(v6) (380 points)</a>
+      <ul>
+        <li><a href="#challenge">Challenge</a></li>
+        <li><a href="#solution">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#forensics-chirp-335-points">[Forensics]: Chirp (335 points)</a>
+      <ul>
+        <li><a href="#challenge-1">Challenge</a></li>
+        <li><a href="#solution-1">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#forensics-paintr-728-points">[Forensics]: Paintr (728 points)</a>
+      <ul>
+        <li><a href="#challenge-2">Challenge</a></li>
+        <li><a href="#solution-2">Solution</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <img src="https://captureamerica.github.io/writeups/img/green_bar.png" alt="green_bar.png">
+<img src="https://captureamerica.github.io/writeups/img/10_Nature_Themed_Icons_Cute_Earth_Icon.png" alt="Save The Earth!"> <b><font color="teal">Save The Earth! - 地球環境を守ろう！</font></b> <img src="https://captureamerica.github.io/writeups/img/10_Nature_Themed_Icons_Cute_Earth_Icon.png" alt="Save The Earth!">
+<img src="https://captureamerica.github.io/writeups/img/green_bar.png" alt="green_bar.png">
+<div class='align-right'>
+<a href="https://translate.google.com/translate?hl=en&sl=ja&tl=en&u=https%3A%2F%2Fcaptureamerica.github.io%2Fwriteups%2Fpost%2Fjornadas_ctf_2021%2F">
+<img src="https://captureamerica.github.io/writeups/img/En.png" alt="English">
+</a>
+</div>
+<p>URL: <a href="https://jornadas2021.ctf.cert.rcts.pt/challenges">https://jornadas2021.ctf.cert.rcts.pt/challenges</a>
+<br /><br /></p>
+<p>2043点を獲得し、86位でした。</p>
+<p>平日にやっていたCTFイベントで、あまりやってる時間がなかったです。チャレンジのリストには、もうアクセスできなくなっています。。</p>
+<br>
+<img src="https://captureamerica.github.io/writeups/img/jornadas_CTF_2021_Score1.png" alt="jornadas_CTF_2021_Score1.png">
+<p><br><br></p>
+<img src="https://captureamerica.github.io/writeups/img/jornadas_CTF_2021_Score2.png" alt="jornadas_CTF_2021_Score2.png">
+<p><br><br>
+点数が高めのやつだけ、writeup残しておきます。</p>
+<p><br /></p>
+<h2 id="network-find-ipv6-380-points">[Network]: Find IP(v6) (380 points)</h2>
+<hr>
+<h3 id="challenge">Challenge</h3>
+<blockquote>
+<p>Find the IPv6 address of the DNS root server which is published on the lowest autonomous system number.
+<br /><br />
+Flag format: flag{IPv6 address}
+<br /><br />
+Note: you only have 5 attempts!</p>
+</blockquote>
+<p><br /></p>
+<h3 id="solution">Solution</h3>
+<p>これは、頑張ってググるだけです。</p>
+<p>以下のサイトを見つけました。<br>
+<a href="https://root-servers.org/">https://root-servers.org/</a></p>
+<p>Hのタブで書かれているRoot Serverが一番 ASN (autonomous system number) が小さいので、これのIPv6アドレスが答えとなります。</p>
+<p><br /></p>
+<p>Flag: <code>flag{d1c037808d23acd0dc0e3b897f344571ddce4b294e742b434888b3d9f69d9944}</code></p>
+<p><br /><br />
+<br /><br /></p>
+<h2 id="forensics-chirp-335-points">[Forensics]: Chirp (335 points)</h2>
+<hr>
+<h3 id="challenge-1">Challenge</h3>
+<blockquote>
+<p>We got sent a file that sounds like a bird. There must be something hidden&hellip; Can you help us out?</p>
+</blockquote>
+<p>Attachment:</p>
+<ul>
+<li>Chirp.wav</li>
+</ul>
+<p><br /></p>
+<h3 id="solution-1">Solution</h3>
+<p>WaveファイルをAudacityで開いて、Spectrogram表示するとモールス信号になっています。</p>
+<pre>
+... .... --- .-. - ..- .-. .-.. .-.-.- .- - -..-. -.- -.-. --. -- -..-
+</pre>
+<p>変換すると、<a href="SHORTURL.AT/KCGMX">SHORTURL.AT/KCGMX</a> となり、実際にアクセスすると、以下の2つのファイルがダウンロードできます。</p>
+<ul>
+<li>bird.jpg</li>
+<li>corrupted.mp3</li>
+</ul>
+<br>
+<p>bird.jpgの方は、stegseekで、以下のテキストが得られます。</p>
+<pre>
+$ cat secret.txt
+Oh wait...
+Why can't I play that song... Doesn't seem like everything is right with it...
+And is that a 'k' on the file? Is it suppose to be there?
+</pre>
+<br>
+<p>corrupted.mp3 の方は、拡張子は .mp3 ですが、実際はテキストファイルです。</p>
+<pre>
+$ file corrupted.mp3
+corrupted.mp3: ASCII text
+
+$ cat corrupted.mp3
+0000000 fbff 64e0 0000 1308 c96d 6d15 02e0 908f
+0000010 8047 28a0 3200 2f02 1949 80cd 1002 e145
+0000020 00c3 00a0 5601 7bf3 3261 43d0 9054 ad3b
+0000030 dc43 3cd6 230a 5e80 0234 28e3 3322 f372
+0000040 2129 b131 1153 300d 5090 1910 cb69 5e96
+:
+(snip)
+:
+</pre>
+<br>
+<p>bird.jpgの方で得られたヒントを元に &lsquo;k&rsquo; をサーチしてみると、以下が見つかります。</p>
+<pre>
+0000af0 98d6 3e81 f591 5ebf 0227 f866 68b0 b294
+0000ak0 666c 6167 7b34 5564 6930 5f66 3072 336e  <==
+0000ak0 2e73 3163 735f 3173 5f70 3431 6e7d 5555  <==
+0000b00 4721 718e 67ad a22b a4ca 58b7 15c3 37b9
+</pre>
+<br>
+<p>Flag: <code>flag{4Udi0_f0r3n.s1cs_1s_p41n}</code></p>
+<p><br /><br />
+<br /><br /></p>
+<h2 id="forensics-paintr-728-points">[Forensics]: Paintr (728 points)</h2>
+<hr>
+<h3 id="challenge-2">Challenge</h3>
+<blockquote>
+<p>An ex-employee left this on our computers. Can you analyse it to see if its safe?</p>
+</blockquote>
+<p>Attachment:</p>
+<ul>
+<li>abstract.png</li>
+<li>nautilus.jpg</li>
+</ul>
+<p><br /></p>
+<h3 id="solution-2">Solution</h3>
+<p>確か、abstract.png は使わなかったです。</p>
+<p>nautilus.jpg の方から、stegseekで以下が取れます。</p>
+<pre>
+$ cat nautilus.jpg.out
+1111111010001100101111111
+1000001001111010101000001
+1011101011101101001011101
+1011101011110101101011101
+1011101010001001101011101
+1000001000101100001000001
+1111111010101010101111111
+0000000000110011100000000
+1111001010100111010011101
+1111000010111111111101000
+0000111111110100001011000
+0011000001100111111001100
+0010111101111101101111110
+0110010100001001101111011
+0110101101001010010011010
+1010110111010011010000000
+0011011110111100111111100
+0000000011010001100010001
+1111111001100000101010111
+1000001001001011100011000
+1011101000100000111111011
+1011101010110010101111011
+1011101010011011101010010
+1000001010101101100000100
+1111111010000110001000111
+</pre>
+<br>
+直感で、QRコードなのがわかりました。
+<p>しばらくどうやって解こうか悩んだんですが、テキストになっているQRコードを読み取るツール、以前なにかのCTFで使ったことがあったんですよね。</p>
+<p><a href="https://github.com/waidotto/strong-qr-decoder">https://github.com/waidotto/strong-qr-decoder</a></p>
+<p>1と0の表記にも対応しているので、このツールがそのまんま使えます。</p>
+<pre>
+$ nkf -w -Lu --overwrite nautilus.jpg.out
+$ python sqrd.py nautilus.jpg.out
+flag{p13t_70_qr_wh0_7h0ug7h!}
+</pre>
+<br>
+<p>Flag: <code>flag{p13t_70_qr_wh0_7h0ug7h!}</code></p>
+<p><br /><br />
+<br /><br /></p>
+<hr>
+<p><br /><br />
+<br /><br /></p>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content">CaptureAmerica @ CTF フラxxグゲット</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">
+        2021-10-21
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="https://captureamerica.github.io/writeups/tags/ctf/">CTF</a>
+          </div>
+      <nav class="post-nav">
+        
+        <a class="next" href="https://captureamerica.github.io/writeups/post/deadface_ctf_2021/">
+            <span class="next-text nav-default">Deadface CTF 2021 Writeup</span>
+            <span class="next-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="https://github.com/CaptureAmerica/" class="iconfont icon-github" title="github"></a>
+  <a href="https://captureamerica.github.io/writeups/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2019 - 
+    2021<span class="heart"><i class="iconfont icon-heart"></i></span><span>CaptureAmerica @ CTF フラxxグゲット</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  
+
+
+
+<script type="text/javascript" src="https://captureamerica.github.io/writeups/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-104910699-2', 'auto');
+	ga('set', 'anonymizeIp', true);
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+
+
+
+
+
+</body>
+</html>
