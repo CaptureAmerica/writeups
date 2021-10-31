@@ -1,7 +1,7 @@
 ---
 title: "Bsides Jeddah CTF 2021 Writeup"
-date: 2021-10-31T21:00:00+09:00
-lastmod: 2021-10-31T21:00:00+09:00
+date: 2021-10-31T08:00:00+09:00
+lastmod: 2021-10-31T08:00:00+09:00
 draft: false
 keywords: []
 description: ""
@@ -30,7 +30,7 @@ URL: [https://ctf.bsidesjeddah.com/](https://ctf.bsidesjeddah.com/)
 
 大きく分けて、pcap解析（+ Malware docxの解析）と Memory Dump解析になっています。
 
-同じようなチャレンジや、その他いろいろと勉強になりそうなチャレンジが以下でいつでもできるようになっているようです。
+同じようなチャレンジや、その他いろいろと勉強になりそうなチャレンジが以下のサイトでいつでもできるようになっているようです。
 
 [https://cyberdefenders.org/labs/](https://cyberdefenders.org/labs/)
 
