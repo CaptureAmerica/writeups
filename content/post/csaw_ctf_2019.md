@@ -169,7 +169,7 @@ int main()
 }
 ```
 
-ほぼ、ghidraのコードのままですけど、文字をBrute Forceを追加してて、その際にハズレ文字だとposが範囲外になってSegmentation Faultになるので、posの範囲チェックも入れてます。
+ほぼ、ghidraのコードのままですけど、文字のBrute Forceを追加してて、その際にハズレ文字だとposが範囲外になってSegmentation Faultになるので、posの範囲チェックも入れてます。
 
 実行結果：
 
