@@ -83,7 +83,7 @@ URL: [https://play.picoctf.org/practice](https://play.picoctf.org/practice)
 ## [Web]: Ancient History (10 points)
 - - -
 ### Challenge
-> (チャレンジ文、メモし忘れました。後日更新します。)
+> I must have been sleep hacking or something, I don't remember visiting all of these sites...
 <br /><br />
 Hint1: What kind of information can JavaScript modify?
 <br /><br />

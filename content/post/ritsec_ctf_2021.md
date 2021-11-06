@@ -625,26 +625,6 @@ End Sub
 Flag: `RITSEC{R0TT1NGM@LC0D3}`
 
 
-<br /><br />
-<br /><br />
-## [Forensics]: FYSA (100 points)
-- - -
-### Challenge
-> (記載なし)
-
-Attachments:
-
-- BIRDTHIEF_FYSA.pdf
-
-<br />
-### Solution
-Libre OfficeでPDFファイルを開いて4ページ目にある。黒塗りをマウスで移動。
-
-<br />
-
-Flag: `RS{Make_sure_t0_read_the_briefing}`
-
-
 
 <br /><br />
 <br /><br />
