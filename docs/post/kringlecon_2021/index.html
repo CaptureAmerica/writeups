@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>SAN Holiday Hack Challenge (Kringlecon) 2021 Writeup - CTF フラxxグゲット</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="CaptureAmerica @ CTF フラxxグゲット" /><meta name="description" content="Save The Earth! - 地球環境を守ろう！ URL: https://2021.kringlecon.com/ 新年明けまして おめでとうございます！ OSCPの勉強を少し休憩して、SANS の Holiday Hack Challenge (Kringlecon) 2021 に参加しました。 ちょっと" /><meta name="keywords" content="CTF, Writeup, captureamerica, picoCTF" />
+
+
+
+<meta name="google-site-verification" content="PqctLWZQttGzxXVupWuIt2HWuBI8cvN1z07ETpxA2dw" />
+
+
+<meta name="generator" content="Hugo 0.74.2 with theme even" />
+
+
+<link rel="canonical" href="https://captureamerica.github.io/writeups/post/kringlecon_2021/" />
+<link rel="apple-touch-icon" sizes="180x180" href="https://captureamerica.github.io/writeups/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://captureamerica.github.io/writeups/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://captureamerica.github.io/writeups/favicon-16x16.png">
+<link rel="manifest" href="https://captureamerica.github.io/writeups/manifest.json">
+<link rel="mask-icon" href="https://captureamerica.github.io/writeups/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="https://captureamerica.github.io/writeups/sass/main.min.2e81bbed97b8b282c1aeb57488cc71c8d8c8ec559f3931531bd396bf31e0d4dd.css" rel="stylesheet">
+
+
+
+<meta property="og:title" content="SAN Holiday Hack Challenge (Kringlecon) 2021 Writeup" />
+<meta property="og:description" content="Save The Earth! - 地球環境を守ろう！ URL: https://2021.kringlecon.com/ 新年明けまして おめでとうございます！ OSCPの勉強を少し休憩して、SANS の Holiday Hack Challenge (Kringlecon) 2021 に参加しました。 ちょっと" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://captureamerica.github.io/writeups/post/kringlecon_2021/" />
+<meta property="article:published_time" content="2022-01-09T11:00:00+09:00" />
+<meta property="article:modified_time" content="2022-01-09T11:00:00+09:00" />
+<meta itemprop="name" content="SAN Holiday Hack Challenge (Kringlecon) 2021 Writeup">
+<meta itemprop="description" content="Save The Earth! - 地球環境を守ろう！ URL: https://2021.kringlecon.com/ 新年明けまして おめでとうございます！ OSCPの勉強を少し休憩して、SANS の Holiday Hack Challenge (Kringlecon) 2021 に参加しました。 ちょっと">
+<meta itemprop="datePublished" content="2022-01-09T11:00:00&#43;09:00" />
+<meta itemprop="dateModified" content="2022-01-09T11:00:00&#43;09:00" />
+<meta itemprop="wordCount" content="1743">
+
+
+
+<meta itemprop="keywords" content="CTF," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="SAN Holiday Hack Challenge (Kringlecon) 2021 Writeup"/>
+<meta name="twitter:description" content="Save The Earth! - 地球環境を守ろう！ URL: https://2021.kringlecon.com/ 新年明けまして おめでとうございます！ OSCPの勉強を少し休憩して、SANS の Holiday Hack Challenge (Kringlecon) 2021 に参加しました。 ちょっと"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="https://captureamerica.github.io/writeups/" class="logo">CTF Writeups</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="https://captureamerica.github.io/writeups/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="https://captureamerica.github.io/writeups/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="https://captureamerica.github.io/writeups/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="https://captureamerica.github.io/writeups/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a><a href="https://captureamerica.github.io/writeups/about/">
+        <li class="mobile-menu-item">About</li>
+      </a>
+  </ul>
+
+  
+
+
+</nav>
+
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="https://captureamerica.github.io/writeups/" class="logo">CTF Writeups</a>
+</div>
+
+
+
+
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="https://captureamerica.github.io/writeups/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="https://captureamerica.github.io/writeups/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="https://captureamerica.github.io/writeups/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="https://captureamerica.github.io/writeups/categories/">Categories</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="https://captureamerica.github.io/writeups/about/">About</a>
+      </li>
+  </ul>
+</nav>
+
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">SAN Holiday Hack Challenge (Kringlecon) 2021 Writeup</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2022-01-09 </span>
+        <div class="post-category">
+            <a href="https://captureamerica.github.io/writeups/categories/ctf/"> CTF </a>
+            </div>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contents</h2>
+  <div class="post-toc-content">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#yara-analysis">Yara Analysis</a>
+      <ul>
+        <li><a href="#challenge">Challenge</a></li>
+        <li><a href="#solution">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#elf-code-python-bonus-levels">Elf Code Python Bonus Levels!</a>
+      <ul>
+        <li><a href="#challenge-1">Challenge</a></li>
+        <li><a href="#solution-1">Solution</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <img src="https://captureamerica.github.io/writeups/img/green_bar.png" alt="green_bar.png">
+<img src="https://captureamerica.github.io/writeups/img/10_Nature_Themed_Icons_Cute_Earth_Icon.png" alt="Save The Earth!"> <b><font color="teal">Save The Earth! - 地球環境を守ろう！</font></b> <img src="https://captureamerica.github.io/writeups/img/10_Nature_Themed_Icons_Cute_Earth_Icon.png" alt="Save The Earth!">
+<img src="https://captureamerica.github.io/writeups/img/green_bar.png" alt="green_bar.png">
+<div class='align-right'>
+<a href="https://translate.google.com/translate?hl=en&sl=ja&tl=en&u=https%3A%2F%2Fcaptureamerica.github.io%2Fwriteups%2Fpost%2Fkringlecon_2021%2F">
+<img src="https://captureamerica.github.io/writeups/img/En.png" alt="English">
+</a>
+</div>
+<p>URL: <a href="https://2021.kringlecon.com/">https://2021.kringlecon.com/</a>
+<br /><br /></p>
+<p>新年明けまして おめでとうございます！</p>
+<p>OSCPの勉強を少し休憩して、SANS の Holiday Hack Challenge (Kringlecon) 2021 に参加しました。</p>
+<p>ちょっとしかやってないですが、勉強になったこともあるので、自分の覚書きとして記録を残しておきます。</p>
+<p><br /></p>
+<p><br /><br /></p>
+<h2 id="yara-analysis">Yara Analysis</h2>
+<hr>
+<h3 id="challenge">Challenge</h3>
+<blockquote>
+<p>HELP!!!
+<br /><br />
+This critical application is supposed to tell us the sweetness levels of our candy
+manufacturing output (among other important things), but I can&rsquo;t get it to run.
+<br /><br />
+It keeps saying something something yara. Can you take a look and see if you
+can help get this application to bypass Sparkle Redberry&rsquo;s Yara scanner?
+<br /><br />
+If we can identify the rule that is triggering, we might be able change the program
+to bypass the scanner.
+<br /><br />
+We have some tools on the system that might help us get this application going:
+vim, emacs, nano, yara, and xxd
+<br /><br />
+The children will be very disappointed if their candy won&rsquo;t even cause a single cavity.</p>
+</blockquote>
+<p><br /></p>
+<h3 id="solution">Solution</h3>
+<p>まずは、ホームにあるファイルと、プログラムを実行したときの結果を以下に示します。</p>
+<pre>
+snowball2@43ca77f5017d:~$ ls -al
+total 44
+drwxr-xr-x 1 snowball2 snowball2  4096 Dec  2 14:25 .
+drwxr-xr-x 1 root      root       4096 Dec  2 14:25 ..
+-rw-r--r-- 1 snowball2 snowball2   220 Feb 25  2020 .bash_logout
+-r-xr-xr-x 1 snowball2 snowball2  3926 Dec  2 14:25 .bashrc
+-r-xr-xr-x 1 snowball2 snowball2   807 Feb 25  2020 .profile
+-rw-r--r-- 1 root      root          0 Dec  2 14:25 .sudo_as_admin_successful
+-rwxr-xr-x 1 snowball2 snowball2 16688 Nov 24 15:51 the_critical_elf_app
+drwxr-xr-x 1 root      root       4096 Dec  2 14:25 yara_rules
+
+snowball2@43ca77f5017d:~$ find yara_rules/
+yara_rules/
+yara_rules/rules.yar
+
+snowball2@43ca77f5017d:~$ ./the_critical_elf_app 
+yara_rule_135 ./the_critical_elf_app
+
+snowball2@43ca77f5017d:~$ 
+</pre>
+<p><br /></p>
+<p>プログラムを実行すると、どのyaraルールでひっかかったのかが表示されます。</p>
+<p>バイナリをいじってプログラムを改変し、yara ruleにひっかからないようにする、というのがお題です。</p>
+<p><br />
+該当ルールを見てみます。</p>
+<p>emacsがあるということだったので、emacsを使ってみようとしたのですが、ブラウザ内で動いているためにemacsショートカットがうまく使えずgrepで見ることにしました。</p>
+<pre>
+snowball2@7d7d6314aac4:~/yara_rules$ grep "yara_rule_135 " -A20 rules.yar 
+rule yara_rule_135 {
+   meta:
+      description = "binaries - file Sugar_in_the_machinery"
+      author = "Sparkle Redberry"
+      reference = "North Pole Malware Research Lab"
+      date = "1955-04-21"
+      hash = "19ecaadb2159b566c39c999b0f860b4d8fc2824eb648e275f57a6dbceaf9b488"
+   strings:
+      $s = "candycane"
+   condition:
+      $s
+}
+:
+</pre>
+<p><br /></p>
+<p>今回、学んだこと： 以下のようにバイナリ編集が可能</p>
+<ul>
+<li>vim -b &lt;program&gt;</li>
+<li>:%!xxd</li>
+<li>編集</li>
+<li>:%!xxd -r</li>
+<li>:wq</li>
+</ul>
+<p><br />
+上記のやり方で、elfファイルの中のstring部分を変更していくだけです。</p>
+<p>ひとつ直すと別のyaraルールにひっかかり、合計3つひっかかります。</p>
+<p>最後のルールは、以下のようでした。</p>
+<pre>
+rule yara_rule_1732 {
+   meta:
+      description = "binaries - alwayz_winter.exe"
+      author = "Santa"
+      reference = "North Pole Malware Research Lab"
+      date = "1955-04-22"
+      hash = "c1e31a539898aab18f483d9e7b3c698ea45799e78bddc919a7dbebb1b40193a8"
+   strings:
+      $s1 = "This is critical for the execution of this program!!" fullword ascii
+      $s2 = "__frame_dummy_init_array_entry" fullword ascii
+      $s3 = ".note.gnu.property" fullword ascii
+      $s4 = ".eh_frame_hdr" fullword ascii
+      $s5 = "__FRAME_END__" fullword ascii
+      $s6 = "__GNU_EH_FRAME_HDR" fullword ascii
+      $s7 = "frame_dummy" fullword ascii
+      $s8 = ".note.gnu.build-id" fullword ascii
+      $s9 = "completed.8060" fullword ascii
+      $s10 = "_IO_stdin_used" fullword ascii
+      $s11 = ".note.ABI-tag" fullword ascii
+      $s12 = "naughty string" fullword ascii
+      $s13 = "dastardly string" fullword ascii
+      $s14 = "__do_global_dtors_aux_fini_array_entry" fullword ascii
+      $s15 = "__libc_start_main@@GLIBC_2.2.5" fullword ascii
+      $s16 = "GLIBC_2.2.5" fullword ascii
+      $s17 = "its_a_holly_jolly_variable" fullword ascii
+      $s18 = "__cxa_finalize" fullword ascii
+      $s19 = "HolidayHackChallenge{NotReallyAFlag}" fullword ascii
+      $s20 = "__libc_csu_init" fullword ascii
+   condition:
+      uint32(1) == 0x02464c45 and filesize < 50KB and
+      10 of them
+}
+</pre>
+<p><br />
+いくつかある条件のうちの、<code>filesize &lt; 50KB</code> を回避することにしました。</p>
+<pre>
+$ python3 -c 'print("A"*40000)' >> the_critical_elf_app
+</pre>
+<p><br /></p>
+<pre>
+snowball2@7d7d6314aac4:~$ ./the_critical_elf_app 
+/usr/local/bin/pre_execution.sh: line 26:   336 Killed                  yara /home/snowball2/yara_rules/rules.yar $1 -l 1
+Machine Running.. 
+Toy Levels: Very Merry, Terry
+Naughty/Nice Blockchain Assessment: Untampered
+Candy Sweetness Gauge: Exceedingly Sugarlicious
+Elf Jolliness Quotient: 4a6f6c6c7920456e6f7567682c204f76657274696d6520417070726f766564
+</pre>
+<p>いちおう、クリアになりました。</p>
+<p><br /><br />
+<br /><br /></p>
+<h2 id="elf-code-python-bonus-levels">Elf Code Python Bonus Levels!</h2>
+<hr>
+<h3 id="challenge-1">Challenge</h3>
+<blockquote>
+<p>Hello, I&rsquo;m Ribb Bonbowford. Nice to meet you!
+<br /><br />
+Are you new to programming? It&rsquo;s a handy skill for anyone in cyber security.
+<br /><br />
+This here machine lets you control an Elf using Python 3. It’s pretty fun, but I’m having trouble getting beyond Level 8.
+<br /><br />
+Tell you what… if you help me get past Level 8, I’ll share some of my SQLi tips with you. You may find them handy sometime around the North Pole this season.
+<br /><br />
+Most of the information you&rsquo;ll need is provided during the game, but I&rsquo;ll give you a few more pointers, if you want them.
+<br /><br />
+Not sure what a lever requires? Click it in the Current Level Objectives panel.
+<br /><br />
+You can move the elf with commands like elf.moveLeft(5), elf.moveTo({&ldquo;x&rdquo;:2,&ldquo;y&rdquo;:2}), or elf.moveTo(lever0.position).
+<br /><br />
+Looping through long movements? Don&rsquo;t be afraid to moveUp(99) or whatever. You elf will stop at any obstacle.
+<br /><br />
+You can call functions like myFunction(). If you ever need to pass a function to a munchkin, you can use myFunction without the ().</p>
+</blockquote>
+<p><br /></p>
+<h3 id="solution-1">Solution</h3>
+<p>正直、問題文を見てもなんだかわからないですが、やっていくうちにわかります。</p>
+<p>Paizaとかにある、プログラムを書いてクリアしていくゲームみたいなやつです。</p>
+<p>問題文によって、コードの行数の上限と、関数の呼び出し回数が制限されています。</p>
+<p>Level 10まであって、いちおう全部解きました。</p>
+<p>例として、以下は Level 5で書いたコードになります。
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="hl"><span class="lnt">20
+</span></span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">elf</span><span class="o">,</span> <span class="nn">munchkins</span><span class="o">,</span> <span class="nn">levers</span><span class="o">,</span> <span class="nn">lollipops</span><span class="o">,</span> <span class="nn">yeeters</span><span class="o">,</span> <span class="nn">pits</span>
+<span class="n">lever0</span><span class="p">,</span> <span class="n">lever1</span><span class="p">,</span> <span class="n">lever2</span><span class="p">,</span> <span class="n">lever3</span><span class="p">,</span> <span class="n">lever4</span> <span class="o">=</span> <span class="n">levers</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
+<span class="n">leverData</span> <span class="o">=</span> <span class="n">lever4</span><span class="o">.</span><span class="n">data</span><span class="p">()</span> <span class="o">+</span> <span class="s2">&#34; concatenate&#34;</span>
+<span class="n">elf</span><span class="o">.</span><span class="n">moveTo</span><span class="p">(</span><span class="n">lever4</span><span class="o">.</span><span class="n">position</span><span class="p">)</span>
+<span class="n">lever4</span><span class="o">.</span><span class="n">pull</span><span class="p">(</span><span class="n">leverData</span><span class="p">)</span>
+<span class="n">leverData</span> <span class="o">=</span> <span class="n">lever3</span><span class="o">.</span><span class="n">data</span><span class="p">()</span>
+<span class="n">elf</span><span class="o">.</span><span class="n">moveTo</span><span class="p">(</span><span class="n">lever3</span><span class="o">.</span><span class="n">position</span><span class="p">)</span>
+<span class="k">if</span> <span class="nb">bool</span><span class="p">(</span><span class="n">leverData</span><span class="p">):</span>
+    <span class="n">lever3</span><span class="o">.</span><span class="n">pull</span><span class="p">(</span><span class="bp">False</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="n">lever3</span><span class="o">.</span><span class="n">pull</span><span class="p">(</span><span class="bp">True</span><span class="p">)</span>
+<span class="n">leverData</span> <span class="o">=</span> <span class="n">lever2</span><span class="o">.</span><span class="n">data</span><span class="p">()</span> <span class="o">+</span> <span class="mi">1</span>
+<span class="n">elf</span><span class="o">.</span><span class="n">moveTo</span><span class="p">(</span><span class="n">lever2</span><span class="o">.</span><span class="n">position</span><span class="p">)</span>
+<span class="n">lever2</span><span class="o">.</span><span class="n">pull</span><span class="p">(</span><span class="n">leverData</span><span class="p">)</span>
+<span class="n">leverData</span> <span class="o">=</span> <span class="n">lever1</span><span class="o">.</span><span class="n">data</span><span class="p">()</span>
+<span class="n">leverData</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">elf</span><span class="o">.</span><span class="n">moveTo</span><span class="p">(</span><span class="n">lever1</span><span class="o">.</span><span class="n">position</span><span class="p">)</span>
+<span class="n">lever1</span><span class="o">.</span><span class="n">pull</span><span class="p">(</span><span class="n">leverData</span><span class="p">)</span>
+<span class="n">leverData</span> <span class="o">=</span> <span class="n">lever0</span><span class="o">.</span><span class="n">data</span><span class="p">()</span> <span class="c1"># {&#34;key&#34;:&#34;4&#34;}</span>
+<span class="hl"><span class="n">leverData</span><span class="p">[</span><span class="s2">&#34;strkey&#34;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&#34;strvalue&#34;</span>
+</span><span class="n">elf</span><span class="o">.</span><span class="n">moveTo</span><span class="p">(</span><span class="n">lever0</span><span class="o">.</span><span class="n">position</span><span class="p">)</span>
+<span class="n">lever0</span><span class="o">.</span><span class="n">pull</span><span class="p">(</span><span class="n">leverData</span><span class="p">)</span>
+<span class="n">elf</span><span class="o">.</span><span class="n">moveUp</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span></code></pre></td></tr></table>
+</div>
+</div></p>
+<p><br />
+dictionaryって値の変更はできないけど、追加は普通にできるんだったか。(ハイライト部分)</p>
+<p><br />
+全Levelについて書くのは面倒なので、最後のLevel 10のやつだけ残しておきます。</p>
+<img src="https://captureamerica.github.io/writeups/img/kringlecon_2021_Level10_1.png" alt="kringlecon_2021_Level10_1.png">
+<p><br /></p>
+<p>以下が書いたコードです。17行以内におさめる必要がありました。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-Python" data-lang="Python"><span class="kn">import</span> <span class="nn">elf</span><span class="o">,</span> <span class="nn">munchkins</span><span class="o">,</span> <span class="nn">levers</span><span class="o">,</span> <span class="nn">lollipops</span><span class="o">,</span> <span class="nn">yeeters</span><span class="o">,</span> <span class="nn">pits</span><span class="o">,</span> <span class="nn">time</span>
+<span class="n">muns</span> <span class="o">=</span> <span class="n">munchkins</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
+<span class="n">lols</span> <span class="o">=</span> <span class="n">lollipops</span><span class="o">.</span><span class="n">get</span><span class="p">()[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">elf</span><span class="o">.</span><span class="n">moveRight</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">mun</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">muns</span><span class="p">):</span>
+        <span class="k">while</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">abs</span><span class="p">(</span><span class="n">elf</span><span class="o">.</span><span class="n">position</span><span class="p">[</span><span class="s2">&#34;x&#34;</span><span class="p">]</span> <span class="o">-</span> <span class="n">mun</span><span class="o">.</span><span class="n">position</span><span class="p">[</span><span class="s2">&#34;x&#34;</span><span class="p">])</span> <span class="o">&gt;=</span> <span class="mi">6</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">index</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+                    <span class="n">elf</span><span class="o">.</span><span class="n">moveRight</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">elf</span><span class="o">.</span><span class="n">moveLeft</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">elf</span><span class="o">.</span><span class="n">position</span><span class="p">[</span><span class="s2">&#34;x&#34;</span><span class="p">]</span> <span class="o">==</span> <span class="n">lols</span><span class="p">[</span><span class="mi">2</span><span class="o">-</span><span class="n">index</span><span class="p">]</span><span class="o">.</span><span class="n">position</span><span class="p">[</span><span class="s2">&#34;x&#34;</span><span class="p">]:</span>
+                <span class="n">elf</span><span class="o">.</span><span class="n">moveUp</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+                <span class="k">break</span>
+            <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.05</span><span class="p">)</span>
+<span class="n">elf</span><span class="o">.</span><span class="n">moveLeft</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span>
+<span class="n">elf</span><span class="o">.</span><span class="n">moveUp</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><br />
+マンチキンと十分に距離が離れているとき（距離の絶対値が６以上のとき）にのみ動くようにしてあります。</p>
+<p>1マスずつ動くと、関数コールの回数が多すぎということでクリアにならないので、2マスずつ動いています。</p>
+<p>（ここを2ではなく4マス動くコードにすると、マンチキンと衝突してしまいます。）</p>
+<p>スタート位置は、通路から3マス離れたところから始まるので、最初にまず1マス右に動いています。(4行目は、そういうことです)</p>
+<img src="https://captureamerica.github.io/writeups/img/kringlecon_2021_Level10_2.png" alt="kringlecon_2021_Level10_2.png">
+<p><br /><br />
+<br /><br /></p>
+<hr>
+<p><br /><br />
+<br /><br /></p>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content">CaptureAmerica @ CTF フラxxグゲット</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">
+        2022-01-09
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="https://captureamerica.github.io/writeups/tags/ctf/">CTF</a>
+          </div>
+      <nav class="post-nav">
+        
+        <a class="next" href="https://captureamerica.github.io/writeups/post/taking_a_break/">
+            <span class="next-text nav-default">Taking a break...</span>
+            <span class="next-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="https://github.com/CaptureAmerica/" class="iconfont icon-github" title="github"></a>
+  <a href="https://captureamerica.github.io/writeups/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2019 - 
+    2022<span class="heart"><i class="iconfont icon-heart"></i></span><span>CaptureAmerica @ CTF フラxxグゲット</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  
+
+
+
+<script type="text/javascript" src="https://captureamerica.github.io/writeups/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-104910699-2', 'auto');
+	ga('set', 'anonymizeIp', true);
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+
+
+
+
+
+</body>
+</html>
