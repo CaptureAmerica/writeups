@@ -1,7 +1,7 @@
 ---
 title: "SAN Holiday Hack Challenge (Kringlecon) 2021 Writeup"
-date: 2022-01-09T16:00:00+09:00
-lastmod: 2022-01-09T16:00:00+09:00
+date: 2022-01-19T16:00:00+09:00
+lastmod: 2022-01-19T16:00:00+09:00
 draft: false
 keywords: []
 description: ""
