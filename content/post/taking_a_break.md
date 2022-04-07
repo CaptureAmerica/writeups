@@ -1,7 +1,7 @@
 ---
 title: "Taking a break..."
 date: 2021-11-06T10:00:00+09:00
-lastmod: 2021-11-06T10:00:00+09:00
+lastmod: 2022-04-07T11:00:00+09:00
 draft: false
 keywords: []
 description: ""
@@ -30,6 +30,21 @@ PicoCTFとかは、やろうと思います。
 <br /><br />
 
 ではでは〜。Try Harder!!
+
+<br /><br />
+<br /><br />
+- - -
+(2022/04/07 - 追記)
+
+OSCPのCertificationは、expireしないようです。どういうわけか、2年でexpireしちゃうと勘違いしてたみたい。
+
+<img src="https://captureamerica.github.io/writeups/img/OSCP_FAQ.png" alt="OSCP_FAQ.png">
+
+ExpireしないのがわかっていたらLearnOneやってなかったかも知れないけど、やったらやったでかなり勉強になっているので、残りの半年も続けて頑張ろうと思います！
+
+<br /><br />
+
+
 
 
 <br /><br />
