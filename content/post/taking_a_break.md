@@ -21,7 +21,7 @@ author: ""
 
 2021年1月にOSCPに合格してから、そろそろ1年が経とうとしています。
 
-OSCPの有効期限は2年なので、そろそろ更新に向けて勉強を再開しようと思い、[Learn One](https://www.offensive-security.com/learn/) を始めることにしました。
+<s>OSCPの有効期限は2年</s>なので、そろそろ更新に向けて勉強を再開しようと思い、[Learn One](https://www.offensive-security.com/learn/) を始めることにしました。
 
 今日から1年間、Learn Oneをメインでやっていこうと思うので、CTFは基本的にお休みします。
 
@@ -36,11 +36,13 @@ PicoCTFとかは、やろうと思います。
 - - -
 (2022/04/07 - 追記)
 
-OSCPのCertificationは、expireしないようです。どういうわけか、2年でexpireしちゃうと勘違いしてたみたい。
+<u><b>OSCPのCertificationは、expireしない</b></u>ようです。どういうわけか、2年でexpireしちゃうと勘違いしてたみたい。
 
 <img src="https://captureamerica.github.io/writeups/img/OSCP_FAQ.png" alt="OSCP_FAQ.png">
 
-ExpireしないのがわかっていたらLearnOneやってなかったかも知れないけど、やったらやったでかなり勉強になっているので、残りの半年も続けて頑張ろうと思います！
+<br />
+
+ExpireしないのがわかっていたらLearn Oneやってなかったかも知れないけど、やったらやったでかなり勉強になっているので、残りの半年も続けて頑張ろうと思います！
 
 <br /><br />
 
