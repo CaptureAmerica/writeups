@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>ångstromCTF 2022 Writeup - CTF フラxxグゲット</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="CaptureAmerica @ CTF フラxxグゲット" /><meta name="description" content="URL: https://2022.angstromctf.com/challenges OSCP の勉強をしていて、自分のWeb関連のスキルが弱いと感じたので、 まだ OSCP の勉強の真っ最中ですが、CTFのWeb問題だけは時々トライしていこ" /><meta name="keywords" content="CTF, Writeup, captureamerica, picoCTF" />
+
+
+
+<meta name="google-site-verification" content="PqctLWZQttGzxXVupWuIt2HWuBI8cvN1z07ETpxA2dw" />
+
+
+<meta name="generator" content="Hugo 0.74.2 with theme even" />
+
+
+<link rel="canonical" href="https://captureamerica.github.io/writeups/post/angstromctf_2022/" />
+<link rel="apple-touch-icon" sizes="180x180" href="https://captureamerica.github.io/writeups/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://captureamerica.github.io/writeups/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://captureamerica.github.io/writeups/favicon-16x16.png">
+<link rel="manifest" href="https://captureamerica.github.io/writeups/manifest.json">
+<link rel="mask-icon" href="https://captureamerica.github.io/writeups/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="https://captureamerica.github.io/writeups/sass/main.min.2e81bbed97b8b282c1aeb57488cc71c8d8c8ec559f3931531bd396bf31e0d4dd.css" rel="stylesheet">
+
+
+
+<meta property="og:title" content="ångstromCTF 2022 Writeup" />
+<meta property="og:description" content="URL: https://2022.angstromctf.com/challenges OSCP の勉強をしていて、自分のWeb関連のスキルが弱いと感じたので、 まだ OSCP の勉強の真っ最中ですが、CTFのWeb問題だけは時々トライしていこ" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://captureamerica.github.io/writeups/post/angstromctf_2022/" />
+<meta property="article:published_time" content="2022-05-06T16:00:00+09:00" />
+<meta property="article:modified_time" content="2022-05-06T16:00:00+09:00" />
+<meta itemprop="name" content="ångstromCTF 2022 Writeup">
+<meta itemprop="description" content="URL: https://2022.angstromctf.com/challenges OSCP の勉強をしていて、自分のWeb関連のスキルが弱いと感じたので、 まだ OSCP の勉強の真っ最中ですが、CTFのWeb問題だけは時々トライしていこ">
+<meta itemprop="datePublished" content="2022-05-06T16:00:00&#43;09:00" />
+<meta itemprop="dateModified" content="2022-05-06T16:00:00&#43;09:00" />
+<meta itemprop="wordCount" content="1268">
+
+
+
+<meta itemprop="keywords" content="CTF,Reviewed," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="ångstromCTF 2022 Writeup"/>
+<meta name="twitter:description" content="URL: https://2022.angstromctf.com/challenges OSCP の勉強をしていて、自分のWeb関連のスキルが弱いと感じたので、 まだ OSCP の勉強の真っ最中ですが、CTFのWeb問題だけは時々トライしていこ"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="https://captureamerica.github.io/writeups/" class="logo">CTF Writeups</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="https://captureamerica.github.io/writeups/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="https://captureamerica.github.io/writeups/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="https://captureamerica.github.io/writeups/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="https://captureamerica.github.io/writeups/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a><a href="https://captureamerica.github.io/writeups/about/">
+        <li class="mobile-menu-item">About</li>
+      </a>
+  </ul>
+
+  
+
+
+</nav>
+
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="https://captureamerica.github.io/writeups/" class="logo">CTF Writeups</a>
+</div>
+
+
+
+
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="https://captureamerica.github.io/writeups/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="https://captureamerica.github.io/writeups/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="https://captureamerica.github.io/writeups/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="https://captureamerica.github.io/writeups/categories/">Categories</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="https://captureamerica.github.io/writeups/about/">About</a>
+      </li>
+  </ul>
+</nav>
+
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">ångstromCTF 2022 Writeup</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2022-05-06 </span>
+        <div class="post-category">
+            <a href="https://captureamerica.github.io/writeups/categories/ctf/"> CTF </a>
+            </div>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contents</h2>
+  <div class="post-toc-content">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#web-xtra-salty-sardines-70-points">[Web]: Xtra Salty Sardines (70 points)</a>
+      <ul>
+        <li><a href="#challenge">Challenge</a></li>
+        <li><a href="#solution">Solution</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <div class='align-right'>
+<a href="https://translate.google.com/translate?hl=en&sl=ja&tl=en&u=https%3A%2F%2Fcaptureamerica.github.io%2Fwriteups%2Fpost%2Fangstromctf_2022%2F">
+<img src="https://captureamerica.github.io/writeups/img/En.png" alt="English">
+</a>
+</div>
+<p>URL: <a href="https://2022.angstromctf.com/challenges">https://2022.angstromctf.com/challenges</a>
+<br /><br /></p>
+<p>OSCP の勉強をしていて、自分のWeb関連のスキルが弱いと感じたので、</p>
+<p>まだ OSCP の勉強の真っ最中ですが、CTFのWeb問題だけは時々トライしていこうと思います。</p>
+<br>
+いちおう、210点を獲得し、順位は814位でした。<br />
+<img src="https://captureamerica.github.io/writeups/img/angstromctf_2022_score.png" alt="angstromctf_2022_score.png">
+<br>
+<p>以下は解いたチャレンジです。（相変わらず、ほとんど解けてないです。。。）<br />
+<img src="https://captureamerica.github.io/writeups/img/angstromctf_2022_solves.png" alt="angstromctf_2022_solves.png"></p>
+<br>
+<p>Xtra Salty Sardines でやったことは、自分で今後も参照することもありそうなので、writeup残しておきます。</p>
+<p><br /><br /></p>
+<h2 id="web-xtra-salty-sardines-70-points">[Web]: Xtra Salty Sardines (70 points)</h2>
+<hr>
+<h3 id="challenge">Challenge</h3>
+<blockquote>
+<p>Clam was intensely brainstorming new challenge ideas, when his stomach growled! He opened his favorite tin of salty sardines, took a bite out of them, and then got a revolutionary new challenge idea. What if he wrote <a href="https://xtra-salty-sardines.web.actf.co/">a site with an extremely suggestive acronym</a>?
+<br /><br />
+<a href="https://admin-bot.actf.co/xtra-salty-sardines">Admin Bot</a></p>
+</blockquote>
+<p>Attachment:</p>
+<ul>
+<li>index.js</li>
+</ul>
+<p>中身：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span><span class="lnt">63
+</span><span class="lnt">64
+</span><span class="lnt">65
+</span><span class="lnt">66
+</span><span class="lnt">67
+</span><span class="lnt">68
+</span><span class="lnt">69
+</span><span class="lnt">70
+</span><span class="lnt">71
+</span><span class="lnt">72
+</span><span class="lnt">73
+</span><span class="lnt">74
+</span><span class="lnt">75
+</span><span class="lnt">76
+</span><span class="lnt">77
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-Javascript" data-lang="Javascript"><span class="kr">const</span> <span class="nx">express</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">&#34;express&#34;</span><span class="p">);</span>
+<span class="kr">const</span> <span class="nx">path</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">&#34;path&#34;</span><span class="p">);</span>
+<span class="kr">const</span> <span class="nx">fs</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">&#34;fs&#34;</span><span class="p">);</span>
+<span class="kr">const</span> <span class="nx">cookieParser</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">&#34;cookie-parser&#34;</span><span class="p">);</span>
+
+<span class="kr">const</span> <span class="nx">app</span> <span class="o">=</span> <span class="nx">express</span><span class="p">();</span>
+<span class="kr">const</span> <span class="nx">port</span> <span class="o">=</span> <span class="nb">Number</span><span class="p">(</span><span class="nx">process</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">PORT</span><span class="p">)</span> <span class="o">||</span> <span class="mi">8080</span><span class="p">;</span>
+<span class="kr">const</span> <span class="nx">sardines</span> <span class="o">=</span> <span class="p">{};</span>
+
+<span class="kr">const</span> <span class="nx">alpha</span> <span class="o">=</span> <span class="s2">&#34;abcdefghijklmnopqrstuvwxyz&#34;</span><span class="p">;</span>
+
+<span class="kr">const</span> <span class="nx">secret</span> <span class="o">=</span> <span class="nx">process</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">ADMIN_SECRET</span> <span class="o">||</span> <span class="s2">&#34;secretpw&#34;</span><span class="p">;</span>
+<span class="kr">const</span> <span class="nx">flag</span> <span class="o">=</span> <span class="nx">process</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">FLAG</span> <span class="o">||</span> <span class="s2">&#34;actf{placeholder_flag}&#34;</span><span class="p">;</span>
+
+<span class="kd">function</span> <span class="nx">genId</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">let</span> <span class="nx">ret</span> <span class="o">=</span> <span class="s2">&#34;&#34;</span><span class="p">;</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">ret</span> <span class="o">+=</span> <span class="nx">alpha</span><span class="p">[</span><span class="nb">Math</span><span class="p">.</span><span class="nx">floor</span><span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">random</span><span class="p">()</span> <span class="o">*</span> <span class="nx">alpha</span><span class="p">.</span><span class="nx">length</span><span class="p">)];</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="nx">ret</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="nx">express</span><span class="p">.</span><span class="nx">urlencoded</span><span class="p">({</span> <span class="nx">extended</span><span class="o">:</span> <span class="kc">false</span> <span class="p">}));</span>
+<span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="nx">cookieParser</span><span class="p">());</span>
+
+<span class="c1">// the admin bot will be able to access this
+</span><span class="c1"></span><span class="nx">app</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s2">&#34;/flag&#34;</span><span class="p">,</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">req</span><span class="p">.</span><span class="nx">cookies</span><span class="p">.</span><span class="nx">secret</span> <span class="o">===</span> <span class="nx">secret</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">res</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="nx">flag</span><span class="p">);</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="nx">res</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="s2">&#34;you can&#39;t view this &gt;:(&#34;</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">});</span>
+
+<span class="nx">app</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="s2">&#34;/mksardine&#34;</span><span class="p">,</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">req</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">name</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">res</span><span class="p">.</span><span class="nx">status</span><span class="p">(</span><span class="mi">400</span><span class="p">).</span><span class="nx">type</span><span class="p">(</span><span class="s2">&#34;text/plain&#34;</span><span class="p">).</span><span class="nx">send</span><span class="p">(</span><span class="s2">&#34;please include a name&#34;</span><span class="p">);</span>
+        <span class="k">return</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="c1">// no pesky chars allowed
+</span><span class="c1"></span>    <span class="kr">const</span> <span class="nx">name</span> <span class="o">=</span> <span class="nx">req</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">name</span>
+        <span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="s2">&#34;&amp;&#34;</span><span class="p">,</span> <span class="s2">&#34;&amp;amp;&#34;</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="s1">&#39;&#34;&#39;</span><span class="p">,</span> <span class="s2">&#34;&amp;quot;&#34;</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="s2">&#34;&#39;&#34;</span><span class="p">,</span> <span class="s2">&#34;&amp;apos;&#34;</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="s2">&#34;&lt;&#34;</span><span class="p">,</span> <span class="s2">&#34;&amp;lt;&#34;</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="s2">&#34;&gt;&#34;</span><span class="p">,</span> <span class="s2">&#34;&amp;gt;&#34;</span><span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">name</span><span class="p">.</span><span class="nx">length</span> <span class="o">===</span> <span class="mi">0</span> <span class="o">||</span> <span class="nx">name</span><span class="p">.</span><span class="nx">length</span> <span class="o">&gt;</span> <span class="mi">2048</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">res</span><span class="p">.</span><span class="nx">status</span><span class="p">(</span><span class="mi">400</span><span class="p">)</span>
+            <span class="p">.</span><span class="nx">type</span><span class="p">(</span><span class="s2">&#34;text/plain&#34;</span><span class="p">)</span>
+            <span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="s2">&#34;sardine name must be 1-2048 chars&#34;</span><span class="p">);</span>
+        <span class="k">return</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="kr">const</span> <span class="nx">id</span> <span class="o">=</span> <span class="nx">genId</span><span class="p">();</span>
+    <span class="nx">sardines</span><span class="p">[</span><span class="nx">id</span><span class="p">]</span> <span class="o">=</span> <span class="nx">name</span><span class="p">;</span>
+    <span class="nx">res</span><span class="p">.</span><span class="nx">redirect</span><span class="p">(</span><span class="s2">&#34;/sardines/&#34;</span> <span class="o">+</span> <span class="nx">id</span><span class="p">);</span>
+<span class="p">});</span>
+
+<span class="nx">app</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s2">&#34;/&#34;</span><span class="p">,</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+    <span class="nx">res</span><span class="p">.</span><span class="nx">sendFile</span><span class="p">(</span><span class="nx">path</span><span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="nx">__dirname</span><span class="p">,</span> <span class="s2">&#34;index.html&#34;</span><span class="p">));</span>
+<span class="p">});</span>
+
+
+<span class="nx">app</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s2">&#34;/sardines/:sardine&#34;</span><span class="p">,</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+    <span class="kr">const</span> <span class="nx">name</span> <span class="o">=</span> <span class="nx">sardines</span><span class="p">[</span><span class="nx">req</span><span class="p">.</span><span class="nx">params</span><span class="p">.</span><span class="nx">sardine</span><span class="p">];</span>
+    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">name</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">res</span><span class="p">.</span><span class="nx">status</span><span class="p">(</span><span class="mi">404</span><span class="p">).</span><span class="nx">type</span><span class="p">(</span><span class="s2">&#34;text/plain&#34;</span><span class="p">).</span><span class="nx">send</span><span class="p">(</span><span class="s2">&#34;sardine not found :(&#34;</span><span class="p">);</span>
+        <span class="k">return</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="kr">const</span> <span class="nx">sardine</span> <span class="o">=</span> <span class="nx">fs</span>
+        <span class="p">.</span><span class="nx">readFileSync</span><span class="p">(</span><span class="nx">path</span><span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="nx">__dirname</span><span class="p">,</span> <span class="s2">&#34;sardine.html&#34;</span><span class="p">),</span> <span class="s2">&#34;utf8&#34;</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">replaceAll</span><span class="p">(</span><span class="s2">&#34;$NAME&#34;</span><span class="p">,</span> <span class="nx">name</span><span class="p">.</span><span class="nx">replaceAll</span><span class="p">(</span><span class="s2">&#34;$&#34;</span><span class="p">,</span> <span class="s2">&#34;$$$$&#34;</span><span class="p">));</span>
+    <span class="nx">res</span><span class="p">.</span><span class="nx">type</span><span class="p">(</span><span class="s2">&#34;text/html&#34;</span><span class="p">).</span><span class="nx">send</span><span class="p">(</span><span class="nx">sardine</span><span class="p">);</span>
+<span class="p">});</span>
+
+<span class="nx">app</span><span class="p">.</span><span class="nx">listen</span><span class="p">(</span><span class="nx">port</span><span class="p">,</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`Server listening on port </span><span class="si">${</span><span class="nx">port</span><span class="si">}</span><span class="sb">.`</span><span class="p">);</span>
+<span class="p">});</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><br /></p>
+<h3 id="solution">Solution</h3>
+<p>イワシの缶に名前が付けられるようになっています。かなり塩っぱそう（extra salty）。</p>
+<p>XSSですね。</p>
+<img src="https://captureamerica.github.io/writeups/img/angstromctf_2022_mksardine.png" alt="angstromctf_2022_mksardine.png">
+<p><br /></p>
+<p>以下はAdmin Botです。URLを指定すると、アクセスしてくれるみたいです。</p>
+<img src="https://captureamerica.github.io/writeups/img/angstromctf_2022_adminbot.png" alt="angstromctf_2022_adminbot.png">
+<p><br /></p>
+<p>ソースコードを見ると、いくつかの特殊文字はエスケープされるみたいです。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript">        <span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="s2">&#34;&amp;&#34;</span><span class="p">,</span> <span class="s2">&#34;&amp;amp;&#34;</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="s1">&#39;&#34;&#39;</span><span class="p">,</span> <span class="s2">&#34;&amp;quot;&#34;</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="s2">&#34;&#39;&#34;</span><span class="p">,</span> <span class="s2">&#34;&amp;apos;&#34;</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="s2">&#34;&lt;&#34;</span><span class="p">,</span> <span class="s2">&#34;&amp;lt;&#34;</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="s2">&#34;&gt;&#34;</span><span class="p">,</span> <span class="s2">&#34;&amp;gt;&#34;</span><span class="p">);</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>とりあえず、&quot;&lt;h2&gt;aa&lt;/h2&gt;&rdquo; を入れてみたところ、どうやらフィルターは同じ文字に対して一回だけかかるみたいです。</p>
+<img src="https://captureamerica.github.io/writeups/img/angstromctf_2022_XSS_filter.png" alt="angstromctf_2022_XSS_filter.png">
+<p>フィルターは簡単に回避できそう。</p>
+<p><br /></p>
+<p>フラグは、Admin Bot のみアクセスできるようになっています。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-Javascript" data-lang="Javascript"><span class="c1">// the admin bot will be able to access this
+</span><span class="c1"></span><span class="nx">app</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s2">&#34;/flag&#34;</span><span class="p">,</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">req</span><span class="p">.</span><span class="nx">cookies</span><span class="p">.</span><span class="nx">secret</span> <span class="o">===</span> <span class="nx">secret</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">res</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="nx">flag</span><span class="p">);</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="nx">res</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="s2">&#34;you can&#39;t view this &gt;:(&#34;</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">});</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><br /></p>
+<p>iframeを2つ用意して、iframe1でフラグへのアクセス、iframe2ではiframe1の値を取り出して外部に送信するXSSを用意します。</p>
+<p>イメージとしては、こんな感じです。<a href="https://beeceptor.com/">https://beeceptor.com/</a> で書いたルールです。</p>
+<p>（結果として、これじゃダメなんですが）</p>
+<img src="https://captureamerica.github.io/writeups/img/angstromctf_2022_XSS_beeceptor_rule.png" alt="angstromctf_2022_XSS_beeceptor_rule.png">
+<p><br /></p>
+<p>XSSは、以下の通りです。最初の3文字は、フィルター回避用です。</p>
+<p>これを、イワシの缶の名前としてセットして、URLを生成します。その後、そのURLをiframe2にセットします。</p>
+<img src="https://captureamerica.github.io/writeups/img/angstromctf_2022_XSS.png" alt="angstromctf_2022_XSS.png">
+<p><br /></p>
+<p>で、このiframe1とiframe2を含むページをどこでホストするかなんですが、<a href="https://beeceptor.com/">https://beeceptor.com/</a> でやってしまうと Cookie が iframe1 に適用されずに Admin Botでもフラグが取れなくなってしまいます。</p>
+<p><br /></p>
+<p>なので、そのページ自体も、イワシの缶の名前を使って生成します。</p>
+<img src="https://captureamerica.github.io/writeups/img/angstromctf_2022_XSS2.png" alt="angstromctf_2022_XSS2.png">
+<p><br /></p>
+<p>ブラウザでアクセスしてみると、こんな感じです。</p>
+<img src="https://captureamerica.github.io/writeups/img/angstromctf_2022_XSS_browser.png" alt="angstromctf_2022_XSS_browser.png">
+<p><br /></p>
+<p>これを、Admin Bot にアクセスさせると、フラグが得られます。</p>
+<img src="https://captureamerica.github.io/writeups/img/angstromctf_2022_XSS_flag.png" alt="angstromctf_2022_XSS_flag.png">
+<p><br /></p>
+<p>Flag: <code>actf{those_sardines_are_yummy_yummy_in_my_tummy}</code></p>
+<p><br /><br />
+<br /><br /></p>
+<hr>
+<p><br /><br />
+<br /><br /></p>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content">CaptureAmerica @ CTF フラxxグゲット</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">
+        2022-05-06
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="https://captureamerica.github.io/writeups/tags/ctf/">CTF</a>
+          <a href="https://captureamerica.github.io/writeups/tags/reviewed/">Reviewed</a>
+          </div>
+      <nav class="post-nav">
+        
+        <a class="next" href="https://captureamerica.github.io/writeups/post/picoctf_2022/">
+            <span class="next-text nav-default">picoCTF 2022 Writeup</span>
+            <span class="next-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="https://github.com/CaptureAmerica/" class="iconfont icon-github" title="github"></a>
+  <a href="https://captureamerica.github.io/writeups/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2019 - 
+    2022<span class="heart"><i class="iconfont icon-heart"></i></span><span>CaptureAmerica @ CTF フラxxグゲット</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  
+
+
+
+<script type="text/javascript" src="https://captureamerica.github.io/writeups/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-104910699-2', 'auto');
+	ga('set', 'anonymizeIp', true);
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+
+
+
+
+
+</body>
+</html>
