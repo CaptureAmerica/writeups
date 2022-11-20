@@ -1,5 +1,5 @@
 ---
-title: "SquaareCTF 2022 Writeup"
+title: "SquareCTF 2022 Writeup"
 date: 2022-11-20T15:00:00+09:00
 lastmod: 2022-11-20T15:00:00+09:00
 draft: false
