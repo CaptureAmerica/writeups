@@ -1,5 +1,5 @@
 ---
-title: "Taking a break..."
+title: "Taking a break... (and will be doing OSCP for a year)"
 date: 2021-11-06T10:00:00+09:00
 lastmod: 2022-04-07T11:00:00+09:00
 draft: false
