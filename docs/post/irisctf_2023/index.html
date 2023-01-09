@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>IrisCTF 2023 Writeup - CTF フラxxグゲット</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="CaptureAmerica @ CTF フラxxグゲット" /><meta name="description" content="Save The Earth! - 地球環境を守ろう！ URL: https://2023.irisc.tf/home 397点を獲得し、最終順位は167位でした。 主に、Network カテゴリのpcap問題に挑戦しました。 難しかっ" /><meta name="keywords" content="CTF, Writeup, captureamerica, picoCTF" />
+
+
+
+<meta name="google-site-verification" content="PqctLWZQttGzxXVupWuIt2HWuBI8cvN1z07ETpxA2dw" />
+
+
+<meta name="generator" content="Hugo 0.74.2 with theme even" />
+
+
+<link rel="canonical" href="https://captureamerica.github.io/writeups/post/irisctf_2023/" />
+<link rel="apple-touch-icon" sizes="180x180" href="https://captureamerica.github.io/writeups/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://captureamerica.github.io/writeups/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://captureamerica.github.io/writeups/favicon-16x16.png">
+<link rel="manifest" href="https://captureamerica.github.io/writeups/manifest.json">
+<link rel="mask-icon" href="https://captureamerica.github.io/writeups/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="https://captureamerica.github.io/writeups/sass/main.min.2e81bbed97b8b282c1aeb57488cc71c8d8c8ec559f3931531bd396bf31e0d4dd.css" rel="stylesheet">
+
+
+
+<meta property="og:title" content="IrisCTF 2023 Writeup" />
+<meta property="og:description" content="Save The Earth! - 地球環境を守ろう！ URL: https://2023.irisc.tf/home 397点を獲得し、最終順位は167位でした。 主に、Network カテゴリのpcap問題に挑戦しました。 難しかっ" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://captureamerica.github.io/writeups/post/irisctf_2023/" />
+<meta property="article:published_time" content="2023-01-09T13:00:00+09:00" />
+<meta property="article:modified_time" content="2023-01-09T13:00:00+09:00" />
+<meta itemprop="name" content="IrisCTF 2023 Writeup">
+<meta itemprop="description" content="Save The Earth! - 地球環境を守ろう！ URL: https://2023.irisc.tf/home 397点を獲得し、最終順位は167位でした。 主に、Network カテゴリのpcap問題に挑戦しました。 難しかっ">
+<meta itemprop="datePublished" content="2023-01-09T13:00:00&#43;09:00" />
+<meta itemprop="dateModified" content="2023-01-09T13:00:00&#43;09:00" />
+<meta itemprop="wordCount" content="498">
+
+
+
+<meta itemprop="keywords" content="CTF," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="IrisCTF 2023 Writeup"/>
+<meta name="twitter:description" content="Save The Earth! - 地球環境を守ろう！ URL: https://2023.irisc.tf/home 397点を獲得し、最終順位は167位でした。 主に、Network カテゴリのpcap問題に挑戦しました。 難しかっ"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="https://captureamerica.github.io/writeups/" class="logo">CTF Writeups</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="https://captureamerica.github.io/writeups/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="https://captureamerica.github.io/writeups/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="https://captureamerica.github.io/writeups/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="https://captureamerica.github.io/writeups/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a><a href="https://captureamerica.github.io/writeups/about/">
+        <li class="mobile-menu-item">About</li>
+      </a>
+  </ul>
+
+  
+
+
+</nav>
+
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="https://captureamerica.github.io/writeups/" class="logo">CTF Writeups</a>
+</div>
+
+
+
+
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="https://captureamerica.github.io/writeups/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="https://captureamerica.github.io/writeups/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="https://captureamerica.github.io/writeups/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="https://captureamerica.github.io/writeups/categories/">Categories</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="https://captureamerica.github.io/writeups/about/">About</a>
+      </li>
+  </ul>
+</nav>
+
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">IrisCTF 2023 Writeup</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2023-01-09 </span>
+        <div class="post-category">
+            <a href="https://captureamerica.github.io/writeups/categories/ctf/"> CTF </a>
+            </div>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contents</h2>
+  <div class="post-toc-content">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#network-wi-the-fi-247-points">[Network]: wi-the-fi (247 points)</a>
+      <ul>
+        <li><a href="#challenge">Challenge</a></li>
+        <li><a href="#solution">Solution</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <img src="https://captureamerica.github.io/writeups/img/green_bar.png" alt="green_bar.png">
+<img src="https://captureamerica.github.io/writeups/img/10_Nature_Themed_Icons_Cute_Earth_Icon.png" alt="Save The Earth!"> <b><font color="teal">Save The Earth! - 地球環境を守ろう！</font></b> <img src="https://captureamerica.github.io/writeups/img/10_Nature_Themed_Icons_Cute_Earth_Icon.png" alt="Save The Earth!">
+<img src="https://captureamerica.github.io/writeups/img/green_bar.png" alt="green_bar.png">
+<div class='align-right'>
+<a href="https://translate.google.com/translate?hl=en&sl=ja&tl=en&u=https%3A%2F%2Fcaptureamerica.github.io%2Fwriteups%2Fpost%2Firisctf_2023%2F">
+<img src="https://captureamerica.github.io/writeups/img/En.png" alt="English">
+</a>
+</div>
+<p>URL: <a href="https://2023.irisc.tf/home">https://2023.irisc.tf/home</a>
+<br /><br /></p>
+<p>397点を獲得し、最終順位は167位でした。<br /></p>
+<img src="https://captureamerica.github.io/writeups/img/irisctf_2023_score.png" alt="irisctf_2023_score.png">
+<p><br /></p>
+<img src="https://captureamerica.github.io/writeups/img/irisctf_2023_score2.png" alt="irisctf_2023_score2.png">
+<p><br><br></p>
+<p>主に、Network カテゴリのpcap問題に挑戦しました。</p>
+<p>難しかった残りの２問（&ldquo;Needle in the Haystack Secure&rdquo; と &ldquo;MICHAEL&rdquo;）は、それなりに頑張ったんですが解けませんでした。。</p>
+<p><br /><br />
+<br /><br /></p>
+<h2 id="network-wi-the-fi-247-points">[Network]: wi-the-fi (247 points)</h2>
+<hr>
+<h3 id="challenge">Challenge</h3>
+<blockquote>
+<p>You&rsquo;re probably used to pcaps captured at layer 3 in promiscuous mode, but do you know what to do with a pcap captured at layer 2 in monitor mode?</p>
+</blockquote>
+<p>Attachment:</p>
+<ul>
+<li>BobertsonNet.cap</li>
+</ul>
+<br>
+<h3 id="solution">Solution</h3>
+<p>WiFi通信なので、Aircrack-ng を使います。これは、過去にも何度かやってます。</p>
+<p>参考：</p>
+<ul>
+<li><a href="https://captureamerica.github.io/writeups/post/rootersctf_2019/">Rooters CTF 2019</a></li>
+<li><a href="https://captureamerica.github.io/writeups/post/umdctf_2021/">UMDCTF 2021</a></li>
+</ul>
+<p><br /></p>
+<pre>
+$ aircrack-ng BobertsonNet.cap -w /usr/share/wordlists/rockyou.txt
+Reading packets, please wait...
+Opening BobertsonNet.cap
+Read 20980 packets.
+
+   #  BSSID              ESSID                     Encryption
+
+   1  A0:28:ED:C3:CC:C1  BobertsonNet              WPA (1 handshake)
+
+Choosing first network as target.
+
+Reading packets, please wait...
+Opening BobertsonNet.cap
+Read 20980 packets.
+
+1 potential targets
+
+                               Aircrack-ng 1.6
+
+      [00:00:04] 14469/14344392 keys tested (3623.73 k/s)
+
+      Time left: 1 hour, 5 minutes, 54 seconds                   0.10%
+
+                           KEY FOUND! [ billybob1 ]
+
+
+      Master Key     : 84 F1 82 B2 91 7C D3 DD 26 B2 19 34 C0 7B 27 2F
+                       AC CF 32 B2 DF A3 56 01 9E FE 8C 7A 23 38 15 F8
+
+      Transient Key  : BA 3F 2A 6D D0 DB 35 F8 D4 60 FF BB EF CB B5 1A
+                       CE 60 FD 5F 58 D0 1F C4 3A EA 03 EA D4 DE 41 C9
+                       4B 0B 91 19 1F 47 2D E3 8A 26 19 85 69 89 37 F3
+                       2D 24 11 A4 C7 31 F9 D6 8F 6D 87 4F 17 87 01 9D
+
+      EAPOL HMAC     : 80 8E 84 12 3F EA 18 4E 2D 25 9A 19 10 54 E2 51
+</pre>
+<p><br /><br /></p>
+<p>見つかった Key (<code>billybob1</code>) を、Wireshark にて wpa-pwd に設定します。</p>
+<p><br /></p>
+<p>あとは、<code>tcp contains &quot;iris&quot;</code> でサーチするとフラグが見つかります。Decrypted CCMP dataのタブの方に出てきます。</p>
+<img src="https://captureamerica.github.io/writeups/img/irisctf_2023_wifi.png" alt="irisctf_2023_wifi.png">
+<p><br /><br /></p>
+<p>Flag: <code>irisctf{4ircr4ck_g0_brrrrrrrrrrrrrrr}</code></p>
+<p><br /><br />
+<br /><br /></p>
+<hr>
+<p><br /><br />
+<br /><br /></p>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content">CaptureAmerica @ CTF フラxxグゲット</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">
+        2023-01-09
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="https://captureamerica.github.io/writeups/tags/ctf/">CTF</a>
+          </div>
+      <nav class="post-nav">
+        
+        <a class="next" href="https://captureamerica.github.io/writeups/post/kringlecon_2022/">
+            <span class="next-text nav-default">SANS Holiday Hack Challenge (Kringlecon) 2022 Writeup</span>
+            <span class="next-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="https://github.com/CaptureAmerica/" class="iconfont icon-github" title="github"></a>
+  <a href="https://captureamerica.github.io/writeups/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2019 - 
+    2023<span class="heart"><i class="iconfont icon-heart"></i></span><span>CaptureAmerica @ CTF フラxxグゲット</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  
+
+
+
+<script type="text/javascript" src="https://captureamerica.github.io/writeups/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-104910699-2', 'auto');
+	ga('set', 'anonymizeIp', true);
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+
+
+
+
+
+</body>
+</html>
