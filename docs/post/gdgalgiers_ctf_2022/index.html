@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>GDG Algiers CTF 2022 Writeup - CTF フラxxグゲット</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="CaptureAmerica @ CTF フラxxグゲット" /><meta name="description" content="Save The Earth! - 地球環境を守ろう！ URL: https://ctf.gdgalgiers.com/challenges 2022年の10月頃に参加したCTFです。復習をしたので、一個Writeupを残しておきます。 CTFTimeの" /><meta name="keywords" content="CTF, Writeup, captureamerica, picoCTF" />
+
+
+
+<meta name="google-site-verification" content="PqctLWZQttGzxXVupWuIt2HWuBI8cvN1z07ETpxA2dw" />
+
+
+<meta name="generator" content="Hugo 0.74.2 with theme even" />
+
+
+<link rel="canonical" href="https://captureamerica.github.io/writeups/post/gdgalgiers_ctf_2022/" />
+<link rel="apple-touch-icon" sizes="180x180" href="https://captureamerica.github.io/writeups/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://captureamerica.github.io/writeups/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://captureamerica.github.io/writeups/favicon-16x16.png">
+<link rel="manifest" href="https://captureamerica.github.io/writeups/manifest.json">
+<link rel="mask-icon" href="https://captureamerica.github.io/writeups/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="https://captureamerica.github.io/writeups/sass/main.min.2e81bbed97b8b282c1aeb57488cc71c8d8c8ec559f3931531bd396bf31e0d4dd.css" rel="stylesheet">
+
+
+
+<meta property="og:title" content="GDG Algiers CTF 2022 Writeup" />
+<meta property="og:description" content="Save The Earth! - 地球環境を守ろう！ URL: https://ctf.gdgalgiers.com/challenges 2022年の10月頃に参加したCTFです。復習をしたので、一個Writeupを残しておきます。 CTFTimeの" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://captureamerica.github.io/writeups/post/gdgalgiers_ctf_2022/" />
+<meta property="article:published_time" content="2023-01-17T13:00:00+09:00" />
+<meta property="article:modified_time" content="2023-01-17T13:00:00+09:00" />
+<meta itemprop="name" content="GDG Algiers CTF 2022 Writeup">
+<meta itemprop="description" content="Save The Earth! - 地球環境を守ろう！ URL: https://ctf.gdgalgiers.com/challenges 2022年の10月頃に参加したCTFです。復習をしたので、一個Writeupを残しておきます。 CTFTimeの">
+<meta itemprop="datePublished" content="2023-01-17T13:00:00&#43;09:00" />
+<meta itemprop="dateModified" content="2023-01-17T13:00:00&#43;09:00" />
+<meta itemprop="wordCount" content="1526">
+
+
+
+<meta itemprop="keywords" content="CTF," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="GDG Algiers CTF 2022 Writeup"/>
+<meta name="twitter:description" content="Save The Earth! - 地球環境を守ろう！ URL: https://ctf.gdgalgiers.com/challenges 2022年の10月頃に参加したCTFです。復習をしたので、一個Writeupを残しておきます。 CTFTimeの"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="https://captureamerica.github.io/writeups/" class="logo">CTF Writeups</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="https://captureamerica.github.io/writeups/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="https://captureamerica.github.io/writeups/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="https://captureamerica.github.io/writeups/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="https://captureamerica.github.io/writeups/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a><a href="https://captureamerica.github.io/writeups/about/">
+        <li class="mobile-menu-item">About</li>
+      </a>
+  </ul>
+
+  
+
+
+</nav>
+
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="https://captureamerica.github.io/writeups/" class="logo">CTF Writeups</a>
+</div>
+
+
+
+
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="https://captureamerica.github.io/writeups/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="https://captureamerica.github.io/writeups/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="https://captureamerica.github.io/writeups/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="https://captureamerica.github.io/writeups/categories/">Categories</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="https://captureamerica.github.io/writeups/about/">About</a>
+      </li>
+  </ul>
+</nav>
+
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">GDG Algiers CTF 2022 Writeup</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2023-01-17 </span>
+        <div class="post-category">
+            <a href="https://captureamerica.github.io/writeups/categories/ctf/"> CTF </a>
+            </div>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contents</h2>
+  <div class="post-toc-content">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#misc-intruder">[Misc]: Intruder</a>
+      <ul>
+        <li><a href="#challenge">Challenge</a></li>
+        <li><a href="#solution">Solution</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <img src="https://captureamerica.github.io/writeups/img/green_bar.png" alt="green_bar.png">
+<img src="https://captureamerica.github.io/writeups/img/10_Nature_Themed_Icons_Cute_Earth_Icon.png" alt="Save The Earth!"> <b><font color="teal">Save The Earth! - 地球環境を守ろう！</font></b> <img src="https://captureamerica.github.io/writeups/img/10_Nature_Themed_Icons_Cute_Earth_Icon.png" alt="Save The Earth!">
+<img src="https://captureamerica.github.io/writeups/img/green_bar.png" alt="green_bar.png">
+<div class='align-right'>
+<a href="https://translate.google.com/translate?hl=en&sl=ja&tl=en&u=https%3A%2F%2Fcaptureamerica.github.io%2Fwriteups%2Fpost%2Fgdgalgiers_ctf_2022%2F">
+<img src="https://captureamerica.github.io/writeups/img/En.png" alt="English">
+</a>
+</div>
+<p>URL: <a href="https://ctf.gdgalgiers.com/challenges">https://ctf.gdgalgiers.com/challenges</a>
+<br /><br /></p>
+<p>2022年の10月頃に参加したCTFです。復習をしたので、一個Writeupを残しておきます。</p>
+<p>CTFTimeの履歴によると、70点を獲得し、最終順位は530位だったようです。<br /></p>
+<img src="https://captureamerica.github.io/writeups/img/gdgalgiers_ctf_2022_score.png" alt="gdgalgiers_ctf_2022_score.png">
+<p><br /><br />
+<br /><br /></p>
+<h2 id="misc-intruder">[Misc]: Intruder</h2>
+<hr>
+<h3 id="challenge">Challenge</h3>
+<blockquote>
+<p>We heard a rumor that an intruder is in our GDG club and he&rsquo;s providing our enemies sensitive data to knock us down. We got this image through the network. Your task is to figure out the way he transmitted the data.</p>
+</blockquote>
+<p>Attachment:</p>
+<ul>
+<li>AK.png</li>
+</ul>
+<br>
+<h3 id="solution">Solution</h3>
+<p>これはイベント中には解けなかったやつです。</p>
+<p>まず、以下がOfficial Writeupです。</p>
+<p><a href="https://github.com/GDGAlgiers/gdg-algiers-ctf-2022-writeups">https://github.com/GDGAlgiers/gdg-algiers-ctf-2022-writeups</a></p>
+<p><br /><br /></p>
+<p>Official Writeupでは、pngcheckを使ったあとに、IDATデータをなんらかして取り出しているようですが、自分はzstegで取り出しました。</p>
+<p><br /></p>
+<p>まずは、zstegを実行したときの結果。</p>
+<pre>
+$ zsteg AK.png
+[?] 413 bytes of extra data after zlib stream
+extradata:0         .. file: zlib compressed data
+    00000000: 78 9c ed d3 41 6a c4 30  10 44 d1 2b 25 cc fd ef  |x...Aj.0.D.+%...|
+    00000010: 96 6d c0 74 f1 d5 32 66  ac fe d4 c6 d8 4a ab 9e  |.m.t..2f.....J..|
+    00000020: 32 fa fc 7c 8c 31 c6 18  63 8c 79 2e bf 38 d5 fa  |2..|.1..c.y..8..|
+    00000030: eb fb ff 6f f2 5f f5 3a  a8 9b a3 e3 6b 48 4f de  |...o._.:....kHO.|
+    00000040: bc d7 41 dd 34 1d d9 bd  5a 5f 4d 5e d5 ed 9c 80  |..A.4...Z_M^....|
+    00000050: 3a 75 79 5f a2 de e9 a0  4e dd ea e4 6a c2 93 1d  |:uy_....N...j...|
+    00000060: d4 9d a7 e3 bb 57 22 32  33 df bb 9d 9e ea ce d3  |.....W"23.......|
+    00000070: 91 64 e9 fe 33 ef a0 6e  82 ae 97 eb 5e bc 6d 35  |.d..3..n....^.m5|
+    00000080: e1 7b a2 ee 1b 74 d5 af  9a ff e6 f9 dd cc 2e 72  |.{...t.........r|
+    00000090: 3e ea d4 e5 6e 95 28 af  5f 55 e4 53 52 77 b6 8e  |>...n.(._U.SRw..|
+    000000a0: 78 c9 09 e4 6e e4 ac c8  4a 75 73 74 55 b7 bc be  |x...n...JustU...|
+    000000b0: e7 e2 0d ef ba 71 ea de  ab db 99 9f 5d 57 7b f5  |.....q......]W{.|
+    000000c0: f5 de e6 ea ce d0 e5 7b  b7 7a 13 7b 5f 73 78 13  |.......{.z.{_sx.|
+    000000d0: 75 27 e9 88 34 ab 79 37  f2 26 ef a2 6e a6 2e cf  |u'..4.y7.&..n...|
+    000000e0: c9 fd 89 9d f7 cc 52 75  73 74 b9 43 be 65 3d 1d  |......Rust.C.e=.|
+    000000f0: d9 f1 ae 7b a7 ee 8d 3a  22 22 cd 79 9f d5 09 f9  |...{...:"".y....|
+meta date:create    .. text: "2013-03-24T23:31:44+00:00"
+meta date:modify    .. [same as "meta date:create"]
+meta software       .. text: "ImageMagick 6.6.9-7 2012-08-17 Q16 http://www.imagemagick.org"
+meta Thumb::Document::Pages..
+
+    00000000: 31                                                |1               |
+meta Thumb::Image::height..
+
+    00000000: 38 35 34                                          |854             |
+meta Thumb::Image::Width..
+
+    00000000: 32 33 36 35                                       |2365            |
+meta Thumb::Mimetype.. text: "image/png"
+meta Thumb::MTime   .. text: "1364167904"
+meta Thumb::Size    .. text: "8.094MBB"
+meta Thumb::URI     .. text: "file:///tmp/localcopy_5f9283566320-1.png"
+imagedata           .. text: "YO[Sf$0&"
+</pre>
+<p><br /></p>
+<p>ここから、extradata:0 を取り出していきます。</p>
+<pre>
+$ zsteg -E "extradata:0" AK.png > extracted
+
+$ file extracted
+extracted: zlib compressed data
+
+$ zlib-flate -uncompress < extracted
+3030303030303030303030303030303030303030...(snip)...03030303030313131313131313...(snip)...
+</pre>
+<p><br /><br />
+30と31の2つの値が見られるので、30を1に、31を0に変換します。これは、テキストエディタ（emacs）でやりました。</p>
+<p>イベント中では、ここでstuckして降参しました。。。</p>
+<p><br /><br /></p>
+<p>Official Writeupによると、このデータのサイズが12321 (111 x 111) であることから、QRコードであることが予想できる、とのこと。</p>
+<p><br /><br /></p>
+<p>Emacsでファイルを保存すると、どうしても最後に改行が入ってしまってサイズが12322になるので、ちょっと気づきにくいかもです。。。</p>
+<pre>
+$ ls -al aaa.txt | awk '{print $5, $9}'
+12322 aaa.txt
+</pre>
+<p><br /><br /></p>
+<p>ということで、echoを使ってファイルに保存します。</p>
+<pre>
+$ echo -n "00000000...(snip)..." | wc -c
+   12321
+
+$ echo -n "00000000...(snip)..." > aaa.txt
+
+$ ls -al aaa.txt | awk '{print $5, $9}'
+12321 aaa.txt
+
+</pre>
+<p><br /></p>
+<p>ちなみに、Terminalで出力して、ウィンドウサイズを調整すると、QRコードっぽいのがすでに確認できます。</p>
+<img src="https://captureamerica.github.io/writeups/img/gdgalgiers_ctf_2022_terminal.png" alt="gdgalgiers_ctf_2022_terminal.png">
+<p><br /><br /></p>
+<p>この手のQRコードのデータは、ツールを使って解読できた記憶があって、自分のブログを遡って見てみたら以下でやってました。</p>
+<p><a href="https://captureamerica.github.io/writeups/post/jornadas_ctf_2021/">Jornadas CTF 2021</a></p>
+<p><br /></p>
+<p>ツールは以下です。ちなみに、Python2で動くツールです。</p>
+<p><a href="https://github.com/waidotto/strong-qr-decoder">https://github.com/waidotto/strong-qr-decoder</a></p>
+<p><br /><br /></p>
+<p>まずは正方形にして、ファイルに保存します。</p>
+<pre>
+$ echo -n "00000000...(snip)..." | fold -111 > aaa.txt
+</pre>
+<p><br /></p>
+<pre>
+$ python ./strong-qr-decoder/sqrd.py aaa.txt
+error: 辺の長さがおかしいです
+</pre>
+<p><br /></p>
+<p>どうやら、111 x 111 という正方形はQRコードとしては無効らしいです。</p>
+<p><br /><br /></p>
+<p>余分な箇所を削除して、89 x 89 で試してみましたが、それでもダメでした。。。</p>
+<pre>
+$ cat aaa.txt | head -n 100 | tail -n 89 > bbb.txt
+$ cat bbb.txt | cut -c 12-100 > ccc.txt
+$ python ./strong-qr-decoder/sqrd.py ccc.txt
+Traceback (most recent call last):
+  File "./strong-qr-decoder/sqrd.py", line 1025, in <module>
+    num = int(data_bits[:10], 2)
+ValueError: invalid literal for int() with base 2: ''
+</pre>
+<p><br /><br /></p>
+<p>Solutionとしては、やっぱり一度画像にしてからQRコードを読み取った方がいいみたいです。</p>
+<p>これは、過去に以下のCTFで似たようなものをやっていたので、そのときのコードを流用しました。</p>
+<p><a href="https://captureamerica.github.io/writeups/post/xmas_htsp_ctf/">X-MAS CTF 2019</a></p>
+<p><br /><br /></p>
+<p>aaa.txt は予め以下のように作成しておきます。</p>
+<pre>
+$ echo -n "00000000...(snip)..." | fold -111 > aaa.txt
+</pre>
+<p><br /></p>
+<p>書いたコード：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="ch">#!/usr/bin/env python</span>
+<span class="c1"># -*- coding:utf-8 -*-</span>
+<span class="kn">from</span> <span class="nn">PIL</span> <span class="kn">import</span> <span class="n">Image</span>
+
+<span class="n">MAX</span><span class="o">=</span><span class="mi">111</span>
+<span class="n">f</span><span class="o">=</span><span class="nb">open</span><span class="p">(</span><span class="s2">&#34;aaa.txt&#34;</span><span class="p">,</span><span class="s2">&#34;r&#34;</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&#34;</span><span class="se">\n</span><span class="s2">&#34;</span><span class="p">)</span>
+<span class="n">a</span><span class="o">=</span><span class="p">[]</span>
+<span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">f</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">MAX</span><span class="p">):</span>
+        <span class="n">val</span> <span class="o">=</span> <span class="n">line</span><span class="p">[</span><span class="n">y</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">val</span><span class="o">==</span><span class="s1">&#39;0&#39;</span><span class="p">:</span>
+	    <span class="n">a</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="mi">255</span><span class="p">,</span><span class="mi">255</span><span class="p">,</span><span class="mi">255</span><span class="p">))</span>
+        <span class="k">else</span><span class="p">:</span>
+	    <span class="n">a</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">))</span>
+                 
+<span class="n">im</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s2">&#34;RGB&#34;</span><span class="p">,(</span><span class="n">MAX</span><span class="p">,</span><span class="n">MAX</span><span class="p">))</span>
+<span class="n">im</span><span class="o">.</span><span class="n">putdata</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<span class="n">im</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s2">&#34;QR.png&#34;</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><br /></p>
+<img src="https://captureamerica.github.io/writeups/img/gdgalgiers_ctf_2022_QR.png" alt="gdgalgiers_ctf_2022_QR.png">
+<p><br /><br /></p>
+<p>ちなみに、Official Writeup のコードの中で、MAX=25というのは間違いで、MAX=111が正解ですね。</p>
+<img src="https://captureamerica.github.io/writeups/img/gdgalgiers_ctf_2022_official_writeup.png" alt="gdgalgiers_ctf_2022_official_writeup.png">
+<p><br /><br /></p>
+<p>Flag: <code>CyberErudites{pN6_ChUnK5_4r3_N1c3_P14C3_70_H1d3}</code></p>
+<p><br /><br />
+<br /><br /></p>
+<hr>
+<p><br /><br />
+<br /><br /></p>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content">CaptureAmerica @ CTF フラxxグゲット</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">
+        2023-01-17
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="https://captureamerica.github.io/writeups/tags/ctf/">CTF</a>
+          </div>
+      <nav class="post-nav">
+        
+        <a class="next" href="https://captureamerica.github.io/writeups/post/irisctf_2023/">
+            <span class="next-text nav-default">IrisCTF 2023 Writeup</span>
+            <span class="next-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="https://github.com/CaptureAmerica/" class="iconfont icon-github" title="github"></a>
+  <a href="https://captureamerica.github.io/writeups/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2019 - 
+    2023<span class="heart"><i class="iconfont icon-heart"></i></span><span>CaptureAmerica @ CTF フラxxグゲット</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  
+
+
+
+<script type="text/javascript" src="https://captureamerica.github.io/writeups/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-104910699-2', 'auto');
+	ga('set', 'anonymizeIp', true);
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+
+
+
+
+
+</body>
+</html>
