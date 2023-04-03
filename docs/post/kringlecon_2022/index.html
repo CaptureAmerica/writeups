@@ -49,7 +49,7 @@
 <meta itemprop="description" content="Save The Earth! - 地球環境を守ろう！ URL: https://2022.kringlecon.com/ 新年明けまして おめでとうございます！ 今年も SANS の Holiday Hack Challenge (Kringlecon) にちょっとだけ参加しました。 過去にも何度か参加してますが">
 <meta itemprop="datePublished" content="2023-01-09T13:00:00&#43;09:00" />
 <meta itemprop="dateModified" content="2023-01-09T13:00:00&#43;09:00" />
-<meta itemprop="wordCount" content="2668">
+<meta itemprop="wordCount" content="2669">
 
 
 
@@ -503,7 +503,9 @@ Oh, and that string might be GZip compressed - I hope that&rsquo;s OK!
 <br />
 Just in case they try this again, please alert on that HTTP data with message <code>Suspicious JavaScript function, possible Dridex infection</code></p>
 </blockquote>
-<p>以下を参考にしました。GZip圧縮されていたとしても単純に <code>http.response_body</code> でいいらしいです。</p>
+<p>以下を参考にしました。GZip圧縮されていたとしても単純に <code>http.response_body</code> でいいらしいです。
+<a href="https://suricata.readthedocs.io/en/suricata-6.0.0/rules/http-keywords.html">https://suricata.readthedocs.io/en/suricata-6.0.0/rules/http-keywords.html</a></p>
+<p><br /></p>
 <p>Answer:</p>
 <p><code>$ echo 'alert http any any -&gt; any any (msg:&quot;Suspicious JavaScript function, possible Dridex infection&quot;; http.response_body; content:&quot;let byteCharacters = atob&quot;; nocase; sid:1000003; rev:1;)' &gt;&gt; ./suricata.rules</code></p>
 <p><br /><br />

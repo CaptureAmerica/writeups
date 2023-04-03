@@ -124,6 +124,7 @@ while 1:
 
 
 <br />
+
 Flag: `actf{h0p3_y0u_us3d_th3_f0rmu14-1985098}`
 
 
@@ -210,6 +211,7 @@ Segmentation fault
 ```
 
 <br />
+
 Flag: `actf{that_gosh_darn_canary_got_me_pwned!}`
 
 
@@ -397,6 +399,7 @@ actf{youre_a_canary_killer_>:(}
 </pre>
 
 <br>
+
 Flag: `actf{youre_a_canary_killer_>:(}`
 
 
@@ -435,6 +438,7 @@ actf{th3y_gr0w_up_s0_f4st}
 
 
 <br />
+
 Flag: `actf{th3y_gr0w_up_s0_f4st}`
 
 
@@ -468,6 +472,7 @@ actf{ok4y_m4yb3_linux_is_s7ill_b3tt3r}
 
 
 <br />
+
 Flag: `actf{ok4y_m4yb3_linux_is_s7ill_b3tt3r}`
 
 
@@ -612,6 +617,7 @@ actf{impr4ctic4l_pr0blems_c4ll_f0r_impr4ctic4l_s0lutions}
 </pre>
 
 <br>
+
 Flag: `actf{impr4ctic4l_pr0blems_c4ll_f0r_impr4ctic4l_s0lutions}`
 
 
@@ -699,6 +705,7 @@ B7.zlib:             zlib compressed data
 <img src="https://captureamerica.github.io/writeups/img/angstromctf_1A9.jpg" alt="angstromctf_1A9.jpg">
 
 <br>
+
 Flag: `actf{git_good_git_wireshark-123323}`
 
 

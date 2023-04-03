@@ -361,6 +361,9 @@ Oh, and that string might be GZip compressed - I hope that's OK!
 Just in case they try this again, please alert on that HTTP data with message `Suspicious JavaScript function, possible Dridex infection`
 
 以下を参考にしました。GZip圧縮されていたとしても単純に `http.response_body` でいいらしいです。
+[https://suricata.readthedocs.io/en/suricata-6.0.0/rules/http-keywords.html](https://suricata.readthedocs.io/en/suricata-6.0.0/rules/http-keywords.html)
+
+<br />
 
 Answer:
 

@@ -139,7 +139,7 @@ Flag: `UMDCTF-{b1n_p1Ng_P0ng}`
 
 Attachment:
 
-- paper.pcap
+- paper.pdf
 
 
 <br />

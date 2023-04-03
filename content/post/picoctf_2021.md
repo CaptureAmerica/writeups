@@ -114,7 +114,7 @@ Flag: `picoCTF{th4ts_k1nd4_n34t_bb660d55}`
 ## [Web]: GET aHEAD (20 points)
 - - -
 ### Challenge
-> Find the flag being held on this server to get ahead of the competition http://mercury.picoctf.net:21939/
+> Find the flag being held on this server to get ahead of the competition [http://mercury.picoctf.net:21939/](http://mercury.picoctf.net:21939/)
 
 
 <br />
@@ -152,7 +152,7 @@ Flag: `picoCTF{r3j3ct_th3_du4l1ty_6ef27873}`
 ## [Web]: Cookies (40 points)
 - - -
 ### Challenge
-> Who doesn't love cookies? Try to figure out the best one. http://mercury.picoctf.net:17781/
+> Who doesn't love cookies? Try to figure out the best one. [http://mercury.picoctf.net:17781/](http://mercury.picoctf.net:17781/)
 
 <br />
 ### Solution
@@ -172,7 +172,7 @@ Flag: `picoCTF{3v3ry1_l0v3s_c00k135_bb3b3535}`
 ## [Web]: Scavenger Hunt (50 points)
 - - -
 ### Challenge
-> There is some interesting information hidden around this site http://mercury.picoctf.net:44070/. Can you find it?
+> There is some interesting information hidden around this site [http://mercury.picoctf.net:44070/](http://mercury.picoctf.net:44070/). Can you find it?
 <br /><br />
 Hint: You should have enough hints to find the files, don't run a brute forcer.
 
@@ -223,7 +223,7 @@ Flag: `picoCTF{th4ts_4_l0t_0f_pl4c3s_2_lO0k_7a46d25d}`
 ## [Web]: Who are you? (60 points)
 - - -
 ### Challenge
-> Let me in. Let me iiiiiiinnnnnnnnnnnnnnnnnnnn http://mercury.picoctf.net:1270/
+> Let me in. Let me iiiiiiinnnnnnnnnnnnnnnnnnnn [http://mercury.picoctf.net:1270/](http://mercury.picoctf.net:1270/)
 <br /><br />
 Hint: It ain't much, but it's an RFC https://tools.ietf.org/html/rfc2616
 
@@ -302,7 +302,7 @@ Flag: `picoCTF{http_h34d3rs_v3ry_c0Ol_much_w0w_f56f58a5}`
 ## [Web]: Some Assembly Required 1 (70 points)
 - - -
 ### Challenge
-> http://mercury.picoctf.net:55336/index.html
+> [http://mercury.picoctf.net:55336/index.html](http://mercury.picoctf.net:55336/index.html)
 
 <br />
 ### Solution
@@ -321,7 +321,7 @@ Flag: `picoCTF{51e513c498950a515b1aab5e941b2615}`
 ## [Web]: It is my Birthday (100 points)
 - - -
 ### Challenge
-> I sent out 2 invitations to all of my friends for my birthday! I'll know if they get stolen because the two invites look similar, and they even have the same md5 hash, but they are slightly different! You wouldn't believe how long it took me to find a collision. Anyway, see if you're invited by submitting 2 PDFs to my website. http://mercury.picoctf.net:11590/
+> I sent out 2 invitations to all of my friends for my birthday! I'll know if they get stolen because the two invites look similar, and they even have the same md5 hash, but they are slightly different! You wouldn't believe how long it took me to find a collision. Anyway, see if you're invited by submitting 2 PDFs to my website. [http://mercury.picoctf.net:11590/](http://mercury.picoctf.net:11590/)
 <br /><br />
 Hint1: Look at the category of this problem.
 <br /><br />
@@ -402,7 +402,7 @@ Flag: `picoCTF{c0ngr4ts_u_r_1nv1t3d_3d3e4c57}`
 ## [Web]: Most Cookies (150 points)
 - - -
 ### Challenge
-> Alright, enough of using my own encryption. Flask session cookies should be plenty secure! server.py http://mercury.picoctf.net:65344/
+> Alright, enough of using my own encryption. Flask session cookies should be plenty secure! server.py [http://mercury.picoctf.net:65344/](http://mercury.picoctf.net:65344/)
 <br /><br />
 Hint1: How secure is a flask cookie?
 
