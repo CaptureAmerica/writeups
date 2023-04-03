@@ -1220,21 +1220,21 @@ Burpでやりとりを見ていたたら、以下のpayloadが見つかりまし
 変更後のpayloadは、FireFoxのdeveloper toolで設定しました。
 Local Storageの中に出てくる auth-token と token-payload です。
 
-<img src="https://captureamerica.github.io/writeups/img/pico2023_javacode1.png" alt="pico2023_javacode1.png">
+<img src="https://captureamerica.github.io/writeups/img/picoctf_2023_javacode1.png" alt="picoctf_2023_javacode1.png">
 
 
 <br />
 
 これで Admin にはなれるのですが、フラグは表示されませんでした。
 
-<img src="https://captureamerica.github.io/writeups/img/pico2023_javacode2.png" alt="pico2023_javacode2.png">
+<img src="https://captureamerica.github.io/writeups/img/picoctf_2023_javacode2.png" alt="picoctf_2023_javacode2.png">
 
 
 <br />
 
 なので、Admin dashboardから、userのroleをAdminにして、userでログインしなおしてフラグをゲットしました。
 
-<img src="https://captureamerica.github.io/writeups/img/pico2023_javacode3.png" alt="pico2023_javacode3.png">
+<img src="https://captureamerica.github.io/writeups/img/picoctf_2023_javacode3.png" alt="picoctf_2023_javacode3.png">
 
 
 <br />
