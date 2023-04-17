@@ -121,7 +121,7 @@ Attachments:
 
 - doll1.jpg
 
-<img src="https://captureamerica.github.io/writeups/img/taxsaw_ctf_2023_doll1.png" alt="taxsaw_ctf_2023_doll1.png"> <br />
+<img src="https://captureamerica.github.io/writeups/img/taxsaw_ctf_2023_doll1.jpg" alt="taxsaw_ctf_2023_doll1.jpg"> <br />
 
 <br />
 ### Solution
@@ -158,7 +158,7 @@ Attachments:
 
 - doll2.jpg
 
-<img src="https://captureamerica.github.io/writeups/img/taxsaw_ctf_2023_doll2.png" alt="taxsaw_ctf_2023_doll2.png"> <br />
+<img src="https://captureamerica.github.io/writeups/img/taxsaw_ctf_2023_doll2.jpg" alt="taxsaw_ctf_2023_doll2.jpg"> <br />
 
 - md5hash1.txt (dd679302de4ce83d961f95a1facca536)
 - md5hash2.txt (5400711cd704e87ed3fd11556cc174ae)
@@ -302,7 +302,7 @@ Attachments:
 
 - doll3.jpg
 
-<img src="https://captureamerica.github.io/writeups/img/taxsaw_ctf_2023_doll3.png" alt="taxsaw_ctf_2023_doll3.png"> <br />
+<img src="https://captureamerica.github.io/writeups/img/taxsaw_ctf_2023_doll3.jpg" alt="taxsaw_ctf_2023_doll3.jpg"> <br />
 
 - hint1/convertthenshift.txt
 
@@ -382,7 +382,7 @@ Attachments:
 
 - doll4.jpg
 
-<img src="https://captureamerica.github.io/writeups/img/taxsaw_ctf_2023_doll4.png" alt="taxsaw_ctf_2023_doll4.png"> <br />
+<img src="https://captureamerica.github.io/writeups/img/taxsaw_ctf_2023_doll4.jpg" alt="taxsaw_ctf_2023_doll4.jpg"> <br />
 
 - guardian (ELF 64bit)
 
@@ -463,7 +463,7 @@ wrote extracted data to "linktodoll5.txt".
 
 そろそろフラグを出してください、と思っていたら、やっとここで出てきました。
 
-<img src="https://captureamerica.github.io/writeups/img/taxsaw_ctf_2023_doll5.png" alt="taxsaw_ctf_2023_doll5.png"> <br />
+<img src="https://captureamerica.github.io/writeups/img/taxsaw_ctf_2023_doll5.jpg" alt="taxsaw_ctf_2023_doll5.jpg"> <br />
 
 <br />
 
