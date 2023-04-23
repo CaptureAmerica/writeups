@@ -22,16 +22,20 @@ URL: [https://spaceheroes.ctfd.io/challenges](https://spaceheroes.ctfd.io/challe
 
 <img src="https://captureamerica.github.io/writeups/img/spaceheroes_ctf_2023_score1.png" alt="spaceheroes_ctf_2023_score1.png"> <br />
 
+<br />
+
 <img src="https://captureamerica.github.io/writeups/img/spaceheroes_ctf_2023_score2.png" alt="spaceheroes_ctf_2023_score2.png">
 
 <br /><br />
 以下は、チャレンジ一覧です。
 
-<img src="https://captureamerica.github.io/writeups/img/spaceheroes_ctf_2023_chall1.png" alt="spaceheroes_ctf_2023_chall1.png"> <br />
+（見にくいですが、チェックが入っているのが解けたチャレンジです）
 
-<img src="https://captureamerica.github.io/writeups/img/spaceheroes_ctf_2023_chall2.png" alt="spaceheroes_ctf_2023_chall2.png"> <br />
+<img src="https://captureamerica.github.io/writeups/img/spaceheroes_ctf_2023_chall1.png" alt="spaceheroes_ctf_2023_chall1.png">
 
-<img src="https://captureamerica.github.io/writeups/img/spaceheroes_ctf_2023_chall3.png" alt="spaceheroes_ctf_2023_chall3.png"> <br />
+<img src="https://captureamerica.github.io/writeups/img/spaceheroes_ctf_2023_chall2.png" alt="spaceheroes_ctf_2023_chall2.png">
+
+<img src="https://captureamerica.github.io/writeups/img/spaceheroes_ctf_2023_chall3.png" alt="spaceheroes_ctf_2023_chall3.png">
 
 
 <br /><br />
@@ -73,6 +77,8 @@ WAV形式ファイルなので、Audacityで開きます。
 
 ただし、これはモールス信号として処理をすると、フラグ文字列にはなりません。
 
+チャレンジタイトルに出てくるモールス信号っぽい文字列（`.- ... -.-. .. ..` ==> "ASCII"）は、完全にひっかけです。
+
 <br />
 
 8文字ずつ分かれているので、バイナリデータだと予想して「0」と「1」に変えてみました。
@@ -88,6 +94,10 @@ WAV形式ファイルなので、Audacityで開きます。
 <br />
 
 Flag: `shctf{N0 1 c4n H34r u 833P_800p(In) < /dev/nullspace}`
+
+<br />
+
+"No one can hear you 833P_800p(In)"。どういう意味だろう。自分は、いちおう聞こえたんだけど、普通の人には無い聴覚を持っているのかな。
 
 
 
