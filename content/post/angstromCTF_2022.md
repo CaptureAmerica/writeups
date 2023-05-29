@@ -5,7 +5,7 @@ lastmod: 2022-05-06T16:00:00+09:00
 draft: false
 keywords: []
 description: ""
-tags: ["CTF", "Reviewed"]
+tags: ["CTF"]
 categories: ["CTF"]
 author: ""
 ---

