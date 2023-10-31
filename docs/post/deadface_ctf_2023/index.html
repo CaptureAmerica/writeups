@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Deadface CTF 2023 Writeup - CTF フラxxグゲット</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="CaptureAmerica @ CTF フラxxグゲット" /><meta name="description" content="Save The Earth! - 地球環境を守ろう！ URL: https://deadface.ctfd.io/challenges 600点を獲得し、387位でした。 Deadface CTF 2021 のときと同様、日曜日に見てみたら、追加チャレンジを見る前にイベント終了" /><meta name="keywords" content="CTF, Writeup, captureamerica, picoCTF" />
+
+
+
+<meta name="google-site-verification" content="PqctLWZQttGzxXVupWuIt2HWuBI8cvN1z07ETpxA2dw" />
+
+
+<meta name="generator" content="Hugo 0.74.2 with theme even" />
+
+
+<link rel="canonical" href="https://captureamerica.github.io/writeups/post/deadface_ctf_2023/" />
+<link rel="apple-touch-icon" sizes="180x180" href="https://captureamerica.github.io/writeups/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://captureamerica.github.io/writeups/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://captureamerica.github.io/writeups/favicon-16x16.png">
+<link rel="manifest" href="https://captureamerica.github.io/writeups/manifest.json">
+<link rel="mask-icon" href="https://captureamerica.github.io/writeups/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="https://captureamerica.github.io/writeups/sass/main.min.2e81bbed97b8b282c1aeb57488cc71c8d8c8ec559f3931531bd396bf31e0d4dd.css" rel="stylesheet">
+
+
+
+<meta property="og:title" content="Deadface CTF 2023 Writeup" />
+<meta property="og:description" content="Save The Earth! - 地球環境を守ろう！ URL: https://deadface.ctfd.io/challenges 600点を獲得し、387位でした。 Deadface CTF 2021 のときと同様、日曜日に見てみたら、追加チャレンジを見る前にイベント終了" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://captureamerica.github.io/writeups/post/deadface_ctf_2023/" />
+<meta property="article:published_time" content="2023-10-31T13:00:00+09:00" />
+<meta property="article:modified_time" content="2023-10-31T13:00:00+09:00" />
+<meta itemprop="name" content="Deadface CTF 2023 Writeup">
+<meta itemprop="description" content="Save The Earth! - 地球環境を守ろう！ URL: https://deadface.ctfd.io/challenges 600点を獲得し、387位でした。 Deadface CTF 2021 のときと同様、日曜日に見てみたら、追加チャレンジを見る前にイベント終了">
+<meta itemprop="datePublished" content="2023-10-31T13:00:00&#43;09:00" />
+<meta itemprop="dateModified" content="2023-10-31T13:00:00&#43;09:00" />
+<meta itemprop="wordCount" content="1566">
+
+
+
+<meta itemprop="keywords" content="CTF," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Deadface CTF 2023 Writeup"/>
+<meta name="twitter:description" content="Save The Earth! - 地球環境を守ろう！ URL: https://deadface.ctfd.io/challenges 600点を獲得し、387位でした。 Deadface CTF 2021 のときと同様、日曜日に見てみたら、追加チャレンジを見る前にイベント終了"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="https://captureamerica.github.io/writeups/" class="logo">CTF Writeups</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="https://captureamerica.github.io/writeups/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="https://captureamerica.github.io/writeups/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="https://captureamerica.github.io/writeups/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="https://captureamerica.github.io/writeups/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a><a href="https://captureamerica.github.io/writeups/about/">
+        <li class="mobile-menu-item">About</li>
+      </a>
+  </ul>
+
+  
+
+
+</nav>
+
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="https://captureamerica.github.io/writeups/" class="logo">CTF Writeups</a>
+</div>
+
+
+
+
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="https://captureamerica.github.io/writeups/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="https://captureamerica.github.io/writeups/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="https://captureamerica.github.io/writeups/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="https://captureamerica.github.io/writeups/categories/">Categories</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="https://captureamerica.github.io/writeups/about/">About</a>
+      </li>
+  </ul>
+</nav>
+
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">Deadface CTF 2023 Writeup</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2023-10-31 </span>
+        <div class="post-category">
+            <a href="https://captureamerica.github.io/writeups/categories/ctf/"> CTF </a>
+            </div>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contents</h2>
+  <div class="post-toc-content">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#steg-syncopated-beat-300-points">[Steg]: Syncopated Beat (300 points)</a>
+      <ul>
+        <li><a href="#challenge">Challenge</a></li>
+        <li><a href="#solution">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#traffic-analysis-sometimes-it-lets-you-down-25-points">[Traffic Analysis]: Sometimes IT Lets You Down (25 points)</a>
+      <ul>
+        <li><a href="#challenge-1">Challenge</a></li>
+        <li><a href="#solution-1">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#traffic-analysis-git-rekt-50-points">[Traffic Analysis]: Git Rekt (50 points)</a>
+      <ul>
+        <li><a href="#challenge-2">Challenge</a></li>
+        <li><a href="#solution-2">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#traffic-analysis-creepy-crawling-75-points">[Traffic Analysis]: Creepy Crawling (75 points)</a>
+      <ul>
+        <li><a href="#challenge-3">Challenge</a></li>
+        <li><a href="#solution-3">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#traffic-analysis-keys-to-the-kingdom-100-points">[Traffic Analysis]: Keys to the Kingdom (100 points)</a>
+      <ul>
+        <li><a href="#challenge-4">Challenge</a></li>
+        <li><a href="#solution-4">Solution</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <img src="https://captureamerica.github.io/writeups/img/green_bar.png" alt="green_bar.png">
+<img src="https://captureamerica.github.io/writeups/img/10_Nature_Themed_Icons_Cute_Earth_Icon.png" alt="Save The Earth!"> <b><font color="teal">Save The Earth! - 地球環境を守ろう！</font></b> <img src="https://captureamerica.github.io/writeups/img/10_Nature_Themed_Icons_Cute_Earth_Icon.png" alt="Save The Earth!">
+<img src="https://captureamerica.github.io/writeups/img/green_bar.png" alt="green_bar.png">
+<div class='align-right'>
+<a href="https://translate.google.com/translate?hl=en&sl=ja&tl=en&u=https%3A%2F%2Fcaptureamerica.github.io%2Fwriteups%2Fpost%2Fdeadface_ctf_2023%2F">
+<img src="https://captureamerica.github.io/writeups/img/En.png" alt="English">
+</a>
+</div>
+<p>URL: <a href="https://deadface.ctfd.io/challenges">https://deadface.ctfd.io/challenges</a>
+<br /><br /></p>
+<p>600点を獲得し、387位でした。</p>
+<img src="https://captureamerica.github.io/writeups/img/deadface_CTF_2023_Score1.png" alt="deadface_CTF_2023_Score1.png">
+<p><br><br></p>
+<p><a href="http://localhost:1313/writeups/post/deadface_ctf_2021/">Deadface CTF 2021</a> のときと同様、日曜日に見てみたら、追加チャレンジを見る前にイベント終了してました。そもそもあんまりモチベも無かったので、別にいいんですが。</p>
+<p><br><br>
+チャレンジのリストです。自分がやったところだけスクリーンショット撮りました。</p>
+<img src="https://captureamerica.github.io/writeups/img/deadface_CTF_2023_chall1.png" alt="deadface_CTF_2023_chall1.png">
+<br>
+<img src="https://captureamerica.github.io/writeups/img/deadface_CTF_2023_chall2.png" alt="deadface_CTF_2023_chall2.png">
+<p><br /><br /></p>
+<h2 id="steg-syncopated-beat-300-points">[Steg]: Syncopated Beat (300 points)</h2>
+<hr>
+<h3 id="challenge">Challenge</h3>
+<blockquote>
+<p>We know there&rsquo;s a hidden message somewhere here, but none of our steg tools are able to reveal it. Maybe we need to think outside the box?
+<br /><br />
+It is a well-known fact that rock musicians are all Non-Incarnate Conscious Entities (NICEs) influenced. NICEs speak lyrics to them and insinuate their evil messages into the song.
+<br /><br />
+Find the flag and enter it like this : flag{Syncopated_Beats_Are_EVIL!!!}</p>
+</blockquote>
+<p>Attachment:</p>
+<ul>
+<li>syncopated_beat.zip</li>
+</ul>
+<p><br /></p>
+<h3 id="solution">Solution</h3>
+<p>Zipファイルの中には、以下の2つの.wavファイルが入っています。</p>
+<pre>
+$ zipinfo syncopated_beat.zip
+Archive:  syncopated_beat.zip
+Zip file size: 108457666 bytes, number of entries: 2
+-rw-rw-r--  3.0 unx 35986500 bx defN 23-Aug-21 06:14 mysterious_music.wav
+-rw-rw-r--  3.0 unx 74699518 bx defN 23-Aug-21 06:22 Syncopated-Beat-2023.wav
+</pre>
+<p><br><br>
+Syncopated-Beat-2023.wav の方を聞いてみると、途中で人の声のようなものがあり、Audacityでその部分を選択して Effect -&gt; Reverse すると英語として聞こえるようになります。</p>
+<p>自分は、英語のネイティブ スピーカーではないので完全にすべて聞き取れなかったのですが、大体以下のような感じです。</p>
+<pre>
+Time is reversible but the music is not.
+Go back go back!
+Hey I remember you!
+Well that won't be that easy this year.
+You need to get a stego program used by Elliot XXX Mr.Robot.
+Use it on the audio file linked to the challenge.
+The password is the name of the new CTO of the evil corp, all caps no spaces.
+</pre>
+<p><br><br>
+ちなみに、「Mr.Robot」は Neflix でしばらく観てたのですが、Elliotの妄想を見ているのかな何なのかわからくなってきて、途中で挫折しました。</p>
+<p><br><br>
+さて本題ですが、ググってみたところ、<code>DeepSound</code> というWindowsのアプリを使えばよさそうです。</p>
+<img src="https://captureamerica.github.io/writeups/img/deadface_CTF_2023_Syncopated_Beat1.png" alt="deadface_CTF_2023_Syncopated_Beat1.png">
+<p><br><br>
+Evil corpの新しいCTOの名前は、<code>TYRELLWELLICK</code> でした。（実際には、TyrellよりもScottの方が新しいっぽい？）</p>
+<img src="https://captureamerica.github.io/writeups/img/deadface_CTF_2023_Syncopated_Beat2.png" alt="deadface_CTF_2023_Syncopated_Beat2.png">
+<p><br><br>
+Jpegファイルを extract すると、そこにフラグが書かれています。</p>
+<p><br /></p>
+<p>Flag: <code>flag{Lookout_COVID_BATZ!!!}</code></p>
+<p><br /><br />
+<br /><br /></p>
+<h2 id="traffic-analysis-sometimes-it-lets-you-down-25-points">[Traffic Analysis]: Sometimes IT Lets You Down (25 points)</h2>
+<hr>
+<h3 id="challenge-1">Challenge</h3>
+<blockquote>
+<p>Lytton Labs has been having a slew of weird activity in the network lately. This recent PCAP capture we know contains a user account who compromised our domain controller. Can you figure out what user account was compromised?
+<br /><br />
+Submit the flag as: flag{username}.</p>
+</blockquote>
+<p>Attachment:</p>
+<ul>
+<li>ITletsyoudown.pcapng</li>
+</ul>
+<p><br /></p>
+<h3 id="solution-1">Solution</h3>
+<p>Wiresharkで &ldquo;user&rdquo; をサーチしていると、そのうち <code>Users\mmeyers\</code> のような文字列が見つかります。</p>
+<p><br /></p>
+<p>あるいは、strings + grep でも見つけられます。</p>
+<pre>
+$ strings ITletsyoudown.pcapng | grep -i user | grep -v -i admin | grep -v -i Agent
+:
+(snip)
+:
+Users\mmeyers\Desktop\*.doc*
+Users\mmeyers\Desktop\*.txt
+Users\mmeyers\Desktop\*.lnk
+:
+</pre>
+<br>
+<p>Flag: <code>flag{mmeyers}</code></p>
+<p><br /><br />
+<br /><br /></p>
+<h2 id="traffic-analysis-git-rekt-50-points">[Traffic Analysis]: Git Rekt (50 points)</h2>
+<hr>
+<h3 id="challenge-2">Challenge</h3>
+<blockquote>
+<p>One of our teammates at Turbo Tactical ran a phishing campaign on spookyboi and thinks spookyboi may have submitted credentials. We need you to take a look at the PCAP and see if you can find the credentials.
+<br /><br />
+Submit the password as the flag: flag{password}.</p>
+</blockquote>
+<p>Attachment:</p>
+<ul>
+<li>pcap-20231010.pcap</li>
+</ul>
+<p><br /></p>
+<h3 id="solution-2">Solution</h3>
+<p>このpcapの中で見つかる HTTP POST は、1つだけです。</p>
+<p>Follow HTTP Streamをして中身を見たら、<code>password=SpectralSecrets%232023</code> が見つかります。</p>
+<br>
+<p>Flag: <code>flag{SpectralSecrets#2023}</code></p>
+<p><br /><br />
+<br /><br /></p>
+<h2 id="traffic-analysis-creepy-crawling-75-points">[Traffic Analysis]: Creepy Crawling (75 points)</h2>
+<hr>
+<h3 id="challenge-3">Challenge</h3>
+<blockquote>
+<p>One of our clients, TGRI, had an SSH server compromised at one of their smaller remote locations. Their only security analyst was fired and “accidentally” deleted information specific to the attack. Thankfully, TGRI still has the PCAP that captured the SSH brute force attack. What SSH protocol did TGRI run that was eventually compromised by DEADFACE?
+<br /><br />
+Submit the SSH protocol as the flag: flag{SSH-1.1.1: Simple SSH Server}</p>
+</blockquote>
+<p>Attachment:</p>
+<ul>
+<li>PCAP02.pcapng</li>
+</ul>
+<p><br /></p>
+<h3 id="solution-3">Solution</h3>
+<p>Wiresharkで <code>tcp.port==22</code> でフィルターした後、Lengthでソートして見てみると、他とは違う逆方向の通信（source port 46682）が見つかります（以下）。</p>
+<img src="https://captureamerica.github.io/writeups/img/deadface_CTF_2023_Creepy_Crawling.png" alt="deadface_CTF_2023_Creepy_Crawling.png">
+<p><br><br></p>
+<p>あとは、Follow TCP streamしてSSHサーバーのバナーを見るだけです。</p>
+<br>
+<p>Flag: <code>flag{SSH-2.0-9.29 FlowSsh: Bitvise SSH Server (WinSSHD) 9.29}</code></p>
+<p><br /><br />
+<br /><br /></p>
+<h2 id="traffic-analysis-keys-to-the-kingdom-100-points">[Traffic Analysis]: Keys to the Kingdom (100 points)</h2>
+<hr>
+<h3 id="challenge-4">Challenge</h3>
+<blockquote>
+<p>An image was sent across De Monne Financial’s network. They’re still paranoid after being the primary target of DEADFACE last year, and they suspect this is DEADFACE activity. We’re not sure what to make of the PCAP they sent us, but we found a file on the anomalous De Monne machine named keytothekingdom.txt. We suspect that contents of the file have undergone some form of encoding or encryption. See if you can piece these two things together to find the flag in the pcap.
+<br /><br />
+Submit the answer as flag{here-is-the-answer}.
+<br /><br />
+Key ciphertext: ÓÄÖëÄøõàñããàøâñãõùãªÞåýåøåûåýñûùñûùñùñüåþñýÿâí</p>
+</blockquote>
+<p>Attachment:</p>
+<ul>
+<li>Thekeytothekingdom.pcap</li>
+</ul>
+<p><br /></p>
+<h3 id="solution-4">Solution</h3>
+<p>データを含んでいる TCP SYN パケット だけが含まれている pcapです。</p>
+<p>1パケット目を見たら、<code>JFIF</code>というマジックナンバーが出てくるので、画像データが含まれていることがわかります。</p>
+<p>以下で画像ファイルが取り出せます。</p>
+<pre>
+$ tshark -r Thekeytothekingdom.pcap -T fields -e tcp.payload | tr -d "\n" | xxd -r -p > aaa.jpg
+</pre>
+<br>
+チャレンジ文に出てくる Key ciphertext の方は、CyberChef で XOR Brute Forceすると、以下の文字列が見つかります。
+<pre>
+Key = d0: CTF{ThepassphraseiszNumuhukumakiakiaialunamor}
+</pre>
+<br>
+`Numuhukumakiakiaialunamor` を pass phrase として steghide を使ったらフラグが得られます。
+<pre>
+$ steghide extract -p 'Numuhukumakiakiaialunamor' -sf aaa.jpg
+wrote extracted data to "flag.txt".
+</pre>
+<br>
+<p>Flag: <code>flag{Error404FlagNotFound}</code></p>
+<p><br /><br />
+<br /><br /></p>
+<hr>
+<p><br /><br />
+<br /><br /></p>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content">CaptureAmerica @ CTF フラxxグゲット</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">
+        2023-10-31
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="https://captureamerica.github.io/writeups/tags/ctf/">CTF</a>
+          </div>
+      <nav class="post-nav">
+        
+        <a class="next" href="https://captureamerica.github.io/writeups/post/umdctf_2023/">
+            <span class="next-text nav-default">UMDCTF 2023 Writeup</span>
+            <span class="next-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="https://github.com/CaptureAmerica/" class="iconfont icon-github" title="github"></a>
+  <a href="https://captureamerica.github.io/writeups/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2019 - 
+    2023<span class="heart"><i class="iconfont icon-heart"></i></span><span>CaptureAmerica @ CTF フラxxグゲット</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  
+
+
+
+<script type="text/javascript" src="https://captureamerica.github.io/writeups/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-104910699-2', 'auto');
+	ga('set', 'anonymizeIp', true);
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+
+
+
+
+
+</body>
+</html>
