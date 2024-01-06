@@ -135,6 +135,10 @@ Who delivers Chrismas presents?
 
 hash.txt の中身を見ると、`$krb5asrep` で始まっていて、ググってみると `-m 18200` を指定するとよさそうなので、やってみます。
 
+<pre>
+$ hashcat -m 18200 -w 1 -u 1 --kernel-accel 1 --kernel-loops 1 hash.txt password_list.txt --force
+</pre>
+
 <img src="https://captureamerica.github.io/writeups/img/kringlecon_2023_hashcat.png" alt="kringlecon_2023_hashcat.png">
 
 <br /><br />

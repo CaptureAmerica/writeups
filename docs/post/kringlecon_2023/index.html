@@ -49,7 +49,7 @@
 <meta itemprop="description" content="Save The Earth! - 地球環境を守ろう！ URL: https://2023.kringlecon.com/ 新年明けまして おめでとうございます！ SANS の Holiday Hack Challenge (Kringlecon) 2023 をちょっとだけやりました。 チャレンジ自体にたどり着くまでにア">
 <meta itemprop="datePublished" content="2024-01-06T12:00:00&#43;09:00" />
 <meta itemprop="dateModified" content="2024-01-06T12:00:00&#43;09:00" />
-<meta itemprop="wordCount" content="968">
+<meta itemprop="wordCount" content="983">
 
 
 
@@ -252,6 +252,9 @@ Who delivers Chrismas presents?
 <p><br /></p>
 <h3 id="solution-1">Solution</h3>
 <p>hash.txt の中身を見ると、<code>$krb5asrep</code> で始まっていて、ググってみると <code>-m 18200</code> を指定するとよさそうなので、やってみます。</p>
+<pre>
+$ hashcat -m 18200 -w 1 -u 1 --kernel-accel 1 --kernel-loops 1 hash.txt password_list.txt --force
+</pre>
 <img src="https://captureamerica.github.io/writeups/img/kringlecon_2023_hashcat.png" alt="kringlecon_2023_hashcat.png">
 <p><br /><br /></p>
 <p><code>1LuvCandyC4n3s!2022</code> か <code>iLuvCandyCan3s!23!</code> 辺りが正解なのかと思ったんですが、これらは正解ではありませんでした。</p>
