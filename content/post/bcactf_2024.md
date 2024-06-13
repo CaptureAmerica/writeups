@@ -599,6 +599,8 @@ Jarファイルを JD-GUI で開いて、見つけた数字を CyberChef で文�
 
 <img src="https://captureamerica.github.io/writeups/img/bcactf_2024_Flagtureiser1.png" alt="bcactf_2024_Flagtureiser1.png">
 
+<br />
+
 <img src="https://captureamerica.github.io/writeups/img/bcactf_2024_Flagtureiser2.png" alt="bcactf_2024_Flagtureiser2.png">
 
 <br />
