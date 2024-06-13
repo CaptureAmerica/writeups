@@ -47,11 +47,11 @@ URL: [https://2024.angstromctf.com/challenges](https://2024.angstromctf.com/chal
 
 チャレンジ一覧:
 
-<img src="https://captureamerica.github.io/writeups/img/angstromctf_2024_chall1.png" alt="angstromctf_2024_chall1.png"><br>
+<img src="https://captureamerica.github.io/writeups/img/angstromctf_2024_chall1.png" alt="angstromctf_2024_chall1.png">
 
-<img src="https://captureamerica.github.io/writeups/img/angstromctf_2024_chall2.png" alt="angstromctf_2024_chall2.png"><br>
+<img src="https://captureamerica.github.io/writeups/img/angstromctf_2024_chall2.png" alt="angstromctf_2024_chall2.png">
 
-<br>
+<br><br>
 
 あまり解けていませんが、参加した記念として、ブログを残しておきます。
 

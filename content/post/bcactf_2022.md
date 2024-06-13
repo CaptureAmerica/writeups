@@ -398,7 +398,7 @@ Flag: `bcactf{fl4G_Und3rL00keD_e7df9c}`
 
 <br /><br />
 <br /><br />
-## [Web]: BCACTF 3.0: Story Mode (150 points)
+## [Web]: Story Mode (150 points)
 - - -
 ### Challenge
 > bestselling novel
