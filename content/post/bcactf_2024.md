@@ -281,9 +281,6 @@ Flag: `bcactf{BaRT_W0U1D_B3_PR0uD}`
 <br /><br />
 Hint1: you could reverse engineer the function, but it's not necessary<br>
 see if you can use any debugging tools to just call the function
-<br /><br />
-Hint2: You could reverse engineer the function, but it's not necessary<br>
-see if you can use any debugging tools to just call the function
 
 Attachment:
 
