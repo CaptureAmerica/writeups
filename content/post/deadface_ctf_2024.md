@@ -370,7 +370,7 @@ Google Lensを使って解きました。
 
 <img src="https://captureamerica.github.io/writeups/img/deadface_CTF_2024_Joe1.png" alt="deadface_CTF_2024_Joe1.png">
 
-<br>
+<br><br>
 
 <img src="https://captureamerica.github.io/writeups/img/deadface_CTF_2024_Joe2.png" alt="deadface_CTF_2024_Joe2.png">
 
