@@ -51,6 +51,7 @@ URL: [https://digitaloverdose.ractf.cloud/campaign](https://digitaloverdose.ract
 
 
 <br />
+
 ### Solution
 このチャレンジ文の中にはデータが付いていませんが、カテゴリトップのところにあるデータが関係しているのは明らかです。
 

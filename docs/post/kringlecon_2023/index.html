@@ -23,7 +23,7 @@
 <meta name="google-site-verification" content="PqctLWZQttGzxXVupWuIt2HWuBI8cvN1z07ETpxA2dw" />
 
 
-<meta name="generator" content="Hugo 0.74.2 with theme even" />
+<meta name="generator" content="Hugo 0.119.0 with theme even" />
 
 
 <link rel="canonical" href="https://captureamerica.github.io/writeups/post/kringlecon_2023/" />
@@ -35,24 +35,20 @@
 
 
 
-<link href="https://captureamerica.github.io/writeups/sass/main.min.2e81bbed97b8b282c1aeb57488cc71c8d8c8ec559f3931531bd396bf31e0d4dd.css" rel="stylesheet">
+<link href="https://captureamerica.github.io/writeups/sass/main.min.f92fd13721ddf72129410fd8250e73152cc6f2438082b6c0208dc24ee7c13fc4.css" rel="stylesheet">
 
 
 
 <meta property="og:title" content="SANS Holiday Hack Challenge (Kringlecon) 2023 Writeup" />
 <meta property="og:description" content="Save The Earth! - 地球環境を守ろう！ URL: https://2023.kringlecon.com/ 新年明けまして おめでとうございます！ SANS の Holiday Hack Challenge (Kringlecon) 2023 をちょっとだけやりました。 チャレンジ自体にたどり着くまでにア" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://captureamerica.github.io/writeups/post/kringlecon_2023/" />
+<meta property="og:url" content="https://captureamerica.github.io/writeups/post/kringlecon_2023/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2024-01-06T12:00:00+09:00" />
 <meta property="article:modified_time" content="2024-01-06T12:00:00+09:00" />
 <meta itemprop="name" content="SANS Holiday Hack Challenge (Kringlecon) 2023 Writeup">
-<meta itemprop="description" content="Save The Earth! - 地球環境を守ろう！ URL: https://2023.kringlecon.com/ 新年明けまして おめでとうございます！ SANS の Holiday Hack Challenge (Kringlecon) 2023 をちょっとだけやりました。 チャレンジ自体にたどり着くまでにア">
-<meta itemprop="datePublished" content="2024-01-06T12:00:00&#43;09:00" />
-<meta itemprop="dateModified" content="2024-01-06T12:00:00&#43;09:00" />
-<meta itemprop="wordCount" content="983">
-
-
-
+<meta itemprop="description" content="Save The Earth! - 地球環境を守ろう！ URL: https://2023.kringlecon.com/ 新年明けまして おめでとうございます！ SANS の Holiday Hack Challenge (Kringlecon) 2023 をちょっとだけやりました。 チャレンジ自体にたどり着くまでにア"><meta itemprop="datePublished" content="2024-01-06T12:00:00+09:00" />
+<meta itemprop="dateModified" content="2024-01-06T12:00:00+09:00" />
+<meta itemprop="wordCount" content="985">
 <meta itemprop="keywords" content="CTF," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="SANS Holiday Hack Challenge (Kringlecon) 2023 Writeup"/>
 <meta name="twitter:description" content="Save The Earth! - 地球環境を守ろう！ URL: https://2023.kringlecon.com/ 新年明けまして おめでとうございます！ SANS の Holiday Hack Challenge (Kringlecon) 2023 をちょっとだけやりました。 チャレンジ自体にたどり着くまでにア"/>
@@ -178,9 +174,9 @@
 <p>新年明けまして おめでとうございます！</p>
 <p>SANS の Holiday Hack Challenge (Kringlecon) 2023 をちょっとだけやりました。</p>
 <p>チャレンジ自体にたどり着くまでにアバターを移動させないといけないのが面倒くさ過ぎて、今年も少ししかやっていません（以下）。</p>
-<p><br /></p>
+<br />
 <img src="https://captureamerica.github.io/writeups/img/kringlecon_2023_Objectives.png" alt="kringlecon_2023_Objectives.png">
-<p><br /></p>
+<br />
 <p><br /><br /></p>
 <h2 id="linux-privesc-difficulty-3">Linux PrivEsc (Difficulty: 3)</h2>
 <hr>
@@ -189,7 +185,7 @@
 <p>Rosemold is in Ostrich Saloon on the Island of Misfit Toys. Give her a hand with escalation for a tip about hidden islands.</p>
 </blockquote>
 <p>（別のチャレンジ文もあったかもしれません。）</p>
-<p><br /></p>
+<br />
 <h3 id="solution">Solution</h3>
 <p>まずは、SUIDがセットされているファイルを探します。</p>
 <pre>
@@ -220,8 +216,8 @@ uid=0(root) gid=0(root) groups=0(root)
 </pre>
 <p>/etc/passwd に追加するやつは使いまわしができるので、Linuxの権限昇格をよくやる人は、手元に一個持っておくといいです。</p>
 <p>上記の例だと、パスワードは、<code>mrcake</code> になります。</p>
-<p><br />
-<br /></p>
+<br />
+<br />
 <p>rootユーザのホーム (/root) に、runmetoanswerというファイルがあって、実行すると簡単なクイズが表示されます。</p>
 <pre>
 # /root/runmetoanswer
@@ -230,16 +226,16 @@ Who delivers Chrismas presents?
 >
 </pre>
 <p>ま、サンタクロースなのは間違いないんですが、大文字小文字の区別があったり、ピッタリ回答が合わないとフラグは貰えません。</p>
-<p><br />
-<br /></p>
+<br />
+<br />
 <p><code>strace</code> や <code>ltrace</code> とかも使えないし、<code>strings</code> は大量のアウトプットが出るので、そこから答えのヒントを見つけるのが難しいかもしれませんが、いちおう <code>/etc/runtoanswer.yaml</code> を参照しているのは見つかります（以下）。</p>
 <img src="https://captureamerica.github.io/writeups/img/kringlecon_2023_strings.png" alt="kringlecon_2023_strings.png">
-<p><br />
-<br /></p>
-<p>自分は別の方法でこのファイル（<code>/etc/runtoanswer.yaml</code>）を見つけたと思うんですが、このブログを書いている時点で全く記憶に残っていないし、メモも取ってなかったので、わからないです。ごめんなさい。たぶん、<code>grep</code> か <code>find</code> です。</p>
-<p><br />
 <br />
-<code>/etc/runtoanswer.yaml</code> の中を見たら、答え <code>santa</code> が見つかります。</p>
+<br />
+<p>自分は別の方法でこのファイル（<code>/etc/runtoanswer.yaml</code>）を見つけたと思うんですが、このブログを書いている時点で全く記憶に残っていないし、メモも取ってなかったので、わからないです。ごめんなさい。たぶん、<code>grep</code> か <code>find</code> です。</p>
+<br />
+<br />
+`/etc/runtoanswer.yaml` の中を見たら、答え `santa` が見つかります。
 <p><br /><br />
 <br /><br /></p>
 <h2 id="hashcat-difficulty-2">Hashcat (Difficulty: 2)</h2>
@@ -249,7 +245,7 @@ Who delivers Chrismas presents?
 <p>Eve Snowshoes is trying to recover a password. Head to the Island of Misfit Toys and take a crack at it!</p>
 </blockquote>
 <p>（別のチャレンジ文もあったかもしれません。）</p>
-<p><br /></p>
+<br />
 <h3 id="solution-1">Solution</h3>
 <p>hash.txt の中身を見ると、<code>$krb5asrep</code> で始まっていて、ググってみると <code>-m 18200</code> を指定するとよさそうなので、やってみます。</p>
 <pre>
@@ -263,7 +259,7 @@ $ hashcat -m 18200 -w 1 -u 1 --kernel-accel 1 --kernel-loops 1 hash.txt password
 <pre>
 $ for pass in $(cat password_list.txt); do echo $pass | /bin/runtoanswer & done
 </pre>
-<p><br /></p>
+<br />
 <p>これで <code>hashcat</code> を使わなくてもクリアできます。</p>
 <p><br /><br />
 <br /><br /></p>
@@ -319,7 +315,7 @@ $ for pass in $(cat password_list.txt); do echo $pass | /bin/runtoanswer & done
     <footer id="footer" class="footer">
       <div class="social-links">
       <a href="https://github.com/CaptureAmerica/" class="iconfont icon-github" title="github"></a>
-  <a href="https://captureamerica.github.io/writeups/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+  
 </div>
 
 <div class="copyright">
@@ -354,20 +350,21 @@ $ for pass in $(cat password_list.txt); do echo $pass | /bin/runtoanswer & done
 
 
 
-<script type="text/javascript" src="https://captureamerica.github.io/writeups/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+<script type="text/javascript" src="https://captureamerica.github.io/writeups/js/main.min.4ae89da218555efa0e7093a20b92017d2e1202b66fff9fc2edf4cb8d44b44c6e.js"></script>
 
 
 <script type="application/javascript">
 var doNotTrack = false;
 if (!doNotTrack) {
-	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 	ga('create', 'UA-104910699-2', 'auto');
 	ga('set', 'anonymizeIp', true);
 	ga('send', 'pageview');
 }
 </script>
-<script async src='https://www.google-analytics.com/analytics.js'></script>
-
 
 
 

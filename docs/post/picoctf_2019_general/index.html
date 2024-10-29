@@ -23,7 +23,7 @@
 <meta name="google-site-verification" content="PqctLWZQttGzxXVupWuIt2HWuBI8cvN1z07ETpxA2dw" />
 
 
-<meta name="generator" content="Hugo 0.74.2 with theme even" />
+<meta name="generator" content="Hugo 0.119.0 with theme even" />
 
 
 <link rel="canonical" href="https://captureamerica.github.io/writeups/post/picoctf_2019_general/" />
@@ -35,24 +35,20 @@
 
 
 
-<link href="https://captureamerica.github.io/writeups/sass/main.min.2e81bbed97b8b282c1aeb57488cc71c8d8c8ec559f3931531bd396bf31e0d4dd.css" rel="stylesheet">
+<link href="https://captureamerica.github.io/writeups/sass/main.min.f92fd13721ddf72129410fd8250e73152cc6f2438082b6c0208dc24ee7c13fc4.css" rel="stylesheet">
 
 
 
 <meta property="og:title" content="picoCTF 2019 Writeup (General Skills)" />
 <meta property="og:description" content="URL: https://2019game.picoctf.com/ 2週間、お疲れ様です。 最終結果は、こんな感じ。 イベント終了時点で、ユーザは4万人弱でした。 PwnとWeb系があんまりできてないけど、スコ" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://captureamerica.github.io/writeups/post/picoctf_2019_general/" />
+<meta property="og:url" content="https://captureamerica.github.io/writeups/post/picoctf_2019_general/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2019-10-13T12:00:00+09:00" />
 <meta property="article:modified_time" content="2019-10-13T12:00:00+09:00" />
 <meta itemprop="name" content="picoCTF 2019 Writeup (General Skills)">
-<meta itemprop="description" content="URL: https://2019game.picoctf.com/ 2週間、お疲れ様です。 最終結果は、こんな感じ。 イベント終了時点で、ユーザは4万人弱でした。 PwnとWeb系があんまりできてないけど、スコ">
-<meta itemprop="datePublished" content="2019-10-13T12:00:00&#43;09:00" />
-<meta itemprop="dateModified" content="2019-10-13T12:00:00&#43;09:00" />
+<meta itemprop="description" content="URL: https://2019game.picoctf.com/ 2週間、お疲れ様です。 最終結果は、こんな感じ。 イベント終了時点で、ユーザは4万人弱でした。 PwnとWeb系があんまりできてないけど、スコ"><meta itemprop="datePublished" content="2019-10-13T12:00:00+09:00" />
+<meta itemprop="dateModified" content="2019-10-13T12:00:00+09:00" />
 <meta itemprop="wordCount" content="720">
-
-
-
 <meta itemprop="keywords" content="CTF," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="picoCTF 2019 Writeup (General Skills)"/>
 <meta name="twitter:description" content="URL: https://2019game.picoctf.com/ 2週間、お疲れ様です。 最終結果は、こんな感じ。 イベント終了時点で、ユーザは4万人弱でした。 PwnとWeb系があんまりできてないけど、スコ"/>
@@ -188,8 +184,8 @@
 <p><br /><br />
 最終結果は、こんな感じ。</p>
 <img src="https://captureamerica.github.io/writeups/img/pico2019_Score.png" alt="pico2019_Score.png">
-<p><br />
-イベント終了時点で、ユーザは4万人弱でした。</p>
+<br />
+イベント終了時点で、ユーザは4万人弱でした。
 <img src="https://captureamerica.github.io/writeups/img/pico2019_Users.png" alt="pico2019_Users.png">
 <img src="https://captureamerica.github.io/writeups/img/pico2019_Rank.png" alt="pico2019_Rank.png">
 <p>PwnとWeb系があんまりできてないけど、スコアも切りのいい20000に行ったし、Globalで目標の300位以内 (283位) にも入れたのでかなり満足です。</p>
@@ -212,15 +208,15 @@ Dumping the data from a hex editor may make it easier to compare.</p>
 <li>cattos.jpg<br /></li>
 <li>kitters.jpg</li>
 </ul>
-<p><br /></p>
+<br />
 <h3 id="solution">Solution</h3>
 <pre>
 $ cmp -bl cattos.jpg kitters.jpg | awk '{print $3}' | tr -d "\n" ; echo
 picoCTF{th3yr3_a5_d1ff3r3nt_4s_bu773r_4nd_j311y_3ee85466bc13cfbe57b6a695bee9dcdd}
 </pre>
 <p>Flag: <code>picoCTF{th3yr3_a5_d1ff3r3nt_4s_bu773r_4nd_j311y_3ee85466bc13cfbe57b6a695bee9dcdd}</code></p>
-<p><br />
-なお、picoCTFはイベント期間中にファイルやフラグが書き換わることがあるようで、少しハマりました。</p>
+<br />
+なお、picoCTFはイベント期間中にファイルやフラグが書き換わることがあるようで、少しハマりました。
 <p><br /><br />
 <br /><br /></p>
 <h2 id="general-skills-flag_shop-300-points">[General Skills]: flag_shop (300 points)</h2>
@@ -236,7 +232,7 @@ Two&rsquo;s compliment can do some weird things when numbers get really big!</p>
 <ul>
 <li>store.c</li>
 </ul>
-<p><br /></p>
+<br />
 <h3 id="solution-1">Solution</h3>
 <p>これも去年と同じで、整数のオーバーフローを使う問題です。</p>
 <p>テキトーにやってたのでよくわからないけど、21475000あたりを使って解いたと思います。</p>
@@ -255,7 +251,7 @@ Hints : Do you think you can master rockstar?<br /></p>
 <ul>
 <li>lyrics.txt</li>
 </ul>
-<p><br /></p>
+<br />
 <h3 id="solution-2">Solution</h3>
 <p>ヒントのおかげで解けました。</p>
 <p>rockstarというesolangでした。</p>
@@ -278,7 +274,7 @@ python -c 'print("".join([chr(int(x)) for x in "114 114 114 111 99 107 110 114 1
 <ul>
 <li>lyrics.txt</li>
 </ul>
-<p><br /></p>
+<br />
 <h3 id="solution-3">Solution</h3>
 <p>不要なIF文やListen (scanfみたいなの) をコメントアウトするだけです。</p>
 <p>コメントアウトは、()でできます。</p>
@@ -372,7 +368,7 @@ BONJOVI
     <footer id="footer" class="footer">
       <div class="social-links">
       <a href="https://github.com/CaptureAmerica/" class="iconfont icon-github" title="github"></a>
-  <a href="https://captureamerica.github.io/writeups/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+  
 </div>
 
 <div class="copyright">
@@ -407,20 +403,21 @@ BONJOVI
 
 
 
-<script type="text/javascript" src="https://captureamerica.github.io/writeups/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+<script type="text/javascript" src="https://captureamerica.github.io/writeups/js/main.min.4ae89da218555efa0e7093a20b92017d2e1202b66fff9fc2edf4cb8d44b44c6e.js"></script>
 
 
 <script type="application/javascript">
 var doNotTrack = false;
 if (!doNotTrack) {
-	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 	ga('create', 'UA-104910699-2', 'auto');
 	ga('set', 'anonymizeIp', true);
 	ga('send', 'pageview');
 }
 </script>
-<script async src='https://www.google-analytics.com/analytics.js'></script>
-
 
 
 

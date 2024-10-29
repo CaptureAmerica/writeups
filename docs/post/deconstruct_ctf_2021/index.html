@@ -23,7 +23,7 @@
 <meta name="google-site-verification" content="PqctLWZQttGzxXVupWuIt2HWuBI8cvN1z07ETpxA2dw" />
 
 
-<meta name="generator" content="Hugo 0.74.2 with theme even" />
+<meta name="generator" content="Hugo 0.119.0 with theme even" />
 
 
 <link rel="canonical" href="https://captureamerica.github.io/writeups/post/deconstruct_ctf_2021/" />
@@ -35,24 +35,20 @@
 
 
 
-<link href="https://captureamerica.github.io/writeups/sass/main.min.2e81bbed97b8b282c1aeb57488cc71c8d8c8ec559f3931531bd396bf31e0d4dd.css" rel="stylesheet">
+<link href="https://captureamerica.github.io/writeups/sass/main.min.f92fd13721ddf72129410fd8250e73152cc6f2438082b6c0208dc24ee7c13fc4.css" rel="stylesheet">
 
 
 
 <meta property="og:title" content="DeconstruCT.F 2021 Writeup" />
 <meta property="og:description" content="Save The Earth! - 地球環境を守ろう！ URL: https://ctf.dscvit.com/challenges 1450点を獲得し、79位でした。 チャレンジのリストです。 [Crypto]: RSA - 3 (250 points) Challenge Alright, this is the big leagues. You have someone&rsquo;s Public Key. This isn&rsquo;t unusual, if you want to send" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://captureamerica.github.io/writeups/post/deconstruct_ctf_2021/" />
+<meta property="og:url" content="https://captureamerica.github.io/writeups/post/deconstruct_ctf_2021/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2021-10-06T21:00:00+09:00" />
 <meta property="article:modified_time" content="2021-10-06T21:00:00+09:00" />
 <meta itemprop="name" content="DeconstruCT.F 2021 Writeup">
-<meta itemprop="description" content="Save The Earth! - 地球環境を守ろう！ URL: https://ctf.dscvit.com/challenges 1450点を獲得し、79位でした。 チャレンジのリストです。 [Crypto]: RSA - 3 (250 points) Challenge Alright, this is the big leagues. You have someone&rsquo;s Public Key. This isn&rsquo;t unusual, if you want to send">
-<meta itemprop="datePublished" content="2021-10-06T21:00:00&#43;09:00" />
-<meta itemprop="dateModified" content="2021-10-06T21:00:00&#43;09:00" />
+<meta itemprop="description" content="Save The Earth! - 地球環境を守ろう！ URL: https://ctf.dscvit.com/challenges 1450点を獲得し、79位でした。 チャレンジのリストです。 [Crypto]: RSA - 3 (250 points) Challenge Alright, this is the big leagues. You have someone&rsquo;s Public Key. This isn&rsquo;t unusual, if you want to send"><meta itemprop="datePublished" content="2021-10-06T21:00:00+09:00" />
+<meta itemprop="dateModified" content="2021-10-06T21:00:00+09:00" />
 <meta itemprop="wordCount" content="892">
-
-
-
 <meta itemprop="keywords" content="CTF," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="DeconstruCT.F 2021 Writeup"/>
 <meta name="twitter:description" content="Save The Earth! - 地球環境を守ろう！ URL: https://ctf.dscvit.com/challenges 1450点を獲得し、79位でした。 チャレンジのリストです。 [Crypto]: RSA - 3 (250 points) Challenge Alright, this is the big leagues. You have someone&rsquo;s Public Key. This isn&rsquo;t unusual, if you want to send"/>
@@ -207,7 +203,7 @@ Wrap the number that you find with dsc{<number>}!</p>
 <ul>
 <li>mykey.pub</li>
 </ul>
-<p><br /></p>
+<br />
 <h3 id="solution">Solution</h3>
 <p>まず、以下を試したのですが、エラーになりました。</p>
 <pre>
@@ -255,7 +251,7 @@ $ ssh-keygen -f mykey_private.key -e -m pem | openssl asn1parse
 <p><code>n</code>と<code>e</code>を10進数になおして、以下のコードで <code>d</code> を求めました。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -267,19 +263,19 @@ $ ssh-keygen -f mykey_private.key -e -m pem | openssl asn1parse
 </span><span class="lnt">10
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-Python" data-lang="Python"><span class="kn">import</span> <span class="nn">owiener</span>
-
-<span class="n">n</span> <span class="o">=</span> <span class="mi">64064959164923876064874945473407049985543119992992738119252749231253142464203647518777455475109972581684732621072998898066728303433300585291527582979430276357787634026869116095391514311111174206395195817672737320837240364944609979844601986221462845364070396665723029902932653368943452652854174197070747631242101084260912287849286644699582292473152660004035330616149016496957012948833038931711943984563035784805193474921164625068468842927905314268942153720078680937345365121129404384633019183060347129778296640500935382186867850407893387920482141216498339346081106433144352485571795405717793040441238659925857198439433</span>
-<span class="n">e</span> <span class="o">=</span> <span class="mi">36222680858414256161375884602150640809062958718117141382923099494341733093172587117165920097285523276338274750598022486976083511178091392849986039384975758609343597548039166024042264614496506087597114091663955133779956176941325431822684716988128271384410010471755324833136859652978240297120618458534306923558546176110055737233883129780378153307730890915697357455996361736492022695824172516806204252765904924281272883818154621932085365817823019773860783687666788095035790491006333432295698178378520444810813882117817329847874531809530929345430796600870728736678389479159328119322587647856274762262358880664585675219093</span>
-<span class="n">d</span> <span class="o">=</span> <span class="n">owiener</span><span class="o">.</span><span class="n">attack</span><span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
-
-<span class="k">if</span> <span class="n">d</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
-    <span class="k">print</span><span class="p">(</span><span class="s2">&#34;Failed&#34;</span><span class="p">)</span>
-<span class="k">else</span><span class="p">:</span>
-    <span class="k">print</span><span class="p">(</span><span class="s2">&#34;Hacked d={}&#34;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">d</span><span class="p">))</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-Python" data-lang="Python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">owiener</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">n</span> <span class="o">=</span> <span class="mi">64064959164923876064874945473407049985543119992992738119252749231253142464203647518777455475109972581684732621072998898066728303433300585291527582979430276357787634026869116095391514311111174206395195817672737320837240364944609979844601986221462845364070396665723029902932653368943452652854174197070747631242101084260912287849286644699582292473152660004035330616149016496957012948833038931711943984563035784805193474921164625068468842927905314268942153720078680937345365121129404384633019183060347129778296640500935382186867850407893387920482141216498339346081106433144352485571795405717793040441238659925857198439433</span>
+</span></span><span class="line"><span class="cl"><span class="n">e</span> <span class="o">=</span> <span class="mi">36222680858414256161375884602150640809062958718117141382923099494341733093172587117165920097285523276338274750598022486976083511178091392849986039384975758609343597548039166024042264614496506087597114091663955133779956176941325431822684716988128271384410010471755324833136859652978240297120618458534306923558546176110055737233883129780378153307730890915697357455996361736492022695824172516806204252765904924281272883818154621932085365817823019773860783687666788095035790491006333432295698178378520444810813882117817329847874531809530929345430796600870728736678389479159328119322587647856274762262358880664585675219093</span>
+</span></span><span class="line"><span class="cl"><span class="n">d</span> <span class="o">=</span> <span class="n">owiener</span><span class="o">.</span><span class="n">attack</span><span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="n">d</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Failed&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Hacked d=</span><span class="si">{}</span><span class="s2">&#34;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">d</span><span class="p">))</span>
+</span></span></code></pre></td></tr></table>
 </div>
-</div><p><br /></p>
+</div><br />
 <p>Flag: <code>dsc{6393313697836242618414301946448995659516429576261871356767102021920538052481829568588047189447471873340140537810769433878383029164089236876209147584435733}</code></p>
 <p><br /><br />
 <br /><br /></p>
@@ -294,7 +290,7 @@ $ ssh-keygen -f mykey_private.key -e -m pem | openssl asn1parse
 <ul>
 <li>chall.apk</li>
 </ul>
-<p><br /></p>
+<br />
 <h3 id="solution-1">Solution</h3>
 <p>実は、Android Studio使って実際に動かしたり、decompileしてコードを見たりして色々やったのですが、結局のところ、以下の方法でフラグは取れます。</p>
 <br>
@@ -312,7 +308,7 @@ mStable Ids are required for the adapter to function properly, and the adapter t
 flag
 %flag=qfp{4aqe01q_4cx_p4a_83_e3i3e53q}
 </pre>
-<p><br /></p>
+<br />
 <p>Flag: <code>dsc{4ndr01d_4pk_c4n_83_r3v3r53d}</code></p>
 <p><br /><br />
 <br /><br /></p>
@@ -328,12 +324,12 @@ Can you unlock the application as soon as possible.</p>
 <ul>
 <li>Release-1.0 (ELF 64bit)</li>
 </ul>
-<p><br /></p>
+<br />
 <h3 id="solution-2">Solution</h3>
 <p>Ghidraでコードを確認します。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -367,51 +363,51 @@ Can you unlock the application as soon as possible.</p>
 </span><span class="lnt">32
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-C" data-lang="C"><span class="n">undefined8</span> <span class="nf">main</span><span class="p">(</span><span class="n">undefined8</span> <span class="n">param_1</span><span class="p">,</span><span class="n">uchar</span> <span class="o">*</span><span class="n">param_2</span><span class="p">,</span><span class="n">undefined8</span> <span class="n">param_3</span><span class="p">,</span><span class="n">uchar</span> <span class="o">*</span><span class="n">param_4</span><span class="p">,</span><span class="n">size_t</span> <span class="n">param_5</span><span class="p">)</span>
-
-<span class="p">{</span>
-  <span class="kt">int</span> <span class="n">iVar1</span><span class="p">;</span>
-  <span class="n">undefined4</span> <span class="n">extraout_var</span><span class="p">;</span>
-  <span class="kt">long</span> <span class="n">in_FS_OFFSET</span><span class="p">;</span>
-  <span class="n">undefined8</span> <span class="n">local_38</span><span class="p">;</span>
-  <span class="n">undefined8</span> <span class="n">local_30</span><span class="p">;</span>
-  <span class="n">undefined8</span> <span class="n">local_28</span><span class="p">;</span>
-  <span class="n">undefined</span> <span class="n">local_20</span><span class="p">;</span>
-  <span class="kt">long</span> <span class="n">local_10</span><span class="p">;</span>
-  
-  <span class="n">local_10</span> <span class="o">=</span> <span class="o">*</span><span class="p">(</span><span class="kt">long</span> <span class="o">*</span><span class="p">)(</span><span class="n">in_FS_OFFSET</span> <span class="o">+</span> <span class="mh">0x28</span><span class="p">);</span>
-<span class="hl">  <span class="n">local_38</span> <span class="o">=</span> <span class="mh">0x564233656a4e485a</span><span class="p">;</span>
-</span><span class="hl">  <span class="n">local_30</span> <span class="o">=</span> <span class="mh">0x5139314d4d4a6a4d</span><span class="p">;</span>
-</span><span class="hl">  <span class="n">local_28</span> <span class="o">=</span> <span class="mh">0x394a7a4d6a4e5461</span><span class="p">;</span>
-</span>  <span class="n">local_20</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-  <span class="n">iVar1</span> <span class="o">=</span> <span class="n">decrypt</span><span class="p">((</span><span class="n">EVP_PKEY_CTX</span> <span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="n">local_38</span><span class="p">,</span><span class="n">param_2</span><span class="p">,(</span><span class="n">size_t</span> <span class="o">*</span><span class="p">)</span><span class="mh">0x5139314d4d4a6a4d</span><span class="p">,</span><span class="n">param_4</span><span class="p">,</span><span class="n">param_5</span><span class="p">);</span>
-  <span class="n">puts</span><span class="p">((</span><span class="kt">char</span> <span class="o">*</span><span class="p">)</span><span class="n">CONCAT44</span><span class="p">(</span><span class="n">extraout_var</span><span class="p">,</span><span class="n">iVar1</span><span class="p">));</span>
-  <span class="k">if</span> <span class="p">(</span><span class="n">local_10</span> <span class="o">!=</span> <span class="o">*</span><span class="p">(</span><span class="kt">long</span> <span class="o">*</span><span class="p">)(</span><span class="n">in_FS_OFFSET</span> <span class="o">+</span> <span class="mh">0x28</span><span class="p">))</span> <span class="p">{</span>
-                    <span class="cm">/* WARNING: Subroutine does not return */</span>
-    <span class="n">__stack_chk_fail</span><span class="p">();</span>
-  <span class="p">}</span>
-  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-<span class="p">}</span>
-
-
-<span class="kt">int</span> <span class="nf">decrypt</span><span class="p">(</span><span class="n">EVP_PKEY_CTX</span> <span class="o">*</span><span class="n">ctx</span><span class="p">,</span><span class="n">uchar</span> <span class="o">*</span><span class="n">out</span><span class="p">,</span><span class="n">size_t</span> <span class="o">*</span><span class="n">outlen</span><span class="p">,</span><span class="n">uchar</span> <span class="o">*</span><span class="n">in</span><span class="p">,</span><span class="n">size_t</span> <span class="n">inlen</span><span class="p">)</span>
-
-<span class="p">{</span>
-  <span class="k">return</span> <span class="mh">0x102008</span><span class="p">;</span>
-<span class="p">}</span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="n">undefined8</span> <span class="nf">main</span><span class="p">(</span><span class="n">undefined8</span> <span class="n">param_1</span><span class="p">,</span><span class="n">uchar</span> <span class="o">*</span><span class="n">param_2</span><span class="p">,</span><span class="n">undefined8</span> <span class="n">param_3</span><span class="p">,</span><span class="n">uchar</span> <span class="o">*</span><span class="n">param_4</span><span class="p">,</span><span class="kt">size_t</span> <span class="n">param_5</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="kt">int</span> <span class="n">iVar1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="n">undefined4</span> <span class="n">extraout_var</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="kt">long</span> <span class="n">in_FS_OFFSET</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="n">undefined8</span> <span class="n">local_38</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="n">undefined8</span> <span class="n">local_30</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="n">undefined8</span> <span class="n">local_28</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="n">undefined</span> <span class="n">local_20</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="kt">long</span> <span class="n">local_10</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">  <span class="n">local_10</span> <span class="o">=</span> <span class="o">*</span><span class="p">(</span><span class="kt">long</span> <span class="o">*</span><span class="p">)(</span><span class="n">in_FS_OFFSET</span> <span class="o">+</span> <span class="mh">0x28</span><span class="p">);</span>
+</span></span><span class="line hl"><span class="cl">  <span class="n">local_38</span> <span class="o">=</span> <span class="mh">0x564233656a4e485a</span><span class="p">;</span>
+</span></span><span class="line hl"><span class="cl">  <span class="n">local_30</span> <span class="o">=</span> <span class="mh">0x5139314d4d4a6a4d</span><span class="p">;</span>
+</span></span><span class="line hl"><span class="cl">  <span class="n">local_28</span> <span class="o">=</span> <span class="mh">0x394a7a4d6a4e5461</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="n">local_20</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="n">iVar1</span> <span class="o">=</span> <span class="nf">decrypt</span><span class="p">((</span><span class="n">EVP_PKEY_CTX</span> <span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="n">local_38</span><span class="p">,</span><span class="n">param_2</span><span class="p">,(</span><span class="kt">size_t</span> <span class="o">*</span><span class="p">)</span><span class="mh">0x5139314d4d4a6a4d</span><span class="p">,</span><span class="n">param_4</span><span class="p">,</span><span class="n">param_5</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">puts</span><span class="p">((</span><span class="kt">char</span> <span class="o">*</span><span class="p">)</span><span class="nf">CONCAT44</span><span class="p">(</span><span class="n">extraout_var</span><span class="p">,</span><span class="n">iVar1</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">  <span class="k">if</span> <span class="p">(</span><span class="n">local_10</span> <span class="o">!=</span> <span class="o">*</span><span class="p">(</span><span class="kt">long</span> <span class="o">*</span><span class="p">)(</span><span class="n">in_FS_OFFSET</span> <span class="o">+</span> <span class="mh">0x28</span><span class="p">))</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                    <span class="cm">/* WARNING: Subroutine does not return */</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">__stack_chk_fail</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">decrypt</span><span class="p">(</span><span class="n">EVP_PKEY_CTX</span> <span class="o">*</span><span class="n">ctx</span><span class="p">,</span><span class="n">uchar</span> <span class="o">*</span><span class="n">out</span><span class="p">,</span><span class="kt">size_t</span> <span class="o">*</span><span class="n">outlen</span><span class="p">,</span><span class="n">uchar</span> <span class="o">*</span><span class="n">in</span><span class="p">,</span><span class="kt">size_t</span> <span class="n">inlen</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="mh">0x102008</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
 </div>
 </div>
 <br>
 <p>とりあえず、文字になりそうな箇所（ハイライト部分）があるので変換します。</p>
-<p><br /></p>
+<br />
 <p>反転して base64 デコードするとフラグが得られます。</p>
 <pre>
 $ echo 9JzMjNTaQ91MMJjMVB3ejNHZ | rev | base64 -d ; echo
 dsc{pU22L3_Pi3c32}
 </pre>
-<p><br /></p>
+<br />
 <p>Flag: <code>dsc{pU22L3_Pi3c32}</code></p>
-<p><br /></p>
+<br />
 <p>ちなみにですが、Base64、Base16、Base85、reverse、などのもろもろのデコードをまとめてやる自作ツールがあって、実際のところはそれを使って解きました。</p>
 <p><br /><br />
 <br /><br /></p>
@@ -467,7 +463,7 @@ dsc{pU22L3_Pi3c32}
     <footer id="footer" class="footer">
       <div class="social-links">
       <a href="https://github.com/CaptureAmerica/" class="iconfont icon-github" title="github"></a>
-  <a href="https://captureamerica.github.io/writeups/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+  
 </div>
 
 <div class="copyright">
@@ -502,20 +498,21 @@ dsc{pU22L3_Pi3c32}
 
 
 
-<script type="text/javascript" src="https://captureamerica.github.io/writeups/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+<script type="text/javascript" src="https://captureamerica.github.io/writeups/js/main.min.4ae89da218555efa0e7093a20b92017d2e1202b66fff9fc2edf4cb8d44b44c6e.js"></script>
 
 
 <script type="application/javascript">
 var doNotTrack = false;
 if (!doNotTrack) {
-	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 	ga('create', 'UA-104910699-2', 'auto');
 	ga('set', 'anonymizeIp', true);
 	ga('send', 'pageview');
 }
 </script>
-<script async src='https://www.google-analytics.com/analytics.js'></script>
-
 
 
 

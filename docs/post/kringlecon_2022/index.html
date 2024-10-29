@@ -23,7 +23,7 @@
 <meta name="google-site-verification" content="PqctLWZQttGzxXVupWuIt2HWuBI8cvN1z07ETpxA2dw" />
 
 
-<meta name="generator" content="Hugo 0.74.2 with theme even" />
+<meta name="generator" content="Hugo 0.119.0 with theme even" />
 
 
 <link rel="canonical" href="https://captureamerica.github.io/writeups/post/kringlecon_2022/" />
@@ -35,24 +35,20 @@
 
 
 
-<link href="https://captureamerica.github.io/writeups/sass/main.min.2e81bbed97b8b282c1aeb57488cc71c8d8c8ec559f3931531bd396bf31e0d4dd.css" rel="stylesheet">
+<link href="https://captureamerica.github.io/writeups/sass/main.min.f92fd13721ddf72129410fd8250e73152cc6f2438082b6c0208dc24ee7c13fc4.css" rel="stylesheet">
 
 
 
 <meta property="og:title" content="SANS Holiday Hack Challenge (Kringlecon) 2022 Writeup" />
 <meta property="og:description" content="Save The Earth! - 地球環境を守ろう！ URL: https://2022.kringlecon.com/ 新年明けまして おめでとうございます！ 今年も SANS の Holiday Hack Challenge (Kringlecon) にちょっとだけ参加しました。 過去にも何度か参加してますが" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://captureamerica.github.io/writeups/post/kringlecon_2022/" />
+<meta property="og:url" content="https://captureamerica.github.io/writeups/post/kringlecon_2022/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2023-01-09T13:00:00+09:00" />
 <meta property="article:modified_time" content="2023-01-09T13:00:00+09:00" />
 <meta itemprop="name" content="SANS Holiday Hack Challenge (Kringlecon) 2022 Writeup">
-<meta itemprop="description" content="Save The Earth! - 地球環境を守ろう！ URL: https://2022.kringlecon.com/ 新年明けまして おめでとうございます！ 今年も SANS の Holiday Hack Challenge (Kringlecon) にちょっとだけ参加しました。 過去にも何度か参加してますが">
-<meta itemprop="datePublished" content="2023-01-09T13:00:00&#43;09:00" />
-<meta itemprop="dateModified" content="2023-01-09T13:00:00&#43;09:00" />
+<meta itemprop="description" content="Save The Earth! - 地球環境を守ろう！ URL: https://2022.kringlecon.com/ 新年明けまして おめでとうございます！ 今年も SANS の Holiday Hack Challenge (Kringlecon) にちょっとだけ参加しました。 過去にも何度か参加してますが"><meta itemprop="datePublished" content="2023-01-09T13:00:00+09:00" />
+<meta itemprop="dateModified" content="2023-01-09T13:00:00+09:00" />
 <meta itemprop="wordCount" content="2669">
-
-
-
 <meta itemprop="keywords" content="CTF," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="SANS Holiday Hack Challenge (Kringlecon) 2022 Writeup"/>
 <meta name="twitter:description" content="Save The Earth! - 地球環境を守ろう！ URL: https://2022.kringlecon.com/ 新年明けまして おめでとうございます！ 今年も SANS の Holiday Hack Challenge (Kringlecon) にちょっとだけ参加しました。 過去にも何度か参加してますが"/>
@@ -190,10 +186,10 @@
 <p>新年明けまして おめでとうございます！</p>
 <p>今年も SANS の Holiday Hack Challenge (Kringlecon) にちょっとだけ参加しました。</p>
 <p>過去にも何度か参加してますが、チャレンジ文とヒントを別々に集めないといけなかったり、チャレンジを解くのにマップを移動しないといけない仕様が未だに慣れません。。。</p>
-<p><br /></p>
+<br />
 <p>進捗具合は以下の感じ。（各リングの全てのスクリーンショットを撮るのは面倒なので、Objectiveのトップ画面のみ）</p>
 <img src="https://captureamerica.github.io/writeups/img/kringlecon_2022_Objectives.png" alt="kringlecon_2022_Objectives.png">
-<p><br /></p>
+<br />
 <p><br /><br /></p>
 <h2 id="tolkien-ring---wireshark-practice-difficulty-1">Tolkien Ring - Wireshark Practice (Difficulty: 1)</h2>
 <hr>
@@ -205,7 +201,7 @@
 <ul>
 <li>suspicious.pcap</li>
 </ul>
-<p><br /></p>
+<br />
 <h3 id="solution">Solution</h3>
 <p>ターミナルに出てくる問題をひとつずつ解いていきます。</p>
 <blockquote>
@@ -214,43 +210,43 @@
 </ol>
 </blockquote>
 <p>Answer: <code>http</code></p>
-<p><br /></p>
+<br />
 <blockquote>
 <ol start="2">
 <li>What is the file name of the largest file we can export?</li>
 </ol>
 </blockquote>
 <p>Answer: <code>app.php</code></p>
-<p><br /></p>
+<br />
 <blockquote>
 <ol start="3">
 <li>What packet number starts that app.php file?</li>
 </ol>
 </blockquote>
 <p>Answer: <code>687</code></p>
-<p><br /></p>
+<br />
 <blockquote>
 <ol start="4">
 <li>What is the IP of the Apache server?</li>
 </ol>
 </blockquote>
 <p>Answer: <code>192.185.57.242</code></p>
-<p><br /></p>
+<br />
 <blockquote>
 <ol start="5">
 <li>What file is saved to the infected host?</li>
 </ol>
 </blockquote>
 <p>Answer: <code>Ref_Sept24-2020.zip</code></p>
-<p><br /></p>
+<br />
 <p>ちなみに、このpcapファイルからそのファイル自体を取り出すこともできます。<br/></p>
 <p>Frame 687にある、ここら辺です。</p>
 <img src="https://captureamerica.github.io/writeups/img/kringlecon_2022_wireshark1.png" alt="kringlecon_2022_wireshark1.png">
-<p><br />
-テキストファイルに落として、base64でデコードするだけです。思いっきりMalwareっぽいので取り扱いには要注意。</p>
+<br />
+テキストファイルに落として、base64でデコードするだけです。思いっきりMalwareっぽいので取り扱いには要注意。
 <p><a href="https://www.virustotal.com/gui/file/fad001d463e892e7844040cabdcfa8f8431c07e7ef1ffd76ffbd190f49d7693d/details">https://www.virustotal.com/gui/file/fad001d463e892e7844040cabdcfa8f8431c07e7ef1ffd76ffbd190f49d7693d/details</a> <br/>
 (VirusTotal Score: 45/69)</p>
-<p><br /></p>
+<br />
 <blockquote>
 <ol start="6">
 <li>Attackers used bad TLS certificates in this traffic. Which countries were they registered to? Submit the names of the countries in alphabetical order separated by a commas (Ex: Norway, South Korea).</li>
@@ -265,7 +261,7 @@
 <li>IL: Israel</li>
 </ul>
 <p>Answer: <code>Ireland, Israel, South Sudan, United States</code></p>
-<p><br /></p>
+<br />
 <blockquote>
 <ol start="7">
 <li>Is the host infected (Yes/No)?</li>
@@ -288,7 +284,7 @@ Hint: New to Windows event logs? Get a jump start with Eric&rsquo;s talk!
 <ul>
 <li>powershell.evtx</li>
 </ul>
-<p><br /></p>
+<br />
 <h3 id="solution-1">Solution</h3>
 <p>まずは、Windowsマシンで上記ファイルを開き、powershelllogs.txt というファイル名でテキストとして保存しておきます。</p>
 <p>次に、YouTubeビデオの通りにいくつかコマンドを実行してみます。</p>
@@ -347,7 +343,7 @@ $global:?
 $global:?
 $foo | Add-Content -Path 'recipe_updated.txt'
 </pre>
-<p><br /></p>
+<br />
 <p>この結果を元に、ターミナルに出てくる問題をひとつずつ解いていきます。結構、トライ＆エラーしました^^;</p>
 <blockquote>
 <ol>
@@ -355,7 +351,7 @@ $foo | Add-Content -Path 'recipe_updated.txt'
 </ol>
 </blockquote>
 <p>Answer: <code>12/24/2022</code></p>
-<p><br /></p>
+<br />
 <blockquote>
 <ol start="2">
 <li>An attacker got a secret from a file. What was the original file&rsquo;s name?</li>
@@ -363,56 +359,56 @@ $foo | Add-Content -Path 'recipe_updated.txt'
 </blockquote>
 <p>Answer: <code>Recipe</code></p>
 <p>(答えを部分的にしかチェックしていないのか、<code>Recipe.txt</code> でも正解とみなされます。。。)</p>
-<p><br /></p>
+<br />
 <blockquote>
 <ol start="3">
 <li>The contents of the previous file were retrieved, changed, and stored to a variable by the attacker. This was done multiple times. Submit the last full PowerShell line that performed only these actions.</li>
 </ol>
 </blockquote>
 <p>Answer: <code>$foo = Get-Content .\Recipe| % {$_ -replace 'honey', 'fish oil'} $foo | Add-Content -Path 'recipe_updated.txt'</code></p>
-<p><br /></p>
+<br />
 <blockquote>
 <ol start="4">
 <li>After storing the altered file contents into the variable, the attacker used the variable to run a separate command that wrote the modified data to a file. This was done multiple times. Submit the last full PowerShell line that performed only this action.</li>
 </ol>
 </blockquote>
 <p>Answer: <code>$foo | Add-Content -Path 'Recipe'</code></p>
-<p><br /></p>
+<br />
 <blockquote>
 <ol start="5">
 <li>The attacker ran the previous command against one file multiple times. What is the name of this file?</li>
 </ol>
 </blockquote>
 <p>Answer: <code>Recipe.txt</code></p>
-<p><br /></p>
+<br />
 <blockquote>
 <ol start="6">
 <li>Were any files deleted? (Yes/No)</li>
 </ol>
 </blockquote>
 <p>Answer: <code>Yes</code></p>
-<p><br /></p>
+<br />
 <blockquote>
 <ol start="7">
 <li>Was the original file (from question 2) deleted? (Yes/No)</li>
 </ol>
 </blockquote>
 <p>Answer: <code>No</code></p>
-<p><br /></p>
+<br />
 <blockquote>
 <ol start="8">
 <li>What is the Event ID of the logs that show the actual command lines the attacker typed and ran?</li>
 </ol>
 </blockquote>
 <p>Answer: <code>4104</code></p>
-<p><br /></p>
+<br />
 <blockquote>
 <ol start="9">
 <li>Is the secret ingrediant compromised (Yes/No)?</li>
 </ol>
 </blockquote>
 <p>Answer: <code>Yes</code></p>
-<p><br /></p>
+<br />
 <blockquote>
 <ol start="10">
 <li>What is the secret ingredient?</li>
@@ -436,7 +432,7 @@ There&rsquo;s a short list of rules started in suricata.rules in your home direc
 <ul>
 <li>suspicious.pcap</li>
 </ul>
-<p><br /></p>
+<br />
 <h3 id="solution-2">Solution</h3>
 <p>ターミナルに入って、ホームディレクトリにあるサンプルを参考にルールを書いていきます。以下がサンプルです。</p>
 <pre>
@@ -450,7 +446,7 @@ alert tcp any any -> any any (msg:"SURICATA Applayer No TLS after STARTTLS"; flo
 alert pkthdr any any -> any any (msg:"SURICATA IPv4 total length smaller than header size"; decode-event:ipv4.iplen_smaller_than_hlen; classtype:protocol-command-decode; sid:2200002; rev:2;)
 alert udp any any -> any 123 (msg:"ET DOS Possible NTP DDoS Inbound Frequent Un-Authed GET_RESTRICT Requests IMPL 0x02"; content:"|00 02 10|"; offset:1; depth:3; byte_test:1,!&,128,0; byte_test:1,&,4,0; byte_test:1,&,2,0; byte_test:1,&,1,0; threshold: type both,track by_dst,count 2,seconds 60; classtype:attempted-dos; sid:2019021; rev:3; metadata:created_at 2014_08_26, updated_at 2014_08_26;)
 </pre>
-<p><br /></p>
+<br />
 <blockquote>
 <p>First, please create a Suricata rule to catch DNS lookups for <code>adv.epostoday.uk</code>.
 <br />
@@ -473,7 +469,7 @@ As you get rules correct, rule_checker will ask for more to be added.</p>
 </ul>
 <p>Answer:</p>
 <p><code>$ echo 'alert dns $HOME_NET any -&gt; any any (msg:&quot;Known bad DNS lookup, possible Dridex infection&quot;; dns.query; content:&quot;adv.epostoday.uk&quot;; nocase; sid:1000000; rev:1;)' &gt;&gt; ./suricata.rules</code></p>
-<p><br /></p>
+<br />
 <blockquote>
 <p>STINC thanks you for your work with that DNS record! In this PCAP, it points to 192.185.57.242.
 <br />
@@ -483,7 +479,7 @@ When there&rsquo;s a match, the message (msg) should read <code>Investigate susp
 </blockquote>
 <p>Answer:</p>
 <p><code>$ echo 'alert http [192.185.57.242,$HOME_NET] any -&gt; [192.185.57.242,$HOME_NET] any (msg:&quot;Investigate suspicious connections, possible Dridex infection&quot;; sid:1000001; rev:1;)' &gt;&gt; ./suricata.rules</code></p>
-<p><br /></p>
+<br />
 <blockquote>
 <p>We heard that some naughty actors are using TLS certificates with a specific <code>CN</code>.
 <br />
@@ -493,7 +489,7 @@ When your rule matches, the message (msg) should read <code>Investigate bad cert
 </blockquote>
 <p>Answer:</p>
 <p><code>$ echo 'alert tcp any any -&gt; any any (msg:&quot;Investigate bad certificates, possible Dridex infection&quot;; tls.cert_subject; content:&quot;CN=heardbellith.Icanwepeh.nagoya&quot;; nocase; sid:1000002; rev:1;)' &gt;&gt; ./suricata.rules</code></p>
-<p><br /></p>
+<br />
 <blockquote>
 <p>OK, one more to rule them all and in the darkness find them.
 <br />
@@ -505,7 +501,7 @@ Just in case they try this again, please alert on that HTTP data with message <c
 </blockquote>
 <p>以下を参考にしました。GZip圧縮されていたとしても単純に <code>http.response_body</code> でいいらしいです。
 <a href="https://suricata.readthedocs.io/en/suricata-6.0.0/rules/http-keywords.html">https://suricata.readthedocs.io/en/suricata-6.0.0/rules/http-keywords.html</a></p>
-<p><br /></p>
+<br />
 <p>Answer:</p>
 <p><code>$ echo 'alert http any any -&gt; any any (msg:&quot;Suspicious JavaScript function, possible Dridex infection&quot;; http.response_body; content:&quot;let byteCharacters = atob&quot;; nocase; sid:1000003; rev:1;)' &gt;&gt; ./suricata.rules</code></p>
 <p><br /><br />
@@ -516,7 +512,7 @@ Just in case they try this again, please alert on that HTTP data with message <c
 <blockquote>
 <p>Escape from a container. Get hints for this challenge from Bow Ninecandle in the Elfen Ring. What hex string appears in the host file <code>/home/jailer/.ssh/jail.key.priv</code>?</p>
 </blockquote>
-<p><br /></p>
+<br />
 <h3 id="solution-3">Solution</h3>
 <p>ターミナルでアクセスできるのは、コンテナ内のCLIです。sudoで任意のコマンドが実行できます。</p>
 <pre>
@@ -524,7 +520,7 @@ grinchum-land:~$ sudo -l
 User samways may run the following commands on grinchum-land:
     (ALL) NOPASSWD: ALL
 </pre>
-<p><br /></p>
+<br />
 <p>ゴールは、コンテナ内からホスト側にある<code>/home/jailer/.ssh/jail.key.priv</code>にアクセスすることです。
 <br /><br />
 以下のサイトを参考にしました。<br />
@@ -540,7 +536,7 @@ CapEff: 0000003fffffffff
 CapBnd: 0000003fffffffff
 CapAmb: 0000000000000000
 </pre>
-<p><br /></p>
+<br />
 <p>ターミナル上には<code>capsh</code>が入っていませんが、自分のKaliには入っていたので、どのフラグが立っているか確認してみました。</p>
 <p>いっぱい出てきたし、出力結果はぶっちゃけ見てません^^;</p>
 <p>たぶん全てのcapabilityがONなんだと思われます。</p>
@@ -548,7 +544,7 @@ CapAmb: 0000000000000000
 captureamerica@kali:~$ capsh --decode=0000003fffffffff
 0x0000003fffffffff=cap_chown,cap_dac_override,cap_dac_read_search,cap_fowner,cap_fsetid,cap_kill,cap_setgid,cap_setuid,cap_setpcap,cap_linux_immutable,cap_net_bind_service,cap_net_broadcast,cap_net_admin,cap_net_raw,cap_ipc_lock,cap_ipc_owner,cap_sys_module,cap_sys_rawio,cap_sys_chroot,cap_sys_ptrace,cap_sys_pacct,cap_sys_admin,cap_sys_boot,cap_sys_nice,cap_sys_resource,cap_sys_time,cap_sys_tty_config,cap_mknod,cap_lease,cap_audit_write,cap_audit_control,cap_setfcap,cap_mac_override,cap_mac_admin,cap_syslog,cap_wake_alarm,cap_block_suspend,cap_audit_read
 </pre>
-<p><br /></p>
+<br />
 <p>fdiskコマンドでパーティションの確認をします。<code>/dev/vda</code>ですね。</p>
 <pre>
 grinchum-land:~$ sudo fdisk -l
@@ -556,7 +552,7 @@ Disk /dev/vda: 2048 MB, 2147483648 bytes, 4194304 sectors
 2048 cylinders, 64 heads, 32 sectors/track
 Units: sectors of 1 * 512 = 512 bytes
 </pre>
-<p><br /></p>
+<br />
 <p>あとは、<code>mount</code>して該当ファイルを見るだけ。</p>
 <pre>
 grinchum-land:~$ sudo mount /dev/vda /mnt/
@@ -665,7 +661,7 @@ grinchum-land:~$ cat /mnt/home/jailer/.ssh/jail.key.priv
     <footer id="footer" class="footer">
       <div class="social-links">
       <a href="https://github.com/CaptureAmerica/" class="iconfont icon-github" title="github"></a>
-  <a href="https://captureamerica.github.io/writeups/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+  
 </div>
 
 <div class="copyright">
@@ -700,20 +696,21 @@ grinchum-land:~$ cat /mnt/home/jailer/.ssh/jail.key.priv
 
 
 
-<script type="text/javascript" src="https://captureamerica.github.io/writeups/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+<script type="text/javascript" src="https://captureamerica.github.io/writeups/js/main.min.4ae89da218555efa0e7093a20b92017d2e1202b66fff9fc2edf4cb8d44b44c6e.js"></script>
 
 
 <script type="application/javascript">
 var doNotTrack = false;
 if (!doNotTrack) {
-	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 	ga('create', 'UA-104910699-2', 'auto');
 	ga('set', 'anonymizeIp', true);
 	ga('send', 'pageview');
 }
 </script>
-<script async src='https://www.google-analytics.com/analytics.js'></script>
-
 
 
 

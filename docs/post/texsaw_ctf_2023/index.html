@@ -23,7 +23,7 @@
 <meta name="google-site-verification" content="PqctLWZQttGzxXVupWuIt2HWuBI8cvN1z07ETpxA2dw" />
 
 
-<meta name="generator" content="Hugo 0.74.2 with theme even" />
+<meta name="generator" content="Hugo 0.119.0 with theme even" />
 
 
 <link rel="canonical" href="https://captureamerica.github.io/writeups/post/texsaw_ctf_2023/" />
@@ -35,24 +35,20 @@
 
 
 
-<link href="https://captureamerica.github.io/writeups/sass/main.min.2e81bbed97b8b282c1aeb57488cc71c8d8c8ec559f3931531bd396bf31e0d4dd.css" rel="stylesheet">
+<link href="https://captureamerica.github.io/writeups/sass/main.min.f92fd13721ddf72129410fd8250e73152cc6f2438082b6c0208dc24ee7c13fc4.css" rel="stylesheet">
 
 
 
 <meta property="og:title" content="TexSAW CTF 2023 Writeup" />
 <meta property="og:description" content="URL: https://www.texsaw2023.com/challenges 2510ポイントで、最終順位は16位でした。(234チーム中) 以下は、チャレンジ一覧です。 比較的、解いたチームが少ないチャレンジのWri" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://captureamerica.github.io/writeups/post/texsaw_ctf_2023/" />
+<meta property="og:url" content="https://captureamerica.github.io/writeups/post/texsaw_ctf_2023/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2023-04-17T21:00:00+09:00" />
 <meta property="article:modified_time" content="2023-04-17T21:00:00+09:00" />
 <meta itemprop="name" content="TexSAW CTF 2023 Writeup">
-<meta itemprop="description" content="URL: https://www.texsaw2023.com/challenges 2510ポイントで、最終順位は16位でした。(234チーム中) 以下は、チャレンジ一覧です。 比較的、解いたチームが少ないチャレンジのWri">
-<meta itemprop="datePublished" content="2023-04-17T21:00:00&#43;09:00" />
-<meta itemprop="dateModified" content="2023-04-17T21:00:00&#43;09:00" />
-<meta itemprop="wordCount" content="2720">
-
-
-
+<meta itemprop="description" content="URL: https://www.texsaw2023.com/challenges 2510ポイントで、最終順位は16位でした。(234チーム中) 以下は、チャレンジ一覧です。 比較的、解いたチームが少ないチャレンジのWri"><meta itemprop="datePublished" content="2023-04-17T21:00:00+09:00" />
+<meta itemprop="dateModified" content="2023-04-17T21:00:00+09:00" />
+<meta itemprop="wordCount" content="2719">
 <meta itemprop="keywords" content="CTF," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="TexSAW CTF 2023 Writeup"/>
 <meta name="twitter:description" content="URL: https://www.texsaw2023.com/challenges 2510ポイントで、最終順位は16位でした。(234チーム中) 以下は、チャレンジ一覧です。 比較的、解いたチームが少ないチャレンジのWri"/>
@@ -221,14 +217,14 @@
 <ul>
 <li>Challenge.pdf</li>
 </ul>
-<p><br /></p>
+<br />
 <h3 id="solution">Solution</h3>
 <p>Challenge.pdfは、拡張子は.pdfですが、PDFファイルではありません。</p>
 <pre>
 $ file Challenge.pdf
 Challenge.pdf: data
 </pre>
-<p><br /></p>
+<br />
 <p>先頭2バイトは <code>ffd8</code> ですが、jpeg のマジック <code>ffd8 ffe0</code> ではありません。</p>
 <p>xxdで見たときに、別のファイル名 (cute-cat-photos-3593441022.jpg) が先頭の方に出てくるのと、末尾に <code>PK</code> が出てくるので、どちらかというとZipファイルっぽいです。</p>
 <pre>
@@ -244,8 +240,8 @@ $ xxd Challenge.pdf | tail -n4
 00019d80: 0000 0000 0050 4b05 0600 0000 0001 0001  .....PK.........
 00019d90: 0070 0000 0017 9d01 0000 00              .p.........
 </pre>
-<p><br />
-別のチャレンジでダウンロードしてた Zipファイルを見てみると、以下のようになっていました。</p>
+<br />
+別のチャレンジでダウンロードしてた Zipファイルを見てみると、以下のようになっていました。
 <p>結構似ているので、やっぱりZipファイルっぽいです。</p>
 <pre>
 $ file rock.rock
@@ -257,15 +253,15 @@ $ xxd rock.rock | head -n4
 00000020: 636b 2e72 6f63 6bec b663 8c2f d0f3 e6d9  ck.rock..c./....
 00000030: b671 fbdb b66d dbb6 6ddb b66d f3b6 6deb  .q...m..m..m..m.
 </pre>
-<p><br /></p>
+<br />
 <p>ということで、バイナリエディタで <code>ffd8</code> の部分を、<code>504b 0304</code>で置き換えたら Zipファイルが復元できて、中に入っていた画像が取り出せます。</p>
-<p><br /></p>
+<br />
 <p>そこに、フラグの元となる数値が書かれているので、文字に変換するだけです。</p>
 <pre>
 $ python -c 'print("".join([chr(int(x,16)) for x in "74 65 78 73 61 77 7B 6F 4E 65 5F 43 75 54 65 5F 43 61 54 21 7D".split()]))'
 texsaw{oNe_CuTe_CaT!}
 </pre>
-<p><br /></p>
+<br />
 <p>Flag: <code>texsaw{oNe_CuTe_CaT!}</code></p>
 <p><br /><br />
 <br /><br /></p>
@@ -280,14 +276,14 @@ texsaw{oNe_CuTe_CaT!}
 <li>doll1.jpg</li>
 </ul>
 <p><img src="https://captureamerica.github.io/writeups/img/taxsaw_ctf_2023_doll1.jpg" alt="taxsaw_ctf_2023_doll1.jpg"> <br /></p>
-<p><br /></p>
+<br />
 <h3 id="solution-1">Solution</h3>
 <p>繰り返し unzip させられるチャレンジかと思いきや、解凍する度に別のチャレンジが出てきて、結局のところ複数のチャレンジを全て解けた人がポイントを得られる、というものでした。</p>
 <p>ということで、4つに分けて記載します。</p>
-<p><br /></p>
+<br />
 <p>まず最初のdoll1.jpgですが、「青い空を見上げればいつもそこに白い猫」のビット抽出のところで、「Steghide適用可能性あり」「password:sneakythief」の情報が得られます。優秀！！</p>
 <p><img src="https://captureamerica.github.io/writeups/img/taxsaw_ctf_2023_doll1_neko.png" alt="taxsaw_ctf_2023_doll1_neko.png"> <br /></p>
-<p><br /></p>
+<br />
 <pre>
 $ steghide extract -p 'sneakythief' -sf doll1.jpg
 wrote extracted data to "linktodoll2.txt".
@@ -308,7 +304,7 @@ wrote extracted data to "linktodoll2.txt".
 <li>md5hash1.txt (dd679302de4ce83d961f95a1facca536)</li>
 <li>md5hash2.txt (5400711cd704e87ed3fd11556cc174ae)</li>
 </ul>
-<p><br /></p>
+<br />
 <h3 id="solution-2">Solution</h3>
 <p>Saltを使ったMD5のcrackです。</p>
 <p>以下のようなファイルを用意します。</p>
@@ -324,7 +320,7 @@ dd679302de4ce83d961f95a1facca536:uwu
 <pre>
 5400711cd704e87ed3fd11556cc174ae:owo
 </pre>
-<p><br /></p>
+<br />
 <p>hashcatを使います。</p>
 <pre>
 $ hashcat -a 0 -m 20 aaa.txt /usr/share/wordlists/rockyou.txt
@@ -370,7 +366,7 @@ dd679302de4ce83d961f95a1facca536:uwu:pizza
 :
 (snip)
 </pre>
-<p><br /></p>
+<br />
 <pre>
 $ hashcat -a 0 -m 10 bbb.txt /usr/share/wordlists/rockyou.txt
 hashcat (v6.2.5) starting
@@ -416,7 +412,7 @@ Dictionary cache built:
 :
 (snip)
 </pre>
-<p><br /></p>
+<br />
 <p>ということで、</p>
 <pre>
 $ steghide extract -p 'pizzapasta' -sf doll2.jpg
@@ -445,7 +441,7 @@ wrote extracted data to "linktodoll3.txt".
 <p>hint3/noize.js</p>
 </li>
 </ul>
-<p><br /></p>
+<br />
 <h3 id="solution-3">Solution</h3>
 <p>convertthenshift.txt の中身は以下の通り。</p>
 <pre>
@@ -474,7 +470,7 @@ wrote extracted data to "linktodoll3.txt".
 $ echo -n 'Hellenic Academic and Research Institutions CA' | wc -c
 46
 </pre>
-<p><br /></p>
+<br />
 <pre>
 $ steghide extract -p 'Hellenic Academic and Research Institutions' -sf doll3.jpg
 wrote extracted data to "linktodoll4.txt".
@@ -494,12 +490,12 @@ wrote extracted data to "linktodoll4.txt".
 <ul>
 <li>guardian (ELF 64bit)</li>
 </ul>
-<p><br /></p>
+<br />
 <h3 id="solution-4">Solution</h3>
 <p>ghidraでデコンパイルします。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -523,37 +519,35 @@ wrote extracted data to "linktodoll4.txt".
 </span><span class="lnt">22
 </span><span class="lnt">23
 </span><span class="lnt">24
-</span><span class="lnt">25
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-C" data-lang="C">
-<span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
-
-<span class="p">{</span>
-  <span class="n">undefined8</span> <span class="n">local_28</span><span class="p">;</span>
-  <span class="n">undefined8</span> <span class="n">local_20</span><span class="p">;</span>
-  <span class="n">undefined4</span> <span class="n">local_18</span><span class="p">;</span>
-  
-  <span class="n">setbuf</span><span class="p">(</span><span class="n">stdout</span><span class="p">,(</span><span class="kt">char</span> <span class="o">*</span><span class="p">)</span><span class="mh">0x0</span><span class="p">);</span>
-  <span class="n">setbuf</span><span class="p">(</span><span class="n">stdin</span><span class="p">,(</span><span class="kt">char</span> <span class="o">*</span><span class="p">)</span><span class="mh">0x0</span><span class="p">);</span>
-  <span class="n">setbuf</span><span class="p">(</span><span class="n">stderr</span><span class="p">,(</span><span class="kt">char</span> <span class="o">*</span><span class="p">)</span><span class="mh">0x0</span><span class="p">);</span>
-  <span class="n">local_28</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-  <span class="n">local_20</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-  <span class="n">local_18</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-  <span class="n">genesis</span><span class="p">(</span><span class="o">&amp;</span><span class="n">local_28</span><span class="p">);</span>
-  <span class="n">puts</span><span class="p">(</span><span class="s">&#34;Here is the password:&#34;</span><span class="p">);</span>
-  <span class="n">exitium</span><span class="p">(</span><span class="o">&amp;</span><span class="n">local_28</span><span class="p">);</span>
-  <span class="n">puts</span><span class="p">((</span><span class="kt">char</span> <span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="n">local_28</span><span class="p">);</span>
-  <span class="n">sleep</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
-  <span class="n">puts</span><span class="p">(</span>
-      <span class="s">&#34;</span><span class="se">\n</span><span class="s">Uh oh, it looks like the password got severely damaged somehow. I am afraid there is nothin g I can do to fix it.&#34;</span>
-      <span class="p">);</span>
-  <span class="k">return</span><span class="p">;</span>
-<span class="p">}</span>
-
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="n">undefined8</span> <span class="n">local_28</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="n">undefined8</span> <span class="n">local_20</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="n">undefined4</span> <span class="n">local_18</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">  <span class="nf">setbuf</span><span class="p">(</span><span class="n">stdout</span><span class="p">,(</span><span class="kt">char</span> <span class="o">*</span><span class="p">)</span><span class="mh">0x0</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">setbuf</span><span class="p">(</span><span class="n">stdin</span><span class="p">,(</span><span class="kt">char</span> <span class="o">*</span><span class="p">)</span><span class="mh">0x0</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">setbuf</span><span class="p">(</span><span class="n">stderr</span><span class="p">,(</span><span class="kt">char</span> <span class="o">*</span><span class="p">)</span><span class="mh">0x0</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="n">local_28</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="n">local_20</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="n">local_18</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">genesis</span><span class="p">(</span><span class="o">&amp;</span><span class="n">local_28</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">puts</span><span class="p">(</span><span class="s">&#34;Here is the password:&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">exitium</span><span class="p">(</span><span class="o">&amp;</span><span class="n">local_28</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">puts</span><span class="p">((</span><span class="kt">char</span> <span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="n">local_28</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">sleep</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">puts</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">      <span class="s">&#34;</span><span class="se">\n</span><span class="s">Uh oh, it looks like the password got severely damaged somehow. I am afraid there is nothin g I can do to fix it.&#34;</span>
+</span></span><span class="line"><span class="cl">      <span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="k">return</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
-</div><p><br /></p>
+</div><br />
 <p>一回動かしてみて、動作も確認しておきます。</p>
 <pre>
 $ ./guardian
@@ -562,9 +556,9 @@ Here is the password:
 
 Uh oh, it looks like the password got severely damaged somehow. I am afraid there is nothing I can do to fix it.
 </pre>
-<p><br /></p>
+<br />
 <p>なんとなく、genesis()の直後では、ちゃんと文字列が取れているけど、exitium()で壊れて、その結果が表示されている感じがしました（直感）。</p>
-<p><br /></p>
+<br />
 <p>ということで、gdbで動かし、genesis()を過ぎた辺りでスタックを眺めていたら、それっぽい文字列が見つかりました。</p>
 <pre>
 $rax   : 0x00007fffffffe0c3  →  0x0000000000000000
@@ -584,7 +578,7 @@ wrote extracted data to "linktodoll5.txt".
 <p>次の doll5.jpg へのリンクが得られました。</p>
 <p>そろそろフラグを出してください、と思っていたら、やっとここで出てきました。</p>
 <p><img src="https://captureamerica.github.io/writeups/img/taxsaw_ctf_2023_doll5.jpg" alt="taxsaw_ctf_2023_doll5.jpg"> <br /></p>
-<p><br /></p>
+<br />
 <p>Flag: <code>texsaw{r3curs3_reCurSe_rECurSe_dOwn_thE_r4Bbi7_H01e}</code></p>
 <p><br /><br />
 <br /><br /></p>
@@ -596,10 +590,10 @@ wrote extracted data to "linktodoll5.txt".
 <br /><br />
 <a href="http://18.216.238.24:1004">http://18.216.238.24:1004</a></p>
 </blockquote>
-<p><br /></p>
+<br />
 <h3 id="solution-5">Solution</h3>
 <p>まず、アクセスをしてみると、http://18.216.238.24:1004/webpage/files/dir/index.html 辺りにredirectされます。</p>
-<p><br /></p>
+<br />
 <p>robots.txtがあるかな、と思っていろいろ見ていると、以下がありました。</p>
 <p>http://18.216.238.24:1004/webpage/files/dir/robots.txt</p>
 <pre>
@@ -607,7 +601,7 @@ Robots!?
 There are no robots here!
 Only Temoc, and his army of tobors!!
 </pre>
-<p><br /></p>
+<br />
 <p>で、http://18.216.238.24:1004/webpage/files/dir/tobors.txt にアクセスすると、ディレクトリが大量に書かれたリストが得られます。</p>
 <pre>
 /ad/
@@ -619,7 +613,7 @@ Only Temoc, and his army of tobors!!
 :
 (snip)
 </pre>
-<p><br /></p>
+<br />
 <p>このうちの、どこかにフラグがあるっぽいです。</p>
 <p>URLの全リストを作成し、<code>wget -i list.txt</code>で、全ての結果を取ってくるようにしました。</p>
 <br>
@@ -628,7 +622,7 @@ Only Temoc, and his army of tobors!!
 $ grep -r texsaw .
 ./index.html.3989:			texsaw{woo0OOo0oOo00o0OOOo0ooo0o00Osh}
 </pre>
-<p><br /></p>
+<br />
 <p>Flag: <code>texsaw{woo0OOo0oOo00o0OOOo0ooo0o00Osh}</code></p>
 <p><br /><br />
 <br /><br /></p>
@@ -640,13 +634,13 @@ $ grep -r texsaw .
 <br /><br />
 <a href="http://18.216.238.24:1002/">http://18.216.238.24:1002/</a></p>
 </blockquote>
-<p><br /></p>
+<br />
 <h3 id="solution-6">Solution</h3>
 <p>タイトルから、明らかにgitが関係してるっぽいのはわかります。</p>
 <pre>
 $ git-dumper http://18.216.238.24:1002/.git/ ./output/
 </pre>
-<p><br /></p>
+<br />
 <p>ダウンロードしてきたファイルの中に、すでにflag.txtがありました。</p>
 <p>git-dumper 優秀！</p>
 <pre>
@@ -660,7 +654,7 @@ drwxr-xr-x 1 501  384 Apr 16 20:39 .git/
 -rw-r--r-- 1 501 3316 Apr 16 20:39 oneko.gif
 -rw-r--r-- 1 501 5073 Apr 16 20:39 oneko.js
 </pre>
-<p><br /></p>
+<br />
 <p>Flag: <code>texsaw{0h_n0_my_g1t_15_3xp053d!}</code></p>
 <p><br /><br />
 <br /><br /></p>
@@ -716,7 +710,7 @@ drwxr-xr-x 1 501  384 Apr 16 20:39 .git/
     <footer id="footer" class="footer">
       <div class="social-links">
       <a href="https://github.com/CaptureAmerica/" class="iconfont icon-github" title="github"></a>
-  <a href="https://captureamerica.github.io/writeups/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+  
 </div>
 
 <div class="copyright">
@@ -751,20 +745,21 @@ drwxr-xr-x 1 501  384 Apr 16 20:39 .git/
 
 
 
-<script type="text/javascript" src="https://captureamerica.github.io/writeups/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+<script type="text/javascript" src="https://captureamerica.github.io/writeups/js/main.min.4ae89da218555efa0e7093a20b92017d2e1202b66fff9fc2edf4cb8d44b44c6e.js"></script>
 
 
 <script type="application/javascript">
 var doNotTrack = false;
 if (!doNotTrack) {
-	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 	ga('create', 'UA-104910699-2', 'auto');
 	ga('set', 'anonymizeIp', true);
 	ga('send', 'pageview');
 }
 </script>
-<script async src='https://www.google-analytics.com/analytics.js'></script>
-
 
 
 

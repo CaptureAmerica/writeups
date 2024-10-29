@@ -23,7 +23,7 @@
 <meta name="google-site-verification" content="PqctLWZQttGzxXVupWuIt2HWuBI8cvN1z07ETpxA2dw" />
 
 
-<meta name="generator" content="Hugo 0.74.2 with theme even" />
+<meta name="generator" content="Hugo 0.119.0 with theme even" />
 
 
 <link rel="canonical" href="https://captureamerica.github.io/writeups/post/cryptix_ctf_2019/" />
@@ -35,24 +35,20 @@
 
 
 
-<link href="https://captureamerica.github.io/writeups/sass/main.min.2e81bbed97b8b282c1aeb57488cc71c8d8c8ec559f3931531bd396bf31e0d4dd.css" rel="stylesheet">
+<link href="https://captureamerica.github.io/writeups/sass/main.min.f92fd13721ddf72129410fd8250e73152cc6f2438082b6c0208dc24ee7c13fc4.css" rel="stylesheet">
 
 
 
 <meta property="og:title" content="Cryptix CTF 2019 Writeup" />
 <meta property="og:description" content="URL: https://cryptixctf.com/challenges 上位に賞金が出るやつでしたけど、参加者が300チーム弱と、意外と狙い目のCTFだったかもです。 ただし、全問正解しないとダメですけどね。 [Forensics]:" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://captureamerica.github.io/writeups/post/cryptix_ctf_2019/" />
+<meta property="og:url" content="https://captureamerica.github.io/writeups/post/cryptix_ctf_2019/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2019-10-14T17:00:00+09:00" />
 <meta property="article:modified_time" content="2019-10-14T17:00:00+09:00" />
 <meta itemprop="name" content="Cryptix CTF 2019 Writeup">
-<meta itemprop="description" content="URL: https://cryptixctf.com/challenges 上位に賞金が出るやつでしたけど、参加者が300チーム弱と、意外と狙い目のCTFだったかもです。 ただし、全問正解しないとダメですけどね。 [Forensics]:">
-<meta itemprop="datePublished" content="2019-10-14T17:00:00&#43;09:00" />
-<meta itemprop="dateModified" content="2019-10-14T17:00:00&#43;09:00" />
+<meta itemprop="description" content="URL: https://cryptixctf.com/challenges 上位に賞金が出るやつでしたけど、参加者が300チーム弱と、意外と狙い目のCTFだったかもです。 ただし、全問正解しないとダメですけどね。 [Forensics]:"><meta itemprop="datePublished" content="2019-10-14T17:00:00+09:00" />
+<meta itemprop="dateModified" content="2019-10-14T17:00:00+09:00" />
 <meta itemprop="wordCount" content="1429">
-
-
-
 <meta itemprop="keywords" content="CTF," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Cryptix CTF 2019 Writeup"/>
 <meta name="twitter:description" content="URL: https://cryptixctf.com/challenges 上位に賞金が出るやつでしたけど、参加者が300チーム弱と、意外と狙い目のCTFだったかもです。 ただし、全問正解しないとダメですけどね。 [Forensics]:"/>
@@ -192,7 +188,7 @@
 <ul>
 <li>useless.png</li>
 </ul>
-<p><br /></p>
+<br />
 <h3 id="solution">Solution</h3>
 <p>「青い空を見上げればいつもそこに白い猫」でLSB立てたらPNGのヘッダが見えたので、バイナリデータ保存したところ、&ldquo;flag{Haha_fake_flag}&rdquo; と書かれたPNGファイルになりました。</p>
 <p>そのPNGに対してZstegかけたらフラグが取れました。</p>
@@ -215,7 +211,7 @@ Okay, you don&rsquo;t believe me? have the source code too!<br />
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -231,26 +227,26 @@ Okay, you don&rsquo;t believe me? have the source code too!<br />
 </span><span class="lnt">14
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-Python" data-lang="Python"><span class="n">include_once</span> <span class="s1">&#39;flag.php&#39;</span><span class="p">;</span>
-
-<span class="k">if</span><span class="p">(</span><span class="err">$</span><span class="n">_SERVER</span><span class="p">[</span><span class="s2">&#34;REQUEST_METHOD&#34;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&#34;POST&#34;</span><span class="p">){</span>
-    <span class="k">if</span><span class="p">(</span><span class="n">isset</span><span class="p">(</span><span class="err">$</span><span class="n">_POST</span><span class="p">[</span><span class="s2">&#34;ID&#34;</span><span class="p">])</span><span class="o">&amp;&amp;</span><span class="n">isset</span><span class="p">(</span><span class="err">$</span><span class="n">_POST</span><span class="p">[</span><span class="s2">&#34;pwd&#34;</span><span class="p">])){</span>
-        <span class="k">if</span><span class="p">(</span><span class="n">strcmp</span><span class="p">(</span><span class="err">$</span><span class="n">secretpassphrase</span><span class="p">,</span> <span class="err">$</span><span class="n">_POST</span><span class="p">[</span><span class="s2">&#34;pwd&#34;</span><span class="p">])</span> <span class="o">==</span> <span class="mi">0</span><span class="p">){</span>
-            <span class="n">echo</span> <span class="s2">&#34;Hey, you are in!  &#34;</span> <span class="o">.</span> <span class="err">$</span><span class="n">_POST</span><span class="p">[</span><span class="s2">&#34;ID&#34;</span><span class="p">]</span>  <span class="o">.</span> <span class="s2">&#34;&lt;br&gt;&#34;</span><span class="p">;</span>
-            <span class="k">if</span><span class="p">(</span><span class="err">$</span><span class="n">_POST</span><span class="p">[</span><span class="s2">&#34;ID&#34;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&#34;SuperUser1337&#34;</span><span class="p">){</span>
-                <span class="n">echo</span> <span class="s2">&#34;Your Flag: &#34;</span> <span class="o">.</span> <span class="err">$</span><span class="n">flag</span><span class="p">;</span>
-            <span class="p">}</span>
-        <span class="p">}</span><span class="k">else</span><span class="p">{</span>
-            <span class="n">echo</span> <span class="s2">&#34;&lt;script type=&#39;text/javascript&#39;&gt;alert(&#39;Unable to Login&#39;);&lt;/script&gt;&#34;</span><span class="p">;</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-Python" data-lang="Python"><span class="line"><span class="cl"><span class="n">include_once</span> <span class="s1">&#39;flag.php&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">if</span><span class="p">(</span><span class="err">$</span><span class="n">_SERVER</span><span class="p">[</span><span class="s2">&#34;REQUEST_METHOD&#34;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&#34;POST&#34;</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span><span class="p">(</span><span class="n">isset</span><span class="p">(</span><span class="err">$</span><span class="n">_POST</span><span class="p">[</span><span class="s2">&#34;ID&#34;</span><span class="p">])</span><span class="o">&amp;&amp;</span><span class="n">isset</span><span class="p">(</span><span class="err">$</span><span class="n">_POST</span><span class="p">[</span><span class="s2">&#34;pwd&#34;</span><span class="p">])){</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span><span class="p">(</span><span class="n">strcmp</span><span class="p">(</span><span class="err">$</span><span class="n">secretpassphrase</span><span class="p">,</span> <span class="err">$</span><span class="n">_POST</span><span class="p">[</span><span class="s2">&#34;pwd&#34;</span><span class="p">])</span> <span class="o">==</span> <span class="mi">0</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">            <span class="n">echo</span> <span class="s2">&#34;Hey, you are in!  &#34;</span> <span class="o">.</span> <span class="err">$</span><span class="n">_POST</span><span class="p">[</span><span class="s2">&#34;ID&#34;</span><span class="p">]</span>  <span class="o">.</span> <span class="s2">&#34;&lt;br&gt;&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span><span class="p">(</span><span class="err">$</span><span class="n">_POST</span><span class="p">[</span><span class="s2">&#34;ID&#34;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&#34;SuperUser1337&#34;</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">                <span class="n">echo</span> <span class="s2">&#34;Your Flag: &#34;</span> <span class="o">.</span> <span class="err">$</span><span class="n">flag</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span><span class="k">else</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">echo</span> <span class="s2">&#34;&lt;script type=&#39;text/javascript&#39;&gt;alert(&#39;Unable to Login&#39;);&lt;/script&gt;&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
-</div><p><br /></p>
+</div><br />
 <h3 id="solution-1">Solution</h3>
 <p>Burpでpwdのところをpwd[]に書き換えてフォワードします。</p>
-<p>ID=&quot;SuperUser1337&rdquo;&amp;pwd[]=pass</p>
+<p>ID=&ldquo;SuperUser1337&rdquo;&amp;pwd[]=pass</p>
 <p>Flag: <code>flag{Why_Juggl3_th3_Typ5}</code></p>
 <p><br /><br />
 <br /><br /></p>
@@ -265,12 +261,12 @@ Note: The flag format is as usual flag{XXXX&hellip;}<br /></p>
 <ul>
 <li>passphrase (ELF 64-bit)</li>
 </ul>
-<p><br /></p>
+<br />
 <h3 id="solution-unsolved">Solution (Unsolved&hellip;)</h3>
 <p>Ghidraでデコンパイルします。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">  1
+<pre tabindex="0" class="chroma"><code><span class="lnt">  1
 </span><span class="lnt">  2
 </span><span class="lnt">  3
 </span><span class="lnt">  4
@@ -391,129 +387,129 @@ Note: The flag format is as usual flag{XXXX&hellip;}<br /></p>
 </span><span class="lnt">119
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-C" data-lang="C"><span class="kt">void</span> <span class="nf">check</span><span class="p">(</span><span class="kt">char</span> <span class="o">*</span><span class="n">pcParm1</span><span class="p">)</span>
-
-<span class="p">{</span>
-  <span class="n">size_t</span> <span class="n">sVar1</span><span class="p">;</span>
-  
-  <span class="n">sVar1</span> <span class="o">=</span> <span class="n">strlen</span><span class="p">(</span><span class="n">pcParm1</span><span class="p">);</span>
-  <span class="k">if</span> <span class="p">((</span><span class="kt">int</span><span class="p">)</span><span class="n">sVar1</span> <span class="o">==</span> <span class="mh">0x15</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">if</span> <span class="p">((</span><span class="kt">int</span><span class="p">)</span><span class="n">pcParm1</span><span class="p">[</span><span class="mi">7</span><span class="p">]</span> <span class="o">==</span> <span class="p">(</span><span class="n">uint</span><span class="p">)(</span><span class="n">pcParm1</span><span class="p">[</span><span class="mh">0x10</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">))</span> <span class="p">{</span>
-      <span class="n">fail</span><span class="p">();</span>
-    <span class="p">}</span>
-    <span class="k">else</span> <span class="p">{</span>
-      <span class="k">if</span> <span class="p">((</span><span class="kt">int</span><span class="p">)</span><span class="n">pcParm1</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="p">(</span><span class="n">uint</span><span class="p">)(</span><span class="n">pcParm1</span><span class="p">[</span><span class="mh">0xb</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">))</span> <span class="p">{</span>
-        <span class="n">fail</span><span class="p">();</span>
-      <span class="p">}</span>
-      <span class="k">else</span> <span class="p">{</span>
-        <span class="k">if</span> <span class="p">((</span><span class="kt">int</span><span class="p">)</span><span class="n">pcParm1</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">==</span> <span class="p">(</span><span class="n">uint</span><span class="p">)(</span><span class="n">pcParm1</span><span class="p">[</span><span class="mi">8</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">))</span> <span class="p">{</span>
-          <span class="n">fail</span><span class="p">();</span>
-        <span class="p">}</span>
-        <span class="k">else</span> <span class="p">{</span>
-          <span class="k">if</span> <span class="p">((</span><span class="kt">int</span><span class="p">)</span><span class="n">pcParm1</span><span class="p">[</span><span class="mi">8</span><span class="p">]</span> <span class="o">==</span> <span class="p">(</span><span class="n">uint</span><span class="p">)(</span><span class="n">pcParm1</span><span class="p">[</span><span class="mh">0x12</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">))</span> <span class="p">{</span>
-            <span class="n">fail</span><span class="p">();</span>
-          <span class="p">}</span>
-          <span class="k">else</span> <span class="p">{</span>
-            <span class="k">if</span> <span class="p">((</span><span class="kt">int</span><span class="p">)</span><span class="n">pcParm1</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">==</span> <span class="p">(</span><span class="n">uint</span><span class="p">)(</span><span class="n">pcParm1</span><span class="p">[</span><span class="mh">0x11</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">))</span> <span class="p">{</span>
-              <span class="n">fail</span><span class="p">();</span>
-            <span class="p">}</span>
-            <span class="k">else</span> <span class="p">{</span>
-              <span class="k">if</span> <span class="p">((</span><span class="kt">int</span><span class="p">)</span><span class="n">pcParm1</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span> <span class="o">==</span> <span class="p">(</span><span class="n">uint</span><span class="p">)(</span><span class="n">pcParm1</span><span class="p">[</span><span class="mh">0x14</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">))</span> <span class="p">{</span>
-                <span class="n">fail</span><span class="p">();</span>
-              <span class="p">}</span>
-              <span class="k">else</span> <span class="p">{</span>
-                <span class="k">if</span> <span class="p">((</span><span class="kt">int</span><span class="p">)</span><span class="n">pcParm1</span><span class="p">[</span><span class="mi">9</span><span class="p">]</span> <span class="o">==</span> <span class="p">(</span><span class="n">uint</span><span class="p">)(</span><span class="n">pcParm1</span><span class="p">[</span><span class="mi">10</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">))</span> <span class="p">{</span>
-                  <span class="n">fail</span><span class="p">();</span>
-                <span class="p">}</span>
-                <span class="k">else</span> <span class="p">{</span>
-                  <span class="k">if</span> <span class="p">((</span><span class="kt">int</span><span class="p">)</span><span class="n">pcParm1</span><span class="p">[</span><span class="mh">0xc</span><span class="p">]</span> <span class="o">==</span> <span class="p">(</span><span class="n">uint</span><span class="p">)(</span><span class="n">pcParm1</span><span class="p">[</span><span class="mh">0x13</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">))</span> <span class="p">{</span>
-                    <span class="n">fail</span><span class="p">();</span>
-                  <span class="p">}</span>
-                  <span class="k">else</span> <span class="p">{</span>
-                    <span class="k">if</span> <span class="p">(</span><span class="o">*</span><span class="n">pcParm1</span> <span class="o">==</span> <span class="sc">&#39;r&#39;</span><span class="p">)</span> <span class="p">{</span>
-                      <span class="k">if</span> <span class="p">((</span><span class="kt">int</span><span class="p">)</span><span class="n">pcParm1</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">-</span> <span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="n">pcParm1</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
-                        <span class="k">if</span> <span class="p">((</span><span class="kt">int</span><span class="p">)</span><span class="n">pcParm1</span><span class="p">[</span><span class="mi">10</span><span class="p">]</span> <span class="o">-</span> <span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="n">pcParm1</span><span class="p">[</span><span class="mi">8</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
-                          <span class="k">if</span> <span class="p">(</span><span class="n">pcParm1</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">==</span> <span class="sc">&#39;4&#39;</span><span class="p">)</span> <span class="p">{</span>
-                            <span class="k">if</span> <span class="p">((</span><span class="kt">int</span><span class="p">)</span><span class="o">*</span><span class="n">pcParm1</span> <span class="o">+</span> <span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="n">pcParm1</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">==</span> <span class="mh">0xd6</span><span class="p">)</span> <span class="p">{</span>
-                              <span class="k">if</span> <span class="p">((</span><span class="kt">int</span><span class="p">)</span><span class="n">pcParm1</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="o">-</span> <span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="n">pcParm1</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">==</span> <span class="mi">5</span><span class="p">)</span> <span class="p">{</span>
-                                <span class="k">if</span> <span class="p">((</span><span class="kt">int</span><span class="p">)</span><span class="n">pcParm1</span><span class="p">[</span><span class="mi">6</span><span class="p">]</span> <span class="o">+</span> <span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="n">pcParm1</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span> <span class="o">==</span> <span class="mh">0xd5</span><span class="p">)</span> <span class="p">{</span>
-                                  <span class="k">if</span> <span class="p">((</span><span class="kt">int</span><span class="p">)</span><span class="n">pcParm1</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span> <span class="o">-</span> <span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="n">pcParm1</span><span class="p">[</span><span class="mi">6</span><span class="p">]</span> <span class="o">==</span> <span class="mi">7</span><span class="p">)</span> <span class="p">{</span>
-                                    <span class="k">if</span> <span class="p">((</span><span class="kt">int</span><span class="p">)</span><span class="n">pcParm1</span><span class="p">[</span><span class="mi">7</span><span class="p">]</span> <span class="o">-</span> <span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="n">pcParm1</span><span class="p">[</span><span class="mi">8</span><span class="p">]</span> <span class="o">==</span> <span class="mh">0x2b</span><span class="p">)</span> <span class="p">{</span>
-                                      <span class="k">if</span> <span class="p">((</span><span class="kt">int</span><span class="p">)</span><span class="n">pcParm1</span><span class="p">[</span><span class="mh">0xd</span><span class="p">]</span> <span class="o">+</span> <span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="n">pcParm1</span><span class="p">[</span><span class="mh">0xc</span><span class="p">]</span> <span class="o">==</span> <span class="mh">0xcf</span><span class="p">)</span> <span class="p">{</span>
-                                        <span class="k">if</span> <span class="p">((</span><span class="kt">int</span><span class="p">)</span><span class="n">pcParm1</span><span class="p">[</span><span class="mh">0xd</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="n">pcParm1</span><span class="p">[</span><span class="mh">0xc</span><span class="p">]</span> <span class="o">==</span> <span class="mh">0x29ba</span><span class="p">)</span> <span class="p">{</span>
-                                          <span class="k">if</span> <span class="p">((</span><span class="kt">int</span><span class="p">)</span><span class="n">pcParm1</span><span class="p">[</span><span class="mh">0xf</span><span class="p">]</span> <span class="o">-</span> <span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="n">pcParm1</span><span class="p">[</span><span class="mh">0xe</span><span class="p">]</span> <span class="o">==</span> <span class="mh">0xd</span><span class="p">)</span> <span class="p">{</span>
-                                            <span class="k">if</span> <span class="p">((</span><span class="kt">int</span><span class="p">)</span><span class="n">pcParm1</span><span class="p">[</span><span class="mh">0xf</span><span class="p">]</span> <span class="o">-</span> <span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="o">*</span><span class="n">pcParm1</span> <span class="o">==</span> <span class="mi">7</span><span class="p">)</span> <span class="p">{</span>
-                                              <span class="n">success</span><span class="p">();</span>
-                                            <span class="p">}</span>
-                                            <span class="k">else</span> <span class="p">{</span>
-                                              <span class="n">fail</span><span class="p">();</span>
-                                            <span class="p">}</span>
-                                          <span class="p">}</span>
-                                          <span class="k">else</span> <span class="p">{</span>
-                                            <span class="n">fail</span><span class="p">();</span>
-                                          <span class="p">}</span>
-                                        <span class="p">}</span>
-                                        <span class="k">else</span> <span class="p">{</span>
-                                          <span class="n">fail</span><span class="p">();</span>
-                                        <span class="p">}</span>
-                                      <span class="p">}</span>
-                                      <span class="k">else</span> <span class="p">{</span>
-                                        <span class="n">fail</span><span class="p">();</span>
-                                      <span class="p">}</span>
-                                    <span class="p">}</span>
-                                    <span class="k">else</span> <span class="p">{</span>
-                                      <span class="n">fail</span><span class="p">();</span>
-                                    <span class="p">}</span>
-                                  <span class="p">}</span>
-                                  <span class="k">else</span> <span class="p">{</span>
-                                    <span class="n">fail</span><span class="p">();</span>
-                                  <span class="p">}</span>
-                                <span class="p">}</span>
-                                <span class="k">else</span> <span class="p">{</span>
-                                  <span class="n">fail</span><span class="p">();</span>
-                                <span class="p">}</span>
-                              <span class="p">}</span>
-                              <span class="k">else</span> <span class="p">{</span>
-                                <span class="n">fail</span><span class="p">();</span>
-                              <span class="p">}</span>
-                            <span class="p">}</span>
-                            <span class="k">else</span> <span class="p">{</span>
-                              <span class="n">fail</span><span class="p">();</span>
-                            <span class="p">}</span>
-                          <span class="p">}</span>
-                          <span class="k">else</span> <span class="p">{</span>
-                            <span class="n">fail</span><span class="p">();</span>
-                          <span class="p">}</span>
-                        <span class="p">}</span>
-                        <span class="k">else</span> <span class="p">{</span>
-                          <span class="n">fail</span><span class="p">();</span>
-                        <span class="p">}</span>
-                      <span class="p">}</span>
-                      <span class="k">else</span> <span class="p">{</span>
-                        <span class="n">fail</span><span class="p">();</span>
-                      <span class="p">}</span>
-                    <span class="p">}</span>
-                    <span class="k">else</span> <span class="p">{</span>
-                      <span class="n">fail</span><span class="p">();</span>
-                    <span class="p">}</span>
-                  <span class="p">}</span>
-                <span class="p">}</span>
-              <span class="p">}</span>
-            <span class="p">}</span>
-          <span class="p">}</span>
-        <span class="p">}</span>
-      <span class="p">}</span>
-    <span class="p">}</span>
-  <span class="p">}</span>
-  <span class="k">else</span> <span class="p">{</span>
-    <span class="n">fail</span><span class="p">();</span>
-  <span class="p">}</span>
-  <span class="k">return</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">check</span><span class="p">(</span><span class="kt">char</span> <span class="o">*</span><span class="n">pcParm1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="kt">size_t</span> <span class="n">sVar1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">  <span class="n">sVar1</span> <span class="o">=</span> <span class="nf">strlen</span><span class="p">(</span><span class="n">pcParm1</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="k">if</span> <span class="p">((</span><span class="kt">int</span><span class="p">)</span><span class="n">sVar1</span> <span class="o">==</span> <span class="mh">0x15</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">((</span><span class="kt">int</span><span class="p">)</span><span class="n">pcParm1</span><span class="p">[</span><span class="mi">7</span><span class="p">]</span> <span class="o">==</span> <span class="p">(</span><span class="n">uint</span><span class="p">)(</span><span class="n">pcParm1</span><span class="p">[</span><span class="mh">0x10</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">))</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="nf">fail</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">else</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="k">if</span> <span class="p">((</span><span class="kt">int</span><span class="p">)</span><span class="n">pcParm1</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="p">(</span><span class="n">uint</span><span class="p">)(</span><span class="n">pcParm1</span><span class="p">[</span><span class="mh">0xb</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">))</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nf">fail</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">      <span class="p">}</span>
+</span></span><span class="line"><span class="cl">      <span class="k">else</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">((</span><span class="kt">int</span><span class="p">)</span><span class="n">pcParm1</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">==</span> <span class="p">(</span><span class="n">uint</span><span class="p">)(</span><span class="n">pcParm1</span><span class="p">[</span><span class="mi">8</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">))</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">          <span class="nf">fail</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="k">else</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">          <span class="k">if</span> <span class="p">((</span><span class="kt">int</span><span class="p">)</span><span class="n">pcParm1</span><span class="p">[</span><span class="mi">8</span><span class="p">]</span> <span class="o">==</span> <span class="p">(</span><span class="n">uint</span><span class="p">)(</span><span class="n">pcParm1</span><span class="p">[</span><span class="mh">0x12</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">))</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="nf">fail</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">          <span class="p">}</span>
+</span></span><span class="line"><span class="cl">          <span class="k">else</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="p">((</span><span class="kt">int</span><span class="p">)</span><span class="n">pcParm1</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">==</span> <span class="p">(</span><span class="n">uint</span><span class="p">)(</span><span class="n">pcParm1</span><span class="p">[</span><span class="mh">0x11</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">))</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">              <span class="nf">fail</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">            <span class="p">}</span>
+</span></span><span class="line"><span class="cl">            <span class="k">else</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">              <span class="k">if</span> <span class="p">((</span><span class="kt">int</span><span class="p">)</span><span class="n">pcParm1</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span> <span class="o">==</span> <span class="p">(</span><span class="n">uint</span><span class="p">)(</span><span class="n">pcParm1</span><span class="p">[</span><span class="mh">0x14</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">))</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="nf">fail</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">              <span class="p">}</span>
+</span></span><span class="line"><span class="cl">              <span class="k">else</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="k">if</span> <span class="p">((</span><span class="kt">int</span><span class="p">)</span><span class="n">pcParm1</span><span class="p">[</span><span class="mi">9</span><span class="p">]</span> <span class="o">==</span> <span class="p">(</span><span class="n">uint</span><span class="p">)(</span><span class="n">pcParm1</span><span class="p">[</span><span class="mi">10</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">))</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                  <span class="nf">fail</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">                <span class="p">}</span>
+</span></span><span class="line"><span class="cl">                <span class="k">else</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                  <span class="k">if</span> <span class="p">((</span><span class="kt">int</span><span class="p">)</span><span class="n">pcParm1</span><span class="p">[</span><span class="mh">0xc</span><span class="p">]</span> <span class="o">==</span> <span class="p">(</span><span class="n">uint</span><span class="p">)(</span><span class="n">pcParm1</span><span class="p">[</span><span class="mh">0x13</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">))</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                    <span class="nf">fail</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">                  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">                  <span class="k">else</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                    <span class="k">if</span> <span class="p">(</span><span class="o">*</span><span class="n">pcParm1</span> <span class="o">==</span> <span class="sc">&#39;r&#39;</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                      <span class="k">if</span> <span class="p">((</span><span class="kt">int</span><span class="p">)</span><span class="n">pcParm1</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">-</span> <span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="n">pcParm1</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                        <span class="k">if</span> <span class="p">((</span><span class="kt">int</span><span class="p">)</span><span class="n">pcParm1</span><span class="p">[</span><span class="mi">10</span><span class="p">]</span> <span class="o">-</span> <span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="n">pcParm1</span><span class="p">[</span><span class="mi">8</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                          <span class="k">if</span> <span class="p">(</span><span class="n">pcParm1</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">==</span> <span class="sc">&#39;4&#39;</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                            <span class="k">if</span> <span class="p">((</span><span class="kt">int</span><span class="p">)</span><span class="o">*</span><span class="n">pcParm1</span> <span class="o">+</span> <span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="n">pcParm1</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">==</span> <span class="mh">0xd6</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                              <span class="k">if</span> <span class="p">((</span><span class="kt">int</span><span class="p">)</span><span class="n">pcParm1</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="o">-</span> <span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="n">pcParm1</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">==</span> <span class="mi">5</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                                <span class="k">if</span> <span class="p">((</span><span class="kt">int</span><span class="p">)</span><span class="n">pcParm1</span><span class="p">[</span><span class="mi">6</span><span class="p">]</span> <span class="o">+</span> <span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="n">pcParm1</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span> <span class="o">==</span> <span class="mh">0xd5</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                                  <span class="k">if</span> <span class="p">((</span><span class="kt">int</span><span class="p">)</span><span class="n">pcParm1</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span> <span class="o">-</span> <span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="n">pcParm1</span><span class="p">[</span><span class="mi">6</span><span class="p">]</span> <span class="o">==</span> <span class="mi">7</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                                    <span class="k">if</span> <span class="p">((</span><span class="kt">int</span><span class="p">)</span><span class="n">pcParm1</span><span class="p">[</span><span class="mi">7</span><span class="p">]</span> <span class="o">-</span> <span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="n">pcParm1</span><span class="p">[</span><span class="mi">8</span><span class="p">]</span> <span class="o">==</span> <span class="mh">0x2b</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                                      <span class="k">if</span> <span class="p">((</span><span class="kt">int</span><span class="p">)</span><span class="n">pcParm1</span><span class="p">[</span><span class="mh">0xd</span><span class="p">]</span> <span class="o">+</span> <span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="n">pcParm1</span><span class="p">[</span><span class="mh">0xc</span><span class="p">]</span> <span class="o">==</span> <span class="mh">0xcf</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                                        <span class="k">if</span> <span class="p">((</span><span class="kt">int</span><span class="p">)</span><span class="n">pcParm1</span><span class="p">[</span><span class="mh">0xd</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="n">pcParm1</span><span class="p">[</span><span class="mh">0xc</span><span class="p">]</span> <span class="o">==</span> <span class="mh">0x29ba</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                                          <span class="k">if</span> <span class="p">((</span><span class="kt">int</span><span class="p">)</span><span class="n">pcParm1</span><span class="p">[</span><span class="mh">0xf</span><span class="p">]</span> <span class="o">-</span> <span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="n">pcParm1</span><span class="p">[</span><span class="mh">0xe</span><span class="p">]</span> <span class="o">==</span> <span class="mh">0xd</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                                            <span class="k">if</span> <span class="p">((</span><span class="kt">int</span><span class="p">)</span><span class="n">pcParm1</span><span class="p">[</span><span class="mh">0xf</span><span class="p">]</span> <span class="o">-</span> <span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="o">*</span><span class="n">pcParm1</span> <span class="o">==</span> <span class="mi">7</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                                              <span class="nf">success</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">                                            <span class="p">}</span>
+</span></span><span class="line"><span class="cl">                                            <span class="k">else</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                                              <span class="nf">fail</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">                                            <span class="p">}</span>
+</span></span><span class="line"><span class="cl">                                          <span class="p">}</span>
+</span></span><span class="line"><span class="cl">                                          <span class="k">else</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                                            <span class="nf">fail</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">                                          <span class="p">}</span>
+</span></span><span class="line"><span class="cl">                                        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">                                        <span class="k">else</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                                          <span class="nf">fail</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">                                        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">                                      <span class="p">}</span>
+</span></span><span class="line"><span class="cl">                                      <span class="k">else</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                                        <span class="nf">fail</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">                                      <span class="p">}</span>
+</span></span><span class="line"><span class="cl">                                    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">                                    <span class="k">else</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                                      <span class="nf">fail</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">                                    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">                                  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">                                  <span class="k">else</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                                    <span class="nf">fail</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">                                  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">                                <span class="p">}</span>
+</span></span><span class="line"><span class="cl">                                <span class="k">else</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                                  <span class="nf">fail</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">                                <span class="p">}</span>
+</span></span><span class="line"><span class="cl">                              <span class="p">}</span>
+</span></span><span class="line"><span class="cl">                              <span class="k">else</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                                <span class="nf">fail</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">                              <span class="p">}</span>
+</span></span><span class="line"><span class="cl">                            <span class="p">}</span>
+</span></span><span class="line"><span class="cl">                            <span class="k">else</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                              <span class="nf">fail</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">                            <span class="p">}</span>
+</span></span><span class="line"><span class="cl">                          <span class="p">}</span>
+</span></span><span class="line"><span class="cl">                          <span class="k">else</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                            <span class="nf">fail</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">                          <span class="p">}</span>
+</span></span><span class="line"><span class="cl">                        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">                        <span class="k">else</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                          <span class="nf">fail</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">                        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">                      <span class="p">}</span>
+</span></span><span class="line"><span class="cl">                      <span class="k">else</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                        <span class="nf">fail</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">                      <span class="p">}</span>
+</span></span><span class="line"><span class="cl">                    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">                    <span class="k">else</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                      <span class="nf">fail</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">                    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">                  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">                <span class="p">}</span>
+</span></span><span class="line"><span class="cl">              <span class="p">}</span>
+</span></span><span class="line"><span class="cl">            <span class="p">}</span>
+</span></span><span class="line"><span class="cl">          <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">      <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="k">else</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">fail</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="k">return</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
-</div><p><br />
-長さ0x15 (21文字) でチェックしていて、それぞれのif文を解析すると、たぶんこんな感じかな〜と思ったんですけどね。</p>
+</div><br />
+長さ0x15 (21文字) でチェックしていて、それぞれのif文を解析すると、たぶんこんな感じかな〜と思ったんですけどね。
 <pre>
 00 : r
 01 : 3    // if ((int)pcParm1[2] - (int)pcParm1[1] == 1) {
@@ -537,8 +533,8 @@ Note: The flag format is as usual flag{XXXX&hellip;}<br /></p>
 19 : m    // if ((int)pcParm1[0xc] == (uint)(pcParm1[0x13] == 0)) {
 20 : n    // if ((int)pcParm1[5] == (uint)(pcParm1[0x14] == 0)) {
 </pre>
-<p><br />
-このパスフレーズを使ってプログラムを実行すると、</p>
+<br />
+このパスフレーズを使ってプログラムを実行すると、
 <pre>
 root@kali:~/cryptixctf# ./passphrase r34ding_455embly_d4mn
 Please wait while we are authenticating....
@@ -553,15 +549,15 @@ You are in!
 それはさておき、Ghidraのデコンパイルの結果がちょっと変だと思いました。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-C" data-lang="C">    <span class="k">if</span> <span class="p">((</span><span class="kt">int</span><span class="p">)</span><span class="n">pcParm1</span><span class="p">[</span><span class="mi">7</span><span class="p">]</span> <span class="o">==</span> <span class="p">(</span><span class="n">uint</span><span class="p">)(</span><span class="n">pcParm1</span><span class="p">[</span><span class="mh">0x10</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">))</span> <span class="p">{</span>
-      <span class="n">fail</span><span class="p">();</span>
-    <span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">((</span><span class="kt">int</span><span class="p">)</span><span class="n">pcParm1</span><span class="p">[</span><span class="mi">7</span><span class="p">]</span> <span class="o">==</span> <span class="p">(</span><span class="n">uint</span><span class="p">)(</span><span class="n">pcParm1</span><span class="p">[</span><span class="mh">0x10</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">))</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="nf">fail</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>if文にマッチしたらfail()だし。</p>
 <p>&ldquo;== 0&rdquo; だし。。</p>
@@ -569,7 +565,7 @@ You are in!
 radare2で見ると、こんな感じ。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -599,35 +595,35 @@ radare2で見ると、こんな感じ。</p>
 </span><span class="lnt">28
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-C" data-lang="C"><span class="p">[</span><span class="mh">0x000005d0</span><span class="p">]</span><span class="o">&gt;</span> <span class="n">pdd</span><span class="err">@</span><span class="n">sym</span><span class="p">.</span><span class="n">check</span>
-<span class="cm">/* r2dec pseudo code output */</span>
-<span class="cm">/* passphrase @ 0x71c */</span>
-<span class="cp">#include</span> <span class="cpf">&lt;stdint.h&gt;</span><span class="cp">
-</span><span class="cp"></span> 
-<span class="n">int64_t</span> <span class="n">check</span> <span class="p">(</span><span class="kt">char</span> <span class="o">*</span> <span class="n">arg1</span><span class="p">)</span> <span class="p">{</span>
-    <span class="kt">char</span> <span class="o">*</span> <span class="n">s</span><span class="p">;</span>
-    <span class="n">size_t</span> <span class="n">var_4h</span><span class="p">;</span>
-    <span class="n">rdi</span> <span class="o">=</span> <span class="n">arg1</span><span class="p">;</span>
-    <span class="n">s</span> <span class="o">=</span> <span class="n">rdi</span><span class="p">;</span>
-    <span class="n">rax</span> <span class="o">=</span> <span class="n">rdi</span><span class="p">;</span>
-    <span class="n">eax</span> <span class="o">=</span> <span class="n">strlen</span> <span class="p">(</span><span class="n">rdi</span><span class="p">);</span>
-    <span class="n">var_4h</span> <span class="o">=</span> <span class="n">eax</span><span class="p">;</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">var_4h</span> <span class="o">!=</span> <span class="mh">0x15</span><span class="p">)</span> <span class="p">{</span>
-        <span class="n">eax</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-        <span class="n">fail</span> <span class="p">();</span>
-    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-        <span class="n">rax</span> <span class="o">=</span> <span class="n">s</span><span class="p">;</span>          <span class="c1">// arg1
-</span><span class="c1"></span>        <span class="n">rax</span> <span class="o">+=</span> <span class="mi">7</span><span class="p">;</span>         
-        <span class="n">eax</span> <span class="o">=</span> <span class="o">*</span><span class="p">(</span><span class="n">rax</span><span class="p">);</span>     <span class="c1">// 7文字目
-</span><span class="c1"></span>        <span class="n">edx</span> <span class="o">=</span> <span class="p">(</span><span class="n">int32_t</span><span class="p">)</span> <span class="n">al</span><span class="p">;</span>
-        <span class="n">rax</span> <span class="o">=</span> <span class="n">s</span><span class="p">;</span>
-        <span class="n">rax</span> <span class="o">+=</span> <span class="mh">0x10</span><span class="p">;</span>
-        <span class="n">eax</span> <span class="o">=</span> <span class="o">*</span><span class="p">(</span><span class="n">rax</span><span class="p">);</span>     <span class="c1">// 16文字目
-</span><span class="c1"></span>        <span class="n">al</span> <span class="o">=</span> <span class="p">(</span><span class="n">al</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="o">?</span> <span class="mi">1</span> <span class="o">:</span> <span class="mi">0</span><span class="p">;</span>
-        <span class="n">eax</span> <span class="o">=</span> <span class="p">(</span><span class="n">int32_t</span><span class="p">)</span> <span class="n">al</span><span class="p">;</span>
-        <span class="k">if</span> <span class="p">(</span><span class="n">edx</span> <span class="o">!=</span> <span class="n">eax</span><span class="p">)</span> <span class="p">{</span>
-<span class="o">:</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="p">[</span><span class="mh">0x000005d0</span><span class="p">]</span><span class="o">&gt;</span> <span class="n">pdd</span><span class="err">@</span><span class="n">sym</span><span class="p">.</span><span class="n">check</span>
+</span></span><span class="line"><span class="cl"><span class="cm">/* r2dec pseudo code output */</span>
+</span></span><span class="line"><span class="cl"><span class="cm">/* passphrase @ 0x71c */</span>
+</span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;stdint.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span> 
+</span></span><span class="line"><span class="cl"><span class="kt">int64_t</span> <span class="nf">check</span> <span class="p">(</span><span class="kt">char</span> <span class="o">*</span> <span class="n">arg1</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">char</span> <span class="o">*</span> <span class="n">s</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">size_t</span> <span class="n">var_4h</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">rdi</span> <span class="o">=</span> <span class="n">arg1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">s</span> <span class="o">=</span> <span class="n">rdi</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">rax</span> <span class="o">=</span> <span class="n">rdi</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">eax</span> <span class="o">=</span> <span class="nf">strlen</span> <span class="p">(</span><span class="n">rdi</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">var_4h</span> <span class="o">=</span> <span class="n">eax</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="n">var_4h</span> <span class="o">!=</span> <span class="mh">0x15</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">eax</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="nf">fail</span> <span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">rax</span> <span class="o">=</span> <span class="n">s</span><span class="p">;</span>          <span class="c1">// arg1
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">rax</span> <span class="o">+=</span> <span class="mi">7</span><span class="p">;</span>         
+</span></span><span class="line"><span class="cl">        <span class="n">eax</span> <span class="o">=</span> <span class="o">*</span><span class="p">(</span><span class="n">rax</span><span class="p">);</span>     <span class="c1">// 7文字目
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">edx</span> <span class="o">=</span> <span class="p">(</span><span class="kt">int32_t</span><span class="p">)</span> <span class="n">al</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">rax</span> <span class="o">=</span> <span class="n">s</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">rax</span> <span class="o">+=</span> <span class="mh">0x10</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">eax</span> <span class="o">=</span> <span class="o">*</span><span class="p">(</span><span class="n">rax</span><span class="p">);</span>     <span class="c1">// 16文字目
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">al</span> <span class="o">=</span> <span class="p">(</span><span class="n">al</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="o">?</span> <span class="mi">1</span> <span class="o">:</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">eax</span> <span class="o">=</span> <span class="p">(</span><span class="kt">int32_t</span><span class="p">)</span> <span class="n">al</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="n">edx</span> <span class="o">!=</span> <span class="n">eax</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="o">:</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>ふーん、まいっか（笑）</p>
 <p><br /><br />
@@ -684,7 +680,7 @@ radare2で見ると、こんな感じ。</p>
     <footer id="footer" class="footer">
       <div class="social-links">
       <a href="https://github.com/CaptureAmerica/" class="iconfont icon-github" title="github"></a>
-  <a href="https://captureamerica.github.io/writeups/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+  
 </div>
 
 <div class="copyright">
@@ -719,20 +715,21 @@ radare2で見ると、こんな感じ。</p>
 
 
 
-<script type="text/javascript" src="https://captureamerica.github.io/writeups/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+<script type="text/javascript" src="https://captureamerica.github.io/writeups/js/main.min.4ae89da218555efa0e7093a20b92017d2e1202b66fff9fc2edf4cb8d44b44c6e.js"></script>
 
 
 <script type="application/javascript">
 var doNotTrack = false;
 if (!doNotTrack) {
-	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 	ga('create', 'UA-104910699-2', 'auto');
 	ga('set', 'anonymizeIp', true);
 	ga('send', 'pageview');
 }
 </script>
-<script async src='https://www.google-analytics.com/analytics.js'></script>
-
 
 
 

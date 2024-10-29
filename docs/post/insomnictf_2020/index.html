@@ -23,7 +23,7 @@
 <meta name="google-site-verification" content="PqctLWZQttGzxXVupWuIt2HWuBI8cvN1z07ETpxA2dw" />
 
 
-<meta name="generator" content="Hugo 0.74.2 with theme even" />
+<meta name="generator" content="Hugo 0.119.0 with theme even" />
 
 
 <link rel="canonical" href="https://captureamerica.github.io/writeups/post/insomnictf_2020/" />
@@ -35,24 +35,20 @@
 
 
 
-<link href="https://captureamerica.github.io/writeups/sass/main.min.2e81bbed97b8b282c1aeb57488cc71c8d8c8ec559f3931531bd396bf31e0d4dd.css" rel="stylesheet">
+<link href="https://captureamerica.github.io/writeups/sass/main.min.f92fd13721ddf72129410fd8250e73152cc6f2438082b6c0208dc24ee7c13fc4.css" rel="stylesheet">
 
 
 
 <meta property="og:title" content="Insomnihack Writeup" />
 <meta property="og:description" content="URL: https://teaser.insomnihack.ch/challenges/ 10問中1問解きました。ほとんどの人が解いた簡単なやつだけです。 ブログ書くか悩みましたが、とりあえず、参加した記録として残しておきます。" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://captureamerica.github.io/writeups/post/insomnictf_2020/" />
+<meta property="og:url" content="https://captureamerica.github.io/writeups/post/insomnictf_2020/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2020-01-19T18:00:00+09:00" />
 <meta property="article:modified_time" content="2020-01-19T18:00:00+09:00" />
 <meta itemprop="name" content="Insomnihack Writeup">
-<meta itemprop="description" content="URL: https://teaser.insomnihack.ch/challenges/ 10問中1問解きました。ほとんどの人が解いた簡単なやつだけです。 ブログ書くか悩みましたが、とりあえず、参加した記録として残しておきます。">
-<meta itemprop="datePublished" content="2020-01-19T18:00:00&#43;09:00" />
-<meta itemprop="dateModified" content="2020-01-19T18:00:00&#43;09:00" />
-<meta itemprop="wordCount" content="349">
-
-
-
+<meta itemprop="description" content="URL: https://teaser.insomnihack.ch/challenges/ 10問中1問解きました。ほとんどの人が解いた簡単なやつだけです。 ブログ書くか悩みましたが、とりあえず、参加した記録として残しておきます。"><meta itemprop="datePublished" content="2020-01-19T18:00:00+09:00" />
+<meta itemprop="dateModified" content="2020-01-19T18:00:00+09:00" />
+<meta itemprop="wordCount" content="338">
 <meta itemprop="keywords" content="CTF," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Insomnihack Writeup"/>
 <meta name="twitter:description" content="URL: https://teaser.insomnihack.ch/challenges/ 10問中1問解きました。ほとんどの人が解いた簡単なやつだけです。 ブログ書くか悩みましたが、とりあえず、参加した記録として残しておきます。"/>
@@ -176,41 +172,40 @@
 <blockquote>
 <p>Try out our new ping platform: lowdeep.insomnihack.ch/</p>
 </blockquote>
-<p><br /></p>
+<br />
 <h3 id="solution">Solution</h3>
 <p>見るからにCommand Injectionなんです。</p>
 <img src="https://captureamerica.github.io/writeups/img/insomniCTF_LowDeep.png" alt="insomniCTF_LowDeep.png">
-<p><br />
-以下、&ldquo;ls -l&quot;の結果です。</p>
+<br />
+以下、"ls -l"の結果です。
 <pre>
 PING 127.0.0.1 (127.0.0.1) 56(84) bytes of data.
 64 bytes from 127.0.0.1: icmp_seq=1 ttl=64 time=0.019 ms
-
---- 127.0.0.1 ping statistics ---
+<p>&mdash; 127.0.0.1 ping statistics &mdash;
 1 packets transmitted, 1 received, 0% packet loss, time 0ms
 rtt min/avg/max/mdev = 0.019/0.019/0.019/0.000 ms
 total 28
 drwxr-xr-x 3 root root 4096 Jan 17 09:57 .
 drwxr-xr-x 3 root root 4096 Jan 7 16:52 ..
-drwxr-xr-x 4 root root 4096 Jan 17 09:57 _res_
--rw-r--r-- 1 root root 1367 Jan 16 15:30 index.php
--rw-r--r-- 1 root root 6128 Jan 16 13:10 print-flag
--rw-r--r-- 1 root root 42 Jan 16 15:35 robots.txt
-</pre>
-<p><br />
-print-flag には実行権が付いていないので、サーバ上では実行できません。なので、ダウンロードしてきます。</p>
+drwxr-xr-x 4 root root 4096 Jan 17 09:57 <em>res</em>
+-rw-r&ndash;r&ndash; 1 root root 1367 Jan 16 15:30 index.php
+-rw-r&ndash;r&ndash; 1 root root 6128 Jan 16 13:10 print-flag
+-rw-r&ndash;r&ndash; 1 root root 42 Jan 16 15:35 robots.txt
+</pre></p>
+<br />
+print-flag には実行権が付いていないので、サーバ上では実行できません。なので、ダウンロードしてきます。
 <pre>
 $ file print-flag
 print-flag: ELF 64-bit LSB shared object x86-64, version 1 (SYSV), dynamically linked, interpreter /lib64/l, for GNU/Linux 3.2.0, BuildID[sha1]=72c589834f878a6a3267944f305c29166a1ace8b, stripped
 </pre>
-<p><br />
-ChmodしてLinux上で実行してもフラグは取れますが、それ以前にstringsで取れます。</p>
+<br />
+ChmodしてLinux上で実行してもフラグは取れますが、それ以前にstringsで取れます。
 <pre>
 $ strings print-flag | grep -i ins
 INS{Wh1le_ld_k1nd_0f_forg0t_ab0ut_th3_x_fl4g}
 </pre>
-<p><br />
-Flag: <code>INS{Wh1le_ld_k1nd_0f_forg0t_ab0ut_th3_x_fl4g}</code></p>
+<br />
+Flag: `INS{Wh1le_ld_k1nd_0f_forg0t_ab0ut_th3_x_fl4g}`
 <p><br /><br />
 <br /><br /></p>
 <hr>
@@ -265,7 +260,7 @@ Flag: <code>INS{Wh1le_ld_k1nd_0f_forg0t_ab0ut_th3_x_fl4g}</code></p>
     <footer id="footer" class="footer">
       <div class="social-links">
       <a href="https://github.com/CaptureAmerica/" class="iconfont icon-github" title="github"></a>
-  <a href="https://captureamerica.github.io/writeups/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+  
 </div>
 
 <div class="copyright">
@@ -300,20 +295,21 @@ Flag: <code>INS{Wh1le_ld_k1nd_0f_forg0t_ab0ut_th3_x_fl4g}</code></p>
 
 
 
-<script type="text/javascript" src="https://captureamerica.github.io/writeups/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+<script type="text/javascript" src="https://captureamerica.github.io/writeups/js/main.min.4ae89da218555efa0e7093a20b92017d2e1202b66fff9fc2edf4cb8d44b44c6e.js"></script>
 
 
 <script type="application/javascript">
 var doNotTrack = false;
 if (!doNotTrack) {
-	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 	ga('create', 'UA-104910699-2', 'auto');
 	ga('set', 'anonymizeIp', true);
 	ga('send', 'pageview');
 }
 </script>
-<script async src='https://www.google-analytics.com/analytics.js'></script>
-
 
 
 

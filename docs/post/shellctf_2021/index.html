@@ -23,7 +23,7 @@
 <meta name="google-site-verification" content="PqctLWZQttGzxXVupWuIt2HWuBI8cvN1z07ETpxA2dw" />
 
 
-<meta name="generator" content="Hugo 0.74.2 with theme even" />
+<meta name="generator" content="Hugo 0.119.0 with theme even" />
 
 
 <link rel="canonical" href="https://captureamerica.github.io/writeups/post/shellctf_2021/" />
@@ -35,24 +35,20 @@
 
 
 
-<link href="https://captureamerica.github.io/writeups/sass/main.min.2e81bbed97b8b282c1aeb57488cc71c8d8c8ec559f3931531bd396bf31e0d4dd.css" rel="stylesheet">
+<link href="https://captureamerica.github.io/writeups/sass/main.min.f92fd13721ddf72129410fd8250e73152cc6f2438082b6c0208dc24ee7c13fc4.css" rel="stylesheet">
 
 
 
 <meta property="og:title" content="S.H.E.L.L. CTF 2021 Writeup" />
 <meta property="og:description" content="URL: https://shellctf.games/challenges 1380点を獲得し、最終順位は116位でした。 以下はチャレンジのリストです。 [Web]: Under Development (50 points) Challenge http://3.142.122.1:8885/ Solution HTTPレスポンスを見ると、以下のCooki" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://captureamerica.github.io/writeups/post/shellctf_2021/" />
+<meta property="og:url" content="https://captureamerica.github.io/writeups/post/shellctf_2021/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2021-06-08T13:00:00+09:00" />
 <meta property="article:modified_time" content="2021-06-08T13:00:00+09:00" />
 <meta itemprop="name" content="S.H.E.L.L. CTF 2021 Writeup">
-<meta itemprop="description" content="URL: https://shellctf.games/challenges 1380点を獲得し、最終順位は116位でした。 以下はチャレンジのリストです。 [Web]: Under Development (50 points) Challenge http://3.142.122.1:8885/ Solution HTTPレスポンスを見ると、以下のCooki">
-<meta itemprop="datePublished" content="2021-06-08T13:00:00&#43;09:00" />
-<meta itemprop="dateModified" content="2021-06-08T13:00:00&#43;09:00" />
-<meta itemprop="wordCount" content="1154">
-
-
-
+<meta itemprop="description" content="URL: https://shellctf.games/challenges 1380点を獲得し、最終順位は116位でした。 以下はチャレンジのリストです。 [Web]: Under Development (50 points) Challenge http://3.142.122.1:8885/ Solution HTTPレスポンスを見ると、以下のCooki"><meta itemprop="datePublished" content="2021-06-08T13:00:00+09:00" />
+<meta itemprop="dateModified" content="2021-06-08T13:00:00+09:00" />
+<meta itemprop="wordCount" content="1188">
 <meta itemprop="keywords" content="CTF," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="S.H.E.L.L. CTF 2021 Writeup"/>
 <meta name="twitter:description" content="URL: https://shellctf.games/challenges 1380点を獲得し、最終順位は116位でした。 以下はチャレンジのリストです。 [Web]: Under Development (50 points) Challenge http://3.142.122.1:8885/ Solution HTTPレスポンスを見ると、以下のCooki"/>
@@ -175,7 +171,6 @@
     <li><a href="#crypto-cjk-92-points">[Crypto]: Cjk (92 points)</a>
       <ul>
         <li><a href="#challenge-4">Challenge</a></li>
-        <li><a href="#unsolved">(Unsolved)</a></li>
       </ul>
     </li>
     <li><a href="#rev-assembly-50-points">[Rev]: assembly (50 points)</a>
@@ -213,7 +208,7 @@
 <blockquote>
 <p>http://3.142.122.1:8885/</p>
 </blockquote>
-<p><br /></p>
+<br />
 <h3 id="solution">Solution</h3>
 <p>HTTPレスポンスを見ると、以下のCookieがセットされるのがわかります。</p>
 <pre>
@@ -229,10 +224,10 @@ Content-Length: 347
 Date: Sat, 05 Jun 2021 08:11:22 GMT
 Connection: close
 </pre>
-<p><br /></p>
+<br />
 <p>%3D%3D は <code>==</code> なので、Base64できそうです。デコードしたところ、<code>user</code>でした。</p>
 <p><code>admin</code>をBase64エンコードして、HTTPリクエストのCookieにセットするだけです。</p>
-<p><br /></p>
+<br />
 <p>Flag: <code>SHELL{0NLY_0R30_8e1a91a632ecaf2dd6026c943eb3ed1e}</code></p>
 <p><br /><br /></p>
 <h2 id="web-collide-100-points">[Web]: Collide (100 points)</h2>
@@ -241,12 +236,12 @@ Connection: close
 <blockquote>
 <p>http://3.142.122.1:9335/</p>
 </blockquote>
-<p><br /></p>
+<br />
 <h3 id="solution-1">Solution</h3>
 <p>アクセスすると、ソースコードが表示されます。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -275,43 +270,43 @@ Connection: close
 </span><span class="lnt">27
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-php" data-lang="php">Make sha256 collide and you shall be rewarded
-The source!
-<span class="p">&lt;</span><span class="nt">html</span><span class="p">&gt;</span>
-    <span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
-        <span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;</span> Make sha256 collide and you shall be rewarded <span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
-
-        <span class="p">&lt;</span><span class="nt">b</span><span class="p">&gt;</span>The source!<span class="p">&lt;/</span><span class="nt">b</span><span class="p">&gt;</span>
-
-        <span class="cp">&lt;?php</span>
-            <span class="nv">$source</span> <span class="o">=</span> <span class="nx">show_source</span><span class="p">(</span><span class="s2">&#34;index.php&#34;</span><span class="p">,</span> <span class="k">true</span><span class="p">);</span>
-            <span class="k">echo</span><span class="p">(</span><span class="s2">&#34;&lt;div&gt;&#34;</span><span class="p">);</span>
-            <span class="k">print</span> <span class="nv">$source</span><span class="p">;</span>
-            <span class="k">echo</span><span class="p">(</span><span class="s2">&#34;&lt;/div&gt;&#34;</span><span class="p">);</span>
-
-            <span class="k">if</span> <span class="p">(</span><span class="nx">isset</span><span class="p">(</span><span class="nv">$_GET</span><span class="p">[</span><span class="s1">&#39;shell&#39;</span><span class="p">])</span> <span class="o">&amp;&amp;</span> <span class="nx">isset</span><span class="p">(</span><span class="nv">$_GET</span><span class="p">[</span><span class="s1">&#39;pwn&#39;</span><span class="p">]))</span> <span class="p">{</span>
-                <span class="k">if</span> <span class="p">(</span><span class="nv">$_GET</span><span class="p">[</span><span class="s1">&#39;shell&#39;</span><span class="p">]</span> <span class="o">!==</span> <span class="nv">$_GET</span><span class="p">[</span><span class="s1">&#39;pwn&#39;</span><span class="p">]</span> <span class="o">&amp;&amp;</span> <span class="nx">hash</span><span class="p">(</span><span class="s2">&#34;sha256&#34;</span><span class="p">,</span> <span class="nv">$_GET</span><span class="p">[</span><span class="s1">&#39;shell&#39;</span><span class="p">])</span> <span class="o">===</span> <span class="nx">hash</span><span class="p">(</span><span class="s2">&#34;sha256&#34;</span><span class="p">,</span> <span class="nv">$_GET</span><span class="p">[</span><span class="s1">&#39;pwn&#39;</span><span class="p">]))</span> <span class="p">{</span>
-                    <span class="k">include</span><span class="p">(</span><span class="s2">&#34;flag.php&#34;</span><span class="p">);</span>
-                    <span class="k">echo</span><span class="p">(</span><span class="s2">&#34;&lt;h1&gt;</span><span class="si">$flag</span><span class="s2">&lt;/h1&gt;&#34;</span><span class="p">);</span>
-                <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-                    <span class="k">echo</span><span class="p">(</span><span class="s2">&#34;&lt;h1&gt;Try harder!&lt;/h1&gt;&#34;</span><span class="p">);</span>
-                <span class="p">}</span>
-            <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-                <span class="k">echo</span><span class="p">(</span><span class="s2">&#34;&lt;h1&gt;Collisions are fun to see&lt;/h1&gt;&#34;</span><span class="p">);</span>
-            <span class="p">}</span>
-        <span class="cp">?&gt;</span>
-    <span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
-<span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="nx">Make</span> <span class="nx">sha256</span> <span class="nx">collide</span> <span class="k">and</span> <span class="nx">you</span> <span class="nx">shall</span> <span class="nx">be</span> <span class="nx">rewarded</span>
+</span></span><span class="line"><span class="cl"><span class="nx">The</span> <span class="nx">source</span><span class="o">!</span>
+</span></span><span class="line"><span class="cl"><span class="o">&lt;</span><span class="nx">html</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">&lt;</span><span class="nx">body</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="o">&lt;</span><span class="nx">h1</span><span class="o">&gt;</span> <span class="nx">Make</span> <span class="nx">sha256</span> <span class="nx">collide</span> <span class="k">and</span> <span class="nx">you</span> <span class="nx">shall</span> <span class="nx">be</span> <span class="nx">rewarded</span> <span class="o">&lt;/</span><span class="nx">h1</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="o">&lt;</span><span class="nx">b</span><span class="o">&gt;</span><span class="nx">The</span> <span class="nx">source</span><span class="o">!&lt;/</span><span class="nx">b</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="o">&lt;?</span><span class="nx">php</span>
+</span></span><span class="line"><span class="cl">            <span class="nv">$source</span> <span class="o">=</span> <span class="nx">show_source</span><span class="p">(</span><span class="s2">&#34;index.php&#34;</span><span class="p">,</span> <span class="k">true</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">            <span class="k">echo</span><span class="p">(</span><span class="s2">&#34;&lt;div&gt;&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">            <span class="k">print</span> <span class="nv">$source</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="k">echo</span><span class="p">(</span><span class="s2">&#34;&lt;/div&gt;&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="p">(</span><span class="nx">isset</span><span class="p">(</span><span class="nv">$_GET</span><span class="p">[</span><span class="s1">&#39;shell&#39;</span><span class="p">])</span> <span class="o">&amp;&amp;</span> <span class="nx">isset</span><span class="p">(</span><span class="nv">$_GET</span><span class="p">[</span><span class="s1">&#39;pwn&#39;</span><span class="p">]))</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="k">if</span> <span class="p">(</span><span class="nv">$_GET</span><span class="p">[</span><span class="s1">&#39;shell&#39;</span><span class="p">]</span> <span class="o">!==</span> <span class="nv">$_GET</span><span class="p">[</span><span class="s1">&#39;pwn&#39;</span><span class="p">]</span> <span class="o">&amp;&amp;</span> <span class="nx">hash</span><span class="p">(</span><span class="s2">&#34;sha256&#34;</span><span class="p">,</span> <span class="nv">$_GET</span><span class="p">[</span><span class="s1">&#39;shell&#39;</span><span class="p">])</span> <span class="o">===</span> <span class="nx">hash</span><span class="p">(</span><span class="s2">&#34;sha256&#34;</span><span class="p">,</span> <span class="nv">$_GET</span><span class="p">[</span><span class="s1">&#39;pwn&#39;</span><span class="p">]))</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                    <span class="k">include</span><span class="p">(</span><span class="s2">&#34;flag.php&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">                    <span class="k">echo</span><span class="p">(</span><span class="s2">&#34;&lt;h1&gt;</span><span class="si">$flag</span><span class="s2">&lt;/h1&gt;&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">                <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                    <span class="k">echo</span><span class="p">(</span><span class="s2">&#34;&lt;h1&gt;Try harder!&lt;/h1&gt;&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">                <span class="p">}</span>
+</span></span><span class="line"><span class="cl">            <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="k">echo</span><span class="p">(</span><span class="s2">&#34;&lt;h1&gt;Collisions are fun to see&lt;/h1&gt;&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">            <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="cp">?&gt;</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err">    &lt;/body&gt;
+</span></span></span><span class="line"><span class="cl"><span class="err">&lt;/html&gt;
+</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>&ldquo;sha256 collision CTF&rdquo; をキーワードでググったら、同じ過去問を見つけてしまったんですよね。</p>
 <p><a href="https://ctftime.org/task/12375">https://ctftime.org/task/12375</a></p>
-<p><br /></p>
+<br />
 <p>以下でアクセスするとフラグが取れます。</p>
 <pre>
 http://3.142.122.1:9335/?shell[0]=0&pwn[1]=0
 </pre>
-<p><br /></p>
+<br />
 <p>Flag: <code>SHELL{1nj3ct_&amp;_coll1d3_9d25f1cfdeb38a404b6e8584bec7a319}</code></p>
 <p><br /><br /></p>
 <h2 id="web-login-200-points">[Web]: login (200 points)</h2>
@@ -320,13 +315,13 @@ http://3.142.122.1:9335/?shell[0]=0&pwn[1]=0
 <blockquote>
 <p>Sam really need to get past this login portal but isn&rsquo;t able too, can you help him? http://3.142.122.1:8889/</p>
 </blockquote>
-<p><br /></p>
+<br />
 <h3 id="solution-2">Solution</h3>
 <p>main.jsを使って、ローカルで認証が走ります。</p>
 <p>結構複雑なコードのわりにSolveした人が多かったので、なんか簡単な解き方がありそう。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -339,23 +334,23 @@ http://3.142.122.1:9335/?shell[0]=0&pwn[1]=0
 </span><span class="lnt">11
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">function</span> <span class="nx">checkIt</span><span class="p">()</span> <span class="p">{</span>
-  <span class="kd">var</span> <span class="nx">user</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">&#34;username&#34;</span><span class="p">).</span><span class="nx">value</span><span class="p">;</span> <span class="kd">var</span> <span class="nx">pass</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">&#34;password&#34;</span><span class="p">).</span><span class="nx">value</span><span class="p">;</span>
-  <span class="k">if</span> <span class="p">(</span><span class="nx">user</span> <span class="o">!=</span> <span class="s2">&#34;din_djarin11&#34;</span><span class="p">)</span> <span class="nx">alert</span><span class="p">(</span><span class="s2">&#34;Only for user: din_djarin11&#34;</span><span class="p">);</span> <span class="k">else</span> <span class="p">{</span>
-    <span class="kd">var</span> <span class="nx">s</span> <span class="o">=</span> <span class="nx">Hash</span><span class="p">(</span><span class="nx">pass</span><span class="p">);</span>
-    <span class="k">if</span> <span class="p">(</span><span class="nx">s</span> <span class="o">==</span> <span class="s2">&#34;9ef71a8cd681a813cfd377817e9a08e5&#34;</span><span class="p">)</span> <span class="nb">window</span><span class="p">.</span><span class="nx">location</span> <span class="o">=</span> <span class="s2">&#34;./&#34;</span> <span class="o">+</span> <span class="nx">pass</span><span class="p">;</span> 
-    <span class="k">else</span> <span class="nx">alert</span><span class="p">(</span><span class="s2">&#34;Invalid login&#34;</span><span class="p">);</span>
-  <span class="p">}</span>
-<span class="p">}</span>
-<span class="o">:</span>
-<span class="p">(</span><span class="nx">snip</span><span class="err">。</span><span class="nx">複雑なコードの部分は長いので省略</span><span class="p">)</span>
-<span class="o">:</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="kd">function</span> <span class="nx">checkIt</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="kd">var</span> <span class="nx">user</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">&#34;username&#34;</span><span class="p">).</span><span class="nx">value</span><span class="p">;</span> <span class="kd">var</span> <span class="nx">pass</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">&#34;password&#34;</span><span class="p">).</span><span class="nx">value</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="k">if</span> <span class="p">(</span><span class="nx">user</span> <span class="o">!=</span> <span class="s2">&#34;din_djarin11&#34;</span><span class="p">)</span> <span class="nx">alert</span><span class="p">(</span><span class="s2">&#34;Only for user: din_djarin11&#34;</span><span class="p">);</span> <span class="k">else</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">var</span> <span class="nx">s</span> <span class="o">=</span> <span class="nx">Hash</span><span class="p">(</span><span class="nx">pass</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="nx">s</span> <span class="o">==</span> <span class="s2">&#34;9ef71a8cd681a813cfd377817e9a08e5&#34;</span><span class="p">)</span> <span class="nb">window</span><span class="p">.</span><span class="nx">location</span> <span class="o">=</span> <span class="s2">&#34;./&#34;</span> <span class="o">+</span> <span class="nx">pass</span><span class="p">;</span> 
+</span></span><span class="line"><span class="cl">    <span class="k">else</span> <span class="nx">alert</span><span class="p">(</span><span class="s2">&#34;Invalid login&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">:</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nx">snip</span><span class="err">。</span><span class="nx">複雑なコードの部分は長いので省略</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="o">:</span>
+</span></span></code></pre></td></tr></table>
 </div>
-</div><p><br />
-開催日初日には、<code>9ef71a8cd681a813cfd377817e9a08e5</code>をググっても何もヒットしなかったんですが、2日目にググったら<code>ir0nm4n</code>がヒットしました。</p>
+</div><br />
+開催日初日には、`9ef71a8cd681a813cfd377817e9a08e5`をググっても何もヒットしなかったんですが、2日目にググったら`ir0nm4n`がヒットしました。
 <p>ということで、din_djarin11 / ir0nm4n でログインするだけです。</p>
-<p><br /></p>
+<br />
 <p>Flag: <code>SHELL{th1s_i5_th3_wa7_845ad42f4480104b698c1e168d29b739}</code></p>
 <p><br /><br /></p>
 <h2 id="crypto-subsi-50-points">[Crypto]: Subsi (50 points)</h2>
@@ -371,7 +366,7 @@ http://3.142.122.1:9335/?shell[0]=0&pwn[1]=0
 <p>以下、中身。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -385,26 +380,26 @@ http://3.142.122.1:9335/?shell[0]=0&pwn[1]=0
 </span><span class="lnt">12
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-Python" data-lang="Python"><span class="n">alpha</span> <span class="o">=</span> <span class="s1">&#39;ABCDEFGHIJKLMNOPQRSTUVWXYZ{}_1234567890&#39;</span>
-<span class="n">key</span>   <span class="o">=</span> <span class="s1">&#39;QWERTPOIUYASDFGLKJHZXCVMNB{}_1234567890&#39;</span>
-
-<span class="n">text</span> <span class="o">=</span> <span class="o">&lt;</span><span class="n">flag</span><span class="o">&gt;</span>
-
-<span class="k">def</span> <span class="nf">encrypter</span><span class="p">(</span><span class="n">text</span><span class="p">,</span><span class="n">key</span><span class="p">):</span>
-    <span class="n">encrypted_msg</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
-    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">text</span><span class="p">:</span>
-        <span class="n">index</span> <span class="o">=</span> <span class="n">alpha</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
-        <span class="n">encrypted_msg</span> <span class="o">+=</span> <span class="n">key</span><span class="p">[</span><span class="n">index</span><span class="p">]</span>
-    <span class="c1"># print(encrypted_msg)</span>
-    <span class="k">return</span> <span class="n">encrypted_msg</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-Python" data-lang="Python"><span class="line"><span class="cl"><span class="n">alpha</span> <span class="o">=</span> <span class="s1">&#39;ABCDEFGHIJKLMNOPQRSTUVWXYZ</span><span class="si">{}</span><span class="s1">_1234567890&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="n">key</span>   <span class="o">=</span> <span class="s1">&#39;QWERTPOIUYASDFGLKJHZXCVMNB</span><span class="si">{}</span><span class="s1">_1234567890&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">text</span> <span class="o">=</span> <span class="o">&lt;</span><span class="n">flag</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">encrypter</span><span class="p">(</span><span class="n">text</span><span class="p">,</span><span class="n">key</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">encrypted_msg</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">text</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">index</span> <span class="o">=</span> <span class="n">alpha</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">encrypted_msg</span> <span class="o">+=</span> <span class="n">key</span><span class="p">[</span><span class="n">index</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># print(encrypted_msg)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">encrypted_msg</span>
+</span></span></code></pre></td></tr></table>
 </div>
-</div><p><br /></p>
+</div><br />
 <h3 id="solution-3">Solution</h3>
 <p>逆の処理をしてdecryptするだけです。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -425,28 +420,28 @@ http://3.142.122.1:9335/?shell[0]=0&pwn[1]=0
 </span></span><span class="hl"><span class="lnt">19
 </span></span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="n">alpha</span> <span class="o">=</span> <span class="s1">&#39;ABCDEFGHIJKLMNOPQRSTUVWXYZ{}_1234567890&#39;</span>
-<span class="n">key</span>   <span class="o">=</span> <span class="s1">&#39;QWERTPOIUYASDFGLKJHZXCVMNB{}_1234567890&#39;</span>
-
-<span class="c1"># text = &lt;flag&gt;</span>
-
-<span class="k">def</span> <span class="nf">encrypter</span><span class="p">(</span><span class="n">text</span><span class="p">,</span><span class="n">key</span><span class="p">):</span>
-    <span class="n">encrypted_msg</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
-    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">text</span><span class="p">:</span>
-        <span class="n">index</span> <span class="o">=</span> <span class="n">alpha</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
-        <span class="n">encrypted_msg</span> <span class="o">+=</span> <span class="n">key</span><span class="p">[</span><span class="n">index</span><span class="p">]</span>
-    <span class="c1"># print(encrypted_msg)</span>
-    <span class="k">return</span> <span class="n">encrypted_msg</span>
-
-<span class="hl"><span class="n">text</span> <span class="o">=</span> <span class="s2">&#34;HITSS{5X65Z1ZXZ10F_E1LI3J}&#34;</span>
-</span><span class="hl"><span class="n">decrypted_msg</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
-</span><span class="hl"><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">text</span><span class="p">:</span>
-</span><span class="hl">    <span class="n">index</span> <span class="o">=</span> <span class="n">key</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
-</span><span class="hl">    <span class="n">decrypted_msg</span> <span class="o">+=</span> <span class="n">alpha</span><span class="p">[</span><span class="n">index</span><span class="p">]</span>
-</span><span class="hl"><span class="k">print</span><span class="p">(</span><span class="n">decrypted_msg</span><span class="p">)</span></span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">alpha</span> <span class="o">=</span> <span class="s1">&#39;ABCDEFGHIJKLMNOPQRSTUVWXYZ</span><span class="si">{}</span><span class="s1">_1234567890&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="n">key</span>   <span class="o">=</span> <span class="s1">&#39;QWERTPOIUYASDFGLKJHZXCVMNB</span><span class="si">{}</span><span class="s1">_1234567890&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># text = &lt;flag&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">encrypter</span><span class="p">(</span><span class="n">text</span><span class="p">,</span><span class="n">key</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">encrypted_msg</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">text</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">index</span> <span class="o">=</span> <span class="n">alpha</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">encrypted_msg</span> <span class="o">+=</span> <span class="n">key</span><span class="p">[</span><span class="n">index</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># print(encrypted_msg)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">encrypted_msg</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line hl"><span class="cl"><span class="n">text</span> <span class="o">=</span> <span class="s2">&#34;HITSS</span><span class="si">{5X65Z1ZXZ10F_E1LI3J}</span><span class="s2">&#34;</span>
+</span></span><span class="line hl"><span class="cl"><span class="n">decrypted_msg</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+</span></span><span class="line hl"><span class="cl"><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">text</span><span class="p">:</span>
+</span></span><span class="line hl"><span class="cl">    <span class="n">index</span> <span class="o">=</span> <span class="n">key</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+</span></span><span class="line hl"><span class="cl">    <span class="n">decrypted_msg</span> <span class="o">+=</span> <span class="n">alpha</span><span class="p">[</span><span class="n">index</span><span class="p">]</span>
+</span></span><span class="line hl"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">decrypted_msg</span><span class="p">)</span></span></span></code></pre></td></tr></table>
 </div>
 </div>
-<p><br /></p>
+<br />
 <p>Flag: <code>SHELL{5U65T1TUT10N_C1PH3R}</code></p>
 <p>Pythonで文字列のIndexのとり方が勉強になりました。</p>
 <p><br /><br /></p>
@@ -462,9 +457,9 @@ Note : flag is not in SHELL{} format, just a positive number.</p>
 </blockquote>
 <p>Attachment:</p>
 <img src="https://captureamerica.github.io/writeups/img/shellctf_2021_pin.png" alt="shellctf_2021_pin.png">
-<p><br /></p>
-<h3 id="unsolved">(Unsolved)</h3>
-<p>CJKというのは、Chinese Japanese Koreanのイニシャルでした。</p>
+<br />
+### (Unsolved)
+CJKというのは、Chinese Japanese Koreanのイニシャルでした。
 <p>郵便マーク (U+3036)、JISマーク (U+3004) はいいとして、3つ目の記号はなんだよ！</p>
 <p>もう少し判別つきやすいものを使ってほしいところ。</p>
 <p><br /><br /></p>
@@ -481,7 +476,7 @@ Note : flag is not in SHELL{} format, just a positive number.</p>
 <p>以下、中身です。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -499,30 +494,30 @@ Note : flag is not in SHELL{} format, just a positive number.</p>
 </span><span class="lnt">16
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-asm" data-lang="asm"><span class="nl">fun1:</span>
-	<span class="err">&lt;+0&gt;:</span>	<span class="nf">push</span>   <span class="no">ebp</span>
-	<span class="err">&lt;+1&gt;:</span>	<span class="nf">mov</span>    <span class="no">ebp</span><span class="p">,</span><span class="no">esp</span>
-	<span class="err">&lt;+3&gt;:</span>	<span class="nf">sub</span>    <span class="no">esp</span><span class="p">,</span><span class="mi">0x10</span>
-	<span class="err">&lt;+6&gt;:</span>	<span class="nf">mov</span>    <span class="no">eax</span><span class="p">,</span><span class="no">DWORD</span> <span class="no">PTR</span> <span class="p">[</span><span class="no">ebp</span><span class="err">+</span><span class="mi">0xc</span><span class="p">]</span>
-	<span class="err">&lt;+9&gt;:</span>	<span class="nf">mov</span>    <span class="no">DWORD</span> <span class="no">PTR</span> <span class="p">[</span><span class="no">ebp-0x4</span><span class="p">],</span><span class="no">eax</span>
-	<span class="err">&lt;+12&gt;:</span>	<span class="nf">mov</span>    <span class="no">eax</span><span class="p">,</span><span class="no">DWORD</span> <span class="no">PTR</span> <span class="p">[</span><span class="no">ebp</span><span class="err">+</span><span class="mi">0x8</span><span class="p">]</span>
-	<span class="err">&lt;+15&gt;:</span>	<span class="nf">mov</span>    <span class="no">DWORD</span> <span class="no">PTR</span> <span class="p">[</span><span class="no">ebp-0x8</span><span class="p">],</span><span class="no">eax</span>
-	<span class="err">&lt;+18&gt;:</span>	<span class="nf">jmp</span>    <span class="err">&lt;</span><span class="no">fun1</span><span class="err">+</span><span class="mi">28</span><span class="err">&gt;</span>
-	<span class="err">&lt;+20&gt;:</span>	<span class="nf">add</span>    <span class="no">DWORD</span> <span class="no">PTR</span> <span class="p">[</span><span class="no">ebp-0x4</span><span class="p">],</span><span class="mi">0x7</span>
-	<span class="err">&lt;+24&gt;:</span>	<span class="nf">add</span>    <span class="no">DWORD</span> <span class="no">PTR</span> <span class="p">[</span><span class="no">ebp-0x8</span><span class="p">],</span><span class="mi">0x70</span>
-	<span class="err">&lt;+28&gt;:</span>	<span class="nf">cmp</span>    <span class="no">DWORD</span> <span class="no">PTR</span> <span class="p">[</span><span class="no">ebp-0x8</span><span class="p">],</span><span class="mi">0x227</span>
-	<span class="err">&lt;+35&gt;:</span>	<span class="nf">jle</span>    <span class="err">&lt;</span><span class="no">fun1</span><span class="err">+</span><span class="mi">20</span><span class="err">&gt;</span>
-	<span class="err">&lt;+37&gt;:</span>	<span class="nf">mov</span>    <span class="no">eax</span><span class="p">,</span><span class="no">DWORD</span> <span class="no">PTR</span> <span class="p">[</span><span class="no">ebp-0x4</span><span class="p">]</span>
-	<span class="err">&lt;+40&gt;:</span>	<span class="nf">leave</span>  
-	<span class="err">&lt;+</span><span class="mi">41</span><span class="err">&gt;</span><span class="p">:</span>	<span class="no">ret</span>  
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-asm" data-lang="asm"><span class="line"><span class="cl"><span class="nl">fun1:</span>
+</span></span><span class="line"><span class="cl">	<span class="err">&lt;+0&gt;:</span>	<span class="nf">push</span>   <span class="no">ebp</span>
+</span></span><span class="line"><span class="cl">	<span class="err">&lt;+1&gt;:</span>	<span class="nf">mov</span>    <span class="no">ebp</span><span class="p">,</span><span class="no">esp</span>
+</span></span><span class="line"><span class="cl">	<span class="err">&lt;+3&gt;:</span>	<span class="nf">sub</span>    <span class="no">esp</span><span class="p">,</span><span class="mi">0x10</span>
+</span></span><span class="line"><span class="cl">	<span class="err">&lt;+6&gt;:</span>	<span class="nf">mov</span>    <span class="no">eax</span><span class="p">,</span><span class="no">DWORD</span> <span class="no">PTR</span> <span class="p">[</span><span class="no">ebp</span><span class="err">+</span><span class="mi">0xc</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">	<span class="err">&lt;+9&gt;:</span>	<span class="nf">mov</span>    <span class="no">DWORD</span> <span class="no">PTR</span> <span class="p">[</span><span class="no">ebp-0x4</span><span class="p">],</span><span class="no">eax</span>
+</span></span><span class="line"><span class="cl">	<span class="err">&lt;+12&gt;:</span>	<span class="nf">mov</span>    <span class="no">eax</span><span class="p">,</span><span class="no">DWORD</span> <span class="no">PTR</span> <span class="p">[</span><span class="no">ebp</span><span class="err">+</span><span class="mi">0x8</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">	<span class="err">&lt;+15&gt;:</span>	<span class="nf">mov</span>    <span class="no">DWORD</span> <span class="no">PTR</span> <span class="p">[</span><span class="no">ebp-0x8</span><span class="p">],</span><span class="no">eax</span>
+</span></span><span class="line"><span class="cl">	<span class="err">&lt;+18&gt;:</span>	<span class="nf">jmp</span>    <span class="err">&lt;</span><span class="no">fun1</span><span class="err">+</span><span class="mi">28</span><span class="err">&gt;</span>
+</span></span><span class="line"><span class="cl">	<span class="err">&lt;+20&gt;:</span>	<span class="nf">add</span>    <span class="no">DWORD</span> <span class="no">PTR</span> <span class="p">[</span><span class="no">ebp-0x4</span><span class="p">],</span><span class="mi">0x7</span>
+</span></span><span class="line"><span class="cl">	<span class="err">&lt;+24&gt;:</span>	<span class="nf">add</span>    <span class="no">DWORD</span> <span class="no">PTR</span> <span class="p">[</span><span class="no">ebp-0x8</span><span class="p">],</span><span class="mi">0x70</span>
+</span></span><span class="line"><span class="cl">	<span class="err">&lt;+28&gt;:</span>	<span class="nf">cmp</span>    <span class="no">DWORD</span> <span class="no">PTR</span> <span class="p">[</span><span class="no">ebp-0x8</span><span class="p">],</span><span class="mi">0x227</span>
+</span></span><span class="line"><span class="cl">	<span class="err">&lt;+35&gt;:</span>	<span class="nf">jle</span>    <span class="err">&lt;</span><span class="no">fun1</span><span class="err">+</span><span class="mi">20</span><span class="err">&gt;</span>
+</span></span><span class="line"><span class="cl">	<span class="err">&lt;+37&gt;:</span>	<span class="nf">mov</span>    <span class="no">eax</span><span class="p">,</span><span class="no">DWORD</span> <span class="no">PTR</span> <span class="p">[</span><span class="no">ebp-0x4</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">	<span class="err">&lt;+40&gt;:</span>	<span class="nf">leave</span>  
+</span></span><span class="line"><span class="cl">	<span class="err">&lt;+</span><span class="mi">41</span><span class="err">&gt;</span><span class="p">:</span>	<span class="no">ret</span>  
+</span></span></code></pre></td></tr></table>
 </div>
-</div><p><br /></p>
+</div><br />
 <h3 id="solution-4">Solution</h3>
 <p>C言語に書き起こしました。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -541,31 +536,31 @@ Note : flag is not in SHELL{} format, just a positive number.</p>
 </span><span class="lnt">17
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-C" data-lang="C"><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
-</span><span class="cp"></span>
-<span class="kt">int</span> <span class="nf">fun1</span><span class="p">(</span><span class="kt">int</span> <span class="n">a</span><span class="p">,</span> <span class="kt">int</span> <span class="n">b</span><span class="p">)</span>
-<span class="p">{</span>
-    <span class="n">b</span> <span class="o">=</span> <span class="n">b</span> <span class="o">+</span> <span class="mi">7</span><span class="p">;</span>
-    <span class="n">a</span> <span class="o">=</span> <span class="n">a</span> <span class="o">+</span> <span class="mh">0x70</span><span class="p">;</span>
-    <span class="k">while</span> <span class="p">(</span> <span class="n">a</span> <span class="o">&lt;=</span> <span class="mh">0x227</span> <span class="p">)</span> <span class="p">{</span>
-	<span class="n">b</span> <span class="o">=</span> <span class="n">b</span> <span class="o">+</span> <span class="mi">7</span><span class="p">;</span>
-	<span class="n">a</span> <span class="o">=</span> <span class="n">a</span> <span class="o">+</span> <span class="mh">0x70</span><span class="p">;</span>
-    <span class="p">}</span>
-    <span class="k">return</span> <span class="n">b</span><span class="p">;</span>
-<span class="p">}</span>
-
-<span class="kt">void</span> <span class="nf">main</span><span class="p">()</span>
-<span class="p">{</span>
-    <span class="n">printf</span><span class="p">(</span><span class="s">&#34;0x%x</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">fun1</span><span class="p">(</span><span class="mh">0x74</span><span class="p">,</span><span class="mh">0x6f</span><span class="p">)</span> <span class="o">+</span> <span class="n">fun1</span><span class="p">(</span><span class="mh">0x62</span><span class="p">,</span><span class="mh">0x69</span><span class="p">));</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">fun1</span><span class="p">(</span><span class="kt">int</span> <span class="n">a</span><span class="p">,</span> <span class="kt">int</span> <span class="n">b</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">b</span> <span class="o">=</span> <span class="n">b</span> <span class="o">+</span> <span class="mi">7</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">a</span> <span class="o">=</span> <span class="n">a</span> <span class="o">+</span> <span class="mh">0x70</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">while</span> <span class="p">(</span> <span class="n">a</span> <span class="o">&lt;=</span> <span class="mh">0x227</span> <span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="n">b</span> <span class="o">=</span> <span class="n">b</span> <span class="o">+</span> <span class="mi">7</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="n">a</span> <span class="o">=</span> <span class="n">a</span> <span class="o">+</span> <span class="mh">0x70</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">b</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">main</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">printf</span><span class="p">(</span><span class="s">&#34;0x%x</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="nf">fun1</span><span class="p">(</span><span class="mh">0x74</span><span class="p">,</span><span class="mh">0x6f</span><span class="p">)</span> <span class="o">+</span> <span class="nf">fun1</span><span class="p">(</span><span class="mh">0x62</span><span class="p">,</span><span class="mh">0x69</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><pre>
 $ gcc assembly_solve.c
 $ ./a.out
 0x117
 </pre>
-<p><br /></p>
+<br />
 <p>Flag: <code>SHELL{0x117}</code></p>
 <p><br /><br />
 <br /><br /></p>
@@ -621,7 +616,7 @@ $ ./a.out
     <footer id="footer" class="footer">
       <div class="social-links">
       <a href="https://github.com/CaptureAmerica/" class="iconfont icon-github" title="github"></a>
-  <a href="https://captureamerica.github.io/writeups/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+  
 </div>
 
 <div class="copyright">
@@ -656,20 +651,21 @@ $ ./a.out
 
 
 
-<script type="text/javascript" src="https://captureamerica.github.io/writeups/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+<script type="text/javascript" src="https://captureamerica.github.io/writeups/js/main.min.4ae89da218555efa0e7093a20b92017d2e1202b66fff9fc2edf4cb8d44b44c6e.js"></script>
 
 
 <script type="application/javascript">
 var doNotTrack = false;
 if (!doNotTrack) {
-	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 	ga('create', 'UA-104910699-2', 'auto');
 	ga('set', 'anonymizeIp', true);
 	ga('send', 'pageview');
 }
 </script>
-<script async src='https://www.google-analytics.com/analytics.js'></script>
-
 
 
 

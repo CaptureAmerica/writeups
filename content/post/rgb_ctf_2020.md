@@ -67,6 +67,7 @@ public class Main {
 {{< / highlight >}}
 
 <br />
+
 ### Solution
 Javaのコードの中でやっていることは、
 1. 文字を2で割ったものをansに追加。（16行目）
@@ -124,6 +125,7 @@ Attachment:
 - DifferenceTest.java
 
 <br />
+
 ### Solution
 所々、文字化けしてます。
 
@@ -203,6 +205,7 @@ Attachment:
 - a.out
 
 <br />
+
 ### Solution
 Ghidraでデコンパイルします。
 

@@ -52,6 +52,7 @@ Web Exploitation の Writeupです。
 Hints : Can cookies help you to get the flag?<br />
 
 <br />
+
 ### Solution
 <pre>
 curl -k -H 'Cookie: admin=True; time=1400'  https://2019shell1.picoctf.com/problem/32249/flag
@@ -72,6 +73,7 @@ Flag: `picoCTF{0p3n_t0_adm1n5_cc661e91}`
 Hints : The password is being filtered.
 
 <br />
+
 ### Solution
 picoCTF 2018のVaultと同じ問題です。
 
@@ -100,6 +102,7 @@ Hints : Seems like the password is encrypted.
 
 
 <br />
+
 ### Solution
 Burpでやったらdebug変数が見えたので、1に変えてみました。
 

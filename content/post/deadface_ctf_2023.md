@@ -28,7 +28,7 @@ URL: [https://deadface.ctfd.io/challenges](https://deadface.ctfd.io/challenges)
 
 <br><br>
 
-[Deadface CTF 2021](http://localhost:1313/writeups/post/deadface_ctf_2021/) のときと同様、日曜日に見てみたら、追加チャレンジを見る前にイベント終了してました。そもそもあんまりモチベも無かったので、別にいいんですが。
+[Deadface CTF 2021](https://captureamerica.github.io/writeups/post/deadface_ctf_2021/) のときと同様、日曜日に見てみたら、追加チャレンジを見る前にイベント終了してました。そもそもあんまりモチベも無かったので、別にいいんですが。
 
 
 <br><br>
@@ -56,6 +56,7 @@ Attachment:
 - syncopated_beat.zip
 
 <br />
+
 ### Solution
 Zipファイルの中には、以下の2つの.wavファイルが入っています。
 
@@ -117,6 +118,7 @@ Attachment:
 - ITletsyoudown.pcapng
 
 <br />
+
 ### Solution
 Wiresharkで "user" をサーチしていると、そのうち `Users\mmeyers\` のような文字列が見つかります。
 
@@ -155,6 +157,7 @@ Attachment:
 - pcap-20231010.pcap
 
 <br />
+
 ### Solution
 このpcapの中で見つかる HTTP POST は、1つだけです。
 
@@ -180,6 +183,7 @@ Attachment:
 - PCAP02.pcapng
 
 <br />
+
 ### Solution
 
 Wiresharkで `tcp.port==22` でフィルターした後、Lengthでソートして見てみると、他とは違う逆方向の通信（source port 46682）が見つかります（以下）。
@@ -212,6 +216,7 @@ Attachment:
 - Thekeytothekingdom.pcap
 
 <br />
+
 ### Solution
 
 データを含んでいる TCP SYN パケット だけが含まれている pcapです。

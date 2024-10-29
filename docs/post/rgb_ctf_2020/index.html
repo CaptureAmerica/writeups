@@ -23,7 +23,7 @@
 <meta name="google-site-verification" content="PqctLWZQttGzxXVupWuIt2HWuBI8cvN1z07ETpxA2dw" />
 
 
-<meta name="generator" content="Hugo 0.74.2 with theme even" />
+<meta name="generator" content="Hugo 0.119.0 with theme even" />
 
 
 <link rel="canonical" href="https://captureamerica.github.io/writeups/post/rgb_ctf_2020/" />
@@ -35,24 +35,20 @@
 
 
 
-<link href="https://captureamerica.github.io/writeups/sass/main.min.2e81bbed97b8b282c1aeb57488cc71c8d8c8ec559f3931531bd396bf31e0d4dd.css" rel="stylesheet">
+<link href="https://captureamerica.github.io/writeups/sass/main.min.f92fd13721ddf72129410fd8250e73152cc6f2438082b6c0208dc24ee7c13fc4.css" rel="stylesheet">
 
 
 
 <meta property="og:title" content="RGB CTF 2020 Writeup" />
 <meta property="og:description" content="URL: https://ctf.rgbsec.xyz/home 最終順位は、334位でした。 こうやってみると、全然解けてないですね。。 [Beginner]: Pieces Challenge My flag has been divided into pieces :( Can you recover it for me? Attachment: Main.java 以下が中身です。 1 2 3 4 5 6" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://captureamerica.github.io/writeups/post/rgb_ctf_2020/" />
+<meta property="og:url" content="https://captureamerica.github.io/writeups/post/rgb_ctf_2020/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2020-07-14T13:00:00+09:00" />
 <meta property="article:modified_time" content="2020-07-14T13:00:00+09:00" />
 <meta itemprop="name" content="RGB CTF 2020 Writeup">
-<meta itemprop="description" content="URL: https://ctf.rgbsec.xyz/home 最終順位は、334位でした。 こうやってみると、全然解けてないですね。。 [Beginner]: Pieces Challenge My flag has been divided into pieces :( Can you recover it for me? Attachment: Main.java 以下が中身です。 1 2 3 4 5 6">
-<meta itemprop="datePublished" content="2020-07-14T13:00:00&#43;09:00" />
-<meta itemprop="dateModified" content="2020-07-14T13:00:00&#43;09:00" />
-<meta itemprop="wordCount" content="1145">
-
-
-
+<meta itemprop="description" content="URL: https://ctf.rgbsec.xyz/home 最終順位は、334位でした。 こうやってみると、全然解けてないですね。。 [Beginner]: Pieces Challenge My flag has been divided into pieces :( Can you recover it for me? Attachment: Main.java 以下が中身です。 1 2 3 4 5 6"><meta itemprop="datePublished" content="2020-07-14T13:00:00+09:00" />
+<meta itemprop="dateModified" content="2020-07-14T13:00:00+09:00" />
+<meta itemprop="wordCount" content="1174">
 <meta itemprop="keywords" content="CTF," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="RGB CTF 2020 Writeup"/>
 <meta name="twitter:description" content="URL: https://ctf.rgbsec.xyz/home 最終順位は、334位でした。 こうやってみると、全然解けてないですね。。 [Beginner]: Pieces Challenge My flag has been divided into pieces :( Can you recover it for me? Attachment: Main.java 以下が中身です。 1 2 3 4 5 6"/>
@@ -169,7 +165,6 @@
     <li><a href="#beginner-shoob">[Beginner]: Shoob</a>
       <ul>
         <li><a href="#challenge-3">Challenge</a></li>
-        <li><a href="#unsolved">(Unsolved)</a></li>
       </ul>
     </li>
   </ul>
@@ -183,10 +178,10 @@
 </a>
 </div>
 <p>URL: <a href="https://ctf.rgbsec.xyz/home">https://ctf.rgbsec.xyz/home</a></p>
-<p><br />
-最終順位は、334位でした。</p>
+<br />
+最終順位は、334位でした。
 <img src="https://captureamerica.github.io/writeups/img/rgb_CTF_2020_Score0.png" alt="rgb_CTF_2020_Score0.png">
-<p><br /></p>
+<br />
 <img src="https://captureamerica.github.io/writeups/img/rgb_CTF_2020_Score1.png" alt="rgb_CTF_2020_Score1.png">
 <p>こうやってみると、全然解けてないですね。。</p>
 <p><br /><br /></p>
@@ -203,7 +198,7 @@
 <p>以下が中身です。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -226,35 +221,35 @@
 </span><span class="lnt">21
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="kn">import</span> <span class="nn">java.io.*</span><span class="o">;</span>
-<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Main</span> <span class="o">{</span>
-	<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">IOException</span> <span class="o">{</span>
-		<span class="n">BufferedReader</span> <span class="n">in</span> <span class="o">=</span> <span class="k">new</span> <span class="n">BufferedReader</span><span class="o">(</span><span class="k">new</span> <span class="n">InputStreamReader</span><span class="o">(</span><span class="n">System</span><span class="o">.</span><span class="na">in</span><span class="o">));</span>
-		<span class="n">String</span> <span class="n">input</span> <span class="o">=</span> <span class="n">in</span><span class="o">.</span><span class="na">readLine</span><span class="o">();</span>
-<span class="hl">		<span class="k">if</span> <span class="o">(</span><span class="n">divide</span><span class="o">(</span><span class="n">input</span><span class="o">).</span><span class="na">equals</span><span class="o">(</span><span class="s">&#34;9|2/9/:|4/7|8|4/2/1/2/9/&#34;</span><span class="o">))</span> <span class="o">{</span>
-</span>			<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;Congratulations! Flag: rgbCTF{&#34;</span> <span class="o">+</span> <span class="n">input</span> <span class="o">+</span> <span class="s">&#34;}&#34;</span><span class="o">);</span>
-		<span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
-			<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;Incorrect, try again.&#34;</span><span class="o">);</span>
-		<span class="o">}</span>
-	<span class="o">}</span>
-	
-	<span class="kd">public</span> <span class="kd">static</span> <span class="n">String</span> <span class="nf">divide</span><span class="o">(</span><span class="n">String</span> <span class="n">text</span><span class="o">)</span> <span class="o">{</span>
-		<span class="n">String</span> <span class="n">ans</span> <span class="o">=</span> <span class="s">&#34;&#34;</span><span class="o">;</span>
-		<span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">text</span><span class="o">.</span><span class="na">length</span><span class="o">();</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
-<span class="hl">			<span class="n">ans</span> <span class="o">+=</span> <span class="o">(</span><span class="kt">char</span><span class="o">)(</span><span class="n">text</span><span class="o">.</span><span class="na">charAt</span><span class="o">(</span><span class="n">i</span><span class="o">)</span> <span class="o">/</span> <span class="n">2</span><span class="o">);</span>
-</span><span class="hl">			<span class="n">ans</span> <span class="o">+=</span> <span class="n">text</span><span class="o">.</span><span class="na">charAt</span><span class="o">(</span><span class="n">i</span><span class="o">)</span> <span class="o">%</span> <span class="n">2</span> <span class="o">==</span> <span class="n">0</span> <span class="o">?</span> <span class="s">&#34;|&#34;</span> <span class="o">:</span> <span class="s">&#34;/&#34;</span><span class="o">;</span>
-</span>		<span class="o">}</span>
-		<span class="k">return</span> <span class="n">ans</span><span class="o">;</span>
-	<span class="o">}</span>
-<span class="o">}</span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">java.io.*</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Main</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">	<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">IOException</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">		<span class="n">BufferedReader</span> <span class="n">in</span> <span class="o">=</span> <span class="k">new</span> <span class="n">BufferedReader</span><span class="o">(</span><span class="k">new</span> <span class="n">InputStreamReader</span><span class="o">(</span><span class="n">System</span><span class="o">.</span><span class="na">in</span><span class="o">));</span>
+</span></span><span class="line"><span class="cl">		<span class="n">String</span> <span class="n">input</span> <span class="o">=</span> <span class="n">in</span><span class="o">.</span><span class="na">readLine</span><span class="o">();</span>
+</span></span><span class="line hl"><span class="cl">		<span class="k">if</span> <span class="o">(</span><span class="n">divide</span><span class="o">(</span><span class="n">input</span><span class="o">).</span><span class="na">equals</span><span class="o">(</span><span class="s">&#34;9|2/9/:|4/7|8|4/2/1/2/9/&#34;</span><span class="o">))</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">			<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;Congratulations! Flag: rgbCTF{&#34;</span> <span class="o">+</span> <span class="n">input</span> <span class="o">+</span> <span class="s">&#34;}&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">		<span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">			<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;Incorrect, try again.&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">		<span class="o">}</span>
+</span></span><span class="line"><span class="cl">	<span class="o">}</span>
+</span></span><span class="line"><span class="cl">	
+</span></span><span class="line"><span class="cl">	<span class="kd">public</span> <span class="kd">static</span> <span class="n">String</span> <span class="nf">divide</span><span class="o">(</span><span class="n">String</span> <span class="n">text</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">		<span class="n">String</span> <span class="n">ans</span> <span class="o">=</span> <span class="s">&#34;&#34;</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">		<span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">text</span><span class="o">.</span><span class="na">length</span><span class="o">();</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+</span></span><span class="line hl"><span class="cl">			<span class="n">ans</span> <span class="o">+=</span> <span class="o">(</span><span class="kt">char</span><span class="o">)(</span><span class="n">text</span><span class="o">.</span><span class="na">charAt</span><span class="o">(</span><span class="n">i</span><span class="o">)</span> <span class="o">/</span> <span class="mi">2</span><span class="o">);</span>
+</span></span><span class="line hl"><span class="cl">			<span class="n">ans</span> <span class="o">+=</span> <span class="n">text</span><span class="o">.</span><span class="na">charAt</span><span class="o">(</span><span class="n">i</span><span class="o">)</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span> <span class="o">?</span> <span class="s">&#34;|&#34;</span> <span class="o">:</span> <span class="s">&#34;/&#34;</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">		<span class="o">}</span>
+</span></span><span class="line"><span class="cl">		<span class="k">return</span> <span class="n">ans</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">	<span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span></span></span></code></pre></td></tr></table>
 </div>
 </div>
-<p><br /></p>
+<br />
 <h3 id="solution">Solution</h3>
 <p>Javaのコードの中でやっていることは、</p>
 <ol>
 <li>文字を2で割ったものをansに追加。（16行目）</li>
-<li>文字を2で割り切れた場合はansに&quot;|&quot;を追加、割り切れなければansに&rdquo;/&ldquo;を追加。（17行目）</li>
+<li>文字を2で割り切れた場合はansに&quot;|&ldquo;を追加、割り切れなければansに&rdquo;/&ldquo;を追加。（17行目）</li>
 <li>その結果が <code>9|2/9/:|4/7|8|4/2/1/2/9/</code> になる。（6行目）</li>
 </ol>
 <br>
@@ -286,7 +281,7 @@ $ python3
 >>> chr((ord('9'))*2+1)
 's'
 </pre>
-<p><br /></p>
+<br />
 <p>Flag: <code>rgbCTF{restinpieces}</code></p>
 <p><br /><br />
 <br /><br /></p>
@@ -301,24 +296,24 @@ $ python3
 <ul>
 <li>DifferenceTest.java</li>
 </ul>
-<p><br /></p>
+<br />
 <h3 id="solution-1">Solution</h3>
 <p>所々、文字化けしてます。</p>
 <img src="https://captureamerica.github.io/writeups/img/rgb_CTF_2020_differences_solved.png" alt="rgb_CTF_2020_differences_solved.png">
 <p>やることは簡単で、バイナリエディタで値を取得し、本来の文字との値の差分を取るとフラグになる、というだけです。</p>
 <p>最初の7文字は、<code>rgbCTF{</code> なので、以下は8文字目以降です。</p>
-<p><br />
-文字化けしている箇所のHex値は以下の通り。（8文字目以降）</p>
+<br />
+文字化けしている箇所のHex値は以下の通り。（8文字目以降）
 <pre>
 E7, D5, 9F, DE, D1, A6, D3, E1, A1, A2, E2, 9F, C1, D7, 7D
 </pre>
-<p><br />
-本来、入るべきの文字は以下の通り。（8文字目以降）</p>
+<br />
+本来、入るべきの文字は以下の通り。（8文字目以降）
 <pre>
 's', 'c', 'n', 'n', 'e', 's', 't', 't', 'n', 'n', 't', 'n', 'S', 'p', '}'
 </pre>
-<p><br />
-ということで、</p>
+<br />
+ということで、
 <pre>
 $ python3
 >>> chr(0xE7-ord('s'))
@@ -352,10 +347,10 @@ $ python3
 >>> chr(0x7D-ord('}'))
 '\x00'
 </pre>
-<p><br /></p>
+<br />
 <p>Flag: <code>rgbCTF{tr1pl3_m34n1ng}</code></p>
-<p><br />
-Triple Meaning (どこがトリプル?)</p>
+<br />
+Triple Meaning (どこがトリプル?)
 <p><br /><br />
 <br /><br /></p>
 <h2 id="pwnrev-too-slow">[Pwn/Rev]: Too Slow</h2>
@@ -369,12 +364,12 @@ Triple Meaning (どこがトリプル?)</p>
 <ul>
 <li>a.out</li>
 </ul>
-<p><br /></p>
+<br />
 <h3 id="solution-2">Solution</h3>
 <p>Ghidraでデコンパイルします。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -409,50 +404,50 @@ Triple Meaning (どこがトリプル?)</p>
 </span><span class="lnt">33
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-C" data-lang="C"><span class="n">undefined8</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
-
-<span class="p">{</span>
-  <span class="n">uint</span> <span class="n">uVar1</span><span class="p">;</span>
-  
-  <span class="n">puts</span><span class="p">(</span><span class="s">&#34;Flag Decryptor v1.0&#34;</span><span class="p">);</span>
-  <span class="n">puts</span><span class="p">(</span><span class="s">&#34;Generating key...&#34;</span><span class="p">);</span>
-  <span class="n">uVar1</span> <span class="o">=</span> <span class="n">getKey</span><span class="p">();</span>
-  <span class="n">win</span><span class="p">((</span><span class="n">ulong</span><span class="p">)</span><span class="n">uVar1</span><span class="p">);</span>
-  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-<span class="p">}</span>
-
-<span class="n">ulong</span> <span class="nf">getKey</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
-
-<span class="p">{</span>
-  <span class="n">uint</span> <span class="n">local_10</span><span class="p">;</span>
-  <span class="n">uint</span> <span class="n">local_c</span><span class="p">;</span>
-  
-  <span class="n">local_10</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-  <span class="k">while</span> <span class="p">(</span><span class="n">local_10</span> <span class="o">&lt;</span> <span class="mh">0x265d1d23</span><span class="p">)</span> <span class="p">{</span>
-    <span class="n">local_c</span> <span class="o">=</span> <span class="n">local_10</span><span class="p">;</span>
-    <span class="k">while</span> <span class="p">(</span><span class="n">local_c</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
-      <span class="k">if</span> <span class="p">((</span><span class="n">local_c</span> <span class="o">&amp;</span> <span class="mi">1</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
-        <span class="n">local_c</span> <span class="o">=</span> <span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="n">local_c</span> <span class="o">/</span> <span class="mi">2</span><span class="p">;</span>
-      <span class="p">}</span>
-      <span class="k">else</span> <span class="p">{</span>
-        <span class="n">local_c</span> <span class="o">=</span> <span class="n">local_c</span> <span class="o">*</span> <span class="mi">3</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
-      <span class="p">}</span>
-    <span class="p">}</span>
-    <span class="n">local_10</span> <span class="o">=</span> <span class="n">local_10</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
-  <span class="p">}</span>
-  <span class="k">return</span> <span class="p">(</span><span class="n">ulong</span><span class="p">)</span><span class="n">local_10</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="n">undefined8</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="n">uint</span> <span class="n">uVar1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">  <span class="nf">puts</span><span class="p">(</span><span class="s">&#34;Flag Decryptor v1.0&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">puts</span><span class="p">(</span><span class="s">&#34;Generating key...&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="n">uVar1</span> <span class="o">=</span> <span class="nf">getKey</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">win</span><span class="p">((</span><span class="n">ulong</span><span class="p">)</span><span class="n">uVar1</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">ulong</span> <span class="nf">getKey</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="n">uint</span> <span class="n">local_10</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="n">uint</span> <span class="n">local_c</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">  <span class="n">local_10</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="k">while</span> <span class="p">(</span><span class="n">local_10</span> <span class="o">&lt;</span> <span class="mh">0x265d1d23</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">local_c</span> <span class="o">=</span> <span class="n">local_10</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">while</span> <span class="p">(</span><span class="n">local_c</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="k">if</span> <span class="p">((</span><span class="n">local_c</span> <span class="o">&amp;</span> <span class="mi">1</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">local_c</span> <span class="o">=</span> <span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="n">local_c</span> <span class="o">/</span> <span class="mi">2</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">      <span class="p">}</span>
+</span></span><span class="line"><span class="cl">      <span class="k">else</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">local_c</span> <span class="o">=</span> <span class="n">local_c</span> <span class="o">*</span> <span class="mi">3</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">      <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="n">local_10</span> <span class="o">=</span> <span class="n">local_10</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="p">(</span><span class="n">ulong</span><span class="p">)</span><span class="n">local_10</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>main() を見ると、getKey() の戻り値を win() の引数にして呼んでいるのがわかります。</p>
 <p>getKey() では、local_10 が 0x265d1d23 になるまで特定の計算をしつつループします。これが時間かかります。</p>
 <p>local_10 は 1 ずつインクリメントしているだけなので、戻り値は計算するまでもなく 0x265d1d23 になります。</p>
 <p>よって、単純に win() に 0x265d1d23 を渡してやるとフラグが取れます。</p>
-<p><br />
-gdbを使って解きました。</p>
+<br />
+gdbを使って解きました。
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -478,33 +473,33 @@ gdbを使って解きました。</p>
 </span><span class="lnt">24
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-asm" data-lang="asm"><span class="nf">gef</span><span class="err">➤</span>  <span class="no">disas</span> <span class="no">main</span>
-<span class="nf">Dump</span> <span class="no">of</span> <span class="no">assembler</span> <span class="no">code</span> <span class="no">for</span> <span class="no">function</span> <span class="no">main</span><span class="p">:</span>
-   <span class="err">0</span><span class="nf">x00005555555552af</span> <span class="err">&lt;+</span><span class="mi">0</span><span class="err">&gt;</span><span class="p">:</span>	<span class="no">endbr64</span> 
-   <span class="mi">0x00005555555552b3</span> <span class="err">&lt;+</span><span class="mi">4</span><span class="err">&gt;</span><span class="p">:</span>	<span class="no">push</span>   <span class="no">rbp</span>
-   <span class="err">0</span><span class="nf">x00005555555552b4</span> <span class="err">&lt;+</span><span class="mi">5</span><span class="err">&gt;</span><span class="p">:</span>	<span class="no">mov</span>    <span class="no">rbp</span><span class="p">,</span><span class="no">rsp</span>
-   <span class="err">0</span><span class="nf">x00005555555552b7</span> <span class="err">&lt;+</span><span class="mi">8</span><span class="err">&gt;</span><span class="p">:</span>	<span class="no">sub</span>    <span class="no">rsp</span><span class="p">,</span><span class="mi">0x10</span>
-   <span class="err">0</span><span class="nf">x00005555555552bb</span> <span class="err">&lt;+</span><span class="mi">12</span><span class="err">&gt;</span><span class="p">:</span>	<span class="no">mov</span>    <span class="no">DWORD</span> <span class="no">PTR</span> <span class="p">[</span><span class="no">rbp-0x4</span><span class="p">],</span><span class="no">edi</span>
-   <span class="err">0</span><span class="nf">x00005555555552be</span> <span class="err">&lt;+</span><span class="mi">15</span><span class="err">&gt;</span><span class="p">:</span>	<span class="no">mov</span>    <span class="no">QWORD</span> <span class="no">PTR</span> <span class="p">[</span><span class="no">rbp-0x10</span><span class="p">],</span><span class="no">rsi</span>
-   <span class="err">0</span><span class="nf">x00005555555552c2</span> <span class="err">&lt;+</span><span class="mi">19</span><span class="err">&gt;</span><span class="p">:</span>	<span class="no">lea</span>    <span class="no">rdi</span><span class="p">,[</span><span class="no">rip</span><span class="err">+</span><span class="mi">0xd54</span><span class="p">]</span>        <span class="c"># 0x55555555601d
-</span><span class="c"></span>   <span class="mi">0x00005555555552c9</span> <span class="err">&lt;+</span><span class="mi">26</span><span class="err">&gt;</span><span class="p">:</span>	<span class="no">call</span>   <span class="mh">0x555555555070</span> <span class="p">&lt;</span><span class="no">puts@plt</span><span class="p">&gt;</span>
-   <span class="err">0</span><span class="nf">x00005555555552ce</span> <span class="err">&lt;+</span><span class="mi">31</span><span class="err">&gt;</span><span class="p">:</span>	<span class="no">lea</span>    <span class="no">rdi</span><span class="p">,[</span><span class="no">rip</span><span class="err">+</span><span class="mi">0xd5c</span><span class="p">]</span>        <span class="c"># 0x555555556031
-</span><span class="c"></span>   <span class="mi">0x00005555555552d5</span> <span class="err">&lt;+</span><span class="mi">38</span><span class="err">&gt;</span><span class="p">:</span>	<span class="no">call</span>   <span class="mh">0x555555555070</span> <span class="p">&lt;</span><span class="no">puts@plt</span><span class="p">&gt;</span>
-   <span class="err">0</span><span class="nf">x00005555555552da</span> <span class="err">&lt;+</span><span class="mi">43</span><span class="err">&gt;</span><span class="p">:</span>	<span class="no">mov</span>    <span class="no">eax</span><span class="p">,</span><span class="mi">0x0</span>
-<span class="hl"><span class="err">=&gt;</span> <span class="err">0</span><span class="nf">x00005555555552df</span> <span class="err">&lt;+</span><span class="mi">48</span><span class="err">&gt;</span><span class="p">:</span>	<span class="no">call</span>   <span class="mh">0x555555555257</span> <span class="p">&lt;</span><span class="no">getKey</span><span class="p">&gt;</span>
-</span><span class="hl">   <span class="err">0</span><span class="nf">x00005555555552e4</span> <span class="err">&lt;+</span><span class="mi">53</span><span class="err">&gt;</span><span class="p">:</span>	<span class="no">mov</span>    <span class="no">edi</span><span class="p">,</span><span class="no">eax</span>
-</span><span class="hl">   <span class="err">0</span><span class="nf">x00005555555552e6</span> <span class="err">&lt;+</span><span class="mi">55</span><span class="err">&gt;</span><span class="p">:</span>	<span class="no">call</span>   <span class="mh">0x555555555189</span> <span class="p">&lt;</span><span class="no">win</span><span class="p">&gt;</span>
-</span>   <span class="err">0</span><span class="nf">x00005555555552eb</span> <span class="err">&lt;+</span><span class="mi">60</span><span class="err">&gt;</span><span class="p">:</span>	<span class="no">mov</span>    <span class="no">eax</span><span class="p">,</span><span class="mi">0x0</span>
-   <span class="err">0</span><span class="nf">x00005555555552f0</span> <span class="err">&lt;+</span><span class="mi">65</span><span class="err">&gt;</span><span class="p">:</span>	<span class="no">leave</span>  
-   <span class="mi">0x00005555555552f1</span> <span class="err">&lt;+</span><span class="mi">66</span><span class="err">&gt;</span><span class="p">:</span>	<span class="no">ret</span>
-
-<span class="nf">gef</span><span class="err">➤</span>  <span class="no">set</span> <span class="no">$edi</span> <span class="err">=</span> <span class="mi">0x265d1d23</span>
-<span class="nf">gef</span><span class="err">➤</span>  <span class="no">jump</span> <span class="no">win</span>
-<span class="nf">Continuing</span> <span class="no">at</span> <span class="mi">0x555555555189</span><span class="p">.</span>
-<span class="nf">Your</span> <span class="no">flag</span><span class="p">:</span> <span class="no">rgbCTF</span><span class="err">{</span><span class="no">pr3d1ct4bl3_k3y_n33d5_no_w41t_cab79d</span><span class="err">}</span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-asm" data-lang="asm"><span class="line"><span class="cl"><span class="nf">gef</span><span class="err">➤</span>  <span class="no">disas</span> <span class="no">main</span>
+</span></span><span class="line"><span class="cl"><span class="nf">Dump</span> <span class="no">of</span> <span class="no">assembler</span> <span class="no">code</span> <span class="no">for</span> <span class="no">function</span> <span class="no">main</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">   <span class="err">0</span><span class="nf">x00005555555552af</span> <span class="err">&lt;+</span><span class="mi">0</span><span class="err">&gt;</span><span class="p">:</span>	<span class="no">endbr64</span> 
+</span></span><span class="line"><span class="cl">   <span class="mi">0x00005555555552b3</span> <span class="err">&lt;+</span><span class="mi">4</span><span class="err">&gt;</span><span class="p">:</span>	<span class="no">push</span>   <span class="no">rbp</span>
+</span></span><span class="line"><span class="cl">   <span class="err">0</span><span class="nf">x00005555555552b4</span> <span class="err">&lt;+</span><span class="mi">5</span><span class="err">&gt;</span><span class="p">:</span>	<span class="no">mov</span>    <span class="no">rbp</span><span class="p">,</span><span class="no">rsp</span>
+</span></span><span class="line"><span class="cl">   <span class="err">0</span><span class="nf">x00005555555552b7</span> <span class="err">&lt;+</span><span class="mi">8</span><span class="err">&gt;</span><span class="p">:</span>	<span class="no">sub</span>    <span class="no">rsp</span><span class="p">,</span><span class="mi">0x10</span>
+</span></span><span class="line"><span class="cl">   <span class="err">0</span><span class="nf">x00005555555552bb</span> <span class="err">&lt;+</span><span class="mi">12</span><span class="err">&gt;</span><span class="p">:</span>	<span class="no">mov</span>    <span class="no">DWORD</span> <span class="no">PTR</span> <span class="p">[</span><span class="no">rbp-0x4</span><span class="p">],</span><span class="no">edi</span>
+</span></span><span class="line"><span class="cl">   <span class="err">0</span><span class="nf">x00005555555552be</span> <span class="err">&lt;+</span><span class="mi">15</span><span class="err">&gt;</span><span class="p">:</span>	<span class="no">mov</span>    <span class="no">QWORD</span> <span class="no">PTR</span> <span class="p">[</span><span class="no">rbp-0x10</span><span class="p">],</span><span class="no">rsi</span>
+</span></span><span class="line"><span class="cl">   <span class="err">0</span><span class="nf">x00005555555552c2</span> <span class="err">&lt;+</span><span class="mi">19</span><span class="err">&gt;</span><span class="p">:</span>	<span class="no">lea</span>    <span class="no">rdi</span><span class="p">,[</span><span class="no">rip</span><span class="err">+</span><span class="mi">0xd54</span><span class="p">]</span>        <span class="c1"># 0x55555555601d
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>   <span class="err">0</span><span class="nf">x00005555555552c9</span> <span class="err">&lt;+</span><span class="mi">26</span><span class="err">&gt;</span><span class="p">:</span>	<span class="no">call</span>   <span class="mh">0x555555555070</span> <span class="p">&lt;</span><span class="no">puts@plt</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">   <span class="err">0</span><span class="nf">x00005555555552ce</span> <span class="err">&lt;+</span><span class="mi">31</span><span class="err">&gt;</span><span class="p">:</span>	<span class="no">lea</span>    <span class="no">rdi</span><span class="p">,[</span><span class="no">rip</span><span class="err">+</span><span class="mi">0xd5c</span><span class="p">]</span>        <span class="c1"># 0x555555556031
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>   <span class="err">0</span><span class="nf">x00005555555552d5</span> <span class="err">&lt;+</span><span class="mi">38</span><span class="err">&gt;</span><span class="p">:</span>	<span class="no">call</span>   <span class="mh">0x555555555070</span> <span class="p">&lt;</span><span class="no">puts@plt</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">   <span class="err">0</span><span class="nf">x00005555555552da</span> <span class="err">&lt;+</span><span class="mi">43</span><span class="err">&gt;</span><span class="p">:</span>	<span class="no">mov</span>    <span class="no">eax</span><span class="p">,</span><span class="mi">0x0</span>
+</span></span><span class="line hl"><span class="cl"><span class="err">=&gt;</span> <span class="err">0</span><span class="nf">x00005555555552df</span> <span class="err">&lt;+</span><span class="mi">48</span><span class="err">&gt;</span><span class="p">:</span>	<span class="no">call</span>   <span class="mh">0x555555555257</span> <span class="p">&lt;</span><span class="no">getKey</span><span class="p">&gt;</span>
+</span></span><span class="line hl"><span class="cl">   <span class="err">0</span><span class="nf">x00005555555552e4</span> <span class="err">&lt;+</span><span class="mi">53</span><span class="err">&gt;</span><span class="p">:</span>	<span class="no">mov</span>    <span class="no">edi</span><span class="p">,</span><span class="no">eax</span>
+</span></span><span class="line hl"><span class="cl">   <span class="err">0</span><span class="nf">x00005555555552e6</span> <span class="err">&lt;+</span><span class="mi">55</span><span class="err">&gt;</span><span class="p">:</span>	<span class="no">call</span>   <span class="mh">0x555555555189</span> <span class="p">&lt;</span><span class="no">win</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">   <span class="err">0</span><span class="nf">x00005555555552eb</span> <span class="err">&lt;+</span><span class="mi">60</span><span class="err">&gt;</span><span class="p">:</span>	<span class="no">mov</span>    <span class="no">eax</span><span class="p">,</span><span class="mi">0x0</span>
+</span></span><span class="line"><span class="cl">   <span class="err">0</span><span class="nf">x00005555555552f0</span> <span class="err">&lt;+</span><span class="mi">65</span><span class="err">&gt;</span><span class="p">:</span>	<span class="no">leave</span>  
+</span></span><span class="line"><span class="cl">   <span class="mi">0x00005555555552f1</span> <span class="err">&lt;+</span><span class="mi">66</span><span class="err">&gt;</span><span class="p">:</span>	<span class="no">ret</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nf">gef</span><span class="err">➤</span>  <span class="no">set</span> <span class="no">$edi</span> <span class="err">=</span> <span class="mi">0x265d1d23</span>
+</span></span><span class="line"><span class="cl"><span class="nf">gef</span><span class="err">➤</span>  <span class="no">jump</span> <span class="no">win</span>
+</span></span><span class="line"><span class="cl"><span class="nf">Continuing</span> <span class="no">at</span> <span class="mi">0x555555555189</span><span class="p">.</span>
+</span></span><span class="line"><span class="cl"><span class="nf">Your</span> <span class="no">flag</span><span class="p">:</span> <span class="no">rgbCTF</span><span class="err">{</span><span class="no">pr3d1ct4bl3_k3y_n33d5_no_w41t_cab79d</span><span class="err">}</span></span></span></code></pre></td></tr></table>
 </div>
 </div>
-<p><br /></p>
+<br />
 <p>Flag: <code>rgbCTF{pr3d1ct4bl3_k3y_n33d5_no_w41t_cab79d}</code></p>
 <p><br /><br />
 <br /><br /></p>
@@ -518,9 +513,9 @@ gdbを使って解きました。</p>
 <ul>
 <li>shoob.png</li>
 </ul>
-<p><br /></p>
-<h3 id="unsolved">(Unsolved)</h3>
-<p>「青い空を見上げればいつもそこに白い猫」の「左ローテート ７回」が一番見やすかったです。</p>
+<br />
+### (Unsolved)
+「青い空を見上げればいつもそこに白い猫」の「左ローテート ７回」が一番見やすかったです。
 <img src="https://captureamerica.github.io/writeups/img/rgb_CTF_2020_shoob_solved.png" alt="rgb_CTF_2020_shoob_solved.png">
 <p>ただし、字がちゃんと読めなくて、フラグが通りませんでした。。。めんどくさくなって、降参。</p>
 <p><br /><br />
@@ -577,7 +572,7 @@ gdbを使って解きました。</p>
     <footer id="footer" class="footer">
       <div class="social-links">
       <a href="https://github.com/CaptureAmerica/" class="iconfont icon-github" title="github"></a>
-  <a href="https://captureamerica.github.io/writeups/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+  
 </div>
 
 <div class="copyright">
@@ -612,20 +607,21 @@ gdbを使って解きました。</p>
 
 
 
-<script type="text/javascript" src="https://captureamerica.github.io/writeups/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+<script type="text/javascript" src="https://captureamerica.github.io/writeups/js/main.min.4ae89da218555efa0e7093a20b92017d2e1202b66fff9fc2edf4cb8d44b44c6e.js"></script>
 
 
 <script type="application/javascript">
 var doNotTrack = false;
 if (!doNotTrack) {
-	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 	ga('create', 'UA-104910699-2', 'auto');
 	ga('set', 'anonymizeIp', true);
 	ga('send', 'pageview');
 }
 </script>
-<script async src='https://www.google-analytics.com/analytics.js'></script>
-
 
 
 

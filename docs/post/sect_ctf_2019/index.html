@@ -23,7 +23,7 @@
 <meta name="google-site-verification" content="PqctLWZQttGzxXVupWuIt2HWuBI8cvN1z07ETpxA2dw" />
 
 
-<meta name="generator" content="Hugo 0.74.2 with theme even" />
+<meta name="generator" content="Hugo 0.119.0 with theme even" />
 
 
 <link rel="canonical" href="https://captureamerica.github.io/writeups/post/sect_ctf_2019/" />
@@ -35,24 +35,20 @@
 
 
 
-<link href="https://captureamerica.github.io/writeups/sass/main.min.2e81bbed97b8b282c1aeb57488cc71c8d8c8ec559f3931531bd396bf31e0d4dd.css" rel="stylesheet">
+<link href="https://captureamerica.github.io/writeups/sass/main.min.f92fd13721ddf72129410fd8250e73152cc6f2438082b6c0208dc24ee7c13fc4.css" rel="stylesheet">
 
 
 
 <meta property="og:title" content="SEC-T CTF 2019 Writeup" />
 <meta property="og:description" content="URL: https://sect.ctf.rocks/ 平日に一日やってたやつです。難しそうだったしスルーかなぁと思ってましたが、2つ解けました。 [Misc/Forensics]: Diagram Challenge Don&rsquo;t trust the word of an android, they might cheat. Attachment: diagram.tar.gz Solution 解凍して出てき" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://captureamerica.github.io/writeups/post/sect_ctf_2019/" />
+<meta property="og:url" content="https://captureamerica.github.io/writeups/post/sect_ctf_2019/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2019-09-22T03:00:00+09:00" />
 <meta property="article:modified_time" content="2019-09-22T03:00:00+09:00" />
 <meta itemprop="name" content="SEC-T CTF 2019 Writeup">
-<meta itemprop="description" content="URL: https://sect.ctf.rocks/ 平日に一日やってたやつです。難しそうだったしスルーかなぁと思ってましたが、2つ解けました。 [Misc/Forensics]: Diagram Challenge Don&rsquo;t trust the word of an android, they might cheat. Attachment: diagram.tar.gz Solution 解凍して出てき">
-<meta itemprop="datePublished" content="2019-09-22T03:00:00&#43;09:00" />
-<meta itemprop="dateModified" content="2019-09-22T03:00:00&#43;09:00" />
-<meta itemprop="wordCount" content="1380">
-
-
-
+<meta itemprop="description" content="URL: https://sect.ctf.rocks/ 平日に一日やってたやつです。難しそうだったしスルーかなぁと思ってましたが、2つ解けました。 [Misc/Forensics]: Diagram Challenge Don&rsquo;t trust the word of an android, they might cheat. Attachment: diagram.tar.gz Solution 解凍して出てき"><meta itemprop="datePublished" content="2019-09-22T03:00:00+09:00" />
+<meta itemprop="dateModified" content="2019-09-22T03:00:00+09:00" />
+<meta itemprop="wordCount" content="1414">
 <meta itemprop="keywords" content="CTF," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="SEC-T CTF 2019 Writeup"/>
 <meta name="twitter:description" content="URL: https://sect.ctf.rocks/ 平日に一日やってたやつです。難しそうだったしスルーかなぁと思ってましたが、2つ解けました。 [Misc/Forensics]: Diagram Challenge Don&rsquo;t trust the word of an android, they might cheat. Attachment: diagram.tar.gz Solution 解凍して出てき"/>
@@ -163,7 +159,6 @@
     <li><a href="#miscforensicsmemory-favorite">[Misc/Forensics/Memory]: favorite</a>
       <ul>
         <li><a href="#challenge-2">Challenge</a></li>
-        <li><a href="#unsolved">(Unsolved)</a></li>
       </ul>
     </li>
   </ul>
@@ -193,15 +188,15 @@
 <ul>
 <li>diagram.tar.gz</li>
 </ul>
-<p><br /></p>
+<br />
 <h3 id="solution">Solution</h3>
 <p>解凍して出てきたファイルはRTFファイルでした。</p>
 <pre>
 $ file diagram
 diagram: Rich Text Format data, version 1, unknown character set
 </pre>
-<p><br />
-rtf用のツール（rtfdump.py, rtfobj）を使っていきます。</p>
+<br />
+rtf用のツール（rtfdump.py, rtfobj）を使っていきます。
 <pre>
 $ rtfobj diagram.rtf -s all
 rtfobj 0.53.1 on Python 2.7.15 - http://decalage.info/python/oletools
@@ -253,13 +248,13 @@ $ mv stream.bin stream.xls
 <br>
 <p>リネームして、Libre Officeで開きます。</p>
 <img src="https://captureamerica.github.io/writeups/img/stream_sheet1.png" alt="stream_sheet1.png">
-<p><br />
-画像の下に何か隠れているかな〜、と思ったけど、何もなかったです。</p>
+<br />
+画像の下に何か隠れているかな〜、と思ったけど、何もなかったです。
 <p>オフィス文書系の問題は、文字が白色で隠れていることが多いので、各シートでフォントの色を変えてみたら、シート3に数字が隠れてました。</p>
 <img src="https://captureamerica.github.io/writeups/img/stream_sheet3.png" alt="stream_sheet3.png">
 <p>どうやら、このデータをベースにグラフを描いているみたいですね。</p>
-<p><br />
-たぶん、これがフラグだろう、ってことで文字に直します。</p>
+<br />
+たぶん、これがフラグだろう、ってことで文字に直します。
 <pre>
 $ python -c 'print("".join([chr(int(x)) for x in "83 69 67 84 123 52 110 100 114 48 105 100 115 95 115 104 48 117 108 100 95 98 51 95 110 49 99 101 125".split()]))'
 SECT{4ndr0ids_sh0uld_b3_n1ce}
@@ -278,7 +273,7 @@ SECT{4ndr0ids_sh0uld_b3_n1ce}
 <ul>
 <li>mycat.tar.gz</li>
 </ul>
-<p><br /></p>
+<br />
 <h3 id="solution-1">Solution</h3>
 <p>解凍して出てきたファイルはPDFファイルでした。</p>
 <pre>
@@ -288,8 +283,8 @@ mycat: PDF document, version 1.4
 
 $ mv mycat mycat.pdf
 </pre>
-<p><br />
-pdf用のツールを使っていきます。</p>
+<br />
+pdf用のツールを使っていきます。
 <pre>
 $ pdf-parser.py mycat.pdf
 PDF Comment '%PDF-1.4\n'
@@ -346,14 +341,14 @@ aaa: PDF document, version 1.4
 $ mv aaa aaa.pdf
 </pre>
 <p>object 3を取り出したらzlibで圧縮されてて、解凍したら別のPDFファイルが出てきました。</p>
-<p><br />
-PDFを開くと、ちょっと怖い顔のネコちゃんが出てきました。</p>
+<br />
+PDFを開くと、ちょっと怖い顔のネコちゃんが出てきました。
 <img src="https://captureamerica.github.io/writeups/img/mycat_pdf.png" alt="mycat_pdf.png">
-<p><br />
-最初、ステガノかと思っていろいろ画像を調べてたけど、さっぱりわからなくて諦めようかと思ったけど、よくよくPDFを見たら下の方が真っ黒な四角になっているのに気づきました。（黒さが微妙に違う）</p>
+<br />
+最初、ステガノかと思っていろいろ画像を調べてたけど、さっぱりわからなくて諦めようかと思ったけど、よくよくPDFを見たら下の方が真っ黒な四角になっているのに気づきました。（黒さが微妙に違う）
 <p>確かに、調べてた画像サイズ（上のネコ部分）と、PDFで見えてる画像サイズが違う！</p>
-<p><br />
-画像付きのPDFは、Libre Officeで開くパターンでしたね。（令和CTF、その他のCTFでも同様なものがありました。）</p>
+<br />
+画像付きのPDFは、Libre Officeで開くパターンでしたね。（令和CTF、その他のCTFでも同様なものがありました。）
 <p>画像を移動したら、裏側からフラグが出てきました。</p>
 <img src="https://captureamerica.github.io/writeups/img/mycat_pdf2.png" alt="mycat_pdf2.png">
 <br>
@@ -369,9 +364,9 @@ PDFを開くと、ちょっと怖い顔のネコちゃんが出てきました�
 <ul>
 <li>favorite.7z</li>
 </ul>
-<p><br /></p>
-<h3 id="unsolved">(Unsolved)</h3>
-<p>これは解けなかったんですけど、ちょっとトライしました。後で、復習したいと思います。</p>
+<br />
+### (Unsolved)
+これは解けなかったんですけど、ちょっとトライしました。後で、復習したいと思います。
 <pre>
 root@kali:~/SECTCTF_2019# volatility -f favorite.vmem imageinfo
 Volatility Foundation Volatility Framework 2.6
@@ -390,8 +385,8 @@ INFO    : volatility.debug    : Determining profile based on KDBG search...
            Image date and time : 2019-09-12 06:42:46 UTC+0000
      Image local date and time : 2019-09-11 23:42:46 -0700
 </pre>
-<p><br />
-プロファイルによっては、結果が出ないようです。。。</p>
+<br />
+プロファイルによっては、結果が出ないようです。。。
 <pre>
 root@kali:~/SECTCTF_2019# volatility -f favorite.vmem --profile Win8SP0x64 filescan
 Volatility Foundation Volatility Framework 2.6
@@ -400,8 +395,8 @@ Offset(P)            #Ptr   #Hnd Access Name
 root@kali:~/SECTCTF_2019# 
 root@kali:~/SECTCTF_2019# 
 </pre>
-<p><br />
-2番目の<code>Win81U1x64</code>をプロファイルに指定しました。</p>
+<br />
+2番目の`Win81U1x64`をプロファイルに指定しました。
 <p>チャレンジ名がfavoriteだし、ここら辺なのは間違いない気がするんですけど。</p>
 <pre>
 root@kali:~/SECTCTF_2019# volatility -f favorite.vmem --profile Win81U1x64 filescan | grep -i favorite
@@ -482,7 +477,7 @@ IconFile=%ProgramFiles%\Internet Explorer\Images\bing.ico
     <footer id="footer" class="footer">
       <div class="social-links">
       <a href="https://github.com/CaptureAmerica/" class="iconfont icon-github" title="github"></a>
-  <a href="https://captureamerica.github.io/writeups/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+  
 </div>
 
 <div class="copyright">
@@ -517,20 +512,21 @@ IconFile=%ProgramFiles%\Internet Explorer\Images\bing.ico
 
 
 
-<script type="text/javascript" src="https://captureamerica.github.io/writeups/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+<script type="text/javascript" src="https://captureamerica.github.io/writeups/js/main.min.4ae89da218555efa0e7093a20b92017d2e1202b66fff9fc2edf4cb8d44b44c6e.js"></script>
 
 
 <script type="application/javascript">
 var doNotTrack = false;
 if (!doNotTrack) {
-	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 	ga('create', 'UA-104910699-2', 'auto');
 	ga('set', 'anonymizeIp', true);
 	ga('send', 'pageview');
 }
 </script>
-<script async src='https://www.google-analytics.com/analytics.js'></script>
-
 
 
 

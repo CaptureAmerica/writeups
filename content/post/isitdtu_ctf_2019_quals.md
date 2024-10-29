@@ -41,6 +41,7 @@ URL: [https://ctf.isitdtu.com/](https://ctf.isitdtu.com/)
 ```
 
 <br />
+
 ### Solution
 解き方は見ての通りなんですが、アスキーアートを判別して数値に直して計算して結果を送るだけです。
 <br /><br />

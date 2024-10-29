@@ -23,7 +23,7 @@
 <meta name="google-site-verification" content="PqctLWZQttGzxXVupWuIt2HWuBI8cvN1z07ETpxA2dw" />
 
 
-<meta name="generator" content="Hugo 0.74.2 with theme even" />
+<meta name="generator" content="Hugo 0.119.0 with theme even" />
 
 
 <link rel="canonical" href="https://captureamerica.github.io/writeups/post/kringlecon_2021/" />
@@ -35,24 +35,20 @@
 
 
 
-<link href="https://captureamerica.github.io/writeups/sass/main.min.2e81bbed97b8b282c1aeb57488cc71c8d8c8ec559f3931531bd396bf31e0d4dd.css" rel="stylesheet">
+<link href="https://captureamerica.github.io/writeups/sass/main.min.f92fd13721ddf72129410fd8250e73152cc6f2438082b6c0208dc24ee7c13fc4.css" rel="stylesheet">
 
 
 
 <meta property="og:title" content="SANS Holiday Hack Challenge (Kringlecon) 2021 Writeup" />
 <meta property="og:description" content="Save The Earth! - 地球環境を守ろう！ URL: https://2021.kringlecon.com/ 新年明けまして おめでとうございます！ OSCPの勉強を少し休憩して、SANS の Holiday Hack Challenge (Kringlecon) 2021 に参加しました。 ちょっと" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://captureamerica.github.io/writeups/post/kringlecon_2021/" />
+<meta property="og:url" content="https://captureamerica.github.io/writeups/post/kringlecon_2021/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2022-01-19T16:00:00+09:00" />
 <meta property="article:modified_time" content="2022-01-19T16:00:00+09:00" />
 <meta itemprop="name" content="SANS Holiday Hack Challenge (Kringlecon) 2021 Writeup">
-<meta itemprop="description" content="Save The Earth! - 地球環境を守ろう！ URL: https://2021.kringlecon.com/ 新年明けまして おめでとうございます！ OSCPの勉強を少し休憩して、SANS の Holiday Hack Challenge (Kringlecon) 2021 に参加しました。 ちょっと">
-<meta itemprop="datePublished" content="2022-01-19T16:00:00&#43;09:00" />
-<meta itemprop="dateModified" content="2022-01-19T16:00:00&#43;09:00" />
-<meta itemprop="wordCount" content="1743">
-
-
-
+<meta itemprop="description" content="Save The Earth! - 地球環境を守ろう！ URL: https://2021.kringlecon.com/ 新年明けまして おめでとうございます！ OSCPの勉強を少し休憩して、SANS の Holiday Hack Challenge (Kringlecon) 2021 に参加しました。 ちょっと"><meta itemprop="datePublished" content="2022-01-19T16:00:00+09:00" />
+<meta itemprop="dateModified" content="2022-01-19T16:00:00+09:00" />
+<meta itemprop="wordCount" content="1752">
 <meta itemprop="keywords" content="CTF," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="SANS Holiday Hack Challenge (Kringlecon) 2021 Writeup"/>
 <meta name="twitter:description" content="Save The Earth! - 地球環境を守ろう！ URL: https://2021.kringlecon.com/ 新年明けまして おめでとうございます！ OSCPの勉強を少し休憩して、SANS の Holiday Hack Challenge (Kringlecon) 2021 に参加しました。 ちょっと"/>
@@ -178,7 +174,7 @@
 <p>新年明けまして おめでとうございます！</p>
 <p>OSCPの勉強を少し休憩して、SANS の Holiday Hack Challenge (Kringlecon) 2021 に参加しました。</p>
 <p>ちょっとしかやってないですが、勉強になったこともあるので、自分の覚書きとして記録を残しておきます。</p>
-<p><br /></p>
+<br />
 <p><br /><br /></p>
 <h2 id="yara-analysis">Yara Analysis</h2>
 <hr>
@@ -200,7 +196,7 @@ vim, emacs, nano, yara, and xxd
 <br /><br />
 The children will be very disappointed if their candy won&rsquo;t even cause a single cavity.</p>
 </blockquote>
-<p><br /></p>
+<br />
 <h3 id="solution">Solution</h3>
 <p>まずは、ホームにあるファイルと、プログラムを実行したときの結果を以下に示します。</p>
 <pre>
@@ -224,11 +220,11 @@ yara_rule_135 ./the_critical_elf_app
 
 snowball2@43ca77f5017d:~$ 
 </pre>
-<p><br /></p>
+<br />
 <p>プログラムを実行すると、どのyaraルールでひっかかったのかが表示されます。</p>
 <p>バイナリをいじってプログラムを改変し、yara ruleにひっかからないようにする、というのがお題です。</p>
-<p><br />
-該当ルールを見てみます。</p>
+<br />
+該当ルールを見てみます。
 <p>emacsがあるということだったので、emacsを使ってみようとしたのですが、ブラウザ内で動いているためにemacsショートカットがうまく使えずgrepで見ることにしました。</p>
 <pre>
 snowball2@7d7d6314aac4:~/yara_rules$ grep "yara_rule_135 " -A20 rules.yar 
@@ -246,7 +242,7 @@ rule yara_rule_135 {
 }
 :
 </pre>
-<p><br /></p>
+<br />
 <p>今回、学んだこと： 以下のようにバイナリ編集が可能</p>
 <ul>
 <li>vim -b &lt;program&gt;</li>
@@ -255,8 +251,8 @@ rule yara_rule_135 {
 <li>:%!xxd -r</li>
 <li>:wq</li>
 </ul>
-<p><br />
-上記のやり方で、elfファイルの中のstring部分を変更していくだけです。</p>
+<br />
+上記のやり方で、elfファイルの中のstring部分を変更していくだけです。
 <p>ひとつ直すと別のyaraルールにひっかかり、合計3つひっかかります。</p>
 <p>最後のルールは、以下のようでした。</p>
 <pre>
@@ -293,12 +289,12 @@ rule yara_rule_1732 {
       10 of them
 }
 </pre>
-<p><br />
-いくつかある条件のうちの、<code>filesize &lt; 50KB</code> を回避することにしました。</p>
+<br />
+いくつかある条件のうちの、`filesize < 50KB` を回避することにしました。
 <pre>
 $ python3 -c 'print("A"*40000)' >> the_critical_elf_app
 </pre>
-<p><br /></p>
+<br />
 <pre>
 snowball2@7d7d6314aac4:~$ ./the_critical_elf_app 
 /usr/local/bin/pre_execution.sh: line 26:   336 Killed                  yara /home/snowball2/yara_rules/rules.yar $1 -l 1
@@ -333,7 +329,7 @@ Looping through long movements? Don&rsquo;t be afraid to moveUp(99) or whatever.
 <br /><br />
 You can call functions like myFunction(). If you ever need to pass a function to a munchkin, you can use myFunction without the ().</p>
 </blockquote>
-<p><br /></p>
+<br />
 <h3 id="solution-1">Solution</h3>
 <p>正直、問題文を見てもなんだかわからないですが、やっていくうちにわかります。</p>
 <p>Paizaとかにある、プログラムを書いてクリアしていくゲームみたいなやつです。</p>
@@ -342,7 +338,7 @@ You can call functions like myFunction(). If you ever need to pass a function to
 <p>例として、以下は Level 5で書いたコードになります。
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -367,41 +363,41 @@ You can call functions like myFunction(). If you ever need to pass a function to
 </span><span class="lnt">23
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">elf</span><span class="o">,</span> <span class="nn">munchkins</span><span class="o">,</span> <span class="nn">levers</span><span class="o">,</span> <span class="nn">lollipops</span><span class="o">,</span> <span class="nn">yeeters</span><span class="o">,</span> <span class="nn">pits</span>
-<span class="n">lever0</span><span class="p">,</span> <span class="n">lever1</span><span class="p">,</span> <span class="n">lever2</span><span class="p">,</span> <span class="n">lever3</span><span class="p">,</span> <span class="n">lever4</span> <span class="o">=</span> <span class="n">levers</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
-<span class="n">leverData</span> <span class="o">=</span> <span class="n">lever4</span><span class="o">.</span><span class="n">data</span><span class="p">()</span> <span class="o">+</span> <span class="s2">&#34; concatenate&#34;</span>
-<span class="n">elf</span><span class="o">.</span><span class="n">moveTo</span><span class="p">(</span><span class="n">lever4</span><span class="o">.</span><span class="n">position</span><span class="p">)</span>
-<span class="n">lever4</span><span class="o">.</span><span class="n">pull</span><span class="p">(</span><span class="n">leverData</span><span class="p">)</span>
-<span class="n">leverData</span> <span class="o">=</span> <span class="n">lever3</span><span class="o">.</span><span class="n">data</span><span class="p">()</span>
-<span class="n">elf</span><span class="o">.</span><span class="n">moveTo</span><span class="p">(</span><span class="n">lever3</span><span class="o">.</span><span class="n">position</span><span class="p">)</span>
-<span class="k">if</span> <span class="nb">bool</span><span class="p">(</span><span class="n">leverData</span><span class="p">):</span>
-    <span class="n">lever3</span><span class="o">.</span><span class="n">pull</span><span class="p">(</span><span class="bp">False</span><span class="p">)</span>
-<span class="k">else</span><span class="p">:</span>
-    <span class="n">lever3</span><span class="o">.</span><span class="n">pull</span><span class="p">(</span><span class="bp">True</span><span class="p">)</span>
-<span class="n">leverData</span> <span class="o">=</span> <span class="n">lever2</span><span class="o">.</span><span class="n">data</span><span class="p">()</span> <span class="o">+</span> <span class="mi">1</span>
-<span class="n">elf</span><span class="o">.</span><span class="n">moveTo</span><span class="p">(</span><span class="n">lever2</span><span class="o">.</span><span class="n">position</span><span class="p">)</span>
-<span class="n">lever2</span><span class="o">.</span><span class="n">pull</span><span class="p">(</span><span class="n">leverData</span><span class="p">)</span>
-<span class="n">leverData</span> <span class="o">=</span> <span class="n">lever1</span><span class="o">.</span><span class="n">data</span><span class="p">()</span>
-<span class="n">leverData</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">elf</span><span class="o">.</span><span class="n">moveTo</span><span class="p">(</span><span class="n">lever1</span><span class="o">.</span><span class="n">position</span><span class="p">)</span>
-<span class="n">lever1</span><span class="o">.</span><span class="n">pull</span><span class="p">(</span><span class="n">leverData</span><span class="p">)</span>
-<span class="n">leverData</span> <span class="o">=</span> <span class="n">lever0</span><span class="o">.</span><span class="n">data</span><span class="p">()</span> <span class="c1"># {&#34;key&#34;:&#34;4&#34;}</span>
-<span class="hl"><span class="n">leverData</span><span class="p">[</span><span class="s2">&#34;strkey&#34;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&#34;strvalue&#34;</span>
-</span><span class="n">elf</span><span class="o">.</span><span class="n">moveTo</span><span class="p">(</span><span class="n">lever0</span><span class="o">.</span><span class="n">position</span><span class="p">)</span>
-<span class="n">lever0</span><span class="o">.</span><span class="n">pull</span><span class="p">(</span><span class="n">leverData</span><span class="p">)</span>
-<span class="n">elf</span><span class="o">.</span><span class="n">moveUp</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">elf</span><span class="o">,</span> <span class="nn">munchkins</span><span class="o">,</span> <span class="nn">levers</span><span class="o">,</span> <span class="nn">lollipops</span><span class="o">,</span> <span class="nn">yeeters</span><span class="o">,</span> <span class="nn">pits</span>
+</span></span><span class="line"><span class="cl"><span class="n">lever0</span><span class="p">,</span> <span class="n">lever1</span><span class="p">,</span> <span class="n">lever2</span><span class="p">,</span> <span class="n">lever3</span><span class="p">,</span> <span class="n">lever4</span> <span class="o">=</span> <span class="n">levers</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="n">leverData</span> <span class="o">=</span> <span class="n">lever4</span><span class="o">.</span><span class="n">data</span><span class="p">()</span> <span class="o">+</span> <span class="s2">&#34; concatenate&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">elf</span><span class="o">.</span><span class="n">moveTo</span><span class="p">(</span><span class="n">lever4</span><span class="o">.</span><span class="n">position</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">lever4</span><span class="o">.</span><span class="n">pull</span><span class="p">(</span><span class="n">leverData</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">leverData</span> <span class="o">=</span> <span class="n">lever3</span><span class="o">.</span><span class="n">data</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="n">elf</span><span class="o">.</span><span class="n">moveTo</span><span class="p">(</span><span class="n">lever3</span><span class="o">.</span><span class="n">position</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="nb">bool</span><span class="p">(</span><span class="n">leverData</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">lever3</span><span class="o">.</span><span class="n">pull</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">lever3</span><span class="o">.</span><span class="n">pull</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">leverData</span> <span class="o">=</span> <span class="n">lever2</span><span class="o">.</span><span class="n">data</span><span class="p">()</span> <span class="o">+</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl"><span class="n">elf</span><span class="o">.</span><span class="n">moveTo</span><span class="p">(</span><span class="n">lever2</span><span class="o">.</span><span class="n">position</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">lever2</span><span class="o">.</span><span class="n">pull</span><span class="p">(</span><span class="n">leverData</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">leverData</span> <span class="o">=</span> <span class="n">lever1</span><span class="o">.</span><span class="n">data</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="n">leverData</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">elf</span><span class="o">.</span><span class="n">moveTo</span><span class="p">(</span><span class="n">lever1</span><span class="o">.</span><span class="n">position</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">lever1</span><span class="o">.</span><span class="n">pull</span><span class="p">(</span><span class="n">leverData</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">leverData</span> <span class="o">=</span> <span class="n">lever0</span><span class="o">.</span><span class="n">data</span><span class="p">()</span> <span class="c1"># {&#34;key&#34;:&#34;4&#34;}</span>
+</span></span><span class="line hl"><span class="cl"><span class="n">leverData</span><span class="p">[</span><span class="s2">&#34;strkey&#34;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&#34;strvalue&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">elf</span><span class="o">.</span><span class="n">moveTo</span><span class="p">(</span><span class="n">lever0</span><span class="o">.</span><span class="n">position</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">lever0</span><span class="o">.</span><span class="n">pull</span><span class="p">(</span><span class="n">leverData</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">elf</span><span class="o">.</span><span class="n">moveUp</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span></span></span></code></pre></td></tr></table>
 </div>
 </div></p>
-<p><br />
-dictionaryって値の変更はできないけど、追加は普通にできるんだったか。(ハイライト部分)</p>
-<p><br />
-全Levelについて書くのは面倒なので、最後のLevel 10のやつだけ残しておきます。</p>
+<br />
+dictionaryって値の変更はできないけど、追加は普通にできるんだったか。(ハイライト部分)
+<br />
+全Levelについて書くのは面倒なので、最後のLevel 10のやつだけ残しておきます。
 <img src="https://captureamerica.github.io/writeups/img/kringlecon_2021_Level10_1.png" alt="kringlecon_2021_Level10_1.png">
-<p><br /></p>
+<br />
 <p>以下が書いたコードです。17行以内におさめる必要がありました。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -420,27 +416,27 @@ dictionaryって値の変更はできないけど、追加は普通にできる�
 </span><span class="lnt">17
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-Python" data-lang="Python"><span class="kn">import</span> <span class="nn">elf</span><span class="o">,</span> <span class="nn">munchkins</span><span class="o">,</span> <span class="nn">levers</span><span class="o">,</span> <span class="nn">lollipops</span><span class="o">,</span> <span class="nn">yeeters</span><span class="o">,</span> <span class="nn">pits</span><span class="o">,</span> <span class="nn">time</span>
-<span class="n">muns</span> <span class="o">=</span> <span class="n">munchkins</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
-<span class="n">lols</span> <span class="o">=</span> <span class="n">lollipops</span><span class="o">.</span><span class="n">get</span><span class="p">()[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
-<span class="n">elf</span><span class="o">.</span><span class="n">moveRight</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-<span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">mun</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">muns</span><span class="p">):</span>
-        <span class="k">while</span> <span class="mi">1</span><span class="p">:</span>
-            <span class="k">if</span> <span class="nb">abs</span><span class="p">(</span><span class="n">elf</span><span class="o">.</span><span class="n">position</span><span class="p">[</span><span class="s2">&#34;x&#34;</span><span class="p">]</span> <span class="o">-</span> <span class="n">mun</span><span class="o">.</span><span class="n">position</span><span class="p">[</span><span class="s2">&#34;x&#34;</span><span class="p">])</span> <span class="o">&gt;=</span> <span class="mi">6</span><span class="p">:</span>
-                <span class="k">if</span> <span class="n">index</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
-                    <span class="n">elf</span><span class="o">.</span><span class="n">moveRight</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-                <span class="k">else</span><span class="p">:</span>
-                    <span class="n">elf</span><span class="o">.</span><span class="n">moveLeft</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-            <span class="k">if</span> <span class="n">elf</span><span class="o">.</span><span class="n">position</span><span class="p">[</span><span class="s2">&#34;x&#34;</span><span class="p">]</span> <span class="o">==</span> <span class="n">lols</span><span class="p">[</span><span class="mi">2</span><span class="o">-</span><span class="n">index</span><span class="p">]</span><span class="o">.</span><span class="n">position</span><span class="p">[</span><span class="s2">&#34;x&#34;</span><span class="p">]:</span>
-                <span class="n">elf</span><span class="o">.</span><span class="n">moveUp</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-                <span class="k">break</span>
-            <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.05</span><span class="p">)</span>
-<span class="n">elf</span><span class="o">.</span><span class="n">moveLeft</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span>
-<span class="n">elf</span><span class="o">.</span><span class="n">moveUp</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-Python" data-lang="Python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">elf</span><span class="o">,</span> <span class="nn">munchkins</span><span class="o">,</span> <span class="nn">levers</span><span class="o">,</span> <span class="nn">lollipops</span><span class="o">,</span> <span class="nn">yeeters</span><span class="o">,</span> <span class="nn">pits</span><span class="o">,</span> <span class="nn">time</span>
+</span></span><span class="line"><span class="cl"><span class="n">muns</span> <span class="o">=</span> <span class="n">munchkins</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="n">lols</span> <span class="o">=</span> <span class="n">lollipops</span><span class="o">.</span><span class="n">get</span><span class="p">()[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="n">elf</span><span class="o">.</span><span class="n">moveRight</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">mun</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">muns</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="k">while</span> <span class="mi">1</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="nb">abs</span><span class="p">(</span><span class="n">elf</span><span class="o">.</span><span class="n">position</span><span class="p">[</span><span class="s2">&#34;x&#34;</span><span class="p">]</span> <span class="o">-</span> <span class="n">mun</span><span class="o">.</span><span class="n">position</span><span class="p">[</span><span class="s2">&#34;x&#34;</span><span class="p">])</span> <span class="o">&gt;=</span> <span class="mi">6</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">                <span class="k">if</span> <span class="n">index</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">elf</span><span class="o">.</span><span class="n">moveRight</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">                <span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">elf</span><span class="o">.</span><span class="n">moveLeft</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="n">elf</span><span class="o">.</span><span class="n">position</span><span class="p">[</span><span class="s2">&#34;x&#34;</span><span class="p">]</span> <span class="o">==</span> <span class="n">lols</span><span class="p">[</span><span class="mi">2</span><span class="o">-</span><span class="n">index</span><span class="p">]</span><span class="o">.</span><span class="n">position</span><span class="p">[</span><span class="s2">&#34;x&#34;</span><span class="p">]:</span>
+</span></span><span class="line"><span class="cl">                <span class="n">elf</span><span class="o">.</span><span class="n">moveUp</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">                <span class="k">break</span>
+</span></span><span class="line"><span class="cl">            <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.05</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">elf</span><span class="o">.</span><span class="n">moveLeft</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">elf</span><span class="o">.</span><span class="n">moveUp</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
 </div>
-</div><p><br />
-マンチキンと十分に距離が離れているとき（距離の絶対値が６以上のとき）にのみ動くようにしてあります。</p>
+</div><br />
+マンチキンと十分に距離が離れているとき（距離の絶対値が６以上のとき）にのみ動くようにしてあります。
 <p>1マスずつ動くと、関数コールの回数が多すぎということでクリアにならないので、2マスずつ動いています。</p>
 <p>（ここを2ではなく4マス動くコードにすると、マンチキンと衝突してしまいます。）</p>
 <p>スタート位置は、通路から3マス離れたところから始まるので、最初にまず1マス右に動いています。(4行目は、そういうことです)</p>
@@ -499,7 +495,7 @@ dictionaryって値の変更はできないけど、追加は普通にできる�
     <footer id="footer" class="footer">
       <div class="social-links">
       <a href="https://github.com/CaptureAmerica/" class="iconfont icon-github" title="github"></a>
-  <a href="https://captureamerica.github.io/writeups/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+  
 </div>
 
 <div class="copyright">
@@ -534,20 +530,21 @@ dictionaryって値の変更はできないけど、追加は普通にできる�
 
 
 
-<script type="text/javascript" src="https://captureamerica.github.io/writeups/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+<script type="text/javascript" src="https://captureamerica.github.io/writeups/js/main.min.4ae89da218555efa0e7093a20b92017d2e1202b66fff9fc2edf4cb8d44b44c6e.js"></script>
 
 
 <script type="application/javascript">
 var doNotTrack = false;
 if (!doNotTrack) {
-	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 	ga('create', 'UA-104910699-2', 'auto');
 	ga('set', 'anonymizeIp', true);
 	ga('send', 'pageview');
 }
 </script>
-<script async src='https://www.google-analytics.com/analytics.js'></script>
-
 
 
 

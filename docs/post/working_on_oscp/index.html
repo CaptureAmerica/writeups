@@ -16,14 +16,14 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="CaptureAmerica @ CTF フラxxグゲット" /><meta name="description" content="OSCP (Offensive Security Certified Professional) にちょっと興味があって、 やろうかなぁ、でも難しそうだしなぁ、と思いつつ、 ラボも有料だし、効率よく進めるためにある程度HTBやVul" /><meta name="keywords" content="CTF, Writeup, captureamerica, picoCTF" />
+<meta name="author" content="CaptureAmerica @ CTF フラxxグゲット" /><meta name="description" content="OSCP (Offensive Security Certified Professional) にちょっと興味があって、 やろうかなぁ、でも難しそうだしなぁ、と思いつつ、 ラボも有料だし、効率よく進めるためにある程度[HTB](h" /><meta name="keywords" content="CTF, Writeup, captureamerica, picoCTF" />
 
 
 
 <meta name="google-site-verification" content="PqctLWZQttGzxXVupWuIt2HWuBI8cvN1z07ETpxA2dw" />
 
 
-<meta name="generator" content="Hugo 0.74.2 with theme even" />
+<meta name="generator" content="Hugo 0.119.0 with theme even" />
 
 
 <link rel="canonical" href="https://captureamerica.github.io/writeups/post/working_on_oscp/" />
@@ -35,27 +35,23 @@
 
 
 
-<link href="https://captureamerica.github.io/writeups/sass/main.min.2e81bbed97b8b282c1aeb57488cc71c8d8c8ec559f3931531bd396bf31e0d4dd.css" rel="stylesheet">
+<link href="https://captureamerica.github.io/writeups/sass/main.min.f92fd13721ddf72129410fd8250e73152cc6f2438082b6c0208dc24ee7c13fc4.css" rel="stylesheet">
 
 
 
 <meta property="og:title" content="Working on OSCP (Offensive Security Certified Professional)" />
-<meta property="og:description" content="OSCP (Offensive Security Certified Professional) にちょっと興味があって、 やろうかなぁ、でも難しそうだしなぁ、と思いつつ、 ラボも有料だし、効率よく進めるためにある程度HTBやVul" />
+<meta property="og:description" content="OSCP (Offensive Security Certified Professional) にちょっと興味があって、 やろうかなぁ、でも難しそうだしなぁ、と思いつつ、 ラボも有料だし、効率よく進めるためにある程度[HTB](h" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://captureamerica.github.io/writeups/post/working_on_oscp/" />
+<meta property="og:url" content="https://captureamerica.github.io/writeups/post/working_on_oscp/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2020-09-11T14:00:00+09:00" />
 <meta property="article:modified_time" content="2020-09-11T14:00:00+09:00" />
 <meta itemprop="name" content="Working on OSCP (Offensive Security Certified Professional)">
-<meta itemprop="description" content="OSCP (Offensive Security Certified Professional) にちょっと興味があって、 やろうかなぁ、でも難しそうだしなぁ、と思いつつ、 ラボも有料だし、効率よく進めるためにある程度HTBやVul">
-<meta itemprop="datePublished" content="2020-09-11T14:00:00&#43;09:00" />
-<meta itemprop="dateModified" content="2020-09-11T14:00:00&#43;09:00" />
-<meta itemprop="wordCount" content="414">
-
-
-
+<meta itemprop="description" content="OSCP (Offensive Security Certified Professional) にちょっと興味があって、 やろうかなぁ、でも難しそうだしなぁ、と思いつつ、 ラボも有料だし、効率よく進めるためにある程度[HTB](h"><meta itemprop="datePublished" content="2020-09-11T14:00:00+09:00" />
+<meta itemprop="dateModified" content="2020-09-11T14:00:00+09:00" />
+<meta itemprop="wordCount" content="472">
 <meta itemprop="keywords" content="OSCP," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Working on OSCP (Offensive Security Certified Professional)"/>
-<meta name="twitter:description" content="OSCP (Offensive Security Certified Professional) にちょっと興味があって、 やろうかなぁ、でも難しそうだしなぁ、と思いつつ、 ラボも有料だし、効率よく進めるためにある程度HTBやVul"/>
+<meta name="twitter:description" content="OSCP (Offensive Security Certified Professional) にちょっと興味があって、 やろうかなぁ、でも難しそうだしなぁ、と思いつつ、 ラボも有料だし、効率よく進めるためにある程度[HTB](h"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -156,30 +152,30 @@
 </a>
 </div>
 <p><a href="https://www.offensive-security.com/">OSCP</a> (Offensive Security Certified Professional) にちょっと興味があって、</p>
-<p><br />
-やろうかなぁ、でも難しそうだしなぁ、と思いつつ、</p>
-<p><br />
-ラボも有料だし、効率よく進めるためにある程度<a href="https://www.hackthebox.eu/">HTB</a>や<a href="https://www.vulnhub.com/">VulnHub</a>で練習してから挑戦することにしました。</p>
-<p><br />
-HTBは、Retiredしたやつをwriteupを見ながらやってます。CISSPのCPEも稼げるので、一石二鳥です。</p>
-<p><br />
-VulnHubは、まだあんまりやってないです。</p>
-<p><br />
-とりあえず、OSCPのラボを始めてみて、それから試験をどうするか考えることにしました。</p>
-<p><br />
-今日は、会社の年休をとったし、「今日からOSCPのラボを始めよう！」とRegistrationしたところ、</p>
-<p><br />
-当日には開始できないことがわかりました。。。</p>
-<p><br />
-9月20日から、始めます。</p>
-<p><br /></p>
+<br />
+やろうかなぁ、でも難しそうだしなぁ、と思いつつ、
+<br />
+ラボも有料だし、効率よく進めるためにある程度[HTB](https://www.hackthebox.eu/)や[VulnHub](https://www.vulnhub.com/)で練習してから挑戦することにしました。
+<br />
+HTBは、Retiredしたやつをwriteupを見ながらやってます。CISSPのCPEも稼げるので、一石二鳥です。
+<br />
+VulnHubは、まだあんまりやってないです。
+<br />
+とりあえず、OSCPのラボを始めてみて、それから試験をどうするか考えることにしました。
+<br />
+今日は、会社の年休をとったし、「今日からOSCPのラボを始めよう！」とRegistrationしたところ、
+<br />
+当日には開始できないことがわかりました。。。
+<br />
+9月20日から、始めます。
+<br />
 <h3><u>お知らせ：OSCPをやっている間、CTFはお休みします。</u></h3>
-<p><br />
-でも、Pico CTFは必ず参加しようと思ってます。次回のPico CTFは、2021年の3月のようですね。</p>
-<p><br />
-それまでに、OSCP片付くかなぁ。</p>
-<p><br />
-とりあえず、頑張ります。</p>
+<br />
+でも、Pico CTFは必ず参加しようと思ってます。次回のPico CTFは、2021年の3月のようですね。
+<br />
+それまでに、OSCP片付くかなぁ。
+<br />
+とりあえず、頑張ります。
 <p><br /><br />
 <br /><br /></p>
 <hr>
@@ -234,7 +230,7 @@ VulnHubは、まだあんまりやってないです。</p>
     <footer id="footer" class="footer">
       <div class="social-links">
       <a href="https://github.com/CaptureAmerica/" class="iconfont icon-github" title="github"></a>
-  <a href="https://captureamerica.github.io/writeups/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+  
 </div>
 
 <div class="copyright">
@@ -269,20 +265,21 @@ VulnHubは、まだあんまりやってないです。</p>
 
 
 
-<script type="text/javascript" src="https://captureamerica.github.io/writeups/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+<script type="text/javascript" src="https://captureamerica.github.io/writeups/js/main.min.4ae89da218555efa0e7093a20b92017d2e1202b66fff9fc2edf4cb8d44b44c6e.js"></script>
 
 
 <script type="application/javascript">
 var doNotTrack = false;
 if (!doNotTrack) {
-	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 	ga('create', 'UA-104910699-2', 'auto');
 	ga('set', 'anonymizeIp', true);
 	ga('send', 'pageview');
 }
 </script>
-<script async src='https://www.google-analytics.com/analytics.js'></script>
-
 
 
 

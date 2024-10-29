@@ -45,6 +45,7 @@ Attachment:
 
 
 <br />
+
 ### Solution
 <pre>
 captureamerica@kali:~/Downloads$ grep -r CTF .
@@ -72,6 +73,7 @@ Flag: `CTF{this1sN0tTheFlag}`
 - http://kntuctf.ir/qqualss/Dracula/
 
 <br />
+
 ### Solution
 html sourceを見ると、st_234g()関数を呼んでいる箇所が見つかります。
 

@@ -23,7 +23,7 @@
 <meta name="google-site-verification" content="PqctLWZQttGzxXVupWuIt2HWuBI8cvN1z07ETpxA2dw" />
 
 
-<meta name="generator" content="Hugo 0.74.2 with theme even" />
+<meta name="generator" content="Hugo 0.119.0 with theme even" />
 
 
 <link rel="canonical" href="https://captureamerica.github.io/writeups/post/picoctf_2019_web/" />
@@ -35,24 +35,20 @@
 
 
 
-<link href="https://captureamerica.github.io/writeups/sass/main.min.2e81bbed97b8b282c1aeb57488cc71c8d8c8ec559f3931531bd396bf31e0d4dd.css" rel="stylesheet">
+<link href="https://captureamerica.github.io/writeups/sass/main.min.f92fd13721ddf72129410fd8250e73152cc6f2438082b6c0208dc24ee7c13fc4.css" rel="stylesheet">
 
 
 
 <meta property="og:title" content="picoCTF 2019 Writeup (Web Exploitation)" />
 <meta property="og:description" content="URL: https://2019game.picoctf.com/ 2週間、お疲れ様です。 最終結果は、こんな感じ。 イベント終了時点で、ユーザは4万人弱でした。 PwnとWeb系があんまりできてないけど、スコ" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://captureamerica.github.io/writeups/post/picoctf_2019_web/" />
+<meta property="og:url" content="https://captureamerica.github.io/writeups/post/picoctf_2019_web/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2019-10-13T12:00:00+09:00" />
 <meta property="article:modified_time" content="2019-10-13T12:00:00+09:00" />
 <meta itemprop="name" content="picoCTF 2019 Writeup (Web Exploitation)">
-<meta itemprop="description" content="URL: https://2019game.picoctf.com/ 2週間、お疲れ様です。 最終結果は、こんな感じ。 イベント終了時点で、ユーザは4万人弱でした。 PwnとWeb系があんまりできてないけど、スコ">
-<meta itemprop="datePublished" content="2019-10-13T12:00:00&#43;09:00" />
-<meta itemprop="dateModified" content="2019-10-13T12:00:00&#43;09:00" />
+<meta itemprop="description" content="URL: https://2019game.picoctf.com/ 2週間、お疲れ様です。 最終結果は、こんな感じ。 イベント終了時点で、ユーザは4万人弱でした。 PwnとWeb系があんまりできてないけど、スコ"><meta itemprop="datePublished" content="2019-10-13T12:00:00+09:00" />
+<meta itemprop="dateModified" content="2019-10-13T12:00:00+09:00" />
 <meta itemprop="wordCount" content="543">
-
-
-
 <meta itemprop="keywords" content="CTF," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="picoCTF 2019 Writeup (Web Exploitation)"/>
 <meta name="twitter:description" content="URL: https://2019game.picoctf.com/ 2週間、お疲れ様です。 最終結果は、こんな感じ。 イベント終了時点で、ユーザは4万人弱でした。 PwnとWeb系があんまりできてないけど、スコ"/>
@@ -182,8 +178,8 @@
 <p><br /><br />
 最終結果は、こんな感じ。</p>
 <img src="https://captureamerica.github.io/writeups/img/pico2019_Score.png" alt="pico2019_Score.png">
-<p><br />
-イベント終了時点で、ユーザは4万人弱でした。</p>
+<br />
+イベント終了時点で、ユーザは4万人弱でした。
 <img src="https://captureamerica.github.io/writeups/img/pico2019_Users.png" alt="pico2019_Users.png">
 <img src="https://captureamerica.github.io/writeups/img/pico2019_Rank.png" alt="pico2019_Rank.png">
 <p>PwnとWeb系があんまりできてないけど、スコアも切りのいい20000に行ったし、Globalで目標の300位以内 (283位) にも入れたのでかなり満足です。</p>
@@ -195,11 +191,11 @@ Web Exploitation の Writeupです。</p>
 <hr>
 <h3 id="challenge">Challenge</h3>
 <blockquote>
-<p>This secure website allows users to access the flag only if they are admin and if the time is exactly 1400. <a href="https://2019shell1.picoctf.com/problem/32249/">https://2019shell1.picoctf.com/problem/32249/</a> (link) or <a href="http://2019shell1.picoctf.com">http://2019shell1.picoctf.com</a>:32249
+<p>This secure website allows users to access the flag only if they are admin and if the time is exactly 1400. <a href="https://2019shell1.picoctf.com/problem/32249/">https://2019shell1.picoctf.com/problem/32249/</a> (link) or <a href="http://2019shell1.picoctf.com:32249">http://2019shell1.picoctf.com:32249</a>
 <br /><br />
 Hints : Can cookies help you to get the flag?<br /></p>
 </blockquote>
-<p><br /></p>
+<br />
 <h3 id="solution">Solution</h3>
 <pre>
 curl -k -H 'Cookie: admin=True; time=1400'  https://2019shell1.picoctf.com/problem/32249/flag
@@ -211,11 +207,11 @@ curl -k -H 'Cookie: admin=True; time=1400'  https://2019shell1.picoctf.com/probl
 <hr>
 <h3 id="challenge-1">Challenge</h3>
 <blockquote>
-<p>There is a website running at <a href="https://2019shell1.picoctf.com/problem/60775/">https://2019shell1.picoctf.com/problem/60775/</a> (link). Someone has bypassed the login before, and now it&rsquo;s being strengthened. Try to see if you can still login! or <a href="http://2019shell1.picoctf.com">http://2019shell1.picoctf.com</a>:60775
+<p>There is a website running at <a href="https://2019shell1.picoctf.com/problem/60775/">https://2019shell1.picoctf.com/problem/60775/</a> (link). Someone has bypassed the login before, and now it&rsquo;s being strengthened. Try to see if you can still login! or <a href="http://2019shell1.picoctf.com:60775">http://2019shell1.picoctf.com:60775</a>
 <br /><br />
 Hints : The password is being filtered.</p>
 </blockquote>
-<p><br /></p>
+<br />
 <h3 id="solution-1">Solution</h3>
 <p>picoCTF 2018のVaultと同じ問題です。</p>
 <p>デバッグを見ようとして、以下を入れたら、Flag取れちゃった。</p>
@@ -233,11 +229,11 @@ password
 <hr>
 <h3 id="challenge-2">Challenge</h3>
 <blockquote>
-<p>There is a secure website running at <a href="https://2019shell1.picoctf.com/problem/12271/">https://2019shell1.picoctf.com/problem/12271/</a> (link) or <a href="http://2019shell1.picoctf.com">http://2019shell1.picoctf.com</a>:12271. Try to see if you can login as admin!
+<p>There is a secure website running at <a href="https://2019shell1.picoctf.com/problem/12271/">https://2019shell1.picoctf.com/problem/12271/</a> (link) or <a href="http://2019shell1.picoctf.com:12271">http://2019shell1.picoctf.com:12271</a>. Try to see if you can login as admin!
 <br /><br />
 Hints : Seems like the password is encrypted.</p>
 </blockquote>
-<p><br /></p>
+<br />
 <h3 id="solution-2">Solution</h3>
 <p>Burpでやったらdebug変数が見えたので、1に変えてみました。</p>
 <pre>
@@ -259,9 +255,9 @@ password=admin&debug=1
 password: admin
 SQL query: SELECT * FROM admin where password = 'nqzva'
 </pre>
-<p>&lsquo;nqzva&rsquo; は、&lsquo;admin&rsquo; のRot13ですね。</p>
-<p><br />
-いつも使うこのパターンを、</p>
+<p>&rsquo;nqzva&rsquo; は、&lsquo;admin&rsquo; のRot13ですね。</p>
+<br />
+いつも使うこのパターンを、
 <pre>
 ' or 1=1 --
 </pre>
@@ -325,7 +321,7 @@ SQL query: SELECT * FROM admin where password = 'nqzva'
     <footer id="footer" class="footer">
       <div class="social-links">
       <a href="https://github.com/CaptureAmerica/" class="iconfont icon-github" title="github"></a>
-  <a href="https://captureamerica.github.io/writeups/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+  
 </div>
 
 <div class="copyright">
@@ -360,20 +356,21 @@ SQL query: SELECT * FROM admin where password = 'nqzva'
 
 
 
-<script type="text/javascript" src="https://captureamerica.github.io/writeups/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+<script type="text/javascript" src="https://captureamerica.github.io/writeups/js/main.min.4ae89da218555efa0e7093a20b92017d2e1202b66fff9fc2edf4cb8d44b44c6e.js"></script>
 
 
 <script type="application/javascript">
 var doNotTrack = false;
 if (!doNotTrack) {
-	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 	ga('create', 'UA-104910699-2', 'auto');
 	ga('set', 'anonymizeIp', true);
 	ga('send', 'pageview');
 }
 </script>
-<script async src='https://www.google-analytics.com/analytics.js'></script>
-
 
 
 

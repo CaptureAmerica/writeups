@@ -49,6 +49,7 @@ SANS の Holiday Hack Challenge (Kringlecon) 2023 をちょっとだけやりま
 
 
 <br />
+
 ### Solution
 
 まずは、SUIDがセットされているファイルを探します。
@@ -131,6 +132,7 @@ Who delivers Chrismas presents?
 （別のチャレンジ文もあったかもしれません。）
 
 <br />
+
 ### Solution
 
 hash.txt の中身を見ると、`$krb5asrep` で始まっていて、ググってみると `-m 18200` を指定するとよさそうなので、やってみます。

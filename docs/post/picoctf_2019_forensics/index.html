@@ -23,7 +23,7 @@
 <meta name="google-site-verification" content="PqctLWZQttGzxXVupWuIt2HWuBI8cvN1z07ETpxA2dw" />
 
 
-<meta name="generator" content="Hugo 0.74.2 with theme even" />
+<meta name="generator" content="Hugo 0.119.0 with theme even" />
 
 
 <link rel="canonical" href="https://captureamerica.github.io/writeups/post/picoctf_2019_forensics/" />
@@ -35,24 +35,20 @@
 
 
 
-<link href="https://captureamerica.github.io/writeups/sass/main.min.2e81bbed97b8b282c1aeb57488cc71c8d8c8ec559f3931531bd396bf31e0d4dd.css" rel="stylesheet">
+<link href="https://captureamerica.github.io/writeups/sass/main.min.f92fd13721ddf72129410fd8250e73152cc6f2438082b6c0208dc24ee7c13fc4.css" rel="stylesheet">
 
 
 
 <meta property="og:title" content="picoCTF 2019 Writeup (Forensics)" />
 <meta property="og:description" content="URL: https://2019game.picoctf.com/ 2週間、お疲れ様です。 最終結果は、こんな感じ。 イベント終了時点で、ユーザは4万人弱でした。 PwnとWeb系があんまりできてないけど、スコ" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://captureamerica.github.io/writeups/post/picoctf_2019_forensics/" />
+<meta property="og:url" content="https://captureamerica.github.io/writeups/post/picoctf_2019_forensics/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2019-10-13T12:00:00+09:00" />
 <meta property="article:modified_time" content="2019-10-13T12:00:00+09:00" />
 <meta itemprop="name" content="picoCTF 2019 Writeup (Forensics)">
-<meta itemprop="description" content="URL: https://2019game.picoctf.com/ 2週間、お疲れ様です。 最終結果は、こんな感じ。 イベント終了時点で、ユーザは4万人弱でした。 PwnとWeb系があんまりできてないけど、スコ">
-<meta itemprop="datePublished" content="2019-10-13T12:00:00&#43;09:00" />
-<meta itemprop="dateModified" content="2019-10-13T12:00:00&#43;09:00" />
+<meta itemprop="description" content="URL: https://2019game.picoctf.com/ 2週間、お疲れ様です。 最終結果は、こんな感じ。 イベント終了時点で、ユーザは4万人弱でした。 PwnとWeb系があんまりできてないけど、スコ"><meta itemprop="datePublished" content="2019-10-13T12:00:00+09:00" />
+<meta itemprop="dateModified" content="2019-10-13T12:00:00+09:00" />
 <meta itemprop="wordCount" content="1094">
-
-
-
 <meta itemprop="keywords" content="CTF," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="picoCTF 2019 Writeup (Forensics)"/>
 <meta name="twitter:description" content="URL: https://2019game.picoctf.com/ 2週間、お疲れ様です。 最終結果は、こんな感じ。 イベント終了時点で、ユーザは4万人弱でした。 PwnとWeb系があんまりできてないけど、スコ"/>
@@ -194,8 +190,8 @@
 <p><br /><br />
 最終結果は、こんな感じ。</p>
 <img src="https://captureamerica.github.io/writeups/img/pico2019_Score.png" alt="pico2019_Score.png">
-<p><br />
-イベント終了時点で、ユーザは4万人弱でした。</p>
+<br />
+イベント終了時点で、ユーザは4万人弱でした。
 <img src="https://captureamerica.github.io/writeups/img/pico2019_Users.png" alt="pico2019_Users.png">
 <img src="https://captureamerica.github.io/writeups/img/pico2019_Rank.png" alt="pico2019_Rank.png">
 <p>PwnとWeb系があんまりできてないけど、スコアも切りのいい20000に行ったし、Globalで目標の300位以内 (283位) にも入れたのでかなり満足です。</p>
@@ -209,7 +205,7 @@ Forensics の Writeupです。</p>
 <blockquote>
 <p>I stopped using YellowPages and moved onto WhitePages&hellip; but the page they gave me is all blank!</p>
 </blockquote>
-<p><br /></p>
+<br />
 <h3 id="solution">Solution</h3>
 <p>てっきりwhitespaceというesolangだと思ったので、少し手こずりました。</p>
 <p>あと、たぶんだけど、チャレンジが始まった頃にダウンロードしたファイルと、後日ダウンロードし直したファイルが異なってた気がします。。。</p>
@@ -234,7 +230,7 @@ Hints : Try fixing the file header</p>
 <ul>
 <li>mystery</li>
 </ul>
-<p><br /></p>
+<br />
 <h3 id="solution-1">Solution</h3>
 <p>先頭の16バイトくらい直せば通るかと思いきや、結構壊れててハマりました。</p>
 <p>1番目のIDATチャンクのとこも修正が必要。</p>
@@ -266,21 +262,21 @@ IEND (  0 ) - csum = ae426082
 <ul>
 <li>capture.pcap</li>
 </ul>
-<p><br /></p>
+<br />
 <h3 id="solution-2">Solution</h3>
 <p>udpのフローを順番に見ていくと、フラグっぽい文字列が出てきます。</p>
-<p>&ldquo;kfdsalkfsalkico{N0t_a_fLag}&ldquo;<br />
-&ldquo;icoCTF{StaT31355e&quot;<br /></p>
+<p>&ldquo;kfdsalkfsalkico{N0t_a_fLag}&quot;<br />
+&ldquo;icoCTF{StaT31355e&rdquo;<br /></p>
 <p>あと、<br />
-&ldquo;start&quot;<br />
-&ldquo;end&quot;<br />
+&ldquo;start&rdquo;<br />
+&ldquo;end&rdquo;<br />
 というのも出てくるんですが、その間のPayloadにはフラグっぽい文字列はなかったので、最初無視してました。</p>
 <p>udp.port==8888 あたりを集中して見てたんですが、どうしてもフラグにはならなくて、その後、tcp あたりをがっつり見てそこもさっぱりフラグにならなかったので、挫けそうでした。</p>
 <p>&ldquo;start&rdquo; &ldquo;end&quot;が出てるのは (udp.port==22) で、眺めていたらSource Portが全部バラけてて、しかも文字になりそうな値になっているのに気づきました。</p>
 <p>一旦、フィルターしたものを別ファイル（capture_filtered.pcap）として保存し、Scapyで読み込みました。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -288,13 +284,13 @@ IEND (  0 ) - csum = ae426082
 </span><span class="lnt">6
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-Python" data-lang="Python"><span class="ch">#!/usr/bin/env python</span>
-<span class="kn">from</span> <span class="nn">scapy.all</span> <span class="kn">import</span> <span class="o">*</span>
-
-<span class="n">pkt</span><span class="o">=</span><span class="n">rdpcap</span><span class="p">(</span><span class="s2">&#34;./capture_filtered.pcap&#34;</span><span class="p">)</span>
-<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">pkt</span><span class="p">)):</span>
-    <span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="nb">chr</span><span class="p">(</span><span class="n">pkt</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">sport</span><span class="o">-</span><span class="mi">5000</span><span class="p">))</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-Python" data-lang="Python"><span class="line"><span class="cl"><span class="ch">#!/usr/bin/env python</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">scapy.all</span> <span class="kn">import</span> <span class="o">*</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">pkt</span><span class="o">=</span><span class="n">rdpcap</span><span class="p">(</span><span class="s2">&#34;./capture_filtered.pcap&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">pkt</span><span class="p">)):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="nb">chr</span><span class="p">(</span><span class="n">pkt</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">sport</span><span class="o">-</span><span class="mi">5000</span><span class="p">))</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>Flag: <code>picoCTF{p1LLf3r3d_data_v1a_st3g0}</code></p>
 <p><br /><br />
@@ -314,7 +310,7 @@ How can you decrypt the TLS stream?</p>
 <li>capture.pcap</li>
 <li>picopico.key</li>
 </ul>
-<p><br /></p>
+<br />
 <h3 id="solution-3">Solution</h3>
 <p>Go to Preference -&gt; TLS -&gt; RSA key list <br />
 172.31.22.220, 443, http, C:\Temp\picopico.key</p>
@@ -336,7 +332,7 @@ How can you decrypt the TLS stream?</p>
 <li>capture.pcap</li>
 <li>picopico.key</li>
 </ul>
-<p><br /></p>
+<br />
 <h3 id="solution-4">Solution</h3>
 <p>復号したトラフィックから、HTTP objectを抽出し、stringsコマンドでフラグサーチ。</p>
 <p>Flag: <code>picoCTF{honey.roasted.peanuts}</code></p>
@@ -394,7 +390,7 @@ How can you decrypt the TLS stream?</p>
     <footer id="footer" class="footer">
       <div class="social-links">
       <a href="https://github.com/CaptureAmerica/" class="iconfont icon-github" title="github"></a>
-  <a href="https://captureamerica.github.io/writeups/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+  
 </div>
 
 <div class="copyright">
@@ -429,20 +425,21 @@ How can you decrypt the TLS stream?</p>
 
 
 
-<script type="text/javascript" src="https://captureamerica.github.io/writeups/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+<script type="text/javascript" src="https://captureamerica.github.io/writeups/js/main.min.4ae89da218555efa0e7093a20b92017d2e1202b66fff9fc2edf4cb8d44b44c6e.js"></script>
 
 
 <script type="application/javascript">
 var doNotTrack = false;
 if (!doNotTrack) {
-	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 	ga('create', 'UA-104910699-2', 'auto');
 	ga('set', 'anonymizeIp', true);
 	ga('send', 'pageview');
 }
 </script>
-<script async src='https://www.google-analytics.com/analytics.js'></script>
-
 
 
 

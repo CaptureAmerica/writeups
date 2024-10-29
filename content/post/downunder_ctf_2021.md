@@ -60,6 +60,7 @@ nc pwn-2021.duc.tf 31905
 
 
 <br />
+
 ### Solution
 書いたコード。
 
@@ -159,6 +160,7 @@ Attachment:
 
 
 <br />
+
 ### Solution
 
 flag.txtは、bzip2で圧縮されたファイルでした。
@@ -295,6 +297,7 @@ Attachment:
 
 
 <br />
+
 ### Solution
 タイトルからしてDNSが怪しいです。
 
@@ -333,6 +336,7 @@ Attachment:
 - deadcode (ELF 64bit)
 
 <br />
+
 ### Solution
 単なるBOFのチャレンジですが、今回新たに分かったことがあったので記録しておきます。
 
@@ -424,6 +428,7 @@ Attachment:
 
 
 <br />
+
 ### Solution
 先日あった [TsukuCTF](https://fans.sechack365.com/ctf/tsukuctf2021/) (少ししか参加してないのでブログは書いてません) で、OSINTには Google Lens というのが使えることを習ったので、Android Phoneを取り出して Google Lens アプリをインストールして使ってみました。
 

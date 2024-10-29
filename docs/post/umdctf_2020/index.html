@@ -23,7 +23,7 @@
 <meta name="google-site-verification" content="PqctLWZQttGzxXVupWuIt2HWuBI8cvN1z07ETpxA2dw" />
 
 
-<meta name="generator" content="Hugo 0.74.2 with theme even" />
+<meta name="generator" content="Hugo 0.119.0 with theme even" />
 
 
 <link rel="canonical" href="https://captureamerica.github.io/writeups/post/umdctf_2020/" />
@@ -35,24 +35,20 @@
 
 
 
-<link href="https://captureamerica.github.io/writeups/sass/main.min.2e81bbed97b8b282c1aeb57488cc71c8d8c8ec559f3931531bd396bf31e0d4dd.css" rel="stylesheet">
+<link href="https://captureamerica.github.io/writeups/sass/main.min.f92fd13721ddf72129410fd8250e73152cc6f2438082b6c0208dc24ee7c13fc4.css" rel="stylesheet">
 
 
 
 <meta property="og:title" content="UMDCTF 2020 Writeup" />
 <meta property="og:description" content="URL: https://umdctf.io/challenges 直感的に解けそうと思ったやつだけやりました。 3問だけ解いて750points、147thでした。 [Steganography]: Crash Confusion (200 points) Challenge There&rsquo;s something weird about this crash screen&hellip; Attachment: crash.jpg Solution 「青い空" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://captureamerica.github.io/writeups/post/umdctf_2020/" />
+<meta property="og:url" content="https://captureamerica.github.io/writeups/post/umdctf_2020/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2020-04-20T08:00:00+09:00" />
 <meta property="article:modified_time" content="2020-04-20T08:00:00+09:00" />
 <meta itemprop="name" content="UMDCTF 2020 Writeup">
-<meta itemprop="description" content="URL: https://umdctf.io/challenges 直感的に解けそうと思ったやつだけやりました。 3問だけ解いて750points、147thでした。 [Steganography]: Crash Confusion (200 points) Challenge There&rsquo;s something weird about this crash screen&hellip; Attachment: crash.jpg Solution 「青い空">
-<meta itemprop="datePublished" content="2020-04-20T08:00:00&#43;09:00" />
-<meta itemprop="dateModified" content="2020-04-20T08:00:00&#43;09:00" />
-<meta itemprop="wordCount" content="651">
-
-
-
+<meta itemprop="description" content="URL: https://umdctf.io/challenges 直感的に解けそうと思ったやつだけやりました。 3問だけ解いて750points、147thでした。 [Steganography]: Crash Confusion (200 points) Challenge There&rsquo;s something weird about this crash screen&hellip; Attachment: crash.jpg Solution 「青い空"><meta itemprop="datePublished" content="2020-04-20T08:00:00+09:00" />
+<meta itemprop="dateModified" content="2020-04-20T08:00:00+09:00" />
+<meta itemprop="wordCount" content="655">
 <meta itemprop="keywords" content="CTF," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="UMDCTF 2020 Writeup"/>
 <meta name="twitter:description" content="URL: https://umdctf.io/challenges 直感的に解けそうと思ったやつだけやりました。 3問だけ解いて750points、147thでした。 [Steganography]: Crash Confusion (200 points) Challenge There&rsquo;s something weird about this crash screen&hellip; Attachment: crash.jpg Solution 「青い空"/>
@@ -192,17 +188,17 @@
 <ul>
 <li>crash.jpg</li>
 </ul>
-<p><br /></p>
+<br />
 <h3 id="solution">Solution</h3>
 <p>「青い空を見上げればいつもそこに白い猫」でテキトーに見てたらBASE64エンコードされた文字列が出てきました。</p>
 <img src="https://captureamerica.github.io/writeups/img/umdctf_2020_crash.png" alt="umdctf_2020_crash.png">
-<p><br /></p>
+<br />
 <pre>
 $ echo VU1BQ1RGLXt0aHIzc2gwbGRfZXJyMHJ6fQ | base64 -d
 UMACTF-{thr3sh0ld_err0rz}
 </pre>
-<p><br />
-どこか読み間違えているのか、<code>UMACTF</code>になってしまったので、<code>UMDCTF</code>に直してSubmitしました。</p>
+<br />
+どこか読み間違えているのか、`UMACTF`になってしまったので、`UMDCTF`に直してSubmitしました。
 <p>Flag: <code>UMDCTF-{thr3sh0ld_err0rz}</code></p>
 <p><br /><br />
 <br /><br /></p>
@@ -216,25 +212,25 @@ UMACTF-{thr3sh0ld_err0rz}
 <ul>
 <li>sensitive</li>
 </ul>
-<p><br /></p>
+<br />
 <h3 id="solution-1">Solution</h3>
 <p>まず、どんなファイルなのかを調べます。</p>
 <pre>
 $ file sensitive 
 sensitive: data
 </pre>
-<p><br />
-判別できなかったので、実際に中身を見てみると、元はPDFファイルで1バイト毎に空白文字が入っているようでした。</p>
+<br />
+判別できなかったので、実際に中身を見てみると、元はPDFファイルで1バイト毎に空白文字が入っているようでした。
 <pre>
 % P D F - 1 . 5
 :
 </pre>
-<p><br /></p>
+<br />
 <p>以下のコードで余分な空白文字を取り除きました。</p>
 <p>（元々のファイルサイズが187836バイトなので、その半分の93918をb2のサイズとしています。）</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -249,28 +245,28 @@ sensitive: data
 </span><span class="lnt">13
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-Python" data-lang="Python"><span class="ch">#!/usr/bin/env python3</span>
-<span class="c1"># -*- coding:utf-8 -*-</span>
-
-<span class="n">b1</span> <span class="o">=</span> <span class="nb">bytearray</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="s2">&#34;sensitive&#34;</span><span class="p">,</span><span class="s2">&#34;rb&#34;</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
-<span class="n">b2</span> <span class="o">=</span> <span class="nb">bytearray</span><span class="p">(</span><span class="mi">93918</span><span class="p">)</span>
-
-<span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
-<span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">b1</span><span class="p">:</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">i</span> <span class="o">%</span> <span class="mi">2</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-        <span class="n">b2</span><span class="p">[</span><span class="n">i</span><span class="o">//</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">x</span>
-    <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
-    
-<span class="nb">open</span><span class="p">(</span><span class="s2">&#34;output.pdf&#34;</span><span class="p">,</span> <span class="s2">&#34;wb&#34;</span><span class="p">)</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="nb">bytearray</span><span class="p">(</span><span class="n">b2</span><span class="p">))</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-Python" data-lang="Python"><span class="line"><span class="cl"><span class="ch">#!/usr/bin/env python3</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># -*- coding:utf-8 -*-</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">b1</span> <span class="o">=</span> <span class="nb">bytearray</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="s2">&#34;sensitive&#34;</span><span class="p">,</span><span class="s2">&#34;rb&#34;</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl"><span class="n">b2</span> <span class="o">=</span> <span class="nb">bytearray</span><span class="p">(</span><span class="mi">93918</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">b1</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="n">i</span> <span class="o">%</span> <span class="mi">2</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">b2</span><span class="p">[</span><span class="n">i</span><span class="o">//</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">x</span>
+</span></span><span class="line"><span class="cl">    <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl"><span class="nb">open</span><span class="p">(</span><span class="s2">&#34;output.pdf&#34;</span><span class="p">,</span> <span class="s2">&#34;wb&#34;</span><span class="p">)</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="nb">bytearray</span><span class="p">(</span><span class="n">b2</span><span class="p">))</span>
+</span></span></code></pre></td></tr></table>
 </div>
-</div><p><br /></p>
+</div><br />
 <p>PDFをLibreで開くと、中央に薄っすらQRコードが見えます。</p>
 <img src="https://captureamerica.github.io/writeups/img/umdctf_2020_libre_qr.png" alt="umdctf_2020_libre_qr.png">
-<p><br /></p>
+<br />
 <p>この画像をファイルとして保存し、「青い空を見上げればいつもそこに白い猫」でテキトーに見てたら白黒がハッキリできました。</p>
 <img src="https://captureamerica.github.io/writeups/img/umdctf_2020_sensitive_qr.png" alt="umdctf_2020_sensitive_qr.png">
-<p><br /></p>
+<br />
 <p>Flag: <code>UMDCTF-{l0v3-me_s0me_h3x}</code></p>
 <p><br /><br />
 <br /><br /></p>
@@ -286,7 +282,7 @@ Note: do not attempt to communicate with or contact any of the IP addresses ment
 <ul>
 <li>attack.pcap</li>
 </ul>
-<p><br /></p>
+<br />
 <h3 id="solution-2">Solution</h3>
 <p>WireSharkで各パケットを見ていくと、IPヘッダ内のフラグの値が0や1に変化しているのがわかります。</p>
 <pre>
@@ -350,7 +346,7 @@ $ tshark -r attack.pcap -Tfields -e ip.flags.rb | tr -d "\n" ; echo
     <footer id="footer" class="footer">
       <div class="social-links">
       <a href="https://github.com/CaptureAmerica/" class="iconfont icon-github" title="github"></a>
-  <a href="https://captureamerica.github.io/writeups/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+  
 </div>
 
 <div class="copyright">
@@ -385,20 +381,21 @@ $ tshark -r attack.pcap -Tfields -e ip.flags.rb | tr -d "\n" ; echo
 
 
 
-<script type="text/javascript" src="https://captureamerica.github.io/writeups/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+<script type="text/javascript" src="https://captureamerica.github.io/writeups/js/main.min.4ae89da218555efa0e7093a20b92017d2e1202b66fff9fc2edf4cb8d44b44c6e.js"></script>
 
 
 <script type="application/javascript">
 var doNotTrack = false;
 if (!doNotTrack) {
-	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 	ga('create', 'UA-104910699-2', 'auto');
 	ga('set', 'anonymizeIp', true);
 	ga('send', 'pageview');
 }
 </script>
-<script async src='https://www.google-analytics.com/analytics.js'></script>
-
 
 
 

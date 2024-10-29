@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Deadface CTF 2024 Writeup - CTF フラxxグゲット</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="CaptureAmerica @ CTF フラxxグゲット" /><meta name="description" content="Save The Earth! - 地球環境を守ろう！ URL: https://deadface.ctfd.io/challenges Deadface CTF は、3回目の参加です。 Deadface CTF 2021 (304位) Deadface CTF 2023 (387位) 今回は778点を獲得し、320位でした。 チャレン" /><meta name="keywords" content="CTF, Writeup, captureamerica, picoCTF" />
+
+
+
+<meta name="google-site-verification" content="PqctLWZQttGzxXVupWuIt2HWuBI8cvN1z07ETpxA2dw" />
+
+
+<meta name="generator" content="Hugo 0.119.0 with theme even" />
+
+
+<link rel="canonical" href="https://captureamerica.github.io/writeups/post/deadface_ctf_2024/" />
+<link rel="apple-touch-icon" sizes="180x180" href="https://captureamerica.github.io/writeups/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://captureamerica.github.io/writeups/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://captureamerica.github.io/writeups/favicon-16x16.png">
+<link rel="manifest" href="https://captureamerica.github.io/writeups/manifest.json">
+<link rel="mask-icon" href="https://captureamerica.github.io/writeups/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="https://captureamerica.github.io/writeups/sass/main.min.f92fd13721ddf72129410fd8250e73152cc6f2438082b6c0208dc24ee7c13fc4.css" rel="stylesheet">
+
+
+
+<meta property="og:title" content="Deadface CTF 2024 Writeup" />
+<meta property="og:description" content="Save The Earth! - 地球環境を守ろう！ URL: https://deadface.ctfd.io/challenges Deadface CTF は、3回目の参加です。 Deadface CTF 2021 (304位) Deadface CTF 2023 (387位) 今回は778点を獲得し、320位でした。 チャレン" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://captureamerica.github.io/writeups/post/deadface_ctf_2024/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2024-10-29T14:00:00+09:00" />
+<meta property="article:modified_time" content="2024-10-29T14:00:00+09:00" />
+<meta itemprop="name" content="Deadface CTF 2024 Writeup">
+<meta itemprop="description" content="Save The Earth! - 地球環境を守ろう！ URL: https://deadface.ctfd.io/challenges Deadface CTF は、3回目の参加です。 Deadface CTF 2021 (304位) Deadface CTF 2023 (387位) 今回は778点を獲得し、320位でした。 チャレン"><meta itemprop="datePublished" content="2024-10-29T14:00:00+09:00" />
+<meta itemprop="dateModified" content="2024-10-29T14:00:00+09:00" />
+<meta itemprop="wordCount" content="1206">
+<meta itemprop="keywords" content="CTF," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Deadface CTF 2024 Writeup"/>
+<meta name="twitter:description" content="Save The Earth! - 地球環境を守ろう！ URL: https://deadface.ctfd.io/challenges Deadface CTF は、3回目の参加です。 Deadface CTF 2021 (304位) Deadface CTF 2023 (387位) 今回は778点を獲得し、320位でした。 チャレン"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="https://captureamerica.github.io/writeups/" class="logo">CTF Writeups</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="https://captureamerica.github.io/writeups/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="https://captureamerica.github.io/writeups/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="https://captureamerica.github.io/writeups/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="https://captureamerica.github.io/writeups/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a><a href="https://captureamerica.github.io/writeups/about/">
+        <li class="mobile-menu-item">About</li>
+      </a>
+  </ul>
+
+  
+
+
+</nav>
+
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="https://captureamerica.github.io/writeups/" class="logo">CTF Writeups</a>
+</div>
+
+
+
+
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="https://captureamerica.github.io/writeups/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="https://captureamerica.github.io/writeups/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="https://captureamerica.github.io/writeups/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="https://captureamerica.github.io/writeups/categories/">Categories</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="https://captureamerica.github.io/writeups/about/">About</a>
+      </li>
+  </ul>
+</nav>
+
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">Deadface CTF 2024 Writeup</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2024-10-29 </span>
+        <div class="post-category">
+            <a href="https://captureamerica.github.io/writeups/categories/ctf/"> CTF </a>
+            </div>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contents</h2>
+  <div class="post-toc-content">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#traffic-analysis-data-breach-25-points">[Traffic Analysis]: Data Breach (25 points)</a>
+      <ul>
+        <li><a href="#challenge">Challenge</a></li>
+        <li><a href="#solution">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#traffic-analysis-wild-wild-west-50-points">[Traffic Analysis]: Wild Wild West (50 points)</a>
+      <ul>
+        <li><a href="#challenge-1">Challenge</a></li>
+        <li><a href="#solution-1">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#traffic-analysis-unusual-exfiltration-250-points">[Traffic Analysis]: Unusual Exfiltration (250 points)</a>
+      <ul>
+        <li><a href="#challenge-2">Challenge</a></li>
+        <li><a href="#solution-2">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#steganography-price-check-100-points">[Steganography]: Price Check (100 points)</a>
+      <ul>
+        <li><a href="#challenge-3">Challenge</a></li>
+        <li><a href="#solution-3">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#osint-cup-of-compromised-joe-20-points">[OSINT]: Cup of Compromised Joe (20 points)</a>
+      <ul>
+        <li><a href="#challenge-4">Challenge</a></li>
+        <li><a href="#solution-4">Solution</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <img src="https://captureamerica.github.io/writeups/img/green_bar.png" alt="green_bar.png">
+<img src="https://captureamerica.github.io/writeups/img/10_Nature_Themed_Icons_Cute_Earth_Icon.png" alt="Save The Earth!"> <b><font color="teal">Save The Earth! - 地球環境を守ろう！</font></b> <img src="https://captureamerica.github.io/writeups/img/10_Nature_Themed_Icons_Cute_Earth_Icon.png" alt="Save The Earth!">
+<img src="https://captureamerica.github.io/writeups/img/green_bar.png" alt="green_bar.png">
+<div class='align-right'>
+<a href="https://translate.google.com/translate?hl=en&sl=ja&tl=en&u=https%3A%2F%2Fcaptureamerica.github.io%2Fwriteups%2Fpost%2Fdeadface_ctf_2024%2F">
+<img src="https://captureamerica.github.io/writeups/img/En.png" alt="English">
+</a>
+</div>
+<p>URL: <a href="https://deadface.ctfd.io/challenges">https://deadface.ctfd.io/challenges</a>
+<br /><br /></p>
+<p>Deadface CTF は、3回目の参加です。</p>
+<p><a href="https://captureamerica.github.io/writeups/post/deadface_ctf_2021/">Deadface CTF 2021</a> (304位)</p>
+<p><a href="https://captureamerica.github.io/writeups/post/deadface_ctf_2023/">Deadface CTF 2023</a> (387位)</p>
+<p><br><br></p>
+<p>今回は778点を獲得し、320位でした。</p>
+<img src="https://captureamerica.github.io/writeups/img/deadface_CTF_2024_Score1.png" alt="deadface_CTF_2024_Score1.png">
+<p><br><br></p>
+<p>チャレンジのリストです。</p>
+<img src="https://captureamerica.github.io/writeups/img/deadface_CTF_2024_chall1.png" alt="deadface_CTF_2024_chall1.png">
+<br>
+<img src="https://captureamerica.github.io/writeups/img/deadface_CTF_2024_chall2.png" alt="deadface_CTF_2024_chall2.png">
+<br>
+<img src="https://captureamerica.github.io/writeups/img/deadface_CTF_2024_chall3.png" alt="deadface_CTF_2024_chall3.png">
+<br>
+<img src="https://captureamerica.github.io/writeups/img/deadface_CTF_2024_chall4.png" alt="deadface_CTF_2024_chall4.png">
+<br>
+<img src="https://captureamerica.github.io/writeups/img/deadface_CTF_2024_chall5.png" alt="deadface_CTF_2024_chall5.png">
+<br>
+<img src="https://captureamerica.github.io/writeups/img/deadface_CTF_2024_chall6.png" alt="deadface_CTF_2024_chall6.png">
+<br>
+<img src="https://captureamerica.github.io/writeups/img/deadface_CTF_2024_chall7.png" alt="deadface_CTF_2024_chall7.png">
+<p><br><br></p>
+<p>以下、解いたチャレンジの一覧です。</p>
+<img src="https://captureamerica.github.io/writeups/img/deadface_CTF_2024_chall8.png" alt="deadface_CTF_2024_chall8.png">
+<p><br><br></p>
+<p>最近、忙しくて、今回のWriteupも手抜きです。。</p>
+<p><br /><br /></p>
+<h2 id="traffic-analysis-data-breach-25-points">[Traffic Analysis]: Data Breach (25 points)</h2>
+<hr>
+<h3 id="challenge">Challenge</h3>
+<blockquote>
+<p>We suspect an internal employee is leaking sensitive information, but the source remains unclear. We&rsquo;ve captured network traffic for analysis. Your mission is to investigate the data and locate the hidden flag.
+<br /><br />
+Can we count on your expertise to track it down?</p>
+</blockquote>
+<p>Attachment:</p>
+<ul>
+<li>databreach.pcapng</li>
+</ul>
+<br />
+<h3 id="solution">Solution</h3>
+<p>grepで解けます。</p>
+<pre>
+$ grep -a flag databreach.pcapng
+Not-Suppose-To-Be-Here: flag{Information_disclosure_in_the_head}
+:
+</pre>
+<br />
+<p>Flag: <code>flag{Information_disclosure_in_the_head}</code></p>
+<p><br /><br />
+<br /><br /></p>
+<h2 id="traffic-analysis-wild-wild-west-50-points">[Traffic Analysis]: Wild Wild West (50 points)</h2>
+<hr>
+<h3 id="challenge-1">Challenge</h3>
+<blockquote>
+<p>Woah, our network has been lighting up like the fourth of a July on steroids, I tell you HWHAT. Now, given that we had a user call in complaining about weird stuff happening, I think it is about time you cowboy up and figure out what is happening in our here network.</p>
+</blockquote>
+<p>Attachment:</p>
+<ul>
+<li>wildwildwest.pcapng</li>
+</ul>
+<br />
+<h3 id="solution-1">Solution</h3>
+<p>grepで解けます。</p>
+<pre>
+$ grep -a flag wildwildwest.pcapng
+:
+�0���0����)0'�� 0flag{kerbrute_finding_users}
+</pre>
+<br>
+<p>Flag: <code>flag{kerbrute_finding_users}</code></p>
+<p><br /><br />
+<br /><br /></p>
+<h2 id="traffic-analysis-unusual-exfiltration-250-points">[Traffic Analysis]: Unusual Exfiltration (250 points)</h2>
+<hr>
+<h3 id="challenge-2">Challenge</h3>
+<blockquote>
+<p>Network logs from a machine DEADFACE compromised are being analyzed. It seems something was exfiltrated to their proxy machine on the local network before being sent back to their C2 server. Can you help figure out what data was stolen?</p>
+</blockquote>
+<p>Attachment:</p>
+<ul>
+<li>unusualexfil.pcapng</li>
+</ul>
+<br />
+<h3 id="solution-2">Solution</h3>
+<p>grepでは解けません。:)</p>
+<br>
+<p>tsharkでデータ部分を取り出します。余計なデータを取り除くために、&ldquo;0a&quot;でgrepしました。</p>
+<pre>
+$ tshark -r unusualexfil.pcap -T fields -e data | grep "0a"
+525252525252525252525252525252525252525252525252525252525252520a
+525151515151515152525251515152525151525152515251515151515151520a
+525152525252525152525252525152525252525152525251525252525251520a
+525152515151525152515251525252515251525151525251525151515251520a
+525152515151525152515152515252525251515252515251525151515251520a
+525152515151525152515152525151515152525151515251525151515251520a
+525152525252525152515252515151515151525152525251525252525251520a
+525151515151515152515251525152515251525152515251515151515151520a
+525252525252525252515252515151525152525252515252525252525252520a
+525152515151515152525251525252515152515252515251515151515252520a
+525152525251515251525252515152525151525251515151525151525151520a
+525251515252515152525252525252525252525252525251515151515252520a
+525252525151515251515252515152515251525152515252515151525252520a
+525251515252525152515152515152525251515251525152525251515152520a
+525152525152525252525151515151515152515151515251515152515151520a
+525152515152515151525251515251515151525152515252525151515252520a
+525252525251525252525151515151525152525252525152515151525152520a
+525152525251525151515252525152515152515251525152525251525251520a
+525152515252515251525252525252525151515151515151515152525151520a
+525152515152515151525152515152525252515252525251525151525252520a
+525152525152525251525252515152515251525251515252525151525151520a
+525152525252515151525151525152525251515252515151515151525252520a
+525252525252525252515251515251515152515152515252525152525151520a
+525151515151515152525251525151515151515251515251525152515252520a
+525152525252525152515151525151525152525151515252525152525252520a
+525152515151525152515152525152515152515252515151515152515251520a
+525152515151525152515151525251525151515252525252515251515252520a
+525152515151525152515252515151515252525252515151525151525152520a
+525152525252525152525152525152515251525251515252515251525152520a
+525151515151515152515252515152525252525151525252525152515252520a
+525252525252525252525252525252525252525252525252525252525252520a
+</pre>
+<br>
+<p>2値のデータ(&lsquo;R&rsquo;と&rsquo;Q&rsquo;)なんですが、&ldquo;5&quot;と&quot;0a&quot;を取り除いて、&ldquo;1&quot;と&quot;2&quot;のデータにします。</p>
+<pre>
+$ tshark -r unusualexfil.pcap -T fields -e data | grep "0a" | tr -d "50a"
+2222222222222222222222222222222
+2111111122211122112121211111112
+2122222122222122222122212222212
+2121112121212221212112212111212
+2121112121121222211221212111212
+2121112121122111122111212111212
+2122222121221111112122212222212
+2111111121212121212121211111112
+2222222221221112122221222222222
+2121111122212221121221211111222
+2122211212221122112211112112112
+2211221122222222222222211111222
+2222111211221121212121221112222
+2211222121121122211212122211122
+2122122222111111121111211121112
+2121121112211211112121222111222
+2222212222111112122222121112122
+2122212111222121121212122212212
+2121221212222222111111111122112
+2121121112121122221222212112222
+2122122212221121212211222112112
+2122221112112122211221111112222
+2222222221211211121121222122112
+2111111122212111111211212121222
+2122222121112112122111222122222
+2121112121122121121221111121212
+2121112121112212111222221211222
+2121112121221111222221112112122
+2122222122122121212211221212122
+2111111121221122222112222121222
+2222222222222222222222222222222
+</pre>
+<br>
+<p>なんとなく正方形なので、QRコードで間違いないです。<br>
+（周りを囲っている&quot;2&quot;は取り除く必要がありました。cutコマンドを使いました。）</p>
+<br>
+<p>以下のツールを使って解きました。Python2で動くツールです。<br>
+<a href="https://github.com/waidotto/strong-qr-decoder">https://github.com/waidotto/strong-qr-decoder</a></p>
+<pre>
+$ python ./sqrd.py aaa.txt
+flag{QR-c0de-4-exfiltr@ation}
+</pre>
+<br>
+<p>Flag: <code>flag{QR-c0de-4-exfiltr@ation}</code></p>
+<p><br /><br />
+<br /><br /></p>
+<h2 id="steganography-price-check-100-points">[Steganography]: Price Check (100 points)</h2>
+<hr>
+<h3 id="challenge-3">Challenge</h3>
+<blockquote>
+<p>DEADFACE has been hacking random people all over town and no one can seem to figure out what they are doing. All we know at this time is that the most recent site that was hit was Otto’s Grocery Store. Oddly, only the customers are being affected and not the company’s network. What is happening? They hired our firm to sniff out the attack and we successfully captured a strange file being sent across the guest WiFi. We believe this is the primary attack vector, and we’ve heard some victims mention that they had to “scan” something - maybe it is in the wrong format? Can you figure out how this file is being used in the attack to reveal the flag?</p>
+</blockquote>
+<p>Attachment:</p>
+<ul>
+<li>STEG05.csv</li>
+</ul>
+<br />
+<h3 id="solution-3">Solution</h3>
+<p>以下のようなデータの入ったCSVファイルが渡されます。</p>
+<pre>
+0,255,255,255,255,255,255,0,255,255,255,255,0,255,0,0,255,255,0,0,255,0,255,255,255,0,0,255,255
+255,0,0,0,0,0,255,0,0,0,255,255,0,0,255,0,255,255,0,0,255,255,255,255,0,255,0,255,255
+255,0,255,255,255,0,255,0,0,0,255,0,0,0,0,255,0,0,0,255,0,255,0,0,0,255,0,255,255
+0,0,255,255,255,0,255,0,0,255,0,255,0,0,255,255,255,0,0,0,255,255,0,255,255,255,255,255,255
+255,0,255,255,255,0,255,0,255,255,255,255,0,255,0,255,255,255,0,255,255,255,255,255,255,255,0,255,255
+0,0,0,0,0,0,255,0,0,255,255,255,0,255,0,255,0,255,255,255,255,0,0,0,255,255,0,0,255
+255,255,255,255,255,255,255,0,255,0,255,0,0,255,255,255,0,255,0,0,255,0,255,0,255,0,0,0,255
+255,0,0,0,0,0,0,0,255,255,0,0,255,0,0,0,0,0,255,0,255,0,0,0,255,255,0,0,0
+0,255,0,255,255,255,255,0,0,0,255,255,0,255,255,255,0,255,0,0,255,255,255,255,255,255,0,255,255
+0,0,255,0,255,255,0,0,0,0,0,0,255,0,255,0,0,255,0,255,255,0,0,0,255,255,0,255,0
+255,0,0,255,0,255,255,0,0,255,255,0,255,0,0,0,255,255,255,0,255,0,0,0,255,0,0,0,0
+255,255,255,255,0,255,0,0,0,255,255,255,255,255,255,0,255,255,255,0,0,255,0,255,255,0,255,0,255
+255,0,0,255,0,0,255,255,255,0,0,255,0,255,0,0,0,255,0,255,255,255,0,255,0,0,0,255,0
+255,255,0,255,255,255,0,0,0,0,0,255,0,255,0,255,255,255,0,255,255,255,255,0,0,255,0,255,255
+255,0,0,255,255,0,255,255,0,255,255,0,0,255,255,255,0,255,255,0,0,0,0,0,255,255,255,0,0
+255,0,0,255,255,255,0,255,0,0,0,255,255,0,0,0,0,255,255,0,0,0,255,255,255,255,0,0,255
+0,0,255,255,255,0,255,0,255,0,255,255,255,255,255,255,255,255,0,0,255,255,0,0,0,0,0,0,255
+255,0,255,0,255,255,0,255,0,255,255,255,0,0,255,0,0,255,255,0,0,255,255,255,255,255,0,0,0
+255,0,0,0,255,0,255,0,255,255,255,255,255,0,0,0,255,0,255,0,255,0,0,0,0,255,255,0,0
+255,0,255,255,0,0,0,255,255,0,0,255,0,255,255,0,255,255,255,0,0,0,255,255,255,0,255,0,255
+255,0,0,0,255,0,255,255,255,255,255,0,0,255,0,0,0,255,0,255,0,255,255,255,255,255,0,0,255
+0,0,0,0,0,0,0,0,255,0,0,0,0,255,0,255,255,255,0,255,255,0,0,0,0,0,0,0,0
+255,255,255,255,255,255,255,0,255,0,255,0,255,0,255,0,255,0,255,0,255,0,255,255,255,255,255,255,255
+255,0,0,0,0,0,255,0,255,255,0,255,255,0,0,0,255,0,0,255,255,0,255,0,0,0,0,0,255
+255,0,255,255,255,0,255,0,255,0,255,0,0,0,0,0,0,0,255,0,0,0,255,0,255,255,255,0,255
+255,0,255,255,255,0,255,0,255,0,255,255,255,0,0,0,0,0,255,0,0,0,255,0,255,255,255,0,255
+255,0,255,255,255,0,255,0,0,0,255,0,255,0,255,0,0,255,255,0,255,0,255,0,255,255,255,0,255
+255,0,0,0,0,0,255,0,0,255,255,0,255,255,255,255,0,255,0,255,0,0,255,0,0,0,0,0,255
+255,255,255,255,255,255,255,0,255,0,0,0,255,255,255,0,255,255,0,255,0,0,255,255,255,255,255,255,255
+</pre>
+<p><br><br></p>
+<p>これもQRコードですね。</p>
+<br>
+<p>こちらは、上記のツール（sqrd.py）では解けませんでした。</p>
+<br>
+<p>ということで、実際に画像に変換してカメラで読み取ることにしました。</p>
+<p>過去に何回かやってます。</p>
+<ul>
+<li>
+<p><a href="https://captureamerica.github.io/writeups/post/gdgalgiers_ctf_2022/">GDG Algiers CTF 2022</a> <br></p>
+</li>
+<li>
+<p><a href="https://captureamerica.github.io/writeups/post/xmas_htsp_ctf/">X-MAS CTF 2019</a></p>
+</li>
+</ul>
+<br>
+<p>書いたコード</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-Python" data-lang="Python"><span class="line"><span class="cl"><span class="ch">#!/usr/bin/env python</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># -*- coding:utf-8 -*-</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">PIL</span> <span class="kn">import</span> <span class="n">Image</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">MAX</span><span class="o">=</span><span class="mi">29</span>
+</span></span><span class="line"><span class="cl"><span class="n">f</span><span class="o">=</span><span class="nb">open</span><span class="p">(</span><span class="s2">&#34;STEG05.csv&#34;</span><span class="p">,</span><span class="s2">&#34;r&#34;</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&#34;</span><span class="se">\n</span><span class="s2">&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">a</span><span class="o">=</span><span class="p">[]</span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">f</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">MAX</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="n">val</span> <span class="o">=</span> <span class="n">line</span><span class="p">[</span><span class="n">y</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="n">val</span><span class="o">==</span><span class="s1">&#39;0&#39;</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="n">a</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="mi">255</span><span class="p">,</span><span class="mi">255</span><span class="p">,</span><span class="mi">255</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">        <span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="n">a</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">im</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s2">&#34;RGB&#34;</span><span class="p">,(</span><span class="n">MAX</span><span class="p">,</span><span class="n">MAX</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="n">im</span><span class="o">.</span><span class="n">putdata</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">im</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s2">&#34;QR.png&#34;</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><br>
+<p>Flag: <code>flag{that_will_be_five_dollars}</code></p>
+<p><br /><br />
+<br /><br /></p>
+<h2 id="osint-cup-of-compromised-joe-20-points">[OSINT]: Cup of Compromised Joe (20 points)</h2>
+<hr>
+<h3 id="challenge-4">Challenge</h3>
+<blockquote>
+<p>After cyber stalking mirveal’s online activity for several weeks, we have finally found a post on GhostTown that should allow us to zero in on his location. By examining the photo in this post, can you determine the city and zip code of where he enjoys getting his coffee?</p>
+</blockquote>
+<p>Attachment:</p>
+<ul>
+<li>Joe.jpeg</li>
+</ul>
+<br />
+<h3 id="solution-4">Solution</h3>
+<p>Google Lensを使って解きました。</p>
+<p>&ldquo;Find image source&rdquo; をクリックしたら、見つかりました。</p>
+<img src="https://captureamerica.github.io/writeups/img/deadface_CTF_2024_Joe1.png" alt="deadface_CTF_2024_Joe1.png">
+<br>
+<img src="https://captureamerica.github.io/writeups/img/deadface_CTF_2024_Joe2.png" alt="deadface_CTF_2024_Joe2.png">
+<p><br><br></p>
+<p>Flag: <code>flag{Fresno-93704}</code></p>
+<p><br /><br />
+<br /><br /></p>
+<hr>
+<p><br /><br />
+<br /><br /></p>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content">CaptureAmerica @ CTF フラxxグゲット</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">
+        2024-10-29
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="https://captureamerica.github.io/writeups/tags/ctf/">CTF</a>
+          </div>
+      <nav class="post-nav">
+        
+        <a class="next" href="https://captureamerica.github.io/writeups/post/bcactf_2024/">
+            <span class="next-text nav-default">BCACTF 5.0 Writeup</span>
+            <span class="next-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="https://github.com/CaptureAmerica/" class="iconfont icon-github" title="github"></a>
+  
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2019 - 
+    2024<span class="heart"><i class="iconfont icon-heart"></i></span><span>CaptureAmerica @ CTF フラxxグゲット</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  
+
+
+
+<script type="text/javascript" src="https://captureamerica.github.io/writeups/js/main.min.4ae89da218555efa0e7093a20b92017d2e1202b66fff9fc2edf4cb8d44b44c6e.js"></script>
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-104910699-2', 'auto');
+	ga('set', 'anonymizeIp', true);
+	ga('send', 'pageview');
+}
+</script>
+
+
+
+
+
+
+</body>
+</html>

@@ -23,7 +23,7 @@
 <meta name="google-site-verification" content="PqctLWZQttGzxXVupWuIt2HWuBI8cvN1z07ETpxA2dw" />
 
 
-<meta name="generator" content="Hugo 0.74.2 with theme even" />
+<meta name="generator" content="Hugo 0.119.0 with theme even" />
 
 
 <link rel="canonical" href="https://captureamerica.github.io/writeups/post/squarectf_2022/" />
@@ -35,24 +35,20 @@
 
 
 
-<link href="https://captureamerica.github.io/writeups/sass/main.min.2e81bbed97b8b282c1aeb57488cc71c8d8c8ec559f3931531bd396bf31e0d4dd.css" rel="stylesheet">
+<link href="https://captureamerica.github.io/writeups/sass/main.min.f92fd13721ddf72129410fd8250e73152cc6f2438082b6c0208dc24ee7c13fc4.css" rel="stylesheet">
 
 
 
 <meta property="og:title" content="SquareCTF 2022 Writeup" />
 <meta property="og:description" content="Save The Earth! - 地球環境を守ろう！ URL: https://2022.squarectf.com/challenges （最近、ちょくちょくCTFイベントに参加しているんですが、全然解けない事が多いです。。。全体的に難易度あがって" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://captureamerica.github.io/writeups/post/squarectf_2022/" />
+<meta property="og:url" content="https://captureamerica.github.io/writeups/post/squarectf_2022/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2022-11-20T15:00:00+09:00" />
 <meta property="article:modified_time" content="2022-11-20T15:00:00+09:00" />
 <meta itemprop="name" content="SquareCTF 2022 Writeup">
-<meta itemprop="description" content="Save The Earth! - 地球環境を守ろう！ URL: https://2022.squarectf.com/challenges （最近、ちょくちょくCTFイベントに参加しているんですが、全然解けない事が多いです。。。全体的に難易度あがって">
-<meta itemprop="datePublished" content="2022-11-20T15:00:00&#43;09:00" />
-<meta itemprop="dateModified" content="2022-11-20T15:00:00&#43;09:00" />
-<meta itemprop="wordCount" content="620">
-
-
-
+<meta itemprop="description" content="Save The Earth! - 地球環境を守ろう！ URL: https://2022.squarectf.com/challenges （最近、ちょくちょくCTFイベントに参加しているんですが、全然解けない事が多いです。。。全体的に難易度あがって"><meta itemprop="datePublished" content="2022-11-20T15:00:00+09:00" />
+<meta itemprop="dateModified" content="2022-11-20T15:00:00+09:00" />
+<meta itemprop="wordCount" content="625">
 <meta itemprop="keywords" content="CTF," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="SquareCTF 2022 Writeup"/>
 <meta name="twitter:description" content="Save The Earth! - 地球環境を守ろう！ URL: https://2022.squarectf.com/challenges （最近、ちょくちょくCTFイベントに参加しているんですが、全然解けない事が多いです。。。全体的に難易度あがって"/>
@@ -189,13 +185,13 @@
 <br>
 <h3 id="solution">Solution</h3>
 <p>UsernameとPasswordが入力できるログインフォームが表示されます。</p>
-<p><br />
-Usernameに<code>alex</code>、PasswordにテキトーなSQLiのパターンを入れたときに、</p>
+<br />
+Usernameに`alex`、PasswordにテキトーなSQLiのパターンを入れたときに、
 <pre>
 Sorry, admin is the wrong user
 </pre>
-<p>というエラーが返ります。<code>admin</code>なんて入力してないのに。。</p>
-<p><br /></p>
+というエラーが返ります。`admin`なんて入力してないのに。。
+<br />
 <p>実は、次に出てくるチャレンジ「Going In Blind」のDescriptionに、<code>Ok, the developers got smart, and figured out a way to prevent SQLi in the login page. Plus, they decided the flag shouldn't be hardcoded in the web application anymore. </code> という記載があって、それもヒントになってますね。</p>
 <p>おそらく、内部的に以下のようになっているっぽいです。</p>
 <pre>
@@ -303,7 +299,7 @@ flag{470bbbc0519e4bc6987bb00bef24a97a}
     <footer id="footer" class="footer">
       <div class="social-links">
       <a href="https://github.com/CaptureAmerica/" class="iconfont icon-github" title="github"></a>
-  <a href="https://captureamerica.github.io/writeups/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+  
 </div>
 
 <div class="copyright">
@@ -338,20 +334,21 @@ flag{470bbbc0519e4bc6987bb00bef24a97a}
 
 
 
-<script type="text/javascript" src="https://captureamerica.github.io/writeups/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+<script type="text/javascript" src="https://captureamerica.github.io/writeups/js/main.min.4ae89da218555efa0e7093a20b92017d2e1202b66fff9fc2edf4cb8d44b44c6e.js"></script>
 
 
 <script type="application/javascript">
 var doNotTrack = false;
 if (!doNotTrack) {
-	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 	ga('create', 'UA-104910699-2', 'auto');
 	ga('set', 'anonymizeIp', true);
 	ga('send', 'pageview');
 }
 </script>
-<script async src='https://www.google-analytics.com/analytics.js'></script>
-
 
 
 

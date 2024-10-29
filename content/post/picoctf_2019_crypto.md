@@ -54,6 +54,7 @@ Hint: The flag is in the format PICOCTF{}
 <img src="https://captureamerica.github.io/writeups/img/pico2019_flag.png" alt="pico2019_flag.png">
 
 <br />
+
 ### Solution
 "CTF" "flag"とかいうキーワードでググっても絶対見つからないので、何気に手こずりました。
 
@@ -83,6 +84,7 @@ Attachment:
 picoCTF{(35.028309, 135.753082)(46.469391, 30.740883)(39.758949, -84.191605)(41.015137, 28.979530)(24.466667, 54.366669)(3.140853, 101.693207)_(9.005401, 38.763611)(-3.989038, -79.203560)(52.377956, 4.897070)(41.085651, -73.858467)(57.790001, -152.407227)(31.205753, 29.924526)}
 
 <br />
+
 ### Solution
 どれか一個でググってみると、グーグルマップ上のとある場所が出てくるので、ぞれぞれが緯度と経度（longitude latitude）なのはわかります。
 
@@ -145,6 +147,7 @@ Gplrfdo’y xpcuso butvlky lpvjlrki tn 1555 gx l cuseitzltoty ol yse lncsz. Yse 
 
 
 <br />
+
 ### Solution
 "la cifra de 1553 1467 1555 book" でググったら、以下が見つかりました。<br />
 Cryptography 'Vigenère cipher' first described by Giovan Battista Bellaso in his book La cifra del. Sig. Giovan Battista Bellaso (Venice).
@@ -173,6 +176,7 @@ Make sure you dont lose precision, the numbers are pretty big (besides the e val
 
 
 <br />
+
 ### Solution
 RsaCtfTool.pyで解けます。
 
@@ -200,6 +204,7 @@ pd pded syq mvfc myed qcxs x kvxeqde ya xs cyve yvq ya yve zcol qorr pd zxp cde 
 
 
 <br />
+
 ### Solution
 単一換字式暗号 (monoalphabetic substitution ciphers)です。
 
@@ -227,6 +232,7 @@ Flag: `frequency_is_c_over_lambda_mupgpennod`
 Hints : What is e generally?
 
 <br />
+
 ### Solution
 これも RsaCtfTool.py で解けます。
 
@@ -247,6 +253,7 @@ Hints : There's more prime factors than p and q, finding d is going to be differ
 
 
 <br />
+
 ### Solution
 picoCTF 2018のSuper RSA3と同じです。
 
@@ -291,6 +298,7 @@ q16/S1WLvzg4PsElmv1f
 
 
 <br />
+
 ### Solution
 opensslコマンドを使って証明書の内容を確認します。
 

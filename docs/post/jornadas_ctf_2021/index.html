@@ -23,7 +23,7 @@
 <meta name="google-site-verification" content="PqctLWZQttGzxXVupWuIt2HWuBI8cvN1z07ETpxA2dw" />
 
 
-<meta name="generator" content="Hugo 0.74.2 with theme even" />
+<meta name="generator" content="Hugo 0.119.0 with theme even" />
 
 
 <link rel="canonical" href="https://captureamerica.github.io/writeups/post/jornadas_ctf_2021/" />
@@ -35,24 +35,20 @@
 
 
 
-<link href="https://captureamerica.github.io/writeups/sass/main.min.2e81bbed97b8b282c1aeb57488cc71c8d8c8ec559f3931531bd396bf31e0d4dd.css" rel="stylesheet">
+<link href="https://captureamerica.github.io/writeups/sass/main.min.f92fd13721ddf72129410fd8250e73152cc6f2438082b6c0208dc24ee7c13fc4.css" rel="stylesheet">
 
 
 
 <meta property="og:title" content="Jornadas CTF 2021 Writeup" />
 <meta property="og:description" content="Save The Earth! - 地球環境を守ろう！ URL: https://jornadas2021.ctf.cert.rcts.pt/challenges 2043点を獲得し、86位でした。 平日にやっていたCTFイベントで、あまりやってる時間がなかったです。チャレン" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://captureamerica.github.io/writeups/post/jornadas_ctf_2021/" />
+<meta property="og:url" content="https://captureamerica.github.io/writeups/post/jornadas_ctf_2021/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2021-10-21T21:00:00+09:00" />
 <meta property="article:modified_time" content="2021-10-21T21:00:00+09:00" />
 <meta itemprop="name" content="Jornadas CTF 2021 Writeup">
-<meta itemprop="description" content="Save The Earth! - 地球環境を守ろう！ URL: https://jornadas2021.ctf.cert.rcts.pt/challenges 2043点を獲得し、86位でした。 平日にやっていたCTFイベントで、あまりやってる時間がなかったです。チャレン">
-<meta itemprop="datePublished" content="2021-10-21T21:00:00&#43;09:00" />
-<meta itemprop="dateModified" content="2021-10-21T21:00:00&#43;09:00" />
-<meta itemprop="wordCount" content="857">
-
-
-
+<meta itemprop="description" content="Save The Earth! - 地球環境を守ろう！ URL: https://jornadas2021.ctf.cert.rcts.pt/challenges 2043点を獲得し、86位でした。 平日にやっていたCTFイベントで、あまりやってる時間がなかったです。チャレン"><meta itemprop="datePublished" content="2021-10-21T21:00:00+09:00" />
+<meta itemprop="dateModified" content="2021-10-21T21:00:00+09:00" />
+<meta itemprop="wordCount" content="883">
 <meta itemprop="keywords" content="CTF," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Jornadas CTF 2021 Writeup"/>
 <meta name="twitter:description" content="Save The Earth! - 地球環境を守ろう！ URL: https://jornadas2021.ctf.cert.rcts.pt/challenges 2043点を獲得し、86位でした。 平日にやっていたCTFイベントで、あまりやってる時間がなかったです。チャレン"/>
@@ -148,21 +144,20 @@
   <div class="post-toc-content">
     <nav id="TableOfContents">
   <ul>
-    <li><a href="#network-find-ipv6-380-points">[Network]: Find IP(v6) (380 points)</a>
+    <li>
       <ul>
-        <li><a href="#challenge">Challenge</a></li>
         <li><a href="#solution">Solution</a></li>
       </ul>
     </li>
     <li><a href="#forensics-chirp-335-points">[Forensics]: Chirp (335 points)</a>
       <ul>
-        <li><a href="#challenge-1">Challenge</a></li>
+        <li><a href="#challenge">Challenge</a></li>
         <li><a href="#solution-1">Solution</a></li>
       </ul>
     </li>
     <li><a href="#forensics-paintr-728-points">[Forensics]: Paintr (728 points)</a>
       <ul>
-        <li><a href="#challenge-2">Challenge</a></li>
+        <li><a href="#challenge-1">Challenge</a></li>
         <li><a href="#solution-2">Solution</a></li>
       </ul>
     </li>
@@ -189,30 +184,28 @@
 <img src="https://captureamerica.github.io/writeups/img/jornadas_CTF_2021_Score2.png" alt="jornadas_CTF_2021_Score2.png">
 <p><br><br>
 点数が高めのやつだけ、writeup残しておきます。</p>
-<p><br /></p>
-<h2 id="network-find-ipv6-380-points">[Network]: Find IP(v6) (380 points)</h2>
-<hr>
-<h3 id="challenge">Challenge</h3>
-<blockquote>
-<p>Find the IPv6 address of the DNS root server which is published on the lowest autonomous system number.
+<br />
+## [Network]: Find IP(v6) (380 points)
+- - -
+### Challenge
+> Find the IPv6 address of the DNS root server which is published on the lowest autonomous system number.
 <br /><br />
 Flag format: flag{IPv6 address}
 <br /><br />
-Note: you only have 5 attempts!</p>
-</blockquote>
-<p><br /></p>
+Note: you only have 5 attempts!
+<br />
 <h3 id="solution">Solution</h3>
 <p>これは、頑張ってググるだけです。</p>
 <p>以下のサイトを見つけました。<br>
 <a href="https://root-servers.org/">https://root-servers.org/</a></p>
 <p>Hのタブで書かれているRoot Serverが一番 ASN (autonomous system number) が小さいので、これのIPv6アドレスが答えとなります。</p>
-<p><br /></p>
+<br />
 <p>Flag: <code>flag{d1c037808d23acd0dc0e3b897f344571ddce4b294e742b434888b3d9f69d9944}</code></p>
 <p><br /><br />
 <br /><br /></p>
 <h2 id="forensics-chirp-335-points">[Forensics]: Chirp (335 points)</h2>
 <hr>
-<h3 id="challenge-1">Challenge</h3>
+<h3 id="challenge">Challenge</h3>
 <blockquote>
 <p>We got sent a file that sounds like a bird. There must be something hidden&hellip; Can you help us out?</p>
 </blockquote>
@@ -220,7 +213,7 @@ Note: you only have 5 attempts!</p>
 <ul>
 <li>Chirp.wav</li>
 </ul>
-<p><br /></p>
+<br />
 <h3 id="solution-1">Solution</h3>
 <p>WaveファイルをAudacityで開いて、Spectrogram表示するとモールス信号になっています。</p>
 <pre>
@@ -269,7 +262,7 @@ $ cat corrupted.mp3
 <br /><br /></p>
 <h2 id="forensics-paintr-728-points">[Forensics]: Paintr (728 points)</h2>
 <hr>
-<h3 id="challenge-2">Challenge</h3>
+<h3 id="challenge-1">Challenge</h3>
 <blockquote>
 <p>An ex-employee left this on our computers. Can you analyse it to see if its safe?</p>
 </blockquote>
@@ -278,7 +271,7 @@ $ cat corrupted.mp3
 <li>abstract.png</li>
 <li>nautilus.jpg</li>
 </ul>
-<p><br /></p>
+<br />
 <h3 id="solution-2">Solution</h3>
 <p>確か、abstract.png は使わなかったです。</p>
 <p>nautilus.jpg の方から、stegseekで以下が取れます。</p>
@@ -376,7 +369,7 @@ flag{p13t_70_qr_wh0_7h0ug7h!}
     <footer id="footer" class="footer">
       <div class="social-links">
       <a href="https://github.com/CaptureAmerica/" class="iconfont icon-github" title="github"></a>
-  <a href="https://captureamerica.github.io/writeups/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+  
 </div>
 
 <div class="copyright">
@@ -411,20 +404,21 @@ flag{p13t_70_qr_wh0_7h0ug7h!}
 
 
 
-<script type="text/javascript" src="https://captureamerica.github.io/writeups/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+<script type="text/javascript" src="https://captureamerica.github.io/writeups/js/main.min.4ae89da218555efa0e7093a20b92017d2e1202b66fff9fc2edf4cb8d44b44c6e.js"></script>
 
 
 <script type="application/javascript">
 var doNotTrack = false;
 if (!doNotTrack) {
-	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 	ga('create', 'UA-104910699-2', 'auto');
 	ga('set', 'anonymizeIp', true);
 	ga('send', 'pageview');
 }
 </script>
-<script async src='https://www.google-analytics.com/analytics.js'></script>
-
 
 
 

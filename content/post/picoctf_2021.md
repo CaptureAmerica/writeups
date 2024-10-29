@@ -90,6 +90,7 @@ Hint1: What kind of information can JavaScript modify?
 Hint2: If you want to do this the un-fun way, the obfuscation is pretty lazy.
 
 <br />
+
 ### Solution
 タイトルとヒントから、JavascriptでHistoryを残している模様。(どうやってやっているかは知らないです)
 
@@ -118,6 +119,7 @@ Flag: `picoCTF{th4ts_k1nd4_n34t_bb660d55}`
 
 
 <br />
+
 ### Solution
 HEADメソッドでアクセス。
 
@@ -155,6 +157,7 @@ Flag: `picoCTF{r3j3ct_th3_du4l1ty_6ef27873}`
 > Who doesn't love cookies? Try to figure out the best one. [http://mercury.picoctf.net:17781/](http://mercury.picoctf.net:17781/)
 
 <br />
+
 ### Solution
 Burpを使って解きました。
 
@@ -178,6 +181,7 @@ Hint: You should have enough hints to find the files, don't run a brute forcer.
 
 
 <br />
+
 ### Solution
 まずは、View Sourceでcssとかのファイルを見ていくと、part2まで見つかります。
 
@@ -228,6 +232,7 @@ Flag: `picoCTF{th4ts_4_l0t_0f_pl4c3s_2_lO0k_7a46d25d}`
 Hint: It ain't much, but it's an RFC https://tools.ietf.org/html/rfc2616
 
 <br />
+
 ### Solution
 表示されるメッセージを元に、ヘッダを追加していくチャレンジです。
 
@@ -305,6 +310,7 @@ Flag: `picoCTF{http_h34d3rs_v3ry_c0Ol_much_w0w_f56f58a5}`
 > [http://mercury.picoctf.net:55336/index.html](http://mercury.picoctf.net:55336/index.html)
 
 <br />
+
 ### Solution
 Developer toolでJavascriptの中を適当にstepしていったら、フラグが出てきました。
 
@@ -328,6 +334,7 @@ Hint1: Look at the category of this problem.
 Hint2: How may a PHP site check the rules in the description?
 
 <br />
+
 ### Solution
 md5の一致する2つの異なるPDFをSubmitしたらよさそうな感じです。
 
@@ -475,6 +482,7 @@ if __name__ == "__main__":
 
 
 <br />
+
 ### Solution
 コードを読み解くと、sessionクッキーに `"{'very_auth': 'admin'}"` をセットしてあげればいい感じです。
 
@@ -509,6 +517,7 @@ e: 65537
 
 
 <br />
+
 ### Solution
 <pre>
 $ RsaCtfTool.py -n 1280678415822214057864524798453297819181910621573945477544758171055968245116423923 -e 65537 --uncipher 62324783949134119159408816513334912534343517300880137691662780895409992760262021
@@ -530,6 +539,7 @@ Flag: `picoCTF{sma11_N_n0_g0od_05012767}`
 
 
 <br />
+
 ### Solution
 これも RsaCtfTool.py で解けました。
 
@@ -556,6 +566,7 @@ c: 67457181885150124304023419649124675286255007819125635338936395085652015523669
 </pre>
 
 <br />
+
 ### Solution
 ググってみたら、dが小さいRSAのやつは、Wiener's attackというらしいです。
 > 英語から翻訳-暗号学者のMichael J. Wienerにちなんで名付けられたウィーナーの攻撃は、RSAに対する一種の暗号攻撃です。攻撃は、継続分数法を使用して、dが小さいときに秘密鍵dを公開します。
@@ -608,6 +619,7 @@ Hint2: Think of different ways you can "stack" images
 
 
 <br />
+
 ### Solution
 ImageMagickのcompositeをいろいろ試していったら、addでフラグが出ました。
 
@@ -640,6 +652,7 @@ Hint: You may find some decoders online
 
 
 <br />
+
 ### Solution
 "unicode decoder"でググってヒットした最初のやつ（以下）を使わせてもらいました。
 
@@ -911,6 +924,7 @@ if jump_into_full:
 ```
 
 <br />
+
 ### Solution
 フラグの一部がdynamicということで xxxxxxxx になってます。それ以外の部分はstaticで固定です。
 
@@ -944,6 +958,7 @@ G0X0.8276Y3.8621
 </pre>
 
 <br />
+
 ### Solution
 G-codeっていうやつらしいです。
 
@@ -971,6 +986,7 @@ Hint: Always check edge cases when programming
 
 
 <br />
+
 ### Solution
 売るときにマイナス値を指定するとお金が増えます。
 
@@ -1025,6 +1041,7 @@ Flag: `picoCTF{b4d_brogrammer_ba6b8cdf}`
 > Files can always be changed in a secret way. Can you find the flag? cat.jpg
 
 <br />
+
 ### Solution
 
 <pre>
@@ -1077,6 +1094,7 @@ Flag: `picoCTF{the_m3tadata_1s_modified}`
 > Matryoshka dolls are a set of wooden dolls of decreasing size placed one inside another. What's the final one? Image: this
 
 <br />
+
 ### Solution
 foremostとzipを根気よく繰り返すだけです。
 
@@ -1095,6 +1113,7 @@ Flag: `picoCTF{e3f378fe6c1ea7f6bc5ac2c3d6801c1f}`
 > Can you find the flag? shark1.pcapng.
 
 <br />
+
 ### Solution
 tcp.stream eq 5 に以下が見つかります。
 
@@ -1119,6 +1138,7 @@ Flag: `picoCTF{p33kab00_1_s33_u_deadbeef}`
 > I've hidden a flag in this file. Can you find it? Forensics is fun.pptm
 
 <br />
+
 ### Solution
 fun.pptm を zip として解凍すると、以下が見つかります。
 <pre>
@@ -1150,6 +1170,7 @@ Hint: What are some other ways to hide data?
 
 
 <br />
+
 ### Solution
 Wiresharkでtftp objectをexportします。
 
@@ -1221,6 +1242,7 @@ Hint1: Did you really find _the_ flag?
 Hint2: Look for traffic that seems suspicious.
 
 <br />
+
 ### Solution
 DNS Queryが明らかに怪しいです。
 
@@ -1247,6 +1269,7 @@ Flag: `picoCTF{dns_3xf1l_ftw_deadbeef}`
 > Use `srch_strings` from the sleuthkit and some terminal-fu to find a flag in this disk image: dds1-alpine.flag.img.gz
 
 <br />
+
 ### Solution
 stringsで解けました。
 
@@ -1271,6 +1294,7 @@ Hint3: This disk can also be booted with qemu!
 
 
 <br />
+
 ### Solution
 以下のSANSのページがとても参考になりました。
 
@@ -1328,6 +1352,7 @@ Flag: `picoCTF{f0r3ns1c4t0r_n0v1c3_69ab1dc8}`
 Hint: What version of python am I running?
 
 <br />
+
 ### Solution
 `open('flag').read()` で解けました。
 
@@ -1359,6 +1384,7 @@ Attachment:
 
 
 <br />
+
 ### Solution
 malloc()とかfree()とかあったので、double-freeとかそこら辺かと思ってスルーしてたんですけど、書式文字列攻撃（Format string bug）でしたね。
 
@@ -1490,6 +1516,7 @@ Attachment:
 
 
 <br />
+
 ### Solution
 
 まずは、Ghidraでコードを確認します。

@@ -23,7 +23,7 @@
 <meta name="google-site-verification" content="PqctLWZQttGzxXVupWuIt2HWuBI8cvN1z07ETpxA2dw" />
 
 
-<meta name="generator" content="Hugo 0.74.2 with theme even" />
+<meta name="generator" content="Hugo 0.119.0 with theme even" />
 
 
 <link rel="canonical" href="https://captureamerica.github.io/writeups/post/bsidesjeddah_ctf_2021/" />
@@ -35,24 +35,20 @@
 
 
 
-<link href="https://captureamerica.github.io/writeups/sass/main.min.2e81bbed97b8b282c1aeb57488cc71c8d8c8ec559f3931531bd396bf31e0d4dd.css" rel="stylesheet">
+<link href="https://captureamerica.github.io/writeups/sass/main.min.f92fd13721ddf72129410fd8250e73152cc6f2438082b6c0208dc24ee7c13fc4.css" rel="stylesheet">
 
 
 
 <meta property="og:title" content="Bsides Jeddah CTF 2021 Writeup" />
 <meta property="og:description" content="Save The Earth! - 地球環境を守ろう！ URL: https://ctf.bsidesjeddah.com/ 2600点を獲得し、96位でした。 平日にやっていたCTFイベントです。 大きく分けて、pcap解析（&#43; Malware docx" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://captureamerica.github.io/writeups/post/bsidesjeddah_ctf_2021/" />
+<meta property="og:url" content="https://captureamerica.github.io/writeups/post/bsidesjeddah_ctf_2021/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2021-10-31T08:00:00+09:00" />
 <meta property="article:modified_time" content="2021-10-31T08:00:00+09:00" />
 <meta itemprop="name" content="Bsides Jeddah CTF 2021 Writeup">
-<meta itemprop="description" content="Save The Earth! - 地球環境を守ろう！ URL: https://ctf.bsidesjeddah.com/ 2600点を獲得し、96位でした。 平日にやっていたCTFイベントです。 大きく分けて、pcap解析（&#43; Malware docx">
-<meta itemprop="datePublished" content="2021-10-31T08:00:00&#43;09:00" />
-<meta itemprop="dateModified" content="2021-10-31T08:00:00&#43;09:00" />
-<meta itemprop="wordCount" content="1116">
-
-
-
+<meta itemprop="description" content="Save The Earth! - 地球環境を守ろう！ URL: https://ctf.bsidesjeddah.com/ 2600点を獲得し、96位でした。 平日にやっていたCTFイベントです。 大きく分けて、pcap解析（&#43; Malware docx"><meta itemprop="datePublished" content="2021-10-31T08:00:00+09:00" />
+<meta itemprop="dateModified" content="2021-10-31T08:00:00+09:00" />
+<meta itemprop="wordCount" content="1117">
 <meta itemprop="keywords" content="CTF," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Bsides Jeddah CTF 2021 Writeup"/>
 <meta name="twitter:description" content="Save The Earth! - 地球環境を守ろう！ URL: https://ctf.bsidesjeddah.com/ 2600点を獲得し、96位でした。 平日にやっていたCTFイベントです。 大きく分けて、pcap解析（&#43; Malware docx"/>
@@ -224,7 +220,7 @@
 <p>URL: <a href="https://ctf.bsidesjeddah.com/">https://ctf.bsidesjeddah.com/</a>
 <br /><br /></p>
 <p>2600点を獲得し、96位でした。</p>
-<p><br /></p>
+<br />
 <p>平日にやっていたCTFイベントです。</p>
 <p>大きく分けて、pcap解析（+ Malware docxの解析）と Memory Dump解析になっています。</p>
 <p>同じようなチャレンジや、その他いろいろと勉強になりそうなチャレンジが以下のサイトでいつでもできるようになっているようです。</p>
@@ -250,7 +246,7 @@
 <blockquote>
 <p>What is the server certificate public key that was used in TLS session: 731300002437c17bdfa2593dd0e0b28d391e680f764b5db3c4059f7abadbb28e</p>
 </blockquote>
-<p><br /></p>
+<br />
 <h3 id="solution">Solution</h3>
 <p>WireSharkのdisplay filterは以下を使いました。</p>
 <pre>
@@ -258,7 +254,7 @@ tls.handshake.session_id == 73:13:00:00:24:37:c1:7b:df:a2:59:3d:d0:e0:b2:8d:39:1
 </pre>
 <p>このときのpubkeyは以下になっていました。<br />
 64089e29f386356f1ffbd64d7056ca0f1d489a09cd7ebda630f2b7394e319406</p>
-<p><br /></p>
+<br />
 <p>Flag: <code>64089e29f386356f1ffbd64d7056ca0f1d489a09cd7ebda630f2b7394e319406</code></p>
 <p><br /><br />
 <br /><br /></p>
@@ -268,7 +264,7 @@ tls.handshake.session_id == 73:13:00:00:24:37:c1:7b:df:a2:59:3d:d0:e0:b2:8d:39:1
 <blockquote>
 <p>The attacker conducted a port scan on the victim machine. How many open ports did the attacker find?</p>
 </blockquote>
-<p><br /></p>
+<br />
 <h3 id="solution-1">Solution</h3>
 <p>192.168.112.128 (attacker) が 192.168.112.139 に対してTCP Port Scanをしているので、以下のフィルターを使います。</p>
 <pre>
@@ -289,7 +285,7 @@ $ cat *.csv | cut -d, -f4 | sort -u
 80
 </pre>
 <p>あとはどのポートが実際にOpenなのか見ていくんですが、まぁ答えが1桁の数字なのはわかっているので、テキトーに数字を入れたら当たります。</p>
-<p><br /></p>
+<br />
 <p>Flag: <code>7</code></p>
 <p><br /><br />
 <br /><br /></p>
@@ -299,7 +295,7 @@ $ cat *.csv | cut -d, -f4 | sort -u
 <blockquote>
 <p>What is the MD5 hash of the email attachment?</p>
 </blockquote>
-<p><br /></p>
+<br />
 <h3 id="solution-2">Solution</h3>
 <p>Base64 Encodingされている部分をテキストに落としてからデコードします。</p>
 <pre>
@@ -313,7 +309,7 @@ $ md5sum web_server.docx
 </pre>
 <br>
 <p>なお、Windowsで動く <a href="https://www.netresec.com/?page=networkminer">NetworkMiner</a> というツールを使ってもファイルは取り出せるはずです。</p>
-<p><br /></p>
+<br />
 <p>Flag: <code>55e7660d9b21ba07fc34630d49445030</code></p>
 <p><br /><br />
 <br /><br /></p>
@@ -323,11 +319,11 @@ $ md5sum web_server.docx
 <blockquote>
 <p>What is the CVE number the attacker tried to exploit using the malicious document? Format: CVE-XXXX-XXXXX</p>
 </blockquote>
-<p><br /></p>
+<br />
 <h3 id="solution-3">Solution</h3>
 <p>VirusTotalにすでにUploadされており、タグを見ると CVE-2021-40444 なのがわかります。</p>
 <p><a href="https://www.virustotal.com/gui/file/c7073b7fc18b3ec20e476a7375e2a6695d273f671917a6627430e59534d3a138">https://www.virustotal.com/gui/file/c7073b7fc18b3ec20e476a7375e2a6695d273f671917a6627430e59534d3a138</a></p>
-<p><br /></p>
+<br />
 <p>Flag: <code>CVE-2021-40444</code></p>
 <p><br /><br />
 <br /><br /></p>
@@ -337,10 +333,10 @@ $ md5sum web_server.docx
 <blockquote>
 <p>The malicious document file contains a URL to a malicious HTML file. Provide the URL for this file.</p>
 </blockquote>
-<p><br /></p>
+<br />
 <h3 id="solution-4">Solution</h3>
 <p>VirusTotalの中で、Embedded URL を確認します。</p>
-<p><br /></p>
+<br />
 <p>Flag: <code>http://192.168.112.128/word.html</code></p>
 <p><br /><br />
 <br /><br /></p>
@@ -350,7 +346,7 @@ $ md5sum web_server.docx
 <blockquote>
 <p>What is the LinkType of the OLEObject related to the relationship which contains the malicious URL?</p>
 </blockquote>
-<p><br /></p>
+<br />
 <h3 id="solution-5">Solution</h3>
 <p>docxをzip解凍して、LinkTypeをサーチします。</p>
 <p>1行が長いので、trを使って見つけやすくしてます。</p>
@@ -365,7 +361,7 @@ $ cat ./word/document.xml | tr ">" "\n" | grep LinkType
 EnhancedMetaFile&lt;/o:LinkType
 
 </pre>
-<p><br /></p>
+<br />
 <p>Flag: <code>EnhancedMetaFile</code></p>
 <p><br /><br />
 <br /><br /></p>
@@ -375,7 +371,7 @@ EnhancedMetaFile&lt;/o:LinkType
 <blockquote>
 <p>What is the Microsoft Office version installed on the victim machine?</p>
 </blockquote>
-<p><br /></p>
+<br />
 <h3 id="solution-6">Solution</h3>
 <p>答えのフォーマットが XX.0.XXXX なのがわかっていたので、以下のように探しました。</p>
 <pre>
@@ -385,7 +381,7 @@ User-Agent: Microsoft Office Word 2013 (15.0.4517) Windows NT 6.2
 :
 :
 </pre>
-<p><br /></p>
+<br />
 <p>Flag: <code>15.0.4517</code></p>
 <p><br /><br />
 <br /><br /></p>
@@ -395,12 +391,12 @@ User-Agent: Microsoft Office Word 2013 (15.0.4517) Windows NT 6.2
 <blockquote>
 <p>The exploit takes advantage of a CAB vulnerability. Provide the vulnerability name?</p>
 </blockquote>
-<p><br /></p>
+<br />
 <h3 id="solution-7">Solution</h3>
 <p>CVE-2021-40444 でググって見つけました。</p>
 <p><a href="https://github.com/klezVirus/CVE-2021-40444">https://github.com/klezVirus/CVE-2021-40444</a> <br />
 ==&gt; &ldquo;Due to a Path traversal (ZipSlip) vulnerability in the CAB&rdquo; だそうです。</p>
-<p><br /></p>
+<br />
 <p>Flag: <code>ZipSlip</code></p>
 <p><br /><br />
 <br /><br /></p>
@@ -410,13 +406,13 @@ User-Agent: Microsoft Office Word 2013 (15.0.4517) Windows NT 6.2
 <blockquote>
 <p>What is the path of malicious dll (msword.inf) after being dropped by the document file? Replace your username with IEUser</p>
 </blockquote>
-<p><br /></p>
+<br />
 <h3 id="solution-8">Solution</h3>
 <p>.cabファイルをCuckooにあげてみたところ、以下が見つかりました。</p>
 <img src="https://captureamerica.github.io/writeups/img/bsidesjeddah_CTF_2021_Q23.png" alt="bsidesjeddah_CTF_2021_Q23.png">
-<p><br /></p>
+<br />
 <p>多少Guessですが、Pathは同じだろうということで、フラグは以下です。</p>
-<p><br /></p>
+<br />
 <p>Flag: <code>C:\Users\IEUser\AppData\Local\Temp\msword.inf</code></p>
 <p><br /><br />
 <br /><br /></p>
@@ -426,10 +422,10 @@ User-Agent: Microsoft Office Word 2013 (15.0.4517) Windows NT 6.2
 <blockquote>
 <p>Analyzing the dll file, what is the API used to write the shellcode in the process memory?</p>
 </blockquote>
-<p><br /></p>
+<br />
 <h3 id="solution-9">Solution</h3>
 <p>VirusTotalのOutputからわかります。</p>
-<p><br /></p>
+<br />
 <p>Flag: <code>WriteProcessMemory</code></p>
 <p><br /><br />
 <br /><br /></p>
@@ -485,7 +481,7 @@ User-Agent: Microsoft Office Word 2013 (15.0.4517) Windows NT 6.2
     <footer id="footer" class="footer">
       <div class="social-links">
       <a href="https://github.com/CaptureAmerica/" class="iconfont icon-github" title="github"></a>
-  <a href="https://captureamerica.github.io/writeups/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+  
 </div>
 
 <div class="copyright">
@@ -520,20 +516,21 @@ User-Agent: Microsoft Office Word 2013 (15.0.4517) Windows NT 6.2
 
 
 
-<script type="text/javascript" src="https://captureamerica.github.io/writeups/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+<script type="text/javascript" src="https://captureamerica.github.io/writeups/js/main.min.4ae89da218555efa0e7093a20b92017d2e1202b66fff9fc2edf4cb8d44b44c6e.js"></script>
 
 
 <script type="application/javascript">
 var doNotTrack = false;
 if (!doNotTrack) {
-	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 	ga('create', 'UA-104910699-2', 'auto');
 	ga('set', 'anonymizeIp', true);
 	ga('send', 'pageview');
 }
 </script>
-<script async src='https://www.google-analytics.com/analytics.js'></script>
-
 
 
 

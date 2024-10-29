@@ -32,6 +32,7 @@ URL: [https://2019.peactf.com/problems](https://2019.peactf.com/problems)
 Ciphertext: 112 101 97 67 84 70 123 52 115 99 49 49 105 115 99 48 48 108 125
 
 <br />
+
 ### Solution
 普通に1個1個変換したら面白くないので、ワンライナーで挑戦。
 ```python
@@ -54,6 +55,7 @@ Flag: `peaCTF{4sc11isc00l}`
 Ciphertext: 011100010000000000101001000101{00100001100011010100000000010100101010100010010001}
 
 <br />
+
 ### Solution
 他の問題を解いていると、フラグのフォーマットが peaCTF{xxxx} なのがわかるので、011100010000000000101001000101の部分がpeaCTFだとして6等分すると、
 
@@ -123,6 +125,7 @@ Flag: `peaCTF{eggwaffles}`
 > Try to find to the flag file located somewhere in the folders located in: /problems/hide-and-seek_16_d386ec3561e6180b95a47434c62a78be
 
 <br />
+
 ### Solution
 これはシェルサーバに入って解く問題。
 <pre>
@@ -147,6 +150,7 @@ Alphabet: ​WCGPSUHRAQYKFDLZOJNXMVEBTI<br />
 zswGXU{ljwdhsqmags}
 
 <br />
+
 ### Solution
 単一換字式暗号 (monoalphabetic substitution ciphers)です。
 ```Perl
@@ -192,6 +196,7 @@ Attachments:
 - coffeetime.jar
 
 <br />
+
 ### Solution
 実行しろというので、とりあえず実行。
 <pre>
@@ -226,6 +231,7 @@ Attachments:
 - E.xtr
 
 <br />
+
 ### Solution
 <pre>
 $ file E.xtr 
@@ -265,6 +271,7 @@ Attachments:
 - TheWonderfulWizard.png
 
 <br />
+
 ### Solution
 「青い空を見上げればいつもそこに白い猫」で赤色ビット0抽出すると、数字が出てくるので、それをHex Decodeするだけ。<br />
 <img src="https://captureamerica.github.io/writeups/img/TheWonderfulWizard_Neko.PNG" alt="TheWonderfulWizard_Neko.PNG">

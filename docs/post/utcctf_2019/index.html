@@ -23,7 +23,7 @@
 <meta name="google-site-verification" content="PqctLWZQttGzxXVupWuIt2HWuBI8cvN1z07ETpxA2dw" />
 
 
-<meta name="generator" content="Hugo 0.74.2 with theme even" />
+<meta name="generator" content="Hugo 0.119.0 with theme even" />
 
 
 <link rel="canonical" href="https://captureamerica.github.io/writeups/post/utcctf_2019/" />
@@ -35,24 +35,20 @@
 
 
 
-<link href="https://captureamerica.github.io/writeups/sass/main.min.2e81bbed97b8b282c1aeb57488cc71c8d8c8ec559f3931531bd396bf31e0d4dd.css" rel="stylesheet">
+<link href="https://captureamerica.github.io/writeups/sass/main.min.f92fd13721ddf72129410fd8250e73152cc6f2438082b6c0208dc24ee7c13fc4.css" rel="stylesheet">
 
 
 
 <meta property="og:title" content="UTC CTF Writeup" />
 <meta property="og:description" content="(2019/12/23 - 復習しました) URL: https://utc-ctf.club/challenges 以下、スコアです。 [Misc]: Optics 2 Challenge You seem to be professional in Forensics &amp; Optics. Now, the things will get tedious. Let&rsquo;s see what you got. Attachment: chall_0.png ~ chall_440.png Solution 441個のpngが与えられます。それぞれは" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://captureamerica.github.io/writeups/post/utcctf_2019/" />
+<meta property="og:url" content="https://captureamerica.github.io/writeups/post/utcctf_2019/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2019-12-22T19:20:00+09:00" />
 <meta property="article:modified_time" content="2019-12-23T19:20:00+09:00" />
 <meta itemprop="name" content="UTC CTF Writeup">
-<meta itemprop="description" content="(2019/12/23 - 復習しました) URL: https://utc-ctf.club/challenges 以下、スコアです。 [Misc]: Optics 2 Challenge You seem to be professional in Forensics &amp; Optics. Now, the things will get tedious. Let&rsquo;s see what you got. Attachment: chall_0.png ~ chall_440.png Solution 441個のpngが与えられます。それぞれは">
-<meta itemprop="datePublished" content="2019-12-22T19:20:00&#43;09:00" />
-<meta itemprop="dateModified" content="2019-12-23T19:20:00&#43;09:00" />
-<meta itemprop="wordCount" content="2276">
-
-
-
+<meta itemprop="description" content="(2019/12/23 - 復習しました) URL: https://utc-ctf.club/challenges 以下、スコアです。 [Misc]: Optics 2 Challenge You seem to be professional in Forensics &amp; Optics. Now, the things will get tedious. Let&rsquo;s see what you got. Attachment: chall_0.png ~ chall_440.png Solution 441個のpngが与えられます。それぞれは"><meta itemprop="datePublished" content="2019-12-22T19:20:00+09:00" />
+<meta itemprop="dateModified" content="2019-12-23T19:20:00+09:00" />
+<meta itemprop="wordCount" content="2264">
 <meta itemprop="keywords" content="CTF,Reviewed," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="UTC CTF Writeup"/>
 <meta name="twitter:description" content="(2019/12/23 - 復習しました) URL: https://utc-ctf.club/challenges 以下、スコアです。 [Misc]: Optics 2 Challenge You seem to be professional in Forensics &amp; Optics. Now, the things will get tedious. Let&rsquo;s see what you got. Attachment: chall_0.png ~ chall_440.png Solution 441個のpngが与えられます。それぞれは"/>
@@ -201,7 +197,7 @@
 <ul>
 <li>chall_0.png ~ chall_440.png</li>
 </ul>
-<p><br /></p>
+<br />
 <h3 id="solution">Solution</h3>
 <p>441個のpngが与えられます。それぞれはgrayscaleの正方形の画像です。</p>
 <p>21 * 21 = 441 なので、結合してQRにするチャレンジですね。</p>
@@ -230,11 +226,11 @@ convert +append chall_399.png chall_400.png chall_401.png chall_402.png chall_40
 convert +append chall_420.png chall_421.png chall_422.png chall_423.png chall_424.png chall_425.png chall_426.png chall_427.png chall_428.png chall_429.png chall_430.png chall_431.png chall_432.png chall_433.png chall_434.png chall_435.png chall_436.png chall_437.png chall_438.png chall_439.png chall_440.png 20.png
 convert +append convert -append 0.png 1.png 2.png 3.png 4.png 5.png 6.png 7.png 8.png 9.png 10.png 11.png 12.png 13.png 14.png 15.png 16.png 17.png 18.png 19.png 20.png QR.png
 </pre>
-<p><br />
-ちなみに、Cでプログラムを書いて、上記のコマンドを出力してます。<br />（かつ、一部結果を手で直している箇所あり。&ldquo;convert +append &ldquo;が余分に1個出てくるので。。。）</p>
+<br />
+ちなみに、Cでプログラムを書いて、上記のコマンドを出力してます。<br />（かつ、一部結果を手で直している箇所あり。"convert +append "が余分に1個出てくるので。。。）
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -258,34 +254,34 @@ convert +append convert -append 0.png 1.png 2.png 3.png 4.png 5.png 6.png 7.png 
 </span><span class="lnt">22
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-C" data-lang="C"><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
-</span><span class="cp"></span>
-<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
-<span class="p">{</span>
-	<span class="kt">int</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">k</span><span class="p">;</span>
-	<span class="n">printf</span><span class="p">(</span> <span class="s">&#34;convert +append &#34;</span> <span class="p">);</span>
-	<span class="k">for</span> <span class="p">(</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">k</span> <span class="o">=</span> <span class="mi">0</span> <span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="mi">440</span> <span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">,</span> <span class="n">j</span><span class="o">++</span> <span class="p">)</span> <span class="p">{</span>
-		<span class="n">printf</span><span class="p">(</span> <span class="s">&#34;chall_%d.png &#34;</span><span class="p">,</span> <span class="n">i</span> <span class="p">);</span>
-		<span class="k">if</span> <span class="p">(</span> <span class="n">j</span> <span class="o">&gt;=</span> <span class="mi">21</span> <span class="p">)</span> <span class="p">{</span>
-			<span class="n">printf</span><span class="p">(</span> <span class="s">&#34;%d.png</span><span class="se">\n</span><span class="s">convert +append &#34;</span><span class="p">,</span> <span class="n">k</span> <span class="p">);</span>
-			<span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-			<span class="n">k</span><span class="o">++</span><span class="p">;</span>
-		<span class="p">}</span>
-	<span class="p">}</span>
-	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;&#34;</span><span class="p">);</span>
-	<span class="n">printf</span><span class="p">(</span> <span class="s">&#34;convert -append &#34;</span> <span class="p">);</span>
-	<span class="k">for</span> <span class="p">(</span> <span class="n">k</span> <span class="o">=</span> <span class="mi">0</span> <span class="p">;</span> <span class="n">k</span> <span class="o">&lt;</span> <span class="mi">21</span> <span class="p">;</span> <span class="n">k</span><span class="o">++</span> <span class="p">)</span> <span class="p">{</span>
-		<span class="n">printf</span><span class="p">(</span> <span class="s">&#34;%d.png &#34;</span><span class="p">,</span> <span class="n">k</span> <span class="p">);</span>
-	<span class="p">}</span>
-	<span class="n">printf</span><span class="p">(</span> <span class="s">&#34;QR.png</span><span class="se">\n</span><span class="s">&#34;</span> <span class="p">);</span>
-	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">int</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">k</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="nf">printf</span><span class="p">(</span> <span class="s">&#34;convert +append &#34;</span> <span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="k">for</span> <span class="p">(</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">k</span> <span class="o">=</span> <span class="mi">0</span> <span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="mi">440</span> <span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">,</span> <span class="n">j</span><span class="o">++</span> <span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="nf">printf</span><span class="p">(</span> <span class="s">&#34;chall_%d.png &#34;</span><span class="p">,</span> <span class="n">i</span> <span class="p">);</span>
+</span></span><span class="line"><span class="cl">		<span class="k">if</span> <span class="p">(</span> <span class="n">j</span> <span class="o">&gt;=</span> <span class="mi">21</span> <span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">			<span class="nf">printf</span><span class="p">(</span> <span class="s">&#34;%d.png</span><span class="se">\n</span><span class="s">convert +append &#34;</span><span class="p">,</span> <span class="n">k</span> <span class="p">);</span>
+</span></span><span class="line"><span class="cl">			<span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">			<span class="n">k</span><span class="o">++</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">		<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="nf">puts</span><span class="p">(</span><span class="s">&#34;&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="nf">printf</span><span class="p">(</span> <span class="s">&#34;convert -append &#34;</span> <span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="k">for</span> <span class="p">(</span> <span class="n">k</span> <span class="o">=</span> <span class="mi">0</span> <span class="p">;</span> <span class="n">k</span> <span class="o">&lt;</span> <span class="mi">21</span> <span class="p">;</span> <span class="n">k</span><span class="o">++</span> <span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="nf">printf</span><span class="p">(</span> <span class="s">&#34;%d.png &#34;</span><span class="p">,</span> <span class="n">k</span> <span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="nf">printf</span><span class="p">(</span> <span class="s">&#34;QR.png</span><span class="se">\n</span><span class="s">&#34;</span> <span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
-</div><p><br />
-<img src="https://captureamerica.github.io/writeups/img/utcctf_QR.png" alt="utcctf_QR.png"></p>
-<p><br />
-Flag: <code>utc{merge_and_merge_until_you_decode_it}</code></p>
+</div><br />
+<img src="https://captureamerica.github.io/writeups/img/utcctf_QR.png" alt="utcctf_QR.png">
+<br />
+Flag: `utc{merge_and_merge_until_you_decode_it}`
 <p><br /><br />
 <br /><br /></p>
 <h2 id="misc-really-good-icture">[Misc]: Really Good 🅱icture</h2>
@@ -297,7 +293,7 @@ Flag: <code>utc{merge_and_merge_until_you_decode_it}</code></p>
 <ul>
 <li>flag.png</li>
 </ul>
-<p><br /></p>
+<br />
 <h3 id="solution-1">Solution</h3>
 <p>「青い空を見上げればいつもそこに白い猫」で開いて、ビット抽出前バイト列を確認すると、フラグっぽい文字列が得られます。</p>
 <img src="https://captureamerica.github.io/writeups/img/utcctf_Bicture.PNG" alt="utcctf_Bicture.PNG">
@@ -307,8 +303,8 @@ Flag: <code>utc{merge_and_merge_until_you_decode_it}</code></p>
 $ cat share_doc.txt | cut -d: -f2 | tr -d "\r\n " | fold -3 | uniq | tr -d "\n" ; echo
 utc{taste_the_rainbow94100389}utc{taste_the_rainbow94100389}utc{taste_the_rainbow94100389}utc{taste_the_rainbow94100389}utc{taste_the_rainbow94100389}utc{taste_the_rainbow94100389}utc{taste_the_rainbow94100389}utc{taste_the_rainbow94100389}utc{taste_the_rainbow94100389}utc{taste_the_rainbow94100389}utc{taste_the_rainbow94100389}utc{taste_the_rainbow94100389}.....(略)
 </pre>
-<p><br />
-Flag: <code>utc{taste_the_rainbow94100389}</code></p>
+<br />
+Flag: `utc{taste_the_rainbow94100389}`
 <p><br /><br />
 <br /><br /></p>
 <h2 id="reverse-jump-baby">[Reverse]: Jump! (baby)</h2>
@@ -323,12 +319,12 @@ GIMME FLAG AGAIN!</p>
 <ul>
 <li>jump (ELF 64bit)</li>
 </ul>
-<p><br /></p>
+<br />
 <h3 id="solution-2">Solution</h3>
 <p>Ghidraでソースを確認します。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -367,51 +363,51 @@ GIMME FLAG AGAIN!</p>
 </span><span class="lnt">37
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-C" data-lang="C"><span class="kt">void</span> <span class="nf">gimme_flag</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
-
-<span class="p">{</span>
-  <span class="kt">long</span> <span class="n">in_FS_OFFSET</span><span class="p">;</span>
-  <span class="n">undefined4</span> <span class="n">local_40</span><span class="p">;</span>
-  <span class="n">uint</span> <span class="n">local_3c</span><span class="p">;</span>
-  <span class="n">undefined8</span> <span class="n">local_38</span><span class="p">;</span>
-  <span class="n">undefined8</span> <span class="n">local_30</span><span class="p">;</span>
-  <span class="n">undefined8</span> <span class="n">local_28</span><span class="p">;</span>
-  <span class="n">undefined</span> <span class="n">local_20</span><span class="p">;</span>
-  <span class="kt">long</span> <span class="n">local_10</span><span class="p">;</span>
-  
-  <span class="n">local_10</span> <span class="o">=</span> <span class="o">*</span><span class="p">(</span><span class="kt">long</span> <span class="o">*</span><span class="p">)(</span><span class="n">in_FS_OFFSET</span> <span class="o">+</span> <span class="mh">0x28</span><span class="p">);</span>
-  <span class="n">local_40</span> <span class="o">=</span> <span class="mh">0xdeadbeef</span><span class="p">;</span>
-  <span class="n">local_38</span> <span class="o">=</span> <span class="mh">0xefc1e18ea5ceca9a</span><span class="p">;</span>
-  <span class="n">local_30</span> <span class="o">=</span> <span class="mh">0xac99d6b0bbc1ca9b</span><span class="p">;</span>
-  <span class="n">local_28</span> <span class="o">=</span> <span class="mh">0xded097d581df8d8b</span><span class="p">;</span>
-  <span class="n">local_20</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-  <span class="k">if</span> <span class="p">(</span><span class="n">selfish</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
-    <span class="n">puts</span><span class="p">(</span><span class="s">&#34;Don</span><span class="se">\&#39;</span><span class="s">t be selfish! Share the flag with me...&#34;</span><span class="p">);</span>
-                    <span class="cm">/* WARNING: Subroutine does not return */</span>
-    <span class="n">exit</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
-  <span class="p">}</span>
-  <span class="n">local_3c</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-  <span class="k">while</span> <span class="p">(</span><span class="n">local_3c</span> <span class="o">&lt;</span> <span class="mh">0x19</span><span class="p">)</span> <span class="p">{</span>
-    <span class="o">*</span><span class="p">(</span><span class="n">byte</span> <span class="o">*</span><span class="p">)((</span><span class="kt">long</span><span class="p">)</span><span class="o">&amp;</span><span class="n">local_38</span> <span class="o">+</span> <span class="p">(</span><span class="kt">long</span><span class="p">)(</span><span class="kt">int</span><span class="p">)</span><span class="n">local_3c</span><span class="p">)</span> <span class="o">=</span>
-         <span class="o">*</span><span class="p">(</span><span class="n">byte</span> <span class="o">*</span><span class="p">)((</span><span class="kt">long</span><span class="p">)</span><span class="o">&amp;</span><span class="n">local_38</span> <span class="o">+</span> <span class="p">(</span><span class="kt">long</span><span class="p">)(</span><span class="kt">int</span><span class="p">)</span><span class="n">local_3c</span><span class="p">)</span> <span class="o">^</span>
-         <span class="o">*</span><span class="p">(</span><span class="n">byte</span> <span class="o">*</span><span class="p">)((</span><span class="kt">long</span><span class="p">)</span><span class="o">&amp;</span><span class="n">local_40</span> <span class="o">+</span> <span class="p">(</span><span class="n">ulong</span><span class="p">)(</span><span class="n">local_3c</span> <span class="o">&amp;</span> <span class="mi">3</span><span class="p">));</span>
-    <span class="n">local_3c</span> <span class="o">=</span> <span class="n">local_3c</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
-  <span class="p">}</span>
-  <span class="n">puts</span><span class="p">((</span><span class="kt">char</span> <span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="n">local_38</span><span class="p">);</span>
-  <span class="k">if</span> <span class="p">(</span><span class="n">local_10</span> <span class="o">!=</span> <span class="o">*</span><span class="p">(</span><span class="kt">long</span> <span class="o">*</span><span class="p">)(</span><span class="n">in_FS_OFFSET</span> <span class="o">+</span> <span class="mh">0x28</span><span class="p">))</span> <span class="p">{</span>
-                    <span class="cm">/* WARNING: Subroutine does not return */</span>
-    <span class="n">__stack_chk_fail</span><span class="p">();</span>
-  <span class="p">}</span>
-  <span class="k">return</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">gimme_flag</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="kt">long</span> <span class="n">in_FS_OFFSET</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="n">undefined4</span> <span class="n">local_40</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="n">uint</span> <span class="n">local_3c</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="n">undefined8</span> <span class="n">local_38</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="n">undefined8</span> <span class="n">local_30</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="n">undefined8</span> <span class="n">local_28</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="n">undefined</span> <span class="n">local_20</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="kt">long</span> <span class="n">local_10</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">  <span class="n">local_10</span> <span class="o">=</span> <span class="o">*</span><span class="p">(</span><span class="kt">long</span> <span class="o">*</span><span class="p">)(</span><span class="n">in_FS_OFFSET</span> <span class="o">+</span> <span class="mh">0x28</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="n">local_40</span> <span class="o">=</span> <span class="mh">0xdeadbeef</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="n">local_38</span> <span class="o">=</span> <span class="mh">0xefc1e18ea5ceca9a</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="n">local_30</span> <span class="o">=</span> <span class="mh">0xac99d6b0bbc1ca9b</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="n">local_28</span> <span class="o">=</span> <span class="mh">0xded097d581df8d8b</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="n">local_20</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="k">if</span> <span class="p">(</span><span class="n">selfish</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">puts</span><span class="p">(</span><span class="s">&#34;Don</span><span class="se">\&#39;</span><span class="s">t be selfish! Share the flag with me...&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">                    <span class="cm">/* WARNING: Subroutine does not return */</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">exit</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="n">local_3c</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="k">while</span> <span class="p">(</span><span class="n">local_3c</span> <span class="o">&lt;</span> <span class="mh">0x19</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="o">*</span><span class="p">(</span><span class="n">byte</span> <span class="o">*</span><span class="p">)((</span><span class="kt">long</span><span class="p">)</span><span class="o">&amp;</span><span class="n">local_38</span> <span class="o">+</span> <span class="p">(</span><span class="kt">long</span><span class="p">)(</span><span class="kt">int</span><span class="p">)</span><span class="n">local_3c</span><span class="p">)</span> <span class="o">=</span>
+</span></span><span class="line"><span class="cl">         <span class="o">*</span><span class="p">(</span><span class="n">byte</span> <span class="o">*</span><span class="p">)((</span><span class="kt">long</span><span class="p">)</span><span class="o">&amp;</span><span class="n">local_38</span> <span class="o">+</span> <span class="p">(</span><span class="kt">long</span><span class="p">)(</span><span class="kt">int</span><span class="p">)</span><span class="n">local_3c</span><span class="p">)</span> <span class="o">^</span>
+</span></span><span class="line"><span class="cl">         <span class="o">*</span><span class="p">(</span><span class="n">byte</span> <span class="o">*</span><span class="p">)((</span><span class="kt">long</span><span class="p">)</span><span class="o">&amp;</span><span class="n">local_40</span> <span class="o">+</span> <span class="p">(</span><span class="n">ulong</span><span class="p">)(</span><span class="n">local_3c</span> <span class="o">&amp;</span> <span class="mi">3</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">    <span class="n">local_3c</span> <span class="o">=</span> <span class="n">local_3c</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">puts</span><span class="p">((</span><span class="kt">char</span> <span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="n">local_38</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="k">if</span> <span class="p">(</span><span class="n">local_10</span> <span class="o">!=</span> <span class="o">*</span><span class="p">(</span><span class="kt">long</span> <span class="o">*</span><span class="p">)(</span><span class="n">in_FS_OFFSET</span> <span class="o">+</span> <span class="mh">0x28</span><span class="p">))</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                    <span class="cm">/* WARNING: Subroutine does not return */</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">__stack_chk_fail</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="k">return</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
-</div><p><br />
-中身はあんまり把握してません。関数名より、たぶんフラグを生成する関数です。</p>
+</div><br />
+中身はあんまり把握してません。関数名より、たぶんフラグを生成する関数です。
 <p>大事なのは、引数が<code>void</code>な辺りですかね。引数が無いので、関数のアドレスに直接ジャンプできます。</p>
 <p>あ、あとは、途中で<code>selfish</code>の値を0に書き換えてあげないといけないです。</p>
-<p><br />
-gdbで開いて、mainと、gimme_flagにbreak pointはっておきます。</p>
+<br />
+gdbで開いて、mainと、gimme_flagにbreak pointはっておきます。
 <pre>
 gdb-peda$ x gimme_flag
 0x5555555546fa <gimme_flag>:	0x40ec8348e5894855
@@ -422,8 +418,8 @@ gdb-peda$ jump *0x5555555546fa
 </pre>
 <p>eaxをセットしているところまで、niで進んで、eaxが1になるので0に変えてcontinueします。</p>
 <img src="https://captureamerica.github.io/writeups/img/utcctf_gimme_flag.png" alt="utcctf_gimme_flag.png">
-<p><br />
-Flag: <code>utc{a_l1ttle_h4rd3r_:)}</code></p>
+<br />
+Flag: `utc{a_l1ttle_h4rd3r_:)}`
 <p><br /><br />
 <br /><br />
 <img src="https://captureamerica.github.io/writeups/img/orange_bar.png" alt="orange_bar.png">
@@ -442,7 +438,7 @@ Flag: <code>utc{a_l1ttle_h4rd3r_:)}</code></p>
 </ul>
 <p>中身 <br />
 FhUTDwAQXTwCMAQVKV8NPgdHDQpeDgQvAFE2FlMTAh0OGx0e</p>
-<p><br /></p>
+<br />
 <h3 id="solution-3">Solution</h3>
 <p>Base64デコードした時点で、印字可能文字にならなかったので、captain cipherみたいのがあるのかと思ってググっていたら、&ldquo;captain midnight decoder ring&quot;っていうのがヒットして、意味がわからなくて降参したやつです。</p>
 <p>Base64デコードした後、&ldquo;captain&quot;でXORするのが正解でした。<br />
@@ -450,7 +446,7 @@ FhUTDwAQXTwCMAQVKV8NPgdHDQpeDgQvAFE2FlMTAh0OGx0e</p>
 <p>以下は、自分で書きました。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -462,20 +458,20 @@ FhUTDwAQXTwCMAQVKV8NPgdHDQpeDgQvAFE2FlMTAh0OGx0e</p>
 </span><span class="lnt">10
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-Python" data-lang="Python"><span class="ch">#!/usr/bin/env python</span>
-<span class="kn">import</span> <span class="nn">base64</span>
-<span class="kn">import</span> <span class="nn">sys</span>
-<span class="n">captain</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="s2">&#34;captain&#34;</span><span class="p">)</span>
-<span class="n">d</span> <span class="o">=</span> <span class="n">base64</span><span class="o">.</span><span class="n">b64decode</span><span class="p">(</span><span class="s2">&#34;FhUTDwAQXTwCMAQVKV8NPgdHDQpeDgQvAFE2FlMTAh0OGx0e&#34;</span><span class="p">)</span>
-<span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
-<span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">bytearray</span><span class="p">(</span><span class="n">d</span><span class="p">):</span>
-    <span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="nb">chr</span><span class="p">(</span><span class="n">x</span> <span class="o">^</span> <span class="nb">ord</span><span class="p">(</span><span class="n">captain</span><span class="p">[</span><span class="n">i</span><span class="p">])))</span>
-    <span class="n">i</span> <span class="o">=</span> <span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">%</span> <span class="nb">len</span><span class="p">(</span><span class="n">captain</span><span class="p">)</span>
-<span class="k">print</span> <span class="s2">&#34;&#34;</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-Python" data-lang="Python"><span class="line"><span class="cl"><span class="ch">#!/usr/bin/env python</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">base64</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">sys</span>
+</span></span><span class="line"><span class="cl"><span class="n">captain</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="s2">&#34;captain&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">d</span> <span class="o">=</span> <span class="n">base64</span><span class="o">.</span><span class="n">b64decode</span><span class="p">(</span><span class="s2">&#34;FhUTDwAQXTwCMAQVKV8NPgdHDQpeDgQvAFE2FlMTAh0OGx0e&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">bytearray</span><span class="p">(</span><span class="n">d</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="nb">chr</span><span class="p">(</span><span class="n">x</span> <span class="o">^</span> <span class="nb">ord</span><span class="p">(</span><span class="n">captain</span><span class="p">[</span><span class="n">i</span><span class="p">])))</span>
+</span></span><span class="line"><span class="cl">    <span class="n">i</span> <span class="o">=</span> <span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">%</span> <span class="nb">len</span><span class="p">(</span><span class="n">captain</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span> <span class="s2">&#34;&#34;</span>
+</span></span></code></pre></td></tr></table>
 </div>
-</div><p><br />
-Flag: <code>utc{ay3_c@pt@1n_w3lc0me_t0_x0rriors}</code></p>
+</div><br />
+Flag: `utc{ay3_c@pt@1n_w3lc0me_t0_x0rriors}`
 <p><br /><br />
 <br /><br />
 (2020/02/23 - 追記)</p>
@@ -539,7 +535,7 @@ utc{ay3_c@pt@1n_w3lc0me_t0_x0rriors}
     <footer id="footer" class="footer">
       <div class="social-links">
       <a href="https://github.com/CaptureAmerica/" class="iconfont icon-github" title="github"></a>
-  <a href="https://captureamerica.github.io/writeups/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+  
 </div>
 
 <div class="copyright">
@@ -574,20 +570,21 @@ utc{ay3_c@pt@1n_w3lc0me_t0_x0rriors}
 
 
 
-<script type="text/javascript" src="https://captureamerica.github.io/writeups/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+<script type="text/javascript" src="https://captureamerica.github.io/writeups/js/main.min.4ae89da218555efa0e7093a20b92017d2e1202b66fff9fc2edf4cb8d44b44c6e.js"></script>
 
 
 <script type="application/javascript">
 var doNotTrack = false;
 if (!doNotTrack) {
-	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 	ga('create', 'UA-104910699-2', 'auto');
 	ga('set', 'anonymizeIp', true);
 	ga('send', 'pageview');
 }
 </script>
-<script async src='https://www.google-analytics.com/analytics.js'></script>
-
 
 
 

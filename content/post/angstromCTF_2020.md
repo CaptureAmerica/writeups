@@ -54,6 +54,7 @@ nc misc.2020.chall.actf.co 20300
 
 
 <br />
+
 ### Solution
 アクセスすると、以下のような出力が得られます。
 
@@ -179,6 +180,7 @@ int main() {
 
 
 <br />
+
 ### Solution
 なんかもう、オフセットサイズとかちゃんと調べず、適当に8バイトずつ値を何回か変えて試しました。
 
@@ -294,6 +296,7 @@ int main() {
 ```
 
 <br />
+
 ### Solution
 
 FSB (Format String Bug)を使ってCanaryをLeakし、Canaryを壊さないようにしてBOFをするチャレンジです。
@@ -417,6 +420,7 @@ Attachment:
 
 
 <br />
+
 ### Solution
 簡単なやつだったんで、概要だけ。
 
@@ -459,6 +463,7 @@ Attachment:
 
 
 <br />
+
 ### Solution
 やけに正解者が多いなと思ったら、案の定stringsで解けるやつでした。
 
@@ -665,6 +670,7 @@ Attachment:
 
 
 <br />
+
 ### Solution
 git-receive-pack というのが出てきて、よく知らなかったのでスルーしたやつなんですが、gitを使わずとも解ける問題だったみたいなので再度やってみました。
 

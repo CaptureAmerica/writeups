@@ -40,6 +40,7 @@ Attachment:
 - listen.ovpn
 
 <br />
+
 ### Solution
 OpenVPNで接続すると、172.30.0.14/28がもらえます。
 

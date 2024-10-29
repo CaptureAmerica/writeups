@@ -37,6 +37,7 @@ Web チャレンジだけやりました。他はほぼ未着手なので、ス�
 https://bluehens-web-cookies.chals.io/
 
 <br />
+
 ### Solution
 
 チャレンジ文が `Comfort food.` しか無いですが、Webチャレンジで食べ物と言ったら Cookie ですね。
@@ -93,6 +94,7 @@ Flag: `UDCTF{k33p_17_51mp13_57up1d_15_4_l1e}`
 （後日みたらURLが変わっているようですが、上記は自分が解いたときのものです。）
 
 <br />
+
 ### Solution
 
 https://bluehens-cat-the-flask.chals.io/ にアクセスすると、以下が表示されます。
@@ -150,6 +152,7 @@ Flag: `UDCTF{l4y3r_1_c0mpl3t3_g00d_luck_w1th_p4rt_2}`
 > (Tried 'em all)
 
 <br />
+
 ### Solution
 
 チャレンジ文にあるスクリーンショットを見たら、brute forceしたらいいのはわかります。

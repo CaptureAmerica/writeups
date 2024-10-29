@@ -23,7 +23,7 @@
 <meta name="google-site-verification" content="PqctLWZQttGzxXVupWuIt2HWuBI8cvN1z07ETpxA2dw" />
 
 
-<meta name="generator" content="Hugo 0.74.2 with theme even" />
+<meta name="generator" content="Hugo 0.119.0 with theme even" />
 
 
 <link rel="canonical" href="https://captureamerica.github.io/writeups/post/utctf_2020/" />
@@ -35,24 +35,20 @@
 
 
 
-<link href="https://captureamerica.github.io/writeups/sass/main.min.2e81bbed97b8b282c1aeb57488cc71c8d8c8ec559f3931531bd396bf31e0d4dd.css" rel="stylesheet">
+<link href="https://captureamerica.github.io/writeups/sass/main.min.f92fd13721ddf72129410fd8250e73152cc6f2438082b6c0208dc24ee7c13fc4.css" rel="stylesheet">
 
 
 
 <meta property="og:title" content="UTCTF 2020 Writeup" />
 <meta property="og:description" content="URL: https://utctf.live/challenges えと、簡単なのしか解いてないので、テキトーです。 [Pwn]: bof Challenge nc binary.utctf.live 9002 Attachment: pwnable (ELF 64bit) Solution Ghidraでソースを確認します。 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://captureamerica.github.io/writeups/post/utctf_2020/" />
+<meta property="og:url" content="https://captureamerica.github.io/writeups/post/utctf_2020/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2020-03-09T22:00:00+09:00" />
 <meta property="article:modified_time" content="2020-03-09T22:00:00+09:00" />
 <meta itemprop="name" content="UTCTF 2020 Writeup">
-<meta itemprop="description" content="URL: https://utctf.live/challenges えと、簡単なのしか解いてないので、テキトーです。 [Pwn]: bof Challenge nc binary.utctf.live 9002 Attachment: pwnable (ELF 64bit) Solution Ghidraでソースを確認します。 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16">
-<meta itemprop="datePublished" content="2020-03-09T22:00:00&#43;09:00" />
-<meta itemprop="dateModified" content="2020-03-09T22:00:00&#43;09:00" />
-<meta itemprop="wordCount" content="1112">
-
-
-
+<meta itemprop="description" content="URL: https://utctf.live/challenges えと、簡単なのしか解いてないので、テキトーです。 [Pwn]: bof Challenge nc binary.utctf.live 9002 Attachment: pwnable (ELF 64bit) Solution Ghidraでソースを確認します。 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16"><meta itemprop="datePublished" content="2020-03-09T22:00:00+09:00" />
+<meta itemprop="dateModified" content="2020-03-09T22:00:00+09:00" />
+<meta itemprop="wordCount" content="1144">
 <meta itemprop="keywords" content="CTF,Reviewed," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="UTCTF 2020 Writeup"/>
 <meta name="twitter:description" content="URL: https://utctf.live/challenges えと、簡単なのしか解いてないので、テキトーです。 [Pwn]: bof Challenge nc binary.utctf.live 9002 Attachment: pwnable (ELF 64bit) Solution Ghidraでソースを確認します。 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16"/>
@@ -157,13 +153,11 @@
     <li><a href="#network-nittaku-3-star-premium">[Network]: Nittaku 3 Star Premium</a>
       <ul>
         <li><a href="#challenge-1">Challenge</a></li>
-        <li><a href="#unsolved">(Unsolved)</a></li>
       </ul>
     </li>
     <li><a href="#network-do-not-stop">[Network]: Do Not Stop</a>
       <ul>
         <li><a href="#challenge-2">Challenge</a></li>
-        <li><a href="#unsolved-1">(Unsolved)</a></li>
       </ul>
     </li>
   </ul>
@@ -192,12 +186,12 @@
 <ul>
 <li>pwnable (ELF 64bit)</li>
 </ul>
-<p><br /></p>
+<br />
 <h3 id="solution">Solution</h3>
 <p>Ghidraでソースを確認します。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -221,29 +215,29 @@
 </span><span class="lnt">22
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-C" data-lang="C"><span class="n">undefined8</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
-<span class="p">{</span>
-  <span class="kt">char</span> <span class="n">local_78</span> <span class="p">[</span><span class="mi">112</span><span class="p">];</span>
-  
-  <span class="n">puts</span><span class="p">(</span><span class="s">&#34;I really like strings! Please give me a good one!&#34;</span><span class="p">);</span>
-  <span class="n">gets</span><span class="p">(</span><span class="n">local_78</span><span class="p">);</span>
-  <span class="n">puts</span><span class="p">(</span><span class="s">&#34;Thanks for the string&#34;</span><span class="p">);</span>
-  <span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
-<span class="p">}</span>
-
-<span class="kt">void</span> <span class="nf">get_flag</span><span class="p">(</span><span class="kt">int</span> <span class="n">param_1</span><span class="p">)</span>
-<span class="p">{</span>
-  <span class="kt">char</span> <span class="o">*</span><span class="n">local_18</span><span class="p">;</span>
-  <span class="n">undefined8</span> <span class="n">local_10</span><span class="p">;</span>
-  
-  <span class="k">if</span> <span class="p">(</span><span class="n">param_1</span> <span class="o">==</span> <span class="o">-</span><span class="mh">0x21524111</span><span class="p">)</span> <span class="p">{</span>
-    <span class="n">local_18</span> <span class="o">=</span> <span class="s">&#34;/bin/sh&#34;</span><span class="p">;</span>
-    <span class="n">local_10</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-    <span class="n">execve</span><span class="p">(</span><span class="s">&#34;/bin/sh&#34;</span><span class="p">,</span><span class="o">&amp;</span><span class="n">local_18</span><span class="p">,(</span><span class="kt">char</span> <span class="o">**</span><span class="p">)</span><span class="mh">0x0</span><span class="p">);</span>
-  <span class="p">}</span>
-  <span class="k">return</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="n">undefined8</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="kt">char</span> <span class="n">local_78</span> <span class="p">[</span><span class="mi">112</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">  <span class="nf">puts</span><span class="p">(</span><span class="s">&#34;I really like strings! Please give me a good one!&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">gets</span><span class="p">(</span><span class="n">local_78</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">puts</span><span class="p">(</span><span class="s">&#34;Thanks for the string&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">get_flag</span><span class="p">(</span><span class="kt">int</span> <span class="n">param_1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="kt">char</span> <span class="o">*</span><span class="n">local_18</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="n">undefined8</span> <span class="n">local_10</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">  <span class="k">if</span> <span class="p">(</span><span class="n">param_1</span> <span class="o">==</span> <span class="o">-</span><span class="mh">0x21524111</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">local_18</span> <span class="o">=</span> <span class="s">&#34;/bin/sh&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">local_10</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">execve</span><span class="p">(</span><span class="s">&#34;/bin/sh&#34;</span><span class="p">,</span><span class="o">&amp;</span><span class="n">local_18</span><span class="p">,(</span><span class="kt">char</span> <span class="o">**</span><span class="p">)</span><span class="mh">0x0</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="k">return</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><br>
 <pre>
@@ -300,8 +294,8 @@ flag.txt
 cat flag.txt
 utflag{thanks_for_the_string_!!!!!!}
 </pre>
-<p><br />
-Flag: <code>utflag{thanks_for_the_string_!!!!!!}</code></p>
+<br />
+Flag: `utflag{thanks_for_the_string_!!!!!!}`
 <p><br /><br />
 <br /><br />
 さて、ここから下は、解きたかったけど解けなくて諦めたやつです。</p>
@@ -315,9 +309,9 @@ Flag: <code>utflag{thanks_for_the_string_!!!!!!}</code></p>
 <ul>
 <li>capture.pcap</li>
 </ul>
-<p><br /></p>
-<h3 id="unsolved">(Unsolved)</h3>
-<p>ICMP（ping）に大きなデータがついてます。だからチャレンジ名がNittaku 3 star (ピンポン玉) なんですね。なかなかネーミングセンスがいいです。</p>
+<br />
+### (Unsolved)
+ICMP（ping）に大きなデータがついてます。だからチャレンジ名がNittaku 3 star (ピンポン玉) なんですね。なかなかネーミングセンスがいいです。
 <p>4つに分かれているので、ひとつにまとめて、base64デコードするとgzファイルになって中にflag.pngが入ってます。</p>
 <p>ただし、壊れたgzファイルになっちゃうので、フラグが部分的にしか取れませんでした。。。</p>
 <p><br /><br />
@@ -336,9 +330,9 @@ Flag: <code>utflag{thanks_for_the_string_!!!!!!}</code></p>
 <ul>
 <li>capture.pcap</li>
 </ul>
-<p><br /></p>
-<h3 id="unsolved-1">(Unsolved)</h3>
-<p>DNSがbas64エンコードされています。肝心なフラグの中身はpcapの中には含まれていないようです。</p>
+<br />
+### (Unsolved)
+DNSがbas64エンコードされています。肝心なフラグの中身はpcapの中には含まれていないようです。
 <p>DNSサーバが35.188.185.68なので、そこに対して<code>cat flag.txt</code>をbase64エンコードしたものをクエリーするとフラグが取れると思ったんですが、DNSサーバに繋がらなくてダメでした。。。</p>
 <p>Discordでも、サーバに繋がらないよ〜って言っている人が何人かいたんですけど、Adminの人はサーバ動いているよ、って言っているし。</p>
 <pre>
@@ -407,7 +401,7 @@ captureamerica@kali:~$ dig -t TXT Y2F0IGZsYWcudHh0Cg== @35.188.185.68
     <footer id="footer" class="footer">
       <div class="social-links">
       <a href="https://github.com/CaptureAmerica/" class="iconfont icon-github" title="github"></a>
-  <a href="https://captureamerica.github.io/writeups/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+  
 </div>
 
 <div class="copyright">
@@ -442,20 +436,21 @@ captureamerica@kali:~$ dig -t TXT Y2F0IGZsYWcudHh0Cg== @35.188.185.68
 
 
 
-<script type="text/javascript" src="https://captureamerica.github.io/writeups/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+<script type="text/javascript" src="https://captureamerica.github.io/writeups/js/main.min.4ae89da218555efa0e7093a20b92017d2e1202b66fff9fc2edf4cb8d44b44c6e.js"></script>
 
 
 <script type="application/javascript">
 var doNotTrack = false;
 if (!doNotTrack) {
-	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 	ga('create', 'UA-104910699-2', 'auto');
 	ga('set', 'anonymizeIp', true);
 	ga('send', 'pageview');
 }
 </script>
-<script async src='https://www.google-analytics.com/analytics.js'></script>
-
 
 
 

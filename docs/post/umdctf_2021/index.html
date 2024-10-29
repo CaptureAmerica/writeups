@@ -23,7 +23,7 @@
 <meta name="google-site-verification" content="PqctLWZQttGzxXVupWuIt2HWuBI8cvN1z07ETpxA2dw" />
 
 
-<meta name="generator" content="Hugo 0.74.2 with theme even" />
+<meta name="generator" content="Hugo 0.119.0 with theme even" />
 
 
 <link rel="canonical" href="https://captureamerica.github.io/writeups/post/umdctf_2021/" />
@@ -35,24 +35,20 @@
 
 
 
-<link href="https://captureamerica.github.io/writeups/sass/main.min.2e81bbed97b8b282c1aeb57488cc71c8d8c8ec559f3931531bd396bf31e0d4dd.css" rel="stylesheet">
+<link href="https://captureamerica.github.io/writeups/sass/main.min.f92fd13721ddf72129410fd8250e73152cc6f2438082b6c0208dc24ee7c13fc4.css" rel="stylesheet">
 
 
 
 <meta property="og:title" content="UMDCTF 2021 Writeup" />
 <meta property="og:description" content="(2021/05/29 - 少し復習しました。下の方に追記してます。) URL: https://umdctf.io/challenges 1501 points を取り、175thでした。 ほとんど解けてないです^^; あんまり特記すべきこともないんで" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://captureamerica.github.io/writeups/post/umdctf_2021/" />
+<meta property="og:url" content="https://captureamerica.github.io/writeups/post/umdctf_2021/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2021-04-25T11:00:00+09:00" />
 <meta property="article:modified_time" content="2021-05-29T21:00:00+09:00" />
 <meta itemprop="name" content="UMDCTF 2021 Writeup">
-<meta itemprop="description" content="(2021/05/29 - 少し復習しました。下の方に追記してます。) URL: https://umdctf.io/challenges 1501 points を取り、175thでした。 ほとんど解けてないです^^; あんまり特記すべきこともないんで">
-<meta itemprop="datePublished" content="2021-04-25T11:00:00&#43;09:00" />
-<meta itemprop="dateModified" content="2021-05-29T21:00:00&#43;09:00" />
-<meta itemprop="wordCount" content="1463">
-
-
-
+<meta itemprop="description" content="(2021/05/29 - 少し復習しました。下の方に追記してます。) URL: https://umdctf.io/challenges 1501 points を取り、175thでした。 ほとんど解けてないです^^; あんまり特記すべきこともないんで"><meta itemprop="datePublished" content="2021-04-25T11:00:00+09:00" />
+<meta itemprop="dateModified" content="2021-05-29T21:00:00+09:00" />
+<meta itemprop="wordCount" content="1472">
 <meta itemprop="keywords" content="CTF,Reviewed," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="UMDCTF 2021 Writeup"/>
 <meta name="twitter:description" content="(2021/05/29 - 少し復習しました。下の方に追記してます。) URL: https://umdctf.io/challenges 1501 points を取り、175thでした。 ほとんど解けてないです^^; あんまり特記すべきこともないんで"/>
@@ -199,13 +195,13 @@
 <br /><br />
 1501 points を取り、175thでした。</p>
 <img src="https://captureamerica.github.io/writeups/img/umdctf_2021_Score.png" alt="umdctf_2021_Score.png">
-<p><br />
-ほとんど解けてないです^^;</p>
+<br />
+ほとんど解けてないです^^;
 <p><img src="https://captureamerica.github.io/writeups/img/umdctf_2021_Challenges1.png" alt="umdctf_2021_Challenges1.png"> <br /></p>
 <p><img src="https://captureamerica.github.io/writeups/img/umdctf_2021_Challenges2.png" alt="umdctf_2021_Challenges2.png"> <br /></p>
 <p><img src="https://captureamerica.github.io/writeups/img/umdctf_2021_Challenges3.png" alt="umdctf_2021_Challenges3.png"> <br /></p>
-<p><br />
-あんまり特記すべきこともないんですが、いくつか Writeup 残しておきます。</p>
+<br />
+あんまり特記すべきこともないんですが、いくつか Writeup 残しておきます。
 <p><br /><br /></p>
 <h2 id="forensics-not-slick-150-points">[Forensics]: Not Slick (150 points)</h2>
 <hr>
@@ -217,15 +213,15 @@
 <ul>
 <li>notslick.png</li>
 </ul>
-<p><br /></p>
+<br />
 <h3 id="solution">Solution</h3>
 <p>ファイル・タイプを確認します。正常な png ファイルではないようです。</p>
 <pre>
 $ file notslick.png
 notslick.png: data
 </pre>
-<p><br />
-どうやら反転しているようです。</p>
+<br />
+どうやら反転しているようです。
 <pre>
  $ xxd notslick.png | tail
 00018c00: fb5d 6b9e b5ed 7bd9 8663 d71e 3d6b f6b5  .]k...{..c..=k..
@@ -239,13 +235,13 @@ notslick.png: data
 00018c80: 8007 0000 5244 4849 0d00 0000 0a1a 0a0d  ....RDHI........
 00018c90: 474e 5089                                GNP.
 </pre>
-<p><br /></p>
+<br />
 <pre>
 $ python3
 >>> open("notslick_rev.png", "wb").write(open("notslick.png", "rb").read()[::-1])
 </pre>
 <p>このやり方は、過去の何かのCTFイベントでやったやつです。どれだったかは覚えてないです。</p>
-<p><br /></p>
+<br />
 <p>Flag: <code>UMDCTF-{abs01ute1y_r3v3r53d}</code></p>
 <p><br /><br />
 <br /><br /></p>
@@ -259,7 +255,7 @@ $ python3
 <ul>
 <li>protocol_one_and_zero.pcapng</li>
 </ul>
-<p><br /></p>
+<br />
 <h3 id="solution-1">Solution</h3>
 <p>タイトルの通りです。以下のように、0x00 のものと 0xFF のものがあるので、それぞれを0と1と見立てて2値化した後で文字にするだけです。</p>
 <pre>
@@ -276,7 +272,7 @@ f7b50d00000000000000000000000000000000000000000000000000000000000000000000000000
 $ tshark -r protocol_one_and_zero.pcapng -T fields -e data.data | uniq | rev | cut -c -1 | tr -d "\n" | gsed -e 's/f/1/g' ; echo
 01010101010011010100010001000011010101000100011000101101011110110110001000110001011011100101111101110000001100010100111001100111010111110101000000110000011011100110011101111101
 </pre>
-<p><br /></p>
+<br />
 <p>Flag: <code>UMDCTF-{b1n_p1Ng_P0ng}</code></p>
 <p><br /><br />
 <br /><br /></p>
@@ -290,11 +286,11 @@ $ tshark -r protocol_one_and_zero.pcapng -T fields -e data.data | uniq | rev | c
 <ul>
 <li>paper.pdf</li>
 </ul>
-<p><br /></p>
+<br />
 <h3 id="solution-2">Solution</h3>
 <p>エキストエディタで開くと、Object 8 のstreamの部分に読めないバイナリがあるのがわかります。</p>
 <p><img src="https://captureamerica.github.io/writeups/img/umdctf_2021_paperpdf.png" alt="umdctf_2021_paperpdf.png"> <br /></p>
-<p><br /></p>
+<br />
 <p>pdf-parser.py を使って取り出します。</p>
 <pre>
 $ pdf-parser.py -o 8 -f -d obj8.dump paper.pdf
@@ -327,11 +323,11 @@ UMDCTF-{actually_1ts_pr3tty_smart}
 </blockquote>
 <p>Attachment:</p>
 <img src="https://captureamerica.github.io/writeups/img/umdctf_2021_Celebration.png" alt="umdctf_2021_Celebration.png">
-<p><br /></p>
+<br />
 <h3 id="solution-3">Solution</h3>
 <p>この手のシンボルの問題は無数にあるので、いかにデコーダを見つけるかがキーになります。今回は、&ldquo;CTF crypto symbol&rdquo; をキーワードにGoogleで画像検索していたら見つかりました。</p>
 <p><a href="https://www.dcode.fr/dancing-men-cipher">Dancing Men Cipher</a> というそうです。</p>
-<p><br /></p>
+<br />
 <p>Flag: <code>UMDCTF-{yo_ITS_A_PARTYYY}</code></p>
 <p><br /><br />
 <br /><br /></p>
@@ -345,7 +341,7 @@ UMDCTF-{actually_1ts_pr3tty_smart}
 <ul>
 <li>IsThisTheFlag.class</li>
 </ul>
-<p><br /></p>
+<br />
 <h3 id="solution-4">Solution</h3>
 <p>jadを使ってデコンパイルしました。</p>
 <pre>
@@ -355,7 +351,7 @@ Parsing IsThisTheFlag.class...The class file version is 52.0 (only 45.3, 46.0 an
 </pre>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -407,60 +403,60 @@ Parsing IsThisTheFlag.class...The class file version is 52.0 (only 45.3, 46.0 an
 </span><span class="lnt">50
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-Java" data-lang="Java"><span class="c1">// Decompiled by Jad v1.5.8e. Copyright 2001 Pavel Kouznetsov.
-</span><span class="c1">// Jad home page: http://www.geocities.com/kpdus/jad.html
-</span><span class="c1">// Decompiler options: packimports(3) 
-</span><span class="c1">// Source File Name:   Challenge.java
-</span><span class="c1"></span>
-<span class="kn">import</span> <span class="nn">java.io.PrintStream</span><span class="o">;</span>
-
-<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Challenge</span>
-<span class="o">{</span>
-
-    <span class="kd">public</span> <span class="nf">Challenge</span><span class="o">()</span>
-    <span class="o">{</span>
-    <span class="o">}</span>
-
-    <span class="kd">public</span> <span class="kd">static</span> <span class="n">String</span> <span class="nf">f1</span><span class="o">(</span><span class="n">String</span> <span class="n">s</span><span class="o">)</span>
-    <span class="o">{</span>
-        <span class="n">StringBuilder</span> <span class="n">b</span> <span class="o">=</span> <span class="k">new</span> <span class="n">StringBuilder</span><span class="o">();</span>
-        <span class="kt">char</span> <span class="n">arr</span><span class="o">[]</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="na">toCharArray</span><span class="o">();</span>
-        <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">arr</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span>
-            <span class="n">b</span><span class="o">.</span><span class="na">append</span><span class="o">((</span><span class="kt">char</span><span class="o">)(</span><span class="n">arr</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">+</span> <span class="n">i</span><span class="o">));</span>
-
-        <span class="k">return</span> <span class="n">b</span><span class="o">.</span><span class="na">toString</span><span class="o">();</span>
-    <span class="o">}</span>
-
-    <span class="kd">public</span> <span class="kd">static</span> <span class="n">String</span> <span class="nf">f1_rev</span><span class="o">(</span><span class="n">String</span> <span class="n">s</span><span class="o">)</span>
-    <span class="o">{</span>
-        <span class="n">StringBuilder</span> <span class="n">b</span> <span class="o">=</span> <span class="k">new</span> <span class="n">StringBuilder</span><span class="o">();</span>
-        <span class="kt">char</span> <span class="n">arr</span><span class="o">[]</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="na">toCharArray</span><span class="o">();</span>
-        <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">arr</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span>
-            <span class="n">b</span><span class="o">.</span><span class="na">append</span><span class="o">((</span><span class="kt">char</span><span class="o">)(</span><span class="n">arr</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">-</span> <span class="n">i</span><span class="o">));</span>
-
-        <span class="k">return</span> <span class="n">b</span><span class="o">.</span><span class="na">toString</span><span class="o">();</span>
-    <span class="o">}</span>
-
-    <span class="kd">public</span> <span class="kd">static</span> <span class="n">String</span> <span class="nf">f2</span><span class="o">(</span><span class="n">String</span> <span class="n">s</span><span class="o">)</span>
-    <span class="o">{</span>
-        <span class="kt">int</span> <span class="n">half</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="na">length</span><span class="o">()</span> <span class="o">/</span> <span class="n">2</span><span class="o">;</span>
-        <span class="k">return</span> <span class="o">(</span><span class="k">new</span> <span class="n">StringBuilder</span><span class="o">(</span><span class="n">String</span><span class="o">.</span><span class="na">valueOf</span><span class="o">(</span><span class="n">s</span><span class="o">.</span><span class="na">substring</span><span class="o">(</span><span class="n">half</span> <span class="o">+</span> <span class="n">1</span><span class="o">)))).</span><span class="na">append</span><span class="o">(</span><span class="n">s</span><span class="o">.</span><span class="na">substring</span><span class="o">(</span><span class="n">0</span><span class="o">,</span> <span class="n">half</span> <span class="o">+</span> <span class="n">1</span><span class="o">)).</span><span class="na">toString</span><span class="o">();</span>
-    <span class="o">}</span>
-
-    <span class="kd">public</span> <span class="kd">static</span> <span class="n">String</span> <span class="nf">f3</span><span class="o">()</span>
-    <span class="o">{</span>
-        <span class="k">return</span> <span class="n">f1</span><span class="o">(</span><span class="n">f2</span><span class="o">(</span><span class="s">&#34;$aQ\&#34;cNP `_\035[eULB@PA&#39;thpj]&#34;</span><span class="o">));</span>
-    <span class="o">}</span>
-
-    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span> <span class="n">args</span><span class="o">[])</span>
-    <span class="o">{</span>
-        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;You really thought finding the flag would be so easy?&#34;</span><span class="o">);</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-Java" data-lang="Java"><span class="line"><span class="cl"><span class="c1">// Decompiled by Jad v1.5.8e. Copyright 2001 Pavel Kouznetsov.
+</span></span></span><span class="line"><span class="cl"><span class="c1">// Jad home page: http://www.geocities.com/kpdus/jad.html
+</span></span></span><span class="line"><span class="cl"><span class="c1">// Decompiler options: packimports(3) 
+</span></span></span><span class="line"><span class="cl"><span class="c1">// Source File Name:   Challenge.java
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">java.io.PrintStream</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Challenge</span>
+</span></span><span class="line"><span class="cl"><span class="o">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="nf">Challenge</span><span class="o">()</span>
+</span></span><span class="line"><span class="cl">    <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kd">static</span> <span class="n">String</span> <span class="nf">f1</span><span class="o">(</span><span class="n">String</span> <span class="n">s</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">    <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">StringBuilder</span> <span class="n">b</span> <span class="o">=</span> <span class="k">new</span> <span class="n">StringBuilder</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">        <span class="kt">char</span> <span class="n">arr</span><span class="o">[]</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="na">toCharArray</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">arr</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span>
+</span></span><span class="line"><span class="cl">            <span class="n">b</span><span class="o">.</span><span class="na">append</span><span class="o">((</span><span class="kt">char</span><span class="o">)(</span><span class="n">arr</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">+</span> <span class="n">i</span><span class="o">));</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">b</span><span class="o">.</span><span class="na">toString</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kd">static</span> <span class="n">String</span> <span class="nf">f1_rev</span><span class="o">(</span><span class="n">String</span> <span class="n">s</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">    <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">StringBuilder</span> <span class="n">b</span> <span class="o">=</span> <span class="k">new</span> <span class="n">StringBuilder</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">        <span class="kt">char</span> <span class="n">arr</span><span class="o">[]</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="na">toCharArray</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">arr</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span>
+</span></span><span class="line"><span class="cl">            <span class="n">b</span><span class="o">.</span><span class="na">append</span><span class="o">((</span><span class="kt">char</span><span class="o">)(</span><span class="n">arr</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">-</span> <span class="n">i</span><span class="o">));</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">b</span><span class="o">.</span><span class="na">toString</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kd">static</span> <span class="n">String</span> <span class="nf">f2</span><span class="o">(</span><span class="n">String</span> <span class="n">s</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">    <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="kt">int</span> <span class="n">half</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="na">length</span><span class="o">()</span> <span class="o">/</span> <span class="mi">2</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="o">(</span><span class="k">new</span> <span class="n">StringBuilder</span><span class="o">(</span><span class="n">String</span><span class="o">.</span><span class="na">valueOf</span><span class="o">(</span><span class="n">s</span><span class="o">.</span><span class="na">substring</span><span class="o">(</span><span class="n">half</span> <span class="o">+</span> <span class="mi">1</span><span class="o">)))).</span><span class="na">append</span><span class="o">(</span><span class="n">s</span><span class="o">.</span><span class="na">substring</span><span class="o">(</span><span class="mi">0</span><span class="o">,</span> <span class="n">half</span> <span class="o">+</span> <span class="mi">1</span><span class="o">)).</span><span class="na">toString</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kd">static</span> <span class="n">String</span> <span class="nf">f3</span><span class="o">()</span>
+</span></span><span class="line"><span class="cl">    <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">f1</span><span class="o">(</span><span class="n">f2</span><span class="o">(</span><span class="s">&#34;$aQ\&#34;cNP `_\035[eULB@PA&#39;thpj]&#34;</span><span class="o">));</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span> <span class="n">args</span><span class="o">[])</span>
+</span></span><span class="line"><span class="cl">    <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;You really thought finding the flag would be so easy?&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
-</div><p><br />
-main()は文字列を表示しているだけです。</p>
+</div><br />
+main()は文字列を表示しているだけです。
 <p>f3()がなんとなくフラグ生成関数っぽいので、main()からf3()を呼ぶようにしてコンパイルして実行します。</p>
 <p>ファイル名が &ldquo;Challenge.jad&rdquo; になっているので、&ldquo;Challenge.java&rdquo; に変えておきます。</p>
 <pre>
@@ -469,7 +465,7 @@ $ javac Challenge.java
 $ java Challenge
 UMDCTF-{pyth0n_1s_b3tt3r}
 </pre>
-<p><br /></p>
+<br />
 <p>Flag: <code>UMDCTF-{pyth0n_1s_b3tt3r}</code></p>
 <p><br /><br />
 <br /><br />
@@ -487,7 +483,7 @@ UMDCTF-{pyth0n_1s_b3tt3r}
 <ul>
 <li>received.pcapng</li>
 </ul>
-<p><br /></p>
+<br />
 <h3 id="solution-5">Solution</h3>
 <p>ワイヤレスのトラフィックが入ったpcapなので、まず aircrack-ng をやらないといけないやつでした。</p>
 <p>最初に、received.pcapng は、Wireshark から Save As で pcap として保存しておいてから aircrack-ng にかけます。</p>
@@ -511,8 +507,8 @@ Read 76 packets.
 
 Please specify a dictionary (option -w).
 </pre>
-<p><br />
--w で辞書を指定するように言われるので、rockyou.txtを使ってみます。</p>
+<br />
+-w で辞書を指定するように言われるので、rockyou.txtを使ってみます。
 <pre>
 $ aircrack-ng received.pcap -w /usr/share/wordlists/rockyou.txt
 Reading packets, please wait...
@@ -543,15 +539,15 @@ Read 76 packets.
 (snip)
 :
 </pre>
-<p><br />
-Key <code>chocolate</code> が見つかりました。</p>
-<p><br />
-Wiresharkで wpa-pwd として指定します。</p>
+<br />
+Key `chocolate` が見つかりました。
+<br />
+Wiresharkで wpa-pwd として指定します。
 <img src="https://captureamerica.github.io/writeups/img/umdctf_2021_wpapwd.png" alt="umdctf_2021_wpapwd.png">
-<p><br />
-Configuration Test Protocol とかが見えるようになりました。その中にフラグが入ってます。</p>
+<br />
+Configuration Test Protocol とかが見えるようになりました。その中にフラグが入ってます。
 <img src="https://captureamerica.github.io/writeups/img/umdctf_2021_receivedpcap.png" alt="umdctf_2021_receivedpcap.png">
-<p><br /></p>
+<br />
 <p>Flag: <code>UMDCTF-{wh3r3_j0hn}</code></p>
 <p><br /><br />
 <br /><br /></p>
@@ -608,7 +604,7 @@ Configuration Test Protocol とかが見えるようになりました。その�
     <footer id="footer" class="footer">
       <div class="social-links">
       <a href="https://github.com/CaptureAmerica/" class="iconfont icon-github" title="github"></a>
-  <a href="https://captureamerica.github.io/writeups/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+  
 </div>
 
 <div class="copyright">
@@ -643,20 +639,21 @@ Configuration Test Protocol とかが見えるようになりました。その�
 
 
 
-<script type="text/javascript" src="https://captureamerica.github.io/writeups/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+<script type="text/javascript" src="https://captureamerica.github.io/writeups/js/main.min.4ae89da218555efa0e7093a20b92017d2e1202b66fff9fc2edf4cb8d44b44c6e.js"></script>
 
 
 <script type="application/javascript">
 var doNotTrack = false;
 if (!doNotTrack) {
-	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 	ga('create', 'UA-104910699-2', 'auto');
 	ga('set', 'anonymizeIp', true);
 	ga('send', 'pageview');
 }
 </script>
-<script async src='https://www.google-analytics.com/analytics.js'></script>
-
 
 
 

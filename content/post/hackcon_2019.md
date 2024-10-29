@@ -36,6 +36,7 @@ Attachment:
 
 
 <br />
+
 ### Solution
 
 <pre>
@@ -108,6 +109,7 @@ Attachment:
 
 
 <br />
+
 ### Solution
 stego1.xcf をテキストエディタ（自分はEmacs使ってます）で開いて眺めていくと、以下のテキストが見つかります。
 <pre>
@@ -185,6 +187,7 @@ Attachment:
 
 
 <br />
+
 ### Solution
 今回、stegsnow のことを初めて知りました。
 
@@ -230,6 +233,7 @@ Attachment:
 
 
 <br />
+
 ### Solution
 最初のBrainfuckはすぐわかるんですが、その後がさっぱりでした。
 

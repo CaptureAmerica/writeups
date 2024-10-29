@@ -25,6 +25,7 @@ author: ""
 > Just in case: all info is freely accessible, no subscriptions are necessary. The names cannot really be guessed. 
 
 <br />
+
 ### Solution
 簡単に訳すと、
 

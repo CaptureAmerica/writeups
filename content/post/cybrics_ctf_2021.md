@@ -50,6 +50,7 @@ I heard they serve flags at level 5.
 
 
 <br />
+
 ### Solution
 アニメーションGIFで、画像をあたかもスキャンしているように、画像が部分的に流れていきます。
 

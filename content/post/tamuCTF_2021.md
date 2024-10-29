@@ -46,6 +46,7 @@ Attachment:
 
 
 <br />
+
 ### Solution
 問題文にあるように Fake flag が沢山あるため、stringsコマンドは使えません。<br /> (いちおう正解フラグもstringsで出てくるので、ひたすらSubmitしたら、そのうち当たりますけど。。)
 
@@ -124,6 +125,7 @@ Attachment:
 
 
 <br />
+
 ### Solution
 まず、問題文に出てくる openssl コマンドについてですが、News (announcement) で以下が出ていました。
 

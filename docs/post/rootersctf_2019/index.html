@@ -23,7 +23,7 @@
 <meta name="google-site-verification" content="PqctLWZQttGzxXVupWuIt2HWuBI8cvN1z07ETpxA2dw" />
 
 
-<meta name="generator" content="Hugo 0.74.2 with theme even" />
+<meta name="generator" content="Hugo 0.119.0 with theme even" />
 
 
 <link rel="canonical" href="https://captureamerica.github.io/writeups/post/rootersctf_2019/" />
@@ -35,24 +35,20 @@
 
 
 
-<link href="https://captureamerica.github.io/writeups/sass/main.min.2e81bbed97b8b282c1aeb57488cc71c8d8c8ec559f3931531bd396bf31e0d4dd.css" rel="stylesheet">
+<link href="https://captureamerica.github.io/writeups/sass/main.min.f92fd13721ddf72129410fd8250e73152cc6f2438082b6c0208dc24ee7c13fc4.css" rel="stylesheet">
 
 
 
 <meta property="og:title" content="Rooters CTF 2019 Writeup" />
 <meta property="og:description" content="(2019/10/20 - 復習しました) URL: https://rootersctf.in/ picoCTF 2019の直後でほとんど時間がなかったですが、ちょっとだけやりました。 後日、復習もやりました（偉い）。 [Forensics]: You Can&rsquo;t See Me Challenge See" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://captureamerica.github.io/writeups/post/rootersctf_2019/" />
+<meta property="og:url" content="https://captureamerica.github.io/writeups/post/rootersctf_2019/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2019-10-14T16:00:00+09:00" />
 <meta property="article:modified_time" content="2019-10-20T11:00:00+09:00" />
 <meta itemprop="name" content="Rooters CTF 2019 Writeup">
-<meta itemprop="description" content="(2019/10/20 - 復習しました) URL: https://rootersctf.in/ picoCTF 2019の直後でほとんど時間がなかったですが、ちょっとだけやりました。 後日、復習もやりました（偉い）。 [Forensics]: You Can&rsquo;t See Me Challenge See">
-<meta itemprop="datePublished" content="2019-10-14T16:00:00&#43;09:00" />
-<meta itemprop="dateModified" content="2019-10-20T11:00:00&#43;09:00" />
+<meta itemprop="description" content="(2019/10/20 - 復習しました) URL: https://rootersctf.in/ picoCTF 2019の直後でほとんど時間がなかったですが、ちょっとだけやりました。 後日、復習もやりました（偉い）。 [Forensics]: You Can&rsquo;t See Me Challenge See"><meta itemprop="datePublished" content="2019-10-14T16:00:00+09:00" />
+<meta itemprop="dateModified" content="2019-10-20T11:00:00+09:00" />
 <meta itemprop="wordCount" content="2066">
-
-
-
 <meta itemprop="keywords" content="CTF,Reviewed," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Rooters CTF 2019 Writeup"/>
 <meta name="twitter:description" content="(2019/10/20 - 復習しました) URL: https://rootersctf.in/ picoCTF 2019の直後でほとんど時間がなかったですが、ちょっとだけやりました。 後日、復習もやりました（偉い）。 [Forensics]: You Can&rsquo;t See Me Challenge See"/>
@@ -204,7 +200,7 @@ picoCTF 2019の直後でほとんど時間がなかったですが、ちょっ�
 <ul>
 <li>youcantseeme.pdf</li>
 </ul>
-<p><br /></p>
+<br />
 <h3 id="solution">Solution</h3>
 <p>100 ページくらい真っ白が続くPDFが与えられます。</p>
 <p>やったこと：</p>
@@ -215,8 +211,8 @@ picoCTF 2019の直後でほとんど時間がなかったですが、ちょっ�
 <li>Libre Office (少しずつフォントの色は変えられたんですが、全ページまとめてやる方法がわかんなかったです。)<br /></li>
 <li>PDFStreamDumper (しばらく使わないうちに、起動がうまくいかなくなってた。。。)</li>
 </ul>
-<p><br />
-以下でフラグをゲットしました。</p>
+<br />
+以下でフラグをゲットしました。
 <ul>
 <li>pdftotext -f 16 youcantseeme.pdf text.txt</li>
 </ul>
@@ -234,7 +230,7 @@ picoCTF 2019の直後でほとんど時間がなかったですが、ちょっ�
 <ul>
 <li>inc0gnito.cap (inc0gnito.pcapにリネームしました)</li>
 </ul>
-<p><br /></p>
+<br />
 <h3 id="solution-1">Solution</h3>
 <pre>
 # aircrack-ng inc0gnito.pcap
@@ -272,7 +268,7 @@ Credentials: admin:blu3_c0rp_p4ss
 <ul>
 <li>recv_13.10.1959.wav</li>
 </ul>
-<p><br /></p>
+<br />
 <h3 id="solution-2">Solution</h3>
 <p>picoCTF 2019で出てきたm00nwalkと同じ問題です。</p>
 <p>RX-SSTV というツールを使いました。<br />
@@ -296,26 +292,26 @@ Credentials: admin:blu3_c0rp_p4ss
 <ul>
 <li>結構な数のjpegファイル</li>
 </ul>
-<p><br /></p>
+<br />
 <h3 id="solution-3">Solution</h3>
 <p>exiftoolをかけると、Comment欄に少しずつ文字が入っているのがわかるので、全ファイルに対してexiftoolをかけて、がっちゃんこします。</p>
 <table><tr><td>
 <b>$ exiftool * | grep Comment | cut -d: -f2 | tr -d "\n" ; echo </b><br />
  MICHAEL right Jim, your quarterlies look very good. How the thing is going at the library?JIM Oh I told you couldn't close it soMICHAEL So you've come to the master for guidance? (imitating) Is http ny.cc/rosvdz this what you're saying grass hopper?JIM Actually you called me in here, but ye ah.MICHAEL All right, well let me show you how it's done. h ttp c/rosvdz (gets on phone) Yes, I liked to speak to your office manager please. Yes hello this is Michael Scott, I am the regional manager of Dunder Mifflin paper products. Just wanted to talk to you, manager-on- manager. (cut to the office and cut back) All right done deal, thank you very much sir, you're a gentleman and a scholar. Oh I'm sorry, ok, I'm sorry, my mistake. (hangs up) That was a woman I was talking to she had a very low voice. Probably a smoker. So, so that's the way it's done. Michael the camera) I've been in Dundler Mifflin for twelve years, the last four as regional manager. If you want to come through here, (opens the door to the main office) so we have the entire floor, so this is my kingdom, as far as the eye can see, ah this is our receptionist Pam. (goes to the recep tionist) Pam, Pam Pam! http tiny.cc/rosv dz Pam Beesly. Pam has been with us for' for ever, Lavc57.70.100
 </td></tr></table>
-<p><br />
-URLっぽいの（http ny.cc/rosvdz）があるのでアクセスしてみると、final.pngが手に入ります。</p>
+<br />
+URLっぽいの（http ny.cc/rosvdz）があるのでアクセスしてみると、final.pngが手に入ります。
 <p>（ここまでは自力でいけました）</p>
-<p><br />
-final.pngを開いて、よーーく目を凝らすと、変なデータが見つかります。（オレンジで囲ったところ）</p>
+<br />
+final.pngを開いて、よーーく目を凝らすと、変なデータが見つかります。（オレンジで囲ったところ）
 <img src="https://captureamerica.github.io/writeups/img/rooters_final.png" alt="rooters_final.png">
 <p>いやー、これはわからんよな。。。</p>
-<p><br />
-MacのPreview.appで拡大、選択、コピー、New from Clipboardをして、別ファイルとして保存します。</p>
+<br />
+MacのPreview.appで拡大、選択、コピー、New from Clipboardをして、別ファイルとして保存します。
 <img src="https://captureamerica.github.io/writeups/img/rooters_final2.png" alt="rooters_final2.png">
-<p><br />
+<br />
 「青い空を見上げればいつもそこに白い猫」で開いて、ビット抽出前バイト列を確認します。
-<img src="https://captureamerica.github.io/writeups/img/rooters_final3.png" alt="rooters_final3.png"></p>
+<img src="https://captureamerica.github.io/writeups/img/rooters_final3.png" alt="rooters_final3.png">
 <p>Flag: <code>rooters{WHY_4R3_TH3_W4Y_TH4T_Y0U_4R3!}ctf</code></p>
 <p><br /><br />
 <br /><br /></p>
@@ -329,19 +325,19 @@ MacのPreview.appで拡大、選択、コピー、New from Clipboardをして、
 <ul>
 <li>challenge.wav</li>
 </ul>
-<p><br /></p>
+<br />
 <h3 id="solution-4">Solution</h3>
 <p>challenge.wavを再生すると、誰かがモニャモニャ喋っていて、ほんとに眠たくなるファイルでした。</p>
 <p>とりあえず、audacityでスペクトラムとか見てみましたが、何も見つからず。</p>
-<p><br />
-こういうやつは、LSBをチェックするのがいいらしいです。</p>
+<br />
+こういうやつは、LSBをチェックするのがいいらしいです。
 <p>LSBを取り出すやつは、picoCTF 2018 の LoadSomeBits で以前書いたコードがあったので、それを流用しました。</p>
 <p>いちおう、以下が以前書いたWriteupです。<br />
 <a href="https://captureamerica.github.io/writeups/post/picoctf_2018/">https://captureamerica.github.io/writeups/post/picoctf_2018/</a></p>
 <p>今後も使うことあるかもしれないので、ファイル名を引き数に取るようにしておきました。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -392,66 +388,66 @@ MacのPreview.appで拡大、選択、コピー、New from Clipboardをして、
 </span><span class="lnt">49
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-C" data-lang="C"><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
-</span><span class="cp"></span>
-<span class="kt">int</span> <span class="nf">sub</span><span class="p">(</span> <span class="kt">int</span> <span class="n">offset</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span><span class="n">fname</span> <span class="p">)</span>
-<span class="p">{</span>
-	<span class="n">FILE</span> <span class="o">*</span><span class="n">fp</span><span class="p">;</span>
-	<span class="kt">int</span>  <span class="n">c</span><span class="p">;</span>
-	<span class="kt">int</span> <span class="n">i</span><span class="p">;</span>
-	<span class="kt">char</span> <span class="n">ch</span><span class="p">;</span>
-
-	<span class="k">if</span> <span class="p">(</span> <span class="p">(</span> <span class="n">fp</span> <span class="o">=</span> <span class="n">fopen</span><span class="p">(</span> <span class="n">fname</span><span class="p">,</span> <span class="s">&#34;rb&#34;</span> <span class="p">)</span> <span class="p">)</span> <span class="o">==</span> <span class="nb">NULL</span> <span class="p">)</span> <span class="p">{</span>
-		<span class="n">perror</span><span class="p">(</span> <span class="s">&#34;Can&#39;t fopen&#34;</span> <span class="p">);</span>
-		<span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
-        <span class="p">}</span>
-	<span class="k">for</span> <span class="p">(</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span> <span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">offset</span> <span class="p">;</span> <span class="n">i</span><span class="o">++</span> <span class="p">)</span> <span class="p">{</span>
-		<span class="n">fgetc</span><span class="p">(</span> <span class="n">fp</span> <span class="p">);</span>
-	<span class="p">}</span>
-
-	<span class="n">i</span> <span class="o">=</span> <span class="mi">7</span><span class="p">;</span>
-	<span class="n">ch</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-	<span class="k">while</span> <span class="p">(</span> <span class="p">(</span> <span class="n">c</span> <span class="o">=</span> <span class="n">fgetc</span><span class="p">(</span> <span class="n">fp</span> <span class="p">)</span> <span class="p">)</span> <span class="o">!=</span> <span class="n">EOF</span> <span class="p">)</span> <span class="p">{</span>
-		<span class="n">c</span> <span class="o">=</span> <span class="n">c</span> <span class="o">&amp;</span> <span class="mh">0x01</span><span class="p">;</span>
-		<span class="n">ch</span> <span class="o">=</span> <span class="n">ch</span> <span class="o">|</span> <span class="p">(</span> <span class="n">c</span> <span class="o">&lt;&lt;</span> <span class="n">i</span><span class="p">);</span>
-		<span class="n">i</span><span class="o">--</span><span class="p">;</span>
-		<span class="k">if</span> <span class="p">(</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="p">)</span> <span class="p">{</span>
-			<span class="k">if</span> <span class="p">(</span> <span class="p">(</span> <span class="n">ch</span> <span class="o">&gt;=</span> <span class="mh">0x20</span> <span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="n">ch</span> <span class="o">&lt;=</span> <span class="mh">0x7e</span> <span class="p">)</span> <span class="p">)</span> <span class="p">{</span>
-				<span class="n">printf</span><span class="p">(</span> <span class="s">&#34;%c&#34;</span><span class="p">,</span> <span class="n">ch</span> <span class="p">);</span>
-			<span class="p">}</span>
-			<span class="n">i</span> <span class="o">=</span> <span class="mi">7</span><span class="p">;</span>
-			<span class="n">ch</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-		<span class="p">}</span>
-	<span class="p">}</span>
-	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;&#34;</span><span class="p">);</span>
-        <span class="n">fclose</span><span class="p">(</span> <span class="n">fp</span> <span class="p">);</span>
-	
-	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-<span class="p">}</span>
-
-<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span> <span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">**</span><span class="n">argv</span> <span class="p">)</span>
-<span class="p">{</span>
-	<span class="kt">int</span> <span class="n">i</span><span class="p">;</span>
-
-	<span class="k">if</span> <span class="p">(</span> <span class="n">argc</span> <span class="o">!=</span> <span class="mi">2</span> <span class="p">)</span> <span class="p">{</span>
-		<span class="n">printf</span><span class="p">(</span> <span class="s">&#34;Usage: lsb.o filename</span><span class="se">\n</span><span class="s">&#34;</span> <span class="p">);</span>
-		<span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
-	<span class="p">}</span>
-	<span class="k">for</span> <span class="p">(</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span> <span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">8</span> <span class="p">;</span> <span class="n">i</span><span class="o">++</span> <span class="p">)</span> <span class="p">{</span>
-		<span class="n">sub</span><span class="p">(</span> <span class="n">i</span><span class="p">,</span> <span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="p">);</span>
-	<span class="p">}</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">sub</span><span class="p">(</span> <span class="kt">int</span> <span class="n">offset</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span><span class="n">fname</span> <span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="n">FILE</span> <span class="o">*</span><span class="n">fp</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">int</span>  <span class="n">c</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">int</span> <span class="n">i</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">char</span> <span class="n">ch</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="p">(</span> <span class="p">(</span> <span class="n">fp</span> <span class="o">=</span> <span class="nf">fopen</span><span class="p">(</span> <span class="n">fname</span><span class="p">,</span> <span class="s">&#34;rb&#34;</span> <span class="p">)</span> <span class="p">)</span> <span class="o">==</span> <span class="nb">NULL</span> <span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="nf">perror</span><span class="p">(</span> <span class="s">&#34;Can&#39;t fopen&#34;</span> <span class="p">);</span>
+</span></span><span class="line"><span class="cl">		<span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="k">for</span> <span class="p">(</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span> <span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">offset</span> <span class="p">;</span> <span class="n">i</span><span class="o">++</span> <span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="nf">fgetc</span><span class="p">(</span> <span class="n">fp</span> <span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="n">i</span> <span class="o">=</span> <span class="mi">7</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="n">ch</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="k">while</span> <span class="p">(</span> <span class="p">(</span> <span class="n">c</span> <span class="o">=</span> <span class="nf">fgetc</span><span class="p">(</span> <span class="n">fp</span> <span class="p">)</span> <span class="p">)</span> <span class="o">!=</span> <span class="n">EOF</span> <span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="n">c</span> <span class="o">=</span> <span class="n">c</span> <span class="o">&amp;</span> <span class="mh">0x01</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">		<span class="n">ch</span> <span class="o">=</span> <span class="n">ch</span> <span class="o">|</span> <span class="p">(</span> <span class="n">c</span> <span class="o">&lt;&lt;</span> <span class="n">i</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">		<span class="n">i</span><span class="o">--</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">		<span class="k">if</span> <span class="p">(</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">			<span class="k">if</span> <span class="p">(</span> <span class="p">(</span> <span class="n">ch</span> <span class="o">&gt;=</span> <span class="mh">0x20</span> <span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="n">ch</span> <span class="o">&lt;=</span> <span class="mh">0x7e</span> <span class="p">)</span> <span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">				<span class="nf">printf</span><span class="p">(</span> <span class="s">&#34;%c&#34;</span><span class="p">,</span> <span class="n">ch</span> <span class="p">);</span>
+</span></span><span class="line"><span class="cl">			<span class="p">}</span>
+</span></span><span class="line"><span class="cl">			<span class="n">i</span> <span class="o">=</span> <span class="mi">7</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">			<span class="n">ch</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">		<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="nf">puts</span><span class="p">(</span><span class="s">&#34;&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="nf">fclose</span><span class="p">(</span> <span class="n">fp</span> <span class="p">);</span>
+</span></span><span class="line"><span class="cl">	
+</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">(</span> <span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">**</span><span class="n">argv</span> <span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">int</span> <span class="n">i</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="p">(</span> <span class="n">argc</span> <span class="o">!=</span> <span class="mi">2</span> <span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="nf">printf</span><span class="p">(</span> <span class="s">&#34;Usage: lsb.o filename</span><span class="se">\n</span><span class="s">&#34;</span> <span class="p">);</span>
+</span></span><span class="line"><span class="cl">		<span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="k">for</span> <span class="p">(</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span> <span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">8</span> <span class="p">;</span> <span class="n">i</span><span class="o">++</span> <span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="nf">sub</span><span class="p">(</span> <span class="n">i</span><span class="p">,</span> <span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
-</div><p><br />
-出力がやたらと多いので、もうちょっと改良した方がいいかもだけど。</p>
+</div><br />
+出力がやたらと多いので、もうちょっと改良した方がいいかもだけど。
 <pre>
 $ ./lsb.o challenge.wav | fold -120 | grep -i http
 -@@RMr. Robot is an American drama thriller television series created by Sam Esmail. http://tiny.cc/72nwdz##############
 </pre>
 <p>長い文字列が1行で出てくるので、foldで適当に区切って、その中で&quot;http&quot;やら&quot;ctf&quot;やらのキーワードになりそうなものをサーチする感じですかね。</p>
-<p><br />
-見つかった <a href="http://tiny.cc/72nwdz">http://tiny.cc/72nwdz</a> にアクセスすると、newというテキストファイルが入手できます。</p>
+<br />
+見つかった http://tiny.cc/72nwdz にアクセスすると、newというテキストファイルが入手できます。
 <pre>
 $ file new 
 new: ASCII text, with very long lines, with no line terminators
@@ -462,11 +458,11 @@ $ cat new | fold -32 | tail -n 4 ; echo
 00003950000025448494d0000000a0a1
 a0d074e40598
 </pre>
-<p><br />
-この末尾の文字列から、PNGヘッダ(89 50 4E 47 0D 0A 1A 0A)が思いつくかどうかと言われたら、普通思いつかないですよね。</p>
+<br />
+この末尾の文字列から、PNGヘッダ(89 50 4E 47 0D 0A 1A 0A)が思いつくかどうかと言われたら、普通思いつかないですよね。
 <p>問題文にある<code>flip</code>でそれに気づくかどうかかな。</p>
-<p><br />
-リバースしてバイナリとして保存します。</p>
+<br />
+リバースしてバイナリとして保存します。
 <pre>
 $ python -c 'import binascii; open("output", "wb").write(binascii.unhexlify(open("new", "rb").read()[::-1]))'
 $ file output
@@ -529,7 +525,7 @@ output: PNG image data, 1427 x 352, 8-bit/color RGBA, non-interlaced
     <footer id="footer" class="footer">
       <div class="social-links">
       <a href="https://github.com/CaptureAmerica/" class="iconfont icon-github" title="github"></a>
-  <a href="https://captureamerica.github.io/writeups/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+  
 </div>
 
 <div class="copyright">
@@ -564,20 +560,21 @@ output: PNG image data, 1427 x 352, 8-bit/color RGBA, non-interlaced
 
 
 
-<script type="text/javascript" src="https://captureamerica.github.io/writeups/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+<script type="text/javascript" src="https://captureamerica.github.io/writeups/js/main.min.4ae89da218555efa0e7093a20b92017d2e1202b66fff9fc2edf4cb8d44b44c6e.js"></script>
 
 
 <script type="application/javascript">
 var doNotTrack = false;
 if (!doNotTrack) {
-	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 	ga('create', 'UA-104910699-2', 'auto');
 	ga('set', 'anonymizeIp', true);
 	ga('send', 'pageview');
 }
 </script>
-<script async src='https://www.google-analytics.com/analytics.js'></script>
-
 
 
 

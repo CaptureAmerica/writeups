@@ -23,7 +23,7 @@
 <meta name="google-site-verification" content="PqctLWZQttGzxXVupWuIt2HWuBI8cvN1z07ETpxA2dw" />
 
 
-<meta name="generator" content="Hugo 0.74.2 with theme even" />
+<meta name="generator" content="Hugo 0.119.0 with theme even" />
 
 
 <link rel="canonical" href="https://captureamerica.github.io/writeups/post/riftctf_2020/" />
@@ -35,24 +35,20 @@
 
 
 
-<link href="https://captureamerica.github.io/writeups/sass/main.min.2e81bbed97b8b282c1aeb57488cc71c8d8c8ec559f3931531bd396bf31e0d4dd.css" rel="stylesheet">
+<link href="https://captureamerica.github.io/writeups/sass/main.min.f92fd13721ddf72129410fd8250e73152cc6f2438082b6c0208dc24ee7c13fc4.css" rel="stylesheet">
 
 
 
 <meta property="og:title" content="RiftCTF 2020 Writeup" />
 <meta property="og:description" content="URL: http://riftctf.iiitnr.ac.in:8000/challenges stringsコマンドで解けるやつ（3つもあった）とか、ウェブで調べものをするやつとか、答えはわかっててもフラグがIncorrectにな" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://captureamerica.github.io/writeups/post/riftctf_2020/" />
+<meta property="og:url" content="https://captureamerica.github.io/writeups/post/riftctf_2020/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2020-03-21T15:30:00+09:00" />
 <meta property="article:modified_time" content="2020-03-21T15:30:00+09:00" />
 <meta itemprop="name" content="RiftCTF 2020 Writeup">
-<meta itemprop="description" content="URL: http://riftctf.iiitnr.ac.in:8000/challenges stringsコマンドで解けるやつ（3つもあった）とか、ウェブで調べものをするやつとか、答えはわかっててもフラグがIncorrectにな">
-<meta itemprop="datePublished" content="2020-03-21T15:30:00&#43;09:00" />
-<meta itemprop="dateModified" content="2020-03-21T15:30:00&#43;09:00" />
-<meta itemprop="wordCount" content="777">
-
-
-
+<meta itemprop="description" content="URL: http://riftctf.iiitnr.ac.in:8000/challenges stringsコマンドで解けるやつ（3つもあった）とか、ウェブで調べものをするやつとか、答えはわかっててもフラグがIncorrectにな"><meta itemprop="datePublished" content="2020-03-21T15:30:00+09:00" />
+<meta itemprop="dateModified" content="2020-03-21T15:30:00+09:00" />
+<meta itemprop="wordCount" content="875">
 <meta itemprop="keywords" content="CTF," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="RiftCTF 2020 Writeup"/>
 <meta name="twitter:description" content="URL: http://riftctf.iiitnr.ac.in:8000/challenges stringsコマンドで解けるやつ（3つもあった）とか、ウェブで調べものをするやつとか、答えはわかっててもフラグがIncorrectにな"/>
@@ -148,16 +144,9 @@
   <div class="post-toc-content">
     <nav id="TableOfContents">
   <ul>
-    <li><a href="#forensics-0x0004-100-points">[Forensics]: 0x0004 (100 points)</a>
-      <ul>
-        <li><a href="#challenge">Challenge</a></li>
-        <li><a href="#unsolved">(Unsolved)</a></li>
-      </ul>
-    </li>
     <li><a href="#forensics-0x0003-300-points">[Forensics]: 0x0003 (300 points)</a>
       <ul>
-        <li><a href="#challenge-1">Challenge</a></li>
-        <li><a href="#unsolved-1">(Unsolved)</a></li>
+        <li><a href="#challenge">Challenge</a></li>
       </ul>
     </li>
   </ul>
@@ -173,31 +162,29 @@
 <p>URL: <a href="http://riftctf.iiitnr.ac.in:8000/challenges">http://riftctf.iiitnr.ac.in:8000/challenges</a>
 <br /><br />
 stringsコマンドで解けるやつ（3つもあった）とか、ウェブで調べものをするやつとか、答えはわかっててもフラグがIncorrectになるやつとか、そんなのが多かったです。</p>
-<p><br /></p>
+<br />
 <p>とりあえず、記録だけ残しておきます。</p>
 <img src="https://captureamerica.github.io/writeups/img/riftctf_2020_Score1.png" alt="riftctf_2020_Score1.png">
 <img src="https://captureamerica.github.io/writeups/img/riftctf_2020_Score2.png" alt="riftctf_2020_Score2.png">
 <img src="https://captureamerica.github.io/writeups/img/riftctf_2020_Score3.png" alt="riftctf_2020_Score3.png">
 <p><br /><br /></p>
 <p>ちなみに、以下は、解けなかったやつです。</p>
-<p><br /></p>
-<h2 id="forensics-0x0004-100-points">[Forensics]: 0x0004 (100 points)</h2>
-<hr>
-<h3 id="challenge">Challenge</h3>
-<blockquote>
-<p>this is one of those challenges where you can&rsquo;t solve it until and unless you recognize the stuff.
 <br />
-flag format ritsCTF{&lt;&mdash;flag-here&mdash;&gt;}.
+## [Forensics]: 0x0004 (100 points)
+- - -
+### Challenge
+> this is one of those challenges where you can't solve it until and unless you recognize the stuff.
 <br />
-Good Luck.</p>
-</blockquote>
+flag format ritsCTF{<---flag-here--->}.
+<br />
+Good Luck.
 <p>Attachment:</p>
 <ul>
 <li>razorgirl.mp3</li>
 </ul>
-<p><br /></p>
-<h3 id="unsolved">(Unsolved)</h3>
-<p>まず、問題文に出てくるフラグフォーマット、ritsCTF{}が間違っています。正しくは、riftCTF{}のはず。</p>
+<br />
+### (Unsolved)
+まず、問題文に出てくるフラグフォーマット、ritsCTF{}が間違っています。正しくは、riftCTF{}のはず。
 <p>（ていうか、Discordでも指摘されてたし、こういうのはすぐ直さなきゃ。）</p>
 <br>
 RX-SSTVを使って簡単に画像は取れるんですけど、正確になんて書いてあるのかが分からなくて、いろんなパターンを試したけど結局フラグが通りませんでした。。
@@ -206,7 +193,7 @@ RX-SSTVを使って簡単に画像は取れるんですけど、正確になん�
 <p><br /><br /></p>
 <h2 id="forensics-0x0003-300-points">[Forensics]: 0x0003 (300 points)</h2>
 <hr>
-<h3 id="challenge-1">Challenge</h3>
+<h3 id="challenge">Challenge</h3>
 <blockquote>
 <ol>
 <li>identify the file format.</li>
@@ -225,11 +212,11 @@ RX-SSTVを使って簡単に画像は取れるんですけど、正確になん�
 <li>flag.zip</li>
 <li>readme.txt</li>
 </ul>
-<p><br /></p>
-<h3 id="unsolved-1">(Unsolved)</h3>
-<p>何気にこのチャレンジも、間違ったフラグフォーマット ritsCTF{} になってますね。。</p>
-<p><br />
-flag.zip には、flag.txtとreadme.txtが含まれています。</p>
+<br />
+### (Unsolved)
+何気にこのチャレンジも、間違ったフラグフォーマット ritsCTF{} になってますね。。
+<br />
+flag.zip には、flag.txtとreadme.txtが含まれています。
 <pre>
 captureamerica@kali:~/CTF/RiftCTF_2020$ zipinfo flag.zip
 Archive:  flag.zip
@@ -329,7 +316,7 @@ captureamerica@kali:~/CTF/RiftCTF_2020$ xxd flag.zip
     <footer id="footer" class="footer">
       <div class="social-links">
       <a href="https://github.com/CaptureAmerica/" class="iconfont icon-github" title="github"></a>
-  <a href="https://captureamerica.github.io/writeups/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+  
 </div>
 
 <div class="copyright">
@@ -364,20 +351,21 @@ captureamerica@kali:~/CTF/RiftCTF_2020$ xxd flag.zip
 
 
 
-<script type="text/javascript" src="https://captureamerica.github.io/writeups/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+<script type="text/javascript" src="https://captureamerica.github.io/writeups/js/main.min.4ae89da218555efa0e7093a20b92017d2e1202b66fff9fc2edf4cb8d44b44c6e.js"></script>
 
 
 <script type="application/javascript">
 var doNotTrack = false;
 if (!doNotTrack) {
-	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 	ga('create', 'UA-104910699-2', 'auto');
 	ga('set', 'anonymizeIp', true);
 	ga('send', 'pageview');
 }
 </script>
-<script async src='https://www.google-analytics.com/analytics.js'></script>
-
 
 
 

@@ -50,6 +50,7 @@ Attachments:
 - weboflies.pcapng
 
 <br />
+
 ### Solution
 
 以下のように、`GET /flag` と `GET /fl4g` のHTTPリクエストがランダムに出てきます。
@@ -108,6 +109,7 @@ HInt2: The flag file does not have a file extension
 
 
 <br />
+
 ### Solution
 
 X-menの各メンバーの情報が見れるサイトが用意されています。

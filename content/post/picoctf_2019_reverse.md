@@ -56,6 +56,7 @@ Attachment:
 - VaultDoor1.java
 
 <br />
+
 ### Solution
 <pre>
 cat temp.txt | cut -d'(' -f2 | sort -n | cut -d"'" -f2 | tr -d "\n" ; echo
@@ -82,6 +83,7 @@ Attachment:
 - VaultDoor3.java
 
 <br />
+
 ### Solution
 ```C
 #include <stdio.h>
@@ -141,6 +143,7 @@ Attachment:
 - VaultDoor4.java
 
 <br />
+
 ### Solution
 <pre>
 $ python -c 'print("".join([chr(int(x)) for x in "106  85   53   116  95   52   95   98".split()]))'
@@ -183,6 +186,7 @@ Attachment:
 - VaultDoor6.java
 
 <br />
+
 ### Solution
 
 <pre>
@@ -213,6 +217,7 @@ Attachment:
 - need-for-speed
 
 <br />
+
 ### Solution
 gdbでalarmの引き数を変えて実行。
 
@@ -251,6 +256,7 @@ Attachment:
 - times-up
 
 <br />
+
 ### Solution
 確か、こんな風だったはず。recvuntil()してたらタイムアウトしちゃってたので、コメントアウトしました。
 ```Python
@@ -353,6 +359,7 @@ asm4:
 ```
 
 <br />
+
 ### Solution (Unsolved??)
 どのように解こうか試行錯誤したんですが、アセンブラからCコードを書き起こすのが一番いいかな、と思ってそうしました。
 
@@ -490,6 +497,7 @@ Attachment:
 - three.apk
 
 <br />
+
 ### Solution
 1. $ java -jar /usr/local/bin/apktool.jar d three.apk
 2. three_apk/three/smali/com/hellocmu/picoctf/FlagstaffHill.smali の編集
@@ -521,6 +529,7 @@ Attachment:
 - VaultDoor8.java
 
 <br />
+
 ### Solution
 javaのソースを変えて、そのままデバッグしたらいいのかも知れないんですけどね。よくわからないからCでやりました。
 
@@ -617,6 +626,7 @@ Attachment:
 - four.apk
 
 <br />
+
 ### Solution
 基本的にやることは前述の droids3 と同じです。
 

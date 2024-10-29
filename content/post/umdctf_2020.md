@@ -35,6 +35,7 @@ Attachment:
 - crash.jpg
 
 <br />
+
 ### Solution
 「青い空を見上げればいつもそこに白い猫」でテキトーに見てたらBASE64エンコードされた文字列が出てきました。
 
@@ -69,6 +70,7 @@ Attachment:
 
 
 <br />
+
 ### Solution
 まず、どんなファイルなのかを調べます。
 
@@ -141,6 +143,7 @@ Attachment:
 
 
 <br />
+
 ### Solution
 WireSharkで各パケットを見ていくと、IPヘッダ内のフラグの値が0や1に変化しているのがわかります。
 

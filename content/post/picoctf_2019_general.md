@@ -60,6 +60,7 @@ Attachment:
 
 
 <br />
+
 ### Solution
 <pre>
 $ cmp -bl cattos.jpg kitters.jpg | awk '{print $3}' | tr -d "\n" ; echo
@@ -91,6 +92,7 @@ Attachment:
 
 
 <br />
+
 ### Solution
 これも去年と同じで、整数のオーバーフローを使う問題です。
 
@@ -121,6 +123,7 @@ Attachment:
 
 
 <br />
+
 ### Solution
 ヒントのおかげで解けました。
 
@@ -155,6 +158,7 @@ Attachment:
 
 
 <br />
+
 ### Solution
 不要なIF文やListen (scanfみたいなの) をコメントアウトするだけです。
 

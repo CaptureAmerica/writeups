@@ -36,6 +36,7 @@ Attachments:
 - useless.png
 
 <br />
+
 ### Solution
 「青い空を見上げればいつもそこに白い猫」でLSB立てたらPNGのヘッダが見えたので、バイナリデータ保存したところ、"flag{Haha_fake_flag}" と書かれたPNGファイルになりました。
 
@@ -78,6 +79,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 ```
 
 <br />
+
 ### Solution
 Burpでpwdのところをpwd[]に書き換えてフォワードします。
 
@@ -103,6 +105,7 @@ Attachments:
 
 
 <br />
+
 ### Solution (Unsolved...)
 Ghidraでデコンパイルします。
 

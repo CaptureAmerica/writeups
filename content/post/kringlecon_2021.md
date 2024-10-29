@@ -52,6 +52,7 @@ The children will be very disappointed if their candy won't even cause a single 
 
 
 <br />
+
 ### Solution
 まずは、ホームにあるファイルと、プログラムを実行したときの結果を以下に示します。
 <pre>
@@ -204,6 +205,7 @@ You can call functions like myFunction(). If you ever need to pass a function to
 
 
 <br />
+
 ### Solution
 正直、問題文を見てもなんだかわからないですが、やっていくうちにわかります。
 

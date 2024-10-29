@@ -65,6 +65,7 @@ URL: [https://2024.angstromctf.com/challenges](https://2024.angstromctf.com/chal
 For example, if the road was "Colesville Road" the flag would be actf{colesville}.
 
 <br />
+
 ### Solution
 
 写真に写っている景色を見ても場所は特定できなさそうだったので、exifのlocationだと予想。
@@ -108,6 +109,7 @@ Flag: `actf{chincoteague}`
 > Anna: Do you wanna build a snowman? Elsa: Sure if you can open my snowman picture (snowman.jpg)
 
 <br />
+
 ### Solution
 
 ヘッダ修復系だと思いつつ、「ヘッダ合っているしなぁ」と思って、大会中に解けなかったやつです。
@@ -161,6 +163,7 @@ Flag: `actf{built_the_snowman}`
 
 
 <br />
+
 ### Solution
 
 いろいろエニグマの設定情報が書かれていますが、CyberChefのデフォルト設定で解けます。
@@ -185,6 +188,7 @@ Attachment:
 
 
 <br />
+
 ### Solution
 
 タイトルからして、テキトーにGuessしたらフラグがわかるのかな？と思ったんですが、普通にGhidraでReverse Engineeringする必要がある気がします。
@@ -225,6 +229,7 @@ Attachment:
 
 
 <br />
+
 ### Solution
 
 Pwnカテゴリですが、どっちかっていうと、Revカテゴリのチャレンジな気がします。
@@ -351,6 +356,7 @@ Attachment:
 
 
 <br />
+
 ### Solution
 
 以下の手順で解きました。

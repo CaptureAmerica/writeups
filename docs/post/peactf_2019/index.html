@@ -23,7 +23,7 @@
 <meta name="google-site-verification" content="PqctLWZQttGzxXVupWuIt2HWuBI8cvN1z07ETpxA2dw" />
 
 
-<meta name="generator" content="Hugo 0.74.2 with theme even" />
+<meta name="generator" content="Hugo 0.119.0 with theme even" />
 
 
 <link rel="canonical" href="https://captureamerica.github.io/writeups/post/peactf_2019/" />
@@ -35,24 +35,20 @@
 
 
 
-<link href="https://captureamerica.github.io/writeups/sass/main.min.2e81bbed97b8b282c1aeb57488cc71c8d8c8ec559f3931531bd396bf31e0d4dd.css" rel="stylesheet">
+<link href="https://captureamerica.github.io/writeups/sass/main.min.f92fd13721ddf72129410fd8250e73152cc6f2438082b6c0208dc24ee7c13fc4.css" rel="stylesheet">
 
 
 
 <meta property="og:title" content="peaCTF Round1 2019 Writeup" />
 <meta property="og:description" content="URL: https://2019.peactf.com/problems 前回のcybricsに引き続き、風邪が長引いていたのと、アクセスができない時があったりして、簡単なやつをちょこっと解いて終了。 いちおう、" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://captureamerica.github.io/writeups/post/peactf_2019/" />
+<meta property="og:url" content="https://captureamerica.github.io/writeups/post/peactf_2019/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2019-08-01T19:00:00+09:00" />
 <meta property="article:modified_time" content="2019-09-15T19:00:00+09:00" />
 <meta itemprop="name" content="peaCTF Round1 2019 Writeup">
-<meta itemprop="description" content="URL: https://2019.peactf.com/problems 前回のcybricsに引き続き、風邪が長引いていたのと、アクセスができない時があったりして、簡単なやつをちょこっと解いて終了。 いちおう、">
-<meta itemprop="datePublished" content="2019-08-01T19:00:00&#43;09:00" />
-<meta itemprop="dateModified" content="2019-09-15T19:00:00&#43;09:00" />
-<meta itemprop="wordCount" content="1177">
-
-
-
+<meta itemprop="description" content="URL: https://2019.peactf.com/problems 前回のcybricsに引き続き、風邪が長引いていたのと、アクセスができない時があったりして、簡単なやつをちょこっと解いて終了。 いちおう、"><meta itemprop="datePublished" content="2019-08-01T19:00:00+09:00" />
+<meta itemprop="dateModified" content="2019-09-15T19:00:00+09:00" />
+<meta itemprop="wordCount" content="1187">
 <meta itemprop="keywords" content="CTF," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="peaCTF Round1 2019 Writeup"/>
 <meta name="twitter:description" content="URL: https://2019.peactf.com/problems 前回のcybricsに引き続き、風邪が長引いていたのと、アクセスができない時があったりして、簡単なやつをちょこっと解いて終了。 いちおう、"/>
@@ -214,18 +210,18 @@
 <br /><br />
 Ciphertext: 112 101 97 67 84 70 123 52 115 99 49 49 105 115 99 48 48 108 125</p>
 </blockquote>
-<p><br /></p>
+<br />
 <h3 id="solution">Solution</h3>
 <p>普通に1個1個変換したら面白くないので、ワンライナーで挑戦。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="err">$</span> <span class="n">python</span> <span class="o">-</span><span class="n">c</span> <span class="s1">&#39;print(&#34;&#34;.join([chr(int(x)) for x in &#34;112 101 97 67 84 70 123 52 115 99 49 49 105 115 99 48 48 108 125&#34;.split()]))&#39;</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="err">$</span> <span class="n">python</span> <span class="o">-</span><span class="n">c</span> <span class="s1">&#39;print(&#34;&#34;.join([chr(int(x)) for x in &#34;112 101 97 67 84 70 123 52 115 99 49 49 105 115 99 48 48 108 125&#34;.split()]))&#39;</span>
+</span></span></code></pre></td></tr></table>
 </div>
-</div><p><br /></p>
+</div><br />
 <p>Flag: <code>peaCTF{4sc11isc00l}</code></p>
 <p><br /><br />
 <br /><br /></p>
@@ -237,7 +233,7 @@ Ciphertext: 112 101 97 67 84 70 123 52 115 99 49 49 105 115 99 48 48 108 125</p>
 <br /><br />
 Ciphertext: 011100010000000000101001000101{00100001100011010100000000010100101010100010010001}</p>
 </blockquote>
-<p><br /></p>
+<br />
 <h3 id="solution-1">Solution</h3>
 <p>他の問題を解いていると、フラグのフォーマットが peaCTF{xxxx} なのがわかるので、011100010000000000101001000101の部分がpeaCTFだとして6等分すると、</p>
 <p>01110   p<br />
@@ -269,22 +265,22 @@ Ciphertext: 011100010000000000101001000101{0010000110001101010000000001010010101
 10010   t （これがTなのは確か）<br />
 10011   u<br />
 10100   v （結果、なぜかこれはvではなくて、wだった）<br /></p>
-<p><br />
+<br />
 ところどころナゾだけど、{}の中身は、<br />
-00100   e<br />
-00110   g<br />
-00110   g<br />
-10100   w<br />
-00000   a<br />
-00101   f<br />
-00101   f<br />
-01010   l<br />
-00100   e<br />
-10001   s<br /></p>
-<p><br /></p>
+00100 &nbsp; e<br />
+00110 &nbsp; g<br />
+00110 &nbsp; g<br />
+10100 &nbsp; w<br />
+00000 &nbsp; a<br />
+00101 &nbsp; f<br />
+00101 &nbsp; f<br />
+01010 &nbsp; l<br />
+00100 &nbsp; e<br />
+10001 &nbsp; s<br />
+<br />
 <p>Flag: <code>peaCTF{eggwaffles}</code></p>
-<p><br />
-＃問題文の中で、<b>bacon</b>の部分だけ太字になっているのがナゾ。なんかのヒントなの？ スライスするとか言うことかな。。</p>
+<br />
+＃問題文の中で、<b>bacon</b>の部分だけ太字になっているのがナゾ。なんかのヒントなの？ スライスするとか言うことかな。。
 <p><br /><br />
 (2019/09/15 追記)</p>
 <p>復習してたら、これは<a href="https://en.wikipedia.org/wiki/Bacon%27s_cipher">Bacon&rsquo;s cipher</a>っていうらしいですね。知らなくても解けたけど。</p>
@@ -296,14 +292,14 @@ Ciphertext: 011100010000000000101001000101{0010000110001101010000000001010010101
 <blockquote>
 <p>Try to find to the flag file located somewhere in the folders located in: /problems/hide-and-seek_16_d386ec3561e6180b95a47434c62a78be</p>
 </blockquote>
-<p><br /></p>
+<br />
 <h3 id="solution-2">Solution</h3>
 <p>これはシェルサーバに入って解く問題。</p>
 <pre>
 $ find . -name *flag*
 $ cat ./926c7fc91293cbdcbb5a99c561782682/80dee25b24cac38a8a7f7214c732974c/d9f58f5e381818ca33525a98ca33dfbe/f17007910d11d07404b23bb62d7a7ee1/9c991628ac6f756dd67cfa3b98c42cf6/47c8055d6bd5102bd363fc752227844a/1d4c5a6d7ce032905f80ccd47b1c08df/f4fd3d96096de5ed863de07324e1bf57/flag.txt
 </pre>
-<p><br /></p>
+<br />
 <p>Flag: <code>flag{peactf_linux_is_fun_f4ca42f3f34f4674d511eade889d74f7}</code></p>
 <p><br /><br />
 <br /><br /></p>
@@ -316,12 +312,12 @@ $ cat ./926c7fc91293cbdcbb5a99c561782682/80dee25b24cac38a8a7f7214c732974c/d9f58f
 Alphabet: ​WCGPSUHRAQYKFDLZOJNXMVEBTI<br />
 zswGXU{ljwdhsqmags}</p>
 </blockquote>
-<p><br /></p>
+<br />
 <h3 id="solution-3">Solution</h3>
 <p>単一換字式暗号 (monoalphabetic substitution ciphers)です。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -342,30 +338,30 @@ zswGXU{ljwdhsqmags}</p>
 </span><span class="lnt">19
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-Perl" data-lang="Perl"><span class="ch">#!/usr/bin/perl</span>
-<span class="k">use</span> <span class="nn">strict</span><span class="p">;</span>
-<span class="k">use</span> <span class="nn">warnings</span><span class="p">;</span>
-<span class="k">use</span> <span class="nn">utf8</span><span class="p">;</span>
-
-<span class="k">use</span> <span class="nn">open</span> <span class="sx">qw/:utf8/</span><span class="p">;</span>
-
-<span class="nb">open</span><span class="p">(</span><span class="k">my</span> <span class="nv">$F</span><span class="p">,</span> <span class="s">&#34;&lt;:utf8&#34;</span><span class="p">,</span> <span class="s">&#39;School.txt&#39;</span><span class="p">)</span> <span class="ow">or</span> <span class="nb">die</span><span class="p">;</span>
-<span class="k">my</span> <span class="nv">$text</span><span class="p">;</span>
-<span class="k">while</span> <span class="p">(</span><span class="k">my</span> <span class="nv">$l</span> <span class="o">=</span> <span class="sr">&lt;$F&gt;</span><span class="p">)</span>
-<span class="p">{</span>
-    <span class="c1">#$l =~ s/[\r\n]+/ /g;</span>
-    <span class="nv">$text</span> <span class="o">.=</span> <span class="nv">$l</span><span class="p">;</span>
-<span class="p">}</span>
-<span class="nb">close</span><span class="p">(</span><span class="nv">$F</span><span class="p">);</span>
-
-<span class="nv">$text</span> <span class="o">=~</span> <span class="n">y</span><span class="sr">/wcgpsuhraqykfdlzojnxmvebti/</span><span class="n">abcdefghijklmnopqrstuvwxyz</span><span class="o">/</span><span class="p">;</span>
-<span class="k">print</span> <span class="nv">$text</span><span class="p">;</span>
-<span class="k">print</span> <span class="s">&#34;\n---------\n&#34;</span><span class="p">;</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-Perl" data-lang="Perl"><span class="line"><span class="cl"><span class="ch">#!/usr/bin/perl</span>
+</span></span><span class="line"><span class="cl"><span class="k">use</span> <span class="nn">strict</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">use</span> <span class="nn">warnings</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">use</span> <span class="nn">utf8</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">use</span> <span class="nn">open</span> <span class="sx">qw/:utf8/</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">open</span><span class="p">(</span><span class="k">my</span> <span class="nv">$F</span><span class="p">,</span> <span class="s">&#34;&lt;:utf8&#34;</span><span class="p">,</span> <span class="s">&#39;School.txt&#39;</span><span class="p">)</span> <span class="ow">or</span> <span class="nb">die</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">my</span> <span class="nv">$text</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">while</span> <span class="p">(</span><span class="k">my</span> <span class="nv">$l</span> <span class="o">=</span> <span class="sr">&lt;$F&gt;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">#$l =~ s/[\r\n]+/ /g;</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">$text</span> <span class="o">.=</span> <span class="nv">$l</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="nb">close</span><span class="p">(</span><span class="nv">$F</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nv">$text</span> <span class="o">=~</span> <span class="n">y</span><span class="sr">/wcgpsuhraqykfdlzojnxmvebti/</span><span class="n">abcdefghijklmnopqrstuvwxyz</span><span class="o">/</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">print</span> <span class="nv">$text</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">print</span> <span class="s">&#34;\n---------\n&#34;</span><span class="p">;</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>得られた結果：peaGXU{orangejuice} </br></br>
 上記のPerlスクリプトは小文字だけ置き換えているので、GXUのところが書き換わってないだけです。</p>
-<p><br /></p>
+<br />
 <p>Flag: <code>peaCTF{orangejuice}</code></p>
 <p><br /><br />
 <br /><br /></p>
@@ -379,7 +375,7 @@ zswGXU{ljwdhsqmags}</p>
 <ul>
 <li>coffeetime.jar</li>
 </ul>
-<p><br /></p>
+<br />
 <h3 id="solution-4">Solution</h3>
 <p>実行しろというので、とりあえず実行。</p>
 <pre>
@@ -387,14 +383,14 @@ $ java coffeetime.jar
 Error: Could not find or load main class coffeetime.jar
 Caused by: java.lang.ClassNotFoundException: coffeetime.jar
 </pre>
-<p><br />
+<br />
 よくわからんので、とりあえずコードでも見てみるかと思って、jadでデコンパイル。
 <br /><br />
-そしたら、ソースコードの中にフラグがありました。なんじゃこりゃ。</p>
+そしたら、ソースコードの中にフラグがありました。なんじゃこりゃ。
 <pre>
 System.out.println("peaCTF{nice_cup_of_coffee}");
 </pre>
-<p><br /></p>
+<br />
 <p>Flag: <code>peaCTF{nice_cup_of_coffee}</code></p>
 <p><br /><br />
 <br /><br /></p>
@@ -408,7 +404,7 @@ System.out.println("peaCTF{nice_cup_of_coffee}");
 <ul>
 <li>E.xtr</li>
 </ul>
-<p><br /></p>
+<br />
 <h3 id="solution-5">Solution</h3>
 <pre>
 $ file E.xtr 
@@ -427,7 +423,7 @@ $ xxd E.xtr | head -n 1
 $ file E.xtr 
 E.xtr: PNG image data, 1280 x 720, 8-bit colormap, interlaced
 </pre>
-<p><br /></p>
+<br />
 <p>Flag: <code>peaCTF{read_banned_it}</code></p>
 <p><br /><br />
 <br /><br /></p>
@@ -441,7 +437,7 @@ E.xtr: PNG image data, 1280 x 720, 8-bit colormap, interlaced
 <ul>
 <li>TheWonderfulWizard.png</li>
 </ul>
-<p><br /></p>
+<br />
 <h3 id="solution-6">Solution</h3>
 <p>「青い空を見上げればいつもそこに白い猫」で赤色ビット0抽出すると、数字が出てくるので、それをHex Decodeするだけ。<br />
 <img src="https://captureamerica.github.io/writeups/img/TheWonderfulWizard_Neko.PNG" alt="TheWonderfulWizard_Neko.PNG"></p>
@@ -450,7 +446,7 @@ E.xtr: PNG image data, 1280 x 720, 8-bit colormap, interlaced
 5f 77 68 65 72 65 5f 74 68 65 5f
 77 69 6e 64 5f 62 6c 6f 77 73 7d
 </pre>
-<p><br /></p>
+<br />
 <p>Flag: <code>flag{peactf_where_the_wind_blows}</code></p>
 <p><br /><br />
 <br /><br /></p>
@@ -506,7 +502,7 @@ E.xtr: PNG image data, 1280 x 720, 8-bit colormap, interlaced
     <footer id="footer" class="footer">
       <div class="social-links">
       <a href="https://github.com/CaptureAmerica/" class="iconfont icon-github" title="github"></a>
-  <a href="https://captureamerica.github.io/writeups/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+  
 </div>
 
 <div class="copyright">
@@ -541,20 +537,21 @@ E.xtr: PNG image data, 1280 x 720, 8-bit colormap, interlaced
 
 
 
-<script type="text/javascript" src="https://captureamerica.github.io/writeups/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+<script type="text/javascript" src="https://captureamerica.github.io/writeups/js/main.min.4ae89da218555efa0e7093a20b92017d2e1202b66fff9fc2edf4cb8d44b44c6e.js"></script>
 
 
 <script type="application/javascript">
 var doNotTrack = false;
 if (!doNotTrack) {
-	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 	ga('create', 'UA-104910699-2', 'auto');
 	ga('set', 'anonymizeIp', true);
 	ga('send', 'pageview');
 }
 </script>
-<script async src='https://www.google-analytics.com/analytics.js'></script>
-
 
 
 

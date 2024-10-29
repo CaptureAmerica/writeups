@@ -46,6 +46,7 @@ Attachment:
 - chall.7z
 
 <br />
+
 ### Solution
 とりあえずchall.7zを解凍しようとしたらなかなか解凍が終わらないのでよく見てみたらファイルが90,000個も入ってた！（問題文よく読んでなかった。。）
 
@@ -187,6 +188,7 @@ MmQgMmQgMmQgMmQgMmQgMjAgMmQgMmQgMmQgMmQgMmQgMjAgMmUgMmQgMmQgMmQgMmQgMjAgMmUgMmQg
 
 
 <br />
+
 ### Solution
 問題文にある `Hope you've been paying attention!` からBeginner 1〜8のフラグがヒントになっているのかと思って読み返したりはしてたんですが、Solutionの組み合わせだとは思わなかった〜。
 
@@ -221,6 +223,7 @@ Attachment:
 - masterpiece.mid
 
 <br />
+
 ### Solution
 Audacityで開こうとしてドラッグ＆ドロップしたところ、以下のエラーのウィンドウが出て、エラーの内容を読まずに諦めたやつでした ^^;
 

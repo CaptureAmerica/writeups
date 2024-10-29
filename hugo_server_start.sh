@@ -1,2 +1,2 @@
 #!/bin/bash
-hugo server -D -t even --ignoreCache
+hugo server -D -t even --ignoreCache --disableFastRender

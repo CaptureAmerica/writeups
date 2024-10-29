@@ -66,6 +66,7 @@ Ciphertext,T,v,m,9,M,j,=,S,a,i,w,k,e,C,P,L,X,D,J,c,8,h,f,_,.,t,I,B,q,R,Q,Z,U,n,K
 
 
 <br />
+
 ### Solution
 このチャレンジはなかなか面白かったです。
 
@@ -129,6 +130,7 @@ Hint: Heard of injection?
 
 
 <br />
+
 ### Solution
 以下の通り。
 <pre>
@@ -163,6 +165,7 @@ Attachment:
 
 
 <br />
+
 ### Solution
 問題文の中の「PIGPEN」が大文字になっていたのでググってみると、Pigpen Cipherっていうのが見つかりました。
 

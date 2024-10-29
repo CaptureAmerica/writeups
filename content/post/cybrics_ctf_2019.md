@@ -74,6 +74,7 @@ QUIT
 
 
 <br />
+
 ### Solution
 メールの本文はquoted-printableでエンコードされています。一旦別ファイルに落とした後、nkfでデコードします。
 
@@ -125,6 +126,7 @@ Flag:
 [youtu.be/11k0n7TOYeM](youtu.be/11k0n7TOYeM)
 
 <br />
+
 ### Solution
 
 音がちっちゃいですが、よく聞くと電話のトーンの音（プッシュ音）が聞こえます。

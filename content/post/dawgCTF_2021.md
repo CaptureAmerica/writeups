@@ -147,6 +147,7 @@ int main(){
 ```
 
 <br />
+
 ### Solution
 play_game()関数の中にBOFの脆弱性が存在します。
 

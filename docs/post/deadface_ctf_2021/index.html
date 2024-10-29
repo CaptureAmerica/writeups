@@ -23,7 +23,7 @@
 <meta name="google-site-verification" content="PqctLWZQttGzxXVupWuIt2HWuBI8cvN1z07ETpxA2dw" />
 
 
-<meta name="generator" content="Hugo 0.74.2 with theme even" />
+<meta name="generator" content="Hugo 0.119.0 with theme even" />
 
 
 <link rel="canonical" href="https://captureamerica.github.io/writeups/post/deadface_ctf_2021/" />
@@ -35,24 +35,20 @@
 
 
 
-<link href="https://captureamerica.github.io/writeups/sass/main.min.2e81bbed97b8b282c1aeb57488cc71c8d8c8ec559f3931531bd396bf31e0d4dd.css" rel="stylesheet">
+<link href="https://captureamerica.github.io/writeups/sass/main.min.f92fd13721ddf72129410fd8250e73152cc6f2438082b6c0208dc24ee7c13fc4.css" rel="stylesheet">
 
 
 
 <meta property="og:title" content="Deadface CTF 2021 Writeup" />
 <meta property="og:description" content="Save The Earth! - 地球環境を守ろう！ URL: https://deadface.ctfd.io/challenges 1380点を獲得し、304位でした。 日曜日の朝に起きたらすでにイベントが終了していて、その時にいくつかの追加チ" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://captureamerica.github.io/writeups/post/deadface_ctf_2021/" />
+<meta property="og:url" content="https://captureamerica.github.io/writeups/post/deadface_ctf_2021/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2021-10-17T10:00:00+09:00" />
 <meta property="article:modified_time" content="2021-10-17T10:00:00+09:00" />
 <meta itemprop="name" content="Deadface CTF 2021 Writeup">
-<meta itemprop="description" content="Save The Earth! - 地球環境を守ろう！ URL: https://deadface.ctfd.io/challenges 1380点を獲得し、304位でした。 日曜日の朝に起きたらすでにイベントが終了していて、その時にいくつかの追加チ">
-<meta itemprop="datePublished" content="2021-10-17T10:00:00&#43;09:00" />
-<meta itemprop="dateModified" content="2021-10-17T10:00:00&#43;09:00" />
-<meta itemprop="wordCount" content="2754">
-
-
-
+<meta itemprop="description" content="Save The Earth! - 地球環境を守ろう！ URL: https://deadface.ctfd.io/challenges 1380点を獲得し、304位でした。 日曜日の朝に起きたらすでにイベントが終了していて、その時にいくつかの追加チ"><meta itemprop="datePublished" content="2021-10-17T10:00:00+09:00" />
+<meta itemprop="dateModified" content="2021-10-17T10:00:00+09:00" />
+<meta itemprop="wordCount" content="2755">
 <meta itemprop="keywords" content="CTF," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Deadface CTF 2021 Writeup"/>
 <meta name="twitter:description" content="Save The Earth! - 地球環境を守ろう！ URL: https://deadface.ctfd.io/challenges 1380点を獲得し、304位でした。 日曜日の朝に起きたらすでにイベントが終了していて、その時にいくつかの追加チ"/>
@@ -261,7 +257,7 @@
 <br /><br />
 code.deadface.io:50000</p>
 </blockquote>
-<p><br /></p>
+<br />
 <h3 id="solution">Solution</h3>
 <p>まずは、接続して動作を確認します。</p>
 <pre>
@@ -292,7 +288,7 @@ Wordが貰えるので、a=0, ... , z=25 として、数値の合計を送り返
 <p>書いたコードです。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -312,27 +308,27 @@ Wordが貰えるので、a=0, ... , z=25 として、数値の合計を送り返
 </span><span class="lnt">18
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-Python" data-lang="Python"><span class="ch">#!/usr/bin/env python</span>
-<span class="kn">from</span> <span class="nn">pwn</span> <span class="kn">import</span> <span class="o">*</span>
-<span class="kn">import</span> <span class="nn">string</span>
-
-<span class="n">s</span> <span class="o">=</span> <span class="n">remote</span><span class="p">(</span><span class="s1">&#39;code.deadface.io&#39;</span><span class="p">,</span> <span class="mi">50000</span><span class="p">)</span>
-
-<span class="n">s</span><span class="o">.</span><span class="n">recvuntil</span><span class="p">(</span><span class="sa">b</span><span class="s1">&#39;Your word is: &#39;</span><span class="p">)</span>
-<span class="n">word</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">recvuntil</span><span class="p">(</span><span class="sa">b</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
-<span class="n">word</span> <span class="o">=</span> <span class="n">word</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span>
-<span class="n">word</span> <span class="o">=</span> <span class="n">word</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
-<span class="k">print</span><span class="p">(</span><span class="n">word</span><span class="p">)</span>
-
-<span class="nb">sum</span> <span class="o">=</span> <span class="mi">0</span>
-<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">word</span><span class="p">:</span>
-    <span class="nb">sum</span> <span class="o">+=</span> <span class="n">string</span><span class="o">.</span><span class="n">ascii_lowercase</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
-<span class="n">s</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="nb">bytes</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="nb">sum</span><span class="p">),</span> <span class="s1">&#39;utf-8&#39;</span><span class="p">))</span>
-<span class="n">msg</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">recvuntil</span><span class="p">(</span><span class="sa">b</span><span class="s1">&#39;}&#39;</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="n">msg</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-Python" data-lang="Python"><span class="line"><span class="cl"><span class="ch">#!/usr/bin/env python</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">pwn</span> <span class="kn">import</span> <span class="o">*</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">string</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">s</span> <span class="o">=</span> <span class="n">remote</span><span class="p">(</span><span class="s1">&#39;code.deadface.io&#39;</span><span class="p">,</span> <span class="mi">50000</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">s</span><span class="o">.</span><span class="n">recvuntil</span><span class="p">(</span><span class="sa">b</span><span class="s1">&#39;Your word is: &#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">word</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">recvuntil</span><span class="p">(</span><span class="sa">b</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">word</span> <span class="o">=</span> <span class="n">word</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">word</span> <span class="o">=</span> <span class="n">word</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">word</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">sum</span> <span class="o">=</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">word</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">sum</span> <span class="o">+=</span> <span class="n">string</span><span class="o">.</span><span class="n">ascii_lowercase</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">s</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="nb">bytes</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="nb">sum</span><span class="p">),</span> <span class="s1">&#39;utf-8&#39;</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="n">msg</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">recvuntil</span><span class="p">(</span><span class="sa">b</span><span class="s1">&#39;}&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">msg</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
 </div>
-</div><p><br /></p>
+</div><br />
 <p>実行結果：</p>
 <pre>
 $ ./The_Count_solve.py
@@ -343,7 +339,7 @@ flag{d1c037808d23acd0dc0e3b897f344571ddce4b294e742b434888b3d9f69d9944}
 [*] Closed connection to code.deadface.io port 50000
 
 </pre>
-<p><br /></p>
+<br />
 <p>Flag: <code>flag{d1c037808d23acd0dc0e3b897f344571ddce4b294e742b434888b3d9f69d9944}</code></p>
 <p><br /><br />
 <br /><br /></p>
@@ -357,7 +353,7 @@ bloodbash.deadface.io:22
 <br /><br />
 (credentialは省略します)</p>
 </blockquote>
-<p><br /></p>
+<br />
 <h3 id="solution-1">Solution</h3>
 <p>flag1.txtを見つけて、中身を確認します。</p>
 <pre>
@@ -377,7 +373,7 @@ flag{cd134eb8fbd794d4065dcd7cfa7efa6f3ff111fe}
 <blockquote>
 <p>We&rsquo;ve obtained access to a system maintained by bl0ody_mary. We believe bl0ody_mary stole a sensitive document and is storing it on her Linux machine. Search her system for any files relating to De Monne Financial.</p>
 </blockquote>
-<p><br /></p>
+<br />
 <h3 id="solution-2">Solution</h3>
 <p>ホームディレクトリ配下のファイルの一覧より、怪しいテキストファイルを見つけて開きます。</p>
 <pre>
@@ -409,7 +405,7 @@ flag{a856b162978fe563537c6890cb184c48fc2a018a}
 <blockquote>
 <p>There&rsquo;s a flag on this system that we&rsquo;re having difficulty with. Unlike the previous flags, we can&rsquo;t seem to find a file with this flag in it. Perhaps the flag isn&rsquo;t stored in a traditional file?</p>
 </blockquote>
-<p><br /></p>
+<br />
 <h3 id="solution-3">Solution</h3>
 <p><code>sudo -l</code>を見ると、いくつかsudoで実行できるファイルがあります。<code>sudo /opt/start.sh</code> で root になれます。</p>
 <pre>
@@ -467,7 +463,7 @@ while True:
 <blockquote>
 <p>A sensitive file from De Monne was exfiltrated by mort1cia. It contains data relating to a new web portal they&rsquo;re creating for their consumers. Read the contents of the file and return the flag as flag{flag_goes_here}.</p>
 </blockquote>
-<p><br /></p>
+<br />
 <h3 id="solution-4">Solution</h3>
 <p>ホームディレクトリにある pdf を取得して開きます。ただし、scpで取ってこようとしたらエラーになりました。</p>
 <pre>
@@ -508,7 +504,7 @@ To gather some information on the victim, investigate the victim&rsquo;s compute
 <ul>
 <li>pcap-challenge-final.pcapng</li>
 </ul>
-<p><br /></p>
+<br />
 <h3 id="solution-5">Solution</h3>
 <p><code>search engine</code> ということなので、httpと仮定して、<code>tcp.port==80</code> でフィルターして別ファイルとして保存しておきます。パケット数が多いとwiresharkでの操作が遅くなるからです。</p>
 <p>とりあえず、<code>strings</code> コマンドを使って <code>name</code> という文字列をサーチしてみたら、人の名前（%22charles%20geschickter）が見つかったので試してみたらフラグとして通りました。</p>
@@ -533,7 +529,7 @@ GET /link?url=gtV7J1j1xY_cNHtP_SDywFtzWxKNScoPryi0x605iwwQ9l6odRnh7yUnWO2DBxYiug
 <br /><br />
 What are the MD5 hashes of the two tool programs? Submit both hashes as the flag, separated by a |: flag{ExeMD5|BinMD5}</p>
 </blockquote>
-<p><br /></p>
+<br />
 <h3 id="solution-6">Solution</h3>
 <p>ftp通信の中で、lytton-crypt.bin と lytton-crypt.exe を見つけました。<code>two binaries with identical names</code> ということで、これらですね。</p>
 <p>このftp通信も一旦 display filter <code>ftp</code> でフィルターした後に別ファイルとして保存したんですが、Control port しか保存されないので、別途 Data port も見つけないといけません。</p>
@@ -571,7 +567,7 @@ $ ruby -e 'puts 193 * 256 + 241'
 <blockquote>
 <p>Luciafer cracked a password belonging to the victim. Submit the flag as: flag{password}.</p>
 </blockquote>
-<p><br /></p>
+<br />
 <h3 id="solution-7">Solution</h3>
 <p>Victimは <code>Charles</code> なので、Charlesのパスワードを探します。これは、ftp通信の中で出てきます。</p>
 <pre>
@@ -594,7 +590,7 @@ Which TCP ports are open on the victim&rsquo;s machine? Enter the flag as the op
 <br /><br />
 Example: flag{80,110,111,143,443,2049}</p>
 </blockquote>
-<p><br /></p>
+<br />
 <h3 id="solution-8">Solution</h3>
 <p>WiresharkでConversationを見てみると、192.168.100.106 (client) と 192.168.100.103 (server) の間で 70000 くらいのtcp connectionがあるので、ここで full port scan をしていることがわかります。</p>
 <p>Display filter <code>tcp and ip.addr==192.168.100.103</code> で、これも別ファイルに保存しておきます。</p>
@@ -630,7 +626,7 @@ $ cat tcp_103.csv | cut -d, -f4 | sort -un
 <blockquote>
 <p>Luciafer gains access to the victim&rsquo;s computer by using the cracked password. What is the packet number of the response by the victim&rsquo;s system, saying that access is granted? Submit the flag as: flag{#}.</p>
 </blockquote>
-<p><br /></p>
+<br />
 <h3 id="solution-9">Solution</h3>
 <p>これも、ftpの通信です。ログインが成功した箇所のFrame番号を答える問題です。</p>
 <p>以下のように2回出てきますが、1回目は Brute Force をやった結果ログインが成功したところ、2回目が実際にLuciaferがログインしたところです。</p>
@@ -655,7 +651,7 @@ One of them says: &ldquo;Stay away from Lytton Labs&hellip; you have been warned
 <br /><br />
 To find the flag, find the message. You&rsquo;ll know it when you see it. Submit the flag as flag{flag-goes-here}.</p>
 </blockquote>
-<p><br /></p>
+<br />
 <h3 id="solution-10">Solution</h3>
 <p>Warning を da-warning-message.jpg という画像を使って表示するようになっているっぽいです。</p>
 <p>httpからファイルをexportして開いてみると、フラグが書かれていました。</p>
@@ -669,7 +665,7 @@ To find the flag, find the message. You&rsquo;ll know it when you see it. Submit
 <blockquote>
 <p>Luciafer, consummate hacker, got cocky and careless. She made a fatal mistake, and in doing so, gave control of her computer to&hellip; someone. She ran a program on her computer that she shouldn&rsquo;t have.</p>
 </blockquote>
-<p><br /></p>
+<br />
 <h3 id="solution-11">Solution</h3>
 <p>イベントが終了してから気づいた追加チャレンジです。</p>
 <p>secret_decoder.bin というのを http でダウンロードし、ll-connect.bin という名前で保存しています。</p>
@@ -750,7 +746,7 @@ $ md5sum secret_decoder.bin
     <footer id="footer" class="footer">
       <div class="social-links">
       <a href="https://github.com/CaptureAmerica/" class="iconfont icon-github" title="github"></a>
-  <a href="https://captureamerica.github.io/writeups/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+  
 </div>
 
 <div class="copyright">
@@ -785,20 +781,21 @@ $ md5sum secret_decoder.bin
 
 
 
-<script type="text/javascript" src="https://captureamerica.github.io/writeups/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+<script type="text/javascript" src="https://captureamerica.github.io/writeups/js/main.min.4ae89da218555efa0e7093a20b92017d2e1202b66fff9fc2edf4cb8d44b44c6e.js"></script>
 
 
 <script type="application/javascript">
 var doNotTrack = false;
 if (!doNotTrack) {
-	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 	ga('create', 'UA-104910699-2', 'auto');
 	ga('set', 'anonymizeIp', true);
 	ga('send', 'pageview');
 }
 </script>
-<script async src='https://www.google-analytics.com/analytics.js'></script>
-
 
 
 

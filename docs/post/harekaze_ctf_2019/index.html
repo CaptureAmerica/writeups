@@ -23,7 +23,7 @@
 <meta name="google-site-verification" content="PqctLWZQttGzxXVupWuIt2HWuBI8cvN1z07ETpxA2dw" />
 
 
-<meta name="generator" content="Hugo 0.74.2 with theme even" />
+<meta name="generator" content="Hugo 0.119.0 with theme even" />
 
 
 <link rel="canonical" href="https://captureamerica.github.io/writeups/post/harekaze_ctf_2019/" />
@@ -35,24 +35,20 @@
 
 
 
-<link href="https://captureamerica.github.io/writeups/sass/main.min.2e81bbed97b8b282c1aeb57488cc71c8d8c8ec559f3931531bd396bf31e0d4dd.css" rel="stylesheet">
+<link href="https://captureamerica.github.io/writeups/sass/main.min.f92fd13721ddf72129410fd8250e73152cc6f2438082b6c0208dc24ee7c13fc4.css" rel="stylesheet">
 
 
 
 <meta property="og:title" content="Harekaze CTF 2019 Writeup" />
 <meta property="og:description" content="[Crypto]: Twenty-five Challenge With “ppencode”, you can write Perl code using only Perl reserved words. Attachments: crypto.txt（ppencodeでエンコードされたファイル） reserved.tx" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://captureamerica.github.io/writeups/post/harekaze_ctf_2019/" />
+<meta property="og:url" content="https://captureamerica.github.io/writeups/post/harekaze_ctf_2019/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2019-05-18T13:49:54+09:00" />
 <meta property="article:modified_time" content="2019-05-25T15:05:00+08:00" />
 <meta itemprop="name" content="Harekaze CTF 2019 Writeup">
-<meta itemprop="description" content="[Crypto]: Twenty-five Challenge With “ppencode”, you can write Perl code using only Perl reserved words. Attachments: crypto.txt（ppencodeでエンコードされたファイル） reserved.tx">
-<meta itemprop="datePublished" content="2019-05-18T13:49:54&#43;09:00" />
-<meta itemprop="dateModified" content="2019-05-25T15:05:00&#43;08:00" />
-<meta itemprop="wordCount" content="1494">
-
-
-
+<meta itemprop="description" content="[Crypto]: Twenty-five Challenge With “ppencode”, you can write Perl code using only Perl reserved words. Attachments: crypto.txt（ppencodeでエンコードされたファイル） reserved.tx"><meta itemprop="datePublished" content="2019-05-18T13:49:54+09:00" />
+<meta itemprop="dateModified" content="2019-05-25T15:05:00+08:00" />
+<meta itemprop="wordCount" content="1497">
 <meta itemprop="keywords" content="CTF," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Harekaze CTF 2019 Writeup"/>
 <meta name="twitter:description" content="[Crypto]: Twenty-five Challenge With “ppencode”, you can write Perl code using only Perl reserved words. Attachments: crypto.txt（ppencodeでエンコードされたファイル） reserved.tx"/>
@@ -176,7 +172,7 @@
 <li>reserved.txt（ご親切に予約後一覧が付いている）</li>
 <li>twenty-five.pl（crypto.txtを読み込んで、変換して実行）</li>
 </ul>
-<p><br /></p>
+<br />
 <h3 id="solution">Solution</h3>
 <p>とりあえず、twenty-five.plをそのまま実行してみると、エラーになります。</p>
 <pre>
@@ -192,7 +188,7 @@ $ ./twenty-five.pl
 以下がオリジナルです。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -207,27 +203,27 @@ $ ./twenty-five.pl
 </span><span class="lnt">13
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-perl" data-lang="perl"><span class="k">use</span> <span class="nn">open</span> <span class="sx">qw/:utf8/</span><span class="p">;</span>
-
-<span class="nb">open</span><span class="p">(</span><span class="k">my</span> <span class="nv">$F</span><span class="p">,</span> <span class="s">&#34;&lt;:utf8&#34;</span><span class="p">,</span> <span class="s">&#39;crypto.txt&#39;</span><span class="p">)</span> <span class="ow">or</span> <span class="nb">die</span><span class="p">;</span>
-<span class="k">my</span> <span class="nv">$text</span><span class="p">;</span>
-<span class="k">while</span> <span class="p">(</span><span class="k">my</span> <span class="nv">$l</span> <span class="o">=</span> <span class="sr">&lt;$F&gt;</span><span class="p">)</span>
-<span class="p">{</span>
-  <span class="nv">$l</span> <span class="o">=~</span> <span class="sr">s/[\r\n]+/ /g</span><span class="p">;</span>
-  <span class="nv">$text</span> <span class="o">.=</span> <span class="nv">$l</span><span class="p">;</span>
-<span class="p">}</span>
-<span class="nb">close</span><span class="p">(</span><span class="nv">$F</span><span class="p">);</span>
-
-<span class="nv">$text</span> <span class="o">=~</span> <span class="n">y</span><span class="sr">/abcdefghijklmnopqrstuvwxy/</span><span class="o">*************************/</span><span class="p">;</span>
-<span class="nb">eval</span><span class="p">(</span><span class="nv">$text</span><span class="p">);</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-perl" data-lang="perl"><span class="line"><span class="cl"><span class="k">use</span> <span class="nn">open</span> <span class="sx">qw/:utf8/</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">open</span><span class="p">(</span><span class="k">my</span> <span class="nv">$F</span><span class="p">,</span> <span class="s">&#34;&lt;:utf8&#34;</span><span class="p">,</span> <span class="s">&#39;crypto.txt&#39;</span><span class="p">)</span> <span class="ow">or</span> <span class="nb">die</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">my</span> <span class="nv">$text</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">while</span> <span class="p">(</span><span class="k">my</span> <span class="nv">$l</span> <span class="o">=</span> <span class="sr">&lt;$F&gt;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nv">$l</span> <span class="o">=~</span> <span class="sr">s/[\r\n]+/ /g</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="nv">$text</span> <span class="o">.=</span> <span class="nv">$l</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="nb">close</span><span class="p">(</span><span class="nv">$F</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nv">$text</span> <span class="o">=~</span> <span class="n">y</span><span class="sr">/abcdefghijklmnopqrstuvwxy/</span><span class="o">*************************/</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="nb">eval</span><span class="p">(</span><span class="nv">$text</span><span class="p">);</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p><br /><br />
 以下のように、先頭4行を追加すると、エラーが出なくなります。
 また、evalのところは、printに変えてみました。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -247,25 +243,25 @@ $ ./twenty-five.pl
 </span><span class="lnt">18
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-perl" data-lang="perl"><span class="ch">#!/usr/bin/perl</span>
-<span class="k">use</span> <span class="nn">strict</span><span class="p">;</span>
-<span class="k">use</span> <span class="nn">warnings</span><span class="p">;</span>
-<span class="k">use</span> <span class="nn">utf8</span><span class="p">;</span>
-
-<span class="k">use</span> <span class="nn">open</span> <span class="sx">qw/:utf8/</span><span class="p">;</span>
-
-<span class="nb">open</span><span class="p">(</span><span class="k">my</span> <span class="nv">$F</span><span class="p">,</span> <span class="s">&#34;&lt;:utf8&#34;</span><span class="p">,</span> <span class="s">&#39;crypto.txt&#39;</span><span class="p">)</span> <span class="ow">or</span> <span class="nb">die</span><span class="p">;</span>
-<span class="k">my</span> <span class="nv">$text</span><span class="p">;</span>
-<span class="k">while</span> <span class="p">(</span><span class="k">my</span> <span class="nv">$l</span> <span class="o">=</span> <span class="sr">&lt;$F&gt;</span><span class="p">)</span>
-<span class="p">{</span>
-  <span class="nv">$l</span> <span class="o">=~</span> <span class="sr">s/[\r\n]+/ /g</span><span class="p">;</span>
-  <span class="nv">$text</span> <span class="o">.=</span> <span class="nv">$l</span><span class="p">;</span>
-<span class="p">}</span>
-<span class="nb">close</span><span class="p">(</span><span class="nv">$F</span><span class="p">);</span>
-
-<span class="nv">$text</span> <span class="o">=~</span> <span class="n">y</span><span class="sr">/abcdefghijklmnopqrstuvwxy/</span><span class="o">*************************/</span><span class="p">;</span>
-<span class="k">print</span> <span class="nb">eval</span><span class="p">(</span><span class="nv">$text</span><span class="p">);</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-perl" data-lang="perl"><span class="line"><span class="cl"><span class="ch">#!/usr/bin/perl</span>
+</span></span><span class="line"><span class="cl"><span class="k">use</span> <span class="nn">strict</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">use</span> <span class="nn">warnings</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">use</span> <span class="nn">utf8</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">use</span> <span class="nn">open</span> <span class="sx">qw/:utf8/</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">open</span><span class="p">(</span><span class="k">my</span> <span class="nv">$F</span><span class="p">,</span> <span class="s">&#34;&lt;:utf8&#34;</span><span class="p">,</span> <span class="s">&#39;crypto.txt&#39;</span><span class="p">)</span> <span class="ow">or</span> <span class="nb">die</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">my</span> <span class="nv">$text</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">while</span> <span class="p">(</span><span class="k">my</span> <span class="nv">$l</span> <span class="o">=</span> <span class="sr">&lt;$F&gt;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nv">$l</span> <span class="o">=~</span> <span class="sr">s/[\r\n]+/ /g</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="nv">$text</span> <span class="o">.=</span> <span class="nv">$l</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="nb">close</span><span class="p">(</span><span class="nv">$F</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nv">$text</span> <span class="o">=~</span> <span class="n">y</span><span class="sr">/abcdefghijklmnopqrstuvwxy/</span><span class="o">*************************/</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">print</span> <span class="nb">eval</span><span class="p">(</span><span class="nv">$text</span><span class="p">);</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>これを実行するとですね、画面にいっぱいお星様が出ますｗ
 <br />
@@ -630,8 +626,8 @@ Perlのコードの末尾を以下のように書き換えて、実行すると�
 $text =~ y/abcdefghijklmnopqrstuvwxy/tbwiupohdnvrsyqlkmaxfjcge/;
 eval($text);
 </pre>
-<p><br />
-<strong>Flag:</strong> HarekazeCTF{en.wikipedia.org/wiki/Frequency_analysis}</p>
+<br />
+**Flag:** HarekazeCTF{en.wikipedia.org/wiki/Frequency_analysis}
 <p><br /><br />
 作問者（nkhrlabさん）による解説<br />
 <a href="https://nkhrlab.hatenablog.com/entry/2019/05/19/224643">https://nkhrlab.hatenablog.com/entry/2019/05/19/224643</a></p>
@@ -689,7 +685,7 @@ eval($text);
     <footer id="footer" class="footer">
       <div class="social-links">
       <a href="https://github.com/CaptureAmerica/" class="iconfont icon-github" title="github"></a>
-  <a href="https://captureamerica.github.io/writeups/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+  
 </div>
 
 <div class="copyright">
@@ -724,20 +720,21 @@ eval($text);
 
 
 
-<script type="text/javascript" src="https://captureamerica.github.io/writeups/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+<script type="text/javascript" src="https://captureamerica.github.io/writeups/js/main.min.4ae89da218555efa0e7093a20b92017d2e1202b66fff9fc2edf4cb8d44b44c6e.js"></script>
 
 
 <script type="application/javascript">
 var doNotTrack = false;
 if (!doNotTrack) {
-	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 	ga('create', 'UA-104910699-2', 'auto');
 	ga('set', 'anonymizeIp', true);
 	ga('send', 'pageview');
 }
 </script>
-<script async src='https://www.google-analytics.com/analytics.js'></script>
-
 
 
 

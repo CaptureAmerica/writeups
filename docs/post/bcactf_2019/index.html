@@ -23,7 +23,7 @@
 <meta name="google-site-verification" content="PqctLWZQttGzxXVupWuIt2HWuBI8cvN1z07ETpxA2dw" />
 
 
-<meta name="generator" content="Hugo 0.74.2 with theme even" />
+<meta name="generator" content="Hugo 0.119.0 with theme even" />
 
 
 <link rel="canonical" href="https://captureamerica.github.io/writeups/post/bcactf_2019/" />
@@ -35,24 +35,20 @@
 
 
 
-<link href="https://captureamerica.github.io/writeups/sass/main.min.2e81bbed97b8b282c1aeb57488cc71c8d8c8ec559f3931531bd396bf31e0d4dd.css" rel="stylesheet">
+<link href="https://captureamerica.github.io/writeups/sass/main.min.f92fd13721ddf72129410fd8250e73152cc6f2438082b6c0208dc24ee7c13fc4.css" rel="stylesheet">
 
 
 
 <meta property="og:title" content="BCACTF Writeup" />
 <meta property="og:description" content="(2019/09/23 - 復習しました) URL: https://www.bcactf.com/ 前回のHSCTFに続き、これも学生さん用のCTFでした。 だいたい解けたけど、解けなかったやつもありました。 あまりに簡単" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://captureamerica.github.io/writeups/post/bcactf_2019/" />
+<meta property="og:url" content="https://captureamerica.github.io/writeups/post/bcactf_2019/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2019-06-16T13:00:00+09:00" />
 <meta property="article:modified_time" content="2019-09-23T09:00:00+09:00" />
 <meta itemprop="name" content="BCACTF Writeup">
-<meta itemprop="description" content="(2019/09/23 - 復習しました) URL: https://www.bcactf.com/ 前回のHSCTFに続き、これも学生さん用のCTFでした。 だいたい解けたけど、解けなかったやつもありました。 あまりに簡単">
-<meta itemprop="datePublished" content="2019-06-16T13:00:00&#43;09:00" />
-<meta itemprop="dateModified" content="2019-09-23T09:00:00&#43;09:00" />
-<meta itemprop="wordCount" content="7424">
-
-
-
+<meta itemprop="description" content="(2019/09/23 - 復習しました) URL: https://www.bcactf.com/ 前回のHSCTFに続き、これも学生さん用のCTFでした。 だいたい解けたけど、解けなかったやつもありました。 あまりに簡単"><meta itemprop="datePublished" content="2019-06-16T13:00:00+09:00" />
+<meta itemprop="dateModified" content="2019-09-23T09:00:00+09:00" />
+<meta itemprop="wordCount" content="7777">
 <meta itemprop="keywords" content="CTF,Reviewed," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="BCACTF Writeup"/>
 <meta name="twitter:description" content="(2019/09/23 - 復習しました) URL: https://www.bcactf.com/ 前回のHSCTFに続き、これも学生さん用のCTFでした。 だいたい解けたけど、解けなかったやつもありました。 あまりに簡単"/>
@@ -220,64 +216,52 @@
         <li><a href="#solution-10">Solution</a></li>
       </ul>
     </li>
-    <li><a href="#quest-for-the-night-is-dark-1-150">[Quest]: for-the-night-is-dark-1 (150)</a>
+    <li><a href="#quest-for-the-night-is-dark-3-75">[Quest]: for-the-night-is-dark-3 (75)</a>
       <ul>
         <li><a href="#challenge-12">Challenge</a></li>
         <li><a href="#solution-11">Solution</a></li>
       </ul>
     </li>
-    <li><a href="#quest-for-the-night-is-dark-2-150">[Quest]: for-the-night-is-dark-2 (150)</a>
+    <li><a href="#reversing-large-pass-100">[Reversing]: large-pass (100)</a>
       <ul>
         <li><a href="#challenge-13">Challenge</a></li>
         <li><a href="#solution-12">Solution</a></li>
       </ul>
     </li>
-    <li><a href="#quest-for-the-night-is-dark-3-75">[Quest]: for-the-night-is-dark-3 (75)</a>
+    <li><a href="#reversing-scratch-that-150">[Reversing]: scratch-that (150)</a>
       <ul>
         <li><a href="#challenge-14">Challenge</a></li>
         <li><a href="#solution-13">Solution</a></li>
       </ul>
     </li>
-    <li><a href="#reversing-large-pass-100">[Reversing]: large-pass (100)</a>
+    <li><a href="#reversing-another-pass-200">[Reversing]: another-pass (200)</a>
       <ul>
         <li><a href="#challenge-15">Challenge</a></li>
         <li><a href="#solution-14">Solution</a></li>
       </ul>
     </li>
-    <li><a href="#reversing-scratch-that-150">[Reversing]: scratch-that (150)</a>
+    <li><a href="#reversing-basic-pass-3-200">[Reversing]: basic-pass-3 (200)</a>
       <ul>
         <li><a href="#challenge-16">Challenge</a></li>
         <li><a href="#solution-15">Solution</a></li>
       </ul>
     </li>
-    <li><a href="#reversing-another-pass-200">[Reversing]: another-pass (200)</a>
+    <li><a href="#reversing-compression-200">[Reversing]: compression (200)</a>
       <ul>
         <li><a href="#challenge-17">Challenge</a></li>
         <li><a href="#solution-16">Solution</a></li>
       </ul>
     </li>
-    <li><a href="#reversing-basic-pass-3-200">[Reversing]: basic-pass-3 (200)</a>
+    <li><a href="#forensics-wavey-150">[Forensics]: wavey (150)</a>
       <ul>
         <li><a href="#challenge-18">Challenge</a></li>
         <li><a href="#solution-17">Solution</a></li>
       </ul>
     </li>
-    <li><a href="#reversing-compression-200">[Reversing]: compression (200)</a>
+    <li><a href="#forensics-one-punch-zip-250">[Forensics]: one-punch-zip (250)</a>
       <ul>
         <li><a href="#challenge-19">Challenge</a></li>
         <li><a href="#solution-18">Solution</a></li>
-      </ul>
-    </li>
-    <li><a href="#forensics-wavey-150">[Forensics]: wavey (150)</a>
-      <ul>
-        <li><a href="#challenge-20">Challenge</a></li>
-        <li><a href="#solution-19">Solution</a></li>
-      </ul>
-    </li>
-    <li><a href="#forensics-one-punch-zip-250">[Forensics]: one-punch-zip (250)</a>
-      <ul>
-        <li><a href="#challenge-21">Challenge</a></li>
-        <li><a href="#solution-20">Solution</a></li>
       </ul>
     </li>
   </ul>
@@ -299,7 +283,7 @@
 <br /><br />
 あまりに簡単だったやつは、省略してます。<br />
 <img src="https://captureamerica.github.io/writeups/img/bcactf_Score.png" alt="bcactf_Score.png"></p>
-<p><br /></p>
+<br />
 <pre>
 ├── 0: welcome
 │   ├── hello-world (50)
@@ -372,7 +356,7 @@
 <p>Ghidraでデコンパイルしてコードを確認してみます。以下、抜粋です。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -385,18 +369,18 @@
 </span><span class="lnt">11
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-C" data-lang="C">  <span class="n">local_18</span> <span class="o">=</span> <span class="o">*</span><span class="p">(</span><span class="kt">long</span> <span class="o">*</span><span class="p">)</span><span class="n">___stack_chk_guard</span><span class="p">;</span>
-  <span class="n">_puts</span><span class="p">(</span><span class="s">&#34;Welcome to the lottery!&#34;</span><span class="p">);</span>
-  <span class="n">_puts</span><span class="p">(</span><span class="s">&#34;So now we</span><span class="se">\&#39;</span><span class="s">re going to pick a ginormous number!&#34;</span><span class="p">);</span>
-  <span class="n">_puts</span><span class="p">(</span><span class="s">&#34;If it</span><span class="se">\&#39;</span><span class="s">s 1, you win!&#34;</span><span class="p">);</span>
-  <span class="n">uVar1</span> <span class="o">=</span> <span class="n">_rand</span><span class="p">();</span>
-  <span class="n">_printf</span><span class="p">(</span><span class="s">&#34;Your number is %d!</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,(</span><span class="n">ulong</span><span class="p">)</span><span class="n">uVar1</span><span class="p">);</span>
-  <span class="k">if</span> <span class="p">(</span><span class="n">uVar1</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
-    <span class="n">_puts</span><span class="p">(</span><span class="s">&#34;Congratulations, you</span><span class="se">\&#39;</span><span class="s">re our lucky winner!&#34;</span><span class="p">);</span>
-    <span class="n">auVar2</span> <span class="o">=</span> <span class="n">pinsrb</span><span class="p">(</span><span class="n">ZEXT416</span><span class="p">(</span><span class="mh">0x3e</span><span class="p">),</span><span class="mh">0xe4</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
-    <span class="n">auVar7</span> <span class="o">=</span> <span class="n">pinsrb</span><span class="p">(</span><span class="n">auVar2</span><span class="p">,</span><span class="mh">0x2b</span><span class="p">,</span><span class="mi">2</span><span class="p">);</span>
-    <span class="o">:</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl">  <span class="n">local_18</span> <span class="o">=</span> <span class="o">*</span><span class="p">(</span><span class="kt">long</span> <span class="o">*</span><span class="p">)</span><span class="n">___stack_chk_guard</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">_puts</span><span class="p">(</span><span class="s">&#34;Welcome to the lottery!&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">_puts</span><span class="p">(</span><span class="s">&#34;So now we</span><span class="se">\&#39;</span><span class="s">re going to pick a ginormous number!&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">_puts</span><span class="p">(</span><span class="s">&#34;If it</span><span class="se">\&#39;</span><span class="s">s 1, you win!&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="n">uVar1</span> <span class="o">=</span> <span class="nf">_rand</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">_printf</span><span class="p">(</span><span class="s">&#34;Your number is %d!</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,(</span><span class="n">ulong</span><span class="p">)</span><span class="n">uVar1</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="k">if</span> <span class="p">(</span><span class="n">uVar1</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">_puts</span><span class="p">(</span><span class="s">&#34;Congratulations, you</span><span class="se">\&#39;</span><span class="s">re our lucky winner!&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">auVar2</span> <span class="o">=</span> <span class="nf">pinsrb</span><span class="p">(</span><span class="nf">ZEXT416</span><span class="p">(</span><span class="mh">0x3e</span><span class="p">),</span><span class="mh">0xe4</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">auVar7</span> <span class="o">=</span> <span class="nf">pinsrb</span><span class="p">(</span><span class="n">auVar2</span><span class="p">,</span><span class="mh">0x2b</span><span class="p">,</span><span class="mi">2</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">:</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>if()文判定を一個回避するだけで行けそうです。</p>
 <p>アプローチとしては、以下が考えられます。</p>
@@ -414,7 +398,7 @@ $2 = 1
 </pre>
 <p>出力結果はBrainF*ckで、以下で実行しました。<br />
 <a href="https://copy.sh/brainfuck/">https://copy.sh/brainfuck/</a></p>
-<p><br /></p>
+<br />
 <p>Flag: <code>bcactf{3x3cut4bl3s_r_fun_124jher089245}</code></p>
 <p><br /><br />
 <br /><br /></p>
@@ -431,7 +415,7 @@ $2 = 1
 <li>executable-ubuntu</li>
 </ul>
 <h3 id="solution-1">Solution</h3>
-<p>問題文の、&quot;(Now you actually have to try.)&rdquo; の意味がよくわかりませんでした。わたしのやり方は、想定解じゃないのかも知れません。トライしてないし。。^^;</p>
+<p>問題文の、&quot;(Now you actually have to try.)&quot; の意味がよくわかりませんでした。わたしのやり方は、想定解じゃないのかも知れません。トライしてないし。。^^;</p>
 <p>Ghidraでデコンパイルしてコードを見たところ、rand()をコールしている部分が増えていましたが、前の問題と大して違いはなかったです。</p>
 <p>今度は、ZFをいじってやりました。0x206 -&gt; 0x246</p>
 <pre>
@@ -442,7 +426,7 @@ B+>│0x400694 \<main+110>     jne    0x400744 \<main+286>
 <a href="https://copy.sh/brainfuck/">https://copy.sh/brainfuck/</a></p>
 <p>rsqsjv{Arent_executables_fun?_I_think_so_sdkfjhqiweuryiquwerajzncxbvaihqiwueyr}</p>
 <p>何パターンか試して、結局、全体をRot10したのがフラグでした。<br /></p>
-<p><br /></p>
+<br />
 <p>Flag: <code>bcactf{Kboxd_ohomedklvoc_pex?_S_drsxu_cy_cnuptrasgoebisaegobktjxmhlfksrasgeoib}</code></p>
 <p><br /><br />
 <br /><br /></p>
@@ -462,7 +446,7 @@ JJGTEVSLKNBVISSGINCU2VCTGJFVETCWKNGVGTKLKJEEKQ2VJNEUSNC2KZKVCS2OJFNE4RKPKNFUUSKS
 lhlm oad lamaew eyhmgs. lg i sxsro rgu ntee qhj a qesg? dbfcp rgu stne xtve tm lhtl xac, b’dl rh wadr gn jhm ayw zayw at zowr. 
 mvscey{bu57_j0n_o4i7_kgbhmffhlqe} bfm, te htjnpw, feim lixx at hhf’t mx ko dbepwx…
 </pre>
-<p><br /></p>
+<br />
 <h3 id="solution-2">Solution</h3>
 <p>1行目をBase64 decodeすると、<code>32 -  |3 Times A Charm| - 32~</code> が取れます。
 <br /><br /><br />
@@ -476,8 +460,8 @@ Ail gi you tu hints to read my encrypted languich.
 1. SALT iz key to gret food!
 2. Le francais crypte le meilleur
 </pre>
-<p><br />
-最後の行はフランス語っぽくて、「French crypt the best」ということらしいです。Vigenere cipherですね。</p>
+<br />
+最後の行はフランス語っぽくて、「French crypt the best」ということらしいです。Vigenere cipherですね。
 <p>Keyを&quot;SALT&quot;にして、Vigenere cipherをデコードすると、フラグが取れます。<br />
 <a href="https://cryptii.com/pipes/vigenere-cipher">https://cryptii.com/pipes/vigenere-cipher</a><br />
 &ldquo;that was simple enough. so i heard you came for a flag? since you have made it this far, i’ll go easy on you and hand it over. <code>bcactf{ju57_y0u_w4i7_znjhbmnhaxm}</code> but, be warned, next time it won’t be so simple&rdquo;</p>
@@ -501,15 +485,15 @@ Four octogintacentillion, eight hundred and fifty-eight novemseptuagintacentilli
 <p>以下のような感じでPythonでひらすらreplaceを行って、全部数字にするところまではやりました。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="n">k</span> <span class="o">=</span> <span class="n">k</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&#34;octogintacentillion&#34;</span><span class="p">,</span> <span class="s2">&#34;)*10^543&#34;</span><span class="p">)</span>
-<span class="n">k</span> <span class="o">=</span> <span class="n">k</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&#34;novemseptuagintacentillion&#34;</span><span class="p">,</span> <span class="s2">&#34;)*10^540&#34;</span><span class="p">)</span>
-<span class="p">:</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">k</span> <span class="o">=</span> <span class="n">k</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&#34;octogintacentillion&#34;</span><span class="p">,</span> <span class="s2">&#34;)*10^543&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">k</span> <span class="o">=</span> <span class="n">k</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&#34;novemseptuagintacentillion&#34;</span><span class="p">,</span> <span class="s2">&#34;)*10^540&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">:</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>スペリングが異なる単語が結構あるし、かなり面倒だったけど、これだけできればクリアだろうと思って頑張りました。</p>
 <pre>
@@ -519,8 +503,8 @@ Four octogintacentillion, eight hundred and fifty-eight novemseptuagintacentilli
 <a href="https://defuse.ca/big-number-calculator.htm">https://defuse.ca/big-number-calculator.htm</a>
 <br /></p>
 <p>4858487703000217654168507377105634002647731128499307244851441090357865744443419793531999883261579086703285988550325970512343063312965327580978241840458705778582504607655879151828149694589867198840959598497597989866084694560490675801786347730851438931275598708000190409481880911319491978644808036817873514056590135331578105862821454454617375919870245363440066372700053263362863694129133765441926533609503994018565319382913454161429058505655350780911229203432392967236137647780308966936691439636980058266693498568235464310907628785433105091526639</p>
-<p><br />
-で？？</p>
+<br />
+で？？
 <p><br /><br />
 <br /><br /></p>
 <h2 id="crypto-runescape">[Crypto]: runescape</h2>
@@ -533,7 +517,7 @@ Four octogintacentillion, eight hundred and fifty-eight novemseptuagintacentilli
 <p>ルーン文字です。<br /></p>
 <p>オンラインでさくっと変換できるのかと思ったら、アスキー文字と1対1で対応しているわけではなくて、単一換字式暗号として解くやつでした。</p>
 <p>最初の6文字は、bcactfなのがわかっているので、まずわかっているところから変換します。</p>
-<p>すると、アンダースコア('_')より後ろの26文字がアルファベット順に並んでいるのが予想できます。</p>
+<p>すると、アンダースコア(&rsquo;_&rsquo;)より後ろの26文字がアルファベット順に並んでいるのが予想できます。</p>
 <pre>
 e19aa3 => b
 e19aa6 => c
@@ -573,7 +557,7 @@ e19ab9
 e19ab0
 </pre>
 <p>これで、全てのアルファベットの変換ができるので、フラグがわかります。</p>
-<p><br /></p>
+<br />
 <p>Flag: <code>bcactf{frequencyanalysisisverygreatwhensolvingannoyingmonoalphabeticsubstitutionciphers_abcdefghijklmnopqrstuvwxyz}</code></p>
 <p>ちなみに、読みやすくスペースを入れると、<br />
 &ldquo;frequency analysis is very great when solving annoying monoalphabetic substitution ciphers&rdquo;</p>
@@ -595,91 +579,91 @@ Hint: The words translate to numbers, which then translate to the flag.</p>
 <table>
 <thead>
 <tr>
-<th align="left">単語</th>
-<th align="center">数字</th>
-<th align="center">文字</th>
+<th style="text-align:left">単語</th>
+<th style="text-align:center">数字</th>
+<th style="text-align:center">文字</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td align="left">Pave</td>
-<td align="center">98</td>
-<td align="center">b</td>
+<td style="text-align:left">Pave</td>
+<td style="text-align:center">98</td>
+<td style="text-align:center">b</td>
 </tr>
 <tr>
-<td align="left">Pop</td>
-<td align="center">99</td>
-<td align="center">c</td>
+<td style="text-align:left">Pop</td>
+<td style="text-align:center">99</td>
+<td style="text-align:center">c</td>
 </tr>
 <tr>
-<td align="left">Poke</td>
-<td align="center">97</td>
-<td align="center">a</td>
+<td style="text-align:left">Poke</td>
+<td style="text-align:center">97</td>
+<td style="text-align:center">a</td>
 </tr>
 <tr>
-<td align="left">Pop</td>
-<td align="center">99</td>
-<td align="center">c</td>
+<td style="text-align:left">Pop</td>
+<td style="text-align:center">99</td>
+<td style="text-align:center">c</td>
 </tr>
 <tr>
-<td align="left">Dutch</td>
-<td align="center">16 (?)</td>
-<td align="center">t</td>
+<td style="text-align:left">Dutch</td>
+<td style="text-align:center">16 (?)</td>
+<td style="text-align:center">t</td>
 </tr>
 <tr>
-<td align="left">Dozen</td>
-<td align="center">102</td>
-<td align="center">f</td>
+<td style="text-align:left">Dozen</td>
+<td style="text-align:center">102</td>
+<td style="text-align:center">f</td>
 </tr>
 <tr>
-<td align="left">Denim</td>
-<td align="center">123</td>
-<td align="center">{</td>
+<td style="text-align:left">Denim</td>
+<td style="text-align:center">123</td>
+<td style="text-align:center">{</td>
 </tr>
 <tr>
-<td align="left">Deism</td>
-<td align="center">103</td>
-<td align="center">g</td>
+<td style="text-align:left">Deism</td>
+<td style="text-align:center">103</td>
+<td style="text-align:center">g</td>
 </tr>
 <tr>
-<td align="left">Loot</td>
-<td align="center">51</td>
-<td align="center">3</td>
+<td style="text-align:left">Loot</td>
+<td style="text-align:center">51</td>
+<td style="text-align:center">3</td>
 </tr>
 <tr>
-<td align="left">Thatch</td>
-<td align="center">16 (?)</td>
-<td align="center">t</td>
+<td style="text-align:left">Thatch</td>
+<td style="text-align:center">16 (?)</td>
+<td style="text-align:center">t</td>
 </tr>
 <tr>
-<td align="left">Pal</td>
-<td align="center">95</td>
-<td align="center">_</td>
+<td style="text-align:left">Pal</td>
+<td style="text-align:center">95</td>
+<td style="text-align:center">_</td>
 </tr>
 <tr>
-<td align="left">Atheism</td>
-<td align="center">103</td>
-<td align="center">g</td>
+<td style="text-align:left">Atheism</td>
+<td style="text-align:center">103</td>
+<td style="text-align:center">g</td>
 </tr>
 <tr>
-<td align="left">Rough</td>
-<td align="center">48</td>
-<td align="center">0</td>
+<td style="text-align:left">Rough</td>
+<td style="text-align:center">48</td>
+<td style="text-align:center">0</td>
 </tr>
 <tr>
-<td align="left">Ditch</td>
-<td align="center">16 (?)</td>
-<td align="center">t</td>
+<td style="text-align:left">Ditch</td>
+<td style="text-align:center">16 (?)</td>
+<td style="text-align:center">t</td>
 </tr>
 <tr>
-<td align="left">Tonal</td>
-<td align="center">125</td>
-<td align="center">}</td>
+<td style="text-align:left">Tonal</td>
+<td style="text-align:center">125</td>
+<td style="text-align:center">}</td>
 </tr>
 </tbody>
 </table>
-<p>ところどころ16が出てきちゃったけど、フラグフォーマットより&quot;t&rdquo; (bcac<font color="red">t</font>f) に置き換えられるのがわかるので、フラグは<code>bcactf{g3t_g0t}</code></p>
-<p><br /></p>
+<p>ところどころ16が出てきちゃったけど、フラグフォーマットより&quot;t&quot; (bcac<font color="red">t</font>f) に置き換えられるのがわかるので、フラグは<code>bcactf{g3t_g0t}</code></p>
+<br />
 <p>Flag: <code>bcactf{g3t_g0t}</code></p>
 <p><br /><br />
 <br /><br /></p>
@@ -712,7 +696,7 @@ $ cat part?.txt | tr -d "\n" | tr -d " " | unhex > rachel.py
 $ python3 rachel.py 
 bcactf{0p71c4lly_r3c0gn1z3d_ch4r4c73rs}
 </pre>
-<p><br /></p>
+<br />
 <p>Flag: <code>bcactf{0p71c4lly_r3c0gn1z3d_ch4r4c73rs}</code></p>
 <p><br /><br />
 <br /><br /></p>
@@ -753,7 +737,7 @@ endobj
 <h3 id="solution-7">Solution</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -767,21 +751,21 @@ endobj
 </span><span class="lnt">12
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="ch">#!/usr/bin/env python3</span>
-
-<span class="k">for</span> <span class="n">one</span> <span class="ow">in</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&#34;one.txt&#34;</span><span class="p">,</span> <span class="s2">&#34;r&#34;</span><span class="p">):</span>
-    <span class="n">one_hex</span> <span class="o">=</span> <span class="n">one</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
-    
-<span class="k">for</span> <span class="n">two</span> <span class="ow">in</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&#34;two.txt&#34;</span><span class="p">,</span> <span class="s2">&#34;r&#34;</span><span class="p">):</span>
-    <span class="n">two_hex</span> <span class="o">=</span> <span class="n">two</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
-
-<span class="nb">list</span> <span class="o">=</span> <span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="mi">16</span><span class="p">)</span> <span class="o">+</span> <span class="nb">int</span><span class="p">(</span><span class="n">j</span><span class="p">,</span><span class="mi">16</span><span class="p">)</span> <span class="k">for</span> <span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span> <span class="n">one_hex</span><span class="p">,</span> <span class="n">two_hex</span><span class="p">)]</span>
-<span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">:</span>
-    <span class="k">print</span><span class="p">(</span><span class="nb">chr</span><span class="p">(</span><span class="n">c</span><span class="p">),</span><span class="n">end</span><span class="o">=</span><span class="s2">&#34;&#34;</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="s2">&#34;&#34;</span><span class="p">)</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="ch">#!/usr/bin/env python3</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="n">one</span> <span class="ow">in</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&#34;one.txt&#34;</span><span class="p">,</span> <span class="s2">&#34;r&#34;</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">one_hex</span> <span class="o">=</span> <span class="n">one</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="n">two</span> <span class="ow">in</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&#34;two.txt&#34;</span><span class="p">,</span> <span class="s2">&#34;r&#34;</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">two_hex</span> <span class="o">=</span> <span class="n">two</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">list</span> <span class="o">=</span> <span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="mi">16</span><span class="p">)</span> <span class="o">+</span> <span class="nb">int</span><span class="p">(</span><span class="n">j</span><span class="p">,</span><span class="mi">16</span><span class="p">)</span> <span class="k">for</span> <span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span> <span class="n">one_hex</span><span class="p">,</span> <span class="n">two_hex</span><span class="p">)]</span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="nb">chr</span><span class="p">(</span><span class="n">c</span><span class="p">),</span><span class="n">end</span><span class="o">=</span><span class="s2">&#34;&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="s2">&#34;&#34;</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
 </div>
-</div><p><br /></p>
+</div><br />
 <p>Flag: <code>bcactf{1_h0p3_y0u_us3_pyth0n}</code></p>
 <p><br /><br />
 <br /><br /></p>
@@ -836,7 +820,7 @@ For example, the above output should be formatted as follows to be accepted:<br 
 <p>例が、<code>$ cat input.txt | ./script.py</code> となってて、なんとなくpythonで解くことを期待されているようだったので、勉強も兼ねてpythonでやりました。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -891,62 +875,62 @@ For example, the above output should be formatted as follows to be accepted:<br 
 </span><span class="lnt">53
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="ch">#!/usr/bin/env python3</span>
-<span class="kn">import</span> <span class="nn">sys</span>
-<span class="kn">import</span> <span class="nn">re</span>
-
-<span class="k">def</span> <span class="nf">calc_B</span><span class="p">(</span><span class="n">num</span><span class="p">):</span>
-    <span class="k">if</span> <span class="n">num</span> <span class="o">&gt;=</span> <span class="mi">2</span><span class="p">:</span>
-        <span class="k">return</span> <span class="p">(</span><span class="mi">52</span> <span class="o">+</span> <span class="mi">52</span> <span class="o">*</span> <span class="mf">0.9</span><span class="p">)</span> <span class="o">*</span> <span class="nb">int</span><span class="p">(</span> <span class="n">num</span> <span class="o">/</span> <span class="mi">2</span> <span class="p">)</span> <span class="o">+</span> <span class="mi">52</span> <span class="o">*</span> <span class="p">(</span><span class="n">num</span> <span class="o">%</span> <span class="mi">2</span><span class="p">)</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="k">return</span> <span class="mi">52</span> <span class="o">*</span> <span class="n">num</span>
-
-<span class="k">def</span> <span class="nf">calc_C</span><span class="p">(</span><span class="n">num</span><span class="p">):</span>
-    <span class="k">if</span> <span class="n">num</span> <span class="o">&gt;=</span> <span class="mi">2</span><span class="p">:</span>
-        <span class="k">return</span> <span class="p">(</span><span class="mi">67</span> <span class="o">+</span> <span class="mi">67</span> <span class="o">*</span> <span class="mf">0.5</span><span class="p">)</span> <span class="o">*</span> <span class="nb">int</span><span class="p">(</span> <span class="n">num</span> <span class="o">/</span> <span class="mi">2</span> <span class="p">)</span> <span class="o">+</span> <span class="mi">67</span> <span class="o">*</span> <span class="p">(</span><span class="n">num</span> <span class="o">%</span> <span class="mi">2</span><span class="p">)</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="k">return</span> <span class="mi">67</span> <span class="o">*</span> <span class="n">num</span>
-
-<span class="k">def</span> <span class="nf">calc_D</span><span class="p">(</span><span class="n">num</span><span class="p">):</span>
-    <span class="k">if</span> <span class="n">num</span> <span class="o">&gt;=</span> <span class="mi">3</span><span class="p">:</span>
-        <span class="k">return</span> <span class="p">(</span><span class="mi">75</span> <span class="o">*</span> <span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="nb">int</span><span class="p">(</span> <span class="n">num</span> <span class="o">/</span> <span class="mi">3</span> <span class="p">)</span> <span class="o">+</span> <span class="mi">75</span> <span class="o">*</span> <span class="p">(</span><span class="n">num</span> <span class="o">%</span> <span class="mi">3</span><span class="p">)</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="k">return</span> <span class="mi">75</span> <span class="o">*</span> <span class="p">(</span><span class="n">num</span> <span class="o">%</span> <span class="mi">3</span><span class="p">)</span>
-
-
-<span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">sys</span><span class="o">.</span><span class="n">stdin</span><span class="o">.</span><span class="n">readlines</span><span class="p">():</span>
-    <span class="n">numA</span> <span class="o">=</span> <span class="mi">0</span>
-    <span class="n">numB</span> <span class="o">=</span> <span class="mi">0</span>
-    <span class="n">numC</span> <span class="o">=</span> <span class="mi">0</span>
-    <span class="n">numD</span> <span class="o">=</span> <span class="mi">0</span>
-    <span class="n">str_digit</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;(\d+|\D+)&#39;</span><span class="p">,</span> <span class="n">line</span><span class="p">)</span>
-    <span class="n">items</span> <span class="o">=</span> <span class="n">str_digit</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
-    <span class="n">paid</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">str_digit</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
-
-    <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">items</span><span class="p">:</span>
-        <span class="k">if</span> <span class="n">item</span> <span class="o">==</span> <span class="s1">&#39;A&#39;</span><span class="p">:</span>
-            <span class="n">numA</span> <span class="o">+=</span> <span class="mi">1</span>
-        <span class="k">if</span> <span class="n">item</span> <span class="o">==</span> <span class="s1">&#39;B&#39;</span><span class="p">:</span>
-            <span class="n">numB</span> <span class="o">+=</span> <span class="mi">1</span>
-        <span class="k">if</span> <span class="n">item</span> <span class="o">==</span> <span class="s1">&#39;C&#39;</span><span class="p">:</span>
-            <span class="n">numC</span> <span class="o">+=</span> <span class="mi">1</span>
-        <span class="k">if</span> <span class="n">item</span> <span class="o">==</span> <span class="s1">&#39;D&#39;</span><span class="p">:</span>
-            <span class="n">numD</span> <span class="o">+=</span> <span class="mi">1</span>
-    <span class="n">total</span> <span class="o">=</span> <span class="mi">45</span> <span class="o">*</span> <span class="n">numA</span> <span class="o">+</span> <span class="n">calc_B</span><span class="p">(</span><span class="n">numB</span><span class="p">)</span> <span class="o">+</span> <span class="n">calc_C</span><span class="p">(</span><span class="n">numC</span><span class="p">)</span> <span class="o">+</span> <span class="n">calc_D</span><span class="p">(</span><span class="n">numD</span><span class="p">)</span>
-    <span class="c1"># == debug ==</span>
-    <span class="c1"># print(&#34;paid = {}, total = {}, A = {}, B = {}, C = {}, D = {}&#34;.format(paid, total, numA, numB, numC, numD))</span>
-    <span class="c1"># print(&#34;paid = {}, total = {}, A = {}, B = {}, C = {}, D = {}&#34;.format(paid, total, 45 * numA, calc_B(numB), calc_C(numC), calc_D(numD)))</span>
-    <span class="c1"># continue</span>
-
-    <span class="k">if</span> <span class="n">paid</span> <span class="o">&gt;=</span> <span class="n">total</span><span class="p">:</span>
-        <span class="k">print</span><span class="p">(</span><span class="s2">&#34;{:.2f}&#34;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">paid</span> <span class="o">-</span> <span class="n">total</span><span class="p">),</span> <span class="n">end</span><span class="o">=</span><span class="s2">&#34;&#34;</span><span class="p">)</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="k">print</span><span class="p">(</span><span class="s2">&#34;-1&#34;</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s2">&#34;&#34;</span><span class="p">)</span>
-    <span class="k">print</span><span class="p">(</span><span class="s2">&#34; &#34;</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s2">&#34;&#34;</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="s2">&#34;&#34;</span><span class="p">)</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="ch">#!/usr/bin/env python3</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">sys</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">re</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">calc_B</span><span class="p">(</span><span class="n">num</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">num</span> <span class="o">&gt;=</span> <span class="mi">2</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="p">(</span><span class="mi">52</span> <span class="o">+</span> <span class="mi">52</span> <span class="o">*</span> <span class="mf">0.9</span><span class="p">)</span> <span class="o">*</span> <span class="nb">int</span><span class="p">(</span> <span class="n">num</span> <span class="o">/</span> <span class="mi">2</span> <span class="p">)</span> <span class="o">+</span> <span class="mi">52</span> <span class="o">*</span> <span class="p">(</span><span class="n">num</span> <span class="o">%</span> <span class="mi">2</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="mi">52</span> <span class="o">*</span> <span class="n">num</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">calc_C</span><span class="p">(</span><span class="n">num</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">num</span> <span class="o">&gt;=</span> <span class="mi">2</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="p">(</span><span class="mi">67</span> <span class="o">+</span> <span class="mi">67</span> <span class="o">*</span> <span class="mf">0.5</span><span class="p">)</span> <span class="o">*</span> <span class="nb">int</span><span class="p">(</span> <span class="n">num</span> <span class="o">/</span> <span class="mi">2</span> <span class="p">)</span> <span class="o">+</span> <span class="mi">67</span> <span class="o">*</span> <span class="p">(</span><span class="n">num</span> <span class="o">%</span> <span class="mi">2</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="mi">67</span> <span class="o">*</span> <span class="n">num</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">calc_D</span><span class="p">(</span><span class="n">num</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">num</span> <span class="o">&gt;=</span> <span class="mi">3</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="p">(</span><span class="mi">75</span> <span class="o">*</span> <span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="nb">int</span><span class="p">(</span> <span class="n">num</span> <span class="o">/</span> <span class="mi">3</span> <span class="p">)</span> <span class="o">+</span> <span class="mi">75</span> <span class="o">*</span> <span class="p">(</span><span class="n">num</span> <span class="o">%</span> <span class="mi">3</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="mi">75</span> <span class="o">*</span> <span class="p">(</span><span class="n">num</span> <span class="o">%</span> <span class="mi">3</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">sys</span><span class="o">.</span><span class="n">stdin</span><span class="o">.</span><span class="n">readlines</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">    <span class="n">numA</span> <span class="o">=</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl">    <span class="n">numB</span> <span class="o">=</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl">    <span class="n">numC</span> <span class="o">=</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl">    <span class="n">numD</span> <span class="o">=</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl">    <span class="n">str_digit</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;(\d+|\D+)&#39;</span><span class="p">,</span> <span class="n">line</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">items</span> <span class="o">=</span> <span class="n">str_digit</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="n">paid</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">str_digit</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">items</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="n">item</span> <span class="o">==</span> <span class="s1">&#39;A&#39;</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="n">numA</span> <span class="o">+=</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="n">item</span> <span class="o">==</span> <span class="s1">&#39;B&#39;</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="n">numB</span> <span class="o">+=</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="n">item</span> <span class="o">==</span> <span class="s1">&#39;C&#39;</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="n">numC</span> <span class="o">+=</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="n">item</span> <span class="o">==</span> <span class="s1">&#39;D&#39;</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="n">numD</span> <span class="o">+=</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">    <span class="n">total</span> <span class="o">=</span> <span class="mi">45</span> <span class="o">*</span> <span class="n">numA</span> <span class="o">+</span> <span class="n">calc_B</span><span class="p">(</span><span class="n">numB</span><span class="p">)</span> <span class="o">+</span> <span class="n">calc_C</span><span class="p">(</span><span class="n">numC</span><span class="p">)</span> <span class="o">+</span> <span class="n">calc_D</span><span class="p">(</span><span class="n">numD</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># == debug ==</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># print(&#34;paid = {}, total = {}, A = {}, B = {}, C = {}, D = {}&#34;.format(paid, total, numA, numB, numC, numD))</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># print(&#34;paid = {}, total = {}, A = {}, B = {}, C = {}, D = {}&#34;.format(paid, total, 45 * numA, calc_B(numB), calc_C(numC), calc_D(numD)))</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># continue</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">paid</span> <span class="o">&gt;=</span> <span class="n">total</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;</span><span class="si">{:.2f}</span><span class="s2">&#34;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">paid</span> <span class="o">-</span> <span class="n">total</span><span class="p">),</span> <span class="n">end</span><span class="o">=</span><span class="s2">&#34;&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;-1&#34;</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s2">&#34;&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="s2">&#34; &#34;</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s2">&#34;&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="s2">&#34;&#34;</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
 </div>
-</div><p><br /></p>
+</div><br />
 <p>Flag: <code>5.70 -1 1.00 75.00 -1 77.40 -1</code></p>
 <p><br /><br />
 <br /><br /></p>
@@ -984,7 +968,7 @@ END TRANSMITION</li>
 <h3 id="solution-9">Solution</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -1027,50 +1011,50 @@ END TRANSMITION</li>
 </span><span class="lnt">41
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-c" data-lang="c"><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
-</span><span class="cp">#include</span> <span class="cpf">&lt;string.h&gt;</span><span class="cp">
-</span><span class="cp"></span>
-<span class="cp">#define LINE_LEN     1000
-</span><span class="cp"></span>
-<span class="kt">int</span> <span class="n">pos</span><span class="p">[]</span> <span class="o">=</span> <span class="p">{</span><span class="mi">20</span><span class="p">,</span><span class="mi">30</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">14</span><span class="p">,</span><span class="mi">17</span><span class="p">,</span><span class="mi">24</span><span class="p">,</span><span class="mi">44</span><span class="p">,</span><span class="mi">19</span><span class="p">,</span><span class="mi">17</span><span class="p">,</span><span class="mi">29</span><span class="p">,</span><span class="mi">20</span><span class="p">,</span><span class="mi">34</span><span class="p">,</span><span class="mi">35</span><span class="p">,</span><span class="mi">27</span><span class="p">,</span><span class="mi">42</span><span class="p">,</span><span class="mi">34</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">25</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">21</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">38</span><span class="p">,</span><span class="mi">13</span><span class="p">,</span><span class="mi">25</span><span class="p">,</span><span class="mi">14</span><span class="p">,</span><span class="mi">13</span><span class="p">,</span><span class="mi">42</span><span class="p">,</span><span class="mi">14</span><span class="p">,</span><span class="mi">20</span><span class="p">,</span><span class="mi">23</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">27</span><span class="p">,</span><span class="mi">38</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">18</span><span class="p">,</span><span class="mi">41</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">11</span><span class="p">,</span><span class="mi">35</span><span class="p">,</span> <span class="mi">0</span><span class="p">};</span>
-<span class="kt">char</span> <span class="n">tmp_buff</span><span class="p">[</span><span class="n">LINE_LEN</span><span class="p">];</span>
-
-<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">**</span><span class="n">argv</span><span class="p">)</span>
-<span class="p">{</span>
-	<span class="n">FILE</span> <span class="o">*</span><span class="n">fp</span><span class="p">;</span>
-	<span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-	<span class="kt">char</span> <span class="o">*</span><span class="n">find</span><span class="p">;</span>
-	<span class="kt">char</span> <span class="n">c</span><span class="p">;</span>
-	
-	<span class="k">if</span> <span class="p">(</span> <span class="p">(</span> <span class="n">fp</span> <span class="o">=</span> <span class="n">fopen</span><span class="p">(</span> <span class="s">&#34;flag.txt&#34;</span><span class="p">,</span> <span class="s">&#34;r&#34;</span> <span class="p">)</span> <span class="p">)</span> <span class="o">==</span> <span class="nb">NULL</span> <span class="p">)</span> <span class="p">{</span>
-		<span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
-	<span class="p">}</span>
-	
-	<span class="k">while</span> <span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
-		<span class="k">if</span> <span class="p">(</span> <span class="n">fgets</span><span class="p">(</span> <span class="n">tmp_buff</span><span class="p">,</span> <span class="n">LINE_LEN</span><span class="p">,</span> <span class="n">fp</span> <span class="p">)</span> <span class="o">==</span> <span class="nb">NULL</span> <span class="p">)</span> <span class="p">{</span>
-			<span class="k">break</span><span class="p">;</span>
-		<span class="p">}</span>
-		<span class="n">find</span> <span class="o">=</span> <span class="n">strstr</span><span class="p">(</span> <span class="n">tmp_buff</span><span class="p">,</span> <span class="s">&#34;&amp;&#34;</span> <span class="p">);</span>
-		<span class="k">if</span> <span class="p">(</span> <span class="n">find</span> <span class="o">!=</span> <span class="nb">NULL</span> <span class="p">)</span> <span class="p">{</span>
-			<span class="k">continue</span><span class="p">;</span>
-		<span class="p">}</span>
-
-		<span class="k">if</span> <span class="p">(</span> <span class="p">(</span> <span class="n">strlen</span><span class="p">(</span> <span class="n">tmp_buff</span> <span class="p">)</span> <span class="o">-</span> <span class="n">strlen</span><span class="p">(</span> <span class="s">&#34;</span><span class="se">\n</span><span class="s">&#34;</span> <span class="p">)</span> <span class="p">)</span> <span class="o">%</span> <span class="mi">3</span> <span class="o">==</span> <span class="mi">0</span> <span class="p">)</span> <span class="p">{</span>
-			<span class="o">*</span><span class="p">(</span> <span class="n">tmp_buff</span> <span class="o">+</span> <span class="n">pos</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="p">)</span> <span class="o">=</span> <span class="sc">&#39;\0&#39;</span><span class="p">;</span>
-			<span class="n">printf</span><span class="p">(</span> <span class="s">&#34;%s&#34;</span><span class="p">,</span> <span class="n">tmp_buff</span> <span class="o">+</span> <span class="n">pos</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="mi">1</span> <span class="p">);</span>
-			<span class="n">i</span><span class="o">++</span><span class="p">;</span>
-			<span class="c1">// To prevent seg fault
-</span><span class="c1"></span>			<span class="k">if</span> <span class="p">(</span> <span class="n">pos</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span> <span class="p">)</span> <span class="p">{</span>
-				<span class="k">break</span><span class="p">;</span>
-			<span class="p">}</span>
-		<span class="p">}</span>
-	<span class="p">}</span>
-	<span class="n">puts</span><span class="p">(</span> <span class="s">&#34;&#34;</span> <span class="p">);</span>
-	<span class="n">fclose</span><span class="p">(</span> <span class="n">fp</span> <span class="p">);</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;string.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="cp">#define LINE_LEN     1000
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">pos</span><span class="p">[]</span> <span class="o">=</span> <span class="p">{</span><span class="mi">20</span><span class="p">,</span><span class="mi">30</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">14</span><span class="p">,</span><span class="mi">17</span><span class="p">,</span><span class="mi">24</span><span class="p">,</span><span class="mi">44</span><span class="p">,</span><span class="mi">19</span><span class="p">,</span><span class="mi">17</span><span class="p">,</span><span class="mi">29</span><span class="p">,</span><span class="mi">20</span><span class="p">,</span><span class="mi">34</span><span class="p">,</span><span class="mi">35</span><span class="p">,</span><span class="mi">27</span><span class="p">,</span><span class="mi">42</span><span class="p">,</span><span class="mi">34</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">25</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">21</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">38</span><span class="p">,</span><span class="mi">13</span><span class="p">,</span><span class="mi">25</span><span class="p">,</span><span class="mi">14</span><span class="p">,</span><span class="mi">13</span><span class="p">,</span><span class="mi">42</span><span class="p">,</span><span class="mi">14</span><span class="p">,</span><span class="mi">20</span><span class="p">,</span><span class="mi">23</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">27</span><span class="p">,</span><span class="mi">38</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">18</span><span class="p">,</span><span class="mi">41</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">11</span><span class="p">,</span><span class="mi">35</span><span class="p">,</span> <span class="mi">0</span><span class="p">};</span>
+</span></span><span class="line"><span class="cl"><span class="kt">char</span> <span class="n">tmp_buff</span><span class="p">[</span><span class="n">LINE_LEN</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">**</span><span class="n">argv</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="n">FILE</span> <span class="o">*</span><span class="n">fp</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">char</span> <span class="o">*</span><span class="n">find</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">char</span> <span class="n">c</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	
+</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="p">(</span> <span class="p">(</span> <span class="n">fp</span> <span class="o">=</span> <span class="nf">fopen</span><span class="p">(</span> <span class="s">&#34;flag.txt&#34;</span><span class="p">,</span> <span class="s">&#34;r&#34;</span> <span class="p">)</span> <span class="p">)</span> <span class="o">==</span> <span class="nb">NULL</span> <span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	
+</span></span><span class="line"><span class="cl">	<span class="k">while</span> <span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="k">if</span> <span class="p">(</span> <span class="nf">fgets</span><span class="p">(</span> <span class="n">tmp_buff</span><span class="p">,</span> <span class="n">LINE_LEN</span><span class="p">,</span> <span class="n">fp</span> <span class="p">)</span> <span class="o">==</span> <span class="nb">NULL</span> <span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">			<span class="k">break</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">		<span class="p">}</span>
+</span></span><span class="line"><span class="cl">		<span class="n">find</span> <span class="o">=</span> <span class="nf">strstr</span><span class="p">(</span> <span class="n">tmp_buff</span><span class="p">,</span> <span class="s">&#34;&amp;&#34;</span> <span class="p">);</span>
+</span></span><span class="line"><span class="cl">		<span class="k">if</span> <span class="p">(</span> <span class="n">find</span> <span class="o">!=</span> <span class="nb">NULL</span> <span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">			<span class="k">continue</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">		<span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">		<span class="k">if</span> <span class="p">(</span> <span class="p">(</span> <span class="nf">strlen</span><span class="p">(</span> <span class="n">tmp_buff</span> <span class="p">)</span> <span class="o">-</span> <span class="nf">strlen</span><span class="p">(</span> <span class="s">&#34;</span><span class="se">\n</span><span class="s">&#34;</span> <span class="p">)</span> <span class="p">)</span> <span class="o">%</span> <span class="mi">3</span> <span class="o">==</span> <span class="mi">0</span> <span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">			<span class="o">*</span><span class="p">(</span> <span class="n">tmp_buff</span> <span class="o">+</span> <span class="n">pos</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="p">)</span> <span class="o">=</span> <span class="sc">&#39;\0&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">			<span class="nf">printf</span><span class="p">(</span> <span class="s">&#34;%s&#34;</span><span class="p">,</span> <span class="n">tmp_buff</span> <span class="o">+</span> <span class="n">pos</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="mi">1</span> <span class="p">);</span>
+</span></span><span class="line"><span class="cl">			<span class="n">i</span><span class="o">++</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">			<span class="c1">// To prevent seg fault
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>			<span class="k">if</span> <span class="p">(</span> <span class="n">pos</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span> <span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">				<span class="k">break</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">			<span class="p">}</span>
+</span></span><span class="line"><span class="cl">		<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="nf">puts</span><span class="p">(</span> <span class="s">&#34;&#34;</span> <span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="nf">fclose</span><span class="p">(</span> <span class="n">fp</span> <span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
-</div><p><br /></p>
+</div><br />
 <p>Flag: <code>bcactf{f0110w_tH3_r00lz_&lt;3_l0ve_m3_pls}</code></p>
 <p><br /><br />
 <br /><br /></p>
@@ -1089,12 +1073,12 @@ Hint2: Backthaltheth in printableth.txt are ethcape charachterth</p>
 <li>printableth.txt</li>
 <li>inthtructhins.txt</li>
 </ul>
-<p><br />
+<br />
 以下がprintableth.txtの中身。（特殊文字だらけで表示が変になりそうなので、スクリーンショットにしてます。）<br />
-<img src="https://captureamerica.github.io/writeups/img/printableth.png" alt="printableth.png"></p>
-<p><br />
+<img src="https://captureamerica.github.io/writeups/img/printableth.png" alt="printableth.png">
+<br />
 以下がinthtructhins.txtの中身。<br />
-cadadddddr, caddadddddr, caadddddr, caddadddddr, cadddddddddddddddddddadddddr, cadddddadddddr, caaddddddr, cadddddddddddadddr, cadadr, cadddddadr, cadddddddadr, caddddaddddr, caddddddddadr, caddddadr, cadddddadr, cadddadr, cadddadddddr, caddddaddddr, cadddddddddddddddadddddr, cadddddddddddddddddadddr, caadr, caddddddadddddr, cadddddddddddddddddadddr, caddddadr, caddddddddddddadddr, caddddddddddddadddddr, cadadr, cadddddddddddddadddddr, caddddddadddr, caddddaddddr, cadadr, cadddddadr, caddddaddddr, caddddadr, caddddddddddddddddddddddadddddr, cadddadr, caddddddddddddddddddadddr, caadr, caddddddddddddadddr, caddddadddddr, cadar, caddaddddddr</p>
+cadadddddr, caddadddddr, caadddddr, caddadddddr, cadddddddddddddddddddadddddr, cadddddadddddr, caaddddddr, cadddddddddddadddr, cadadr, cadddddadr, cadddddddadr, caddddaddddr, caddddddddadr, caddddadr, cadddddadr, cadddadr, cadddadddddr, caddddaddddr, cadddddddddddddddadddddr, cadddddddddddddddddadddr, caadr, caddddddadddddr, cadddddddddddddddddadddr, caddddadr, caddddddddddddadddr, caddddddddddddadddddr, cadadr, cadddddddddddddadddddr, caddddddadddr, caddddaddddr, cadadr, cadddddadr, caddddaddddr, caddddadr, caddddddddddddddddddddddadddddr, cadddadr, caddddddddddddddddddadddr, caadr, caddddddddddddadddr, caddddadddddr, cadar, caddaddddddr
 <h3 id="solution-10">Solution</h3>
 <p>[ポイント１]<br />
 コンマ(,)で区切られた塊が一文字だと考えると、見えてきます。<br /></p>
@@ -1105,15 +1089,59 @@ c : ca<font color="red">dd</font>a<font color="orange">ddddd</font>r<br />
 t : ca<font color="red">ddddddddddddddddddd</font>a<font color="orange">ddddd</font>r<br />
 f : ca<font color="red">ddddd</font>a<font color="orange">ddddd</font>r<br />
 { : caa<font color="orange">dddddd</font>r<br /></p>
-<p><br />
+<br />
 [ポイント2]<br />
 printableth.txtの中身は、単純にASCII文字の並びなのに、ところどころ()でくくられてグループ化されています。
 <br /><br />
 inthtructhins.txtに出てくる文字列の、2個目のaとrの間のdの数（<font color="orange">オレンジ</font>部分）、例えばbで言うとd=5ですけど、これは5番目の()のグループを見る、ということです。<br />
-1個目のaと2個目のaの間のdの数（<font color="red">レッド</font>部分）は、グループの中の何番目の文字を見るか、ですね。</p>
+1個目のaと2個目のaの間のdの数（<font color="red">レッド</font>部分）は、グループの中の何番目の文字を見るか、ですね。
+```c
+#include <stdio.h>
+#include <string.h>
+<p>#define ON  1
+#define OFF 0</p>
+<p>char printable[][30] ={&quot; !&quot;#$%&amp;&rsquo;()*+,-./&quot;, &ldquo;0123456789&rdquo;, &ldquo;:;&lt;=&gt;?@&rdquo;, &ldquo;ABCDEFGHIJKLMNOPQRSTUVWXYZ&rdquo;, &ldquo;[\]^_`&rdquo;, &ldquo;abcdefghijklmnopqrstuvwxyz&rdquo;, &ldquo;{|}~&rdquo;};
+char inthtructhins[][40] = {&ldquo;cadadddddr&rdquo;, &ldquo;caddadddddr&rdquo;, &ldquo;caadddddr&rdquo;, &ldquo;caddadddddr&rdquo;, &ldquo;cadddddddddddddddddddadddddr&rdquo;, &ldquo;cadddddadddddr&rdquo;, &ldquo;caaddddddr&rdquo;, &ldquo;cadddddddddddadddr&rdquo;, &ldquo;cadadr&rdquo;, &ldquo;cadddddadr&rdquo;, &ldquo;cadddddddadr&rdquo;, &ldquo;caddddaddddr&rdquo;, &ldquo;caddddddddadr&rdquo;, &ldquo;caddddadr&rdquo;, &ldquo;cadddddadr&rdquo;, &ldquo;cadddadr&rdquo;, &ldquo;cadddadddddr&rdquo;, &ldquo;caddddaddddr&rdquo;, &ldquo;cadddddddddddddddadddddr&rdquo;, &ldquo;cadddddddddddddddddadddr&rdquo;, &ldquo;caadr&rdquo;, &ldquo;caddddddadddddr&rdquo;, &ldquo;cadddddddddddddddddadddr&rdquo;, &ldquo;caddddadr&rdquo;, &ldquo;caddddddddddddadddr&rdquo;, &ldquo;caddddddddddddadddddr&rdquo;, &ldquo;cadadr&rdquo;, &ldquo;cadddddddddddddadddddr&rdquo;, &ldquo;caddddddadddr&rdquo;, &ldquo;caddddaddddr&rdquo;, &ldquo;cadadr&rdquo;, &ldquo;cadddddadr&rdquo;, &ldquo;caddddaddddr&rdquo;, &ldquo;caddddadr&rdquo;, &ldquo;caddddddddddddddddddddddadddddr&rdquo;, &ldquo;cadddadr&rdquo;, &ldquo;caddddddddddddddddddadddr&rdquo;, &ldquo;caadr&rdquo;, &ldquo;caddddddddddddadddr&rdquo;, &ldquo;caddddadddddr&rdquo;, &ldquo;cadar&rdquo;, &ldquo;caddaddddddr&rdquo;, &ldquo;eof&rdquo;};</p>
+<p>int main(int argc, char **argv)
+{
+int op;
+int flag_r, flag_a;
+int i, a, d, pos1, pos2;</p>
+<pre><code>for ( op = 0 ; ; op++ ) {
+	if ( strcmp( &amp;inthtructhins[op][0], &quot;eof&quot; ) == 0 ) {
+		break;
+	}
+	flag_r = OFF;
+	flag_a = OFF;
+	for ( i = 0, a = 0, d = 0 ; flag_r == OFF ; i++ ) {
+		switch ( inthtructhins[op][i] ) {
+		case 'r':
+			flag_r = ON;
+			pos1 = d;
+			break;
+		case 'a':
+			if ( a == 1 ) {
+				pos2 = d;
+				d = 0;
+			}
+			a++;
+			break;
+		case 'd':
+			d++;
+			break;
+		default:
+			break;
+		}
+	}
+	printf( &quot;%c&quot;, printable[pos1][pos2] );
+}
+puts( &quot;&quot; );
+return 0;
+</code></pre>
+<p>}</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -1159,134 +1187,105 @@ inthtructhins.txtに出てくる文字列の、2個目のaとrの間のdの数�
 </span><span class="lnt">44
 </span><span class="lnt">45
 </span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span><span class="lnt">63
+</span><span class="lnt">64
+</span><span class="lnt">65
+</span><span class="lnt">66
+</span><span class="lnt">67
+</span><span class="lnt">68
+</span><span class="lnt">69
+</span><span class="lnt">70
+</span><span class="lnt">71
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-c" data-lang="c"><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
-</span><span class="cp">#include</span> <span class="cpf">&lt;string.h&gt;</span><span class="cp">
-</span><span class="cp"></span>
-<span class="cp">#define ON  1
-</span><span class="cp">#define OFF 0
-</span><span class="cp"></span>
-<span class="kt">char</span> <span class="n">printable</span><span class="p">[][</span><span class="mi">30</span><span class="p">]</span> <span class="o">=</span><span class="p">{</span><span class="s">&#34; !</span><span class="se">\&#34;</span><span class="s">#$%&amp;&#39;()*+,-./&#34;</span><span class="p">,</span> <span class="s">&#34;0123456789&#34;</span><span class="p">,</span> <span class="s">&#34;:;&lt;=&gt;?@&#34;</span><span class="p">,</span> <span class="s">&#34;ABCDEFGHIJKLMNOPQRSTUVWXYZ&#34;</span><span class="p">,</span> <span class="s">&#34;[</span><span class="se">\\</span><span class="s">]^_`&#34;</span><span class="p">,</span> <span class="s">&#34;abcdefghijklmnopqrstuvwxyz&#34;</span><span class="p">,</span> <span class="s">&#34;{|}~&#34;</span><span class="p">};</span>
-<span class="kt">char</span> <span class="n">inthtructhins</span><span class="p">[][</span><span class="mi">40</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#34;cadadddddr&#34;</span><span class="p">,</span> <span class="s">&#34;caddadddddr&#34;</span><span class="p">,</span> <span class="s">&#34;caadddddr&#34;</span><span class="p">,</span> <span class="s">&#34;caddadddddr&#34;</span><span class="p">,</span> <span class="s">&#34;cadddddddddddddddddddadddddr&#34;</span><span class="p">,</span> <span class="s">&#34;cadddddadddddr&#34;</span><span class="p">,</span> <span class="s">&#34;caaddddddr&#34;</span><span class="p">,</span> <span class="s">&#34;cadddddddddddadddr&#34;</span><span class="p">,</span> <span class="s">&#34;cadadr&#34;</span><span class="p">,</span> <span class="s">&#34;cadddddadr&#34;</span><span class="p">,</span> <span class="s">&#34;cadddddddadr&#34;</span><span class="p">,</span> <span class="s">&#34;caddddaddddr&#34;</span><span class="p">,</span> <span class="s">&#34;caddddddddadr&#34;</span><span class="p">,</span> <span class="s">&#34;caddddadr&#34;</span><span class="p">,</span> <span class="s">&#34;cadddddadr&#34;</span><span class="p">,</span> <span class="s">&#34;cadddadr&#34;</span><span class="p">,</span> <span class="s">&#34;cadddadddddr&#34;</span><span class="p">,</span> <span class="s">&#34;caddddaddddr&#34;</span><span class="p">,</span> <span class="s">&#34;cadddddddddddddddadddddr&#34;</span><span class="p">,</span> <span class="s">&#34;cadddddddddddddddddadddr&#34;</span><span class="p">,</span> <span class="s">&#34;caadr&#34;</span><span class="p">,</span> <span class="s">&#34;caddddddadddddr&#34;</span><span class="p">,</span> <span class="s">&#34;cadddddddddddddddddadddr&#34;</span><span class="p">,</span> <span class="s">&#34;caddddadr&#34;</span><span class="p">,</span> <span class="s">&#34;caddddddddddddadddr&#34;</span><span class="p">,</span> <span class="s">&#34;caddddddddddddadddddr&#34;</span><span class="p">,</span> <span class="s">&#34;cadadr&#34;</span><span class="p">,</span> <span class="s">&#34;cadddddddddddddadddddr&#34;</span><span class="p">,</span> <span class="s">&#34;caddddddadddr&#34;</span><span class="p">,</span> <span class="s">&#34;caddddaddddr&#34;</span><span class="p">,</span> <span class="s">&#34;cadadr&#34;</span><span class="p">,</span> <span class="s">&#34;cadddddadr&#34;</span><span class="p">,</span> <span class="s">&#34;caddddaddddr&#34;</span><span class="p">,</span> <span class="s">&#34;caddddadr&#34;</span><span class="p">,</span> <span class="s">&#34;caddddddddddddddddddddddadddddr&#34;</span><span class="p">,</span> <span class="s">&#34;cadddadr&#34;</span><span class="p">,</span> <span class="s">&#34;caddddddddddddddddddadddr&#34;</span><span class="p">,</span> <span class="s">&#34;caadr&#34;</span><span class="p">,</span> <span class="s">&#34;caddddddddddddadddr&#34;</span><span class="p">,</span> <span class="s">&#34;caddddadddddr&#34;</span><span class="p">,</span> <span class="s">&#34;cadar&#34;</span><span class="p">,</span> <span class="s">&#34;caddaddddddr&#34;</span><span class="p">,</span> <span class="s">&#34;eof&#34;</span><span class="p">};</span>
-
-<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">**</span><span class="n">argv</span><span class="p">)</span>
-<span class="p">{</span>
-	<span class="kt">int</span> <span class="n">op</span><span class="p">;</span>
-	<span class="kt">int</span> <span class="n">flag_r</span><span class="p">,</span> <span class="n">flag_a</span><span class="p">;</span>
-	<span class="kt">int</span> <span class="n">i</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">d</span><span class="p">,</span> <span class="n">pos1</span><span class="p">,</span> <span class="n">pos2</span><span class="p">;</span>
-
-	<span class="k">for</span> <span class="p">(</span> <span class="n">op</span> <span class="o">=</span> <span class="mi">0</span> <span class="p">;</span> <span class="p">;</span> <span class="n">op</span><span class="o">++</span> <span class="p">)</span> <span class="p">{</span>
-		<span class="k">if</span> <span class="p">(</span> <span class="n">strcmp</span><span class="p">(</span> <span class="o">&amp;</span><span class="n">inthtructhins</span><span class="p">[</span><span class="n">op</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span> <span class="s">&#34;eof&#34;</span> <span class="p">)</span> <span class="o">==</span> <span class="mi">0</span> <span class="p">)</span> <span class="p">{</span>
-			<span class="k">break</span><span class="p">;</span>
-		<span class="p">}</span>
-		<span class="n">flag_r</span> <span class="o">=</span> <span class="n">OFF</span><span class="p">;</span>
-		<span class="n">flag_a</span> <span class="o">=</span> <span class="n">OFF</span><span class="p">;</span>
-		<span class="k">for</span> <span class="p">(</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">a</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">d</span> <span class="o">=</span> <span class="mi">0</span> <span class="p">;</span> <span class="n">flag_r</span> <span class="o">==</span> <span class="n">OFF</span> <span class="p">;</span> <span class="n">i</span><span class="o">++</span> <span class="p">)</span> <span class="p">{</span>
-			<span class="k">switch</span> <span class="p">(</span> <span class="n">inthtructhins</span><span class="p">[</span><span class="n">op</span><span class="p">][</span><span class="n">i</span><span class="p">]</span> <span class="p">)</span> <span class="p">{</span>
-			<span class="k">case</span> <span class="sc">&#39;r&#39;</span><span class="o">:</span>
-				<span class="n">flag_r</span> <span class="o">=</span> <span class="n">ON</span><span class="p">;</span>
-				<span class="n">pos1</span> <span class="o">=</span> <span class="n">d</span><span class="p">;</span>
-				<span class="k">break</span><span class="p">;</span>
-			<span class="k">case</span> <span class="sc">&#39;a&#39;</span><span class="o">:</span>
-				<span class="k">if</span> <span class="p">(</span> <span class="n">a</span> <span class="o">==</span> <span class="mi">1</span> <span class="p">)</span> <span class="p">{</span>
-					<span class="n">pos2</span> <span class="o">=</span> <span class="n">d</span><span class="p">;</span>
-					<span class="n">d</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-				<span class="p">}</span>
-				<span class="n">a</span><span class="o">++</span><span class="p">;</span>
-				<span class="k">break</span><span class="p">;</span>
-			<span class="k">case</span> <span class="sc">&#39;d&#39;</span><span class="o">:</span>
-				<span class="n">d</span><span class="o">++</span><span class="p">;</span>
-				<span class="k">break</span><span class="p">;</span>
-			<span class="k">default</span><span class="o">:</span>
-				<span class="k">break</span><span class="p">;</span>
-			<span class="p">}</span>
-		<span class="p">}</span>
-		<span class="n">printf</span><span class="p">(</span> <span class="s">&#34;%c&#34;</span><span class="p">,</span> <span class="n">printable</span><span class="p">[</span><span class="n">pos1</span><span class="p">][</span><span class="n">pos2</span><span class="p">]</span> <span class="p">);</span>
-	<span class="p">}</span>
-	<span class="n">puts</span><span class="p">(</span> <span class="s">&#34;&#34;</span> <span class="p">);</span>
-	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
-</div>
-</div><p><br /></p>
-<p>Flag: <code>bcactf{L157_8453d_pR0gR4Mm1nG_15_4w3S0Me!}</code></p>
-<p><br /><br />
-<br /><br /></p>
-<h2 id="quest-for-the-night-is-dark-1-150">[Quest]: for-the-night-is-dark-1 (150)</h2>
-<hr>
-<h3 id="challenge-12">Challenge</h3>
-<blockquote>
-<p>Hello, traveler. Welcome to your quest. You must walk the Red Lord&rsquo;s shining path, guided by his shining stars. Here is a picture of those stars. A map if you will. May the Lord of Light give you wisdom.
-<br /><br />
-NOTE: As more heroes complete each stage of the quest, fewer points will be available to future teams.
-<br /><br />
-Hint1: One per row, top to bottom.
-<br /><br />
-Hint2: Maybe the brightness of the stars mean something?</p>
-</blockquote>
-<p>Attachment:</p>
-<ul>
-<li>starmap.bmp</li>
-</ul>
-<h3 id="solution-11">Solution</h3>
-<p>「青い空を見上げればいつもそこに白い猫」で開くと、赤色のところだけ星みたいなのが出てきました。</p>
-<p>赤色 ビット1 <br />
-<img src="https://captureamerica.github.io/writeups/img/red_bit1.png" alt="red_bit1.png"></p>
-<p>赤色 ビット2 <br />
-<img src="https://captureamerica.github.io/writeups/img/red_bit2.png" alt="red_bit2.png"></p>
-<p>赤色だけ抽出でビットとして選択して、UTF-8でテキストの取り出しをすると、URLが取れました。<br />
-<img src="https://captureamerica.github.io/writeups/img/red_text_utf8.PNG" alt="red_text_utf8.PNG">
-<br />
-<a href="http://rhllor.xyz/7h3fir31n0urh3ar75_d2VsY29tZSB0byBzdGVwIG9uZQ">http://rhllor.xyz/7h3fir31n0urh3ar75_d2VsY29tZSB0byBzdGVwIG9uZQ</a></p>
-<p>アクセスするとフラグがもらえます。<br />
-<br /></p>
-<p>Flag: <code>bcactf{gu1d3d_8y_574r5_QmVnaW5uaW5ncw}</code></p>
-<p><br /><br />
-<br /><br /></p>
-<h2 id="quest-for-the-night-is-dark-2-150">[Quest]: for-the-night-is-dark-2 (150)</h2>
-<hr>
-<h3 id="challenge-13">Challenge</h3>
-<blockquote>
-<p>This task can be found through solving the prior quest tasks.</p>
-</blockquote>
-<h3 id="solution-12">Solution</h3>
-<p>stage2.jsというのがあるので、中身を見てみます。</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">$</span><span class="p">(</span><span class="s2">&#34;#target&#34;</span><span class="p">).</span><span class="nx">submit</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span> <span class="nx">event</span> <span class="p">)</span> <span class="p">{</span>
-  <span class="kd">var</span> <span class="nx">hash</span> <span class="o">=</span> <span class="nx">md5</span><span class="p">(</span><span class="nx">$</span><span class="p">(</span><span class="s2">&#34;#secret&#34;</span><span class="p">).</span><span class="nx">val</span><span class="p">())</span>
-  <span class="k">if</span> <span class="p">(</span><span class="nx">hash</span> <span class="o">==</span> <span class="s2">&#34;3758002ab24653af8d550c0c50473098&#34;</span><span class="p">)</span> <span class="p">{</span>
-  	<span class="kd">var</span> <span class="nx">encode</span> <span class="o">=</span> <span class="s2">&#34;ÐßÏ½æ¦ ÐÞÙÖ©Ã»¤× ÃºªîÈ©¼×ÐÖËÕ§£¢Íç«ÖÉÌ±ÈÕÒßÊÕÅ&#34;</span>
-	<span class="kd">var</span> <span class="nx">newstr</span> <span class="o">=</span> <span class="s2">&#34;&#34;</span>
-	<span class="kd">var</span> <span class="nx">key</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s2">&#34;#secret&#34;</span><span class="p">).</span><span class="nx">val</span><span class="p">()</span>
-	<span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">encode</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-		<span class="nx">newstr</span> <span class="o">+=</span> <span class="nb">String</span><span class="p">.</span><span class="nx">fromCharCode</span><span class="p">(</span><span class="nx">encode</span><span class="p">.</span><span class="nx">charCodeAt</span><span class="p">(</span><span class="nx">i</span><span class="p">)</span> <span class="o">-</span> <span class="nx">key</span><span class="p">.</span><span class="nx">charCodeAt</span><span class="p">(</span><span class="nx">i</span><span class="o">%</span><span class="nx">key</span><span class="p">.</span><span class="nx">length</span><span class="p">))</span>
-	<span class="p">}</span>
-  	<span class="nb">window</span><span class="p">.</span><span class="nx">location</span> <span class="o">=</span> <span class="s2">&#34;/f&#34;</span> <span class="o">+</span> <span class="nx">newstr</span>
-  <span class="p">}</span>
-
-  <span class="nx">$</span><span class="p">(</span><span class="s2">&#34;#secret&#34;</span><span class="p">).</span><span class="nx">val</span><span class="p">(</span><span class="s2">&#34;&#34;</span><span class="p">)</span>
-  <span class="nx">event</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">();</span>
-<span class="p">});</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&lt;br /&gt;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Flag: `bcactf{L157_8453d_pR0gR4Mm1nG_15_4w3S0Me!}`
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">&lt;br /&gt;&lt;br /&gt;
+</span></span><span class="line"><span class="cl">&lt;br /&gt;&lt;br /&gt;
+</span></span><span class="line"><span class="cl">## [Quest]: for-the-night-is-dark-1 (150)
+</span></span><span class="line"><span class="cl">- - -
+</span></span><span class="line"><span class="cl">### Challenge
+</span></span><span class="line"><span class="cl">&gt; Hello, traveler. Welcome to your quest. You must walk the Red Lord&#39;s shining path, guided by his shining stars. Here is a picture of those stars. A map if you will. May the Lord of Light give you wisdom.
+</span></span><span class="line"><span class="cl">&lt;br /&gt;&lt;br /&gt;
+</span></span><span class="line"><span class="cl">NOTE: As more heroes complete each stage of the quest, fewer points will be available to future teams.
+</span></span><span class="line"><span class="cl">&lt;br /&gt;&lt;br /&gt;
+</span></span><span class="line"><span class="cl">Hint1: One per row, top to bottom.
+</span></span><span class="line"><span class="cl">&lt;br /&gt;&lt;br /&gt;
+</span></span><span class="line"><span class="cl">Hint2: Maybe the brightness of the stars mean something?
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Attachment:
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">- starmap.bmp
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">### Solution
+</span></span><span class="line"><span class="cl">「青い空を見上げればいつもそこに白い猫」で開くと、赤色のところだけ星みたいなのが出てきました。
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">赤色 ビット1 &lt;br /&gt;
+</span></span><span class="line"><span class="cl">&lt;img src=&#34;https://captureamerica.github.io/writeups/img/red_bit1.png&#34; alt=&#34;red_bit1.png&#34;&gt;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">赤色 ビット2 &lt;br /&gt;
+</span></span><span class="line"><span class="cl">&lt;img src=&#34;https://captureamerica.github.io/writeups/img/red_bit2.png&#34; alt=&#34;red_bit2.png&#34;&gt;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">赤色だけ抽出でビットとして選択して、UTF-8でテキストの取り出しをすると、URLが取れました。&lt;br /&gt;
+</span></span><span class="line"><span class="cl">&lt;img src=&#34;https://captureamerica.github.io/writeups/img/red_text_utf8.PNG&#34; alt=&#34;red_text_utf8.PNG&#34;&gt;
+</span></span><span class="line"><span class="cl">&lt;br /&gt;
+</span></span><span class="line"><span class="cl">http://rhllor.xyz/7h3fir31n0urh3ar75_d2VsY29tZSB0byBzdGVwIG9uZQ
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">アクセスするとフラグがもらえます。&lt;br /&gt;
+</span></span><span class="line"><span class="cl">&lt;br /&gt;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Flag: `bcactf{gu1d3d_8y_574r5_QmVnaW5uaW5ncw}`
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">&lt;br /&gt;&lt;br /&gt;
+</span></span><span class="line"><span class="cl">&lt;br /&gt;&lt;br /&gt;
+</span></span><span class="line"><span class="cl">## [Quest]: for-the-night-is-dark-2 (150)
+</span></span><span class="line"><span class="cl">- - -
+</span></span><span class="line"><span class="cl">### Challenge
+</span></span><span class="line"><span class="cl">&gt; This task can be found through solving the prior quest tasks.
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">### Solution
+</span></span><span class="line"><span class="cl">stage2.jsというのがあるので、中身を見てみます。
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">```javascript
+</span></span><span class="line"><span class="cl">$(&#34;#target&#34;).submit(function( event ) {
+</span></span><span class="line"><span class="cl">  var hash = md5($(&#34;#secret&#34;).val())
+</span></span><span class="line"><span class="cl">  if (hash == &#34;3758002ab24653af8d550c0c50473098&#34;) {
+</span></span><span class="line"><span class="cl">  	var encode = &#34;ÐßÏ½æ¦ ÐÞÙÖ©Ã»¤× ÃºªîÈ©¼×ÐÖËÕ§£¢Íç«ÖÉÌ±ÈÕÒßÊÕÅ&#34;
+</span></span><span class="line"><span class="cl">	var newstr = &#34;&#34;
+</span></span><span class="line"><span class="cl">	var key = $(&#34;#secret&#34;).val()
+</span></span><span class="line"><span class="cl">	for (var i = 0; i &lt; encode.length; i++) {
+</span></span><span class="line"><span class="cl">		newstr += String.fromCharCode(encode.charCodeAt(i) - key.charCodeAt(i%key.length))
+</span></span><span class="line"><span class="cl">	}
+</span></span><span class="line"><span class="cl">  	window.location = &#34;/f&#34; + newstr
+</span></span><span class="line"><span class="cl">  }
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  $(&#34;#secret&#34;).val(&#34;&#34;)
+</span></span><span class="line"><span class="cl">  event.preventDefault();
+</span></span><span class="line"><span class="cl">});
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>md5（3758002ab24653af8d550c0c50473098）の元の文字列は、<a href="https://crackstation.net/">rainbow table</a>で見つかりました。
 <br />
@@ -1298,11 +1297,11 @@ Hint2: Maybe the brightness of the stars mean something?</p>
 <br /><br /></p>
 <h2 id="quest-for-the-night-is-dark-3-75">[Quest]: for-the-night-is-dark-3 (75)</h2>
 <hr>
-<h3 id="challenge-14">Challenge</h3>
+<h3 id="challenge-12">Challenge</h3>
 <blockquote>
 <p>Keep on going</p>
 </blockquote>
-<h3 id="solution-13">Solution</h3>
+<h3 id="solution-11">Solution</h3>
 <p>ウェブアーカイブを見つけるだけです。<br />
 <a href="https://web.archive.org/web/20190614021723/http://rhllor.xyz/fl4m30fV3r1745burn5_Z2l2ZSBzdHJlbmd0aCB0byBoaXMgc3dvcmQ">https://web.archive.org/web/20190614021723/http://rhllor.xyz/fl4m30fV3r1745burn5_Z2l2ZSBzdHJlbmd0aCB0byBoaXMgc3dvcmQ</a>
 <br /><br /></p>
@@ -1311,7 +1310,7 @@ Hint2: Maybe the brightness of the stars mean something?</p>
 <br /><br /></p>
 <h2 id="reversing-large-pass-100">[Reversing]: large-pass (100)</h2>
 <hr>
-<h3 id="challenge-15">Challenge</h3>
+<h3 id="challenge-13">Challenge</h3>
 <blockquote>
 <p>You&rsquo;ve come across a USB stick in the middle of a parking lot. After taking it home, you plug it into a network-isolated, clean computer, and see a compiled program. Secrets are abound!
 <br /><br />
@@ -1324,11 +1323,11 @@ The flag is not in the bcactf{&hellip;} format.</p>
 <li>large-linux</li>
 <li>large-mac</li>
 </ul>
-<h3 id="solution-14">Solution</h3>
+<h3 id="solution-12">Solution</h3>
 <p>Ghidraで確認します。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -1354,68 +1353,67 @@ The flag is not in the bcactf{&hellip;} format.</p>
 </span><span class="lnt">24
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-c" data-lang="c"><span class="n">undefined8</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
-
-<span class="p">{</span>
-  <span class="kt">long</span> <span class="n">in_FS_OFFSET</span><span class="p">;</span>
-  <span class="kt">long</span> <span class="n">local_20</span><span class="p">;</span>
-  <span class="kt">long</span> <span class="n">local_18</span><span class="p">;</span>
-  <span class="kt">long</span> <span class="n">local_10</span><span class="p">;</span>
-  
-  <span class="n">local_10</span> <span class="o">=</span> <span class="o">*</span><span class="p">(</span><span class="kt">long</span> <span class="o">*</span><span class="p">)(</span><span class="n">in_FS_OFFSET</span> <span class="o">+</span> <span class="mh">0x28</span><span class="p">);</span>
-  <span class="n">local_18</span> <span class="o">=</span> <span class="mh">0x4cf7983ffb7741c8</span><span class="p">;</span>
-  <span class="n">__printf_chk</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="s">&#34;Password: &#34;</span><span class="p">);</span>
-  <span class="n">__isoc99_scanf</span><span class="p">(</span><span class="o">&amp;</span><span class="n">DAT_0010098f</span><span class="p">,</span><span class="o">&amp;</span><span class="n">local_20</span><span class="p">);</span>
-  <span class="k">if</span> <span class="p">(</span><span class="n">local_18</span> <span class="o">==</span> <span class="n">local_20</span><span class="p">)</span> <span class="p">{</span>
-    <span class="n">puts</span><span class="p">(</span><span class="s">&#34;Correct password.&#34;</span><span class="p">);</span>
-  <span class="p">}</span>
-  <span class="k">else</span> <span class="p">{</span>
-    <span class="n">puts</span><span class="p">(</span><span class="s">&#34;Incorrect Password.&#34;</span><span class="p">);</span>
-  <span class="p">}</span>
-  <span class="k">if</span> <span class="p">(</span><span class="n">local_10</span> <span class="o">==</span> <span class="o">*</span><span class="p">(</span><span class="kt">long</span> <span class="o">*</span><span class="p">)(</span><span class="n">in_FS_OFFSET</span> <span class="o">+</span> <span class="mh">0x28</span><span class="p">))</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-  <span class="p">}</span>
-                    <span class="cm">/* WARNING: Subroutine does not return */</span>
-  <span class="n">__stack_chk_fail</span><span class="p">();</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="n">undefined8</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="kt">long</span> <span class="n">in_FS_OFFSET</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="kt">long</span> <span class="n">local_20</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="kt">long</span> <span class="n">local_18</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="kt">long</span> <span class="n">local_10</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">  <span class="n">local_10</span> <span class="o">=</span> <span class="o">*</span><span class="p">(</span><span class="kt">long</span> <span class="o">*</span><span class="p">)(</span><span class="n">in_FS_OFFSET</span> <span class="o">+</span> <span class="mh">0x28</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="n">local_18</span> <span class="o">=</span> <span class="mh">0x4cf7983ffb7741c8</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">__printf_chk</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="s">&#34;Password: &#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">__isoc99_scanf</span><span class="p">(</span><span class="o">&amp;</span><span class="n">DAT_0010098f</span><span class="p">,</span><span class="o">&amp;</span><span class="n">local_20</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="k">if</span> <span class="p">(</span><span class="n">local_18</span> <span class="o">==</span> <span class="n">local_20</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">puts</span><span class="p">(</span><span class="s">&#34;Correct password.&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="k">else</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">puts</span><span class="p">(</span><span class="s">&#34;Incorrect Password.&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="k">if</span> <span class="p">(</span><span class="n">local_10</span> <span class="o">==</span> <span class="o">*</span><span class="p">(</span><span class="kt">long</span> <span class="o">*</span><span class="p">)(</span><span class="n">in_FS_OFFSET</span> <span class="o">+</span> <span class="mh">0x28</span><span class="p">))</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">                    <span class="cm">/* WARNING: Subroutine does not return */</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">__stack_chk_fail</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
-</div><p><br />
+</div><br />
 DAT_0010098fは、%ldになっているので、
 <br />
-<img src="https://captureamerica.github.io/writeups/img/DAT_0010098f.png" alt="DAT_0010098f.png"></p>
+<img src="https://captureamerica.github.io/writeups/img/DAT_0010098f.png" alt="DAT_0010098f.png">
 <p>0x4cf7983ffb7741c8を10進数で入れてあげたらよさそうです。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="err">$</span> <span class="n">python</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="mh">0x4cf7983ffb7741c8</span>
-<span class="mi">5546068866699313608</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="err">$</span> <span class="n">python</span>
+</span></span><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="mh">0x4cf7983ffb7741c8</span>
+</span></span><span class="line"><span class="cl"><span class="mi">5546068866699313608</span>
+</span></span></code></pre></td></tr></table>
 </div>
-</div><p><br />
-gdbでも同様の確認はできます。cmpしているところでBreak pointはって、レジスタを確認。</p>
+</div><br />
+gdbでも同様の確認はできます。cmpしているところでBreak pointはって、レジスタを確認。
 <pre>
 B+>│0x5555555547af \<main+303>       cmp    rax,QWORD PTR [rsp+0x8]
-
-(gdb) p $rax
+<p>(gdb) p $rax
 $1 = 5546068866699313608
-</pre>
-<p><br /></p>
+</pre></p>
+<br />
 <div class="admonition tip"><p class="admonition-title">Tips</p>
 <p>オンラインの16進数-&gt;10進数変換ツールだと、違う値（5546068866699313000）になったりします。</p>
 </div>
-<p><br />
-Flag: <code>5546068866699313608</code></p>
+<br />
+Flag: `5546068866699313608`
 <p><br /><br />
 <br /><br /></p>
 <h2 id="reversing-scratch-that-150">[Reversing]: scratch-that (150)</h2>
 <hr>
-<h3 id="challenge-16">Challenge</h3>
+<h3 id="challenge-14">Challenge</h3>
 <blockquote>
 <p>I made a Guess the Flag game! It&rsquo;s in Scratch, what could be easier? <a href="https://scratch.mit.edu/projects/276674047/">Click here to access the game.</a>
 <br /><br />
@@ -1423,7 +1421,7 @@ Hint1: What does &ldquo;See inside&rdquo; do?
 <br /><br />
 Hint2: There are four scripts: When flag clicked, Reset variables, Check flag, and Generate flag. Which one could possibly contain the flag?</p>
 </blockquote>
-<h3 id="solution-15">Solution</h3>
+<h3 id="solution-13">Solution</h3>
 <p>scrachのプロジェクトが保存できたので、自分のscrachアカウントを新規作成してプロジェクトを読み込みました。
 <br /><br />
 あとは、flagの計算をしているところに、以下を追加して実行するだけです。</p>
@@ -1437,7 +1435,7 @@ Hint2: There are four scripts: When flag clicked, Reset variables, Check flag, a
 <br /><br /></p>
 <h2 id="reversing-another-pass-200">[Reversing]: another-pass (200)</h2>
 <hr>
-<h3 id="challenge-17">Challenge</h3>
+<h3 id="challenge-15">Challenge</h3>
 <blockquote>
 <p>Alright. Your friend John found this cool binary file on the Interwebz. Against all best practices, he downloaded it. Strange, it doesn&rsquo;t appear to be a virus. Because of the password prompt, you feel like it will lead to something important. Figure this one out!
 <br /><br />
@@ -1451,11 +1449,11 @@ The pass that gives &ldquo;correct&rdquo; will be the flag.</p>
 <li>another-mac</li>
 <li>another-linux</li>
 </ul>
-<h3 id="solution-16">Solution</h3>
+<h3 id="solution-14">Solution</h3>
 <p>Ghidraで確認します。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -1487,37 +1485,37 @@ The pass that gives &ldquo;correct&rdquo; will be the flag.</p>
 </span><span class="lnt">30
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-c" data-lang="c"><span class="kt">void</span> <span class="nf">_checkInput</span><span class="p">(</span><span class="kt">char</span> <span class="o">*</span><span class="n">pcParm1</span><span class="p">)</span>
-
-<span class="p">{</span>
-  <span class="n">ulong</span> <span class="n">uVar1</span><span class="p">;</span>
-  <span class="n">size_t</span> <span class="n">sVar2</span><span class="p">;</span>
-  <span class="kt">int</span> <span class="n">local_20</span><span class="p">;</span>
-  <span class="kt">char</span> <span class="n">local_19</span><span class="p">;</span>
-  <span class="kt">int</span> <span class="n">local_18</span><span class="p">;</span>
-  <span class="kt">int</span> <span class="n">local_14</span><span class="p">;</span>
-  <span class="kt">char</span> <span class="o">*</span><span class="n">local_10</span><span class="p">;</span>
-  
-  <span class="n">local_14</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-  <span class="n">local_18</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-  <span class="n">local_10</span> <span class="o">=</span> <span class="n">pcParm1</span><span class="p">;</span>
-  <span class="k">while</span><span class="p">(</span> <span class="nb">true</span> <span class="p">)</span> <span class="p">{</span>
-    <span class="n">uVar1</span> <span class="o">=</span> <span class="n">SEXT48</span><span class="p">(</span><span class="n">local_18</span><span class="p">);</span>
-    <span class="n">sVar2</span> <span class="o">=</span> <span class="n">_strlen</span><span class="p">(</span><span class="n">local_10</span><span class="p">);</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">sVar2</span> <span class="o">&lt;=</span> <span class="n">uVar1</span><span class="p">)</span> <span class="p">{</span>
-      <span class="n">_printf</span><span class="p">(</span><span class="s">&#34;Incorrect.&#34;</span><span class="p">);</span>
-      <span class="k">return</span><span class="p">;</span>
-    <span class="p">}</span>
-    <span class="n">local_19</span> <span class="o">=</span> <span class="n">local_10</span><span class="p">[(</span><span class="kt">long</span><span class="p">)</span><span class="n">local_18</span><span class="p">];</span>
-    <span class="n">_sscanf</span><span class="p">(</span><span class="o">&amp;</span><span class="n">local_19</span><span class="p">,</span><span class="s">&#34;%d&#34;</span><span class="p">,</span><span class="o">&amp;</span><span class="n">local_20</span><span class="p">);</span>   <span class="c1">//&lt;--- ここら辺がポイント
-</span><span class="c1"></span>    <span class="n">local_14</span> <span class="o">=</span> <span class="n">local_20</span> <span class="o">+</span> <span class="n">local_14</span><span class="p">;</span>      <span class="c1">//&lt;--- ここら辺がポイント
-</span><span class="c1"></span>    <span class="k">if</span> <span class="p">(</span><span class="n">local_14</span> <span class="o">==</span> <span class="mh">0x4b</span><span class="p">)</span> <span class="k">break</span><span class="p">;</span>
-    <span class="n">local_18</span> <span class="o">=</span> <span class="n">local_18</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
-  <span class="p">}</span>
-  <span class="n">_printf</span><span class="p">(</span><span class="s">&#34;Correct.&#34;</span><span class="p">);</span>
-  <span class="k">return</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">_checkInput</span><span class="p">(</span><span class="kt">char</span> <span class="o">*</span><span class="n">pcParm1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="n">ulong</span> <span class="n">uVar1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="kt">size_t</span> <span class="n">sVar2</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="kt">int</span> <span class="n">local_20</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="kt">char</span> <span class="n">local_19</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="kt">int</span> <span class="n">local_18</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="kt">int</span> <span class="n">local_14</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="kt">char</span> <span class="o">*</span><span class="n">local_10</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">  <span class="n">local_14</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="n">local_18</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="n">local_10</span> <span class="o">=</span> <span class="n">pcParm1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="k">while</span><span class="p">(</span> <span class="nb">true</span> <span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">uVar1</span> <span class="o">=</span> <span class="nf">SEXT48</span><span class="p">(</span><span class="n">local_18</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">sVar2</span> <span class="o">=</span> <span class="nf">_strlen</span><span class="p">(</span><span class="n">local_10</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="n">sVar2</span> <span class="o">&lt;=</span> <span class="n">uVar1</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="nf">_printf</span><span class="p">(</span><span class="s">&#34;Incorrect.&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">      <span class="k">return</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="n">local_19</span> <span class="o">=</span> <span class="n">local_10</span><span class="p">[(</span><span class="kt">long</span><span class="p">)</span><span class="n">local_18</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">_sscanf</span><span class="p">(</span><span class="o">&amp;</span><span class="n">local_19</span><span class="p">,</span><span class="s">&#34;%d&#34;</span><span class="p">,</span><span class="o">&amp;</span><span class="n">local_20</span><span class="p">);</span>   <span class="c1">//&lt;--- ここら辺がポイント
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">local_14</span> <span class="o">=</span> <span class="n">local_20</span> <span class="o">+</span> <span class="n">local_14</span><span class="p">;</span>      <span class="c1">//&lt;--- ここら辺がポイント
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">if</span> <span class="p">(</span><span class="n">local_14</span> <span class="o">==</span> <span class="mh">0x4b</span><span class="p">)</span> <span class="k">break</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">local_18</span> <span class="o">=</span> <span class="n">local_18</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">_printf</span><span class="p">(</span><span class="s">&#34;Correct.&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="k">return</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>入力された文字を数字として受け取り、各数字を合計して75（0x4b）になればOKとしてます。</p>
 <p><code>999999993</code>にしました。(9 x 8 + 3 = 75)</p>
@@ -1525,7 +1523,7 @@ The pass that gives &ldquo;correct&rdquo; will be the flag.</p>
 <br /><br /></p>
 <h2 id="reversing-basic-pass-3-200">[Reversing]: basic-pass-3 (200)</h2>
 <hr>
-<h3 id="challenge-18">Challenge</h3>
+<h3 id="challenge-16">Challenge</h3>
 <blockquote>
 <p>Ok, the sysadmin finally admits that maybe authentication should happen on a server. Can you just check everything really quick to make sure there aren&rsquo;t any problems now? He put some readouts for people who forget their passwords.
 <br /><br />
@@ -1533,7 +1531,7 @@ nc challenges.ctfd.io 30133
 <br /><br />
 Hint: What happens if you put in parts that you know must be part of the flag? how can you use this to your advantage?</p>
 </blockquote>
-<h3 id="solution-17">Solution</h3>
+<h3 id="solution-15">Solution</h3>
 <p>ncで繋いで、適当なフラグを入れてみます。</p>
 <pre>
 $ nc challenges.ctfd.io 30133
@@ -1550,7 +1548,7 @@ bcactf{aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa}
 以下のコードを書きました。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -1569,24 +1567,24 @@ bcactf{aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa}
 </span><span class="lnt">17
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="ch">#!/usr/bin/env python</span>
-<span class="kn">from</span> <span class="nn">pwn</span> <span class="kn">import</span> <span class="o">*</span>
-
-<span class="n">host</span> <span class="o">=</span> <span class="s2">&#34;challenges.ctfd.io&#34;</span>
-<span class="n">port</span> <span class="o">=</span> <span class="mi">30133</span>
-<span class="n">s</span> <span class="o">=</span> <span class="n">remote</span><span class="p">(</span> <span class="n">host</span><span class="p">,</span> <span class="n">port</span> <span class="p">)</span>
-
-<span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="s2">&#34;abcdefghijklmnopqrstuvwxyz0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ_!?&#34;</span><span class="p">:</span>
-    <span class="n">payload</span> <span class="o">=</span> <span class="s2">&#34;&#34;</span>
-    <span class="n">payload</span> <span class="o">+=</span> <span class="s2">&#34;bcactf{&#34;</span>
-    <span class="n">payload</span> <span class="o">+=</span> <span class="n">c</span> <span class="o">*</span> <span class="mi">30</span>
-    <span class="n">payload</span> <span class="o">+=</span> <span class="s2">&#34;}&#34;</span>
-    <span class="k">print</span> <span class="n">payload</span>
-    <span class="n">s</span><span class="o">.</span><span class="n">sendlineafter</span><span class="p">(</span> <span class="s2">&#34;Enter the password.</span><span class="se">\n</span><span class="s2">&#34;</span><span class="p">,</span> <span class="n">payload</span> <span class="p">)</span>
-    <span class="n">msg</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">recvuntil</span><span class="p">(</span><span class="s2">&#34;</span><span class="se">\n</span><span class="s2">&#34;</span><span class="p">)</span>
-    <span class="k">print</span> <span class="n">msg</span>
-    <span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="ch">#!/usr/bin/env python</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">pwn</span> <span class="kn">import</span> <span class="o">*</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">host</span> <span class="o">=</span> <span class="s2">&#34;challenges.ctfd.io&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">port</span> <span class="o">=</span> <span class="mi">30133</span>
+</span></span><span class="line"><span class="cl"><span class="n">s</span> <span class="o">=</span> <span class="n">remote</span><span class="p">(</span> <span class="n">host</span><span class="p">,</span> <span class="n">port</span> <span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="s2">&#34;abcdefghijklmnopqrstuvwxyz0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ_!?&#34;</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">payload</span> <span class="o">=</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">payload</span> <span class="o">+=</span> <span class="s2">&#34;bcactf{&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">payload</span> <span class="o">+=</span> <span class="n">c</span> <span class="o">*</span> <span class="mi">30</span>
+</span></span><span class="line"><span class="cl">    <span class="n">payload</span> <span class="o">+=</span> <span class="s2">&#34;}&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span> <span class="n">payload</span>
+</span></span><span class="line"><span class="cl">    <span class="n">s</span><span class="o">.</span><span class="n">sendlineafter</span><span class="p">(</span> <span class="s2">&#34;Enter the password.</span><span class="se">\n</span><span class="s2">&#34;</span><span class="p">,</span> <span class="n">payload</span> <span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">msg</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">recvuntil</span><span class="p">(</span><span class="s2">&#34;</span><span class="se">\n</span><span class="s2">&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span> <span class="n">msg</span>
+</span></span><span class="line"><span class="cl">    <span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p><br /><br />
 結果：</p>
@@ -1602,13 +1600,13 @@ bcactf{cccccccccccccccccccccccccccccc}
 :
 </pre>
 <p>あとは、1が立っているところの文字だけ選ぶだけです。手動でやりました。</p>
-<p><br /></p>
+<br />
 <p>Flag: <code>bcactf{y0u_4r3_4_m4573rm1nD!_Ym9vbGlu}</code></p>
 <p><br /><br />
 <br /><br /></p>
 <h2 id="reversing-compression-200">[Reversing]: compression (200)</h2>
 <hr>
-<h3 id="challenge-19">Challenge</h3>
+<h3 id="challenge-17">Challenge</h3>
 <blockquote>
 <p>A stranger on the internet is giving away his passwords. They claim they are encrypted, but you quickly realize that it is only compressed. You have to get hold of their passwords so that you can prove them wrong.
 <br /><br />
@@ -1620,7 +1618,7 @@ Hint2: 123 and 240 are hexdumps (not necessarily compression)</p>
 <ul>
 <li>999</li>
 </ul>
-<h3 id="solution-18">Solution</h3>
+<h3 id="solution-16">Solution</h3>
 <p>面倒くさいだけで、根気で解ける問題です。</p>
 <p>スクリプトかなんかでできたら、楽なんでしょうけど、手動でやりました。</p>
 <p>コマンドヒストリーの一部です。</p>
@@ -1639,7 +1637,7 @@ Hint2: 123 and 240 are hexdumps (not necessarily compression)</p>
   700  gzip -d 123.gz 
 </pre>
 <p>hexdumpのテキスト アウトプットのやつは、<code>xxd -r</code>で解凍できます。</p>
-<p><br /></p>
+<br />
 <p>Flag: <code>bcactf{A_l0t_0f_c0mPr3s510n}</code></p>
 <p><br /><br />
 <br /><br />
@@ -1650,7 +1648,7 @@ Hint2: 123 and 240 are hexdumps (not necessarily compression)</p>
 <br /><br /></p>
 <h2 id="forensics-wavey-150">[Forensics]: wavey (150)</h2>
 <hr>
-<h3 id="challenge-20">Challenge</h3>
+<h3 id="challenge-18">Challenge</h3>
 <blockquote>
 <p>My friend sent me his new mixtape, but honestly I don&rsquo;t think it&rsquo;s that good. Can you take a look at it and figure out what&rsquo;s going on?
 <br /><br />
@@ -1660,7 +1658,7 @@ Hint: He specifically described it as wavey&hellip;</p>
 <ul>
 <li>straightfire.wav</li>
 </ul>
-<h3 id="solution-19">Solution</h3>
+<h3 id="solution-17">Solution</h3>
 <p>正直、ヒントの意味がわからなかったです。waveyでいろいろ検索したりもした。。。
 <br /><br />
 スペクトラムを見ると、視覚的にフラグが見えるようです。
@@ -1675,7 +1673,7 @@ Audacityでやってみました。
 (2019-09-23)</p>
 <h2 id="forensics-one-punch-zip-250">[Forensics]: one-punch-zip (250)</h2>
 <hr>
-<h3 id="challenge-21">Challenge</h3>
+<h3 id="challenge-19">Challenge</h3>
 <blockquote>
 <p>One Punch Man seemed to have lost the password to his super secret archive. Can you help him crack it?</p>
 </blockquote>
@@ -1684,13 +1682,13 @@ Audacityでやってみました。
 <li>opm.png</li>
 <li>superSecure.zip（パスワード不明）</li>
 </ul>
-<h3 id="solution-20">Solution</h3>
+<h3 id="solution-18">Solution</h3>
 <p>Writeupを参照されてもらって、fcrackzipというコマンドで解けることがわかりました。</p>
 <p>考えてみたら、wordlistがあればパスワード付きのZipはCrackできるわけだし、別のファイルが添付されているということはそこからwordlistを生成すればいいということですもんね。</p>
 <p>zip2johnでも同じことができるかやってみました。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -1714,31 +1712,31 @@ Audacityでやってみました。
 </span><span class="lnt">22
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-C" data-lang="C"><span class="n">root</span><span class="err">@</span><span class="nl">kali</span><span class="p">:</span><span class="o">~/</span><span class="n">BCACTF</span><span class="err">#</span> <span class="n">strings</span> <span class="n">opm</span><span class="p">.</span><span class="n">png</span> <span class="o">&gt;</span> <span class="n">opm_wordlist</span><span class="p">.</span><span class="n">txt</span>
-
-
-<span class="n">root</span><span class="err">@</span><span class="nl">kali</span><span class="p">:</span><span class="o">~/</span><span class="n">BCACTF</span><span class="err">#</span> <span class="n">john</span> <span class="n">hash</span><span class="p">.</span><span class="n">txt</span> <span class="o">--</span><span class="n">wordlist</span><span class="o">=</span><span class="n">opm_wordlist</span><span class="p">.</span><span class="n">txt</span>
-<span class="n">Using</span> <span class="k">default</span> <span class="n">input</span> <span class="nl">encoding</span><span class="p">:</span> <span class="n">UTF</span><span class="o">-</span><span class="mi">8</span>
-<span class="n">Loaded</span> <span class="mi">1</span> <span class="n">password</span> <span class="n">hash</span> <span class="p">(</span><span class="n">PKZIP</span> <span class="p">[</span><span class="mi">32</span><span class="o">/</span><span class="mi">64</span><span class="p">])</span>
-<span class="n">Will</span> <span class="n">run</span> <span class="mi">2</span> <span class="n">OpenMP</span> <span class="n">threads</span>
-<span class="n">Press</span> <span class="sc">&#39;q&#39;</span> <span class="n">or</span> <span class="n">Ctrl</span><span class="o">-</span><span class="n">C</span> <span class="n">to</span> <span class="n">abort</span><span class="p">,</span> <span class="n">almost</span> <span class="n">any</span> <span class="n">other</span> <span class="n">key</span> <span class="k">for</span> <span class="n">status</span>
-<span class="n">w</span><span class="err">\</span><span class="mi">8</span><span class="n">VH</span><span class="s">&#34;$.         (superSecure.zip/flag.txt)   &lt;--- パスワード出てきた！</span>
-<span class="mi">1</span><span class="n">g</span> <span class="mi">0</span><span class="o">:</span><span class="mo">00</span><span class="o">:</span><span class="mo">00</span><span class="o">:</span><span class="mo">00</span> <span class="n">DONE</span> <span class="p">(</span><span class="mi">2019</span><span class="o">-</span><span class="mi">09</span><span class="o">-</span><span class="mi">23</span> <span class="mi">09</span><span class="o">:</span><span class="mi">34</span><span class="p">)</span> <span class="mf">100.0</span><span class="n">g</span><span class="o">/</span><span class="n">s</span> <span class="mi">540900</span><span class="n">p</span><span class="o">/</span><span class="n">s</span> <span class="mi">540900</span><span class="n">c</span><span class="o">/</span><span class="n">s</span> <span class="mi">540900</span><span class="n">C</span><span class="o">/</span><span class="n">s</span> <span class="n">Po</span><span class="err">$</span><span class="p">,</span><span class="n">c</span><span class="p">..</span><span class="n">IEND</span>
-<span class="n">Use</span> <span class="n">the</span> <span class="s">&#34;--show&#34;</span> <span class="n">option</span> <span class="n">to</span> <span class="n">display</span> <span class="n">all</span> <span class="n">of</span> <span class="n">the</span> <span class="n">cracked</span> <span class="n">passwords</span> <span class="n">reliably</span>
-<span class="n">Session</span> <span class="n">completed</span>
-
-
-<span class="n">root</span><span class="err">@</span><span class="nl">kali</span><span class="p">:</span><span class="o">~/</span><span class="n">BCACTF</span><span class="err">#</span> <span class="n">unzip</span> <span class="n">superSecure</span><span class="p">.</span><span class="n">zip</span> 
-<span class="nl">Archive</span><span class="p">:</span>  <span class="n">superSecure</span><span class="p">.</span><span class="n">zip</span>
-<span class="p">[</span><span class="n">superSecure</span><span class="p">.</span><span class="n">zip</span><span class="p">]</span> <span class="n">flag</span><span class="p">.</span><span class="n">txt</span> <span class="nl">password</span><span class="p">:</span> 
- <span class="nl">extracting</span><span class="p">:</span> <span class="n">flag</span><span class="p">.</span><span class="n">txt</span>                
-
-
-<span class="n">root</span><span class="err">@</span><span class="nl">kali</span><span class="p">:</span><span class="o">~/</span><span class="n">BCACTF</span><span class="err">#</span> <span class="n">cat</span> <span class="n">flag</span><span class="p">.</span><span class="n">txt</span> 
-<span class="n">bcactf</span><span class="p">{</span><span class="n">u5ing_4ll_string5_0f_1mag3_</span><span class="err">@</span><span class="n">s_dictionary</span><span class="o">?</span><span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="n">root</span><span class="err">@</span><span class="nl">kali</span><span class="p">:</span><span class="o">~/</span><span class="n">BCACTF</span><span class="err">#</span> <span class="n">strings</span> <span class="n">opm</span><span class="p">.</span><span class="n">png</span> <span class="o">&gt;</span> <span class="n">opm_wordlist</span><span class="p">.</span><span class="n">txt</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">root</span><span class="err">@</span><span class="nl">kali</span><span class="p">:</span><span class="o">~/</span><span class="n">BCACTF</span><span class="err">#</span> <span class="n">john</span> <span class="n">hash</span><span class="p">.</span><span class="n">txt</span> <span class="o">--</span><span class="n">wordlist</span><span class="o">=</span><span class="n">opm_wordlist</span><span class="p">.</span><span class="n">txt</span>
+</span></span><span class="line"><span class="cl"><span class="n">Using</span> <span class="k">default</span> <span class="n">input</span> <span class="nl">encoding</span><span class="p">:</span> <span class="n">UTF</span><span class="o">-</span><span class="mi">8</span>
+</span></span><span class="line"><span class="cl"><span class="n">Loaded</span> <span class="mi">1</span> <span class="n">password</span> <span class="nf">hash</span> <span class="p">(</span><span class="n">PKZIP</span> <span class="p">[</span><span class="mi">32</span><span class="o">/</span><span class="mi">64</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl"><span class="n">Will</span> <span class="n">run</span> <span class="mi">2</span> <span class="n">OpenMP</span> <span class="n">threads</span>
+</span></span><span class="line"><span class="cl"><span class="n">Press</span> <span class="sc">&#39;q&#39;</span> <span class="n">or</span> <span class="n">Ctrl</span><span class="o">-</span><span class="n">C</span> <span class="n">to</span> <span class="n">abort</span><span class="p">,</span> <span class="n">almost</span> <span class="n">any</span> <span class="n">other</span> <span class="n">key</span> <span class="k">for</span> <span class="n">status</span>
+</span></span><span class="line"><span class="cl"><span class="n">w</span><span class="err">\</span><span class="mi">8</span><span class="n">VH</span><span class="s">&#34;$.         (superSecure.zip/flag.txt)   &lt;--- パスワード出てきた！</span>
+</span></span><span class="line"><span class="cl"><span class="mi">1</span><span class="n">g</span> <span class="mi">0</span><span class="o">:</span><span class="mo">00</span><span class="o">:</span><span class="mo">00</span><span class="o">:</span><span class="mo">00</span> <span class="nf">DONE</span> <span class="p">(</span><span class="mi">2019</span><span class="o">-</span><span class="mi">09</span><span class="o">-</span><span class="mi">23</span> <span class="mi">09</span><span class="o">:</span><span class="mi">34</span><span class="p">)</span> <span class="mf">100.0</span><span class="n">g</span><span class="o">/</span><span class="n">s</span> <span class="mi">540900</span><span class="n">p</span><span class="o">/</span><span class="n">s</span> <span class="mi">540900</span><span class="n">c</span><span class="o">/</span><span class="n">s</span> <span class="mi">540900</span><span class="n">C</span><span class="o">/</span><span class="n">s</span> <span class="n">Po</span><span class="err">$</span><span class="p">,</span><span class="n">c</span><span class="p">..</span><span class="n">IEND</span>
+</span></span><span class="line"><span class="cl"><span class="n">Use</span> <span class="n">the</span> <span class="s">&#34;--show&#34;</span> <span class="n">option</span> <span class="n">to</span> <span class="n">display</span> <span class="n">all</span> <span class="n">of</span> <span class="n">the</span> <span class="n">cracked</span> <span class="n">passwords</span> <span class="n">reliably</span>
+</span></span><span class="line"><span class="cl"><span class="n">Session</span> <span class="n">completed</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">root</span><span class="err">@</span><span class="nl">kali</span><span class="p">:</span><span class="o">~/</span><span class="n">BCACTF</span><span class="err">#</span> <span class="n">unzip</span> <span class="n">superSecure</span><span class="p">.</span><span class="n">zip</span> 
+</span></span><span class="line"><span class="cl"><span class="nl">Archive</span><span class="p">:</span>  <span class="n">superSecure</span><span class="p">.</span><span class="n">zip</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="n">superSecure</span><span class="p">.</span><span class="n">zip</span><span class="p">]</span> <span class="n">flag</span><span class="p">.</span><span class="n">txt</span> <span class="nl">password</span><span class="p">:</span> 
+</span></span><span class="line"><span class="cl"> <span class="nl">extracting</span><span class="p">:</span> <span class="n">flag</span><span class="p">.</span><span class="n">txt</span>                
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">root</span><span class="err">@</span><span class="nl">kali</span><span class="p">:</span><span class="o">~/</span><span class="n">BCACTF</span><span class="err">#</span> <span class="n">cat</span> <span class="n">flag</span><span class="p">.</span><span class="n">txt</span> 
+</span></span><span class="line"><span class="cl"><span class="n">bcactf</span><span class="p">{</span><span class="n">u5ing_4ll_string5_0f_1mag3_</span><span class="err">@</span><span class="n">s_dictionary</span><span class="o">?</span><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
-</div><p><br /></p>
+</div><br />
 <p>Flag: <code>bcactf{u5ing_4ll_string5_0f_1mag3_@s_dictionary?}</code></p>
 <p><br /><br />
 <br /><br /></p>
@@ -1795,7 +1793,7 @@ Audacityでやってみました。
     <footer id="footer" class="footer">
       <div class="social-links">
       <a href="https://github.com/CaptureAmerica/" class="iconfont icon-github" title="github"></a>
-  <a href="https://captureamerica.github.io/writeups/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+  
 </div>
 
 <div class="copyright">
@@ -1830,20 +1828,21 @@ Audacityでやってみました。
 
 
 
-<script type="text/javascript" src="https://captureamerica.github.io/writeups/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+<script type="text/javascript" src="https://captureamerica.github.io/writeups/js/main.min.4ae89da218555efa0e7093a20b92017d2e1202b66fff9fc2edf4cb8d44b44c6e.js"></script>
 
 
 <script type="application/javascript">
 var doNotTrack = false;
 if (!doNotTrack) {
-	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 	ga('create', 'UA-104910699-2', 'auto');
 	ga('set', 'anonymizeIp', true);
 	ga('send', 'pageview');
 }
 </script>
-<script async src='https://www.google-analytics.com/analytics.js'></script>
-
 
 
 

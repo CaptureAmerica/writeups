@@ -54,6 +54,7 @@ Attachments:
 <img src="https://captureamerica.github.io/writeups/img/beamoflight.png" alt="beamoflight.png"> <br />
 
 <br />
+
 ### Solution
 
 「青い空を見上げればいつもそこに白い猫」のビット抽出で、全てのビットをオンにしてバイナリデータの表示をすると、フラグが見つかります。
@@ -79,6 +80,7 @@ Attachments:
 
 
 <br />
+
 ### Solution
 
 Wiresharkで開いてみると、全く同じ ping request が並んでいて、違うのは Timestamp のみです。

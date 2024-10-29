@@ -23,7 +23,7 @@
 <meta name="google-site-verification" content="PqctLWZQttGzxXVupWuIt2HWuBI8cvN1z07ETpxA2dw" />
 
 
-<meta name="generator" content="Hugo 0.74.2 with theme even" />
+<meta name="generator" content="Hugo 0.119.0 with theme even" />
 
 
 <link rel="canonical" href="https://captureamerica.github.io/writeups/post/cybrics_ctf_2021/" />
@@ -35,24 +35,20 @@
 
 
 
-<link href="https://captureamerica.github.io/writeups/sass/main.min.2e81bbed97b8b282c1aeb57488cc71c8d8c8ec559f3931531bd396bf31e0d4dd.css" rel="stylesheet">
+<link href="https://captureamerica.github.io/writeups/sass/main.min.f92fd13721ddf72129410fd8250e73152cc6f2438082b6c0208dc24ee7c13fc4.css" rel="stylesheet">
 
 
 
 <meta property="og:title" content="CyBRICS CTF 2021 Writeup" />
 <meta property="og:description" content="Save The Earth! - 地球環境を守ろう！ URL: https://cybrics.net/ CyBRICS CTF 2019では、1問しか解けず。 CyBRICS CTF 2020では、なんとか4問解いて275位。 今年はまた1問だけです。。。 5" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://captureamerica.github.io/writeups/post/cybrics_ctf_2021/" />
+<meta property="og:url" content="https://captureamerica.github.io/writeups/post/cybrics_ctf_2021/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2021-07-28T21:00:00+09:00" />
 <meta property="article:modified_time" content="2021-07-28T21:00:00+09:00" />
 <meta itemprop="name" content="CyBRICS CTF 2021 Writeup">
-<meta itemprop="description" content="Save The Earth! - 地球環境を守ろう！ URL: https://cybrics.net/ CyBRICS CTF 2019では、1問しか解けず。 CyBRICS CTF 2020では、なんとか4問解いて275位。 今年はまた1問だけです。。。 5">
-<meta itemprop="datePublished" content="2021-07-28T21:00:00&#43;09:00" />
-<meta itemprop="dateModified" content="2021-07-28T21:00:00&#43;09:00" />
-<meta itemprop="wordCount" content="1699">
-
-
-
+<meta itemprop="description" content="Save The Earth! - 地球環境を守ろう！ URL: https://cybrics.net/ CyBRICS CTF 2019では、1問しか解けず。 CyBRICS CTF 2020では、なんとか4問解いて275位。 今年はまた1問だけです。。。 5"><meta itemprop="datePublished" content="2021-07-28T21:00:00+09:00" />
+<meta itemprop="dateModified" content="2021-07-28T21:00:00+09:00" />
+<meta itemprop="wordCount" content="1700">
 <meta itemprop="keywords" content="CTF," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="CyBRICS CTF 2021 Writeup"/>
 <meta name="twitter:description" content="Save The Earth! - 地球環境を守ろう！ URL: https://cybrics.net/ CyBRICS CTF 2019では、1問しか解けず。 CyBRICS CTF 2020では、なんとか4問解いて275位。 今年はまた1問だけです。。。 5"/>
@@ -157,7 +153,6 @@
     <li><a href="#network-hard-localhost-about-300-points">[Network, Hard]: localhost (About 300 points)</a>
       <ul>
         <li><a href="#challenge-1">Challenge</a></li>
-        <li><a href="#unsolved">(Unsolved)</a></li>
       </ul>
     </li>
   </ul>
@@ -194,11 +189,11 @@
 <br /><br />
 I heard they serve flags at level 5.</p>
 </blockquote>
-<p><br /></p>
+<br />
 <h3 id="solution">Solution</h3>
 <p>アニメーションGIFで、画像をあたかもスキャンしているように、画像が部分的に流れていきます。</p>
 <p>Level1 ~ Level4は目を凝視して解きました。</p>
-<p><br /></p>
+<br />
 <p>しかし、Level5は明らかにQRコードだったので、元の画像を取り出さないといけません。</p>
 <p>Pythonとかを使ってスマートに解くのが想定解なのかも知れないですが、力技でやりました。</p>
 <br>
@@ -217,8 +212,8 @@ $ convert aaa.png -resize 256x290\! QR.png
 <img src="https://captureamerica.github.io/writeups/img/cybrics_CTF_2021_QR.png" alt="cybrics_CTF_2021_QR.png">
 <p><br><br>
 iPhone cameraだと読み取れなかったけど、Android phone の QR &amp; Barcode scannerアプリでなんとか読めました。</p>
-<p><br />
-Flag: <code>cybrics{N0w_Y0u_4r3_4_c4sh13r_LOL}</code></p>
+<br />
+Flag: `cybrics{N0w_Y0u_4r3_4_c4sh13r_LOL}`
 <p><br /><br />
 <br /><br /></p>
 <h2 id="network-hard-localhost-about-300-points">[Network, Hard]: localhost (About 300 points)</h2>
@@ -227,11 +222,11 @@ Flag: <code>cybrics{N0w_Y0u_4r3_4_c4sh13r_LOL}</code></p>
 <blockquote>
 <p>Remember NET fleeks? I’ve pwned a box in another corporate network, and there is some peculiarly configured server near my foothold. Take a look.</p>
 </blockquote>
-<p><br /></p>
-<h3 id="unsolved">(Unsolved)</h3>
-<p>OSCPを取って依頼、久々にPentestっぽいことをしました。</p>
-<p><br />
-<code>NET fleeks</code> って何かな？と思ってググったら、CyBRICS CTF 2020で出てきたチャレンジでした。完全スルーしたやつです。</p>
+<br />
+### (Unsolved)
+OSCPを取って依頼、久々にPentestっぽいことをしました。
+<br />
+`NET fleeks` って何かな？と思ってググったら、CyBRICS CTF 2020で出てきたチャレンジでした。完全スルーしたやつです。
 <p>去年のWriteupを見ると、scapyやらをインストールしたりして解いていたようです。</p>
 <br>
 問題がlocalhostだったので、とりあえずlocalでlistenしているサービスを見てみました。
@@ -312,7 +307,7 @@ Nmap done: 1 IP address (1 host up) scanned in 7.97 seconds
 アクセスしてみると、confファイルへのリンクが得られます。
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -344,37 +339,37 @@ Nmap done: 1 IP address (1 host up) scanned in 7.97 seconds
 </span><span class="lnt">30
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-C" data-lang="C"><span class="n">root</span><span class="err">@</span><span class="nl">PWNED</span><span class="p">:</span><span class="o">~</span><span class="err">#</span> <span class="n">curl</span> <span class="o">-</span><span class="n">v</span> <span class="mf">10.193.21.180</span>
-<span class="o">*</span> <span class="n">Expire</span> <span class="n">in</span> <span class="mi">0</span> <span class="n">ms</span> <span class="k">for</span> <span class="mi">6</span> <span class="p">(</span><span class="n">transfer</span> <span class="mh">0x555769cd41a0</span><span class="p">)</span>
-<span class="o">*</span>   <span class="n">Trying</span> <span class="mf">10.193.21.180</span><span class="p">...</span>
-<span class="o">*</span> <span class="n">TCP_NODELAY</span> <span class="n">set</span>
-<span class="o">*</span> <span class="n">Expire</span> <span class="n">in</span> <span class="mi">200</span> <span class="n">ms</span> <span class="k">for</span> <span class="mi">4</span> <span class="p">(</span><span class="n">transfer</span> <span class="mh">0x555769cd41a0</span><span class="p">)</span>
-<span class="o">*</span> <span class="n">Connected</span> <span class="n">to</span> <span class="mf">10.193.21.180</span> <span class="p">(</span><span class="mf">10.193.21.180</span><span class="p">)</span> <span class="n">port</span> <span class="mi">80</span> <span class="p">(</span><span class="err">#</span><span class="mi">0</span><span class="p">)</span>
-<span class="o">&gt;</span> <span class="n">GET</span> <span class="o">/</span> <span class="n">HTTP</span><span class="o">/</span><span class="mf">1.1</span>
-<span class="o">&gt;</span> <span class="nl">Host</span><span class="p">:</span> <span class="mf">10.193.21.180</span>
-<span class="o">&gt;</span> <span class="n">User</span><span class="o">-</span><span class="nl">Agent</span><span class="p">:</span> <span class="n">curl</span><span class="o">/</span><span class="mf">7.64.0</span>
-<span class="o">&gt;</span> <span class="nl">Accept</span><span class="p">:</span> <span class="err">*/</span><span class="o">*</span>
-<span class="o">&gt;</span>
-<span class="o">&lt;</span> <span class="n">HTTP</span><span class="o">/</span><span class="mf">1.1</span> <span class="mi">200</span> <span class="n">OK</span>
-<span class="o">&lt;</span> <span class="nl">Server</span><span class="p">:</span> <span class="n">nginx</span><span class="o">/</span><span class="mf">1.10.3</span>
-<span class="o">&lt;</span> <span class="nl">Date</span><span class="p">:</span> <span class="n">Sun</span><span class="p">,</span> <span class="mi">25</span> <span class="n">Jul</span> <span class="mi">2021</span> <span class="mo">03</span><span class="o">:</span><span class="mi">59</span><span class="o">:</span><span class="mi">45</span> <span class="n">GMT</span>
-<span class="o">&lt;</span> <span class="n">Content</span><span class="o">-</span><span class="nl">Type</span><span class="p">:</span> <span class="n">text</span><span class="o">/</span><span class="n">html</span>
-<span class="o">&lt;</span> <span class="n">Content</span><span class="o">-</span><span class="nl">Length</span><span class="p">:</span> <span class="mi">388</span>
-<span class="o">&lt;</span> <span class="n">Last</span><span class="o">-</span><span class="nl">Modified</span><span class="p">:</span> <span class="n">Thu</span><span class="p">,</span> <span class="mi">22</span> <span class="n">Jul</span> <span class="mi">2021</span> <span class="mi">22</span><span class="o">:</span><span class="mi">38</span><span class="o">:</span><span class="mi">14</span> <span class="n">GMT</span>
-<span class="o">&lt;</span> <span class="nl">Connection</span><span class="p">:</span> <span class="n">keep</span><span class="o">-</span><span class="n">alive</span>
-<span class="o">&lt;</span> <span class="nl">ETag</span><span class="p">:</span> <span class="s">&#34;60f9f356-184&#34;</span>
-<span class="o">&lt;</span> <span class="n">Accept</span><span class="o">-</span><span class="nl">Ranges</span><span class="p">:</span> <span class="n">bytes</span>
-<span class="o">&lt;</span>
-<span class="o">&lt;</span><span class="n">h1</span><span class="o">&gt;</span><span class="n">Storage</span> <span class="n">Node</span> <span class="n">Status</span> <span class="n">Page</span><span class="o">&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
-<span class="o">&lt;</span><span class="n">table</span> <span class="n">border</span><span class="o">=</span><span class="mi">1</span><span class="o">&gt;</span>
-    <span class="o">&lt;</span><span class="n">tr</span><span class="o">&gt;&lt;</span><span class="n">td</span><span class="o">&gt;</span><span class="n">Records</span><span class="o">&lt;/</span><span class="n">td</span><span class="o">&gt;&lt;</span><span class="n">td</span><span class="o">&gt;</span><span class="mi">1</span><span class="o">&lt;/</span><span class="n">td</span><span class="o">&gt;&lt;/</span><span class="n">tr</span><span class="o">&gt;</span>
-    <span class="o">&lt;</span><span class="n">tr</span><span class="o">&gt;&lt;</span><span class="n">td</span><span class="o">&gt;</span><span class="n">Flag</span><span class="o">-</span><span class="n">containing</span> <span class="n">Records</span><span class="o">&lt;/</span><span class="n">td</span><span class="o">&gt;&lt;</span><span class="n">td</span><span class="o">&gt;</span><span class="mi">1</span><span class="o">&lt;/</span><span class="n">td</span><span class="o">&gt;&lt;/</span><span class="n">tr</span><span class="o">&gt;</span>
-    <span class="o">&lt;</span><span class="n">tr</span><span class="o">&gt;&lt;</span><span class="n">td</span><span class="o">&gt;</span><span class="n">Redis</span> <span class="n">Configuration</span><span class="o">&lt;/</span><span class="n">td</span><span class="o">&gt;&lt;</span><span class="n">td</span><span class="o">&gt;</span><span class="nl">Default</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">a</span> <span class="n">href</span><span class="o">=</span><span class="s">&#34;redis.conf&#34;</span><span class="o">&gt;</span><span class="n">redis</span><span class="p">.</span><span class="n">conf</span><span class="o">&lt;/</span><span class="n">a</span><span class="o">&gt;&lt;/</span><span class="n">td</span><span class="o">&gt;&lt;/</span><span class="n">tr</span><span class="o">&gt;</span>
-    <span class="o">&lt;</span><span class="n">tr</span><span class="o">&gt;&lt;</span><span class="n">td</span><span class="o">&gt;</span><span class="n">System</span> <span class="n">Configuration</span><span class="o">&lt;/</span><span class="n">td</span><span class="o">&gt;&lt;</span><span class="n">td</span><span class="o">&gt;&lt;</span><span class="n">a</span> <span class="n">href</span><span class="o">=</span><span class="s">&#34;sysctl.conf&#34;</span><span class="o">&gt;</span><span class="n">sysctl</span><span class="p">.</span><span class="n">conf</span><span class="o">&lt;/</span><span class="n">a</span><span class="o">&gt;&lt;/</span><span class="n">td</span><span class="o">&gt;&lt;/</span><span class="n">tr</span><span class="o">&gt;</span>
-    <span class="o">&lt;</span><span class="n">tr</span><span class="o">&gt;&lt;</span><span class="n">td</span><span class="o">&gt;</span><span class="n">Security</span><span class="o">&lt;/</span><span class="n">td</span><span class="o">&gt;&lt;</span><span class="n">td</span><span class="o">&gt;</span><span class="n">perfect</span><span class="o">!&lt;/</span><span class="n">td</span><span class="o">&gt;&lt;/</span><span class="n">tr</span><span class="o">&gt;</span>
-<span class="o">&lt;/</span><span class="n">table</span><span class="o">&gt;</span>
-<span class="o">*</span> <span class="n">Connection</span> <span class="err">#</span><span class="mi">0</span> <span class="n">to</span> <span class="n">host</span> <span class="mf">10.193.21.180</span> <span class="n">left</span> <span class="n">intact</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="n">root</span><span class="err">@</span><span class="nl">PWNED</span><span class="p">:</span><span class="o">~</span><span class="err">#</span> <span class="n">curl</span> <span class="o">-</span><span class="n">v</span> <span class="mf">10.193.21.180</span>
+</span></span><span class="line"><span class="cl"><span class="o">*</span> <span class="n">Expire</span> <span class="n">in</span> <span class="mi">0</span> <span class="n">ms</span> <span class="k">for</span> <span class="mi">6</span> <span class="p">(</span><span class="n">transfer</span> <span class="mh">0x555769cd41a0</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="o">*</span>   <span class="n">Trying</span> <span class="mf">10.193.21.180</span><span class="p">...</span>
+</span></span><span class="line"><span class="cl"><span class="o">*</span> <span class="n">TCP_NODELAY</span> <span class="n">set</span>
+</span></span><span class="line"><span class="cl"><span class="o">*</span> <span class="n">Expire</span> <span class="n">in</span> <span class="mi">200</span> <span class="n">ms</span> <span class="k">for</span> <span class="mi">4</span> <span class="p">(</span><span class="n">transfer</span> <span class="mh">0x555769cd41a0</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="o">*</span> <span class="n">Connected</span> <span class="n">to</span> <span class="mf">10.193.21.180</span> <span class="p">(</span><span class="mf">10.193.21.180</span><span class="p">)</span> <span class="n">port</span> <span class="mi">80</span> <span class="p">(</span><span class="err">#</span><span class="mi">0</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="o">&gt;</span> <span class="n">GET</span> <span class="o">/</span> <span class="n">HTTP</span><span class="o">/</span><span class="mf">1.1</span>
+</span></span><span class="line"><span class="cl"><span class="o">&gt;</span> <span class="nl">Host</span><span class="p">:</span> <span class="mf">10.193.21.180</span>
+</span></span><span class="line"><span class="cl"><span class="o">&gt;</span> <span class="n">User</span><span class="o">-</span><span class="nl">Agent</span><span class="p">:</span> <span class="n">curl</span><span class="o">/</span><span class="mf">7.64.0</span>
+</span></span><span class="line"><span class="cl"><span class="o">&gt;</span> <span class="nl">Accept</span><span class="p">:</span> <span class="err">*/</span><span class="o">*</span>
+</span></span><span class="line"><span class="cl"><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="o">&lt;</span> <span class="n">HTTP</span><span class="o">/</span><span class="mf">1.1</span> <span class="mi">200</span> <span class="n">OK</span>
+</span></span><span class="line"><span class="cl"><span class="o">&lt;</span> <span class="nl">Server</span><span class="p">:</span> <span class="n">nginx</span><span class="o">/</span><span class="mf">1.10.3</span>
+</span></span><span class="line"><span class="cl"><span class="o">&lt;</span> <span class="nl">Date</span><span class="p">:</span> <span class="n">Sun</span><span class="p">,</span> <span class="mi">25</span> <span class="n">Jul</span> <span class="mi">2021</span> <span class="mo">03</span><span class="o">:</span><span class="mi">59</span><span class="o">:</span><span class="mi">45</span> <span class="n">GMT</span>
+</span></span><span class="line"><span class="cl"><span class="o">&lt;</span> <span class="n">Content</span><span class="o">-</span><span class="nl">Type</span><span class="p">:</span> <span class="n">text</span><span class="o">/</span><span class="n">html</span>
+</span></span><span class="line"><span class="cl"><span class="o">&lt;</span> <span class="n">Content</span><span class="o">-</span><span class="nl">Length</span><span class="p">:</span> <span class="mi">388</span>
+</span></span><span class="line"><span class="cl"><span class="o">&lt;</span> <span class="n">Last</span><span class="o">-</span><span class="nl">Modified</span><span class="p">:</span> <span class="n">Thu</span><span class="p">,</span> <span class="mi">22</span> <span class="n">Jul</span> <span class="mi">2021</span> <span class="mi">22</span><span class="o">:</span><span class="mi">38</span><span class="o">:</span><span class="mi">14</span> <span class="n">GMT</span>
+</span></span><span class="line"><span class="cl"><span class="o">&lt;</span> <span class="nl">Connection</span><span class="p">:</span> <span class="n">keep</span><span class="o">-</span><span class="n">alive</span>
+</span></span><span class="line"><span class="cl"><span class="o">&lt;</span> <span class="nl">ETag</span><span class="p">:</span> <span class="s">&#34;60f9f356-184&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="o">&lt;</span> <span class="n">Accept</span><span class="o">-</span><span class="nl">Ranges</span><span class="p">:</span> <span class="n">bytes</span>
+</span></span><span class="line"><span class="cl"><span class="o">&lt;</span>
+</span></span><span class="line"><span class="cl"><span class="o">&lt;</span><span class="n">h1</span><span class="o">&gt;</span><span class="n">Storage</span> <span class="n">Node</span> <span class="n">Status</span> <span class="n">Page</span><span class="o">&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="o">&lt;</span><span class="n">table</span> <span class="n">border</span><span class="o">=</span><span class="mi">1</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">&lt;</span><span class="n">tr</span><span class="o">&gt;&lt;</span><span class="n">td</span><span class="o">&gt;</span><span class="n">Records</span><span class="o">&lt;/</span><span class="n">td</span><span class="o">&gt;&lt;</span><span class="n">td</span><span class="o">&gt;</span><span class="mi">1</span><span class="o">&lt;/</span><span class="n">td</span><span class="o">&gt;&lt;/</span><span class="n">tr</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">&lt;</span><span class="n">tr</span><span class="o">&gt;&lt;</span><span class="n">td</span><span class="o">&gt;</span><span class="n">Flag</span><span class="o">-</span><span class="n">containing</span> <span class="n">Records</span><span class="o">&lt;/</span><span class="n">td</span><span class="o">&gt;&lt;</span><span class="n">td</span><span class="o">&gt;</span><span class="mi">1</span><span class="o">&lt;/</span><span class="n">td</span><span class="o">&gt;&lt;/</span><span class="n">tr</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">&lt;</span><span class="n">tr</span><span class="o">&gt;&lt;</span><span class="n">td</span><span class="o">&gt;</span><span class="n">Redis</span> <span class="n">Configuration</span><span class="o">&lt;/</span><span class="n">td</span><span class="o">&gt;&lt;</span><span class="n">td</span><span class="o">&gt;</span><span class="nl">Default</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">a</span> <span class="n">href</span><span class="o">=</span><span class="s">&#34;redis.conf&#34;</span><span class="o">&gt;</span><span class="n">redis</span><span class="p">.</span><span class="n">conf</span><span class="o">&lt;/</span><span class="n">a</span><span class="o">&gt;&lt;/</span><span class="n">td</span><span class="o">&gt;&lt;/</span><span class="n">tr</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">&lt;</span><span class="n">tr</span><span class="o">&gt;&lt;</span><span class="n">td</span><span class="o">&gt;</span><span class="n">System</span> <span class="n">Configuration</span><span class="o">&lt;/</span><span class="n">td</span><span class="o">&gt;&lt;</span><span class="n">td</span><span class="o">&gt;&lt;</span><span class="n">a</span> <span class="n">href</span><span class="o">=</span><span class="s">&#34;sysctl.conf&#34;</span><span class="o">&gt;</span><span class="n">sysctl</span><span class="p">.</span><span class="n">conf</span><span class="o">&lt;/</span><span class="n">a</span><span class="o">&gt;&lt;/</span><span class="n">td</span><span class="o">&gt;&lt;/</span><span class="n">tr</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">&lt;</span><span class="n">tr</span><span class="o">&gt;&lt;</span><span class="n">td</span><span class="o">&gt;</span><span class="n">Security</span><span class="o">&lt;/</span><span class="n">td</span><span class="o">&gt;&lt;</span><span class="n">td</span><span class="o">&gt;</span><span class="n">perfect</span><span class="o">!&lt;/</span><span class="n">td</span><span class="o">&gt;&lt;/</span><span class="n">tr</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="o">&lt;/</span><span class="n">table</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="o">*</span> <span class="n">Connection</span> <span class="err">#</span><span class="mi">0</span> <span class="n">to</span> <span class="n">host</span> <span class="mf">10.193.21.180</span> <span class="n">left</span> <span class="n">intact</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><br>
 sysctl.confの中では、以下が有効になっていました。
@@ -392,17 +387,17 @@ net.ipv4.conf.all.route_localnet=1
 <p>宛先のポートは、redis.confをベースに6379にしました。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-Python" data-lang="Python"><span class="ch">#!/usr/bin/env python</span>
-<span class="kn">from</span> <span class="nn">scapy.all</span> <span class="kn">import</span> <span class="o">*</span>
-<span class="n">answer</span> <span class="o">=</span> <span class="n">sendp</span><span class="p">(</span><span class="n">Ether</span><span class="p">(</span><span class="n">dst</span><span class="o">=</span><span class="s2">&#34;02:42:0a:c1:15:b4&#34;</span><span class="p">,</span><span class="n">src</span><span class="o">=</span><span class="s2">&#34;02:42:0a:c1:15:07&#34;</span><span class="p">)</span><span class="o">/</span><span class="n">IP</span><span class="p">(</span><span class="n">dst</span><span class="o">=</span><span class="s2">&#34;127.0.0.1&#34;</span><span class="p">,</span><span class="n">src</span><span class="o">=</span><span class="s2">&#34;10.193.21.7&#34;</span><span class="p">)</span><span class="o">/</span><span class="n">TCP</span><span class="p">(</span><span class="n">dport</span><span class="o">=</span><span class="mi">6379</span><span class="p">,</span><span class="n">sport</span><span class="o">=</span><span class="mi">50000</span><span class="p">)</span><span class="o">/</span><span class="s2">&#34;PING&#34;</span><span class="p">,</span> <span class="n">iface</span><span class="o">=</span><span class="s2">&#34;eth0&#34;</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="n">answer</span><span class="p">)</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-Python" data-lang="Python"><span class="line"><span class="cl"><span class="ch">#!/usr/bin/env python</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">scapy.all</span> <span class="kn">import</span> <span class="o">*</span>
+</span></span><span class="line"><span class="cl"><span class="n">answer</span> <span class="o">=</span> <span class="n">sendp</span><span class="p">(</span><span class="n">Ether</span><span class="p">(</span><span class="n">dst</span><span class="o">=</span><span class="s2">&#34;02:42:0a:c1:15:b4&#34;</span><span class="p">,</span><span class="n">src</span><span class="o">=</span><span class="s2">&#34;02:42:0a:c1:15:07&#34;</span><span class="p">)</span><span class="o">/</span><span class="n">IP</span><span class="p">(</span><span class="n">dst</span><span class="o">=</span><span class="s2">&#34;127.0.0.1&#34;</span><span class="p">,</span><span class="n">src</span><span class="o">=</span><span class="s2">&#34;10.193.21.7&#34;</span><span class="p">)</span><span class="o">/</span><span class="n">TCP</span><span class="p">(</span><span class="n">dport</span><span class="o">=</span><span class="mi">6379</span><span class="p">,</span><span class="n">sport</span><span class="o">=</span><span class="mi">50000</span><span class="p">)</span><span class="o">/</span><span class="s2">&#34;PING&#34;</span><span class="p">,</span> <span class="n">iface</span><span class="o">=</span><span class="s2">&#34;eth0&#34;</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">answer</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><br>
 何も応答が返ってこないので、ここで降参。。。
@@ -460,7 +455,7 @@ net.ipv4.conf.all.route_localnet=1
     <footer id="footer" class="footer">
       <div class="social-links">
       <a href="https://github.com/CaptureAmerica/" class="iconfont icon-github" title="github"></a>
-  <a href="https://captureamerica.github.io/writeups/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+  
 </div>
 
 <div class="copyright">
@@ -495,20 +490,21 @@ net.ipv4.conf.all.route_localnet=1
 
 
 
-<script type="text/javascript" src="https://captureamerica.github.io/writeups/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+<script type="text/javascript" src="https://captureamerica.github.io/writeups/js/main.min.4ae89da218555efa0e7093a20b92017d2e1202b66fff9fc2edf4cb8d44b44c6e.js"></script>
 
 
 <script type="application/javascript">
 var doNotTrack = false;
 if (!doNotTrack) {
-	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 	ga('create', 'UA-104910699-2', 'auto');
 	ga('set', 'anonymizeIp', true);
 	ga('send', 'pageview');
 }
 </script>
-<script async src='https://www.google-analytics.com/analytics.js'></script>
-
 
 
 

