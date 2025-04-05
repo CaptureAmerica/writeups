@@ -854,9 +854,8 @@ uz
 
 その画像を見てみると（/flags/upz.png）、確かに国旗ではないようです。
 
-<img src="https://captureamerica.github.io/writeups/img/upz.png" alt="upz.png">
+<img src="https://captureamerica.github.io/writeups/img/upz.png" alt="upz.png" width=300 height=60>
 
-<br /><br />
 
 いろいろと調べてみたところ、`stepic` という Python モジュールがあることがわかり、使い方を調べて upz.png をデコードしてみました。
 
@@ -926,7 +925,7 @@ Windows PC のイベントビューアーで Windows_Logs.evtx を読み込ん�
 
 <img src="https://captureamerica.github.io/writeups/img/picoctf_2025_WinEvent2.png" alt="picoctf_2025_WinEvent2.png">
 
-<br />
+<br /><br />
 
 <img src="https://captureamerica.github.io/writeups/img/picoctf_2025_WinEvent3.png" alt="picoctf_2025_WinEvent3.png">
 
@@ -998,7 +997,7 @@ a.phpというファイルを作ってアップロードしました。
 
 <br />
 
-<img src="https://captureamerica.github.io/writeups/img/picoctf_2025_aphp.png" alt="picoctf_2025_aphp.png">
+<img src="https://captureamerica.github.io/writeups/img/picoctf_2025_aphp.png" alt="picoctf_2025_aphp.png" width=300 height=60>
 
 <br /><br />
 
