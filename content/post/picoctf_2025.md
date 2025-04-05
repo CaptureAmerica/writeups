@@ -1381,18 +1381,32 @@ drwxrwxrwx 1 root root 24 Mar  6 19:42 bin
 
 ということで、/usr/local/bin/md5sum として実行ファイルを置けば、/usr/bin/md5sum の代わりに実行されます。
 
-以下のようなやり方はできなかったので、
+<br />
+
+md5sum というスクリプトファイルを作りたかったんですが、以下のようなやり方はできなかったので、
 
 <pre>
-$ echo "cat /root/flag.txt" >> /usr/local/bin/md5sum
-
+ctf-player@pico-chall$ echo "cat /root/flag.txt" >> /usr/local/bin/md5sum
+-rbash: /usr/local/bin/md5sum: restricted: cannot redirect output
 </pre>
 
 <pre>
-$ cat << EOS
-#!/bin/bash
-echo aaa > /usr/local/bin/
-EOS
+ctf-player@pico-chall$ cd /usr/local/bin/
+-rbash: cd: restricted
+</pre>
+
+<pre>
+ctf-player@pico-chall$ cat << EOS > md5sum
+> #!/bin/bash
+> cat /root/flag.txt
+> EOS
+-rbash: md5sum: restricted: cannot redirect output
+</pre>
+
+<pre>
+$ scp -P 56250 md5sum ctf-player@rescued-float.picoctf.net:~/
+ctf-player@rescued-float.picoctf.net's password:
+scp: Connection closed
 </pre>
 
 <br /><br />

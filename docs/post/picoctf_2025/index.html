@@ -48,7 +48,7 @@
 <meta itemprop="name" content="picoCTF 2025 Writeup">
 <meta itemprop="description" content="Save The Earth! - 地球環境を守ろう！ URL: https://picoctf.org/ 去年（2024年）は、picoCTFに参加することをすっかり忘れてましたが、今年は参加できました。 M1 Mac にしてか"><meta itemprop="datePublished" content="2025-04-05T10:00:00+09:00" />
 <meta itemprop="dateModified" content="2025-04-05T10:00:00+09:00" />
-<meta itemprop="wordCount" content="6361">
+<meta itemprop="wordCount" content="6418">
 <meta itemprop="keywords" content="CTF," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="picoCTF 2025 Writeup"/>
 <meta name="twitter:description" content="Save The Earth! - 地球環境を守ろう！ URL: https://picoctf.org/ 去年（2024年）は、picoCTFに参加することをすっかり忘れてましたが、今年は参加できました。 M1 Mac にしてか"/>
@@ -1702,16 +1702,27 @@ drwxrwxrwx 1 root root 24 Mar  6 19:42 bin
 </pre>
 <p><br /><br /></p>
 <p>ということで、/usr/local/bin/md5sum として実行ファイルを置けば、/usr/bin/md5sum の代わりに実行されます。</p>
-<p>以下のようなやり方はできなかったので、</p>
+<br />
+<p>md5sum というスクリプトファイルを作りたかったんですが、以下のようなやり方はできなかったので、</p>
 <pre>
-$ echo "cat /root/flag.txt" >> /usr/local/bin/md5sum
-
+ctf-player@pico-chall$ echo "cat /root/flag.txt" >> /usr/local/bin/md5sum
+-rbash: /usr/local/bin/md5sum: restricted: cannot redirect output
 </pre>
 <pre>
-$ cat << EOS
-#!/bin/bash
-echo aaa > /usr/local/bin/
-EOS
+ctf-player@pico-chall$ cd /usr/local/bin/
+-rbash: cd: restricted
+</pre>
+<pre>
+ctf-player@pico-chall$ cat << EOS > md5sum
+> #!/bin/bash
+> cat /root/flag.txt
+> EOS
+-rbash: md5sum: restricted: cannot redirect output
+</pre>
+<pre>
+$ scp -P 56250 md5sum ctf-player@rescued-float.picoctf.net:~/
+ctf-player@rescued-float.picoctf.net's password:
+scp: Connection closed
 </pre>
 <p><br /><br /></p>
 <p>ヒアドキュメント ＋ tee コマンドでファイルを作ることにしました。</p>
