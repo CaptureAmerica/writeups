@@ -29,7 +29,8 @@ URL: [https://picoctf.org/](https://picoctf.org/)
 <img src="https://captureamerica.github.io/writeups/img/picoctf_2023_Score1.png" alt="picoctf_2023_Score1.png">
 
 
-<br />
+<br /><br />
+
 4900点をとって、最終順位は 389位でした。
 <br />
 <img src="https://captureamerica.github.io/writeups/img/picoctf_2023_Rank.png" alt="picoctf_2023_Rank.png">
