@@ -236,7 +236,7 @@ Attachment:
 <br />
 Four octogintacentillion, eight hundred and fifty-eight novemseptuagintacentillion, four hundred and eighty-seven octoseptuagintacentillion, ...(snip)..., seven hundred and eighty-five quadrillion, four hundred and thirty-three trillion, one hundred and five billion, ninety-one million, five hundred and twenty-six thousand, six hundred and thirty-nine.
 
-### Unsolved
+### (Unsolved)
 以下のような感じでPythonでひらすらreplaceを行って、全部数字にするところまではやりました。
 ```python
 k = k.replace("octogintacentillion", ")*10^543")

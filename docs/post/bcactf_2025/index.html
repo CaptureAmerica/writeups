@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>BCACTF 6.0 Writeup - CTF フラxxグゲット</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="CaptureAmerica @ CTF フラxxグゲット" /><meta name="description" content="Save The Earth! - 地球環境を守ろう！ URL: https://play.bcactf.com/ BCACTF は、5回目の参加です。 BCACTF 1.0 (62位) BCACTF 2.0 (63位) BCACTF 3.0 (54位) BCACTF 4.0 - 不参加 BCACTF 5.0 (239位) BCACTF 6.0 (78位) -" /><meta name="keywords" content="CTF, Writeup, captureamerica, picoCTF" />
+
+
+
+<meta name="google-site-verification" content="PqctLWZQttGzxXVupWuIt2HWuBI8cvN1z07ETpxA2dw" />
+
+
+<meta name="generator" content="Hugo 0.119.0 with theme even" />
+
+
+<link rel="canonical" href="https://captureamerica.github.io/writeups/post/bcactf_2025/" />
+<link rel="apple-touch-icon" sizes="180x180" href="https://captureamerica.github.io/writeups/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://captureamerica.github.io/writeups/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://captureamerica.github.io/writeups/favicon-16x16.png">
+<link rel="manifest" href="https://captureamerica.github.io/writeups/manifest.json">
+<link rel="mask-icon" href="https://captureamerica.github.io/writeups/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="https://captureamerica.github.io/writeups/sass/main.min.f92fd13721ddf72129410fd8250e73152cc6f2438082b6c0208dc24ee7c13fc4.css" rel="stylesheet">
+
+
+
+<meta property="og:title" content="BCACTF 6.0 Writeup" />
+<meta property="og:description" content="Save The Earth! - 地球環境を守ろう！ URL: https://play.bcactf.com/ BCACTF は、5回目の参加です。 BCACTF 1.0 (62位) BCACTF 2.0 (63位) BCACTF 3.0 (54位) BCACTF 4.0 - 不参加 BCACTF 5.0 (239位) BCACTF 6.0 (78位) -" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://captureamerica.github.io/writeups/post/bcactf_2025/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2025-06-30T07:00:00+09:00" />
+<meta property="article:modified_time" content="2025-06-30T07:00:00+09:00" />
+<meta itemprop="name" content="BCACTF 6.0 Writeup">
+<meta itemprop="description" content="Save The Earth! - 地球環境を守ろう！ URL: https://play.bcactf.com/ BCACTF は、5回目の参加です。 BCACTF 1.0 (62位) BCACTF 2.0 (63位) BCACTF 3.0 (54位) BCACTF 4.0 - 不参加 BCACTF 5.0 (239位) BCACTF 6.0 (78位) -"><meta itemprop="datePublished" content="2025-06-30T07:00:00+09:00" />
+<meta itemprop="dateModified" content="2025-06-30T07:00:00+09:00" />
+<meta itemprop="wordCount" content="2553">
+<meta itemprop="keywords" content="CTF," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="BCACTF 6.0 Writeup"/>
+<meta name="twitter:description" content="Save The Earth! - 地球環境を守ろう！ URL: https://play.bcactf.com/ BCACTF は、5回目の参加です。 BCACTF 1.0 (62位) BCACTF 2.0 (63位) BCACTF 3.0 (54位) BCACTF 4.0 - 不参加 BCACTF 5.0 (239位) BCACTF 6.0 (78位) -"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="https://captureamerica.github.io/writeups/" class="logo">CTF Writeups</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="https://captureamerica.github.io/writeups/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="https://captureamerica.github.io/writeups/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="https://captureamerica.github.io/writeups/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="https://captureamerica.github.io/writeups/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a><a href="https://captureamerica.github.io/writeups/about/">
+        <li class="mobile-menu-item">About</li>
+      </a>
+  </ul>
+
+  
+
+
+</nav>
+
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="https://captureamerica.github.io/writeups/" class="logo">CTF Writeups</a>
+</div>
+
+
+
+
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="https://captureamerica.github.io/writeups/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="https://captureamerica.github.io/writeups/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="https://captureamerica.github.io/writeups/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="https://captureamerica.github.io/writeups/categories/">Categories</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="https://captureamerica.github.io/writeups/about/">About</a>
+      </li>
+  </ul>
+</nav>
+
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">BCACTF 6.0 Writeup</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2025-06-30 </span>
+        <div class="post-category">
+            <a href="https://captureamerica.github.io/writeups/categories/ctf/"> CTF </a>
+            </div>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contents</h2>
+  <div class="post-toc-content">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#misc-dessert_time-25-points">[Misc]: dessert_time (25 points)</a>
+      <ul>
+        <li><a href="#challenge">Challenge</a></li>
+        <li><a href="#solution">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#misc-molasses-25-points">[Misc]: Molasses (25 points)</a>
+      <ul>
+        <li><a href="#challenge-1">Challenge</a></li>
+        <li><a href="#solution-1">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#misc-annoying-50-points">[Misc]: Annoying (50 points)</a>
+      <ul>
+        <li><a href="#challenge-2">Challenge</a></li>
+        <li><a href="#solution-2">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#forensics-flag-flag-25-points">[Forensics]: Flag Flag (25 points)</a>
+      <ul>
+        <li><a href="#challenge-3">Challenge</a></li>
+        <li><a href="#solution-3">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#forensics-recovery-shop-50-points">[Forensics]: Recovery Shop (50 points)</a>
+      <ul>
+        <li><a href="#challenge-4">Challenge</a></li>
+        <li><a href="#unsolved">(Unsolved)</a></li>
+      </ul>
+    </li>
+    <li><a href="#forensics-tune-in-50-points">[Forensics]: tune in (50 points)</a>
+      <ul>
+        <li><a href="#challenge-5">Challenge</a></li>
+        <li><a href="#unsolved-1">(Unsolved)</a></li>
+      </ul>
+    </li>
+    <li><a href="#forensics-plain-sight-75-points">[Forensics]: plain-sight (75 points)</a>
+      <ul>
+        <li><a href="#challenge-6">Challenge</a></li>
+        <li><a href="#solution-4">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#forensics-tarred-and-feathered-75-points">[Forensics]: Tarred and Feathered (75 points)</a>
+      <ul>
+        <li><a href="#challenge-7">Challenge</a></li>
+        <li><a href="#solution-5">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#web-people-50-points">[Web]: People (50 points)</a>
+      <ul>
+        <li><a href="#challenge-8">Challenge</a></li>
+        <li><a href="#unsolved-2">(Unsolved)</a></li>
+      </ul>
+    </li>
+    <li><a href="#web-temps-75-points">[Web]: Temps (75 points)</a>
+      <ul>
+        <li><a href="#challenge-9">Challenge</a></li>
+        <li><a href="#solution-6">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#web-what-75-points">[Web]: What? (75 points)</a>
+      <ul>
+        <li><a href="#challenge-10">Challenge</a></li>
+        <li><a href="#solution-7">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#osint-japanese-lyrics-osint-100-points">[OSINT]: Japanese Lyrics OSINT (100 points)</a>
+      <ul>
+        <li><a href="#challenge-11">Challenge</a></li>
+        <li><a href="#solution-8">Solution</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <img src="https://captureamerica.github.io/writeups/img/green_bar.png" alt="green_bar.png">
+<img src="https://captureamerica.github.io/writeups/img/10_Nature_Themed_Icons_Cute_Earth_Icon.png" alt="Save The Earth!"> <b><font color="teal">Save The Earth! - 地球環境を守ろう！</font></b> <img src="https://captureamerica.github.io/writeups/img/10_Nature_Themed_Icons_Cute_Earth_Icon.png" alt="Save The Earth!">
+<img src="https://captureamerica.github.io/writeups/img/green_bar.png" alt="green_bar.png">
+<div class='align-right'>
+<a href="https://translate.google.com/translate?hl=en&sl=ja&tl=en&u=https%3A%2F%2Fcaptureamerica.github.io%2Fwriteups%2Fpost%2Fbcactf_2025%2F">
+<img src="https://captureamerica.github.io/writeups/img/En.png" alt="English">
+</a>
+</div>
+<p>URL: <a href="https://play.bcactf.com/">https://play.bcactf.com/</a>
+<br /><br /></p>
+<p>BCACTF は、5回目の参加です。</p>
+<p><a href="https://captureamerica.github.io/writeups/post/bcactf_2019/">BCACTF 1.0</a> (62位)</p>
+<p><a href="https://captureamerica.github.io/writeups/post/bcactf_2021/">BCACTF 2.0</a> (63位)</p>
+<p><a href="https://captureamerica.github.io/writeups/post/bcactf_2022/">BCACTF 3.0</a> (54位)</p>
+<p>BCACTF 4.0 - 不参加</p>
+<p><a href="https://captureamerica.github.io/writeups/post/bcactf_2024/">BCACTF 5.0</a> (239位)</p>
+<p>BCACTF 6.0 (78位) - 今回</p>
+<br />
+<p>今回は975点を獲得し、最終順位は78位でした。<br /></p>
+<img src="https://captureamerica.github.io/writeups/img/bcactf_2025_score.png" alt="bcactf_2025_score.png">
+<p><br /><br /></p>
+<p>今回は、参加者が少なかったですね。</p>
+<p><a href="https://ctftime.org/">CTFTime</a> からイベントが消えちゃっていたり、イベント開始までレジストレーションができなかったりしたのが原因なのかな、と思います。</p>
+<p><br><br></p>
+<p>以下はチャレンジのリストです。<br /></p>
+<img src="https://captureamerica.github.io/writeups/img/bcactf_2025_misc.png" alt="bcactf_2025_misc.png">
+<br />
+<img src="https://captureamerica.github.io/writeups/img/bcactf_2025_binex.png" alt="bcactf_2025_binex.png">
+<br>
+<img src="https://captureamerica.github.io/writeups/img/bcactf_2025_crypto.png" alt="bcactf_2025_crypto.png">
+<br />
+<img src="https://captureamerica.github.io/writeups/img/bcactf_2025_rev.png" alt="bcactf_2025_rev.png">
+<br>
+<img src="https://captureamerica.github.io/writeups/img/bcactf_2025_webex.png" alt="bcactf_2025_webex.png">
+<br>
+<img src="https://captureamerica.github.io/writeups/img/bcactf_2025_algo.png" alt="bcactf_2025_algo.png">
+<br />
+<p><br /><br />
+<br /><br /></p>
+<h2 id="misc-dessert_time-25-points">[Misc]: dessert_time (25 points)</h2>
+<hr>
+<h3 id="challenge">Challenge</h3>
+<blockquote>
+<p>I&rsquo;m a very good planner, but my robotics competition really fried my brain! I remember eating something for the past few weeks but I just can&rsquo;t seem to remember what. Can you please help me? Here&rsquo;s my schedule for reference
+<br /><br />
+Hint: I remember eating it early in the morning, but sometimes I would snack on it in the evening too.</p>
+</blockquote>
+<br>
+<h3 id="solution">Solution</h3>
+<p>Google Sheetが与えられます。</p>
+<p>フラグの一部である <code>{</code> をサーチしてみたらヒットしました。視覚的に見えないのは、フォントの色のせいかな（そこは調べませんでした）。</p>
+<br />
+<p>正規表現を使って数字以外をサーチしてみました。</p>
+<img src="https://captureamerica.github.io/writeups/img/bcactf_2025_dessert_time.png" alt="bcactf_2025_dessert_time.png">
+<p><br><br></p>
+<p>すべての文字を集めたらフラグになります。</p>
+<br />
+<p>Flag: <code>bcactf{Apple_pieS_Are_yuMMy}</code></p>
+<p><br /><br />
+<br /><br /></p>
+<h2 id="misc-molasses-25-points">[Misc]: Molasses (25 points)</h2>
+<hr>
+<h3 id="challenge-1">Challenge</h3>
+<blockquote>
+<p>This GIF shows the flag letter-by-letter but it&rsquo;s really slow and I don&rsquo;t want to wait all day. Maybe there&rsquo;s a faster way to get the flag?</p>
+</blockquote>
+<p>Attachment:</p>
+<ul>
+<li>molasses.gif</li>
+</ul>
+<br>
+<h3 id="solution-1">Solution</h3>
+<p>Animation GIF で、タイマーが長くセットされているんだと思うんですが、Mac PC の Preview で開いたらすべての画像が表示されたので、各画像の文字を並べるだけでした。</p>
+<p>想定解は別にあるんでしょうね。たぶん。</p>
+<br />
+<p>Flag: <code>bcactf{is_it_gif_or_gif_a51fd7ace416}</code></p>
+<p><br /><br />
+<br /><br /></p>
+<h2 id="misc-annoying-50-points">[Misc]: Annoying (50 points)</h2>
+<hr>
+<h3 id="challenge-2">Challenge</h3>
+<blockquote>
+<p>Sometimes things are more annoying than they are difficult.</p>
+</blockquote>
+<p>Attachment:</p>
+<ul>
+<li>DLXENH.zip</li>
+</ul>
+<h3 id="solution-2">Solution</h3>
+<p>かなり階層の深いzipファイルです。</p>
+<p>Mac PC の Archive Utility で解凍すると、途中で3回ほど停止しましたが、ほぼ全自動で解凍できました。</p>
+<p>これも、想定解ではないかな。。</p>
+<br />
+<p>Flag: <code>bcactf{w3ll_th4t_w4s_4nn0y1ng_fca743ef043c1d8}</code></p>
+<p><br /><br />
+<br /><br /></p>
+<h2 id="forensics-flag-flag-25-points">[Forensics]: Flag Flag (25 points)</h2>
+<hr>
+<h3 id="challenge-3">Challenge</h3>
+<blockquote>
+<p>It&rsquo;s a flag—inside a flag.</p>
+</blockquote>
+<p>Attachment:</p>
+<ul>
+<li>flag-flag.png</li>
+</ul>
+<img src="https://captureamerica.github.io/writeups/img/flag-flag.png" alt="flag-flag.png">
+<p><br><br></p>
+<h3 id="solution-3">Solution</h3>
+<p>各色の RGB の値が、文字に変換できます。</p>
+<p>rgb(98,99,97)</p>
+<p>rgb(99,116,102)</p>
+<p>rgb(123,49,106)</p>
+<p>rgb(78,55,117)</p>
+<p>rgb(89,107,106)</p>
+<p><code>+7D</code> は、<code>}</code> のことです。</p>
+<br />
+<p>Flag: <code>bcactf{1jN7uYkj}</code></p>
+<p><br /><br />
+<br /><br /></p>
+<h2 id="forensics-recovery-shop-50-points">[Forensics]: Recovery Shop (50 points)</h2>
+<hr>
+<h3 id="challenge-4">Challenge</h3>
+<blockquote>
+<p>Welcome to the recovery shop! For a small price, we can restore you to your best look!
+<br><br>
+Hint: Have you tried looking at yourself in the mirror? (the next hint is a real one)</p>
+</blockquote>
+<p>Attachment:</p>
+<ul>
+<li>recovers.heic</li>
+</ul>
+<img src="https://captureamerica.github.io/writeups/img/bcactf_2025_heic.png" alt="bcactf_2025_heic.png">
+<p><br><br></p>
+<h3 id="unsolved">(Unsolved)</h3>
+<p>これは、解けませんでした。</p>
+<br>
+<p>まず、exiftoolで以下が見つかります。</p>
+<pre>
+$ exiftool recovers.heic
+:
+Layer Names                     : orz, 6, 2, 5, 1, 3, bcactf{dOn!t_trUs!_the_T1Tle1}, 4
+Layer Unicode Names             : orz, 6, 2, 5, 1, 3, bcactf{dOn!t_trUs!_the_T1Tle1}, 4
+</pre>
+<p>これが next hint と言われるものですかね？</p>
+<br>
+<p>.heic ファイルは Mac PC で普通に開けるし、なんなら文字のコピーもできます。</p>
+<p>コピペで読み取った文字列がこちら。</p>
+<pre>
+bcactf{th!ss_
+@!e_83Kl
+ts_fr
+_b!n@na_
+f$_|@gOrz}
+</pre>
+<br>
+<p>改行を除くと、<code>bcactf{th!ss_@!e_83Klts_fr_b!n@na_f$_|@gOrz}</code> になりますが、これはフラグとして通りませんでした。</p>
+<p>結局のところ、大文字と小文字が間違っていたり、<code>|</code>が<code>l</code>だったりするだけなんですが、画像から文字を読取るだけのチャレンジでは、見間違いやすい文字は使わないで欲しいと思いました。</p>
+<br>
+<p>ヒントも、意味不明過ぎるし。むしろ無い方がよかった。</p>
+<p>Recoveryって何？ Mirrorって何？ &ldquo;Don&rsquo;t trust the title&rdquo; って何？？</p>
+<p>ただの愚痴です。</p>
+<br>
+<p>まぁ、学んだこともありました。</p>
+<div class="admonition tip"><p class="admonition-title">Tips</p>
+<p>Mac PCで画像からコピペで読み取った文字列は、実際の文字とは異なることがある。</p>
+</div>
+<p><br /><br />
+<br /><br /></p>
+<h2 id="forensics-tune-in-50-points">[Forensics]: tune in (50 points)</h2>
+<hr>
+<h3 id="challenge-5">Challenge</h3>
+<blockquote>
+<p>my boss radioed me a message but I can&rsquo;t hear it. he told me to tune in, can you help me out?
+<br /><br />
+Hint: look for suspicious audio</p>
+</blockquote>
+<p>Attachment:</p>
+<ul>
+<li>transmission.wav</li>
+</ul>
+<br>
+<h3 id="unsolved-1">(Unsolved)</h3>
+<p>これは、解けませんでした。調査の過程だけ、残しておきます。</p>
+<br>
+<p>.wavファイルなので、まず Audacity で開きます。</p>
+<p>ステレオのR側に音の大きな雑音、L側にSSTVの問題でよく出てくる音が入っています。</p>
+<p>L側は音がかなり小さくて、音量を上げる必要がありました。</p>
+<br />
+<p>Audacity の Amplify では音量を上げられなかった（おそらくR側の音が大きいから）ので、Normalizeを使いました。</p>
+<p><code>Normalize stereo channels independently</code> のオプションは必須です。</p>
+<img src="https://captureamerica.github.io/writeups/img/bcactf_2025_audacity_tune_in_1.png" alt="bcactf_2025_audacity_tune_in_1.png">
+<p><br /><br /></p>
+<p>Exportする際も、<code>Mono</code>にしないといけません。</p>
+<img src="https://captureamerica.github.io/writeups/img/bcactf_2025_audacity_tune_in_2.png" alt="bcactf_2025_audacity_tune_in_2.png">
+<p><br /><br /></p>
+<p>Windows PC にコピーして、RX-SSTVツールを使ってみましたが、まともな画像は取れませんでした。</p>
+<img src="https://captureamerica.github.io/writeups/img/bcactf_2025_audacity_tune_in_3.png" alt="bcactf_2025_audacity_tune_in_3.png">
+<br />
+<p><br /><br />
+<br /><br /></p>
+<h2 id="forensics-plain-sight-75-points">[Forensics]: plain-sight (75 points)</h2>
+<hr>
+<h3 id="challenge-6">Challenge</h3>
+<blockquote>
+<p>Can you help find my flag? I tried asking around but all I found was this poem.</p>
+</blockquote>
+<p>Attachment:</p>
+<ul>
+<li>hiding_in_plain_sight.pdf</li>
+</ul>
+<br>
+<h3 id="solution-4">Solution</h3>
+<p>Libre Office で開いて、オブジェクトを移動したりするとフラグが見つかるやつです。</p>
+<br />
+<p>Flag: <code>bcactf{Now_y0U_s3e_mE}</code></p>
+<p><br /><br />
+<br /><br /></p>
+<h2 id="forensics-tarred-and-feathered-75-points">[Forensics]: Tarred and Feathered (75 points)</h2>
+<hr>
+<h3 id="challenge-7">Challenge</h3>
+<blockquote>
+<p>i recently exfiltrated this archive from a suspect&rsquo;s computer. they illegally stole all of our flags.
+<br />
+however, not everything is as it seems. the flag is in the archive, but where? i couldn&rsquo;t find it, can you?
+<br /><br />
+Hint1: Not everything in the archive is what it seems. Look beyond the visible files.
+<br />
+Hint2: how can you get more information about what files are in the archive?</p>
+</blockquote>
+<p>Attachment:</p>
+<ul>
+<li>challenge.tar.gz</li>
+</ul>
+<br>
+<h3 id="solution-5">Solution</h3>
+<p>普通に解凍しようとすると、以下のようなエラーになります。解凍には失敗しますが、flag.txtのパスはわかります。</p>
+<pre>
+$ tar zxvf challenge.tar.gz
+x note.txt
+x ../.cache/.hidden_logs/.�\200\213flag.txt: Path contains '..': Unknown error: -1
+tar: Error exit delayed from previous errors.
+</pre>
+<br />
+<p>以下のように<code>-O</code>オプションとパスの指定でフラグの中身が取れました。</p>
+<pre>
+$ tar zxvf challenge.tar.gz -O ../.cache/.hidden_logs/
+x ../.cache/.hidden_logs/.�\200\213flag.txtbcactf{you_tarred_me_apart_1bf1fb1}
+</pre>
+<br />
+<p>Flag: <code>bcactf{you_tarred_me_apart_1bf1fb1}</code></p>
+<p><br /><br />
+<br /><br /></p>
+<h2 id="web-people-50-points">[Web]: People (50 points)</h2>
+<hr>
+<h3 id="challenge-8">Challenge</h3>
+<blockquote>
+<p>Find the administrator&rsquo;s email address. Wrap it in bcactf{}.
+<br /><br />
+<a href="http://challs.bcactf.com:42593">http://challs.bcactf.com:42593</a></p>
+</blockquote>
+<br>
+<h3 id="unsolved-2">(Unsolved)</h3>
+<p>多くの人が解けているのに、自分は解けませんでした。</p>
+<br>
+<p>View Source で以下が見つかります。</p>
+<pre>
+&lt;span>Name: Roscoe Quigley</span>&lt;br />
+&lt;!-- username: administrator -->
+&lt;img src="https://gravatar.com/avatar/06003dfd18a22e6809e736cf27eaabb6" loading="lazy" />
+&lt;hr/>
+</pre>
+<br />
+<p>結局のところ、このHash値を CrackStation でCrackしたらメールアドレスが見つかるんですが、そういう発想は全く浮かばなかったです。</p>
+<br />
+<p>だって、username: administrator なんだし、あとはドメイン名を見つける問題かな、と思っていろいろと調べたんですが、</p>
+<p>何気に Roscoe Quigley っていう人も実在するみたいだし、でもそれだとOSINTチャレンジだしなぁと思いつつ、時間の無駄になりそうだったので諦めました。</p>
+<br />
+<p>せめて role: administrator みたいにしておいてくれたら、よかったのにと思います。</p>
+<p>ただの愚痴です。</p>
+<p><br /><br />
+<br /><br /></p>
+<h2 id="web-temps-75-points">[Web]: Temps (75 points)</h2>
+<hr>
+<h3 id="challenge-9">Challenge</h3>
+<blockquote>
+<p>Find out when this web app was compiled. Report your answer as a Unix timestamp in milliseconds wrapped with bcactf{}. (For example, the date &ldquo;Wed, 01 Jan 2020 05:00:00 GMT&rdquo; would be reported as bcactf{1577854800000})
+<br /><br />
+<a href="http://challs.bcactf.com:26137">http://challs.bcactf.com:26137</a></p>
+</blockquote>
+<br>
+<h3 id="solution-6">Solution</h3>
+<p><code>_app/version.json</code> を見ればバージョンがわかるようです。</p>
+<pre>
+http://challs.bcactf.com:26137/_app/version.json
+{"version":"1735776187591"}
+</pre>
+<br />
+<p>Flag: <code>bcactf{1735776187591}</code></p>
+<p><br /><br />
+<br /><br /></p>
+<h2 id="web-what-75-points">[Web]: What? (75 points)</h2>
+<hr>
+<h3 id="challenge-10">Challenge</h3>
+<blockquote>
+<p>Surmount the insurmountable.
+<br /><br />
+<a href="http://challs.bcactf.com:47861">http://challs.bcactf.com:47861</a></p>
+</blockquote>
+<img src="https://captureamerica.github.io/writeups/img/bcactf_2025_web_what.png" alt="bcactf_2025_web_what.png">
+<p>Attachment:</p>
+<ul>
+<li>what.php (&lt;&ndash; イベントの途中で追加されました)</li>
+</ul>
+<br>
+<h3 id="solution-7">Solution</h3>
+<p>添付ファイル（what.php）が提供される前に解けました ^^</p>
+<br />
+<p>2つのHash値を比較するアプリだとすると、Hash Collisionを元にしたチャレンジなのが予想できます。</p>
+<p>参考：</p>
+<p><a href="https://github.com/spaze/hashes?tab=readme-ov-file">https://github.com/spaze/hashes?tab=readme-ov-file</a></p>
+<br />
+<p>以下の2つ使って、フラグが取れました。</p>
+<pre>
+TEXTCOLLBYfGiJUETHQ4hAcKSMd5zYpgqf1YRDhkmxHkhPWptrkoyz28wnI9V0aHeAuaKnak
+TEXTCOLLBYfGiJUETHQ4hEcKSMd5zYpgqf1YRDhkmxHkhPWptrkoyz28wnI9V0aHeAuaKnak
+</pre>
+<br />
+<p>Flag: <code>bcactf{wh0_kn0ws_4nym0r3_11fab08d769a}</code></p>
+<p><br /><br />
+<br /><br /></p>
+<h2 id="osint-japanese-lyrics-osint-100-points">[OSINT]: Japanese Lyrics OSINT (100 points)</h2>
+<hr>
+<h3 id="challenge-11">Challenge</h3>
+<blockquote>
+<p>Out of the top 25 most streamed songs in Japan according to Wikipedia, we picked a song (with Japanese lyrics) and translated a line from Japanese to English using various large language models. Here were the results (each line is a different translation):
+<br><br>
+An unending, unending flavor has seeped in.
+<br><br>
+There&rsquo;s a taste that won&rsquo;t go away, it&rsquo;s stained into me.
+<br><br>
+The taste that won&rsquo;t disappear, won&rsquo;t disappear, has soaked in deeply.
+<br><br>
+The taste that doesn&rsquo;t fade, doesn&rsquo;t fade, is deeply ingrained.
+<br><br>
+What is the name of the song, according to its English Wikipedia page? Wrap the name in bcactf{}. It&rsquo;s case-sensitive, so please follow the case as it is on Wikipedia.
+<br><br>
+Hint1: The difficulty in this challenge perhaps lies in gathering the lyrics to the top 25 most streamed songs. But maybe there&rsquo;s an easy way to get that done?
+<br><br>
+Hint2: The same word is translated as &ldquo;unending&rdquo;, &ldquo;won&rsquo;t go away&rdquo;, &ldquo;won&rsquo;t disappear&rdquo;, and &ldquo;doesn&rsquo;t fade&rdquo;. It may be worth finding out what word that is.
+<br><br>
+Hint3: What is the Japanese word for flavor/taste?
+<br><br>
+Hint4: The flag is a romanized Japanese word.</p>
+</blockquote>
+<br>
+<h3 id="solution-8">Solution</h3>
+<p>リストは以下のWikiにありました。</p>
+<p><a href="https://en.wikipedia.org/wiki/List_of_best-selling_singles_in_Japan">https://en.wikipedia.org/wiki/List_of_best-selling_singles_in_Japan</a></p>
+<br />
+<p>そもそも曲数が25曲しかなくて、フラグは99回Submitできるので、Brute Forceするだけでした。9回目で当たりました。</p>
+<br />
+<p>Flag: <code>bcactf{Kaibutsu}</code></p>
+<p><br /><br />
+<br /><br /></p>
+<hr>
+<p><br /><br />
+<br /><br /></p>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content">CaptureAmerica @ CTF フラxxグゲット</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">
+        2025-06-30
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="https://captureamerica.github.io/writeups/tags/ctf/">CTF</a>
+          </div>
+      <nav class="post-nav">
+        
+        <a class="next" href="https://captureamerica.github.io/writeups/post/picoctf_2025/">
+            <span class="next-text nav-default">picoCTF 2025 Writeup</span>
+            <span class="next-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="https://github.com/CaptureAmerica/" class="iconfont icon-github" title="github"></a>
+  
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2019 - 
+    2025<span class="heart"><i class="iconfont icon-heart"></i></span><span>CaptureAmerica @ CTF フラxxグゲット</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  
+
+
+
+<script type="text/javascript" src="https://captureamerica.github.io/writeups/js/main.min.4ae89da218555efa0e7093a20b92017d2e1202b66fff9fc2edf4cb8d44b44c6e.js"></script>
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-104910699-2', 'auto');
+	ga('set', 'anonymizeIp', true);
+	ga('send', 'pageview');
+}
+</script>
+
+
+
+
+
+
+</body>
+</html>

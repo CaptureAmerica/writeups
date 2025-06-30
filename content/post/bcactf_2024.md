@@ -30,7 +30,7 @@ BCACTF は、4回目の参加です。去年（2024年）は何故か参加し�
 
 [BCACTF 3.0](https://captureamerica.github.io/writeups/post/bcactf_2022/) (54位)
 
-[BCACTF 4.0] - 不参加
+BCACTF 4.0 - 不参加
 
 
 <br /><br />
